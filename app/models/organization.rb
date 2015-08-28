@@ -1,7 +1,7 @@
 require "typhoeus"
 require "zlib"
 require "stringio"
-require "Nokogiri"
+require "nokogiri"
 
 class Organization
 
