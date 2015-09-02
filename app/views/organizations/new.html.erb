@@ -1,41 +1,13 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<h1>New Organization</h1>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <%= stylesheet_link_tag 'base' %>
-  <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
-  <%= csrf_meta_tags %>
-  <style>
-  	.container {
-    	margin: 80px auto;
-    	width: 640px;
-  	}
-  </style>
-</head>
-	<body>
-	
-		<h1>Organizations</h1>
+<%= form_for @organization do |f| %>
+   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
 
-		<%= form_for @organization do |f| %>
-		   <div class="field">
-		    <%= f.label :name %><br />
-		    <%= f.text_field :name, autofocus: true %>
-		  </div>
-
-		  <div class="actions">
-		    <%= f.submit "Create" %>
-		  </div>
-		<% end %>
-	</body>
-</html>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
 
