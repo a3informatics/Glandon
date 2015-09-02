@@ -1,10 +1,8 @@
-require "typhoeus"
-require "zlib"
-require "stringio"
 require "nokogiri"
 
 class Organization
 
+  include Rest
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
@@ -17,14 +15,55 @@ class Organization
   end
  
   def self.find(id)
-    return nil
+    
+    resultOrg = nil
+    
+    # Create the query
+    key = SEMANTIC_DB_CONFIG['apiKey'] 
+    secret = SEMANTIC_DB_CONFIG['secret']
+    endpoint = SEMANTIC_DB_CONFIG['queryEndpoint']
+    data = "query=PREFIX org: <http://www.assero.co.uk/MDROrganizations#> \n" +
+    "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> \n" + 
+    "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#> \n" + 
+    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" + 
+    "SELECT ?a WHERE \n" +
+    "{ \n" +
+    "	?a rdf:type isoI:Namespace . \n" +
+    "	?a isoI:namingAuthorityRelationship ?b . \n" +
+    "	?b isoB:name '" + id.to_s + "'^^<http://www.w3.org/2001/XMLSchema#string> ; \n" +
+    "}"
+    headers = {'Accept' => "application/sparql-results+xml",
+            'Content-type'=> "application/x-www-form-urlencoded"}
+    
+    p "Find query=" + data
+            
+    # Send the request, wait the resonse
+    response = Rest.sendRequest(endpoint,:post,key + ":" + secret,data,headers)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//uri").each do |node|
+    
+      p "Node value: " + node.text
+    
+      org = Organization.new
+      org.name = id
+      org.id = id
+      resultOrg = org
+    end
+    return resultOrg
+    
   end
 
-  def self.where(parameters={})
+  def self.all
     
     results = Array.new
     
-    endpoint = "https://rdf.s4.ontotext.com/4830471037/Test/repositories/mdr"
+    # Create the query
+    key = SEMANTIC_DB_CONFIG['apiKey'] 
+    secret = SEMANTIC_DB_CONFIG['secret']
+    endpoint = SEMANTIC_DB_CONFIG['queryEndpoint']
     data = "query=PREFIX org: <http://www.assero.co.uk/MDROrganizations#> \n" +
     "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> \n" + 
     "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#> \n" + 
@@ -35,23 +74,13 @@ class Organization
     "	?a isoI:namingAuthorityRelationship ?b . \n" +
     "	?b isoB:name ?name; \n" +
     "}"
-    key = "s4h7h1e8absr"
-    secret = "47q8uce2r1b4cri"
     headers = {'Accept' => "application/sparql-results+xml",
             'Content-type'=> "application/x-www-form-urlencoded"}
-
-    hydra = Typhoeus::Hydra.hydra
-    req = Typhoeus::Request.new(endpoint,
-        method: :post,
-        userpwd: key + ":" + secret, 
-        body: data,
-        headers: headers)
-    hydra.queue(req)
-    hydra.run
-    response = req.response
     
-    p response.body
+    # Send the request, wait the resonse
+    response = Rest.sendRequest(endpoint,:post,key + ":" + secret,data,headers)
     
+    # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//literal").each do |node|
@@ -59,18 +88,22 @@ class Organization
       p "Node value: " + node.text
     
       org = Organization.new
+      org.name = node.text
+      org.id = node.text
       results.push (org)
     end
     return results
     
   end
 
-  def self.all
-    return self.where
-  end
-
-  def self.create(id)
-    endpoint = "https://rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements"
+  def self.create(params)
+    
+    id = params[:name]
+    
+    # Create the query
+    key = SEMANTIC_DB_CONFIG['apiKey'] 
+    secret = SEMANTIC_DB_CONFIG['secret']
+    endpoint = SEMANTIC_DB_CONFIG['updateEndpoint']
     data = "update=PREFIX org: <http://www.assero.co.uk/MDROrganizations#> \n" +
     "PREFIX ISO11179Basic: <http://www.assero.co.uk/ISO11179Basic#> \n" +
     "PREFIX ISO11179Identification: <http://www.assero.co.uk/ISO11179Identification#> \n" +
@@ -84,21 +117,18 @@ class Organization
     "	org:" + id.to_s + "NS rdf:type ISO11179Identification:Namespace . \n" +
     "	org:" + id.to_s + "NS ISO11179Identification:namingAuthorityRelationship org:" + id.to_s + " . \n" +
     "}"
-    key = "s4h7h1e8absr"
-    secret = "47q8uce2r1b4cri"
     headers = {'Content-type'=> "application/x-www-form-urlencoded"}
 
-    hydra = Typhoeus::Hydra.hydra
-    req = Typhoeus::Request.new(endpoint,
-        method: :post,
-        userpwd: key + ":" + secret, 
-        body: data,
-        headers: headers)
-    hydra.queue(req)
-    hydra.run
-    response = req.response
+    p "Create query=" + data
+    
+    # Send the request, wait the resonse
+    response = Rest.sendRequest(endpoint,:post,key + ":" + secret,data,headers)
+
+    # Response
     if response.success?
       object = self.new
+      object.id = id
+      object.name = id
       p "It worked!"
     else
       p "It didn't work!"
@@ -106,14 +136,46 @@ class Organization
       object.assign_errors(data) if response.response_code == 422
     end
     return object
+    
   end
 
-  def self.update(id)
+  def update(id)
     return nil
   end
 
-  def self.destroy(id)
-    return nil   
+  def destroy
+    
+    # Create the query
+    key = SEMANTIC_DB_CONFIG['apiKey'] 
+    secret = SEMANTIC_DB_CONFIG['secret']
+    endpoint = SEMANTIC_DB_CONFIG['updateEndpoint']
+    data = "update=PREFIX org: <http://www.assero.co.uk/MDROrganizations#> \n" +
+    "PREFIX ISO11179Basic: <http://www.assero.co.uk/ISO11179Basic#> \n" +
+    "PREFIX ISO11179Identification: <http://www.assero.co.uk/ISO11179Identification#> \n" +
+    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" +
+    "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n" +
+    "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+    "DELETE DATA \n" +
+    "{ \n" +
+    "	org:" + self.id.to_s + "  rdf:type ISO11179Basic:Organization . \n" +
+    "	org:" + self.id.to_s + " ISO11179Basic:name \"" + self.id.to_s + "\"^^xsd:string . \n" +
+    "	org:" + self.id.to_s + "NS rdf:type ISO11179Identification:Namespace . \n" +
+    "	org:" + self.id.to_s + "NS ISO11179Identification:namingAuthorityRelationship org:" + self.id.to_s + " . \n" +
+    "}"
+    headers = {'Content-type'=> "application/x-www-form-urlencoded"}
+
+    p "Create query=" + data
+    
+    # Send the request, wait the resonse
+    response = Rest.sendRequest(endpoint,:post,key + ":" + secret,data,headers)
+
+    # Response
+    if response.success?
+      p "It worked!"
+    else
+      p "It didn't work!"
+    end
+     
   end
   
 end

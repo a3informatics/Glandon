@@ -36,13 +36,12 @@
 			    <td><%= organization.name %></td>
 			    <td><%= link_to "Show", organization %></td>
 			    <td></td>
-			    <td><%= link_to "Remove", organization, method: :delete, data: { confirm: "Are you sure?" } %></td>
+			    <td><%= link_to "Remove", organization_path(organization), method: :delete, data: { confirm: "Are you sure?" } %></td>
 			  </tr>
 			<% end %>
 		</table>
 		<br>
 		<%= link_to "New organization", new_organization_path %>
-		<%= javascript_include_tag 'application' %>
 	</body>
 </html>
 
