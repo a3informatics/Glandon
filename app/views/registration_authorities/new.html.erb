@@ -1,0 +1,14 @@
+<h1>New Owner</h1>
+
+<%= form_for @registrationAuthority do |f| %>
+   <div class="field">
+    <%= f.label :number %><br />
+    <%= f.text_field :number, autofocus: true %>
+  </div>
+	<%= f.select(:organization_id, 
+	             options_from_collection_for_select(Organization.all, :id, :name),
+	             :prompt => "Name") %>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>

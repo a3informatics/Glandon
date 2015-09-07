@@ -1,0 +1,19 @@
+<h1>Owner</h1>
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Org Id</th>
+    <th></th>
+    <th></th>
+  </tr>
+	<% @registrationAuthorities.each do |registrationAuthority| %>
+	  <tr>
+	    <td><%= registrationAuthority.number %></td>
+	    <td><%= link_to "Org", organization_path(registrationAuthority.organization_id) %></td>
+	    <td><%= link_to "Show", registrationAuthority %></td>
+	    <td><%= link_to "Remove", registration_authority_path(registrationAuthority), method: :delete, data: { confirm: "Are you sure?" } %></td>
+	  </tr>
+	<% end %>
+</table>
+<br>
+<%= link_to "New authority", new_registration_authority_path %>

@@ -2,7 +2,8 @@ require "nokogiri"
 
 class Organization
 
-  include Rest
+  include CRUD
+  include ModelUtility
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
@@ -10,6 +11,16 @@ class Organization
   attr_accessor :id, :name
   validates_presence_of :name
 
+  C_NS = "http://www.assero.co.uk/MDROrganizations" 
+  C_PREFIX = "org" + ": <" + C_NS + "#>"
+  C_PREFIXES = ["isoB: <http://www.assero.co.uk/ISO11179Basic#>" ,
+        "isoI: <http://www.assero.co.uk/ISO11179Identification#>" ,
+        "rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" ,
+        "rdfs: <http://www.w3.org/2000/01/rdf-schema#>" ,
+        "xsd: <http://www.w3.org/2001/XMLSchema#>" ]
+  C_O_PREFIX = "O"
+  C_NS_PREFIX = "NS"
+  
   def persisted?
     id.present?
   end
@@ -19,39 +30,27 @@ class Organization
     resultOrg = nil
     
     # Create the query
-    key = SEMANTIC_DB_CONFIG['apiKey'] 
-    secret = SEMANTIC_DB_CONFIG['secret']
-    endpoint = SEMANTIC_DB_CONFIG['queryEndpoint']
-    data = "query=PREFIX org: <http://www.assero.co.uk/MDROrganizations#> \n" +
-    "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> \n" + 
-    "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#> \n" + 
-    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" + 
-    "SELECT ?a WHERE \n" +
-    "{ \n" +
-    "	?a rdf:type isoI:Namespace . \n" +
-    "	?a isoI:namingAuthorityRelationship ?b . \n" +
-    "	?b isoB:name '" + id.to_s + "'^^<http://www.w3.org/2001/XMLSchema#string> ; \n" +
-    "}"
-    headers = {'Accept' => "application/sparql-results+xml",
-            'Content-type'=> "application/x-www-form-urlencoded"}
+    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+      "SELECT ?b WHERE \n" +
+      "{ \n" +
+      "org:" + id.to_s  + " isoI:namingAuthorityRelationship ?a . \n" +
+      "	?a isoB:name ?b ; \n" +
+      "}"
     
-    p "Find query=" + data
-            
     # Send the request, wait the resonse
-    response = Rest.sendRequest(endpoint,:post,key + ":" + secret,data,headers)
+    response = CRUD.query(query)
     
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//uri").each do |node|
-    
-      p "Node value: " + node.text
-    
+    xmlDoc.xpath("//literal").each do |node|
       org = Organization.new
-      org.name = id
+      org.name = node.text
       org.id = id
       resultOrg = org
     end
+    
+    # Return
     return resultOrg
     
   end
@@ -61,74 +60,71 @@ class Organization
     results = Array.new
     
     # Create the query
-    key = SEMANTIC_DB_CONFIG['apiKey'] 
-    secret = SEMANTIC_DB_CONFIG['secret']
-    endpoint = SEMANTIC_DB_CONFIG['queryEndpoint']
-    data = "query=PREFIX org: <http://www.assero.co.uk/MDROrganizations#> \n" +
-    "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> \n" + 
-    "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#> \n" + 
-    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" + 
-    "SELECT ?name WHERE \n" +
-    "{ \n" +
-    "	?a rdf:type isoI:Namespace . \n" +
-    "	?a isoI:namingAuthorityRelationship ?b . \n" +
-    "	?b isoB:name ?name; \n" +
-    "}"
-    headers = {'Accept' => "application/sparql-results+xml",
-            'Content-type'=> "application/x-www-form-urlencoded"}
+    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+      "SELECT ?a ?c WHERE \n" +
+      "{ \n" +
+      "	?a rdf:type isoI:Namespace . \n" +
+      "	?a isoI:namingAuthorityRelationship ?b . \n" +
+      "	?b isoB:name ?c; \n" +
+      "}"
     
     # Send the request, wait the resonse
-    response = Rest.sendRequest(endpoint,:post,key + ":" + secret,data,headers)
+    response = CRUD.query(query)
     
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//literal").each do |node|
-    
-      p "Node value: " + node.text
-    
-      org = Organization.new
-      org.name = node.text
-      org.id = node.text
-      results.push (org)
+    xmlDoc.xpath("//result").each do |node|
+      
+      p "Node: " + node.text
+      
+      literalSet = node.xpath("binding[@name='c']/literal")
+      uriSet = node.xpath("binding[@name='a']/uri")
+
+      p "Literal: " + literalSet.text
+      p "URI: " + uriSet.text
+
+      if uriSet.length == 1 and literalSet.length == 1
+
+        p "Found: " + literalSet[0].text
+
+        org = self.new 
+        org.id = ModelUtility.URIGetId(uriSet[0].text)
+        org.name = literalSet[0].text
+        results.push (org)
+      end
     end
+    
+    # Return
     return results
     
   end
 
   def self.create(params)
     
-    id = params[:name]
+    unique = params[:name]
+    name = unique.to_s
     
     # Create the query
-    key = SEMANTIC_DB_CONFIG['apiKey'] 
-    secret = SEMANTIC_DB_CONFIG['secret']
-    endpoint = SEMANTIC_DB_CONFIG['updateEndpoint']
-    data = "update=PREFIX org: <http://www.assero.co.uk/MDROrganizations#> \n" +
-    "PREFIX ISO11179Basic: <http://www.assero.co.uk/ISO11179Basic#> \n" +
-    "PREFIX ISO11179Identification: <http://www.assero.co.uk/ISO11179Identification#> \n" +
-    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" +
-    "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n" +
-    "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-    "INSERT DATA \n" +
-    "{ \n" +
-    "	org:" + id.to_s + "  rdf:type ISO11179Basic:Organization . \n" +
-    "	org:" + id.to_s + " ISO11179Basic:name \"" + id.to_s + "\"^^xsd:string . \n" +
-    "	org:" + id.to_s + "NS rdf:type ISO11179Identification:Namespace . \n" +
-    "	org:" + id.to_s + "NS ISO11179Identification:namingAuthorityRelationship org:" + id.to_s + " . \n" +
-    "}"
-    headers = {'Content-type'=> "application/x-www-form-urlencoded"}
-
-    p "Create query=" + data
+    orgId = ModelUtility.BuildId(C_O_PREFIX, unique.to_s)
+    id = ModelUtility.BuildId(C_NS_PREFIX, unique.to_s)
+    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      "	org:" + orgId + " rdf:type isoB:Organization . \n" +
+      "	org:" + orgId + " isoB:name \"" + name + "\"^^xsd:string . \n" +
+      "	org:" + id + " rdf:type isoI:Namespace . \n" +
+      "	org:" + id + " isoI:namingAuthorityRelationship org:" + orgId + " . \n" +
+      "}"
     
     # Send the request, wait the resonse
-    response = Rest.sendRequest(endpoint,:post,key + ":" + secret,data,headers)
+    response = CRUD.update(update)
 
     # Response
     if response.success?
       object = self.new
       object.id = id
-      object.name = id
+      object.name = name
       p "It worked!"
     else
       p "It didn't work!"
@@ -146,28 +142,19 @@ class Organization
   def destroy
     
     # Create the query
-    key = SEMANTIC_DB_CONFIG['apiKey'] 
-    secret = SEMANTIC_DB_CONFIG['secret']
-    endpoint = SEMANTIC_DB_CONFIG['updateEndpoint']
-    data = "update=PREFIX org: <http://www.assero.co.uk/MDROrganizations#> \n" +
-    "PREFIX ISO11179Basic: <http://www.assero.co.uk/ISO11179Basic#> \n" +
-    "PREFIX ISO11179Identification: <http://www.assero.co.uk/ISO11179Identification#> \n" +
-    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" +
-    "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n" +
-    "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-    "DELETE DATA \n" +
-    "{ \n" +
-    "	org:" + self.id.to_s + "  rdf:type ISO11179Basic:Organization . \n" +
-    "	org:" + self.id.to_s + " ISO11179Basic:name \"" + self.id.to_s + "\"^^xsd:string . \n" +
-    "	org:" + self.id.to_s + "NS rdf:type ISO11179Identification:Namespace . \n" +
-    "	org:" + self.id.to_s + "NS ISO11179Identification:namingAuthorityRelationship org:" + self.id.to_s + " . \n" +
-    "}"
-    headers = {'Content-type'=> "application/x-www-form-urlencoded"}
-
-    p "Create query=" + data
+    unique = ModelUtility.URIGetUnique(self.id)
+    orgId = ModelUtility.BuildId(C_O_PREFIX, unique)
+    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+      "DELETE DATA \n" +
+      "{ \n" +
+      "	org:" + orgId + "  rdf:type isoB:Organization . \n" +
+      "	org:" + orgId + " isoB:name \"" + self.id.to_s + "\"^^xsd:string . \n" +
+      "	org:" + self.id + " rdf:type isoI:Namespace . \n" +
+      "	org:" + self.id + " isoI:namingAuthorityRelationship org:" + orgId + " . \n" +
+      "}"
     
     # Send the request, wait the resonse
-    response = Rest.sendRequest(endpoint,:post,key + ":" + secret,data,headers)
+    response = CRUD.update(update)
 
     # Response
     if response.success?
