@@ -1,0 +1,31 @@
+<h1>New Thesaurus Concept</h1>
+
+<%= form_for @thesaurusConcept do |f| %>
+  <div class="field">
+    <%= f.label :identifier %><br />
+    <%= f.text_field :identifier, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :definition %><br />
+    <%= f.text_field :definition %>
+  </div>
+  <div class="field">
+    <%= f.label :notation %><br />
+    <%= f.text_field :notation %>
+  </div>
+  <div class="field">
+    <%= f.label :preferredTerm %><br />
+    <%= f.text_field :preferredTerm %>
+  </div>
+  <div class="field">
+    <%= f.label :synonym %><br />
+    <%= f.text_field :synonym %>
+  </div>
+  <div class="field">
+    <%= f.label :extensible %><br />
+    <%= f.text_field :extensible %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>

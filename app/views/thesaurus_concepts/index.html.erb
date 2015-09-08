@@ -1,0 +1,19 @@
+<h1>Thesaurus Concept</h1>
+<table>
+  <tr>
+    <th>Identifier</th>
+    <th>Definition</th>
+    <th></th>
+    <th></th>
+  </tr>
+	<% @thesaurusConcepts.each do |thesaurusConcept| %>
+	  <tr>
+	    <td><%= thesaurusConcept.identifier%></td>
+	    <td><%= thesaurusConcept.definition%></td>
+	    <td><%= link_to "Show", thesaurusConcept %></td>
+	    <td><%= link_to "Remove", thesaurus_concept_path(thesaurusConcept), method: :delete, data: { confirm: "Are you sure?" } %></td>
+	  </tr>
+	<% end %>
+</table>
+<br>
+<%= link_to "New thesaurus Concept", new_thesaurus_concept_path %>

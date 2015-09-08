@@ -1,0 +1,12 @@
+<h1>New Thesaurus</h1>
+
+<%= form_for @thesaurus, :url => thesauri_index_path do |f| %>
+   <div class="field">
+     <%= f.select(:ii_id, 
+	             options_from_collection_for_select(IdentifiedItem.all, :id, :identifier),
+	             :prompt => "Name") %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>

@@ -1,32 +1,4 @@
 Rails.application.routes.draw do
-  
-  #get 'registration_authority/new'
-
-  #get 'registration_authority/create'
-
-  #get 'registration_authority/update'
-
-  #get 'registration_authority/edit'
-
-  #get 'registration_authority/destroy'
-
-  #get 'registration_authority/index'
-
-  #get 'registration_authority/show'
-
-  get 'identified_item/new'
-
-  get 'identified_item/create'
-
-  get 'identified_item/update'
-
-  get 'identified_item/edit'
-
-  get 'identified_item/destroy'
-
-  get 'identified_item/index'
-
-  get 'identified_item/show'
 
   root to: 'dashboard#index'
   
@@ -34,5 +6,8 @@ Rails.application.routes.draw do
   
   resources :organizations
   resources :registration_authorities
+  resources :identified_items
+  resources :thesauri
+  resources :thesaurus_concepts
   
 end

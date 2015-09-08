@@ -10,19 +10,31 @@ module ModelUtility
     
   end
 
-  def ModelUtility.BuildId(prefix, unique)
+  def ModelUtility.BuildFragment(prefix, unique)
   
     return prefix + "_" + unique
     
   end
   
-  def ModelUtility.BuildURI(ns, id)
+  def ModelUtility.BuildURI(ns, fragment)
   
-    return ns + '#' + id
+    return ns + '#' + fragment
     
   end
 
-  def ModelUtility.URIGetId(uri)
+  def ModelUtility.URIGetNs(uri)
+  
+    parts = uri.split('#')
+    if parts.size == 2
+      result = parts[0]
+    else
+      result = uri
+    end
+    return result
+    
+  end
+  
+  def ModelUtility.URIGetFragment(uri)
   
     parts = uri.split('#')
     if parts.size == 2
@@ -34,15 +46,23 @@ module ModelUtility
     
   end
     
-  def ModelUtility.URIGetUnique(id)
+  def ModelUtility.URIGetUnique(fragment)
   
-    parts = id.split('_')
+    parts = fragment.split('_')
     if parts.size == 2
       result = parts[1]
     else
       result = id
     end
     return result
+    
+  end
+  
+  def ModelUtility.FragmentSwapPrefix(fragment, prefix)
+  
+    unique = URIGetUnique(fragment)
+    newFragment = BuildFragment(prefix, unique)
+    return newFragment
     
   end
   

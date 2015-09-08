@@ -1,0 +1,15 @@
+<h1>New Owner</h1>
+
+<%= form_for @identifiedItem do |f| %>
+   <div class="field">
+    <%= f.label :identifier %><br />
+    <%= f.text_field :identifier, autofocus: true %>
+  </div>
+   <div class="field">
+    <%= f.label :version %><br />
+    <%= f.text_field :version, autofocus: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<h1>Thesauri</h1>
+<table>
+  <tr>
+    <th>II Id</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+	<% @thesauri.each do |thesaurus| %>
+	  <tr>
+	    <td><%= thesaurus.ii_id%></td>
+	    <td><%= link_to "Linky linky", identified_item_path(thesaurus.ii_id) %></td>
+	    <td><%= link_to "Show", thesauri_path(thesaurus) %></td>
+	    <td><%= link_to "Remove", thesauri_path(thesaurus), method: :delete, data: { confirm: "Are you sure?" } %></td>
+	  </tr>
+	<% end %>
+</table>
+<br>
+<%= link_to "New thesauri", new_thesauri_path %>

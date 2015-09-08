@@ -9,7 +9,7 @@ class RegistrationAuthority
   include ActiveModel::Validations
       
   attr_accessor :id, :number, :organization_id
-  validates_presence_of :name, :number
+  validates_presence_of :name, :number, :organization_id
   
   #self.primary_key = 'puri'
   
@@ -36,9 +36,9 @@ class RegistrationAuthority
     query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
       "SELECT ?b ?c WHERE \n" +
       "{ \n" +
-      "org:" + id + " isoR:registrationAuthorityIdentifierRelationship ?a . \n" +
-      "	?a isoB:organizationIdentifier ?b . \n" +
-      "	?a isoB:registrationAuthorityNamespaceRelationship ?c . \n" +
+      "  org:" + id + " isoR:registrationAuthorityIdentifierRelationship ?a . \n" +
+      "	 ?a isoB:organizationIdentifier ?b . \n" +
+      "	 ?a isoB:registrationAuthorityNamespaceRelationship ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -82,12 +82,10 @@ class RegistrationAuthority
     query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
       "SELECT ?a ?c ?d WHERE \n" +
       "{ \n" +
-      "	?a rdf:type isoR:RegistrationAuthority . \n" +
-      "	?a isoR:registrationAuthorityIdentifierRelationship ?b . \n" +
-      "	?b isoB:organizationIdentifier ?c . \n" +
-      "	?b isoB:registrationAuthorityNamespaceRelationship ?d . \n" +
-      #"	?d isoB:namingAuthorityRelationship ?e . \n" +
-      #"	?e isoB:name ?f ; \n" +
+      "	 ?a rdf:type isoR:RegistrationAuthority . \n" +
+      "	 ?a isoR:registrationAuthorityIdentifierRelationship ?b . \n" +
+      "	 ?b isoB:organizationIdentifier ?c . \n" +
+      "	 ?b isoB:registrationAuthorityNamespaceRelationship ?d . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -113,9 +111,9 @@ class RegistrationAuthority
         p "Found: " + literalSet[0].text
 
         ra = self.new 
-        ra.id = ModelUtility.URIGetId(uriSet[0].text)
+        ra.id = ModelUtility.URIGetFragment(uriSet[0].text)
         ra.number = literalSet[0].text
-        ra.organization_id = ModelUtility.URIGetId(linkSet[0].text)
+        ra.organization_id = ModelUtility.URIGetFragment(linkSet[0].text)
         results.push (ra)
       end
     end
@@ -133,8 +131,8 @@ class RegistrationAuthority
     p "Org=" + org.to_s
     
     # Create the query
-    raiId = ModelUtility.BuildId(C_RAI_PREFIX, unique.to_s)
-    id = ModelUtility.BuildId(C_RA_PREFIX, unique.to_s)
+    raiId = ModelUtility.BuildFragment(C_RAI_PREFIX, unique.to_s)
+    id = ModelUtility.BuildFragment(C_RA_PREFIX, unique.to_s)
     update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -172,8 +170,7 @@ class RegistrationAuthority
   def destroy
     
     # Create the query
-    unique = ModelUtility.URIGetUnique(self.id)
-    raiId = ModelUtility.BuildId(C_RAI_PREFIX, unique)
+    raiId = ModelUtility.FragmentSwapPrefix(self.id,C_RAI_PREFIX)
     update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
       "DELETE DATA \n" +
       "{ \n" +

@@ -1,6 +1,6 @@
 require "nokogiri"
 
-class Organization
+class IdentifiedItem
 
   include CRUD
   include ModelUtility
@@ -8,19 +8,19 @@ class Organization
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :name
-  validates_presence_of :name
-
+  attr_accessor :id, :identifier, :version
+  validates_presence_of :identifier, :version
+  
   C_NS = "http://www.assero.co.uk/MDROrganizations" 
   C_PREFIX = "org" + ": <" + C_NS + "#>"
-  C_PREFIXES = ["isoB: <http://www.assero.co.uk/ISO11179Basic#>" ,
+  C_PREFIXES = ["isoR: <http://www.assero.co.uk/ISO11179Registiition#>" , 
+        "isoB: <http://www.assero.co.uk/ISO11179Basic#>" ,
         "isoI: <http://www.assero.co.uk/ISO11179Identification#>" ,
         "rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" ,
         "rdfs: <http://www.w3.org/2000/01/rdf-schema#>" ,
         "xsd: <http://www.w3.org/2001/XMLSchema#>" ]
-  C_O_PREFIX = "O"
-  C_NS_PREFIX = "NS"
-  
+  C_II_PREFIX = "II"
+        
   def persisted?
     id.present?
   end
@@ -31,10 +31,10 @@ class Organization
     
     # Create the query
     query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
-      "SELECT ?b WHERE \n" +
+      "SELECT ?b ?c WHERE \n" +
       "{ \n" +
-        "org:" + id.to_s + " isoI:namingAuthorityRelationship ?a . \n" +
-        "?a isoB:name ?b ; \n" +
+      "org:" + id + " isoI:identifier ?b . \n" +
+      "org:" + id + " isoI:version ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -43,10 +43,26 @@ class Organization
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//literal").each do |node|
-      object = Organization.new
-      object.name = node.text
-      object.id = id
+    xmlDoc.xpath("//result").each do |node|
+      
+      p "Node: " + node.text
+      
+      iSet = node.xpath("binding[@name='b']/literal")
+      vSet = node.xpath("binding[@name='c']/literal")
+      
+      p "Id: " + iSet.text
+      p "Ver: " + vSet.text
+
+      if iSet.length == 1 and vSet.length == 1
+
+        p "Found"
+        
+        object = self.new 
+        object.id = id
+        object.identifier = iSet[0].text
+        object.version = vSet[0].text
+
+      end
     end
     
     # Return
@@ -60,11 +76,11 @@ class Organization
     
     # Create the query
     query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
-      "SELECT ?a ?c WHERE \n" +
-      "{ \n" +
-      "	?a rdf:type isoI:Namespace . \n" +
-      "	?a isoI:namingAuthorityRelationship ?b . \n" +
-      "	?b isoB:name ?c; \n" +
+      "SELECT ?a ?b ?c WHERE \n" +
+        "{ \n" +
+        "	?a rdf:type isoI:ScopedIdentifier . \n" +
+        " ?a isoI:identifier ?b . \n" +
+        "	?a isoI:version ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -77,52 +93,57 @@ class Organization
       
       p "Node: " + node.text
       
-      literalSet = node.xpath("binding[@name='c']/literal")
       uriSet = node.xpath("binding[@name='a']/uri")
-
-      p "Literal: " + literalSet.text
+      vSet = node.xpath("binding[@name='c']/literal")
+      iSet = node.xpath("binding[@name='b']/literal")
+      
+      p "identifier: " + iSet.text
+      p "ver: " + vSet.text
       p "URI: " + uriSet.text
+      
+      if uriSet.length == 1 and vSet.length == 1 and iSet.length == 1
 
-      if uriSet.length == 1 and literalSet.length == 1
-
-        p "Found: " + literalSet[0].text
-
+        p "Found"
+        
         object = self.new 
         object.id = ModelUtility.URIGetFragment(uriSet[0].text)
-        object.name = literalSet[0].text
+        object.identifier = iSet[0].text
+        object.version = vSet[0].text
         results.push (object)
+        
       end
     end
     
-    # Return
     return results
     
   end
 
   def self.create(params)
     
-    unique = params[:name]
+    version = params[:version]
+    identifier = params[:identifier]
+    unique = identifier.to_s + "_" + version.to_s
+    unique = unique.parameterize
     
     # Create the query
-    orgId = ModelUtility.BuildFragment(C_O_PREFIX, unique.to_s)
-    id = ModelUtility.BuildFragment(C_NS_PREFIX, unique.to_s)
+    id = ModelUtility.BuildFragment(C_II_PREFIX, unique.to_s)
     update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
       "INSERT DATA \n" +
       "{ \n" +
-      "	org:" + orgId + " rdf:type isoB:Organization . \n" +
-      "	org:" + orgId + " isoB:name \"" + name + "\"^^xsd:string . \n" +
-      "	org:" + id + " rdf:type isoI:Namespace . \n" +
-      "	org:" + id + " isoI:namingAuthorityRelationship org:" + orgId + " . \n" +
+      "	org:" + id + " rdf:type isoI:ScopedIdentifier . \n" +
+      "	org:" + id + " isoI:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
+      "	org:" + id + " isoI:version \"" + version.to_s + "\"^^xsd:string . \n" +
       "}"
     
     # Send the request, wait the resonse
     response = CRUD.update(update)
-
+    
     # Response
     if response.success?
       object = self.new
       object.id = id
-      object.name = unique
+      object.version = version
+      object.identifier = identifier
       p "It worked!"
     else
       p "It didn't work!"
@@ -140,14 +161,12 @@ class Organization
   def destroy
     
     # Create the query
-    orgId = ModelUtility.FragmentSwapPrefix(self.id, C_O_PREFIX)
     update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
       "DELETE DATA \n" +
       "{ \n" +
-      "	 org:" + orgId + "  rdf:type isoB:Organization . \n" +
-      "	 org:" + orgId + " isoB:name \"" + self.id.to_s + "\"^^xsd:string . \n" +
-      "	 org:" + self.id + " rdf:type isoI:Namespace . \n" +
-      "	 org:" + self.id + " isoI:namingAuthorityRelationship org:" + orgId + " . \n" +
+      "	org:" + self.id + " rdf:type isoI:ScopedIdentifier . \n" +
+      "	org:" + self.id + " isoI:identifier  \"" + self.identifier.to_s + "\"^^xsd:string . \n" +
+      "	org:" + self.id + " isoI:version \"" + self.version.to_s + "\"^^xsd:string . \n" +
       "}"
     
     # Send the request, wait the resonse

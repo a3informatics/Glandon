@@ -1,6 +1,6 @@
 require "nokogiri"
 
-class Organization
+class Thesaurus
 
   include CRUD
   include ModelUtility
@@ -8,19 +8,20 @@ class Organization
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :name
-  validates_presence_of :name
-
-  C_NS = "http://www.assero.co.uk/MDROrganizations" 
-  C_PREFIX = "org" + ": <" + C_NS + "#>"
-  C_PREFIXES = ["isoB: <http://www.assero.co.uk/ISO11179Basic#>" ,
+  attr_accessor :id, :ii_id
+  validates_presence_of :ii_id
+  
+  C_NS = "http://www.assero.co.uk/MDRThesaurus" 
+  #C_PREFIX = "org" + ": <" + C_NS + "#>"
+  C_PREFIX = ": <" + C_NS + "#>"
+  C_PREFIXES = ["iso25964: <http://www.assero.co.uk/ISO25964#>" , 
         "isoI: <http://www.assero.co.uk/ISO11179Identification#>" ,
+        "org: <http://www.assero.co.uk/MDROrganization#>" ,
         "rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" ,
         "rdfs: <http://www.w3.org/2000/01/rdf-schema#>" ,
         "xsd: <http://www.w3.org/2001/XMLSchema#>" ]
-  C_O_PREFIX = "O"
-  C_NS_PREFIX = "NS"
-  
+  C_T_PREFIX = "T"
+        
   def persisted?
     id.present?
   end
@@ -31,10 +32,9 @@ class Organization
     
     # Create the query
     query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
-      "SELECT ?b WHERE \n" +
+      "SELECT ?a WHERE \n" +
       "{ \n" +
-        "org:" + id.to_s + " isoI:namingAuthorityRelationship ?a . \n" +
-        "?a isoB:name ?b ; \n" +
+      "  :" + id + " isoI:identifiedItemRelationship ?a . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -43,10 +43,23 @@ class Organization
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//literal").each do |node|
-      object = Organization.new
-      object.name = node.text
-      object.id = id
+    xmlDoc.xpath("//result").each do |node|
+      
+      p "Node: " + node.text
+      
+      uriSet = node.xpath("binding[@name='a']/uri")
+      
+      p "uri: " + uriSet.text
+      
+      if uriSet.length == 1
+        
+        p "Found"
+        
+        object = self.new 
+        object.id = id
+        object.ii_id = ModelUtility.URIGetFragment(uriSet[0].text)
+
+      end
     end
     
     # Return
@@ -60,11 +73,10 @@ class Organization
     
     # Create the query
     query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
-      "SELECT ?a ?c WHERE \n" +
+      "SELECT ?a ?b WHERE \n" +
       "{ \n" +
-      "	?a rdf:type isoI:Namespace . \n" +
-      "	?a isoI:namingAuthorityRelationship ?b . \n" +
-      "	?b isoB:name ?c; \n" +
+      "  ?a rdf:type iso25964:Thesaurus . \n" +
+      "  ?a isoI:identifiedItemRelationship ?b . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -77,52 +89,53 @@ class Organization
       
       p "Node: " + node.text
       
-      literalSet = node.xpath("binding[@name='c']/literal")
       uriSet = node.xpath("binding[@name='a']/uri")
-
-      p "Literal: " + literalSet.text
+      iiSet = node.xpath("binding[@name='b']/uri")
+      
       p "URI: " + uriSet.text
-
-      if uriSet.length == 1 and literalSet.length == 1
-
-        p "Found: " + literalSet[0].text
-
+      p "ii: " + iiSet.text
+      
+      if uriSet.length == 1 and iiSet.length == 1
+        
+        p "Found"
+        
         object = self.new 
         object.id = ModelUtility.URIGetFragment(uriSet[0].text)
-        object.name = literalSet[0].text
+        object.ii_id = ModelUtility.URIGetFragment(iiSet[0].text)
         results.push (object)
+        
       end
     end
     
-    # Return
     return results
     
   end
 
   def self.create(params)
     
-    unique = params[:name]
+    ii_id = params[:ii_id]
+    ii = IdentifiedItem.find(ii_id)
+    
+    unique = ii.identifier + "_" + ii.version
+    unique = unique.parameterize
     
     # Create the query
-    orgId = ModelUtility.BuildFragment(C_O_PREFIX, unique.to_s)
-    id = ModelUtility.BuildFragment(C_NS_PREFIX, unique.to_s)
+    id = ModelUtility.BuildFragment(C_T_PREFIX, unique)
     update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
       "INSERT DATA \n" +
       "{ \n" +
-      "	org:" + orgId + " rdf:type isoB:Organization . \n" +
-      "	org:" + orgId + " isoB:name \"" + name + "\"^^xsd:string . \n" +
-      "	org:" + id + " rdf:type isoI:Namespace . \n" +
-      "	org:" + id + " isoI:namingAuthorityRelationship org:" + orgId + " . \n" +
+      "	:" + id + " rdf:type iso25964:Thesaurus . \n" +
+      "	:" + id + " isoI:identifiedItemRelationship org:" + ii_id + " . \n" +
       "}"
     
     # Send the request, wait the resonse
     response = CRUD.update(update)
-
+    
     # Response
     if response.success?
       object = self.new
       object.id = id
-      object.name = unique
+      object.ii_id = ii_id
       p "It worked!"
     else
       p "It didn't work!"
@@ -140,14 +153,11 @@ class Organization
   def destroy
     
     # Create the query
-    orgId = ModelUtility.FragmentSwapPrefix(self.id, C_O_PREFIX)
     update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
       "DELETE DATA \n" +
       "{ \n" +
-      "	 org:" + orgId + "  rdf:type isoB:Organization . \n" +
-      "	 org:" + orgId + " isoB:name \"" + self.id.to_s + "\"^^xsd:string . \n" +
-      "	 org:" + self.id + " rdf:type isoI:Namespace . \n" +
-      "	 org:" + self.id + " isoI:namingAuthorityRelationship org:" + orgId + " . \n" +
+      "	 :" + self.id + " rdf:type iso25964:Thesaurus . \n" +
+      "	 :" + self.id + " isoI:identifiedItemRelationship org:" + self.ii_id.to_s + " . \n" +
       "}"
     
     # Send the request, wait the resonse

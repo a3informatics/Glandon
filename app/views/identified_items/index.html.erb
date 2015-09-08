@@ -1,0 +1,19 @@
+<h1>Identified Items</h1>
+<table>
+  <tr>
+    <th>Identifier</th>
+    <th>Version</th>
+    <th></th>
+    <th></th>
+  </tr>
+	<% @identifiedItems.each do |identifiedItem| %>
+	  <tr>
+	    <td><%= identifiedItem.identifier %></td>
+	    <td><%= identifiedItem.version %></td>
+	    <td><%= link_to "Show", identifiedItem.identifier %></td>
+	    <td><%= link_to "Remove", identified_item_path(identifiedItem.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
+	  </tr>
+	<% end %>
+</table>
+<br>
+<%= link_to "New item", new_identified_item_path %>
