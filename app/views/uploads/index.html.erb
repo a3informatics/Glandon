@@ -1,0 +1,13 @@
+<h1>File Upload</h1>
+<%= form_for @upload do |f| %>
+   <div class="field">
+		 <%= form_tag 'create', :multipart => true %>
+		 	<p>
+		 		<%= f.file_field 'datafile' %>
+		 	</p>
+		 <%= form_tag %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Upload" %>
+  </div>
+<% end %>

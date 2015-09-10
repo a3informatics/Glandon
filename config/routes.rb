@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root to: 'dashboard#index'
-  
   devise_for :users
   
   resources :organizations
@@ -9,5 +7,6 @@ Rails.application.routes.draw do
   resources :identified_items
   resources :thesauri
   resources :thesaurus_concepts
+  resources :uploads
   
 end
