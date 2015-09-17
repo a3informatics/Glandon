@@ -10,7 +10,7 @@
 	  <tr>
 	    <td><%= organization.name %></td>
 	    <td><%= link_to "Show", organization %></td>
-	    <td></td>
+	    <td><%= link_to "Delete all", edit_organization_path(organization) %></td>
 	    <td><%= link_to "Remove", organization_path(organization), method: :delete, data: { confirm: "Are you sure?" } %></td>
 	  </tr>
 	<% end %>

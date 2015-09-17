@@ -1,0 +1,102 @@
+# baseURI: http://www.assero.co.uk/ISO11179Data
+# imports: http://purl.org/dc/elements/1.1/
+# imports: http://purl.org/dc/terms/
+# imports: http://www.w3.org/2004/02/skos/core
+
+@prefix : <http://www.assero.co.uk/ISO11179Data#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/ISO11179Data>
+  rdf:type owl:Ontology ;
+  owl:imports <http://purl.org/dc/elements/1.1/> ;
+  owl:imports <http://purl.org/dc/terms/> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+:DescribedValueDomain
+  rdf:type owl:Class ;
+  rdfs:label "Described value domain"^^xsd:string ;
+  rdfs:subClassOf :ValueDomain ;
+.
+:EnumeratedValueDomain
+  rdf:type owl:Class ;
+  rdfs:label "Enumerated value domain"^^xsd:string ;
+  rdfs:subClassOf :ValueDomain ;
+.
+:PermissibleValue
+  rdf:type owl:Class ;
+  rdfs:label "Permissible value"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+.
+:ValueDomain
+  rdf:type owl:Class ;
+  rdfs:label "Value domain"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+.
+:PermissibleValue.containingDomain
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :PermissibleValue ;
+  rdfs:label "Assertion Of Relationship"^^xsd:string ;
+  rdfs:range :EnumeratedValueDomain ;
+  skos:definition "???"^^xsd:string ;
+.
+:EnumeratedValueDomain.member
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :EnumeratedValueDomain ;
+  rdfs:label "Assertion Of Relationship"^^xsd:string ;
+  rdfs:range :PermissibleValue ;
+  skos:definition "???"^^xsd:string ;
+.
+:permittedValue
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :PermissibleValue ;
+  rdfs:label "Permitted Value"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.
+:beginDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :PermissibleValue ;
+  rdfs:label "Begin Date"^^xsd:string ;
+  rdfs:range xsd:date ;
+  skos:definition "???"^^xsd:string ;
+.
+:endDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :PermissibleValue ;
+  rdfs:label "End Date"^^xsd:string ;
+  rdfs:range xsd:date ;
+  skos:definition "???"^^xsd:string ;
+.
+:datatype
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ValueDomain ;
+  rdfs:label "Datatype"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.
+:maximumCharacterQuantity
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ValueDomain ;
+  rdfs:label "Maximum Character Quantity"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.
+:format
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ValueDomain ;
+  rdfs:label "Format"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.
+:unitOfMeasure
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ValueDomain ;
+  rdfs:label "Unit of Measure"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.

@@ -1,40 +1,53 @@
 require "nokogiri"
+require "uri"
 
 class Organization
 
   include CRUD
   include ModelUtility
+  include Namespace
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :name
-  validates_presence_of :name
+  attr_accessor :id, :name, :shortName
+  validates_presence_of :name, :shortName
 
-  C_NS = "http://www.assero.co.uk/MDROrganizations" 
-  C_PREFIX = "org" + ": <" + C_NS + "#>"
-  C_PREFIXES = ["isoB: <http://www.assero.co.uk/ISO11179Basic#>" ,
-        "isoI: <http://www.assero.co.uk/ISO11179Identification#>" ,
-        "rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" ,
-        "rdfs: <http://www.w3.org/2000/01/rdf-schema#>" ,
-        "xsd: <http://www.w3.org/2001/XMLSchema#>" ]
-  C_O_PREFIX = "O"
-  C_NS_PREFIX = "NS"
+  # Base namespace 
+  @@ns
+  
+  # Constants
+  C_NS_PREFIX = "org"
+  C_CLASS_O_PREFIX = "O"
+  C_CLASS_NS_PREFIX = "NS"
   
   def persisted?
     id.present?
   end
  
-  def self.find(id)
+  def initialize()
+    
+    after_initialize
+  
+  end
+
+  def ns
+    
+    return @@ns 
+    
+  end
+  
+  def self.findByShortName(name)
     
     object = nil
     
     # Create the query
-    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
-      "SELECT ?b WHERE \n" +
+    query = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
+      "SELECT ?a ?c WHERE \n" +
       "{ \n" +
-        "org:" + id.to_s + " isoI:namingAuthorityRelationship ?a . \n" +
-        "?a isoB:name ?b ; \n" +
+        "?a isoI:namingAuthorityRelationship ?b . \n" +
+        "?b isoB:shortName \"" + name + "\"^^xsd:string . \n" +
+        "?b isoB:name ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -43,28 +56,45 @@ class Organization
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//literal").each do |node|
-      object = Organization.new
-      object.name = node.text
-      object.id = id
+    xmlDoc.xpath("//result").each do |node|
+    
+      p "Node: " + node.text
+      
+      uriSet = node.xpath("binding[@name='a']/uri")
+      nSet = node.xpath("binding[@name='c']/literal")
+      
+      p "name: " + nSet.text
+      p "uri: " + uriSet.text
+      
+      if nSet.length == 1 and uriSet.length == 1
+
+        p "Found"
+        
+        object = self.new 
+        object.id = ModelUtility.extractCid(node.text)
+        object.name = nSet[0].text
+        object.shortName = name
+        
+      end
+    
     end
     
     # Return
     return object
     
   end
-
-  def self.all
+  
+  def self.find(id)
     
-    results = Array.new
+    object = nil
     
     # Create the query
-    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
-      "SELECT ?a ?c WHERE \n" +
+    query = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
+      "SELECT ?b ?c WHERE \n" +
       "{ \n" +
-      "	?a rdf:type isoI:Namespace . \n" +
-      "	?a isoI:namingAuthorityRelationship ?b . \n" +
-      "	?b isoB:name ?c; \n" +
+      "  :" + id.to_s + " isoI:namingAuthorityRelationship ?a . \n" +
+      "  ?a isoB:shortName ?b . \n" +
+      "  ?a isoB:name ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -77,21 +107,71 @@ class Organization
       
       p "Node: " + node.text
       
-      literalSet = node.xpath("binding[@name='c']/literal")
+      snSet = node.xpath("binding[@name='b']/literal")
+      nSet = node.xpath("binding[@name='c']/literal")
+      
+      p "name: " + nSet.text
+      p "short: " + snSet.text
+      
+      if nSet.length == 1 and snSet.length == 1
+
+        p "Found"
+        
+        object = self.new 
+        object.id = id
+        object.name = nSet[0].text
+        object.shortName = snSet[0].text
+        
+      end
+    
+    end
+    
+    # Return
+    return object
+    
+  end
+
+  def self.all
+    
+    results = Array.new
+    
+    # Create the query
+    query = Namespace.build(C_NS_PREFIX,["isoI", "isoB"]) +
+      "SELECT ?a ?c ?d WHERE \n" +
+      "{ \n" +
+      "	?a rdf:type isoI:Namespace . \n" +
+      "	?a isoI:namingAuthorityRelationship ?b . \n" +
+      "	?b isoB:shortName ?c . \n" +
+      "	?b isoB:name ?d . \n" +
+      "}"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      
+      p "Node: " + node.text
+      
+      snSet = node.xpath("binding[@name='c']/literal")
+      nSet = node.xpath("binding[@name='d']/literal")
       uriSet = node.xpath("binding[@name='a']/uri")
 
-      p "Literal: " + literalSet.text
       p "URI: " + uriSet.text
 
-      if uriSet.length == 1 and literalSet.length == 1
+      if uriSet.length == 1 and snSet.length == 1 and nSet.length == 1
 
-        p "Found: " + literalSet[0].text
+        p "Found: " + snSet[0].text
 
         object = self.new 
-        object.id = ModelUtility.URIGetFragment(uriSet[0].text)
-        object.name = literalSet[0].text
+        object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.name = nSet[0].text
+        object.shortName = snSet[0].text
         results.push (object)
       end
+      
     end
     
     # Return
@@ -101,18 +181,21 @@ class Organization
 
   def self.create(params)
     
-    unique = params[:name]
-    
+    name = params[:name]
+    shortName = params[:shortName]
+    unique = shortName
+        
     # Create the query
-    orgId = ModelUtility.BuildFragment(C_O_PREFIX, unique.to_s)
-    id = ModelUtility.BuildFragment(C_NS_PREFIX, unique.to_s)
-    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    orgId = ModelUtility.buildCid(C_CLASS_O_PREFIX, unique.to_s)
+    id = ModelUtility.buildCid(C_CLASS_NS_PREFIX, unique.to_s)
+    update = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      "	org:" + orgId + " rdf:type isoB:Organization . \n" +
-      "	org:" + orgId + " isoB:name \"" + name + "\"^^xsd:string . \n" +
-      "	org:" + id + " rdf:type isoI:Namespace . \n" +
-      "	org:" + id + " isoI:namingAuthorityRelationship org:" + orgId + " . \n" +
+      "	 :" + orgId + " rdf:type isoB:Organization . \n" +
+      "	 :" + orgId + " isoB:name \"" + name + "\"^^xsd:string . \n" +
+      "	 :" + orgId + " isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
+      "	 :" + id + " rdf:type isoI:Namespace . \n" +
+      "	 :" + id + " isoI:namingAuthorityRelationship :" + orgId + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -122,7 +205,8 @@ class Organization
     if response.success?
       object = self.new
       object.id = id
-      object.name = unique
+      object.name = name
+      object.shortName = shortName
       p "It worked!"
     else
       p "It didn't work!"
@@ -140,14 +224,15 @@ class Organization
   def destroy
     
     # Create the query
-    orgId = ModelUtility.FragmentSwapPrefix(self.id, C_O_PREFIX)
-    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    orgId = ModelUtility.cidSwapPrefix(self.id, C_CLASS_O_PREFIX)
+    update = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
       "DELETE DATA \n" +
       "{ \n" +
-      "	 org:" + orgId + "  rdf:type isoB:Organization . \n" +
-      "	 org:" + orgId + " isoB:name \"" + self.id.to_s + "\"^^xsd:string . \n" +
-      "	 org:" + self.id + " rdf:type isoI:Namespace . \n" +
-      "	 org:" + self.id + " isoI:namingAuthorityRelationship org:" + orgId + " . \n" +
+      "	 :" + orgId + "  rdf:type isoB:Organization . \n" +
+      "	 :" + orgId + " isoB:name \"" + self.name + "\"^^xsd:string . \n" +
+      "	 :" + orgId + " isoB:shortName \"" + self.shortName + "\"^^xsd:string . \n" +
+      "	 :" + self.id + " rdf:type isoI:Namespace . \n" +
+      "	 :" + self.id + " isoI:namingAuthorityRelationship :" + orgId + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -160,6 +245,14 @@ class Organization
       p "It didn't work!"
     end
      
+  end
+  
+  private
+  
+  def after_initialize
+  
+    @@ns = Namespace.find(C_NS_PREFIX)
+
   end
   
 end

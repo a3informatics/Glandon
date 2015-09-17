@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :thesauri
   resources :thesaurus_concepts
   resources :uploads
+  resources :cdisc_terms
   
 end

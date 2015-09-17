@@ -1,4 +1,5 @@
 require "nokogiri"
+require "uri"
 
 class RegistrationAuthority
 
@@ -11,32 +12,50 @@ class RegistrationAuthority
   attr_accessor :id, :number, :organization_id
   validates_presence_of :name, :number, :organization_id
   
-  #self.primary_key = 'puri'
+  # Base namespace 
+  @@ns
   
-  C_NS = "http://www.assero.co.uk/MDROrganizations" 
-  C_PREFIX = "org" + ": <" + C_NS + "#>"
-  C_PREFIXES = ["isoR: <http://www.assero.co.uk/ISO11179Registration#>" , 
-        "isoB: <http://www.assero.co.uk/ISO11179Basic#>" ,
-        "isoI: <http://www.assero.co.uk/ISO11179Identification#>" ,
-        "rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" ,
-        "rdfs: <http://www.w3.org/2000/01/rdf-schema#>" ,
-        "xsd: <http://www.w3.org/2001/XMLSchema#>" ]
-  C_RA_PREFIX = "RA"
-  C_RAI_PREFIX = "RAI"
+  # Constants
+  C_NS_PREFIX = "org"
+  C_CLASS_RA_PREFIX = "RA"
+  C_CLASS_RAI_PREFIX = "RAI"
         
   def persisted?
     id.present?
   end
  
+  def initialize()
+    
+    after_initialize
+  
+  end
+
+  def ns
+    
+    return @@ns 
+    
+  end
+  
+  def name
+    
+    if self.organization_id == nil
+      return ""
+    else
+      org = Organization.find(self.organization_id)
+      return org.name
+    end
+    
+  end
+  
   def self.find(id)
     
     ra = nil
     
     # Create the query
-    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    query = Namespace.build(C_NS_PREFIX, ["isoB", "isoR"]) +
       "SELECT ?b ?c WHERE \n" +
       "{ \n" +
-      "  org:" + id + " isoR:registrationAuthorityIdentifierRelationship ?a . \n" +
+      "  :" + id + " isoR:registrationAuthorityIdentifierRelationship ?a . \n" +
       "	 ?a isoB:organizationIdentifier ?b . \n" +
       "	 ?a isoB:registrationAuthorityNamespaceRelationship ?c . \n" +
       "}"
@@ -64,7 +83,7 @@ class RegistrationAuthority
         ra = self.new 
         ra.id = id
         ra.number = literalSet[0].text
-        ra.organization_id = ModelUtility.URIGetId(linkSet[0].text)
+        ra.organization_id = ModelUtility.extractCid(linkSet[0].text)
 
       end
     end
@@ -79,7 +98,7 @@ class RegistrationAuthority
     results = Array.new
     
     # Create the query
-    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    query = Namespace.build(C_NS_PREFIX, ["isoB", "isoR"]) +
       "SELECT ?a ?c ?d WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type isoR:RegistrationAuthority . \n" +
@@ -111,9 +130,9 @@ class RegistrationAuthority
         p "Found: " + literalSet[0].text
 
         ra = self.new 
-        ra.id = ModelUtility.URIGetFragment(uriSet[0].text)
+        ra.id = ModelUtility.extractCid(uriSet[0].text)
         ra.number = literalSet[0].text
-        ra.organization_id = ModelUtility.URIGetFragment(linkSet[0].text)
+        ra.organization_id = ModelUtility.extractCid(linkSet[0].text)
         results.push (ra)
       end
     end
@@ -131,17 +150,17 @@ class RegistrationAuthority
     p "Org=" + org.to_s
     
     # Create the query
-    raiId = ModelUtility.BuildFragment(C_RAI_PREFIX, unique.to_s)
-    id = ModelUtility.BuildFragment(C_RA_PREFIX, unique.to_s)
-    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    raiId = ModelUtility.buildCid(C_CLASS_RAI_PREFIX, unique.to_s)
+    id = ModelUtility.buildCid(C_CLASS_RA_PREFIX, unique.to_s)
+    update = Namespace.build(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      "	org:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
-      "	org:" + raiId + " isoB:organizationIdentifier \"" + number.to_s + "\"^^xsd:string . \n" +
-      "	org:" + raiId + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
-      "	org:" + raiId + " isoB:registrationAuthorityNamespaceRelationship org:" + org.to_s + " . \n" +
-      "	org:" + id + " rdf:type isoR:RegistrationAuthority . \n" +
-      "	org:" + id + " isoR:registrationAuthorityIdentifierRelationship org:" + raiId + " ; \n" +
+      "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
+      "	:" + raiId + " isoB:organizationIdentifier \"" + number.to_s + "\"^^xsd:string . \n" +
+      "	:" + raiId + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
+      "	:" + raiId + " isoB:registrationAuthorityNamespaceRelationship :" + org.to_s + " . \n" +
+      "	:" + id + " rdf:type isoR:RegistrationAuthority . \n" +
+      "	:" + id + " isoR:registrationAuthorityIdentifierRelationship :" + raiId + " ; \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -170,16 +189,16 @@ class RegistrationAuthority
   def destroy
     
     # Create the query
-    raiId = ModelUtility.FragmentSwapPrefix(self.id,C_RAI_PREFIX)
-    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    raiId = ModelUtility.cidSwapPrefix(self.id,C_CLASS_RAI_PREFIX)
+    update = Namespace.build(C_NS_PREFIX, ["isoB", "isoR"]) +
       "DELETE DATA \n" +
       "{ \n" +
-      "	org:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
-      "	org:" + raiId + " isoB:organizationIdentifier \"" + self.number.to_s + "\"^^xsd:string . \n" +
-      "	org:" + raiId + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
-      "	org:" + raiId + " isoB:registrationAuthorityNamespaceRelationship org:" + self.organization_id.to_s + " . \n" +
-      "	org:" + self.id + " rdf:type isoR:RegistrationAuthority . \n" +
-      "	org:" + self.id + " isoR:registrationAuthorityIdentifierRelationship org:" + raiId + " ; \n" +
+      "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
+      "	:" + raiId + " isoB:organizationIdentifier \"" + self.number.to_s + "\"^^xsd:string . \n" +
+      "	:" + raiId + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
+      "	:" + raiId + " isoB:registrationAuthorityNamespaceRelationship :" + self.organization_id.to_s + " . \n" +
+      "	:" + self.id + " rdf:type isoR:RegistrationAuthority . \n" +
+      "	:" + self.id + " isoR:registrationAuthorityIdentifierRelationship :" + raiId + " ; \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -192,6 +211,14 @@ class RegistrationAuthority
       p "It didn't work!"
     end
      
+  end
+  
+  private
+  
+  def after_initialize
+  
+    @@ns = Namespace.find(C_NS_PREFIX)
+  
   end
   
 end

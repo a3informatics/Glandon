@@ -2,8 +2,12 @@
 
 <%= form_for @organization do |f| %>
    <div class="field">
+    <%= f.label :shortName %><br />
+    <%= f.text_field :shortName, autofocus: true %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.text_field :name%>
   </div>
 
   <div class="actions">

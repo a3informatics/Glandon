@@ -1,4 +1,5 @@
 require "nokogiri"
+require "uri"
 
 class Thesaurus
 
@@ -10,28 +11,74 @@ class Thesaurus
       
   attr_accessor :id, :ii_id
   validates_presence_of :ii_id
+ 
+  # Base namespace 
+  @@ns
   
-  C_NS = "http://www.assero.co.uk/MDRThesaurus" 
-  #C_PREFIX = "org" + ": <" + C_NS + "#>"
-  C_PREFIX = ": <" + C_NS + "#>"
-  C_PREFIXES = ["iso25964: <http://www.assero.co.uk/ISO25964#>" , 
-        "isoI: <http://www.assero.co.uk/ISO11179Identification#>" ,
-        "org: <http://www.assero.co.uk/MDROrganization#>" ,
-        "rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" ,
-        "rdfs: <http://www.w3.org/2000/01/rdf-schema#>" ,
-        "xsd: <http://www.w3.org/2001/XMLSchema#>" ]
-  C_T_PREFIX = "T"
-        
+  # Constants
+  C_CLASS_PREFIX = "TH"
+  C_NS_PREFIX = "th"
+  
   def persisted?
     id.present?
   end
  
-  def self.find(id)
+  def initialize()
+    
+    after_initialize
+  
+  end
+
+  def ns
+    
+    return @@ns 
+    
+  end
+  
+  def name
+    
+    if self.ii_id == nil
+      return ""
+    else
+      ii = IdentifiedItem.find(self.ii_id)
+      return ii.name
+    end
+    
+  end
+  
+  def version
+    
+    if self.ii_id == nil
+      return ""
+    else
+      ii = IdentifiedItem.find(self.ii_id)
+      return ii.version
+    end
+    
+  end
+  
+  def identifier
+    
+    if self.ii_id == nil
+      return ""
+    else
+      ii = IdentifiedItem.find(self.ii_id)
+      return ii.identifier
+    end
+    
+  end
+  
+  def self.find(id, ns={})
+    
+    p "Thesaurus id=" + id
     
     object = nil
-    
-    # Create the query
-    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    #uri = Uri.new()
+    uriValue = ns[:value] || @@ns
+    prefix = ns[:prefix] || C_NS_PREFIX
+    #uri.setUri(uriValue)
+    #uri.setClassId(id)
+    query = Namespace.build(prefix,["isoI"]) +
       "SELECT ?a WHERE \n" +
       "{ \n" +
       "  :" + id + " isoI:identifiedItemRelationship ?a . \n" +
@@ -57,8 +104,8 @@ class Thesaurus
         
         object = self.new 
         object.id = id
-        object.ii_id = ModelUtility.URIGetFragment(uriSet[0].text)
-
+        object.ii_id = ModelUtility.extractCid(uriSet[0].text)
+        
       end
     end
     
@@ -67,12 +114,64 @@ class Thesaurus
     
   end
 
+  def self.findByOrgId(id)
+    
+    results = Array.new
+    
+    query = Namespace.build("",["isoI", "iso25964"]) +
+      "SELECT ?a ?b WHERE \n" +
+      "{ \n" +
+      "  ?a rdf:type iso25964:Thesaurus . \n" +
+      "  ?a isoI:identifiedItemRelationship ?b . \n" +
+      "}"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      
+      p "Node: " + node.text
+      
+      uriSet = node.xpath("binding[@name='a']/uri")
+      iiSet = node.xpath("binding[@name='b']/uri")
+      
+      p "URI: " + uriSet.text
+      p "ii: " + iiSet.text
+      
+      if uriSet.length == 1 and iiSet.length == 1
+        
+        p "Found"
+        
+        ii_id = ModelUtility.extractCid(iiSet[0].text)
+        
+        p "ii_id=" + ii_id
+        
+        ii = IdentifiedItem.find(ii_id)
+        if (ii != nil)
+          if (ii.id == id)
+            object = self.new 
+            object.id = ModelUtility.extractCid(uriSet[0].text)
+            object.ii_id = ii_id
+            results.push (object)
+          end 
+        end
+        
+      end
+    end
+    
+    return results
+    
+  end
+  
   def self.all
     
     results = Array.new
     
     # Create the query
-    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    query = Namespace.build("",["isoI", "iso25964"]) +
       "SELECT ?a ?b WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
@@ -100,8 +199,8 @@ class Thesaurus
         p "Found"
         
         object = self.new 
-        object.id = ModelUtility.URIGetFragment(uriSet[0].text)
-        object.ii_id = ModelUtility.URIGetFragment(iiSet[0].text)
+        object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.ii_id = ModelUtility.extractCid(iiSet[0].text)
         results.push (object)
         
       end
@@ -111,21 +210,23 @@ class Thesaurus
     
   end
 
-  def self.create(params)
+  def self.create(params,ns={})
     
     ii_id = params[:ii_id]
     ii = IdentifiedItem.find(ii_id)
     
-    unique = ii.identifier + "_" + ii.version
-    unique = unique.parameterize
+    uri = Uri.new()
+    uriValue = ns[:value] || @@ns
+    prefix = ns[:prefix] || C_NS_PREFIX
+    uri.setCidWithVersion(C_CLASS_PREFIX, ii.identifier, ii.version)     
+    id = uri.getCid()
     
     # Create the query
-    id = ModelUtility.BuildFragment(C_T_PREFIX, unique)
-    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    update = Namespace.build(prefix,["isoI", "iso25964", "org"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      "	:" + id + " rdf:type iso25964:Thesaurus . \n" +
-      "	:" + id + " isoI:identifiedItemRelationship org:" + ii_id + " . \n" +
+      "	 :" + id + " rdf:type iso25964:Thesaurus . \n" +
+      "	 :" + id + " isoI:identifiedItemRelationship org:" + ii_id + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -150,10 +251,13 @@ class Thesaurus
     return nil
   end
 
-  def destroy
+  def destroy(ns={})
     
     # Create the query
-    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    uri = Uri.new()
+    uriValue = ns[:value] || @@ns
+    prefix = ns[:prefix] || C_NS_PREFIX
+    update = Namespace.build(prefix,["isoI", "iso25964", "org"]) +
       "DELETE DATA \n" +
       "{ \n" +
       "	 :" + self.id + " rdf:type iso25964:Thesaurus . \n" +
@@ -170,6 +274,16 @@ class Thesaurus
       p "It didn't work!"
     end
      
+  end
+  
+  private
+  
+  def after_initialize
+  
+    @@ns = Namespace.find(C_NS_PREFIX)
+  
+    p "Thesaurus After Initialize"
+  
   end
   
 end

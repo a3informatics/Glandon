@@ -1,0 +1,2 @@
+module CdiscTermsHelper
+end

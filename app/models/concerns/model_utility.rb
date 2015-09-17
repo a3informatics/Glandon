@@ -1,69 +1,38 @@
+require "uri"
+
 module ModelUtility
 
-  def ModelUtility.BuildPrefixes(prefix, prefixes)
+  def ModelUtility.buildCid(prefix, unique)
   
-    result = "PREFIX " + prefix + " \n"
-    prefixes.each do |p|
-      result = result + "PREFIX " + p + " \n"
-    end
-    return result
-    
-  end
-
-  def ModelUtility.BuildFragment(prefix, unique)
-  
-    return prefix + "_" + unique
+    uri = Uri.new
+    uri.setCidNoVersion(prefix,unique)
+    return uri.getCid
     
   end
   
-  def ModelUtility.BuildURI(ns, fragment)
+  def ModelUtility.buildCidVersion(prefix, name, version)
   
-    return ns + '#' + fragment
-    
-  end
-
-  def ModelUtility.URIGetNs(uri)
-  
-    parts = uri.split('#')
-    if parts.size == 2
-      result = parts[0]
-    else
-      result = uri
-    end
-    return result
+    uri = Uri.new
+    uri.setCidWithVersion(prefix, name, version)
+    return uri.getCid
     
   end
   
-  def ModelUtility.URIGetFragment(uri)
+  def ModelUtility.cidSwapPrefix(cid, prefix)
   
-    parts = uri.split('#')
-    if parts.size == 2
-      result = parts[1]
-    else
-      result = uri
-    end
-    return result
-    
-  end
-    
-  def ModelUtility.URIGetUnique(fragment)
-  
-    parts = fragment.split('_')
-    if parts.size == 2
-      result = parts[1]
-    else
-      result = id
-    end
-    return result
+    uri = Uri.new
+    uri.setCid(cid)
+    uri.prefix = prefix
+    return uri.getCid
     
   end
   
-  def ModelUtility.FragmentSwapPrefix(fragment, prefix)
+  def ModelUtility.extractCid(uri)
   
-    unique = URIGetUnique(fragment)
-    newFragment = BuildFragment(prefix, unique)
-    return newFragment
-    
+    object = Uri.new()
+    object.setUri(uri)
+    return object.getCid()
+  
   end
   
 end

@@ -1,4 +1,5 @@
 require "nokogiri"
+require "uri"
 
 class ThesaurusConcept
 
@@ -11,26 +12,35 @@ class ThesaurusConcept
   attr_accessor :id, :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm
   validates_presence_of :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm
   
-  C_NS = "http://www.assero.co.uk/MDRThesaurus" 
-  C_PREFIX = ": <" + C_NS + "#>"
-  C_PREFIXES = ["iso25964: <http://www.assero.co.uk/ISO25964#>" , 
-        "isoI: <http://www.assero.co.uk/ISO11179Identification#>" ,
-        "org: <http://www.assero.co.uk/MDROrganization#>" ,
-        "rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" ,
-        "rdfs: <http://www.w3.org/2000/01/rdf-schema#>" ,
-        "xsd: <http://www.w3.org/2001/XMLSchema#>" ]
-  C_T_PREFIX = "TC"
+  # Base namespace 
+  @@ns
+  
+  # Constants
+  C_CLASS_PREFIX = "THC"
+  C_NS_PREFIX = "th"
         
   def persisted?
     id.present?
   end
  
+  def initialize()
+    
+    after_initialize
+  
+  end
+
+  def ns
+    
+    return @@ns 
+    
+  end
+  
   def self.find(id)
     
     object = nil
     
     # Create the query
-    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    query = Namespace.build(C_NS_PREFIX, ["iso25964"]) +
       "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "	 :" + id + " iso25964:identifier ?a . \n" +
@@ -86,7 +96,7 @@ class ThesaurusConcept
     results = Array.new
     
     # Create the query
-    query = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    query = Namespace.build(C_NS_PREFIX, ["iso25964"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type iso25964:ThesaurusConcept . \n" +
@@ -121,7 +131,7 @@ class ThesaurusConcept
         p "Found"
         
         object = self.new 
-        object.id = ModelUtility.URIGetFragment(uriSet[0].text)
+        object.id = ModelUtility.extractCid(uriSet[0].text)
         object.identifier = idSet[0].text
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
@@ -149,17 +159,17 @@ class ThesaurusConcept
     definition = params[:definition]
     
     # Create the query
-    id = ModelUtility.BuildFragment(C_T_PREFIX, unique)
-    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    id = ModelUtility.buildCid(C_CLASS_PREFIX, unique)
+    update = Namespace.build(C_NS_PREFIX, ["iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      "	:" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
-      "	:" + id + " iso25964:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
-      "	:" + id + " iso25964:notation \"" + notation.to_s + "\"^^xsd:string . \n" +
-      "	:" + id + " iso25964:preferredTerm \"" + preferredTerm.to_s + "\"^^xsd:string . \n" +
-      "	:" + id + " iso25964:synonym \"" + synonym.to_s + "\"^^xsd:string . \n" +
-      "	:" + id + " iso25964:extensible \"" + extensible.to_s + "\"^^xsd:string . \n" +
-      "	:" + id + " iso25964:definition \"" + definition.to_s + "\"^^xsd:string . \n" +
+      "	 :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
+      "	 :" + id + " iso25964:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
+      "	 :" + id + " iso25964:notation \"" + notation.to_s + "\"^^xsd:string . \n" +
+      "	 :" + id + " iso25964:preferredTerm \"" + preferredTerm.to_s + "\"^^xsd:string . \n" +
+      "	 :" + id + " iso25964:synonym \"" + synonym.to_s + "\"^^xsd:string . \n" +
+      "	 :" + id + " iso25964:extensible \"" + extensible.to_s + "\"^^xsd:string . \n" +
+      "	 :" + id + " iso25964:definition \"" + definition.to_s + "\"^^xsd:string . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -192,7 +202,7 @@ class ThesaurusConcept
   def destroy
     
     # Create the query
-    update = ModelUtility.BuildPrefixes(C_PREFIX, C_PREFIXES) +
+    update = Namespace.build(C_NS_PREFIX, ["iso25964"]) +
       "DELETE DATA \n" +
       "{ \n" +
       "	 :" + self.id + " rdf:type iso25964:ThesaurusConcept . \n" +
@@ -214,6 +224,14 @@ class ThesaurusConcept
       p "It didn't work!"
     end
      
+  end
+  
+  private
+  
+  def after_initialize
+  
+    @@ns = Namespace.find(C_NS_PREFIX)
+  
   end
   
 end

@@ -1,0 +1,237 @@
+# baseURI: http://www.assero.co.uk/ISO11179Concepts
+# imports: http://purl.org/dc/elements/1.1/
+# imports: http://purl.org/dc/terms/
+# imports: http://www.assero.co.uk/ISO11179Identification
+# imports: http://www.w3.org/2004/02/skos/core
+
+@prefix : <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix ISO11179Identification: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/ISO11179Concepts>
+  rdf:type owl:Ontology ;
+  owl:imports <http://purl.org/dc/elements/1.1/> ;
+  owl:imports <http://purl.org/dc/terms/> ;
+  owl:imports <http://www.assero.co.uk/ISO11179Identification> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+:Assertion
+  rdf:type owl:Class ;
+  rdfs:label "Concept System"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Assertion.assertor>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Assertion ;
+  rdfs:label "Assertor Relationship"^^xsd:string ;
+  rdfs:range :ConceptSystem ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Assertion.concept>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Assertion ;
+  rdfs:label "Concept Relationship"^^xsd:string ;
+  rdfs:range :Concept ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Assertion.predicate>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Assertion ;
+  rdfs:label "Predicate Relationship"^^xsd:string ;
+  rdfs:range :Relation ;
+  skos:definition "???"^^xsd:string ;
+.
+:Concept
+  rdf:type owl:Class ;
+  rdfs:label "Concept"^^xsd:string ;
+  rdfs:subClassOf <http://www.assero.co.uk/ISO11179Types#IdentifiedItem> ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Concept.assertionAbout>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Concept ;
+  rdfs:label "Assertion About Relationship"^^xsd:string ;
+  rdfs:range :Assertion ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Concept.includingConceptSystem>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Concept ;
+  rdfs:label "Including Concept System Relationship"^^xsd:string ;
+  rdfs:range :ConceptSystem ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Concept.linkEnd>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Concept ;
+  rdfs:label "Link End Relationship"^^xsd:string ;
+  rdfs:range :LinkEnd ;
+  owl:inverseOf <http://www.assero.co.uk/ISO11179Concepts#LinkEnd.concept> ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Concept.source>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Concept ;
+  rdfs:label "Source Relationship"^^xsd:string ;
+  rdfs:range :ConceptSystem ;
+  skos:definition "???"^^xsd:string ;
+.
+:ConceptSystem
+  rdf:type owl:Class ;
+  rdfs:label "Concept System"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#ConceptSystem.includedAssertion>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :ConceptSystem ;
+  rdfs:label "Included Assertion Relationship"^^xsd:string ;
+  rdfs:range :Assertion ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#ConceptSystem.memberConcept>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :ConceptSystem ;
+  rdfs:label "Member Concept Relationship"^^xsd:string ;
+  rdfs:range :Concept ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#ConceptSystem.sourcedConcept>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :ConceptSystem ;
+  rdfs:label "Sourced Concept Relationship"^^xsd:string ;
+  rdfs:range :Concept ;
+  skos:definition "???"^^xsd:string ;
+.
+:Link
+  rdf:type owl:Class ;
+  rdfs:label "Link"^^xsd:string ;
+  rdfs:subClassOf :Assertion ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Link.linkEnd>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Link ;
+  rdfs:label "Link End Relationship"^^xsd:string ;
+  rdfs:range :LinkEnd ;
+  owl:inverseOf <http://www.assero.co.uk/ISO11179Concepts#LinkEnd.link> ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Link.relation>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Link ;
+  rdfs:label "Relation Relationship"^^xsd:string ;
+  rdfs:range :Relation ;
+  skos:definition "???"^^xsd:string ;
+.
+:LinkEnd
+  rdf:type owl:Class ;
+  rdfs:label "LinkEnd"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#LinkEnd.concept>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :LinkEnd ;
+  rdfs:label "Concept Relationship"^^xsd:string ;
+  rdfs:range :Concept ;
+  owl:inverseOf <http://www.assero.co.uk/ISO11179Concepts#Concept.linkEnd> ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#LinkEnd.link>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :LinkEnd ;
+  rdfs:label "Link Relationship"^^xsd:string ;
+  rdfs:range :Link ;
+  owl:inverseOf <http://www.assero.co.uk/ISO11179Concepts#Link.linkEnd> ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#LinkEnd.role>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :LinkEnd ;
+  rdfs:label "Concept Relationship"^^xsd:string ;
+  rdfs:range :RelationRole ;
+  owl:inverseOf <http://www.assero.co.uk/ISO11179Concepts#RelationRole.linkEnd> ;
+  skos:definition "???"^^xsd:string ;
+.
+:Relation
+  rdf:type owl:Class ;
+  rdfs:label "Relation"^^xsd:string ;
+  rdfs:subClassOf :Concept ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Relation.assertionOf>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Relation ;
+  rdfs:label "Assertion Of Relationship"^^xsd:string ;
+  rdfs:range :Assertion ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Relation.link>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Relation ;
+  rdfs:label "Link Relationship"^^xsd:string ;
+  rdfs:range :Link ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#Relation.role>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Relation ;
+  rdfs:label "Role Relationship"^^xsd:string ;
+  rdfs:range :RelationRole ;
+  skos:definition "???"^^xsd:string ;
+.
+:RelationRole
+  rdf:type owl:Class ;
+  rdfs:label "Relation Role"^^xsd:string ;
+  rdfs:subClassOf :Concept ;
+  skos:definition "???"^^xsd:string ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#RelationRole.linkEnd>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :RelationRole ;
+  rdfs:label "Relation role.link end"^^xsd:string ;
+  rdfs:range :LinkEnd ;
+  owl:inverseOf <http://www.assero.co.uk/ISO11179Concepts#LinkEnd.role> ;
+.
+<http://www.assero.co.uk/ISO11179Concepts#RelationRole.source>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :RelationRole ;
+  rdfs:label "Relation Role Source Relationship"^^xsd:string ;
+  rdfs:range :Relation ;
+  skos:definition "???"^^xsd:string ;
+.
+:arity
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Relation ;
+  rdfs:label "Arity"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.
+:formula
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Assertion ;
+  rdfs:label "Formula"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.
+:multiplicity
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :RelationRole ;
+  rdfs:label "Multiplicity"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.
+:ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :RelationRole ;
+  rdfs:label "Ordinal"^^xsd:string ;
+  rdfs:range xsd:integer ;
+  skos:definition "???"^^xsd:string ;
+.

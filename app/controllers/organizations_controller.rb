@@ -11,7 +11,7 @@ class OrganizationsController < ApplicationController
   end
   
   def create
-    @organization = Organization.create(org_params)
+    @organization = Organization.create(this_params)
     redirect_to organizations_path
   end
 
@@ -32,8 +32,8 @@ class OrganizationsController < ApplicationController
   end
   
   private
-    def org_params
-      params.require(:organization).permit(:name)
+    def this_params
+      params.require(:organization).permit(:name, :shortName)
     end
     
 end
