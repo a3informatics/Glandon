@@ -15,11 +15,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 { 
-   :O_CDISC rdf:type isoB:Organization . 
-   :O_CDISC isoB:name "Clinical Data Interchange Standards Consortium"^^xsd:string . 
-   :O_CDISC isoB:shortName "CDISC"^^xsd:string . 
-   :NS_CDISC rdf:type isoI:Namespace . 
-   :NS_CDISC isoI:namingAuthorityRelationship :O_CDISC . 
+   :O-CDISC rdf:type isoB:Organization . 
+   :O-CDISC isoB:name "Clinical Data Interchange Standards Consortium"^^xsd:string . 
+   :O-CDISC isoB:shortName "CDISC"^^xsd:string . 
+   :NS-CDISC rdf:type isoI:Namespace . 
+   :NS-CDISC isoI:namingAuthorityRelationship :O-CDISC . 
 }' https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
@@ -30,11 +30,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 { 
-   :O_ACME rdf:type isoB:Organization . 
-   :O_ACME isoB:name "ACME Pharma"^^xsd:string . 
-   :O_ACME isoB:shortName "ACME"^^xsd:string . 
-   :NS_ACME rdf:type isoI:Namespace . 
-   :NS_ACME isoI:namingAuthorityRelationship :O_ACME . 
+   :O-ACME rdf:type isoB:Organization . 
+   :O-ACME isoB:name "ACME Pharma"^^xsd:string . 
+   :O-ACME isoB:shortName "ACME"^^xsd:string . 
+   :NS-ACME rdf:type isoI:Namespace . 
+   :NS-ACME isoI:namingAuthorityRelationship :O-ACME . 
 }' https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
@@ -45,10 +45,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 { 
-  :RAI_123456789 rdf:type isoB:RegistrationAuthorityIdentifier . 
-  :RAI_123456789 isoB:organizationIdentifier "123456789"^^xsd:string . 
-  :RAI_123456789 isoB:internationalCodeDesignator "DUNS"^^xsd:string . 
-  :RAI_123456789 isoB:registrationAuthorityNamespaceRelationship :NS_ACME . 
-  :RA_123456789 rdf:type isoR:RegistrationAuthority . 
-  :RA_123456789 isoR:registrationAuthorityIdentifierRelationship :RAI_123456789 ; 
+  :RAI-123456789 rdf:type isoB:RegistrationAuthorityIdentifier . 
+  :RAI-123456789 isoB:organizationIdentifier "123456789"^^xsd:string . 
+  :RAI-123456789 isoB:internationalCodeDesignator "DUNS"^^xsd:string . 
+  :RAI-123456789 isoB:registrationAuthorityNamespaceRelationship :NS-ACME . 
+  :RA-123456789 rdf:type isoR:RegistrationAuthority . 
+  :RA-123456789 isoR:registrationAuthorityIdentifierRelationship :RAI-123456789 ; 
 }' https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+set +x

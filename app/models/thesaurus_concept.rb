@@ -149,9 +149,7 @@ class ThesaurusConcept
 
   def self.create(params)
     
-    unique = params[:identifier]
-    identifier = unique
-    unique = unique.parameterize
+    identifier  = params[:identifier]
     notation = params[:notation]
     preferredTerm = params[:preferredTerm]
     synonym = params[:synonym]
@@ -159,7 +157,7 @@ class ThesaurusConcept
     definition = params[:definition]
     
     # Create the query
-    id = ModelUtility.buildCid(C_CLASS_PREFIX, unique)
+    id = ModelUtility.buildCid(C_CLASS_PREFIX, identifier)
     update = Namespace.build(C_NS_PREFIX, ["iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +

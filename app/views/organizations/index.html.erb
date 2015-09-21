@@ -2,15 +2,15 @@
 <table>
   <tr>
     <th>Name</th>
-    <th></th>
+    <th>CID</th>
     <th></th>
     <th></th>
   </tr>
 	<% @organizations.each do |organization| %>
 	  <tr>
 	    <td><%= organization.name %></td>
+	    <td><%= organization.id %></td>
 	    <td><%= link_to "Show", organization %></td>
-	    <td><%= link_to "Delete all", edit_organization_path(organization) %></td>
 	    <td><%= link_to "Remove", organization_path(organization), method: :delete, data: { confirm: "Are you sure?" } %></td>
 	  </tr>
 	<% end %>

@@ -183,11 +183,10 @@ class Organization
     
     name = params[:name]
     shortName = params[:shortName]
-    unique = shortName
         
     # Create the query
-    orgId = ModelUtility.buildCid(C_CLASS_O_PREFIX, unique.to_s)
-    id = ModelUtility.buildCid(C_CLASS_NS_PREFIX, unique.to_s)
+    orgId = ModelUtility.buildCid(C_CLASS_O_PREFIX, shortName)
+    id = ModelUtility.buildCid(C_CLASS_NS_PREFIX, shortName)
     update = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
       "INSERT DATA \n" +
       "{ \n" +

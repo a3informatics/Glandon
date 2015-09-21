@@ -12,24 +12,24 @@ class Thesaurus
   attr_accessor :id, :ii_id
   validates_presence_of :ii_id
  
-  # Base namespace 
-  @@ns
-  
   # Constants
   C_CLASS_PREFIX = "TH"
   C_NS_PREFIX = "th"
+  
+  # Base namespace 
+  @@ns = Namespace.find(C_NS_PREFIX)
   
   def persisted?
     id.present?
   end
  
-  def initialize()
-    
-    after_initialize
-  
-  end
+  #def initialize()
+  #  
+  #  after_initialize
+  #
+  #end
 
-  def ns
+  def self.ns
     
     return @@ns 
     
@@ -73,11 +73,8 @@ class Thesaurus
     p "Thesaurus id=" + id
     
     object = nil
-    #uri = Uri.new()
     uriValue = ns[:value] || @@ns
     prefix = ns[:prefix] || C_NS_PREFIX
-    #uri.setUri(uriValue)
-    #uri.setClassId(id)
     query = Namespace.build(prefix,["isoI"]) +
       "SELECT ?a WHERE \n" +
       "{ \n" +
@@ -218,7 +215,7 @@ class Thesaurus
     uri = Uri.new()
     uriValue = ns[:value] || @@ns
     prefix = ns[:prefix] || C_NS_PREFIX
-    uri.setCidWithVersion(C_CLASS_PREFIX, ii.identifier, ii.version)     
+    uri.setCidWithVersion(C_CLASS_PREFIX, ii.shortName, ii.version)     
     id = uri.getCid()
     
     # Create the query
@@ -276,14 +273,14 @@ class Thesaurus
      
   end
   
-  private
-  
-  def after_initialize
-  
-    @@ns = Namespace.find(C_NS_PREFIX)
-  
-    p "Thesaurus After Initialize"
-  
-  end
+  #private
+  #
+  #def after_initialize
+  #
+  #  @@ns = Namespace.find(C_NS_PREFIX)
+  #
+  #  p "Thesaurus After Initialize"
+  #
+  #  #end
   
 end

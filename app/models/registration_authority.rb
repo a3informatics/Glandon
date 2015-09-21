@@ -145,13 +145,12 @@ class RegistrationAuthority
     
     number = params[:number]
     org = params[:organization_id]
-    unique = number.to_s.parameterize
     
     p "Org=" + org.to_s
     
     # Create the query
-    raiId = ModelUtility.buildCid(C_CLASS_RAI_PREFIX, unique.to_s)
-    id = ModelUtility.buildCid(C_CLASS_RA_PREFIX, unique.to_s)
+    raiId = ModelUtility.buildCid(C_CLASS_RAI_PREFIX, number)
+    id = ModelUtility.buildCid(C_CLASS_RA_PREFIX, number)
     update = Namespace.build(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +

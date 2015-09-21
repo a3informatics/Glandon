@@ -4,7 +4,7 @@
    <div class="field">
      <%= f.select(:ii_id, 
 	             options_from_collection_for_select(IdentifiedItem.all, :id, :identifier),
-	             :prompt => "Name") %>
+	             :prompt => "Identified Item") %>
   </div>
   <div class="actions">
     <%= f.submit "Create" %>

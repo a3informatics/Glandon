@@ -9,8 +9,8 @@ class IdentifiedItem
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :identifier, :version, :organization_id
-  validates_presence_of :identifier, :version, :organization_id
+  attr_accessor :id, :identifier, :version, :organization_id, :shortName
+  validates_presence_of :identifier, :version, :organization_id, :shortName
   
   # Base namespace 
   @@ns
@@ -56,7 +56,7 @@ class IdentifiedItem
       "{ \n" +
       "  :" + id + " isoI:identifier ?b . \n" +
       "  :" + id + " isoI:version ?c . \n" +
-      "  :" + id + " isoB:registrationAuthorityNamespaceRelationship ?d . \n" +
+      "  :" + id + " isoI:scopeRelationship ?d . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -83,6 +83,7 @@ class IdentifiedItem
         
         object = self.new 
         object.id = id
+        object.shortName = ModelUtility.extractShortName(id)
         object.identifier = iSet[0].text
         object.version = vSet[0].text
         object.organization_id = ModelUtility.extractCid(linkSet[0].text)
@@ -107,7 +108,7 @@ class IdentifiedItem
         "	 ?a rdf:type isoI:ScopedIdentifier . \n" +
         "  ?a isoI:identifier ?b . \n" +
         "	 ?a isoI:version ?c . \n" +
-        "	 ?a isoB:registrationAuthorityNamespaceRelationship ?d . \n" +
+        "	 ?a isoI:scopeRelationship ?d . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -135,6 +136,7 @@ class IdentifiedItem
         
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.shortName = ModelUtility.extractShortName(object.id)
         object.identifier = iSet[0].text
         object.version = vSet[0].text
         object.organization_id = ModelUtility.extractCid(linkSet[0].text)
@@ -152,7 +154,10 @@ class IdentifiedItem
     org = params[:organization_id]
     version = params[:version]
     identifier = params[:identifier]
-    id = ModelUtility.buildCidVersion(C_CLASS_PREFIX, identifier, version)
+    shortName = params[:shortName]
+    id = ModelUtility.buildCidVersion(C_CLASS_PREFIX, shortName, version)
+    
+    p "Org_id=" + org.to_s
     
     # Create the query
     update = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
@@ -161,7 +166,7 @@ class IdentifiedItem
       "	 :" + id + " rdf:type isoI:ScopedIdentifier . \n" +
       "	 :" + id + " isoI:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " isoI:version \"" + version.to_s + "\"^^xsd:string . \n" +
-      "	 :" + id + " isoB:registrationAuthorityNamespaceRelationship :" + org.to_s + " . \n" +
+      "	 :" + id + " isoI:scopeRelationship :" + org.to_s + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -171,6 +176,7 @@ class IdentifiedItem
     if response.success?
       object = self.new
       object.id = id
+      object.shortName = shortName
       object.version = version
       object.identifier = identifier
       p "It worked!"

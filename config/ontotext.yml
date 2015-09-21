@@ -1,15 +1,18 @@
 --- 
 development: 
+  dbType: "Ontotext"
   apiKey: s4h7h1e8absr
   queryEndpoint: "https://rdf.s4.ontotext.com/4830471037/Test/repositories/mdr"
   secret: 47q8uce2r1b4cri
   updateEndpoint: "https://rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements"
 production: 
+  dbType: "Ontotext"
   apiKey: s4h7h1e8absr
   queryEndpoint: "https://rdf.s4.ontotext.com/4830471037/Test/repositories/mdr"
   secret: 47q8uce2r1b4cri
   updateEndpoint: "https://rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements"
 test: 
+  dbType: "Ontotext"
   apiKey: s4h7h1e8absr
   queryEndpoint: "https://rdf.s4.ontotext.com/4830471037/Test/repositories/mdr"
   secret: 47q8uce2r1b4cri

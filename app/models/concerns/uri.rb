@@ -1,12 +1,17 @@
 class Uri
 
+  # Scheme for constructing URIs
+  #
+  # <uri> ::= <scheme>://<authority>/<path>#<fragment>
+  # <fragment> ::= <prefix>-<shortName>[-<version>]
+  # <path> ::= <path_element>/<path>
+  
   C_SCHEME_SEPARATOR = "://"
   C_PATH_SEPARATOR = "/"
-  C_UNIQUE_ID_SEPARATOR = "-"
-  C_PREFIX_SEPARATOR = "_"
+  C_FRAGMENT_SECTIONS_SEPARATOR = "-"
   C_FRAGMENT_SEPARATOR = "#"
   
-  attr_accessor :scheme, :authority, :path, :prefix, :id
+  attr_accessor :scheme, :authority, :path, :prefix, :shortName, :version
   
   def initialize()
     
@@ -21,24 +26,29 @@ class Uri
     
   end
   
-  def setCidNoVersion(prefix,id)
+  # Note: no setPath as can use default path accessor
+   
+  def setCidNoVersion(prefix, id)
   
-    @prefix = prefix
-    @id = id
+    @prefix = prefix.gsub(/[^A-Z]/, '')    
+    @shortName = id.gsub(/[^0-9A-Za-z_]/, '')
+    @version = ""
     
   end
 
-  def setCidWithVersion(prefix,name,version)
+  def setCidWithVersion(prefix, shortName, version)
   
-    @prefix = prefix
-    @id = name + C_UNIQUE_ID_SEPARATOR + version
+    @prefix = prefix.gsub(/[^A-Z]/, '')    
+    @shortName = shortName.gsub(/[^0-9A-Za-z_]/, '')
+    @version = version.gsub(/[^0-9]/, '')
     
   end
 
   def setCid(classId)
   
     @prefix = getPrefix(classId)
-    @id = getId(classId)
+    @shortName = getShortName(classId)
+    @version = getVersion(classId)
     
   end
   
@@ -49,24 +59,31 @@ class Uri
     @path = getPath(uri)
     fragment = getFragment(uri)
     @prefix = getPrefix(fragment)
-    @id = getId(fragment)
+    @shortName = getShortName(fragment)
+    @version = getVersion(fragment)
     
     p "Fragment=" + fragment
     p "Path=" + @path
     p "Prefix=" + @prefix
-    p "Id=" + @id
+    p "Short Name=" + @shortName
+    p "Version=" + @version
     
   end
   
   def extendPath(extension)
+
+    p "EXTEND PATH"
+    p "Path=" + @path
   
     @path = @path + "/" + extension
+
+    p "Path=" + @path
     
   end
    
   def all()
 
-    return getNS() + C_FRAGMENT_SEPARATOR  + getClassId()
+    return getNS() + C_FRAGMENT_SEPARATOR  + getCid()
   
   end
   
@@ -78,11 +95,21 @@ class Uri
 
   def getCid()
 
-    if @prefix == ""
-      return @id
+    p "Prefix=" + @prefix
+    p "Short Name=" + @shortName
+    p "Version=" + @version
+    
+    result = ""
+    result = @prefix + C_FRAGMENT_SECTIONS_SEPARATOR
+    if @version == ""
+      result += @shortName
     else
-      return @prefix + C_PREFIX_SEPARATOR + @id
+      result += @shortName + C_FRAGMENT_SECTIONS_SEPARATOR + @version
     end
+    
+    p "Result=" + result
+    
+    return result
     
   end
 
@@ -90,8 +117,8 @@ class Uri
   
   def getPath(uri)
   
-    parts = uri.split(C_FRAGMENT_SEPARATOR )
-    if parts.size == 2
+    parts = uri.split(C_FRAGMENT_SEPARATOR)
+    if parts.size == 1 or parts.size == 2
       result = parts[0].sub(@scheme + C_SCHEME_SEPARATOR + @authority + C_PATH_SEPARATOR,"")
     else
       result = ""
@@ -114,8 +141,8 @@ class Uri
 
   def getPrefix(fragment)
   
-    parts = fragment.split(C_PREFIX_SEPARATOR)
-    if parts.size >= 2
+    parts = fragment.split(C_FRAGMENT_SECTIONS_SEPARATOR)
+    if parts.size >= 2 and parts.size <= 3
       result = parts[0]
     else
       result = ""
@@ -124,13 +151,23 @@ class Uri
     
   end
 
-  def getId(fragment)
+  def getShortName(fragment)
   
-    parts = fragment.split(C_PREFIX_SEPARATOR)
-    if parts.size == 2
+    parts = fragment.split(C_FRAGMENT_SECTIONS_SEPARATOR)
+    if parts.size >= 2 and parts.size <= 3
       result = parts[1]
-    elsif parts.size >= 2
-        result = fragment.sub(parts[0] + C_PREFIX_SEPARATOR, "")
+    else
+      result = ""
+    end
+    return result
+    
+  end
+
+  def getVersion(fragment)
+  
+    parts = fragment.split(C_FRAGMENT_SECTIONS_SEPARATOR)
+    if parts.size == 3
+      result = parts[2]
     else
       result = ""
     end

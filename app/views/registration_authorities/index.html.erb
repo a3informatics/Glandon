@@ -2,6 +2,7 @@
 <table>
   <tr>
     <th>Number</th>
+    <th>CID</th>
     <th>Org Id</th>
     <th></th>
     <th></th>
@@ -9,6 +10,7 @@
 	<% @registrationAuthorities.each do |registrationAuthority| %>
 	  <tr>
 	    <td><%= registrationAuthority.number %></td>
+	    <td><%= registrationAuthority.id %></td>
 	    <td><%= link_to "Org", organization_path(registrationAuthority.organization_id) %></td>
 	    <td><%= link_to "Show", registrationAuthority %></td>
 	    <td><%= link_to "Remove", registration_authority_path(registrationAuthority), method: :delete, data: { confirm: "Are you sure?" } %></td>

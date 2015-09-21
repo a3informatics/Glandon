@@ -1,16 +1,19 @@
 --- 
-development: 
-  apiKey: s4h7h1e8absr
+development:
+  dbType: "Fuseki"
+  apiKey: ""
+  secret: ""
   queryEndpoint: "https://localhost:3030/mdr/query"
-  secret: 47q8uce2r1b4cri
   updateEndpoint: "https://localhost:3030/mdr/update"
 production: 
-  apiKey: s4h7h1e8absr
+  dbType: "Fuseki"
+  apiKey: ""
+  secret: ""
   queryEndpoint: "https://localhost:3030/mdr/query"
-  secret: 47q8uce2r1b4cri
   updateEndpoint: "https://localhost:3030/mdr/update"
 test: 
-  apiKey: s4h7h1e8absr
+  dbType: "Fuseki"
+  apiKey: ""
+  secret: ""
   queryEndpoint: "https://localhost:3030/mdr/query"
-  secret: 47q8uce2r1b4cri
   updateEndpoint: "https://localhost:3030/mdr/update"

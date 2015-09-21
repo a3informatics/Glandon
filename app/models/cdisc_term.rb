@@ -5,27 +5,22 @@ class CdiscTerm
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
+  include Xml
+  include Xslt
       
-  attr_accessor :id, :files, :name, :identifier, :version, :date, :thesaurus_id
-  validates_presence_of :files, :date, :thesaurus_id
+  attr_accessor :id, :files, :identifier, :version, :date, :namespace, :thesaurus_id
+  validates_presence_of :files, :date, :namespace, :thesaurus_id
   
   # Base namespace 
-  @@ns
-  @@cdiscOrg
+  @@cdiscOrg # CDISC Organization identifier
   
   def persisted?
     id.present?
   end
   
-  def initialize()
-    
-    after_initialize
-  
-  end
-
   def ns
     
-    return @@ns 
+    return @namespace
     
   end
   
@@ -85,28 +80,62 @@ class CdiscTerm
     
     object = self.new
     
-    org = Organization.findByName("CDISC")
-    #identifier = params[:identifier]
-    identifier = C_IDENTIFIER
+    org = Organization.findByShortName("CDISC")
+    identifier = "CDISC Terminology"
     version = params[:version]
     date = params[:date]
     files = params[:files]
+
+    # Clean any empty entries
+    files.reject!(&:blank?)
     
-    #p "Id=" + identifier
-    #p "Ver=" + version
-    #p "Date=" + date
-    p "Files=" + files.to_s
+    # Create manifest file
+    manifest = Xml::buildCdiscTermImportManifest(date, version, files)
     
     # Create the IdentifiedItem
-    iiParams = {:version => version, :identifier => identifier, :organization_id => org.id}
+    iiParams = {:version => version, :shortName => "CDISC_CT",:identifier => identifier, :organization_id => org.id}
     ii = IdentifiedItem.create(iiParams)
     
     #Create the thesaurus
+    ns = Thesaurus.ns
+    
+    p = "Namespace=" + ns
+    
+    uri = Uri.new
+    uri.setUri(ns)
+    uri.extendPath("CDISC/V" + version)
+    prefix = "thCv" + version
+    ns = uri.getNS()
+    Namespace.add(prefix, ns)
+    
+    p = "Namespace=" + ns
+    p = "Prefix=" + prefix
+    
     tParams = {:ii_id => ii.id}
-    thesaurus = Thesaurus.create(tParams)
+    nsParams = {:prefix => prefix, :value => ns}
+    thesaurus = Thesaurus.create(tParams, nsParams)
+    
+    # Transform the files and upload. Note the quotes around the namespace, important!!
+    Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", {:UseVersion => version, :Namespace => "'" + ns + "'", :II => ii.id}, "CT.ttl")
+    
+    # upload the file to the database
+    # Send the request, wait the resonse
+    publicDir = Rails.root.join("public","upload")
+    outputFile = File.join(publicDir, "CT.ttl")
+    response = CRUD.turtleFile(outputFile)
 
+    # Response
+    if response.success?
+      p "It worked!"
+    else
+      p "It didn't work!"
+    end
+    
     # Set the object
     object.date = date
+    object.version = version
+    object.identifier = identifier
+    object.namespace = ns
     object.thesaurus_id = thesaurus.id
     return object
     
@@ -118,16 +147,6 @@ class CdiscTerm
 
   def destroy
          
-  end
-
-  private
-  
-  def after_initialize
-  
-    #@@ns = Namespace.find(C_NS_PREFIX)
-    
-    p "CDISC Term Initialized"
-    
   end
   
 end

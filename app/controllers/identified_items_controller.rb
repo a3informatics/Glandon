@@ -33,7 +33,7 @@ class IdentifiedItemsController < ApplicationController
   
   private
     def ii_params
-      params.require(:identified_item).permit(:identifier, :version)
+      params.require(:identified_item).permit(:identifier, :version, :shortName, :organization_id)
     end
 
 end
