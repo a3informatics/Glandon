@@ -9,7 +9,7 @@ class Thesaurus
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :ii_id
+  attr_accessor :id, :ii_id, :namespace, :prefix, :version, :identifier
   validates_presence_of :ii_id
  
   # Constants
@@ -17,64 +17,23 @@ class Thesaurus
   C_NS_PREFIX = "th"
   
   # Base namespace 
-  @@ns = Namespace.find(C_NS_PREFIX)
+  @@ns = Namespace.getNs(C_NS_PREFIX)
   
   def persisted?
     id.present?
   end
  
-  #def initialize()
-  #  
-  #  after_initialize
-  #
-  #end
-
   def self.ns
-    
     return @@ns 
-    
   end
   
-  def name
-    
-    if self.ii_id == nil
-      return ""
-    else
-      ii = IdentifiedItem.find(self.ii_id)
-      return ii.name
-    end
-    
-  end
-  
-  def version
-    
-    if self.ii_id == nil
-      return ""
-    else
-      ii = IdentifiedItem.find(self.ii_id)
-      return ii.version
-    end
-    
-  end
-  
-  def identifier
-    
-    if self.ii_id == nil
-      return ""
-    else
-      ii = IdentifiedItem.find(self.ii_id)
-      return ii.identifier
-    end
-    
-  end
-  
-  def self.find(id, ns={})
+  def self.find(id, setNs={})
     
     p "Thesaurus id=" + id
     
     object = nil
-    uriValue = ns[:value] || @@ns
-    prefix = ns[:prefix] || C_NS_PREFIX
+    ns = setNs[:value] || @@ns
+    prefix = setNs[:prefix] || C_NS_PREFIX
     query = Namespace.build(prefix,["isoI"]) +
       "SELECT ?a WHERE \n" +
       "{ \n" +
@@ -101,8 +60,13 @@ class Thesaurus
         
         object = self.new 
         object.id = id
+        object.namespace = ns
+        object.prefix = prefix
         object.ii_id = ModelUtility.extractCid(uriSet[0].text)
-        
+        ii = IdentifiedItem.find(object.ii_id)
+        @identifier = ii.identifier
+        @version = ii.version
+      
       end
     end
     
@@ -148,11 +112,19 @@ class Thesaurus
         
         ii = IdentifiedItem.find(ii_id)
         if (ii != nil)
-          if (ii.id == id)
+          if (ii.organization_id == id)
             object = self.new 
             object.id = ModelUtility.extractCid(uriSet[0].text)
+            object.namespace = ModelUtility.extractNs(uriSet[0].text)
+            object.prefix = Namespace.getPrefix(object.namespace)
             object.ii_id = ii_id
+            object.identifier = ii.identifier
+            object.version = ii.version
             results.push (object)
+            
+            p "TH identifier=" + object.identifier
+            p "TH version=" + object.version
+            
           end 
         end
         
@@ -197,7 +169,12 @@ class Thesaurus
         
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.namespace = ModelUtility.extractNs(uriSet[0].text)
+        object.prefix = Namespace.getPrefix(object.namespace)
         object.ii_id = ModelUtility.extractCid(iiSet[0].text)
+        ii = IdentifiedItem.find(object.ii_id)
+        @identifier = ii.identifier
+        @version = ii.version
         results.push (object)
         
       end
@@ -207,14 +184,14 @@ class Thesaurus
     
   end
 
-  def self.create(params,ns={})
+  def self.create(params,setNs={})
     
     ii_id = params[:ii_id]
     ii = IdentifiedItem.find(ii_id)
     
     uri = Uri.new()
-    uriValue = ns[:value] || @@ns
-    prefix = ns[:prefix] || C_NS_PREFIX
+    ns = setNs[:value] || @@ns
+    prefix = setNs[:prefix] || C_NS_PREFIX
     uri.setCidWithVersion(C_CLASS_PREFIX, ii.shortName, ii.version)     
     id = uri.getCid()
     
@@ -233,7 +210,11 @@ class Thesaurus
     if response.success?
       object = self.new
       object.id = id
+      object.namespace = ns
+      object.prefix = prefix
       object.ii_id = ii_id
+      @identifier = ii.identifier
+      @version = ii.version
       p "It worked!"
     else
       p "It didn't work!"
@@ -248,12 +229,12 @@ class Thesaurus
     return nil
   end
 
-  def destroy(ns={})
+  def destroy(setNs={})
     
     # Create the query
     uri = Uri.new()
-    uriValue = ns[:value] || @@ns
-    prefix = ns[:prefix] || C_NS_PREFIX
+    uriValue = setNs[:value] || @@ns
+    prefix = setNs[:prefix] || C_NS_PREFIX
     update = Namespace.build(prefix,["isoI", "iso25964", "org"]) +
       "DELETE DATA \n" +
       "{ \n" +
@@ -272,15 +253,5 @@ class Thesaurus
     end
      
   end
-  
-  #private
-  #
-  #def after_initialize
-  #
-  #  @@ns = Namespace.find(C_NS_PREFIX)
-  #
-  #  p "Thesaurus After Initialize"
-  #
-  #  #end
   
 end

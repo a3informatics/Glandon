@@ -19,15 +19,14 @@ class RegistrationAuthority
   C_NS_PREFIX = "org"
   C_CLASS_RA_PREFIX = "RA"
   C_CLASS_RAI_PREFIX = "RAI"
-        
+
+  @@ns = Namespace.getNs(C_NS_PREFIX)
+
   def persisted?
     id.present?
   end
  
   def initialize()
-    
-    after_initialize
-  
   end
 
   def ns
@@ -210,14 +209,6 @@ class RegistrationAuthority
       p "It didn't work!"
     end
      
-  end
-  
-  private
-  
-  def after_initialize
-  
-    @@ns = Namespace.find(C_NS_PREFIX)
-  
   end
   
 end

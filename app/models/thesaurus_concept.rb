@@ -12,27 +12,22 @@ class ThesaurusConcept
   attr_accessor :id, :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm
   validates_presence_of :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm
   
-  # Base namespace 
-  @@ns
-  
   # Constants
   C_CLASS_PREFIX = "THC"
   C_NS_PREFIX = "th"
-        
+  
+  # Base namespace 
+  @@ns = Namespace.getNs(C_NS_PREFIX)     
+  
   def persisted?
     id.present?
   end
  
   def initialize()
-    
-    after_initialize
-  
   end
 
   def ns
-    
     return @@ns 
-    
   end
   
   def self.find(id)
@@ -96,7 +91,9 @@ class ThesaurusConcept
     results = Array.new
     
     # Create the query
-    query = Namespace.build(C_NS_PREFIX, ["iso25964"]) +
+    query = Namespace.build("", ["iso25964", "isoI", "org"]) +
+      "PREFIX is: <http://purl.org/ontology/is/core#> \n" +
+      "PREFIX iso: <http://purl.org/iso25964/skos-thes#> \n" +
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type iso25964:ThesaurusConcept . \n" +
@@ -106,7 +103,7 @@ class ThesaurusConcept
       "	 ?a iso25964:synonym ?e . \n" +
       "	 ?a iso25964:extensible ?f . \n" +
       "	 ?a iso25964:definition ?g . \n" +
-      "}"
+      "} LIMIT 50"
     
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -222,14 +219,6 @@ class ThesaurusConcept
       p "It didn't work!"
     end
      
-  end
-  
-  private
-  
-  def after_initialize
-  
-    @@ns = Namespace.find(C_NS_PREFIX)
-  
   end
   
 end

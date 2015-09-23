@@ -1,4 +1,5 @@
 require "Rest"
+require "json"
 
 module CRUD
 
@@ -34,20 +35,25 @@ module CRUD
       
   end
   
-  def CRUD.turtleFile (file)
+  def CRUD.file (file)
   
     db = SEMANTIC_DB_CONFIG['dbType']
     key = SEMANTIC_DB_CONFIG['apiKey'] 
     secret = SEMANTIC_DB_CONFIG['secret']
-    endpoint = SEMANTIC_DB_CONFIG['updateEndpoint']
-    headers = {'Content-type'=> "application/x-turtle"}
-
-    p "CRUD::file=" + file
+    #endpoint = SEMANTIC_DB_CONFIG['fileEndpoint']
+    endpoint = "http://192.168.2.101:3030/mdr/upload"
+    headers = {'Content-type'=> "multipart/form-data"}
+    #headers = {'Content-Type'=> "application/json"}
+    data = { "filename" => file}
+    jsonData = data.to_json
     
-    # Send the request, wait the resonse
-    response = Rest.sendRequest(endpoint,:post,key,secret,file,headers)
+    p "CRUD::file=" + jsonData.to_s
+    
+    # Send the file, wait for the response
+    response = Rest.sendFile(endpoint,:post,key,secret,jsonData,file,headers)
       
   end
+  
 end
 
     

@@ -30,24 +30,25 @@ module Rest
   end
 
   # Upload a file to the endpoint
-  def Rest.sendFile(endpoint, method, user, pwd, file, headers)
+  def Rest.sendFile(endpoint, method, user, pwd, data, file, headers)
     
     hydra = Typhoeus::Hydra.hydra
     if user == "" 
       req = Typhoeus::Request.new(endpoint,
         method: method,
-        file: File.open(file,"r"),
+        body: { file: File.open(file,"r") },
         headers: headers)
     else
       userpwd = user + ":" + pwd
       req = Typhoeus::Request.new(endpoint,
         method: method,
         userpwd: userpwd, 
-        file: File.open(file,"r"),
+        body: { file: File.open(file,"r") },
         headers: headers)
     end 
-    hydra.queue(req)
-    hydra.run
+    #hydra.queue(req)
+    #hydra.run
+    req.run
     response = req.response
     
     p response.body

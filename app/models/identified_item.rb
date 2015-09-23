@@ -12,38 +12,19 @@ class IdentifiedItem
   attr_accessor :id, :identifier, :version, :organization_id, :shortName
   validates_presence_of :identifier, :version, :organization_id, :shortName
   
-  # Base namespace 
-  @@ns
-  
   # Constants
   C_NS_PREFIX = "org"
   C_CLASS_PREFIX = "II"
         
+  # Base namespace 
+  @@ns = Namespace.getNs(C_NS_PREFIX)
+  
   def persisted?
     id.present?
   end
  
-  def initialize()
-    
-    after_initialize
-  
-  end
-
   def ns
-    
     return @@ns 
-    
-  end
-  
-  def name
-    
-    if self.organization_id == nil
-      return ""
-    else
-      org = Organization.find(self.organization_id)
-      return org.name
-    end
-    
   end
   
   def self.find(id)
@@ -87,6 +68,9 @@ class IdentifiedItem
         object.identifier = iSet[0].text
         object.version = vSet[0].text
         object.organization_id = ModelUtility.extractCid(linkSet[0].text)
+        
+        p "II identifier=" + object.identifier
+        p "II version=" + object.identifier
         
       end
       
@@ -141,6 +125,9 @@ class IdentifiedItem
         object.version = vSet[0].text
         object.organization_id = ModelUtility.extractCid(linkSet[0].text)
         results.push (object)
+        
+        p "II identifier=" + object.identifier
+        p "II version=" + object.identifier
         
       end
     end

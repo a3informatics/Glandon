@@ -83,11 +83,11 @@ class Uri
    
   def all()
 
-    return getNS() + C_FRAGMENT_SEPARATOR  + getCid()
+    return getNs() + C_FRAGMENT_SEPARATOR  + getCid()
   
   end
   
-  def getNS()
+  def getNs()
 
     return @scheme + C_SCHEME_SEPARATOR + @authority + C_PATH_SEPARATOR + @path
   

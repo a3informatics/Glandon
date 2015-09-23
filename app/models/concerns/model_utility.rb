@@ -35,6 +35,14 @@ module ModelUtility
   
   end
   
+  def ModelUtility.extractNs(uri)
+  
+    object = Uri.new()
+    object.setUri(uri)
+    return object.getNs()
+  
+  end
+  
   def ModelUtility.extractShortName(cid)
   
     object = Uri.new()

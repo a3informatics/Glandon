@@ -13,28 +13,23 @@ class Organization
   attr_accessor :id, :name, :shortName
   validates_presence_of :name, :shortName
 
-  # Base namespace 
-  @@ns
-  
   # Constants
   C_NS_PREFIX = "org"
   C_CLASS_O_PREFIX = "O"
   C_CLASS_NS_PREFIX = "NS"
+  
+  # Base namespace 
+  @@ns = Namespace.getNs(C_NS_PREFIX)
   
   def persisted?
     id.present?
   end
  
   def initialize()
-    
-    after_initialize
-  
   end
 
-  def ns
-    
-    return @@ns 
-    
+  def ns    
+    return @@ns     
   end
   
   def self.findByShortName(name)
@@ -71,7 +66,7 @@ class Organization
         p "Found"
         
         object = self.new 
-        object.id = ModelUtility.extractCid(node.text)
+        object.id = ModelUtility.extractCid(uriSet[0].text)
         object.name = nSet[0].text
         object.shortName = name
         
@@ -247,11 +242,5 @@ class Organization
   end
   
   private
-  
-  def after_initialize
-  
-    @@ns = Namespace.find(C_NS_PREFIX)
-
-  end
-  
+   
 end

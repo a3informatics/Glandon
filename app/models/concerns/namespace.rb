@@ -13,7 +13,13 @@ module Namespace
       "rdfs" => "http://www.w3.org/2000/01/rdf-schema" ,
       "xsd" => "http://www.w3.org/2001/XMLSchema" }
   
-  def Namespace.find(prefix)
+  def Namespace.getPrefix(ns)
+
+    return @@optional.key(ns)
+
+  end
+    
+  def Namespace.getNs(prefix)
     
     return @@optional[prefix]
   
@@ -27,6 +33,9 @@ module Namespace
   
   def Namespace.build(defaultNS, optional)
   
+    p "Namespace build, def NS=" + defaultNS
+    p "Namespace build, opt=" + optional.to_s
+    
     if defaultNS == ""
       result = ""
     else

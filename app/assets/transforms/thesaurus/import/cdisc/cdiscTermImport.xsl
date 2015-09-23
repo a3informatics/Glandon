@@ -33,7 +33,7 @@
         <!-- First the base URI and imports -->
         <xsl:value-of select="concat('# baseURI: ',$Namespace,$newline)"/>
         <xsl:text># imports: http://www.assero.co.uk/ISO11179Identification&#xa;</xsl:text>
-        <xsl:text># imports: http://www.assero.co.uk/iso25964&#xa;</xsl:text>
+        <xsl:text># imports: http://www.assero.co.uk/ISO25964&#xa;</xsl:text>
         <xsl:text># imports: http://www.w3.org/2004/02/skos/core&#xa;</xsl:text>
         <xsl:text>&#xa;</xsl:text>
         
@@ -41,7 +41,7 @@
         <xsl:value-of disable-output-escaping="yes" select="concat('@prefix : &lt;',$Namespace,'#&gt; .&#xa;')"/>
         <xsl:text disable-output-escaping="yes">@prefix isoB: &lt;http://www.assero.co.uk/ISO11179Basic#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix iso25964: &lt;http://www.assero.co.uk/iso25964#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix iso25964: &lt;http://www.assero.co.uk/ISO25964#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix org: &lt;http://www.assero.co.uk/MDROrganizations#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .&#xa;</xsl:text>
@@ -54,7 +54,7 @@
         <xsl:value-of disable-output-escaping="yes" select="concat('&lt;',$Namespace,'&gt;&#xa;')"/>
         <xsl:text>&#009;rdf:type owl:Ontology ;&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">&#009;owl:imports &lt;http://www.assero.co.uk/ISO11179Identification&gt; ;&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">&#009;owl:imports &lt;http://www.assero.co.uk/iso25964&gt; ;&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">&#009;owl:imports &lt;http://www.assero.co.uk/ISO25964&gt; ;&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">&#009;owl:imports &lt;http://www.w3.org/2004/02/skos/core&gt; ;&#xa;</xsl:text>
         <xsl:text>.&#xa;</xsl:text>
         

@@ -8,57 +8,32 @@ class CdiscTerm
   include Xml
   include Xslt
       
-  attr_accessor :id, :files, :identifier, :version, :date, :namespace, :thesaurus_id
+  attr_accessor :id, :files, :date, :thesaurus_id, :identifier, :version
   validates_presence_of :files, :date, :namespace, :thesaurus_id
   
   # Base namespace 
   @@cdiscOrg # CDISC Organization identifier
+  @indentifier
   
   def persisted?
     id.present?
   end
   
   def ns
-    
     return @namespace
-    
-  end
-  
-  def name
-    
-    if self.thesaurus_id == nil
-      return ""
-    else
-      thesaurus = Thesaurus.find(self.thesaurus_id)
-      return thesaurus.name
-    end
-    
-  end
-  
-  def identifier
-    
-    if self.thesaurus_id == nil
-      return ""
-    else
-      thesaurus = Thesaurus.find(self.thesaurus_id)
-      return thesaurus.identifier
-    end
-    
-  end
-  
-  def version
-    
-    if self.thesaurus_id == nil
-      return ""
-    else
-      thesaurus = Thesaurus.find(self.thesaurus_id)
-      return thesaurus.version
-    end
-    
   end
   
   def self.find(id)
-    return Thesaurus.find(id)
+
+    thesaurus = Thesaurus.findByOrgId(@@cdiscOrg.id)
+    object = self.new 
+    object.id = thesaurus.id
+    object.thesaurus_id = thesaurus.id
+    object.date = "???"
+    object.identifier = thesaurus.identifier
+    object.ersion = thesauris.versionThesaurus.find(id)
+    return object
+
   end
 
   def self.all
@@ -70,6 +45,9 @@ class CdiscTerm
       object = self.new 
       object.id = thesaurus.id
       object.thesaurus_id = thesaurus.id
+      object.date = "???"
+      object.identifier = thesaurus.identifier
+      object.version = thesaurus.version
       results.push(object)
     end
     return results  
@@ -105,7 +83,7 @@ class CdiscTerm
     uri.setUri(ns)
     uri.extendPath("CDISC/V" + version)
     prefix = "thCv" + version
-    ns = uri.getNS()
+    ns = uri.getNs()
     Namespace.add(prefix, ns)
     
     p = "Namespace=" + ns
@@ -115,14 +93,14 @@ class CdiscTerm
     nsParams = {:prefix => prefix, :value => ns}
     thesaurus = Thesaurus.create(tParams, nsParams)
     
-    # Transform the files and upload. Note the quotes around the namespace, important!!
-    Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", {:UseVersion => version, :Namespace => "'" + ns + "'", :II => ii.id}, "CT.ttl")
+    # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
+    Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", {:UseVersion => version, :Namespace => "'" + ns + "'", :II => "'" + ii.id + "'"}, "CT.ttl")
     
     # upload the file to the database
     # Send the request, wait the resonse
     publicDir = Rails.root.join("public","upload")
     outputFile = File.join(publicDir, "CT.ttl")
-    response = CRUD.turtleFile(outputFile)
+    response = CRUD.file(outputFile)
 
     # Response
     if response.success?
@@ -133,9 +111,6 @@ class CdiscTerm
     
     # Set the object
     object.date = date
-    object.version = version
-    object.identifier = identifier
-    object.namespace = ns
     object.thesaurus_id = thesaurus.id
     return object
     
