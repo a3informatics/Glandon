@@ -9,15 +9,15 @@ class ThesaurusConcept
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm
-  validates_presence_of :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm
+  attr_accessor :id, :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace
+  validates_presence_of :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace
   
   # Constants
   C_CLASS_PREFIX = "THC"
   C_NS_PREFIX = "th"
   
   # Base namespace 
-  @@ns = Namespace.getNs(C_NS_PREFIX)     
+  @@baseNs = Namespace.getNs(C_NS_PREFIX)     
   
   def persisted?
     id.present?
@@ -26,16 +26,17 @@ class ThesaurusConcept
   def initialize()
   end
 
-  def ns
-    return @@ns 
+  def baseNs
+    return @@baseNs 
   end
   
-  def self.find(id)
+  def self.find(id,ns)
     
     object = nil
     
     # Create the query
-    query = Namespace.build(C_NS_PREFIX, ["iso25964"]) +
+    useNs = ns || @@baseNs
+    query = Namespace.buildNs(useNs, ["iso25964"]) +
       "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "	 :" + id + " iso25964:identifier ?a . \n" +
@@ -86,12 +87,12 @@ class ThesaurusConcept
     
   end
 
-  def self.all
+  def self.all()
     
     results = Array.new
     
     # Create the query
-    query = Namespace.build("", ["iso25964", "isoI", "org"]) +
+    query = Namespace.buildPrefix("", ["iso25964", "isoI", "org"]) +
       "PREFIX is: <http://purl.org/ontology/is/core#> \n" +
       "PREFIX iso: <http://purl.org/iso25964/skos-thes#> \n" +
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
@@ -144,6 +145,59 @@ class ThesaurusConcept
     
   end
 
+  def self.allWithNs(ns)
+    
+    p "[ThesaurusConcept   ][allWithNs         ] nsParams=" + ns
+    
+    results = Array.new
+    
+    # Create the query
+    query = Namespace.buildNs(ns, ["iso25964"]) +
+      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
+      "	 { \n" +
+      "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
+      "    ?a skos:inScheme :Thesaurus . \n" +
+      "	   ?a iso25964:identifier ?b . \n" +
+      "	   ?a iso25964:notation ?c . \n" +
+      "	   ?a iso25964:preferredTerm ?d . \n" +
+      "	   ?a iso25964:synonym ?e . \n" +
+      "	   ?a iso25964:extensible ?f . \n" +
+      "	   ?a iso25964:definition ?g . \n" +
+      "} ORDER BY ?b"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+    
+      p "[ThesaurusConcept   ][allWithNs         ] node=" + node.text
+    
+      uriSet = node.xpath("binding[@name='a']/uri")
+      idSet = node.xpath("binding[@name='b']/literal")
+      nSet = node.xpath("binding[@name='c']/literal")
+      ptSet = node.xpath("binding[@name='d']/literal")
+      sSet = node.xpath("binding[@name='e']/literal")
+      eSet = node.xpath("binding[@name='f']/literal")
+      dSet = node.xpath("binding[@name='g']/literal")
+      if uriSet.length == 1 
+        object = self.new 
+        object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.identifier = idSet[0].text
+        object.notation = nSet[0].text
+        object.preferredTerm = ptSet[0].text
+        object.synonym = sSet[0].text
+        object.extensible = eSet[0].text
+        object.definition = dSet[0].text
+        results.push (object)
+      end
+    end
+    return results
+    
+  end
+  
   def self.create(params)
     
     identifier  = params[:identifier]
@@ -155,7 +209,7 @@ class ThesaurusConcept
     
     # Create the query
     id = ModelUtility.buildCid(C_CLASS_PREFIX, identifier)
-    update = Namespace.build(C_NS_PREFIX, ["iso25964"]) +
+    update = Namespace.buildPrefix(C_NS_PREFIX, ["iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
@@ -197,7 +251,7 @@ class ThesaurusConcept
   def destroy
     
     # Create the query
-    update = Namespace.build(C_NS_PREFIX, ["iso25964"]) +
+    update = Namespace.buildPrefix(C_NS_PREFIX, ["iso25964"]) +
       "DELETE DATA \n" +
       "{ \n" +
       "	 :" + self.id + " rdf:type iso25964:ThesaurusConcept . \n" +

@@ -1,0 +1,38 @@
+<h1>CDISC Terminology</h1>
+<table>
+  <tr>
+    <th>Identifer</th>
+    <th>Version</th>
+    <th>Date</th>
+  </tr>
+  <tr>
+    <td><%= @cdiscTerm.identifier %></td>
+    <td><%= @cdiscTerm.version %></td>
+    <td><%= @cdiscTerm.date %></td>
+  </tr>
+</table>
+<br>
+<table>
+  <tr>
+    <th>Identifer</th>
+    <th>Notation</th>
+    <th>Preferred</th>
+    <th>Synonym</th>
+    <th>Extensible</th>
+    <th>Definition</th>
+    <th>View</th>
+  </tr>
+	<% @CLs.each do |cl| %>
+	  <tr>
+	    <td><%= cl.identifier %></td>
+	    <td><%= cl.notation %></td>
+	    <td><%= cl.preferredTerm %></td>
+	    <td><%= cl.synonym %></td>
+	    <td><%= cl.extensible %></td>
+	    <td><%= cl.definition %></td>
+	    <td><%= link_to "Show", thesaurus_concept_path(cl.id) %></td>
+	  </tr>
+	<% end %>
+</table>
+<br>
+<%= link_to "Back", cdisc_terms_path %>

@@ -26,7 +26,9 @@ class CdiscTermsController < ApplicationController
   end
 
   def show
-    redirect_to cdiscTerms_path
+    @cdiscTerm = CdiscTerm.find(params[:id])
+    ns = @cdiscTerm.namespace
+    @CLs = ThesaurusConcept.allWithNs(ns)
   end
   
   private

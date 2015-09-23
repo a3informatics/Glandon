@@ -19,7 +19,7 @@ class Organization
   C_CLASS_NS_PREFIX = "NS"
   
   # Base namespace 
-  @@ns = Namespace.getNs(C_NS_PREFIX)
+  @@baseNs = Namespace.getNs(C_NS_PREFIX)
   
   def persisted?
     id.present?
@@ -28,8 +28,8 @@ class Organization
   def initialize()
   end
 
-  def ns    
-    return @@ns     
+  def baseNs    
+    return @@baseNs     
   end
   
   def self.findByShortName(name)
@@ -37,7 +37,7 @@ class Organization
     object = nil
     
     # Create the query
-    query = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
+    query = Namespace.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?a ?c WHERE \n" +
       "{ \n" +
         "?a isoI:namingAuthorityRelationship ?b . \n" +
@@ -84,7 +84,7 @@ class Organization
     object = nil
     
     # Create the query
-    query = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
+    query = Namespace.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?b ?c WHERE \n" +
       "{ \n" +
       "  :" + id.to_s + " isoI:namingAuthorityRelationship ?a . \n" +
@@ -131,7 +131,7 @@ class Organization
     results = Array.new
     
     # Create the query
-    query = Namespace.build(C_NS_PREFIX,["isoI", "isoB"]) +
+    query = Namespace.buildPrefix(C_NS_PREFIX,["isoI", "isoB"]) +
       "SELECT ?a ?c ?d WHERE \n" +
       "{ \n" +
       "	?a rdf:type isoI:Namespace . \n" +
@@ -182,7 +182,7 @@ class Organization
     # Create the query
     orgId = ModelUtility.buildCid(C_CLASS_O_PREFIX, shortName)
     id = ModelUtility.buildCid(C_CLASS_NS_PREFIX, shortName)
-    update = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
+    update = Namespace.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + orgId + " rdf:type isoB:Organization . \n" +
@@ -219,7 +219,7 @@ class Organization
     
     # Create the query
     orgId = ModelUtility.cidSwapPrefix(self.id, C_CLASS_O_PREFIX)
-    update = Namespace.build(C_NS_PREFIX, ["isoI", "isoB"]) +
+    update = Namespace.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "DELETE DATA \n" +
       "{ \n" +
       "	 :" + orgId + "  rdf:type isoB:Organization . \n" +
@@ -240,7 +240,5 @@ class Organization
     end
      
   end
-  
-  private
    
 end

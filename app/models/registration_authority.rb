@@ -13,14 +13,14 @@ class RegistrationAuthority
   validates_presence_of :name, :number, :organization_id
   
   # Base namespace 
-  @@ns
+  @@baseNs
   
   # Constants
   C_NS_PREFIX = "org"
   C_CLASS_RA_PREFIX = "RA"
   C_CLASS_RAI_PREFIX = "RAI"
 
-  @@ns = Namespace.getNs(C_NS_PREFIX)
+  @@baseNs = Namespace.getNs(C_NS_PREFIX)
 
   def persisted?
     id.present?
@@ -29,9 +29,9 @@ class RegistrationAuthority
   def initialize()
   end
 
-  def ns
+  def baseNs
     
-    return @@ns 
+    return @@baseNs 
     
   end
   
@@ -51,7 +51,7 @@ class RegistrationAuthority
     ra = nil
     
     # Create the query
-    query = Namespace.build(C_NS_PREFIX, ["isoB", "isoR"]) +
+    query = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "SELECT ?b ?c WHERE \n" +
       "{ \n" +
       "  :" + id + " isoR:registrationAuthorityIdentifierRelationship ?a . \n" +
@@ -97,7 +97,7 @@ class RegistrationAuthority
     results = Array.new
     
     # Create the query
-    query = Namespace.build(C_NS_PREFIX, ["isoB", "isoR"]) +
+    query = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "SELECT ?a ?c ?d WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type isoR:RegistrationAuthority . \n" +
@@ -150,7 +150,7 @@ class RegistrationAuthority
     # Create the query
     raiId = ModelUtility.buildCid(C_CLASS_RAI_PREFIX, number)
     id = ModelUtility.buildCid(C_CLASS_RA_PREFIX, number)
-    update = Namespace.build(C_NS_PREFIX, ["isoB", "isoR"]) +
+    update = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
@@ -188,7 +188,7 @@ class RegistrationAuthority
     
     # Create the query
     raiId = ModelUtility.cidSwapPrefix(self.id,C_CLASS_RAI_PREFIX)
-    update = Namespace.build(C_NS_PREFIX, ["isoB", "isoR"]) +
+    update = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "DELETE DATA \n" +
       "{ \n" +
       "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +

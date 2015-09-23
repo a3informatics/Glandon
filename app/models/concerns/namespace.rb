@@ -11,7 +11,8 @@ module Namespace
   @@required = 
     { "rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns" ,
       "rdfs" => "http://www.w3.org/2000/01/rdf-schema" ,
-      "xsd" => "http://www.w3.org/2001/XMLSchema" }
+      "xsd" => "http://www.w3.org/2001/XMLSchema" ,
+      "skos" => "http://www.w3.org/2004/02/skos/core" }
   
   def Namespace.getPrefix(ns)
 
@@ -25,22 +26,41 @@ module Namespace
   
   end
         
-  def Namespace.add(prefix,ns)
+  def Namespace.buildPrefix(defaultNsPrefix, optional)
+  
+    p "[Namespace           ][buildPrefix        ] defaultNsPrefix=" + defaultNsPrefix
+    p "[Namespace           ][buildPrefix        ] optional=" + optional.to_s
     
-    @@optional.store(prefix,ns)
+    if defaultNsPrefix == ""
+      result = ""
+    else
+      result = formEntry("", @@optional[defaultNsPrefix])
+    end
+    result = result + buildPrefixes(optional)
+    return result
     
   end
   
-  def Namespace.build(defaultNS, optional)
+  def Namespace.buildNs(defaultNs, optional)
   
-    p "Namespace build, def NS=" + defaultNS
-    p "Namespace build, opt=" + optional.to_s
+    p "[Namespace           ][buildPrefix        ] defaultNs=" + defaultNs
+    p "[Namespace           ][buildPrefix        ] optional=" + optional.to_s
     
-    if defaultNS == ""
+    if defaultNs == ""
       result = ""
     else
-      result = formEntry("", @@optional[defaultNS])
+      result = formEntry("", defaultNs)
     end
+    result = result + buildPrefixes(optional)
+    return result
+    
+  end
+  
+  private
+  
+  def self.buildPrefixes(optional)
+  
+    result = ""
     optional.each do |key|
       result = result + formEntry(key,@@optional[key])
     end
@@ -50,8 +70,6 @@ module Namespace
     return result
     
   end
-  
-  private
   
   def self.formEntry(prefix,ns)
 

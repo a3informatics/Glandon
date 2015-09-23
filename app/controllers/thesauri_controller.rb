@@ -23,7 +23,7 @@ class ThesauriController < ApplicationController
 
   def destroy
     @thesaurus = Thesaurus.find(params[:id])
-    @thesaurus.destroy
+    @thesaurus.destroy()
     redirect_to thesauri_index_path
   end
 
