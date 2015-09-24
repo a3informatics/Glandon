@@ -84,8 +84,8 @@ class CdiscClisController < ApplicationController
       if index < last
         old = data[index + 1]
         result = {
-          "version" => old[:term].version, 
-          "date" => old[:term].date, 
+          "version" => curr[:term].version, 
+          "date" => curr[:term].date, 
           "identifier" => Diffy::Diff.new(old[:cli].identifier, curr[:cli].identifier).to_s(:html),
           "notation" => Diffy::Diff.new(old[:cli].notation, curr[:cli].notation).to_s(:html),
           "preferredTerm" => Diffy::Diff.new(old[:cli].preferredTerm, curr[:cli].preferredTerm).to_s(:html),
