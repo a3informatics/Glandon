@@ -30,7 +30,7 @@
 	    <td><%= cl.synonym %></td>
 	    <td><%= cl.extensible %></td>
 	    <td><%= cl.definition %></td>
-	    <td><%= link_to "Show", cdisc_cl_path(:id => cl.id,:namespace => cl.namespace) %></td>
+	    <td><%= link_to "Show", cdisc_cl_path(:id => cl.id, :termId => @cdiscTerm.id) %></td>
 	  </tr>
 	<% end %>
 </table>

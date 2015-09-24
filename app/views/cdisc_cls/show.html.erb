@@ -36,7 +36,7 @@
 	    <td><%= cli.preferredTerm %></td>
 	    <td><%= cli.synonym %></td>
 	    <td><%= cli.definition %></td>
-	    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id,:namespace => cli.namespace) %></td>
+	    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id,:termId => @cdiscTerm.id) %></td>
 	  </tr>
 	<% end %>
 </table>

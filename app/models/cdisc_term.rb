@@ -64,6 +64,27 @@ class CdiscTerm
     
   end
 
+  def self.allExcept(version)
+    
+    results = Array.new
+    @@cdiscOrg = Organization.findByShortName("CDISC")
+    tSet = Thesaurus.findByOrgId(@@cdiscOrg.id)
+    tSet.each do |thesaurus|
+      if (version != thesaurus.version)
+        object = self.new 
+        object.id = thesaurus.id
+        object.thesaurus_id = thesaurus.id
+        object.date = "???"
+        object.identifier = thesaurus.identifier
+        object.version = thesaurus.version
+        object.namespace = thesaurus.namespace
+        results.push(object)
+      end
+    end
+    return results  
+    
+  end
+  
   def self.create(params)
     
     object = self.new

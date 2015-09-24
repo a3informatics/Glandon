@@ -1,0 +1,24 @@
+<h1>CDISC Code List History: <%= @Cli %></h1>
+<table>
+  <tr>
+    <th>Version</th>
+    <th>Date</th>
+    <th>Identifier</th>
+    <th>Notation</th>
+    <th>Preferred Term</th>
+    <th>Synonym</th>
+    <th>Definition</th>
+  </tr>
+	
+	<% @Results.each do |r| %>
+		<tr>
+	    <td><%= raw r["version"] %></td>
+	    <td><%= raw r["date"] %></td>
+	    <td><%= raw r["identifier"] %></td>
+      <td><%= raw r["notation"] %></td>
+      <td><%= raw r["preferredTerm"] %></td>
+      <td><%= raw r["synonym"] %></td>
+      <td><%= raw r["definition"] %></td>
+	  </tr>
+	<% end %>
+</table>

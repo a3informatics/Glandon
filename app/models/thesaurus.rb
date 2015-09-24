@@ -135,8 +135,9 @@ class Thesaurus
   
   def self.findWithoutNs(id)
     
-    object = nil
+    p "[Thesaurus           ][findWithoutNs      ] id=" + id
     
+    object = nil
     query = Namespace.buildPrefix("",["isoI", "iso25964"]) +
       "SELECT ?a ?b WHERE \n" +
       "{ \n" +

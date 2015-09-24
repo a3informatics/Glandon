@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   resources :uploads
   resources :cdisc_terms
   resources :cdisc_cls
-  resources :cdisc_clis
+  #resources :cdisc_clis
+  resources :cdisc_clis do
+    collection do
+      get :compare
+      get :history
+    end
+  end
   
 end

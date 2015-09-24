@@ -154,7 +154,7 @@ class ThesaurusConcept
     
   end
 
-  def self.allTopLevelWithNs(ns)
+  def self.allTopLevelWithNs(id, ns)
     
     p "[ThesaurusConcept    ][allTopLevelWithNs  ] ns=" + ns
     
@@ -165,7 +165,7 @@ class ThesaurusConcept
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
       "	 { \n" +
       "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
-      "    ?a skos:inScheme ?h . \n" +
+      "    ?a skos:inScheme :" + id + " . \n" +
       "	   ?a iso25964:identifier ?b . \n" +
       "	   ?a iso25964:notation ?c . \n" +
       "	   ?a iso25964:preferredTerm ?d . \n" +

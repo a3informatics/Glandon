@@ -155,8 +155,8 @@ INSERT DATA
 # curl -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T CT_V36.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
 # curl -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T CT_V37.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
 # curl -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T CT_V38.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
-# curl -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T CT_V39.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
-# curl -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T CT_V40.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+curl -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T CT_V39.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+curl -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T CT_V40.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
 curl -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T CT_V41.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
 
 set +x

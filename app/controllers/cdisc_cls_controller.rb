@@ -22,15 +22,16 @@ class CdiscClsController < ApplicationController
   end
 
   def show
-    ns = params[:namespace]
     id = params[:id]
-    @cdiscCl = CdiscCl.find(id, ns)
-    @cdiscClis = CdiscCli.allForCl(id, ns)
+    termId = params[:termId]
+    @cdiscTerm = CdiscTerm.find(params[:termId])
+    @cdiscCl = CdiscCl.find(id, @cdiscTerm)
+    @cdiscClis = CdiscCli.allForCl(id, @cdiscTerm)
   end
   
   private
     def this_params
-      params.require(:cdisc_term).permit(:id, :namespace)
+      params.require(:cdisc_term).permit(:id, :termId)
     end
 
 end

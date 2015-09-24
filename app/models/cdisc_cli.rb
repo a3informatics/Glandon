@@ -28,13 +28,13 @@ class CdiscCli
     return @baseNs
   end
   
-  def self.find(id, ns)
+  def self.find(id, cdiscTerm)
     
     p "[CdiscCli           ][find                ] id=" + id
-    p "[CdiscCli           ][find                ] ns=" + ns
+    p "[CdiscCli           ][find                ] ns=" + cdiscTerm.namespace
   
     results = Array.new
-    tc = ThesaurusConcept.find(id, ns)
+    tc = ThesaurusConcept.find(id, cdiscTerm.namespace)
     object = self.new 
     object.id = tc.id
     object.identifier = tc.identifier
@@ -42,18 +42,18 @@ class CdiscCli
     object.preferredTerm = tc.preferredTerm
     object.synonym = tc.synonym
     object.definition = tc.definition
-    object.namespace = ns
+    object.namespace = cdiscTerm.namespace
     return object
     
   end
 
-  def self.allForCl(id, ns)
+  def self.allForCl(id, cdiscTerm)
     
     p "[CdiscCli           ][allForCL            ] id=" + id
-    p "[CdiscCli           ][allForCL            ] ns=" + ns
+    p "[CdiscCli           ][allForCL            ] ns=" + cdiscTerm.namespace
   
     results = Array.new
-    tcSet = ThesaurusConcept.allLowerLevelWithNs(id, ns)
+    tcSet = ThesaurusConcept.allLowerLevelWithNs(id, cdiscTerm.namespace)
     tcSet.each do |tc|
       object = self.new 
       object.id = tc.id
@@ -62,7 +62,7 @@ class CdiscCli
       object.preferredTerm = tc.preferredTerm
       object.synonym = tc.synonym
       object.definition = tc.definition
-      object.namespace = ns
+      object.namespace = cdiscTerm.namespace
       results.push(object)
     end
     return results  

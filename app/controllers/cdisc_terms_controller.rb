@@ -26,9 +26,9 @@ class CdiscTermsController < ApplicationController
   end
 
   def show
-    @cdiscTerm = CdiscTerm.find(params[:id])
-    ns = @cdiscTerm.namespace
-    @CdiscCls = CdiscCl.all(ns)
+    id = params[:id]
+    @cdiscTerm = CdiscTerm.find(id)
+    @CdiscCls = CdiscCl.all(@cdiscTerm)
   end
   
   private
