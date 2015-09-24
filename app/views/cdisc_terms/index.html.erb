@@ -4,6 +4,7 @@
     <th>Identifer</th>
     <th>Version</th>
     <th>Date</th>
+    <th>CID</th>
     <th></th>
   </tr>
 	<% @cdiscTerms.each do |cdiscTerm| %>
@@ -11,8 +12,8 @@
 	    <td><%= cdiscTerm.identifier %></td>
 	    <td><%= cdiscTerm.version %></td>
 	    <td><%= cdiscTerm.date %></td>
+	    <td><%= cdiscTerm.id %></td>
 	    <td><%= link_to "Show", cdiscTerm %></td>
-	    <td></td>
 	  </tr>
 	<% end %>
 </table>

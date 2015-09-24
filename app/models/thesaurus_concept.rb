@@ -26,11 +26,14 @@ class ThesaurusConcept
   def initialize()
   end
 
-  def baseNs
+  def self.baseNs
     return @@baseNs 
   end
   
-  def self.find(id,ns)
+  def self.find(id, ns="")
+    
+    p "[ThesaurusConcept    ][find                 ] id=" + id
+    p "[ThesaurusConcept    ][find                 ] ns=" + ns
     
     object = nil
     
@@ -43,8 +46,11 @@ class ThesaurusConcept
       "	 :" + id + " iso25964:notation ?b . \n" +
       "	 :" + id + " iso25964:preferredTerm ?c . \n" +
       "	 :" + id + " iso25964:synonym ?d . \n" +
-      "	 :" + id + " iso25964:extensible ?e . \n" +
       "	 :" + id + " iso25964:definition ?f . \n" +
+      "	 OPTIONAL\n" +
+      "  {\n" +
+      "    :" + id + " iso25964:extensible ?e . \n" +
+      "  }\n" +
       "}"
     
     # Send the request, wait the resonse
@@ -63,12 +69,13 @@ class ThesaurusConcept
       sSet = node.xpath("binding[@name='d']/literal")
       eSet = node.xpath("binding[@name='e']/literal")
       dSet = node.xpath("binding[@name='f']/literal")
+      eSet = node.xpath("binding[@name='e']/literal")
       
       p "id: " + idSet.text
       
       if idSet.length == 1
         
-        p "Found"
+        #p "Found"
         
         object = self.new 
         object.id = id
@@ -76,9 +83,12 @@ class ThesaurusConcept
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
         object.synonym = sSet[0].text
-        object.extensible = eSet[0].text
         object.definition = dSet[0].text
-
+        if eSet.length == 1
+          object.extensible = eSet[0].text
+        else
+          object.extensible = ""
+        end  
       end
     end
     
@@ -87,24 +97,23 @@ class ThesaurusConcept
     
   end
 
-  def self.all()
+  def self.allTopLevel()
     
     results = Array.new
     
     # Create the query
-    query = Namespace.buildPrefix("", ["iso25964", "isoI", "org"]) +
-      "PREFIX is: <http://purl.org/ontology/is/core#> \n" +
-      "PREFIX iso: <http://purl.org/iso25964/skos-thes#> \n" +
+    query = Namespace.buildPrefix("", ["iso25964"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type iso25964:ThesaurusConcept . \n" +
+      "  ?a skos:inScheme ?h . \n" +
       "	 ?a iso25964:identifier ?b . \n" +
       "	 ?a iso25964:notation ?c . \n" +
       "	 ?a iso25964:preferredTerm ?d . \n" +
       "	 ?a iso25964:synonym ?e . \n" +
       "	 ?a iso25964:extensible ?f . \n" +
       "	 ?a iso25964:definition ?g . \n" +
-      "} LIMIT 50"
+      "} LIMIT 1000"
     
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -114,7 +123,7 @@ class ThesaurusConcept
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       
-      p "Node: " + node.text
+      #p "Node: " + node.text
       
       uriSet = node.xpath("binding[@name='a']/uri")
       idSet = node.xpath("binding[@name='b']/literal")
@@ -126,7 +135,7 @@ class ThesaurusConcept
       
       if uriSet.length == 1 
         
-        p "Found"
+        #p "Found"
         
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
@@ -145,9 +154,9 @@ class ThesaurusConcept
     
   end
 
-  def self.allWithNs(ns)
+  def self.allTopLevelWithNs(ns)
     
-    p "[ThesaurusConcept   ][allWithNs         ] nsParams=" + ns
+    p "[ThesaurusConcept    ][allTopLevelWithNs  ] ns=" + ns
     
     results = Array.new
     
@@ -156,7 +165,7 @@ class ThesaurusConcept
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
       "	 { \n" +
       "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
-      "    ?a skos:inScheme :Thesaurus . \n" +
+      "    ?a skos:inScheme ?h . \n" +
       "	   ?a iso25964:identifier ?b . \n" +
       "	   ?a iso25964:notation ?c . \n" +
       "	   ?a iso25964:preferredTerm ?d . \n" +
@@ -192,6 +201,62 @@ class ThesaurusConcept
         object.extensible = eSet[0].text
         object.definition = dSet[0].text
         results.push (object)
+      end
+    end
+    return results
+    
+  end
+  
+  def self.allLowerLevelWithNs(id, ns)
+    
+    p "[ThesaurusConcept   ][allLowerLevelWithNs] id=" + id
+    p "[ThesaurusConcept   ][allLowerLevelWithNs] ns=" + ns
+    
+    # Create empty array for the results
+    results = Array.new
+    
+    # Create the query
+    query = Namespace.buildNs(ns, ["iso25964"]) +
+      "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
+      "{\n" +
+      "  :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
+      "  :" + id + " skos:narrower ?a . \n" +
+      "  ?a iso25964:identifier ?b .  \n" +
+      "  ?a iso25964:definition ?c . \n" +
+      "  ?a iso25964:synonym ?d . \n" +
+      "  ?a iso25964:preferredTerm ?e . \n" +
+      "  ?a iso25964:notation ?f .	\n" +
+      "} ORDER BY ?b"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+    
+      p "[ThesaurusConcept   ][allLowerLevelWithNs] node=" + node.text
+    
+      uriSet = node.xpath("binding[@name='a']/uri")
+      idSet = node.xpath("binding[@name='b']/literal")
+      dSet = node.xpath("binding[@name='c']/literal")
+      sSet = node.xpath("binding[@name='d']/literal")
+      ptSet = node.xpath("binding[@name='e']/literal")
+      nSet = node.xpath("binding[@name='f']/literal")
+      if uriSet.length == 1 
+        object = self.new 
+        object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.identifier = idSet[0].text
+        object.notation = nSet[0].text
+        object.preferredTerm = ptSet[0].text
+        object.synonym = sSet[0].text
+        object.definition = dSet[0].text
+        object.extensible = ""
+        results.push (object)
+        
+        p "[ThesaurusConcept   ][allLowerLevelWithNs] obj=" + object.id
+        
       end
     end
     return results

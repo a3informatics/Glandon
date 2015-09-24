@@ -87,14 +87,11 @@ class CdiscTerm
     #Create the thesaurus
     baseNs = Thesaurus.baseNs
     uri = Uri.new
-    uri.setUri(ns)
+    uri.setUri(baseNs)
     uri.extendPath("CDISC/V" + version)
     ns = uri.getNs()
-    Namespace.add(C_NS_PREFIX, ns)
-    prefix = Namespace.getPrefix(ns)
     tParams = {:ii_id => ii.id}
-    nsParams = {:prefix => prefix, :value => ns}
-    thesaurus = Thesaurus.create(tParams, nsParams)
+    thesaurus = Thesaurus.create(tParams, ns)
     
     # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
     Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", {:UseVersion => version, :Namespace => "'" + ns + "'", :II => "'" + ii.id + "'"}, "CT.ttl")
@@ -119,7 +116,6 @@ class CdiscTerm
     object.identifier = thesaurus.identifier
     object.version = thesaurus.version
     object.namespace = ns
-    object.prefix = prefix
     return object
     
   end

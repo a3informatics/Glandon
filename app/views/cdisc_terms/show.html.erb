@@ -22,7 +22,7 @@
     <th>Definition</th>
     <th>View</th>
   </tr>
-	<% @CLs.each do |cl| %>
+	<% @CdiscCls.each do |cl| %>
 	  <tr>
 	    <td><%= cl.identifier %></td>
 	    <td><%= cl.notation %></td>
@@ -30,7 +30,7 @@
 	    <td><%= cl.synonym %></td>
 	    <td><%= cl.extensible %></td>
 	    <td><%= cl.definition %></td>
-	    <td><%= link_to "Show", thesaurus_concept_path(cl.id) %></td>
+	    <td><%= link_to "Show", cdisc_cl_path(:id => cl.id,:namespace => cl.namespace) %></td>
 	  </tr>
 	<% end %>
 </table>

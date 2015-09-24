@@ -1,0 +1,23 @@
+<h1>CDISC Code List Item: <%= @cdiscCli.identifier %></h1>
+<table>
+  <tr>
+    <th>Identifer</th>
+    <th>Notation</th>
+    <th>Preferred</th>
+    <th>Synonym</th>
+    <th>Definition</th>
+    <th>View</th>
+  </tr>
+
+  <tr>
+    <td><%= @cdiscCli.identifier %></td>
+    <td><%= @cdiscCli.notation %></td>
+    <td><%= @cdiscCli.preferredTerm %></td>
+    <td><%= @cdiscCli.synonym %></td>
+    <td><%= @cdiscCli.definition %></td>
+    <td><%= link_to "Show", cdisc_cli_path(:id => @cdiscCli.id,:namespace => @cdiscCli.namespace) %></td>
+  </tr>
+
+</table>
+<br>
+<%= link_to "Back", cdisc_terms_path %>

@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   resources :thesaurus_concepts
   resources :uploads
   resources :cdisc_terms
+  resources :cdisc_cls
+  resources :cdisc_clis
   
 end

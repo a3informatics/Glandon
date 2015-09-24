@@ -28,7 +28,7 @@ class CdiscTermsController < ApplicationController
   def show
     @cdiscTerm = CdiscTerm.find(params[:id])
     ns = @cdiscTerm.namespace
-    @CLs = ThesaurusConcept.allWithNs(ns)
+    @CdiscCls = CdiscCl.all(ns)
   end
   
   private

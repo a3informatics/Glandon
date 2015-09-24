@@ -150,13 +150,13 @@ INSERT DATA
 	 :II-CDISC_CT-41 isoI:scopeRelationship :NS-CDISC ;
 }' http://192.168.2.101:3030/mdr/update
 
-curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_v34.ttl" http://192.168.2.101:3030/mdr/update
-curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_v35.ttl" http://192.168.2.101:3030/mdr/update
-curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_v36.ttl" http://192.168.2.101:3030/mdr/update
-curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_v37.ttl" http://192.168.2.101:3030/mdr/update
-curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_v38.ttl" http://192.168.2.101:3030/mdr/update
-curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_v39.ttl" http://192.168.2.101:3030/mdr/update
-curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_v40.ttl" http://192.168.2.101:3030/mdr/update
-curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_v41.ttl" http://192.168.2.101:3030/mdr/update
+# curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V34.ttl" http://192.168.2.101:3030/mdr/data
+# curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V35.ttl" http://192.168.2.101:3030/mdr/data
+# curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V36.ttl" http://192.168.2.101:3030/mdr/data
+# curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V37.ttl" http://192.168.2.101:3030/mdr/data
+# curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V38.ttl" http://192.168.2.101:3030/mdr/data
+# curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V39.ttl" http://192.168.2.101:3030/mdr/data
+# curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V40.ttl" http://192.168.2.101:3030/mdr/data
+curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V41.ttl" http://192.168.2.101:3030/mdr/data
 
 set +x

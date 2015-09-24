@@ -24,7 +24,10 @@
     <xsl:variable name="tab" select="'&#x09;'" />
     <xsl:variable name="apos">'</xsl:variable>
     <xsl:variable name="quote">"</xsl:variable>
-
+    <xsl:variable name="CLPrefix">CL-</xsl:variable>
+    <xsl:variable name="CLIPrefix">CLI-</xsl:variable>
+    <xsl:variable name="CID" select="concat('TH-CDISC_CT-',$UseVersion)"/>
+    
     <!-- Match the root element -->
     <xsl:template match="/">
 
@@ -59,9 +62,9 @@
         <xsl:text>.&#xa;</xsl:text>
         
         <!-- Build the thesaurus entry -->
-        <xsl:text>:Thesaurus&#xa;</xsl:text>
+        <xsl:value-of select="concat(':',$CID,$newline)"/>
         <xsl:text>&#009;rdf:type iso25964:Thesaurus ;&#xa;</xsl:text>
-        <xsl:value-of select="concat('&#009;isoI:identifierRelationship org:',$II,$newline)"/>
+        <xsl:value-of select="concat('&#009;isoI:identifiedItemRelationship org:',$II,' ;',$newline)"/>
         <xsl:text>.&#xa;</xsl:text>
 
         <!-- Set variables. Get the terminology release date -->
@@ -86,11 +89,11 @@
                 <xsl:variable name="cCode"
                     select="mms:inValueDomain/mms:EnumeratedValueDomain/cts:nciCode"/>
                 <xsl:apply-templates select="mms:inValueDomain/mms:EnumeratedValueDomain"/>
-                <xsl:value-of select="concat('&#009;','skos:narrower :',./@rdf:ID,' ;')"/>
+                <xsl:value-of select="concat('&#009;','skos:narrower :',$CLIPrefix,translate(./@rdf:ID,'.','_'),' ;')"/>
                 <xsl:text>&#xa;</xsl:text>
                 <xsl:variable name="subref" select="$ref[@rdf:resource=concat('#',$cCode)]"/>
                 <xsl:for-each select="$subref">
-                    <xsl:value-of select="concat('&#009;','skos:narrower :',../@rdf:ID,' ;')"/>
+                    <xsl:value-of select="concat('&#009;','skos:narrower :',$CLIPrefix,translate(../@rdf:ID,'.','_'),' ;')"/>
                     <xsl:text>&#xa;</xsl:text>
                 </xsl:for-each>
                 <xsl:text>.&#xa;</xsl:text>
@@ -106,7 +109,7 @@
 
     <!-- Template for the bulk of the code list entry -->
     <xsl:template match="mms:PermissibleValue/mms:inValueDomain/mms:EnumeratedValueDomain">
-        <xsl:value-of select="concat(':',./cts:nciCode)"/>
+        <xsl:value-of select="concat(':',$CLPrefix,./cts:nciCode)"/>
         <xsl:text>&#xa;</xsl:text>
         <xsl:text>&#009;rdf:type iso25964:ThesaurusConcept ;&#xa;</xsl:text>
         <xsl:text>&#009;iso25964:identifier "</xsl:text><xsl:value-of select="./cts:nciCode"/><xsl:text>"^^xsd:string ;&#xa;</xsl:text>
@@ -128,12 +131,12 @@
         <xsl:text>&#009;iso25964:extensible "</xsl:text>
         <xsl:value-of select="cts:isExtensibleCodelist"/>
         <xsl:text>"^^xsd:boolean ;&#xa;</xsl:text>
-        <xsl:value-of select="concat('&#009;','skos:inScheme :Thesaurus ;&#xa;')"/>
+        <xsl:value-of select="concat('&#009;','skos:inScheme :',$CID,' ;',$newline)"/>
     </xsl:template>
 
     <!-- Template for the code list item entry -->
     <xsl:template match="mms:PermissibleValue">
-        <xsl:value-of select="concat(':',./@rdf:ID)"/>
+        <xsl:value-of select="concat(':',$CLIPrefix,translate(./@rdf:ID,'.','_'))"/>
         <xsl:text>&#xa;</xsl:text>
         <xsl:text>&#009;rdf:type iso25964:ThesaurusConcept ;&#xa;</xsl:text>
         <xsl:text>&#009;iso25964:identifier "</xsl:text>
