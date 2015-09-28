@@ -30,6 +30,12 @@
   rdfs:subClassOf skos:ConceptScheme ;
   skos:definition "Thesaurus"^^xsd:string ;
 .
+:created
+  rdf:type rdf:Property ;
+  rdfs:domain :Thesaurus ;
+  rdfs:range xsd:date ;
+  rdfs:label "The date the thesaurus was created (issued)"^^xsd:string ;
+.
 :ThesaurusConcept
   rdf:type owl:Class ;
   rdfs:label "Concept System"^^xsd:string ;

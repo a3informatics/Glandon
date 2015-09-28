@@ -9,7 +9,7 @@ class CdiscTerm
   include Xslt
       
   attr_accessor :id, :files, :date, :thesaurus_id, :identifier, :version, :namespace
-  validates_presence_of :files, :date, :thesaurus_id
+  validates_presence_of :files, :date, :thesaurus_id, :identifier, :version, :namespace
   
   # Constants
   C_NS_PREFIX = "thC"
@@ -37,7 +37,7 @@ class CdiscTerm
     object = self.new 
     object.id = thesaurus.id
     object.thesaurus_id = thesaurus.id
-    object.date = "???"
+    object.date = thesaurus.created
     object.identifier = thesaurus.identifier
     object.version = thesaurus.version
     object.namespace = thesaurus.namespace
@@ -54,12 +54,13 @@ class CdiscTerm
       object = self.new 
       object.id = thesaurus.id
       object.thesaurus_id = thesaurus.id
-      object.date = "???"
+      object.date = thesaurus.created
       object.identifier = thesaurus.identifier
       object.version = thesaurus.version
       object.namespace = thesaurus.namespace
       results.push(object)
     end
+    results.sort! { |a,b| a.version <=> b.version }
     return results  
     
   end
@@ -74,13 +75,14 @@ class CdiscTerm
         object = self.new 
         object.id = thesaurus.id
         object.thesaurus_id = thesaurus.id
-        object.date = "???"
+        object.date = thesaurus.created
         object.identifier = thesaurus.identifier
         object.version = thesaurus.version
         object.namespace = thesaurus.namespace
         results.push(object)
       end
     end
+    results.sort! { |a,b| a.version <=> b.version }
     return results  
     
   end
@@ -111,7 +113,7 @@ class CdiscTerm
     uri.setUri(baseNs)
     uri.extendPath("CDISC/V" + version)
     ns = uri.getNs()
-    tParams = {:ii_id => ii.id}
+    tParams = {:ii_id => ii.id, :created => date}
     thesaurus = Thesaurus.create(tParams, ns)
     
     # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
@@ -133,7 +135,7 @@ class CdiscTerm
     object.date = date
     object.thesaurus_id = thesaurus.id
     object.id = thesaurus.id
-    object.date = "???"
+    object.date = date
     object.identifier = thesaurus.identifier
     object.version = thesaurus.version
     object.namespace = ns

@@ -28,6 +28,23 @@ class CdiscCli
     return @baseNs
   end
   
+  def diff? (otherCli)
+  
+    result = false
+    if ((self.id == otherCli.id) &&
+      (self.identifier == otherCli.identifier) &&
+      (self.notation == otherCli.notation) &&
+      (self.preferredTerm == otherCli.preferredTerm) &&
+      (self.synonym == otherCli.synonym) &&
+      (self.definition == otherCli.definition))
+      result = false
+    else
+      result = true
+    end
+    return result
+  
+  end
+  
   def self.find(id, cdiscTerm)
     
     p "[CdiscCli           ][find                ] id=" + id

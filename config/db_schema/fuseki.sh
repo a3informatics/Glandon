@@ -158,5 +158,6 @@ INSERT DATA
 curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V39.ttl" http://192.168.2.101:3030/mdr/data
 curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V40.ttl" http://192.168.2.101:3030/mdr/data
 curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V41.ttl" http://192.168.2.101:3030/mdr/data
+curl -X POST -H "Content-Type:multipart/form-data" -F "filename=@CT_V42.ttl" http://192.168.2.101:3030/mdr/data
 
 set +x

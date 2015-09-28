@@ -1,36 +1,42 @@
 <h1>CDISC Code List Item: <%= @cdiscCli.identifier %> (V<%= @cdiscTerm.version %>, <%= @cdiscTerm.date %>)</h1>
 <table>
-  <tr>
-    <th>Identifer</th>
-    <th>Notation</th>
-    <th>Preferred</th>
-    <th>Synonym</th>
-    <th>Definition</th>
-  </tr>
-  <tr>
-    <td><%= @cdiscCli.identifier %></td>
-    <td><%= @cdiscCli.notation %></td>
-    <td><%= @cdiscCli.preferredTerm %></td>
-    <td><%= @cdiscCli.synonym %></td>
-    <td><%= @cdiscCli.definition %></td>
-  </tr>
+	<td>
+		<h2>Details</h2>
+		<table>
+		  <tr>
+		    <th>Identifer</th>
+		    <th>Notation</th>
+		    <th>Preferred</th>
+		    <th>Synonym</th>
+		    <th>Definition</th>
+		  </tr>
+		  <tr>
+		    <td><%= @cdiscCli.identifier %></td>
+		    <td><%= @cdiscCli.notation %></td>
+		    <td><%= @cdiscCli.preferredTerm %></td>
+		    <td><%= @cdiscCli.synonym %></td>
+		    <td><%= @cdiscCli.definition %></td>
+		  </tr>
+		</table>
+	</td>
+	<td>	
+		<h2>Compare to Specific Version</h2>
+		<table>
+		  <tr>
+		    <th>Version</th>
+		    <th>Date</th>
+		    <th></th>
+		  </tr>
+			<% @cdiscTerms.each do |ct| %>
+			  <tr>
+			    <td><%= ct.version %></td>
+			    <td><%= ct.date %></td>
+			    <td><%= link_to "Compare", compare_cdisc_clis_path(:id => @cdiscCli.id, :new => @cdiscTerm.id, :old => ct.id) %></td>
+			  </tr>
+			<% end %>
+		</table>
+		<br>
+		<h2>Get History</h2>
+		<%= link_to "History", history_cdisc_clis_path(:id => @cdiscCli.id, :new => @cdiscTerm.id) %>
+	</td>
 </table>
-<br>
-<h2>Compare to Specific Version</h2>
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Date</th>
-    <th></th>
-  </tr>
-	<% @cdiscTerms.each do |ct| %>
-	  <tr>
-	    <td><%= ct.version %></td>
-	    <td><%= ct.date %></td>
-	    <td><%= link_to "Compare", compare_cdisc_clis_path(:id => @cdiscCli.id, :new => @cdiscTerm.id, :old => ct.id) %></td>
-	  </tr>
-	<% end %>
-</table>
-<br>
-<h2>Get History</h2>
-<%= link_to "History", history_cdisc_clis_path(:id => @cdiscCli.id, :new => @cdiscTerm.id) %>

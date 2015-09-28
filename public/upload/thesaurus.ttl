@@ -1,0 +1,26 @@
+# baseURI: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+# imports: http://www.assero.co.uk/ISO11179Identification
+# imports: http://www.assero.co.uk/ISO25964
+# imports: http://www.w3.org/2004/02/skos/core
+
+@prefix : <http://www.assero.co.uk/MDRThesaurus/CDISC/V41#> .
+@prefix isoB: <http://www.assero.co.uk/ISO11179Basic#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix iso25964: <http://www.assero.co.uk/ISO25964#> .
+@prefix org: <http://www.assero.co.uk/MDROrganizations#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V41>
+	rdf:type owl:Ontology ;
+	owl:imports <http://www.assero.co.uk/ISO11179Identification> ;
+	owl:imports <http://www.assero.co.uk/ISO25964> ;
+	owl:imports <http://www.w3.org/2004/02/skos/core> ;
+.
+:TH-CDISC_CT-41
+	rdf:type iso25964:Thesaurus ;
+	isoI:identifiedItemRelationship org:II-CDISC_CT-41 ;
+.

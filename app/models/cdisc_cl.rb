@@ -28,6 +28,24 @@ class CdiscCl
     return @baseNs
   end
   
+  def diff? (otherCl)
+  
+    result = false
+    if ((self.id == otherCl.id) &&
+      (self.identifier == otherCl.identifier) &&
+      (self.notation == otherCl.notation) &&
+      (self.preferredTerm == otherCl.preferredTerm) &&
+      (self.synonym == otherCl.synonym) &&
+      (self.extensible == otherCl.extensible) &&
+      (self.definition == otherCl.definition))
+      result = false
+    else
+      result = true
+    end
+    return result
+  
+  end
+  
   def self.find(clId, cdiscTerm)
     
     object = nil

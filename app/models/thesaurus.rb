@@ -9,7 +9,7 @@ class Thesaurus
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :ii_id, :namespace, :version, :identifier
+  attr_accessor :id, :ii_id, :namespace, :version, :identifier, :created
   validates_presence_of :ii_id
  
   # Constants
@@ -34,10 +34,11 @@ class Thesaurus
     
     object = nil
     useNs = ns || @@baseNs
-    query = Namespace.buildNs(useNs,["isoI"]) +
-      "SELECT ?a WHERE \n" +
+    query = Namespace.buildNs(useNs,["isoI", "iso25964"]) +
+      "SELECT ?a ?b WHERE \n" +
       "{ \n" +
       "  :" + id + " isoI:identifiedItemRelationship ?a . \n" +
+      "  :" + id + " iso25964:created ?b . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -51,6 +52,7 @@ class Thesaurus
       p "Node: " + node.text
       
       uriSet = node.xpath("binding[@name='a']/uri")
+      dSet = node.xpath("binding[@name='b']/literal")
       
       p "uri: " + uriSet.text
       
@@ -63,9 +65,10 @@ class Thesaurus
         object.namespace = useNs
         object.ii_id = ModelUtility.extractCid(uriSet[0].text)
         ii = IdentifiedItem.find(object.ii_id)
-        @identifier = ii.identifier
-        @version = ii.version
-      
+        object.identifier = ii.identifier
+        object.version = ii.version
+        object.created = dSet[0].text
+        
       end
     end
     
@@ -79,10 +82,11 @@ class Thesaurus
     results = Array.new
     
     query = Namespace.buildPrefix("",["isoI", "iso25964"]) +
-      "SELECT ?a ?b WHERE \n" +
+      "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
       "  ?a isoI:identifiedItemRelationship ?b . \n" +
+      "  ?a iso25964:created ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -97,6 +101,7 @@ class Thesaurus
       
       uriSet = node.xpath("binding[@name='a']/uri")
       iiSet = node.xpath("binding[@name='b']/uri")
+      dSet = node.xpath("binding[@name='c']/literal")
       
       p "URI: " + uriSet.text
       p "ii: " + iiSet.text
@@ -118,6 +123,7 @@ class Thesaurus
             object.ii_id = ii_id
             object.identifier = ii.identifier
             object.version = ii.version
+            object.created = dSet[0].text
             results.push (object)
             
             p "TH identifier=" + object.identifier
@@ -139,10 +145,11 @@ class Thesaurus
     
     object = nil
     query = Namespace.buildPrefix("",["isoI", "iso25964"]) +
-      "SELECT ?a ?b WHERE \n" +
+      "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
       "  ?a isoI:identifiedItemRelationship ?b . \n" +
+      "  ?a iso25964:created ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -157,6 +164,7 @@ class Thesaurus
       
       uriSet = node.xpath("binding[@name='a']/uri")
       iiSet = node.xpath("binding[@name='b']/uri")
+      dSet = node.xpath("binding[@name='c']/literal")
       
       p "URI: " + uriSet.text
       p "ii: " + iiSet.text
@@ -176,6 +184,7 @@ class Thesaurus
             object.ii_id = ii_id
             object.identifier = ii.identifier
             object.version = ii.version
+            object.created = dSet[0].text
             
             p "TH identifier=" + object.identifier
             p "TH version=" + object.version
@@ -195,10 +204,11 @@ class Thesaurus
     
     # Create the query
     query = Namespace.buildPrefix("",["isoI", "iso25964"]) +
-      "SELECT ?a ?b WHERE \n" +
+      "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
       "  ?a isoI:identifiedItemRelationship ?b . \n" +
+      "  ?a iso25964:created ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -213,6 +223,7 @@ class Thesaurus
       
       uriSet = node.xpath("binding[@name='a']/uri")
       iiSet = node.xpath("binding[@name='b']/uri")
+      dSet = node.xpath("binding[@name='c']/literal")
       
       p "URI: " + uriSet.text
       p "ii: " + iiSet.text
@@ -228,6 +239,7 @@ class Thesaurus
         ii = IdentifiedItem.find(object.ii_id)
         object.identifier = ii.identifier
         object.version = ii.version
+        object.created = dSet[0].text
         results.push (object)
         
       end
@@ -241,6 +253,7 @@ class Thesaurus
     
     ii_id = params[:ii_id]
     ii = IdentifiedItem.find(ii_id)
+    dateCreated = params[:created]
     
     uri = Uri.new()
     useNs = ns || @@baseNs
@@ -253,6 +266,7 @@ class Thesaurus
       "{ \n" +
       "	 :" + id + " rdf:type iso25964:Thesaurus . \n" +
       "	 :" + id + " isoI:identifiedItemRelationship org:" + ii_id + " . \n" +
+      "  :" + id + " iso25964:created \"" + dateCreated + "\"^^xsd:date . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -266,6 +280,7 @@ class Thesaurus
       object.ii_id = ii_id
       object.identifier = ii.identifier
       object.version = ii.version
+      object.created = dateCreated
       p "It worked!"
     else
       p "It didn't work!"
@@ -290,6 +305,7 @@ class Thesaurus
       "{ \n" +
       "	 :" + self.id + " rdf:type iso25964:Thesaurus . \n" +
       "	 :" + self.id + " isoI:identifiedItemRelationship org:" + self.ii_id.to_s + " . \n" +
+      "  :" + self.id + " iso25964:created \"" + self.created + "\"^^xsd:date . \n" +
       "}"
     
     # Send the request, wait the resonse

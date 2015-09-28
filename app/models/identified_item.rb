@@ -62,9 +62,6 @@ class IdentifiedItem
       p "link: " + linkSet.text
 
       if iSet.length == 1 and vSet.length == 1 and linkSet.length == 1
-
-        p "Found"
-        
         object = self.new 
         object.id = id
         object.shortName = ModelUtility.extractShortName(id)

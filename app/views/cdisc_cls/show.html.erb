@@ -1,44 +1,68 @@
-<h1>CDISC Code List: <%= @cdiscCl.identifier %></h1>
+<h1>CDISC Code List Item: <%= @cdiscCl.identifier %> (V<%= @cdiscTerm.version %>, <%= @cdiscTerm.date %>)</h1>
 <table>
-  <tr>
-    <th>Identifer</th>
-    <th>Notation</th>
-    <th>Preferred</th>
-    <th>Synonym</th>
-    <th>Extensible</th>
-    <th>Definition</th>
-    <th>View</th>
-  </tr>
-  <tr>
-    <td><%= @cdiscCl.identifier %></td>
-    <td><%= @cdiscCl.notation %></td>
-    <td><%= @cdiscCl.preferredTerm %></td>
-    <td><%= @cdiscCl.synonym %></td>
-    <td><%= @cdiscCl.extensible %></td>
-    <td><%= @cdiscCl.definition %></td>
-  </tr>
+	<td>
+		<h2>Details</h2>
+		<table>
+		  <tr>
+		    <th>Identifer</th>
+		    <th>Notation</th>
+		    <th>Preferred</th>
+		    <th>Synonym</th>
+		    <th>Extensible</th>
+		    <th>Definition</th>
+		    <th>View</th>
+		  </tr>
+		  <tr>
+		    <td><%= @cdiscCl.identifier %></td>
+		    <td><%= @cdiscCl.notation %></td>
+		    <td><%= @cdiscCl.preferredTerm %></td>
+		    <td><%= @cdiscCl.synonym %></td>
+		    <td><%= @cdiscCl.extensible %></td>
+		    <td><%= @cdiscCl.definition %></td>
+		  </tr>
+		</table>
+		<h2>Code List Items</h2>
+		<table>
+		  <tr>
+		    <th>Identifer</th>
+		    <th>Notation</th>
+		    <th>Preferred</th>
+		    <th>Synonym</th>
+		    <th>Extensible</th>
+		    <th>Definition</th>
+		    <th>View</th>
+		  </tr>
+			<% @cdiscClis.each do |cli| %>
+			  <tr>
+			    <td><%= cli.identifier %></td>
+			    <td><%= cli.notation %></td>
+			    <td><%= cli.preferredTerm %></td>
+			    <td><%= cli.synonym %></td>
+			    <td><%= cli.definition %></td>
+			    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id,:termId => @cdiscTerm.id) %></td>
+			  </tr>
+			<% end %>
+		</table>
+	</td>
+	<td>	
+		<h2>Compare to Specific Version</h2>
+		<table>
+		  <tr>
+		    <th>Version</th>
+		    <th>Date</th>
+		    <th></th>
+		  </tr>
+			<% @cdiscTerms.each do |ct| %>
+			  <tr>
+			    <td><%= ct.version %></td>
+			    <td><%= ct.date %></td>
+			    <td><%= link_to "Compare", compare_cdisc_cls_path(:id => @cdiscCl.id, :new => @cdiscTerm.id, :old => ct.id) %></td>
+			  </tr>
+			<% end %>
+		</table>
+		<br>
+		<h2>Get History</h2>
+		<%= link_to "History", history_cdisc_cls_path(:id => @cdiscCl.id, :new => @cdiscTerm.id) %>
+	</td>
 </table>
-<br>
-<table>
-  <tr>
-    <th>Identifer</th>
-    <th>Notation</th>
-    <th>Preferred</th>
-    <th>Synonym</th>
-    <th>Extensible</th>
-    <th>Definition</th>
-    <th>View</th>
-  </tr>
-	<% @cdiscClis.each do |cli| %>
-	  <tr>
-	    <td><%= cli.identifier %></td>
-	    <td><%= cli.notation %></td>
-	    <td><%= cli.preferredTerm %></td>
-	    <td><%= cli.synonym %></td>
-	    <td><%= cli.definition %></td>
-	    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id,:termId => @cdiscTerm.id) %></td>
-	  </tr>
-	<% end %>
-</table>
-<br>
-<%= link_to "Back", cdisc_terms_path %>
+

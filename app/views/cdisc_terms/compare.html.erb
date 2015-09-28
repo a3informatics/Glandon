@@ -1,0 +1,23 @@
+<h1>CDISC Comparison</h1>
+<table>
+  <tr>
+		<th>Code List Item</th>
+		<th>Link ---------</th>
+		<% xxx = @Results.values[0] %>
+		<% value = xxx[:result]%>
+		<% value.each do |vKey, value| %>
+	    <th><%= vKey %>--</th>
+	  <% end %>
+	</tr>	
+	<% @Results.each do |clKey, xxx| %>
+		<% value = xxx[:result]%>
+		<% cl = xxx[:cl]%>
+		<tr>
+			<td><%= clKey %></td>
+			<td><%= link_to "Show", cdisc_cl_path(:id => cl.id, :termId => @newCdiscTerm.id) %></td>
+			<% value.each do |vKey, status| %>
+	    	<td><%= status %></td>
+			<% end %>
+		</tr>	
+	<% end %>
+</table>

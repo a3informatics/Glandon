@@ -1,0 +1,23 @@
+<h1>CDISC Code List Item: <%= @Cli %></h1>
+<table>
+  <tr>
+		<th>Code List Item</th>
+		<th>Link ---------</th>
+		<% xxx = @Results.values[0] %>
+		<% value = xxx[:result]%>
+		<% value.each do |vKey, value| %>
+	    <th><%= vKey %>--</th>
+	  <% end %>
+	</tr>	
+	<% @Results.each do |clKey, xxx| %>
+		<% value = xxx[:result]%>
+		<% cl = xxx[:cl]%>
+		<tr>
+			<td><%= clKey %></td>
+			<td></td>
+			<% value.each do |vKey, status| %>
+	    	<td><%= status %></td>
+			<% end %>
+		</tr>	
+	<% end %>
+</table>

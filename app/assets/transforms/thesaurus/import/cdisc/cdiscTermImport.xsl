@@ -67,10 +67,6 @@
         <xsl:value-of select="concat('&#009;isoI:identifiedItemRelationship org:',$II,' ;',$newline)"/>
         <xsl:text>.&#xa;</xsl:text>
 
-        <!-- Set variables. Get the terminology release date -->
-        <xsl:variable name="TerminologyReleaseDate"
-            select="/CDISCTerminology/Update[@version=$UseVersion]/@date"/>
-
         <!-- For each file making up the CDISC Terminology version, select the file set from the catalog file -->
         <xsl:for-each select="/CDISCTerminology/Update[@version=$UseVersion]/File">
             <xsl:apply-templates select="document(@filename)/rdf:RDF"/>

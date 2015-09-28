@@ -81,11 +81,4 @@
   rdfs:range xsd:string ;
   skos:definition "Unique version identifier of the ScopedIdentifier which identifies an IdentifiedItem"^^xsd:string ;
 .
-<http://www.assero.co.uk/MDROrganizations#New>
-  rdf:type ISO11179Basic:Organization ;
-  ISO11179Basic:name "New"^^xsd:string ;
-.
-<http://www.assero.co.uk/MDROrganizations#NewNS>
-  rdf:type :Namespace ;
-  :namingAuthorityRelationship <http://www.assero.co.uk/MDROrganizations#New> ;
-.
+
