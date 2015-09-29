@@ -127,7 +127,7 @@ class Thesaurus
             results.push (object)
             
             p "TH identifier=" + object.identifier
-            p "TH version=" + object.version
+            p "TH version=" + object.version.to_s
             
           end 
         end
@@ -187,7 +187,7 @@ class Thesaurus
             object.created = dSet[0].text
             
             p "TH identifier=" + object.identifier
-            p "TH version=" + object.version
+            p "TH version=" + object.version.to_s
           
           end
         end

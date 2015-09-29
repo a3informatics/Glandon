@@ -40,7 +40,8 @@ class Uri
   
     @prefix = prefix.gsub(/[^A-Z]/, '')    
     @shortName = shortName.gsub(/[^0-9A-Za-z_]/, '')
-    @version = version.gsub(/[^0-9]/, '')
+    #@version = version.gsub(/[^0-9]/, '')
+    @version = version.to_s
     
   end
 

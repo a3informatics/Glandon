@@ -1,23 +1,39 @@
-<h1>CDISC Terminology History</h1>
-<table>
-  <tr>
-		<th>Code List Item</th>
-		<th>Link ---------</th>
-		<% xxx = @Results.values[0] %>
-		<% value = xxx[:result]%>
-		<% value.each do |vKey, value| %>
-	    <th><%= vKey %>--</th>
-	  <% end %>
-	</tr>	
-	<% @Results.each do |cliKey, xxx| %>
-		<% value = xxx[:result]%>
-		<% cli = xxx[:cli]%>
-		<tr>
-			<td><%= cliKey %></td>
-			<td></td>
-			<% value.each do |vKey, status| %>
-	    	<td><%= status %></td>
-			<% end %>
-		</tr>	
-	<% end %>
-</table>
+<div class="container">
+	<h1>CDISC Terminology History</h1>
+  <div class="row">
+    <div class="col-md-12">
+			<table class="table">
+			  <tr>
+					<th>Code List</th>
+					<th>View History</th>
+					<% xxx = @Results.values[0] %>
+					<% value = xxx[:result]%>
+					<% value.each do |vKey, value| %>
+				    <th><%= vKey %></th>
+				  <% end %>
+				</tr>	
+				<% @Results.each do |cliKey, xxx| %>
+					<% value = xxx[:result]%>
+					<% cl = xxx[:cl]%>
+					<tr>
+						<td><%= cliKey %></td>
+						<td><%=link_to "History", history_cdisc_cls_path(:id => cl.id), :class => "btn btn-info" %></td>
+						<% value.each do |vKey, status| %>
+				    	<td>
+								<% if status == "." %>
+									<span class="glyphicon glyphicon-ok-circle">
+								<% elsif status == "M"  %>
+									<span class="glyphicon glyphicon-pencil">
+								<% elsif status == "X"  %>
+									<span class="glyphicon glyphicon-remove-circle">
+								<% else %>
+									&nbsp;
+				    		<% end %>
+				    	</td>
+						<% end %>
+					</tr>	
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>

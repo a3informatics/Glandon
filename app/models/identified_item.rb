@@ -66,7 +66,7 @@ class IdentifiedItem
         object.id = id
         object.shortName = ModelUtility.extractShortName(id)
         object.identifier = iSet[0].text
-        object.version = vSet[0].text
+        object.version = (vSet[0].text).to_i
         object.organization_id = ModelUtility.extractCid(linkSet[0].text)
         
         p "II identifier=" + object.identifier
@@ -122,7 +122,7 @@ class IdentifiedItem
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.shortName = ModelUtility.extractShortName(object.id)
         object.identifier = iSet[0].text
-        object.version = vSet[0].text
+        object.version = (vSet[0].text).to_i
         object.organization_id = ModelUtility.extractCid(linkSet[0].text)
         results.push (object)
         
@@ -164,7 +164,7 @@ class IdentifiedItem
       object = self.new
       object.id = id
       object.shortName = shortName
-      object.version = version
+      object.version = (version).to_i
       object.identifier = identifier
       p "It worked!"
     else

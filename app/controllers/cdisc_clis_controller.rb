@@ -38,25 +38,9 @@ class CdiscClisController < ApplicationController
     
     @Results = Array.new
     result = Hash.new
-    result = {
-      "version" => nCT.version, 
-      "date" => nCT.date, 
-      "identifier" => Diffy::Diff.new(oCli.identifier, nCli.identifier).to_s(:html),
-      "notation" => Diffy::Diff.new(oCli.notation, nCli.notation).to_s(:html),
-      "preferredTerm" => Diffy::Diff.new(oCli.preferredTerm, nCli.preferredTerm).to_s(:html),
-      "synonym" => Diffy::Diff.new(oCli.synonym, nCli.synonym).to_s(:html),
-      "definition" => Diffy::Diff.new(oCli.definition, nCli.definition).to_s(:html)
-    }
+    result = compare(nCT, oCLi, nCli)
     @Results.push(result)
-    result = {
-      "version" => oCT.version,
-      "date" => oCT.date,
-      "identifier" => oCli.identifier,
-      "notation" => oCli.notation,
-      "preferredTerm" => oCli.preferredTerm,
-      "synonym" => oCli.synonym,
-      "definition" => oCli.definition    
-    }
+    result = current(oCT, oCli)
     @Results.push(result)
     @Cli = nCli.identifier
     
@@ -64,8 +48,10 @@ class CdiscClisController < ApplicationController
   
   def history
 
+    # Get the identifier for the CLI
     id = params[:id]
     
+    # Get the CLI object from each version of the terminology
     data = Array.new
     cdiscTerms = CdiscTerm.all()
   	cdiscTerms.each do |ct|
@@ -74,36 +60,28 @@ class CdiscClisController < ApplicationController
       data.push(temp)        
     end
     
+    # Now compare. Note there may well be nil entries
     @Results = Array.new
     last = data.length - 1
   	data.each_with_index do |curr, index|
-
-      @Cli = curr[:cli].identifier
-    
-      result = Hash.new
-      if index < last
-        old = data[index + 1]
-        result = {
-          "version" => curr[:term].version, 
-          "date" => curr[:term].date, 
-          "identifier" => Diffy::Diff.new(old[:cli].identifier, curr[:cli].identifier).to_s(:html),
-          "notation" => Diffy::Diff.new(old[:cli].notation, curr[:cli].notation).to_s(:html),
-          "preferredTerm" => Diffy::Diff.new(old[:cli].preferredTerm, curr[:cli].preferredTerm).to_s(:html),
-          "synonym" => Diffy::Diff.new(old[:cli].synonym, curr[:cli].synonym).to_s(:html),
-          "definition" => Diffy::Diff.new(old[:cli].definition, curr[:cli].definition).to_s(:html)
-        }
-      else
-        result = {
-          "version" => curr[:term].version,
-          "date" => curr[:term].date,
-          "identifier" => curr[:cli].identifier,
-          "notation" => curr[:cli].notation,
-          "preferredTerm" => curr[:cli].preferredTerm,
-          "synonym" => curr[:cli].synonym,
-          "definition" => curr[:cli].definition    
-        }
+      cli = curr[:cli]
+      if cli != nil
+        if @Cli == nil
+          @Cli = cli.identifier
+        end 
+        if index >= 1
+          prev = data[index - 1]
+          prevCli = prev[:cli]
+          if  prevCli != nil
+            result = compare(curr[:term], prev[:cli], cli)
+          else
+            result = current(curr[:term], cli)
+          end
+        else
+          result = current(curr[:term], cli)
+        end
+        @Results.push(result)
       end
-      @Results.push(result)
     end
     
     p "Results=" + @Results.to_s
@@ -114,13 +92,40 @@ class CdiscClisController < ApplicationController
     id = params[:id]
     termId = params[:termId]
     @cdiscTerm = CdiscTerm.find(params[:termId])
-    @cdiscTerms = CdiscTerm.allExcept(@cdiscTerm.version)
+    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
     @cdiscCli = CdiscCli.find(id, @cdiscTerm)
   end
   
-  private
+private
+
     def this_params
       params.require(:cdisc_term).permit(:id, :termId)
     end
 
+    def compare (term, previousCli, currentCli)
+      result = Hash.new
+      result = {
+        "version" => term.version, 
+        "date" => term.date, 
+        "identifier" => Diffy::Diff.new(previousCli.identifier, currentCli.identifier).to_s(:html),
+        "notation" => Diffy::Diff.new(previousCli.notation, currentCli.notation).to_s(:html),
+        "preferredTerm" => Diffy::Diff.new(previousCli.preferredTerm, currentCli.preferredTerm).to_s(:html),
+        "synonym" => Diffy::Diff.new(previousCli.synonym, currentCli.synonym).to_s(:html),
+        "definition" => Diffy::Diff.new(previousCli.definition, currentCli.definition).to_s(:html) }
+      return result
+    end
+    
+    def current (term, cli)
+      result = Hash.new
+      result = {
+        "version" => term.version,
+        "date" => term.date,
+        "identifier" => cli.identifier,
+        "notation" => cli.notation,
+        "preferredTerm" => cli.preferredTerm,
+        "synonym" => cli.synonym,
+        "definition" => cli.definition }
+      return result
+    end
+      
 end

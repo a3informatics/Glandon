@@ -50,16 +50,18 @@ class CdiscCli
     p "[CdiscCli           ][find                ] id=" + id
     p "[CdiscCli           ][find                ] ns=" + cdiscTerm.namespace
   
-    results = Array.new
+    object = nil
     tc = ThesaurusConcept.find(id, cdiscTerm.namespace)
-    object = self.new 
-    object.id = tc.id
-    object.identifier = tc.identifier
-    object.notation = tc.notation
-    object.preferredTerm = tc.preferredTerm
-    object.synonym = tc.synonym
-    object.definition = tc.definition
-    object.namespace = cdiscTerm.namespace
+    if tc != nil
+      object = self.new 
+      object.id = tc.id
+      object.identifier = tc.identifier
+      object.notation = tc.notation
+      object.preferredTerm = tc.preferredTerm
+      object.synonym = tc.synonym
+      object.definition = tc.definition
+      object.namespace = cdiscTerm.namespace
+    end
     return object
     
   end

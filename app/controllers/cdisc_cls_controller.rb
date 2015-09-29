@@ -37,8 +37,8 @@ class CdiscClsController < ApplicationController
     id = params[:id]
     data = Array.new
     cdiscTerms = CdiscTerm.all()
-  	cdiscTerms.each do |ct|
-      clisForCl(id, ct, data)
+    cdiscTerms.each do |ct|
+    	clisForCl(id, ct, data)
     end
     @Results = buildResults(data)
       
@@ -51,7 +51,7 @@ class CdiscClsController < ApplicationController
     id = params[:id]
     termId = params[:termId]
     @cdiscTerm = CdiscTerm.find(params[:termId])
-    @cdiscTerms = CdiscTerm.allExcept(@cdiscTerm.version)
+    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
     @cdiscCl = CdiscCl.find(id, @cdiscTerm)
     @cdiscClis = CdiscCli.allForCl(id, @cdiscTerm)
   end
@@ -65,10 +65,17 @@ private
   def clisForCl(id, cdiscTerm, data)
   
     cdiscCl = CdiscCl.find(id, cdiscTerm)
-    cdiscClis = CdiscCli.allForCl(id, cdiscTerm)
-    clis = Hash.new
-    cdiscClis.each do |cli|
-      clis[cli.identifier] = cli
+  	if cdiscCl != nil
+      if @Cl == nil
+        @Cl = cdiscCl.identifier
+      end
+      cdiscClis = CdiscCli.allForCl(id, cdiscTerm)
+      clis = Hash.new
+      cdiscClis.each do |cli|
+        clis[cli.identifier] = cli
+      end
+    else
+      clis = nil
     end
     temp = {:term => cdiscTerm, :cl => cdiscCl, :cli => clis}
     data.push(temp)        
@@ -82,50 +89,68 @@ private
     last = data.length - 1
   	data.each_with_index do |curr, index|
       version = curr[:term].version
-      key = "V" + version
+      key = "V" + version.to_s
       missing.push(key)
       currClis = curr[:cli]
       if index >= 1
-        prev = data[index - 1]
-        prevClis = prev[:cli]
-        currClis.each do |cliId, currCli|
-          if prevClis.has_key?(cliId)
-            prevCli = prevClis[cliId]
-            if currCli.diff?(prevCli)
-              mark = "M"
-            else
-              mark = "."
+        if currClis != nil
+          prev = data[index - 1]
+          prevClis = prev[:cli]
+          if prevClis != nil
+            currClis.each do |cliId, currCli|
+              if prevClis.has_key?(cliId)
+                prevCli = prevClis[cliId]
+                if currCli.diff?(prevCli)
+                  mark = "M"
+                else
+                  mark = "."
+                end
+              else
+                mark = "."
+              end
+              if results.has_key?(cliId)
+                temp = results[cliId]
+                result = temp[:result]
+                result[key] = mark
+              else
+                result = Hash.new
+                missing.each do |mKey|
+                  result[mKey] = ""
+                end    
+                result[key] = mark
+                temp = Hash.new
+                temp = {:cli => currCli, :result => result }
+                results[cliId] = temp
+              end
             end
-          else
-            mark = "."
+          
+            # Check for any CLIs that have been deleted, add a blank entry
+            # to ensure hash stays 'retangular', i.e. an entry for every CLI
+            # that existed for every Version
+            prevClis.each do |cliId, prevCli|
+              temp = results[cliId]
+              result = temp[:result]
+              if !result.has_key?(key)
+                result[key] = ""
+                currCli = temp[:cli]
+                temp = {:cli => currCli, :result => result }
+                results[cliId] = temp
+              end
+            end
           end
-          if results.has_key?(cliId)
-            temp = results[cliId]
-            result = temp[:result]
-            result[key] = mark
-          else
+        else
+          #
+          #
+        end
+      else
+        if currClis != nil
+          currClis.each do |cliId, currCli|
             result = Hash.new
-            missing.each do |mKey|
-              result[mKey] = ""
-            end    
-            result[key] = mark
+            result[key] = "."
             temp = Hash.new
             temp = {:cli => currCli, :result => result }
             results[cliId] = temp
           end
-        end
-      else
-        currClis.each do |cliId, currCli|
-          #if results.has_key?(cliId)
-          #  result = results[cliId]
-          #  result[key] = "."
-          #else
-          result = Hash.new
-          result[key] = "."
-          temp = Hash.new
-          temp = {:cli => currCli, :result => result }
-          results[cliId] = temp
-          #end
         end
       end
     end
