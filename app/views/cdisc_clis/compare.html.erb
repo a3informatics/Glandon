@@ -1,29 +1,29 @@
-<div class="container">
-	<h1>CDISC Code List Item: <%= @Cli %></h1>
-  <div class="row">
-    <div class="col-md-12">
-			<table class="table">
-			  <tr>
-			    <th>Version</th>
-			    <th>Date</th>
-			    <th>Identifer</th>
-			    <th>Notation</th>
-			    <th>Preferred</th>
-			    <th>Synonym</th>
-			    <th>Definition</th>
-			  </tr>
-				<% @Results.each do |r| %>
-					<tr>
-				    <td><%= raw r["version"] %></td>
-				    <td><%= raw r["date"] %></td>
-				    <td><%= raw r["identifier"] %></td>
-			      <td><%= raw r["notation"] %></td>
-			      <td><%= raw r["preferredTerm"] %></td>
-			      <td><%= raw r["synonym"] %></td>
-			      <td><%= raw r["definition"] %></td>
-				  </tr>
-				<% end %>
-			</table>
-		</div>
-	</div>
+<h1><%= @title %> <small>(CDISC, <%= @identifier %>)</small></h1>
+<div class="col-md-10">
+	<h2>Code List Item Version Comparison</h2>
+	<style>
+	  <%= Diffy::CSS %>
+	</style>
+	<table class="table table-striped table-bordered table-condensed">
+	  <tr>
+	    <th>Version</th>
+	    <th class="col-sm-1">Date</th>
+	    <th class="col-sm-1">Identifier</th>
+	    <th class="col-sm-1">Notation</th>
+	    <th class="col-sm-2">Preferred Term</th>
+	    <th class="col-sm-2">Synonym</th>
+	    <th class="col-sm-4">Definition</th>
+	  </tr>
+		<% @Results.each do |r| %>
+			<tr>
+		    <td><%= raw r["version"] %></td>
+		    <td><%= raw r["date"] %></td>
+		    <td><%= raw r["identifier"] %></td>
+	      <td><%= raw r["notation"] %></td>
+	      <td><%= raw r["preferredTerm"] %></td>
+	      <td><%= raw r["synonym"] %></td>
+	      <td><%= raw r["definition"] %></td>
+		  </tr>
+		<% end %>
+	</table>
 </div>

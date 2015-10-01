@@ -1,36 +1,26 @@
+<h1><%= @title %> <small>(CDISC, <%= @identifier %>)</small></h1>
 <div class="container">
-	<h1>CDISC Comparison</h1>
   <div class="row">
     <div class="col-md-12">
 			<table class="table table-striped table-bordered table-condensed">
 			  <tr>
 					<th>Code List Item</th>
-					<th>View History</th>
-					<% xxx = @Results.values[0] %>
-					<% value = xxx[:result]%>
+					<% clEntry = @Results.values[0] %>
+					<% value = clEntry[:result]%>
 					<% value.each do |vKey, value| %>
 				    <th><%= vKey %></th>
 				  <% end %>
+					<th>View History</th>
 				</tr>	
-				<% @Results.each do |clKey, xxx| %>
-					<% value = xxx[:result]%>
-					<% cl = xxx[:cl]%>
+				<% @Results.each do |clKey, clEntry| %>
+					<% value = clEntry[:result]%>
+					<% cl = clEntry[:cl]%>
 					<tr>
 						<td><%= clKey %></td>
-						<td><%=link_to "History", history_cdisc_cls_path(:id => cl.id), :class => "btn btn-info" %></td>
 						<% value.each do |vKey, status| %>
-				    	<td>	
-								<% if status == "." %>
-									<span class="glyphicon glyphicon-ok-circle">
-								<% elsif status == "M"  %>
-									<span class="glyphicon glyphicon-pencil">
-								<% elsif status == "X"  %>
-									<span class="glyphicon glyphicon-remove-circle">
-								<% else %>
-									&nbsp;
-				    		<% end %>
-							</td>
+				    	<%= render partial: "shared/historyCell", :locals => {:historyValue => status} %>
 						<% end %>
+						<td><%=link_to "History", history_cdisc_cls_path(:id => cl.id), :class => "btn btn-info" %></td>
 					</tr>	
 				<% end %>
 			</table>

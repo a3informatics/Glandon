@@ -1,0 +1,13 @@
+<% if historyValue == "." %>
+	<td><span class="glyphicon glyphicon-ok-circle"/></td>
+<% elsif historyValue == "M"  %>
+	<td class="bg-warning">
+		<span class="text-center glyphicon glyphicon-pencil"/>
+	</td>
+<% elsif historyValue == "X"  %>
+	<td class="bg-danger">	
+		<span class="glyphicon glyphicon-remove-circle"/>
+	</td>
+<% else %>
+	<td>&nbsp;</td>
+<% end %>

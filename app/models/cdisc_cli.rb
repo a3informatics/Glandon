@@ -71,7 +71,7 @@ class CdiscCli
     p "[CdiscCli           ][allForCL            ] id=" + id
     p "[CdiscCli           ][allForCL            ] ns=" + cdiscTerm.namespace
   
-    results = Array.new
+    results = Hash.new
     tcSet = ThesaurusConcept.allLowerLevelWithNs(id, cdiscTerm.namespace)
     tcSet.each do |tc|
       object = self.new 
@@ -82,7 +82,7 @@ class CdiscCli
       object.synonym = tc.synonym
       object.definition = tc.definition
       object.namespace = cdiscTerm.namespace
-      results.push(object)
+      results[tc.id] = object
     end
     return results  
     

@@ -20,15 +20,39 @@ class CdiscClsController < ApplicationController
 
   def compare
     
+    # Get the parameters
+    type = params[:type]
     id = params[:id]
     newId = params[:new]
     oldId = params[:old]
+    
+    # Get the new and old terminologies and the Code Lists
+    nCT = CdiscTerm.find(newId)
+    nCl = CdiscCl.find(id, nCT)
+    oCT = CdiscTerm.find(oldId)
+    oCl = CdiscCl.find(id, oCT)    
+
+    # Build the Code List Item differences. Filter if required.
     data = Array.new
-    cdiscTerm = CdiscTerm.find(newId)
-    clisForCl(id, cdiscTerm, data)
-    cdiscTerm = CdiscTerm.find(oldId)
-    clisForCl(id, cdiscTerm, data)   
-    @Results = buildResults(data)
+    clisForCl(id, nCT, data)
+    clisForCl(id, oCT, data)   
+    @CliResults = buildResults(data)
+    if type != "ALL"
+      @CliResults = filterResults(@CliResults, type)
+    end
+
+    # Build the difference in the Code List info
+    @ClResults = Array.new
+    result = Hash.new
+    result = currentCL(oCT, oCl)
+    @ClResults.push(result)
+    result = compareCL(nCT, oCl, nCl)
+    @ClResults.push(result)
+    
+    # Set the key parameters
+    @id = oCl.id
+    @identifier = oCl.identifier
+    @title = oCl.preferredTerm
     
   end
   
@@ -40,8 +64,45 @@ class CdiscClsController < ApplicationController
     cdiscTerms.each do |ct|
     	clisForCl(id, ct, data)
     end
-    @Results = buildResults(data)
+    @CliResults = buildResults(data)
       
+    # Get the CLI object from each version of the terminology
+    data = Array.new
+    cdiscTerms = CdiscTerm.all()
+  	cdiscTerms.each do |ct|
+      cdiscCl = CdiscCl.find(id, ct)
+      temp = {:term => ct, :cl => cdiscCl}
+      data.push(temp)        
+    end
+    
+    # Now compare. Note there may well be nil entries
+    @ClResults = Array.new
+    last = data.length - 1
+  	data.each_with_index do |curr, index|
+      cl = curr[:cl]
+      if cl != nil
+        if index == 0
+          
+          # Set the key parameters
+          @id = cl.id
+          @identifier = cl.identifier
+          @title = cl.preferredTerm
+           
+        end 
+        if index >= 1
+          prev = data[index - 1]
+          prevCl = prev[:cl]
+          if  prevCl != nil
+            result = compareCL(curr[:term], prev[:cl], cl)
+          else
+            result = currentCL(curr[:term], cl)
+          end
+        else
+          result = currentCL(curr[:term], cl)
+        end
+        @ClResults.push(result)
+      end
+    end   
   end
   
   def destroy
@@ -66,14 +127,10 @@ private
   
     cdiscCl = CdiscCl.find(id, cdiscTerm)
   	if cdiscCl != nil
-      if @Cl == nil
-        @Cl = cdiscCl.identifier
+      if @cdiscCl == nil
+        @cdiscCl = cdiscCl
       end
-      cdiscClis = CdiscCli.allForCl(id, cdiscTerm)
-      clis = Hash.new
-      cdiscClis.each do |cli|
-        clis[cli.identifier] = cli
-      end
+      clis = CdiscCli.allForCl(id, cdiscTerm)
     else
       clis = nil
     end
@@ -123,26 +180,11 @@ private
                 results[cliId] = temp
               end
             end
-          
-            # Check for any CLIs that have been deleted, add a blank entry
-            # to ensure hash stays 'retangular', i.e. an entry for every CLI
-            # that existed for every Version
-            prevClis.each do |cliId, prevCli|
-              temp = results[cliId]
-              result = temp[:result]
-              if !result.has_key?(key)
-                result[key] = ""
-                currCli = temp[:cli]
-                temp = {:cli => currCli, :result => result }
-                results[cliId] = temp
-              end
-            end
           end
-        else
-          #
-          #
         end
       else
+        
+        # First item. Build an entry for every member
         if currClis != nil
           currClis.each do |cliId, currCli|
             result = Hash.new
@@ -154,7 +196,84 @@ private
         end
       end
     end
-    return results
-  end
     
+    # Run through the entire set of results and check for missing entries.
+    # If any found then mark as deleted
+    results.each do |clId, clEntry|
+      result = clEntry[:result]
+      update = false
+      missing.each do |mKey|
+        if !result.has_key?(mKey)
+          result[mKey] = "X"
+          update = true
+        end
+      end 
+      if update
+        clEntry[:result] = result
+      end
+    end  
+    
+    # Return the result
+    return results
+    
+  end
+  
+  def filterResults (results, type)
+
+    # Run through the entire set of results and check for missing entries.
+    # If any found then mark as deleted
+    results.each do |clId, clEntry|
+      result = clEntry[:result]
+      keep = false
+      result.each do |mKey, value|
+        if type == "UPDATE" && value == "M"
+          keep = true
+          break
+        elsif type == "DELETE" && value == "X"
+          keep = true
+          break
+        elsif type == "NEW" && value == ""
+          keep = true
+          break
+        end
+      end 
+      if !keep
+        results.delete(clId)
+      end
+    end  
+
+    # Return the result
+    return results
+  
+  end
+  
+  
+  def compareCL (term, previousCl, currentCl)
+    result = Hash.new
+    result = {
+      "version" => term.version, 
+      "date" => term.date, 
+      "identifier" => Diffy::Diff.new(previousCl.identifier, currentCl.identifier).to_s(:html),
+      "notation" => Diffy::Diff.new(previousCl.notation, currentCl.notation).to_s(:html),
+      "preferredTerm" => Diffy::Diff.new(previousCl.preferredTerm, currentCl.preferredTerm).to_s(:html),
+      "synonym" => Diffy::Diff.new(previousCl.synonym, currentCl.synonym).to_s(:html),
+      "extensible" => Diffy::Diff.new(previousCl.extensible, currentCl.extensible).to_s(:html),
+      "definition" => Diffy::Diff.new(previousCl.definition, currentCl.definition).to_s(:html) }
+    return result
+  end
+  
+  def currentCL (term, cl)
+    result = Hash.new
+    result = {
+      "version" => term.version,
+      "date" => term.date,
+      "identifier" => cl.identifier,
+      "notation" => cl.notation,
+      "preferredTerm" => cl.preferredTerm,
+      "synonym" => cl.synonym,
+      "extensible" => cl.extensible,
+      "definition" => cl.definition }
+    return result
+  end
+   
 end

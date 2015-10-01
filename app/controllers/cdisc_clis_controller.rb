@@ -38,11 +38,16 @@ class CdiscClisController < ApplicationController
     
     @Results = Array.new
     result = Hash.new
-    result = compare(nCT, oCLi, nCli)
+    result = currentCLI(oCT, oCli)
     @Results.push(result)
-    result = current(oCT, oCli)
+    result = compareCLI(nCT, oCli, nCli)
     @Results.push(result)
-    @Cli = nCli.identifier
+    
+    # Set the key parameters
+    @id = oCli.id
+    @identifier = oCli.identifier
+    @title = oCli.preferredTerm
+
     
   end
   
@@ -66,19 +71,22 @@ class CdiscClisController < ApplicationController
   	data.each_with_index do |curr, index|
       cli = curr[:cli]
       if cli != nil
-        if @Cli == nil
-          @Cli = cli.identifier
+        if index == 0
+          # Set the key parameters
+          @id = cli.id
+          @identifier = cli.identifier
+          @title = cli.preferredTerm
         end 
         if index >= 1
           prev = data[index - 1]
           prevCli = prev[:cli]
           if  prevCli != nil
-            result = compare(curr[:term], prev[:cli], cli)
+            result = compareCLI(curr[:term], prev[:cli], cli)
           else
-            result = current(curr[:term], cli)
+            result = currentCLI(curr[:term], cli)
           end
         else
-          result = current(curr[:term], cli)
+          result = currentCLI(curr[:term], cli)
         end
         @Results.push(result)
       end
@@ -102,7 +110,7 @@ private
       params.require(:cdisc_term).permit(:id, :termId)
     end
 
-    def compare (term, previousCli, currentCli)
+    def compareCLI (term, previousCli, currentCli)
       result = Hash.new
       result = {
         "version" => term.version, 
@@ -115,7 +123,7 @@ private
       return result
     end
     
-    def current (term, cli)
+    def currentCLI (term, cli)
       result = Hash.new
       result = {
         "version" => term.version,

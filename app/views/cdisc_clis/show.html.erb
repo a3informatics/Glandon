@@ -1,50 +1,25 @@
-<div class="container">
-	<h1>CDISC Code List Item: <%= @cdiscCli.identifier %> (V<%= @cdiscTerm.version %>, <%= @cdiscTerm.date %>)</h1>
-  <div class="row">
-    <div class="col-md-9">
-			<h2>Details</h2>
-			<table class="table table-striped table-bordered table-condensed">
-			  <tr>
-			    <th>Identifer</th>
-			    <th>Notation</th>
-			    <th>Preferred</th>
-			    <th>Synonym</th>
-			    <th>Definition</th>
-			  </tr>
-			  <tr>
-			    <td><%= @cdiscCli.identifier %></td>
-			    <td><%= @cdiscCli.notation %></td>
-			    <td><%= @cdiscCli.preferredTerm %></td>
-			    <td><%= @cdiscCli.synonym %></td>
-			    <td><%= @cdiscCli.definition %></td>
-			  </tr>
-			</table>
-			
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">Compare with Previous Version</div>
-				<div class="panel-body">
-					<table class="table table-striped table-bordered table-condensed">
-			  		<tr>
-					    <th>Version</th>
-					    <th>Date</th>
-					  </tr>
-						<% @cdiscTerms.each do |ct| %>
-						  <tr>
-						    <td><%= link_to "V" + ct.version.to_s , compare_cdisc_clis_path(:id => @cdiscCli.id, :new => @cdiscTerm.id, :old => ct.id) , :class => "btn btn-info" %></td>
-						    <td><%= ct.date %></td>
-						  </tr>
-						<% end %>
-					</table>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Get History</div>
-				<div class="panel-body">
-					<%= link_to "History", history_cdisc_clis_path(:id => @cdiscCli.id, :new => @cdiscTerm.id), :class => "btn btn-info" %>
-				</div>
-			</div>
-		</div>
-	</div>
+<h1><%= @cdiscCli.preferredTerm %> <small>(CDISC, <%= @cdiscCli.identifier %>, <%= @cdiscTerm.date %>, V<%= @cdiscTerm.version %>)</small></h1>
+<div class="col-md-7">
+	<h2>Details</h2>
+	<table class="table table-striped table-bordered table-condensed">
+	  <tr>
+	    <th>Identifer</th>
+	    <th>Notation</th>
+	    <th>Preferred</th>
+	    <th>Synonym</th>
+	    <th>Definition</th>
+	  </tr>
+	  <tr>
+	    <td><%= @cdiscCli.identifier %></td>
+	    <td><%= @cdiscCli.notation %></td>
+	    <td><%= @cdiscCli.preferredTerm %></td>
+	    <td><%= @cdiscCli.synonym %></td>
+	    <td><%= @cdiscCli.definition %></td>
+	  </tr>
+	</table>
+	
+</div>
+<div class="col-md-3">
+	<%= render partial: "shared/previousHistory", :locals => {:type => "CLI", :object => @cdiscCli, :currTerm => @cdiscTerm, :cdiscTerms => @cdiscTerms} %>
+	<%= render partial: "shared/fullHistory", :locals => {:type => "CLI", :object => @cdiscCli, :currTerm => @cdiscTerm} %>
 </div>

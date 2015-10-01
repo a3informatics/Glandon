@@ -55,7 +55,7 @@ class Uri
   
   def setUri(uri)
   
-    p "URI=" + uri
+    #p "URI=" + uri
     
     @path = getPath(uri)
     fragment = getFragment(uri)
@@ -63,22 +63,22 @@ class Uri
     @shortName = getShortName(fragment)
     @version = getVersion(fragment)
     
-    p "Fragment=" + fragment
-    p "Path=" + @path
-    p "Prefix=" + @prefix
-    p "Short Name=" + @shortName
-    p "Version=" + @version
+    #p "Fragment=" + fragment
+    #p "Path=" + @path
+    #p "Prefix=" + @prefix
+    #p "Short Name=" + @shortName
+    #p "Version=" + @version
     
   end
   
   def extendPath(extension)
 
-    p "EXTEND PATH"
-    p "Path=" + @path
+    #p "EXTEND PATH"
+    #p "Path=" + @path
   
     @path = @path + "/" + extension
 
-    p "Path=" + @path
+    #p "Path=" + @path
     
   end
    
@@ -96,9 +96,9 @@ class Uri
 
   def getCid()
 
-    p "Prefix=" + @prefix
-    p "Short Name=" + @shortName
-    p "Version=" + @version
+    #p "Prefix=" + @prefix
+    #p "Short Name=" + @shortName
+    #p "Version=" + @version
     
     result = ""
     result = @prefix + C_FRAGMENT_SECTIONS_SEPARATOR
@@ -108,7 +108,7 @@ class Uri
       result += @shortName + C_FRAGMENT_SECTIONS_SEPARATOR + @version
     end
     
-    p "Result=" + result
+    #p "Result=" + result
     
     return result
     

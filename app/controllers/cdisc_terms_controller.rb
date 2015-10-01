@@ -23,29 +23,57 @@ class CdiscTermsController < ApplicationController
   end
 
   def compare
+    
+    # Get the parameters
+    type = params[:type]
     newId = params[:new]
     oldId = params[:old]
+    
+    # Create the results structure
     data = Array.new
-    @oldCdiscTerm = CdiscTerm.find(oldId)
+    
+    # Get the CLs for the old version
+    oldCdiscTerm = CdiscTerm.find(oldId)
     clsForTerm(@oldCdiscTerm, data)   
     
     #p "[CdiscTermController ][compare           ] data=" + data.to_s()
         
-    @newCdiscTerm = CdiscTerm.find(newId)
+    # Get the CLs for the new version
+    newCdiscTerm = CdiscTerm.find(newId)
     clsForTerm(@newCdiscTerm, data)
 
     #p "[CdiscTermController ][compare           ] data=" + data.to_s()
 
+    # And build the results. Filter if required.
     @Results = buildResults(data)
+    if type != "ALL"
+      @Results = filterResults(@Results, type)
+    end
+   
+    # Set the key parameters
+    @id = oldCdiscTerm.id
+    @identifier = oldCdiscTerm.date
+    @title = oldCdiscTerm.identifier
+           
   end
   
   def history
+
     data = Array.new
     cdiscTerms = CdiscTerm.all()
   	cdiscTerms.each do |ct|
       clsForTerm(ct, data)
+      if @id == nil
+
+        # Set the key parameters
+        @id = ct.id
+        @identifier = ct.date
+        @title = ct.identifier
+
+      end
     end
     @Results = buildResults(data)
+
   end
   
   def destroy
@@ -70,7 +98,7 @@ private
     cdiscCls.each do |cl|
       cls[cl.identifier] = cl
     end
-    temp = {:term => cdiscTerm, :cl => cls}
+    temp = {:term => cdiscTerm, :cls => cls}
     data.push(temp)        
 
   end
@@ -81,59 +109,134 @@ private
     results = Hash.new
     last = data.length - 1
   	data.each_with_index do |curr, index|
-      version = curr[:term].version
+      currTerm = curr[:term]
+      version = currTerm.version
+      currCls = curr[:cls]
       key = "V" + version.to_s
       missing.push(key)
-      
-      p "[CdiscTermController ][buildResults        ] key=" + key
-  
-      currCls = curr[:cl]
       if index >= 1
-        prev = data[index - 1]
-        prevCls = prev[:cl]
-        currCls.each do |clId, currCl|
-          if prevCls.has_key?(clId)
-            prevCl = prevCls[clId]
-            if currCl.diff?(prevCl)
-              mark = "M"
-            else
-              mark = "."
+        if currCls != nil
+          prev = data[index - 1]
+          prevTerm = prev[:term]
+          prevCls = prev[:cls]
+          if prevCls != nil
+            currCls.each do |clId, currCl|
+              if prevCls.has_key?(clId)
+                prevCl = prevCls[clId]
+                if currCl.diff?(prevCl)
+                  mark = "M"
+                else
+                  if cliDifference?(currTerm, currCl, prevTerm, prevCl)
+                    mark = "M"
+                  else
+                    mark = "."
+                  end
+                end
+              else
+                mark = "."
+              end
+              if results.has_key?(clId)
+                clEntry = results[clId]
+                result = clEntry[:result]
+                result[key] = mark
+              else
+                result = Hash.new
+                missing.each do |mKey|
+                  result[mKey] = ""
+                end    
+                result[key] = mark
+                clEntry = Hash.new
+                clEntry = {:id => currCl.id, :name => currCl.notation, :result => result }
+                results[clId] = clEntry
+              end
             end
-          else
-            mark = "."
-          end
-          if results.has_key?(clId)
-            temp = results[clId]
-            result = temp[:result]
-            result[key] = mark
-          else
-            result = Hash.new
-            missing.each do |mKey|
-              result[mKey] = ""
-            end    
-            result[key] = mark
-            temp = Hash.new
-            temp = {:cl => currCl, :result => result }
-            results[clId] = temp
           end
         end
       else
-        currCls.each do |clId, currCl|
-          #if results.has_key?(clId)
-          #  temp = results[clId]
-          #  result = temp[:result]
-          #  result[key] = "."
-          #else
+        
+        # First item. Build an entry for every member
+        if currCls != nil
+           currCls.each do |clId, currCl|
             result = Hash.new
             result[key] = "."
-            temp = Hash.new
-            temp = {:cl => currCl, :result => result }
-            results[clId] = temp
-          #end
+            clEntry = Hash.new
+            clEntry = {:id => currCl.id, :name => currCl.notation, :result => result }
+            results[clId] = clEntry
+          end
         end
       end
     end
+
+    # Run through the entire set of results and check for missing entries.
+    # If any found then mark as deleted
+    results.each do |clId, clEntry|
+      result = clEntry[:result]
+      update = false
+      missing.each do |mKey|
+        if !result.has_key?(mKey)
+          result[mKey] = "X"
+          update = true
+        end
+      end 
+      if update
+        clEntry[:result] = result
+      end
+    end  
+    
+    # Return the results
     return results
+    
+  end
+
+  def filterResults (results, type)
+
+    # Run through the entire set of results and check for missing entries.
+    # If any found then mark as deleted
+    results.each do |clId, clEntry|
+      result = clEntry[:result]
+      keep = false
+      result.each do |mKey, value|
+        if type == "UPDATE" && value == "M"
+          keep = true
+          break
+        elsif type == "DELETE" && value == "X"
+          keep = true
+          break
+        elsif type == "NEW" && value == ""
+          keep = true
+          break
+        end
+      end 
+      if !keep
+        results.delete(clId)
+      end
+    end  
+
+  end
+  
+  def cliDifference?(currTerm, currCl, prevTerm, prevCl)
+  
+    result = false
+    currClis = CdiscCli.allForCl(currCl.id, currTerm)
+    prevClis = CdiscCli.allForCl(prevCl.id, prevTerm)
+    if currClis.length == prevClis.length
+      currClis.each do |id, cli|
+        if prevClis.has_key?(id)
+          prevCli = prevClis[id]
+          if cli.diff?(prevCli)
+            result = true
+            break
+          end
+        else
+          result = true
+          break
+        end
+      end  
+    else
+      result = true
+    end
+    return result
+    
   end
 
 end
