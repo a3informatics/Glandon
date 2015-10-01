@@ -1,4 +1,4 @@
-require "Rest"
+require "rest"
 require "json"
 
 module CRUD
