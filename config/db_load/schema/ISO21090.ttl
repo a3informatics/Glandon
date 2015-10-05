@@ -1,0 +1,80 @@
+# baseURI: http://www.assero.co.uk/ISO21090
+# imports: http://purl.org/dc/elements/1.1/
+# imports: http://purl.org/dc/terms/
+# imports: http://www.assero.co.uk/ISO11179Concepts
+# imports: http://www.w3.org/2004/02/skos/core
+
+@prefix : <http://www.assero.co.uk/ISO21090#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/ISO21090>
+  rdf:type owl:Ontology ;
+  owl:imports <http://purl.org/dc/elements/1.1/> ;
+  owl:imports <http://purl.org/dc/terms/> ;
+  owl:imports <http://www.assero.co.uk/ISO11179Concepts> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+:Datatype
+  rdf:type owl:Class ;
+  rdfs:label "Datatype"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+.
+:Property
+  rdf:type owl:Class ;
+  rdfs:label "Property"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+.
+:PropertyOf
+  rdf:type owl:Class ;
+  rdfs:label "Property of"^^xsd:string ;
+  rdfs:subClassOf isoC:Relation ;
+.
+:complexDatatype
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "Complex datatype"^^xsd:string ;
+  rdfs:range :Datatype ;
+  owl:propertyDisjointWith :primitiveDatatype ;
+.
+:isSet
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "Is set flag"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+.
+:primitiveDatatype
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "Primitive datatype"^^xsd:string ;
+  rdfs:range xsd:string ;
+  owl:propertyDisjointWith :complexDatatype ;
+.
+:propertyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "Property Name"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:required
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "Required"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+.
+:typeName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Datatype ;
+  rdfs:label "Type Name"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:use
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "Use"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+.

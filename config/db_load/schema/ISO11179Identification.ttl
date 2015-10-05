@@ -1,0 +1,84 @@
+# baseURI: http://www.assero.co.uk/ISO11179Identification
+# imports: http://purl.org/dc/elements/1.1/
+# imports: http://purl.org/dc/terms/
+# imports: http://www.assero.co.uk/ISO11179Basic
+# imports: http://www.assero.co.uk/ISO11179Types
+# imports: http://www.w3.org/2004/02/skos/core
+
+@prefix : <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix ISO11179Basic: <http://www.assero.co.uk/ISO11179Basic#> .
+@prefix ISO11179Types: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/ISO11179Identification>
+  rdf:type owl:Ontology ;
+  owl:imports <http://purl.org/dc/elements/1.1/> ;
+  owl:imports <http://purl.org/dc/terms/> ;
+  owl:imports <http://www.assero.co.uk/ISO11179Basic> ;
+  owl:imports <http://www.assero.co.uk/ISO11179Types> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+:Namespace
+  rdf:type owl:Class ;
+  rdfs:label "Namespace"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+.
+:ScopedIdentifier
+  rdf:type owl:Class ;
+  rdfs:label "Scoped identifier"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "An identifier within a particular scope"^^xsd:string ;
+.
+:containedIdentifierRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Namespace ;
+  rdfs:label "Contained Identifier Relationship"^^xsd:string ;
+  rdfs:range :ScopedIdentifier ;
+  owl:inverseOf :scopeRelationship ;
+.
+:identifiedItemRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "Identified Item Relationship"^^xsd:string ;
+  rdfs:range ISO11179Types:IdentifiedItem ;
+  skos:definition "Identifies the Identified_Item defined by the Scoped_Identifier"^^xsd:string ;
+.
+:identifier
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "identifier"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "String used to unambiguously denote an IdentifiedItem within the scope of a specified Namespace."^^xsd:string ;
+.
+:identifierRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain ISO11179Types:IdentifiedItem ;
+  rdfs:label "Identifer Relationship"^^xsd:string ;
+  rdfs:range :ScopedIdentifier ;
+  skos:definition "Identifies the set of Scope_Identifiers for the Identified_Item that defines an identifier within a specific namespace"^^xsd:string ;
+.
+:namingAuthorityRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Namespace ;
+  rdfs:label "Naming Authority Relationship"^^xsd:string ;
+  rdfs:range ISO11179Basic:Organization ;
+.
+:scopeRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "Scope Relationship"^^xsd:string ;
+  rdfs:range :Namespace ;
+.
+:version
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "version"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "Unique version identifier of the ScopedIdentifier which identifies an IdentifiedItem"^^xsd:string ;
+.
+

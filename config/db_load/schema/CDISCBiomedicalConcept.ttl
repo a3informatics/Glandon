@@ -1,0 +1,181 @@
+# baseURI: http://www.assero.co.uk/CDISCBiomedicalConcept
+# imports: http://purl.org/dc/elements/1.1/
+# imports: http://purl.org/dc/terms/
+# imports: http://www.assero.co.uk/BRIDG
+# imports: http://www.assero.co.uk/ISO21090
+# imports: http://www.w3.org/2004/02/skos/core
+
+@prefix : <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
+@prefix bridg: <http://www.assero.co.uk/BRIDG#> .
+@prefix iso21090: <http://www.assero.co.uk/ISO21090#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> . 
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/CDISCBiomedicalConcept>
+  rdf:type owl:Ontology ;
+  owl:imports dc: ;
+  owl:imports <http://purl.org/dc/terms/> ;
+  owl:imports <http://www.assero.co.uk/BRIDG> ;
+  owl:imports <http://www.assero.co.uk/ISO21090> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+:ComplexNode
+  rdf:type owl:Class ;
+  rdfs:label "Node (either BRIDG class & attribute) or property that contains a complex data type"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+.
+:Datatype
+  rdf:type owl:Class ;
+  rdfs:label "Datatype"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+.
+:Item
+  rdf:type owl:Class ;
+  rdfs:label "An item within a Biomedical Concept Template. A reference to a BRIDG class and attribute used."^^xsd:string ;
+  rdfs:subClassOf :ComplexNode ;
+.
+:Property
+  rdf:type owl:Class ;
+  rdfs:label "ISO21090Property"^^xsd:string ;
+  rdfs:subClassOf :ComplexNode ;
+.
+:PropertyValue
+  rdf:type owl:Class ;
+  rdfs:label "Value"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+.
+:BCItem
+  rdf:type owl:Class ;
+  rdfs:label "RCItem"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+.
+:BCTItem
+  rdf:type owl:Class ;
+  rdfs:label "RCTItem"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+.
+:BiomedicalConcept
+  rdf:type owl:Class ;
+  rdfs:label "A CDISC Biomedical Concept Template or Instance of a Template"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+.
+:BiomedicalConceptInstance
+  rdf:type owl:Class ;
+  rdfs:label "An Biomedical Concept instance"^^xsd:string ;
+  rdfs:subClassOf :BiomedicalConcept ;
+.
+:BiomedicalConceptTemplate
+  rdf:type owl:Class ;
+  rdfs:label "A template (or pattern) for a CDISC Biomedical Concept"^^xsd:string ;
+  rdfs:subClassOf :BiomedicalConcept ;
+.
+:alias
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ComplexNode ;
+  rdfs:label "A short hand name for the item to allow easy use"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:hasAttributeRefRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Item ;
+  rdfs:label "Reference to the BRIDG attribute"^^xsd:string ;
+  rdfs:range bridg:Attribute ;
+.
+:hasClassRefRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Item ;
+  rdfs:label "Reference to the BRIDG class"^^xsd:string ;
+  rdfs:range bridg:Class ;
+.
+:hasComplexDatatypeRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "Has a complext data type"^^xsd:string ;
+  rdfs:range :Datatype ;
+  owl:propertyDisjointWith :hasSimpleDatatypeRelationship ;
+.
+:hasDataTypeRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Item ;
+  rdfs:label "Object property 1"^^xsd:string ;
+  rdfs:range :Datatype ;
+.
+:hasDatatypeRefRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Datatype ;
+  rdfs:label "datatype ref"^^xsd:string ;
+  rdfs:range iso21090:Datatype ;
+.
+:hasItemRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :BiomedicalConcept ;
+  rdfs:label "Link to the constiuent parts of the Biomedical Concept (Instance or Template)"^^xsd:string ;
+  rdfs:range :Item ;
+.
+:hasPropertyRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Datatype ;
+  rdfs:label "Has A Property"^^xsd:string ;
+  rdfs:range :Property ;
+  owl:inverseOf :isPropertyOfRelationship ;
+.
+:hasSimpleDatatypeRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "has a Simple Datatype"^^xsd:string ;
+  rdfs:range :PropertyValue ;
+  owl:propertyDisjointWith :hasComplexDatatypeRelationship ;
+.
+:isDatatypeOfRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Datatype ;
+  rdfs:range :Item ;
+  owl:inverseOf :hasDataTypeRelationship ;
+.
+:isItemOfRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Item ;
+  rdfs:range :BiomedicalConcept ;
+  owl:inverseOf :hasItemRelationship ;
+.
+:isPropertyOfRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Property ;
+  rdfs:range :Datatype ;
+  owl:inverseOf :hasPropertyRelationship ;
+.
+:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :BiomedicalConcept ;
+  rdfs:label "Name of the Biomedical Concept"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:nextItemRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Item ;
+  rdfs:label "next item"^^xsd:string ;
+  rdfs:range :Item ;
+.
+:nextValueRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :PropertyValue ;
+  rdfs:label "next value"^^xsd:string ;
+  rdfs:range :PropertyValue ;
+.
+:simpleDatatype
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "Simple Datatype"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+.
+:value
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :PropertyValue ;
+  rdfs:label "The value in the datatype property"^^xsd:string ;
+  rdfs:range xsd:string ;
+.

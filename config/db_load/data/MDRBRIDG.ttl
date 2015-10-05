@@ -1,0 +1,2298 @@
+# baseURI: http://www.assero.co.uk/MDRBRIDG
+# imports: http://www.assero.co.uk/BRIDG
+
+@prefix : <http://www.assero.co.uk/MDRBRIDG#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bridg: <http://www.assero.co.uk/BRIDG#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://wwwasserocouk/MDRBRIDG>
+	rdf:type owl:Ontology ;
+	owl:imports <http://wwwasserocouk/BRIDG> ;
+	owl:imports <http://wwww3org/2004/02/skos/core> ;
+.
+:BR-DefinedObservation
+	rdf:type bridg:Class ;
+	bridg:className "DefinedObservation"^^xsd:string ;
+	bridg:classDescription "An activity defined at a global library level whose intention is to obtain a result by observing, monitoring, measuring or otherwise qualitatively or quantitatively gathering data or information about one or more aspects of a study subject's or experimental unit's physiologic or psychologic state."^^xsd:string ;
+	rdfs:label "DefinedObservation BRIDG class"^^xsd:string ;
+.
+:BR-DefinedObservationALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservation ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationapproachAnatomicSiteCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationbodyPositionCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationfocalDateRangeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationfocalDurationALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationmethodCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationtargetAnatomicSiteCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationtargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationnameCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationcategoryCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationsubcategoryCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationrepeatFrequencyCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationrepeatFrequencyRatioALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationrepeatQuantityALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationrepeatDurationALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationdescriptionALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationstatusCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationstatusDateALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationidentifierALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationreasonCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationcommentALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationARole ;
+	rdfs:label " DefinedObservation Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation Class Role"^^xsd:string ;
+.
+:BR-DefinedObservationDefinedObservationResultResultsInRLink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationRLinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultRLinkEnd ;
+	rdfs:label "DefinedObservation DefinedObservationResultResultsIn Relationship Link"^^xsd:string ;
+.
+:BR-DefinedObservationRLinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservation ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationDefinedObservationResultResultsInRLink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationRole ;
+	rdfs:label "DefinedObservation DefinedObservationResult Relationship Link End"^^xsd:string ;
+.
+:BR-DefinedObservationRRole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation Class Relationship Role"^^xsd:string ;
+.
+:BR-DefinedObservationResultRLinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResult ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResultDefinedObservationResultsInRLink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResultRRole ;
+	rdfs:label "DefinedObservationResult DefinedObservation Relationship Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResultRRole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "0..*"^^xsd:string ;
+	rdfs:label "DefinedObservationResult Class Relationship Role"^^xsd:string ;
+.
+:BR-DefinedObservationResult
+	rdf:type bridg:Class ;
+	bridg:className "DefinedObservationResult"^^xsd:string ;
+	bridg:classDescription "A reusable, 'template' description of a possible outcome of an observation."^^xsd:string ;
+	rdfs:label "DefinedObservationResult BRIDG class"^^xsd:string ;
+.
+:BR-DefinedObservationResultALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResult ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResultcommentALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResultconfidentialityCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResultderivationExpressionALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResultresultALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResulttargetAnatomicSiteCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResulttargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResulttargetCodingSystemALink ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResulttypeCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResultARole ;
+	rdfs:label " DefinedObservationResult Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResultARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservationResult Class Role"^^xsd:string ;
+.
+:BR-PerformedObservation
+	rdf:type bridg:Class ;
+	bridg:className "PerformedObservation"^^xsd:string ;
+	bridg:classDescription "The completed action of observing, monitoring, measuring or otherwise qualitatively or quantitatively gathering data or information about one or more aspects of a subject's, study subject's or experimental unit's physiologic or psychologic state."^^xsd:string ;
+	rdfs:label "PerformedObservation BRIDG class"^^xsd:string ;
+.
+:BR-PerformedObservationALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservation ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationbodyPositionCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationfocalDateRangeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationfocalDurationALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationmethodCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationtargetAnatomicSiteCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationtargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationapproachAnatomicSiteCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationapproachAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationdurationALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationdateRangeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationstudyDayRangeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationdelayDurationALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationnegationReasonALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationnegationIndicatorALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationrepetitionNumberALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationstatusCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationstatusDateALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationidentifierALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationreasonCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationcommentALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationARole ;
+	rdfs:label " PerformedObservation Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation Class Role"^^xsd:string ;
+.
+:BR-PerformedObservationPerformedObservationResultResultsInRLink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationRLinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultRLinkEnd ;
+	rdfs:label "PerformedObservation PerformedObservationResultResultsIn Relationship Link"^^xsd:string ;
+.
+:BR-PerformedObservationRLinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservation ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationPerformedObservationResultResultsInRLink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationRole ;
+	rdfs:label "PerformedObservation PerformedObservationResult Relationship Link End"^^xsd:string ;
+.
+:BR-PerformedObservationRRole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation Class Relationship Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultRLinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResult ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultPerformedObservationResultsInRLink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultRRole ;
+	rdfs:label "PerformedObservationResult PerformedObservation Relationship Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultRRole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "0..*"^^xsd:string ;
+	rdfs:label "PerformedObservationResult Class Relationship Role"^^xsd:string ;
+.
+:BR-PerformedObservationResult
+	rdf:type bridg:Class ;
+	bridg:className "PerformedObservationResult"^^xsd:string ;
+	bridg:classDescription "The finding obtained by observing, monitoring, measuring or otherwise qualitatively or quantitatively recording one or more aspects of physiologic or psychologic processes."^^xsd:string ;
+	rdfs:label "PerformedObservationResult BRIDG class"^^xsd:string ;
+.
+:BR-PerformedObservationResultALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResult ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultbaselineIndicatorALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultbodySystemCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultcommentALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultconfidentialityCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultidentifierALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultreportedDateALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultresultALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultresultCodeModifiedTextALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResulttargetAnatomicSiteCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResulttargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResulttypeCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultuncertaintyCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultvalueALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultvalueCodeModifiedTextALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultvalueNullFlavorReasonALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultARole ;
+	rdfs:label " PerformedObservationResult Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult Class Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResult
+	rdf:type bridg:Class ;
+	bridg:className "PerformedClinicalResult"^^xsd:string ;
+	bridg:classDescription "A result of a clinical observation, ie. from an examination, test or direct observation performed on the subject."^^xsd:string ;
+	rdfs:label "PerformedClinicalResult BRIDG class"^^xsd:string ;
+.
+:BR-PerformedClinicalResultALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResult ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultasCollectedIndicatorALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultbiomarkerIndicatorALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultinfectiousAgentALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultnormalRangeComparisonCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultreportedResultStatusCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultidentifierALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResulttypeCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultvalueALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultvalueCodeModifiedTextALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultvalueNullFlavorReasonALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResulttargetAnatomicSiteCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResulttargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultbodySystemCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultbaselineIndicatorALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultconfidentialityCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultuncertaintyCodeALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultreportedDateALink ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultcommentALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultARole ;
+	rdfs:label " PerformedClinicalResult Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult Class Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultPerformedObservationResultExtendsRLink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultRLinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultRLinkEnd ;
+	rdfs:label "PerformedClinicalResult PerformedObservationResultExtends Relationship Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultRLinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResult ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultPerformedObservationResultExtendsRLink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultRole ;
+	rdfs:label "PerformedClinicalResult PerformedObservationResult Relationship Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultRRole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult Class Relationship Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultRLinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResult ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultPerformedClinicalResultExtendsRLink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultRRole ;
+	rdfs:label "PerformedObservationResult PerformedClinicalResult Relationship Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultRRole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult Class Relationship Role"^^xsd:string ;
+.
+:BR-DefinedObservationapproachAnatomicSiteCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "approachAnatomicSiteCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "approachAnatomicSiteCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationapproachAnatomicSiteCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationapproachAnatomicSiteCodeALinkEnd ;
+	rdfs:label "DefinedObservation approachAnatomicSiteCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationapproachAnatomicSiteCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationapproachAnatomicSiteCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationapproachAnatomicSiteCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationapproachAnatomicSiteCodeARole ;
+	rdfs:label "DefinedObservation approachAnatomicSiteCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationapproachAnatomicSiteCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation approachAnatomicSiteCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationbodyPositionCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "bodyPositionCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the 3-dimensional spatial orientation of a subject during a particular observation."^^xsd:string ;
+	rdfs:label "bodyPositionCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationbodyPositionCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationbodyPositionCodeALinkEnd ;
+	rdfs:label "DefinedObservation bodyPositionCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationbodyPositionCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationbodyPositionCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationbodyPositionCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationbodyPositionCodeARole ;
+	rdfs:label "DefinedObservation bodyPositionCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationbodyPositionCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation bodyPositionCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationfocalDateRange
+	rdf:type bridg:Attribute ;
+	bridg:datatype "EXPR(IVL(TSDATETIME))"^^xsd:string ;
+	bridg:attributeName "focalDateRange"^^xsd:string ;
+	bridg:attributeDescription "The time period in which the observation result is held to be true, expressed either as a simple date range or as an evaluable expression that references a study-defined date or milestone."^^xsd:string ;
+	rdfs:label "focalDateRange BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationfocalDateRangeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationfocalDateRangeALinkEnd ;
+	rdfs:label "DefinedObservation focalDateRange Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationfocalDateRangeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationfocalDateRange ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationfocalDateRangeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationfocalDateRangeARole ;
+	rdfs:label "DefinedObservation focalDateRange Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationfocalDateRangeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation focalDateRange Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationfocalDuration
+	rdf:type bridg:Attribute ;
+	bridg:datatype "PQTIME"^^xsd:string ;
+	bridg:attributeName "focalDuration"^^xsd:string ;
+	bridg:attributeDescription "A quantity of time in which the observation result is held to be true."^^xsd:string ;
+	rdfs:label "focalDuration BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationfocalDurationALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationfocalDurationALinkEnd ;
+	rdfs:label "DefinedObservation focalDuration Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationfocalDurationALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationfocalDuration ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationfocalDurationALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationfocalDurationARole ;
+	rdfs:label "DefinedObservation focalDuration Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationfocalDurationARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation focalDuration Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationmethodCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "DSET(CD)"^^xsd:string ;
+	bridg:attributeName "methodCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the technique that is used for the observation."^^xsd:string ;
+	rdfs:label "methodCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationmethodCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationmethodCodeALinkEnd ;
+	rdfs:label "DefinedObservation methodCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationmethodCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationmethodCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationmethodCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationmethodCodeARole ;
+	rdfs:label "DefinedObservation methodCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationmethodCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation methodCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationtargetAnatomicSiteCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the anatomic location that is the focus of the observation."^^xsd:string ;
+	rdfs:label "targetAnatomicSiteCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationtargetAnatomicSiteCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationtargetAnatomicSiteCodeALinkEnd ;
+	rdfs:label "DefinedObservation targetAnatomicSiteCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationtargetAnatomicSiteCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationtargetAnatomicSiteCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationtargetAnatomicSiteCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationtargetAnatomicSiteCodeARole ;
+	rdfs:label "DefinedObservation targetAnatomicSiteCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationtargetAnatomicSiteCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation targetAnatomicSiteCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationtargetAnatomicSiteLateralityCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteLateralityCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the side of the body (or a paired organ) that is a target site for an observation."^^xsd:string ;
+	rdfs:label "targetAnatomicSiteLateralityCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationtargetAnatomicSiteLateralityCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationtargetAnatomicSiteLateralityCodeALinkEnd ;
+	rdfs:label "DefinedObservation targetAnatomicSiteLateralityCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationtargetAnatomicSiteLateralityCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationtargetAnatomicSiteLateralityCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationtargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationtargetAnatomicSiteLateralityCodeARole ;
+	rdfs:label "DefinedObservation targetAnatomicSiteLateralityCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationtargetAnatomicSiteLateralityCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation targetAnatomicSiteLateralityCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationnameCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "nameCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "nameCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationnameCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationnameCodeALinkEnd ;
+	rdfs:label "DefinedObservation nameCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationnameCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationnameCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationnameCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationnameCodeARole ;
+	rdfs:label "DefinedObservation nameCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationnameCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation nameCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationcategoryCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "categoryCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "categoryCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationcategoryCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationcategoryCodeALinkEnd ;
+	rdfs:label "DefinedObservation categoryCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationcategoryCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationcategoryCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationcategoryCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationcategoryCodeARole ;
+	rdfs:label "DefinedObservation categoryCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationcategoryCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation categoryCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationsubcategoryCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "subcategoryCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "subcategoryCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationsubcategoryCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationsubcategoryCodeALinkEnd ;
+	rdfs:label "DefinedObservation subcategoryCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationsubcategoryCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationsubcategoryCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationsubcategoryCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationsubcategoryCodeARole ;
+	rdfs:label "DefinedObservation subcategoryCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationsubcategoryCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation subcategoryCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatFrequencyCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "repeatFrequencyCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "repeatFrequencyCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatFrequencyCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationrepeatFrequencyCodeALinkEnd ;
+	rdfs:label "DefinedObservation repeatFrequencyCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatFrequencyCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationrepeatFrequencyCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationrepeatFrequencyCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationrepeatFrequencyCodeARole ;
+	rdfs:label "DefinedObservation repeatFrequencyCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatFrequencyCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation repeatFrequencyCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatFrequencyRatio
+	rdf:type bridg:Attribute ;
+	bridg:datatype "RTO(INT,PQTIME)"^^xsd:string ;
+	bridg:attributeName "repeatFrequencyRatio"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "repeatFrequencyRatio BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatFrequencyRatioALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationrepeatFrequencyRatioALinkEnd ;
+	rdfs:label "DefinedObservation repeatFrequencyRatio Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatFrequencyRatioALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationrepeatFrequencyRatio ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationrepeatFrequencyRatioALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationrepeatFrequencyRatioARole ;
+	rdfs:label "DefinedObservation repeatFrequencyRatio Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatFrequencyRatioARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation repeatFrequencyRatio Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatQuantity
+	rdf:type bridg:Attribute ;
+	bridg:datatype "URG(INTNONNEG)"^^xsd:string ;
+	bridg:attributeName "repeatQuantity"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "repeatQuantity BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatQuantityALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationrepeatQuantityALinkEnd ;
+	rdfs:label "DefinedObservation repeatQuantity Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatQuantityALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationrepeatQuantity ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationrepeatQuantityALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationrepeatQuantityARole ;
+	rdfs:label "DefinedObservation repeatQuantity Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatQuantityARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation repeatQuantity Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatDuration
+	rdf:type bridg:Attribute ;
+	bridg:datatype "PQTIME"^^xsd:string ;
+	bridg:attributeName "repeatDuration"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "repeatDuration BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatDurationALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationrepeatDurationALinkEnd ;
+	rdfs:label "DefinedObservation repeatDuration Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatDurationALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationrepeatDuration ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationrepeatDurationALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationrepeatDurationARole ;
+	rdfs:label "DefinedObservation repeatDuration Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationrepeatDurationARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation repeatDuration Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationdescription
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "description"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "description BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationdescriptionALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationdescriptionALinkEnd ;
+	rdfs:label "DefinedObservation description Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationdescriptionALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationdescription ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationdescriptionALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationdescriptionARole ;
+	rdfs:label "DefinedObservation description Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationdescriptionARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation description Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationstatusCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "statusCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "statusCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationstatusCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationstatusCodeALinkEnd ;
+	rdfs:label "DefinedObservation statusCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationstatusCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationstatusCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationstatusCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationstatusCodeARole ;
+	rdfs:label "DefinedObservation statusCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationstatusCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation statusCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationstatusDate
+	rdf:type bridg:Attribute ;
+	bridg:datatype "TSDATETIME"^^xsd:string ;
+	bridg:attributeName "statusDate"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "statusDate BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationstatusDateALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationstatusDateALinkEnd ;
+	rdfs:label "DefinedObservation statusDate Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationstatusDateALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationstatusDate ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationstatusDateALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationstatusDateARole ;
+	rdfs:label "DefinedObservation statusDate Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationstatusDateARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation statusDate Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationidentifier
+	rdf:type bridg:Attribute ;
+	bridg:datatype "II"^^xsd:string ;
+	bridg:attributeName "identifier"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "identifier BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationidentifierALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationidentifierALinkEnd ;
+	rdfs:label "DefinedObservation identifier Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationidentifierALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationidentifier ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationidentifierALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationidentifierARole ;
+	rdfs:label "DefinedObservation identifier Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationidentifierARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation identifier Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationreasonCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "DSET(CD)"^^xsd:string ;
+	bridg:attributeName "reasonCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "reasonCode BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationreasonCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationreasonCodeALinkEnd ;
+	rdfs:label "DefinedObservation reasonCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationreasonCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationreasonCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationreasonCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationreasonCodeARole ;
+	rdfs:label "DefinedObservation reasonCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationreasonCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation reasonCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationcomment
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "comment"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "comment BRIDG Attribute from Class DefinedObservation"^^xsd:string ;
+.
+:BR-DefinedObservationcommentALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationcommentALinkEnd ;
+	rdfs:label "DefinedObservation comment Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationcommentALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationcomment ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationcommentALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationcommentARole ;
+	rdfs:label "DefinedObservation comment Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationcommentARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservation comment Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationResultcomment
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "comment"^^xsd:string ;
+	bridg:attributeDescription "Additional description of the observation result."^^xsd:string ;
+	rdfs:label "comment BRIDG Attribute from Class DefinedObservationResult"^^xsd:string ;
+.
+:BR-DefinedObservationResultcommentALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultcommentALinkEnd ;
+	rdfs:label "DefinedObservationResult comment Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationResultcommentALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResultcomment ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResultcommentALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResultcommentARole ;
+	rdfs:label "DefinedObservationResult comment Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResultcommentARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservationResult comment Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationResultconfidentialityCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "confidentialityCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the degree of privacy applicable for the observation result."^^xsd:string ;
+	rdfs:label "confidentialityCode BRIDG Attribute from Class DefinedObservationResult"^^xsd:string ;
+.
+:BR-DefinedObservationResultconfidentialityCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultconfidentialityCodeALinkEnd ;
+	rdfs:label "DefinedObservationResult confidentialityCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationResultconfidentialityCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResultconfidentialityCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResultconfidentialityCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResultconfidentialityCodeARole ;
+	rdfs:label "DefinedObservationResult confidentialityCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResultconfidentialityCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservationResult confidentialityCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationResultderivationExpression
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "derivationExpression"^^xsd:string ;
+	bridg:attributeDescription "A character string containing a formal language expression that specifies how the observation result's attributes are, should be, or have been derived from input parameters associated with activity."^^xsd:string ;
+	rdfs:label "derivationExpression BRIDG Attribute from Class DefinedObservationResult"^^xsd:string ;
+.
+:BR-DefinedObservationResultderivationExpressionALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultderivationExpressionALinkEnd ;
+	rdfs:label "DefinedObservationResult derivationExpression Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationResultderivationExpressionALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResultderivationExpression ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResultderivationExpressionALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResultderivationExpressionARole ;
+	rdfs:label "DefinedObservationResult derivationExpression Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResultderivationExpressionARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservationResult derivationExpression Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationResultresult
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ANY"^^xsd:string ;
+	bridg:attributeName "result"^^xsd:string ;
+	bridg:attributeDescription "Data or information that is determined by an act of observation."^^xsd:string ;
+	rdfs:label "result BRIDG Attribute from Class DefinedObservationResult"^^xsd:string ;
+.
+:BR-DefinedObservationResultresultALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultresultALinkEnd ;
+	rdfs:label "DefinedObservationResult result Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationResultresultALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResultresult ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResultresultALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResultresultARole ;
+	rdfs:label "DefinedObservationResult result Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResultresultARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservationResult result Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetAnatomicSiteCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the anatomic location that is the focus of an observation result."^^xsd:string ;
+	rdfs:label "targetAnatomicSiteCode BRIDG Attribute from Class DefinedObservationResult"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetAnatomicSiteCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResulttargetAnatomicSiteCodeALinkEnd ;
+	rdfs:label "DefinedObservationResult targetAnatomicSiteCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetAnatomicSiteCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResulttargetAnatomicSiteCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResulttargetAnatomicSiteCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResulttargetAnatomicSiteCodeARole ;
+	rdfs:label "DefinedObservationResult targetAnatomicSiteCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetAnatomicSiteCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservationResult targetAnatomicSiteCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetAnatomicSiteLateralityCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteLateralityCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the side of the body (or a paired organ) that is a target site for a procedure."^^xsd:string ;
+	rdfs:label "targetAnatomicSiteLateralityCode BRIDG Attribute from Class DefinedObservationResult"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetAnatomicSiteLateralityCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResulttargetAnatomicSiteLateralityCodeALinkEnd ;
+	rdfs:label "DefinedObservationResult targetAnatomicSiteLateralityCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetAnatomicSiteLateralityCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResulttargetAnatomicSiteLateralityCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResulttargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResulttargetAnatomicSiteLateralityCodeARole ;
+	rdfs:label "DefinedObservationResult targetAnatomicSiteLateralityCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetAnatomicSiteLateralityCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservationResult targetAnatomicSiteLateralityCode Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetCodingSystem
+	rdf:type bridg:Attribute ;
+	bridg:datatype "OID"^^xsd:string ;
+	bridg:attributeName "targetCodingSystem"^^xsd:string ;
+	bridg:attributeDescription "The coding system to use for recording results for the associated activity or evaluation."^^xsd:string ;
+	rdfs:label "targetCodingSystem BRIDG Attribute from Class DefinedObservationResult"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetCodingSystemALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResulttargetCodingSystemALinkEnd ;
+	rdfs:label "DefinedObservationResult targetCodingSystem Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetCodingSystemALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResulttargetCodingSystem ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResulttargetCodingSystemALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResulttargetCodingSystemARole ;
+	rdfs:label "DefinedObservationResult targetCodingSystem Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResulttargetCodingSystemARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservationResult targetCodingSystem Attribute Role"^^xsd:string ;
+.
+:BR-DefinedObservationResulttypeCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "typeCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the kind of observation result."^^xsd:string ;
+	rdfs:label "typeCode BRIDG Attribute from Class DefinedObservationResult"^^xsd:string ;
+.
+:BR-DefinedObservationResulttypeCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-DefinedObservationResulttypeCodeALinkEnd ;
+	rdfs:label "DefinedObservationResult typeCode Attribute Link"^^xsd:string ;
+.
+:BR-DefinedObservationResulttypeCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-DefinedObservationResulttypeCode ;
+	isoC:LinkEndLinkRelationship :BR-DefinedObservationResulttypeCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-DefinedObservationResulttypeCodeARole ;
+	rdfs:label "DefinedObservationResult typeCode Attribute Link End"^^xsd:string ;
+.
+:BR-DefinedObservationResulttypeCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "DefinedObservationResult typeCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationbodyPositionCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "bodyPositionCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the 3-dimensional spatial orientation of a subject during a particular observation."^^xsd:string ;
+	rdfs:label "bodyPositionCode BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationbodyPositionCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationbodyPositionCodeALinkEnd ;
+	rdfs:label "PerformedObservation bodyPositionCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationbodyPositionCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationbodyPositionCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationbodyPositionCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationbodyPositionCodeARole ;
+	rdfs:label "PerformedObservation bodyPositionCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationbodyPositionCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation bodyPositionCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationfocalDateRange
+	rdf:type bridg:Attribute ;
+	bridg:datatype "IVL(TSDATETIME)"^^xsd:string ;
+	bridg:attributeName "focalDateRange"^^xsd:string ;
+	bridg:attributeDescription "The time period in which the observation result is held to be true."^^xsd:string ;
+	rdfs:label "focalDateRange BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationfocalDateRangeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationfocalDateRangeALinkEnd ;
+	rdfs:label "PerformedObservation focalDateRange Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationfocalDateRangeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationfocalDateRange ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationfocalDateRangeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationfocalDateRangeARole ;
+	rdfs:label "PerformedObservation focalDateRange Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationfocalDateRangeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation focalDateRange Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationfocalDuration
+	rdf:type bridg:Attribute ;
+	bridg:datatype "PQTIME"^^xsd:string ;
+	bridg:attributeName "focalDuration"^^xsd:string ;
+	bridg:attributeDescription "The quantity of time in which the observation result is held to be true."^^xsd:string ;
+	rdfs:label "focalDuration BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationfocalDurationALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationfocalDurationALinkEnd ;
+	rdfs:label "PerformedObservation focalDuration Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationfocalDurationALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationfocalDuration ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationfocalDurationALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationfocalDurationARole ;
+	rdfs:label "PerformedObservation focalDuration Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationfocalDurationARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation focalDuration Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationmethodCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "DSET(CD)"^^xsd:string ;
+	bridg:attributeName "methodCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the technique used to perform the observation."^^xsd:string ;
+	rdfs:label "methodCode BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationmethodCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationmethodCodeALinkEnd ;
+	rdfs:label "PerformedObservation methodCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationmethodCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationmethodCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationmethodCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationmethodCodeARole ;
+	rdfs:label "PerformedObservation methodCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationmethodCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation methodCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationtargetAnatomicSiteCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the anatomic location that is the focus of the observation."^^xsd:string ;
+	rdfs:label "targetAnatomicSiteCode BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationtargetAnatomicSiteCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationtargetAnatomicSiteCodeALinkEnd ;
+	rdfs:label "PerformedObservation targetAnatomicSiteCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationtargetAnatomicSiteCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationtargetAnatomicSiteCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationtargetAnatomicSiteCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationtargetAnatomicSiteCodeARole ;
+	rdfs:label "PerformedObservation targetAnatomicSiteCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationtargetAnatomicSiteCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation targetAnatomicSiteCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationtargetAnatomicSiteLateralityCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteLateralityCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the side of the body (or a paired organ) that is a target site for an observation."^^xsd:string ;
+	rdfs:label "targetAnatomicSiteLateralityCode BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationtargetAnatomicSiteLateralityCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationtargetAnatomicSiteLateralityCodeALinkEnd ;
+	rdfs:label "PerformedObservation targetAnatomicSiteLateralityCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationtargetAnatomicSiteLateralityCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationtargetAnatomicSiteLateralityCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationtargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationtargetAnatomicSiteLateralityCodeARole ;
+	rdfs:label "PerformedObservation targetAnatomicSiteLateralityCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationtargetAnatomicSiteLateralityCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation targetAnatomicSiteLateralityCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationapproachAnatomicSiteCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "approachAnatomicSiteCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "approachAnatomicSiteCode BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationapproachAnatomicSiteCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationapproachAnatomicSiteCodeALinkEnd ;
+	rdfs:label "PerformedObservation approachAnatomicSiteCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationapproachAnatomicSiteCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationapproachAnatomicSiteCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationapproachAnatomicSiteCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationapproachAnatomicSiteCodeARole ;
+	rdfs:label "PerformedObservation approachAnatomicSiteCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationapproachAnatomicSiteCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation approachAnatomicSiteCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationapproachAnatomicSiteLateralityCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "approachAnatomicSiteLateralityCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "approachAnatomicSiteLateralityCode BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationapproachAnatomicSiteLateralityCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationapproachAnatomicSiteLateralityCodeALinkEnd ;
+	rdfs:label "PerformedObservation approachAnatomicSiteLateralityCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationapproachAnatomicSiteLateralityCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationapproachAnatomicSiteLateralityCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationapproachAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationapproachAnatomicSiteLateralityCodeARole ;
+	rdfs:label "PerformedObservation approachAnatomicSiteLateralityCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationapproachAnatomicSiteLateralityCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation approachAnatomicSiteLateralityCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationduration
+	rdf:type bridg:Attribute ;
+	bridg:datatype "PQTIME"^^xsd:string ;
+	bridg:attributeName "duration"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "duration BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationdurationALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationdurationALinkEnd ;
+	rdfs:label "PerformedObservation duration Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationdurationALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationduration ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationdurationALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationdurationARole ;
+	rdfs:label "PerformedObservation duration Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationdurationARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation duration Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationdateRange
+	rdf:type bridg:Attribute ;
+	bridg:datatype "IVL(TSDATETIME)"^^xsd:string ;
+	bridg:attributeName "dateRange"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "dateRange BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationdateRangeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationdateRangeALinkEnd ;
+	rdfs:label "PerformedObservation dateRange Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationdateRangeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationdateRange ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationdateRangeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationdateRangeARole ;
+	rdfs:label "PerformedObservation dateRange Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationdateRangeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation dateRange Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationstudyDayRange
+	rdf:type bridg:Attribute ;
+	bridg:datatype "IVL(INT)"^^xsd:string ;
+	bridg:attributeName "studyDayRange"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "studyDayRange BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationstudyDayRangeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationstudyDayRangeALinkEnd ;
+	rdfs:label "PerformedObservation studyDayRange Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationstudyDayRangeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationstudyDayRange ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationstudyDayRangeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationstudyDayRangeARole ;
+	rdfs:label "PerformedObservation studyDayRange Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationstudyDayRangeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation studyDayRange Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationdelayDuration
+	rdf:type bridg:Attribute ;
+	bridg:datatype "PQTIME"^^xsd:string ;
+	bridg:attributeName "delayDuration"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "delayDuration BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationdelayDurationALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationdelayDurationALinkEnd ;
+	rdfs:label "PerformedObservation delayDuration Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationdelayDurationALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationdelayDuration ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationdelayDurationALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationdelayDurationARole ;
+	rdfs:label "PerformedObservation delayDuration Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationdelayDurationARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation delayDuration Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationnegationReason
+	rdf:type bridg:Attribute ;
+	bridg:datatype "DSET(SC)"^^xsd:string ;
+	bridg:attributeName "negationReason"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "negationReason BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationnegationReasonALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationnegationReasonALinkEnd ;
+	rdfs:label "PerformedObservation negationReason Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationnegationReasonALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationnegationReason ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationnegationReasonALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationnegationReasonARole ;
+	rdfs:label "PerformedObservation negationReason Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationnegationReasonARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation negationReason Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationnegationIndicator
+	rdf:type bridg:Attribute ;
+	bridg:datatype "BL"^^xsd:string ;
+	bridg:attributeName "negationIndicator"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "negationIndicator BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationnegationIndicatorALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationnegationIndicatorALinkEnd ;
+	rdfs:label "PerformedObservation negationIndicator Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationnegationIndicatorALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationnegationIndicator ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationnegationIndicatorALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationnegationIndicatorARole ;
+	rdfs:label "PerformedObservation negationIndicator Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationnegationIndicatorARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation negationIndicator Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationrepetitionNumber
+	rdf:type bridg:Attribute ;
+	bridg:datatype "INTPOS"^^xsd:string ;
+	bridg:attributeName "repetitionNumber"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "repetitionNumber BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationrepetitionNumberALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationrepetitionNumberALinkEnd ;
+	rdfs:label "PerformedObservation repetitionNumber Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationrepetitionNumberALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationrepetitionNumber ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationrepetitionNumberALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationrepetitionNumberARole ;
+	rdfs:label "PerformedObservation repetitionNumber Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationrepetitionNumberARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation repetitionNumber Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationstatusCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "statusCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "statusCode BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationstatusCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationstatusCodeALinkEnd ;
+	rdfs:label "PerformedObservation statusCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationstatusCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationstatusCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationstatusCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationstatusCodeARole ;
+	rdfs:label "PerformedObservation statusCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationstatusCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation statusCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationstatusDate
+	rdf:type bridg:Attribute ;
+	bridg:datatype "TSDATETIME"^^xsd:string ;
+	bridg:attributeName "statusDate"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "statusDate BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationstatusDateALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationstatusDateALinkEnd ;
+	rdfs:label "PerformedObservation statusDate Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationstatusDateALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationstatusDate ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationstatusDateALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationstatusDateARole ;
+	rdfs:label "PerformedObservation statusDate Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationstatusDateARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation statusDate Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationidentifier
+	rdf:type bridg:Attribute ;
+	bridg:datatype "II"^^xsd:string ;
+	bridg:attributeName "identifier"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "identifier BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationidentifierALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationidentifierALinkEnd ;
+	rdfs:label "PerformedObservation identifier Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationidentifierALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationidentifier ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationidentifierALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationidentifierARole ;
+	rdfs:label "PerformedObservation identifier Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationidentifierARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation identifier Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationreasonCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "DSET(CD)"^^xsd:string ;
+	bridg:attributeName "reasonCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "reasonCode BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationreasonCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationreasonCodeALinkEnd ;
+	rdfs:label "PerformedObservation reasonCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationreasonCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationreasonCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationreasonCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationreasonCodeARole ;
+	rdfs:label "PerformedObservation reasonCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationreasonCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation reasonCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationcomment
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "comment"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "comment BRIDG Attribute from Class PerformedObservation"^^xsd:string ;
+.
+:BR-PerformedObservationcommentALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationcommentALinkEnd ;
+	rdfs:label "PerformedObservation comment Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationcommentALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationcomment ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationcommentALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationcommentARole ;
+	rdfs:label "PerformedObservation comment Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationcommentARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservation comment Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultbaselineIndicator
+	rdf:type bridg:Attribute ;
+	bridg:datatype "BL"^^xsd:string ;
+	bridg:attributeName "baselineIndicator"^^xsd:string ;
+	bridg:attributeDescription "Specifies whether the result is a starting point to which other results may be compared."^^xsd:string ;
+	rdfs:label "baselineIndicator BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultbaselineIndicatorALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultbaselineIndicatorALinkEnd ;
+	rdfs:label "PerformedObservationResult baselineIndicator Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultbaselineIndicatorALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultbaselineIndicator ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultbaselineIndicatorALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultbaselineIndicatorARole ;
+	rdfs:label "PerformedObservationResult baselineIndicator Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultbaselineIndicatorARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult baselineIndicator Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultbodySystemCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "bodySystemCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the anatomical structure that consists of organs and organ subclasses responsible for certain body functions."^^xsd:string ;
+	rdfs:label "bodySystemCode BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultbodySystemCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultbodySystemCodeALinkEnd ;
+	rdfs:label "PerformedObservationResult bodySystemCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultbodySystemCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultbodySystemCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultbodySystemCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultbodySystemCodeARole ;
+	rdfs:label "PerformedObservationResult bodySystemCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultbodySystemCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult bodySystemCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultcomment
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "comment"^^xsd:string ;
+	bridg:attributeDescription "Additional description of the observation result."^^xsd:string ;
+	rdfs:label "comment BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultcommentALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultcommentALinkEnd ;
+	rdfs:label "PerformedObservationResult comment Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultcommentALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultcomment ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultcommentALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultcommentARole ;
+	rdfs:label "PerformedObservationResult comment Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultcommentARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult comment Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultconfidentialityCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "confidentialityCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the degree of privacy applicable for the observation result."^^xsd:string ;
+	rdfs:label "confidentialityCode BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultconfidentialityCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultconfidentialityCodeALinkEnd ;
+	rdfs:label "PerformedObservationResult confidentialityCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultconfidentialityCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultconfidentialityCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultconfidentialityCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultconfidentialityCodeARole ;
+	rdfs:label "PerformedObservationResult confidentialityCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultconfidentialityCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult confidentialityCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultidentifier
+	rdf:type bridg:Attribute ;
+	bridg:datatype "II"^^xsd:string ;
+	bridg:attributeName "identifier"^^xsd:string ;
+	bridg:attributeDescription "The unique symbol that establishes identity of the observation result."^^xsd:string ;
+	rdfs:label "identifier BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultidentifierALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultidentifierALinkEnd ;
+	rdfs:label "PerformedObservationResult identifier Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultidentifierALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultidentifier ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultidentifierALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultidentifierARole ;
+	rdfs:label "PerformedObservationResult identifier Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultidentifierARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult identifier Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultreportedDate
+	rdf:type bridg:Attribute ;
+	bridg:datatype "TSDATETIME"^^xsd:string ;
+	bridg:attributeName "reportedDate"^^xsd:string ;
+	bridg:attributeDescription "The date (and time) on which the result is reported."^^xsd:string ;
+	rdfs:label "reportedDate BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultreportedDateALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultreportedDateALinkEnd ;
+	rdfs:label "PerformedObservationResult reportedDate Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultreportedDateALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultreportedDate ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultreportedDateALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultreportedDateARole ;
+	rdfs:label "PerformedObservationResult reportedDate Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultreportedDateARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult reportedDate Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultresult
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ANY"^^xsd:string ;
+	bridg:attributeName "result"^^xsd:string ;
+	bridg:attributeDescription "Data or information that is determined by an act of observation."^^xsd:string ;
+	rdfs:label "result BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultresultALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultresultALinkEnd ;
+	rdfs:label "PerformedObservationResult result Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultresultALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultresult ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultresultALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultresultARole ;
+	rdfs:label "PerformedObservationResult result Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultresultARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult result Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultresultCodeModifiedText
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "resultCodeModifiedText"^^xsd:string ;
+	bridg:attributeDescription "A character string that is a revision of the original text observation result to enable the coding of the text."^^xsd:string ;
+	rdfs:label "resultCodeModifiedText BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultresultCodeModifiedTextALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultresultCodeModifiedTextALinkEnd ;
+	rdfs:label "PerformedObservationResult resultCodeModifiedText Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultresultCodeModifiedTextALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultresultCodeModifiedText ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultresultCodeModifiedTextALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultresultCodeModifiedTextARole ;
+	rdfs:label "PerformedObservationResult resultCodeModifiedText Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultresultCodeModifiedTextARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult resultCodeModifiedText Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResulttargetAnatomicSiteCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the anatomic location that is the focus of an observation result."^^xsd:string ;
+	rdfs:label "targetAnatomicSiteCode BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResulttargetAnatomicSiteCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResulttargetAnatomicSiteCodeALinkEnd ;
+	rdfs:label "PerformedObservationResult targetAnatomicSiteCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResulttargetAnatomicSiteCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResulttargetAnatomicSiteCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResulttargetAnatomicSiteCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResulttargetAnatomicSiteCodeARole ;
+	rdfs:label "PerformedObservationResult targetAnatomicSiteCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResulttargetAnatomicSiteCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult targetAnatomicSiteCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResulttargetAnatomicSiteLateralityCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteLateralityCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the side of the body (or a paired organ) that is a target site for an observation result."^^xsd:string ;
+	rdfs:label "targetAnatomicSiteLateralityCode BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResulttargetAnatomicSiteLateralityCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResulttargetAnatomicSiteLateralityCodeALinkEnd ;
+	rdfs:label "PerformedObservationResult targetAnatomicSiteLateralityCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResulttargetAnatomicSiteLateralityCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResulttargetAnatomicSiteLateralityCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResulttargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResulttargetAnatomicSiteLateralityCodeARole ;
+	rdfs:label "PerformedObservationResult targetAnatomicSiteLateralityCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResulttargetAnatomicSiteLateralityCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult targetAnatomicSiteLateralityCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResulttypeCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "typeCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the kind of observation result."^^xsd:string ;
+	rdfs:label "typeCode BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResulttypeCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResulttypeCodeALinkEnd ;
+	rdfs:label "PerformedObservationResult typeCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResulttypeCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResulttypeCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResulttypeCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResulttypeCodeARole ;
+	rdfs:label "PerformedObservationResult typeCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResulttypeCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult typeCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultuncertaintyCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "uncertaintyCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying whether and to what degree this evaluation or observation has been asserted to be in doubt in any way."^^xsd:string ;
+	rdfs:label "uncertaintyCode BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultuncertaintyCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultuncertaintyCodeALinkEnd ;
+	rdfs:label "PerformedObservationResult uncertaintyCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultuncertaintyCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultuncertaintyCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultuncertaintyCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultuncertaintyCodeARole ;
+	rdfs:label "PerformedObservationResult uncertaintyCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultuncertaintyCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult uncertaintyCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalue
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ANY"^^xsd:string ;
+	bridg:attributeName "value"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "value BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultvalueALinkEnd ;
+	rdfs:label "PerformedObservationResult value Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultvalue ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultvalueALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultvalueARole ;
+	rdfs:label "PerformedObservationResult value Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult value Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueCodeModifiedText
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "valueCodeModifiedText"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "valueCodeModifiedText BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueCodeModifiedTextALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultvalueCodeModifiedTextALinkEnd ;
+	rdfs:label "PerformedObservationResult valueCodeModifiedText Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueCodeModifiedTextALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultvalueCodeModifiedText ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultvalueCodeModifiedTextALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultvalueCodeModifiedTextARole ;
+	rdfs:label "PerformedObservationResult valueCodeModifiedText Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueCodeModifiedTextARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult valueCodeModifiedText Attribute Role"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueNullFlavorReason
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "valueNullFlavorReason"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "valueNullFlavorReason BRIDG Attribute from Class PerformedObservationResult"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueNullFlavorReasonALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedObservationResultvalueNullFlavorReasonALinkEnd ;
+	rdfs:label "PerformedObservationResult valueNullFlavorReason Attribute Link"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueNullFlavorReasonALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedObservationResultvalueNullFlavorReason ;
+	isoC:LinkEndLinkRelationship :BR-PerformedObservationResultvalueNullFlavorReasonALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedObservationResultvalueNullFlavorReasonARole ;
+	rdfs:label "PerformedObservationResult valueNullFlavorReason Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedObservationResultvalueNullFlavorReasonARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedObservationResult valueNullFlavorReason Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultasCollectedIndicator
+	rdf:type bridg:Attribute ;
+	bridg:datatype "BL"^^xsd:string ;
+	bridg:attributeName "asCollectedIndicator"^^xsd:string ;
+	bridg:attributeDescription "Specifies whether the observation is represented in the units or values as originally collected."^^xsd:string ;
+	rdfs:label "asCollectedIndicator BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultasCollectedIndicatorALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultasCollectedIndicatorALinkEnd ;
+	rdfs:label "PerformedClinicalResult asCollectedIndicator Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultasCollectedIndicatorALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultasCollectedIndicator ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultasCollectedIndicatorALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultasCollectedIndicatorARole ;
+	rdfs:label "PerformedClinicalResult asCollectedIndicator Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultasCollectedIndicatorARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult asCollectedIndicator Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbiomarkerIndicator
+	rdf:type bridg:Attribute ;
+	bridg:datatype "BL"^^xsd:string ;
+	bridg:attributeName "biomarkerIndicator"^^xsd:string ;
+	bridg:attributeDescription "Specifies whether a result is considered a biomarker."^^xsd:string ;
+	rdfs:label "biomarkerIndicator BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbiomarkerIndicatorALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultbiomarkerIndicatorALinkEnd ;
+	rdfs:label "PerformedClinicalResult biomarkerIndicator Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbiomarkerIndicatorALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultbiomarkerIndicator ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultbiomarkerIndicatorALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultbiomarkerIndicatorARole ;
+	rdfs:label "PerformedClinicalResult biomarkerIndicator Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbiomarkerIndicatorARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult biomarkerIndicator Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultinfectiousAgent
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "infectiousAgent"^^xsd:string ;
+	bridg:attributeDescription "The name of the specific microbe that the test is intended to identify."^^xsd:string ;
+	rdfs:label "infectiousAgent BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultinfectiousAgentALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultinfectiousAgentALinkEnd ;
+	rdfs:label "PerformedClinicalResult infectiousAgent Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultinfectiousAgentALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultinfectiousAgent ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultinfectiousAgentALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultinfectiousAgentARole ;
+	rdfs:label "PerformedClinicalResult infectiousAgent Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultinfectiousAgentARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult infectiousAgent Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultnormalRangeComparisonCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "normalRangeComparisonCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the relationship of a value to a normal range or reference range of values."^^xsd:string ;
+	rdfs:label "normalRangeComparisonCode BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultnormalRangeComparisonCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultnormalRangeComparisonCodeALinkEnd ;
+	rdfs:label "PerformedClinicalResult normalRangeComparisonCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultnormalRangeComparisonCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultnormalRangeComparisonCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultnormalRangeComparisonCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultnormalRangeComparisonCodeARole ;
+	rdfs:label "PerformedClinicalResult normalRangeComparisonCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultnormalRangeComparisonCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult normalRangeComparisonCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultreportedResultStatusCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "reportedResultStatusCode"^^xsd:string ;
+	bridg:attributeDescription "A coded value specifying the phase in the lifecycle of the reported result."^^xsd:string ;
+	rdfs:label "reportedResultStatusCode BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultreportedResultStatusCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultreportedResultStatusCodeALinkEnd ;
+	rdfs:label "PerformedClinicalResult reportedResultStatusCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultreportedResultStatusCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultreportedResultStatusCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultreportedResultStatusCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultreportedResultStatusCodeARole ;
+	rdfs:label "PerformedClinicalResult reportedResultStatusCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultreportedResultStatusCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult reportedResultStatusCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultidentifier
+	rdf:type bridg:Attribute ;
+	bridg:datatype "II"^^xsd:string ;
+	bridg:attributeName "identifier"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "identifier BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultidentifierALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultidentifierALinkEnd ;
+	rdfs:label "PerformedClinicalResult identifier Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultidentifierALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultidentifier ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultidentifierALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultidentifierARole ;
+	rdfs:label "PerformedClinicalResult identifier Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultidentifierARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult identifier Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttypeCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "typeCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "typeCode BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttypeCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResulttypeCodeALinkEnd ;
+	rdfs:label "PerformedClinicalResult typeCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttypeCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResulttypeCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResulttypeCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResulttypeCodeARole ;
+	rdfs:label "PerformedClinicalResult typeCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttypeCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult typeCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalue
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ANY"^^xsd:string ;
+	bridg:attributeName "value"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "value BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultvalueALinkEnd ;
+	rdfs:label "PerformedClinicalResult value Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultvalue ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultvalueALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultvalueARole ;
+	rdfs:label "PerformedClinicalResult value Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult value Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueCodeModifiedText
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "valueCodeModifiedText"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "valueCodeModifiedText BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueCodeModifiedTextALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultvalueCodeModifiedTextALinkEnd ;
+	rdfs:label "PerformedClinicalResult valueCodeModifiedText Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueCodeModifiedTextALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultvalueCodeModifiedText ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultvalueCodeModifiedTextALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultvalueCodeModifiedTextARole ;
+	rdfs:label "PerformedClinicalResult valueCodeModifiedText Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueCodeModifiedTextARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult valueCodeModifiedText Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueNullFlavorReason
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "valueNullFlavorReason"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "valueNullFlavorReason BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueNullFlavorReasonALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultvalueNullFlavorReasonALinkEnd ;
+	rdfs:label "PerformedClinicalResult valueNullFlavorReason Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueNullFlavorReasonALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultvalueNullFlavorReason ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultvalueNullFlavorReasonALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultvalueNullFlavorReasonARole ;
+	rdfs:label "PerformedClinicalResult valueNullFlavorReason Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultvalueNullFlavorReasonARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult valueNullFlavorReason Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttargetAnatomicSiteCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "targetAnatomicSiteCode BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttargetAnatomicSiteCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResulttargetAnatomicSiteCodeALinkEnd ;
+	rdfs:label "PerformedClinicalResult targetAnatomicSiteCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttargetAnatomicSiteCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResulttargetAnatomicSiteCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResulttargetAnatomicSiteCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResulttargetAnatomicSiteCodeARole ;
+	rdfs:label "PerformedClinicalResult targetAnatomicSiteCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttargetAnatomicSiteCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult targetAnatomicSiteCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttargetAnatomicSiteLateralityCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "targetAnatomicSiteLateralityCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "targetAnatomicSiteLateralityCode BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttargetAnatomicSiteLateralityCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResulttargetAnatomicSiteLateralityCodeALinkEnd ;
+	rdfs:label "PerformedClinicalResult targetAnatomicSiteLateralityCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttargetAnatomicSiteLateralityCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResulttargetAnatomicSiteLateralityCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResulttargetAnatomicSiteLateralityCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResulttargetAnatomicSiteLateralityCodeARole ;
+	rdfs:label "PerformedClinicalResult targetAnatomicSiteLateralityCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResulttargetAnatomicSiteLateralityCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult targetAnatomicSiteLateralityCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbodySystemCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "bodySystemCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "bodySystemCode BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbodySystemCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultbodySystemCodeALinkEnd ;
+	rdfs:label "PerformedClinicalResult bodySystemCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbodySystemCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultbodySystemCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultbodySystemCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultbodySystemCodeARole ;
+	rdfs:label "PerformedClinicalResult bodySystemCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbodySystemCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult bodySystemCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbaselineIndicator
+	rdf:type bridg:Attribute ;
+	bridg:datatype "BL"^^xsd:string ;
+	bridg:attributeName "baselineIndicator"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "baselineIndicator BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbaselineIndicatorALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultbaselineIndicatorALinkEnd ;
+	rdfs:label "PerformedClinicalResult baselineIndicator Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbaselineIndicatorALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultbaselineIndicator ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultbaselineIndicatorALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultbaselineIndicatorARole ;
+	rdfs:label "PerformedClinicalResult baselineIndicator Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultbaselineIndicatorARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult baselineIndicator Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultconfidentialityCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "confidentialityCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "confidentialityCode BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultconfidentialityCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultconfidentialityCodeALinkEnd ;
+	rdfs:label "PerformedClinicalResult confidentialityCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultconfidentialityCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultconfidentialityCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultconfidentialityCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultconfidentialityCodeARole ;
+	rdfs:label "PerformedClinicalResult confidentialityCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultconfidentialityCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult confidentialityCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultuncertaintyCode
+	rdf:type bridg:Attribute ;
+	bridg:datatype "CD"^^xsd:string ;
+	bridg:attributeName "uncertaintyCode"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "uncertaintyCode BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultuncertaintyCodeALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultuncertaintyCodeALinkEnd ;
+	rdfs:label "PerformedClinicalResult uncertaintyCode Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultuncertaintyCodeALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultuncertaintyCode ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultuncertaintyCodeALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultuncertaintyCodeARole ;
+	rdfs:label "PerformedClinicalResult uncertaintyCode Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultuncertaintyCodeARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult uncertaintyCode Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultreportedDate
+	rdf:type bridg:Attribute ;
+	bridg:datatype "TSDATETIME"^^xsd:string ;
+	bridg:attributeName "reportedDate"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "reportedDate BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultreportedDateALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultreportedDateALinkEnd ;
+	rdfs:label "PerformedClinicalResult reportedDate Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultreportedDateALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultreportedDate ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultreportedDateALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultreportedDateARole ;
+	rdfs:label "PerformedClinicalResult reportedDate Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultreportedDateARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult reportedDate Attribute Role"^^xsd:string ;
+.
+:BR-PerformedClinicalResultcomment
+	rdf:type bridg:Attribute ;
+	bridg:datatype "ST"^^xsd:string ;
+	bridg:attributeName "comment"^^xsd:string ;
+	bridg:attributeDescription ""^^xsd:string ;
+	rdfs:label "comment BRIDG Attribute from Class PerformedClinicalResult"^^xsd:string ;
+.
+:BR-PerformedClinicalResultcommentALink
+	rdf:type isoC:Link ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultALinkEnd ;
+	isoC:LinkLinkEndRelationship :BR-PerformedClinicalResultcommentALinkEnd ;
+	rdfs:label "PerformedClinicalResult comment Attribute Link"^^xsd:string ;
+.
+:BR-PerformedClinicalResultcommentALinkEnd
+	rdf:type isoC:LinkEnd ;
+	isoC:LinkEndConceptRelationship :BR-PerformedClinicalResultcomment ;
+	isoC:LinkEndLinkRelationship :BR-PerformedClinicalResultcommentALink ;
+	isoC:LinkEndRoleRelationship :BR-PerformedClinicalResultcommentARole ;
+	rdfs:label "PerformedClinicalResult comment Attribute Link End"^^xsd:string ;
+.
+:BR-PerformedClinicalResultcommentARole
+	rdf:type isoC:RelationRole ;
+	isoC:multiplicity "1"^^xsd:string ;
+	rdfs:label "PerformedClinicalResult comment Attribute Role"^^xsd:string ;
+.

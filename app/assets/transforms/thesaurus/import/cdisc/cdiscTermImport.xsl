@@ -27,7 +27,8 @@
     <xsl:variable name="CLPrefix">CL-</xsl:variable>
     <xsl:variable name="CLIPrefix">CLI-</xsl:variable>
     <xsl:variable name="CID" select="concat('TH-CDISC_CT-',$UseVersion)"/>
-    
+    <xsl:variable name="ReleaseDate" select="/CDISCTerminology/Update[@version=$UseVersion]/@date"/>
+        
     <!-- Match the root element -->
     <xsl:template match="/">
 
@@ -65,6 +66,7 @@
         <xsl:value-of select="concat(':',$CID,$newline)"/>
         <xsl:text>&#009;rdf:type iso25964:Thesaurus ;&#xa;</xsl:text>
         <xsl:value-of select="concat('&#009;isoI:identifiedItemRelationship org:',$II,' ;',$newline)"/>
+        <xsl:value-of select="concat('&#009;isoiso25964:created ',$quote,$ReleaseDate,$quote,'^^xsd:date ;',$newline)"/>
         <xsl:text>.&#xa;</xsl:text>
 
         <!-- For each file making up the CDISC Terminology version, select the file set from the catalog file -->

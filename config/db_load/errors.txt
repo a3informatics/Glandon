@@ -1,0 +1,254 @@
+++ FileEndPoint=https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+++ curl -v -X POST -H 'Content-Type:application/x-turtle;charset=UTF-8' -T schema/ISO11179Concepts.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+*   Trying 54.165.119.179...
+* Connected to rdf.s4.ontotext.com (54.165.119.179) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+* Server certificate: *.s4.ontotext.com
+* Server certificate: GeoTrust SSL CA - G3
+* Server certificate: GeoTrust Global CA
+* Server auth using Basic with user 's4h7h1e8absr'
+> POST /4830471037/Test/repositories/mdr/statements HTTP/1.1
+> Host: rdf.s4.ontotext.com
+> Authorization: Basic czRoN2gxZThhYnNyOjQ3cTh1Y2UycjFiNGNyaQ==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type:application/x-turtle;charset=UTF-8
+> Content-Length: 7110
+> Expect: 100-continue
+> 
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+< HTTP/1.1 400 Bad Request
+< Content-Language: en-US
+< Content-Type: text/plain;charset=UTF-8
+< Date: Fri, 02 Oct 2015 19:23:51 GMT
+< Server: Apache-Coyote/1.1
+< Set-Cookie: JSESSIONID=B01F5E8F356E2D0A8833C2182177C3EB; Path=/; HttpOnly
+< Content-Length: 49
+< Connection: keep-alive
+< 
+* Connection #0 to host rdf.s4.ontotext.com left intact
+MALFORMED DATA: Expected '.', found '>' [line 54]
+
+
+
+
+++ curl -v -X POST -H 'Content-Type:application/x-turtle;charset=UTF-8' -T schema/ISO21090.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+*   Trying 54.175.181.194...
+* Connected to rdf.s4.ontotext.com (54.175.181.194) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+* Server certificate: *.s4.ontotext.com
+* Server certificate: GeoTrust SSL CA - G3
+* Server certificate: GeoTrust Global CA
+* Server auth using Basic with user 's4h7h1e8absr'
+> POST /4830471037/Test/repositories/mdr/statements HTTP/1.1
+> Host: rdf.s4.ontotext.com
+> Authorization: Basic czRoN2gxZThhYnNyOjQ3cTh1Y2UycjFiNGNyaQ==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type:application/x-turtle;charset=UTF-8
+> Content-Length: 2290
+> Expect: 100-continue
+> 
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+< HTTP/1.1 204 No Content
+< Content-Language: en-US
+< Date: Fri, 02 Oct 2015 19:23:52 GMT
+< Server: Apache-Coyote/1.1
+< Set-Cookie: JSESSIONID=9AFFE4424228A2FE1BAA4E7D2B55E03D; Path=/; HttpOnly
+< Connection: keep-alive
+< 
+* Connection #0 to host rdf.s4.ontotext.com left intact
+
+
+
+
+++ curl -v -X POST -H 'Content-Type:application/x-turtle;charset=UTF-8' -T schema/BRIDG.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+*   Trying 54.165.119.179...
+* Connected to rdf.s4.ontotext.com (54.165.119.179) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+* Server certificate: *.s4.ontotext.com
+* Server certificate: GeoTrust SSL CA - G3
+* Server certificate: GeoTrust Global CA
+* Server auth using Basic with user 's4h7h1e8absr'
+> POST /4830471037/Test/repositories/mdr/statements HTTP/1.1
+> Host: rdf.s4.ontotext.com
+> Authorization: Basic czRoN2gxZThhYnNyOjQ3cTh1Y2UycjFiNGNyaQ==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type:application/x-turtle;charset=UTF-8
+> Content-Length: 1994
+> Expect: 100-continue
+> 
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+< HTTP/1.1 204 No Content
+< Content-Language: en-US
+< Date: Fri, 02 Oct 2015 19:23:53 GMT
+< Server: Apache-Coyote/1.1
+< Set-Cookie: JSESSIONID=9721EE6C914D5AEB5C917E0CBDF48D28; Path=/; HttpOnly
+< Connection: keep-alive
+< 
+* Connection #0 to host rdf.s4.ontotext.com left intact
+
+
+
+++ curl -v -X POST -H 'Content-Type:application/x-turtle;charset=UTF-8' -T schema/CDISCBiomedicalConcept.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+*   Trying 54.165.119.179...
+* Connected to rdf.s4.ontotext.com (54.165.119.179) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+* Server certificate: *.s4.ontotext.com
+* Server certificate: GeoTrust SSL CA - G3
+* Server certificate: GeoTrust Global CA
+* Server auth using Basic with user 's4h7h1e8absr'
+> POST /4830471037/Test/repositories/mdr/statements HTTP/1.1
+> Host: rdf.s4.ontotext.com
+> Authorization: Basic czRoN2gxZThhYnNyOjQ3cTh1Y2UycjFiNGNyaQ==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type:application/x-turtle;charset=UTF-8
+> Content-Length: 5447
+> Expect: 100-continue
+> 
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+< HTTP/1.1 204 No Content
+< Content-Language: en-US
+< Date: Fri, 02 Oct 2015 19:23:53 GMT
+< Server: Apache-Coyote/1.1
+< Set-Cookie: JSESSIONID=88E2C5D624AFBBFA1BC6A7AC2F6BFC22; Path=/; HttpOnly
+< Connection: keep-alive
+< 
+* Connection #0 to host rdf.s4.ontotext.com left intact
+
+
+
+++ curl -v -X POST -H 'Content-Type:application/x-turtle;charset=UTF-8' -T data/MDRISO21090.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+*   Trying 54.165.119.179...
+* Connected to rdf.s4.ontotext.com (54.165.119.179) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+* Server certificate: *.s4.ontotext.com
+* Server certificate: GeoTrust SSL CA - G3
+* Server certificate: GeoTrust Global CA
+* Server auth using Basic with user 's4h7h1e8absr'
+> POST /4830471037/Test/repositories/mdr/statements HTTP/1.1
+> Host: rdf.s4.ontotext.com
+> Authorization: Basic czRoN2gxZThhYnNyOjQ3cTh1Y2UycjFiNGNyaQ==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type:application/x-turtle;charset=UTF-8
+> Content-Length: 91108
+> Expect: 100-continue
+> 
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+< HTTP/1.1 400 Bad Request
+< Content-Language: en-US
+< Content-Type: text/plain;charset=UTF-8
+< Date: Fri, 02 Oct 2015 19:23:55 GMT
+< Server: Apache-Coyote/1.1
+< Set-Cookie: JSESSIONID=499FE38CAE7F4756695FB3F4817B854F; Path=/; HttpOnly
+< Content-Length: 54
+< Connection: keep-alive
+< 
+* Connection #0 to host rdf.s4.ontotext.com left intact
+MALFORMED DATA: Object for statement missing [line 23]
+
+
+
+++ curl -v -X POST -H 'Content-Type:application/x-turtle;charset=UTF-8' -T data/MDRBRIDG.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+*   Trying 54.165.119.179...
+* Connected to rdf.s4.ontotext.com (54.165.119.179) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+* Server certificate: *.s4.ontotext.com
+* Server certificate: GeoTrust SSL CA - G3
+* Server certificate: GeoTrust Global CA
+* Server auth using Basic with user 's4h7h1e8absr'
+> POST /4830471037/Test/repositories/mdr/statements HTTP/1.1
+> Host: rdf.s4.ontotext.com
+> Authorization: Basic czRoN2gxZThhYnNyOjQ3cTh1Y2UycjFiNGNyaQ==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type:application/x-turtle;charset=UTF-8
+> Content-Length: 115671
+> Expect: 100-continue
+> 
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+< HTTP/1.1 400 Bad Request
+< Content-Language: en-US
+< Content-Type: text/plain;charset=UTF-8
+< Date: Fri, 02 Oct 2015 19:23:56 GMT
+< Server: Apache-Coyote/1.1
+< Set-Cookie: JSESSIONID=2F3A8981C492C41E984B5FBD0D2F400E; Path=/; HttpOnly
+< Content-Length: 54
+< Connection: keep-alive
+< 
+* Connection #0 to host rdf.s4.ontotext.com left intact
+MALFORMED DATA: Object for statement missing [line 24]
+
+
+
+++ curl -v -X POST -H 'Content-Type:application/x-turtle;charset=UTF-8' -T data/MDRCDISCBCs.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+*   Trying 54.165.119.179...
+* Connected to rdf.s4.ontotext.com (54.165.119.179) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+* Server certificate: *.s4.ontotext.com
+* Server certificate: GeoTrust SSL CA - G3
+* Server certificate: GeoTrust Global CA
+* Server auth using Basic with user 's4h7h1e8absr'
+> POST /4830471037/Test/repositories/mdr/statements HTTP/1.1
+> Host: rdf.s4.ontotext.com
+> Authorization: Basic czRoN2gxZThhYnNyOjQ3cTh1Y2UycjFiNGNyaQ==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type:application/x-turtle;charset=UTF-8
+> Content-Length: 329165
+> Expect: 100-continue
+> 
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+< HTTP/1.1 400 Bad Request
+< Content-Language: en-US
+< Content-Type: text/plain;charset=UTF-8
+< Date: Fri, 02 Oct 2015 19:23:57 GMT
+< Server: Apache-Coyote/1.1
+< Set-Cookie: JSESSIONID=DA7D854D1D20CB3683ADB76F8F2FD013; Path=/; HttpOnly
+< Content-Length: 49
+< Connection: keep-alive
+< 
+* Connection #0 to host rdf.s4.ontotext.com left intact
+MALFORMED DATA: Expected ':', found '.' [line 20]
+
+
+++ curl -v -X POST -H 'Content-Type:application/x-turtle;charset=UTF-8' -T data/MDRCDISCBCTs.ttl https://s4h7h1e8absr:47q8uce2r1b4cri@rdf.s4.ontotext.com/4830471037/Test/repositories/mdr/statements
+*   Trying 54.165.119.179...
+* Connected to rdf.s4.ontotext.com (54.165.119.179) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+* Server certificate: *.s4.ontotext.com
+* Server certificate: GeoTrust SSL CA - G3
+* Server certificate: GeoTrust Global CA
+* Server auth using Basic with user 's4h7h1e8absr'
+> POST /4830471037/Test/repositories/mdr/statements HTTP/1.1
+> Host: rdf.s4.ontotext.com
+> Authorization: Basic czRoN2gxZThhYnNyOjQ3cTh1Y2UycjFiNGNyaQ==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type:application/x-turtle;charset=UTF-8
+> Content-Length: 8867
+> Expect: 100-continue
+> 
+< HTTP/1.1 100 Continue
+* We are completely uploaded and fine
+< HTTP/1.1 400 Bad Request
+< Content-Language: en-US
+< Content-Type: text/plain;charset=UTF-8
+< Date: Fri, 02 Oct 2015 19:23:58 GMT
+< Server: Apache-Coyote/1.1
+< Set-Cookie: JSESSIONID=A1BBE353896363CEC56AAC0ED0EC6DC6; Path=/; HttpOnly
+< Content-Length: 49
+< Connection: keep-alive
+< 
+* Connection #0 to host rdf.s4.ontotext.com left intact
+MALFORMED DATA: Expected ':', found ' ' [line 19]++ set +x
