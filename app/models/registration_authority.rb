@@ -9,8 +9,8 @@ class RegistrationAuthority
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :number, :organization_id
-  validates_presence_of :name, :number, :organization_id
+  attr_accessor :id, :number, :shortName, :name, :scheme
+  validates_presence_of :number, :shortName, :name, :scheme
   
   # Base namespace 
   @@baseNs
@@ -19,7 +19,8 @@ class RegistrationAuthority
   C_NS_PREFIX = "org"
   C_CLASS_RA_PREFIX = "RA"
   C_CLASS_RAI_PREFIX = "RAI"
-
+  DUNS = "DUNS"
+  
   @@baseNs = Namespace.getNs(C_NS_PREFIX)
 
   def persisted?
@@ -35,28 +36,20 @@ class RegistrationAuthority
     
   end
   
-  def name
-    
-    if self.organization_id == nil
-      return ""
-    else
-      org = Organization.find(self.organization_id)
-      return org.name
-    end
-    
-  end
-  
   def self.find(id)
     
     ra = nil
     
     # Create the query
     query = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "SELECT ?b ?c WHERE \n" +
+      "SELECT ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
-      "  :" + id + " isoR:registrationAuthorityIdentifierRelationship ?a . \n" +
-      "	 ?a isoB:organizationIdentifier ?b . \n" +
-      "	 ?a isoB:registrationAuthorityNamespaceRelationship ?c . \n" +
+      "	 :" + id + " rdf:type isoR:RegistrationAuthority . \n" +
+      "  :" + id + " isoR:registrationAuthorityIdentifierRelationship ?b . \n" +
+      "	 ?b isoB:organizationIdentifier ?c . \n" +
+      "	 ?b isoB:internationalCodeDesignator ?d . \n" +
+      "	 ?b isoB:shortName ?e . \n" +
+      "	 ?b isoB:name ?f . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -66,24 +59,17 @@ class RegistrationAuthority
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
-      literalSet = node.xpath("binding[@name='b']/literal")
-      linkSet = node.xpath("binding[@name='c']/uri")
-      
-      p "Literal: " + literalSet.text
-      p "Link: " + linkSet.text
-
-      if literalSet.length == 1 and linkSet.length == 1
-
-        p "Found: " + literalSet[0].text
-
+      oSet = node.xpath("binding[@name='c']/literal")
+      sSet = node.xpath("binding[@name='d']/literal")
+      snSet = node.xpath("binding[@name='e']/literal")
+      lnSet = node.xpath("binding[@name='f']/literal")
+      if oSet.length == 1 && sSet.length == 1 && lnSet.length == 1 && snSet.length == 1
         ra = self.new 
         ra.id = id
-        ra.number = literalSet[0].text
-        ra.organization_id = ModelUtility.extractCid(linkSet[0].text)
-
+        ra.number = oSet[0].text
+        ra.scheme = sSet[0].text
+        ra.shortName = snSet[0].text
+        ra.name = lnSet[0].text
       end
     end
     
@@ -98,12 +84,14 @@ class RegistrationAuthority
     
     # Create the query
     query = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "SELECT ?a ?c ?d WHERE \n" +
+      "SELECT ?a ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type isoR:RegistrationAuthority . \n" +
       "	 ?a isoR:registrationAuthorityIdentifierRelationship ?b . \n" +
       "	 ?b isoB:organizationIdentifier ?c . \n" +
-      "	 ?b isoB:registrationAuthorityNamespaceRelationship ?d . \n" +
+      "	 ?b isoB:internationalCodeDesignator ?d . \n" +
+      "	 ?b isoB:shortName ?e . \n" +
+      "	 ?b isoB:name ?f . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -113,25 +101,18 @@ class RegistrationAuthority
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
-      literalSet = node.xpath("binding[@name='c']/literal")
       uriSet = node.xpath("binding[@name='a']/uri")
-      linkSet = node.xpath("binding[@name='d']/uri")
-      
-      p "Literal: " + literalSet.text
-      p "URI: " + uriSet.text
-      p "Link: " + linkSet.text
-
-      if uriSet.length == 1 and literalSet.length == 1 and linkSet.length == 1
-
-        p "Found: " + literalSet[0].text
-
+      oSet = node.xpath("binding[@name='c']/literal")
+      sSet = node.xpath("binding[@name='d']/literal")
+      snSet = node.xpath("binding[@name='e']/literal")
+      lnSet = node.xpath("binding[@name='f']/literal")
+      if uriSet.length == 1 && oSet.length == 1 && sSet.length == 1 && lnSet.length == 1 && snSet.length == 1
         ra = self.new 
         ra.id = ModelUtility.extractCid(uriSet[0].text)
-        ra.number = literalSet[0].text
-        ra.organization_id = ModelUtility.extractCid(linkSet[0].text)
+        ra.number = oSet[0].text
+        ra.scheme = sSet[0].text
+        ra.shortName = snSet[0].text
+        ra.name = lnSet[0].text
         results.push (ra)
       end
     end
@@ -143,9 +124,9 @@ class RegistrationAuthority
   def self.create(params)
     
     number = params[:number]
-    org = params[:organization_id]
-    
-    p "Org=" + org.to_s
+    #org = params[:organization_id]
+    shortName = params[:shortName]
+    longName = params[:name]
     
     # Create the query
     raiId = ModelUtility.buildCid(C_CLASS_RAI_PREFIX, number)
@@ -155,8 +136,9 @@ class RegistrationAuthority
       "{ \n" +
       "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
       "	:" + raiId + " isoB:organizationIdentifier \"" + number.to_s + "\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:registrationAuthorityNamespaceRelationship :" + org.to_s + " . \n" +
+      "	:" + raiId + " isoB:internationalCodeDesignator \"" + DUNS + "\"^^xsd:string . \n" +
+      "	:" + raiId + " isoB:shortName \"" + shortName.to_s + "\"^^xsd:string . \n" +
+      "	:" + raiId + " isoB:name \"" + longName.to_s + "\"^^xsd:string . \n" +
       "	:" + id + " rdf:type isoR:RegistrationAuthority . \n" +
       "	:" + id + " isoR:registrationAuthorityIdentifierRelationship :" + raiId + " ; \n" +
       "}"
@@ -169,7 +151,9 @@ class RegistrationAuthority
       ra = self.new
       ra.id = id
       ra.number = number
-      ra.organization_id = org
+      ra.scheme = DUNS
+      ra.shortName = shortName
+      ra.name = longName
       p "It worked!"
     else
       p "It didn't work!"
@@ -194,7 +178,8 @@ class RegistrationAuthority
       "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
       "	:" + raiId + " isoB:organizationIdentifier \"" + self.number.to_s + "\"^^xsd:string . \n" +
       "	:" + raiId + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:registrationAuthorityNamespaceRelationship :" + self.organization_id.to_s + " . \n" +
+      "	:" + raiId + " isoB:shortName \"" + self.shortName.to_s + "\"^^xsd:string . \n" +
+      "	:" + raiId + " isoB:name \"" + self.name.to_s + "\"^^xsd:string . \n" +
       "	:" + self.id + " rdf:type isoR:RegistrationAuthority . \n" +
       "	:" + self.id + " isoR:registrationAuthorityIdentifierRelationship :" + raiId + " ; \n" +
       "}"

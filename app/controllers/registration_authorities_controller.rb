@@ -33,7 +33,7 @@ class RegistrationAuthoritiesController < ApplicationController
   
   private
     def ra_params
-      params.require(:registration_authority).permit(:name, :number, :organization_id)
+      params.require(:registration_authority).permit(:shortName, :name, :number)
     end
 
 end

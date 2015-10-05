@@ -1,14 +1,19 @@
 <h1>New Owner</h1>
-
-<%= form_for @registrationAuthority do |f| %>
-   <div class="field">
-    <%= f.label :number %><br />
-    <%= f.text_field :number, autofocus: true %>
-  </div>
-	<%= f.select(:organization_id, 
-	             options_from_collection_for_select(Organization.all, :id, :name),
-	             :prompt => "Name") %>
-  <div class="actions">
-    <%= f.submit "Create" %>
-  </div>
-<% end %>
+<div class="col-md-10">
+	<%= form_for @registrationAuthority do |f| %>
+	  <div class="form-group">
+	    <%= f.label :number %><br />
+	    <%= f.text_field :number, autofocus: true %>
+	  </div>
+	  <div class="form-group">
+	    <%= f.label :shortName, "Short Name"%><br />
+	    <%= f.text_field :shortName %>
+	  </div>
+	  <div class="form-group">
+	    <%= f.label :name, "Long Name" %><br />
+	    <%= f.text_field :name %>
+	  </div>
+	  
+	  <%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
+	<% end %>
+</div>

@@ -98,7 +98,8 @@ INSERT DATA
   :RAI-123456789 rdf:type isoB:RegistrationAuthorityIdentifier . 
   :RAI-123456789 isoB:organizationIdentifier "123456789"^^xsd:string . 
   :RAI-123456789 isoB:internationalCodeDesignator "DUNS"^^xsd:string . 
-  :RAI-123456789 isoB:registrationAuthorityNamespaceRelationship :NS-ACME . 
+  :RAI-123456789 isoB:name "ACME Pharma"^^xsd:string . 
+  :RAI-123456789 isoB:shortName "ACME"^^xsd:string . 
   :RA-123456789 rdf:type isoR:RegistrationAuthority . 
   :RA-123456789 isoR:registrationAuthorityIdentifierRelationship :RAI-123456789 ; 
 }' $UpdateEndPoint

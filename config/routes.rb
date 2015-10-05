@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :thesauri
   resources :thesaurus_concepts
   resources :uploads
+  resources :cdisc_bcs
   resources :cdisc_terms do
     collection do
       get :compare

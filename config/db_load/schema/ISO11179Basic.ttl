@@ -29,13 +29,20 @@
 :RegistrationAuthorityIdentifier
   rdf:type owl:Class ;
   rdfs:label "Registration Authority Identifier"^^xsd:string ;
-  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf :Organization ;
   skos:definition "Uniquely identifies a Registration Authority"^^xsd:string ;
 .
 :internationalCodeDesignator
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :RegistrationAuthorityIdentifier ;
   rdfs:label "International Code Designator"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.
+:oganizationIdentifier
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :RegistrationAuthorityIdentifier ;
+  rdfs:label "Organization Identifier"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "???"^^xsd:string ;
 .
@@ -53,29 +60,4 @@
   rdfs:range xsd:string ;
   skos:definition "The short name of the organization. Used for identifiers."^^xsd:string ;
 .
-:oganizationIdentifier
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :RegistrationAuthorityIdentifier ;
-  rdfs:label "Organization Identifier"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
-.
-:oganizationPartIdentifier
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :RegistrationAuthorityIdentifier ;
-  rdfs:label "Organization Part Identifier"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
-.
-:opiSource
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :RegistrationAuthorityIdentifier ;
-  rdfs:label "OPI Source"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
-.
-:registrationAuthorityNamespaceRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :RegistrationAuthorityIdentifier ;
-  rdfs:range :Organization ;
-.
+
