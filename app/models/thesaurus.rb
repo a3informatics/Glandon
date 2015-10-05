@@ -17,7 +17,7 @@ class Thesaurus
   C_NS_PREFIX = "th"
   
   # Base namespace 
-  @@baseNs = Namespace.getNs(C_NS_PREFIX)
+  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
   
   def persisted?
     id.present?
@@ -34,10 +34,10 @@ class Thesaurus
     
     object = nil
     useNs = ns || @@baseNs
-    query = Namespace.buildNs(useNs,["isoI", "iso25964"]) +
+    query = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
       "SELECT ?a ?b WHERE \n" +
       "{ \n" +
-      "  :" + id + " isoI:identifiedItemRelationship ?a . \n" +
+      "  :" + id + " isoI:identifierRelationship ?a . \n" +
       "  :" + id + " iso25964:created ?b . \n" +
       "}"
     
@@ -81,11 +81,11 @@ class Thesaurus
     
     results = Array.new
     
-    query = Namespace.buildPrefix("",["isoI", "iso25964"]) +
+    query = UriManagement.buildPrefix("",["isoI", "iso25964"]) +
       "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "  ?a isoI:identifiedItemRelationship ?b . \n" +
+      "  ?a isoI:identifierRelationship ?b . \n" +
       "  ?a iso25964:created ?c . \n" +
       "}"
     
@@ -144,11 +144,11 @@ class Thesaurus
     p "[Thesaurus           ][findWithoutNs      ] id=" + id
     
     object = nil
-    query = Namespace.buildPrefix("",["isoI", "iso25964"]) +
+    query = UriManagement.buildPrefix("",["isoI", "iso25964"]) +
       "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "  ?a isoI:identifiedItemRelationship ?b . \n" +
+      "  ?a isoI:identifierRelationship ?b . \n" +
       "  ?a iso25964:created ?c . \n" +
       "}"
     
@@ -203,11 +203,11 @@ class Thesaurus
     results = Array.new
     
     # Create the query
-    query = Namespace.buildPrefix("",["isoI", "iso25964"]) +
+    query = UriManagement.buildPrefix("",["isoI", "iso25964"]) +
       "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "  ?a isoI:identifiedItemRelationship ?b . \n" +
+      "  ?a isoI:identifierRelationship ?b . \n" +
       "  ?a iso25964:created ?c . \n" +
       "}"
     
@@ -261,11 +261,11 @@ class Thesaurus
     id = uri.getCid()
     
     # Create the query
-    update = Namespace.buildNs(useNs,["isoI", "iso25964", "org"]) +
+    update = UriManagement.buildNs(useNs,["isoI", "iso25964", "org"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + id + " rdf:type iso25964:Thesaurus . \n" +
-      "	 :" + id + " isoI:identifiedItemRelationship org:" + ii_id + " . \n" +
+      "	 :" + id + " isoI:identifierRelationship org:" + ii_id + " . \n" +
       "  :" + id + " iso25964:created \"" + dateCreated + "\"^^xsd:date . \n" +
       "}"
     
@@ -300,11 +300,11 @@ class Thesaurus
     # Create the query
     uri = Uri.new()
     useNs = ns || @@baseNs
-    update = Namespace.buildNs(useNs,["isoI", "iso25964", "org"]) +
+    update = UriManagement.buildNs(useNs,["isoI", "iso25964", "org"]) +
       "DELETE DATA \n" +
       "{ \n" +
       "	 :" + self.id + " rdf:type iso25964:Thesaurus . \n" +
-      "	 :" + self.id + " isoI:identifiedItemRelationship org:" + self.ii_id.to_s + " . \n" +
+      "	 :" + self.id + " isoI:identifierRelationship org:" + self.ii_id.to_s + " . \n" +
       "  :" + self.id + " iso25964:created \"" + self.created + "\"^^xsd:date . \n" +
       "}"
     

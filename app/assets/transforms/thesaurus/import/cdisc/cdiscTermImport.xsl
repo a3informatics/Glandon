@@ -65,7 +65,7 @@
         <!-- Build the thesaurus entry -->
         <xsl:value-of select="concat(':',$CID,$newline)"/>
         <xsl:text>&#009;rdf:type iso25964:Thesaurus ;&#xa;</xsl:text>
-        <xsl:value-of select="concat('&#009;isoI:identifiedItemRelationship org:',$II,' ;',$newline)"/>
+        <xsl:value-of select="concat('&#009;isoI:identifierRelationship org:',$II,' ;',$newline)"/>
         <xsl:value-of select="concat('&#009;isoiso25964:created ',$quote,$ReleaseDate,$quote,'^^xsd:date ;',$newline)"/>
         <xsl:text>.&#xa;</xsl:text>
 

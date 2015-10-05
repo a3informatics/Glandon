@@ -8,7 +8,6 @@
 		    <th>Short Name</th>
 		    <th>CID</th>
 		    <th></th>
-		    <th></th>
 		  </tr>
 			<% @identifiedItems.each do |identifiedItem| %>
 			  <tr>
@@ -16,7 +15,6 @@
 			    <td><%= identifiedItem.version %></td>
 			    <td><%= identifiedItem.shortName %></td>
 			    <td><%= identifiedItem.id %></td>
-			    <td><%= link_to "Show", identifiedItem.identifier %></td>
 			    <td><%= link_to "Remove", identified_item_path(identifiedItem.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
 			  </tr>
 			<% end %>

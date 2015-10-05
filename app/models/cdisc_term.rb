@@ -48,7 +48,7 @@ class CdiscTerm
   def self.all
     
     results = Array.new
-    @@cdiscOrg = Organization.findByShortName("CDISC")
+    @@cdiscOrg = Namespace.findByShortName("CDISC")
     tSet = Thesaurus.findByOrgId(@@cdiscOrg.id)
     tSet.each do |thesaurus|
       object = self.new 
@@ -68,7 +68,7 @@ class CdiscTerm
   def self.allExcept(version)
     
     results = Array.new
-    @@cdiscOrg = Organization.findByShortName("CDISC")
+    @@cdiscOrg = Namespace.findByShortName("CDISC")
     tSet = Thesaurus.findByOrgId(@@cdiscOrg.id)
     tSet.each do |thesaurus|
       if (version != thesaurus.version)
@@ -90,7 +90,7 @@ class CdiscTerm
   def self.allPrevious(version)
     
     results = Array.new
-    @@cdiscOrg = Organization.findByShortName("CDISC")
+    @@cdiscOrg = Namespace.findByShortName("CDISC")
     tSet = Thesaurus.findByOrgId(@@cdiscOrg.id)
     tSet.each do |thesaurus|
       if (version > thesaurus.version)
@@ -113,7 +113,7 @@ class CdiscTerm
     
     object = self.new
     
-    org = Organization.findByShortName("CDISC")
+    org = Namespace.findByShortName("CDISC")
     identifier = "CDISC Terminology"
     version = params[:version]
     date = params[:date]

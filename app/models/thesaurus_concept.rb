@@ -17,7 +17,7 @@ class ThesaurusConcept
   C_NS_PREFIX = "th"
   
   # Base namespace 
-  @@baseNs = Namespace.getNs(C_NS_PREFIX)     
+  @@baseNs = UriManagement.getNs(C_NS_PREFIX)     
   
   def persisted?
     id.present?
@@ -39,7 +39,7 @@ class ThesaurusConcept
     
     # Create the query
     useNs = ns || @@baseNs
-    query = Namespace.buildNs(useNs, ["iso25964"]) +
+    query = UriManagement.buildNs(useNs, ["iso25964"]) +
       "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "	 :" + id + " iso25964:identifier ?a . \n" +
@@ -102,7 +102,7 @@ class ThesaurusConcept
     results = Array.new
     
     # Create the query
-    query = Namespace.buildPrefix("", ["iso25964"]) +
+    query = UriManagement.buildPrefix("", ["iso25964"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type iso25964:ThesaurusConcept . \n" +
@@ -161,7 +161,7 @@ class ThesaurusConcept
     results = Array.new
     
     # Create the query
-    query = Namespace.buildNs(ns, ["iso25964"]) +
+    query = UriManagement.buildNs(ns, ["iso25964"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
       "	 { \n" +
       "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
@@ -216,7 +216,7 @@ class ThesaurusConcept
     results = Array.new
     
     # Create the query
-    query = Namespace.buildNs(ns, ["iso25964"]) +
+    query = UriManagement.buildNs(ns, ["iso25964"]) +
       "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
       "{\n" +
       "  :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
@@ -274,7 +274,7 @@ class ThesaurusConcept
     
     # Create the query
     id = ModelUtility.buildCid(C_CLASS_PREFIX, identifier)
-    update = Namespace.buildPrefix(C_NS_PREFIX, ["iso25964"]) +
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
@@ -316,7 +316,7 @@ class ThesaurusConcept
   def destroy
     
     # Create the query
-    update = Namespace.buildPrefix(C_NS_PREFIX, ["iso25964"]) +
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["iso25964"]) +
       "DELETE DATA \n" +
       "{ \n" +
       "	 :" + self.id + " rdf:type iso25964:ThesaurusConcept . \n" +

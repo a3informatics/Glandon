@@ -1,21 +1,21 @@
 <h1>Thesauri</h1>
-<table>
-  <tr>
-    <th>II Id</th>
-    <th>CID</th>
-    <th>II Link</th>
-    <th></th>
-    <th></th>
-  </tr>
-	<% @thesauri.each do |thesaurus| %>
-	  <tr>
-	    <td><%= thesaurus.ii_id%></td>
-	    <td><%= thesaurus.id%></td>
-	    <td><%= link_to "Linky linky", identified_item_path(thesaurus.ii_id) %></td>
-	    <td><%= link_to "Show", thesauri_path(thesaurus) %></td>
-	    <td><%= link_to "Remove", thesauri_path(thesaurus), method: :delete, data: { confirm: "Are you sure?" } %></td>
-	  </tr>
-	<% end %>
-</table>
-<br>
-<%= link_to "New thesauri", new_thesauri_path %>
+<div class="col-md-10">
+	<h2>All Versions</h2>
+	<table class="table table-striped table-bordered table-condensed">
+		  <tr>
+		    <th>II Id</th>
+		    <th>CID</th>
+		    <th>II Link</th>
+		    <th></th>
+		  </tr>
+			<% @thesauri.each do |thesaurus| %>
+			  <tr>
+			    <td><%= thesaurus.ii_id%></td>
+			    <td><%= thesaurus.id%></td>
+			    <td><%= link_to "Linky linky", identified_item_path(thesaurus.ii_id) %></td>
+			    <td><%= link_to "Remove", thesauri_path(thesaurus), method: :delete, data: { confirm: "Are you sure?" } %></td>
+			  </tr>
+			<% end %>
+	</table>
+	<%= link_to "New thesauri", new_thesauri_path, :class => "btn btn-success" %>
+</div>

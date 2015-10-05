@@ -21,7 +21,7 @@ class RegistrationAuthority
   C_CLASS_RAI_PREFIX = "RAI"
   DUNS = "DUNS"
   
-  @@baseNs = Namespace.getNs(C_NS_PREFIX)
+  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
 
   def persisted?
     id.present?
@@ -41,7 +41,7 @@ class RegistrationAuthority
     ra = nil
     
     # Create the query
-    query = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "SELECT ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "	 :" + id + " rdf:type isoR:RegistrationAuthority . \n" +
@@ -83,7 +83,7 @@ class RegistrationAuthority
     results = Array.new
     
     # Create the query
-    query = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "SELECT ?a ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type isoR:RegistrationAuthority . \n" +
@@ -131,7 +131,7 @@ class RegistrationAuthority
     # Create the query
     raiId = ModelUtility.buildCid(C_CLASS_RAI_PREFIX, number)
     id = ModelUtility.buildCid(C_CLASS_RA_PREFIX, number)
-    update = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
@@ -172,7 +172,7 @@ class RegistrationAuthority
     
     # Create the query
     raiId = ModelUtility.cidSwapPrefix(self.id,C_CLASS_RAI_PREFIX)
-    update = Namespace.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "DELETE DATA \n" +
       "{ \n" +
       "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +

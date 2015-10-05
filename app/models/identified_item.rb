@@ -17,7 +17,7 @@ class IdentifiedItem
   C_CLASS_PREFIX = "II"
         
   # Base namespace 
-  @@baseNs = Namespace.getNs(C_NS_PREFIX)
+  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
   
   def persisted?
     id.present?
@@ -35,7 +35,7 @@ class IdentifiedItem
     object = nil
     
     # Create the query
-    query = Namespace.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?b ?c ?d WHERE \n" +
       "{ \n" +
       "  :" + id + " isoI:identifier ?b . \n" +
@@ -86,7 +86,7 @@ class IdentifiedItem
     results = Array.new
     
     # Create the query
-    query = Namespace.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?a ?b ?c ?d WHERE \n" +
         "{ \n" +
         "	 ?a rdf:type isoI:ScopedIdentifier . \n" +
@@ -147,7 +147,7 @@ class IdentifiedItem
     p "Org_id=" + org.to_s
     
     # Create the query
-    update = Namespace.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + id + " rdf:type isoI:ScopedIdentifier . \n" +
@@ -183,7 +183,7 @@ class IdentifiedItem
   def destroy
     
     # Create the query
-    update = Namespace.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "DELETE DATA \n" +
       "{ \n" +
       "	 :" + self.id + " rdf:type isoI:ScopedIdentifier . \n" +

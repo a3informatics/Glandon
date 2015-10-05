@@ -1,0 +1,19 @@
+<h1>Namespaces</h1>
+<div class="col-md-10">
+	<h2>All Versions</h2>
+	<table class="table table-striped table-bordered table-condensed">
+		  <tr>
+		    <th>Name</th>
+		    <th>CID</th>
+		    <th></th>
+		  </tr>
+			<% @namespaces.each do |namespace| %>
+			  <tr>
+			    <td><%= namespace.name %></td>
+			    <td><%= namespace.id %></td>
+			    <td><%= link_to "Remove", namespace_path(namespace), method: :delete, data: { confirm: "Are you sure?" } %></td>
+			  </tr>
+			<% end %>
+	</table>
+	<%= link_to "New namespace", new_namespace_path, :class => "btn btn-success" %>
+</div>
