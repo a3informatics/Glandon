@@ -5,7 +5,7 @@ module UriManagement
       "isoI" => "http://www.assero.co.uk/ISO11179Identification" ,
       "isoR" => "http://www.assero.co.uk/ISO11179Registration" , 
       "iso25964" => "http://www.assero.co.uk/ISO25964" , 
-      "org" => "http://www.assero.co.uk/MDROrganizations" ,
+      "item" => "http://www.assero.co.uk/MDRItems" ,
       "th" => "http://www.assero.co.uk/MDRThesaurus" }
 
   @@required = 

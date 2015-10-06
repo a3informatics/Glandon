@@ -9,11 +9,11 @@ class Thesaurus
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :ii_id, :namespace, :version, :identifier, :created
-  validates_presence_of :ii_id
+  attr_accessor :id, :scopedIdentifierId, :namespace, :version, :identifier, :created
+  validates_presence_of :scopedIdentifierId
  
   # Constants
-  C_CLASS_PREFIX = "TH"
+  C_CID_PREFIX = "TH"
   C_NS_PREFIX = "th"
   
   # Base namespace 
@@ -63,10 +63,10 @@ class Thesaurus
         object = self.new 
         object.id = id
         object.namespace = useNs
-        object.ii_id = ModelUtility.extractCid(uriSet[0].text)
-        ii = IdentifiedItem.find(object.ii_id)
-        object.identifier = ii.identifier
-        object.version = ii.version
+        object.scopedIdentifierId = ModelUtility.extractCid(uriSet[0].text)
+        si = ScopedIdentifier.find(object.scopedIdentifierId)
+        object.identifier = si.identifier
+        object.version = si.version
         object.created = dSet[0].text
         
       end
@@ -77,7 +77,7 @@ class Thesaurus
     
   end
 
-  def self.findByOrgId(id)
+  def self.findByNamespaceId(id)
     
     results = Array.new
     
@@ -100,29 +100,29 @@ class Thesaurus
       p "Node: " + node.text
       
       uriSet = node.xpath("binding[@name='a']/uri")
-      iiSet = node.xpath("binding[@name='b']/uri")
+      siSet = node.xpath("binding[@name='b']/uri")
       dSet = node.xpath("binding[@name='c']/literal")
       
       p "URI: " + uriSet.text
-      p "ii: " + iiSet.text
+      p "si: " + siSet.text
       
-      if uriSet.length == 1 and iiSet.length == 1
+      if uriSet.length == 1 and siSet.length == 1
         
         p "Found"
         
-        ii_id = ModelUtility.extractCid(iiSet[0].text)
+        scopedIdentifierId = ModelUtility.extractCid(siSet[0].text)
         
-        p "ii_id=" + ii_id
+        p "scopedIdentifierId=" + scopedIdentifierId
         
-        ii = IdentifiedItem.find(ii_id)
-        if (ii != nil)
-          if (ii.organization_id == id)
+        si = ScopedIdentifier.find(scopedIdentifierId)
+        if (si != nil)
+          if (si.namespaceId == id)
             object = self.new 
             object.id = ModelUtility.extractCid(uriSet[0].text)
             object.namespace = ModelUtility.extractNs(uriSet[0].text)
-            object.ii_id = ii_id
-            object.identifier = ii.identifier
-            object.version = ii.version
+            object.scopedIdentifierId = scopedIdentifierId
+            object.identifier = si.identifier
+            object.version = si.version
             object.created = dSet[0].text
             results.push (object)
             
@@ -163,27 +163,27 @@ class Thesaurus
       p "Node: " + node.text
       
       uriSet = node.xpath("binding[@name='a']/uri")
-      iiSet = node.xpath("binding[@name='b']/uri")
+      siSet = node.xpath("binding[@name='b']/uri")
       dSet = node.xpath("binding[@name='c']/literal")
       
       p "URI: " + uriSet.text
-      p "ii: " + iiSet.text
+      p "si: " + siSet.text
       
-      if uriSet.length == 1 and iiSet.length == 1
+      if uriSet.length == 1 and siSet.length == 1
         
         p "Found"
         
         tId = ModelUtility.extractCid(uriSet[0].text)
         if (tId == id)
-          ii_id = ModelUtility.extractCid(iiSet[0].text)
-          ii = IdentifiedItem.find(ii_id)
-          if (ii != nil)
+          scopedIdentifierId = ModelUtility.extractCid(siSet[0].text)
+          si = ScopedIdentifier.find(scopedIdentifierId)
+          if (si != nil)
             object = self.new 
             object.id = ModelUtility.extractCid(uriSet[0].text)
             object.namespace = ModelUtility.extractNs(uriSet[0].text)
-            object.ii_id = ii_id
-            object.identifier = ii.identifier
-            object.version = ii.version
+            object.scopedIdentifierId = scopedIdentifierId
+            object.identifier = si.identifier
+            object.version = si.version
             object.created = dSet[0].text
             
             p "TH identifier=" + object.identifier
@@ -222,23 +222,23 @@ class Thesaurus
       p "Node: " + node.text
       
       uriSet = node.xpath("binding[@name='a']/uri")
-      iiSet = node.xpath("binding[@name='b']/uri")
+      siSet = node.xpath("binding[@name='b']/uri")
       dSet = node.xpath("binding[@name='c']/literal")
       
       p "URI: " + uriSet.text
-      p "ii: " + iiSet.text
+      p "si: " + siSet.text
       
-      if uriSet.length == 1 and iiSet.length == 1
+      if uriSet.length == 1 and siSet.length == 1
         
         p "Found"
         
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.namespace = ModelUtility.extractNs(uriSet[0].text)
-        object.ii_id = ModelUtility.extractCid(iiSet[0].text)
-        ii = IdentifiedItem.find(object.ii_id)
-        object.identifier = ii.identifier
-        object.version = ii.version
+        object.scopedIdentifierId = ModelUtility.extractCid(siSet[0].text)
+        si = ScopedIdentifier.find(object.scopedIdentifierId)
+        object.identifier = si.identifier
+        object.version = si.version
         object.created = dSet[0].text
         results.push (object)
         
@@ -251,13 +251,13 @@ class Thesaurus
 
   def self.create(params,ns="")
     
-    ii_id = params[:ii_id]
-    ii = IdentifiedItem.find(ii_id)
+    scopedIdentifierId = params[:scopedIdentifierId]
+    si = ScopedIdentifier.find(scopedIdentifierId)
     dateCreated = params[:created]
     
     uri = Uri.new()
     useNs = ns || @@baseNs
-    uri.setCidWithVersion(C_CLASS_PREFIX, ii.shortName, ii.version)     
+    uri.setCidWithVersion(C_CID_PREFIX, si.shortName, si.version)     
     id = uri.getCid()
     
     # Create the query
@@ -265,7 +265,7 @@ class Thesaurus
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + id + " rdf:type iso25964:Thesaurus . \n" +
-      "	 :" + id + " isoI:identifierRelationship org:" + ii_id + " . \n" +
+      "	 :" + id + " isoI:identifierRelationship org:" + scopedIdentifierId + " . \n" +
       "  :" + id + " iso25964:created \"" + dateCreated + "\"^^xsd:date . \n" +
       "}"
     
@@ -277,9 +277,9 @@ class Thesaurus
       object = self.new
       object.id = id
       object.namespace = useNs
-      object.ii_id = ii_id
-      object.identifier = ii.identifier
-      object.version = ii.version
+      object.scopedIdentifierId = scopedIdentifierId
+      object.identifier = si.identifier
+      object.version = si.version
       object.created = dateCreated
       p "It worked!"
     else
@@ -304,7 +304,7 @@ class Thesaurus
       "DELETE DATA \n" +
       "{ \n" +
       "	 :" + self.id + " rdf:type iso25964:Thesaurus . \n" +
-      "	 :" + self.id + " isoI:identifierRelationship org:" + self.ii_id.to_s + " . \n" +
+      "	 :" + self.id + " isoI:identifierRelationship org:" + self.scopedIdentifierId.to_s + " . \n" +
       "  :" + self.id + " iso25964:created \"" + self.created + "\"^^xsd:date . \n" +
       "}"
     

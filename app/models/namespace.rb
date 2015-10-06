@@ -14,7 +14,7 @@ class Namespace
   validates_presence_of :name, :shortName
 
   # Constants
-  C_NS_PREFIX = "org"
+  C_NS_PREFIX = "item"
   C_CLASS_O_PREFIX = "O"
   C_CLASS_NS_PREFIX = "NS"
   

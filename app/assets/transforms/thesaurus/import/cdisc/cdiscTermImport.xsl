@@ -9,11 +9,11 @@
         UseVersion:     The version to be transformed. Must exist in the manifest document (the XML being transformed). Used
                         as a key into the document. Should be consistent the namespace provided in the other parameter
         Namespace:      The namespace to be used with the turtle document for the Thesaurus being created.
-        II:             The URI (partial, minus namespace, assumed to be :org) ItemIdentifier for the thesaurus being created.
+        SI:             The URI (partial, minus namespace, assumed to be :org) ScopedIdentifier for the thesaurus being created.
     -->
     <xsl:param name="UseVersion"/>
     <xsl:param name="Namespace"/>
-    <xsl:param name="II"/>
+    <xsl:param name= "SI"/>
 
     <!-- Text document (.ttl Turtle) -->
     <xsl:output method="text"/>
@@ -46,7 +46,7 @@
         <xsl:text disable-output-escaping="yes">@prefix isoB: &lt;http://www.assero.co.uk/ISO11179Basic#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix iso25964: &lt;http://www.assero.co.uk/ISO25964#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix org: &lt;http://www.assero.co.uk/MDROrganizations#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix org: &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .&#xa;</xsl:text>
@@ -65,7 +65,7 @@
         <!-- Build the thesaurus entry -->
         <xsl:value-of select="concat(':',$CID,$newline)"/>
         <xsl:text>&#009;rdf:type iso25964:Thesaurus ;&#xa;</xsl:text>
-        <xsl:value-of select="concat('&#009;isoI:identifierRelationship org:',$II,' ;',$newline)"/>
+        <xsl:value-of select="concat('&#009;isoI:identifierRelationship item:',$SI,' ;',$newline)"/>
         <xsl:value-of select="concat('&#009;isoiso25964:created ',$quote,$ReleaseDate,$quote,'^^xsd:date ;',$newline)"/>
         <xsl:text>.&#xa;</xsl:text>
 

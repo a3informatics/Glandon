@@ -57,7 +57,7 @@ else
 #	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/CDISCSDTM.ttl $FileEndPoint
 fi
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -72,7 +72,7 @@ INSERT DATA
    :NS-CDISC isoI:namingAuthorityRelationship :O-CDISC . 
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -87,7 +87,7 @@ INSERT DATA
    :NS-ACME isoI:namingAuthorityRelationship :O-ACME . 
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>
 PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -104,121 +104,121 @@ INSERT DATA
   :RA-123456789 isoR:registrationAuthorityIdentifierRelationship :RAI-123456789 ; 
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :II-CDISC_CT-34 rdf:type isoI:ScopedIdentifier .
-	 :II-CDISC_CT-34 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :II-CDISC_CT-34 isoI:version "34"^^xsd:string .
-	 :II-CDISC_CT-34 isoI:scopeRelationship :NS-CDISC ;
+   :SI-CDISC_CT-34 rdf:type isoI:ScopedIdentifier .
+	 :SI-CDISC_CT-34 isoI:identifier "CDISC Terminology"^^xsd:string .
+	 :SI-CDISC_CT-34 isoI:version "34"^^xsd:string .
+	 :SI-CDISC_CT-34 isoI:scopeRelationship :NS-CDISC ;
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :II-CDISC_CT-35 rdf:type isoI:ScopedIdentifier .
-	 :II-CDISC_CT-35 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :II-CDISC_CT-35 isoI:version "35"^^xsd:string .
-	 :II-CDISC_CT-35 isoI:scopeRelationship :NS-CDISC ;
+   :SI-CDISC_CT-35 rdf:type isoI:ScopedIdentifier .
+	 :SI-CDISC_CT-35 isoI:identifier "CDISC Terminology"^^xsd:string .
+	 :SI-CDISC_CT-35 isoI:version "35"^^xsd:string .
+	 :SI-CDISC_CT-35 isoI:scopeRelationship :NS-CDISC ;
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :II-CDISC_CT-36 rdf:type isoI:ScopedIdentifier .
-	 :II-CDISC_CT-36 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :II-CDISC_CT-36 isoI:version "36"^^xsd:string .
-	 :II-CDISC_CT-36 isoI:scopeRelationship :NS-CDISC ;
+   :SI-CDISC_CT-36 rdf:type isoI:ScopedIdentifier .
+	 :SI-CDISC_CT-36 isoI:identifier "CDISC Terminology"^^xsd:string .
+	 :SI-CDISC_CT-36 isoI:version "36"^^xsd:string .
+	 :SI-CDISC_CT-36 isoI:scopeRelationship :NS-CDISC ;
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :II-CDISC_CT-37 rdf:type isoI:ScopedIdentifier .
-	 :II-CDISC_CT-37 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :II-CDISC_CT-37 isoI:version "37"^^xsd:string .
-	 :II-CDISC_CT-37 isoI:scopeRelationship :NS-CDISC ;
+   :SI-CDISC_CT-37 rdf:type isoI:ScopedIdentifier .
+	 :SI-CDISC_CT-37 isoI:identifier "CDISC Terminology"^^xsd:string .
+	 :SI-CDISC_CT-37 isoI:version "37"^^xsd:string .
+	 :SI-CDISC_CT-37 isoI:scopeRelationship :NS-CDISC ;
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :II-CDISC_CT-38 rdf:type isoI:ScopedIdentifier .
-	 :II-CDISC_CT-38 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :II-CDISC_CT-38 isoI:version "38"^^xsd:string .
-	 :II-CDISC_CT-38 isoI:scopeRelationship :NS-CDISC ;
+   :SI-CDISC_CT-38 rdf:type isoI:ScopedIdentifier .
+	 :SI-CDISC_CT-38 isoI:identifier "CDISC Terminology"^^xsd:string .
+	 :SI-CDISC_CT-38 isoI:version "38"^^xsd:string .
+	 :SI-CDISC_CT-38 isoI:scopeRelationship :NS-CDISC ;
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :II-CDISC_CT-39 rdf:type isoI:ScopedIdentifier .
-	 :II-CDISC_CT-39 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :II-CDISC_CT-39 isoI:version "39"^^xsd:string .
-	 :II-CDISC_CT-39 isoI:scopeRelationship :NS-CDISC ;
+   :SI-CDISC_CT-39 rdf:type isoI:ScopedIdentifier .
+	 :SI-CDISC_CT-39 isoI:identifier "CDISC Terminology"^^xsd:string .
+	 :SI-CDISC_CT-39 isoI:version "39"^^xsd:string .
+	 :SI-CDISC_CT-39 isoI:scopeRelationship :NS-CDISC ;
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :II-CDISC_CT-40 rdf:type isoI:ScopedIdentifier .
-	 :II-CDISC_CT-40 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :II-CDISC_CT-40 isoI:version "40"^^xsd:string .
-	 :II-CDISC_CT-40 isoI:scopeRelationship :NS-CDISC ;
+   :SI-CDISC_CT-40 rdf:type isoI:ScopedIdentifier .
+	 :SI-CDISC_CT-40 isoI:identifier "CDISC Terminology"^^xsd:string .
+	 :SI-CDISC_CT-40 isoI:version "40"^^xsd:string .
+	 :SI-CDISC_CT-40 isoI:scopeRelationship :NS-CDISC ;
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :II-CDISC_CT-41 rdf:type isoI:ScopedIdentifier .
-	 :II-CDISC_CT-41 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :II-CDISC_CT-41 isoI:version "41"^^xsd:string .
-	 :II-CDISC_CT-41 isoI:scopeRelationship :NS-CDISC ;
+   :SI-CDISC_CT-41 rdf:type isoI:ScopedIdentifier .
+	 :SI-CDISC_CT-41 isoI:identifier "CDISC Terminology"^^xsd:string .
+	 :SI-CDISC_CT-41 isoI:version "41"^^xsd:string .
+	 :SI-CDISC_CT-41 isoI:scopeRelationship :NS-CDISC ;
 }' $UpdateEndPoint
 
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDROrganizations#>
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :II-CDISC_CT-42 rdf:type isoI:ScopedIdentifier .
-	 :II-CDISC_CT-42 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :II-CDISC_CT-42 isoI:version "42"^^xsd:string .
-	 :II-CDISC_CT-42 isoI:scopeRelationship :NS-CDISC ;
+   :SI-CDISC_CT-42 rdf:type isoI:ScopedIdentifier .
+	 :SI-CDISC_CT-42 isoI:identifier "CDISC Terminology"^^xsd:string .
+	 :SI-CDISC_CT-42 isoI:version "42"^^xsd:string .
+	 :SI-CDISC_CT-42 isoI:scopeRelationship :NS-CDISC ;
 }' $UpdateEndPoint
 
 if [ "$DB" = "$Fuseki" ]; then

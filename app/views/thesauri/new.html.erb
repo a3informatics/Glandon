@@ -2,9 +2,9 @@
 <div class="col-md-10">
 		<%= form_for @thesaurus, :url => thesauri_index_path do |f| %>
 		<div class="form-group">
-			<%= f.label :ii_id, "Identified Item"%><br />
-    	<%= f.select(:ii_id, 
-	             options_from_collection_for_select(IdentifiedItem.all, :id, :identifier),
+			<%= f.label :scopedIdentifierId, "Identified Item"%><br />
+    	<%= f.select(:scopedIdentifierId, 
+	             options_from_collection_for_select(ScopedIdentifier.all, :id, :identifier),
 	             {prompt: "Name"}, 
 							 {class: "form-control"}) %>
 			

@@ -4,7 +4,7 @@
 @prefix : <http://www.assero.co.uk/MDRCDISCBC#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix mdrBridg: <http://www.assero.co.uk/MDRBRIDG#> .
-@prefix org: <http://www.assero.co.uk/MDROrganizations#> .
+@prefix item: <http://www.assero.co.uk/MDRItems#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -27,13 +27,13 @@
 	cbc:hasItem :BC-C111361PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C111361PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Forced Vital Capacity Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C111361_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C111361-1 ;
 .
-org:II-C111361_BC-1
+item:SI-CDISC_BC_C111361-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111361"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C111361DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -249,13 +249,13 @@ org:II-C111361_BC-1
 	cbc:hasItem :BC-C112381PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112381PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted Forced Vital Capacity Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112381_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112381-1 ;
 .
-org:II-C112381_BC-1
+item:SI-CDISC_BC_C112381-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112381"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112381DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -471,13 +471,13 @@ org:II-C112381_BC-1
 	cbc:hasItem :BC-C38084PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C38084PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Forced Expiratory Volume in 1 Second Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C38084_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C38084-1 ;
 .
-org:II-C38084_BC-1
+item:SI-CDISC_BC_C38084-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C38084"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C38084DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -693,13 +693,13 @@ org:II-C38084_BC-1
 	cbc:hasItem :BC-C112376PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112376PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted FEV1 Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112376_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112376-1 ;
 .
-org:II-C112376_BC-1
+item:SI-CDISC_BC_C112376-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112376"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112376DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -915,13 +915,13 @@ org:II-C112376_BC-1
 	cbc:hasItem :BC-C112285PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112285PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "FEV1 Reversibility Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112285_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112285-1 ;
 .
-org:II-C112285_BC-1
+item:SI-CDISC_BC_C112285-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112285"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112285DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -1137,13 +1137,13 @@ org:II-C112285_BC-1
 	cbc:hasItem :BC-C111359PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C111359PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "FEV1/FVC Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C111359_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C111359-1 ;
 .
-org:II-C111359_BC-1
+item:SI-CDISC_BC_C111359-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111359"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C111359DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -1354,13 +1354,13 @@ org:II-C111359_BC-1
 	cbc:hasItem :BC-C112377PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112377PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted FEV1/FVC Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112377_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112377-1 ;
 .
-org:II-C112377_BC-1
+item:SI-CDISC_BC_C112377-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112377"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112377DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -1571,13 +1571,13 @@ org:II-C112377_BC-1
 	cbc:hasItem :BC-C119545PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C119545PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Forced Expiratory Flow 25-75% Capacity Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C119545_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C119545-1 ;
 .
-:II-C119545_BC-1
+:SI-CDISC_BC_C119545-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C119545"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C119545DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -1803,13 +1803,13 @@ org:II-C112377_BC-1
 	cbc:hasItem :BC-C119546PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C119546PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent predicted FEF 25-75 Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C119546_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C119546-1 ;
 .
-:II-C119546_BC-1
+:SI-CDISC_BC_C119546-1 
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C119546"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C119546DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -2025,13 +2025,13 @@ org:II-C112377_BC-1
 	cbc:hasItem :BC-C41372PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C41372PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Peak Expiratory Flow Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C41372_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C41372-1 ;
 .
-org:II-C41372_BC-1
+item:SI-CDISC_BC_C41372-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C41372"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C41372DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -2257,13 +2257,13 @@ org:II-C41372_BC-1
 	cbc:hasItem :BC-C112384PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112384PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted Peak Expiratory Flow Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112384_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112384-1 ;
 .
-org:II-C112384_BC-1
+item:SI-CDISC_BC_C112384-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112384"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112384DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -2479,13 +2479,13 @@ org:II-C112384_BC-1
 	cbc:hasItem :BC-C112368PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112368PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "PEF Reversibility Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112368_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112368-1 ;
 .
-org:II-C112368_BC-1
+item:SI-CDISC_BC_C112368-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112368"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112368DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -2701,13 +2701,13 @@ org:II-C112368_BC-1
 	cbc:hasItem :BC-C47843PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C47843PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Forced Expiratory Volume in 6 Seconds Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C47843_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C47843-1 ;
 .
-org:II-C47843_BC-1
+item:SI-CDISC_BC_C47843-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C47843"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C47843DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -2923,13 +2923,13 @@ org:II-C47843_BC-1
 	cbc:hasItem :BC-C112378PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112378PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted FEV6 Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112378_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112378-1 ;
 .
-org:II-C112378_BC-1
+item:SI-CDISC_BC_C112378-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112378"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112378DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -3145,13 +3145,13 @@ org:II-C112378_BC-1
 	cbc:hasItem :BC-C111360PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C111360PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Forced Inspiratory Volume in 1 Second Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C111360_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C111360-1 ;
 .
-org:II-C111360_BC-1
+item:SI-CDISC_BC_C111360-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111360"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C111360DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -3367,13 +3367,13 @@ org:II-C111360_BC-1
 	cbc:hasItem :BC-C112380PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112380PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted FIV1 Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112380_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112380-1 ;
 .
-org:II-C112380_BC-1
+item:SI-CDISC_BC_C112380-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112380"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112380DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -3589,13 +3589,13 @@ org:II-C112380_BC-1
 	cbc:hasItem :BC-C111324PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C111324PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Tidal Volume Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C111324_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C111324-1 ;
 .
-org:II-C111324_BC-1
+item:SI-CDISC_BC_C111324-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111324"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C111324DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -3811,13 +3811,13 @@ org:II-C111324_BC-1
 	cbc:hasItem :BC-C112387PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112387PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted Tidal Volume Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112387_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112387-1 ;
 .
-org:II-C112387_BC-1
+item:SI-CDISC_BC_C112387-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112387"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112387DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -4033,13 +4033,13 @@ org:II-C112387_BC-1
 	cbc:hasItem :BC-C111362PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C111362PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Inspiratory Capacity Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C111362_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C111362-1 ;
 .
-org:II-C111362_BC-1
+item:SI-CDISC_BC_C111362-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111362"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C111362DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -4255,13 +4255,13 @@ org:II-C111362_BC-1
 	cbc:hasItem :BC-C112382PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112382PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted Inspiratory Capacity Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112382_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112382-1 ;
 .
-org:II-C112382_BC-1
+item:SI-CDISC_BC_C112382-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112382"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112382DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -4477,13 +4477,13 @@ org:II-C112382_BC-1
 	cbc:hasItem :BC-C112321PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112321PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "IC Reversibility Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112321_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112321-1 ;
 .
-org:II-C112321_BC-1
+item:SI-CDISC_BC_C112321-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112321"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112321DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -4694,13 +4694,13 @@ org:II-C112321_BC-1
 	cbc:hasItem :BC-C111200PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C111200PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Expiratory Reserve Volume Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C111200_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C111200-1 ;
 .
-org:II-C111200_BC-1
+item:SI-CDISC_BC_C111200-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111200"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C111200DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -4916,13 +4916,13 @@ org:II-C111200_BC-1
 	cbc:hasItem :BC-C112375PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112375PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted ERV Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112375_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112375-1 ;
 .
-org:II-C112375_BC-1
+item:SI-CDISC_BC_C112375-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112375"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112375DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -5138,13 +5138,13 @@ org:II-C112375_BC-1
 	cbc:hasItem :BC-C111237PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C111237PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Inspiratory Reserve Volume Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C111237_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C111237-1 ;
 .
-org:II-C111237_BC-1
+item:SI-CDISC_BC_C111237-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111237"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C111237DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -5360,13 +5360,13 @@ org:II-C111237_BC-1
 	cbc:hasItem :BC-C112383PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112383PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted IRV Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112383_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112383-1 ;
 .
-org:II-C112383_BC-1
+item:SI-CDISC_BC_C112383-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112383"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112383DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -5582,13 +5582,13 @@ org:II-C112383_BC-1
 	cbc:hasItem :BC-C111315PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C111315PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Slow Vital Capacity Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C111315_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C111315-1 ;
 .
-org:II-C111315_BC-1
+item:SI-CDISC_BC_C111315-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111315"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C111315DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -5804,13 +5804,13 @@ org:II-C111315_BC-1
 	cbc:hasItem :BC-C112386PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112386PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted Slow Vital Capacity Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112386_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112386-1 ;
 .
-org:II-C112386_BC-1
+item:SI-CDISC_BC_C112386-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112386"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112386DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -6026,13 +6026,13 @@ org:II-C112386_BC-1
 	cbc:hasItem :BC-C112333PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112333PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Maximum Forced Inspiratory Flow Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112333_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112333-1 ;
 .
-org:II-C112333_BC-1
+item:SI-CDISC_BC_C112333-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112333"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112333DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -6258,13 +6258,13 @@ org:II-C112333_BC-1
 	cbc:hasItem :BC-C112379PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112379PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted FIFmax Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112379_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112379-1 ;
 .
-org:II-C112379_BC-1
+item:SI-CDISC_BC_C112379-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112379"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112379DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -6480,13 +6480,13 @@ org:II-C112379_BC-1
 	cbc:hasItem :BC-C89836PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C89836PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Residual Volume Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C89836_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C89836-1 ;
 .
-org:II-C89836_BC-1
+item:SI-CDISC_BC_C89836-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C89836"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C89836DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -6702,13 +6702,13 @@ org:II-C89836_BC-1
 	cbc:hasItem :BC-C112385PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112385PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted Residual Volume Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112385_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112385-1 ;
 .
-org:II-C112385_BC-1
+item:SI-CDISC_BC_C112385-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112385"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112385DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -6924,13 +6924,13 @@ org:II-C112385_BC-1
 	cbc:hasItem :BC-C111325PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C111325PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Total Lung Capacity Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C111325_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C111325-1 ;
 .
-org:II-C111325_BC-1
+item:SI-CDISC_BC_C111325-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111325"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C111325DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -7146,13 +7146,13 @@ org:II-C111325_BC-1
 	cbc:hasItem :BC-C112388PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C112388PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Percent Predicted Total Lung Capacity Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C112388_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C112388-1 ;
 .
-org:II-C112388_BC-1
+item:SI-CDISC_BC_C112388-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C112388"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C112388DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -7368,13 +7368,13 @@ org:II-C112388_BC-1
 	cbc:hasItem :BC-C25347PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C25347PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Height Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C25347_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C25347-1 ;
 .
-org:II-C25347_BC-1
+item:SI-CDISC_BC_C25347-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C25347"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C25347DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;
@@ -7590,13 +7590,13 @@ org:II-C25347_BC-1
 	cbc:hasItem :BC-C25208PerformedClinicalResultvalue ;
 	cbc:hasItem :BC-C25208PerformedClinicalResultbaselineIndicator ;
 	rdfs:label "Weight Research Concept"^^xsd:string ;
-	isoI:identifierRelationship org:II-C25208_BC-1 ;
+	isoI:identifierRelationship item:SI-CDISC_BC_C25208-1 ;
 .
-org:II-C25208_BC-1
+item:SI-CDISC_BC_C25208-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C25208"^^xsd:string ;
 	isoI:version "1"^^xsd:string ;
-  isoI:scopeRelationship org:NS-CDISC ;
+  isoI:scopeRelationship item:NS-CDISC ;
 .
 :BC-C25208DefinedObservationnameCode
 	rdf:type cbc:BCTItem ;

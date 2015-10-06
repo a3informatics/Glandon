@@ -97,6 +97,62 @@ class ThesaurusConcept
     
   end
 
+  def self.all()
+    
+    results = Array.new
+    
+    # Create the query
+    query = UriManagement.buildPrefix("", ["iso25964"]) +
+      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
+      "{ \n" +
+      "	 ?a rdf:type iso25964:ThesaurusConcept . \n" +
+      "	 ?a iso25964:identifier ?b . \n" +
+      "	 ?a iso25964:notation ?c . \n" +
+      "	 ?a iso25964:preferredTerm ?d . \n" +
+      "	 ?a iso25964:synonym ?e . \n" +
+      "	 ?a iso25964:extensible ?f . \n" +
+      "	 ?a iso25964:definition ?g . \n" +
+      "} ORDER BY ?b"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      
+      #p "Node: " + node.text
+      
+      uriSet = node.xpath("binding[@name='a']/uri")
+      idSet = node.xpath("binding[@name='b']/literal")
+      nSet = node.xpath("binding[@name='c']/literal")
+      ptSet = node.xpath("binding[@name='d']/literal")
+      sSet = node.xpath("binding[@name='e']/literal")
+      eSet = node.xpath("binding[@name='f']/literal")
+      dSet = node.xpath("binding[@name='g']/literal")
+      
+      if uriSet.length == 1 
+        
+        #p "Found"
+        
+        object = self.new 
+        object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.identifier = idSet[0].text
+        object.notation = nSet[0].text
+        object.preferredTerm = ptSet[0].text
+        object.synonym = sSet[0].text
+        object.extensible = eSet[0].text
+        object.definition = dSet[0].text
+        results.push (object)
+        
+      end
+    end
+    
+    return results
+    
+  end
+  
   def self.allTopLevel()
     
     results = Array.new

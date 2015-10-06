@@ -15,7 +15,7 @@ class CdiscTerm
   C_NS_PREFIX = "thC"
   
   # Base namespace 
-  @@cdiscOrg # CDISC Organization identifier
+  @@cdiscNamespace # CDISC Organization identifier
   
   # Base namespace 
   @@BaseNs = Thesaurus.baseNs()
@@ -48,8 +48,8 @@ class CdiscTerm
   def self.all
     
     results = Array.new
-    @@cdiscOrg = Namespace.findByShortName("CDISC")
-    tSet = Thesaurus.findByOrgId(@@cdiscOrg.id)
+    @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
       object = self.new 
       object.id = thesaurus.id
@@ -68,8 +68,8 @@ class CdiscTerm
   def self.allExcept(version)
     
     results = Array.new
-    @@cdiscOrg = Namespace.findByShortName("CDISC")
-    tSet = Thesaurus.findByOrgId(@@cdiscOrg.id)
+    @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
       if (version != thesaurus.version)
         object = self.new 
@@ -90,8 +90,8 @@ class CdiscTerm
   def self.allPrevious(version)
     
     results = Array.new
-    @@cdiscOrg = Namespace.findByShortName("CDISC")
-    tSet = Thesaurus.findByOrgId(@@cdiscOrg.id)
+    @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
       if (version > thesaurus.version)
         object = self.new 

@@ -33,7 +33,7 @@ class ThesauriController < ApplicationController
   
   private
     def the_params
-      params.require(:thesaurus).permit(:ii_id)
+      params.require(:thesaurus).permit(:scopedIdentifierId)
     end
     
 end

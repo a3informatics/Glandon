@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
   resources :namespaces
   resources :registration_authorities
-  resources :identified_items
+  resources :scoped_identifiers
   resources :thesauri
   resources :thesaurus_concepts
   resources :uploads

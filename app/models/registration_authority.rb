@@ -16,7 +16,7 @@ class RegistrationAuthority
   @@baseNs
   
   # Constants
-  C_NS_PREFIX = "org"
+  C_NS_PREFIX = "item"
   C_CLASS_RA_PREFIX = "RA"
   C_CLASS_RAI_PREFIX = "RAI"
   DUNS = "DUNS"
