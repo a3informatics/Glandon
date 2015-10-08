@@ -6,7 +6,11 @@ module UriManagement
       "isoR" => "http://www.assero.co.uk/ISO11179Registration" , 
       "iso25964" => "http://www.assero.co.uk/ISO25964" , 
       "item" => "http://www.assero.co.uk/MDRItems" ,
-      "th" => "http://www.assero.co.uk/MDRThesaurus" }
+      "th" => "http://www.assero.co.uk/MDRThesaurus",
+      "cbc" => "http://www.assero.co.uk/CDISCBiomedicalConcept",
+      "mdrBridg" => "http://www.assero.co.uk/MDRBRIDG" ,
+      "mdrBc" => "http://www.assero.co.uk/MDRCDISCBC"
+     }
 
   @@required = 
     { "rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns" ,

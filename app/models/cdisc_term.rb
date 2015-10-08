@@ -109,6 +109,28 @@ class CdiscTerm
     
   end
   
+  def self.current 
+    latest = nil
+    @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
+    tSet.each do |thesaurus|
+      if latest == nil
+        latest = thesaurus
+      elsif thesaurus.version > latest.version
+        latest = thesaurus
+      end
+    end
+    object = self.new 
+    object.id = latest.id
+    object.version = latest.version
+    object.thesaurus_id = latest.id
+    object.date = latest.created
+    object.identifier = latest.identifier
+    object.version = latest.version
+    object.namespace = latest.namespace
+    return object 
+  end
+  
   def self.create(params)
     
     object = self.new

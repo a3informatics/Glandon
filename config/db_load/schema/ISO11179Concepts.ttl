@@ -51,7 +51,7 @@
 :Concept
   rdf:type owl:Class ;
   rdfs:label "Concept"^^xsd:string ;
-  rdfs:subClassOf isoT:IdentifiedItem> ;
+  rdfs:subClassOf isoT:IdentifiedItem ;
   skos:definition "???"^^xsd:string ;
 .
 :ConceptAssertionAboutRelationship
@@ -73,7 +73,7 @@
   rdfs:domain :Concept ;
   rdfs:label "Link End Relationship"^^xsd:string ;
   rdfs:range :LinkEnd ;
-  owl:inverseOf :LinkEnd.concept> ;
+  owl:inverseOf :LinkEnd.concept ;
   skos:definition "???"^^xsd:string ;
 .
 :ConceptSourceRelationship
@@ -121,7 +121,7 @@
   rdfs:domain :Link ;
   rdfs:label "Link End Relationship"^^xsd:string ;
   rdfs:range :LinkEnd ;
-  owl:inverseOf :LinkEnd.link> ;
+  owl:inverseOf :LinkEnd.link ;
   skos:definition "???"^^xsd:string ;
 .
 :LinkRelationRelationship
@@ -142,7 +142,7 @@
   rdfs:domain :LinkEnd ;
   rdfs:label "Concept Relationship"^^xsd:string ;
   rdfs:range :Concept ;
-  owl:inverseOf :Concept.linkEnd> ;
+  owl:inverseOf :Concept.linkEnd ;
   skos:definition "???"^^xsd:string ;
 .
 :LinkEndLinkRelationship
@@ -150,7 +150,7 @@
   rdfs:domain :LinkEnd ;
   rdfs:label "Link Relationship"^^xsd:string ;
   rdfs:range :Link ;
-  owl:inverseOf :Link.linkEnd> ;
+  owl:inverseOf :Link.linkEnd ;
   skos:definition "???"^^xsd:string ;
 .
 :LinkEndRoleRelationship
@@ -158,7 +158,7 @@
   rdfs:domain :LinkEnd ;
   rdfs:label "Concept Relationship"^^xsd:string ;
   rdfs:range :RelationRole ;
-  owl:inverseOf :RelationRole.linkEnd> ;
+  owl:inverseOf :RelationRole.linkEnd ;
   skos:definition "???"^^xsd:string ;
 .
 :Relation
@@ -199,7 +199,7 @@
   rdfs:domain :RelationRole ;
   rdfs:label "Relation role.link end"^^xsd:string ;
   rdfs:range :LinkEnd ;
-  owl:inverseOf :LinkEnd.role> ;
+  owl:inverseOf :LinkEnd.role ;
 .
 :RelationRoleSourceRelationship
   rdf:type owl:ObjectProperty ;

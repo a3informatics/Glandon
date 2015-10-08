@@ -11,6 +11,9 @@ class CdiscCli
   attr_accessor :id, :identifier, :notation, :synonym, :definition, :preferredTerm, :namespace
   validates_presence_of :identifier, :notation, :synonym, :definition, :preferredTerm, :namespace
   
+  # Constants
+  C_CLASS_NAME = "CdiscCli" 
+  
   # Base namespace 
   @@cdiscOrg # CDISC Organization identifier
   
@@ -46,10 +49,8 @@ class CdiscCli
   end
   
   def self.find(id, cdiscTerm)
-    
-    p "[CdiscCli           ][find                ] id=" + id
-    p "[CdiscCli           ][find                ] ns=" + cdiscTerm.namespace
-  
+    #ConsoleLogger::log(C_CLASS_NAME,"find","id=" + id)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","ns=" + cdiscTerm.namespace)
     object = nil
     tc = ThesaurusConcept.find(id, cdiscTerm.namespace)
     if tc != nil
@@ -63,14 +64,30 @@ class CdiscCli
       object.namespace = cdiscTerm.namespace
     end
     return object
-    
+  end
+
+  def self.findByIdentifier(identifier, cdiscTerm)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","id=" + id
+    #ConsoleLogger::log(C_CLASS_NAME,"find","ns=" + cdiscTerm.namespace
+    results = Hash.new
+    tcSet = ThesaurusConcept.findByIdentifier(identifier, cdiscTerm.id, cdiscTerm.namespace)
+    tcSet.each do |tc|
+      object = self.new 
+      object.id = tc.id
+      object.identifier = tc.identifier
+      object.notation = tc.notation
+      object.preferredTerm = tc.preferredTerm
+      object.synonym = tc.synonym
+      object.definition = tc.definition
+      object.namespace = cdiscTerm.namespace
+      results[tc.id] = object
+    end
+    return results  
   end
 
   def self.allForCl(id, cdiscTerm)
-    
-    p "[CdiscCli           ][allForCL            ] id=" + id
-    p "[CdiscCli           ][allForCL            ] ns=" + cdiscTerm.namespace
-  
+    #ConsoleLogger::log(C_CLASS_NAME,"find","id=" + id
+    #ConsoleLogger::log(C_CLASS_NAME,"find","ns=" + cdiscTerm.namespace
     results = Hash.new
     tcSet = ThesaurusConcept.allLowerLevelWithNs(id, cdiscTerm.namespace)
     tcSet.each do |tc|
@@ -85,7 +102,6 @@ class CdiscCli
       results[tc.id] = object
     end
     return results  
-    
   end
   
   def self.create(params)

@@ -274,71 +274,71 @@
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "SC Datatype Role"^^xsd:string ;
 .
-:DT-IVL-TSDATETIME
+:DT-IVL_TSDATETIME
 	rdf:type iso21090:Datatype ;
-	iso21090:typeName "IVL-TSDATETIME"^^xsd:string ;
+	iso21090:typeName "IVL_TSDATETIME"^^xsd:string ;
 	rdfs:label "IVL(TSDATETIME) ISO21090 Datatype"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMELinkEnd
+:DT-IVL_TSDATETIMELinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-TSDATETIME ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEoriginalTextLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMElowLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMElowClosedLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEhighLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEhighClosedLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEwidthLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEanyLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-TSDATETIMERole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_TSDATETIME ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEoriginalTextLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMElowLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMElowClosedLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEhighLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEhighClosedLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEwidthLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEanyLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_TSDATETIMERole ;
 	rdfs:label "IVL(TSDATETIME) Property Link End"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMERole
+:DT-IVL_TSDATETIMERole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(TSDATETIME) Datatype Role"^^xsd:string ;
 .
-:DT-IVL-INT
+:DT-IVL_INT
 	rdf:type iso21090:Datatype ;
 	iso21090:typeName "IVL-INT"^^xsd:string ;
 	rdfs:label "IVL(INT) ISO21090 Datatype"^^xsd:string ;
 .
-:DT-IVL-INTLinkEnd
+:DT-IVL_INTLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-INT ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INToriginalTextLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INTlowLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INTlowClosedLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INThighLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INThighClosedLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INTwidthLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INTanyLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-INTRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_INT ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INToriginalTextLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INTlowLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INTlowClosedLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INThighLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INThighClosedLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INTwidthLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INTanyLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_INTRole ;
 	rdfs:label "IVL(INT) Property Link End"^^xsd:string ;
 .
-:DT-IVL-INTRole
+:DT-IVL_INTRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(INT) Datatype Role"^^xsd:string ;
 .
-:DT-IVL-QTY
+:DT-IVL_QTY
 	rdf:type iso21090:Datatype ;
 	iso21090:typeName "IVL-QTY"^^xsd:string ;
 	rdfs:label "IVL(QTY) ISO21090 Datatype"^^xsd:string ;
 .
-:DT-IVL-QTYLinkEnd
+:DT-IVL_QTYLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-QTY ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYoriginalTextLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYlowLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYlowClosedLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYhighLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYhighClosedLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYwidthLink ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYanyLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-QTYRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_QTY ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYoriginalTextLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYlowLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYlowClosedLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYhighLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYhighClosedLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYwidthLink ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYanyLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_QTYRole ;
 	rdfs:label "IVL(QTY) Property Link End"^^xsd:string ;
 .
-:DT-IVL-QTYRole
+:DT-IVL_QTYRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(QTY) Datatype Role"^^xsd:string ;
@@ -2018,527 +2018,527 @@
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "SC code Property Role"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEoriginalText
+:DT-IVL_TSDATETIMEoriginalText
 	rdf:type iso21090:Property ;
 	iso21090:primitveDatatype "EDTEXT"^^xsd:string ;
 	iso21090:attributeName "originalText"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "originalText BRIDG Attribute from Class IVL(TSDATETIME)"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEoriginalTextLink
+:DT-IVL_TSDATETIMEoriginalTextLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMELinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMEoriginalTextLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMELinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMEoriginalTextLinkEnd ;
 	rdfs:label "IVL(TSDATETIME) originalText Property Link"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEoriginalTextLinkEnd
+:DT-IVL_TSDATETIMEoriginalTextLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-TSDATETIMEoriginalText ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEoriginalTextLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-TSDATETIMEoriginalTextRole ;
-	rdfs:label "IVL-TSDATETIME originalText Property Link End"^^xsd:string ;
+	isoC:LinkEndConceptRelationship :DT-IVL_TSDATETIMEoriginalText ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEoriginalTextLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_TSDATETIMEoriginalTextRole ;
+	rdfs:label "IVL_TSDATETIME originalText Property Link End"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEoriginalTextRole
+:DT-IVL_TSDATETIMEoriginalTextRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(TSDATETIME) originalText Property Role"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMElow
+:DT-IVL_TSDATETIMElow
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-TSDATETIME ;
 	iso21090:attributeName "low"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "low BRIDG Attribute from Class IVL(TSDATETIME)"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMElowLink
+:DT-IVL_TSDATETIMElowLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMELinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMElowLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMELinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMElowLinkEnd ;
 	rdfs:label "IVL(TSDATETIME) low Property Link"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMElowLinkEnd
+:DT-IVL_TSDATETIMElowLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-TSDATETIMElow ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMElowLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-TSDATETIMElowRole ;
-	rdfs:label "IVL-TSDATETIME low Property Link End"^^xsd:string ;
+	isoC:LinkEndConceptRelationship :DT-IVL_TSDATETIMElow ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMElowLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_TSDATETIMElowRole ;
+	rdfs:label "IVL_TSDATETIME low Property Link End"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMElowRole
+:DT-IVL_TSDATETIMElowRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(TSDATETIME) low Property Role"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMElowClosed
+:DT-IVL_TSDATETIMElowClosed
 	rdf:type iso21090:Property ;
 	iso21090:primitiveDatatype "boolean"^^xsd:string ;
 	iso21090:attributeName "lowClosed"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "lowClosed BRIDG Attribute from Class IVL(TSDATETIME)"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMElowClosedLink
+:DT-IVL_TSDATETIMElowClosedLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMELinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMElowClosedLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMELinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMElowClosedLinkEnd ;
 	rdfs:label "IVL(TSDATETIME) lowClosed Property Link"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMElowClosedLinkEnd
+:DT-IVL_TSDATETIMElowClosedLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-TSDATETIMElowClosed ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMElowClosedLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-TSDATETIMElowClosedRole ;
-	rdfs:label "IVL-TSDATETIME lowClosed Property Link End"^^xsd:string ;
+	isoC:LinkEndConceptRelationship :DT-IVL_TSDATETIMElowClosed ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMElowClosedLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_TSDATETIMElowClosedRole ;
+	rdfs:label "IVL_TSDATETIME lowClosed Property Link End"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMElowClosedRole
+:DT-IVL_TSDATETIMElowClosedRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(TSDATETIME) lowClosed Property Role"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEhigh
+:DT-IVL_TSDATETIMEhigh
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-TSDATETIME ;
 	iso21090:attributeName "high"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "high BRIDG Attribute from Class IVL(TSDATETIME)"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEhighLink
+:DT-IVL_TSDATETIMEhighLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMELinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMEhighLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMELinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMEhighLinkEnd ;
 	rdfs:label "IVL(TSDATETIME) high Property Link"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEhighLinkEnd
+:DT-IVL_TSDATETIMEhighLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-TSDATETIMEhigh ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEhighLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-TSDATETIMEhighRole ;
-	rdfs:label "IVL-TSDATETIME high Property Link End"^^xsd:string ;
+	isoC:LinkEndConceptRelationship :DT-IVL_TSDATETIMEhigh ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEhighLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_TSDATETIMEhighRole ;
+	rdfs:label "IVL_TSDATETIME high Property Link End"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEhighRole
+:DT-IVL_TSDATETIMEhighRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(TSDATETIME) high Property Role"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEhighClosed
+:DT-IVL_TSDATETIMEhighClosed
 	rdf:type iso21090:Property ;
 	iso21090:primitiveDatatype "boolean"^^xsd:string ;
 	iso21090:attributeName "highClosed"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "highClosed BRIDG Attribute from Class IVL(TSDATETIME)"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEhighClosedLink
+:DT-IVL_TSDATETIMEhighClosedLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMELinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMEhighClosedLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMELinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMEhighClosedLinkEnd ;
 	rdfs:label "IVL(TSDATETIME) highClosed Property Link"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEhighClosedLinkEnd
+:DT-IVL_TSDATETIMEhighClosedLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-TSDATETIMEhighClosed ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEhighClosedLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-TSDATETIMEhighClosedRole ;
-	rdfs:label "IVL-TSDATETIME highClosed Property Link End"^^xsd:string ;
+	isoC:LinkEndConceptRelationship :DT-IVL_TSDATETIMEhighClosed ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEhighClosedLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_TSDATETIMEhighClosedRole ;
+	rdfs:label "IVL_TSDATETIME highClosed Property Link End"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEhighClosedRole
+:DT-IVL_TSDATETIMEhighClosedRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(TSDATETIME) highClosed Property Role"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEwidth
+:DT-IVL_TSDATETIMEwidth
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-QTY ;
 	iso21090:attributeName "width"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "width BRIDG Attribute from Class IVL(TSDATETIME)"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEwidthLink
+:DT-IVL_TSDATETIMEwidthLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMELinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMEwidthLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMELinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMEwidthLinkEnd ;
 	rdfs:label "IVL(TSDATETIME) width Property Link"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEwidthLinkEnd
+:DT-IVL_TSDATETIMEwidthLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-TSDATETIMEwidth ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEwidthLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-TSDATETIMEwidthRole ;
-	rdfs:label "IVL-TSDATETIME width Property Link End"^^xsd:string ;
+	isoC:LinkEndConceptRelationship :DT-IVL_TSDATETIMEwidth ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEwidthLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_TSDATETIMEwidthRole ;
+	rdfs:label "IVL_TSDATETIME width Property Link End"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEwidthRole
+:DT-IVL_TSDATETIMEwidthRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(TSDATETIME) width Property Role"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEany
+:DT-IVL_TSDATETIMEany
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-TSDATETIME ;
 	iso21090:attributeName "any"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "any BRIDG Attribute from Class IVL(TSDATETIME)"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEanyLink
+:DT-IVL_TSDATETIMEanyLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMELinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-TSDATETIMEanyLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMELinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_TSDATETIMEanyLinkEnd ;
 	rdfs:label "IVL(TSDATETIME) any Property Link"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEanyLinkEnd
+:DT-IVL_TSDATETIMEanyLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-TSDATETIMEany ;
-	isoC:LinkEndLinkRelationship :DT-IVL-TSDATETIMEanyLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-TSDATETIMEanyRole ;
-	rdfs:label "IVL-TSDATETIME any Property Link End"^^xsd:string ;
+	isoC:LinkEndConceptRelationship :DT-IVL_TSDATETIMEany ;
+	isoC:LinkEndLinkRelationship :DT-IVL_TSDATETIMEanyLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_TSDATETIMEanyRole ;
+	rdfs:label "IVL_TSDATETIME any Property Link End"^^xsd:string ;
 .
-:DT-IVL-TSDATETIMEanyRole
+:DT-IVL_TSDATETIMEanyRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(TSDATETIME) any Property Role"^^xsd:string ;
 .
-:DT-IVL-INToriginalText
+:DT-IVL_INToriginalText
 	rdf:type iso21090:Property ;
 	iso21090:primitveDatatype "EDTEXT"^^xsd:string ;
 	iso21090:attributeName "originalText"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "originalText BRIDG Attribute from Class IVL(INT)"^^xsd:string ;
 .
-:DT-IVL-INToriginalTextLink
+:DT-IVL_INToriginalTextLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INToriginalTextLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INToriginalTextLinkEnd ;
 	rdfs:label "IVL(INT) originalText Property Link"^^xsd:string ;
 .
-:DT-IVL-INToriginalTextLinkEnd
+:DT-IVL_INToriginalTextLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-INToriginalText ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INToriginalTextLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-INToriginalTextRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_INToriginalText ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INToriginalTextLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_INToriginalTextRole ;
 	rdfs:label "IVL-INT originalText Property Link End"^^xsd:string ;
 .
-:DT-IVL-INToriginalTextRole
+:DT-IVL_INToriginalTextRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(INT) originalText Property Role"^^xsd:string ;
 .
-:DT-IVL-INTlow
+:DT-IVL_INTlow
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-INT ;
 	iso21090:attributeName "low"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "low BRIDG Attribute from Class IVL(INT)"^^xsd:string ;
 .
-:DT-IVL-INTlowLink
+:DT-IVL_INTlowLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTlowLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTlowLinkEnd ;
 	rdfs:label "IVL(INT) low Property Link"^^xsd:string ;
 .
-:DT-IVL-INTlowLinkEnd
+:DT-IVL_INTlowLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-INTlow ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INTlowLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-INTlowRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_INTlow ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INTlowLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_INTlowRole ;
 	rdfs:label "IVL-INT low Property Link End"^^xsd:string ;
 .
-:DT-IVL-INTlowRole
+:DT-IVL_INTlowRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(INT) low Property Role"^^xsd:string ;
 .
-:DT-IVL-INTlowClosed
+:DT-IVL_INTlowClosed
 	rdf:type iso21090:Property ;
 	iso21090:primitiveDatatype "boolean"^^xsd:string ;
 	iso21090:attributeName "lowClosed"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "lowClosed BRIDG Attribute from Class IVL(INT)"^^xsd:string ;
 .
-:DT-IVL-INTlowClosedLink
+:DT-IVL_INTlowClosedLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTlowClosedLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTlowClosedLinkEnd ;
 	rdfs:label "IVL(INT) lowClosed Property Link"^^xsd:string ;
 .
-:DT-IVL-INTlowClosedLinkEnd
+:DT-IVL_INTlowClosedLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-INTlowClosed ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INTlowClosedLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-INTlowClosedRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_INTlowClosed ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INTlowClosedLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_INTlowClosedRole ;
 	rdfs:label "IVL-INT lowClosed Property Link End"^^xsd:string ;
 .
-:DT-IVL-INTlowClosedRole
+:DT-IVL_INTlowClosedRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(INT) lowClosed Property Role"^^xsd:string ;
 .
-:DT-IVL-INThigh
+:DT-IVL_INThigh
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-INT ;
 	iso21090:attributeName "high"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "high BRIDG Attribute from Class IVL(INT)"^^xsd:string ;
 .
-:DT-IVL-INThighLink
+:DT-IVL_INThighLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INThighLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INThighLinkEnd ;
 	rdfs:label "IVL(INT) high Property Link"^^xsd:string ;
 .
-:DT-IVL-INThighLinkEnd
+:DT-IVL_INThighLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-INThigh ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INThighLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-INThighRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_INThigh ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INThighLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_INThighRole ;
 	rdfs:label "IVL-INT high Property Link End"^^xsd:string ;
 .
-:DT-IVL-INThighRole
+:DT-IVL_INThighRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(INT) high Property Role"^^xsd:string ;
 .
-:DT-IVL-INThighClosed
+:DT-IVL_INThighClosed
 	rdf:type iso21090:Property ;
 	iso21090:primitiveDatatype "boolean"^^xsd:string ;
 	iso21090:attributeName "highClosed"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "highClosed BRIDG Attribute from Class IVL(INT)"^^xsd:string ;
 .
-:DT-IVL-INThighClosedLink
+:DT-IVL_INThighClosedLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INThighClosedLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INThighClosedLinkEnd ;
 	rdfs:label "IVL(INT) highClosed Property Link"^^xsd:string ;
 .
-:DT-IVL-INThighClosedLinkEnd
+:DT-IVL_INThighClosedLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-INThighClosed ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INThighClosedLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-INThighClosedRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_INThighClosed ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INThighClosedLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_INThighClosedRole ;
 	rdfs:label "IVL-INT highClosed Property Link End"^^xsd:string ;
 .
-:DT-IVL-INThighClosedRole
+:DT-IVL_INThighClosedRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(INT) highClosed Property Role"^^xsd:string ;
 .
-:DT-IVL-INTwidth
+:DT-IVL_INTwidth
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-QTY ;
 	iso21090:attributeName "width"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "width BRIDG Attribute from Class IVL(INT)"^^xsd:string ;
 .
-:DT-IVL-INTwidthLink
+:DT-IVL_INTwidthLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTwidthLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTwidthLinkEnd ;
 	rdfs:label "IVL(INT) width Property Link"^^xsd:string ;
 .
-:DT-IVL-INTwidthLinkEnd
+:DT-IVL_INTwidthLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-INTwidth ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INTwidthLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-INTwidthRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_INTwidth ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INTwidthLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_INTwidthRole ;
 	rdfs:label "IVL-INT width Property Link End"^^xsd:string ;
 .
-:DT-IVL-INTwidthRole
+:DT-IVL_INTwidthRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(INT) width Property Role"^^xsd:string ;
 .
-:DT-IVL-INTany
+:DT-IVL_INTany
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-INT ;
 	iso21090:attributeName "any"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "any BRIDG Attribute from Class IVL(INT)"^^xsd:string ;
 .
-:DT-IVL-INTanyLink
+:DT-IVL_INTanyLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-INTanyLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_INTanyLinkEnd ;
 	rdfs:label "IVL(INT) any Property Link"^^xsd:string ;
 .
-:DT-IVL-INTanyLinkEnd
+:DT-IVL_INTanyLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-INTany ;
-	isoC:LinkEndLinkRelationship :DT-IVL-INTanyLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-INTanyRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_INTany ;
+	isoC:LinkEndLinkRelationship :DT-IVL_INTanyLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_INTanyRole ;
 	rdfs:label "IVL-INT any Property Link End"^^xsd:string ;
 .
-:DT-IVL-INTanyRole
+:DT-IVL_INTanyRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(INT) any Property Role"^^xsd:string ;
 .
-:DT-IVL-QTYoriginalText
+:DT-IVL_QTYoriginalText
 	rdf:type iso21090:Property ;
 	iso21090:primitveDatatype "EDTEXT"^^xsd:string ;
 	iso21090:attributeName "originalText"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "originalText BRIDG Attribute from Class IVL(QTY)"^^xsd:string ;
 .
-:DT-IVL-QTYoriginalTextLink
+:DT-IVL_QTYoriginalTextLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYoriginalTextLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYoriginalTextLinkEnd ;
 	rdfs:label "IVL(QTY) originalText Property Link"^^xsd:string ;
 .
-:DT-IVL-QTYoriginalTextLinkEnd
+:DT-IVL_QTYoriginalTextLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-QTYoriginalText ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYoriginalTextLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-QTYoriginalTextRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_QTYoriginalText ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYoriginalTextLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_QTYoriginalTextRole ;
 	rdfs:label "IVL-QTY originalText Property Link End"^^xsd:string ;
 .
-:DT-IVL-QTYoriginalTextRole
+:DT-IVL_QTYoriginalTextRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(QTY) originalText Property Role"^^xsd:string ;
 .
-:DT-IVL-QTYlow
+:DT-IVL_QTYlow
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-QTY ;
 	iso21090:attributeName "low"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "low BRIDG Attribute from Class IVL(QTY)"^^xsd:string ;
 .
-:DT-IVL-QTYlowLink
+:DT-IVL_QTYlowLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYlowLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYlowLinkEnd ;
 	rdfs:label "IVL(QTY) low Property Link"^^xsd:string ;
 .
-:DT-IVL-QTYlowLinkEnd
+:DT-IVL_QTYlowLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-QTYlow ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYlowLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-QTYlowRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_QTYlow ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYlowLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_QTYlowRole ;
 	rdfs:label "IVL-QTY low Property Link End"^^xsd:string ;
 .
-:DT-IVL-QTYlowRole
+:DT-IVL_QTYlowRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(QTY) low Property Role"^^xsd:string ;
 .
-:DT-IVL-QTYlowClosed
+:DT-IVL_QTYlowClosed
 	rdf:type iso21090:Property ;
 	iso21090:primitiveDatatype "boolean"^^xsd:string ;
 	iso21090:attributeName "lowClosed"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "lowClosed BRIDG Attribute from Class IVL(QTY)"^^xsd:string ;
 .
-:DT-IVL-QTYlowClosedLink
+:DT-IVL_QTYlowClosedLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYlowClosedLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYlowClosedLinkEnd ;
 	rdfs:label "IVL(QTY) lowClosed Property Link"^^xsd:string ;
 .
-:DT-IVL-QTYlowClosedLinkEnd
+:DT-IVL_QTYlowClosedLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-QTYlowClosed ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYlowClosedLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-QTYlowClosedRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_QTYlowClosed ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYlowClosedLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_QTYlowClosedRole ;
 	rdfs:label "IVL-QTY lowClosed Property Link End"^^xsd:string ;
 .
-:DT-IVL-QTYlowClosedRole
+:DT-IVL_QTYlowClosedRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(QTY) lowClosed Property Role"^^xsd:string ;
 .
-:DT-IVL-QTYhigh
+:DT-IVL_QTYhigh
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-QTY ;
 	iso21090:attributeName "high"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "high BRIDG Attribute from Class IVL(QTY)"^^xsd:string ;
 .
-:DT-IVL-QTYhighLink
+:DT-IVL_QTYhighLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYhighLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYhighLinkEnd ;
 	rdfs:label "IVL(QTY) high Property Link"^^xsd:string ;
 .
-:DT-IVL-QTYhighLinkEnd
+:DT-IVL_QTYhighLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-QTYhigh ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYhighLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-QTYhighRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_QTYhigh ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYhighLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_QTYhighRole ;
 	rdfs:label "IVL-QTY high Property Link End"^^xsd:string ;
 .
-:DT-IVL-QTYhighRole
+:DT-IVL_QTYhighRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(QTY) high Property Role"^^xsd:string ;
 .
-:DT-IVL-QTYhighClosed
+:DT-IVL_QTYhighClosed
 	rdf:type iso21090:Property ;
 	iso21090:primitiveDatatype "boolean"^^xsd:string ;
 	iso21090:attributeName "highClosed"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "highClosed BRIDG Attribute from Class IVL(QTY)"^^xsd:string ;
 .
-:DT-IVL-QTYhighClosedLink
+:DT-IVL_QTYhighClosedLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYhighClosedLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYhighClosedLinkEnd ;
 	rdfs:label "IVL(QTY) highClosed Property Link"^^xsd:string ;
 .
-:DT-IVL-QTYhighClosedLinkEnd
+:DT-IVL_QTYhighClosedLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-QTYhighClosed ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYhighClosedLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-QTYhighClosedRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_QTYhighClosed ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYhighClosedLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_QTYhighClosedRole ;
 	rdfs:label "IVL-QTY highClosed Property Link End"^^xsd:string ;
 .
-:DT-IVL-QTYhighClosedRole
+:DT-IVL_QTYhighClosedRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(QTY) highClosed Property Role"^^xsd:string ;
 .
-:DT-IVL-QTYwidth
+:DT-IVL_QTYwidth
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-QTY ;
 	iso21090:attributeName "width"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "width BRIDG Attribute from Class IVL(QTY)"^^xsd:string ;
 .
-:DT-IVL-QTYwidthLink
+:DT-IVL_QTYwidthLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYwidthLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYwidthLinkEnd ;
 	rdfs:label "IVL(QTY) width Property Link"^^xsd:string ;
 .
-:DT-IVL-QTYwidthLinkEnd
+:DT-IVL_QTYwidthLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-QTYwidth ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYwidthLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-QTYwidthRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_QTYwidth ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYwidthLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_QTYwidthRole ;
 	rdfs:label "IVL-QTY width Property Link End"^^xsd:string ;
 .
-:DT-IVL-QTYwidthRole
+:DT-IVL_QTYwidthRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(QTY) width Property Role"^^xsd:string ;
 .
-:DT-IVL-QTYany
+:DT-IVL_QTYany
 	rdf:type iso21090:Property ;
 	iso21090:complexDatatype :DT-QTY ;
 	iso21090:attributeName "any"^^xsd:string ;
 	iso21090:attributeDescription ""^^xsd:string ;
 	rdfs:label "any BRIDG Attribute from Class IVL(QTY)"^^xsd:string ;
 .
-:DT-IVL-QTYanyLink
+:DT-IVL_QTYanyLink
 	rdf:type isoC:Link ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYLinkEnd ;
-	isoC:LinkLinkEndRelationship :DT-IVL-QTYanyLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYLinkEnd ;
+	isoC:LinkLinkEndRelationship :DT-IVL_QTYanyLinkEnd ;
 	rdfs:label "IVL(QTY) any Property Link"^^xsd:string ;
 .
-:DT-IVL-QTYanyLinkEnd
+:DT-IVL_QTYanyLinkEnd
 	rdf:type isoC:LinkEnd ;
-	isoC:LinkEndConceptRelationship :DT-IVL-QTYany ;
-	isoC:LinkEndLinkRelationship :DT-IVL-QTYanyLink ;
-	isoC:LinkEndRoleRelationship :DT-IVL-QTYanyRole ;
+	isoC:LinkEndConceptRelationship :DT-IVL_QTYany ;
+	isoC:LinkEndLinkRelationship :DT-IVL_QTYanyLink ;
+	isoC:LinkEndRoleRelationship :DT-IVL_QTYanyRole ;
 	rdfs:label "IVL-QTY any Property Link End"^^xsd:string ;
 .
-:DT-IVL-QTYanyRole
+:DT-IVL_QTYanyRole
 	rdf:type isoC:RelationRole ;
 	isoC:multiplicity "1"^^xsd:string ;
 	rdfs:label "IVL(QTY) any Property Role"^^xsd:string ;
