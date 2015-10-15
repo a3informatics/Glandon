@@ -1,0 +1,101 @@
+# baseURI: http://www.assero.co.uk/BusinessForm
+# imports: http://www.assero.co.uk/BusinessOperational
+# imports: http://www.assero.co.uk/CDISCBiomedicalConcept
+
+@prefix : <http://www.assero.co.uk/BusinessForm#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/BusinessForm>
+  rdf:type owl:Ontology ;
+  owl:imports <http://www.assero.co.uk/BusinessOperational> ;
+  owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+:Form
+  rdf:type owl:Class ;
+  rdfs:label "Form"^^xsd:string ;
+  rdfs:subClassOf bo:Component ;
+.
+:Node
+  rdf:type owl:Class ;
+  rdfs:label "Group"^^xsd:string ;
+.
+:Group
+  rdf:type owl:Class ;
+  rdfs:label "Group"^^xsd:string ;
+  rdfs:subClassOf :Node ;
+.
+:Item
+  rdf:type owl:Class ;
+  rdfs:label "Question"^^xsd:string ;
+  rdfs:subClassOf :Node ;
+.
+:Label
+  rdf:type owl:Class ;
+  rdfs:label "Question"^^xsd:string ;
+.
+:hasGroupRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Form ;
+  rdfs:label "Has group relationship"^^xsd:string ;
+  rdfs:range :Group ;
+.
+:isGroupOfRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Group ;
+  rdfs:label "Has group relationship"^^xsd:string ;
+  rdfs:range :Form ;
+.
+:hasItemRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Group ;
+  rdfs:label "Has group relationship"^^xsd:string ;
+  rdfs:range :Item ;
+.
+:isItemOfRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Item ;
+  rdfs:label "Has group relationship"^^xsd:string ;
+  rdfs:range :Group ;
+.
+:hasPropertyRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Item ;
+  rdfs:label "Has group relationship"^^xsd:string ;
+  rdfs:range cbc:Property ;
+.
+:hasBiomedicalConceptRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Group ;
+  rdfs:label "Has group relationship"^^xsd:string ;
+  rdfs:range cbc:BiomedicalConcept ;
+.
+:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "name"^^xsd:string ;
+  rdfs:domain :Node ;
+  rdfs:range xsd:string ;
+.
+:layout
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Group ;
+  rdfs:label "presentation"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:text
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Label ;
+  rdfs:label "text"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Label ;
+  rdfs:label "text"^^xsd:string ;
+  rdfs:range xsd:integer ;
+.

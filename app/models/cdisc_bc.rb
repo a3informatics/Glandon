@@ -238,7 +238,7 @@ private
     if dt == "CL"
       result = ""
     elsif dt == "F"
-      result = "5.2"
+      result = "5.1"
     else
       result = ""
     end

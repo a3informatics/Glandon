@@ -8,8 +8,11 @@ module UriManagement
       "item" => "http://www.assero.co.uk/MDRItems" ,
       "th" => "http://www.assero.co.uk/MDRThesaurus",
       "cbc" => "http://www.assero.co.uk/CDISCBiomedicalConcept",
+      "bo" => "http://www.assero.co.uk/BusinessOperational" ,
+      "bf" => "http://www.assero.co.uk/BusinessForm" ,
       "mdrBridg" => "http://www.assero.co.uk/MDRBRIDG" ,
-      "mdrBc" => "http://www.assero.co.uk/MDRCDISCBC"
+      "mdrBc" => "http://www.assero.co.uk/MDRCDISCBC" ,
+      "mdrForm" => "http://www.assero.co.uk/MDRFORMs"
      }
 
   @@required = 

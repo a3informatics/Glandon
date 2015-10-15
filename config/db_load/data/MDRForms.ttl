@@ -1,0 +1,65 @@
+# baseURI: http://www.assero.co.uk/MDRForms
+# imports: http://www.assero.co.uk/BusinessForm
+# imports: http://www.assero.co.uk/BusinessOperational
+# imports: http://www.assero.co.uk/CDISCBiomedicalConcept
+# imports: http://www.assero.co.uk/MDRCDISCBC
+
+@prefix : <http://www.assero.co.uk/MDRForms#> .
+@prefix MDRCDISCBC: <http://www.assero.co.uk/MDRCDISCBC#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/MDRForms>
+  rdf:type owl:Ontology ;
+  owl:imports <http://www.assero.co.uk/BusinessForm> ;
+  owl:imports <http://www.assero.co.uk/BusinessOperational> ;
+  owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
+  owl:imports <http://www.assero.co.uk/MDRCDISCBC> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+:VS
+  rdf:type bf:Form ;
+  bf:hasGroupRelationship :Height ;
+  bf:hasGroupRelationship :Weight ;
+  bo:name "Vital Signs"^^xsd:string ;
+  bo:ordinal 1 ;
+.
+:Height
+  rdf:type bf:Group ;
+  bf:hasBiomedicalConceptRelationship MDRCDISCBC:BC-C25347 ;
+  bf:hasItemRelationship :Height_Result ;
+  bf:hasItemRelationship :Height_Units ;
+  bf:isGroupOfRelationship :VS ;
+.
+:Weight
+  rdf:type bf:Group ;
+  bf:hasBiomedicalConceptRelationship MDRCDISCBC:BC-C25208 ;
+  bf:hasItemRelationship :Weight_Result ;
+  bf:hasItemRelationship :Weight_Units ;
+  bf:isGroupOfRelationship :VS ;
+.
+:Weight_Result
+  rdf:type bf:Item ;
+  bf:isItemOfRelationship :Weight ;
+	bf:hasPropertyRelationship MDRCDISCBC:BC-C25208_PerformedClinicalResult_value_PQR_value
+.
+:Weight_Units
+  rdf:type bf:Item ;
+  bf:isItemOfRelationship :Weight ;
+	bf:hasPropertyRelationship MDRCDISCBC:BC-C25208_PerformedClinicalResult_value_PQR_code
+.
+:Height_Result
+  rdf:type bf:Item ;
+  bf:isItemOfRelationship :Height ;
+	bf:hasPropertyRelationship MDRCDISCBC:BC-C25347_PerformedClinicalResult_value_PQR_value
+.
+:Height_Units
+  rdf:type bf:Item ;
+  bf:isItemOfRelationship :Height ;
+	bf:hasPropertyRelationship MDRCDISCBC:BC-C25347_PerformedClinicalResult_value_PQR_code
+.

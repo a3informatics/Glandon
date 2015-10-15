@@ -31,9 +31,8 @@ if [ "$DB" = "$Fuseki" ]; then
 #	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/ct-schema.owl" $FileEndPoint
 
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/CDISCBiomedicalConcept.ttl" $FileEndPoint
-
-#	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/CDISCOperational.ttl" $FileEndPoint
-#	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/CDISCCDASH.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessOperational.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessForm.ttl" $FileEndPoint
 #	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/CDISCSDTM.ttl" $FileEndPoint	
 else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/ISO11179Types.ttl $FileEndPoint
@@ -50,10 +49,9 @@ else
 #	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/meta-model-schema.owl $FileEndPoint
 #	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/ct-schema.owl $FileEndPoint
 
-	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/CDISCBiomedicalConcept.ttl $FileEndPoint
-	
-#	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/CDISCOperational.ttl $FileEndPoint
-#	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/CDISCCDASH.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/CDISCBiomedicalConcept.ttl $FileEndPoint	
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessOperational.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessForm.ttl $FileEndPoint
 #	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/CDISCSDTM.ttl $FileEndPoint
 fi
 
@@ -235,6 +233,7 @@ if [ "$DB" = "$Fuseki" ]; then
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRBRIDG.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCs.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCTs.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRForms.ttl" $FileEndPoint
 else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/CT_V34.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/CT_V35.ttl $FileEndPoint
@@ -249,6 +248,7 @@ else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRBRIDG.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRCDISCBCs.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRCDISCBCTs.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRForms.ttl $FileEndPoint
 fi
 
 set +x
