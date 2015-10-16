@@ -18,6 +18,12 @@ module ModelUtility
     
   end
   
+  def ModelUtility.buildCidTime(prefix)
+  
+    return buildCid(prefix,Time.now.to_formatted_s(:number))
+    
+  end
+
   def ModelUtility.cidSwapPrefix(cid, prefix)
   
     uri = Uri.new

@@ -21,9 +21,63 @@
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
-:Assertion
+:ClassifiableItem
+  rdf:type owl:Class ;
+  rdfs:label "Classificable Item"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "An item that is classifiable within the repository"^^xsd:string ;
+.
+:Classification
   rdf:type owl:Class ;
   rdfs:label "Concept System"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The classification for an item"^^xsd:string ;
+.
+:ClassifiableItemClassifierRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :ClassifiableItem ;
+  rdfs:label "ClassifiableItemClassifier Relationship"^^xsd:string ;
+  rdfs:range :Classification ;
+  skos:definition "???"^^xsd:string ;
+.
+:ClassificationClassifiedItemRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Classification ;
+  rdfs:label "ClassificationClassifiedItem Relationship"^^xsd:string ;
+  rdfs:range :ClassifiableItem ;
+  skos:definition "???"^^xsd:string ;
+.
+:ClassificationClassifierRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Classification ;
+  rdfs:label "ClassificationClassifier Relationship"^^xsd:string ;
+  rdfs:range :Concept ;
+  skos:definition "???"^^xsd:string ;
+.
+:ConceptClassifiedItemRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Concept ;
+  rdfs:label "ConceptClassifiedItem Relationship"^^xsd:string ;
+  rdfs:range :Classification ;
+  skos:definition "???"^^xsd:string ;
+.
+:ConceptSystemClassificationRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :ConceptSystem ;
+  rdfs:label "ConceptSystemClassification Relationship"^^xsd:string ;
+  rdfs:range :Classification ;
+  skos:definition "???"^^xsd:string ;
+.
+:ClassificationSchemeRelationship
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Classification ;
+  rdfs:label "ClassificationScheme Relationship"^^xsd:string ;
+  rdfs:range :ConceptSystem ;
+  skos:definition "???"^^xsd:string ;
+.
+:Assertion
+  rdf:type owl:Class ;
+  rdfs:label "Assertion"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
   skos:definition "???"^^xsd:string ;
 .
@@ -235,4 +289,18 @@
   rdfs:label "Ordinal"^^xsd:string ;
   rdfs:range xsd:integer ;
   skos:definition "???"^^xsd:string ;
+.
+:notation
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ConceptSystem ;
+  rdfs:label "Concept system notation"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "???"^^xsd:string ;
+.
+:label
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Classification ;
+  rdfs:label "Classification label"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The label for a given classification"^^xsd:string ;
 .

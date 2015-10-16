@@ -1,0 +1,28 @@
+<h1>Classification (Concept) System <%= @conceptSystem.notation %></h1>
+<div class="col-md-10">
+	<h2>Details</h2>
+	<table class="table table-striped table-bordered table-condensed">
+	  <tr>
+	    <th>Notation</th>
+	  </tr>
+	  <tr>
+	    <td><%= @conceptSystem.notation %></td>
+	  </tr>
+	</table>
+	<h2>Classifications</h2>
+	<table class="table table-striped table-bordered table-condensed">
+	  <tr>
+			<th>Identifier</th>
+			<th>Label</th>
+			<th></th>
+		</tr>
+		<% @classifications.each do |key, classification| %>
+			<tr>
+			  <td><%= classification.id %></td>
+			  <td><%= classification.label %></td>
+		    <td><%= link_to "Delete", iso11179_concept_systems_iso11179_classification_path(classification.id,:concept_system_id => @conceptSystem.id), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger" %></td>
+		  </tr>
+		<% end %>
+	</table>
+	<%= link_to "New Classification", new_iso11179_concept_systems_iso11179_classification_path(:concept_system_id => @conceptSystem.id), :class => "btn btn-success" %>
+</div>

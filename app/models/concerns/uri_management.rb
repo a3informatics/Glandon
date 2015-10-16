@@ -4,15 +4,17 @@ module UriManagement
     { "isoB" => "http://www.assero.co.uk/ISO11179Basic" ,
       "isoI" => "http://www.assero.co.uk/ISO11179Identification" ,
       "isoR" => "http://www.assero.co.uk/ISO11179Registration" , 
+      "isoC" => "http://www.assero.co.uk/ISO11179Concepts" , 
       "iso25964" => "http://www.assero.co.uk/ISO25964" , 
-      "item" => "http://www.assero.co.uk/MDRItems" ,
-      "th" => "http://www.assero.co.uk/MDRThesaurus",
       "cbc" => "http://www.assero.co.uk/CDISCBiomedicalConcept",
       "bo" => "http://www.assero.co.uk/BusinessOperational" ,
       "bf" => "http://www.assero.co.uk/BusinessForm" ,
       "mdrBridg" => "http://www.assero.co.uk/MDRBRIDG" ,
       "mdrBc" => "http://www.assero.co.uk/MDRCDISCBC" ,
-      "mdrForm" => "http://www.assero.co.uk/MDRFORMs"
+      "mdrForm" => "http://www.assero.co.uk/MDRFORMs" ,
+      "mdrSch" => "http://www.assero.co.uk/MDRSchemes" ,
+      "item" => "http://www.assero.co.uk/MDRItems" ,
+      "th" => "http://www.assero.co.uk/MDRThesaurus",
      }
 
   @@required = 

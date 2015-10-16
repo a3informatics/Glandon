@@ -30,5 +30,9 @@ Rails.application.routes.draw do
       get :history
     end
   end
-  
+  resources :iso11179_concept_systems
+  namespace :iso11179_concept_systems do
+    resources :iso11179_concepts
+    resources :iso11179_classifications
+  end
 end

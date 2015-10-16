@@ -1,0 +1,10 @@
+<h1>New Concept System</h1>
+<div class="col-md-10">
+		<%= form_for @conceptSystem, :url => iso11179_concept_systems_path do |f| %>
+		<div class="form-group">
+			<%= f.label :notation, "Notation"%><br />
+			<%= f.text_field :notation %>
+    </div>
+    <%= f.submit "Create", class: "btn btn-default btn-primary" %>
+	<% end %>
+</div>
