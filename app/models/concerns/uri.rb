@@ -101,7 +101,9 @@ class Uri
     #p "Version=" + @version
     
     result = ""
-    result = @prefix + C_FRAGMENT_SECTIONS_SEPARATOR
+    if @prefix != ""
+      result = @prefix + C_FRAGMENT_SECTIONS_SEPARATOR
+    end
     if @version == ""
       result += @shortName
     else
@@ -157,6 +159,8 @@ class Uri
     parts = fragment.split(C_FRAGMENT_SECTIONS_SEPARATOR)
     if parts.size >= 2 and parts.size <= 3
       result = parts[1]
+    elsif parts.size == 1
+      result = fragment
     else
       result = ""
     end

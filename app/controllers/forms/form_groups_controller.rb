@@ -1,9 +1,9 @@
-class FormsController < ApplicationController
+class Forms::FormGroupsController < ApplicationController
   
   before_action :authenticate_user!
   
   def index
-    @forms = Form.all
+    @formGroups = Form::FormGroup.all
   end
   
   def new
@@ -23,11 +23,12 @@ class FormsController < ApplicationController
 
   def show 
     @cdiscTerm = CdiscTerm.current
-    @form = Form.find(params[:id], @cdiscTerm)
+    @form = Form.find(params[:form_id], @cdiscTerm)
+    @formGroup = @form.groups[params[:id]]
   end
   
 private
   def the_params
-    params.require(:form).permit(:scopedIdentifierId)
+    params.require(:form_form_group).permit(:form_id)
   end  
 end

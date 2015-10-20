@@ -31,7 +31,7 @@ class CdiscBc
     #return @baseNs
   end
   
-  def self.find(id,cdiscTerm)
+  def self.find(id, cdiscTerm)
     
     object = nil
     query = UriManagement.buildPrefix("mdrBc", ["cbc", "item", "isoI"]) +
@@ -52,31 +52,6 @@ class CdiscBc
       " }\n" + 
       "}\n"
     
-#    
-#      PREFIX : <http://www.assero.co.uk/MDRCDISCBC#> 
-#      PREFIX cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> 
-#      PREFIX item: <http://www.assero.co.uk/MDRItems#> 
-#      PREFIX isoI: #<http://www.assero.co.uk/ISO11179Identification#> 
-#      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-#      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
-#      PREFIX xsd: #<http://www.w3.org/2001/XMLSchema#> 
-#      PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
-#      SELECT ?bcRoot ?si ?bcName ?bcNode ?bcPropertyNode ?bcPropertyValue ?bcPropertyAlias ?x WHERE 
-#      {   
-#        ?bcRoot isoI:identifierRelationship ?si .
-#        ?bcRoot cbc:name ?bcName .
-#        ?bcRoot (cbc:hasItemRelationship | cbc:hasDatatypeRelationship  | cbc:hasComplexDatatypeRelationship)+ ?bcNode .
-#        OPTIONAL {
-#          ?bcNode cbc:hasDatatypeRefRelationship ?x .
-#          ?bcNode cbc:hasPropertyRelationship ?bcNode1 .
-#          OPTIONAL {
-#          ?bcNode1 ( cbc:hasSimpleDatatypeRelationship | cbc:nextValueRelationship)+ ?bcPropertyNode .
-#          ?bcPropertyNode rdf:type cbc:PropertyValue .
-#          ?bcPropertyNode cbc:value ?bcPropertyValue .
-#          ?bcNode1 cbc:alias ?bcPropertyAlias .
-#          } } } 
-          
-          
     # Send the request, wait the resonse
     response = CRUD.query(query)
     

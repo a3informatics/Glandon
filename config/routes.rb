@@ -35,4 +35,9 @@ Rails.application.routes.draw do
     resources :iso11179_concepts
     resources :iso11179_classifications
   end
+  resources :forms
+  namespace :forms do
+    resources :form_groups
+    resources :form_items
+  end
 end

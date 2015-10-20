@@ -32,12 +32,23 @@
 .
 :Item
   rdf:type owl:Class ;
-  rdfs:label "Question"^^xsd:string ;
+  rdfs:label "Generic Item"^^xsd:string ;
   rdfs:subClassOf :Node ;
 .
-:Label
+:Placeholder
   rdf:type owl:Class ;
-  rdfs:label "Question"^^xsd:string ;
+  rdfs:label "Placeholder Item"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+.
+:bcBased
+  rdf:type owl:Class ;
+  rdfs:label "Biomedical Concept based Item"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+.
+:vBased
+  rdf:type owl:Class ;
+  rdfs:label "Variable Item"^^xsd:string ;
+  rdfs:subClassOf :Item ;
 .
 :hasGroupRelationship
   rdf:type owl:ObjectProperty ;
@@ -71,7 +82,7 @@
 .
 :hasBiomedicalConceptRelationship
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :Group ;
+  rdfs:domain :bcBased ;
   rdfs:label "Has group relationship"^^xsd:string ;
   rdfs:range cbc:BiomedicalConcept ;
 .

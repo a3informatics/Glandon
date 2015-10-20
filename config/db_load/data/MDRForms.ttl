@@ -22,44 +22,72 @@
   owl:imports <http://www.assero.co.uk/MDRCDISCBC> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
-:VS
+:F-VS
   rdf:type bf:Form ;
-  bf:hasGroupRelationship :Height ;
-  bf:hasGroupRelationship :Weight ;
+  bf:hasGroupRelationship :FG-Height ;
+  bf:hasGroupRelationship :FG-Weight ;
   bo:name "Vital Signs"^^xsd:string ;
   bo:ordinal 1 ;
 .
-:Height
+:FG-Height
   rdf:type bf:Group ;
-  bf:hasBiomedicalConceptRelationship MDRCDISCBC:BC-C25347 ;
-  bf:hasItemRelationship :Height_Result ;
-  bf:hasItemRelationship :Height_Units ;
-  bf:isGroupOfRelationship :VS ;
+  bf:hasNodeRelationship :FI-Height_Result ;
+  bf:hasNodeRelationship :FI-Height_Units ;
+  bf:isGroupOfRelationship :F-VS ;
+	bf:name "Height"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note "Height note."^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:repeating "false"^^xsd:boolean ;
 .
-:Weight
+:FG-Weight
   rdf:type bf:Group ;
+  bf:hasNodeRelationship :FI-Weight_Result ;
+  bf:hasNodeRelationship :FI-Weight_Units ;
+  bf:isGroupOfRelationship :F-VS ;
+	bf:name "Weight"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note "Weight note."^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:FI-Weight_Result
+  rdf:type bf:bcBased ;
+  bf:isNodeOfRelationship :FG-Weight ;
   bf:hasBiomedicalConceptRelationship MDRCDISCBC:BC-C25208 ;
-  bf:hasItemRelationship :Weight_Result ;
-  bf:hasItemRelationship :Weight_Units ;
-  bf:isGroupOfRelationship :VS ;
+  bf:hasPropertyRelationship MDRCDISCBC:BC-C25208_PerformedClinicalResult_value_PQR_value ;
+	bf:name "Weight result"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note "Weight result note."^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
 .
-:Weight_Result
-  rdf:type bf:Item ;
-  bf:isItemOfRelationship :Weight ;
-	bf:hasPropertyRelationship MDRCDISCBC:BC-C25208_PerformedClinicalResult_value_PQR_value
+:FI-Weight_Units
+  rdf:type bf:bcBased ;
+  bf:isNodeOfRelationship :FG-Weight ;
+  bf:hasBiomedicalConceptRelationship MDRCDISCBC:BC-C25208 ;
+  bf:hasPropertyRelationship MDRCDISCBC:BC-C25208_PerformedClinicalResult_value_PQR_code ;
+	bf:name "Weight units"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note "Weight units note."^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
 .
-:Weight_Units
-  rdf:type bf:Item ;
-  bf:isItemOfRelationship :Weight ;
-	bf:hasPropertyRelationship MDRCDISCBC:BC-C25208_PerformedClinicalResult_value_PQR_code
+:FI-Height_Result
+  rdf:type bf:bcBased ;
+  bf:isNodeOfRelationship :FG-Height ;
+  bf:hasBiomedicalConceptRelationship MDRCDISCBC:BC-C25347 ;
+  bf:hasPropertyRelationship MDRCDISCBC:BC-C25347_PerformedClinicalResult_value_PQR_value ;
+	bf:name "Height result"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note "Height result note."^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
 .
-:Height_Result
-  rdf:type bf:Item ;
-  bf:isItemOfRelationship :Height ;
-	bf:hasPropertyRelationship MDRCDISCBC:BC-C25347_PerformedClinicalResult_value_PQR_value
-.
-:Height_Units
-  rdf:type bf:Item ;
-  bf:isItemOfRelationship :Height ;
-	bf:hasPropertyRelationship MDRCDISCBC:BC-C25347_PerformedClinicalResult_value_PQR_code
+:FI-Height_Units
+  rdf:type bf:bcBased ;
+  bf:isNodeOfRelationship :FG-Height ;
+  bf:hasBiomedicalConceptRelationship MDRCDISCBC:BC-C25347 ;
+  bf:hasPropertyRelationship MDRCDISCBC:BC-C25347_PerformedClinicalResult_value_PQR_code ;
+	bf:name "Height units"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note "Height units note."^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
 .

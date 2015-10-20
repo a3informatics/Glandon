@@ -11,7 +11,7 @@ module UriManagement
       "bf" => "http://www.assero.co.uk/BusinessForm" ,
       "mdrBridg" => "http://www.assero.co.uk/MDRBRIDG" ,
       "mdrBc" => "http://www.assero.co.uk/MDRCDISCBC" ,
-      "mdrForm" => "http://www.assero.co.uk/MDRFORMs" ,
+      "mdrForm" => "http://www.assero.co.uk/MDRForms" ,
       "mdrSch" => "http://www.assero.co.uk/MDRSchemes" ,
       "item" => "http://www.assero.co.uk/MDRItems" ,
       "th" => "http://www.assero.co.uk/MDRThesaurus",
