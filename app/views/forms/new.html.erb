@@ -1,0 +1,128 @@
+<h1>New Form</h1>
+<div class="row">
+    <div class="container col-md-2">
+        <div class="form-group">
+            <label for="formName">Name:</label>
+            <input type="text" class="form-control" id="formName">
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" id="addGroupButton" class="btn btn-default">G+</button>
+            <button type="button" id="addItemButton" class="btn btn-default">I+</button>
+            <button type="button" id="deleteButton" class="btn btn-default">-</button>
+        </div>
+        <ul class="list-group" id="formEditor">
+            <li class="list-group-item active" id="1">Group</li>
+        </ul>
+        
+    </div>
+    <div class="container col-md-7">
+        <!-- Nav tabs -->
+        <ul id="tab" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#groupTab" aria-controls="group" role="tab" data-toggle="tab">Group</a>
+            </li>
+            <li role="presentation"> 
+                <a href="#itemTab" aria-controls="item" role="tab" data-toggle="tab">Item</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="groupTab">
+                <div class="form-group">
+                    <label for="groupName">Name:</label>
+                    <input type="text" class="form-control" id="groupName">
+                </div>
+                <label>Options:</label>
+                <div>
+                    <div class="checkbox">
+                        <label>
+                            <input id="groupRepeating" type="checkbox">Repeating
+                        </label><br/>
+                        <label>
+                            <input id="groupOptional" type="checkbox">Optional
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="groupNote">Note:</label>
+                        <textarea class="form-control" rows="3" id="groupNote"></textarea>
+                    </div>
+                </div>
+                <button type="button" id="groupUpdateButton" class="btn btn-default">Update</button>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="itemTab">
+                <div class="form-group">
+                    <label for="groupName">Name:</label>
+                    <input type="text" class="form-control" id="groupName">
+                </div>
+                <div class="form-group">
+                    <label for="groupName">Optional:</label>
+                    <br/>
+                    <div class="checkbox">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="groupOptionalYes" value="true">Optional</label>
+                        </div>
+                        <label for="groupName">Note:</label>
+                        <textarea class="form-control" rows="3" id="groupNote"></textarea>
+                    </div>
+                    <div>
+                        <label for="groupName">Item Type:</label>
+                        <br/>
+                        <div class="bs-example">
+                          <label class="radio-inline">
+                            <input name="typeGroup" value="P" data-toggle="collapse" data-parent="#accordion" data-target="#collapseP" type="radio" checked="">
+                            Placeholder
+                        </label>
+                        <label class="radio-inline">
+                            <input name="typeGroup" value="V" data-toggle="collapse" data-parent="#accordion" data-target="#collapseV" type="radio">
+                            Variable
+                        </label>
+                        <label class="radio-inline">
+                            <input name="typeGroup" value="BC" data-toggle="collapse" data-parent="#accordion" data-target="#collapseBC" type="radio">
+                            Biomedical Concept
+                        </label>
+
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        Placeholder
+                                    </h4>
+                                </div>
+                                <div id="collapseP" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <p>Placeholder</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        Variable
+                                    </h4>
+                                </div>
+                                <div id="collapseV" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>Variable</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                    Biomedical Concept
+                                    </h4>
+                                </div>
+                                <div id="collapseBC" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>Concept</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="updateButton" class="btn btn-default">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

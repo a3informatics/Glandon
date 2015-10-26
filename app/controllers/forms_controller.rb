@@ -9,9 +9,18 @@ class FormsController < ApplicationController
   def new
   end
   
+  def placeholder_new
+    @form = Form.new
+  end
+  
   def create
   end
 
+  def placeholder_create
+    @form = Form.create_placeholder(the_params)
+    redirect_to forms_path
+  end
+  
   def update
   end
 
@@ -28,6 +37,6 @@ class FormsController < ApplicationController
   
 private
   def the_params
-    params.require(:form).permit(:scopedIdentifierId)
+    params.require(:form).permit(:freeText, :name, :shortName)
   end  
 end

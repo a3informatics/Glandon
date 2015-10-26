@@ -5,13 +5,14 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :namespaces
-  resources :registration_authorities
   resources :scoped_identifiers
+  resources :registration_authorities
+  resources :registration_states
+  resources :managed_items
   resources :thesauri
   resources :thesaurus_concepts
   resources :uploads
   resources :cdisc_bcs
-  resources :forms
   resources :cdisc_terms do
     collection do
       get :compare
@@ -35,7 +36,16 @@ Rails.application.routes.draw do
     resources :iso11179_concepts
     resources :iso11179_classifications
   end
-  resources :forms
+  resources :forms do
+    collection do
+      get :placeholder_new
+      get :bc_normal_new
+      get :bc_log_new
+      post :placeholder_create
+      post :bc_normal_create
+      post :bc_log_create
+    end
+  end
   namespace :forms do
     resources :form_groups
     resources :form_items

@@ -16,11 +16,12 @@ class RegistrationAuthority
   @@baseNs
   
   # Constants
-  C_NS_PREFIX = "item"
+  C_NS_PREFIX = "mdrItems"
   C_CLASS_RA_PREFIX = "RA"
   C_CLASS_RAI_PREFIX = "RAI"
   DUNS = "DUNS"
   
+  #Class variables
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
 
   def persisted?
@@ -45,7 +46,7 @@ class RegistrationAuthority
       "SELECT ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "	 :" + id + " rdf:type isoR:RegistrationAuthority . \n" +
-      "  :" + id + " isoR:registrationAuthorityIdentifierRelationship ?b . \n" +
+      "  :" + id + " isoR:hasAuthorityIdentifier ?b . \n" +
       "	 ?b isoB:organizationIdentifier ?c . \n" +
       "	 ?b isoB:internationalCodeDesignator ?d . \n" +
       "	 ?b isoB:shortName ?e . \n" +
@@ -87,7 +88,7 @@ class RegistrationAuthority
       "SELECT ?a ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type isoR:RegistrationAuthority . \n" +
-      "	 ?a isoR:registrationAuthorityIdentifierRelationship ?b . \n" +
+      "	 ?a isoR:hasAuthorityIdentifier ?b . \n" +
       "	 ?b isoB:organizationIdentifier ?c . \n" +
       "	 ?b isoB:internationalCodeDesignator ?d . \n" +
       "	 ?b isoB:shortName ?e . \n" +
@@ -121,6 +122,17 @@ class RegistrationAuthority
     
   end
 
+  def self.owner
+
+    results = self.all
+    if results.length == 1
+      return results[0]
+    else
+      return nil
+    end
+
+  end
+
   def self.create(params)
     
     number = params[:number]
@@ -140,7 +152,7 @@ class RegistrationAuthority
       "	:" + raiId + " isoB:shortName \"" + shortName.to_s + "\"^^xsd:string . \n" +
       "	:" + raiId + " isoB:name \"" + longName.to_s + "\"^^xsd:string . \n" +
       "	:" + id + " rdf:type isoR:RegistrationAuthority . \n" +
-      "	:" + id + " isoR:registrationAuthorityIdentifierRelationship :" + raiId + " ; \n" +
+      "	:" + id + " isoR:hasAuthorityIdentifier :" + raiId + " ; \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -181,7 +193,7 @@ class RegistrationAuthority
       "	:" + raiId + " isoB:shortName \"" + self.shortName.to_s + "\"^^xsd:string . \n" +
       "	:" + raiId + " isoB:name \"" + self.name.to_s + "\"^^xsd:string . \n" +
       "	:" + self.id + " rdf:type isoR:RegistrationAuthority . \n" +
-      "	:" + self.id + " isoR:registrationAuthorityIdentifierRelationship :" + raiId + " ; \n" +
+      "	:" + self.id + " isoR:hasAuthorityIdentifier :" + raiId + " ; \n" +
       "}"
     
     # Send the request, wait the resonse

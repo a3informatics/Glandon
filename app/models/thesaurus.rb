@@ -37,7 +37,7 @@ class Thesaurus
     query = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
       "SELECT ?a ?b WHERE \n" +
       "{ \n" +
-      "  :" + id + " isoI:identifierRelationship ?a . \n" +
+      "  :" + id + " isoI:hasIdentifier ?a . \n" +
       "  :" + id + " iso25964:created ?b . \n" +
       "}"
     
@@ -85,7 +85,7 @@ class Thesaurus
       "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "  ?a isoI:identifierRelationship ?b . \n" +
+      "  ?a isoI:hasIdentifier ?b . \n" +
       "  ?a iso25964:created ?c . \n" +
       "}"
     
@@ -148,7 +148,7 @@ class Thesaurus
       "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "  ?a isoI:identifierRelationship ?b . \n" +
+      "  ?a isoI:hasIdentifier ?b . \n" +
       "  ?a iso25964:created ?c . \n" +
       "}"
     
@@ -207,7 +207,7 @@ class Thesaurus
       "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "  ?a isoI:identifierRelationship ?b . \n" +
+      "  ?a isoI:hasIdentifier ?b . \n" +
       "  ?a iso25964:created ?c . \n" +
       "}"
     
@@ -249,7 +249,7 @@ class Thesaurus
     
   end
 
-  def self.create(params,ns="")
+  def self.create(params, ns="")
     
     scopedIdentifierId = params[:scopedIdentifierId]
     si = ScopedIdentifier.find(scopedIdentifierId)
@@ -265,7 +265,7 @@ class Thesaurus
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + id + " rdf:type iso25964:Thesaurus . \n" +
-      "	 :" + id + " isoI:identifierRelationship org:" + scopedIdentifierId + " . \n" +
+      "	 :" + id + " isoI:hasIdentifier org:" + scopedIdentifierId + " . \n" +
       "  :" + id + " iso25964:created \"" + dateCreated + "\"^^xsd:date . \n" +
       "}"
     
@@ -304,7 +304,7 @@ class Thesaurus
       "DELETE DATA \n" +
       "{ \n" +
       "	 :" + self.id + " rdf:type iso25964:Thesaurus . \n" +
-      "	 :" + self.id + " isoI:identifierRelationship org:" + self.scopedIdentifierId.to_s + " . \n" +
+      "	 :" + self.id + " isoI:hasIdentifier org:" + self.scopedIdentifierId.to_s + " . \n" +
       "  :" + self.id + " iso25964:created \"" + self.created + "\"^^xsd:date . \n" +
       "}"
     

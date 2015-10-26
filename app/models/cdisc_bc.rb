@@ -12,8 +12,12 @@ class CdiscBc
   # Constants
   C_CLASS_NAME = "CdiscBc"
   
-  #properties [:alias => {:id, :alias, :qText, :pText, :format, :values[{:id, :value}]}]
+  # BC object
+  #
+  # object: id, scopeId, identifier, version, namespace, name, properties where properties is
+  # properties [:alias => {:id, :alias, :qText, :pText, :format, :values[{:id, :value}]}]
   
+
   # Base namespace 
   #@@cdiscOrg # CDISC Organization identifier
   
@@ -34,10 +38,10 @@ class CdiscBc
   def self.find(id, cdiscTerm)
     
     object = nil
-    query = UriManagement.buildPrefix("mdrBc", ["cbc", "item", "isoI"]) +
+    query = UriManagement.buildPrefix("mdrBc", ["cbc", "mdrItems", "isoI"]) +
       "SELECT ?si ?bcName ?bcDtNode ?bcPropertyNode ?bcPropertyValueNode ?datatype ?propertyValue ?propertyAlias WHERE\n" + 
       "{ \n" + 
-      " :" + id + " isoI:identifierRelationship ?si .\n" + 
+      " :" + id + " isoI:hasIdentifier ?si .\n" + 
       " :" + id + " cbc:name ?bcName .\n" + 
       " :" + id + " (cbc:hasItemRelationship | cbc:hasDatatypeRelationship )%2B ?bcDtNode .\n" + 
       " OPTIONAL {\n" + 
@@ -113,10 +117,10 @@ class CdiscBc
   def self.all()
     
     results = Hash.new
-    query = UriManagement.buildPrefix("mdrBc", ["cbc", "item", "isoI"]) +
+    query = UriManagement.buildPrefix("mdrBc", ["cbc", "mdrItems", "isoI"]) +
       "SELECT ?bcRoot ?si ?bcName WHERE\n" + 
       "{ \n" + 
-      " ?bcRoot isoI:identifierRelationship ?si .\n" + 
+      " ?bcRoot isoI:hasIdentifier ?si .\n" + 
       " ?bcRoot cbc:name ?bcName .\n" + 
       "}\n"
     

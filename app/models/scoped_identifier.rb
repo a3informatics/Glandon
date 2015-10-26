@@ -13,8 +13,9 @@ class ScopedIdentifier
   validates_presence_of :identifier, :version, :namespaceId, :shortName
   
   # Constants
-  C_NS_PREFIX = "item"
+  C_NS_PREFIX = "mdrItems"
   C_CLASS_PREFIX = "SI"
+  C_CLASS_NAME = "ScopedIdentifier"
         
   # Base namespace 
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
@@ -33,6 +34,7 @@ class ScopedIdentifier
   def self.find(id)
     
     object = nil
+    ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
     
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
@@ -40,7 +42,7 @@ class ScopedIdentifier
       "{ \n" +
       "  :" + id + " isoI:identifier ?b . \n" +
       "  :" + id + " isoI:version ?c . \n" +
-      "  :" + id + " isoI:scopeRelationship ?d . \n" +
+      "  :" + id + " isoI:hasScope ?d . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -50,17 +52,9 @@ class ScopedIdentifier
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
       iSet = node.xpath("binding[@name='b']/literal")
       vSet = node.xpath("binding[@name='c']/literal")
       linkSet = node.xpath("binding[@name='d']/uri")
-      
-      p "Id: " + iSet.text
-      p "Ver: " + vSet.text
-      p "link: " + linkSet.text
-
       if iSet.length == 1 and vSet.length == 1 and linkSet.length == 1
         object = self.new 
         object.id = id
@@ -68,10 +62,7 @@ class ScopedIdentifier
         object.identifier = iSet[0].text
         object.version = (vSet[0].text).to_i
         object.namespaceId = ModelUtility.extractCid(linkSet[0].text)
-        
-        p "II identifier=" + object.identifier
-        p "II version=" + object.identifier
-        
+        ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + id)
       end
       
     end
@@ -92,7 +83,7 @@ class ScopedIdentifier
         "	 ?a rdf:type isoI:ScopedIdentifier . \n" +
         "  ?a isoI:identifier ?b . \n" +
         "	 ?a isoI:version ?c . \n" +
-        "	 ?a isoI:scopeRelationship ?d . \n" +
+        "	 ?a isoI:hasScope ?d . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -102,22 +93,11 @@ class ScopedIdentifier
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
       uriSet = node.xpath("binding[@name='a']/uri")
       vSet = node.xpath("binding[@name='c']/literal")
       iSet = node.xpath("binding[@name='b']/literal")
       linkSet = node.xpath("binding[@name='d']/uri")
-      
-      p "identifier: " + iSet.text
-      p "ver: " + vSet.text
-      p "URI: " + uriSet.text
-      
       if uriSet.length == 1 and vSet.length == 1 and iSet.length == 1 and linkSet.length == 1
-
-        p "Found"
-        
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.shortName = ModelUtility.extractShortName(object.id)
@@ -125,10 +105,6 @@ class ScopedIdentifier
         object.version = (vSet[0].text).to_i
         object.namespaceId = ModelUtility.extractCid(linkSet[0].text)
         results.push (object)
-        
-        p "II identifier=" + object.identifier
-        p "II version=" + object.identifier
-        
       end
     end
     
@@ -144,8 +120,6 @@ class ScopedIdentifier
     shortName = params[:shortName]
     id = ModelUtility.buildCidVersion(C_CLASS_PREFIX, shortName, version)
     
-    p "Org_id=" + org.to_s
-    
     # Create the query
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "INSERT DATA \n" +
@@ -153,7 +127,7 @@ class ScopedIdentifier
       "	 :" + id + " rdf:type isoI:ScopedIdentifier . \n" +
       "	 :" + id + " isoI:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " isoI:version \"" + version.to_s + "\"^^xsd:string . \n" +
-      "	 :" + id + " isoI:scopeRelationship :" + namespaceId.to_s + " . \n" +
+      "	 :" + id + " isoI:hasScope :" + namespaceId.to_s + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -167,9 +141,7 @@ class ScopedIdentifier
       object.version = (version).to_i
       object.identifier = identifier
       object.namespaceId = namespaceId
-      p "It worked!"
     else
-      p "It didn't work!"
       object = self.new
       object.assign_errors(data) if response.response_code == 422
     end
@@ -190,7 +162,7 @@ class ScopedIdentifier
       "	 :" + self.id + " rdf:type isoI:ScopedIdentifier . \n" +
       "	 :" + self.id + " isoI:identifier  \"" + self.identifier.to_s + "\"^^xsd:string . \n" +
       "	 :" + self.id + " isoI:version \"" + self.version.to_s + "\"^^xsd:string . \n" +
-      "	 :" + self.id + " isoI:scopeRelationship :" + self.namespaceId.to_s + " . \n" +
+      "	 :" + self.id + " isoI:hasScope :" + self.namespaceId.to_s + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -198,9 +170,9 @@ class ScopedIdentifier
 
     # Response
     if response.success?
-      p "It worked!"
+      ConsoleLogger::log(C_CLASS_NAME,"delete","Deleted Id=" + self.id)
     else
-      p "It didn't work!"
+      ConsoleLogger::log(C_CLASS_NAME,"delete","Failed to deleted Id=" + self.id)
     end
      
   end

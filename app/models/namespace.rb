@@ -14,7 +14,7 @@ class Namespace
   validates_presence_of :name, :shortName
 
   # Constants
-  C_NS_PREFIX = "item"
+  C_NS_PREFIX = "mdrItems"
   C_CLASS_O_PREFIX = "O"
   C_CLASS_NS_PREFIX = "NS"
   
@@ -40,7 +40,7 @@ class Namespace
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?a ?c WHERE \n" +
       "{ \n" +
-        "?a isoI:namingAuthorityRelationship ?b . \n" +
+        "?a isoI:ofOrganization ?b . \n" +
         "?b isoB:shortName \"" + name + "\"^^xsd:string . \n" +
         "?b isoB:name ?c . \n" +
       "}"
@@ -87,7 +87,7 @@ class Namespace
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?b ?c WHERE \n" +
       "{ \n" +
-      "  :" + id.to_s + " isoI:namingAuthorityRelationship ?a . \n" +
+      "  :" + id.to_s + " isoI:ofOrganization ?a . \n" +
       "  ?a isoB:shortName ?b . \n" +
       "  ?a isoB:name ?c . \n" +
       "}"
@@ -135,7 +135,7 @@ class Namespace
       "SELECT ?a ?c ?d WHERE \n" +
       "{ \n" +
       "	?a rdf:type isoI:Namespace . \n" +
-      "	?a isoI:namingAuthorityRelationship ?b . \n" +
+      "	?a isoI:ofOrganization ?b . \n" +
       "	?b isoB:shortName ?c . \n" +
       "	?b isoB:name ?d . \n" +
       "}"
@@ -189,7 +189,7 @@ class Namespace
       "	 :" + orgId + " isoB:name \"" + name + "\"^^xsd:string . \n" +
       "	 :" + orgId + " isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
       "	 :" + id + " rdf:type isoI:Namespace . \n" +
-      "	 :" + id + " isoI:namingAuthorityRelationship :" + orgId + " . \n" +
+      "	 :" + id + " isoI:ofOrganization :" + orgId + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -226,7 +226,7 @@ class Namespace
       "	 :" + orgId + " isoB:name \"" + self.name + "\"^^xsd:string . \n" +
       "	 :" + orgId + " isoB:shortName \"" + self.shortName + "\"^^xsd:string . \n" +
       "	 :" + self.id + " rdf:type isoI:Namespace . \n" +
-      "	 :" + self.id + " isoI:namingAuthorityRelationship :" + orgId + " . \n" +
+      "	 :" + self.id + " isoI:ofOrganization :" + orgId + " . \n" +
       "}"
     
     # Send the request, wait the resonse

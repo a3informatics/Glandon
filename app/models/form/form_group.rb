@@ -6,12 +6,14 @@ class Form::FormGroup
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :name, :optional, :note, :ordinal, :repeating, :items, :bcs
-  validates_presence_of :id, :name, :optional, :note, :ordinal, :repeating, :items, :bcs
+  attr_accessor :id, :name, :optional, :note, :ordinal, :repeating, :items
+  validates_presence_of :id, :name, :optional, :note, :ordinal, :repeating, :items
   
   # Constants
+  C_NS_PREFIX = "mdrForms"
   C_CLASS_NAME = "FormGroup"
   C_CID_PREFIX = "FG"
+  C_ID_SEPARATOR = "_"
   
   def persisted?
     id.present?
@@ -27,7 +29,7 @@ class Form::FormGroup
   def self.find(id, cdiscTerm)
     
     object = nil
-    query = UriManagement.buildPrefix("mdrForm", ["bo","bf","cbc", "item", "isoI"]) +
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
       "SELECT ?b ?c ?d ?e ?f WHERE\n" + 
       "{ \n" + 
       " :" + id + " rdf:type bf:Group . \n" +
@@ -72,17 +74,17 @@ class Form::FormGroup
     
     ConsoleLogger::log(C_CLASS_NAME,"findForForm","***** ENTRY *****")
     results = Hash.new
-    query = UriManagement.buildPrefix("mdrForm", ["bf","cbc", "item", "isoI"]) +
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE\n" + 
       "{ \n" + 
       " ?a rdf:type bf:Group . \n" +
-      " ?a bf:isGroupOfRelationship :" + formId + " . \n" +
+      " ?a bf:isGroupOf :" + formId + " . \n" +
       " ?a bf:name ?b . \n" +
       " ?a bf:optional ?c . \n" +
       " ?a bf:note ?d . \n" +
       " ?a bf:ordinal ?e . \n" +
       " ?a bf:repeating ?f . \n" +
-      #" ?a bf:hasBiomedicalConceptRelationship ?g . \n" +
+      #" ?a bf:hasBiomedicalConcept ?g . \n" +
       "} \n"
                   
     # Send the request, wait the resonse
@@ -107,8 +109,6 @@ class Form::FormGroup
           object = results[id]
         else
           object = self.new 
-          object.items = Hash.new
-          object.bcs = Hash.new
           object.id = ModelUtility.extractCid(uriSet[0].text)
           object.name = nameSet[0].text
           object.optional = optSet[0].text
@@ -118,13 +118,6 @@ class Form::FormGroup
           object.items = Form::FormItem.findForGroup(object.id, cdiscTerm)
           results[id] = object
         end
-        #if bcSet.length == 1
-        #  bcId = ModelUtility.extractCid(bcSet[0].text)
-        #  object.bcs[bcId] = CdiscBc.find(bcId, cdiscTerm)
-        #end
-        object.items.each do |id, item|
-          object.bcs[item.bc.id] = item.bc
-        end
       end
     end
     return results
@@ -132,39 +125,49 @@ class Form::FormGroup
   end
   
   def self.all()
-    
-    results = Hash.new
-    query = UriManagement.buildPrefix("mdrForm", ["bo","bf","cbc", "item", "isoI"]) 
-    query = query +
-      "SELECT ?a ?b WHERE\n" + 
-      "{ \n" + 
-      " ?a rdf:type bf:Form . \n" +
-      " ?a bf:name ?b . \n" +
-      "} \n"
-      
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
-      nSet = node.xpath("binding[@name='b']/literal")
-      if uriSet.length == 1 && nSet.length == 1 
-        object = self.new 
-        object.id = ModelUtility.extractCid(uriSet[0].text)
-        object.name = nSet[0].text
-        results[object.id] = object
-      end
-    end
-    return results  
-    
+    return nil
   end
 
-  def self.create(params)
-    object = nil
+  def self.create_placeholder (formId, cidPrefix, ordinal, version, freeText)
+   
+    itemCidPrefix = cidPrefix + C_ID_SEPARATOR + ordinal.to_s
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemCidPrefix, version)
+    item = Form::FormItem.create_placeholder(id, itemCidPrefix, 1, version, freeText)
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      " :" + id + " rdf:type bf:Group . \n" +
+      " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
+      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+      " :" + id + " bf:name \"Placehoilder\"^^xsd:string . \n" +
+      " :" + id + " bf:note \"\"^^xsd:string . \n" +
+      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+      " :" + id + " bf:hasNode :" + item.id + " . \n" +
+      " :" + id + " bf:isGroupOf :" + formId + " . \n" +
+    "}"
+
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+
+    # Response
+    if response.success?
+      object = self.new
+      object.id = id
+      object.name = "Placeholder"
+      object.optional = false
+      object.repeating = false
+      object.note = ""
+      object.ordinal = ordinal
+      object.items = Hash.new
+      object.items[item.id] = item
+      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Success, id=" + id)
+    else
+      object = nil
+      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Failed")
+    end
+
     return object
+  
   end
 
   def update

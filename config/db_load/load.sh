@@ -67,7 +67,7 @@ INSERT DATA
    :O-CDISC isoB:name "Clinical Data Interchange Standards Consortium"^^xsd:string . 
    :O-CDISC isoB:shortName "CDISC"^^xsd:string . 
    :NS-CDISC rdf:type isoI:Namespace . 
-   :NS-CDISC isoI:namingAuthorityRelationship :O-CDISC . 
+   :NS-CDISC isoI:ofOrganization :O-CDISC . 
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -82,7 +82,7 @@ INSERT DATA
    :O-ACME isoB:name "ACME Pharma"^^xsd:string . 
    :O-ACME isoB:shortName "ACME"^^xsd:string . 
    :NS-ACME rdf:type isoI:Namespace . 
-   :NS-ACME isoI:namingAuthorityRelationship :O-ACME . 
+   :NS-ACME isoI:ofOrganization :O-ACME . 
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -99,7 +99,7 @@ INSERT DATA
   :RAI-123456789 isoB:name "ACME Pharma"^^xsd:string . 
   :RAI-123456789 isoB:shortName "ACME"^^xsd:string . 
   :RA-123456789 rdf:type isoR:RegistrationAuthority . 
-  :RA-123456789 isoR:registrationAuthorityIdentifierRelationship :RAI-123456789 ; 
+  :RA-123456789 isoR:hasAuthorityIdentifier :RAI-123456789 ; 
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -112,7 +112,7 @@ INSERT DATA
    :SI-CDISC_CT-34 rdf:type isoI:ScopedIdentifier .
 	 :SI-CDISC_CT-34 isoI:identifier "CDISC Terminology"^^xsd:string .
 	 :SI-CDISC_CT-34 isoI:version "34"^^xsd:string .
-	 :SI-CDISC_CT-34 isoI:scopeRelationship :NS-CDISC ;
+	 :SI-CDISC_CT-34 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -125,7 +125,7 @@ INSERT DATA
    :SI-CDISC_CT-35 rdf:type isoI:ScopedIdentifier .
 	 :SI-CDISC_CT-35 isoI:identifier "CDISC Terminology"^^xsd:string .
 	 :SI-CDISC_CT-35 isoI:version "35"^^xsd:string .
-	 :SI-CDISC_CT-35 isoI:scopeRelationship :NS-CDISC ;
+	 :SI-CDISC_CT-35 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -138,7 +138,7 @@ INSERT DATA
    :SI-CDISC_CT-36 rdf:type isoI:ScopedIdentifier .
 	 :SI-CDISC_CT-36 isoI:identifier "CDISC Terminology"^^xsd:string .
 	 :SI-CDISC_CT-36 isoI:version "36"^^xsd:string .
-	 :SI-CDISC_CT-36 isoI:scopeRelationship :NS-CDISC ;
+	 :SI-CDISC_CT-36 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -151,7 +151,7 @@ INSERT DATA
    :SI-CDISC_CT-37 rdf:type isoI:ScopedIdentifier .
 	 :SI-CDISC_CT-37 isoI:identifier "CDISC Terminology"^^xsd:string .
 	 :SI-CDISC_CT-37 isoI:version "37"^^xsd:string .
-	 :SI-CDISC_CT-37 isoI:scopeRelationship :NS-CDISC ;
+	 :SI-CDISC_CT-37 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -164,7 +164,7 @@ INSERT DATA
    :SI-CDISC_CT-38 rdf:type isoI:ScopedIdentifier .
 	 :SI-CDISC_CT-38 isoI:identifier "CDISC Terminology"^^xsd:string .
 	 :SI-CDISC_CT-38 isoI:version "38"^^xsd:string .
-	 :SI-CDISC_CT-38 isoI:scopeRelationship :NS-CDISC ;
+	 :SI-CDISC_CT-38 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -177,7 +177,7 @@ INSERT DATA
    :SI-CDISC_CT-39 rdf:type isoI:ScopedIdentifier .
 	 :SI-CDISC_CT-39 isoI:identifier "CDISC Terminology"^^xsd:string .
 	 :SI-CDISC_CT-39 isoI:version "39"^^xsd:string .
-	 :SI-CDISC_CT-39 isoI:scopeRelationship :NS-CDISC ;
+	 :SI-CDISC_CT-39 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -190,7 +190,7 @@ INSERT DATA
    :SI-CDISC_CT-40 rdf:type isoI:ScopedIdentifier .
 	 :SI-CDISC_CT-40 isoI:identifier "CDISC Terminology"^^xsd:string .
 	 :SI-CDISC_CT-40 isoI:version "40"^^xsd:string .
-	 :SI-CDISC_CT-40 isoI:scopeRelationship :NS-CDISC ;
+	 :SI-CDISC_CT-40 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -203,7 +203,7 @@ INSERT DATA
    :SI-CDISC_CT-41 rdf:type isoI:ScopedIdentifier .
 	 :SI-CDISC_CT-41 isoI:identifier "CDISC Terminology"^^xsd:string .
 	 :SI-CDISC_CT-41 isoI:version "41"^^xsd:string .
-	 :SI-CDISC_CT-41 isoI:scopeRelationship :NS-CDISC ;
+	 :SI-CDISC_CT-41 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -216,7 +216,7 @@ INSERT DATA
    :SI-CDISC_CT-42 rdf:type isoI:ScopedIdentifier .
 	 :SI-CDISC_CT-42 isoI:identifier "CDISC Terminology"^^xsd:string .
 	 :SI-CDISC_CT-42 isoI:version "42"^^xsd:string .
-	 :SI-CDISC_CT-42 isoI:scopeRelationship :NS-CDISC ;
+	 :SI-CDISC_CT-42 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 if [ "$DB" = "$Fuseki" ]; then

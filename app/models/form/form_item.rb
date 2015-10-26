@@ -6,16 +6,18 @@ class Form::FormItem
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :type, :name, :optional, :note, :ordinal, :bc, :bcPropertyId
-  validates_presence_of :id, :type, :name, :optional, :note, :ordinal, :bc, :bcPropertyId
+  attr_accessor :id, :type, :name, :optional, :note, :ordinal, :bc, :bcPropertyId, :freeText
+  validates_presence_of :id, :type, :name, :optional, :note, :ordinal, :bc, :bcPropertyId, :freeText
   
   # Constants
+  C_NS_PREFIX = "mdrForms"
   C_CLASS_NAME = "FormItem"
   C_CID_PREFIX = "FI"
   C_BC = 1
   C_VARIABLE = 2
   C_PLACEHOLDER = 3
   C_UNKNOWN = 4
+  C_ID_SEPARATOR = "_"
   
   def persisted?
     id.present?
@@ -32,7 +34,7 @@ class Form::FormItem
     
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
     object = nil
-    query = UriManagement.buildPrefix("mdrForm", ["bo","bf","cbc", "item", "isoI"]) +
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?hj ?i ?j ?k ?l ?m ?type WHERE\n" + 
       "{ \n" + 
       "  { :" + id + " rdf:type bf:Placeholder } UNION { :" + id + " rdf:type bf:vBased } UNION { :" + id + " rdf:type bf:bcBased } . \n" +
@@ -51,13 +53,13 @@ class Form::FormItem
       "    :" + id + " bf:qText ?i . \n" +
       "    :" + id + " bf:mapping ?j . \n" +
       "    OPTIONAL { \n" +
-      "      :" + id + " bf:hasVariableRelationship ?k . \n" +
-      "      :" + id + " bf:hasThesaurusCoceptRelationship ?l . \n" +
+      "      :" + id + " bf:hasVariable ?k . \n" +
+      "      :" + id + " bf:hasThesaurusConcept ?l . \n" +
       "    } \n" +
       "  } \n" +
       "  OPTIONAL { \n" +
-      "    :" + id + " bf:hasPropertyRelationship ?m . \n" +
-      "    :" + id + " bf:hasBiomedicalConceptRelationship ?n . \n" +
+      "    :" + id + " bf:hasProperty ?m . \n" +
+      "    :" + id + " bf:hasBiomedicalConcept ?n . \n" +
       "  } \n" +
       "} \n"
                   
@@ -110,13 +112,13 @@ class Form::FormItem
     
     ConsoleLogger::log(C_CLASS_NAME,"findForGroup","*****ENTRY******")
     results = Hash.new
-    query = UriManagement.buildPrefix("mdrForm", ["bo","bf","cbc", "item", "isoI"]) +
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?hj ?i ?j ?k ?l ?m ?n ?type WHERE\n" + 
       "{ \n" + 
       "  { ?a rdf:type bf:Placeholder } UNION { ?a rdf:type bf:vBased } UNION { ?a rdf:type bf:bcBased } . \n" +
       "  ?a rdf:type ?type . \n" +
       "  ?type rdfs:subClassOf bf:Item . \n" +
-      "  ?a bf:isNodeOfRelationship :" + groupId + " . \n" +
+      "  ?a bf:isNodeOf :" + groupId + " . \n" +
       "  ?a bf:name ?b . \n" +
       "  ?a bf:optional ?c . \n" +
       "  ?a bf:note ?d . \n" +
@@ -130,13 +132,13 @@ class Form::FormItem
       "    ?a bf:qText ?i . \n" +
       "    ?a bf:mapping ?j . \n" +
       "    OPTIONAL { \n" +
-      "      ?a bf:hasVariableRelationship ?k . \n" +
-      "      ?a bf:hasThesaurusCoceptRelationship ?l . \n" +
+      "      ?a bf:hasVariable ?k . \n" +
+      "      ?a bf:hasThesaurusConcept ?l . \n" +
       "    } \n" +
       "  } \n" +
       "  OPTIONAL { \n" +
-      "    ?a bf:hasPropertyRelationship ?m . \n" +
-      "    ?a bf:hasBiomedicalConceptRelationship ?n . \n" +
+      "    ?a bf:hasProperty ?m . \n" +
+      "    ?a bf:hasBiomedicalConcept ?n . \n" +
       "  } \n" +
       "} \n"
                   
@@ -192,43 +194,51 @@ class Form::FormItem
   end
   
   def self.all()
-    
-    results = Hash.new
-    query = UriManagement.buildPrefix("mdrForm", ["bo","bf","cbc", "item", "isoI"]) 
-    query = query +
-      "SELECT ?a ?b ?type WHERE\n" + 
-      "{ \n" + 
-      "  { ?a rdf:type bf:Placeholder } UNION { ?a rdf:type bf:vBased } UNION { ?a rdf:type bf:bcBased } . \n" +
-      "  ?a rdf:type ?type . \n" +
-      "  ?type rdfs:subClassOf bf:Item . \n" +
-      "  ?a bf:name ?b . \n" +
-      "} \n"
-      
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
-      nameSet = node.xpath("binding[@name='b']/literal")
-      typeSet = node.xpath("binding[@name='type']/literal")
-      if uriSet.length == 1 && nameSet.length == 1 
-        object = self.new 
-        object.id = ModelUtility.extractCid(uriSet[0].text)
-        object.name = ModelUtility.extractCid(nameSet[0].text)
-        object.type = typeSet[0].text
-        results[object.id] = object
-      end
-    end
-    return results  
-    
+    return nil
   end
 
   def self.create(params)
-    object = nil
+    return nil
+  end
+
+  def self.create_placeholder(groupId, cidPrefix, ordinal, version, freeText)
+
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, cidPrefix + C_ID_SEPARATOR + ordinal.to_s, version)
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      " :" + id + " rdf:type bf:Placeholder . \n" +
+      " :" + id + " bf:freeText \"" + freeText + "\"^^xsd:string . \n" +
+      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+      " :" + id + " bf:name \"Placehoilder\"^^xsd:string . \n" +
+      " :" + id + " bf:note \"\"^^xsd:string . \n" +
+      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+      " :" + id + " bf:isNodeOf :" + groupId + " . \n" +
+            "}"
+
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+
+    # Response
+    if response.success?
+      object = self.new
+      object.id = id
+      object.type = C_PLACEHOLDER 
+      object.name = "Placeholder"
+      object.optional = false
+      object.note = ""
+      object.ordinal = ordinal
+      object.bc = nil
+      object.bcPropertyId = ""
+      object.freeText = freeText
+      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Success, id=" + id)
+    else
+      object = nil
+      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Failed")
+    end
+
     return object
+
   end
 
   def update

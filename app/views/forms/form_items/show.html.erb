@@ -1,4 +1,4 @@
-<h1>Item <%= @formItem.name %> <small>(CDISC, <%=  %>, V<%=  %>)</small></h1>
+<h1>Item <%= @formItem.name %> <small>(<%= @form.managedItem.scopedIdentifier.identifier %>, V<%= @form.managedItem.scopedIdentifier.version %>)</small></h1>
 <div class="col-md-10">
 	<h2>Details</h2>
 	<table class="table table-striped table-bordered table-condensed">

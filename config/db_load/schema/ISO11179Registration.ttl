@@ -34,41 +34,29 @@
   rdfs:subClassOf owl:Thing ;
   skos:definition "The organisation responsible for the registry who shall determine which metadata items should become IdentifiedItems, RegisteredItems, Designatable_Items and/or ClassifiableItems."^^xsd:string ;
 .
-:administeredItemRelationship
+:isStateOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Registration ;
   rdfs:label "administeredItem"^^xsd:string ;
   rdfs:range ISO11179Types:AdministeredItem ;
 .
-:authorityRelationship
+:byAuthority
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Registration ;
   rdfs:label "Authority Relationship"^^xsd:string ;
   rdfs:range :RegistrationAuthority ;
 .
-:itemRegistrationRelationship
+:hasState
   rdf:type owl:ObjectProperty ;
   rdfs:domain ISO11179Types:AdministeredItem ;
   rdfs:label "Item Registration Relationship"^^xsd:string ;
   rdfs:range :Registration ;
 .
-:maintainerRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain ISO11179Identification:Namespace ;
-  rdfs:label "Maintainer Relationship"^^xsd:string ;
-  rdfs:range :RegistrationAuthority ;
-.
-:registrationAuthorityRegistrationRelationship
+:administers
   rdf:type owl:ObjectProperty ;
   rdfs:domain :RegistrationAuthority ;
   rdfs:label "Registration Authority Registration Relationship"^^xsd:string ;
   rdfs:range :Registration ;
-.
-:registrationNamespaceRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :RegistrationAuthority ;
-  rdfs:label "Registration Namespace Relationship"^^xsd:string ;
-  rdfs:range ISO11179Identification:Namespace ;
 .
 :registrationStatus
   rdf:type owl:DatatypeProperty ;
