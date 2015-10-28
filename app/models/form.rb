@@ -110,11 +110,12 @@ class Form
     group = FormGroup.create_placeholder(id, shortName, 1, version, freeText)
     
     # Create the query
-    update = UriManagement.buildPrefix(C_NS_PREFIX,["bf", "bo"]) +
+    update = UriManagement.buildPrefix(C_NS_PREFIX,["bf", "bo", "isoI"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "  :" + id + " rdf:type bf:Form . \n" +
       "  :" + id + " bo:name \"" + name + "\"^^xsd:string . \n" +
+      "  :" + id + " isoI:hasState :" + managedItem.registrationState.id + " . \n" +
       "  :" + id + " bf:hasGroup :" + group.id + " . \n" +
       "}"
     
@@ -138,6 +139,66 @@ class Form
 
   end
 
+  def self.create_bc_normal(params, cdiscTerm)
+    
+    ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Entry")
+    object = nil
+    
+    # Get the parameters
+    name = params[:name]
+    shortName = params[:shortName]
+    bcs = params[:bcs]
+    version = "1"
+    ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","BCs=" + bcs.to_s)
+      
+    # Create the id for the form
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, shortName, version)
+
+    # Create the managed item for the form. The namespace id is a shortcut for the moment.
+    managedItem = ManagedItem.create_local(id, {:version => version, :identifier => name, :shortName => shortName, :namespace_id => "items:NS-ACME"}, C_NS_PREFIX)
+
+    # Now create the group (which will create the item). We only need a 
+    # single group for a placeholder form.
+    insertSparql = ""
+    groups = Hash.new
+    ordinal = 1
+    bcs.each do |bcId|
+      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add group for BC=" + bcId.to_s)
+      bc = CdiscBc.find(bcId, cdiscTerm)
+      group = FormGroup.create_bc_normal(id, shortName, ordinal, version, bc, cdiscTerm)
+      ordinal += 1
+      insertSparql = insertSparql + "  :" + id + " bf:hasGroup :" + group.id + " . \n"
+      groups[group.id] = group
+    end
+
+    # Create the query
+    update = UriManagement.buildPrefix(C_NS_PREFIX,["bf", "bo", "isoI"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      "  :" + id + " rdf:type bf:Form . \n" +
+      "  :" + id + " bo:name \"" + name + "\"^^xsd:string . \n" +
+      "  :" + id + " isoI:hasState :" + managedItem.registrationState.id + " . \n" +
+      insertSparql +
+      "}"
+    
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    
+    # Response
+    if response.success?
+      object = self.new
+      object.id = id
+      object.managedItem = managedItem
+      object.name = name
+      object.groups = groups
+    else
+      object = self.new
+      object.assign_errors(data) if response.response_code == 422
+    end
+    ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Exit")
+    return object
+
+  end
   def self.create(params)
     object = nil
     return object

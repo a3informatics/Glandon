@@ -18,7 +18,7 @@ class CdiscTerm
   @@cdiscNamespace # CDISC Organization identifier
   
   # Base namespace 
-  @@BaseNs = Thesaurus.baseNs()
+  @@baseNs = Thesaurus.baseNs()
   
   def persisted?
     id.present?

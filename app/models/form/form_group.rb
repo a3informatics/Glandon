@@ -139,7 +139,7 @@ class Form::FormGroup
       " :" + id + " rdf:type bf:Group . \n" +
       " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:name \"Placehoilder\"^^xsd:string . \n" +
+      " :" + id + " bf:name \"Placeholder\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
       " :" + id + " bf:hasNode :" + item.id + " . \n" +
@@ -160,6 +160,58 @@ class Form::FormGroup
       object.ordinal = ordinal
       object.items = Hash.new
       object.items[item.id] = item
+      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Success, id=" + id)
+    else
+      object = nil
+      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Failed")
+    end
+
+    return object
+  
+  end
+
+  def self.create_bc_normal (formId, cidPrefix, ordinal, version, bc, cdiscTerm)
+   
+    itemCidPrefix = cidPrefix + C_ID_SEPARATOR + ordinal.to_s
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemCidPrefix, version)
+    insertSparql = ""
+    items = Hash.new
+    itemOrdinal = 1
+    bc.properties.each do |property_id, property|
+      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add item for Group=" + property_id)
+      item = Form::FormItem.create_bc_normal(id, itemCidPrefix, itemOrdinal, version, bc, property_id, cdiscTerm)
+      itemOrdinal += 1
+      items[item.id] = item
+      insertSparql = insertSparql + " :" + id + " bf:hasNode :" + item.id + " . \n"
+    end
+      
+
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      " :" + id + " rdf:type bf:Group . \n" +
+      " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
+      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+      " :" + id + " bf:name \"" + bc.name + "\"^^xsd:string . \n" +
+      " :" + id + " bf:note \"\"^^xsd:string . \n" +
+      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+      insertSparql + 
+      " :" + id + " bf:isGroupOf :" + formId + " . \n" +
+    "}"
+
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+
+    # Response
+    if response.success?
+      object = self.new
+      object.id = id
+      object.name = "Placeholder"
+      object.optional = false
+      object.repeating = false
+      object.note = ""
+      object.ordinal = ordinal
+      object.items = items
       ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Success, id=" + id)
     else
       object = nil

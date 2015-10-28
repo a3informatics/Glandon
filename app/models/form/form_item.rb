@@ -210,7 +210,7 @@ class Form::FormItem
       " :" + id + " rdf:type bf:Placeholder . \n" +
       " :" + id + " bf:freeText \"" + freeText + "\"^^xsd:string . \n" +
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:name \"Placehoilder\"^^xsd:string . \n" +
+      " :" + id + " bf:name \"Placeholder\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
       " :" + id + " bf:isNodeOf :" + groupId + " . \n" +
@@ -235,6 +235,49 @@ class Form::FormItem
     else
       object = nil
       ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Failed")
+    end
+
+    return object
+
+  end
+
+  def self.create_bc_normal(groupId, cidPrefix, ordinal, version, bc, property_id, cdiscTerm)
+
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, cidPrefix + C_ID_SEPARATOR + ordinal.to_s, version)
+    ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["bf", "mdrBc"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      " :" + id + " rdf:type bf:bcBased . \n" +
+      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+      " :" + id + " bf:name \"Item " + ordinal.to_s + "\"^^xsd:string . \n" +
+      " :" + id + " bf:note \"\"^^xsd:string . \n" +
+      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+      " :" + id + " bf:hasProperty mdrBc:" + property_id + " . \n" +
+      " :" + id + " bf:hasBiomedicalConcept mdrBc:" + bc.id + " . \n" +
+      " :" + id + " bf:isNodeOf :" + groupId + " . \n" +
+      "}"
+
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+
+    # Response
+    if response.success?
+      object = self.new
+      object.id = id
+      object.type = C_BC 
+      object.name = "Item " + ordinal.to_s 
+      object.optional = false
+      object.note = ""
+      object.ordinal = ordinal
+      object.bc = bc
+      object.bcPropertyId = property_id
+      object.freeText = ""
+      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Success, id=" + id)
+    else
+      object = nil
+      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Failed")
     end
 
     return object

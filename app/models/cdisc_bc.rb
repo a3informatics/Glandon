@@ -85,18 +85,18 @@ class CdiscBc
           object.version = si.version
           object.name = nameSet[0].text
         end
-        aliasKey = ModelUtility.extractCid(bcSet[0].text)
+        propertyCid = ModelUtility.extractCid(bcSet[0].text)
         aliasName = aliasSet[0].text
         value = valueSet[0].text
         dt = dtSet[0].text
-        if properties.has_key?(aliasKey)
-          property = properties[aliasKey]
+        if properties.has_key?(propertyCid)
+          property = properties[propertyCid]
           values = property[:Values]
         else
           property = Hash.new
           values = Array.new
         end  
-        properties[aliasKey] = property
+        properties[propertyCid] = property
         if value != ""
           clHash = {:cCode => value, :clis => CdiscCli.findByIdentifier(value, cdiscTerm)}
           values.push(clHash)
