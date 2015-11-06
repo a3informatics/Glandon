@@ -56,12 +56,12 @@ class CdiscBc
       "{ \n" + 
       " :" + id + " rdf:type cbc:BiomedicalConceptInstance . \n" +
       " :" + id + " cbc:name ?bcName .\n" + 
-      " :" + id + " (cbc:hasItemRelationship | cbc:hasDatatypeRelationship )%2B ?bcDtNode .\n" + 
+      " :" + id + " (cbc:hasItem | cbc:hasDatatype )%2B ?bcDtNode .\n" + 
       " OPTIONAL {\n" + 
-      "   ?bcDtNode cbc:hasDatatypeRefRelationship ?datatype . \n" + 
-      "   ?bcDtNode (cbc:hasPropertyRelationship | cbc:hasComplexDatatypeRelationship )%2B ?bcPropertyNode . \n" + 
+      "   ?bcDtNode cbc:hasDatatypeRef ?datatype . \n" + 
+      "   ?bcDtNode (cbc:hasProperty | cbc:hasComplexDatatype )%2B ?bcPropertyNode . \n" + 
       "   OPTIONAL { \n" + 
-      "     ?bcPropertyNode (cbc:hasSimpleDatatypeRelationship | cbc:nextValueRelationship)%2B ?bcPropertyValueNode .\n" + 
+      "     ?bcPropertyNode (cbc:hasSimpleDatatype | cbc:nextValue)%2B ?bcPropertyValueNode .\n" + 
       "     ?bcPropertyValueNode rdf:type cbc:PropertyValue .\n" + 
       "     ?bcPropertyValueNode cbc:value ?propertyValue .\n" + 
       "     ?bcPropertyNode cbc:alias ?propertyAlias . \n" + 

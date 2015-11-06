@@ -1,5 +1,9 @@
 class CdiscBcsController < ApplicationController
   
+  C_CLASS_NAME = "CdiscBcsController"
+
+  layout "editor", only: [:new, :edit]
+
   before_action :authenticate_user!
   
   def index
@@ -7,8 +11,20 @@ class CdiscBcsController < ApplicationController
   end
   
   def new
+    @cdiscTerm = CdiscTerm.current
+    #@bcts = BiomedicalConceptTemplate.all
+    @bcts_options = BiomedicalConceptTemplate.all.map{|key,u|[u.name,u.id + "|" + u.namespace]}
   end
-  
+
+  def bct_select
+    id = params[:id]
+    namespace = params[:namespace]
+    ConsoleLogger::log(C_CLASS_NAME,"bct_select","*****Entry*****")
+    @bct = BiomedicalConceptTemplate.find(id, namespace)
+    render json: @bct
+    ConsoleLogger::log(C_CLASS_NAME,"bct_select","*****Exit*****")
+  end
+
   def create
   end
 

@@ -12,7 +12,12 @@ Rails.application.routes.draw do
   resources :thesauri
   resources :thesaurus_concepts
   resources :uploads
-  resources :cdisc_bcs
+  resources :biomedical_concept_templates
+  resources :cdisc_bcs do
+    collection do
+      get :bct_select
+    end
+  end
   resources :cdisc_terms do
     collection do
       get :compare

@@ -1,0 +1,46 @@
+<h1>Biomedical Concept Creation</h1>
+<div class="col-md-6">
+	<div>
+        <div id="bct_select">
+            <%= select_tag(:bct_status, options_for_select(@bcts_options)) %>
+        </div>  
+        <button type="button" id="bct_button" class="btn btn-default">BCT</button>      
+    </div>
+    <div id="d3">
+		<!-- D3 Area -->
+	</div>
+</div>
+<div class="col-md-3">
+		<!-- Tab list -->
+		<ul id="tab" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#alias1Tab" aria-controls="group" role="tab" data-toggle="tab">Alias 1</a>
+            </li>
+            <li role="presentation"> 
+                <a href="#alias2Tab" aria-controls="item" role="tab" data-toggle="tab">Alais 2</a>
+            </li>
+        </ul>
+        
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="alias1Tab">
+                <label>Options:</label>
+                <button type="button" id="groupUpdateButton" class="btn btn-default">Update</button>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="alias2Tab">
+                <label>Options:</label>
+                <button type="button" id="groupUpdateButton" class="btn btn-default">Update</button>
+            </div>
+        </div>
+</div>
+<div class="col-md-3">
+	<div>
+		<table class="table table-striped table-bordered table-condensed">
+			<tr>
+				<th>Identifer</th>
+				<th>Name</th>
+				<th>Version</th>
+			</tr>
+		</table>
+	</div>
+</div>

@@ -80,70 +80,70 @@
   rdfs:label "A short hand name for the item to allow easy use"^^xsd:string ;
   rdfs:range xsd:string ;
 .
-:hasAttributeRefRelationship
+:hasAttributeRef
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Item ;
   rdfs:label "Reference to the BRIDG attribute"^^xsd:string ;
   rdfs:range bridg:Attribute ;
 .
-:hasClassRefRelationship
+:hasClassRef
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Item ;
   rdfs:label "Reference to the BRIDG class"^^xsd:string ;
   rdfs:range bridg:Class ;
 .
-:hasComplexDatatypeRelationship
+:hasComplexDatatype
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Property ;
   rdfs:label "Has a complext data type"^^xsd:string ;
   rdfs:range :Datatype ;
   owl:propertyDisjointWith :hasSimpleDatatypeRelationship ;
 .
-:hasDataTypeRelationship
+:hasDataType
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Item ;
   rdfs:label "Object property 1"^^xsd:string ;
   rdfs:range :Datatype ;
 .
-:hasDatatypeRefRelationship
+:hasDatatypeRef
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Datatype ;
   rdfs:label "datatype ref"^^xsd:string ;
   rdfs:range iso21090:Datatype ;
 .
-:hasItemRelationship
+:hasItem
   rdf:type owl:ObjectProperty ;
   rdfs:domain :BiomedicalConcept ;
   rdfs:label "Link to the constiuent parts of the Biomedical Concept (Instance or Template)"^^xsd:string ;
   rdfs:range :Item ;
 .
-:hasPropertyRelationship
+:hasProperty
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Datatype ;
   rdfs:label "Has A Property"^^xsd:string ;
   rdfs:range :Property ;
   owl:inverseOf :isPropertyOfRelationship ;
 .
-:hasSimpleDatatypeRelationship
+:hasSimpleDatatype
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Property ;
   rdfs:label "has a Simple Datatype"^^xsd:string ;
   rdfs:range :PropertyValue ;
   owl:propertyDisjointWith :hasComplexDatatypeRelationship ;
 .
-:isDatatypeOfRelationship
+:isDatatypeOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Datatype ;
   rdfs:range :Item ;
   owl:inverseOf :hasDataTypeRelationship ;
 .
-:isItemOfRelationship
+:isItemOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Item ;
   rdfs:range :BiomedicalConcept ;
   owl:inverseOf :hasItemRelationship ;
 .
-:isPropertyOfRelationship
+:isPropertyOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Property ;
   rdfs:range :Datatype ;
@@ -155,13 +155,13 @@
   rdfs:label "Name of the Biomedical Concept"^^xsd:string ;
   rdfs:range xsd:string ;
 .
-:nextItemRelationship
+:nextItem
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Item ;
   rdfs:label "next item"^^xsd:string ;
   rdfs:range :Item ;
 .
-:nextValueRelationship
+:nextValue
   rdf:type owl:ObjectProperty ;
   rdfs:domain :PropertyValue ;
   rdfs:label "next value"^^xsd:string ;
