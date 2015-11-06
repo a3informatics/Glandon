@@ -100,7 +100,7 @@ class CdiscClisController < ApplicationController
     id = params[:id]
     termId = params[:termId]
     @cdiscTerm = CdiscTerm.find(params[:termId])
-    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
+    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.internalVersion)
     @cdiscCli = CdiscCli.find(id, @cdiscTerm)
   end
   
@@ -113,8 +113,8 @@ private
     def compareCLI (term, previousCli, currentCli)
       result = Hash.new
       result = {
-        "version" => term.version, 
-        "date" => term.date, 
+        "version" => term.internalVersion, 
+        "date" => term.version, 
         "identifier" => Diffy::Diff.new(previousCli.identifier, currentCli.identifier).to_s(:html),
         "notation" => Diffy::Diff.new(previousCli.notation, currentCli.notation).to_s(:html),
         "preferredTerm" => Diffy::Diff.new(previousCli.preferredTerm, currentCli.preferredTerm).to_s(:html),
@@ -126,8 +126,8 @@ private
     def currentCLI (term, cli)
       result = Hash.new
       result = {
-        "version" => term.version,
-        "date" => term.date,
+        "version" => term.internalVersion,
+        "date" => term.version,
         "identifier" => cli.identifier,
         "notation" => cli.notation,
         "preferredTerm" => cli.preferredTerm,

@@ -14,7 +14,7 @@ class ThesaurusConcept
   
   # Constants
   C_CLASS_PREFIX = "THC"
-  C_NS_PREFIX = "th"
+  C_NS_PREFIX = "mdrTh"
   C_CLASS_NAME = "ThesaurusConcept"
   
   # Base namespace 

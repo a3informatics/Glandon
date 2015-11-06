@@ -10,12 +10,18 @@ module UriManagement
       "cbc" => "http://www.assero.co.uk/CDISCBiomedicalConcept",
       "bo" => "http://www.assero.co.uk/BusinessOperational" ,
       "bf" => "http://www.assero.co.uk/BusinessForm" ,
+      "bd" => "http://www.assero.co.uk/BusinessDomain" ,
+      "bs" => "http://www.assero.co.uk/BusinessStandard" ,
+      "mms" => "http://rdf.cdisc.org/mms" ,
+      "cdisc" => "http://rdf.cdisc.org/std/schema" ,
+      "mdrItems" => "http://www.assero.co.uk/MDRItems" ,
       "mdrBridg" => "http://www.assero.co.uk/MDRBRIDG" ,
-      "mdrBc" => "http://www.assero.co.uk/MDRCDISCBC" ,
+      "mdrBcs" => "http://www.assero.co.uk/MDRCDISCBC" ,
       "mdrForms" => "http://www.assero.co.uk/MDRForms" ,
       "mdrSch" => "http://www.assero.co.uk/MDRSchemes" ,
-      "mdrItems" => "http://www.assero.co.uk/MDRItems" ,
-      "th" => "http://www.assero.co.uk/MDRThesaurus",
+      "mdrDomains" => "http://www.assero.co.uk/MDRDomains" ,
+      "mdrStds" => "http://www.assero.co.uk/MDRStandards" ,
+      "mdrTh" => "http://www.assero.co.uk/MDRThesaurus"
      }
 
   @@required = 

@@ -17,16 +17,29 @@ class ManagedItem
   # Base namespace 
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
   
+  def version
+    return self.scopedIdentifier.version
+  end
+
+  def internalVersion
+    return self.scopedIdentifier.internalVersion
+  end
+
+  def identifier
+    return self.scopedIdentifier.identifier
+  end
+
   # Note: The id is the identifier for the enclosing managed object.
-  def self.find(id, ns="")
+  def self.find(id, ns=nil)
     
     ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     object = nil
     useNs = ns || @@baseNs
     ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + useNs + " [base=" + @@baseNs + "]")
     
     # Create the query
-    query = UriManagement.buildPrefix(useNs, ["isoI", "isoT"]) +
+    query = UriManagement.buildNs(useNs, ["isoI", "isoT"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
       "{ \n" +
       "  :" + id + " isoI:hasIdentifier ?a . \n" +
@@ -67,7 +80,7 @@ class ManagedItem
           object.explanoratoryComment = commentSet[0].text
           object.type = C_AI
         else
-          object.RegistrationState = nil
+          object.registrationState = nil
           object.origin = ""
           object.changeDescription = ""
           object.creationDate = ""
@@ -90,7 +103,7 @@ class ManagedItem
     object = self.new
     object.id = id
     object.scopedIdentifier = ScopedIdentifier.create(params)
-    object.administeredItem = nil
+    object.registrationState = nil
     object.type = C_II
     object.origin = ""
     object.changeDescription = ""
@@ -98,10 +111,10 @@ class ManagedItem
     object.lastChangedDate = ""
     object.explanoratoryComment = ""
 
-    update = UriManagement.buildPrefix(ns, ["isoI"]) +
+    update = UriManagement.buildNs(useNs, ["mdrItems", "isoI"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      " :" + id + " isoI:hasIdentifier :" + object.scopedIdentifier.id + " . \n" +
+      " :" + id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
       "}"
 
     # Send the request, wait the resonse
@@ -134,11 +147,11 @@ class ManagedItem
     object.lastChangedDate = ""
     object.explanoratoryComment = ""
   
-    update = UriManagement.buildPrefix(ns, ["isoT", "isoI"]) +
+    update = UriManagement.buildNs(useNs, ["mdrItems", "isoT", "isoI"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      " :" + id + " isoI:hasIdentifier :" + object.scopedIdentifier.id + " . \n" +
-      " :" + id + " isoI:hasState :" + object.registrationState.id + " . \n" +
+      " :" + id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
+      " :" + id + " isoI:hasState mdrItems:" + object.registrationState.id + " . \n" +
       " :" + id + " isoT:origin \"\"^^xsd:string . \n" +
       " :" + id + " isoT:changeDescription \"Creation\"^^xsd:string . \n" +
       " :" + id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +

@@ -26,8 +26,8 @@ module Xslt
     
     p "XSLT Param=" + paramString.to_s
     
-    document = Nokogiri::XML(File.read(xmlFile))
-    template = Nokogiri::XSLT(File.read(xsltFile))
+    document = Nokogiri::XML(File.open(xmlFile))
+    template = Nokogiri::XSLT(File.open(xsltFile))
     # Nokogiri transform doesn't seem to handle 'text' translations
     # Appears that transform returns an XMl document
     #transform = template.transform(document, paramString)

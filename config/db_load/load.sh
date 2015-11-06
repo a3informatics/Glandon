@@ -27,13 +27,14 @@ if [ "$DB" = "$Fuseki" ]; then
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/ISO21090.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BRIDG.ttl" $FileEndPoint
 	
-#	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/meta-model-schema.owl" $FileEndPoint
-#	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/ct-schema.owl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/meta-model-schema.owl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/cdisc-schema.owl" $FileEndPoint
 
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/CDISCBiomedicalConcept.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessOperational.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessForm.ttl" $FileEndPoint
-#	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/CDISCSDTM.ttl" $FileEndPoint	
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessDomain.ttl" $FileEndPoint	
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessStandard.ttl" $FileEndPoint	
 else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/ISO11179Types.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/ISO11179Basic.ttl $FileEndPoint
@@ -46,13 +47,14 @@ else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/ISO21090.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BRIDG.ttl $FileEndPoint
 
-#	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/meta-model-schema.owl $FileEndPoint
-#	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/ct-schema.owl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/meta-model-schema.owl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/cdisc-schema.owl $FileEndPoint
 
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/CDISCBiomedicalConcept.ttl $FileEndPoint	
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessOperational.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessForm.ttl $FileEndPoint
-#	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/CDISCSDTM.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessDomain.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessStandard.ttl $FileEndPoint
 fi
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -109,10 +111,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :SI-CDISC_CT-34 rdf:type isoI:ScopedIdentifier .
-	 :SI-CDISC_CT-34 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :SI-CDISC_CT-34 isoI:version "34"^^xsd:string .
-	 :SI-CDISC_CT-34 isoI:hasScope :NS-CDISC ;
+   	:SI-CDISC_CT-34 rdf:type isoI:ScopedIdentifier .
+	:SI-CDISC_CT-34 isoI:identifier "CDISC Terminology"^^xsd:string .
+	:SI-CDISC_CT-34 isoI:internalVersion "34"^^xsd:positiveInteger .
+	:SI-CDISC_CT-34 isoI:version "2013-12-20"^^xsd:string .
+	:SI-CDISC_CT-34 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -122,10 +125,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :SI-CDISC_CT-35 rdf:type isoI:ScopedIdentifier .
-	 :SI-CDISC_CT-35 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :SI-CDISC_CT-35 isoI:version "35"^^xsd:string .
-	 :SI-CDISC_CT-35 isoI:hasScope :NS-CDISC ;
+   	:SI-CDISC_CT-35 rdf:type isoI:ScopedIdentifier .
+	:SI-CDISC_CT-35 isoI:identifier "CDISC Terminology"^^xsd:string .
+	:SI-CDISC_CT-35 isoI:internalVersion "35"^^xsd:positiveInteger .
+	:SI-CDISC_CT-35 isoI:version "2014-03-28"^^xsd:string .
+	:SI-CDISC_CT-35 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -135,10 +139,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :SI-CDISC_CT-36 rdf:type isoI:ScopedIdentifier .
-	 :SI-CDISC_CT-36 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :SI-CDISC_CT-36 isoI:version "36"^^xsd:string .
-	 :SI-CDISC_CT-36 isoI:hasScope :NS-CDISC ;
+   	:SI-CDISC_CT-36 rdf:type isoI:ScopedIdentifier .
+	:SI-CDISC_CT-36 isoI:identifier "CDISC Terminology"^^xsd:string .
+	:SI-CDISC_CT-36 isoI:internalVersion "36"^^xsd:positiveInteger .
+	:SI-CDISC_CT-36 isoI:version "2014-06-27"^^xsd:string .
+	:SI-CDISC_CT-36 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -148,10 +153,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :SI-CDISC_CT-37 rdf:type isoI:ScopedIdentifier .
-	 :SI-CDISC_CT-37 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :SI-CDISC_CT-37 isoI:version "37"^^xsd:string .
-	 :SI-CDISC_CT-37 isoI:hasScope :NS-CDISC ;
+   	:SI-CDISC_CT-37 rdf:type isoI:ScopedIdentifier .
+	:SI-CDISC_CT-37 isoI:identifier "CDISC Terminology"^^xsd:string .
+	:SI-CDISC_CT-37 isoI:internalVersion "37"^^xsd:positiveInteger .
+	:SI-CDISC_CT-37 isoI:version "2014-09-24"^^xsd:string .
+	:SI-CDISC_CT-37 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -161,10 +167,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :SI-CDISC_CT-38 rdf:type isoI:ScopedIdentifier .
-	 :SI-CDISC_CT-38 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :SI-CDISC_CT-38 isoI:version "38"^^xsd:string .
-	 :SI-CDISC_CT-38 isoI:hasScope :NS-CDISC ;
+   	:SI-CDISC_CT-38 rdf:type isoI:ScopedIdentifier .
+	:SI-CDISC_CT-38 isoI:identifier "CDISC Terminology"^^xsd:string .
+	:SI-CDISC_CT-38 isoI:internalVersion "38"^^xsd:positiveInteger .
+	:SI-CDISC_CT-38 isoI:version "2014-10-06"^^xsd:string .
+	:SI-CDISC_CT-38 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -174,10 +181,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :SI-CDISC_CT-39 rdf:type isoI:ScopedIdentifier .
-	 :SI-CDISC_CT-39 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :SI-CDISC_CT-39 isoI:version "39"^^xsd:string .
-	 :SI-CDISC_CT-39 isoI:hasScope :NS-CDISC ;
+   	:SI-CDISC_CT-39 rdf:type isoI:ScopedIdentifier .
+	:SI-CDISC_CT-39 isoI:identifier "CDISC Terminology"^^xsd:string .
+	:SI-CDISC_CT-39 isoI:internalVersion "39"^^xsd:positiveInteger .
+	:SI-CDISC_CT-39 isoI:version "2014-12-16"^^xsd:string .
+	:SI-CDISC_CT-39 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -187,10 +195,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :SI-CDISC_CT-40 rdf:type isoI:ScopedIdentifier .
-	 :SI-CDISC_CT-40 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :SI-CDISC_CT-40 isoI:version "40"^^xsd:string .
-	 :SI-CDISC_CT-40 isoI:hasScope :NS-CDISC ;
+   	:SI-CDISC_CT-40 rdf:type isoI:ScopedIdentifier .
+	:SI-CDISC_CT-40 isoI:identifier "CDISC Terminology"^^xsd:string .
+	:SI-CDISC_CT-40 isoI:internalVersion "40"^^xsd:positiveInteger .
+	:SI-CDISC_CT-40 isoI:version "2015-03-27"^^xsd:string .
+	:SI-CDISC_CT-40 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -200,10 +209,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :SI-CDISC_CT-41 rdf:type isoI:ScopedIdentifier .
-	 :SI-CDISC_CT-41 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :SI-CDISC_CT-41 isoI:version "41"^^xsd:string .
-	 :SI-CDISC_CT-41 isoI:hasScope :NS-CDISC ;
+   	:SI-CDISC_CT-41 rdf:type isoI:ScopedIdentifier .
+	:SI-CDISC_CT-41 isoI:identifier "CDISC Terminology"^^xsd:string .
+	:SI-CDISC_CT-41 isoI:internalVersion "41"^^xsd:positiveInteger .
+	:SI-CDISC_CT-41 isoI:version "2015-06-26"^^xsd:string .
+	:SI-CDISC_CT-41 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'update=PREFIX : <http://www.assero.co.uk/MDRItems#>
@@ -213,10 +223,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 INSERT DATA 
 {
-   :SI-CDISC_CT-42 rdf:type isoI:ScopedIdentifier .
-	 :SI-CDISC_CT-42 isoI:identifier "CDISC Terminology"^^xsd:string .
-	 :SI-CDISC_CT-42 isoI:version "42"^^xsd:string .
-	 :SI-CDISC_CT-42 isoI:hasScope :NS-CDISC ;
+   	:SI-CDISC_CT-42 rdf:type isoI:ScopedIdentifier .
+	:SI-CDISC_CT-42 isoI:identifier "CDISC Terminology"^^xsd:string .
+	:SI-CDISC_CT-42 isoI:internalVersion "42"^^xsd:positiveInteger .
+	:SI-CDISC_CT-42 isoI:version "2015-09-25"^^xsd:string .
+	:SI-CDISC_CT-42 isoI:hasScope :NS-CDISC ;
 }' $UpdateEndPoint
 
 if [ "$DB" = "$Fuseki" ]; then
@@ -234,6 +245,8 @@ if [ "$DB" = "$Fuseki" ]; then
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCs.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCTs.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRForms.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sdtmig-3-1-2.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTMIG_3-1-2_V1.ttl" $FileEndPoint
 else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/CT_V34.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/CT_V35.ttl $FileEndPoint
@@ -249,6 +262,8 @@ else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRCDISCBCs.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRCDISCBCTs.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRForms.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/sdtmig3-1-2.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/SDTMIG_3-1-2_V1.ttl $FileEndPoint
 fi
 
 set +x

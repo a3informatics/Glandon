@@ -1,4 +1,4 @@
-<h1>CDISC Terminology <%= @cdiscTerm.date %> <small>(V<%= @cdiscTerm.version %>)</small></h1>
+<h1>CDISC Terminology <%= @cdiscTerm.version %> <small>(V<%= @cdiscTerm.internalVersion %>)</small></h1>
 <div class="col-md-7">
 	<h2>Details</h2>
 	<table class="table table-striped table-bordered table-condensed">
@@ -12,8 +12,8 @@
 		<tbody>
 	  <tr>
 	    <td><%= @cdiscTerm.identifier %></td>
-	    <td><%= @cdiscTerm.version %></td>
-	    <td><%= @cdiscTerm.date %></td>
+	    <td><%= @cdiscTerm.thesaurus.managedItem.scopedIdentifier.internalVersion %></td>
+	    <td><%= @cdiscTerm.thesaurus.managedItem.scopedIdentifier.version %></td>
 	  </tr>
 	</tbody>
 	</table>

@@ -1,0 +1,200 @@
+require "uri"
+
+class Domain::Variable
+  
+  include ActiveModel::Naming
+  include ActiveModel::Conversion
+  include ActiveModel::Validations
+      
+  attr_accessor :id, :bcs, :namespace, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype
+  validates_presence_of :id, :bcs, :namespace, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype
+  
+  # Constants
+  C_NS_PREFIX = "mdrDomains"
+  C_CLASS_NAME = "Domain::Variable"
+  C_CID_PREFIX = "DV"
+  C_ID_SEPARATOR = "_"
+
+  C_ROLE = { 
+    "Classifier.GroupingQualifier" => "Grouping Qualifier",
+    "Classifier.RecordQualifier" => "Record Qualifier",
+    "Classifier.ResultQualifier" => "Result Qualifier",
+    "Classifier.RuleVariable" => "Rule Variable",
+    "Classifier.SynonymQualifier" => "Synonym Qualifier",
+    "Classifier.TimingVariable" => "Timing Variable",
+    "Classifier.TopicVariable" => "Topic Variable",
+    "Classifier.VariableQualifier" => "Variable Qualifier" }
+  
+  C_COMPLIANCE = {
+    "Classifier.ExpectedVariable" => "Expected",
+    "Classifier.PermisibleVariable" => "Permisible",
+    "Classifier.RequiredVariable" => "Required" }
+
+  C_DATATYPE = {
+    "Classifier.Character" => "Character",
+    "Classifier.Numeric" => "Numeric" }
+  
+  def persisted?
+    id.present?
+  end
+  
+  def initialize()
+  end
+
+  def baseNs
+    #return @baseNs
+  end
+  
+  # Find a given variable
+  def self.find(id, variableNamespace)
+    
+    ConsoleLogger::log(C_CLASS_NAME,"find","***** ENTRY *****")
+    object = nil
+    query = UriManagement.buildNs(variableNamespace, ["bd", "mms", "cdisc"]) +
+      "SELECT ?a ?name ?description ?label ?datatype ?ordinal ?format ?defComment ?defCommentSet ?type ?role ?compliance WHERE\n" + 
+      "{ \n" + 
+      " :" + id + " bd:basedOn ?a . \n" +
+      " ?a mms:dataElementName ?name . \n" +
+      " ?a mms:dataElementDescription ?description . \n" +
+      " ?a mms:dataElementType ?datatype . \n" +
+      " ?a mms:dataElementLabel ?label . \n" +
+      " ?a mms:ordinal ?ordinal . \n" +
+      " ?a cdisc:dataElementRole ?role . \n" +
+      " ?a cdisc:dataElementType ?type . \n" +
+      " ?a cdisc:dataElementCompliance ?compliance . \n" +
+      " :" + id + " bd:format ?format . \n" +
+      " :" + id + " bd:defaultComment ?defComment . \n" +
+      " :" + id + " bd:defaultCommentSet ?defCommentSet . \n" + 
+    "} \n"
+                  
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node)
+      nameSet = node.xpath("binding[@name='name']/literal")
+      descSet = node.xpath("binding[@name='description']/literal")
+      sDtSet = node.xpath("binding[@name='datatype']/literal")
+      labelSet = node.xpath("binding[@name='label']/literal")
+      ordinalSet = node.xpath("binding[@name='ordinal']/literal")
+      roleSet = node.xpath("binding[@name='role']/uri")
+      dtSet = node.xpath("binding[@name='type']/uri")
+      compSet = node.xpath("binding[@name='compliance']/uri")
+      if nameSet.length == 1 && descSet.length == 1 
+        object = self.new 
+        object.id = id
+        object.namespace = variableNamespace
+        ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id)
+        object.name = nameSet[0].text
+        object.description = descSet[0].text
+        object.schemaDatatype = sDtSet[0].text
+        object.label = labelSet[0].text
+        object.ordinal = ordinalSet[0].text.to_i
+        object.core = C_COMPLIANCE[ModelUtility.extractCid(compSet[0].text)]
+        object.role = C_ROLE[ModelUtility.extractCid(roleSet[0].text)]
+        object.datatype = C_DATATYPE[ModelUtility.extractCid(dtSet[0].text)]
+        object.defaultComment = ""
+        object.defaultCommentSet = false
+        object.supplementalQualifier = false
+        object.used = true
+        object.notes = ""
+        object.length = ""
+        object.origin = ""
+        object.bcs = Hash.new
+      end
+    end
+    return object  
+    
+  end
+
+  # Find all variables for a given domain
+  def self.findForDomain(domainId, domainNamespace)
+    
+    ConsoleLogger::log(C_CLASS_NAME,"findForDomain","***** ENTRY *****")
+    results = Hash.new
+    query = UriManagement.buildNs(domainNamespace, ["bd", "mms", "cdisc"]) +
+      "SELECT ?a ?b ?c ?name ?description ?label ?datatype ?ordinal ?format ?defComment ?defCommentSet ?type ?role ?compliance WHERE\n" + 
+      "{ \n" + 
+      " :" + domainId + " bd:basedOn ?a . \n" +
+      " ?b mms:context ?a . \n" +
+      " ?c bd:basedOn ?b . \n" +
+      " ?b mms:dataElementName ?name . \n" +
+      " ?b mms:dataElementDescription ?description . \n" +
+      " ?b mms:dataElementType ?datatype . \n" +
+      " ?b mms:dataElementLabel ?label . \n" +
+      " ?b mms:ordinal ?ordinal . \n" +
+      " ?b cdisc:dataElementRole ?role . \n" +
+      " ?b cdisc:dataElementType ?type . \n" +
+      " ?b cdisc:dataElementCompliance ?compliance . \n" +
+      " ?c bd:format ?format . \n" +
+      " ?c bd:defaultComment ?defComment . \n" +
+      " ?c bd:defaultCommentSet ?defCommentSet . \n" +
+      "} \n"
+                  
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node)
+      uriSet = node.xpath("binding[@name='c']/uri")
+      nameSet = node.xpath("binding[@name='name']/literal")
+      descSet = node.xpath("binding[@name='description']/literal")
+      sDtSet = node.xpath("binding[@name='datatype']/literal")
+      labelSet = node.xpath("binding[@name='label']/literal")
+      ordinalSet = node.xpath("binding[@name='ordinal']/literal")
+      roleSet = node.xpath("binding[@name='role']/uri")
+      dtSet = node.xpath("binding[@name='type']/uri")
+      compSet = node.xpath("binding[@name='compliance']/uri")
+      if uriSet.length == 1 && nameSet.length == 1 && descSet.length == 1
+        id = ModelUtility.extractCid(uriSet[0].text)
+        namespace = ModelUtility.extractNs(uriSet[0].text)
+        ConsoleLogger::log(C_CLASS_NAME,"findForDomain","Id=" + id)
+        object = self.new 
+        object.id = id
+        object.namespace = namespace
+        object.name = nameSet[0].text
+        object.description = descSet[0].text
+        object.schemaDatatype = sDtSet[0].text
+        object.label = labelSet[0].text
+        object.ordinal = ordinalSet[0].text.to_i
+        object.core = C_COMPLIANCE[ModelUtility.extractCid(compSet[0].text)]
+        object.role = C_ROLE[ModelUtility.extractCid(roleSet[0].text)]
+        object.datatype = C_DATATYPE[ModelUtility.extractCid(dtSet[0].text)]
+        object.defaultComment = ""
+        object.defaultCommentSet = false
+        object.supplementalQualifier = false
+        object.used = true
+        object.notes = ""
+        object.length = ""
+        object.origin = ""
+        object.bcs = Hash.new
+        results[id] = object
+      end
+    end
+    return results
+    
+  end
+  
+  def self.create(params)
+    object = nil
+    return object
+  end
+
+  def self.all()
+    return nil
+  end
+
+  def update
+    return nil
+  end
+
+  def destroy
+  end
+  
+end

@@ -6,24 +6,37 @@ class CdiscBc
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :scopedIdentifierId, :identifier, :version, :namespace, :name, :properties
-  validates_presence_of :scopedIdentifierId, :identifier, :version, :namespace, :properties
+  attr_accessor :id, :managedItem, :name, :properties, :namespace
+  validates_presence_of :id, :managedItem, :name, :properties, :namespace
   
   # Constants
   C_CLASS_NAME = "CdiscBc"
+  C_NS_PREFIX = "mdrBcs"
+  C_CID_PREFIX = "BC"
   
   # BC object
   #
   # object: id, scopeId, identifier, version, namespace, name, properties where properties is
   # properties [:alias => {:id, :alias, :qText, :pText, :format, :values[{:id, :value}]}]
   
-
   # Base namespace 
   #@@cdiscOrg # CDISC Organization identifier
   
   # Base namespace 
-  #@@BaseNs = ThesaurusConcept.baseNs()
+  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
   
+  def version
+    return self.managedItem.version
+  end
+
+  def internalVersion
+    return self.managedItem.internalVersion
+  end
+
+  def identifier
+    return self.managedItem.identifier
+  end
+
   def persisted?
     id.present?
   end
@@ -32,16 +45,16 @@ class CdiscBc
   end
 
   def baseNs
-    #return @baseNs
+    return @baseNs
   end
   
   def self.find(id, cdiscTerm)
     
     object = nil
-    query = UriManagement.buildPrefix("mdrBc", ["cbc", "mdrItems", "isoI"]) +
-      "SELECT ?si ?bcName ?bcDtNode ?bcPropertyNode ?bcPropertyValueNode ?datatype ?propertyValue ?propertyAlias WHERE\n" + 
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["cbc", "mdrItems", "isoI"]) +
+      "SELECT ?bcName ?bcDtNode ?bcPropertyNode ?bcPropertyValueNode ?datatype ?propertyValue ?propertyAlias WHERE\n" + 
       "{ \n" + 
-      " :" + id + " isoI:hasIdentifier ?si .\n" + 
+      " :" + id + " rdf:type cbc:BiomedicalConceptInstance . \n" +
       " :" + id + " cbc:name ?bcName .\n" + 
       " :" + id + " (cbc:hasItemRelationship | cbc:hasDatatypeRelationship )%2B ?bcDtNode .\n" + 
       " OPTIONAL {\n" + 
@@ -63,15 +76,14 @@ class CdiscBc
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node)
-      siSet = node.xpath("binding[@name='si']/uri")
+      ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node)
       bcSet = node.xpath("binding[@name='bcPropertyNode']/uri")
       nameSet = node.xpath("binding[@name='bcName']/literal")
       valueSet = node.xpath("binding[@name='propertyValue']/literal")
       aliasSet = node.xpath("binding[@name='propertyAlias']/literal")
       dtSet = node.xpath("binding[@name='datatype']/uri")
       if bcSet.length == 1 && nameSet.length == 1 && valueSet.length == 1 && aliasSet.length == 1 && dtSet.length == 1
-        #ConsoleLogger::log(C_CLASS_NAME,"find","Found")
+        ConsoleLogger::log(C_CLASS_NAME,"find","Found")
         if object != nil
           properties = object.properties          
         else
@@ -79,11 +91,9 @@ class CdiscBc
           properties = Hash.new
           object.properties = properties
           object.id = id
-          object.scopedIdentifierId = ModelUtility.extractCid(siSet[0].text)
-          si = ScopedIdentifier.find(object.scopedIdentifierId)
-          object.identifier = si.identifier
-          object.version = si.version
+          object.managedItem = ManagedItem.find(id, UriManagement.getNs(C_NS_PREFIX))
           object.name = nameSet[0].text
+          ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + id)
         end
         propertyCid = ModelUtility.extractCid(bcSet[0].text)
         aliasName = aliasSet[0].text
@@ -117,10 +127,10 @@ class CdiscBc
   def self.all()
     
     results = Hash.new
-    query = UriManagement.buildPrefix("mdrBc", ["cbc", "mdrItems", "isoI"]) +
-      "SELECT ?bcRoot ?si ?bcName WHERE\n" + 
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["cbc", "mdrItems", "isoI"]) +
+      "SELECT ?bcRoot ?bcName WHERE\n" + 
       "{ \n" + 
-      " ?bcRoot isoI:hasIdentifier ?si .\n" + 
+      " ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n" +
       " ?bcRoot cbc:name ?bcName .\n" + 
       "}\n"
     
@@ -131,34 +141,23 @@ class CdiscBc
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
       uriSet = node.xpath("binding[@name='bcRoot']/uri")
       siSet = node.xpath("binding[@name='si']/uri")
       nameSet = node.xpath("binding[@name='bcName']/literal")
-      
-      p "uri: " + uriSet.text
-      
+      ConsoleLogger::log(C_CLASS_NAME,"find","URI=" + uriSet.text)
       if uriSet.length == 1 && nameSet.length == 1 
-        
-        p "Found"
-        
         bcId = ModelUtility.extractCid(uriSet[0].text)
         if results.has_key?(bcId)
           object = results[bcId]
           properties = object.properties          
         else
           object = self.new 
-          properties = Hash.new
-          object.properties = properties
-          results[bcId] = object
+          object.properties = Hash.new
           object.id = bcId
-          object.scopedIdentifierId = ModelUtility.extractCid(siSet[0].text)
-          si = ScopedIdentifier.find(object.scopedIdentifierId)
-          object.identifier = si.identifier
-          object.version = si.version
+          object.managedItem = ManagedItem.find(bcId, UriManagement.getNs(C_NS_PREFIX))
           object.name = nameSet[0].text
+          ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + bcId)
+          results[bcId] = object
         end
       end
     end

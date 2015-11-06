@@ -35,14 +35,10 @@ class CdiscTermsController < ApplicationController
     # Get the CLs for the old version
     oldCdiscTerm = CdiscTerm.find(oldId)
     clsForTerm(@oldCdiscTerm, data)   
-    
-    #p "[CdiscTermController ][compare           ] data=" + data.to_s()
         
     # Get the CLs for the new version
     newCdiscTerm = CdiscTerm.find(newId)
     clsForTerm(@newCdiscTerm, data)
-
-    #p "[CdiscTermController ][compare           ] data=" + data.to_s()
 
     # And build the results. Filter if required.
     @Results = buildResults(data)
@@ -52,7 +48,7 @@ class CdiscTermsController < ApplicationController
    
     # Set the key parameters
     @id = oldCdiscTerm.id
-    @identifier = oldCdiscTerm.date
+    @identifier = oldCdiscTerm.version
     @title = oldCdiscTerm.identifier
            
   end
@@ -82,7 +78,7 @@ class CdiscTermsController < ApplicationController
   def show
     id = params[:id]
     @cdiscTerm = CdiscTerm.find(id)
-    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
+    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.internalVersion)
     @CdiscCls = CdiscCl.all(@cdiscTerm)
   end
   
@@ -110,7 +106,7 @@ private
     last = data.length - 1
   	data.each_with_index do |curr, index|
       currTerm = curr[:term]
-      version = currTerm.version
+      version = currTerm.internalVersion
       currCls = curr[:cls]
       key = "V" + version.to_s
       missing.push(key)

@@ -50,4 +50,10 @@ Rails.application.routes.draw do
     resources :form_groups
     resources :form_items
   end
+  resources :domains
+  namespace :domains do
+    resources :variables
+  end
+  resources :standards
+  resources :sdtmigs
 end

@@ -9,8 +9,8 @@
 	  </tr>
 		<% @cdiscTerms.each do |cdiscTerm| %>
 		  <tr>
+		    <td><%= cdiscTerm.internalVersion %></td>
 		    <td><%= cdiscTerm.version %></td>
-		    <td><%= cdiscTerm.date %></td>
 		    <td><%= link_to "Show", cdiscTerm, :class => "btn btn-primary" %></td>
 		  </tr>
 		<% end %>

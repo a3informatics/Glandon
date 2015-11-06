@@ -5,7 +5,7 @@
 		  <tr>
 		    <th>Identifier</th>
 		    <th>Version</th>
-		    <th>Short Name</th>
+		    <th>Internal Version</th>
 		    <th>CID</th>
 		    <th></th>
 		  </tr>
@@ -13,7 +13,7 @@
 			  <tr>
 			    <td><%= scopedIdentifier.identifier %></td>
 			    <td><%= scopedIdentifier.version %></td>
-			    <td><%= scopedIdentifier.shortName %></td>
+			    <td><%= scopedIdentifier.internalVersion %></td>
 			    <td><%= scopedIdentifier.id %></td>
 			    <td><%= link_to "Remove", scoped_identifier_path(scopedIdentifier.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
 			  </tr>

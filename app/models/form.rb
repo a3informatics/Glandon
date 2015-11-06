@@ -14,6 +14,21 @@ class Form
   C_CLASS_NAME = "Form"
   C_CID_PREFIX = "F"
   
+  # Base namespace 
+  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
+  
+  def version
+    return self.managedItem.version
+  end
+
+  def internalVersion
+    return self.managedItem.internalVersion
+  end
+
+  def identifier
+    return self.managedItem.identifier
+  end
+
   def persisted?
     id.present?
   end
@@ -47,7 +62,7 @@ class Form
         object = self.new 
         object.id = id
         ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
-        object.managedItem = ManagedItem.find(id, C_NS_PREFIX)
+        object.managedItem = ManagedItem.find(id, UriManagement.getNs(C_NS_PREFIX))
         object.name = nSet[0].text
         object.groups = Form::FormGroup.findForForm(id, cdiscTerm)
       end
@@ -80,6 +95,7 @@ class Form
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         ConsoleLogger::log(C_CLASS_NAME,"find","Form Id=" + object.id)
+        object.managedItem = ManagedItem.find(object.id, UriManagement.getNs(C_NS_PREFIX))
         object.name = nSet[0].text
         results[object.id] = object
       end
@@ -148,6 +164,7 @@ class Form
     name = params[:name]
     shortName = params[:shortName]
     bcs = params[:bcs]
+    internalVersion = 1
     version = "1"
     ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","BCs=" + bcs.to_s)
       
@@ -155,7 +172,7 @@ class Form
     id = ModelUtility.buildCidVersion(C_CID_PREFIX, shortName, version)
 
     # Create the managed item for the form. The namespace id is a shortcut for the moment.
-    managedItem = ManagedItem.create_local(id, {:version => version, :identifier => name, :shortName => shortName, :namespace_id => "items:NS-ACME"}, C_NS_PREFIX)
+    managedItem = ManagedItem.create_local(id, {:version => version, :identifier => name, :internalVersion => internalVersion, :shortName => shortName, :namespace_id => "items:NS-ACME"}, C_NS_PREFIX)
 
     # Now create the group (which will create the item). We only need a 
     # single group for a placeholder form.

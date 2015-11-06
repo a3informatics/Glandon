@@ -10,9 +10,9 @@
 		  </tr>
 			<% @thesauri.each do |thesaurus| %>
 			  <tr>
-			    <td><%= thesaurus.scopedIdentifierId%></td>
-			    <td><%= thesaurus.id%></td>
-			    <td><%= link_to "Linky linky", scoped_identifier_path(thesaurus.scopedIdentifierId) %></td>
+			    <td><%= thesaurus.managedItem.scopedIdentifier.id %></td>
+			    <td><%= thesaurus.id %></td>
+			    <td><%= link_to "Linky linky", scoped_identifier_path(thesaurus.managedItem.scopedIdentifier.id) %></td>
 			    <td><%= link_to "Remove", thesauri_path(thesaurus), method: :delete, data: { confirm: "Are you sure?" } %></td>
 			  </tr>
 			<% end %>

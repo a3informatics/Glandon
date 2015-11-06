@@ -42,6 +42,7 @@
 items:SI-VS-1 rdf:type isoI:ScopedIdentifier ;
   isoI:identifier "Vital Signs Form"^^xsd:string ;
   isoI:version "1"^^xsd:string ;
+  isoI:internalVersion "1"^^xsd:positiveInteger ;
   isoI:hasScope :NS-ACME ;
 .
 items:RS-VS-1 rdf:type isoR:RegistrationStatus ;

@@ -8,8 +8,8 @@ class CdiscTerm
   include Xml
   include Xslt
       
-  attr_accessor :id, :files, :date, :thesaurus_id, :identifier, :version, :namespace
-  validates_presence_of :files, :date, :thesaurus_id, :identifier, :version, :namespace
+  attr_accessor :id, :files, :thesaurus
+  validates_presence_of :files, :thesaurus
   
   # Constants
   C_NS_PREFIX = "thC"
@@ -20,6 +20,22 @@ class CdiscTerm
   # Base namespace 
   @@baseNs = Thesaurus.baseNs()
   
+  def version
+    return self.thesaurus.managedItem.version
+  end
+
+  def internalVersion
+    return self.thesaurus.managedItem.internalVersion
+  end
+
+  def identifier
+    return self.thesaurus.managedItem.identifier
+  end
+
+  def namespace
+    return self.thesaurus.namespace
+  end
+
   def persisted?
     id.present?
   end
@@ -36,11 +52,7 @@ class CdiscTerm
     thesaurus = Thesaurus.findWithoutNs(id)
     object = self.new 
     object.id = thesaurus.id
-    object.thesaurus_id = thesaurus.id
-    object.date = thesaurus.created
-    object.identifier = thesaurus.identifier
-    object.version = thesaurus.version
-    object.namespace = thesaurus.namespace
+    object.thesaurus = thesaurus
     return object
 
   end
@@ -53,14 +65,10 @@ class CdiscTerm
     tSet.each do |thesaurus|
       object = self.new 
       object.id = thesaurus.id
-      object.thesaurus_id = thesaurus.id
-      object.date = thesaurus.created
-      object.identifier = thesaurus.identifier
-      object.version = thesaurus.version
-      object.namespace = thesaurus.namespace
+      object.thesaurus = thesaurus
       results.push(object)
     end
-    results.sort! { |a,b| a.version <=> b.version }
+    results.sort! { |a,b| a.thesaurus.managedItem.internalVersion <=> b.thesaurus.managedItem.internalVersion }
     return results  
     
   end
@@ -71,18 +79,14 @@ class CdiscTerm
     @@cdiscNamespace = Namespace.findByShortName("CDISC")
     tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
-      if (version != thesaurus.version)
+      if (version != thesaurus.internalVersion)
         object = self.new 
         object.id = thesaurus.id
-        object.thesaurus_id = thesaurus.id
-        object.date = thesaurus.created
-        object.identifier = thesaurus.identifier
-        object.version = thesaurus.version
-        object.namespace = thesaurus.namespace
+        object.thesaurus = thesaurus
         results.push(object)
       end
     end
-    results.sort! { |a,b| a.version <=> b.version }
+    results.sort! { |a,b| a.thesaurus.managedItem.internalVersion <=> b.thesaurus.managedItem.internalVersion }
     return results  
     
   end
@@ -93,18 +97,14 @@ class CdiscTerm
     @@cdiscNamespace = Namespace.findByShortName("CDISC")
     tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
-      if (version > thesaurus.version)
+      if (version > thesaurus.managedItem.internalVersion)
         object = self.new 
         object.id = thesaurus.id
-        object.thesaurus_id = thesaurus.id
-        object.date = thesaurus.created
-        object.identifier = thesaurus.identifier
-        object.version = thesaurus.version
-        object.namespace = thesaurus.namespace
+        object.thesaurus = thesaurus
         results.push(object)
       end
     end
-    results.sort! { |a,b| a.version <=> b.version }
+    results.sort! { |a,b| a.thesaurus.managedItem.internalVersion <=> b.thesaurus.managedItem.internalVersion }
     return results  
     
   end
@@ -116,18 +116,13 @@ class CdiscTerm
     tSet.each do |thesaurus|
       if latest == nil
         latest = thesaurus
-      elsif thesaurus.version > latest.version
+      elsif thesaurus.internalVersion > latest.internalVersion
         latest = thesaurus
       end
     end
     object = self.new 
     object.id = latest.id
-    object.version = latest.version
-    object.thesaurus_id = latest.id
-    object.date = latest.created
-    object.identifier = latest.identifier
-    object.version = latest.version
-    object.namespace = latest.namespace
+    object.thesaurus = latest
     return object 
   end
   
@@ -135,7 +130,7 @@ class CdiscTerm
     
     object = self.new
     
-    org = Namespace.findByShortName("CDISC")
+    namespace = Namespace.findByShortName("CDISC")
     identifier = "CDISC Terminology"
     version = params[:version]
     date = params[:date]
@@ -147,18 +142,15 @@ class CdiscTerm
     # Create manifest file
     manifest = Xml::buildCdiscTermImportManifest(date, version, files)
     
-    # Create the IdentifiedItem
-    iiParams = {:version => version, :shortName => "CDISC_CT",:identifier => identifier, :organization_id => org.id}
-    ii = IdentifiedItem.create(iiParams)
-    
     #Create the thesaurus
     baseNs = Thesaurus.baseNs
     uri = Uri.new
     uri.setUri(baseNs)
     uri.extendPath("CDISC/V" + version)
     ns = uri.getNs()
-    tParams = {:ii_id => ii.id, :created => date}
-    thesaurus = Thesaurus.create(tParams, ns)
+    tParams = {:version => date.to_s, :shortName => "CDISC_CT", :internalVersion => version, :identifier => identifier, :namespace_id => namespace.id}
+    thesaurus = Thesaurus.create_import(tParams, ns)
+    ii.id = thesaurus.managedItem.scopedIdentifier.id
     
     # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
     Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", {:UseVersion => version, :Namespace => "'" + ns + "'", :II => "'" + ii.id + "'"}, "CT.ttl")
@@ -177,12 +169,8 @@ class CdiscTerm
     
     # Set the object
     object.date = date
-    object.thesaurus_id = thesaurus.id
+    object.thesaurus = thesaurus
     object.id = thesaurus.id
-    object.date = date
-    object.identifier = thesaurus.identifier
-    object.version = thesaurus.version
-    object.namespace = ns
     return object
     
   end

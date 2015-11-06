@@ -9,16 +9,29 @@ class Thesaurus
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :scopedIdentifierId, :namespace, :version, :identifier, :created
-  validates_presence_of :scopedIdentifierId
+  attr_accessor :id, :managedItem, :namespace
+  validates_presence_of :id, :managedItem, :namespace
  
   # Constants
+  C_CLASS_NAME = "Thesaurus"
   C_CID_PREFIX = "TH"
-  C_NS_PREFIX = "th"
+  C_NS_PREFIX = "mdrTh"
   
   # Base namespace 
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
   
+  def version
+    return self.managedItem.version
+  end
+
+  def internalVersion
+    return self.managedItem.internalVersion
+  end
+
+  def identifier
+    return self.managedItem.identifier
+  end
+
   def persisted?
     id.present?
   end
@@ -30,54 +43,19 @@ class Thesaurus
     return @@baseNs 
   end
   
-  def self.find(id, ns="")
+  def self.find(id, ns=nil)
     
     object = nil
     useNs = ns || @@baseNs
-    query = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
-      "SELECT ?a ?b WHERE \n" +
-      "{ \n" +
-      "  :" + id + " isoI:hasIdentifier ?a . \n" +
-      "  :" + id + " iso25964:created ?b . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
-      uriSet = node.xpath("binding[@name='a']/uri")
-      dSet = node.xpath("binding[@name='b']/literal")
-      
-      p "uri: " + uriSet.text
-      
-      if uriSet.length == 1
-        
-        p "Found"
-        
-        object = self.new 
-        object.id = id
-        object.namespace = useNs
-        object.scopedIdentifierId = ModelUtility.extractCid(uriSet[0].text)
-        si = ScopedIdentifier.find(object.scopedIdentifierId)
-        object.identifier = si.identifier
-        object.version = si.version
-        object.created = dSet[0].text
-        
-      end
-    end
-    
-    # Return
+    object = self.new 
+    object.id = id
+    object.namespace = useNs
+    object.managedItem = ManagedItem.find(id,useNs)
     return object
     
   end
 
-  def self.findByNamespaceId(id)
+  def self.findByNamespaceId(namespaceId)
     
     results = Array.new
     
@@ -85,8 +63,6 @@ class Thesaurus
       "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "  ?a isoI:hasIdentifier ?b . \n" +
-      "  ?a iso25964:created ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -96,39 +72,17 @@ class Thesaurus
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
       uriSet = node.xpath("binding[@name='a']/uri")
-      siSet = node.xpath("binding[@name='b']/uri")
-      dSet = node.xpath("binding[@name='c']/literal")
-      
-      p "URI: " + uriSet.text
-      p "si: " + siSet.text
-      
-      if uriSet.length == 1 and siSet.length == 1
-        
-        p "Found"
-        
-        scopedIdentifierId = ModelUtility.extractCid(siSet[0].text)
-        
-        p "scopedIdentifierId=" + scopedIdentifierId
-        
-        si = ScopedIdentifier.find(scopedIdentifierId)
-        if (si != nil)
-          if (si.namespaceId == id)
+      if uriSet.length == 1
+        managedItem = ManagedItem.find(ModelUtility.extractCid(uriSet[0].text),ModelUtility.extractNs(uriSet[0].text))
+        if (managedItem != nil)
+          if (managedItem.scopedIdentifier.namespace.id == namespaceId)
             object = self.new 
             object.id = ModelUtility.extractCid(uriSet[0].text)
             object.namespace = ModelUtility.extractNs(uriSet[0].text)
-            object.scopedIdentifierId = scopedIdentifierId
-            object.identifier = si.identifier
-            object.version = si.version
-            object.created = dSet[0].text
+            object.managedItem = managedItem
             results.push (object)
-            
-            p "TH identifier=" + object.identifier
-            p "TH version=" + object.version.to_s
-            
+            ConsoleLogger::log(C_CLASS_NAME,"findByNamespaceId","Object created id=" + object.id)
           end 
         end
         
@@ -141,15 +95,12 @@ class Thesaurus
   
   def self.findWithoutNs(id)
     
-    p "[Thesaurus           ][findWithoutNs      ] id=" + id
-    
+    ConsoleLogger::log(C_CLASS_NAME,"findWithoutNs","id=" + id)
     object = nil
     query = UriManagement.buildPrefix("",["isoI", "iso25964"]) +
-      "SELECT ?a ?b ?c WHERE \n" +
+      "SELECT ?a WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "  ?a isoI:hasIdentifier ?b . \n" +
-      "  ?a iso25964:created ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -159,36 +110,17 @@ class Thesaurus
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
       uriSet = node.xpath("binding[@name='a']/uri")
-      siSet = node.xpath("binding[@name='b']/uri")
-      dSet = node.xpath("binding[@name='c']/literal")
-      
-      p "URI: " + uriSet.text
-      p "si: " + siSet.text
-      
-      if uriSet.length == 1 and siSet.length == 1
-        
-        p "Found"
-        
+      if uriSet.length == 1 
         tId = ModelUtility.extractCid(uriSet[0].text)
         if (tId == id)
-          scopedIdentifierId = ModelUtility.extractCid(siSet[0].text)
-          si = ScopedIdentifier.find(scopedIdentifierId)
-          if (si != nil)
+          managedItem = ManagedItem.find(ModelUtility.extractCid(uriSet[0].text),ModelUtility.extractNs(uriSet[0].text))
+          if (managedItem != nil)
             object = self.new 
             object.id = ModelUtility.extractCid(uriSet[0].text)
             object.namespace = ModelUtility.extractNs(uriSet[0].text)
-            object.scopedIdentifierId = scopedIdentifierId
-            object.identifier = si.identifier
-            object.version = si.version
-            object.created = dSet[0].text
-            
-            p "TH identifier=" + object.identifier
-            p "TH version=" + object.version.to_s
-          
+            object.managedItem = managedItem
+            ConsoleLogger::log(C_CLASS_NAME,"findWithoutNs","Object created id=" + object.id)
           end
         end
       end
@@ -207,8 +139,6 @@ class Thesaurus
       "SELECT ?a ?b ?c WHERE \n" +
       "{ \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "  ?a isoI:hasIdentifier ?b . \n" +
-      "  ?a iso25964:created ?c . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -218,28 +148,12 @@ class Thesaurus
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
       uriSet = node.xpath("binding[@name='a']/uri")
-      siSet = node.xpath("binding[@name='b']/uri")
-      dSet = node.xpath("binding[@name='c']/literal")
-      
-      p "URI: " + uriSet.text
-      p "si: " + siSet.text
-      
-      if uriSet.length == 1 and siSet.length == 1
-        
-        p "Found"
-        
+      if uriSet.length == 1
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.namespace = ModelUtility.extractNs(uriSet[0].text)
-        object.scopedIdentifierId = ModelUtility.extractCid(siSet[0].text)
-        si = ScopedIdentifier.find(object.scopedIdentifierId)
-        object.identifier = si.identifier
-        object.version = si.version
-        object.created = dSet[0].text
+        object.managedItem = ManagedItem.find(object.id,object.namespace)
         results.push (object)
         
       end
@@ -249,23 +163,28 @@ class Thesaurus
     
   end
 
-  def self.create(params, ns="")
+  def self.create_local(params, ns="")
     
-    scopedIdentifierId = params[:scopedIdentifierId]
-    si = ScopedIdentifier.find(scopedIdentifierId)
-    dateCreated = params[:created]
-    
-    uri = Uri.new()
+    # Set the namespace
     useNs = ns || @@baseNs
-    uri.setCidWithVersion(C_CID_PREFIX, si.shortName, si.version)     
-    id = uri.getCid()
-    
+
+    # Get the parameters
+    shortName = params[:shortName]
+    dateCreated = params[:created]
+    version = params[:version]
+    internalVersion = params[:internalVersion]
+
+    # Create the id for the form
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, shortName, internalVersion)
+
+    # Create the managed item for the thesaurus. The namespace id is a shortcut for the moment.
+    managedItem = ManagedItem.create_local(id, {:version => version, :identifier => name, :internalVersion => internalVersion, :shortName => shortName, :namespace_id => "items:NS-ACME"}, useNs)
+
     # Create the query
-    update = UriManagement.buildNs(useNs,["isoI", "iso25964", "org"]) +
+    update = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + id + " rdf:type iso25964:Thesaurus . \n" +
-      "	 :" + id + " isoI:hasIdentifier org:" + scopedIdentifierId + " . \n" +
       "  :" + id + " iso25964:created \"" + dateCreated + "\"^^xsd:date . \n" +
       "}"
     
@@ -277,9 +196,52 @@ class Thesaurus
       object = self.new
       object.id = id
       object.namespace = useNs
-      object.scopedIdentifierId = scopedIdentifierId
-      object.identifier = si.identifier
-      object.version = si.version
+      object.managedItem = managedItem
+      object.created = dateCreated
+      p "It worked!"
+    else
+      p "It didn't work!"
+      object = self.new
+      object.assign_errors(data) if response.response_code == 422
+    end
+    return object
+    
+  end
+
+  def self.create_imported(params, ns="")
+    
+    # Set the namespace
+    useNs = ns || @@baseNs
+
+    # Get the parameters
+    shortName = params[:shortName]
+    dateCreated = params[:created]
+    version = params[:version]
+    internalVersion = params[:internalVersion]
+
+    # Create the id for the form
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, shortName, version)
+
+    # Create the managed item for the thesaurus. The namespace id is a shortcut for the moment.
+    managedItem = ManagedItem.create_imported(id, {:version => version, :identifier => name, :internalVersion => internalVersion, :shortName => shortName, :namespace_id => "items:NS-ACME"}, useNs)
+
+    # Create the query
+    update = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      "  :" + id + " rdf:type iso25964:Thesaurus . \n" +
+      "  :" + id + " iso25964:created \"" + dateCreated + "\"^^xsd:date . \n" +
+      "}"
+    
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    
+    # Response
+    if response.success?
+      object = self.new
+      object.id = id
+      object.namespace = useNs
+      object.managedItem = managedItem
       object.created = dateCreated
       p "It worked!"
     else
@@ -296,28 +258,7 @@ class Thesaurus
   end
 
   def destroy(ns="")
-    
-    # Create the query
-    uri = Uri.new()
-    useNs = ns || @@baseNs
-    update = UriManagement.buildNs(useNs,["isoI", "iso25964", "org"]) +
-      "DELETE DATA \n" +
-      "{ \n" +
-      "	 :" + self.id + " rdf:type iso25964:Thesaurus . \n" +
-      "	 :" + self.id + " isoI:hasIdentifier org:" + self.scopedIdentifierId.to_s + " . \n" +
-      "  :" + self.id + " iso25964:created \"" + self.created + "\"^^xsd:date . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      p "It worked!"
-    else
-      p "It didn't work!"
-    end
-     
+    return nil
   end
   
 end

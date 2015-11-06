@@ -71,7 +71,7 @@ class CdiscCl
   def self.all(cdiscTerm)
     
     results = Array.new
-    tcSet = ThesaurusConcept.allTopLevelWithNs(cdiscTerm.id, cdiscTerm.namespace)
+    tcSet = ThesaurusConcept.allTopLevelWithNs(cdiscTerm.id, cdiscTerm.thesaurus.namespace)
     tcSet.each do |tc|
       object = self.new 
       object.id = tc.id
@@ -84,7 +84,7 @@ class CdiscCl
       object.synonym = tc.synonym
       object.extensible = tc.extensible
       object.definition = tc.definition
-      object.namespace = cdiscTerm.namespace
+      object.namespace = cdiscTerm.thesaurus.namespace
       results.push(object)
     end
     return results  

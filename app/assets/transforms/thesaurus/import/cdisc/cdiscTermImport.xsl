@@ -46,7 +46,7 @@
         <xsl:text disable-output-escaping="yes">@prefix isoB: &lt;http://www.assero.co.uk/ISO11179Basic#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix iso25964: &lt;http://www.assero.co.uk/ISO25964#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix org: &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix mdrItems &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .&#xa;</xsl:text>
@@ -66,7 +66,6 @@
         <xsl:value-of select="concat(':',$CID,$newline)"/>
         <xsl:text>&#009;rdf:type iso25964:Thesaurus ;&#xa;</xsl:text>
         <xsl:value-of select="concat('&#009;isoI:hasIdentifier item:',$SI,' ;',$newline)"/>
-        <xsl:value-of select="concat('&#009;isoiso25964:created ',$quote,$ReleaseDate,$quote,'^^xsd:date ;',$newline)"/>
         <xsl:text>.&#xa;</xsl:text>
 
         <!-- For each file making up the CDISC Terminology version, select the file set from the catalog file -->
