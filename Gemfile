@@ -44,6 +44,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # D3 gem
 gem "d3-rails"
 
+# Datatables
+gem 'jquery-datatables-rails', '~> 3.3.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

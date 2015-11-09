@@ -2,6 +2,8 @@ class CdiscTermsController < ApplicationController
   
   before_action :authenticate_user!
   
+  C_CLASS_NAME = "CdiscTermsController"
+  
   def index
     @cdiscTerms = CdiscTerm.all
   end
@@ -22,6 +24,14 @@ class CdiscTermsController < ApplicationController
   def edit
   end
 
+  def searchCls
+    term = params[:term]
+    #draw = params[:draw]
+    #ConsoleLogger::log(C_CLASS_NAME,"searchCls","draw=" + draw)
+    @cls = CdiscTerm.searchCls(term)
+    render json: @cls
+  end
+  
   def compare
     
     # Get the parameters
@@ -84,7 +94,7 @@ class CdiscTermsController < ApplicationController
   
 private
   def this_params
-    params.require(:cdisc_term).permit({:files => []}, :version, :date, :thesaurus_id)
+    params.require(:cdisc_term).permit({:files => []}, :version, :date, :thesaurus_id, :term)
   end
   
   def clsForTerm(cdiscTerm, data)

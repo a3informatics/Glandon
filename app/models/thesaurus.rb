@@ -55,6 +55,8 @@ class Thesaurus
     
   end
 
+
+
   def self.findByNamespaceId(namespaceId)
     
     results = Array.new
@@ -113,6 +115,7 @@ class Thesaurus
       uriSet = node.xpath("binding[@name='a']/uri")
       if uriSet.length == 1 
         tId = ModelUtility.extractCid(uriSet[0].text)
+        ConsoleLogger::log(C_CLASS_NAME,"findWithoutNs","tid=" + tId)
         if (tId == id)
           managedItem = ManagedItem.find(ModelUtility.extractCid(uriSet[0].text),ModelUtility.extractNs(uriSet[0].text))
           if (managedItem != nil)

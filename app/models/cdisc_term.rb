@@ -1,3 +1,4 @@
+require "nokogiri"
 require "uri"
 
 class CdiscTerm
@@ -7,16 +8,19 @@ class CdiscTerm
   include ActiveModel::Validations
   include Xml
   include Xslt
+  include ModelUtility
       
   attr_accessor :id, :files, :thesaurus
   validates_presence_of :files, :thesaurus
   
   # Constants
   C_NS_PREFIX = "thC"
+  C_CLASS_NAME = "CdiscTerm"
   
-  # Base namespace 
-  @@cdiscNamespace # CDISC Organization identifier
-  
+  # Class-wide variables
+  @@cdiscNamespace = nil # CDISC Organization identifier
+  @@currentVersionId = nil # The namespace for the current term version
+    
   # Base namespace 
   @@baseNs = Thesaurus.baseNs()
   
@@ -53,14 +57,26 @@ class CdiscTerm
     object = self.new 
     object.id = thesaurus.id
     object.thesaurus = thesaurus
+    ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + object.id)
     return object
+
+  end
+
+  def self.searchCls(searchTerm)
+
+    currentCdiscTerm = current()
+    ConsoleLogger::log(C_CLASS_NAME,"searchCls","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
+    results = ThesaurusConcept.searchAllTopLevelWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
+    return results
 
   end
 
   def self.all
     
     results = Array.new
-    @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    if @@cdiscNamespace == nil 
+      @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    end
     tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
       object = self.new 
@@ -76,7 +92,9 @@ class CdiscTerm
   def self.allExcept(version)
     
     results = Array.new
-    @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    if @@cdiscNamespace == nil 
+      @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    end
     tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
       if (version != thesaurus.internalVersion)
@@ -94,7 +112,9 @@ class CdiscTerm
   def self.allPrevious(version)
     
     results = Array.new
-    @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    if @@cdiscNamespace == nil 
+      @@cdiscNamespace = Namespace.findByShortName("CDISC")
+    end
     tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
       if (version > thesaurus.managedItem.internalVersion)
@@ -110,20 +130,32 @@ class CdiscTerm
   end
   
   def self.current 
-    latest = nil
-    @@cdiscNamespace = Namespace.findByShortName("CDISC")
-    tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
-    tSet.each do |thesaurus|
-      if latest == nil
-        latest = thesaurus
-      elsif thesaurus.internalVersion > latest.internalVersion
-        latest = thesaurus
+    ConsoleLogger::log(C_CLASS_NAME,"Current","*****ENTRY*****")
+    object = nil
+    if @@currentVersionId == nil
+      ConsoleLogger::log(C_CLASS_NAME,"Current","Current nil")
+      latest = nil
+      if @@cdiscNamespace == nil 
+        @@cdiscNamespace = Namespace.findByShortName("CDISC")
       end
+      tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
+      tSet.each do |thesaurus|
+        if latest == nil
+          latest = thesaurus
+        elsif thesaurus.internalVersion > latest.internalVersion
+          latest = thesaurus
+        end
+      end
+      object = self.new 
+      object.id = latest.id
+      object.thesaurus = latest
+      @@currentVersionId = object.id
+    else
+      ConsoleLogger::log(C_CLASS_NAME,"Current","CurrentVersionId=" + @@currentVersionId)
+      object = self.find(@@currentVersionId)
     end
-    object = self.new 
-    object.id = latest.id
-    object.thesaurus = latest
-    return object 
+    ConsoleLogger::log(C_CLASS_NAME,"Current","*****EXIT***** " + object.id)   
+    return object
   end
   
   def self.create(params)

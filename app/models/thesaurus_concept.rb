@@ -33,8 +33,8 @@ class ThesaurusConcept
   
   def self.find(id, ns="")
     
-    p "[ThesaurusConcept    ][find                 ] id=" + id
-    p "[ThesaurusConcept    ][find                 ] ns=" + ns
+    #p "[ThesaurusConcept    ][find                 ] id=" + id
+    #p "[ThesaurusConcept    ][find                 ] ns=" + ns
     
     object = nil
     
@@ -380,6 +380,58 @@ class ThesaurusConcept
     
   end
   
+  def self.searchAllTopLevelWithNs(id, ns, term)
+    
+    ConsoleLogger::log(C_CLASS_NAME,"searchAllTopLevelWithNs","Id=" + id.to_s + ", ns=" + ns.to_s + ", term=" + term)
+    results = Array.new
+    
+    # Create the query
+    query = UriManagement.buildNs(ns, ["iso25964"]) +
+      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
+      "  { \n" +
+      "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
+      "    ?a skos:inScheme :" + id + " . \n" +
+      "    ?a iso25964:identifier ?b . \n" +
+      "    ?a iso25964:notation ?c . \n" +
+      "    ?a iso25964:preferredTerm ?d . \n" +
+      "    ?a iso25964:synonym ?e . \n" +
+      "    ?a iso25964:extensible ?f . \n" +
+      "    ?a iso25964:definition ?g . \n" +
+      "    ?a ( iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?h . FILTER regex(?h, \"" + term + "\") . \n" +
+      "} ORDER BY ?b"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      ConsoleLogger::log(C_CLASS_NAME,"searchAllTopLevelWithNs","Node=" + node.to_s)
+      uriSet = node.xpath("binding[@name='a']/uri")
+      idSet = node.xpath("binding[@name='b']/literal")
+      nSet = node.xpath("binding[@name='c']/literal")
+      ptSet = node.xpath("binding[@name='d']/literal")
+      sSet = node.xpath("binding[@name='e']/literal")
+      eSet = node.xpath("binding[@name='f']/literal")
+      dSet = node.xpath("binding[@name='g']/literal")
+      if uriSet.length == 1 
+        object = self.new 
+        object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.namespace = ModelUtility.extractNs(uriSet[0].text)
+        object.identifier = idSet[0].text
+        object.notation = nSet[0].text
+        object.preferredTerm = ptSet[0].text
+        object.synonym = sSet[0].text
+        object.extensible = eSet[0].text
+        object.definition = dSet[0].text
+        results.push (object)
+      end
+    end
+    return results
+    
+  end
+
   def self.create(params)
     
     identifier  = params[:identifier]
