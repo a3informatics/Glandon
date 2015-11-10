@@ -9,8 +9,8 @@ class ThesaurusConcept
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace
-  validates_presence_of :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace
+  attr_accessor :id, :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :topLevel, :namespace
+  validates_presence_of :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :topLevel, :namespace
   
   # Constants
   C_CLASS_PREFIX = "THC"
@@ -33,15 +33,12 @@ class ThesaurusConcept
   
   def self.find(id, ns="")
     
-    #p "[ThesaurusConcept    ][find                 ] id=" + id
-    #p "[ThesaurusConcept    ][find                 ] ns=" + ns
-    
     object = nil
     
     # Create the query
     useNs = ns || @@baseNs
     query = UriManagement.buildNs(useNs, ["iso25964"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
+      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
       "{ \n" +
       "	 :" + id + " iso25964:identifier ?a . \n" +
       "	 :" + id + " iso25964:notation ?b . \n" +
@@ -51,6 +48,7 @@ class ThesaurusConcept
       "	 OPTIONAL\n" +
       "  {\n" +
       "    :" + id + " iso25964:extensible ?e . \n" +
+      "    :" + id + " skos:inScheme ?g . \n" +
       "  }\n" +
       "}"
     
@@ -61,9 +59,6 @@ class ThesaurusConcept
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
       idSet = node.xpath("binding[@name='a']/literal")
       nSet = node.xpath("binding[@name='b']/literal")
       ptSet = node.xpath("binding[@name='c']/literal")
@@ -71,13 +66,8 @@ class ThesaurusConcept
       eSet = node.xpath("binding[@name='e']/literal")
       dSet = node.xpath("binding[@name='f']/literal")
       eSet = node.xpath("binding[@name='e']/literal")
-      
-      p "id: " + idSet.text
-      
+      isSet = node.xpath("binding[@name='g']/uri")
       if idSet.length == 1
-        
-        #p "Found"
-        
         object = self.new 
         object.id = id
         object.identifier = idSet[0].text
@@ -89,7 +79,12 @@ class ThesaurusConcept
           object.extensible = eSet[0].text
         else
           object.extensible = ""
-        end  
+        end
+        if isSet.length == 1
+          object.topLevel = true
+        else
+          object.topLevel = false
+        end   
       end
     end
     
@@ -98,6 +93,7 @@ class ThesaurusConcept
     
   end
 
+  # Find all the lower level items for a given top-level identifier
   def self.findByIdentifier(identifier, termId, ns="")
     
     ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","identifier=" + identifier)
@@ -144,6 +140,7 @@ class ThesaurusConcept
         object.preferredTerm = ptSet[0].text
         object.synonym = sSet[0].text
         object.definition = dSet[0].text
+        object.topLevel = false
         if eSet.length == 1
           object.extensible = eSet[0].text
         else
@@ -182,9 +179,6 @@ class ThesaurusConcept
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      #p "Node: " + node.text
-      
       uriSet = node.xpath("binding[@name='a']/uri")
       idSet = node.xpath("binding[@name='b']/literal")
       nSet = node.xpath("binding[@name='c']/literal")
@@ -192,11 +186,7 @@ class ThesaurusConcept
       sSet = node.xpath("binding[@name='e']/literal")
       eSet = node.xpath("binding[@name='f']/literal")
       dSet = node.xpath("binding[@name='g']/literal")
-      
       if uriSet.length == 1 
-        
-        #p "Found"
-        
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.identifier = idSet[0].text
@@ -206,10 +196,8 @@ class ThesaurusConcept
         object.extensible = eSet[0].text
         object.definition = dSet[0].text
         results.push (object)
-        
       end
     end
-    
     return results
     
   end
@@ -262,6 +250,7 @@ class ThesaurusConcept
         object.synonym = sSet[0].text
         object.extensible = eSet[0].text
         object.definition = dSet[0].text
+        object.topLevel = true
         results.push (object)
         
       end
@@ -317,6 +306,7 @@ class ThesaurusConcept
         object.synonym = sSet[0].text
         object.extensible = eSet[0].text
         object.definition = dSet[0].text
+        object.topLevel = true
         results.push (object)
       end
     end
@@ -370,6 +360,7 @@ class ThesaurusConcept
         object.synonym = sSet[0].text
         object.definition = dSet[0].text
         object.extensible = ""
+        object.topLevel = false
         results.push (object)
         
         p "[ThesaurusConcept   ][allLowerLevelWithNs] obj=" + object.id
@@ -380,25 +371,34 @@ class ThesaurusConcept
     
   end
   
-  def self.searchAllTopLevelWithNs(id, ns, term)
+  def self.searchTextWithNs(termId, ns, term)
     
-    ConsoleLogger::log(C_CLASS_NAME,"searchAllTopLevelWithNs","Id=" + id.to_s + ", ns=" + ns.to_s + ", term=" + term)
+    ConsoleLogger::log(C_CLASS_NAME,"searchAllTopLevelWithNs","Id=" + termId.to_s + ", ns=" + ns.to_s + ", term=" + term)
     results = Array.new
     
     # Create the query
     query = UriManagement.buildNs(ns, ["iso25964"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
-      "  { \n" +
-      "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
-      "    ?a skos:inScheme :" + id + " . \n" +
+      "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
+      "  {\n" +
       "    ?a iso25964:identifier ?b . \n" +
       "    ?a iso25964:notation ?c . \n" +
       "    ?a iso25964:preferredTerm ?d . \n" +
       "    ?a iso25964:synonym ?e . \n" +
-      "    ?a iso25964:extensible ?f . \n" +
       "    ?a iso25964:definition ?g . \n" +
-      "    ?a ( iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?h . FILTER regex(?h, \"" + term + "\") . \n" +
-      "} ORDER BY ?b"
+      "    OPTIONAL\n" +
+      "    {\n" +
+      "      ?a iso25964:extensible ?f . \n" +
+      "      ?a skos:inScheme ?h . \n" +
+      "    }\n" +
+      "    ?a ( iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?i . FILTER regex(?i, \"" + term + "\") . \n" +
+      "    {\n" +
+      "      SELECT ?a WHERE\n" +
+      "      {\n" +
+      "        ?a rdf:type iso25964:ThesaurusConcept . \n" +
+      "        { ?a skos:inScheme :" + termId + " } UNION { ?j skos:inScheme :" + termId + " . ?j skos:narrower ?a } . \n" +
+      "      }\n" +
+      "    }\n" +
+      "  } ORDER BY ?b"
     
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -415,6 +415,7 @@ class ThesaurusConcept
       sSet = node.xpath("binding[@name='e']/literal")
       eSet = node.xpath("binding[@name='f']/literal")
       dSet = node.xpath("binding[@name='g']/literal")
+      tlSet = node.xpath("binding[@name='h']/uri")
       if uriSet.length == 1 
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
@@ -423,11 +424,91 @@ class ThesaurusConcept
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
         object.synonym = sSet[0].text
-        object.extensible = eSet[0].text
+        if eSet.length == 1 
+          object.extensible = eSet[0].text
+        else
+          object.extensible = ""
+        end
+        if tlSet.length == 1 
+          object.topLevel = true
+        else
+          object.topLevel = false
+        end
         object.definition = dSet[0].text
         results.push (object)
       end
     end
+    return results
+    
+  end
+
+  def self.searchIdentifierWithNs(termId, ns, term)
+    
+    ConsoleLogger::log(C_CLASS_NAME,"searchAllTopLevelWithNs","Id=" + termId.to_s + ", ns=" + ns.to_s + ", term=" + term)
+    results = Array.new
+    
+    # Create the query
+    query = UriManagement.buildNs(ns, ["iso25964"]) +
+      "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
+      "  {\n" +
+      "    ?a iso25964:identifier ?b . \n" +
+      "    ?a iso25964:notation ?c . \n" +
+      "    ?a iso25964:preferredTerm ?d . \n" +
+      "    ?a iso25964:synonym ?e . \n" +
+      "    ?a iso25964:definition ?g . \n" +
+      "    OPTIONAL\n" +
+      "    {\n" +
+      "      ?a iso25964:extensible ?f . \n" +
+      "      ?a skos:inScheme ?h . \n" +
+      "    }\n" +
+      "    {\n" +
+      "      SELECT ?a WHERE\n" +
+      "      {\n" +
+      "        ?a rdf:type iso25964:ThesaurusConcept . \n" +
+      "        { ?k skos:inScheme :" + termId + " . ?k iso25964:identifier \"" + term + "\"^^xsd:string . ?k skos:narrower ?a } UNION \n" + 
+      "        { ?a skos:inScheme :" + termId + " . ?a iso25964:identifier \"" + term + "\"^^xsd:string . } UNION \n" + 
+      "        { ?j skos:inScheme :" + termId + " . ?j skos:narrower ?a . ?a iso25964:identifier \"" + term + "\"^^xsd:string } . \n" +
+      "      }\n" +
+      "    }\n" +
+      "  } ORDER BY ?b"
+  
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uriSet = node.xpath("binding[@name='a']/uri")
+      idSet = node.xpath("binding[@name='b']/literal")
+      nSet = node.xpath("binding[@name='c']/literal")
+      ptSet = node.xpath("binding[@name='d']/literal")
+      sSet = node.xpath("binding[@name='e']/literal")
+      dSet = node.xpath("binding[@name='g']/literal")
+      eSet = node.xpath("binding[@name='f']/literal")
+      tlSet = node.xpath("binding[@name='h']/uri")
+      if uriSet.length == 1 
+        object = self.new 
+        object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.identifier = idSet[0].text
+        object.notation = nSet[0].text
+        object.preferredTerm = ptSet[0].text
+        object.synonym = sSet[0].text
+        object.definition = dSet[0].text
+        if eSet.length == 1 
+          object.extensible = eSet[0].text
+        else
+          object.extensible = ""
+        end
+        if tlSet.length == 1 
+          object.topLevel = true
+        else
+          object.topLevel = false
+        end
+        results.push (object)
+      end
+    end
+    
     return results
     
   end

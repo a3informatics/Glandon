@@ -24,12 +24,19 @@ class CdiscTermsController < ApplicationController
   def edit
   end
 
-  def searchCls
+  def search
     term = params[:term]
-    #draw = params[:draw]
-    #ConsoleLogger::log(C_CLASS_NAME,"searchCls","draw=" + draw)
-    @cls = CdiscTerm.searchCls(term)
-    render json: @cls
+    textSearch = params[:textSearch]
+    cCodeSearch = params[:cCodeSearch]
+    ConsoleLogger::log(C_CLASS_NAME,"search","Term=" + term.to_s + ", textSearch=" + textSearch.to_s + ", codeSearch=" + cCodeSearch)
+    if term != "" && textSearch == "text"
+      @results = CdiscTerm.searchText(term)  
+    elsif term != "" && cCodeSearch == "ccode"
+      @results = CdiscTerm.searchIdentifier(term)
+    else
+      @results = Array.new
+    end
+    render json: @results
   end
   
   def compare
@@ -94,7 +101,7 @@ class CdiscTermsController < ApplicationController
   
 private
   def this_params
-    params.require(:cdisc_term).permit({:files => []}, :version, :date, :thesaurus_id, :term)
+    params.require(:cdisc_term).permit({:files => []}, :version, :date, :thesaurus_id, :term, :textSearch, :cCodeSearch)
   end
   
   def clsForTerm(cdiscTerm, data)

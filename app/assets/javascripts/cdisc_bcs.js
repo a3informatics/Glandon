@@ -1,96 +1,136 @@
 $(document).ready(function() {
   
-  // The overall BC JSON structure
-  var bcObject = {};
+  var bcObject = {};      // The overall BC JSON structure
   var currentIndex = -1;
+  
   var bcNameId = document.getElementById("bcName")
   var itemNameId = document.getElementById("itemName")
   var qTextId = document.getElementById("qText")
   var pTextId = document.getElementById("pText")
   var collectId = document.getElementById("collect")
   var searchClTextId = document.getElementById("searchClText")
-  var debugDiv = document.getElementById("debug"); 
+  
   var clDataTableReload = false;
   var clDataTable;
-
-  initialSearch("...");
-
-  $('.datatable').DataTable({
-    // ajax: ...,
-    // autoWidth: false,
-    // pagingType: 'full_numbers',
-    // processing: true,
-    // serverSide: true,
-
-    // Optional, if you want full pagination controls.
-    // Check dataTables documentation to learn more about available options.
-    // http://datatables.net/reference/option/pagingType
+  
+  var clPrevSelect = null;
+  var clCurrentRow = null;
+  
+  var bcDataTable;
+  var bcPrevSelect = null;
+  var bcCurrentRow = null;
+  
+  initialClSearch("XXXXXX");
+  bcDataTable = $('#bcTable').DataTable({
+    "searching": false,
+    "pageLength": 5,
+    "lengthChange": false,
+    "columns": [
+      {"data" : "identifier", "width" : "50%"},
+      {"data" : "notation", "width" : "50%"},
+    ]
   });
 
-  function initialSearch (term) {
+  function initialClSearch (term) {
 
     searchClTextId.value = term;
-      clDataTable = $('#clTable').DataTable( {
-        "ajax": {
-          "url": "../cdisc_terms/searchCls",
-          "data": function( d ) {
-            d.term = $('#searchClText').val();
-          },
-          "dataSrc": ""  
+    clDataTable = $('#clTable').DataTable( {
+      "ajax": {
+        "url": "../cdisc_terms/search",
+        "data": function( d ) {
+          d.term = $('#searchClText').val(),
+          d.textSearch = searchType(0),
+          d.cCodeSearch = searchType(1)
         },
-        "columns": [
-          {"data" : "identifier"},
-          {"data" : "notation"},
-          {"data" : "definition"},
-          {"data" : "synonym" },
-          {"data" : "preferredTerm" }
-
-        ]
-      });
-      clDataTableReload = true;
+        "dataSrc": ""  
+      },
+      "searching": false,
+      "bProcessing": true,
+      "columns": [
+        {"data" : "identifier", "width" : "10%"},
+        {"data" : "notation", "width" : "10%"},
+        {"data" : "definition", "width" : "40%"},
+        {"data" : "synonym", "width" : "15%" },
+        {"data" : "preferredTerm", "width" : "15%" },
+        {"data" : "topLevel", "width" : "10%" }
+      ]
+    });
+    searchClTextId.value = "";
+    clDataTableReload = true;
     
   }
 
-  $('#searchCl').click(function() {
-    //alert("search");
-    //var term = searchClTextId.value;
-    if (!clDataTableReload) {
-      clDataTable = $('#clTable').DataTable( {
-        "ajax": {
-          "url": "../cdisc_terms/searchCls",
-          "data": function( d ) {
-            d.term= $('#searchClText').val();
-          },
-          "dataSrc": ""  
-        },
-        "columns": [
-          {"data" : "identifier"},
-          {"data" : "notation"},
-          {"data" : "definition"},
-          {"data" : "synonym" },
-          {"data" : "preferredTerm" }
-
-        ]
-      });
-      clDataTableReload = true;
-    } else {
+  /*
+   * Function to handle click on the Text Search button.
+   */
+  $('#search_button').click(function() {
+    if (clDataTableReload) {
       clDataTable.ajax.reload();
     }
-    //$.ajax({
-    //    url: "../cdisc_terms/searchCls",
-    //    data: {
-    //      term: term
-    //    },
-    //    dataType: "json",
-    //    success: function(data) { 
-
-    //      debugDiv.innerHTML = JSON.stringify(data)  + "<br/>";
-
-    //    }
-    //});    
   });
 
-  // Get BC Template Button. Load the template and draw the D3 tree
+  /*
+   * Function to handle click on the CL table.
+   */
+   $('#clTable tbody').on('click', 'tr', function () {
+    
+    var row = clDataTable.row(this).index();
+    var data = clDataTable.row(row).data();
+    if (!data.topLevel) {
+    
+      // Toggle the highlight for the row
+      if (clPrevSelect !=  null) {
+        $(clPrevSelect).toggleClass('success');
+      }
+      $(this).toggleClass('success');
+      clPrevSelect = this;
+    
+      clCurrentRow = row;
+    }
+    
+  });
+
+  /* 
+  * Function to handle click on the BC CL table.
+  */
+  $('#bcTable tbody').on('click', 'tr', function () {
+    
+    // Toggle the highlight for the row
+    if (bcPrevSelect != null) {
+      $(bcPrevSelect).toggleClass('success');
+    }
+    $(this).toggleClass('success');
+    bcPrevSelect = this;
+
+    // Get the data item from the row, add to the property table and 
+    // preserve in the bcObject structure.
+    bcCurrentRow = bcDataTable.row(this).index();
+  });
+
+  /* 
+  * Function to handle the add button click.
+  */
+  $('#add_button').click(function() {
+    if (clCurrentRow != null) {
+      var data = clDataTable.row(clCurrentRow).data();
+      bcDataTable.row.add(data);
+      bcDataTable.draw(false);
+      bcObject.children[currentIndex].cli.push(data);
+    }
+  });
+
+  /* 
+  * Function to handle the delete button click.
+  */
+  $('#delete_button').click(function() {
+    if (bcCurrentRow != null) {
+      bcDataTable.row(bcCurrentRow).remove();
+      bcCurrentRow = null;
+      bcDataTable.draw();
+    }
+  });
+
+  // Function to handle the Get BC Template Button. Load the template and draw the D3 tree
   $('#bct_button').click(function() {
   	element = document.getElementById("bct_status");
   	value = element.value;
@@ -123,12 +163,11 @@ $(document).ready(function() {
             bcObject.children[index].pText = "";
             bcObject.children[index].qText = "";
             bcObject.children[index].collect = true;
-            bcObject.children[index].index = index
+            bcObject.children[index].index = index;
+            bcObject.children[index].cli = [];
             index++;
           }
 
-          debugDiv.innerHTML = JSON.stringify(bcObject)  + "<br/>";
-          
           var width = d3Div.clientWidth - 50; 
           var height = d3Div.clientHeight - 50; 
 
@@ -175,37 +214,15 @@ $(document).ready(function() {
       });
   });
 
-  // Toggle children on click.
+  /**
+   *  Function to handle click on the D3 tree.
+   */
   function click(d) {
-    $('#tab a[href="#item"]').tab('show')
+    $('#tab a[href="#bcItem"]').tab('show')
     saveItem();
     clearItem();
-    //alert ("Click on D3. Name=" + d.name)
     displayItem(d.index)
   }
-
-  /**
-  * Add a Tab
-  */
-  /*function addTab(index, active) {
-      //<li role="presentation" class="active">
-      //  <a href="#alias1Tab" aria-controls="group" role="tab" data-toggle="tab">Alias 1</a>
-      //</li> 
-      var tab = document.getElementById("tab");
-      if (active) {
-        tab.insertAdjacentHTML('beforeend', '<li role="presentation" class="active"><a href="#page' + index + '" aria-controls="home" role="tab" data-toggle="tab">Page ' + index + '</a></li>');
-      } else {
-        tab.insertAdjacentHTML('beforeend', '<li role="presentation"><a href="#page' + index + '" aria-controls="home" role="tab" data-toggle="tab">Page ' + index + '</a></li>');
-      }
-      
-      //<div role="tabpanel" class="tab-pane active" id="alias1Tab">
-      //  <label>Options:</label>
-      //  <button type="button" id="groupUpdateButton" class="btn btn-default">Update</button>
-      //</div>
-      var tab = document.getElementById("tab-content");
-      tab.insertAdjacentHTML('beforeend', '<div role="tabpanel" class="tab-pane" id="page' + index + '">Hello from page ' + index + '<br/><br/><br/><br/><br/><br/><br/><br/></div>');
-      $('#page' + index).tab('show');
-  }*/
    
   /**
    * Click Tab to show its contents
@@ -215,37 +232,61 @@ $(document).ready(function() {
       $(this).tab('show');
   });
 
-  //
+  /**
+   * Function to display the Concept details.
+   */
   function displayBC() {
     bcNameId.value = bcObject.name;
   }
 
-  //
+  /**
+   * Function to display an Item. 
+   */
   function displayItem(index) {
     currentIndex = index
     itemNameId.value = bcObject.children[currentIndex].name;
     qTextId.value = bcObject.children[currentIndex].qText;
     pTextId.value = bcObject.children[currentIndex].pText;
     collectId.value = bcObject.children[currentIndex].collect;
-    //alert ("Displaying. Index=" + currentIndex + ", name=" + bcObject.children[currentIndex].name);
+    bcDataTable.rows.add(bcObject.children[currentIndex].cli);
+    bcDataTable.draw();
   }
 
-  //
+  /**
+   * Function to save an item.
+   */
   function saveItem() {
     if (currentIndex != -1) {
       //bcObject.children[currentIndex].name = itemNameId.value;
       bcObject.children[currentIndex].qText = qTextId.value;
       bcObject.children[currentIndex].pText = pTextId.value;
       bcObject.children[currentIndex].collect = collectId.value;
-      //alert ("Saving. Index=" + currentIndex + ", name=" + bcObject.children[currentIndex].name);
     }
   }
 
+  /**
+   * Function to clear an item.
+   */
   function clearItem() {
     qTextId.value = "";
     pTextId.value = "";
     collectId.value = false;
-    //alert ("Clearing item.");
+    bcDataTable.clear();
+    bcDataTable.draw();
+    bcPrevSelect = null;
+    bcCurrentRow = null;
   }
+
+/*
+ * Read text search
+ */
+function searchType (index) {
+  var test = document.getElementsByName('search_radio');
+  if (test[index].checked == true) {
+    return test[index].value;
+  } else {
+    return "";
+  }
+}
 
 });

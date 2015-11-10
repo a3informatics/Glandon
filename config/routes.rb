@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     collection do
       get :compare
       get :history
-      get :searchCls
+      get :search
     end
   end
   resources :cdisc_cls do

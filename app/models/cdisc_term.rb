@@ -62,11 +62,20 @@ class CdiscTerm
 
   end
 
-  def self.searchCls(searchTerm)
+  def self.searchText(searchTerm)
 
     currentCdiscTerm = current()
-    ConsoleLogger::log(C_CLASS_NAME,"searchCls","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
-    results = ThesaurusConcept.searchAllTopLevelWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
+    ConsoleLogger::log(C_CLASS_NAME,"searchText","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
+    results = ThesaurusConcept.searchTextWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
+    return results
+
+  end
+
+  def self.searchIdentifier(searchTerm)
+
+    currentCdiscTerm = current()
+    ConsoleLogger::log(C_CLASS_NAME,"searchIdentifier","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
+    results = ThesaurusConcept.searchIdentifierWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
     return results
 
   end
