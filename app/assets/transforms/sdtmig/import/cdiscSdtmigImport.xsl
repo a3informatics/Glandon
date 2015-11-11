@@ -6,7 +6,7 @@
 
     <!-- 
         Parameters
-        SDTMVersion:        The internal version of the SDTM IG being created.
+        SDTMVersion:        The CDISC version of the SDTM IG being created.
         InternalVersion:    The internal version of the SDTM IG being created.
         IGNamespace:        The namespace to be used with the turtle document for the SDTM IG Standard being created.
         DNamespace:         The namespace to be used with the turtle document for the Domains being created.
@@ -106,8 +106,8 @@
         <xsl:call-template name="ScopedIdentifier">
             <xsl:with-param name="pCID" select="$SICID"/>
             <xsl:with-param name="pIdentifier" select="'CDISC SDTM Implementation Guide'"/>
-            <xsl:with-param name="pVersion" select="$SDTMVersion"/>
-            <xsl:with-param name="pInternalVersion" select="$InternalVersion"/>
+            <xsl:with-param name="pVersionLabel" select="$SDTMVersion"/>
+            <xsl:with-param name="pVersion" select="$InternalVersion"/>
             <xsl:with-param name="pScope" select="'NS-CDISC'"/>
         </xsl:call-template>    
         

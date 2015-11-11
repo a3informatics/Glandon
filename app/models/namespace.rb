@@ -17,6 +17,7 @@ class Namespace
   C_NS_PREFIX = "mdrItems"
   C_CLASS_O_PREFIX = "O"
   C_CLASS_NS_PREFIX = "NS"
+  C_CLASS_NAME = "Namespace"
   
   # Base namespace 
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
@@ -35,6 +36,7 @@ class Namespace
   def self.findByShortName(name)
     
     object = nil
+    ConsoleLogger::log(C_CLASS_NAME,"findByShortName","*****ENTRY*****")
     
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
@@ -52,24 +54,15 @@ class Namespace
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-    
-      p "Node: " + node.text
-      
+      ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
       uriSet = node.xpath("binding[@name='a']/uri")
       nSet = node.xpath("binding[@name='c']/literal")
-      
-      p "name: " + nSet.text
-      p "uri: " + uriSet.text
-      
       if nSet.length == 1 and uriSet.length == 1
-
-        p "Found"
-        
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.name = nSet[0].text
         object.shortName = name
-        
+        ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + object.id)        
       end
     
     end

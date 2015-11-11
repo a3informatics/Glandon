@@ -51,6 +51,6 @@ class FormsController < ApplicationController
   
 private
   def the_params
-    params.require(:form).permit(:freeText, :name, :shortName, :bcs => [])
+    params.require(:form).permit(:freeText, :name, :itemType, :bcs => [])
   end  
 end

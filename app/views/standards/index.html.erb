@@ -11,8 +11,8 @@
 		<% @standards.each do |key, std| %>
 		  <tr>
 		    <td><%= std.name %></td>
-		    <td><%= std.internalVersion %></td>
 		    <td><%= std.version %></td>
+		    <td><%= std.versionLabel %></td>
 		    <td><%= link_to "Show", standard_path(std.id), :class => "btn btn-primary" %></td>
 		  </tr>
 		<% end %>

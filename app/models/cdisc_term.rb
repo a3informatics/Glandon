@@ -28,8 +28,8 @@ class CdiscTerm
     return self.thesaurus.managedItem.version
   end
 
-  def internalVersion
-    return self.thesaurus.managedItem.internalVersion
+  def versionLabel
+    return self.thesaurus.managedItem.versionLabel
   end
 
   def identifier
@@ -93,7 +93,7 @@ class CdiscTerm
       object.thesaurus = thesaurus
       results.push(object)
     end
-    results.sort! { |a,b| a.thesaurus.managedItem.internalVersion <=> b.thesaurus.managedItem.internalVersion }
+    results.sort! { |a,b| a.thesaurus.managedItem.versionLabel <=> b.thesaurus.managedItem.versionLabel }
     return results  
     
   end
@@ -113,7 +113,7 @@ class CdiscTerm
         results.push(object)
       end
     end
-    results.sort! { |a,b| a.thesaurus.managedItem.internalVersion <=> b.thesaurus.managedItem.internalVersion }
+    results.sort! { |a,b| a.thesaurus.managedItem.version <=> b.thesaurus.managedItem.version }
     return results  
     
   end
@@ -126,14 +126,14 @@ class CdiscTerm
     end
     tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
-      if (version > thesaurus.managedItem.internalVersion)
+      if (version > thesaurus.managedItem.version)
         object = self.new 
         object.id = thesaurus.id
         object.thesaurus = thesaurus
         results.push(object)
       end
     end
-    results.sort! { |a,b| a.thesaurus.managedItem.internalVersion <=> b.thesaurus.managedItem.internalVersion }
+    results.sort! { |a,b| a.thesaurus.managedItem.version <=> b.thesaurus.managedItem.version }
     return results  
     
   end
@@ -151,7 +151,7 @@ class CdiscTerm
       tSet.each do |thesaurus|
         if latest == nil
           latest = thesaurus
-        elsif thesaurus.internalVersion > latest.internalVersion
+        elsif thesaurus.version > latest.version
           latest = thesaurus
         end
       end
@@ -189,12 +189,12 @@ class CdiscTerm
     uri.setUri(baseNs)
     uri.extendPath("CDISC/V" + version)
     ns = uri.getNs()
-    tParams = {:version => date.to_s, :shortName => "CDISC_CT", :internalVersion => version, :identifier => identifier, :namespace_id => namespace.id}
-    thesaurus = Thesaurus.create_import(tParams, ns)
-    ii.id = thesaurus.managedItem.scopedIdentifier.id
+    tParams = {:versionLabel => date.to_s, :itemType => "CDISC_CT", :version => version, :identifier => identifier, :namespaceId => namespace.id}
+    thesaurus = Thesaurus.createImported(tParams, ns)
+    si = thesaurus.managedItem.scopedIdentifier.id
     
     # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
-    Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", {:UseVersion => version, :Namespace => "'" + ns + "'", :II => "'" + ii.id + "'"}, "CT.ttl")
+    Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", {:UseVersion => version, :Namespace => "'" + ns + "'", :SI => "'" + si + "'"}, "CT.ttl")
     
     # upload the file to the database. Send the request, wait the resonse
     publicDir = Rails.root.join("public","upload")
@@ -209,7 +209,6 @@ class CdiscTerm
     end
     
     # Set the object
-    object.date = date
     object.thesaurus = thesaurus
     object.id = thesaurus.id
     return object

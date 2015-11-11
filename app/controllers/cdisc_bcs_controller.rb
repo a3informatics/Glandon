@@ -2,7 +2,7 @@ class CdiscBcsController < ApplicationController
   
   C_CLASS_NAME = "CdiscBcsController"
 
-  layout "editor", only: [:new, :edit]
+  layout "cdisc_bcs_editor", only: [:new, :edit]
 
   before_action :authenticate_user!
   

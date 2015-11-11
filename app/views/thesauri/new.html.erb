@@ -1,14 +1,22 @@
 <h1>New Thesaurus</h1>
 <div class="col-md-10">
-		<%= form_for @thesaurus, :url => thesauri_index_path do |f| %>
+	<%= form_for @thesaurus, :url => thesauri_index_path do |f| %>
+	  	<div class="form-group">
+    		<%= label_tag :itemType, "Item Type" %><br/>
+    		<%= text_field_tag "thesaurus[itemType]", 'SPONSOR_CT' %>
+  		</div>
+  		<div class="form-group">
+		    <%= label_tag :identifier, "identifier" %><br/>
+		    <%= text_field_tag "thesaurus[identifier]", 'Sponsor Terminology' %>
+		</div>
 		<div class="form-group">
-			<%= f.label :scopedIdentifierId, "Identified Item"%><br />
-    	<%= f.select(:scopedIdentifierId, 
-	             options_from_collection_for_select(ScopedIdentifier.all, :id, :identifier),
-	             {prompt: "Name"}, 
-							 {class: "form-control"}) %>
-			
-    </div>
-    <%= f.submit "Create", class: "btn btn-default btn-primary" %>
+		    <%= label_tag :versionLabel, "Version Label" %><br/>
+		    <%= text_field_tag "thesaurus[versionLabel]", '0.1' %>
+		</div>
+		<div class="form-group">
+		    <%= label_tag :version, "Internal Version" %><br/>
+		    <%= text_field_tag "thesaurus[version]", '1' %>
+		</div>
+		<%= f.submit "Create", class: "btn btn-default btn-primary" %>
 	<% end %>
 </div>

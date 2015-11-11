@@ -31,7 +31,7 @@ class ThesaurusConcept
     return @@baseNs 
   end
   
-  def self.find(id, ns="")
+  def self.find(id, ns=nil)
     
     object = nil
     
@@ -94,7 +94,7 @@ class ThesaurusConcept
   end
 
   # Find all the lower level items for a given top-level identifier
-  def self.findByIdentifier(identifier, termId, ns="")
+  def self.findByIdentifier(identifier, termId, ns=nil)
     
     ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","identifier=" + identifier)
     ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","ns=" + ns)

@@ -11,7 +11,7 @@
 		  </tr>
 			<% cdiscTerms.each do |ct| %>
 			  <tr>
-			    <td><%= ct.version %> (V<%= ct.internalVersion %>)</td>
+			    <td><%= ct.versionLabel %> (V<%= ct.version %>)</td>
 			    <% if type == "CT" %>
 						<td>
 							<%= link_to compare_cdisc_terms_path(:new => currTerm.id, :old => ct.id, :type => "ALL"), :class => "btn btn-info" do %>

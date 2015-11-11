@@ -21,8 +21,8 @@ class ManagedItem
     return self.scopedIdentifier.version
   end
 
-  def internalVersion
-    return self.scopedIdentifier.internalVersion
+  def versionLabel
+    return self.scopedIdentifier.versionLabel
   end
 
   def identifier
@@ -96,7 +96,7 @@ class ManagedItem
     
   end
 
-  def self.create_imported(id, params, ns="")
+  def self.createImported(id, params, ns=nil)
   
     useNs = ns || @@baseNs
 
@@ -131,11 +131,12 @@ class ManagedItem
   
   end
 
-  def self.create_local(id, params, ns="")
+  def self.createLocal(id, params, ns=nil)
 
     useNs = ns || @@baseNs
     timestamp = Time.now
-  
+    ConsoleLogger::log(C_CLASS_NAME,"createLocal","useNs=" + useNs)
+    
     object = self.new
     object.id = id
     object.scopedIdentifier = ScopedIdentifier.create(params)
@@ -164,10 +165,10 @@ class ManagedItem
 
     # Response
     if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"create_local","Success, id=" + id)
+      ConsoleLogger::log(C_CLASS_NAME,"createLocal","Success, id=" + id)
     else
       object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"create_local","Failed")
+      ConsoleLogger::log(C_CLASS_NAME,"createLocal","Failed")
     end
 
     return object

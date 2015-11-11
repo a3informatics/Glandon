@@ -12,10 +12,10 @@ module ModelUtility
     
   end
   
-  def ModelUtility.buildCidVersion(prefix, shortName, version)
+  def ModelUtility.buildCidVersion(prefix, itemType, version)
   
     uri = Uri.new
-    uri.setCidWithVersion(prefix, shortName, version)
+    uri.setCidWithVersion(prefix, itemType, version)
     return uri.getCid
     
   end
@@ -51,11 +51,11 @@ module ModelUtility
   
   end
   
-  def ModelUtility.extractShortName(cid)
+  def ModelUtility.extractItemType(cid)
   
     object = Uri.new()
     object.setCid(cid)
-    return object.shortName()
+    return object.itemType()
   
   end
 

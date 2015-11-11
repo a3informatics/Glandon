@@ -7,11 +7,12 @@ class ScopedIdentifiersController < ApplicationController
   end
   
   def new
+    @namespaces = Namespace.all
     @scopedIdentifier = ScopedIdentifier.new
   end
   
   def create
-    @scopedIdentifier = ScopedIdentifier.create(ii_params)
+    @scopedIdentifier = ScopedIdentifier.create(this_params)
     redirect_to scoped_identifiers_path
   end
 
@@ -32,8 +33,8 @@ class ScopedIdentifiersController < ApplicationController
   end
   
   private
-    def ii_params
-      params.require(:identified_item).permit(:identifier, :version, :shortName, :namespace_id)
+    def this_params
+      params.require(:scoped_identifier).permit(:identifier, :version, :versionLabel, :itemType, :namespace_id)
     end
 
 end

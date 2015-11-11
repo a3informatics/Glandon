@@ -2,8 +2,8 @@
 <div class="col-md-10">
 	<%= form_for @form, :url => bc_normal_create_forms_path do |f| %>
 		<div class="form-group">
-	    	<%= label_tag :shortName, "Identifier" %><br />
-	    	<%= text_field_tag "form[shortName]" %>
+	    	<%= label_tag :itemType, "Identifier" %><br />
+	    	<%= text_field_tag "form[itemType]" %>
 	  	</div>
 		<div class="form-group">
 	    	<%= f.label :name, "Name" %><br />

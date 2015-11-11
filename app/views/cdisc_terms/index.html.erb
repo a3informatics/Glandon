@@ -3,14 +3,14 @@
 	<h2>All Versions</h2>
 	<table class="table table-striped table-bordered table-condensed">
 	  <tr>
-	    <th>Version</th>
-	    <th>Date</th>
+	    <th>Internal Version</th>
+	    <th>Version Label</th>
 	    <th></th>
 	  </tr>
 		<% @cdiscTerms.each do |cdiscTerm| %>
 		  <tr>
-		    <td><%= cdiscTerm.internalVersion %></td>
 		    <td><%= cdiscTerm.version %></td>
+		    <td><%= cdiscTerm.versionLabel %></td>
 		    <td><%= link_to "Show", cdiscTerm, :class => "btn btn-primary" %></td>
 		  </tr>
 		<% end %>

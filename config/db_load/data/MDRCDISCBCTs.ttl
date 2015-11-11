@@ -33,8 +33,8 @@
 mdrItems:SI-CDISC_BCT_SimpleObservationPQR-1
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C111361"^^xsd:string ;
-	isoI:version "1"^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:versionLabel "1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 :BCT-DefinedObservation_name_Code

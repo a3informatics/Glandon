@@ -26,8 +26,8 @@ class BiomedicalConceptTemplate
     return self.managedItem.version
   end
 
-  def internalVersion
-    return self.managedItem.internalVersion
+  def versionLabel
+    return self.managedItem.versionLabel
   end
 
   def identifier

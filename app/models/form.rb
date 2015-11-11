@@ -21,8 +21,8 @@ class Form
     return self.managedItem.version
   end
 
-  def internalVersion
-    return self.managedItem.internalVersion
+  def versionLabel
+    return self.managedItem.versionLabel
   end
 
   def identifier
@@ -111,19 +111,19 @@ class Form
     
     # Get the parameters
     name = params[:name]
-    shortName = params[:shortName]
+    itemType = params[:itemType]
     freeText = params[:freeText]
     version = "1"
 
     # Create the id for the form
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, shortName, version)
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemType, version)
 
     # Create the managed item for the form. The namespace id is a shortcut for the moment.
-    managedItem = ManagedItem.create_local(id, {:version => version, :identifier => name, :shortName => shortName, :namespace_id => "items:NS-ACME"}, C_NS_PREFIX)
+    managedItem = ManagedItem.createLocal(id, {:version => version, :identifier => name, :itemType => itemType, :namespace_id => "items:NS-ACME"}, C_NS_PREFIX)
 
     # Now create the group (which will create the item). We only need a 
     # single group for a placeholder form.
-    group = FormGroup.create_placeholder(id, shortName, 1, version, freeText)
+    group = FormGroup.create_placeholder(id, itemType, 1, version, freeText)
     
     # Create the query
     update = UriManagement.buildPrefix(C_NS_PREFIX,["bf", "bo", "isoI"]) +
@@ -162,17 +162,17 @@ class Form
     
     # Get the parameters
     name = params[:name]
-    shortName = params[:shortName]
+    itemType = params[:itemType]
     bcs = params[:bcs]
     internalVersion = 1
     version = "1"
     ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","BCs=" + bcs.to_s)
       
     # Create the id for the form
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, shortName, version)
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemType, version)
 
     # Create the managed item for the form. The namespace id is a shortcut for the moment.
-    managedItem = ManagedItem.create_local(id, {:version => version, :identifier => name, :internalVersion => internalVersion, :shortName => shortName, :namespace_id => "items:NS-ACME"}, C_NS_PREFIX)
+    managedItem = ManagedItem.createLocal(id, {:version => version, :identifier => name, :itemType => itemType, :namespace_id => "items:NS-ACME"}, C_NS_PREFIX)
 
     # Now create the group (which will create the item). We only need a 
     # single group for a placeholder form.
@@ -182,7 +182,7 @@ class Form
     bcs.each do |bcId|
       ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add group for BC=" + bcId.to_s)
       bc = CdiscBc.find(bcId, cdiscTerm)
-      group = FormGroup.create_bc_normal(id, shortName, ordinal, version, bc, cdiscTerm)
+      group = FormGroup.create_bc_normal(id, itemType, ordinal, version, bc, cdiscTerm)
       ordinal += 1
       insertSparql = insertSparql + "  :" + id + " bf:hasGroup :" + group.id + " . \n"
       groups[group.id] = group

@@ -100,6 +100,10 @@
         </xsl:call-template>
         <xsl:call-template name="PredicateObject"> 
             <xsl:with-param name="pPredicateName" select="'isoI:version'" /> 
+            <xsl:with-param name="pObjectName" select="concat($quote,'1',$quote,'^^xsd:positiveInteger')" /> 
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject"> 
+            <xsl:with-param name="pPredicateName" select="'isoI:versionLabel'" /> 
             <xsl:with-param name="pObjectName" select="concat($quote,'1',$quote,'^^xsd:string')" /> 
         </xsl:call-template>
         <xsl:call-template name="PredicateObject"> 

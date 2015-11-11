@@ -1,0 +1,56 @@
+<style>
+
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 12px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+</style>
+<div class="row">
+    <!--<h1>Biomedical Concept Creation</h1>-->
+    <div class="col-md-6" style="padding-right:20px; border-right: 1px solid #ccc;">
+    	<div id="d3">
+    		<!-- D3 Area -->
+    	</div>
+    </div>
+    <div class="col-md-4">
+        <div>
+            <table id="main" class="table table-striped table-bordered table-condensed">
+                <tbody>
+                    <tr>
+                        <th>Identifier</th>
+                        <td><%= @thesaurus.identifier %></td>
+                    </tr>
+                    <tr>
+                        <th>Version Label</th>
+                        <td><%= @thesaurus.versionLabel %></td>
+                    </tr>
+                    <tr>
+                        <th>Version</th>
+                        <td><%= @thesaurus.version %></td>
+                    </tr>
+                    <tr>
+                        <th>CID</th>
+                        <td><%= @thesaurus.id %></td>
+                    </tr>
+                </tbody>
+            </table>
+            <%= link_to "Close", thesauri_index_path, :class => "btn btn-primary" %>
+        </div>
+    </div>
+</div>

@@ -12,10 +12,7 @@
 //
 //= require d3 
 //= require jquery
-//= require bootstrap-sprockets
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require dataTables/jquery.dataTables
-//= require jquery.turbolinks
-//= require turbolinks
-//= require datatables.min
-//= require_tree .
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap

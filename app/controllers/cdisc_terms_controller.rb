@@ -95,13 +95,14 @@ class CdiscTermsController < ApplicationController
   def show
     id = params[:id]
     @cdiscTerm = CdiscTerm.find(id)
-    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.internalVersion)
+    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
     @CdiscCls = CdiscCl.all(@cdiscTerm)
   end
   
 private
+
   def this_params
-    params.require(:cdisc_term).permit({:files => []}, :version, :date, :thesaurus_id, :term, :textSearch, :cCodeSearch)
+    params.require(:cdisc_term).permit({:files => []}, :version, :date, :term, :textSearch, :cCodeSearch)
   end
   
   def clsForTerm(cdiscTerm, data)
@@ -123,7 +124,7 @@ private
     last = data.length - 1
   	data.each_with_index do |curr, index|
       currTerm = curr[:term]
-      version = currTerm.internalVersion
+      version = currTerm.version
       currCls = curr[:cls]
       key = "V" + version.to_s
       missing.push(key)

@@ -140,10 +140,10 @@ class RegistrationState
 
   def self.create(params)
     
-    shortName = params[:shortName]
+    itemType = params[:itemType]
     
     # Create the query
-    id = ModelUtility.buildCid(C_CID_PREFIX, shortName)
+    id = ModelUtility.buildCid(C_CID_PREFIX, itemType)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +

@@ -10,10 +10,10 @@
     <link rel="icon" href="../../favicon.ico">
 
   	<title>Glandon</title>
-  	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  	<%= javascript_include_tag 'application', 'data-turbolinks-eval' => false %>
+  	<%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
+  	<%= javascript_include_tag 'application', params[:controller] %>
   	<%= csrf_meta_tags %>
-	
+
   </head>
 
   <body>
@@ -61,15 +61,16 @@
             <li><a href="/thesaurus_concepts">Thesaurus Concept</a></li>
           </ul>
           <ul class="well">
+            <li class="active"><a href="/standards">Standards</a></li>
+          </ul>
+          <ul class="well">
             <li><a href="/uploads">Upload</a></li>
           </ul>
           <ul class="well">
             <li><a href="/cdisc_terms">CDISC Terminology</a></li>
-            <li><a href="/cdisc_terms/searchCls?term=Vital">Search</a></li>
             <li><a href="/biomedical_concept_templates">Biomedical Concept Templates</a></li>
             <li><a href="/cdisc_bcs">Biomedical Concepts</a></li>
             <li><a href="/forms">Forms</a></li>
-            <li><a href="/standards">Standards</a></li>
             <li><a href="/sdtmigs">SDTM IGs</a></li>
           </ul>
         </div>

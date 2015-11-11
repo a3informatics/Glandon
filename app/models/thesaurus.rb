@@ -24,8 +24,8 @@ class Thesaurus
     return self.managedItem.version
   end
 
-  def internalVersion
-    return self.managedItem.internalVersion
+  def versionLabel
+    return self.managedItem.versionLabel
   end
 
   def identifier
@@ -54,8 +54,6 @@ class Thesaurus
     return object
     
   end
-
-
 
   def self.findByNamespaceId(namespaceId)
     
@@ -166,29 +164,29 @@ class Thesaurus
     
   end
 
-  def self.create_local(params, ns="")
+  def self.createLocal(params, ns=nil)
     
     # Set the namespace
     useNs = ns || @@baseNs
-
+    ConsoleLogger::log(C_CLASS_NAME,"createLocal","useNs=" + useNs)
+    
     # Get the parameters
-    shortName = params[:shortName]
-    dateCreated = params[:created]
+    itemType = params[:itemType]
     version = params[:version]
-    internalVersion = params[:internalVersion]
+    versionLabel = params[:versionLabel]
+    identifier = params[:identifier]
 
     # Create the id for the form
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, shortName, internalVersion)
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemType, version)
 
     # Create the managed item for the thesaurus. The namespace id is a shortcut for the moment.
-    managedItem = ManagedItem.create_local(id, {:version => version, :identifier => name, :internalVersion => internalVersion, :shortName => shortName, :namespace_id => "items:NS-ACME"}, useNs)
+    managedItem = ManagedItem.createLocal(id, {:version => version, :identifier => identifier, :versionLabel => versionLabel, :itemType => itemType, :namespaceId => "NS-ACME"}, useNs)
 
     # Create the query
     update = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + id + " rdf:type iso25964:Thesaurus . \n" +
-      "  :" + id + " iso25964:created \"" + dateCreated + "\"^^xsd:date . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -200,10 +198,9 @@ class Thesaurus
       object.id = id
       object.namespace = useNs
       object.managedItem = managedItem
-      object.created = dateCreated
-      p "It worked!"
+      ConsoleLogger::log(C_CLASS_NAME,"createLocal","Object created, id=" + id)
     else
-      p "It didn't work!"
+      ConsoleLogger::log(C_CLASS_NAME,"createLocal","Object not created!")
       object = self.new
       object.assign_errors(data) if response.response_code == 422
     end
@@ -211,29 +208,37 @@ class Thesaurus
     
   end
 
-  def self.create_imported(params, ns="")
+  def self.createImported(params, ns=nil)
     
-    # Set the namespace
+    # Set the namespaceitemTy
     useNs = ns || @@baseNs
 
     # Get the parameters
-    shortName = params[:shortName]
-    dateCreated = params[:created]
+    itemType = params[:itemType]
     version = params[:version]
-    internalVersion = params[:internalVersion]
+    versionLabel = params[:versionLabel]
+    identifier = params[:identifier]
+    namespaceId = params[:namespaceId]
+
+    ConsoleLogger::log(C_CLASS_NAME,"createImported","*****ENTRY*****")
+    ConsoleLogger::log(C_CLASS_NAME,"createImported",
+      "namespaceId=" + namespaceId + ", " + 
+      "versionLabel=" + versionLabel + ", " + 
+      "version=" + version + ", " + 
+      "identifier" + identifier + ", " + 
+      "itemType=" + itemType )
 
     # Create the id for the form
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, shortName, version)
+    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemType, version)
 
     # Create the managed item for the thesaurus. The namespace id is a shortcut for the moment.
-    managedItem = ManagedItem.create_imported(id, {:version => version, :identifier => name, :internalVersion => internalVersion, :shortName => shortName, :namespace_id => "items:NS-ACME"}, useNs)
+    managedItem = ManagedItem.createImported(id, {:version => version, :identifier => identifier, :versionLabel => versionLabel, :itemType => itemType, :namespaceId => namespaceId}, useNs)
 
     # Create the query
     update = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
       "  :" + id + " rdf:type iso25964:Thesaurus . \n" +
-      "  :" + id + " iso25964:created \"" + dateCreated + "\"^^xsd:date . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -245,10 +250,9 @@ class Thesaurus
       object.id = id
       object.namespace = useNs
       object.managedItem = managedItem
-      object.created = dateCreated
-      p "It worked!"
+      ConsoleLogger::log(C_CLASS_NAME,"createImported","Object created, id=" + id)
     else
-      p "It didn't work!"
+      ConsoleLogger::log(C_CLASS_NAME,"createImported","Object not created!")
       object = self.new
       object.assign_errors(data) if response.response_code == 422
     end
@@ -260,7 +264,7 @@ class Thesaurus
     return nil
   end
 
-  def destroy(ns="")
+  def destroy(ns=nil)
     return nil
   end
   

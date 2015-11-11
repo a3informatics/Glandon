@@ -100,7 +100,7 @@ class CdiscClisController < ApplicationController
     id = params[:id]
     termId = params[:termId]
     @cdiscTerm = CdiscTerm.find(params[:termId])
-    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.internalVersion)
+    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
     @cdiscCli = CdiscCli.find(id, @cdiscTerm)
   end
   

@@ -28,8 +28,8 @@
     <xsl:template name="ScopedIdentifier">
         <xsl:param name="pCID"/>
         <xsl:param name="pIdentifier"/>
+        <xsl:param name="pVersionLabel"/>
         <xsl:param name="pVersion"/>
-        <xsl:param name="pInternalVersion"/>
         <xsl:param name="pScope"/>
         <xsl:call-template name="Subject">
             <xsl:with-param name="pName" select="concat('mdrItems:',$pCID)"/>
@@ -43,12 +43,12 @@
             <xsl:with-param name="pObjectName" select="concat($quote,$pIdentifier,$quote,'^^xsd:string')"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
-            <xsl:with-param name="pPredicateName" select="'isoI:version'"/>
-            <xsl:with-param name="pObjectName" select="concat($quote,$pVersion,$quote,'^^xsd:string')"/>
+            <xsl:with-param name="pPredicateName" select="'isoI:versionLabel'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pVersionLabel,$quote,'^^xsd:string')"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
-            <xsl:with-param name="pPredicateName" select="'isoI:internalVersion'"/>
-            <xsl:with-param name="pObjectName" select="concat($quote,$pInternalVersion,$quote,'^^xsd:positiveInteger')"/>
+            <xsl:with-param name="pPredicateName" select="'isoI:version'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pVersion,$quote,'^^xsd:positiveInteger')"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoI:hasScope'"/>

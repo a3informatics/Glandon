@@ -11,7 +11,7 @@ class ThesauriController < ApplicationController
   end
   
   def create
-    @thesaurus = Thesaurus.create(the_params)
+    @thesaurus = Thesaurus.createLocal(the_params)
     redirect_to thesauri_index_path
   end
 
@@ -28,12 +28,12 @@ class ThesauriController < ApplicationController
   end
 
   def show
-    redirect_to thesauri_index_path
+    @thesaurus = Thesaurus.find(params[:id])
   end
   
   private
     def the_params
-      params.require(:thesaurus).permit(:scopedIdentifierId)
+      params.require(:thesaurus).permit(:identifier, :version, :versionLabel, :itemType, :namespace_id)
     end
     
 end
