@@ -66,31 +66,12 @@ class CdiscCli
     return object
   end
 
-  def self.findByIdentifier(identifier, cdiscTerm)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","id=" + id
-    #ConsoleLogger::log(C_CLASS_NAME,"find","ns=" + cdiscTerm.namespace
-    results = Hash.new
-    tcSet = ThesaurusConcept.findByIdentifier(identifier, cdiscTerm.id, cdiscTerm.namespace)
-    tcSet.each do |tc|
-      object = self.new 
-      object.id = tc.id
-      object.identifier = tc.identifier
-      object.notation = tc.notation
-      object.preferredTerm = tc.preferredTerm
-      object.synonym = tc.synonym
-      object.definition = tc.definition
-      object.namespace = cdiscTerm.namespace
-      results[tc.id] = object
-    end
-    return results  
-  end
-
   def self.allForCl(id, cdiscTerm)
     #ConsoleLogger::log(C_CLASS_NAME,"find","id=" + id
     #ConsoleLogger::log(C_CLASS_NAME,"find","ns=" + cdiscTerm.namespace
     results = Hash.new
-    tcSet = ThesaurusConcept.allLowerLevelWithNs(id, cdiscTerm.namespace)
-    tcSet.each do |tc|
+    tcSet = ThesaurusConcept.allChildren(id, cdiscTerm.namespace)
+    tcSet.each do |key, tc|
       object = self.new 
       object.id = tc.id
       object.identifier = tc.identifier

@@ -2,6 +2,8 @@ require "typhoeus"
 
 module Rest
 
+  C_CLASS_NAME = "Rest"
+
   # Send a request to the server 
   def Rest.sendRequest(endpoint, method, user, pwd, data, headers)
     
@@ -22,9 +24,7 @@ module Rest
     hydra.queue(req)
     hydra.run
     response = req.response
-    
-    p response.body
-    
+    ConsoleLogger::log(C_CLASS_NAME,"sendRequest",response.body)
     return response
     
   end
@@ -50,9 +50,7 @@ module Rest
     #hydra.run
     req.run
     response = req.response
-    
-    p response.body
-    
+    ConsoleLogger::log(C_CLASS_NAME,"sendFile",response.body)
     return response
     
   end

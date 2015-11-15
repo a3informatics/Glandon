@@ -251,8 +251,8 @@ private
   def compareCL (term, previousCl, currentCl)
     result = Hash.new
     result = {
-      "version" => term.internalVersion, 
-      "date" => term.version, 
+      "version" => term.version, 
+      "date" => term.versionLabel, 
       "identifier" => Diffy::Diff.new(previousCl.identifier, currentCl.identifier).to_s(:html),
       "notation" => Diffy::Diff.new(previousCl.notation, currentCl.notation).to_s(:html),
       "preferredTerm" => Diffy::Diff.new(previousCl.preferredTerm, currentCl.preferredTerm).to_s(:html),
@@ -265,8 +265,8 @@ private
   def currentCL (term, cl)
     result = Hash.new
     result = {
-      "version" => term.internalVersion,
-      "date" => term.version,
+      "version" => term.version,
+      "date" => term.versionLabel,
       "identifier" => cl.identifier,
       "notation" => cl.notation,
       "preferredTerm" => cl.preferredTerm,

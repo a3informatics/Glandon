@@ -54,7 +54,7 @@ class Namespace
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
       uriSet = node.xpath("binding[@name='a']/uri")
       nSet = node.xpath("binding[@name='c']/literal")
       if nSet.length == 1 and uriSet.length == 1
@@ -92,24 +92,15 @@ class Namespace
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
+      #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node.to_s)
       snSet = node.xpath("binding[@name='b']/literal")
       nSet = node.xpath("binding[@name='c']/literal")
-      
-      p "name: " + nSet.text
-      p "short: " + snSet.text
-      
       if nSet.length == 1 and snSet.length == 1
-
-        p "Found"
-        
         object = self.new 
         object.id = id
         object.name = nSet[0].text
         object.shortName = snSet[0].text
-        
+        #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
       end
     
     end

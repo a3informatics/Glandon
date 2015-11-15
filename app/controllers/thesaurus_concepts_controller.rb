@@ -11,8 +11,11 @@ class ThesaurusConceptsController < ApplicationController
   end
   
   def create
-    @thesaurusConcept = ThesaurusConcept.create(the_params)
+    if !ThesaurusConcept.exists?(param[:identifier])
+      @thesaurusConcept = ThesaurusConcept.create(the_params)
+    end
     redirect_to thesaurus_concepts_path
+    
   end
 
   def update
@@ -31,9 +34,17 @@ class ThesaurusConceptsController < ApplicationController
     redirect_to thesaurus_concepts_path
   end
   
+  def showD3
+    id = params[:id]
+    namespace = params[:namespace]
+    thesaurusConcept = ThesaurusConcept.find(id, namespace)
+    @thesaurusConcept = thesaurusConcept.to_D3
+    render json: @thesaurusConcept
+  end
+
   private
     def the_params
-      params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :extensible, :definition, :preferredTerm)
+      params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace)
     end
     
 end

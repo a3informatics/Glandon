@@ -113,8 +113,8 @@ private
     def compareCLI (term, previousCli, currentCli)
       result = Hash.new
       result = {
-        "version" => term.internalVersion, 
-        "date" => term.version, 
+        "version" => term.version, 
+        "date" => term.versionLabel, 
         "identifier" => Diffy::Diff.new(previousCli.identifier, currentCli.identifier).to_s(:html),
         "notation" => Diffy::Diff.new(previousCli.notation, currentCli.notation).to_s(:html),
         "preferredTerm" => Diffy::Diff.new(previousCli.preferredTerm, currentCli.preferredTerm).to_s(:html),
@@ -126,8 +126,8 @@ private
     def currentCLI (term, cli)
       result = Hash.new
       result = {
-        "version" => term.internalVersion,
-        "date" => term.version,
+        "version" => term.version,
+        "date" => term.versionLabel,
         "identifier" => cli.identifier,
         "notation" => cli.notation,
         "preferredTerm" => cli.preferredTerm,

@@ -51,11 +51,11 @@ class CdiscTermsController < ApplicationController
     
     # Get the CLs for the old version
     oldCdiscTerm = CdiscTerm.find(oldId)
-    clsForTerm(@oldCdiscTerm, data)   
+    clsForTerm(oldCdiscTerm, data)   
         
     # Get the CLs for the new version
     newCdiscTerm = CdiscTerm.find(newId)
-    clsForTerm(@newCdiscTerm, data)
+    clsForTerm(newCdiscTerm, data)
 
     # And build the results. Filter if required.
     @Results = buildResults(data)

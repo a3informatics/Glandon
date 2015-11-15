@@ -9,8 +9,8 @@ class Thesaurus
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :managedItem, :namespace
-  validates_presence_of :id, :managedItem, :namespace
+  attr_accessor :id, :managedItem, :namespace, :children
+  validates_presence_of :id, :managedItem, :namespace, :children
  
   # Constants
   C_CLASS_NAME = "Thesaurus"
@@ -51,6 +51,7 @@ class Thesaurus
     object.id = id
     object.namespace = useNs
     object.managedItem = ManagedItem.find(id,useNs)
+    object.children = ThesaurusConcept.allTopLevel(id,useNs)
     return object
     
   end
@@ -260,12 +261,114 @@ class Thesaurus
     
   end
 
-  def update(id)
-    return nil
+  def update(params)
+
+    ConsoleLogger::log(C_CLASS_NAME,"update","*****Entry*****")
+    ConsoleLogger::log(C_CLASS_NAME,"update","Params=" + params.to_s)
+
+    # Access the data
+    data = params[:data]
+    if data != nil
+      ConsoleLogger::log(C_CLASS_NAME,"update","Delete, data=" + data.to_s)
+      deleteItem = data[:deleteItem]
+      updateItem = data[:updateItem]
+      addItem = data[:addItem]
+
+      # Delete items
+      if (deleteItem != nil)
+        ConsoleLogger::log(C_CLASS_NAME,"update","Delete, item=" + deleteItem.to_s)
+        concept = ThesaurusConcept.find(deleteItem[:id], self.namespace)
+        concept.destroy(self.namespace, self.id)
+      end
+
+      # Add items
+      if (addItem != nil)
+        ConsoleLogger::log(C_CLASS_NAME,"update","Insert, item=" + addItem.to_s)
+        if (addItem[:parent] == self.id) 
+          ThesaurusConcept.createTopLevel(addItem, self.namespace, self.id)
+        else
+          if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
+            parentConcept = ThesaurusConcept.find(addItem[:parent], self.namespace)
+            newConcept = ThesaurusConcept.create(addItem, self.namespace)
+            parentConcept.addChild(newConcept, self.namespace)
+          else
+            ConsoleLogger::log(C_CLASS_NAME,"update","Update, concept exisits already" + addItem.to_s)
+          end
+        end
+      end
+
+      # Update items
+      if (updateItem != nil)
+        ConsoleLogger::log(C_CLASS_NAME,"update","Update, item=" + updateItem.to_s)
+        concept = ThesaurusConcept.find(updateItem[:id], self.namespace)
+        concept.update(updateItem, self.namespace)
+      end
+    end
+
   end
 
   def destroy(ns=nil)
-    return nil
   end
   
+  def to_D3
+
+    result = Hash.new
+    result[:name] = self.identifier
+    result[:namespace] = self.namespace
+    result[:id] = self.id
+    result[:children] = Array.new
+
+    count = 0
+    index = 0
+    baseChildId = ""
+    self.children.each do |key, child|
+      if count == 0
+        baseChildId = child.identifier;
+        result[:children][index] = Hash.new
+        result[:children][index][:name] = child.identifier;
+        result[:children][index][:id] = child.id;
+        result[:children][index][:expand] = true
+        result[:children][index][:expansion] = Array.new        
+        result[:children][index][:expansion][count] = Hash.new
+        result[:children][index][:expansion][count][:name] = child.identifier + ' [' + child.notation + ']'
+        result[:children][index][:expansion][count][:id] = child.id;
+        result[:children][index][:expansion][count][:expand] = false
+        result[:children][index][:expansion][count][:identifier] = child.identifier;
+        result[:children][index][:expansion][count][:notation] = child.notation;
+        result[:children][index][:expansion][count][:definition] = child.definition;
+        result[:children][index][:expansion][count][:synonym] = child.synonym;
+        result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm;
+        count += 1
+      elsif count == 9
+        result[:children][index][:name] = baseChildId + ' - ' + child.identifier;
+        result[:children][index][:expansion][count] = Hash.new
+        result[:children][index][:expansion][count][:name] = child.identifier + ' [' + child.notation + ']'
+        result[:children][index][:expansion][count][:id] = child.id;
+        result[:children][index][:expansion][count][:expand] = false
+        result[:children][index][:expansion][count][:identifier] = child.identifier;
+        result[:children][index][:expansion][count][:notation] = child.notation;
+        result[:children][index][:expansion][count][:definition] = child.definition;
+        result[:children][index][:expansion][count][:synonym] = child.synonym;
+        result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm;
+        count = 0
+        index += 1        
+      else
+        result[:children][index][:name] = baseChildId + ' - ' + child.identifier;
+        result[:children][index][:expansion][count] = Hash.new
+        result[:children][index][:expansion][count][:name] = child.identifier + ' [' + child.notation + ']'
+        result[:children][index][:expansion][count][:id] = child.id;
+        result[:children][index][:expansion][count][:expand] = false
+        result[:children][index][:expansion][count][:identifier] = child.identifier;
+        result[:children][index][:expansion][count][:notation] = child.notation;
+        result[:children][index][:expansion][count][:definition] = child.definition;
+        result[:children][index][:expansion][count][:synonym] = child.synonym;
+        result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm;
+        count += 1
+      end
+    end
+    ConsoleLogger::log(C_CLASS_NAME,"to_D3","D3=" + result.to_s)
+    return result
+
+  end
+
 end

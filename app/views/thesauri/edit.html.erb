@@ -1,0 +1,78 @@
+<%= stylesheet_link_tag    'd3local' %>
+<%= javascript_include_tag 'd3local' %>
+<script id="jsonData" type="text/json">
+    <%= raw @thesaurus.to_D3.to_json %>
+</script>
+<%= javascript_include_tag 'thesauri_editor' %>
+<div class="col-md-7" style="padding-right:20px; border-right: 1px solid #ccc;">
+	<h3>Thesauri Editor</h3>
+    <!--<div id="debug">
+        <%= raw @thesaurus.to_D3.to_json %>
+    </div>-->
+    <div style="height: 800px;" id="d3">
+		<!-- D3 Area -->
+	</div>
+</div>
+<div class="col-md-3">
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Thesauri Details</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-condensed">
+                    <tbody>
+                        <tr>
+                            <td><strong>Identifier:</strong> <%= @thesaurus.identifier %></td>
+                            <td><strong>CID:</strong> <%= @thesaurus.id %></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Version Label:</strong> <%= @thesaurus.versionLabel %></td>
+                            <td><strong>Version:</strong> <%= @thesaurus.version %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Concept</h3>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                        <label for="conceptId">Identifier</label>
+                        <input type="text" class="form-control" id="conceptId" placeholder="Enter the identifier...">
+                    </div>
+                    <div class="form-group">
+                        <label for="conceptNotation">Notation (code)</label>
+                        <input type="text" class="form-control" id="conceptNotation" placeholder="Enter the code...">
+                    </div>
+                    <div class="form-group">
+                        <label for="conceptDefinition">Definition</label>
+                        <input type="textarea" class="form-control" id="conceptDefinition" placeholder="Enter the definition...">
+                    </div>
+                    <div class="form-group">
+                        <label for="conceptPreferredTerm">Preferred Term</label>
+                        <input type="textarea" class="form-control" id="conceptPreferredTerm" placeholder="Enter the preferred term...">
+                    </div>
+                    <div class="form-group">
+                        <label for="conceptSynonym">Synonym</label>
+                        <input type="textarea" class="form-control" id="conceptSynonym" placeholder="Enter the synonym(s)...">
+                    </div>
+                    <!--<div class="checkbox">
+                        <label>
+                          <input type="checkbox"> Check me out
+                        </label>
+                    </div>-->
+                </form>
+                <button id="addButton" type="button" class="btn btn-primary">Add</button>
+                <button id="deleteButton" type="button" class="btn btn-primary">Delete</button>
+                <button id="updateButton" type="button" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+    <%= link_to "Close", thesauri_index_path, :class => "btn btn-primary" %>
+    <!--<button id="saveButton" type="button" class="btn btn-primary">Save</button>-->
+</div>
+

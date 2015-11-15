@@ -9,6 +9,7 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-%w( standards domains sdtmigs cdisc_bcs_editor registration_authorities namespaces cdisc_bcs cdisc_cls cdisc_terms forms scoped_identifiers thesauri thesaurus_concepts ).each do |controller|
+%w( standards domains sdtmigs registration_authorities namespaces cdisc_bcs cdisc_cls cdisc_terms forms scoped_identifiers thesauri thesaurus_concepts 
+	cdisc_bcs_editor thesauri_editor thesauri_viewer d3local).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end

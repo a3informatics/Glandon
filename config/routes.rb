@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :registration_states
   resources :managed_items
   resources :thesauri
-  resources :thesaurus_concepts
+  resources :thesaurus_concepts do
+    collection do
+      get :showD3
+    end
+  end
   resources :uploads
   resources :biomedical_concept_templates
   resources :cdisc_bcs do

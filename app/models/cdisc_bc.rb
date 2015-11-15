@@ -108,7 +108,7 @@ class CdiscBc
         end  
         properties[propertyCid] = property
         if value != ""
-          clHash = {:cCode => value, :clis => CdiscCli.findByIdentifier(value, cdiscTerm)}
+          clHash = {:cCode => value, :clis => CdiscCli.allForCl(value, cdiscTerm)}
           values.push(clHash)
         end
         property[:Alias] = aliasName

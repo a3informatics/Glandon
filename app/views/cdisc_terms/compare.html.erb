@@ -14,13 +14,13 @@
 				</tr>	
 				<% @Results.each do |clKey, clEntry| %>
 					<% value = clEntry[:result]%>
-					<% cl = clEntry[:cl]%>
+					<% clId = clEntry[:id]%>
 					<tr>
 						<td><%= clKey %></td>
 						<% value.each do |vKey, status| %>
 				    	<%= render partial: "shared/historyCell", :locals => {:historyValue => status} %>
 						<% end %>
-						<td><%=link_to "History", history_cdisc_cls_path(:id => cl.id), :class => "btn btn-info" %></td>
+						<td><%=link_to "History", history_cdisc_cls_path(:id => clId), :class => "btn btn-info" %></td>
 					</tr>	
 				<% end %>
 			</table>
