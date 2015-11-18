@@ -4,15 +4,25 @@ require "json"
 module CRUD
 
     C_CLASS_NAME = "CRUD"
+    C_XML = 1
+    C_TTL = 2
 
-    def CRUD.query (sparql)
+    def CRUD.TTL
+        return C_TTL
+    end
+    
+    def CRUD.query (sparql, response=C_XML)
 
         db = SEMANTIC_DB_CONFIG['dbType']
         key = SEMANTIC_DB_CONFIG['apiKey'] 
         secret = SEMANTIC_DB_CONFIG['secret']
         endpoint = SEMANTIC_DB_CONFIG['queryEndpoint']
-        headers = {'Accept' => "application/sparql-results+xml",
-                'Content-type'=> "application/x-www-form-urlencoded"}
+        if response == C_TTL
+            headers = {'Content-type'=> "application/x-www-form-urlencoded"}
+        else
+            headers = {'Accept' => "application/sparql-results+xml",
+                    'Content-type'=> "application/x-www-form-urlencoded"}
+        end
         data = "query=" + sparql
         ConsoleLogger::log(C_CLASS_NAME,"query",data)
                 

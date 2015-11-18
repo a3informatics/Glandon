@@ -2,7 +2,7 @@
 	<BRIDGClass Name="DefinedObservation" Description="An activity defined at a global library level whose intention is to obtain a result by observing, monitoring, measuring or otherwise qualitatively or quantitatively gathering data or information about one or more aspects of a study subject's or experimental unit's physiologic or psychologic state.">
 		<BRIDGAttribute Name="approachAnatomicSiteCode" DataType="CD" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="bodyPositionCode" DataType="CD" Description="A coded value specifying the 3-dimensional spatial orientation of a subject during a particular observation." Use="Optional"/>
-		<BRIDGAttribute Name="focalDateRange" DataType="EXPR(IVL(TS.DATETIME))" Description="The time period in which the observation result is held to be true, expressed either as a simple date range or as an evaluable expression that references a study-defined date or milestone." Use="Prohibited"/>
+		<BRIDGAttribute Name="focalDateRange" DataType="EXPR(IVL_TS_DATETIME)" Description="The time period in which the observation result is held to be true, expressed either as a simple date range or as an evaluable expression that references a study-defined date or milestone." Use="Prohibited"/>
 		<BRIDGAttribute Name="focalDuration" DataType="PQ.TIME" Description="A quantity of time in which the observation result is held to be true." Use="Prohibited"/>
 		<BRIDGAttribute Name="methodCode" DataType="DSET(CD)" Description="A coded value specifying the technique that is used for the observation." Use="Optional"/>
 		<BRIDGAttribute Name="targetAnatomicSiteCode" DataType="CD" Description="A coded value specifying the anatomic location that is the focus of the observation." Use="Optional"/>
@@ -16,7 +16,7 @@
 		<BRIDGAttribute Name="repeatDuration" DataType="PQ.TIME" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="description" DataType="ST" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="statusCode" DataType="CD" Description="" Use="Optional"/>
-		<BRIDGAttribute Name="statusDate" DataType="TS.DATETIME" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="statusDate" DataType="TS_DATETIME" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="identifier" DataType="II" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="reasonCode" DataType="DSET(CD)" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="comment" DataType="ST" Description="" Use="Optional"/>
@@ -34,7 +34,7 @@
 	</BRIDGClass>
 	<BRIDGClass Name="PerformedObservation" Description="The completed action of observing, monitoring, measuring or otherwise qualitatively or quantitatively gathering data or information about one or more aspects of a subject's, study subject's or experimental unit's physiologic or psychologic state.">
 		<BRIDGAttribute Name="bodyPositionCode" DataType="CD" Description="A coded value specifying the 3-dimensional spatial orientation of a subject during a particular observation." Use="Optional"/>
-		<BRIDGAttribute Name="focalDateRange" DataType="IVL(TS.DATETIME)" Description="The time period in which the observation result is held to be true." Use="Optional"/>
+		<BRIDGAttribute Name="focalDateRange" DataType="IVL_TS_DATETIME" Description="The time period in which the observation result is held to be true." Use="Optional"/>
 		<BRIDGAttribute Name="focalDuration" DataType="PQ.TIME" Description="The quantity of time in which the observation result is held to be true." Use="Optional"/>
 		<BRIDGAttribute Name="methodCode" DataType="DSET(CD)" Description="A coded value specifying the technique used to perform the observation." Use="Optional"/>
 		<BRIDGAttribute Name="targetAnatomicSiteCode" DataType="CD" Description="A coded value specifying the anatomic location that is the focus of the observation." Use="Optional"/>
@@ -42,14 +42,14 @@
 		<BRIDGAttribute Name="approachAnatomicSiteCode" DataType="CD" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="approachAnatomicSiteLateralityCode" DataType="CD" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="duration" DataType="PQ.TIME" Description="" Use="Optional"/>
-		<BRIDGAttribute Name="dateRange" DataType="IVL(TS.DATETIME)" Description="" Use="Optional"/>
-		<BRIDGAttribute Name="studyDayRange" DataType="IVL(INT)" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="dateRange" DataType="IVL_TS_DATETIME" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="studyDayRange" DataType="IVL_INT" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="delayDuration" DataType="PQ.TIME" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="negationReason" DataType="DSET(SC)" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="negationIndicator" DataType="BL" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="repetitionNumber" DataType="INT.POS" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="statusCode" DataType="CD" Description="" Use="Optional"/>
-		<BRIDGAttribute Name="statusDate" DataType="TS.DATETIME" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="statusDate" DataType="TS_DATETIME" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="identifier" DataType="II" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="reasonCode" DataType="DSET(CD)" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="comment" DataType="ST" Description="" Use="Optional"/>
@@ -61,7 +61,7 @@
 		<BRIDGAttribute Name="comment" DataType="ST" Description="Additional description of the observation result." Use="Optional"/>
 		<BRIDGAttribute Name="confidentialityCode" DataType="CD" Description="A coded value specifying the degree of privacy applicable for the observation result." Use="Optional"/>
 		<BRIDGAttribute Name="identifier" DataType="II" Description="The unique symbol that establishes identity of the observation result." Use="Optional"/>
-		<BRIDGAttribute Name="reportedDate" DataType="TS.DATETIME" Description="The date (and time) on which the result is reported." Use="Optional"/>
+		<BRIDGAttribute Name="reportedDate" DataType="TS_DATETIME" Description="The date (and time) on which the result is reported." Use="Optional"/>
 		<BRIDGAttribute Name="result" DataType="ANY" Description="Data or information that is determined by an act of observation." Use="Optional"/>
 		<BRIDGAttribute Name="resultCodeModifiedText" DataType="ST" Description="A character string that is a revision of the original text observation result to enable the coding of the text." Use="Optional"/>
 		<BRIDGAttribute Name="targetAnatomicSiteCode" DataType="CD" Description="A coded value specifying the anatomic location that is the focus of an observation result." Use="Optional"/>
@@ -89,7 +89,7 @@
 		<BRIDGAttribute Name="baselineIndicator" DataType="BL" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="confidentialityCode" DataType="CD" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="uncertaintyCode" DataType="CD" Description="" Use="Optional"/>
-		<BRIDGAttribute Name="reportedDate" DataType="TS.DATETIME" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="reportedDate" DataType="TS_DATETIME" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="comment" DataType="ST" Description="" Use="Optional"/>
 		<BRIDGRelationship Name="Extends" To="PerformedObservationResult" FromMultiplicity="1" ToMultiplicity="1"/>
 	</BRIDGClass>

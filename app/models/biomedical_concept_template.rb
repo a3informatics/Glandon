@@ -6,8 +6,8 @@ class BiomedicalConceptTemplate
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :managedItem, :name, :properties, :namespace
-  validates_presence_of :id, :managedItem, :name, :properties, :namespace
+  attr_accessor :id, :managedItem, :properties, :namespace
+  validates_presence_of :id, :managedItem, :properties, :namespace
   
   # Constants
   C_CLASS_NAME = "BiomedicalConceptTemplate"
@@ -50,9 +50,8 @@ class BiomedicalConceptTemplate
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
     object = nil
     query = UriManagement.buildNs(templateNamespace, ["cbc", "mdrItems", "isoI"]) +
-      "SELECT ?bcName ?bcDtNode ?bcPropertyNode ?datatype ?propertyAlias ?simple WHERE\n" + 
+      "SELECT ?bcDtNode ?bcPropertyNode ?datatype ?propertyAlias ?simple WHERE\n" + 
       "{ \n" + 
-      "  :" + id + " cbc:name ?bcName .\n" + 
       "  :" + id + " (cbc:hasItem | cbc:hasDatatype )%2B ?bcDtNode .\n" + 
       "  OPTIONAL {\n" + 
       "    ?bcDtNode cbc:hasDatatypeRef ?datatype . \n" + 
@@ -85,7 +84,6 @@ class BiomedicalConceptTemplate
           object.id = id
           object.namespace = templateNamespace
           object.managedItem = ManagedItem.find(id, templateNamespace)
-          object.name = ModelUtility.getValue("bcName", false, node)
           ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
         end
         propertyUri = ModelUtility.getValue("bcPropertyNode", true, node)
@@ -110,12 +108,12 @@ class BiomedicalConceptTemplate
 
   def self.all()
     
+    ConsoleLogger::log(C_CLASS_NAME,"all","*****ENTRY*****")
     results = Hash.new
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["cbc"]) +
       "SELECT ?a ?b WHERE\n" + 
       "{ \n" + 
       " ?a rdf:type cbc:BiomedicalConceptTemplate . \n" +
-      " ?a cbc:name ?b .\n" + 
       "}\n"
     
     # Send the request, wait the resonse
@@ -126,7 +124,7 @@ class BiomedicalConceptTemplate
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       uri = ModelUtility.getValue("a", true, node)
-      ConsoleLogger::log(C_CLASS_NAME,"find","URI=" + uri)
+      ConsoleLogger::log(C_CLASS_NAME,"all","URI=" + uri)
       if uri != ""
         id = ModelUtility.extractCid(uri)
         namespace = ModelUtility.extractNs(uri)
@@ -134,10 +132,14 @@ class BiomedicalConceptTemplate
         object.id = id
         object.namespace = namespace
         object.managedItem = ManagedItem.find(id, namespace)
-        object.name = ModelUtility.getValue("b", false, node)
-        object.properties = Hash.new
-        ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + id)
-        results[id] = object
+        if ManagedItem != nil
+          object.properties = Hash.new
+          ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + id)
+          results[id] = object
+        else
+          ConsoleLogger::log(C_CLASS_NAME,"all","Object not created!" + id)
+          object = nil
+        end
       end
     end
     return results  
@@ -154,6 +156,56 @@ class BiomedicalConceptTemplate
   end
 
   def destroy
+  end
+
+  def self.to_ttl
+
+    ConsoleLogger::log(C_CLASS_NAME,"list","*****Entry*****")
+    results = ""
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["cbc"]) +
+      "CONSTRUCT \n" +
+      "{ \n" + 
+      "  ?a ?b ?c . \n" + 
+      "  ?d ?e ?f .\n" + 
+      "  ?g ?h ?i .\n" + 
+      "  ?j ?k ?l .\n" + 
+      "  ?v ?w ?x .\n" +  
+      "  ?m ?n ?o . \n" + 
+      "  ?p ?q ?r .\n" + 
+      "  ?s ?t ?u .\n" +
+      "}\n" + 
+      "WHERE \n" +
+      "{\n" + 
+      "  ?a rdf:type cbc:BiomedicalConceptTemplate .\n" + 
+      "  ?a ?b ?c .\n" + 
+      "  ?a cbc:hasItem ?d .\n" + 
+      "  ?d ?e ?f .\n" + 
+      "  ?d cbc:hasDatatype ?g .\n" + 
+      "  ?g ?h ?i .\n" + 
+      "  ?g cbc:hasProperty ?j .\n" + 
+      "  ?j ?k ?l .\n" +
+      "  OPTIONAL\n" +
+      "  {\n" + 
+      "    ?j cbc:hasComplexDatatype ?m . \n" + 
+      "    ?m ?n ?o .\n" + 
+      "    ?m cbc:hasProperty ?p .\n" + 
+      "    ?p ?q ?r . \n" +
+      "    ?p cbc:hasSimpleDatatype ?s .\n" + 
+      "    ?s ?t ?u . \n" + 
+      "  }\n" + 
+      "  OPTIONAL\n" +
+      "  {\n" + 
+      "    ?j cbc:hasSimpleDatatype ?v .\n" + 
+      "    ?v ?w ?x .\n" +  
+      "  }\n" + 
+      "}\n" 
+
+    # Send the request, wait the resonse
+    response = CRUD.query(query, CRUD.TTL)
+    
+    # return the text
+    return response.body
+
   end
 
 private

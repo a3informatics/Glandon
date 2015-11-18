@@ -122,6 +122,7 @@ class Thesaurus
             object.id = ModelUtility.extractCid(uriSet[0].text)
             object.namespace = ModelUtility.extractNs(uriSet[0].text)
             object.managedItem = managedItem
+            object.children = ThesaurusConcept.allTopLevel(object.id,object.namespace)
             ConsoleLogger::log(C_CLASS_NAME,"findWithoutNs","Object created id=" + object.id)
           end
         end

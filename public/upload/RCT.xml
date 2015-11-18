@@ -1,0 +1,43 @@
+<ResearchConceptTemplates>
+	<ResearchConceptTemplate Name="SimpleObservationPQR" >
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Alias="Test Code (--TESTCD)" Name="code"/>
+				<Property Alias="Name" Name="originalText">
+					<Property Alias="Test Name (--TEST)" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="TargetSite" Name="targetAnatomicSiteCode">
+				<Property Alias="Code (--TBD)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+				<Property Alias="Code (--LOC)" Name="code"/> 
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Alias="Code (--METHOD)" Name="code"/> 			
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation"> 
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Alias="Date" Name="low">
+					<Property Alias="DateTime (--DTC)" Name="value"></Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Alias="Code"  Name="code">
+					<Property Alias="Code (--REASND)" Name="code"/>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult"> 
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Alias="Value (--ORRES)"  Name="value"/>
+				<Property Alias="Units (--ORRESU)"  Name="code"/>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Alias="Code (--)"  Name="value"/>
+			</Attribute>
+		</Class>
+	</ResearchConceptTemplate>
+</ResearchConceptTemplates>
+

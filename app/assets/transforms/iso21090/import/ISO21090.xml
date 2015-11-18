@@ -34,7 +34,7 @@
       <ISO21090Property Name="language" DataType="characterstring"/>
       <ISO21090Property Name="translation" DataType="SET(ST.NT)" Use="Prohibited"/>
    </ISO21090DataType>
-   <ISO21090DataType Name="ST.NT">
+   <ISO21090DataType Name="ST_NT">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="validTimeHigh" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="controlInformationRoot" DataType="characterstring" Use="Prohibited"/>
@@ -74,7 +74,7 @@
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
       <ISO21090Property Name="expression" DataType="ED" Use="Prohibited"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
       <ISO21090Property Name="uncertainty" DataType="QTY" Use="Prohibited"/>
       <ISO21090Property Name="uncertaintyType" DataType="UncertaintyType" Use="Prohibited"/>
       <ISO21090Property Name="uncertainRange" DataType="IVL(QTY)" Use="Prohibited"/>
@@ -113,13 +113,13 @@
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
       <ISO21090Property Name="expression" DataType="ED" Use="Prohibited"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
       <ISO21090Property Name="uncertainty" DataType="QTY" Use="Prohibited"/>
       <ISO21090Property Name="uncertaintyType" DataType="UncertaintyType" Use="Prohibited"/>
       <ISO21090Property Name="uncertainRange" DataType="IVL(QTY)" Use="Prohibited"/>
       <ISO21090Property Name="value" DataType="integer"/>
    </ISO21090DataType>
-   <ISO21090DataType Name="INT.NONNEG">
+   <ISO21090DataType Name="INT_NONNEG">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="validTimeHigh" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="controlInformationRoot" DataType="characterstring" Use="Prohibited"/>
@@ -128,7 +128,7 @@
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
       <ISO21090Property Name="expression" DataType="ED" Use="Prohibited"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
       <ISO21090Property Name="uncertainty" DataType="QTY" Use="Prohibited"/>
       <ISO21090Property Name="uncertaintyType" DataType="UncertaintyType" Use="Prohibited"/>
       <ISO21090Property Name="uncertainRange" DataType="IVL(QTY)" Use="Prohibited"/>
@@ -142,7 +142,7 @@
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
       <ISO21090Property Name="expression" DataType="ED" Use="Prohibited"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
       <ISO21090Property Name="uncertainty" DataType="QTY" Use="Prohibited"/>
       <ISO21090Property Name="uncertaintyType" DataType="UncertaintyType" Use="Prohibited"/>
       <ISO21090Property Name="uncertainRange" DataType="IVL(QTY)" Use="Prohibited"/>
@@ -155,13 +155,13 @@
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
       <ISO21090Property Name="expression" DataType="ED" Use="Prohibited"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
       <ISO21090Property Name="uncertainty" DataType="QTY" Use="Prohibited"/>
       <ISO21090Property Name="uncertaintyType" DataType="UncertaintyType" Use="Prohibited"/>
       <ISO21090Property Name="uncertainRange" DataType="IVL(QTY)" Use="Prohibited"/>
       <ISO21090Property Name="value" DataType="characterstring"/>
    </ISO21090DataType>
-   <ISO21090DataType Name="TS.DATETIME">
+   <ISO21090DataType Name="TS_DATETIME">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="validTimeHigh" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="controlInformationRoot" DataType="characterstring" Use="Prohibited"/>
@@ -169,7 +169,7 @@
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
       <ISO21090Property Name="expression" DataType="ED" Use="Prohibited"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
       <ISO21090Property Name="uncertainty" DataType="QTY" Use="Prohibited"/>
       <ISO21090Property Name="uncertaintyType" DataType="UncertaintyType" Use="Prohibited"/>
       <ISO21090Property Name="uncertainRange" DataType="IVL(QTY)" Use="Prohibited"/>
@@ -197,7 +197,7 @@
       <ISO21090Property Name="thumbnail" DataType="ED" Use="Prohibited"/>
       <ISO21090Property Name="translation" DataType="SET(ED)" Use="Prohibited"/>
    </ISO21090DataType>
-   <ISO21090DataType Name="ED.TEXT">
+   <ISO21090DataType Name="ED_TEXT">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="validTimeHigh" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="controlInformationRoot" DataType="characterstring" Use="Prohibited"/>
@@ -227,7 +227,7 @@
       <ISO21090Property Name="translation" DataType="SET(ST.NT)" Use="Prohibited"/>
       <ISO21090Property Name="code" DataType="CD"/>
    </ISO21090DataType>
-   <ISO21090DataType Name="IVL(TS.DATETIME)">
+   <ISO21090DataType Name="IVL_TS_DATETIME">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="validTimeHigh" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="controlInformationRoot" DataType="characterstring" Use="Prohibited"/>
@@ -235,15 +235,15 @@
       <ISO21090Property Name="nullFlavor" DataType="NullFlavor" Use="Prohibited"/>
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
-      <ISO21090Property Name="low" DataType="TS.DATETIME"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
+      <ISO21090Property Name="low" DataType="TS_DATETIME"/>
       <ISO21090Property Name="lowClosed" DataType="boolean"/>
-      <ISO21090Property Name="high" DataType="TS.DATETIME"/>
+      <ISO21090Property Name="high" DataType="TS_DATETIME"/>
       <ISO21090Property Name="highClosed" DataType="boolean"/>
       <ISO21090Property Name="width" DataType="QTY"/>
-      <ISO21090Property Name="any" DataType="TS.DATETIME"/>
+      <ISO21090Property Name="any" DataType="TS_DATETIME"/>
    </ISO21090DataType>
-   <ISO21090DataType Name="IVL(INT)">
+   <ISO21090DataType Name="IVL_INT">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="validTimeHigh" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="controlInformationRoot" DataType="characterstring" Use="Prohibited"/>
@@ -251,7 +251,7 @@
       <ISO21090Property Name="nullFlavor" DataType="NullFlavor" Use="Prohibited"/>
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
       <ISO21090Property Name="low" DataType="INT"/>
       <ISO21090Property Name="lowClosed" DataType="boolean"/>
       <ISO21090Property Name="high" DataType="INT"/>
@@ -267,7 +267,7 @@
       <ISO21090Property Name="nullFlavor" DataType="NullFlavor" Use="Prohibited"/>
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
       <ISO21090Property Name="low" DataType="Decimal"/>
       <ISO21090Property Name="lowClosed" DataType="boolean"/>
       <ISO21090Property Name="high" DataType="Decimal"/>
@@ -275,7 +275,7 @@
       <ISO21090Property Name="width" DataType="Decimal"/>
       <ISO21090Property Name="any" DataType="Decimal"/>
    </ISO21090DataType>
-   <ISO21090DataType Name="PQ.TIME">
+   <ISO21090DataType Name="PQ_TIME">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="validTimeHigh" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="controlInformationRoot" DataType="characterstring" Use="Prohibited"/>
@@ -284,7 +284,7 @@
       <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
       <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
       <ISO21090Property Name="expression" DataType="ED"/>
-      <ISO21090Property Name="originalText" DataType="ED.TEXT"/>
+      <ISO21090Property Name="originalText" DataType="ED_TEXT"/>
       <ISO21090Property Name="uncertainty" DataType="QTY" Use="Prohibited"/>
       <ISO21090Property Name="uncertaintyType" DataType="UncertaintyType" Use="Prohibited"/>
       <ISO21090Property Name="uncertainRange" DataType="IVL(QTY)" Use="Prohibited"/>

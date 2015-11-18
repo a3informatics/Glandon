@@ -29,6 +29,37 @@ class ManagedItem
     return self.scopedIdentifier.identifier
   end
 
+  def self.exists?(id, ns=nil)
+    
+    ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
+    result = false
+    useNs = ns || @@baseNs
+    ConsoleLogger::log(C_CLASS_NAME,"exists?","Id=" + id.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"exists?","namespace=" + useNs + " [base=" + @@baseNs + "]")
+    
+    # Create the query
+    query = UriManagement.buildNs(useNs, ["isoI"]) +
+      "SELECT ?a WHERE \n" +
+      "{ \n" +
+      "  :" + id + " isoI:hasIdentifier ?a . \n" +
+      "}"
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('a', true, node)
+      if uri != "" 
+        ConsoleLogger::log(C_CLASS_NAME,"exists?","exisits")
+        result = true
+      end
+    end
+    return result
+
+  end
+
   # Note: The id is the identifier for the enclosing managed object.
   def self.find(id, ns=nil)
     

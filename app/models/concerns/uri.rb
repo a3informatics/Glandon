@@ -43,7 +43,7 @@ class Uri
 
   def setCid(classId) 
     @prefix = getPrefix(classId)
-    @itemType = getitemType(classId)
+    @itemType = getItemType(classId)
     @version = getVersion(classId)
   end
   

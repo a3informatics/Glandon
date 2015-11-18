@@ -62,7 +62,7 @@ class Namespace
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.name = nSet[0].text
         object.shortName = name
-        ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + object.id)        
+        ConsoleLogger::log(C_CLASS_NAME,"findByShortName","Object created, id=" + object.id)        
       end
     
     end

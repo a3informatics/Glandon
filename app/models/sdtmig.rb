@@ -148,6 +148,9 @@ class Sdtmig
     uri.extendPath("/Domain/V" + internalVersion.to_s)
     dNs = uri.getNs()
     
+    # THis needs updatting for the version, versionLabel changed. Also commented out when testing.
+    # Needs to be re-instaed.
+    
     # Create the id for the form
     #id = ModelUtility.buildCidVersion(C_CID_PREFIX, identifier, internalVersion)
     

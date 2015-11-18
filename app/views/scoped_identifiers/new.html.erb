@@ -1,24 +1,24 @@
-<h1>New Scoped identifier</h1>
-<div class="col-md-10">
+<h3>New Scoped identifier</h3>
+<div class="col-md-3">
 	<%= form_for @scopedIdentifier do |f| %>
 	  	<div class="form-group">
-    		<%= label_tag :itemType, "Item Type" %><br/>
-    		<%= text_field_tag "scoped_identifier[itemType]" %>
+    		<%= label_tag :itemType, "Item Type:" %><br/>
+    		<input type="text" class="form-control" name="scoped_identifier[itemType]" id="scoped_identifier_itemType">
   		</div>
   		<div class="form-group">
-		    <%= f.label :identifier, "identifier" %><br/>
-		    <%= f.text_field :identifier %>
+		    <%= f.label :identifier, "identifier:" %><br/>
+		    <%= f.text_field :identifier, class: "form-control" %>
 		</div>
 		<div class="form-group">
-		    <%= f.label :versionLabel, "Version Label" %><br/>
-		    <%= f.text_field :versionLabel %>
+		    <%= f.label :versionLabel, "Version Label:" %><br/>
+		    <%= f.text_field :versionLabel, class: "form-control" %>
 		</div>
 		<div class="form-group">
-		    <%= f.label :version, "Internal Version" %><br/>
-		    <%= f.text_field :version %>
+		    <%= f.label :version, "Internal Version:" %><br/>
+		    <%= f.text_field :version, class: "form-control" %>
 		</div>
 	    <div class="form-group">
-    		<%= label_tag :namespaceId, "Namespace" %><br/>
+    		<%= label_tag :namespaceId, "Namespace:" %><br/>
         	<%= select_tag("scoped_identifier[namespaceId]", options_for_select(@namespaces.map{ |u| [u.name, u.id] })) %>
         </div><br/>  
 		<%= f.submit "Create", class: "btn btn-default btn-primary" %>

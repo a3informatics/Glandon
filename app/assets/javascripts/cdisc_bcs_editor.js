@@ -1,27 +1,48 @@
 $(document).ready(function() {
   
   var bcObject = {};      // The overall BC JSON structure
-  var currentIndex = -1;
   
-  var bcNameId = document.getElementById("bcName")
+  var bcItemTypeId = document.getElementById("bcItemType")
+  var bcIdentifierId = document.getElementById("bcIdentifier")
   var itemNameId = document.getElementById("itemName")
   var qTextId = document.getElementById("qText")
   var pTextId = document.getElementById("pText")
   var collectId = document.getElementById("collect")
-  var searchClTextId = document.getElementById("searchClText")
+  var enableId = document.getElementById("enable")
+  var searchCDISCTextId = document.getElementById("searchCDISCText")
+  var searchCDISCRadioName = document.getElementsByName('searchCDISC_radio');
+  var searchSponsorTextId = document.getElementById("searchSponsorText")
+  var searchSponsorRadioName = document.getElementsByName('searchSponsor_radio');
+  var d3Div = document.getElementById("d3");
+  var alertsId = document.getElementById("alerts")
+          
+  var cdiscDataTableReload = false;
+  var cdiscDataTable;
   
-  var clDataTableReload = false;
-  var clDataTable;
+  var sponsorDataTableReload = false;
+  var sponsorDataTable;
   
-  var clPrevSelect = null;
+  var clCurrent = null;
   var clCurrentRow = null;
+  var clTable = null;
+  var clCdiscCurrent = null;
+  var clCdiscCurrentRow = null;
+  var clSponsorCurrent = null;
+  var clSponsorCurrentRow = null;
   
-  var bcDataTable;
-  var bcPrevSelect = null;
-  var bcCurrentRow = null;
+  var bcClDataTable;
+  var bcClCurrent = null;
+  var bcClCurrentRow = null;
   
-  initialClSearch("XXXXXX");
-  bcDataTable = $('#bcTable').DataTable({
+  var currentNode = null;
+  var currentThis = null;
+  
+  bcObject.identifier = "";
+  bcObject.itemType = "";
+  bcObject.template = "";
+  bcObject.children = [];
+    
+  bcClDataTable = $('#bcTable').DataTable({
     "searching": false,
     "pageLength": 5,
     "lengthChange": false,
@@ -30,21 +51,17 @@ $(document).ready(function() {
       {"data" : "notation", "width" : "50%"},
     ]
   });
+  bcClDataTable.clear();
 
-  $('#main').DataTable({
-        columnDefs: [ ]
-  } );
+  function initialCDISCSearch () {
 
-  function initialClSearch (term) {
-
-    searchClTextId.value = term;
-    clDataTable = $('#clTable').DataTable( {
+    cdiscDataTable = $('#cdiscTable').DataTable( {
       "ajax": {
         "url": "../cdisc_terms/search",
         "data": function( d ) {
-          d.term = $('#searchClText').val(),
-          d.textSearch = searchType(0),
-          d.cCodeSearch = searchType(1)
+          d.term = searchCDISCTextId.value,
+          d.textSearch = cdiscSearchType(0),
+          d.cCodeSearch = cdiscSearchType(1)
         },
         "dataSrc": ""  
       },
@@ -59,40 +76,98 @@ $(document).ready(function() {
         {"data" : "topLevel", "width" : "10%" }
       ]
     });
-    searchClTextId.value = "";
-    clDataTableReload = true;
+    cdiscDataTableReload = true;
+    
+  }
+
+  function initialSponsorSearch () {
+
+    sponsorDataTable = $('#sponsorTable').DataTable( {
+      "ajax": {
+        "url": "../sponsor_terms/search",
+        "data": function( d ) {
+          //d.term = $('#searchCDISCText').val(),
+          d.term = searchSponsorTextId.value,
+          d.textSearch = sponsorSearchType(0),
+          d.cCodeSearch = sponsorSearchType(1)
+        },
+        "dataSrc": ""  
+      },
+      "searching": false,
+      "bProcessing": true,
+      "columns": [
+        {"data" : "identifier", "width" : "10%"},
+        {"data" : "notation", "width" : "10%"},
+        {"data" : "definition", "width" : "40%"},
+        {"data" : "synonym", "width" : "15%" },
+        {"data" : "preferredTerm", "width" : "15%" },
+        {"data" : "topLevel", "width" : "10%" }
+      ]
+    });
+    sponsorDataTableReload = true;
     
   }
 
   /*
-   * Function to handle click on the Text Search button.
+   * Function to handle click on the CDISC Text Search button.
    */
-  $('#search_button').click(function() {
-    if (clDataTableReload) {
-      clDataTable.ajax.reload();
+  $('#searchCDISC_button').click(function() {
+    if (!cdiscDataTableReload) {
+      //initialCDISCSearch(searchCDISCTextId.value);
+      initialCDISCSearch();
+    } else {
+      cdiscDataTable.ajax.reload();
     }
   });
 
   /*
-   * Function to handle click on the CL table.
+   * Function to handle click on the Sponsor Text Search button.
    */
-   $('#clTable tbody').on('click', 'tr', function () {
-    
-    var row = clDataTable.row(this).index();
-    var data = clDataTable.row(row).data();
+  $('#searchSponsor_button').click(function() {
+    if (!sponsorDataTableReload) {
+      initialSponsorSearch();
+    } else {
+      sponsorDataTable.ajax.reload();
+    }
+  });
+
+  /*
+   * Function to handle click on the CDISC CL table.
+   */
+  $('#cdiscTable tbody').on('click', 'tr', function () {
+    handleDataTable(cdiscDataTable, this);
+    clCdiscCurrent = clCurrent;
+    clCdiscCurrentRow = clCurrentRow;
+  });
+
+  /*
+   * Function to handle click on the CDISC CL table.
+   */
+  $('#sponsorTable tbody').on('click', 'tr', function () {
+    handleDataTable(sponsorDataTable, this);
+    clSponsorCurrent = clCurrent;
+    clSponsorCurrentRow = clCurrentRow;
+  });
+
+  function handleDataTable(table,ref) {
+
+    var row = table.row(ref).index();
+    var data = table.row(row).data();
     if (!data.topLevel) {
     
       // Toggle the highlight for the row
-      if (clPrevSelect !=  null) {
-        $(clPrevSelect).toggleClass('success');
+      if (clCurrent !=  null) {
+        $(clCurrent).toggleClass('success');
       }
-      $(this).toggleClass('success');
-      clPrevSelect = this;
-    
+      $(ref).toggleClass('success');
+
+      // Save the selection
+      clCurrent = ref;
       clCurrentRow = row;
+      clTable = table;
+
     }
-    
-  });
+  }
 
   /* 
   * Function to handle click on the BC CL table.
@@ -100,171 +175,228 @@ $(document).ready(function() {
   $('#bcTable tbody').on('click', 'tr', function () {
     
     // Toggle the highlight for the row
-    if (bcPrevSelect != null) {
-      $(bcPrevSelect).toggleClass('success');
+    if (bcClCurrent != null) {
+      $(bcClCurrent).toggleClass('success');
     }
     $(this).toggleClass('success');
-    bcPrevSelect = this;
+    
+    // Save the selection.
+    bcClCurrent = this;
+    bcClCurrentRow = bcClDataTable.row(this).index();
 
-    // Get the data item from the row, add to the property table and 
-    // preserve in the bcObject structure.
-    bcCurrentRow = bcDataTable.row(this).index();
   });
 
   /* 
-  * Function to handle the add button click.
+  * Function to handle the BC add button click.
   */
   $('#add_button').click(function() {
-    if (clCurrentRow != null) {
-      var data = clDataTable.row(clCurrentRow).data();
-      bcDataTable.row.add(data);
-      bcDataTable.draw(false);
-      bcObject.children[currentIndex].cli.push(data);
+    
+    var data;
+    
+    if (clCurrentRow != null && currentNode != null) {
+      data = clTable.row(clCurrentRow).data();
+      bcClDataTable.row.add(data);
+      bcClDataTable.draw(false);
+    }
+
+  });
+
+  /* 
+  * Function to handle the BC delete button click.
+  */
+  $('#delete_button').click(function() {
+    
+    var data;
+
+    if (bcClCurrentRow != null) {
+      bcClDataTable.row(bcClCurrentRow).remove();
+      bcClCurrentRow = null;
+      bcClDataTable.draw();
     }
   });
 
   /* 
-  * Function to handle the delete button click.
+  * Function to handle the BC delete button click.
   */
-  $('#delete_button').click(function() {
-    if (bcCurrentRow != null) {
-      bcDataTable.row(bcCurrentRow).remove();
-      bcCurrentRow = null;
-      bcDataTable.draw();
+  $('#save_button').click(function() {
+    
+    var saveData = {};
+    var index = 0;
+    
+    // Save current item node if set
+    if (currentNode != null) {
+      saveItem(currentNode);
     }
+    
+    // Build the save data structure   
+    saveData.itemType = bcItemTypeId.value;
+    saveData.identifier = bcIdentifierId.value;
+    saveData.template = bcObject.template;
+    saveData.children = [];
+    for (index=0; index<bcObject.children.length; index++) {
+      saveData.children[index] = {};
+      saveData.children[index].name = bcObject.children[index].name;
+      saveData.children[index].pText = bcObject.children[index].pText;
+      saveData.children[index].qText = bcObject.children[index].qText;
+      saveData.children[index].collect = bcObject.children[index].collect;
+      saveData.children[index].enable = bcObject.children[index].enable;
+      saveData.children[index].cli = bcObject.children[index].cli;
+    }
+
+    //alert("Data=" + JSON.stringify(saveData));
+
+    // Send to the server
+    $.ajax({
+      url: "/cdisc_bcs",
+      type: 'POST',
+      data: { "data": saveData
+            },
+      success: function(result){
+        alert("Saved.");
+      },
+      error: function(xhr,status,error){
+        var errors;
+        var html;
+        errors = $.parseJSON(xhr.responseText).errors;
+        html = "";  
+        for (var i=0; i<errors.length; i++) {
+          html = html + '<div class="alert alert-danger alert-dismissible" role="alert">' + 
+            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
+            errors[i] + 
+            '</div>'
+          //alert("Error=" + errors[i]);
+        }
+        alertsId.innerHTML = html;
+      }
+    }); 
+
   });
 
-  // Function to handle the Get BC Template Button. Load the template and draw the D3 tree
+  /*
+   * Function to handle the Get BC Template Button. Load the template and draw the D3 tree
+   */
   $('#bct_button').click(function() {
-  	element = document.getElementById("bct_status");
-  	value = element.value;
+  	var element = document.getElementById("bct_status");
+  	var value = element.value;
   	//alert("value=" + value);
-  	parts = value.split("|");
-      $.ajax({
-        url: "bct_select",
-        data: {
-          id: parts[0],
-          namespace: parts[1]
-        },
-        dataType: "json",
-        success: function(data) { 
-          
-          d3Div = document.getElementById("d3");
-          
-          // New template so clean out the BC structure
-          bcObject = {};
-          bcObject.name = "BC Name";
-          bcObject.children = [];
-          var index = 0;
-          //element.innerHTML = JSON.stringify(data)  + "<br/>";
-          //element.innerHTML = data.name + data.properties;
-          //alert("data=" + data.name);
-          for (var prop in data.properties)
-          {
-            var property = data.properties[prop]
-            bcObject.children[index] = {};
-            bcObject.children[index].name = property.Alias;
-            bcObject.children[index].pText = "";
-            bcObject.children[index].qText = "";
-            bcObject.children[index].collect = true;
-            bcObject.children[index].index = index;
-            bcObject.children[index].cli = [];
-            index++;
-          }
-
-          var width = d3Div.clientWidth - 50; 
-          var height = d3Div.clientHeight - 50; 
-
-          var tree = d3.layout.tree()
-            .size([height, width - 160]);
-
-          var diagonal = d3.svg.diagonal()
-            .projection(function(d) { return [d.y, d.x]; });
-
-          var svg = d3.select(d3Div).append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .append("g")
-            .attr("transform", "translate(40,0)");
-
-          var nodes = tree.nodes(bcObject),
-            links = tree.links(nodes);
-
-          var link = svg.selectAll("path.link")
-            .data(links)
-            .enter().append("path")
-            .attr("class", "link")
-            .attr("d", diagonal);
-
-          var node = svg.selectAll("g.node")
-            .data(nodes)
-            .enter().append("g")
-            .attr("class", "node")
-            .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
-            .on("click", click);
-
-          node.append("circle")
-            .attr("r", 8.0);
-
-          node.append("text")
-            .attr("dx", function(d) { return d.children ? -8 : 8; })
-            .attr("dy", 3)
-            .attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
-            .text(function(d) { return d.name; });
+  	var parts = value.split("|");
+    $.ajax({
+      url: "bct_select",
+      data: {
+        id: parts[0],
+        namespace: parts[1]
+      },
+      dataType: "json",
+      success: function(data) { 
         
-          d3.select(self.frameElement).style("height", height + "px");
-
+        // New template so clean out the BC structure
+        bcObject = {};
+        bcObject.name = "BC Name";
+        bcObject.identifier = "12345";
+        bcObject.template = value;
+        bcObject.root = true;
+        bcObject.children = [];
+        var index = 0;
+        //element.innerHTML = JSON.stringify(data)  + "<br/>";
+        //element.innerHTML = data.name + data.properties;
+        //alert("data=" + data.name);
+        for (var prop in data.properties)
+        {
+          var property = data.properties[prop]
+          bcObject.children[index] = {};
+          bcObject.children[index].name = property.Alias;
+          bcObject.children[index].pText = "";
+          bcObject.children[index].qText = "";
+          bcObject.children[index].collect = true;
+          bcObject.children[index].enable = true;
+          bcObject.children[index].root = false;
+          bcObject.children[index].cli = [];
+          index++;
         }
-      });
+        treeNormal(d3Div, bcObject, click, null);
+      }
+    });
   });
 
   /**
-   *  Function to handle click on the D3 tree.
+   *  Function to handle click on the Template (D3) tree.
    */
-  function click(d) {
-    $('#tab a[href="#bcItem"]').tab('show')
-    saveItem();
-    clearItem();
-    displayItem(d.index)
+  function click(node) {
+    
+    // Dont do anything for the root node.
+    if (node.root == false) {
+    
+      // Display the item tab.
+      $('#bcTab a[href="#bcItem"]').tab('show')
+      
+      // If we have a node selected save the current state and toggle
+      // the selected node in the tree.
+      if (currentNode != null) {
+        clearNode(currentNode, currentThis);
+        saveItem(currentNode);
+      }
+      markNode(node, this);
+      
+      // Clear the item and display the new one.
+      clearItem();
+      displayItem(node);
+
+      // Preserve the selection.
+      currentNode = node;
+      currentThis = this;
+    
+    }
   }
    
   /**
    * Click Tab to show its contents
    */
-  $("#tab a").click(function(e) {
+  $("#clTab a").click(function(e) {
+      if (this.hash == "#clCDISC") {
+        clCurrent = clCdiscCurrent;
+        clCurrentRow = clCdiscCurrentRow;
+      } else {
+        clCurrent = clSponsorCurrent;
+        clCurrentRow = clSponsorCurrentRow;
+      }
       e.preventDefault();
       $(this).tab('show');
   });
 
   /**
-   * Function to display the Concept details.
-   */
-  function displayBC() {
-    bcNameId.value = bcObject.name;
-  }
-
-  /**
    * Function to display an Item. 
    */
-  function displayItem(index) {
-    currentIndex = index
-    itemNameId.value = bcObject.children[currentIndex].name;
-    qTextId.value = bcObject.children[currentIndex].qText;
-    pTextId.value = bcObject.children[currentIndex].pText;
-    collectId.value = bcObject.children[currentIndex].collect;
-    bcDataTable.rows.add(bcObject.children[currentIndex].cli);
-    bcDataTable.draw();
+  function displayItem(node) {
+    itemNameId.value = node.name;
+    qTextId.value = node.qText;
+    pTextId.value = node.pText;
+    collectId.checked = node.collect;
+    enableId.checked = node.enable;
+    bcClDataTable.rows.add(node.cli);
+    bcClDataTable.draw();
   }
 
   /**
    * Function to save an item.
    */
-  function saveItem() {
-    if (currentIndex != -1) {
-      //bcObject.children[currentIndex].name = itemNameId.value;
-      bcObject.children[currentIndex].qText = qTextId.value;
-      bcObject.children[currentIndex].pText = pTextId.value;
-      bcObject.children[currentIndex].collect = collectId.value;
+  function saveItem(node) {
+    
+    var i;
+    var rowData;
+    var item;
+    var rows;
+
+    node.qText = qTextId.value;
+    node.pText = pTextId.value;
+    node.collect = collectId.checked;
+    node.enable = enableId.checked;
+    rowData = bcClDataTable.rows().data();
+    node.cli = [];
+    for (i=0; i<rowData.length; i++) {
+      item = rowData.row(i).data();
+      if (typeof item != 'undefined') {
+        node.cli.push(item);
+      }
     }
   }
 
@@ -274,23 +406,35 @@ $(document).ready(function() {
   function clearItem() {
     qTextId.value = "";
     pTextId.value = "";
-    collectId.value = false;
-    bcDataTable.clear();
-    bcDataTable.draw();
-    bcPrevSelect = null;
-    bcCurrentRow = null;
+    collectId.checked = false;
+    enableId.checked = false;
+    bcClDataTable.clear();
+    bcClDataTable.draw();
+    bcClCurrent = null;
+    bcClCurrentRow = null;
   }
 
-/*
- * Read text search
- */
-function searchType (index) {
-  var test = document.getElementsByName('search_radio');
-  if (test[index].checked == true) {
-    return test[index].value;
-  } else {
-    return "";
+  /*
+   * Read CDISC text search
+   */
+  function cdiscSearchType (index) {
+    if (searchCDISCRadioName[index].checked == true) {
+      return searchCDISCRadioName[index].value;
+    } else {
+      return "";
+    }
   }
-}
+
+  /*
+   * Read sponsor text search
+   */
+  function sponsorSearchType (index) {
+    if (searchSponsorRadioName[index].checked == true) {
+      return searchSponsorRadioName[index].value;
+    } else {
+      return "";
+    }
+  }
+
 
 });

@@ -34,7 +34,7 @@ class ScopedIdentifiersController < ApplicationController
   
   private
     def this_params
-      params.require(:scoped_identifier).permit(:identifier, :version, :versionLabel, :itemType, :namespace_id)
+      params.require(:scoped_identifier).permit(:identifier, :version, :versionLabel, :itemType, :namespaceId)
     end
 
 end

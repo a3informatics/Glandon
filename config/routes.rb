@@ -29,6 +29,11 @@ Rails.application.routes.draw do
       get :search
     end
   end
+  resources :sponsor_terms do
+    collection do
+      get :search
+    end
+  end
   resources :cdisc_cls do
     collection do
       get :compare

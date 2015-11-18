@@ -1,19 +1,19 @@
-<h1>Biomedical Concept <%= @cdiscBc.name %> <small>(CDISC, <%= @cdiscBc.identifier %>, V<%= @cdiscBc.version %>)</small></h1>
+<h3>Biomedical Concept <%= @cdiscBc.identifier %> <small>(CDISC, <%= @cdiscBc.versionLabel %>, V<%= @cdiscBc.version %>)</small></h3>
 <div class="col-md-10">
-	<h2>Details</h2>
+	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
 	  <tr>
 	    <th>Identifer</th>
-	    <th>Name</th>
 	    <th>Version</th>
+	    <th>Version Label</th>
 	  </tr>
 	  <tr>
 	    <td><%= @cdiscBc.identifier %></td>
-	    <td><%= @cdiscBc.name %></td>
 	    <td><%= @cdiscBc.version %></td>
+	    <td><%= @cdiscBc.versionLabel %></td>
 	  </tr>
 	</table>
-	<h2>Items</h2>
+	<h4>Items</h4>
 	<table class="table table-striped table-bordered table-condensed">
 	  <tr>
 			<% aliasEntry = @cdiscBc.properties.values[0] %>
@@ -37,7 +37,7 @@
 				  	    <br/>
 				  	  <% end %>
 						</td>
-		    	<% elsif key.to_s == "Collect"  %>
+		    	<% elsif key.to_s == "Collect" || key.to_s == "Enabled"  %>
 					  <td>
 		    		<% if value %>
 							<input type="checkbox" class="checkbox" checked="checked"/>

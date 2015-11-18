@@ -59,7 +59,7 @@ module ModelUtility
   
   end
 
-  def ModelUtility.getValue (name, uri, node)
+  def ModelUtility.getValue(name, uri, node)
     path = "binding[@name='" + name + "']/"
     if uri 
       path = path + "uri"

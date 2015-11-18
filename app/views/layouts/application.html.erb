@@ -14,39 +14,44 @@
   	<%= javascript_include_tag 'application', params[:controller] %>
   	<%= csrf_meta_tags %>
 
+    <style>
+      body {
+        padding-top: 55px;
+      }
+    </style>
   </head>
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Glandon (v<%= Version::VERSION %>)</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-						<li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
     <div class="container-fluid">
       <div class="row">
+        <div class="col-md-12">
+          <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Glandon (v<%= Version::VERSION %>)</a>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#">Dashboard</a></li>
+                  <li><a href="#">Settings</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Help</a></li>
+      						<li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-2">
-					<br/>
-					<br/>
-					<br/>
 					<ul class="well">
             <li class="active"><a href="/registration_authorities">Owner<span class="sr-only">(current)</span></a></li>
             <li><a href="/namespaces">Namespaces</a></li>
@@ -68,6 +73,7 @@
           </ul>
           <ul class="well">
             <li><a href="/cdisc_terms">CDISC Terminology</a></li>
+            <li><a href="/sponsor_terms">Sponsor Terminology</a></li>
             <li><a href="/biomedical_concept_templates">Biomedical Concept Templates</a></li>
             <li><a href="/cdisc_bcs">Biomedical Concepts</a></li>
             <li><a href="/forms">Forms</a></li>
@@ -75,10 +81,16 @@
           </ul>
         </div>
 
-				<p class="notice"><%= notice %></p>
-				<p class="alert"><%= alert %></p>
-				<%= yield %>
-
+				<div class="col-md-10">
+          <div id="alerts">
+            <% flash.each do |type, message| %>
+              <div class="alert <%= bootstrap_class_for(type) %> fade in">
+                <%= message %>
+              </div>
+            <% end %>
+          </div>
+  				<%= yield %>
+        </div>    
       </div>
     </div>
 

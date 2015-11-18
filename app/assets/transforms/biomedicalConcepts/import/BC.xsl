@@ -31,10 +31,10 @@
         <!-- Now the prefixes -->
         <xsl:text disable-output-escaping="yes">@prefix : &lt;http://www.assero.co.uk/MDRCDISCBC#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix cbc: &lt;http://www.assero.co.uk/CDISCBiomedicalConcept#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrBridg: &lt;http://www.assero.co.uk/MDRBRIDG#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrIso21090: &lt;http://www.assero.co.uk/MDRISO21090#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix item: &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix mdrItems: &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .&#xa;</xsl:text>
@@ -71,7 +71,7 @@
         <xsl:for-each select="Class">
             <xsl:for-each select="Attribute">
                 <xsl:call-template name="PredicateObject"> 
-                    <xsl:with-param name="pPredicateName" select="'cbc:hasItemRelationship'" /> 
+                    <xsl:with-param name="pPredicateName" select="'cbc:hasItem'" /> 
                     <xsl:with-param name="pObjectName" select="concat(':',$Prefix,$MinorSeparator,../@Name,$MinorSeparator,@Name)" /> 
                 </xsl:call-template>
             </xsl:for-each>
@@ -82,8 +82,8 @@
         </xsl:call-template>
         <xsl:variable name="SIName" select="concat('SI',$MainSeparator,'CDISC_BC_',@Id,$MainSeparator,'1')"/>
         <xsl:call-template name="PredicateObject"> 
-            <xsl:with-param name="pPredicateName" select="'isoI:identifierRelationship'" /> 
-            <xsl:with-param name="pObjectName" select="concat('item:',$SIName)" /> 
+            <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
+            <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SIName)" /> 
         </xsl:call-template>
         <xsl:call-template name="SubjectEnd"/> 
         
