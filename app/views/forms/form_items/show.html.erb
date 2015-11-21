@@ -1,6 +1,6 @@
-<h1>Item <%= @formItem.name %> <small>(<%= @form.managedItem.scopedIdentifier.identifier %>, V<%= @form.managedItem.scopedIdentifier.version %>)</small></h1>
+<h3>Item <%= @formItem.name %> <small>(<%= @form.managedItem.scopedIdentifier.identifier %>, V<%= @form.managedItem.scopedIdentifier.version %>)</small></h3>
 <div class="col-md-10">
-	<h2>Details</h2>
+	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
 	  <tr>
 	    <th>Name</th>
@@ -18,7 +18,7 @@
 	  </tr>
 	</table>
 	<% if @formItem.type == 1 %>
-		<h2>Biomedical Concept Properties</h2>
+		<h4>Biomedical Concept Properties</h4>
 		<table class="table table-striped table-bordered table-condensed">
 		  <tr>
 		    <th>Property</th>
@@ -26,7 +26,7 @@
 			</tr>
 		  <tr>
 		    <th>Biomedical Concept</th>
-			  <td><%= link_to "Show", cdisc_bc_path(@formItem.bc.id), :class => "btn btn-primary" %></td>
+			  <td><%= link_to "Show", cdisc_bc_path(:id => @formItem.bc.id, :namespace => @formItem.bc.namespace), :class => "btn btn-primary" %></td>
 			</tr>
 		</table>
 	<% end %>

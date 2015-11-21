@@ -6,7 +6,7 @@ class ManagedItem
   include CRUD
   include ModelUtility
       
-  attr_accessor :id, :type, :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment
+  attr_accessor :id, :type, :label, :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment
   
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -29,34 +29,14 @@ class ManagedItem
     return self.scopedIdentifier.identifier
   end
 
-  def self.exists?(id, ns=nil)
+  def owner
+    return self.scopedIdentifier.owner
+  end
+
+  def self.exists?(identifier, namespace)
     
     ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-    result = false
-    useNs = ns || @@baseNs
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","Id=" + id.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","namespace=" + useNs + " [base=" + @@baseNs + "]")
-    
-    # Create the query
-    query = UriManagement.buildNs(useNs, ["isoI"]) +
-      "SELECT ?a WHERE \n" +
-      "{ \n" +
-      "  :" + id + " isoI:hasIdentifier ?a . \n" +
-      "}"
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uri = ModelUtility.getValue('a', true, node)
-      if uri != "" 
-        ConsoleLogger::log(C_CLASS_NAME,"exists?","exisits")
-        result = true
-      end
-    end
-    return result
+    result = ScopedIdentifier.exists?(identifier, namespace.id)
 
   end
 
@@ -66,21 +46,24 @@ class ManagedItem
     ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     object = nil
     useNs = ns || @@baseNs
-    ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + useNs + " [base=" + @@baseNs + "]")
+    #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + useNs + " [base=" + @@baseNs + "]")
     
     # Create the query
     query = UriManagement.buildNs(useNs, ["isoI", "isoT"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
+      "SELECT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
       "{ \n" +
       "  :" + id + " isoI:hasIdentifier ?a . \n" +
       "  OPTIONAL { \n" +
-      "    :" + id + " isoI:hasState ?b . \n" +
-      "    :" + id + " isoT:origin ?c . \n" +
-      "    :" + id + " isoT:changeDescription ?d . \n" +
-      "    :" + id + " isoT:creationDate ?e . \n" +
-      "    :" + id + " isoT:lastChangedDate  ?f . \n" +
-      "    :" + id + " isoT:explanoratoryComment ?g . \n" +
+      "    :" + id + " rdfs:label ?h . \n" +
+      "    OPTIONAL { \n" +
+      "      :" + id + " isoI:hasState ?b . \n" +
+      "      :" + id + " isoT:origin ?c . \n" +
+      "      :" + id + " isoT:changeDescription ?d . \n" +
+      "      :" + id + " isoT:creationDate ?e . \n" +
+      "      :" + id + " isoT:lastChangedDate  ?f . \n" +
+      "      :" + id + " isoT:explanoratoryComment ?g . \n" +
+      "    } \n" +
       "  } \n" +
       "}"
     
@@ -98,9 +81,12 @@ class ManagedItem
       dateSet = node.xpath("binding[@name='e']/literal")
       lastSet = node.xpath("binding[@name='f']/literal")
       commentSet = node.xpath("binding[@name='g']/literal")
+      label = ModelUtility.getValue('h', false, node)
+      ConsoleLogger::log(C_CLASS_NAME,"find","Label=" + label)
       if iiSet.length == 1 
         object = self.new
         object.id = id
+        object.label = label
         object.scopedIdentifier = ScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
         if rsSet.length == 1
           object.registrationState = RegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
@@ -141,6 +127,7 @@ class ManagedItem
     object.creationDate = ""
     object.lastChangedDate = ""
     object.explanoratoryComment = ""
+    object,lable = ""
 
     update = UriManagement.buildNs(useNs, ["mdrItems", "isoI"]) +
       "INSERT DATA \n" +
@@ -178,7 +165,8 @@ class ManagedItem
     object.creationDate = timestamp
     object.lastChangedDate = ""
     object.explanoratoryComment = ""
-  
+    object.label = params[:label]
+
     update = UriManagement.buildNs(useNs, ["mdrItems", "isoT", "isoI"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -189,7 +177,8 @@ class ManagedItem
       " :" + id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +
       " :" + id + " isoT:lastChangedDate \"\"^^xsd:string . \n" +
       " :" + id + " isoT:explanoratoryComment \"\"^^xsd:string . \n" +
-      "}"
+      " :" + id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
+    "}"
 
     # Send the request, wait the resonse
     response = CRUD.update(update)

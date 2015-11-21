@@ -4,6 +4,28 @@ module ModelUtility
 
   C_CLASS_NAME = "ModelUtility"
 
+  def ModelUtility.validIdentifier?(value, object)
+    result = value =~ /\A\w+\z/ 
+    return true if result != nil
+    object.errors.add(:identifer, "contains invalid characters or is empty")
+    return false
+  end
+
+  def ModelUtility.validItemType?(value, object)
+    result = value =~ /\A\w+\z/  
+    return true if result != nil
+    object.errors.add(:item_type, "contains invalid characters or is empty")
+    return false
+  end
+
+  def ModelUtility.buildUri(namespace, id)
+  
+    uri = Uri.new
+    uri.setNsCid(namespace,id)
+    return "<" + uri.all + ">"
+    
+  end
+  
   def ModelUtility.buildCid(prefix, unique)
   
     uri = Uri.new

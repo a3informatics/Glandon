@@ -33,8 +33,11 @@ class Form::FormItem
   def self.find(id, cdiscTerm)
     
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
+    
     object = nil
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+    useNs = ns || @@baseNs
+    
+    query = UriManagement.buildNs(useNs, ["bf"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?hj ?i ?j ?k ?l ?m ?type WHERE\n" + 
       "{ \n" + 
       "  { :" + id + " rdf:type bf:Placeholder } UNION { :" + id + " rdf:type bf:vBased } UNION { :" + id + " rdf:type bf:bcBased } . \n" +
@@ -108,11 +111,15 @@ class Form::FormItem
     
   end
 
-  def self.findForGroup(groupId, cdiscTerm)
+  def self.findForGroup(groupId, ns=nil)
     
-    ConsoleLogger::log(C_CLASS_NAME,"findForGroup","*****ENTRY******")
+    ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
+    
     results = Hash.new
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+    object = nil
+    useNs = ns || @@baseNs
+    
+    query = UriManagement.buildNs(useNs, ["bf"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?hj ?i ?j ?k ?l ?m ?n ?type WHERE\n" + 
       "{ \n" + 
       "  { ?a rdf:type bf:Placeholder } UNION { ?a rdf:type bf:vBased } UNION { ?a rdf:type bf:bcBased } . \n" +
@@ -183,8 +190,9 @@ class Form::FormItem
         end
         if object.type == C_BC && pSet.length == 1 
           bcId = ModelUtility.extractCid(bcSet[0].text)
+          bcNamepace = ModelUtility.extractNs(bcSet[0].text)
           ConsoleLogger::log(C_CLASS_NAME,"findForGroup","BC id=" + bcId)
-          object.bc = CdiscBc.find(bcId, cdiscTerm)
+          object.bc = CdiscBc.find(bcId, bcNamepace)
           object.bcPropertyId = ModelUtility.extractCid(pSet[0].text)
         end
       end
@@ -201,10 +209,10 @@ class Form::FormItem
     return nil
   end
 
-  def self.create_placeholder(groupId, cidPrefix, ordinal, version, freeText)
+  def self.create_placeholder(groupId, ns, cidPrefix, ordinal, version, freeText)
 
     id = ModelUtility.buildCidVersion(C_CID_PREFIX, cidPrefix + C_ID_SEPARATOR + ordinal.to_s, version)
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+    update = UriManagement.buildNs(ns, ["bf"]) +
       "INSERT DATA \n" +
       "{ \n" +
       " :" + id + " rdf:type bf:Placeholder . \n" +
@@ -241,12 +249,12 @@ class Form::FormItem
 
   end
 
-  def self.create_bc_normal(groupId, cidPrefix, ordinal, version, bc, property_id, cdiscTerm)
+  def self.create_bc_normal(groupId, ns, cidPrefix, ordinal, version, bc, propertyId)
 
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, cidPrefix + C_ID_SEPARATOR + ordinal.to_s, version)
+    id = ModelUtility.buildCid(C_CID_PREFIX, cidPrefix + C_ID_SEPARATOR + ordinal.to_s)
     ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
     ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["bf", "mdrBc"]) +
+    update = UriManagement.buildNs(ns, ["bf"]) +
       "INSERT DATA \n" +
       "{ \n" +
       " :" + id + " rdf:type bf:bcBased . \n" +
@@ -254,8 +262,8 @@ class Form::FormItem
       " :" + id + " bf:name \"Item " + ordinal.to_s + "\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      " :" + id + " bf:hasProperty mdrBc:" + property_id + " . \n" +
-      " :" + id + " bf:hasBiomedicalConcept mdrBc:" + bc.id + " . \n" +
+      " :" + id + " bf:hasProperty " + ModelUtility::buildUri(bc.namespace, propertyId) + " . \n" +
+      " :" + id + " bf:hasBiomedicalConcept " + ModelUtility::buildUri(bc.namespace, bc.id) + " . \n" +
       " :" + id + " bf:isNodeOf :" + groupId + " . \n" +
       "}"
 
@@ -272,7 +280,7 @@ class Form::FormItem
       object.note = ""
       object.ordinal = ordinal
       object.bc = bc
-      object.bcPropertyId = property_id
+      object.bcPropertyId = propertyId
       object.freeText = ""
       ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Success, id=" + id)
     else

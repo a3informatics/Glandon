@@ -9,6 +9,10 @@ $(document).ready(function () {
     // Make sure the initial group data set up
     formData[currentNode] = blankGroup();
     
+    $('#main').DataTable({
+        columnDefs: [ ]
+    } );
+
     function clearField(id) {
     	element = document.getElementById(id);
         element.value = "";

@@ -21,7 +21,7 @@ class Namespace
   
   # Base namespace 
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-  
+
   def persisted?
     id.present?
   end
@@ -112,7 +112,7 @@ class Namespace
 
   def self.all
     
-    results = Array.new
+    results = Hash.new
     
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX,["isoI", "isoB"]) +
@@ -131,26 +131,18 @@ class Namespace
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      
-      p "Node: " + node.text
-      
+      ConsoleLogger::log(C_CLASS_NAME,"all","Node=" + node.to_s)
       snSet = node.xpath("binding[@name='c']/literal")
       nSet = node.xpath("binding[@name='d']/literal")
       uriSet = node.xpath("binding[@name='a']/uri")
-
-      p "URI: " + uriSet.text
-
       if uriSet.length == 1 and snSet.length == 1 and nSet.length == 1
-
-        p "Found: " + snSet[0].text
-
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.name = nSet[0].text
         object.shortName = snSet[0].text
-        results.push (object)
+        ConsoleLogger::log(C_CLASS_NAME,"all","Created object=" + object.id)
+        results[object.id] = object
       end
-      
     end
     
     # Return
@@ -218,9 +210,9 @@ class Namespace
 
     # Response
     if response.success?
-      p "It worked!"
+      ConsoleLogger::log(C_CLASS_NAME,"destroy","Object destroyed.")
     else
-      p "It didn't work!"
+      ConsoleLogger::log(C_CLASS_NAME,"destroy","Object noot destroyed!")
     end
      
   end

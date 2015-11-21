@@ -26,10 +26,14 @@ class Form::FormGroup
     #return @baseNs
   end
   
-  def self.find(id, cdiscTerm)
+  def self.find(id, ns=nil)
+    
+    ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
     
     object = nil
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+    useNs = ns || @@baseNs
+    
+    query = UriManagement.buildNs(UseNs, ["bf"]) +
       "SELECT ?b ?c ?d ?e ?f WHERE\n" + 
       "{ \n" + 
       " :" + id + " rdf:type bf:Group . \n" +
@@ -70,11 +74,15 @@ class Form::FormGroup
     
   end
 
-  def self.findForForm(formId, cdiscTerm)
+  def self.findForForm(formId, ns=nil)
     
-    ConsoleLogger::log(C_CLASS_NAME,"findForForm","***** ENTRY *****")
+    ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
+    
     results = Hash.new
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+    object = nil
+    useNs = ns || @@baseNs
+    
+    query = UriManagement.buildNs(useNs, ["bf"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE\n" + 
       "{ \n" + 
       " ?a rdf:type bf:Group . \n" +
@@ -115,7 +123,7 @@ class Form::FormGroup
           object.note = noteSet[0].text
           object.ordinal = ordSet[0].text
           object.repeating = rptSet[0].text
-          object.items = Form::FormItem.findForGroup(object.id, cdiscTerm)
+          object.items = Form::FormItem.findForGroup(object.id, ns)
           results[id] = object
         end
       end
@@ -128,12 +136,12 @@ class Form::FormGroup
     return nil
   end
 
-  def self.create_placeholder (formId, cidPrefix, ordinal, version, freeText)
+  def self.create_placeholder (formId, ns, cidPrefix, ordinal, version, freeText)
    
     itemCidPrefix = cidPrefix + C_ID_SEPARATOR + ordinal.to_s
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemCidPrefix, version)
-    item = Form::FormItem.create_placeholder(id, itemCidPrefix, 1, version, freeText)
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+    id = ModelUtility.buildCid(C_CID_PREFIX, itemCidPrefix)
+    item = Form::FormItem.create_placeholder(id, ns, itemCidPrefix, 1, version, freeText)
+    update = UriManagement.buildNs(ns, ["bf"]) +
       "INSERT DATA \n" +
       "{ \n" +
       " :" + id + " rdf:type bf:Group . \n" +
@@ -170,29 +178,29 @@ class Form::FormGroup
   
   end
 
-  def self.create_bc_normal (formId, cidPrefix, ordinal, version, bc, cdiscTerm)
+  def self.create_bc_normal (formId, ns, cidPrefix, ordinal, version, bc)
    
     itemCidPrefix = cidPrefix + C_ID_SEPARATOR + ordinal.to_s
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemCidPrefix, version)
+    id = ModelUtility.buildCid(C_CID_PREFIX, itemCidPrefix)
     insertSparql = ""
     items = Hash.new
     itemOrdinal = 1
     bc.properties.each do |property_id, property|
       ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add item for Group=" + property_id)
-      item = Form::FormItem.create_bc_normal(id, itemCidPrefix, itemOrdinal, version, bc, property_id, cdiscTerm)
+      item = Form::FormItem.create_bc_normal(id, ns, itemCidPrefix, itemOrdinal, version, bc, property_id)
       itemOrdinal += 1
       items[item.id] = item
       insertSparql = insertSparql + " :" + id + " bf:hasNode :" + item.id + " . \n"
     end
       
 
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["bf"]) +
+    update = UriManagement.buildNs(ns, ["bf"]) +
       "INSERT DATA \n" +
       "{ \n" +
       " :" + id + " rdf:type bf:Group . \n" +
       " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:name \"" + bc.name + "\"^^xsd:string . \n" +
+      " :" + id + " bf:name \"" + bc.identifier + "\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
       insertSparql + 

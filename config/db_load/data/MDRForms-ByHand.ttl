@@ -1,10 +1,10 @@
-# baseURI: http://www.assero.co.uk/MDRForms
+# baseURI: http://www.assero.co.uk/MDRForms/V1
 # imports: http://www.assero.co.uk/BusinessForm
 # imports: http://www.assero.co.uk/BusinessOperational
 # imports: http://www.assero.co.uk/CDISCBiomedicalConcept
 # imports: http://www.assero.co.uk/MDRCDISCBC
 
-@prefix : <http://www.assero.co.uk/MDRForms#> .
+@prefix : <http://www.assero.co.uk/MDRForms/V1#> .
 @prefix items: <http://www.assero.co.uk/MDRItems#> .
 @prefix MDRCDISCBC: <http://www.assero.co.uk/MDRCDISCBC#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
@@ -18,7 +18,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://www.assero.co.uk/MDRForms>
+<http://www.assero.co.uk/MDRForms/V1>
   rdf:type owl:Ontology ;
   owl:imports <http://www.assero.co.uk/BusinessForm> ;
   owl:imports <http://www.assero.co.uk/BusinessOperational> ;
@@ -26,11 +26,11 @@
   owl:imports <http://www.assero.co.uk/MDRCDISCBC> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
-:F-VS-1
+:F-VS
   rdf:type bf:Form ;
   bf:hasGroup :FG-Height ;
   bf:hasGroup :FG-Weight ;
-  bo:name "Vital Signs"^^xsd:string ;
+  rdfs:label "Vital Signs Form (Baseline)"^^xsd:string ;
   isoI:hasIdentifier items:SI-VS-1 ;
   isoI:hasState items:RS-VS-1 ;
   isoT:origin "" ;
@@ -40,7 +40,7 @@
   isoT:explanoratoryComment "" ;
 .
 items:SI-VS-1 rdf:type isoI:ScopedIdentifier ;
-  isoI:identifier "Vital Signs Form"^^xsd:string ;
+  isoI:identifier "Vital Signs Baseline"^^xsd:string ;
   isoI:versionLabel "1"^^xsd:string ;
   isoI:version "1"^^xsd:positiveInteger ;
   isoI:hasScope :NS-ACME ;

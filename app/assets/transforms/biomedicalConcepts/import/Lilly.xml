@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ResearchConcepts>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C111361" Name="Forced Vital Capacity">
+<BiomedicalConcepts>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111361" Name="Forced Vital Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -12,7 +12,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -42,11 +42,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112381"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112381"
 		Name="Percent Predicted Forced Vital Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -59,7 +62,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -89,11 +92,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C38084"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C38084"
 		Name="Forced Expiratory Volume in 1 Second">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -106,7 +112,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -136,11 +142,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112376" Name="Percent Predicted FEV1">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112376" Name="Percent Predicted FEV1">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -152,7 +161,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -182,11 +191,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112285" Name="FEV1 Reversibility">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112285" Name="FEV1 Reversibility">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -198,7 +210,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -228,11 +240,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C111359" Name="FEV1/FVC">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111359" Name="FEV1/FVC">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -244,7 +259,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -273,11 +288,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112377" Name="Percent Predicted FEV1/FVC">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112377" Name="Percent Predicted FEV1/FVC">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -289,7 +307,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -316,11 +334,14 @@
 				<Property Alias="Result Units (--ORRESU)" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C2000000_8"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C2000000_8"
 		Name="Forced Expiratory Flow 25-75% Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -333,7 +354,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -365,11 +386,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C2000000_9"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C2000000_9"
 		Name="Percent predicted FEF 25-75">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -382,7 +406,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -412,11 +436,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C41372" Name="Peak Expiratory Flow">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C41372" Name="Peak Expiratory Flow">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -428,7 +455,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -460,11 +487,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112384"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112384"
 		Name="Percent Predicted Peak Expiratory Flow">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -477,7 +507,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -507,11 +537,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112368" Name="PEF Reversibility">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112368" Name="PEF Reversibility">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -523,7 +556,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -553,11 +586,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C47843"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C47843"
 		Name="Forced Expiratory Volume in 6 Seconds">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -570,7 +606,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -600,11 +636,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112378" Name="Percent Predicted FEV6">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112378" Name="Percent Predicted FEV6">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -616,7 +655,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -646,11 +685,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C111360"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111360"
 		Name="Forced Inspiratory Volume in 1 Second">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -663,7 +705,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -693,11 +735,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112380" Name="Percent Predicted FIV1">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112380" Name="Percent Predicted FIV1">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -709,7 +754,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -739,11 +784,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C111324" Name="Tidal Volume">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111324" Name="Tidal Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -755,7 +803,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -785,11 +833,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112387"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112387"
 		Name="Percent Predicted Tidal Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -802,7 +853,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -832,11 +883,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C111362" Name="Inspiratory Capacity">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111362" Name="Inspiratory Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -848,7 +902,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -878,11 +932,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112382"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112382"
 		Name="Percent Predicted Inspiratory Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -895,7 +952,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -925,11 +982,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112321" Name="IC Reversibility">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112321" Name="IC Reversibility">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -941,7 +1001,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -970,11 +1030,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C111200" Name="Expiratory Reserve Volume">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111200" Name="Expiratory Reserve Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -986,7 +1049,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1016,11 +1079,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112375" Name="Percent Predicted ERV">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112375" Name="Percent Predicted ERV">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -1032,7 +1098,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1062,11 +1128,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C111237" Name="Inspiratory Reserve Volume">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111237" Name="Inspiratory Reserve Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -1078,7 +1147,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1108,11 +1177,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112383" Name="Percent Predicted IRV">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112383" Name="Percent Predicted IRV">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -1124,7 +1196,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1154,11 +1226,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C111315" Name="Slow Vital Capacity">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111315" Name="Slow Vital Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -1170,7 +1245,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1200,11 +1275,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112386"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112386"
 		Name="Percent Predicted Slow Vital Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -1217,7 +1295,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1247,11 +1325,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112333"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112333"
 		Name="Maximum Forced Inspiratory Flow">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -1264,7 +1345,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1296,11 +1377,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112379" Name="Percent Predicted FIFmax">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112379" Name="Percent Predicted FIFmax">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -1312,7 +1396,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1342,11 +1426,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C89836" Name="Residual Volume">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C89836" Name="Residual Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -1358,7 +1445,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1388,11 +1475,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112385"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112385"
 		Name="Percent Predicted Residual Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -1405,7 +1495,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1435,11 +1525,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C111325" Name="Total Lung Capacity">
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111325" Name="Total Lung Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code">
@@ -1451,7 +1544,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1481,11 +1574,14 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C112388"
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112388"
 		Name="Percent Predicted Total Lung Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -1498,7 +1594,7 @@
 					</Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
 				<Property Alias="Location (--LOC)" Name="code">
 					<Value>C12421</Value>
 				</Property>
@@ -1528,98 +1624,11 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code"/>
-			</Attribute>
-		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C25347" Name="Height">
-		<Class Name="DefinedObservation">
-			<Attribute Alias="Test" Name="nameCode">
-				<Property Alias="Test Code (--TESTCD)" Name="code">
-					<Value>C25347</Value>
-				</Property>
-				<Property Alias="Name" Name="originalText">
-					<Property Alias="Test Name (--TEST)" Name="value">
-						<Value>C25347</Value>
-					</Property>
-				</Property>
-			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
-				<Property Alias="Location (--LOC)" Name="code"/>
-			</Attribute>
-			<Attribute Alias="Method" Name="methodCode">
-				<Property Alias="Method Code (--METHOD)" Name="code"/>
-			</Attribute>
-		</Class>
-		<Class Name="PerformedObservation">
-			<Attribute Alias="DateTime" Name="dateRange">
-				<Property Alias="Date" Name="low">
-					<Property Alias="Result Value (--ORRES)" Name="value"/>
-				</Property>
-			</Attribute>
-			<Attribute Alias="ReasonNotDone" Name="negationReason">
-				<Property Alias="Code" Name="code"/>
-			</Attribute>
-		</Class>
-		<Class Name="PerformedClinicalResult">
-			<Attribute Alias="Result" Name="value" Datatype="PQR">
-				<Property Alias="Result Value (--ORRES)" Name="value"/>
-				<Property Alias="Result Units (--ORRESU)" Name="code">
-					<Value>C49668</Value>
-					<Value>C48500</Value>
-				</Property>
-			</Attribute>
-			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code">
-					<Value>??True??</Value>
-					<Value>??False??</Value>
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
 				</Property>
 			</Attribute>
 		</Class>
-	</ResearchConcept>
-	<ResearchConcept Template="SimpleObservationPQR" Id="C25208" Name="Weight">
-		<Class Name="DefinedObservation">
-			<Attribute Alias="Test" Name="nameCode">
-				<Property Alias="Test Code (--TESTCD)" Name="code">
-					<Value>C25208</Value>
-				</Property>
-				<Property Alias="Name" Name="originalText">
-					<Property Alias="Test Name (--TEST)" Name="value">
-						<Value>C25208</Value>
-					</Property>
-				</Property>
-			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
-				<Property Alias="Location (--LOC)" Name="code"/>
-			</Attribute>
-			<Attribute Alias="Method" Name="methodCode">
-				<Property Alias="Method Code (--METHOD)" Name="code"/>
-			</Attribute>
-		</Class>
-		<Class Name="PerformedObservation">
-			<Attribute Alias="DateTime" Name="dateRange">
-				<Property Alias="Date" Name="low">
-					<Property Alias="Result Value (--ORRES)" Name="value"/>
-				</Property>
-			</Attribute>
-			<Attribute Alias="ReasonNotDone" Name="negationReason">
-				<Property Alias="Code" Name="code"/>
-			</Attribute>
-		</Class>
-		<Class Name="PerformedClinicalResult">
-			<Attribute Alias="Result" Name="value" Datatype="PQR">
-				<Property Alias="Result Value (--ORRES)" Name="value"/>
-				<Property Alias="Result Units (--ORRESU)" Name="code">
-					<Value>C28252</Value>
-					<Value>C48531</Value>
-				</Property>
-			</Attribute>
-			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code" Name="code">
-					<Value>??True??</Value>
-					<Value>??False??</Value>
-				</Property>
-			</Attribute>
-		</Class>
-	</ResearchConcept>
-</ResearchConcepts>
+	</BiomedicalConcept>
+</BiomedicalConcepts>

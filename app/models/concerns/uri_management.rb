@@ -1,5 +1,7 @@
 module UriManagement
 
+  C_CLASS_NAME = "UriManagement"
+
   @@optional = 
     { "isoB" => "http://www.assero.co.uk/ISO11179Basic" ,
       "isoI" => "http://www.assero.co.uk/ISO11179Identification" ,
@@ -52,6 +54,7 @@ module UriManagement
   end
   
   def UriManagement.buildNs(defaultNs, optional)
+    ConsoleLogger::log(C_CLASS_NAME,"buildNs","DefaultNs=" + defaultNs + ", Optional=" + optional.to_s)
     if defaultNs == ""
       result = ""
     else

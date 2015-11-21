@@ -8,9 +8,6 @@ class FormsController < ApplicationController
     @forms = Form.all
   end
   
-  def new
-  end
-  
   def placeholder_new
     @form = Form.new
   end
@@ -26,13 +23,22 @@ class FormsController < ApplicationController
 
   def placeholder_create
     @form = Form.create_placeholder(the_params)
-    redirect_to forms_path
+    if @form.errors.empty?
+      redirect_to forms_path
+    else
+      flash[:error] = @form.errors.full_messages.to_sentence
+      #redirect_to placeholder_new_forms_path
+    end
   end
   
   def bc_normal_create
-    @cdiscTerm = CdiscTerm.current()
-    @form = Form.create_bc_normal(the_params, @cdiscTerm)
-    redirect_to forms_path
+    @form = Form.create_bc_normal(the_params)
+    if @form.errors.empty?
+      redirect_to forms_path
+    else
+      flash[:error] = @form.errors.full_messages.to_sentence
+      redirect_to bc_normal_new_forms_path
+    end
   end
   
   def update
@@ -45,12 +51,11 @@ class FormsController < ApplicationController
   end
 
   def show 
-    @cdiscTerm = CdiscTerm.current()
-    @form = Form.find(params[:id], @cdiscTerm)
+    @form = Form.find(params[:id], params[:namespace])
   end
   
 private
   def the_params
-    params.require(:form).permit(:freeText, :name, :itemType, :bcs => [])
+    params.require(:form).permit(:formId, :namespace, :freeText, :identifier, :itemType, :bcs => [])
   end  
 end

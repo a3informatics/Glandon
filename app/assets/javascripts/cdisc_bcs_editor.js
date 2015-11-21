@@ -65,7 +65,6 @@ $(document).ready(function() {
         },
         "dataSrc": ""  
       },
-      "searching": false,
       "bProcessing": true,
       "columns": [
         {"data" : "identifier", "width" : "10%"},
@@ -93,7 +92,6 @@ $(document).ready(function() {
         },
         "dataSrc": ""  
       },
-      "searching": false,
       "bProcessing": true,
       "columns": [
         {"data" : "identifier", "width" : "10%"},

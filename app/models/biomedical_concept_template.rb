@@ -34,6 +34,14 @@ class BiomedicalConceptTemplate
     return self.managedItem.identifier
   end
 
+  def label
+    return self.managedItem.label
+  end
+
+  def owner
+    return self.managedItem.owner
+  end
+
   def persisted?
     id.present?
   end
@@ -74,7 +82,7 @@ class BiomedicalConceptTemplate
       dtNodeURI = ModelUtility.getValue("bcDtNode", true, node)
       simpleURI = ModelUtility.getValue("simple", true, node)
       if dtNodeURI != "" && simpleURI != ""
-        ConsoleLogger::log(C_CLASS_NAME,"find","Found")
+        #ConsoleLogger::log(C_CLASS_NAME,"find","Found")
         if object != nil
           properties = object.properties          
         else
@@ -90,8 +98,8 @@ class BiomedicalConceptTemplate
         propertyCid = ModelUtility.extractCid(propertyUri)
         aliasName = ModelUtility.getValue("propertyAlias", false, node)
         dt = ModelUtility.getValue("datatype", true, node)
-        ConsoleLogger::log(C_CLASS_NAME,"find","Property URI=" + propertyUri)
-        ConsoleLogger::log(C_CLASS_NAME,"find","Property Alias=" + aliasName)
+        #ConsoleLogger::log(C_CLASS_NAME,"find","Property URI=" + propertyUri)
+        #ConsoleLogger::log(C_CLASS_NAME,"find","Property Alias=" + aliasName)
         if properties.has_key?(propertyCid)
           property = properties[propertyCid]
         else
@@ -158,24 +166,25 @@ class BiomedicalConceptTemplate
   def destroy
   end
 
-  def self.to_ttl
+  def to_ttl()
 
-    ConsoleLogger::log(C_CLASS_NAME,"list","*****Entry*****")
+    ConsoleLogger::log(C_CLASS_NAME,"to_ttl","*****Entry*****")
     results = ""
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["cbc"]) +
+    query = UriManagement.buildNs(self.namespace, ["cbc"]) +
       "CONSTRUCT \n" +
       "{ \n" + 
-      "  ?a ?b ?c . \n" + 
+      "  ?a ?b ?c .\n" + 
       "  ?d ?e ?f .\n" + 
       "  ?g ?h ?i .\n" + 
       "  ?j ?k ?l .\n" + 
       "  ?v ?w ?x .\n" +  
-      "  ?m ?n ?o . \n" + 
+      "  ?m ?n ?o .\n" + 
       "  ?p ?q ?r .\n" + 
       "  ?s ?t ?u .\n" +
       "}\n" + 
       "WHERE \n" +
       "{\n" + 
+      "  :" + self.id + " rdf:type cbc:BiomedicalConceptTemplate .\n" + 
       "  ?a rdf:type cbc:BiomedicalConceptTemplate .\n" + 
       "  ?a ?b ?c .\n" + 
       "  ?a cbc:hasItem ?d .\n" + 
@@ -198,13 +207,16 @@ class BiomedicalConceptTemplate
       "    ?j cbc:hasSimpleDatatype ?v .\n" + 
       "    ?v ?w ?x .\n" +  
       "  }\n" + 
+      # "  VALUES (?a) {(\"" + self.id + "\")}\n" + 
       "}\n" 
 
     # Send the request, wait the resonse
     response = CRUD.query(query, CRUD.TTL)
-    
-    # return the text
-    return response.body
+    if response.success?
+      return response.body
+    else
+      return ""
+    end 
 
   end
 

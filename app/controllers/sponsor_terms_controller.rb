@@ -9,6 +9,7 @@ class SponsorTermsController < ApplicationController
   end
   
   def new
+    @files = Dir.glob(Rails.root.join("public","upload") + "*")
     @sponsorTerm = SponsorTerm.new
   end
   

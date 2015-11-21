@@ -57,6 +57,43 @@
         <xsl:call-template name="SubjectEnd"/>
     </xsl:template>
 
+    <!-- Create Registration identifier -->
+    <xsl:template name="RegistrationState">
+        <xsl:param name="pCID"/>
+        <xsl:call-template name="Subject">
+            <xsl:with-param name="pName" select="concat('mdrItems:',$pCID)"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'rdf:type'"/>
+            <xsl:with-param name="pObjectName" select="'isoR:RegistrationState'"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoR:registrationStatus'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoR:administrativeNote'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoR:effectiveDate'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoR:unresolvedIssue'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoR:administrativeStatus'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoR:previousState'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="SubjectEnd"/>
+    </xsl:template>
+    
     <xsl:template name="extractBRIDGDatatype">
         <xsl:param name="pType"/>
         <xsl:choose>

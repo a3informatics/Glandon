@@ -4,6 +4,8 @@
 		<thead>			
 			<tr>
 				<th>Identifer</th>
+				<th>Label</th>
+				<th>Owner</th>
 				<th>Internal Version</th>
 				<th>Version</th>
 				<th></th>
@@ -13,9 +15,11 @@
 			<% @cdiscBcs.each do |bcId, bc| %>
 				<tr>
 					<td><%= bc.identifier %></td>
+					<td><%= bc.label %></td>
+					<td><%= bc.owner %></td>
 					<td><%= bc.version %></td>
 					<td><%= bc.versionLabel %></td>
-					<td><%= link_to "Show", cdisc_bc_path(bc.id), :class => "btn btn-primary" %></td>
+					<td><%= link_to "Show", cdisc_bc_path(:id => bc.id, :namespace => bc.namespace), :class => "btn btn-primary" %></td>
 				</tr>
 			<% end %>
 		</tbody>

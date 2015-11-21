@@ -1,5 +1,5 @@
-<ResearchConceptTemplates>
-	<ResearchConceptTemplate Name="SimpleObservationPQR" >
+<BiomedicalConceptTemplates>
+	<BiomedicalConceptTemplate Id="BCT Obs PQR" Name="Simple Observation PQR Biomedical Research Concept Template" >
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code"/>
@@ -7,37 +7,37 @@
 					<Property Alias="Test Name (--TEST)" Name="value"/>
 				</Property>
 			</Attribute>
-			<Attribute Alias="TargetSite" Name="targetAnatomicSiteCode">
-				<Property Alias="Code (--TBD)" Name="code"/>
-			</Attribute>
-			<Attribute Alias="SiteOfAdministration" Name="approachAnatomicSiteCode">
-				<Property Alias="Code (--LOC)" Name="code"/> 
+			<!--<Attribute Alias="approachSite" Name="approachAnatomicSiteCode">
+				<Property Alias="Approach Site (TBD)" Name="code"/>
+			</Attribute>-->
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Alias="Site Of Administration (--LOC)" Name="code"/> 
 			</Attribute>
 			<Attribute Alias="Method" Name="methodCode">
-				<Property Alias="Code (--METHOD)" Name="code"/> 			
+				<Property Alias="Method (--METHOD)" Name="code"/> 			
 			</Attribute>
 		</Class>
 		<Class Name="PerformedObservation"> 
 			<Attribute Alias="DateTime" Name="dateRange">
 				<Property Alias="Date" Name="low">
-					<Property Alias="DateTime (--DTC)" Name="value"></Property>
+					<Property Alias="Date Time (--DTC)" Name="value"></Property>
 				</Property>
 			</Attribute>
 			<Attribute Alias="ReasonNotDone" Name="negationReason">
 				<Property Alias="Code"  Name="code">
-					<Property Alias="Code (--REASND)" Name="code"/>
+					<Property Alias="Reason Not Done (--REASND)" Name="code"/>
 				</Property>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedClinicalResult"> 
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
-				<Property Alias="Value (--ORRES)"  Name="value"/>
-				<Property Alias="Units (--ORRESU)"  Name="code"/>
+				<Property Alias="Result Value (--ORRES)"  Name="value"/>
+				<Property Alias="Result Units (--ORRESU)"  Name="code"/>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Alias="Code (--)"  Name="value"/>
+				<Property Alias="Baseline (--BLFL)"  Name="value"/>
 			</Attribute>
 		</Class>
-	</ResearchConceptTemplate>
-</ResearchConceptTemplates>
+	</BiomedicalConceptTemplate>
+</BiomedicalConceptTemplates>
 

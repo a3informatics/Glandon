@@ -31,6 +31,40 @@ class ScopedIdentifier
     return @@baseNs 
   end
   
+  def owner
+    return self.namespace.shortName
+  end
+  
+  def self.exists?(identifier, scopeId)
+    
+    ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
+    result = false
+    
+    # Create the query
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+      "SELECT ?a WHERE \n" +
+      "  ?a rdf:type isoI:ScopedIdentifier . \n" +
+      "  ?a isoI:identifier " + identifier + " . \n" +
+      "  ?a isoI:hasScope :" + scopeId + ". \n" +
+      "}"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('a', true, node)
+      if uri != "" 
+        ConsoleLogger::log(C_CLASS_NAME,"exists?","exisits")
+        result = true
+      end
+    end
+    return result
+
+  end
+
   def self.find(id)
     
     object = nil

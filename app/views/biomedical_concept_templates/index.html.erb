@@ -1,17 +1,22 @@
-<h1>CDISC Biomedical Concept Templates</h1>
+<h3>CDISC Biomedical Concept Templates</h3>
 <div class="col-md-10">
-	<h2>All Versions</h2>
 	<table class="table table-striped table-bordered table-condensed">
 	  <tr>
 	    <th>Identifer</th>
-	    <th>Version</th>
-	    <th></th>
+	    <th>Label</th>
+		<th>Owner</th>
+		<th>Internal Version</th>
+		<th>Version</th>
+		<th></th>
 	  </tr>
 		<% @bcts.each do |bcId, bct| %>
 		  <tr>
 		    <td><%= bct.identifier %></td>
-		    <td><%= bct.version %></td>
-		    <td><%= link_to "Show", biomedical_concept_template_path(:id => bct.id, :namespace => bct.namespace), :class => "btn btn-primary" %></td>
+			<td><%= bct.label %></td>
+			<td><%= bct.owner %></td>
+			<td><%= bct.version %></td>
+			<td><%= bct.versionLabel %></td>
+			<td><%= link_to "Show", biomedical_concept_template_path(:id => bct.id, :namespace => bct.namespace), :class => "btn btn-primary" %></td>
 		  </tr>
 		<% end %>
 	</table>

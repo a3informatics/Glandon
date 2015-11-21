@@ -86,6 +86,12 @@
   rdfs:label "Reference to the BRIDG attribute"^^xsd:string ;
   rdfs:range bridg:Attribute ;
 .
+:basedOn
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :BiomedicalConceptInstance ;
+  rdfs:label "Reference to the template"^^xsd:string ;
+  rdfs:range :BiomedicalConceptTemplate ;
+.
 :hasClassRef
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Item ;
@@ -149,11 +155,29 @@
   rdfs:range :Datatype ;
   owl:inverseOf :hasPropertyRelationship ;
 .
-:name
+:qText
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :BiomedicalConcept ;
-  rdfs:label "Name of the Biomedical Concept"^^xsd:string ;
+  rdfs:domain :Property ;
+  rdfs:label "The question text"^^xsd:string ;
   rdfs:range xsd:string ;
+.
+:pText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "The prompt text"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:enabled
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "The property is enabled"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+.
+:collect
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "The property can be collected (rather than a fixed value)"^^xsd:string ;
+  rdfs:range xsd:boolean ;
 .
 :nextItem
   rdf:type owl:ObjectProperty ;

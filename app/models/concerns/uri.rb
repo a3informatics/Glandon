@@ -41,6 +41,11 @@ class Uri
     @version = version.to_s
   end
 
+  def setNsCid(ns, cid)
+    @path = getPath(ns)
+    setCid(cid)
+  end
+
   def setCid(classId) 
     @prefix = getPrefix(classId)
     @itemType = getItemType(classId)
@@ -48,7 +53,7 @@ class Uri
   end
   
   def setUri(uri)
-  @path = getPath(uri)
+    @path = getPath(uri)
     fragment = getFragment(uri)
     @prefix = getPrefix(fragment)
     @itemType = getItemType(fragment)
@@ -56,14 +61,7 @@ class Uri
   end
   
   def extendPath(extension)
-
-    #p "EXTEND PATH"
-    #p "Path=" + @path
-  
     @path = @path + "/" + extension
-
-    #p "Path=" + @path
-    
   end
    
   def all()

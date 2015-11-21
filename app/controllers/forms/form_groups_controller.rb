@@ -22,13 +22,12 @@ class Forms::FormGroupsController < ApplicationController
   end
 
   def show 
-    @cdiscTerm = CdiscTerm.current
-    @form = Form.find(params[:form_id], @cdiscTerm)
+    @form = Form.find(params[:formId], params[:namespace])
     @formGroup = @form.groups[params[:id]]
   end
   
 private
   def the_params
-    params.require(:form_form_group).permit(:form_id)
+    params.require(:form_form_group).permit(:formId, :namespace)
   end  
 end

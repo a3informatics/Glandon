@@ -9,7 +9,7 @@ class RegistrationState
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :registrationStatus, :administrativeNote, :effectiveDate, :unresolvedIssue, :administrativeStatus, :previousState
+  attr_accessor :id, :registrationAuthority, :registrationStatus, :administrativeNote, :effectiveDate, :unresolvedIssue, :administrativeStatus, :previousState
   validates_presence_of :registrationAuthority, :registrationStatus, :administrativeNote, :effectiveDate, :unresolvedIssue, :administrativeStatus, :previousState
   
   # Base namespace 
@@ -116,7 +116,7 @@ class RegistrationState
     xmlDoc.xpath("//result").each do |node|
       uriSet = node.xpath("binding[@name='a']/uri")
       rsSet = node.xpath("binding[@name='c']/literal")
-      rnet = node.xpath("binding[@name='d']/literal")
+      rnSet = node.xpath("binding[@name='d']/literal")
       edSet = node.xpath("binding[@name='e']/literal")
       uiSet = node.xpath("binding[@name='f']/literal")
       asSet = node.xpath("binding[@name='g']/literal")
@@ -147,7 +147,7 @@ class RegistrationState
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      "	:" + id + " rdf:type isoR:RegistrationStatus . \n" +
+      "	:" + id + " rdf:type isoR:RegistrationState . \n" +
       "	:" + id + " isoR:byAuthority :" + @@owner.id + " . \n" +
       "	:" + id + " isoR:registrationStatus \"""\"^^xsd:string . \n" +
       "	:" + id + " isoR:administrativeNote \"""\"^^xsd:string . \n" +

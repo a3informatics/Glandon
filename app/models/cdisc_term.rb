@@ -19,7 +19,7 @@ class CdiscTerm
   
   # Class-wide variables
   @@cdiscNamespace = nil # CDISC Organization identifier
-  @@currentVersionId = nil # The namespace for the current term version
+  @@currentVersion = nil # The namespace for the current term version
     
   # Base namespace 
   @@baseNs = Thesaurus.baseNs()
@@ -141,7 +141,7 @@ class CdiscTerm
   def self.current 
     ConsoleLogger::log(C_CLASS_NAME,"Current","*****ENTRY*****")
     object = nil
-    if @@currentVersionId == nil
+    if @@currentVersion == nil
       ConsoleLogger::log(C_CLASS_NAME,"Current","Current nil")
       latest = nil
       if @@cdiscNamespace == nil 
@@ -158,10 +158,10 @@ class CdiscTerm
       object = self.new 
       object.id = latest.id
       object.thesaurus = latest
-      @@currentVersionId = object.id
+      @@currentVersion = object
     else
-      ConsoleLogger::log(C_CLASS_NAME,"Current","CurrentVersionId=" + @@currentVersionId)
-      object = self.find(@@currentVersionId)
+      ConsoleLogger::log(C_CLASS_NAME,"Current","CurrentVersion Id=" + @@currentVersion.id)
+      object = @@currentVersion
     end
     ConsoleLogger::log(C_CLASS_NAME,"Current","*****EXIT***** " + object.id)   
     return object

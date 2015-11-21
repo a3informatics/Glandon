@@ -9,8 +9,8 @@ class RegistrationAuthority
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :number, :shortName, :name, :scheme
-  validates_presence_of :number, :shortName, :name, :scheme
+  attr_accessor :id, :number, :scheme, :namespace
+  validates_presence_of :number, :scheme, :namespace
   
   # Base namespace 
   @@baseNs
@@ -19,11 +19,13 @@ class RegistrationAuthority
   C_NS_PREFIX = "mdrItems"
   C_CLASS_RA_PREFIX = "RA"
   C_CLASS_RAI_PREFIX = "RAI"
-  DUNS = "DUNS"
-  
+  C_DUNS = "DUNS"
+  C_CLASS_NAME = "RegistrationAuthority"
+      
   #Class variables
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-
+  @@owner = nil # The owner of the repository
+  
   def persisted?
     id.present?
   end
@@ -32,25 +34,30 @@ class RegistrationAuthority
   end
 
   def baseNs
-    
     return @@baseNs 
-    
   end
   
+  def name
+    return namespace.name
+  end
+
+  def shortName
+    return namespace.shortName
+  end
+
   def self.find(id)
     
     ra = nil
     
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "SELECT ?c ?d ?e ?f WHERE \n" +
+      "SELECT ?c ?d ?e WHERE \n" +
       "{ \n" +
       "	 :" + id + " rdf:type isoR:RegistrationAuthority . \n" +
       "  :" + id + " isoR:hasAuthorityIdentifier ?b . \n" +
+      "  :" + id + " isoR:raNamespace ?e . \n" +
       "	 ?b isoB:organizationIdentifier ?c . \n" +
       "	 ?b isoB:internationalCodeDesignator ?d . \n" +
-      "	 ?b isoB:shortName ?e . \n" +
-      "	 ?b isoB:name ?f . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -62,16 +69,15 @@ class RegistrationAuthority
     xmlDoc.xpath("//result").each do |node|
       oSet = node.xpath("binding[@name='c']/literal")
       sSet = node.xpath("binding[@name='d']/literal")
-      snSet = node.xpath("binding[@name='e']/literal")
-      lnSet = node.xpath("binding[@name='f']/literal")
-      if oSet.length == 1 && sSet.length == 1 && lnSet.length == 1 && snSet.length == 1
+      siSet = node.xpath("binding[@name='e']/uri")
+      if oSet.length == 1 && sSet.length == 1 && siSet.length == 1
         ra = self.new 
         ra.id = id
         ra.number = oSet[0].text
         ra.scheme = sSet[0].text
-        ra.shortName = snSet[0].text
-        ra.name = lnSet[0].text
-      end
+        ra.namespace = Namespace.find(ModelUtility.extractCid(siSet[0].text))
+        ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
+        end
     end
     
     # Return
@@ -81,18 +87,17 @@ class RegistrationAuthority
 
   def self.all
     
-    results = Array.new
+    results = Hash.new
     
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "SELECT ?a ?c ?d ?e ?f WHERE \n" +
+      "SELECT ?a ?c ?d ?e WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type isoR:RegistrationAuthority . \n" +
       "	 ?a isoR:hasAuthorityIdentifier ?b . \n" +
+      "  ?a isoR:raNamespace ?e . \n" +
       "	 ?b isoB:organizationIdentifier ?c . \n" +
       "	 ?b isoB:internationalCodeDesignator ?d . \n" +
-      "	 ?b isoB:shortName ?e . \n" +
-      "	 ?b isoB:name ?f . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -105,40 +110,43 @@ class RegistrationAuthority
       uriSet = node.xpath("binding[@name='a']/uri")
       oSet = node.xpath("binding[@name='c']/literal")
       sSet = node.xpath("binding[@name='d']/literal")
-      snSet = node.xpath("binding[@name='e']/literal")
-      lnSet = node.xpath("binding[@name='f']/literal")
-      if uriSet.length == 1 && oSet.length == 1 && sSet.length == 1 && lnSet.length == 1 && snSet.length == 1
+      siSet = node.xpath("binding[@name='e']/uri")
+      if uriSet.length == 1 && oSet.length == 1 && sSet.length == 1 && siSet.length == 1
         ra = self.new 
         ra.id = ModelUtility.extractCid(uriSet[0].text)
         ra.number = oSet[0].text
         ra.scheme = sSet[0].text
-        ra.shortName = snSet[0].text
-        ra.name = lnSet[0].text
-        results.push (ra)
+        ra.namespace = Namespace.find(ModelUtility.extractCid(siSet[0].text))
+        ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + ra.id)
+        results[ra.id] = ra
       end
     end
     
+    # Set owner. Assumed to be first authority.
+    if @@owner == nil
+      @@owner = results.values[0]
+    end
+
+    # Return
     return results
     
   end
 
+  # Get the repository owner.
   def self.owner
 
-    results = self.all
-    if results.length == 1
-      return results[0]
-    else
-      return nil
+    # The owner is assumed to be the first entry.
+    if @@owner == nil
+      results = self.all
     end
-
+    return @@owner
+    
   end
 
   def self.create(params)
     
     number = params[:number]
-    #org = params[:organization_id]
-    shortName = params[:shortName]
-    longName = params[:name]
+    namespaceId = params[:namespaceId]
     
     # Create the query
     raiId = ModelUtility.buildCid(C_CLASS_RAI_PREFIX, number)
@@ -148,10 +156,9 @@ class RegistrationAuthority
       "{ \n" +
       "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
       "	:" + raiId + " isoB:organizationIdentifier \"" + number.to_s + "\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:internationalCodeDesignator \"" + DUNS + "\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:shortName \"" + shortName.to_s + "\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:name \"" + longName.to_s + "\"^^xsd:string . \n" +
+      "	:" + raiId + " isoB:internationalCodeDesignator \"" + C_DUNS + "\"^^xsd:string . \n" +
       "	:" + id + " rdf:type isoR:RegistrationAuthority . \n" +
+      " :" + id + " isoR:raNamespace :" + namespaceId + " . \n" +
       "	:" + id + " isoR:hasAuthorityIdentifier :" + raiId + " ; \n" +
       "}"
     
@@ -163,14 +170,12 @@ class RegistrationAuthority
       ra = self.new
       ra.id = id
       ra.number = number
-      ra.scheme = DUNS
-      ra.shortName = shortName
-      ra.name = longName
-      p "It worked!"
+      ra.scheme = C_DUNS
+      ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + id)
     else
-      p "It didn't work!"
-      ra = self.new
-      object.assign_errors(data) if response.response_code == 422
+      ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
+      ra = nil
+      #object.assign_errors(data) if response.response_code == 422
     end
     return ra
     
@@ -190,9 +195,8 @@ class RegistrationAuthority
       "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
       "	:" + raiId + " isoB:organizationIdentifier \"" + self.number.to_s + "\"^^xsd:string . \n" +
       "	:" + raiId + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:shortName \"" + self.shortName.to_s + "\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:name \"" + self.name.to_s + "\"^^xsd:string . \n" +
       "	:" + self.id + " rdf:type isoR:RegistrationAuthority . \n" +
+      " :" + self.id + " isoR:raNamespace :" + self.namespace.id + " . \n" +
       "	:" + self.id + " isoR:hasAuthorityIdentifier :" + raiId + " ; \n" +
       "}"
     
@@ -201,9 +205,9 @@ class RegistrationAuthority
 
     # Response
     if response.success?
-      p "It worked!"
+      ConsoleLogger::log(C_CLASS_NAME,"destroy","Object destroyed.")
     else
-      p "It didn't work!"
+      ConsoleLogger::log(C_CLASS_NAME,"destroy","Object not destroyed!")
     end
      
   end

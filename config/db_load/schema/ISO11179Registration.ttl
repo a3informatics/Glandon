@@ -34,6 +34,12 @@
   rdfs:subClassOf owl:Thing ;
   skos:definition "The organisation responsible for the registry who shall determine which metadata items should become IdentifiedItems, RegisteredItems, Designatable_Items and/or ClassifiableItems."^^xsd:string ;
 .
+:raNamespace
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "Scope Relationship"^^xsd:string ;
+  rdfs:range :Namespace ;
+.
 :isStateOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Registration ;

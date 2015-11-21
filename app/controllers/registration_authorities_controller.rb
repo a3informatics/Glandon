@@ -4,9 +4,11 @@ class RegistrationAuthoritiesController < ApplicationController
   
   def index
     @registrationAuthorities = RegistrationAuthority.all
+    @owner = RegistrationAuthority.owner
   end
   
   def new
+    @namespaces = Namespace.all.map{|key,u|[u.name,u.id]}
     @registrationAuthority = RegistrationAuthority.new
   end
   
@@ -33,7 +35,7 @@ class RegistrationAuthoritiesController < ApplicationController
   
   private
     def ra_params
-      params.require(:registration_authority).permit(:shortName, :name, :number)
+      params.require(:registration_authority).permit(:namespaceId, :number)
     end
 
 end

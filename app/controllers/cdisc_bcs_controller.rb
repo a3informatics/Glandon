@@ -17,10 +17,8 @@ class CdiscBcsController < ApplicationController
   def bct_select
     id = params[:id]
     namespace = params[:namespace]
-    #ConsoleLogger::log(C_CLASS_NAME,"bct_select","*****Entry*****")
     @bct = BiomedicalConceptTemplate.find(id, namespace)
     render json: @bct
-    #ConsoleLogger::log(C_CLASS_NAME,"bct_select","*****Exit*****")
   end
 
   def create
@@ -43,8 +41,9 @@ class CdiscBcsController < ApplicationController
   end
 
   def show 
-    @cdiscTerm = CdiscTerm.current
-    @cdiscBc = CdiscBc.find(params[:id], @cdiscTerm)
+    id = params[:id]
+    namespace = params[:namespace]
+    @cdiscBc = CdiscBc.find(id, namespace)
   end
   
 private
