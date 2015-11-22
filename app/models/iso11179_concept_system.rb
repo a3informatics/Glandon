@@ -14,6 +14,7 @@ class Iso11179ConceptSystem
   
   # Constants
   C_NS_PREFIX = "mdrSch"
+  C_CID_PREFIX = "CS"
   C_CLASS_NAME = "Iso11179ConceptSystem"
         
   # Base namespace 

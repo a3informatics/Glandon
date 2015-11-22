@@ -1,5 +1,5 @@
-<h3>CDISC Biomedical Concepts (All Versions)</h3>
-<div class="col-md-10">
+<h3>Biomedical Concepts</h3>
+<div class="col-md-12">
 	<table id="main" class="table table-striped table-bordered table-condensed">
 		<thead>			
 			<tr>
@@ -19,7 +19,7 @@
 					<td><%= bc.owner %></td>
 					<td><%= bc.version %></td>
 					<td><%= bc.versionLabel %></td>
-					<td><%= link_to "Show", cdisc_bc_path(:id => bc.id, :namespace => bc.namespace), :class => "btn btn-primary" %></td>
+					<td><%= link_to "Show", cdisc_bc_path(:id => bc.id, :namespace => bc.namespace), :class => "btn btn-primary btn-xs" %></td>
 				</tr>
 			<% end %>
 		</tbody>

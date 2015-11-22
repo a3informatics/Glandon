@@ -1,0 +1,70 @@
+@prefix :      <http://www.assero.co.uk/MDRThesaurus/ACME/V1#> .
+@prefix isoI:  <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoR:  <http://www.assero.co.uk/isoR#> .
+@prefix isoT:  <http://www.assero.co.uk/isoT#> .
+@prefix iso25964: <http://www.assero.co.uk/ISO25964#> .
+@prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> . 
+
+:TH-SPONSOR_CT-1  
+        a                              iso25964:Thesaurus ;
+        rdfs:label                     "" ;
+        isoI:hasIdentifier             mdrItems:SI-SPONSOR_CT-1 ;
+        isoI:hasState                  mdrItems:RS-SPONSOR_CT ;
+        isoT:changeDescription         "Creation" ;
+        isoT:creationDate              "2015-11-22 13:29:50  0000" ;
+        isoT:explanoratoryComment      "" ;
+        isoT:lastChangedDate           "" ;
+        isoT:origin                    "" .
+
+mdrItems:RS-SPONSOR_CT  
+        a                                isoR:RegistrationState ;
+        isoR:administrativeNote          "" ;
+        isoR:administrativeStatus        "" ;
+        isoR:byAuthority                 mdrItems:RA-123456789 ;
+        isoR:effectiveDate               "" ;
+        isoR:previousState               "" ;
+        isoR:registrationStatus          "" ;
+        isoR:unresolvedIssue             "" .
+
+mdrItems:SI-SPONSOR_CT-1
+        a                  isoI:ScopedIdentifier ;
+        isoI:hasScope      mdrItems:NS-ACME ;
+        isoI:identifier    "ACME Terminology" ;
+        isoI:version       1 ;
+        isoI:versionLabel  "0.1" .
+
+:MDRT-A00001  
+        a                       iso25964:ThesaurusConcept ;
+        iso25964:definition     "Additional Vital Sign Test Codes" ;
+        iso25964:extensible     "" ;
+        iso25964:identifier     "A00001" ;
+        iso25964:notation       "VSTEST" ;
+        iso25964:preferredTerm  "" ;
+        iso25964:synonym        "" ;
+        skos:inScheme           :TH-SPONSOR_CT-1 ;
+        skos:narrower           :MDRT-A00003 ;
+        skos:narrower           :MDRT-A00002 .
+
+:MDRT-A00002  
+        a                       iso25964:ThesaurusConcept ;
+        iso25964:definition     "APGAR Score" ;
+        iso25964:extensible     "" ;
+        iso25964:identifier     "A00002" ;
+        iso25964:notation       "APGAR" ;
+        iso25964:preferredTerm  "" ;
+        iso25964:synonym        "" .
+
+:MDRT-A00003  
+        a                       iso25964:ThesaurusConcept ;
+        iso25964:definition     "Mid upper arm circumference" ;
+        iso25964:extensible     "" ;
+        iso25964:identifier     "A00003" ;
+        iso25964:notation       "MUAC" ;
+        iso25964:preferredTerm  "" ;
+        iso25964:synonym        "" .
+
+

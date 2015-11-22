@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   end
   resources :forms do
     collection do
+      get :view
       get :placeholder_new
       get :bc_normal_new
       get :bc_log_new

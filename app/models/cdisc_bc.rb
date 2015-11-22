@@ -67,7 +67,7 @@ class CdiscBc
     useNs = ns || @@baseNs
     
     query = UriManagement.buildNs(useNs, ["cbc", "mdrItems", "isoI"]) +
-      "SELECT ?datatypeN ?datatypeRef ?propertyN ?simpleDatatypeN ?alias ?pText ?qText ?enabled ?collect ?valueN ?value WHERE\n" + 
+      "SELECT ?datatypeN ?datatypeRef ?propertyN ?simpleDatatypeN ?alias ?name ?pText ?qText ?enabled ?collect ?valueN ?value WHERE\n" + 
       "{ \n" + 
       " :" + id + " rdf:type cbc:BiomedicalConceptInstance . \n" +
       " :" + id + " (cbc:hasItem | cbc:hasDatatype )%2B ?datatypeN .\n" + 
@@ -76,6 +76,7 @@ class CdiscBc
       "   ?datatypeN (cbc:hasProperty | cbc:hasComplexDatatype )%2B ?propertyN . \n" + 
       "   OPTIONAL { \n" + 
       "     ?propertyN cbc:alias ?alias . \n" + 
+      "     ?propertyN cbc:name ?name . \n" + 
       "     ?propertyN cbc:hasSimpleDatatype ?simpleDatatypeN .\n" + 
       "     ?propertyN cbc:pText ?pText . \n" + 
       "     ?propertyN cbc:qText ?qText . \n" + 
@@ -104,6 +105,7 @@ class CdiscBc
       propertyNode = ModelUtility.getValue('propertyN', true, node)
       sdtNode = ModelUtility.getValue('simpleDatatypeN', true, node)
       aliasName = ModelUtility.getValue('alias', false, node)
+      name = ModelUtility.getValue('name', false, node)
       pText = ModelUtility.getValue('pText', false, node)
       qText = ModelUtility.getValue('pText', false, node)
       enabled = ModelUtility.getValue('enabled', false, node)
@@ -134,12 +136,13 @@ class CdiscBc
         end  
         properties[propertyCid] = property
         if value != ""
-          clHash = {:cCode => value, :clis => CdiscCli.allForCl(value, CdiscTerm.current)}
+          clHash = {:cCode => value, :clis => ThesaurusConcept.findByIdentifier(value, CdiscTerm.current.id, CdiscTerm.current.namespace)}
           values.push(clHash)
         end
         property[:Alias] = aliasName
-        property[:Collect] = collect
-        property[:Enabled] = enabled
+        property[:Name] = name
+        property[:Collect] = ModelUtility.toBoolean(collect)
+        property[:Enabled] = ModelUtility.toBoolean(enabled)
         property[:QuestionText] = qText
         property[:PromptText] = pText
         property[:Datatype] = getDatatype(dtRef,values.length)

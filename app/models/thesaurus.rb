@@ -177,12 +177,16 @@ class Thesaurus
     version = params[:version]
     versionLabel = params[:versionLabel]
     identifier = params[:identifier]
-
+    label = params[:label]
+    
     # Create the id for the form
     id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemType, version)
 
-    # Create the managed item for the thesaurus. The namespace id is a shortcut for the moment.
-    managedItem = ManagedItem.createLocal(id, {:version => version, :identifier => identifier, :versionLabel => versionLabel, :itemType => itemType, :namespaceId => "NS-ACME"}, useNs)
+    # Create the managed item for the thesaurus. 
+    managedItem = ManagedItem.createLocal(id, 
+      {:version => version, :identifier => identifier, :versionLabel => versionLabel, 
+        :itemType => itemType, :namespaceId => RegistrationAuthority.owner.namespace.id, :label => ""}, 
+      useNs)
 
     # Create the query
     update = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +

@@ -299,6 +299,27 @@ class Form
   def destroy
   end
 
+  def to_D3
+
+    result = Hash.new
+    result[:name] = self.id
+    result[:namespace] = self.namespace
+    result[:identifier] = self.id
+    result[:nodeType] = "form"
+    result[:children] = Array.new
+
+    ig = 0
+    self.groups.each do |key, group|
+      result[:children][ig] = Hash.new
+      result[:children][ig] = group.to_D3
+      ig += 1
+    end
+    result[:expansion] = Array.new
+    result[:expansion] = result[:children]
+    return result
+
+  end
+
 private
 
   def self.params_valid?(params, object)

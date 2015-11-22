@@ -246,6 +246,7 @@ if [ "$DB" = "$Fuseki" ]; then
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRForms.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sdtmig-3-1-2.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTMIG_3-1-2_V1.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_ACME_V1.ttl" $FileEndPoint
 else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/CT_V34.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/CT_V35.ttl $FileEndPoint
@@ -263,6 +264,7 @@ else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRForms.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/sdtmig3-1-2.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/SDTMIG_3-1-2_V1.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/CT_ACME_V1.ttl $FileEndPoint
 fi
 
 set +x

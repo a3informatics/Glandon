@@ -1,0 +1,278 @@
+# baseURI: http://www.assero.co.uk/MDRBCTs/V1
+# imports: http://www.assero.co.uk/ISO21090
+
+@prefix : <http://www.assero.co.uk/MDRBCTs/V1#> .
+@prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix mdrBridg: <http://www.assero.co.uk/MDRBRIDG#> .
+@prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
+@prefix mdrIso21090: <http://www.assero.co.uk/MDRISO21090#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/MDRBCTs/V1>
+	rdf:type owl:Ontology ;
+	owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
+.
+:BCT-BCT_Obs_PQR
+	rdf:type cbc:BiomedicalConceptTemplate ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_nameCode ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_targetAnatomicSiteCode ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_methodCode ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_bodyPositionCode ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_dateRange ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_negationReason ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_value ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_baselineIndicator ;
+	rdfs:label "Simple Observation PQR Biomedical Research Concept Template"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-BCT_Obs_PQR ;
+.
+mdrItems:SI-BCT_Obs_PQR
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "PQR BC Template"^^xsd:string ;
+	isoI:versionLabel "0.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+:BCT-BCT_Obs_PQR_nameCode
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:DefinedObservation ;
+	cbc:hasAttributeRef mdrBridg:DefinedObservation_nameCode ;
+	cbc:alias "Test"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-DefinedObservation_nameCode ;
+	cbc:hasDatatypeRef mdrIso21090:DT-CD ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_code ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_code
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD ;
+	cbc:alias "Test Code (--TESTCD)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_code_Value ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_code_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD ;
+	cbc:alias "Name"^^xsd:string ;
+	cbc:hasComplexDatatype :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText ;
+	cbc:hasDatatypeRef mdrIso21090:DT-CD ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED ;
+	cbc:alias "Test Name (--TEST)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value_Value ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_targetAnatomicSiteCode
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:DefinedObservation ;
+	cbc:hasAttributeRef mdrBridg:DefinedObservation_targetAnatomicSiteCode ;
+	cbc:alias "SiteOfAdministration"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_DefinedObservation_targetAnatomicSiteCode_CD ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_targetAnatomicSiteCode_CD
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-DefinedObservation_targetAnatomicSiteCode ;
+	cbc:hasDatatypeRef mdrIso21090:DT-CD ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_DefinedObservation_targetAnatomicSiteCode_CD_code ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_targetAnatomicSiteCode_CD_code
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_DefinedObservation_targetAnatomicSiteCode_CD ;
+	cbc:alias "Site Of Administration (--LOC)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_DefinedObservation_targetAnatomicSiteCode_CD_code_Value ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_targetAnatomicSiteCode_CD_code_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_methodCode
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:DefinedObservation ;
+	cbc:hasAttributeRef mdrBridg:DefinedObservation_methodCode ;
+	cbc:alias "Method"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_DefinedObservation_methodCode_CD ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_methodCode_CD
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-DefinedObservation_methodCode ;
+	cbc:hasDatatypeRef mdrIso21090:DT-CD ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_DefinedObservation_methodCode_CD_code ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_methodCode_CD_code
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_DefinedObservation_methodCode_CD ;
+	cbc:alias "Method (--METHOD)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_DefinedObservation_methodCode_CD_code_Value ;
+.
+:BCT-BCT_Obs_PQR_DefinedObservation_methodCode_CD_code_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_bodyPositionCode
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:PerformedObservation ;
+	cbc:hasAttributeRef mdrBridg:PerformedObservation_bodyPositionCode ;
+	cbc:alias "Position"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-PerformedObservation_bodyPositionCode ;
+	cbc:hasDatatypeRef mdrIso21090:DT-CD ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD_code ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD_code
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD ;
+	cbc:alias "Body Position (--POS)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD_code_Value ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD_code_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_dateRange
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:PerformedObservation ;
+	cbc:hasAttributeRef mdrBridg:PerformedObservation_dateRange ;
+	cbc:alias "DateTime"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-PerformedObservation_dateRange ;
+	cbc:hasDatatypeRef mdrIso21090:DT-IVL_TS_DATETIME ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME ;
+	cbc:alias "Date"^^xsd:string ;
+	cbc:hasComplexDatatype :BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low ;
+	cbc:hasDatatypeRef mdrIso21090:DT-IVL_TS_DATETIME ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME ;
+	cbc:alias "Date Time (--DTC)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value_Value ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_negationReason
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:PerformedObservation ;
+	cbc:hasAttributeRef mdrBridg:PerformedObservation_negationReason ;
+	cbc:alias "ReasonNotDone"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-PerformedObservation_negationReason ;
+	cbc:hasDatatypeRef mdrIso21090:DT-SC ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC ;
+	cbc:alias "Code"^^xsd:string ;
+	cbc:hasComplexDatatype :BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code_CD ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code_CD
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code ;
+	cbc:hasDatatypeRef mdrIso21090:DT-SC ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code_CD_code ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code_CD_code
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code_CD ;
+	cbc:alias "Reason Not Done (--REASND)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code_CD_code_Value ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_negationReason_SC_code_CD_code_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_value
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:PerformedClinicalResult ;
+	cbc:hasAttributeRef mdrBridg:PerformedClinicalResult_value ;
+	cbc:alias "Result"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR ;
+.
+:PerformedClinicalResult_value_PQR
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-PerformedClinicalResult_value ;
+	cbc:hasDatatypeRef mdrIso21090:DT-PQR ;
+	cbc:hasProperty :PerformedClinicalResult_value_PQR_value ;
+	cbc:hasProperty :PerformedClinicalResult_value_PQR_code ;
+.
+:PerformedClinicalResult_value_PQR_value
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :PerformedClinicalResult_value_PQR ;
+	cbc:alias "Result Value (--ORRES)"^^xsd:string ;
+	cbc:hasSimpleDatatype :PerformedClinicalResult_value_PQR_value_Value ;
+.
+:PerformedClinicalResult_value_PQR_value_Value
+	rdf:type cbc:PropertyValue ;
+.
+:PerformedClinicalResult_value_PQR_code
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :PerformedClinicalResult_value_PQR ;
+	cbc:alias "Result Units (--ORRESU)"^^xsd:string ;
+	cbc:hasSimpleDatatype :PerformedClinicalResult_value_PQR_code_Value ;
+.
+:PerformedClinicalResult_value_PQR_code_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_baselineIndicator
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:PerformedClinicalResult ;
+	cbc:hasAttributeRef mdrBridg:PerformedClinicalResult_baselineIndicator ;
+	cbc:alias "Baseline"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_PerformedClinicalResult_baselineIndicator_BL ;
+.
+:BCT-BCT_Obs_PQR_PerformedClinicalResult_baselineIndicator_BL
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-PerformedClinicalResult_baselineIndicator ;
+	cbc:hasDatatypeRef mdrIso21090:DT-BL ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedClinicalResult_baselineIndicator_BL_value ;
+.
+:BCT-BCT_Obs_PQR_PerformedClinicalResult_baselineIndicator_BL_value
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedClinicalResult_baselineIndicator_BL ;
+	cbc:alias "Baseline (--BLFL)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_PerformedClinicalResult_baselineIndicator_BL_value_Value ;
+.
+:BCT-BCT_Obs_PQR_PerformedClinicalResult_baselineIndicator_BL_value_Value
+	rdf:type cbc:PropertyValue ;
+.

@@ -9,6 +9,7 @@
 				<th>Internal Version</th>
 				<th>Version</th>
 				<th></th>
+				<th></th>
 		  	</tr>
 	  	</thead>
 	  	<tbody>
@@ -19,12 +20,13 @@
 					<td><%= form.owner %></td>
 					<td><%= form.version %></td>
 					<td><%= form.versionLabel %></td>
-					<td><%= link_to "Show", form_path(:id => form.id, :namespace => form.namespace), :class => "btn btn-primary" %></td>
+					<td><%= link_to "Show", form_path(:id => form.id, :namespace => form.namespace), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "View", view_forms_path(:id => form.id, :namespace => form.namespace), :class => "btn btn-primary btn-xs" %></td>
 		  		</tr>
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "New Form", new_form_path, :class => "btn btn-success" %>
+	<!-- <%= link_to "New Form", new_form_path, :class => "btn btn-success" %>-->
 	<%= link_to "New Placeholder Form", placeholder_new_forms_path, :class => "btn btn-success" %>
 	<%= link_to "New Normal BC Form", bc_normal_new_forms_path, :class => "btn btn-success" %>
 	<%= link_to "New Log Line BC Form", bc_log_new_forms_path, :class => "btn btn-success" %>

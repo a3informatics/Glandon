@@ -98,4 +98,11 @@ module ModelUtility
     end
   end
   
+  def ModelUtility.toBoolean(value)
+    if value == "true"
+      return true
+    else
+      return false
+    end
+  end
 end

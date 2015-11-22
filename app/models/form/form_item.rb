@@ -252,14 +252,15 @@ class Form::FormItem
   def self.create_bc_normal(groupId, ns, cidPrefix, ordinal, version, bc, propertyId)
 
     id = ModelUtility.buildCid(C_CID_PREFIX, cidPrefix + C_ID_SEPARATOR + ordinal.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
+    name = bc.properties[propertyId][:Name]
+    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
     update = UriManagement.buildNs(ns, ["bf"]) +
       "INSERT DATA \n" +
       "{ \n" +
       " :" + id + " rdf:type bf:bcBased . \n" +
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:name \"Item " + ordinal.to_s + "\"^^xsd:string . \n" +
+      " :" + id + " bf:name \"" + name + "\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
       " :" + id + " bf:hasProperty " + ModelUtility::buildUri(bc.namespace, propertyId) + " . \n" +
@@ -297,6 +298,19 @@ class Form::FormItem
   end
 
   def destroy
+  end
+
+  def to_D3
+
+    result = Hash.new
+    if bc.properties[bcPropertyId][:Enabled]
+      result[:name] = self.name
+      result[:identifier] = self.id
+      result[:nodeType] = "item"
+      result[:item] = self.to_json
+    end
+    return result
+
   end
 
 private

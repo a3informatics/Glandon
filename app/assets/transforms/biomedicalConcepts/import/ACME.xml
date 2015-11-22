@@ -35,6 +35,8 @@
 				<Property Alias="Result Units (--ORRESU)" Name="code">
 					<Value>C49668</Value>
 					<Value>C48500</Value>
+					<Value>C41139</Value>
+					<Value>C71253</Value>
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
@@ -80,6 +82,96 @@
 				<Property Alias="Result Units (--ORRESU)" Name="code">
 					<Value>C28252</Value>
 					<Value>C48531</Value>
+					<Value>C48155</Value>
+					<Value>C48519</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="BC C16358_S" Name="Body Mass Index Biomedical Concept">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Alias="Test Code (--TESTCD)" Name="code">
+					<Value>C16358</Value>
+				</Property>
+				<Property Alias="Name" Name="originalText">
+					<Property Alias="Test Name (--TEST)" Name="value">
+						<Value>C16358</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Alias="Location (--LOC)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Alias="Method Code (--METHOD)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Alias="Date" Name="low">
+					<Property Alias="Result Value (--ORRES)" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Alias="Code" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Alias="Result Units (--ORRESU)" Name="code">
+					<Value>C49671</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Alias="Baseline (--BLFL)"  Name="value">
+					<Value>C49487</Value>
+					<Value>C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="BC C49673_S" Name="Beats per Min Biomedical Concept">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Alias="Test Code (--TESTCD)" Name="code">
+					<Value>C49673</Value>
+				</Property>
+				<Property Alias="Name" Name="originalText">
+					<Property Alias="Test Name (--TEST)" Name="value">
+						<Value>C49683</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Alias="Location (--LOC)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Alias="Method Code (--METHOD)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Alias="Date" Name="low">
+					<Property Alias="Result Value (--ORRES)" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Alias="Code" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Alias="Result Units (--ORRESU)" Name="code">
+					<Value>C49673</Value>
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">

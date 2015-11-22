@@ -187,10 +187,12 @@ class Form::FormGroup
     itemOrdinal = 1
     bc.properties.each do |property_id, property|
       ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add item for Group=" + property_id)
-      item = Form::FormItem.create_bc_normal(id, ns, itemCidPrefix, itemOrdinal, version, bc, property_id)
-      itemOrdinal += 1
-      items[item.id] = item
-      insertSparql = insertSparql + " :" + id + " bf:hasNode :" + item.id + " . \n"
+      if property[:Enabled]
+        item = Form::FormItem.create_bc_normal(id, ns, itemCidPrefix, itemOrdinal, version, bc, property_id)
+        itemOrdinal += 1
+        items[item.id] = item
+        insertSparql = insertSparql + " :" + id + " bf:hasNode :" + item.id + " . \n"
+      end
     end
       
 
@@ -200,7 +202,7 @@ class Form::FormGroup
       " :" + id + " rdf:type bf:Group . \n" +
       " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:name \"" + bc.identifier + "\"^^xsd:string . \n" +
+      " :" + id + " bf:name \"" + bc.label + "\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
       insertSparql + 
@@ -214,7 +216,7 @@ class Form::FormGroup
     if response.success?
       object = self.new
       object.id = id
-      object.name = "Placeholder"
+      object.name = bc.label
       object.optional = false
       object.repeating = false
       object.note = ""
@@ -236,5 +238,26 @@ class Form::FormGroup
 
   def destroy
   end
-  
+ 
+  def to_D3
+
+    result = Hash.new
+    result[:name] = self.name
+    result[:identifier] = self.id
+    result[:group] = self.to_json
+    result[:nodeType] = "group"
+    result[:children] = Array.new
+
+    ii = 0
+    self.items.each do |key, item|
+      result[:children][ii] = Hash.new
+      result[:children][ii] = item.to_D3
+      ii += 1
+    end
+    result[:expansion] = Array.new
+    result[:expansion] = result[:children]
+    return result
+
+  end
+
 end

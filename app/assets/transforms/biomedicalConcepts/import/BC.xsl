@@ -284,6 +284,8 @@
         
         <xsl:variable name="PropertyName" select="string(@Name)"/>
         <xsl:variable name="PropertyAlias" select="string(@Alias)"/>
+        <xsl:variable name="PropertyEnabled" select="string(@Enabled)"/>
+        <xsl:variable name="PropertyCollect" select="string(@Collect)"/>
         <xsl:variable name="PropertyNode" select="."/>
         
         <xsl:variable name="Datatype" select="$DatatypeDocument/ISO21090DataTypes/ISO21090DataType[@Name=$pDatatype]"/>
@@ -304,6 +306,10 @@
                     </xsl:call-template>
                     <xsl:call-template name="PredicateObject"> 
                         <xsl:with-param name="pPredicateName" select="'cbc:alias'" /> 
+                        <xsl:with-param name="pObjectName" select="concat($quote,$PropertyAlias,$quote,'^^xsd:string')" /> 
+                    </xsl:call-template>
+                    <xsl:call-template name="PredicateObject"> 
+                        <xsl:with-param name="pPredicateName" select="'cbc:name'" /> 
                         <xsl:with-param name="pObjectName" select="concat($quote,$PropertyAlias,$quote,'^^xsd:string')" /> 
                     </xsl:call-template>
                     <xsl:variable name="PropertyDatatype" select="string(./@DataType)"/>
@@ -332,11 +338,11 @@
                             </xsl:call-template>
                             <xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="'cbc:enabled'" /> 
-                                <xsl:with-param name="pObjectName" select="concat($quote,'true',$quote,'^^xsd:boolean')" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$PropertyEnabled,$quote,'^^xsd:boolean')" /> 
                             </xsl:call-template>
                             <xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="'cbc:collect'" /> 
-                                <xsl:with-param name="pObjectName" select="concat($quote,'true',$quote,'^^xsd:boolean')" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$PropertyCollect,$quote,'^^xsd:boolean')" /> 
                             </xsl:call-template>
                             
                             <xsl:call-template name="SubjectEnd"/> 

@@ -4,7 +4,7 @@
     <%= raw @thesaurus.to_D3.to_json %>
 </script>
 <%= javascript_include_tag 'thesauri_editor' %>
-<div class="col-md-7" style="padding-right:20px; border-right: 1px solid #ccc;">
+<div class="col-md-9" style="padding-right:20px; border-right: 1px solid #ccc;">
 	<h3>Thesauri Editor</h3>
     <!--<div id="debug">
         <%= raw @thesaurus.to_D3.to_json %>
@@ -24,10 +24,11 @@
                     <tbody>
                         <tr>
                             <td><strong>Identifier:</strong> <%= @thesaurus.identifier %></td>
-                            <td><strong>CID:</strong> <%= @thesaurus.id %></td>
                         </tr>
                         <tr>
                             <td><strong>Version Label:</strong> <%= @thesaurus.versionLabel %></td>
+                        </tr>
+                        <tr>
                             <td><strong>Version:</strong> <%= @thesaurus.version %></td>
                         </tr>
                     </tbody>

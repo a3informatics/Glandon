@@ -132,66 +132,66 @@ class ThesaurusConcept
   end
 
   # Find all the lower level items for a given top-level identifier
-  #def self.findByIdentifier(identifier, termId, ns=nil)
+  def self.findByIdentifier(identifier, termId, ns=nil)
   #  
   #  ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","identifier=" + identifier)
   #  ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","ns=" + ns)
-  #  results = Array.new
-  #  
-  #  # Create the query
-  #  useNs = ns || @@baseNs
-  #  query = UriManagement.buildNs(useNs, ["iso25964"]) +
-  #    "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
-  #    "{ \n" +
-  #    "	 ?a iso25964:identifier \"" + identifier + "\"^^xsd:string . \n" +
-  #    "  ?g skos:narrower ?a . \n" +
-  #    "  ?g skos:inScheme :" + termId + " . \n" +
-  #    "	 ?a iso25964:notation ?b . \n" +
-  #    "	 ?a iso25964:preferredTerm ?c . \n" +
-  #    "	 ?a iso25964:synonym ?d . \n" +
-  #    "	 ?a iso25964:definition ?f . \n" +
-  #    "	 OPTIONAL\n" +
-  #    "  {\n" +
-  #    "    ?a iso25964:extensible ?e . \n" +
-  #    "  }\n" +
-  #    "}"
-  #  
-  #  # Send the request, wait the resonse
-  #  response = CRUD.query(query)
-  #  
-  #  # Process the response
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  xmlDoc.xpath("//result").each do |node|
-  #    uriSet = node.xpath("binding[@name='a']/uri")
-  #    nSet = node.xpath("binding[@name='b']/literal")
-  #    ptSet = node.xpath("binding[@name='c']/literal")
-  #    sSet = node.xpath("binding[@name='d']/literal")
-  #    eSet = node.xpath("binding[@name='e']/literal")
-  #    dSet = node.xpath("binding[@name='f']/literal")
-  #    if uriSet.length == 1
-  #      ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","uri=" + uriSet[0].text)
-  #      object = self.new 
-  #      object.id = ModelUtility.extractCid(uriSet[0].text)
-  #      object.identifier = identifier
-  #      object.notation = nSet[0].text
-  #      object.preferredTerm = ptSet[0].text
-  #      object.synonym = sSet[0].text
-  #      object.definition = dSet[0].text
-  #      object.topLevel = false
-  #      if eSet.length == 1
-  #        object.extensible = eSet[0].text
-  #      else
-  #        object.extensible = ""
-  #      end 
-  #      results.push(object) 
-  #    end
-  #  end
-  #  
-  #  # Return
-  #  return results
-  #  
-  #end
+    results = Hash.new
+    
+    # Create the query
+    useNs = ns || @@baseNs
+    query = UriManagement.buildNs(useNs, ["iso25964"]) +
+      "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
+      "{ \n" +
+      "	 ?a iso25964:identifier \"" + identifier + "\"^^xsd:string . \n" +
+      "  ?g skos:narrower ?a . \n" +
+      "  ?g skos:inScheme :" + termId + " . \n" +
+      "	 ?a iso25964:notation ?b . \n" +
+      "	 ?a iso25964:preferredTerm ?c . \n" +
+      "	 ?a iso25964:synonym ?d . \n" +
+      "	 ?a iso25964:definition ?f . \n" +
+      "	 OPTIONAL\n" +
+      "  {\n" +
+      "    ?a iso25964:extensible ?e . \n" +
+      "  }\n" +
+      "}"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uriSet = node.xpath("binding[@name='a']/uri")
+      nSet = node.xpath("binding[@name='b']/literal")
+      ptSet = node.xpath("binding[@name='c']/literal")
+      sSet = node.xpath("binding[@name='d']/literal")
+      eSet = node.xpath("binding[@name='e']/literal")
+      dSet = node.xpath("binding[@name='f']/literal")
+      if uriSet.length == 1
+        ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","uri=" + uriSet[0].text)
+        object = self.new 
+        object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.identifier = identifier
+        object.notation = nSet[0].text
+        object.preferredTerm = ptSet[0].text
+        object.synonym = sSet[0].text
+        object.definition = dSet[0].text
+        object.topLevel = false
+        if eSet.length == 1
+          object.extensible = eSet[0].text
+        else
+          object.extensible = ""
+        end 
+        results[object.id] = object
+      end
+    end
+    
+    # Return
+    return results
+    
+  end
   
   def self.all()
     
