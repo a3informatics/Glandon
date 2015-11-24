@@ -1,0 +1,32 @@
+<h3>Add Biomedical Concepts</h3>
+<%= form_for @domain, :url => update_add_domains_path(:id => @domain.id, :namespace => @domain.namespace), :method => :post do |f| %>
+	<div class="row">
+		<div class="col-md-12">
+		  	<table id="main" class="table table-striped table-bordered table-condensed">
+		  		<thead>
+		  			<tr>
+		    			<th>Identifer</th>
+						<th>Label</th>
+						<th>Owner</th>
+						<th>Internal Version</th>
+						<th>Version</th>
+						<th>Select</th>
+		  			</tr>
+		  		</thead>
+		  		<tbody>
+		  			<% @bcs.each do |bcId, bc| %>
+			  			<tr>
+			    			<td><%= bc.identifier %></td>
+							<td><%= bc.label %></td>
+							<td><%= bc.owner %></td>
+							<td><%= bc.version %></td>
+							<td><%= bc.versionLabel %></td>
+							<td><%= check_box_tag "domain[bcs][]", [bc.id + "|" + bc.namespace] %></td>
+			  			</tr>
+			  		<% end %>
+			  	</tbody>
+			</table>
+		</div>
+	</div>
+	<%= f.submit "Add", class: "btn btn-default btn-primary" %>
+<% end %>

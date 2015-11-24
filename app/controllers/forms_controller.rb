@@ -58,6 +58,10 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id], params[:namespace])
   end
   
+  def acrf
+    @form = Form.find(params[:id], params[:namespace])
+  end
+
 private
   def the_params
     params.require(:form).permit(:formId, :namespace, :freeText, :identifier, :itemType, :bcs => [])

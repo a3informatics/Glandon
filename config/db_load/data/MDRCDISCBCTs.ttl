@@ -21,6 +21,8 @@
 	cbc:hasItem :BCT-BCT_Obs_PQR_nameCode ;
 	cbc:hasItem :BCT-BCT_Obs_PQR_targetAnatomicSiteCode ;
 	cbc:hasItem :BCT-BCT_Obs_PQR_methodCode ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_bodyPositionCode ;
+	cbc:hasItem :BCT-BCT_Obs_PQR_targetAnatomicSiteLateralityCode ;
 	cbc:hasItem :BCT-BCT_Obs_PQR_dateRange ;
 	cbc:hasItem :BCT-BCT_Obs_PQR_negationReason ;
 	cbc:hasItem :BCT-BCT_Obs_PQR_value ;
@@ -124,6 +126,52 @@ mdrItems:SI-BCT_Obs_PQR
 	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_DefinedObservation_methodCode_CD_code_Value ;
 .
 :BCT-BCT_Obs_PQR_DefinedObservation_methodCode_CD_code_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_bodyPositionCode
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:PerformedObservation ;
+	cbc:hasAttributeRef mdrBridg:PerformedObservation_bodyPositionCode ;
+	cbc:alias "Position"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-PerformedObservation_bodyPositionCode ;
+	cbc:hasDatatypeRef mdrIso21090:DT-CD ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD_code ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD_code
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD ;
+	cbc:alias "Body Position (--POS)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD_code_Value ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_bodyPositionCode_CD_code_Value
+	rdf:type cbc:PropertyValue ;
+.
+:BCT-BCT_Obs_PQR_targetAnatomicSiteLateralityCode
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_Obs_PQR ;
+	cbc:hasClassRef mdrBridg:PerformedObservation ;
+	cbc:hasAttributeRef mdrBridg:PerformedObservation_targetAnatomicSiteLateralityCode ;
+	cbc:alias "Laterality"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_Obs_PQR_PerformedObservation_targetAnatomicSiteLateralityCode_CD ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_targetAnatomicSiteLateralityCode_CD
+	rdf:type cbc:Datatype ;
+	cbc:isDatatypeOf :BCT-PerformedObservation_targetAnatomicSiteLateralityCode ;
+	cbc:hasDatatypeRef mdrIso21090:DT-CD ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code
+	rdf:type cbc:Property ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedObservation_targetAnatomicSiteLateralityCode_CD ;
+	cbc:alias "Laterality (--LAT)"^^xsd:string ;
+	cbc:hasSimpleDatatype :BCT-BCT_Obs_PQR_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code_Value ;
+.
+:BCT-BCT_Obs_PQR_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code_Value
 	rdf:type cbc:PropertyValue ;
 .
 :BCT-BCT_Obs_PQR_dateRange

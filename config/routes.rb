@@ -60,13 +60,21 @@ Rails.application.routes.draw do
       post :placeholder_create
       post :bc_normal_create
       post :bc_log_create
+      get :acrf
     end
   end
   namespace :forms do
     resources :form_groups
     resources :form_items
   end
-  resources :domains
+  resources :domains do
+    collection do
+      get :add
+      get :remove
+      post :update_add
+      post :update_remove
+    end
+  end
   namespace :domains do
     resources :variables
   end

@@ -67,7 +67,7 @@ class CdiscBc
     useNs = ns || @@baseNs
     
     query = UriManagement.buildNs(useNs, ["cbc", "mdrItems", "isoI"]) +
-      "SELECT ?datatypeN ?datatypeRef ?propertyN ?simpleDatatypeN ?alias ?name ?pText ?qText ?enabled ?collect ?valueN ?value WHERE\n" + 
+      "SELECT ?datatypeN ?datatypeRef ?propertyN ?simpleDatatypeN ?alias ?name ?pText ?qText ?enabled ?collect ?bridg ?valueN ?value WHERE\n" + 
       "{ \n" + 
       " :" + id + " rdf:type cbc:BiomedicalConceptInstance . \n" +
       " :" + id + " (cbc:hasItem | cbc:hasDatatype )%2B ?datatypeN .\n" + 
@@ -82,6 +82,7 @@ class CdiscBc
       "     ?propertyN cbc:qText ?qText . \n" + 
       "     ?propertyN cbc:enabled ?enabled . \n" + 
       "     ?propertyN cbc:collect ?collect . \n" + 
+      "     ?propertyN cbc:bridgPath ?bridg . \n" + 
       "   }\n" + 
       "   OPTIONAL { \n" + 
       "     ?propertyN (cbc:hasSimpleDatatype | cbc:nextValue)%2B ?valueN .\n" + 
@@ -112,6 +113,7 @@ class CdiscBc
       collect = ModelUtility.getValue('collect', false, node)
       vNode = ModelUtility.getValue('valueN', true, node)
       value = ModelUtility.getValue('value', false, node)
+      bridg = ModelUtility.getValue('bridg', false, node)
       ConsoleLogger::log(C_CLASS_NAME,"find","sdtNode=" + sdtNode)  
       if sdtNode != ""
         ConsoleLogger::log(C_CLASS_NAME,"find","Found")
@@ -139,6 +141,7 @@ class CdiscBc
           clHash = {:cCode => value, :clis => ThesaurusConcept.findByIdentifier(value, CdiscTerm.current.id, CdiscTerm.current.namespace)}
           values.push(clHash)
         end
+        property[:id] = propertyCid
         property[:Alias] = aliasName
         property[:Name] = name
         property[:Collect] = ModelUtility.toBoolean(collect)
@@ -148,6 +151,7 @@ class CdiscBc
         property[:Datatype] = getDatatype(dtRef,values.length)
         property[:Values] = values
         property[:Format] = getFormat(property[:Datatype])
+        property[:bridgPath] = bridg
       end
     end
     return object  

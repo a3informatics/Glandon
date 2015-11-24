@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" FileOID="XXX" FileType="Snapshot" Granularity="Metadata" CreationDateTime="2014-01-01T12:00:00">
+  <Study OID="aCRF Example">
+    <GlobalVariables>
+      <StudyName>aCRF Example</StudyName>
+      <StudyDescription>aCRF Example</StudyDescription>
+      <ProtocolName>Not applicable</ProtocolName>
+    </GlobalVariables>
+    <BasicDefinitions/>
+    <MetaDataVersion OID="V001" Name="aCRF Metadata Example">
+      <Protocol>
+        <StudyEventRef StudyEventOID="SE.001" OrderNumber="1" Mandatory="Yes"/>
+      </Protocol>
+      <StudyEventDef OID="SE.001" Name="???" Repeating="No" Type="Scheduled">
+        <FormRef FormOID="http://www.assero.co.uk/MDRForms/V1#F-VS"/>
+      </StudyEventDef>
+      <FormDef OID="http://www.assero.co.uk/MDRForms/V1#F-VS" Name="">
+        <ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/V1#FG-Height"/>
+        <ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/V1#FG-Weight"/>
+      </FormDef>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/V1#FG-Height" Name="">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_PerformedClinicalResult_value_PQR_value"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_PerformedClinicalResult_value_PQR_code"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/V1#FG-Weight" Name="">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_PerformedClinicalResult_value_PQR_value"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_PerformedClinicalResult_value_PQR_code"/>
+      </ItemGroupDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_PerformedClinicalResult_value_PQR_value" SDSVarName="VSORRES where VSTESTCD=">
+        <Question>
+          <TranslatedText xml:lang="en">Result Value (--ORRES)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_PerformedClinicalResult_value_PQR_code" SDSVarName="VSORRESU where =">
+        <Question>
+          <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_PerformedClinicalResult_value_PQR_value" SDSVarName=" where =">
+        <Question>
+          <TranslatedText xml:lang="en"/>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_PerformedClinicalResult_value_PQR_code" SDSVarName=" where =">
+        <Question>
+          <TranslatedText xml:lang="en"/>
+        </Question>
+      </ItemDef>
+    </MetaDataVersion>
+  </Study>
+</ODM>

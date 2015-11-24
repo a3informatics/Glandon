@@ -6,7 +6,7 @@
 
 @prefix : <http://www.assero.co.uk/MDRForms/V1#> .
 @prefix items: <http://www.assero.co.uk/MDRItems#> .
-@prefix MDRBcs: <http://www.assero.co.uk/MDRBcs/V1#> .
+@prefix MDRBcs: <http://www.assero.co.uk/MDRBCs/V1#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
@@ -58,7 +58,7 @@ items:RS-VS-1 rdf:type isoR:RegistrationStatus ;
   rdf:type bf:Group ;
   bf:hasNode :FI-Height_Result ;
   bf:hasNode :FI-Height_Units ;
-  bf:isGroupOf :F-VS-1 ;
+  bf:isGroupOf :F-VS ;
 	bf:name "Height"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Height note."^^xsd:string ;
@@ -69,7 +69,7 @@ items:RS-VS-1 rdf:type isoR:RegistrationStatus ;
   rdf:type bf:Group ;
   bf:hasNode :FI-Weight_Result ;
   bf:hasNode :FI-Weight_Units ;
-  bf:isGroupOf :F-VS-1 ;
+  bf:isGroupOf :F-VS ;
 	bf:name "Weight"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Weight note."^^xsd:string ;

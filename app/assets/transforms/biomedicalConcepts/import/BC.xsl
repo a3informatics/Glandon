@@ -14,6 +14,7 @@
     <xsl:variable name="URIPrefix">BC</xsl:variable>
     <xsl:variable name="MainSeparator">-</xsl:variable>
     <xsl:variable name="MinorSeparator">_</xsl:variable>
+    <xsl:variable name="PathSeparator">.</xsl:variable>
     <xsl:variable name="BRIDGDocument" select="document('../../bridg/import/bridg.xml')"/>
     <xsl:variable name="DatatypeDocument" select="document('../../iso21090/import/iso21090.xml')"/>
     
@@ -163,6 +164,7 @@
     <xsl:template match="Class">
         
         <xsl:param name="pPrefix"/>
+        <xsl:variable name="BRIDGPath" select="@Name"/>
         
         <xsl:for-each select="Attribute">
             <xsl:call-template name="Subject"> 
@@ -203,6 +205,7 @@
                                         <xsl:with-param name="pPrefix" select="$pPrefix" />
                                         <xsl:with-param name="pClassName" select="$ClassName" />
                                         <xsl:with-param name="pDatatype" select="string(./@Datatype)" />
+                                        <xsl:with-param name="pBRIDGPath" select="$BRIDGPath" />
                                     </xsl:call-template>
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -215,6 +218,7 @@
                                         <xsl:with-param name="pPrefix" select="$pPrefix" />
                                         <xsl:with-param name="pClassName" select="$ClassName" />
                                         <xsl:with-param name="pDatatype" select="$BRIDGDatatype" />
+                                        <xsl:with-param name="pBRIDGPath" select="$BRIDGPath" />
                                     </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -234,9 +238,12 @@
     </xsl:template>
 
     <xsl:template match="Attribute">
+        
         <xsl:param name="pPrefix" /> 
         <!--<xsl:param name="pClass" />--> 
         <xsl:param name="pDatatype" /> 
+        <xsl:param name="pBRIDGPath"/>
+        
         <xsl:variable name="FixedDatatype">
             <xsl:call-template name="extractBRIDGDatatype2">
                 <xsl:with-param name="pType" select="$pDatatype"/>
@@ -271,6 +278,7 @@
             <xsl:with-param name="pAttribute" select="@Name" />
             <xsl:with-param name="pDatatype" select="$FixedDatatype" />
             <xsl:with-param name="pPrefix" select="$Prefix" /> 
+            <xsl:with-param name="pBRIDGPath" select="concat($pBRIDGPath,$PathSeparator,@Name,$PathSeparator,$pDatatype)" /> 
         </xsl:apply-templates>
     </xsl:template>
     
@@ -281,6 +289,7 @@
         <xsl:param name="pAttribute" /> 
         <xsl:param name="pDatatype" /> 
         <xsl:param name="pPrefix" /> 
+        <xsl:param name="pBRIDGPath"/>
         
         <xsl:variable name="PropertyName" select="string(@Name)"/>
         <xsl:variable name="PropertyAlias" select="string(@Alias)"/>
@@ -345,6 +354,13 @@
                                 <xsl:with-param name="pObjectName" select="concat($quote,$PropertyCollect,$quote,'^^xsd:boolean')" /> 
                             </xsl:call-template>
                             
+                            <!-- BRIDG Path -->
+                            <xsl:call-template name="PredicateObject"> 
+                                <xsl:with-param name="pPredicateName" select="'cbc:bridgPath'" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$pBRIDGPath,$PathSeparator,@Name,$quote,'^^xsd:string')"/>
+                            </xsl:call-template>
+                            
+                            <!-- And finish -->
                             <xsl:call-template name="SubjectEnd"/> 
                             
                             <!-- Values -->
@@ -393,7 +409,8 @@
                                 <!--<xsl:with-param name="pClass" select="$pClass" />-->
                                 <xsl:with-param name="pAttribute" select="$pAttribute" />
                                 <xsl:with-param name="pDatatype" select="$FixedDatatype" />
-                                <xsl:with-param name="pPrefix" select="$NextPrefix" /> 
+                                <xsl:with-param name="pPrefix" select="$NextPrefix" />
+                                <xsl:with-param name="pBRIDGPath" select="concat($pBRIDGPath,$PathSeparator,$PropertyName,$PathSeparator,$FixedDatatype)"/>
                             </xsl:apply-templates>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -445,6 +462,7 @@
         <xsl:param name="pDatatype"/>
         <xsl:param name="pPrefix"/>
         <xsl:param name="pClassName"/>
+        <xsl:param name="pBRIDGPath"/>
         
         <xsl:call-template name="PredicateObject"> 
             <xsl:with-param name="pPredicateName" select="'cbc:hasDatatype'" /> 
@@ -454,6 +472,7 @@
         <xsl:apply-templates select=".">
             <xsl:with-param name="pPrefix" select="concat($pPrefix,$MinorSeparator,$pClassName)" />
             <xsl:with-param name="pDatatype" select="$pDatatype" />
+            <xsl:with-param name="pBRIDGPath" select="$pBRIDGPath" />
         </xsl:apply-templates>
         
     </xsl:template>

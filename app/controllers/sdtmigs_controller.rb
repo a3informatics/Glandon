@@ -33,7 +33,7 @@ class SdtmigsController < ApplicationController
   
 private
   def this_params
-    params.require(:sdtmig).permit({:files => []}, :version, )
+    params.require(:sdtmig).permit({:files => []}, :versionLabel, )
   end
 
 end

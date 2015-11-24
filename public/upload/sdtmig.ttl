@@ -4,7 +4,7 @@
 # imports: http://www.assero.co.uk/BusinessStandard
 
 @prefix : <http://www.assero.co.uk/MDRStandards//V1#> .
-@prefix mdrDomainsV1: <http://www.assero.co.uk/MDRStandards//Domain/V1#> .
+@prefix mdrDomainsV1: <http://www.assero.co.uk/MDRDomains//V1#> .
 @prefix isoB: <http://www.assero.co.uk/ISO11179Basic#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
@@ -23,496 +23,432 @@
 	owl:imports <http://www.assero.co.uk/BusinessDomain> ;
 	owl:imports <http://www.assero.co.uk/BusinessStandard> ;
 .
-:STD-CDISC_SDTM_IG
+:STD-SDTM_IG
 	rdf:type bs:SDTMIG ;
-	bo:name "CDISC SDTM Implementation Guide"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-CDISC_SDTM_IG-1 ;
-	bs:composedOf mdrDomainsV1:D-AE ;
-	bs:composedOf mdrDomainsV1:D-CE ;
-	bs:composedOf mdrDomainsV1:D-CM ;
-	bs:composedOf mdrDomainsV1:D-CO ;
-	bs:composedOf mdrDomainsV1:D-DA ;
-	bs:composedOf mdrDomainsV1:D-DM ;
-	bs:composedOf mdrDomainsV1:D-DS ;
-	bs:composedOf mdrDomainsV1:D-DV ;
-	bs:composedOf mdrDomainsV1:D-EG ;
-	bs:composedOf mdrDomainsV1:D-EX ;
-	bs:composedOf mdrDomainsV1:D-FA ;
-	bs:composedOf mdrDomainsV1:D-IE ;
-	bs:composedOf mdrDomainsV1:D-LB ;
-	bs:composedOf mdrDomainsV1:D-MB ;
-	bs:composedOf mdrDomainsV1:D-MH ;
-	bs:composedOf mdrDomainsV1:D-MS ;
-	bs:composedOf mdrDomainsV1:D-PC ;
-	bs:composedOf mdrDomainsV1:D-PE ;
-	bs:composedOf mdrDomainsV1:D-PP ;
-	bs:composedOf mdrDomainsV1:D-QS ;
-	bs:composedOf mdrDomainsV1:D-RELREC ;
-	bs:composedOf mdrDomainsV1:D-SC ;
-	bs:composedOf mdrDomainsV1:D-SE ;
-	bs:composedOf mdrDomainsV1:D-SU ;
-	bs:composedOf mdrDomainsV1:D-SUPPQUAL ;
-	bs:composedOf mdrDomainsV1:D-SV ;
-	bs:composedOf mdrDomainsV1:D-TA ;
-	bs:composedOf mdrDomainsV1:D-TE ;
-	bs:composedOf mdrDomainsV1:D-TI ;
-	bs:composedOf mdrDomainsV1:D-TS ;
-	bs:composedOf mdrDomainsV1:D-TV ;
-	bs:composedOf mdrDomainsV1:D-VS ;
+	rdfs:label "SDTM Implementation Guide"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-SDTM_IG-1 ;
 .
-mdrItems:SI-CDISC_SDTM_IG-1
+mdrItems:SI-SDTM_IG-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM Implementation Guide"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM IG"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-AE
 	rdf:type bd:Domain ;
-	bo:name "AE"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Adverse Events"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_AE-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.AE> ;
 .
 mdrItems:SI-DOMAIN_AE-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM AE Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM AE Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-CE
 	rdf:type bd:Domain ;
-	bo:name "CE"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Clinical Events"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_CE-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.CE> ;
 .
 mdrItems:SI-DOMAIN_CE-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM CE Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-CDISC ;
-.
-mdrDomainsV1:D-CM
-	rdf:type bd:Domain ;
-	bo:name "CM"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-DOMAIN_CM-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
-.
-mdrItems:SI-DOMAIN_CM-1
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM CM Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM CE Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-CO
 	rdf:type bd:Domain ;
-	bo:name "CO"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Comments"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_CO-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.CO> ;
 .
 mdrItems:SI-DOMAIN_CO-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM CO Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM CO Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
-mdrDomainsV1:D-DA
+mdrDomainsV1:D-CM
 	rdf:type bd:Domain ;
-	bo:name "DA"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-DOMAIN_DA-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	rdfs:label "Concomitant Medications"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-DOMAIN_CM-1 ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.CM> ;
 .
-mdrItems:SI-DOMAIN_DA-1
+mdrItems:SI-DOMAIN_CM-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM DA Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM CM Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-DM
 	rdf:type bd:Domain ;
-	bo:name "DM"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Demographics"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_DM-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.DM> ;
 .
 mdrItems:SI-DOMAIN_DM-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM DM Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM DM Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-DS
 	rdf:type bd:Domain ;
-	bo:name "DS"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Disposition"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_DS-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.DS> ;
 .
 mdrItems:SI-DOMAIN_DS-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM DS Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM DS Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
-mdrDomainsV1:D-DV
+mdrDomainsV1:D-DA
 	rdf:type bd:Domain ;
-	bo:name "DV"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-DOMAIN_DV-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	rdfs:label "Drug Accountability"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-DOMAIN_DA-1 ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.DA> ;
 .
-mdrItems:SI-DOMAIN_DV-1
+mdrItems:SI-DOMAIN_DA-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM DV Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM DA Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-EG
 	rdf:type bd:Domain ;
-	bo:name "EG"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "ECG Test Results"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_EG-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.EG> ;
 .
 mdrItems:SI-DOMAIN_EG-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM EG Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM EG Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-EX
 	rdf:type bd:Domain ;
-	bo:name "EX"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Exposure"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_EX-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.EX> ;
 .
 mdrItems:SI-DOMAIN_EX-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM EX Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM EX Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-FA
 	rdf:type bd:Domain ;
-	bo:name "FA"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Findings About"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_FA-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.FA> ;
 .
 mdrItems:SI-DOMAIN_FA-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM FA Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM FA Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-IE
 	rdf:type bd:Domain ;
-	bo:name "IE"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Inclusion/Exclusion Criterion Not Met"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_IE-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.IE> ;
 .
 mdrItems:SI-DOMAIN_IE-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM IE Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM IE Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-LB
 	rdf:type bd:Domain ;
-	bo:name "LB"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Laboratory Test Results"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_LB-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.LB> ;
 .
 mdrItems:SI-DOMAIN_LB-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM LB Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-CDISC ;
-.
-mdrDomainsV1:D-MB
-	rdf:type bd:Domain ;
-	bo:name "MB"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-DOMAIN_MB-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
-.
-mdrItems:SI-DOMAIN_MB-1
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM MB Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM LB Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-MH
 	rdf:type bd:Domain ;
-	bo:name "MH"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Medical History"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_MH-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.MH> ;
 .
 mdrItems:SI-DOMAIN_MH-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM MH Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM MH Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrDomainsV1:D-MB
+	rdf:type bd:Domain ;
+	rdfs:label "Microbiology Specimen"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-DOMAIN_MB-1 ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.MB> ;
+.
+mdrItems:SI-DOMAIN_MB-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM MB Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-MS
 	rdf:type bd:Domain ;
-	bo:name "MS"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Microbiology Susceptibility Test"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_MS-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.MS> ;
 .
 mdrItems:SI-DOMAIN_MS-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM MS Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM MS Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-PC
 	rdf:type bd:Domain ;
-	bo:name "PC"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "PK Concentrations"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_PC-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.PC> ;
 .
 mdrItems:SI-DOMAIN_PC-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM PC Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-CDISC ;
-.
-mdrDomainsV1:D-PE
-	rdf:type bd:Domain ;
-	bo:name "PE"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-DOMAIN_PE-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
-.
-mdrItems:SI-DOMAIN_PE-1
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM PE Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM PC Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-PP
 	rdf:type bd:Domain ;
-	bo:name "PP"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "PK Parameters"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_PP-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.PP> ;
 .
 mdrItems:SI-DOMAIN_PP-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM PP Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM PP Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrDomainsV1:D-PE
+	rdf:type bd:Domain ;
+	rdfs:label "Physical Examination"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-DOMAIN_PE-1 ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.PE> ;
+.
+mdrItems:SI-DOMAIN_PE-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM PE Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrDomainsV1:D-DV
+	rdf:type bd:Domain ;
+	rdfs:label "Protocol Deviations"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-DOMAIN_DV-1 ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.DV> ;
+.
+mdrItems:SI-DOMAIN_DV-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM DV Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-QS
 	rdf:type bd:Domain ;
-	bo:name "QS"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Questionnaires"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_QS-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.QS> ;
 .
 mdrItems:SI-DOMAIN_QS-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM QS Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM QS Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-RELREC
 	rdf:type bd:Domain ;
-	bo:name "RELREC"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Related Records"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_RELREC-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.RELREC> ;
 .
 mdrItems:SI-DOMAIN_RELREC-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM RELREC Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM RELREC Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-SC
 	rdf:type bd:Domain ;
-	bo:name "SC"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Subject Characteristics"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_SC-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SC> ;
 .
 mdrItems:SI-DOMAIN_SC-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM SC Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM SC Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-SE
 	rdf:type bd:Domain ;
-	bo:name "SE"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Subject Elements"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_SE-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SE> ;
 .
 mdrItems:SI-DOMAIN_SE-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM SE Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-CDISC ;
-.
-mdrDomainsV1:D-SU
-	rdf:type bd:Domain ;
-	bo:name "SU"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-DOMAIN_SU-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
-.
-mdrItems:SI-DOMAIN_SU-1
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM SU Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-CDISC ;
-.
-mdrDomainsV1:D-SUPPQUAL
-	rdf:type bd:Domain ;
-	bo:name "SUPPQUAL"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-DOMAIN_SUPPQUAL-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
-.
-mdrItems:SI-DOMAIN_SUPPQUAL-1
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM SUPPQUAL Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM SE Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-SV
 	rdf:type bd:Domain ;
-	bo:name "SV"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Subject Visits"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_SV-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SV> ;
 .
 mdrItems:SI-DOMAIN_SV-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM SV Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM SV Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrDomainsV1:D-SU
+	rdf:type bd:Domain ;
+	rdfs:label "Substance Use"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-DOMAIN_SU-1 ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SU> ;
+.
+mdrItems:SI-DOMAIN_SU-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM SU Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrDomainsV1:D-SUPPQUAL
+	rdf:type bd:Domain ;
+	rdfs:label "Supplemental Qualifiers"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-DOMAIN_SUPPQUAL-1 ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SUPPQUAL> ;
+.
+mdrItems:SI-DOMAIN_SUPPQUAL-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM SUPPQUAL Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-TA
 	rdf:type bd:Domain ;
-	bo:name "TA"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Trial Arms"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TA-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TA> ;
 .
 mdrItems:SI-DOMAIN_TA-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM TA Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM TA Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-TE
 	rdf:type bd:Domain ;
-	bo:name "TE"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Trial Elements"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TE-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TE> ;
 .
 mdrItems:SI-DOMAIN_TE-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM TE Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM TE Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-TI
 	rdf:type bd:Domain ;
-	bo:name "TI"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Trial Inclusion/Exclusion Criteria"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TI-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TI> ;
 .
 mdrItems:SI-DOMAIN_TI-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM TI Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM TI Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-TS
 	rdf:type bd:Domain ;
-	bo:name "TS"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Trial Summary"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TS-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TS> ;
 .
 mdrItems:SI-DOMAIN_TS-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM TS Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM TS Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-TV
 	rdf:type bd:Domain ;
-	bo:name "TV"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Trial Visits"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TV-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TV> ;
 .
 mdrItems:SI-DOMAIN_TV-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM TV Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM TV Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 mdrDomainsV1:D-VS
 	rdf:type bd:Domain ;
-	bo:name "VS"^^xsd:string ;
-	rdfs:label "SDTM Domain"^^xsd:string ;
+	rdfs:label "Vital Signs"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_VS-1 ;
-	bs:usedBy :STD-CDISC_SDTM_IG ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.VS> ;
 .
 mdrItems:SI-DOMAIN_VS-1
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CDISC SDTM VS Domain"^^xsd:string ;
-	isoI:version ""^^xsd:string ;
-	isoI:internalVersion "1"^^xsd:positiveInteger ;
+	isoI:identifier "SDTM VS Domain"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
 :V-AEACN
@@ -1603,6 +1539,182 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
+:V-CODTC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.CODTC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-COEVAL
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.COEVAL> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-COREF
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.COREF> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-COSEQ
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.COSEQ> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-COVAL
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.COVAL> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DOMAIN
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.DOMAIN> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-IDVAR
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.IDVAR> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-IDVARVAL
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.IDVARVAL> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-RDOMAIN
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.RDOMAIN> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-STUDYID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.STUDYID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-USUBJID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.USUBJID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
 :V-CMCAT
 	rdf:type bd:Variable ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CM.CMCAT> ;
@@ -2195,550 +2307,6 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-CODTC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.CODTC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-COEVAL
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.COEVAL> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-COREF
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.COREF> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-COSEQ
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.COSEQ> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-COVAL
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.COVAL> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DOMAIN
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.DOMAIN> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-IDVAR
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.IDVAR> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-IDVARVAL
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.IDVARVAL> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-RDOMAIN
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.RDOMAIN> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-STUDYID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.STUDYID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-USUBJID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.CO.USUBJID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DACAT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DACAT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DADTC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DADTC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DADY
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DADY> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DAGRPID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAGRPID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DAORRES
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAORRES> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DAORRESU
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAORRESU> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DAREASND
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAREASND> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DAREFID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAREFID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DASCAT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASCAT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DASEQ
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASEQ> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DASPID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASPID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DASTAT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASTAT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DASTRESC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASTRESC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DASTRESN
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASTRESN> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DASTRESU
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASTRESU> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DATEST
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DATEST> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DATESTCD
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DATESTCD> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DOMAIN
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DOMAIN> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-STUDYID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.STUDYID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-USUBJID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.USUBJID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-VISIT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.VISIT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-VISITDY
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.VISITDY> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-VISITNUM
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.VISITNUM> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
 :V-AGE
 	rdf:type bd:Variable ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DM.AGE> ;
@@ -3299,169 +2867,281 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
+:V-DACAT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DACAT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DADTC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DADTC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DADY
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DADY> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DAGRPID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAGRPID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DAORRES
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAORRES> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DAORRESU
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAORRESU> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DAREASND
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAREASND> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DAREFID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DAREFID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DASCAT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASCAT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DASEQ
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASEQ> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DASPID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASPID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DASTAT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASTAT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DASTRESC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASTRESC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DASTRESN
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASTRESN> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DASTRESU
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DASTRESU> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DATEST
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DATEST> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DATESTCD
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DATESTCD> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
 :V-DOMAIN
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DOMAIN> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DVCAT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVCAT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DVDECOD
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVDECOD> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DVENDTC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVENDTC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DVREFID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVREFID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DVSCAT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVSCAT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DVSEQ
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVSEQ> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DVSPID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVSPID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DVSTDTC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVSTDTC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DVTERM
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVTERM> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-EPOCH
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.EPOCH> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.DOMAIN> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -3477,7 +3157,7 @@ mdrItems:SI-DOMAIN_VS-1
 .
 :V-STUDYID
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.STUDYID> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.STUDYID> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -3493,7 +3173,55 @@ mdrItems:SI-DOMAIN_VS-1
 .
 :V-USUBJID
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.USUBJID> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.USUBJID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-VISIT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.VISIT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-VISITDY
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.VISITDY> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-VISITNUM
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DA.VISITNUM> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -6021,6 +5749,390 @@ mdrItems:SI-DOMAIN_VS-1
 .
 :V-DOMAIN
 	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.DOMAIN> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHBODSYS
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHBODSYS> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHCAT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHCAT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHDECOD
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHDECOD> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHDTC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHDTC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHDY
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHDY> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHENDTC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHENDTC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHENRF
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHENRF> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHENRTPT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHENRTPT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHENTPT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHENTPT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHGRPID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHGRPID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHMODIFY
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHMODIFY> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHOCCUR
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHOCCUR> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHPRESP
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHPRESP> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHREASND
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHREASND> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHREFID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHREFID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHSCAT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSCAT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHSEQ
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSEQ> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHSPID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSPID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHSTAT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSTAT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHSTDTC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSTDTC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-MHTERM
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHTERM> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-STUDYID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.STUDYID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-USUBJID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.USUBJID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DOMAIN
+	rdf:type bd:Variable ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MB.DOMAIN> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
@@ -6598,390 +6710,6 @@ mdrItems:SI-DOMAIN_VS-1
 :V-VISITNUM
 	rdf:type bd:Variable ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MB.VISITNUM> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DOMAIN
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.DOMAIN> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHBODSYS
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHBODSYS> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHCAT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHCAT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHDECOD
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHDECOD> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHDTC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHDTC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHDY
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHDY> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHENDTC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHENDTC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHENRF
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHENRF> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHENRTPT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHENRTPT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHENTPT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHENTPT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHGRPID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHGRPID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHMODIFY
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHMODIFY> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHOCCUR
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHOCCUR> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHPRESP
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHPRESP> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHREASND
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHREASND> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHREFID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHREFID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHSCAT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSCAT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHSEQ
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSEQ> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHSPID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSPID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHSTAT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSTAT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHSTDTC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHSTDTC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-MHTERM
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.MHTERM> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-STUDYID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.STUDYID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-USUBJID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.MH.USUBJID> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8117,6 +7845,310 @@ mdrItems:SI-DOMAIN_VS-1
 .
 :V-DOMAIN
 	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.DOMAIN> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPCAT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPCAT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPDTC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPDTC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPGRPID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPGRPID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPORRES
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPORRES> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPORRESU
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPORRESU> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPREASND
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPREASND> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPRFTDTC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPRFTDTC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPSCAT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSCAT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPSEQ
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSEQ> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPSPEC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSPEC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPSTAT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSTAT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPSTRESC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSTRESC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPSTRESN
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSTRESN> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPSTRESU
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSTRESU> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPTEST
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPTEST> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-PPTESTCD
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPTESTCD> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-STUDYID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.STUDYID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-USUBJID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.USUBJID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DOMAIN
+	rdf:type bd:Variable ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PE.DOMAIN> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
@@ -8517,7 +8549,7 @@ mdrItems:SI-DOMAIN_VS-1
 .
 :V-DOMAIN
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.DOMAIN> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DOMAIN> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8531,9 +8563,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPCAT
+:V-DVCAT
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPCAT> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVCAT> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8547,9 +8579,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPDTC
+:V-DVDECOD
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPDTC> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVDECOD> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8563,9 +8595,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPGRPID
+:V-DVENDTC
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPGRPID> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVENDTC> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8579,9 +8611,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPORRES
+:V-DVREFID
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPORRES> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVREFID> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8595,9 +8627,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPORRESU
+:V-DVSCAT
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPORRESU> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVSCAT> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8611,9 +8643,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPREASND
+:V-DVSEQ
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPREASND> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVSEQ> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8627,9 +8659,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPRFTDTC
+:V-DVSPID
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPRFTDTC> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVSPID> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8643,9 +8675,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPSCAT
+:V-DVSTDTC
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSCAT> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVSTDTC> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8659,9 +8691,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPSEQ
+:V-DVTERM
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSEQ> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.DVTERM> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8675,105 +8707,9 @@ mdrItems:SI-DOMAIN_VS-1
 	bd:supplementalQualifier "false"^^xsd:string ;
 	bd:used "false"^^xsd:string ;
 .
-:V-PPSPEC
+:V-EPOCH
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSPEC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-PPSTAT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSTAT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-PPSTRESC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSTRESC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-PPSTRESN
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSTRESN> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-PPSTRESU
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPSTRESU> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-PPTEST
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPTEST> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-PPTESTCD
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.PPTESTCD> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.EPOCH> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8789,7 +8725,7 @@ mdrItems:SI-DOMAIN_VS-1
 .
 :V-STUDYID
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.STUDYID> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.STUDYID> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -8805,7 +8741,7 @@ mdrItems:SI-DOMAIN_VS-1
 .
 :V-USUBJID
 	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.PP.USUBJID> ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.DV.USUBJID> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;
@@ -9893,6 +9829,182 @@ mdrItems:SI-DOMAIN_VS-1
 .
 :V-DOMAIN
 	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.DOMAIN> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-STUDYID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.STUDYID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-SVENDTC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVENDTC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-SVENDY
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVENDY> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-SVSTDTC
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVSTDTC> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-SVSTDY
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVSTDY> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-SVUPDES
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVUPDES> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-USUBJID
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.USUBJID> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-VISIT
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.VISIT> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-VISITDY
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.VISITDY> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-VISITNUM
+	rdf:type bd:Variable ;
+	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.VISITNUM> ;
+	rdfs:label "SDTM Variable"^^xsd:string ;
+	bd:core "???"^^xsd:string ;
+	bd:datatype "???"^^xsd:string ;
+	bd:defaultCommentSet "false"^^xsd:string ;
+	bd:defaultComment ""^^xsd:string ;
+	bd:length "NN"^^xsd:string ;
+	bd:format "???"^^xsd:string ;
+	bd:notes "???"^^xsd:string ;
+	bd:origin ""^^xsd:string ;
+	bd:role "???"^^xsd:string ;
+	bd:supplementalQualifier "false"^^xsd:string ;
+	bd:used "false"^^xsd:string ;
+.
+:V-DOMAIN
+	rdf:type bd:Variable ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SU.DOMAIN> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
@@ -10598,182 +10710,6 @@ mdrItems:SI-DOMAIN_VS-1
 :V-USUBJID
 	rdf:type bd:Variable ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SUPPQUAL.USUBJID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-DOMAIN
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.DOMAIN> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-STUDYID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.STUDYID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-SVENDTC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVENDTC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-SVENDY
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVENDY> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-SVSTDTC
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVSTDTC> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-SVSTDY
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVSTDY> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-SVUPDES
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.SVUPDES> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-USUBJID
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.USUBJID> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-VISIT
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.VISIT> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-VISITDY
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.VISITDY> ;
-	rdfs:label "SDTM Variable"^^xsd:string ;
-	bd:core "???"^^xsd:string ;
-	bd:datatype "???"^^xsd:string ;
-	bd:defaultCommentSet "false"^^xsd:string ;
-	bd:defaultComment ""^^xsd:string ;
-	bd:length "NN"^^xsd:string ;
-	bd:format "???"^^xsd:string ;
-	bd:notes "???"^^xsd:string ;
-	bd:origin ""^^xsd:string ;
-	bd:role "???"^^xsd:string ;
-	bd:supplementalQualifier "false"^^xsd:string ;
-	bd:used "false"^^xsd:string ;
-.
-:V-VISITNUM
-	rdf:type bd:Variable ;
-	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Column.SV.VISITNUM> ;
 	rdfs:label "SDTM Variable"^^xsd:string ;
 	bd:core "???"^^xsd:string ;
 	bd:datatype "???"^^xsd:string ;

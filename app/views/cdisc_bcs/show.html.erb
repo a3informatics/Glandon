@@ -23,7 +23,11 @@
 	  		<tr>
 				<% aliasEntry = @cdiscBc.properties.values[0] %>
 					<% aliasEntry.each do |key, value| %>
-			    	<th><%= key %></th>
+			    		<% if key.to_s == "id"  %>
+						<% elsif key.to_s == "bridgPath"  %>
+						<% else %>
+							<th><%= key %></th>
+						<% end %>
 				<% end %>
 			</tr>
 		</thead>
@@ -63,6 +67,8 @@
 								  	Disabled
 								<% end %>
 							</td>
+						<% elsif key.to_s == "id"  %>
+						<% elsif key.to_s == "bridgPath"  %>
 						<% else %>
 							<td><%= value %></td>
 						<% end %>

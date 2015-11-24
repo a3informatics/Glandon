@@ -99,5 +99,6 @@
         </div>
     </div>
     <%= link_to "Close", forms_path, :class => "btn btn-primary" %>
+    <%= link_to "aCRF", acrf_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
     <!--<%= link_to "Edit", edit_thesauri_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>-->
 </div>

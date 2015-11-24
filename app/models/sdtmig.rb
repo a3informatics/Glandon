@@ -34,6 +34,14 @@ class Sdtmig
     return self.managedItem.identifier
   end
 
+  def label
+    return self.managedItem.label
+  end
+
+  def owner
+    return self.managedItem.owner
+  end
+
   def persisted?
     id.present?
   end
@@ -124,51 +132,45 @@ class Sdtmig
 
   def self.create(params)
     
-    ConsoleLogger::log(C_CLASS_NAME,"create","Entry")
-    
+    # TODO: Check for exisitng managed item.
+
     object = self.new
+    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     
     namespace = Namespace.findByShortName("CDISC")
-    identifier = "CDISC SDTM Implementation Guide"
-    internalVersion = 1
-    version = params[:version]
+    identifier = "SDTM IG"
+    itemType = "SDTM_IG"
+    version = "1"
+    versionLabel = params[:versionLabel]
     files = params[:files]
 
     # Clean any empty entries
     files.reject!(&:blank?)
 
-    # Create the thesaurus
+    # Create the namespace for the IG
     uri = Uri.new
     uri.setUri(@@baseNs)
-    uri.extendPath("/V" + internalVersion.to_s)
+    uri.extendPath("/V" + version.to_s)
     igNs = uri.getNs()
 
     # This needs to be better, wrong namespace at the mo!!!!!
-    uri.setUri(@@baseNs)
-    uri.extendPath("/Domain/V" + internalVersion.to_s)
+    uri.setUri(Domain.baseNs)
+    uri.extendPath("/V" + version.to_s)
     dNs = uri.getNs()
-    
-    # THis needs updatting for the version, versionLabel changed. Also commented out when testing.
-    # Needs to be re-instaed.
-    
-    # Create the id for the form
-    #id = ModelUtility.buildCidVersion(C_CID_PREFIX, identifier, internalVersion)
-    
-    # Create the IdentifiedItem
-    #ManagedItem.create_imported(id, {:version => version, :shortName => "CDISC_SDTM_IG",:identifier => identifier, :internalVersion => internalVersion, :namespace_id => namespace.id})
     
     # Upload the file to the database. Send the request, wait the resonse
     ConsoleLogger::log(C_CLASS_NAME,"create","File=" + files[0])
-    #response = CRUD.file(files[0])
+    response = CRUD.file(files[0])
 
     # Now query the load
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["mms"]) +
-      "SELECT ?name ?subject ?domainName ?dataset WHERE \n" +
+      "SELECT ?name ?subject ?domainName ?domainShortName ?dataset WHERE \n" +
       "  { \n" +
       "  ?subject rdf:type mms:Column . \n" +
       "  ?subject mms:dataElementName ?name . \n" +
       "  ?subject mms:context ?dataset . \n" +
-      "  ?dataset mms:contextName ?domainName .  \n" +
+      "  ?dataset mms:contextLabel ?domainName .  \n" +
+      "  ?dataset mms:contextName ?domainShortName .  \n" +
       "  } ORDER BY ?domainName"
     
     # Send the request, wait the resonse
@@ -181,7 +183,8 @@ class Sdtmig
     end
 
     # Transform the files and upload. Note the quotes around the strings parameters.
-    Xslt.execute(path, "sdtmig/import/cdiscSdtmigImport.xsl", {:InternalVersion => internalVersion.to_s, :SDTMVersion => "'" + version.to_s + "'", :IGNamespace => "'" + igNs + "'", :DNamespace => "'" + dNs + "'"}, "sdtmig.ttl")
+    Xslt.execute(path, "sdtmig/import/cdiscSdtmigImport.xsl", {:InternalVersion => version.to_s, :SDTMVersion => "'" + versionLabel.to_s + "'",
+       :IGNamespace => "'" + igNs + "'", :DNamespace => "'" + dNs + "'"}, "sdtmig.ttl")
     
     # upload the file to the database. Send the request, wait the resonse
     publicDir = Rails.root.join("public","upload")

@@ -150,18 +150,6 @@ $(document).ready(function() {
       }
     }
     document.getElementById("iProp").innerHTML = text;
-/*
-    <td>
-                <% value.each do |innerValue| %>
-                    <% cCode = innerValue[:cCode] %>  
-                  <i><%= cCode %>: </i>
-                    <% clis = innerValue[:clis] %>  
-                    <% clis.each do |cliKey, cli| %>
-                      <%= cli.notation %> (<%= cli.id %>)
-                      <% end %>
-                      <br/>
-                    <% end %>
-              </td>*/
   }
-
+  
 });

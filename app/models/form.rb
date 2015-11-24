@@ -299,6 +299,65 @@ class Form
   def destroy
   end
 
+  def acrf
+  
+    query = UriManagement.buildNs(self.namespace, ["bf", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
+      "SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?var ?varName ?col ?sdtmTopicName ?cli ?cl ?th WHERE\n" +
+      "{ \n" + 
+      "  :" + self.id + " bf:hasGroup ?group . \n " +
+      "  ?form bf:hasGroup ?group . \n " +
+      "  ?form rdfs:label ?fName . \n " +
+      "  ?group bf:name ?gName . \n " +
+      "  ?group bf:hasNode ?item . \n " +
+      "  ?item bf:name ?iName . \n " +
+      "  ?item bf:hasProperty ?bcProperty . \n " +
+      "  ?item bf:hasBiomedicalConcept ?bcRoot . \n " +
+      "  ?bcProperty cbc:alias ?alias . \n " +
+      "  ?bcProperty cbc:qText ?qText . \n " +
+      # "  ?s bd:hasProperty ?p . \n " +
+      "  ?var bd:hasProperty ?bcProperty . \n " +
+      "  ?var bd:basedOn ?col . \n " +
+      "  ?col mms:dataElementName ?varName . \n " +
+      "  ?col mms:context ?domain . \n " +
+      "  ?col1 mms:context ?domain . \n " +
+      "  ?col1 cdisc:dataElementRole <http://rdf.cdisc.org/std/sdtm-1-2#Classifier.TopicVariable> . \n " +
+      "  ?col1 mms:dataElementName ?sdtmTopicName . \n " +
+      "  ?bcRoot isoI:hasIdentifier ?si . \n " +
+      "  ?si isoI:identifier ?bcIdent . \n " +
+      "  OPTIONAL\n " +
+      "  {\n " +
+      "    ?bcProperty (cbc:hasSimpleDatatype | cbc:nextValue)+ ?bcValue . \n " +
+      "    ?bcValue rdf:type cbc:PropertyValue . \n " +
+      "    ?bcValue cbc:value ?cCode . \n " +
+      "    ?cli iso25964:identifier ?cCode . \n " +
+      "    ?cli iso25964:notation ?subValue . \n " +
+      "    ?cl skos:narrower ?cli . \n " +
+      "    ?cl skos:inScheme ?th . \n " +
+      "    FILTER(STRSTARTS(STR(?th), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) \n" +
+      "  } \n" +
+      "} \n"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    directory = Rails.root.join("public","upload")
+    path = File.join(directory, "formExport.xml")
+    File.open(path, "wb") do |f|
+       xmlDoc.write_xml_to f
+    end
+
+    # Transform the files and upload. Note the quotes around the strings parameters.
+    Xslt.executeXML(path, "form/export/toODM.xsl", {}, "formODM.xml")
+    path = File.join(directory, "formODM.xml")
+    # Xslt.executeXML(path, "form/export/toHTML.xsl", {}, "formHTML.htm")
+    html = Xslt.executeXML(path, "form/export/toHTML.xsl", {})
+    return html
+
+  end
+
   def to_D3
 
     result = Hash.new

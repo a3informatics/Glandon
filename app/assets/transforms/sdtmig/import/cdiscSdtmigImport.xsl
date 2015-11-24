@@ -30,7 +30,7 @@
     <xsl:variable name="DPrefix">D-</xsl:variable>
     <xsl:variable name="VPrefix">V-</xsl:variable>
     <xsl:variable name="DomainNSPrefix" select="concat('mdrDomainsV', $InternalVersion)"/>
-    <xsl:variable name="CID" select="'STD-CDISC_SDTM_IG'"/>
+    <xsl:variable name="CID" select="'STD-SDTM_IG'"/>
     <xsl:variable name="domains"/>
 
     <!-- Match the root element -->
@@ -69,8 +69,8 @@
         <xsl:text disable-output-escaping="yes">&#009;owl:imports &lt;http://www.assero.co.uk/BusinessStandard&gt; ;&#xa;</xsl:text>
         <xsl:text>.&#xa;</xsl:text>
 
-        <!-- Build the SDTM IG entry -->
-        <xsl:variable name="SICID" select="concat('SI-CDISC_SDTM_IG-',$InternalVersion)"/>
+        <!-- Build the SDTM IG Scoped Identifier entry -->
+        <xsl:variable name="SICID" select="concat('SI-SDTM_IG-',$InternalVersion)"/>
         <xsl:call-template name="Subject">
             <xsl:with-param name="pName" select="concat(':',$CID)"/>
         </xsl:call-template>
@@ -79,25 +79,24 @@
             <xsl:with-param name="pObjectName" select="'bs:SDTMIG'"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
-            <xsl:with-param name="pPredicateName" select="'bo:name'"/>
-            <xsl:with-param name="pObjectName" select="concat($quote,'CDISC SDTM Implementation Guide',$quote,'^^xsd:string')"/>
+            <!--<xsl:with-param name="pPredicateName" select="'bo:name'"/>-->
+            <xsl:with-param name="pPredicateName" select="'rdfs:label'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,'SDTM Implementation Guide',$quote,'^^xsd:string')"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'"/>
             <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SICID)"/>
         </xsl:call-template>
         
-        <!-- Build list of domains. Will have repeats. -->
-        <xsl:variable name="domains" select="sr:results/sr:result/sr:binding[@name='domainName']/sr:literal"/>
-        
         <!-- Add links from standard to domains -->
-        <xsl:for-each select="$domains[not(.=preceding::*)]">
+        <!-- Remove. Dont link CDISC SDTM to internal domains -->
+        <!--<xsl:for-each select="$domains[not(.=preceding::*)]">
             <xsl:variable name="DomainName" select="."/>
             <xsl:call-template name="PredicateObject">
                 <xsl:with-param name="pPredicateName" select="'bs:composedOf'"/>
                 <xsl:with-param name="pObjectName" select="concat($DomainNSPrefix,':',$DPrefix,$DomainName)"/>
             </xsl:call-template>
-        </xsl:for-each>
+        </xsl:for-each>-->
         
         <!-- Close the standard off, end of subject-->
         <xsl:call-template name="SubjectEnd"/>
@@ -105,26 +104,35 @@
         <!-- Build the ScopedIdentifier for the Standard -->
         <xsl:call-template name="ScopedIdentifier">
             <xsl:with-param name="pCID" select="$SICID"/>
-            <xsl:with-param name="pIdentifier" select="'CDISC SDTM Implementation Guide'"/>
+            <xsl:with-param name="pIdentifier" select="'SDTM IG'"/>
             <xsl:with-param name="pVersionLabel" select="$SDTMVersion"/>
             <xsl:with-param name="pVersion" select="$InternalVersion"/>
             <xsl:with-param name="pScope" select="'NS-CDISC'"/>
         </xsl:call-template>    
         
         <!-- Process each domain and create the domain entries -->
-        <xsl:call-template name="domains">
-            <xsl:with-param name="pDomains" select="$domains"/>
-        </xsl:call-template>
+        <!-- Build list of domains. Will have repeats. -->
+        <!-- <xsl:for-each select="$domains[not(.=preceding::*)]"> -->
+        <xsl:variable name="domains" select="sr:results/sr:result/sr:binding[@name='domainShortName']/sr:literal"/>
+        <xsl:variable name="X" select="$domains[not(.=preceding::*)]"/>
+        <xsl:for-each select="$X">
+            <xsl:variable name="ParentResult" select="../../."/>
+            <xsl:variable name="LongName" select="$ParentResult/sr:binding[@name='domainName']/sr:literal"/>
+            <xsl:call-template name="domain">
+                <xsl:with-param name="pShortName" select="."/>
+                <xsl:with-param name="pLongName" select="$LongName"/>
+            </xsl:call-template>
+        </xsl:for-each>
         
         <!-- Process each variable -->
         <xsl:apply-templates select="sr:results/sr:result/sr:binding[@name='name']"/>
     </xsl:template>
 
-    <xsl:template name="domains">
-        <xsl:param name="pDomains"/>
-        <xsl:param name="pSDTMVersion"/>
-        <xsl:for-each select="$pDomains[not(.=preceding::*)]">
-            <xsl:variable name="DomainName" select="."/>
+    <xsl:template name="domain">
+        <xsl:param name="pShortName"/>
+        <xsl:param name="pLongName"/>
+        <!-- <xsl:for-each select="$pDomains[not(.=preceding::*)]">-->
+            <xsl:variable name="DomainName" select="$pShortName"/>
             <xsl:variable name="SICID" select="concat('SI-DOMAIN_',$DomainName,'-',$InternalVersion)"/>
             <xsl:call-template name="Subject">
                 <xsl:with-param name="pName" select="concat($DomainNSPrefix,':',$DPrefix,$DomainName)"/>
@@ -133,22 +141,22 @@
                 <xsl:with-param name="pPredicateName" select="'rdf:type'"/>
                 <xsl:with-param name="pObjectName" select="'bd:Domain'"/>
             </xsl:call-template>
-            <xsl:call-template name="PredicateObject">
+            <!--<xsl:call-template name="PredicateObject">
                 <xsl:with-param name="pPredicateName" select="'bo:name'"/>
                 <xsl:with-param name="pObjectName" select="concat($quote,$DomainName,$quote,'^^xsd:string')"/>
-            </xsl:call-template>
+            </xsl:call-template>-->
             <xsl:call-template name="PredicateObject">
                 <xsl:with-param name="pPredicateName" select="'rdfs:label'"/>
-                <xsl:with-param name="pObjectName" select="concat($quote,'SDTM Domain',$quote,'^^xsd:string')"/>
+                <xsl:with-param name="pObjectName" select="concat($quote,$pLongName,$quote,'^^xsd:string')"/>
             </xsl:call-template>
             <xsl:call-template name="PredicateObject">
                 <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'"/>
                 <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SICID)"/>
             </xsl:call-template>
-            <xsl:call-template name="PredicateObject">
+            <!--<xsl:call-template name="PredicateObject">
                 <xsl:with-param name="pPredicateName" select="'bs:usedBy'"/>
                 <xsl:with-param name="pObjectName" select="concat(':',$CID)"/>
-            </xsl:call-template>
+            </xsl:call-template>-->
             <xsl:call-template name="PredicateObject">
                 <xsl:with-param name="pPredicateName" select="'bd:basedOn'"/>
                 <xsl:with-param name="pObjectName" select="concat($lt,../../sr:binding[@name='dataset']/sr:uri,$gt)"/>
@@ -156,18 +164,20 @@
             <xsl:call-template name="SubjectEnd"/>
             <xsl:call-template name="ScopedIdentifier">
                 <xsl:with-param name="pCID" select="$SICID"/>
-                <xsl:with-param name="pIdentifier" select="concat('CDISC SDTM ',$DomainName,' Domain')"/>
-                <xsl:with-param name="pVersion" select="$SDTMVersion"/>
-                <xsl:with-param name="pInternalVersion" select="$InternalVersion"/>
-                <xsl:with-param name="pScope" select="'NS-CDISC'"/>
+                <xsl:with-param name="pIdentifier" select="concat('SDTM ',$DomainName,' Domain')"/>
+                <xsl:with-param name="pVersionLabel" select="$SDTMVersion"/>
+                <xsl:with-param name="pVersion" select="$InternalVersion"/>
+                <xsl:with-param name="pScope" select="'NS-ACME'"/>
             </xsl:call-template>           
-        </xsl:for-each>
+        <!-- </xsl:for-each> -->
     </xsl:template>
 
     <xsl:template match="sr:binding[@name='name']">
 
+        <xsl:variable name="DomainShortName" select="../sr:binding[@name='domainShortName']/sr:literal"/>
+        <xsl:variable name="VariableName" select="sr:literal"/>
         <xsl:call-template name="Subject">
-            <xsl:with-param name="pName" select="concat(':',$VPrefix,sr:literal)"/>
+            <xsl:with-param name="pName" select="concat($DomainNSPrefix,':',$VPrefix,$DomainShortName,'_',$VariableName)"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'rdf:type'"/>

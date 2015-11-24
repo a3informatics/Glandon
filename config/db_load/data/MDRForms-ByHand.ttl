@@ -2,11 +2,11 @@
 # imports: http://www.assero.co.uk/BusinessForm
 # imports: http://www.assero.co.uk/BusinessOperational
 # imports: http://www.assero.co.uk/CDISCBiomedicalConcept
-# imports: http://www.assero.co.uk/MDRCDISCBC
+# imports: http://www.assero.co.uk/MDRBcs/V1
 
 @prefix : <http://www.assero.co.uk/MDRForms/V1#> .
 @prefix items: <http://www.assero.co.uk/MDRItems#> .
-@prefix MDRCDISCBC: <http://www.assero.co.uk/MDRCDISCBC#> .
+@prefix MDRBcs: <http://www.assero.co.uk/MDRBcs/V1#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
@@ -23,7 +23,7 @@
   owl:imports <http://www.assero.co.uk/BusinessForm> ;
   owl:imports <http://www.assero.co.uk/BusinessOperational> ;
   owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
-  owl:imports <http://www.assero.co.uk/MDRCDISCBC> ;
+  owl:imports <http://www.assero.co.uk/MDRBcs/V1> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
 :F-VS
@@ -58,7 +58,7 @@ items:RS-VS-1 rdf:type isoR:RegistrationStatus ;
   rdf:type bf:Group ;
   bf:hasNode :FI-Height_Result ;
   bf:hasNode :FI-Height_Units ;
-  bf:isGroupOf :F-VS-1 ;
+  bf:isGroupOf :F-VS ;
 	bf:name "Height"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Height note."^^xsd:string ;
@@ -69,7 +69,7 @@ items:RS-VS-1 rdf:type isoR:RegistrationStatus ;
   rdf:type bf:Group ;
   bf:hasNode :FI-Weight_Result ;
   bf:hasNode :FI-Weight_Units ;
-  bf:isGroupOf :F-VS-1 ;
+  bf:isGroupOf :F-VS ;
 	bf:name "Weight"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Weight note."^^xsd:string ;
@@ -79,8 +79,8 @@ items:RS-VS-1 rdf:type isoR:RegistrationStatus ;
 :FI-Weight_Result
   rdf:type bf:bcBased ;
   bf:isNodeOf :FG-Weight ;
-  bf:hasBiomedicalConcept MDRCDISCBC:BC-C25208 ;
-  bf:hasProperty MDRCDISCBC:BC-C25208_PerformedClinicalResult_value_PQR_value ;
+  bf:hasBiomedicalConcept MDRBcs:BC-BC_C25208 ;
+  bf:hasProperty MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_value ;
 	bf:name "Weight result"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Weight result note."^^xsd:string ;
@@ -89,8 +89,8 @@ items:RS-VS-1 rdf:type isoR:RegistrationStatus ;
 :FI-Weight_Units
   rdf:type bf:bcBased ;
   bf:isNodeOf :FG-Weight ;
-  bf:hasBiomedicalConcept MDRCDISCBC:BC-C25208 ;
-  bf:hasProperty MDRCDISCBC:BC-C25208_PerformedClinicalResult_value_PQR_code ;
+  bf:hasBiomedicalConcept MDRBcs:BC-BC_C25208 ;
+  bf:hasProperty MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_code ;
 	bf:name "Weight units"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Weight units note."^^xsd:string ;
@@ -99,8 +99,8 @@ items:RS-VS-1 rdf:type isoR:RegistrationStatus ;
 :FI-Height_Result
   rdf:type bf:bcBased ;
   bf:isNodeOf :FG-Height ;
-  bf:hasBiomedicalConcept MDRCDISCBC:BC-C25347 ;
-  bf:hasProperty MDRCDISCBC:BC-C25347_PerformedClinicalResult_value_PQR_value ;
+  bf:hasBiomedicalConcept MDRBcs:BC-BC_C25347 ;
+  bf:hasProperty MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_value ;
 	bf:name "Height result"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Height result note."^^xsd:string ;
@@ -109,8 +109,8 @@ items:RS-VS-1 rdf:type isoR:RegistrationStatus ;
 :FI-Height_Units
   rdf:type bf:bcBased ;
   bf:isNodeOf :FG-Height ;
-  bf:hasBiomedicalConcept MDRCDISCBC:BC-C25347 ;
-  bf:hasProperty MDRCDISCBC:BC-C25347_PerformedClinicalResult_value_PQR_code ;
+  bf:hasBiomedicalConcept MDRBcs:BC-BC_C25347 ;
+  bf:hasProperty MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_code ;
 	bf:name "Height units"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Height units note."^^xsd:string ;
