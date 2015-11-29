@@ -38,13 +38,16 @@ class ScopedIdentifier
   def self.exists?(identifier, scopeId)
     
     ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
+    ConsoleLogger::log(C_CLASS_NAME,"exists?","Identifier=" + identifier.to_s )
+    ConsoleLogger::log(C_CLASS_NAME,"exists?","ScopeId=" + scopeId.to_s )
     result = false
     
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?a WHERE \n" +
+      "{\n" +
       "  ?a rdf:type isoI:ScopedIdentifier . \n" +
-      "  ?a isoI:identifier " + identifier + " . \n" +
+      "  ?a isoI:identifier \"" + identifier + "\" . \n" +
       "  ?a isoI:hasScope :" + scopeId + ". \n" +
       "}"
     
@@ -153,24 +156,22 @@ class ScopedIdentifier
     
   end
 
-  def self.create(params)
+  def self.create(params, uid, scopeId)
     
-    # Get the parameters
-    namespaceId = params[:namespaceId]
+    # Get the parameters from the user. 
     versionLabel = params[:versionLabel]
     version = params[:version]
     identifier = params[:identifier]
-    itemType = params[:itemType]   
     ConsoleLogger::log(C_CLASS_NAME,"create","*****ENTRY*****")
     ConsoleLogger::log(C_CLASS_NAME,"create",
-      "NamespaceId=" + namespaceId + ", " + 
+      "ScopeId=" + scopeId + ", " + 
       "versionLabel=" + versionLabel + ", " + 
       "version=" + version + ", " + 
       "identifier" + identifier + ", " + 
-      "itemType=" + itemType )
+      "itemUid=" + uid )
         
     # Create the CID
-    id = ModelUtility.buildCidVersion(C_CLASS_PREFIX, itemType, version)
+    id = ModelUtility.buildCidUidVersion(C_CLASS_PREFIX, uid, version)
     
     # Create the query
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
@@ -180,7 +181,7 @@ class ScopedIdentifier
       "	 :" + id + " isoI:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " isoI:version \"" + version.to_s + "\"^^xsd:positiveInteger . \n" +
       "  :" + id + " isoI:versionLabel \"" + versionLabel.to_s + "\"^^xsd:string . \n" +
-      "	 :" + id + " isoI:hasScope :" + namespaceId.to_s + " . \n" +
+      "	 :" + id + " isoI:hasScope :" + scopeId.to_s + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -193,7 +194,7 @@ class ScopedIdentifier
       object.version = version
       object.versionLabel = versionLabel
       object.identifier = identifier
-      object.namespace = Namespace.find(namespaceId)
+      object.namespace = Namespace.find(scopeId)
     else
       object = self.new
       object.assign_errors(data) if response.response_code == 422

@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   
   devise_for :users
   
+  resources :dashboard do
+    collection do
+      get :view
+    end
+  end
   resources :namespaces
   resources :scoped_identifiers
   resources :registration_authorities

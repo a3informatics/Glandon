@@ -2,7 +2,7 @@ $(document).ready(function() {
   
   var bcObject = {};      // The overall BC JSON structure
   
-  var bcItemTypeId = document.getElementById("bcItemType")
+  var bcLabelId = document.getElementById("bcLabel")
   var bcIdentifierId = document.getElementById("bcIdentifier")
   var itemNameId = document.getElementById("itemName")
   var qTextId = document.getElementById("qText")
@@ -227,7 +227,7 @@ $(document).ready(function() {
     }
     
     // Build the save data structure   
-    saveData.itemType = bcItemTypeId.value;
+    saveData.label = bcLabelId.value;
     saveData.identifier = bcIdentifierId.value;
     saveData.template = bcObject.template;
     saveData.children = [];

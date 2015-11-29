@@ -51,7 +51,7 @@ class ThesauriController < ApplicationController
 private
 
   def the_params
-    params.require(:thesaurus).permit(:identifier, :version, :versionLabel, :itemType, :namespace_id, :namespace, :data)
+    params.require(:thesaurus).permit(:identifier, :version, :versionLabel, :label, :namespace_id, :namespace, :data)
   end
     
 end

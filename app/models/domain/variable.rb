@@ -6,8 +6,10 @@ class Domain::Variable
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :bcs, :namespace, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype
-  validates_presence_of :id, :bcs, :namespace, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype
+  attr_accessor :id, :bcs, :namespace, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, 
+    :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype, :bcRefs
+  validates_presence_of :id, :bcs, :namespace, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, 
+    :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype, :bcRefs
   
   # Constants
   C_NS_PREFIX = "mdrDomains"
@@ -103,7 +105,7 @@ class Domain::Variable
         object.notes = ""
         object.length = ""
         object.origin = ""
-        object.bcs = Hash.new
+        object.bcRefs = findBcRefs(id, variableNamespace)
       end
     end
     return object  
@@ -196,5 +198,46 @@ class Domain::Variable
 
   def destroy
   end
-  
+
+private
+
+  # Find a given variable
+  def self.findBcRefs(id, variableNamespace)
+    
+    results = Hash.new
+
+    ConsoleLogger::log(C_CLASS_NAME,"findBcRefs","***** ENTRY *****")
+    object = nil
+    query = UriManagement.buildNs(variableNamespace, ["bd", "cbc"]) +
+      "SELECT ?a ?b WHERE\n" + 
+      "{ \n" + 
+      " :" + id + " bd:hasProperty ?a . \n" +
+      " ?a (cbc:isPropertyOf|cbc:isDatatypeOf|cbc:isItemOf)%2B ?b . \n" +
+      " ?b rdf:type cbc:BiomedicalConceptInstance . \n" +
+      "} \n"
+                  
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      ConsoleLogger::log(C_CLASS_NAME,"findBCRefs","Node=" + node)
+      bcSet = node.xpath("binding[@name='b']/uri")
+      pSet = node.xpath("binding[@name='a']/uri")
+      if bcSet.length == 1 && pSet.length == 1 
+        id = ModelUtility.extractCid(bcSet[0].text)
+        namespace = ModelUtility.extractNs(bcSet[0].text)
+        property = ModelUtility.extractCid(pSet[0].text)
+        object = Hash.new
+        object[:id] = id
+        object[:namespace] = namespace
+        object[:property] = property
+        results[id] = object
+      end
+    end
+    return results
+    
+  end  
 end

@@ -103,7 +103,7 @@
   rdfs:domain :Property ;
   rdfs:label "Has a complext data type"^^xsd:string ;
   rdfs:range :Datatype ;
-  owl:propertyDisjointWith :hasSimpleDatatypeRelationship ;
+  owl:propertyDisjointWith :hasValue ;
 .
 :hasDataType
   rdf:type owl:ObjectProperty ;
@@ -128,32 +128,32 @@
   rdfs:domain :Datatype ;
   rdfs:label "Has A Property"^^xsd:string ;
   rdfs:range :Property ;
-  owl:inverseOf :isPropertyOfRelationship ;
+  owl:inverseOf :isPropertyOf ;
 .
-:hasSimpleDatatype
+:hasValue
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Property ;
   rdfs:label "has a Simple Datatype"^^xsd:string ;
   rdfs:range :PropertyValue ;
-  owl:propertyDisjointWith :hasComplexDatatypeRelationship ;
+  owl:propertyDisjointWith :hasComplexDatatype ;
 .
 :isDatatypeOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Datatype ;
   rdfs:range :Item ;
-  owl:inverseOf :hasDataTypeRelationship ;
+  owl:inverseOf :hasDataType ;
 .
 :isItemOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Item ;
   rdfs:range :BiomedicalConcept ;
-  owl:inverseOf :hasItemRelationship ;
+  owl:inverseOf :hasItem ;
 .
 :isPropertyOf
   rdf:type owl:ObjectProperty ;
   rdfs:domain :Property ;
   rdfs:range :Datatype ;
-  owl:inverseOf :hasPropertyRelationship ;
+  owl:inverseOf :hasProperty ;
 .
 :qText
   rdf:type owl:DatatypeProperty ;
@@ -178,6 +178,12 @@
   rdfs:domain :Property ;
   rdfs:label "The property can be collected (rather than a fixed value)"^^xsd:string ;
   rdfs:range xsd:boolean ;
+.
+:simpleDatatype
+  rdf:type owl:datatypeProperty ;
+  rdfs:domain :Property ;
+  rdfs:label "The simple datatype for the property. Derived from the ISO21090 datatype"^^xsd:string ;
+  rdfs:range xsd:string ;
 .
 :nextItem
   rdf:type owl:ObjectProperty ;

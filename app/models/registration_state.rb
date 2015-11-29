@@ -138,12 +138,10 @@ class RegistrationState
     
   end
 
-  def self.create(params)
-    
-    itemType = params[:itemType]
+  def self.create(params, uid)
     
     # Create the query
-    id = ModelUtility.buildCid(C_CID_PREFIX, itemType)
+    id = ModelUtility.buildCidUid(C_CID_PREFIX, uid)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +

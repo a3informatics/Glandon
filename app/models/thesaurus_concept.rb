@@ -37,7 +37,7 @@ class ThesaurusConcept
 
     result = false
     useNs = ns || @@baseNs
-    id = ModelUtility.buildCid(useNs, identifier)
+    id = ModelUtility.buildCidUid(useNs, identifier)
     
     # Create the query
     query = UriManagement.buildNs(useNs, ["iso25964"]) +
@@ -611,7 +611,7 @@ class ThesaurusConcept
     definition = params[:definition]
     
     # Create the query
-    id = ModelUtility.buildCid(ns, identifier)
+    id = ModelUtility.buildCidUid(ns, identifier)
     update = UriManagement.buildNs(ns, ["iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -664,7 +664,7 @@ class ThesaurusConcept
     ConsoleLogger::log(C_CLASS_NAME,"createTopLevel","params=" + params.to_s)
     
     # Create the query
-    id = ModelUtility.buildCid(ns, identifier)
+    id = ModelUtility.buildCidUid(ns, identifier)
     update = UriManagement.buildNs(ns, ["iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +

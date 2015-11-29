@@ -1,16 +1,17 @@
 <ISO21090DataTypes>
    <primitiveTypes>
-      <primitiveType Name="characterstring" Map="^^xsd:string"/>
-      <primitiveType Name="boolean" Map="^^xsd:boolean"/>
-      <primitiveType Name="UpdateMode" Map="^^xsd:string"/>
-      <primitiveType Name="NullFlavor" Map="^^xsd:string"/>
-      <primitiveType Name="XML" Map="^^xsd:string"/>
-      <primitiveType Name="TEL.URL" Map="^^xsd:string"/>
-      <primitiveType Name="CodingRationale" Map="^^xsd:string"/>
-      <primitiveType Name="Decimal" Map="^^xsd:string"/>
-      <primitiveType Name="Compression" Map="^^xsd:string"/>
-      <primitiveType Name="Octet" Map="^^xsd:string"/>
-      <primitiveType Name="IntegrityCheckAlgorithm" Map="^^xsd:string"/>
+      <primitiveType Name="characterstring" Map="string"/>
+      <primitiveType Name="boolean" Map="boolean"/>
+      <primitiveType Name="dateTime" Map="dateTime"/>
+      <primitiveType Name="UpdateMode" Map="string"/>
+      <primitiveType Name="NullFlavor" Map="string"/>
+      <primitiveType Name="XML" Map="string"/>
+      <primitiveType Name="TEL.URL" Map="string"/>
+      <primitiveType Name="CodingRationale" Map="string"/>
+      <primitiveType Name="Decimal" Map="float"/>
+      <primitiveType Name="Compression" Map="string"/>
+      <primitiveType Name="Octet" Map="string"/>
+      <primitiveType Name="IntegrityCheckAlgorithm" Map="string"/>
    </primitiveTypes>
    <ISO21090DataType Name="BL">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
@@ -173,7 +174,7 @@
       <ISO21090Property Name="uncertainty" DataType="QTY" Use="Prohibited"/>
       <ISO21090Property Name="uncertaintyType" DataType="UncertaintyType" Use="Prohibited"/>
       <ISO21090Property Name="uncertainRange" DataType="IVL(QTY)" Use="Prohibited"/>
-      <ISO21090Property Name="value" DataType="characterstring"/>
+      <ISO21090Property Name="value" DataType="dateTime"/>
    </ISO21090DataType>
    <ISO21090DataType Name="ED">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
@@ -259,7 +260,7 @@
       <ISO21090Property Name="width" DataType="QTY"/>
       <ISO21090Property Name="any" DataType="INT"/>
    </ISO21090DataType>
-   <ISO21090DataType Name="IVL(QTY)">
+   <ISO21090DataType Name="IVL_QTY">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="validTimeHigh" DataType="characterstring" Use="Prohibited"/>
       <ISO21090Property Name="controlInformationRoot" DataType="characterstring" Use="Prohibited"/>

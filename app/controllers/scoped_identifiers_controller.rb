@@ -7,7 +7,7 @@ class ScopedIdentifiersController < ApplicationController
   end
   
   def new
-    @namespaces = Namespace.all
+    @namespaces = Namespace.all.map{|key,u|[u.name,u.id]}
     @scopedIdentifier = ScopedIdentifier.new
   end
   

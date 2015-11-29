@@ -12,7 +12,12 @@ class NamespacesController < ApplicationController
   
   def create
     @namespace = Namespace.create(this_params)
-    redirect_to namespaces_path
+    if @namespace.errors.empty?
+      redirect_to namespaces_path
+    else
+      flash[:error] = @namespace.errors.full_messages.to_sentence
+      redirect_to new_namespace_path
+    end
   end
 
   def update

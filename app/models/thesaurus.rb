@@ -9,8 +9,8 @@ class Thesaurus
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :managedItem, :namespace, :children
-  validates_presence_of :id, :managedItem, :namespace, :children
+  attr_accessor :id, :managedItem, :children
+  validates_presence_of :id, :managedItem, :children
  
   # Constants
   C_CLASS_NAME = "Thesaurus"
@@ -30,6 +30,10 @@ class Thesaurus
 
   def identifier
     return self.managedItem.identifier
+  end
+
+  def namespace
+    return self.managedItem.namespace
   end
 
   def persisted?
@@ -155,8 +159,7 @@ class Thesaurus
       if uriSet.length == 1
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
-        object.namespace = ModelUtility.extractNs(uriSet[0].text)
-        object.managedItem = ManagedItem.find(object.id,object.namespace)
+        object.managedItem = ManagedItem.find(object.id,ModelUtility.extractNs(uriSet[0].text))
         results.push (object)
         
       end
@@ -166,27 +169,18 @@ class Thesaurus
     
   end
 
-  def self.createLocal(params, ns=nil)
-    
-    # Set the namespace
-    useNs = ns || @@baseNs
-    ConsoleLogger::log(C_CLASS_NAME,"createLocal","useNs=" + useNs)
+  def self.createLocal(params)
     
     # Get the parameters
-    itemType = params[:itemType]
     version = params[:version]
     versionLabel = params[:versionLabel]
     identifier = params[:identifier]
     label = params[:label]
     
-    # Create the id for the form
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemType, version)
-
     # Create the managed item for the thesaurus. 
-    managedItem = ManagedItem.createLocal(id, 
-      {:version => version, :identifier => identifier, :versionLabel => versionLabel, 
-        :itemType => itemType, :namespaceId => RegistrationAuthority.owner.namespace.id, :label => ""}, 
-      useNs)
+    managedItem = ManagedItem.create(C_CID_PREFIX, params, @@baseNs)
+    id = managedItem.id
+    useNs = managedItem.namespace
 
     # Create the query
     update = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
@@ -202,7 +196,6 @@ class Thesaurus
     if response.success?
       object = self.new
       object.id = id
-      object.namespace = useNs
       object.managedItem = managedItem
       ConsoleLogger::log(C_CLASS_NAME,"createLocal","Object created, id=" + id)
     else
@@ -220,12 +213,12 @@ class Thesaurus
     useNs = ns || @@baseNs
 
     # Get the parameters
-    itemType = params[:itemType]
     version = params[:version]
     versionLabel = params[:versionLabel]
     identifier = params[:identifier]
     namespaceId = params[:namespaceId]
-
+    label = params[:label]
+    
     ConsoleLogger::log(C_CLASS_NAME,"createImported","*****ENTRY*****")
     ConsoleLogger::log(C_CLASS_NAME,"createImported",
       "namespaceId=" + namespaceId + ", " + 
@@ -234,11 +227,9 @@ class Thesaurus
       "identifier" + identifier + ", " + 
       "itemType=" + itemType )
 
-    # Create the id for the form
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemType, version)
-
-    # Create the managed item for the thesaurus. The namespace id is a shortcut for the moment.
-    managedItem = ManagedItem.createImported(id, {:version => version, :identifier => identifier, :versionLabel => versionLabel, :itemType => itemType, :namespaceId => namespaceId}, useNs)
+    # Create the managed item for the thesaurus.
+    managedItem = ManagedItem.import(C_CID_PREFIX, params, namespaceId, @@baseNs)
+    id = managedItem.id
 
     # Create the query
     update = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +

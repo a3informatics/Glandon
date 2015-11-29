@@ -10,91 +10,9 @@
 	-->
 	<xsl:template match="/">
 
+		<!-- Create the HTML Header, include any style information we need -->
 		<html>
-			<!-- Create the HTML Header, include any style information we need -->
-			<head>
-				<style type="text/css">
-					
-					input[type=”radio”]{-webkit-appearance: radio;}
-					
-					table.header, th.header, td.header {
-					border: 1px solid black;
-					border-collapse: collapse;
-					}
-					
-					h1 {
-					text-align:left;
-					font-size:12pt;
-					font-family:verdana, arial, helvetica, sans-serif;
-					}
-					
-					h2 {
-					text-align:left;
-					font-size:10pt;
-					font-family:verdana, arial, helvetica, sans-serif;
-					}
-					
-					p {
-					    text-align:left;
-					    font-size:8pt;
-					    font-family:verdana, arial, helvetica, sans-serif;
-					}
-					p.small{
-					    font-size:6pt;
-					}
-					p.annotation1{
-					    text-align:center;
-					    font-size:8pt
-					}
-					p.annotation2{
-					    text-align:left;
-					    font-size:8pt
-					}
-					p.audit{
-					    font-size:7pt;
-					    color:red
-					}
-					p.event{
-					    text-align:left;
-					    font-size:8pt
-					}
-					p.study{
-					    text-align:center;
-					    font-size:14pt
-					}
-					p.form{
-					    text-align:center;
-					    font-size:14pt
-					}
-					p.group{
-					    text-align:center;
-					    font-size:12pt
-					}
-					p.head{
-					    text-align:left;
-					    font-weight:bold;
-					    font-size:16pt;
-					}
-					p.infob{
-					    font-weight:bold;
-					    font-size:8pt;
-					}
-					p.info{
-					    font-size:8pt;
-					}
-					
-					a.small{
-					    font-family:verdana, arial, helvetica, sans-serif;
-					    font-size:8pt;
-					    font-style:normal;
-					    line-height:normal;
-					    font-weight:normal;
-					    text-align:left;
-					    color:5a5aef
-					}</style>
-				<title>ODM Metadata Simple Layout</title>
-			</head>
-
+			<head/>
 			<body>
 				<xsl:apply-templates select="/odm:ODM/odm:Study/odm:MetaDataVersion/odm:FormDef"/>
 			</body>
@@ -102,24 +20,20 @@
 	</xsl:template>
 
 	<xsl:template match="odm:FormDef">
-		<table width="800" cellpadding="0">
+		<table class="table table-striped table-bordered table-condensed">
 			<tr>
-				<td valign="center" align="left"><h1>Form: <xsl:value-of select="@Name"/></h1></td>
-				<td valign="center" align="right">
-					<h1>
-						<!-- The two following lines and the namespace -->
-						<!-- The first works in Oxygen. But does not in PHP -->
-						<!-- The second works in PHP but not Oxygen!! -->
-						<!--<xsl:variable name="Aliases" select="./odm:Alias"/>-->
-						<xsl:variable name="Aliases" select="./Alias"/>
+				<td colspan="2"><h4><xsl:value-of select="@Name"/></h4></td>
+				<td>
+					<h4>
+						<xsl:variable name="Aliases" select="./odm:Alias"/>
 						<xsl:for-each select="$Aliases">
-							<xsl:value-of select="concat('Domain ',./@Name)"/><br/>
+							<xsl:value-of select="concat('Domain: ',./@Name)"/><br/>
 						</xsl:for-each>
-					</h1>
+					</h4>
 				</td>
 			</tr>
-		</table><br/>		
 		<xsl:apply-templates select="./odm:ItemGroupRef"/>
+		</table>		
 	</xsl:template>
 
 	<xsl:template match="odm:ItemGroupRef">
@@ -131,23 +45,17 @@
 
 	<xsl:template match="odm:ItemGroupDef">
 		<xsl:if test="./odm:ItemRef">
-			<table width="800" cellpadding="0">
+			<!--<table class="table table-striped table-bordered table-condensed">-->
 				<tr>
-					<td align="Left" width="50%"><h2><xsl:value-of select="@Name"/></h2></td>
-					<td align="right" width="25%">
+					<td colspan="3"><h5><xsl:value-of select="@Name"/></h5></td>
+					<!--<td align="right" width="25%">
 						<p>
 							<font color="red">
-								<!-- Another dodgy namespace related line! -->
-								<!-- Remove the odm: prefix for PHP environment, needed for Oxygen-->
-								<!--<xsl:value-of select="./odm:Alias[@Context='GroupAnnotation']/@Name"/>-->
 								<xsl:value-of select="./Alias[@Context='GroupAnnotation']/@Name"/>
 							</font>
 						</p>
 					</td>
 					<td align="right" width="25%">
-						<!-- Another dodgy namespace related line! -->
-						<!-- Remove the odm: prefix for PHP environment, needed for Oxygen-->
-						<!--<xsl:variable name="Loinc" select="./odm:Alias[@Context='LOINC']/@Name"/>-->
 						<xsl:variable name="Loinc" select="./Alias[@Context='LOINC']/@Name"/>
 						<xsl:if test="$Loinc">
 							<p>
@@ -156,12 +64,12 @@
 								</font>
 							</p>	
 						</xsl:if>
-					</td>
+					</td>-->
 				</tr>
-			</table><br/>
-			<table width="800" cellpadding="0">
+			<!--</table><br/>
+			<table class="table table-striped table-bordered table-condensed">-->
 				<xsl:apply-templates select="./odm:ItemRef"/>
-			</table><br/>	
+			<!--</table><br/>-->	
 		</xsl:if>
 	</xsl:template>
 
@@ -172,7 +80,7 @@
 
 	<xsl:template match="odm:ItemDef">
 		<tr>
-			<td width="400" valign="top">
+			<td>
 				<p>
 					<xsl:call-template name="QuestionText">
 						<xsl:with-param name="OID" select="@OID"/>
@@ -182,7 +90,7 @@
 					</font>
 				</p>
 			</td>
-			<td valign="top">
+			<td colspan="2">
 				<p>
 					<xsl:call-template name="DataField"/>
 				</p>

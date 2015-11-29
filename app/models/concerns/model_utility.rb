@@ -5,80 +5,87 @@ module ModelUtility
   C_CLASS_NAME = "ModelUtility"
 
   def ModelUtility.validIdentifier?(value, object)
-    result = value =~ /\A\w+\z/ 
+    result = value.match /\A[A-Za-z0-9 ]+\z/ 
     return true if result != nil
     object.errors.add(:identifer, "contains invalid characters or is empty")
     return false
   end
 
-  def ModelUtility.validItemType?(value, object)
-    result = value =~ /\A\w+\z/  
+  def ModelUtility.validShortName?(value, object)
+    result = value.match /\A[A-Za-z0-9]+\z/ 
     return true if result != nil
-    object.errors.add(:item_type, "contains invalid characters or is empty")
+    object.errors.add(:short_name, "contains invalid characters or is empty")
     return false
   end
 
+  def ModelUtility.validFreeText?(symbol, value, object)
+    result = value.match /^\A[A-Za-z0-9.!?,_ \-()]+\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters or is empty")
+    return false
+  end
+
+  def ModelUtility.validLabel?(value,object)
+    return validFreeText?(:label, value, object)
+  end
+
   def ModelUtility.buildUri(namespace, id)
-  
     uri = Uri.new
-    uri.setNsCid(namespace,id)
+    uri.setNsCid(namespace, id)
     return "<" + uri.all + ">"
-    
   end
   
-  def ModelUtility.buildCid(prefix, unique)
-  
+  def ModelUtility.createUid(name)
+    #return SecureRandom.hex(8)  
+    return name.gsub(/[^0-9A-Za-z_]/, '')
+  end
+
+  def ModelUtility.buildCidUid(prefix, itemUid)  
     uri = Uri.new
-    uri.setCidNoVersion(prefix,unique)
+    uri.setCidNoVersion(prefix, itemUid)
     return uri.getCid
-    
   end
   
-  def ModelUtility.buildCidVersion(prefix, itemType, version)
-  
+  def ModelUtility.buildCidUidVersion(prefix, itemUid, version)
     uri = Uri.new
-    uri.setCidWithVersion(prefix, itemType, version)
+    uri.setCidWithVersion(prefix, itemUid, version)
     return uri.getCid
-    
   end
   
-  def ModelUtility.buildCidTime(prefix)
-  
-    return buildCid(prefix,Time.now.to_formatted_s(:number))
-    
+  def ModelUtility.buildCid(prefix)
+    return buildCidUid(prefix, SecureRandom.hex(8))
   end
 
   def ModelUtility.cidSwapPrefix(cid, prefix)
-  
     uri = Uri.new
     uri.setCid(cid)
     uri.prefix = prefix
     return uri.getCid
-    
+  end
+  
+  def ModelUtility.cidAddSuffix(cid, suffix)  
+    uri = Uri.new
+    uri.setCid(cid)
+    uri.extendUid(suffix)
+    return uri.getCid
   end
   
   def ModelUtility.extractCid(uri)
-  
     object = Uri.new()
     object.setUri(uri)
     return object.getCid()
-  
   end
   
   def ModelUtility.extractNs(uri)
-  
     object = Uri.new()
     object.setUri(uri)
     return object.getNs()
-  
   end
   
-  def ModelUtility.extractItemType(cid)
-  
+  def ModelUtility.extractUid(cid)
     object = Uri.new()
     object.setCid(cid)
-    return object.itemType()
-  
+    return object.uid()
   end
 
   def ModelUtility.getValue(name, uri, node)

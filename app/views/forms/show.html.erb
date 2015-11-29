@@ -37,7 +37,7 @@
 			    <td><%= group.optional %></td>
 			    <td><%= group.note %></td>
 			    <td><%= group.ordinal %></td>
-			    <td><%= link_to "Show", forms_form_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %></td>
+			    <td><%= link_to "Show", forms_form_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
 			  </tr>
 			<% end %>	
 		</tbody>

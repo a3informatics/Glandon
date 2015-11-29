@@ -136,11 +136,11 @@ class Form::FormGroup
     return nil
   end
 
-  def self.create_placeholder (formId, ns, cidPrefix, ordinal, version, freeText)
+  def self.create_placeholder (formId, ns, ordinal, freeText)
    
-    itemCidPrefix = cidPrefix + C_ID_SEPARATOR + ordinal.to_s
-    id = ModelUtility.buildCid(C_CID_PREFIX, itemCidPrefix)
-    item = Form::FormItem.create_placeholder(id, ns, itemCidPrefix, 1, version, freeText)
+    id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
+    id = ModelUtility.cidAddSuffix(id, ordinal)
+    item = Form::FormItem.create_placeholder(id, ns, 1, freeText)
     update = UriManagement.buildNs(ns, ["bf"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -178,17 +178,17 @@ class Form::FormGroup
   
   end
 
-  def self.create_bc_normal (formId, ns, cidPrefix, ordinal, version, bc)
+  def self.create_bc_normal (formId, ns, ordinal, bc)
    
-    itemCidPrefix = cidPrefix + C_ID_SEPARATOR + ordinal.to_s
-    id = ModelUtility.buildCid(C_CID_PREFIX, itemCidPrefix)
+    id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
+    id = ModelUtility.cidAddSuffix(id, ordinal)
     insertSparql = ""
     items = Hash.new
     itemOrdinal = 1
     bc.properties.each do |property_id, property|
       ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add item for Group=" + property_id)
       if property[:Enabled]
-        item = Form::FormItem.create_bc_normal(id, ns, itemCidPrefix, itemOrdinal, version, bc, property_id)
+        item = Form::FormItem.create_bc_normal(id, ns, itemOrdinal, bc, property_id)
         itemOrdinal += 1
         items[item.id] = item
         insertSparql = insertSparql + " :" + id + " bf:hasNode :" + item.id + " . \n"

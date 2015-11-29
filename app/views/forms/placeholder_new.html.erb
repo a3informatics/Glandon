@@ -1,23 +1,24 @@
 <h3>New Placeholder Form</h3>
-<%= form_for @form, :url => placeholder_create_forms_path do |f| %>
-	<div class="row">
-		<div class="col-md-3">
-			<div class="form-group">
-		    	<%= label_tag :itemType, "Item Type:" %><br />
-		    	<input type="text" class="form-control" name="form[itemType]" id="form_itemType">
+	<%= form_for @form, :url => placeholder_create_forms_path do |f| %>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="form-group">
+			    	<%= f.label :identifier, "Identifier:" %><br />
+			    	<input type="text" class="form-control" name="form[identifier]" id="form_identifier">
+			  	</div>
+			  	<div class="form-group">
+			    	<%= label_tag :label, "Label:" %><br />
+			    	<input type="text" class="form-control" name="form[label]" id="form_label">
+			  	</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+			    	<%= label_tag :freeText, "Placeholder Text" %><br/>
+			    	<%= text_area_tag "form[freeText]",nil,rows:5,cols:80 %>
+			  	</div>
 		  	</div>
-			<div class="form-group">
-		    	<%= f.label :identifier, "Identifier:" %><br />
-		    	<input type="text" class="form-control" name="form[identifier]" id="form_identifier">
-		  	</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="form-group">
-		    	<%= label_tag :freeText, "Placeholder Text" %><br/>
-		    	<%= text_area_tag "form[freeText]",nil,rows:5,cols:80 %>
-		  	</div>
-	  	</div>
-	</div>
+		</div>
   	<%= f.submit "Create", class: "btn btn-default btn-primary" %>
 <% end %>

@@ -6,7 +6,7 @@ class CdiscBc
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :managedItem, :properties, :namespace, :errors
+  attr_accessor :id, :managedItem, :properties, :namespace
   #validates_presence_of :id, :managedItem, :properties, :namespace
   
   # Constants
@@ -77,7 +77,7 @@ class CdiscBc
       "   OPTIONAL { \n" + 
       "     ?propertyN cbc:alias ?alias . \n" + 
       "     ?propertyN cbc:name ?name . \n" + 
-      "     ?propertyN cbc:hasSimpleDatatype ?simpleDatatypeN .\n" + 
+      "     ?propertyN cbc:hasValue ?simpleDatatypeN .\n" + 
       "     ?propertyN cbc:pText ?pText . \n" + 
       "     ?propertyN cbc:qText ?qText . \n" + 
       "     ?propertyN cbc:enabled ?enabled . \n" + 
@@ -85,7 +85,7 @@ class CdiscBc
       "     ?propertyN cbc:bridgPath ?bridg . \n" + 
       "   }\n" + 
       "   OPTIONAL { \n" + 
-      "     ?propertyN (cbc:hasSimpleDatatype | cbc:nextValue)%2B ?valueN .\n" + 
+      "     ?propertyN (cbc:hasValue | cbc:nextValue)%2B ?valueN .\n" + 
       "     ?valueN rdf:type cbc:PropertyValue .\n" + 
       "     ?valueN cbc:value ?value .\n" + 
       "   }\n" + 
@@ -191,7 +191,7 @@ class CdiscBc
     
   end
 
-  def self.createLocal(params, ns=nil)
+  def self.create(params, ns=nil)
     
     ConsoleLogger::log(C_CLASS_NAME,"createLocal","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"createLocal","Params=" + params.to_s)
@@ -199,42 +199,40 @@ class CdiscBc
     # Initialise anything necessary
     bc = []
     object = self.new
+    object.errors.clear
     
     # Check parameters for errors    
-    object.errors.clear
-    if validate!(params, object.errors)
+    if params_valid?(params, object)
     
       # Get the parameters
-      itemType = params[:itemType]
       version = "1"
       versionLabel = "0.1"
       identifier = params[:identifier]
       templateAndNs = params[:template]
       children = params[:children]
-      
+      label = params[:label]
+      params[:version] = version
+      params[:versionLabel] = versionLabel
+      itemType = ModelUtility.createUid(identifier)
+
       # Extract the identifier nad namespace
       parts = templateAndNs.split('|')
       templateIdentifier = parts[0]
       templateNs = parts[1]
       #ConsoleLogger::log(C_CLASS_NAME,"createLocal","A=" + templateAndNs + ", B=" + templateIdentifier + ", C=" + templateNs)
     
-      # Create the required namespace.
-      uri = Uri.new
-      uri.setUri(@@baseNs)
-      uri.extendPath("V" + version.to_s)
-      useNs = uri.getNs()
-      #ConsoleLogger::log(C_CLASS_NAME,"createLocal","useNs=" + useNs)
-    
-      # Create the id for the biomedical concept
-      id = ModelUtility.buildCidVersion(C_CID_PREFIX, itemType, version)
-
       # Create the managed item for the thesaurus. The namespace id is a shortcut for the moment.
-      if ManagedItem.exists?(identifier, RegistrationAuthority.owner)
+      if ManagedItem.exists?(identifier)
 
         # Item already exists
         object.errors.add(:biomedical_concept, "already exists. Need to create with a different identifier.")
 
       else
+
+        # Create the managed item
+        managedItem = ManagedItem.create(C_CID_PREFIX, params, @@baseNs)
+        id = managedItem.id
+        useNs = managedItem.namespace
 
         # Get the named template. Sort the white space.
         bcTemplate = BiomedicalConceptTemplate.find(templateIdentifier, templateNs)
@@ -290,7 +288,7 @@ class CdiscBc
               inProperty = true
             end
           elsif parts.length >= 4 && inProperty
-            if parts[1].start_with?("cbc:hasSimpleDatatype")
+            if parts[1].start_with?("cbc:hasValue")
               simpleUri = parts[2]
             elsif parts[1].start_with?("cbc:alias")
               aParts = line1.split('"')
@@ -414,12 +412,6 @@ class CdiscBc
           preceedingLine = line
         end 
       
-        # Create the managed item
-        managedItem = ManagedItem.createLocal(id, 
-          {:version => version, :identifier => identifier, :versionLabel => versionLabel, 
-            :itemType => itemType, :namespaceId => RegistrationAuthority.owner.namespace.id, :label => ""}, 
-          useNs)
-
         # Create the query
         update = UriManagement.buildNs(useNs,["isoI", "cbc","mdrIso21090","mdrBridg","mdrBcts"]) +
           "INSERT DATA \n" +
@@ -435,7 +427,7 @@ class CdiscBc
         
         # Response
         if response.success?
-          object.id = id
+          object.id = managedItem.id
           object.namespace = useNs
           object.managedItem = managedItem
           object.properties = Hash.new
@@ -481,48 +473,44 @@ private
       return text
   end
 
-  def self.updateCid(line, itemType, version)
+  def self.updateCid(line, uid, version)
       cid = line
       cid[0] = ''
-      thisItemType = ModelUtility.extractItemType(cid)
-      text = ':' + ModelUtility.buildCidVersion(C_CID_PREFIX, itemType + '_' + thisItemType, version)    
+      thisUid = ModelUtility.extractUid(cid)
+      text = ':' + ModelUtility.buildCidUid(C_CID_PREFIX, uid + '_' + thisUid)    
       return text
   end
 
-  def self.updateCidIndex(line, itemType, index, version)
+  def self.updateCidIndex(line, uid, index, version)
       cid = line
       cid[0] = ''
-      thisItemType = ModelUtility.extractItemType(cid)
-      text = ':' + ModelUtility.buildCidVersion(C_CID_PREFIX, itemType + '_' + thisItemType + '_' + index.to_s, version)    
+      thisUid = ModelUtility.extractUid(cid)
+      text = ':' + ModelUtility.buildCidUid(C_CID_PREFIX, uid + '_' + thisUid + '_' + index.to_s)    
       return text
   end
 
   def self.findChild(children, aliasName)
-      ConsoleLogger::log(C_CLASS_NAME,"findChild","Alias=" + aliasName)
-      children.each do |key, child|
-        ConsoleLogger::log(C_CLASS_NAME,"findChild","Alias=" + aliasName + ", Child[:name]=" + child.to_s + ", Key=" + key.to_s)
-        if child[:name] == aliasName
-          return child
+      if aliasName != nil
+        ConsoleLogger::log(C_CLASS_NAME,"findChild","Alias=" + aliasName)
+        children.each do |key, child|
+          ConsoleLogger::log(C_CLASS_NAME,"findChild","Alias=" + aliasName + ", Child[:name]=" + child.to_s + ", Key=" + key.to_s)
+          if child[:name] == aliasName
+            return child
+          end
         end
       end
       return nil
   end
 
-  def self.validate!(params, errors)
-    itemType = params[:itemType]
-    identifier = params[:identifier]
-    template = params[:template]
-    ConsoleLogger::log(C_CLASS_NAME,"validate!","itemType=" + itemType + ", identifier=" + identifier + ", template=" + template)
-    errors.add(:identifier, "cannot be empty. Enter the identifier.") if identifier.blank?
-    errors.add(:itemType, "cannot be empty. Enter the Item Type.") if itemType.blank?
-    errors.add(:template, "cannot be empty. Select a template.") if template.blank?
-    if errors.count > 0 
-      ConsoleLogger::log(C_CLASS_NAME,"validate!","False")
-      return false
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"validate!","True")
-      return true
-    end
+  def self.params_valid?(params, object)
+    
+    result1 = ModelUtility::validIdentifier?(params[:identifier], object)
+    result2 = ModelUtility::validLabel?(params[:label], object)
+    #result3 = validBcs?(params[:bcs], object)
+    result3 = true
+    return result1 && result2 && result3
+    #return true
+
   end
   
   # Temporary datatype function

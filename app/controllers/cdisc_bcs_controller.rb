@@ -23,11 +23,11 @@ class CdiscBcsController < ApplicationController
 
   def create
     ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
-    @bc = CdiscBc.createLocal(params[:data])
-    if @bc.errors.count > 0
-      render :json => { :errors => @bc.errors.full_messages}, :status => 422
-    else
+    @bc = CdiscBc.create(params[:data])
+    if @bc.errors.empty?
       render :nothing => true, :status => 200, :content_type => 'text/html'
+    else
+      render :json => { :errors => @bc.errors.full_messages}, :status => 422
     end
   end
 
@@ -48,6 +48,6 @@ class CdiscBcsController < ApplicationController
   
 private
   def the_params
-    params.require(:cdisc_bc).permit(:identifier, :itemType, :children[], :data)
+    params.require(:cdisc_bc).permit(:identifier, :label, :children[], :data)
   end  
 end

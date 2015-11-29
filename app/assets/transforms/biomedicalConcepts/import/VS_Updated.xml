@@ -3,20 +3,20 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C25347" Name="Height Biomedical Concept">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>C25347</Value>
 				</Property>
 				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
-					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+					<Property Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
 						<Value>C25347</Value>
 					</Property>
 				</Property>
 			</Attribute>
 			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
-				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code"/>
+				<Property Enabled="false" Collect="true" Alias="Location (--LOC)" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Method" Name="methodCode">
-				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code"/>
+				<Property Enabled="false" Collect="true" Alias="Method Code (--METHOD)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedObservation">
@@ -26,13 +26,13 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="ReasonNotDone" Name="negationReason">
-				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+				<Property Enabled="false" Collect="true" Alias="Code" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Position" Name="bodyPositionCode">
-				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="false" Collect="true"/>
 			</Attribute>
 			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
-				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+				<Property Enabled="false" Collect="true" Alias="Laterality (--LAT)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedClinicalResult">
@@ -44,7 +44,7 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+				<Property Enabled="false" Collect="false" Alias="Baseline (--BLFL)" Name="value">
 					<Value>C49487</Value>
 					<Value>C49488</Value>
 				</Property>
@@ -64,10 +64,10 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
-				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code"/>
+				<Property Enabled="false" Collect="true" Alias="Location (--LOC)" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Method" Name="methodCode">
-				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code"/>
+				<Property Enabled="false" Collect="true" Alias="Method Code (--METHOD)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedObservation">
@@ -77,13 +77,13 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="ReasonNotDone" Name="negationReason">
-				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+				<Property Enabled="false" Collect="true" Alias="Code" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Position" Name="bodyPositionCode">
-				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="false" Collect="true"/>
 			</Attribute>
 			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
-				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+				<Property Enabled="false" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedClinicalResult">
@@ -95,7 +95,7 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+				<Property Enabled="false" Collect="false" Alias="Baseline (--BLFL)" Name="value">
 					<Value>C49487</Value>
 					<Value>C49488</Value>
 				</Property>

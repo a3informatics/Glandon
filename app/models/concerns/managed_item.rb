@@ -6,7 +6,7 @@ class ManagedItem
   include CRUD
   include ModelUtility
       
-  attr_accessor :id, :type, :label, :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment
+  attr_accessor :id, :namespace, :type, :label, :comment, :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment
   
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -33,24 +33,34 @@ class ManagedItem
     return self.scopedIdentifier.owner
   end
 
-  def self.exists?(identifier, namespace)
+  def self.exists?(identifier)
     
+    ra = RegistrationAuthority.owner
     ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-    result = ScopedIdentifier.exists?(identifier, namespace.id)
+    ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + ra.namespace.id)
+    result = ScopedIdentifier.exists?(identifier, ra.namespace.id)
+
+  end
+
+  def self.imported?(identifier, org)
+    
+    #ra = RegistrationAuthority.owner
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + ra.namespace.id)
+    #result = ScopedIdentifier.exists?(identifier, ra.namespace.id)
 
   end
 
   # Note: The id is the identifier for the enclosing managed object.
-  def self.find(id, ns=nil)
+  def self.find(id, ns)
     
     ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     object = nil
-    useNs = ns || @@baseNs
     #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
     #ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + useNs + " [base=" + @@baseNs + "]")
     
     # Create the query
-    query = UriManagement.buildNs(useNs, ["isoI", "isoT"]) +
+    query = UriManagement.buildNs(ns, ["isoI", "isoT"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
       "{ \n" +
       "  :" + id + " isoI:hasIdentifier ?a . \n" +
@@ -86,6 +96,7 @@ class ManagedItem
       if iiSet.length == 1 
         object = self.new
         object.id = id
+        object.namespace = ns
         object.label = label
         object.scopedIdentifier = ScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
         if rsSet.length == 1
@@ -113,13 +124,19 @@ class ManagedItem
     
   end
 
-  def self.createImported(id, params, ns=nil)
+  def self.import(prefix, params, scopeId, ns)
   
+    ConsoleLogger::log(C_CLASS_NAME,"createImported","*****Entry*****")
+    
     useNs = ns || @@baseNs
-
+    uid = ModelUtility.createUid
+    params[:itemUid] = uid
+    
+    ConsoleLogger::log(C_CLASS_NAME,"createLocal","useNs=" + useNs)
+    
     object = self.new
-    object.id = id
-    object.scopedIdentifier = ScopedIdentifier.create(params)
+    object.id = ModelUtility.buildCidUid(prefix, uid)
+    object.scopedIdentifier = ScopedIdentifier.create(params, uid, scopeId)
     object.registrationState = nil
     object.type = C_II
     object.origin = ""
@@ -127,12 +144,12 @@ class ManagedItem
     object.creationDate = ""
     object.lastChangedDate = ""
     object.explanoratoryComment = ""
-    object,lable = ""
+    object.label = ""
 
     update = UriManagement.buildNs(useNs, ["mdrItems", "isoI"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      " :" + id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
+      " :" + object.id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
       "}"
 
     # Send the request, wait the resonse
@@ -149,16 +166,35 @@ class ManagedItem
   
   end
 
-  def self.createLocal(id, params, ns=nil)
+  def self.create(prefix, params, baseNs)
 
-    useNs = ns || @@baseNs
+    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+   
+    version = params[:version]
+
+    # Set the registration authority to teh owner
+    ra = RegistrationAuthority.owner
+    orgName = ra.namespace.shortName
+    scopeId = ra.namespace.id
+
+    # Create the required namespace. Use owener name to extend
+    uri = Uri.new
+    uri.setUri(baseNs)
+    uri.extendPath(orgName + "/V" + version.to_s)
+    useNs = uri.getNs()
+    ConsoleLogger::log(C_CLASS_NAME,"create","useNs=" + useNs)
+     
+    # Create the uid based on the identifier. Identifier has to be unique
+    # (checked using exists?) thsi will clean out any nastry unwanted chars 
+    uid = ModelUtility.createUid(params[:identifier])
     timestamp = Time.now
-    ConsoleLogger::log(C_CLASS_NAME,"createLocal","useNs=" + useNs)
     
+    # Create the object
     object = self.new
-    object.id = id
-    object.scopedIdentifier = ScopedIdentifier.create(params)
-    object.registrationState = RegistrationState.create(params)
+    object.id = ModelUtility.buildCidUid(prefix, uid)
+    object.namespace = useNs
+    object.scopedIdentifier = ScopedIdentifier.create(params, uid, scopeId)
+    object.registrationState = RegistrationState.create(params, uid)
     object.type = C_AI
     object.origin = ""
     object.changeDescription = "Creation"
@@ -170,14 +206,15 @@ class ManagedItem
     update = UriManagement.buildNs(useNs, ["mdrItems", "isoT", "isoI"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      " :" + id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
-      " :" + id + " isoI:hasState mdrItems:" + object.registrationState.id + " . \n" +
-      " :" + id + " isoT:origin \"\"^^xsd:string . \n" +
-      " :" + id + " isoT:changeDescription \"Creation\"^^xsd:string . \n" +
-      " :" + id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +
-      " :" + id + " isoT:lastChangedDate \"\"^^xsd:string . \n" +
-      " :" + id + " isoT:explanoratoryComment \"\"^^xsd:string . \n" +
-      " :" + id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
+      " :" + object.id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
+      " :" + object.id + " isoI:hasState mdrItems:" + object.registrationState.id + " . \n" +
+      " :" + object.id + " isoT:origin \"\"^^xsd:string . \n" +
+      " :" + object.id + " isoT:changeDescription \"Creation\"^^xsd:string . \n" +
+      " :" + object.id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +
+      " :" + object.id + " isoT:lastChangedDate \"\"^^xsd:string . \n" +
+      " :" + object.id + " isoT:explanoratoryComment \"\"^^xsd:string . \n" +
+      " :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
+    #  " :" + object.id + " rdfs:comment \"\"^^xsd:string . \n" +
     "}"
 
     # Send the request, wait the resonse
@@ -185,10 +222,10 @@ class ManagedItem
 
     # Response
     if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"createLocal","Success, id=" + id)
+      ConsoleLogger::log(C_CLASS_NAME,"create","Success, id=" + object.id)
     else
       object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"createLocal","Failed")
+      ConsoleLogger::log(C_CLASS_NAME,"create","Failed")
     end
 
     return object

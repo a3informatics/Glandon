@@ -66,7 +66,7 @@ class BiomedicalConceptTemplate
       "    ?bcDtNode (cbc:hasProperty | cbc:hasComplexDatatype )%2B ?bcPropertyNode . \n" + 
       "    OPTIONAL { \n" + 
       "      ?bcPropertyNode cbc:alias ?propertyAlias . \n" +
-      "      ?bcPropertyNode cbc:hasSimpleDatatype ?simple . \n" +
+      "      ?bcPropertyNode cbc:hasValue ?simple . \n" +
       "    }\n" + 
       "  }\n" + 
       "}\n"
@@ -199,12 +199,12 @@ class BiomedicalConceptTemplate
       "    ?m ?n ?o .\n" + 
       "    ?m cbc:hasProperty ?p .\n" + 
       "    ?p ?q ?r . \n" +
-      "    ?p cbc:hasSimpleDatatype ?s .\n" + 
+      "    ?p cbc:hasValue ?s .\n" + 
       "    ?s ?t ?u . \n" + 
       "  }\n" + 
       "  OPTIONAL\n" +
       "  {\n" + 
-      "    ?j cbc:hasSimpleDatatype ?v .\n" + 
+      "    ?j cbc:hasValue ?v .\n" + 
       "    ?v ?w ?x .\n" +  
       "  }\n" + 
       # "  VALUES (?a) {(\"" + self.id + "\")}\n" + 

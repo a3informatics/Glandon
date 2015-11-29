@@ -142,7 +142,7 @@ class Iso11179ConceptSystem
   def self.create(params)
     
     notation = params[:notation]
-    id = ModelUtility.buildCid(C_CID_PREFIX, notation)
+    id = ModelUtility.buildCidUid(C_CID_PREFIX, notation)
     ConsoleLogger::log(C_CLASS_NAME,"create","Id=" + id)
     
     # Create the query

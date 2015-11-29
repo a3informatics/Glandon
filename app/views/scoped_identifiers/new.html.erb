@@ -2,10 +2,6 @@
 <div class="col-md-3">
 	<%= form_for @scopedIdentifier do |f| %>
 	  	<div class="form-group">
-    		<%= label_tag :itemType, "Item Type:" %><br/>
-    		<input type="text" class="form-control" name="scoped_identifier[itemType]" id="scoped_identifier_itemType">
-  		</div>
-  		<div class="form-group">
 		    <%= f.label :identifier, "identifier:" %><br/>
 		    <%= f.text_field :identifier, class: "form-control" %>
 		</div>
@@ -19,7 +15,7 @@
 		</div>
 	    <div class="form-group">
     		<%= label_tag :namespaceId, "Namespace:" %><br/>
-        	<%= select_tag("scoped_identifier[namespaceId]", options_for_select(@namespaces.map{ |u| [u.name, u.id] })) %>
+        	<%= select_tag("scoped_identifier[namespaceId]", options_for_select(@namespaces)) %>
         </div><br/>  
 		<%= f.submit "Create", class: "btn btn-default btn-primary" %>
 	<% end %>

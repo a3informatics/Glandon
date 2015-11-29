@@ -24,7 +24,7 @@ class RegistrationAuthority
       
   #Class variables
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-  @@owner = nil # The owner of the repository
+  @@repositoryOwner = nil # The owner of the repository
   
   def persisted?
     id.present?
@@ -77,6 +77,7 @@ class RegistrationAuthority
         ra.scheme = sSet[0].text
         ra.namespace = Namespace.find(ModelUtility.extractCid(siSet[0].text))
         ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
+        ConsoleLogger::log(C_CLASS_NAME,"find","Namespace, id=" + ra.namespace.id)
         end
     end
     
@@ -117,14 +118,15 @@ class RegistrationAuthority
         ra.number = oSet[0].text
         ra.scheme = sSet[0].text
         ra.namespace = Namespace.find(ModelUtility.extractCid(siSet[0].text))
-        ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + ra.id)
+        ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + ra.id)
+        ConsoleLogger::log(C_CLASS_NAME,"all","Namespace, id=" + ra.namespace.id)
         results[ra.id] = ra
       end
     end
     
     # Set owner. Assumed to be first authority.
-    if @@owner == nil
-      @@owner = results.values[0]
+    if @@repositoryOwner == nil
+      @@repositoryOwner = results.values[0]
     end
 
     # Return
@@ -136,10 +138,12 @@ class RegistrationAuthority
   def self.owner
 
     # The owner is assumed to be the first entry.
-    if @@owner == nil
+    if @@repositoryOwner == nil
       results = self.all
     end
-    return @@owner
+    ConsoleLogger::log(C_CLASS_NAME,"owner","Owner, id=" + @@repositoryOwner.id)
+    ConsoleLogger::log(C_CLASS_NAME,"owner","Namespace, id=" + @@repositoryOwner.namespace.id)
+    return @@repositoryOwner
     
   end
 
@@ -147,10 +151,11 @@ class RegistrationAuthority
     
     number = params[:number]
     namespaceId = params[:namespaceId]
-    
+    uid = ModelUtility.createUid
+
     # Create the query
-    raiId = ModelUtility.buildCid(C_CLASS_RAI_PREFIX, number)
-    id = ModelUtility.buildCid(C_CLASS_RA_PREFIX, number)
+    raiId = ModelUtility.buildCidUid(C_CLASS_RAI_PREFIX, uid)
+    id = ModelUtility.buildCidUid(C_CLASS_RA_PREFIX, uid)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +

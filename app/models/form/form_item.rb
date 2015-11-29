@@ -209,9 +209,10 @@ class Form::FormItem
     return nil
   end
 
-  def self.create_placeholder(groupId, ns, cidPrefix, ordinal, version, freeText)
+  def self.create_placeholder(groupId, ns, ordinal, freeText)
 
-    id = ModelUtility.buildCidVersion(C_CID_PREFIX, cidPrefix + C_ID_SEPARATOR + ordinal.to_s, version)
+    id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
+    id = ModelUtility.cidAddSuffix(id, ordinal)
     update = UriManagement.buildNs(ns, ["bf"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -249,9 +250,10 @@ class Form::FormItem
 
   end
 
-  def self.create_bc_normal(groupId, ns, cidPrefix, ordinal, version, bc, propertyId)
+  def self.create_bc_normal(groupId, ns, ordinal, bc, propertyId)
 
-    id = ModelUtility.buildCid(C_CID_PREFIX, cidPrefix + C_ID_SEPARATOR + ordinal.to_s)
+    id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
+    id = ModelUtility.cidAddSuffix(id, ordinal)
     name = bc.properties[propertyId][:Name]
     #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
     #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)

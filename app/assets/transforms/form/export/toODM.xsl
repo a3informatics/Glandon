@@ -12,11 +12,11 @@
     <xsl:key name="FormNameKey" match="sr:result" use="sr:binding[@name='fName']/sr:literal"/>
     
     <xsl:template match="sr:sparql">
-        <xsl:variable name="formNames1" select="sr:results/sr:result/sr:binding[@name='form']/sr:uri"/>
-        <xsl:variable name="formNames" select="$formNames1[not(.=preceding::*)]"/>
+        <xsl:variable name="uniqueFormsTemp" select="sr:results/sr:result/sr:binding[@name='form']/sr:uri"/>
+        <xsl:variable name="uniqueForms" select="$uniqueFormsTemp[not(.=preceding::*)]"/>
         
-        <xsl:variable name="groupNames1" select="sr:results/sr:result/sr:binding[@name='group']/sr:uri"/>
-        <xsl:variable name="groupNames" select="$groupNames1[not(.=preceding::*)]"/>
+        <xsl:variable name="uniqueGroupsTemp" select="sr:results/sr:result/sr:binding[@name='group']/sr:uri"/>
+        <xsl:variable name="uniqueGroups" select="$uniqueGroupsTemp[not(.=preceding::*)]"/>
         
         <xsl:variable name="forms" select="sr:results/sr:result[sr:binding[@name='form']]"/>
         <xsl:variable name="groups" select="sr:results/sr:result[sr:binding[@name='group']]"/>
@@ -65,10 +65,10 @@
                         </StudyEventRef>    
                     </Protocol>
                     <xsl:call-template name="StudyEventDef">
-                        <xsl:with-param name="pFormNames" select="$formNames"/>
+                        <xsl:with-param name="pUniqueForms" select="$uniqueForms"/>
                     </xsl:call-template>
                     <xsl:call-template name="FormDefs">
-                        <xsl:with-param name="pFormNames" select="$formNames"/>
+                        <xsl:with-param name="pUniqueForms" select="$uniqueForms"/>
                         <xsl:with-param name="pForms" select="$forms"/>
                         <xsl:with-param name="pGroups" select="$groups"/>
                     </xsl:call-template>
@@ -77,23 +77,22 @@
                     <xsl:variable name="filteredGroups" select="$TempfilteredGroups[not(.=preceding::*)]"/>
                     
                     <xsl:call-template name="ItemGroupDefs">
-                        <xsl:with-param name="pGroupNames" select="$groupNames"/>
+                        <xsl:with-param name="pUniqueGroups" select="$uniqueGroups"/>
                         <xsl:with-param name="pFilteredGroups" select="$filteredGroups"/>
                         <xsl:with-param name="pGroups" select="$groups"/>
                         <xsl:with-param name="pQs" select="$Qs"/>            
                     </xsl:call-template>
                     
-                    <xsl:variable name="TempfilteredQs" select="$groups/sr:binding[@name='bcProperty']/sr:uri"/>
-                    <xsl:variable name="filteredQs" select="$TempfilteredQs[not(.=preceding::*)]"/>
-                    
-                    
+                    <xsl:variable name="TempUniqueQs" select="$groups/sr:binding[@name='bcProperty']/sr:uri"/>
+                    <xsl:variable name="uniqueQs" select="$TempUniqueQs[not(.=preceding::*)]"/>
+                                   
                     <xsl:call-template name="ItemDefs">
                         <xsl:with-param name="pQs" select="$Qs"/>            
-                        <xsl:with-param name="pFilteredQs" select="$filteredQs"/>            
+                        <xsl:with-param name="pUniqueQs" select="$uniqueQs"/>            
                     </xsl:call-template>
                     <xsl:call-template name="CodeLists">
                         <xsl:with-param name="pQs" select="$Qs"/>            
-                        <xsl:with-param name="pFilteredQs" select="$filteredQs"/>            
+                        <xsl:with-param name="pUniqueQs" select="$uniqueQs"/>            
                     </xsl:call-template>
                 </MetaDataVersion>
             </Study>
@@ -101,7 +100,7 @@
     </xsl:template>
     
     <xsl:template name="StudyEventDef">
-        <xsl:param name="pFormNames"/>
+        <xsl:param name="pUniqueForms"/>
         <StudyEventDef>
             <xsl:attribute name="OID">
                 <xsl:value-of select="'SE.001'"/>
@@ -116,14 +115,14 @@
                 <xsl:value-of select="'Scheduled'"/>
             </xsl:attribute>
             <xsl:call-template name="FormRefs">
-                <xsl:with-param name="pFormNames" select="$pFormNames"/>
+                <xsl:with-param name="pUniqueForms" select="$pUniqueForms"/>
             </xsl:call-template>
         </StudyEventDef>
     </xsl:template>
    
     <xsl:template name="FormRefs">
-        <xsl:param name="pFormNames"/>
-        <xsl:for-each select="$pFormNames">
+        <xsl:param name="pUniqueForms"/>
+        <xsl:for-each select="$pUniqueForms">
             <FormRef>
                 <xsl:attribute name="FormOID">
                     <xsl:value-of select="."/>
@@ -133,22 +132,41 @@
     </xsl:template>
     
     <xsl:template name="FormDefs">
-        <xsl:param name="pFormNames"/>
+        <xsl:param name="pUniqueForms"/>
         <xsl:param name="pForms"/>
         <xsl:param name="pGroups"/>
-        <xsl:for-each select="$pFormNames">
+        <xsl:for-each select="$pUniqueForms">
             <FormDef>
                 <xsl:variable name="form" select="."/>
                 <xsl:attribute name="OID">
                     <xsl:value-of select="."/>
                 </xsl:attribute>
-                <xsl:variable name="TempName" select="$pForms/sr:binding[@name='fName']/sr:literal[../../sr:binding[@name='form']/sr:uri/text()=$form]"/>
-                <xsl:attribute name="Name" select="$TempName[not(.=preceding::*)]"/>
+                
+                <!-- Alternative methodm, left in as an example -->
+                <xsl:variable name="ParentResult" select="../../."/>
+                <xsl:variable name="FormName" select="$ParentResult/sr:binding[@name='fName']/sr:literal"/>
+                <xsl:attribute name="Name">
+                    <xsl:value-of select="$FormName"/>
+                </xsl:attribute> select=""
                 <xsl:variable name="TempGroups" select="$pGroups/sr:binding[@name='group']/sr:uri[../../sr:binding[@name='form']/sr:uri/text()=$form]"/>
                 <xsl:variable name="groups" select="$TempGroups[not(.=preceding::*)]"/>
                 <xsl:call-template name="ItemGroupRefs">
                     <xsl:with-param name="pGroups" select="$groups"/>
                 </xsl:call-template>
+                
+                <!-- Add domain alias -->
+                <xsl:variable name="TempDomains" select="$pForms/sr:binding[@name='domain']/sr:literal[../../sr:binding[@name='form']/sr:uri/text()=$form]"/>
+                <xsl:variable name="Domains" select="$TempDomains[not(.=preceding::*)]"/>
+                <xsl:for-each select="$Domains">
+                    <Alias>
+                        <xsl:attribute name="Context">
+                            <xsl:value-of select="'Domain'"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Name">
+                            <xsl:value-of select="."/>
+                        </xsl:attribute>
+                    </Alias>    
+                </xsl:for-each>
             </FormDef>
         </xsl:for-each>
     </xsl:template>
@@ -165,7 +183,7 @@
     </xsl:template>
 
     <xsl:template name="ItemGroupDefs">
-        <xsl:param name="pGroupNames"/>
+        <xsl:param name="pUniqueGroups"/>
         <xsl:param name="pFilteredGroups"/>
         <xsl:param name="pGroups"/>
         <xsl:param name="pQs"/>
@@ -178,7 +196,10 @@
                     <xsl:value-of select="."/>
                 </xsl:attribute>
                 <xsl:variable name="TempName" select="$pGroups/sr:binding[@name='gName']/sr:literal[../../sr:binding[@name='group']/sr:uri/text()=$group]"/>
-                <xsl:attribute name="Name" select="$TempName[not(.=preceding::*)]"/>
+                <xsl:variable name="GroupName" select="$TempName[not(.=preceding::*)]"/>
+                <xsl:attribute name="Name">
+                    <xsl:value-of  select="$GroupName"/>
+                </xsl:attribute>
                 <xsl:call-template name="ItemRefs">
                     <xsl:with-param name="pQs" select="$Qs"/>
                 </xsl:call-template>
@@ -199,26 +220,31 @@
     
     <xsl:template name="ItemDefs">
         <xsl:param name="pQs"/>
-        <xsl:param name="pFilteredQs"/>
-        <xsl:for-each select="$pFilteredQs">
+        <xsl:param name="pUniqueQs"/>
+        <xsl:for-each select="$pUniqueQs">
             <xsl:variable name="Q" select="."/>
-            <xsl:variable name="TempQText" select="$pQs/sr:binding[@name='alias']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
-            <xsl:variable name="QText" select="$TempQText[not(.=preceding::*)]"/>
+            <!--<xsl:variable name="TempQText" select="$pQs/sr:binding[@name='alias']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
+            <xsl:variable name="QText" select="$TempQText[not(.=preceding::*)]"/>-->
+            <xsl:variable name="QText" select="$pQs/sr:binding[@name='alias']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
             
-            <xsl:variable name="TempCL" select="$pQs/sr:binding[@name='ccode']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
+            <xsl:variable name="TempCL" select="$pQs/sr:binding[@name='cCode']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
             <xsl:variable name="CL" select="$TempCL[not(.=preceding::*)]"/>
             
-            <xsl:variable name="TempPresentation" select="$pQs/sr:binding[@name='presentation']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
-            <xsl:variable name="Presentation" select="$TempPresentation[not(.=preceding::*)]"/>
+            <!--<xsl:variable name="TempPresentation" select="$pQs/sr:binding[@name='datatype']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
+            <xsl:variable name="Presentation" select="$TempPresentation[not(.=preceding::*)]"/>-->
+            <xsl:variable name="Presentation" select="$pQs/sr:binding[@name='datatype']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
             
-            <xsl:variable name="TempSDTM" select="$pQs/sr:binding[@name='varName']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
-            <xsl:variable name="SDTM" select="$TempSDTM[not(.=preceding::*)]"/>
+            <!--<xsl:variable name="TempSDTM" select="$pQs/sr:binding[@name='sdtmVarName']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
+            <xsl:variable name="SDTM" select="$TempSDTM[not(.=preceding::*)]"/>-->
+            <xsl:variable name="SDTM" select="$pQs/sr:binding[@name='sdtmVarName']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
             
-            <xsl:variable name="TempTopic" select="$pQs/sr:binding[@name='sdtmTopicName']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
-            <xsl:variable name="Topic" select="$TempTopic[not(.=preceding::*)]"/>
+            <!--<xsl:variable name="TempTopic" select="$pQs/sr:binding[@name='sdtmTopicName']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
+            <xsl:variable name="Topic" select="$TempTopic[not(.=preceding::*)]"/>-->
+            <xsl:variable name="Topic" select="$pQs/sr:binding[@name='sdtmTopicName']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
             
-            <xsl:variable name="TempTopicValue" select="$pQs/sr:binding[@name='code']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
-            <xsl:variable name="TopicValue" select="$TempTopicValue[not(.=preceding::*)]"/>
+            <!-- <xsl:variable name="TempTopicValue" select="$pQs/sr:binding[@name='code']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
+            <xsl:variable name="TopicValue" select="$TempTopicValue[not(.=preceding::*)]"/>-->
+            <xsl:variable name="TopicValue" select="$pQs/sr:binding[@name='sdtmTopicSub']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
             
             <ItemDef>
                 <xsl:attribute name="OID">
@@ -228,7 +254,7 @@
                     <xsl:value-of select="concat($SDTM,' where ',$Topic,'=',$TopicValue)"/>
                 </xsl:attribute>
                 <xsl:choose>
-                    <xsl:when test="substring($Presentation,1,1)='I'">
+                    <xsl:when test="$Presentation='integer'">
                         <xsl:variable name="Len" select="string-length($Presentation)-1"/>
                         <xsl:attribute name="DataType">
                             <xsl:value-of select="'integer'"/>
@@ -237,30 +263,23 @@
                             <xsl:value-of select="substring($Presentation,2,$Len)"/>
                         </xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="substring($Presentation,1,1)='F'">
-                        <xsl:variable name="Len" select="string-length($Presentation)-1"/>
-                        <xsl:variable name="Format" select="substring($Presentation,2,$Len)"/>
+                    <xsl:when test="$Presentation='float'">
                         <xsl:attribute name="DataType">
                             <xsl:value-of select="'float'"/>
                         </xsl:attribute>
                         <xsl:attribute name="Length">
-                            <xsl:value-of select="substring-before($Format, '.')"/>
+                            <xsl:value-of select="'5'"/>
                         </xsl:attribute>
                         <xsl:attribute name="SignificantDigits">
-                            <xsl:value-of select="substring-after($Format, '.')"/>
+                            <xsl:value-of select="'1'"/>
                         </xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="$Presentation='D'">
+                    <xsl:when test="$Presentation='dateTime'">
                         <xsl:attribute name="DataType">
-                            <xsl:value-of select="'date'"/>
+                            <xsl:value-of select="'datetime'"/>
                         </xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="$Presentation='T'">
-                        <xsl:attribute name="DataType">
-                            <xsl:value-of select="'time'"/>
-                        </xsl:attribute>
-                    </xsl:when>
-                    <xsl:when test="$Presentation='DD'">
+                    <xsl:when test="$Presentation='string'">
                         <xsl:attribute name="DataType">
                             <xsl:value-of select="'string'"/>
                         </xsl:attribute>
@@ -284,22 +303,22 @@
     
     <xsl:template name="CodeLists">
         <xsl:param name="pQs"/>
-        <xsl:param name="pFilteredQs"/>
+        <xsl:param name="pUniqueQs"/>
         
-        <xsl:for-each select="$pFilteredQs">
+        <xsl:for-each select="$pUniqueQs">
             <xsl:variable name="Q" select="."/>
-            <xsl:variable name="CL" select="$pQs/sr:binding[@name='ccode']/sr:literal[../../sr:binding[@name='question']/sr:uri/text()=$Q]"/>
+            <xsl:variable name="CL" select="$pQs/sr:binding[@name='cCode']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
             <xsl:if test="$CL">
                 <CodeList>
                     <xsl:attribute name="OID">
                         <xsl:value-of select="concat('CL_',.)"/>
                     </xsl:attribute>
-                    <xsl:variable name="CLIs" select="$pQs[sr:binding[@name='question']/sr:uri/text()=$Q]"/>
-                    <xsl:variable name="TempCCodes" select="$CLIs/sr:binding[@name='ccode']/sr:literal"/>
+                    <xsl:variable name="CLIs" select="$pQs[sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
+                    <xsl:variable name="TempCCodes" select="$CLIs/sr:binding[@name='cCode']/sr:literal"/>
                     <xsl:variable name="CCodes" select="$TempCCodes[not(.=preceding::*)]"/>
                     <xsl:for-each select="$CCodes">
                         <xsl:variable name="CCode" select="."/>
-                        <xsl:variable name="CLI" select="$CLIs[sr:binding[@name='ccode']/sr:literal/text()=$CCode]"/>
+                        <xsl:variable name="CLI" select="$CLIs[sr:binding[@name='cCode']/sr:literal/text()=$CCode]"/>
                         <CodeListItem>
                             <xsl:attribute name="CodedValue">
                                 <xsl:value-of select="$CCode"/>
@@ -310,7 +329,7 @@
                                         <xsl:value-of select="'en'"/>
                                     </xsl:attribute>
                                     
-                                    <xsl:variable name="X" select="$CLI/sr:binding[@name='termSub']/sr:literal"/>
+                                    <xsl:variable name="X" select="$CLI/sr:binding[@name='subValue']/sr:literal"/>
                                     <xsl:value-of select="$X[not(.=preceding::*)]"/>
                                     
                                 </TranslatedText>

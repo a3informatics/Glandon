@@ -1,66 +1,97 @@
-<h1>Variable <%= @variable.name %></h1>
-<div class="col-md-10">
-	<h2>Details</h2>
+<h3>Variable <%= @variable.name %></h3>
+<div class="col-md-12">
+	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
-		<tr>
-	  		<th>Ordinal</th>
-	        <td><%= @variable.ordinal %></td>
-		</tr>
-	    <tr>
-			<th>Name</th>
-	    	<td><%= @variable.name %></td>
-		</tr>
-	    <tr>
-			<th>Description</th>
-	       	<td><%= @variable.description %></td>
-		</tr>
-	    <tr>
-			<th>Datatype</th>
-	    	<td><%= @variable.datatype %></td>
-		</tr>
-	    <tr>
-			<th>Label</th>
-	    	<td><%= @variable.label %></td>
-		</tr>
-	    <tr>
-			<th>Role</th>
-	   		<td><%= @variable.role %></td>
-		</tr>
-	    <tr>
-			<th>Core</th>
-	    	<td><%= @variable.core %></td>
-		</tr>
-	    <tr>
-			<th>Default Comment</th>
-	    	<td><%= @variable.defaultComment %></td>
-		</tr>
-	    <tr>
-			<th>Default Comment Set</th>
-	    	<td><%= @variable.defaultCommentSet %></td>
-		</tr>
-	    <tr>
-			<th>Supplemental Qualifier</th>
-	    	<td><%= @variable.supplementalQualifier %></td>
-		</tr>
-	    <tr>
-			<th>Used</th>
-	    	<td><%= @variable.used %></td>
-		</tr>
-	    <tr>
-			<th>Origin</th>
-	    	<td><%= @variable.origin %></td>
-		</tr>
-	    <tr>
-			<th>Notes</th>
-	    	<td><%= @variable.notes %></td>
-		</tr>
-	    <tr>
-			<th>Length</th>
-	    	<td><%= @variable.length %></td>
-		</tr>
-	    <tr>
-			<th>Schema Data Type</th>
-	  		<td><%= @variable.schemaDatatype %></td>
-		</tr>
+		<thead>
+			<tr>
+				<th>Attribute</th>
+				<td>Value</td>
+			</tr>
+		</thead>
+			<tbody>
+				
+			<tr>
+		  		<th>Ordinal</th>
+		        <td><%= @variable.ordinal %></td>
+			</tr>
+		    <tr>
+				<th>Name</th>
+		    	<td><%= @variable.name %></td>
+			</tr>
+		    <tr>
+				<th>Description</th>
+		       	<td><%= @variable.description %></td>
+			</tr>
+		    <tr>
+				<th>Datatype</th>
+		    	<td><%= @variable.datatype %></td>
+			</tr>
+		    <tr>
+				<th>Label</th>
+		    	<td><%= @variable.label %></td>
+			</tr>
+		    <tr>
+				<th>Role</th>
+		   		<td><%= @variable.role %></td>
+			</tr>
+		    <tr>
+				<th>Core</th>
+		    	<td><%= @variable.core %></td>
+			</tr>
+		    <tr>
+				<th>Default Comment</th>
+		    	<td><%= @variable.defaultComment %></td>
+			</tr>
+		    <tr>
+				<th>Default Comment Set</th>
+		    	<td><%= @variable.defaultCommentSet %></td>
+			</tr>
+		    <tr>
+				<th>Supplemental Qualifier</th>
+		    	<td><%= @variable.supplementalQualifier %></td>
+			</tr>
+		    <tr>
+				<th>Used</th>
+		    	<td><%= @variable.used %></td>
+			</tr>
+		    <tr>
+				<th>Origin</th>
+		    	<td><%= @variable.origin %></td>
+			</tr>
+		    <tr>
+				<th>Notes</th>
+		    	<td><%= @variable.notes %></td>
+			</tr>
+		    <tr>
+				<th>Length</th>
+		    	<td><%= @variable.length %></td>
+			</tr>
+		    <tr>
+				<th>Schema Data Type</th>
+		  		<td><%= @variable.schemaDatatype %></td>
+			</tr>
+		</tbody>
+	</table>
+	<h4>Biomedical Concept References</h4>
+	<p>This is displayed for metadata consistency checking and for information. It can be ignored for most uses.</p>
+	<table id="main" class="table table-striped table-bordered table-condensed">
+	  	<thead>
+	  		<tr>
+	    		<th>BC Id</th>
+	    		<th>BC Namespace</th>
+	    		<th>BC Property URI</th>
+	    		<th></th>
+	  		</tr>
+		</thead>
+		<tbody>
+	  		<% @variable.bcRefs.each do |key, ref| %>
+	    		<tr>
+	    			<td><%= ref[:id] %></td>
+				    <td><%= ref[:namespace] %></td>
+				    <td><%= ref[:property] %></td>
+				    <td><%= link_to "Show", cdisc_bc_path(:id => ref[:id], :namespace => ref[:namespace]), :class => "btn btn-primary btn-xs" %></td>
+	  			</tr>
+	  		<% end %>
+		</tbody>
 	</table>
 </div>

@@ -136,7 +136,7 @@ class Iso11179ConceptSystem::Iso11179Concept
   def self.create(params)
     
     # Set the idea
-    id = ModelUtility.buildCidTime(C_CID_PREFIX)
+    id = ModelUtility.buildCid(C_CID_PREFIX)
     ConsoleLogger::log(C_CLASS_NAME,"create","Id=" + id)
     
     # Create the query

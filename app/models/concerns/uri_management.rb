@@ -35,6 +35,10 @@ module UriManagement
       "xsd" => "http://www.w3.org/2001/XMLSchema" ,
       "skos" => "http://www.w3.org/2004/02/skos/core" }
   
+  def UriManagement.get()
+    return @@optional
+  end
+
   def UriManagement.getPrefix(ns)
     return @@optional.key(ns)
   end

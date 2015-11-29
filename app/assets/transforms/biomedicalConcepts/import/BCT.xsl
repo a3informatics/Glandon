@@ -14,6 +14,7 @@
     <xsl:variable name="MainSeparator">-</xsl:variable>
     <xsl:variable name="MinorSeparator">_</xsl:variable>
     <xsl:variable name="DotSeparator">.</xsl:variable>
+    <xsl:variable name="PathSeparator">.</xsl:variable>
     <xsl:variable name="URIPrefix">BCT</xsl:variable>
     <xsl:variable name="BCPrefix">cbc</xsl:variable>
     <xsl:variable name="BridgPrefix">mdrBridg</xsl:variable>
@@ -113,6 +114,7 @@
     <xsl:template match="Class">
         
         <xsl:param name="pPrefix"/>
+        <xsl:variable name="BRIDGPath" select="@Name"/>
         
         <xsl:for-each select="Attribute">
             <xsl:call-template name="Subject"> 
@@ -157,6 +159,7 @@
                                     <xsl:apply-templates select=".">
                                         <xsl:with-param name="pClass" select="$ClassName" />
                                         <xsl:with-param name="pDatatype" select="@Datatype" />
+                                        <xsl:with-param name="pBRIDGPath" select="$BRIDGPath" />
                                     </xsl:apply-templates>
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -175,6 +178,7 @@
                                         <xsl:with-param name="pClass" select="$ClassName" />
                                         <xsl:with-param name="pDatatype" select="$BRIDGDatatype" />
                                         <xsl:with-param name="pRawDatatype" select="$BRIDGAttribute/@DataType" />
+                                        <xsl:with-param name="pBRIDGPath" select="$BRIDGPath" />
                                     </xsl:apply-templates>
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -199,6 +203,7 @@
         <xsl:param name="pClass" /> 
         <xsl:param name="pDatatype" /> 
         <xsl:param name="pRawDatatype" /> 
+        <xsl:param name="pBRIDGPath"/>
         
         <xsl:variable name="Prefix" select="concat($pPrefix,$pClass,$MinorSeparator,@Name,$MinorSeparator,$pDatatype)"/>
         <xsl:call-template name="Subject"> 
@@ -219,7 +224,7 @@
         <xsl:for-each select="Property">
             <xsl:call-template name="PredicateObject">
                 <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':hasProperty')" /> 
-                <xsl:with-param name="pObjectName" select="concat(':',$Prefix,$MinorSeparator,./@Name,$URIFinish)" /> 
+                <xsl:with-param name="pObjectName" select="concat(':',$Prefix,$MinorSeparator,./@Name,$URIFinish)" />
             </xsl:call-template>    
         </xsl:for-each>   
         <xsl:call-template name="SubjectEnd"/>
@@ -230,6 +235,7 @@
             <xsl:with-param name="pDatatype" select="$pDatatype" />
             <xsl:with-param name="pRawDatatype" select="$pRawDatatype" />
             <xsl:with-param name="pPrefix" select="$Prefix" /> 
+            <xsl:with-param name="pBRIDGPath" select="concat($pBRIDGPath,$PathSeparator,@Name,$PathSeparator,$pDatatype)" /> 
         </xsl:apply-templates>
     </xsl:template>
     
@@ -242,6 +248,7 @@
         <xsl:param name="pDatatype" /> 
         <xsl:param name="pRawDatatype" /> 
         <xsl:param name="pPrefix" /> 
+        <xsl:param name="pBRIDGPath"/>
         
         <xsl:variable name="PropertyName" select="string(@Name)"/>
         <xsl:variable name="PropertyAlias" select="string(@Alias)"/>
@@ -270,10 +277,27 @@
                     <xsl:choose>
                         <xsl:when test="$DatatypeDocument/ISO21090DataTypes/primitiveTypes/primitiveType/@Name=$PropertyDatatype">
                             <!-- Simple type -->
+                            
+                            <xsl:variable name="simpleDT" select="$DatatypeDocument/ISO21090DataTypes/primitiveTypes/primitiveType[@Name=$PropertyDatatype]"/>
+                            <xsl:variable name="schemaType" select="$simpleDT/@Map"/>
+                            
                             <xsl:call-template name="PredicateObject"> 
-                                <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':hasSimpleDatatype')" /> 
+                                <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':hasValue')" /> 
                                 <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$MinorSeparator,@Name,$MinorSeparator,'Value',$URIFinish)" /> 
                             </xsl:call-template>
+                            
+                            <!-- BRIDG Path -->
+                            <xsl:call-template name="PredicateObject"> 
+                                <xsl:with-param name="pPredicateName" select="'cbc:bridgPath'" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$pBRIDGPath,$PathSeparator,@Name,$quote,'^^xsd:string')"/>
+                            </xsl:call-template>
+                            
+                            <!-- Simple datatype -->
+                            <xsl:call-template name="PredicateObject"> 
+                                <xsl:with-param name="pPredicateName" select="'cbc:simpleDatatype'" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$schemaType,$quote,'^^xsd:string')"/>
+                            </xsl:call-template>
+                            
                             <xsl:call-template name="SubjectEnd"/> 
                             
                             <xsl:call-template name="Subject"> 
@@ -283,7 +307,8 @@
                                 <xsl:with-param name="pPredicateName" select="'rdf:type'" /> 
                                 <xsl:with-param name="pObjectName" select="concat($BCPrefix,':PropertyValue')" /> 
                             </xsl:call-template>
-                            <xsl:call-template name="SubjectEnd"/> 
+                            <xsl:call-template name="SubjectEnd"/>
+                            
                         </xsl:when>
                         <xsl:otherwise>
                             <!--  Complex type-->
@@ -324,7 +349,8 @@
                                 <xsl:with-param name="pAttribute" select="$pAttribute" />
                                 <xsl:with-param name="pDatatype" select="$PropertyDatatype" />
                                 <xsl:with-param name="pRawDatatype" select="$PropertyDatatype" />
-                                <xsl:with-param name="pPrefix" select="$NextPrefix" /> 
+                                <xsl:with-param name="pPrefix" select="$NextPrefix" />
+                                <xsl:with-param name="pBRIDGPath" select="concat($pBRIDGPath,$PathSeparator,$PropertyName,$PathSeparator,$PropertyDatatype)"/>
                             </xsl:apply-templates>
                         </xsl:otherwise>
                     </xsl:choose>

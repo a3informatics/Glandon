@@ -329,10 +329,14 @@
                     </xsl:variable>
                     <xsl:choose>
                         <xsl:when test="$DatatypeDocument/ISO21090DataTypes/primitiveTypes/primitiveType/@Name=$PropertyDatatype">
+                            
                             <!-- Simple type -->
+                            <xsl:variable name="simpleDT" select="$DatatypeDocument/ISO21090DataTypes/primitiveTypes/primitiveType[@Name=$PropertyDatatype]"/>
+                            <xsl:variable name="schemaType" select="$simpleDT/@Map"/>
+                            
                             <xsl:variable name="Level" select="1"/>
                             <xsl:call-template name="PredicateObject"> 
-                                <xsl:with-param name="pPredicateName" select="'cbc:hasSimpleDatatype'" /> 
+                                <xsl:with-param name="pPredicateName" select="'cbc:hasValue'" /> 
                                 <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$MinorSeparator,@Name,$MinorSeparator,'Value',$MinorSeparator,$Level,$URIFinish)" /> 
                             </xsl:call-template>
                             
@@ -358,6 +362,12 @@
                             <xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="'cbc:bridgPath'" /> 
                                 <xsl:with-param name="pObjectName" select="concat($quote,$pBRIDGPath,$PathSeparator,@Name,$quote,'^^xsd:string')"/>
+                            </xsl:call-template>
+                            
+                            <!-- Simple datatype -->
+                            <xsl:call-template name="PredicateObject"> 
+                                <xsl:with-param name="pPredicateName" select="'cbc:simpleDatatype'" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$schemaType,$quote,'^^xsd:string')"/>
                             </xsl:call-template>
                             
                             <!-- And finish -->

@@ -27,7 +27,7 @@ class FormsController < ApplicationController
       redirect_to forms_path
     else
       flash[:error] = @form.errors.full_messages.to_sentence
-      #redirect_to placeholder_new_forms_path
+      redirect_to placeholder_new_forms_path
     end
   end
   
@@ -64,6 +64,6 @@ class FormsController < ApplicationController
 
 private
   def the_params
-    params.require(:form).permit(:formId, :namespace, :freeText, :identifier, :itemType, :bcs => [])
+    params.require(:form).permit(:formId, :namespace, :freeText, :identifier, :label, :bcs => [])
   end  
 end

@@ -124,18 +124,6 @@ class Standard
 
   end
 
-  def self.create(params)
-    return nil
-  end
-
-  def update
-    return nil
-  end
-
-  def destroy
-     return nil    
-  end
-
 private
 
   def self.getType (uri)

@@ -2,9 +2,9 @@ class Uri
 
   # Scheme for constructing URIs
   #
-  # <uri> ::= <scheme>://<authority>/<path>#<fragment>
-  # <cid> ::= <prefix>-<itemType>[-<version>]
-  # <path> ::= <path_element>/<path>
+  # <uri>      ::= <scheme>://<authority>/<path>#<fragment>
+  # <cid>      ::= <prefix>-<uid>[-<version>]
+  # <path>     ::= <path_element>/<path>
   #
   # CID = Class Identifier, used as the id for Rails classes and based on the URI
   # CID and fragment are the same thing
@@ -12,14 +12,19 @@ class Uri
   
   C_SCHEME_SEPARATOR = "://"
   C_PATH_SEPARATOR = "/"
-  C_FRAGMENT_SECTIONS_SEPARATOR = "-"
+  C_FRAGMENT_SECTION_SEPARATOR = "-"
+  C_UID_SECTION_SEPARATOR = "_"
   C_FRAGMENT_SEPARATOR = "#"
   
-  attr_accessor :scheme, :authority, :path, :prefix, :itemType, :version
+  attr_accessor :scheme, :authority, :path, :prefix, :uid, :version
   
   def initialize()  
     @scheme = "http"
     @authority = "www.assero.co.uk" 
+    @path = ""
+    @prefix = ""
+    @uid = ""
+    @version = ""
   end
   
   def to_s
@@ -28,16 +33,20 @@ class Uri
   
   # Note: no setPath as can use default path accessor
    
-  def setCidNoVersion(prefix, id)  
-    @prefix = prefix.gsub(/[^A-Z]/, '')    
-    @itemType = id.gsub(/[^0-9A-Za-z_]/, '')
+  def setCidNoVersion(prefix, uid)  
+    #@prefix = prefix.gsub(/[^A-Z]/, '')    
+    #@uid = id.gsub(/[^0-9A-Za-z_]/, '')
+    @prefix = prefix
+    @uid = uid
     @version = ""    
   end
 
-  def setCidWithVersion(prefix, itemType, version)  
-    @prefix = prefix.gsub(/[^A-Z]/, '')    
-    @itemType = itemType.gsub(/[^0-9A-Za-z_]/, '')
+  def setCidWithVersion(prefix, uid, version)  
+    #@prefix = prefix.gsub(/[^A-Z]/, '')    
+    #@uid = uid.gsub(/[^0-9A-Za-z_]/, '')
     #@version = version.gsub(/[^0-9]/, '')
+    @prefix = prefix
+    @uid = uid
     @version = version.to_s
   end
 
@@ -46,9 +55,13 @@ class Uri
     setCid(cid)
   end
 
+  def setNs(ns)
+    @path = getPath(ns)
+  end
+
   def setCid(classId) 
     @prefix = getPrefix(classId)
-    @itemType = getItemType(classId)
+    @uid = getUid(classId)
     @version = getVersion(classId)
   end
   
@@ -56,16 +69,20 @@ class Uri
     @path = getPath(uri)
     fragment = getFragment(uri)
     @prefix = getPrefix(fragment)
-    @itemType = getItemType(fragment)
+    @uid = getUid(fragment)
     @version = getVersion(fragment)
   end
   
   def extendPath(extension)
-    @path = @path + "/" + extension
+    @path = @path + C_PATH_SEPARATOR + extension
+  end
+   
+  def extendUid(extension)
+    @uid = @uid + C_UID_SECTION_SEPARATOR + extension.to_s
   end
    
   def all()
-    return getNs() + C_FRAGMENT_SEPARATOR  + getCid()
+    return getNs() + C_FRAGMENT_SEPARATOR + getCid()
   end
   
   def getNs()
@@ -74,17 +91,17 @@ class Uri
 
   def getCid()
     #p "Prefix=" + @prefix
-    #p "Short Name=" + @itemType
+    #p "Short Name=" + @uid
     #p "Version=" + @version
     
     result = ""
     if @prefix != ""
-      result = @prefix + C_FRAGMENT_SECTIONS_SEPARATOR
+      result = @prefix + C_FRAGMENT_SECTION_SEPARATOR
     end
     if @version == ""
-      result += @itemType
+      result += @uid
     else
-      result += @itemType + C_FRAGMENT_SECTIONS_SEPARATOR + @version
+      result += @uid + C_FRAGMENT_SECTION_SEPARATOR + @version
     end
     return result  
   end
@@ -112,7 +129,7 @@ private
   end
 
   def getPrefix(fragment)
-    parts = fragment.split(C_FRAGMENT_SECTIONS_SEPARATOR)
+    parts = fragment.split(C_FRAGMENT_SECTION_SEPARATOR)
     if parts.size >= 2 and parts.size <= 3
       result = parts[0]
     else
@@ -121,8 +138,8 @@ private
     return result 
   end
 
-  def getItemType(fragment)
-    parts = fragment.split(C_FRAGMENT_SECTIONS_SEPARATOR)
+  def getUid(fragment)
+    parts = fragment.split(C_FRAGMENT_SECTION_SEPARATOR)
     if parts.size >= 2 and parts.size <= 3
       result = parts[1]
     elsif parts.size == 1
@@ -134,7 +151,7 @@ private
   end
 
   def getVersion(fragment)
-    parts = fragment.split(C_FRAGMENT_SECTIONS_SEPARATOR)
+    parts = fragment.split(C_FRAGMENT_SECTION_SEPARATOR)
     if parts.size == 3
       result = parts[2]
     else
