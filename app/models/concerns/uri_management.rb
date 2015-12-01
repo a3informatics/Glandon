@@ -18,6 +18,7 @@ module UriManagement
       "mms" => "http://rdf.cdisc.org/mms" ,
       "cdisc" => "http://rdf.cdisc.org/std/schema" ,
       "mdrItems" => "http://www.assero.co.uk/MDRItems" ,
+      "mdrCons" => "http://www.assero.co.uk/MDRConcepts" ,
       "mdrBridg" => "http://www.assero.co.uk/MDRBRIDG" ,
       "mdrIso21090" => "http://www.assero.co.uk/MDRISO21090" ,
       "mdrBcs" => "http://www.assero.co.uk/MDRBCs" ,

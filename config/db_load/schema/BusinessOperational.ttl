@@ -1,6 +1,3 @@
-# baseURI: http://www.assero.co.uk/BusinessOperational
-# imports: http://www.assero.co.uk/ISO11179Concepts
-
 @prefix : <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -17,12 +14,6 @@
   rdf:type owl:Class ;
   rdfs:label "Component"^^xsd:string ;
   rdfs:subClassOf isoC:Concept ;
-.
-:name
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Component ;
-  rdfs:label "Deprecated property 1"^^xsd:string ;
-  rdfs:range xsd:string ;
 .
 :ordinal
   rdf:type owl:DatatypeProperty ;

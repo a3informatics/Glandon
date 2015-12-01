@@ -84,7 +84,7 @@ class Thesaurus
           if (managedItem.scopedIdentifier.namespace.id == namespaceId)
             object = self.new 
             object.id = ModelUtility.extractCid(uriSet[0].text)
-            object.namespace = ModelUtility.extractNs(uriSet[0].text)
+            #object.namespace = ModelUtility.extractNs(uriSet[0].text)
             object.managedItem = managedItem
             results.push (object)
             ConsoleLogger::log(C_CLASS_NAME,"findByNamespaceId","Object created id=" + object.id)

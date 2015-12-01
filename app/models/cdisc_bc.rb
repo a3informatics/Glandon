@@ -477,7 +477,7 @@ private
       cid = line
       cid[0] = ''
       thisUid = ModelUtility.extractUid(cid)
-      text = ':' + ModelUtility.buildCidUid(C_CID_PREFIX, uid + '_' + thisUid)    
+      text = ':' + ModelUtility.buildCidIdentifier(C_CID_PREFIX, uid + '_' + thisUid)    
       return text
   end
 
@@ -485,7 +485,7 @@ private
       cid = line
       cid[0] = ''
       thisUid = ModelUtility.extractUid(cid)
-      text = ':' + ModelUtility.buildCidUid(C_CID_PREFIX, uid + '_' + thisUid + '_' + index.to_s)    
+      text = ':' + ModelUtility.buildCidIdentifier(C_CID_PREFIX, uid + '_' + thisUid + '_' + index.to_s)    
       return text
   end
 

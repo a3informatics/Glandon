@@ -1,0 +1,38 @@
+<h3>Concept System: <%= @conceptSystem.identifier %></h3>
+<div class="col-md-12">
+	<h4>Details</h4>
+	<table class="table table-striped table-bordered table-condensed">
+	  <tr>
+	    <th>Identifier</th>
+	    <th>Label</th>
+	    <th>Notation</th>
+	  </tr>
+	  <tr>
+	    <td><%= @conceptSystem.identifier %></td>
+	    <td><%= @conceptSystem.label %></td>
+	    <td><%= @conceptSystem.notation %></td>
+	  </tr>
+	</table>
+	<h4>Classifications</h4>
+	<table id="main" class="table table-striped table-bordered table-condensed">
+		<thead>
+			<tr>
+				<th>Identifier</th>
+				<th>Label</th>
+				<th>Definition</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @conceptSystem.nodes.each do |key, node| %>
+				<tr>
+			  		<td><%= node.identifier %></td>
+			  		<td><%= node.label %></td>
+			  		<td><%= node.definition %></td>
+		    		<td><%= link_to "Delete", iso_concept_systems_node_path(node.id, :concept_system_id => @conceptSystem.id), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></td>
+		  		</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= link_to "New Designation", node_new_iso_concept_systems_path(:id => @conceptSystem.id), :class => "btn btn-success" %>
+</div>

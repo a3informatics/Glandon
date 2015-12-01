@@ -1,13 +1,11 @@
-# baseURI: http://www.assero.co.uk/BusinessForm
-# imports: http://www.assero.co.uk/BusinessOperational
-# imports: http://www.assero.co.uk/CDISCBiomedicalConcept
-
 @prefix : <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://www.assero.co.uk/BusinessForm>
@@ -20,93 +18,129 @@
   rdf:type owl:Class ;
   rdfs:label "Form"^^xsd:string ;
   rdfs:subClassOf bo:Component ;
+  skos:definition ""^^xsd:string
 .
 :Node
   rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
   rdfs:label "Group"^^xsd:string ;
+  skos:definition ""^^xsd:string
 .
 :Group
   rdf:type owl:Class ;
   rdfs:label "Group"^^xsd:string ;
   rdfs:subClassOf :Node ;
+  skos:definition ""^^xsd:string
 .
 :Item
   rdf:type owl:Class ;
   rdfs:label "Generic Item"^^xsd:string ;
   rdfs:subClassOf :Node ;
+  skos:definition ""^^xsd:string
 .
 :Placeholder
   rdf:type owl:Class ;
   rdfs:label "Placeholder Item"^^xsd:string ;
   rdfs:subClassOf :Item ;
+  skos:definition ""^^xsd:string
 .
-:bcBased
+:BcBased
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept based Item"^^xsd:string ;
   rdfs:subClassOf :Item ;
+  skos:definition ""^^xsd:string
 .
-:vBased
+:VarBased
   rdf:type owl:Class ;
   rdfs:label "Variable Item"^^xsd:string ;
   rdfs:subClassOf :Item ;
+  skos:definition ""^^xsd:string
 .
-:hasGroupRelationship
+:hasGroup
   rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Form ;
   rdfs:label "Has group relationship"^^xsd:string ;
   rdfs:range :Group ;
+  skos:definition ""^^xsd:string
 .
-:isGroupOfRelationship
+:isGroupOf
   rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Group ;
   rdfs:label "Has group relationship"^^xsd:string ;
   rdfs:range :Form ;
+  skos:definition ""^^xsd:string
 .
-:hasItemRelationship
+:hasItem
   rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Group ;
   rdfs:label "Has group relationship"^^xsd:string ;
   rdfs:range :Item ;
+  skos:definition ""^^xsd:string
 .
-:isItemOfRelationship
+:isItemOf
   rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Item ;
   rdfs:label "Has group relationship"^^xsd:string ;
   rdfs:range :Group ;
+  skos:definition ""^^xsd:string
 .
-:hasPropertyRelationship
+:hasProperty
   rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Item ;
   rdfs:label "Has group relationship"^^xsd:string ;
   rdfs:range cbc:Property ;
+  skos:definition ""^^xsd:string
 .
-:hasBiomedicalConceptRelationship
+:hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
   rdfs:domain :bcBased ;
   rdfs:label "Has group relationship"^^xsd:string ;
   rdfs:range cbc:BiomedicalConcept ;
+  skos:definition ""^^xsd:string
 .
-:name
+:note
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "name"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Note"^^xsd:string ;
   rdfs:domain :Node ;
   rdfs:range xsd:string ;
+  skos:definition ""^^xsd:string
 .
-:layout
+:repeating
   rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Group ;
-  rdfs:label "presentation"^^xsd:string ;
-  rdfs:range xsd:string ;
+  rdfs:label "Repeating group"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+  skos:definition ""^^xsd:string
 .
-:text
+:optional
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Label ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Node ;
+  rdfs:label "Optional group"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+  skos:definition ""^^xsd:string
+.
+:freeText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Placeholder ;
   rdfs:label "text"^^xsd:string ;
   rdfs:range xsd:string ;
+  skos:definition ""^^xsd:string
 .
 :ordinal
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Label ;
-  rdfs:label "text"^^xsd:string ;
+  rdf:type owl:DatatypeProperty ; 
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Node ;
+  rdfs:label "Node ordinal"^^xsd:string ;
   rdfs:range xsd:integer ;
+  skos:definition ""^^xsd:string
 .

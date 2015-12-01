@@ -1,33 +1,29 @@
-<h3>Item <%= @formItem.name %> <small>(<%= @form.managedItem.scopedIdentifier.identifier %>, V<%= @form.managedItem.scopedIdentifier.version %>)</small></h3>
+<h3>Item <%= @formItem.label %> <small>(<%= @form.identifier %>, V<%= @form.version %>)</small></h3>
 <div class="col-md-12">
 	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
 	  <tr>
-	    <th>Name</th>
-	    <th>Type</th>
-	    <th>Optional</th>
-	    <th>Note</th>
-	    <th>Ordinal</th>
+	    <% @formItem.properties.each do |property| %>
+			<th><%= property.label %></th>
+		<% end %>
 	  </tr>
 	  <tr>
-	    <td><%= @formItem.name %></td>
-	    <td><%= @formItem.type %></td>
-	    <td><%= @formItem.optional %></td>
-	    <td><%= @formItem.note %></td>
-	    <td><%= @formItem.ordinal %></td>
+	    <% @formItem.properties.each do |property| %>
+			<td><%= property.value %></td>
+		<% end %>
 	  </tr>
 	</table>
-	<% if @formItem.type == 1 %>
-		<h4>Biomedical Concept Properties</h4>
-		<table class="table table-striped table-bordered table-condensed">
-		  <tr>
-		    <th>Property</th>
-			  <td><%= @formItem.bcPropertyId %></td>
-			</tr>
-		  <tr>
-		    <th>Biomedical Concept</th>
-			  <td><%= link_to "Show", cdisc_bc_path(:id => @formItem.bc.id, :namespace => @formItem.bc.namespace), :class => "btn btn-primary btn-xs" %></td>
-			</tr>
-		</table>
-	<% end %>
+	<h4>Links</h4>
+	<table class="table table-striped table-bordered table-condensed">
+	  <tr>
+	    <% @formItem.links.each do |property| %>
+			<th><%= property.label %></th>
+		<% end %>
+	  </tr>
+	  <tr>
+	    <% @formItem.links.each do |property| %>
+			<td><%= property.range %></td>
+		<% end %>
+	  </tr>
+	</table>
 </div>

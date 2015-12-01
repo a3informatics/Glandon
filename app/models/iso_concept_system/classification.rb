@@ -134,7 +134,7 @@ class Iso11179ConceptSystem::Iso11179Classification
   def self.create(params)
   
     label = params[:label]
-    id = ModelUtility.buildCidUid(C_CID_PREFIX, label)
+    id = ModelUtility.buildCidIdentifier(C_CID_PREFIX, label)
     ConsoleLogger::log(C_CLASS_NAME,"create","Id=" + id)
     
     # Create the query

@@ -40,6 +40,12 @@
   rdfs:subClassOf :IdentifiedItem ;
   skos:definition "An item that is registered within the registry"^^xsd:string ;
 .
+:DesignatableItem
+  rdf:type owl:Class ;
+  rdfs:label "Registered item"^^xsd:string ;
+  rdfs:subClassOf :DesgnatableItem ;
+  skos:definition "An item that is designated within the registry"^^xsd:string ;
+.
 :creationDate
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :AdministeredItem ;
@@ -75,3 +81,17 @@
   rdfs:range xsd:string ;
   skos:definition "Any notes about the origin (reference material etc) of the item"^^xsd:string ;
 . 
+.:notation
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :DesignatableItem ;
+  rdfs:label "Notation"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "Formal syntax used within the concept system"^^xsd:string ;
+.
+:identifer
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :DesignatableItem ;
+  rdfs:label "Identifier"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "Identifier for the concept system."^^xsd:string ;
+.

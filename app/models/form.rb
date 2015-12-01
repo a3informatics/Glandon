@@ -1,114 +1,34 @@
-require "uri"
-
-class Form
+class Form < IsoConceptInstance
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-      
-  attr_accessor :id, :managedItem, :groups
-  validates_presence_of :id, :managedItem, :groups
+  attr_accessor :groups
+  validates_presence_of :groups
   
   # Constants
-  C_NS_PREFIX = "mdrForms"
+  C_SCHEMA_PREFIX = "bf"
+  C_INSTANCE_PREFIX = "mdrForms"
   C_CLASS_NAME = "Form"
   C_CID_PREFIX = "F"
-  
+  C_RDF_TYPE = "Form"
+
   # Base namespace 
-  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
+  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
+  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def version
-    return self.managedItem.version
-  end
-
-  def versionLabel
-    return self.managedItem.versionLabel
-  end
-
-  def identifier
-    return self.managedItem.identifier
-  end
-
-  def label
-    return self.managedItem.label
-  end
-
-  def owner
-    return self.managedItem.owner
-  end
-
-  def namespace
-    return self.managedItem.namespace
-  end
-
-  def persisted?
-    id.present?
-  end
-  
-  def initialize()
-  end
-
-  def baseNs
-    #return @baseNs
-  end
-  
-  def self.exists?(identifier)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-    result = ManagedItem.exists?(identifier)
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","Result=" + result)
-    return result
-
-  end
-
   def self.find(id, ns)
     
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
     
-    object = nil
-    useNs = ns || @@baseNs
-    
-    object = self.new 
-    object.id = id
-    ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
-    object.managedItem = ManagedItem.find(id, useNs)
-    object.groups = Form::FormGroup.findForForm(id, useNs)
-
+    object = super(id, ns)
+    object.groups = Form::FormGroup.findForForm(object.links, ns)
     return object  
     
   end
 
-  def self.all()
-    
-    results = Hash.new
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bf", "bo"]) 
-    query = query +
-      "SELECT ?a ?b WHERE\n" + 
-      "{ \n" + 
-      " ?a rdf:type bf:Form . \n" +
-      "} \n"
-      
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
-      if uriSet.length == 1
-        object = self.new 
-        object.id = ModelUtility.extractCid(uriSet[0].text)
-        ConsoleLogger::log(C_CLASS_NAME,"find","Form Id=" + object.id)
-        object.managedItem = ManagedItem.find(object.id, ModelUtility.extractNs(uriSet[0].text))
-        results[object.id] = object
-      end
-    end
-    return results  
-    
+  def self.all
+    super(C_RDF_TYPE, @@schemaNs)
   end
 
-  def self.create_placeholder(params)
+  def self.createPlaceholder(params)
     
     ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Entry")
     
@@ -127,44 +47,20 @@ class Form
       params[:version] = "1"
       ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","FreeText=" + freeText.to_s)
       
-      if ManagedItem.exists?(identifier) 
+      if exists?(identifier) 
     
         # Note the error
         object.errors.add(:base, "The identifier is already in use.")
     
       else  
     
-        # Create the managed item for the form. 
-        managedItem = ManagedItem.create(C_CID_PREFIX, params, @@baseNs)
-        id = managedItem.id
-        useNs = managedItem.namespace
-
+        # Create the adminstered item for the form. 
+        object = createAdministeredItem(C_CID_PREFIX, params, C_RDF_TYPE, @@schemaNs, @@instanceNs)
+      
         # Now create the group (which will create the item). We only need a 
         # single group for a placeholder form.
-        group = FormGroup.create_placeholder(id, useNs, 1, freeText)
-        
-        # Create the query
-        update = UriManagement.buildNs(useNs,["bf"]) +
-          "INSERT DATA \n" +
-          "{ \n" +
-          "  :" + id + " rdf:type bf:Form . \n" +
-          "  :" + id + " bf:hasGroup :" + group.id + " . \n" +
-          "}"
-        
-        # Send the request, wait the resonse
-        response = CRUD.update(update)
-        
-        # Response
-        if response.success?
-          object.id = id
-          object.managedItem = managedItem
-          object.groups = Hash.new
-          object.groups[group.id] = group
-          ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Object created, id=" + id)
-        else
-          object.errors.add(:base, "The namespace was not created in the database.")
-          ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Object not created!")
-        end
+        group = FormGroup.createPlaceholder(object.id, object.namespace, freeText)
+      
       end
     end
     
@@ -249,26 +145,16 @@ class Form
 
   end
   
-  def self.create(params)
-    object = nil
-    return object
-  end
-
-  def update
-    return nil
-  end
-
-  def destroy
-  end
-
   def acrf
   
     query = UriManagement.buildNs(self.namespace, ["bf", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
       "SELECT DISTINCT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName ?sdtmTopicValue ?sdtmTopicSub WHERE \n" +
       "{ \n " +
       "  ?node1 bd:basedOn ?node2 . \n " +
+      "  ?node1 rdf:type bd:Variable . \n " +
       "  ?node2 mms:dataElementName ?sdtmTopicName . \n " +
       "  ?node1 bd:hasProperty ?node4 . \n " +
+      "  ?node4 (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
       "  ?node4 cbc:hasValue ?valueRef . \n " +
       "  ?valueRef cbc:value ?sdtmTopicValue . \n " +
       "  ?node3 rdf:type iso25964:ThesaurusConcept . \n " +
@@ -278,19 +164,29 @@ class Form
       "  FILTER(STRSTARTS(STR(?node3), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) .  \n " +
       "  FILTER(STR(?sdtmTopicSub) = UCASE(?x)) .  \n " +
       "  {\n " +
-      "    SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName WHERE \n " +
+      "    SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName WHERE \n " +
       "    { \n " + 
-      " #     { \n " +
-      " #      SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain WHERE \n " + 
-      " #       { \n " +    
+      "      # ?var bd:hasProperty ?bcProperty . \n " +     
+      "      ?var bd:basedOn ?col . \n " +     
+      "      ?col mms:dataElementName ?sdtmVarName . \n " +     
+      "      ?col mms:context ?dataset . \n " +     
+      "      ?dataset mms:contextLabel ?domain . \n " +     
+      "      ?node5 mms:context ?dataset . \n " +     
+      "      ?node5 cdisc:dataElementRole <http://rdf.cdisc.org/std/sdtm-1-2#Classifier.TopicVariable> . \n " +     
+      "      ?node5 mms:dataElementName ?sdtmTopicName . \n " +     
+      "      { \n " +
+      "        SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain ?var WHERE \n " + 
+      "        { \n " +    
       "          :" + self.id + " bf:hasGroup ?group . \n " +     
       "          ?form bf:hasGroup ?group . \n " +
       "          ?form rdfs:label ?fName . \n " +
-      "          ?group bf:name ?gName . \n " +
-      "          ?group bf:hasNode ?item . \n " +
-      "          ?item bf:name ?iName . \n " +
+      "          ?group rdfs:label ?gName . \n " +
+      "          ?group bf:hasItem ?item . \n " +
+      "          ?item rdfs:label ?iName . \n " +
       "          ?item bf:hasProperty ?bcProperty . \n " +     
-      "          ?item bf:hasBiomedicalConcept ?bcRoot . \n " +     
+      "          ?var bd:hasProperty ?bcProperty . \n " +     
+      "          ?bcProperty (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
+      "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
       "          ?bcProperty cbc:alias ?alias . \n " +     
       "          ?bcProperty cbc:qText ?qText . \n " +     
       "          ?bcProperty cbc:simpleDatatype ?datatype . \n " +     
@@ -307,19 +203,8 @@ class Form
       "            ?cl skos:inScheme ?th . \n " +       
       "            FILTER(STRSTARTS(STR(?th), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) \n " +    
       "          } \n " +  
-      "          OPTIONAL \n " +    
-      "          { \n " +      
-      "            ?var bd:hasProperty ?bcProperty . \n " +     
-      "            ?var bd:basedOn ?col . \n " +     
-      "            ?col mms:dataElementName ?sdtmVarName . \n " +     
-      "            ?col mms:context ?dataset . \n " +     
-      "            ?dataset mms:contextLabel ?domain . \n " +     
-      "            ?node5 mms:context ?dataset . \n " +     
-      "            ?node5 cdisc:dataElementRole <http://rdf.cdisc.org/std/sdtm-1-2#Classifier.TopicVariable> . \n " +     
-      "            ?node5 mms:dataElementName ?sdtmTopicName . \n " +     
-      "          } \n " +  
-      "  #      }  \n " + 
-      "  #    } \n " +
+      "        }  \n " + 
+      "      } \n " +
       "    } \n " +
       "  } \n " +
       "}\n"

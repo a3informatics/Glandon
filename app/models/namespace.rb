@@ -10,8 +10,8 @@ class Namespace
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :frameworkItem, :name, :shortName
-  validates_presence_of :id, :frameworkItem, :name, :shortName
+  attr_accessor :id, :namespace, :name, :shortName
+  validates_presence_of :id, :namespace, :name, :shortName
 
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -22,16 +22,12 @@ class Namespace
   # Base namespace 
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
 
-  def namespace
-    return self.frameworkItem.namespace
-  end
-
   def persisted?
     id.present?
   end
 
   def initialize()
-    self.frameworkItem = FrameworkItem.new
+    self.namespace = ""
     self.name = ""
     self.shortName = ""
   end
@@ -100,8 +96,8 @@ class Namespace
       nSet = node.xpath("binding[@name='c']/literal")
       if nSet.length == 1 and uriSet.length == 1
         object = self.new 
-        object.frameworkItem = FrameworkItem.find(ModelUtility.extractCid(uriSet[0].text), @@baseNs) 
-        object.id = object.frameworkItem.id
+        object.id = ModelUtility::extractCid(uriSet[0].text)
+        object.namespace = @@baseNs 
         object.name = nSet[0].text
         object.shortName = name
         ConsoleLogger::log(C_CLASS_NAME,"findByShortName","Object created, id=" + object.id)        
@@ -141,8 +137,8 @@ class Namespace
       nSet = node.xpath("binding[@name='c']/literal")
       if nSet.length == 1 and snSet.length == 1
         object = self.new 
-        object.frameworkItem = FrameworkItem.find(id, @@baseNs) 
-        object.id = object.frameworkItem.id
+        object.id = id
+        object.namespace = @@baseNs 
         object.name = nSet[0].text
         object.shortName = snSet[0].text
         ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
@@ -182,8 +178,8 @@ class Namespace
       uriSet = node.xpath("binding[@name='a']/uri")
       if uriSet.length == 1 and snSet.length == 1 and nSet.length == 1
         object = self.new 
-        object.frameworkItem = FrameworkItem.find(ModelUtility.extractCid(uriSet[0].text), @@baseNs) 
-        object.id = object.frameworkItem.id
+        object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.namespace = @@baseNs 
         object.name = nSet[0].text
         object.shortName = snSet[0].text
         ConsoleLogger::log(C_CLASS_NAME,"all","Created object=" + object.id)
@@ -211,11 +207,8 @@ class Namespace
       # Does the namespace exist?
       if !exists?(shortName)
 
-        # Create the id. Use the short name as the unique part.
-        item = FrameworkItem.create(@@baseNs, C_NS_CID_PREFIX, shortName)
-
         # Create the query
-        id = item.id
+        id = ModelUtility.buildCidIdentifier(C_NS_CID_PREFIX, shortName)
         orgId = ModelUtility.cidSwapPrefix(item.id, C_ORG_CID_PREFIX)
         update = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
           "INSERT DATA \n" +
@@ -233,7 +226,8 @@ class Namespace
         # Response
         if response.success?
           object.frameworkItem = item
-          object.id = item.id
+          object.id = id
+          object.namespace = @@baseNs 
           object.name = name
           object.shortName = shortName
           ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + id)

@@ -141,7 +141,7 @@ class RegistrationState
   def self.create(params, uid)
     
     # Create the query
-    id = ModelUtility.buildCidUid(C_CID_PREFIX, uid)
+    id = ModelUtility.buildCidIdentifier(C_CID_PREFIX, uid)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +

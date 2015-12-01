@@ -51,10 +51,15 @@ Rails.application.routes.draw do
       get :history
     end
   end
-  resources :iso11179_concept_systems
-  namespace :iso11179_concept_systems do
-    resources :iso11179_concepts
-    resources :iso11179_classifications
+  resources :iso_concept_systems do
+    collection do
+      get :node_new
+      post :node_add
+    end
+  end
+  namespace :iso_concept_systems do
+    resources :nodes
+    resources :classifications
   end
   resources :forms do
     collection do

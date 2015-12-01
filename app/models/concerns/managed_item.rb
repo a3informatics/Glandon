@@ -135,7 +135,7 @@ class ManagedItem
     ConsoleLogger::log(C_CLASS_NAME,"createLocal","useNs=" + useNs)
     
     object = self.new
-    object.id = ModelUtility.buildCidUid(prefix, uid)
+    object.id = ModelUtility.buildCidIdentifier(prefix, uid)
     object.scopedIdentifier = ScopedIdentifier.create(params, uid, scopeId)
     object.registrationState = nil
     object.type = C_II
@@ -191,7 +191,7 @@ class ManagedItem
     
     # Create the object
     object = self.new
-    object.id = ModelUtility.buildCidUid(prefix, uid)
+    object.id = ModelUtility.buildCidIdentifier(prefix, uid)
     object.namespace = useNs
     object.scopedIdentifier = ScopedIdentifier.create(params, uid, scopeId)
     object.registrationState = RegistrationState.create(params, uid)

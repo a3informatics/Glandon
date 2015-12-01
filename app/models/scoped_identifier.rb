@@ -171,7 +171,7 @@ class ScopedIdentifier
       "itemUid=" + uid )
         
     # Create the CID
-    id = ModelUtility.buildCidUidVersion(C_CLASS_PREFIX, uid, version)
+    id = ModelUtility.buildCidIdentifierVersion(C_CLASS_PREFIX, uid, version)
     
     # Create the query
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +

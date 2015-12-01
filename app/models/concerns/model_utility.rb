@@ -35,20 +35,17 @@ module ModelUtility
     return "<" + uri.all + ">"
   end
   
-  def ModelUtility.createUid(name)
-    #return SecureRandom.hex(8)  
-    return name.gsub(/[^0-9A-Za-z_]/, '')
-  end
-
-  def ModelUtility.buildCidUid(prefix, itemUid)  
+  def ModelUtility.buildCidIdentifier(prefix, identifer)  
     uri = Uri.new
-    uri.setCidNoVersion(prefix, itemUid)
+    uid = createUid(identifer)
+    uri.setCidNoVersion(prefix, uid)
     return uri.getCid
   end
   
-  def ModelUtility.buildCidUidVersion(prefix, itemUid, version)
+  def ModelUtility.buildCidIdentifierVersion(prefix, identifer, version)
     uri = Uri.new
-    uri.setCidWithVersion(prefix, itemUid, version)
+    uid = createUid(identifer)
+    uri.setCidWithVersion(prefix, uid, version)
     return uri.getCid
   end
   
@@ -112,4 +109,12 @@ module ModelUtility
       return false
     end
   end
+
+private
+
+  def ModelUtility.createUid(name)
+    #return SecureRandom.hex(8)  
+    return name.gsub(/[^0-9A-Za-z_]/, '')
+  end
+
 end

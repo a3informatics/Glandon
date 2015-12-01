@@ -1,9 +1,3 @@
-# baseURI: http://www.assero.co.uk/ISO11179Concepts
-# imports: http://purl.org/dc/elements/1.1/
-# imports: http://purl.org/dc/terms/
-# imports: http://www.assero.co.uk/ISO11179Identification
-# imports: http://www.w3.org/2004/02/skos/core
-
 @prefix : <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -21,286 +15,103 @@
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
-:ClassifiableItem
-  rdf:type owl:Class ;
-  rdfs:label "Classificable Item"^^xsd:string ;
-  rdfs:subClassOf owl:Thing ;
-  skos:definition "An item that is classifiable within the repository"^^xsd:string ;
-.
-:Classification
-  rdf:type owl:Class ;
-  rdfs:label "Concept System"^^xsd:string ;
-  rdfs:subClassOf owl:Thing ;
-  skos:definition "The classification for an item"^^xsd:string ;
-.
-:ClassifiableItemClassifierRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :ClassifiableItem ;
-  rdfs:label "ClassifiableItemClassifier Relationship"^^xsd:string ;
-  rdfs:range :Classification ;
-  skos:definition "???"^^xsd:string ;
-.
-:ClassificationClassifiedItemRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Classification ;
-  rdfs:label "ClassificationClassifiedItem Relationship"^^xsd:string ;
-  rdfs:range :ClassifiableItem ;
-  skos:definition "???"^^xsd:string ;
-.
-:ClassificationClassifierRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Classification ;
-  rdfs:label "ClassificationClassifier Relationship"^^xsd:string ;
-  rdfs:range :Concept ;
-  skos:definition "???"^^xsd:string ;
-.
-:ConceptClassifiedItemRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Concept ;
-  rdfs:label "ConceptClassifiedItem Relationship"^^xsd:string ;
-  rdfs:range :Classification ;
-  skos:definition "???"^^xsd:string ;
-.
-:ConceptSystemClassificationRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :ConceptSystem ;
-  rdfs:label "ConceptSystemClassification Relationship"^^xsd:string ;
-  rdfs:range :Classification ;
-  skos:definition "???"^^xsd:string ;
-.
-:ClassificationSchemeRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Classification ;
-  rdfs:label "ClassificationScheme Relationship"^^xsd:string ;
-  rdfs:range :ConceptSystem ;
-  skos:definition "???"^^xsd:string ;
-.
-:Assertion
-  rdf:type owl:Class ;
-  rdfs:label "Assertion"^^xsd:string ;
-  rdfs:subClassOf owl:Thing ;
-  skos:definition "???"^^xsd:string ;
-.
-:AssertionAssertorRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Assertion ;
-  rdfs:label "Assertor Relationship"^^xsd:string ;
-  rdfs:range :ConceptSystem ;
-  skos:definition "???"^^xsd:string ;
-.
-:AssertionConceptRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Assertion ;
-  rdfs:label "Concept Relationship"^^xsd:string ;
-  rdfs:range :Concept ;
-  skos:definition "???"^^xsd:string ;
-.
-:AssertionPredicateRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Assertion ;
-  rdfs:label "Predicate Relationship"^^xsd:string ;
-  rdfs:range :Relation ;
-  skos:definition "???"^^xsd:string ;
-.
 :Concept
   rdf:type owl:Class ;
   rdfs:label "Concept"^^xsd:string ;
-  rdfs:subClassOf isoT:IdentifiedItem ;
-  skos:definition "???"^^xsd:string ;
-.
-:ConceptAssertionAboutRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Concept ;
-  rdfs:label "Assertion About Relationship"^^xsd:string ;
-  rdfs:range :Assertion ;
-  skos:definition "???"^^xsd:string ;
-.
-:ConceptIncludingConceptSystemRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Concept ;
-  rdfs:label "Including Concept System Relationship"^^xsd:string ;
-  rdfs:range :ConceptSystem ;
-  skos:definition "???"^^xsd:string ;
-.
-:ConceptLinkEndRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Concept ;
-  rdfs:label "Link End Relationship"^^xsd:string ;
-  rdfs:range :LinkEnd ;
-  owl:inverseOf :LinkEnd.concept ;
-  skos:definition "???"^^xsd:string ;
-.
-:ConceptSourceRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Concept ;
-  rdfs:label "Source Relationship"^^xsd:string ;
-  rdfs:range :ConceptSystem ;
-  skos:definition "???"^^xsd:string ;
+  skos:definition "A unit of knowledge created by a unique combination of characteristics."^^xsd:string ;
 .
 :ConceptSystem
   rdf:type owl:Class ;
   rdfs:label "Concept System"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
-  skos:definition "???"^^xsd:string ;
+  skos:definition "Set of concepts structured according to the relations among them"^^xsd:string ;
 .
-:ConceptSystemIncludedAssertionRelationship
+:Classification
+  rdf:type owl:Class ;
+  rdfs:label "Classification"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "Set of concepts structured according to the relations among them"^^xsd:string ;
+.
+:ClassifiableItem
+  rdf:type owl:Class ;
+  rdfs:label "Classificable Item"^^xsd:string ;
+  rdfs:subClassOf :Concept ;
+  skos:definition "An item that is classifiable within the repository"^^xsd:string ;
+.
+:Property
+  rdf:type owl:Class ;
+  rdfs:label "Property"^^xsd:string ;
+  rdfs:subClassOf :Concept ;
+  skos:definition "Quality common to all members of an object class"^^xsd:string ;
+.
+:schemeContains
   rdf:type owl:ObjectProperty ;
   rdfs:domain :ConceptSystem ;
-  rdfs:label "Included Assertion Relationship"^^xsd:string ;
-  rdfs:range :Assertion ;
+  rdfs:label "hasClassification Relationship"^^xsd:string ;
+  rdfs:range :Classification ;
   skos:definition "???"^^xsd:string ;
 .
-:ConceptSystemMemberConceptRelationship
+:inScheme
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :ConceptSystem ;
-  rdfs:label "Member Concept Relationship"^^xsd:string ;
+  rdfs:domain :Classification ;
+  rdfs:label "inScheme Relationship"^^xsd:string ;
+  rdfs:range :ConceptSystem ;
+  skos:definition "???"^^xsd:string ;
+.
+:classifiedAs
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Classification ;
+  rdfs:label "classifiedAs Relationship"^^xsd:string ;
   rdfs:range :Concept ;
   skos:definition "???"^^xsd:string ;
 .
-:ConceptSystemSourcedConceptRelationship
+:isClassifying
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Concept ;
+  rdfs:label "ClassificationRelationship Relationship"^^xsd:string ;
+  rdfs:range :Classification ;
+  skos:definition "???"^^xsd:string ;
+.
+:isMemberOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Concept ;
+  rdfs:label "Member Concept Relationship"^^xsd:string ;
+  rdfs:range :ConceptSystem ;
+  skos:definition "???"^^xsd:string ;
+.
+:hasMember
   rdf:type owl:ObjectProperty ;
   rdfs:domain :ConceptSystem ;
   rdfs:label "Sourced Concept Relationship"^^xsd:string ;
   rdfs:range :Concept ;
   skos:definition "???"^^xsd:string ;
 .
-:Link
-  rdf:type owl:Class ;
+:link
+  rdf:type owl:ObjectProperty ;
   rdfs:label "Link"^^xsd:string ;
-  rdfs:subClassOf :Assertion ;
-  skos:definition "???"^^xsd:string ;
-.
-:LinkLinkEndRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Link ;
-  rdfs:label "Link End Relationship"^^xsd:string ;
-  rdfs:range :LinkEnd ;
-  owl:inverseOf :LinkEnd.link ;
-  skos:definition "???"^^xsd:string ;
-.
-:LinkRelationRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Link ;
-  rdfs:label "Relation Relationship"^^xsd:string ;
-  rdfs:range :Relation ;
-  skos:definition "???"^^xsd:string ;
-.
-:LinkEnd
-  rdf:type owl:Class ;
-  rdfs:label "LinkEnd"^^xsd:string ;
-  rdfs:subClassOf owl:Thing ;
-  skos:definition "???"^^xsd:string ;
-.
-:LinkEndConceptRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :LinkEnd ;
-  rdfs:label "Concept Relationship"^^xsd:string ;
+  rdfs:domain :Concept ;
   rdfs:range :Concept ;
-  owl:inverseOf :Concept.linkEnd ;
-  skos:definition "???"^^xsd:string ;
+  skos:definition "The relationship between Concepts"^^xsd:string ;
 .
-:LinkEndLinkRelationship
+:hasRelation
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :LinkEnd ;
-  rdfs:label "Link Relationship"^^xsd:string ;
-  rdfs:range :Link ;
-  owl:inverseOf :Link.linkEnd ;
+  rdfs:domain isoT:ClassifiableItem ;
+  rdfs:label "ConceptSystemClassification Relationship"^^xsd:string ;
+  rdfs:range :Classification ;
   skos:definition "???"^^xsd:string ;
 .
-:LinkEndRoleRelationship
+:isRelatedBy
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :LinkEnd ;
-  rdfs:label "Concept Relationship"^^xsd:string ;
-  rdfs:range :RelationRole ;
-  owl:inverseOf :RelationRole.linkEnd ;
-  skos:definition "???"^^xsd:string ;
-.
-:Relation
-  rdf:type owl:Class ;
-  rdfs:label "Relation"^^xsd:string ;
-  rdfs:subClassOf :Concept ;
-  skos:definition "???"^^xsd:string ;
-.
-:RelationAssertionOfRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Relation ;
-  rdfs:label "Assertion Of Relationship"^^xsd:string ;
-  rdfs:range :Assertion ;
-  skos:definition "???"^^xsd:string ;
-.
-:RelationLinkRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Relation ;
-  rdfs:label "Link Relationship"^^xsd:string ;
-  rdfs:range :Link ;
-  skos:definition "???"^^xsd:string ;
-.
-:RelationRoleRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Relation ;
-  rdfs:label "Role Relationship"^^xsd:string ;
-  rdfs:range :RelationRole ;
-  skos:definition "???"^^xsd:string ;
-.
-:RelationRole
-  rdf:type owl:Class ;
-  rdfs:label "Relation Role"^^xsd:string ;
-  rdfs:subClassOf :Concept ;
-  skos:definition "???"^^xsd:string ;
-.
-:RelationRole.linkEndRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :RelationRole ;
-  rdfs:label "Relation role.link end"^^xsd:string ;
-  rdfs:range :LinkEnd ;
-  owl:inverseOf :LinkEnd.role ;
-.
-:RelationRoleSourceRelationship
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :RelationRole ;
-  rdfs:label "Relation Role Source Relationship"^^xsd:string ;
-  rdfs:range :Relation ;
-  skos:definition "???"^^xsd:string ;
-.
-:arity
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Relation ;
-  rdfs:label "Arity"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
-.
-:formula
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Assertion ;
-  rdfs:label "Formula"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
-.
-:multiplicity
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :RelationRole ;
-  rdfs:label "Multiplicity"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
-.
-:ordinal
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :RelationRole ;
-  rdfs:label "Ordinal"^^xsd:string ;
-  rdfs:range xsd:integer ;
-  skos:definition "???"^^xsd:string ;
-.
-:notation
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :ConceptSystem ;
-  rdfs:label "Concept system notation"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
-.
-:label
-  rdf:type owl:DatatypeProperty ;
   rdfs:domain :Classification ;
-  rdfs:label "Classification label"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition "The label for a given classification"^^xsd:string ;
+  rdfs:label "ClassificationScheme Relationship"^^xsd:string ;
+  rdfs:range isoT:ClassifiableItem ;
+  skos:definition "???"^^xsd:string ;
+.
+:property
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Concept ;
+  rdfs:label "Concept property"^^xsd:string ;
+  rdfs:range xsd:anySimpleType ;
+  skos:definition "The property for a concept"^^xsd:string ;
+
 .

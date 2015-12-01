@@ -154,8 +154,8 @@ class RegistrationAuthority
     uid = ModelUtility.createUid
 
     # Create the query
-    raiId = ModelUtility.buildCidUid(C_CLASS_RAI_PREFIX, uid)
-    id = ModelUtility.buildCidUid(C_CLASS_RA_PREFIX, uid)
+    raiId = ModelUtility.buildCidIdentifier(C_CLASS_RAI_PREFIX, uid)
+    id = ModelUtility.buildCidIdentifier(C_CLASS_RA_PREFIX, uid)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +
