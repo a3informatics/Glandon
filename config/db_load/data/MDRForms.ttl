@@ -39,14 +39,14 @@ items:SI-VS-1 rdf:type isoI:ScopedIdentifier ;
   isoI:version "1"^^xsd:positiveInteger ;
   isoI:hasScope :NS-ACME ;
 .
-items:RS-VS-1 rdf:type isoR:RegistrationStatus ;
+items:RS-VS-1 rdf:type isoR:RegistrationState ;
   isoR:byAuthority items:RA-123456789 ;
-  isoR:registrationStatus ""^^xsd:string ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
   isoR:administrativeNote ""^^xsd:string;
   isoR:effectiveDate ""^^xsd:string ;
   isoR:unresolvedIssue ""^^xsd:string ;
   isoR:administrativeStatus ""^^xsd:string ;
-  isoR:previousState ""^^xsd:string ;
+  isoR:previousState "Qualified"^^xsd:string ;
 .
 :FG-Height
   rdf:type bf:Group ;

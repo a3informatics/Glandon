@@ -80,6 +80,22 @@
   rdfs:range :Item ;
   skos:definition ""^^xsd:string
 .
+:hasCommon
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :Group ;
+  rdfs:label "Has common group relationship"^^xsd:string ;
+  rdfs:range :Group ;
+  skos:definition ""^^xsd:string
+.
+:hasSubGroup
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :Group ;
+  rdfs:label "Has sub group relationship"^^xsd:string ;
+  rdfs:range :Group ;
+  skos:definition ""^^xsd:string
+.
 :isItemOf
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;

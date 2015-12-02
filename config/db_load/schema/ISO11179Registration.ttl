@@ -23,7 +23,7 @@
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
-:Registration
+:RegistrationState
   rdf:type owl:Class ;
   rdfs:label "Registration"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
@@ -42,13 +42,13 @@
 .
 :isStateOf
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :Registration ;
+  rdfs:domain :RegistrationState ;
   rdfs:label "administeredItem"^^xsd:string ;
   rdfs:range ISO11179Types:AdministeredItem ;
 .
 :byAuthority
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :Registration ;
+  rdfs:domain :RegistrationState ;
   rdfs:label "Authority Relationship"^^xsd:string ;
   rdfs:range :RegistrationAuthority ;
 .
@@ -56,59 +56,59 @@
   rdf:type owl:ObjectProperty ;
   rdfs:domain ISO11179Types:AdministeredItem ;
   rdfs:label "Item Registration Relationship"^^xsd:string ;
-  rdfs:range :Registration ;
+  rdfs:range :RegistrationState ;
 .
 :administers
   rdf:type owl:ObjectProperty ;
   rdfs:domain :RegistrationAuthority ;
   rdfs:label "Registration Authority Registration Relationship"^^xsd:string ;
-  rdfs:range :Registration ;
+  rdfs:range :RegistrationState ;
 .
 :registrationStatus
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Registration ;
+  rdfs:domain :RegistrationState ;
   rdfs:label "Registration Status"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "???"^^xsd:string ;
 .
 :effectiveDate
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Registration ;
+  rdfs:domain :RegistrationState ;
   rdfs:label "Effective Date"^^xsd:string ;
   rdfs:range xsd:date ;
   skos:definition "???"^^xsd:string ;
 .
 :untilDate
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Registration ;
+  rdfs:domain :RegistrationState ;
   rdfs:label "Until Date"^^xsd:string ;
   rdfs:range xsd:date ;
   skos:definition "???"^^xsd:string ;
 .
 :administrativeNote
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Registration ;
+  rdfs:domain :RegistrationState ;
   rdfs:label "Administrative Note§"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "???"^^xsd:string ;
 .
 :unresolvedIssue
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Registration ;
+  rdfs:domain :RegistrationState ;
   rdfs:label "Unresolved Issue"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "???"^^xsd:string ;
 .
 :administrativeStatus
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Registration ;
+  rdfs:domain :RegistrationState ;
   rdfs:label "Administrative Status"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "???"^^xsd:string ;
 .
 :previousState
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Registration ;
+  rdfs:domain :RegistrationState ;
   rdfs:label "Previous State"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "???"^^xsd:string ;

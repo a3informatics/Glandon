@@ -8,6 +8,9 @@ class IsoLinkInstance
   
   attr_accessor :rdfType, :range, :domain, :objectUri, :label, :defintion
   
+  # Constants
+  C_CLASS_NAME = "IsoLinkInstance"
+  
   def self.findForConcept(id, ns)
     
     results = Array.new

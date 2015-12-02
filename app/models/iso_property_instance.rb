@@ -6,7 +6,10 @@ class IsoPropertyInstance
   include CRUD
   include ModelUtility
   
-  attr_accessor :rdfType, :value, :domain, :datatype, :label, :definition
+  attr_accessor :id, :rdfType, :value, :domain, :datatype, :label, :definition
+  
+  # Constants
+  C_CLASS_NAME = "IsoPropertyInstance"
   
   def self.findForConcept(id, ns)
     
@@ -64,7 +67,7 @@ class IsoPropertyInstance
       if property.has_key?(:objectProperty)
         sparql += property[:objectProperty] + " . \n"
       else
-        sparql += property[:datatypePropertyValue] + "^^" + property[:datatypePropertyType] " . \n"
+        sparql += property[:datatypePropertyValue] + "^^" + property[:datatypePropertyType] + " . \n"
       end    
     end
 

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :view
     end
   end
-  resources :namespaces
+  resources :iso_namespaces
   resources :scoped_identifiers
   resources :registration_authorities
   resources :registration_states

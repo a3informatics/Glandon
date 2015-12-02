@@ -52,8 +52,9 @@ class Form::FormItem < IsoConceptInstance
     return nil
   end
 
-  def self.create_placeholder(groupId, ns, ordinal, freeText)
+  def self.createPlaceholder(groupId, ns, freeText)
 
+    ordinal = 1
     id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
     id = ModelUtility.cidAddSuffix(id, ordinal)
     update = UriManagement.buildNs(ns, ["bf"]) +
@@ -62,7 +63,7 @@ class Form::FormItem < IsoConceptInstance
       " :" + id + " rdf:type bf:Placeholder . \n" +
       " :" + id + " bf:freeText \"" + freeText + "\"^^xsd:string . \n" +
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:name \"Placeholder\"^^xsd:string . \n" +
+      " :" + id + " rdfs:label \"Placeholder\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
       " :" + id + " bf:isItemOf :" + groupId + " . \n" +
@@ -75,25 +76,16 @@ class Form::FormItem < IsoConceptInstance
     if response.success?
       object = self.new
       object.id = id
-      object.type = C_PLACEHOLDER 
-      object.name = "Placeholder"
-      object.optional = false
-      object.note = ""
-      object.ordinal = ordinal
-      object.bc = nil
-      object.bcPropertyId = ""
-      object.freeText = freeText
       ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Success, id=" + id)
     else
       object = nil
       ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Failed")
     end
-
     return object
 
   end
 
-  def self.create_bc_normal(groupId, ns, ordinal, bc, propertyId)
+  def self.createBcNormal(groupId, ns, ordinal, bc, propertyId)
 
     id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
     id = ModelUtility.cidAddSuffix(id, ordinal)
@@ -105,7 +97,7 @@ class Form::FormItem < IsoConceptInstance
       "{ \n" +
       " :" + id + " rdf:type bf:bcBased . \n" +
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:name \"" + name + "\"^^xsd:string . \n" +
+      " :" + id + " rdfs:label \"" + name + "\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
       " :" + id + " bf:hasProperty " + ModelUtility::buildUri(bc.namespace, propertyId) + " . \n" +
@@ -120,14 +112,6 @@ class Form::FormItem < IsoConceptInstance
     if response.success?
       object = self.new
       object.id = id
-      object.type = C_BC 
-      object.name = "Item " + ordinal.to_s 
-      object.optional = false
-      object.note = ""
-      object.ordinal = ordinal
-      object.bc = bc
-      object.bcPropertyId = propertyId
-      object.freeText = ""
       ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Success, id=" + id)
     else
       object = nil

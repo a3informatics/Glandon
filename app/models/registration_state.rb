@@ -15,6 +15,15 @@ class RegistrationState
   # Base namespace 
   @@baseNs
   
+  # Status Constants
+  C_STANDARD = "Standard"
+  C_QUALIFIED = "Qualified"
+  C_RECORDED = "Recorded"
+  C_CANDIDATE = "Candidate"
+  C_INCOMPLETE = "Incomplete"
+  C_RETIRED = "Retired"
+  C_SUPERSEDED = "Superseded"
+  
   # Constants
   C_NS_PREFIX = "mdrItems"
   C_CID_PREFIX = "RS"
@@ -41,11 +50,12 @@ class RegistrationState
   
   def self.find(id)
     
+    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     object = nil
     
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "SELECT ?a ?c ?d ?e ?f ?g ?h WHERE \n" +
+      "SELECT ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
       "{ \n" +
       "  :" + id + " rdf:type isoR:RegistrationState . \n" +
       "  :" + id + " isoR:byAuthority ?b . \n" +
@@ -64,24 +74,25 @@ class RegistrationState
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
+      ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node.to_s)
       raSet = node.xpath("binding[@name='b']/uri")
       rsSet = node.xpath("binding[@name='c']/literal")
-      rnet = node.xpath("binding[@name='d']/literal")
+      anSet = node.xpath("binding[@name='d']/literal")
       edSet = node.xpath("binding[@name='e']/literal")
       uiSet = node.xpath("binding[@name='f']/literal")
       asSet = node.xpath("binding[@name='g']/literal")
       psSet = node.xpath("binding[@name='h']/literal")
-      if uriSet.length == 1 && raSet.length == 1 && rsSet.length == 1 && rnSet.length == 1 && edSet.length == 1 && uiSet.length == 1 && asSet.length == 1 && psSet.length == 1
+      if raSet.length == 1 && rsSet.length == 1 && anSet.length == 1 && edSet.length == 1 && uiSet.length == 1 && asSet.length == 1 && psSet.length == 1
         object = self.new 
-        object.id = ModelUtility.extractCid(uriSet[0].text)
-        object.registrationAuthority_id = RegistrationAuthority.find(ModelUtility.extractCid(raSet[0].text))
-        object.registrationStatus = oSet[0].text
-        object.administrativeNote = sSet[0].text
-        object.effectiveDate = snSet[0].text
-        object.unresolvedIssue = lnSet[0].text
-        object.administrativeStatus = lnSet[0].text
-        object.previousState  = lnSet[0].text
+        object.id = id
+        object.registrationAuthority = RegistrationAuthority.find(ModelUtility.extractCid(raSet[0].text))
+        object.registrationStatus = rsSet[0].text
+        object.administrativeNote = anSet[0].text
+        object.effectiveDate = edSet[0].text
+        object.unresolvedIssue = uiSet[0].text
+        object.administrativeStatus = asSet[0].text
+        object.previousState  = psSet[0].text
+        ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + object.id)
       end
     end
     
@@ -147,12 +158,12 @@ class RegistrationState
       "{ \n" +
       "	:" + id + " rdf:type isoR:RegistrationState . \n" +
       "	:" + id + " isoR:byAuthority :" + @@owner.id + " . \n" +
-      "	:" + id + " isoR:registrationStatus \"""\"^^xsd:string . \n" +
-      "	:" + id + " isoR:administrativeNote \"""\"^^xsd:string . \n" +
-      "	:" + id + " isoR:effectiveDate \"""\"^^xsd:string . \n" +
-      "	:" + id + " isoR:unresolvedIssue \"""\"^^xsd:string . \n" +
-      "	:" + id + " isoR:administrativeStatus \"""\"^^xsd:string . \n" +
-      "	:" + id + " isoR:previousState \"""\"^^xsd:string . \n" +
+      "	:" + id + " isoR:registrationStatus \"" + C_INCOMPLETE + "\"^^xsd:string . \n" +
+      "	:" + id + " isoR:administrativeNote \"\"^^xsd:string . \n" +
+      "	:" + id + " isoR:effectiveDate \"\"^^xsd:string . \n" +
+      "	:" + id + " isoR:unresolvedIssue \"\"^^xsd:string . \n" +
+      "	:" + id + " isoR:administrativeStatus \"\"^^xsd:string . \n" +
+      "	:" + id + " isoR:previousState \"" + C_INCOMPLETE + "\"^^xsd:string . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -162,12 +173,12 @@ class RegistrationState
     if response.success?
       object = self.new
       object.id = id
-      object.registrationStatus = ""
+      object.registrationStatus = C_INCOMPLETE
       object.administrativeNote = ""
       object.effectiveDate = ""
       object.unresolvedIssue = ""
       object.administrativeStatus = ""
-      object.previousState  = ""
+      object.previousState  = C_INCOMPLETE 
       ConsoleLogger::log(C_CLASS_NAME,"create","Created Id=" + id.to_s)
     else
       ConsoleLogger::log(C_CLASS_NAME,"create","Failed to create object")

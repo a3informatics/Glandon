@@ -1,7 +1,7 @@
 require "nokogiri"
 require "uri"
 
-class Namespace
+class IsoNamespace
 
   include CRUD
   include ModelUtility
@@ -209,7 +209,7 @@ class Namespace
 
         # Create the query
         id = ModelUtility.buildCidIdentifier(C_NS_CID_PREFIX, shortName)
-        orgId = ModelUtility.cidSwapPrefix(item.id, C_ORG_CID_PREFIX)
+        orgId = ModelUtility.cidSwapPrefix(id, C_ORG_CID_PREFIX)
         update = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
           "INSERT DATA \n" +
           "{ \n" +
@@ -225,7 +225,6 @@ class Namespace
 
         # Response
         if response.success?
-          object.frameworkItem = item
           object.id = id
           object.namespace = @@baseNs 
           object.name = name

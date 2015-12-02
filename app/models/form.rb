@@ -15,9 +15,7 @@ class Form < IsoConceptInstance
   @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
   
   def self.find(id, ns)
-    
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
-    
     object = super(id, ns)
     object.groups = Form::FormGroup.findForForm(object.links, ns)
     return object  
@@ -30,7 +28,7 @@ class Form < IsoConceptInstance
 
   def self.createPlaceholder(params)
     
-    ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Entry")
+    ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Entry")
     
     # Create the object
     object = self.new 
@@ -45,9 +43,8 @@ class Form < IsoConceptInstance
       label = params[:label]
       params[:versionLabel] = "0.1"
       params[:version] = "1"
-      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","FreeText=" + freeText.to_s)
-      
-      if exists?(identifier) 
+      ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","FreeText=" + freeText.to_s)
+      if exists?(identifier, RegistrationAuthority.owner()) 
     
         # Note the error
         object.errors.add(:base, "The identifier is already in use.")
@@ -61,6 +58,24 @@ class Form < IsoConceptInstance
         # single group for a placeholder form.
         group = FormGroup.createPlaceholder(object.id, object.namespace, freeText)
       
+        # Create the update query
+        update = UriManagement.buildNs(object.namespace,["bf"]) +
+          "INSERT DATA \n" +
+          "{ \n" +
+          "  :" + object.id + " bf:hasGroup :" + group.id + " . \n" +
+          "}"
+        
+        # Send the request, wait the resonse
+        response = CRUD.update(update)
+        
+        # Response
+        if response.success?
+          ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Object created, id=" + object.id)
+        else
+          object.errors.add(:base, "The group was not created in the database.")
+          ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Object not created!")
+        end
+
       end
     end
     
@@ -68,7 +83,7 @@ class Form < IsoConceptInstance
 
   end
 
-  def self.create_bc_normal(params)
+  def self.createBcNormal(params)
     
     ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Entry")
     
@@ -85,42 +100,38 @@ class Form < IsoConceptInstance
       bcs = params[:bcs]
       params[:versionLabel] = "0.1"
       params[:version] = "1"
-      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","BCs=" + bcs.to_s)
+      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","BCs=" + bcs.to_s)
         
-      if ManagedItem.exists?(identifier, RegistrationAuthority.owner) 
+      if exists?(identifier, RegistrationAuthority.owner) 
     
         # Note the error
         object.errors.add(:base, "The identifier is already in use.")
     
       else  
 
-        # Create the managed item for the form. 
-        managedItem = ManagedItem.create(C_CID_PREFIX, params, @@baseNs)
-        id = managedItem.id
-        useNs = managedItem.namespace
-
-        # Now create the group (which will create the item). We only need a 
-        # single group for a placeholder form.
+        # Create the adminstered item for the form. 
+        object = createAdministeredItem(C_CID_PREFIX, params, C_RDF_TYPE, @@schemaNs, @@instanceNs)
+      
+        # Now create the groups (which will create the item). We create a 
+        # single group for each BC.
         insertSparql = ""
         groups = Hash.new
         ordinal = 1
         bcs.each do |key|
-          ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add group for BC=" + key.to_s )
+          ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add group for BC=" + key.to_s )
           parts = key.split("|")
           bcId = parts[0]
           bcNamespace = parts[1]
           bc = CdiscBc.find(bcId, bcNamespace)
-          group = FormGroup.create_bc_normal(id, useNs, ordinal, bc)
+          group = FormGroup.createBcNormal(object.id, object.namespace, ordinal, bc)
           ordinal += 1
-          insertSparql = insertSparql + "  :" + id + " bf:hasGroup :" + group.id + " . \n"
-          groups[group.id] = group
+          insertSparql = insertSparql + "  :" + object.id + " bf:hasGroup :" + group.id + " . \n"
         end
 
-        # Create the query
-        update = UriManagement.buildNs(useNs,["bf"]) +
+        # Create the update query
+        update = UriManagement.buildNs(object.namespace,["bf"]) +
           "INSERT DATA \n" +
           "{ \n" +
-          "  :" + id + " rdf:type bf:Form . \n" +
           insertSparql +
           "}"
         
@@ -129,14 +140,10 @@ class Form < IsoConceptInstance
         
         # Response
         if response.success?
-          object = self.new
-          object.id = id
-          object.managedItem = managedItem
-          object.groups = groups
-          ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Object created, id=" + id)
+          ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Object created, id=" + object.id)
         else
           object.errors.add(:base, "The namespace was not created in the database.")
-          ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Object not created!")
+          ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Object not created!")
         end
       end
     end
@@ -258,7 +265,7 @@ private
     result1 = ModelUtility::validIdentifier?(params[:identifier], object)
     result2 = ModelUtility::validLabel?(params[:label], object)
     if params.has_key?(:bcs)
-      result3 = ModelUtility::validBcs?(params[:bcs], object)
+      result3 = validBcs?(params[:bcs], object)
     else
       result3 = true
     end 

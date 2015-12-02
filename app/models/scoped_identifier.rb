@@ -101,7 +101,7 @@ class ScopedIdentifier
         object.identifier = iSet[0].text
         object.version = (vSet[0].text).to_i
         object.versionLabel = vlSet[0].text
-        object.namespace = Namespace.find(ModelUtility.extractCid(sSet[0].text))
+        object.namespace = IsoNamespace.find(ModelUtility.extractCid(sSet[0].text))
         ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + id)
       end
       
@@ -146,7 +146,7 @@ class ScopedIdentifier
         object.identifier = iSet[0].text
         object.version = (vSet[0].text).to_i
         object.versionLabel = vlSet[0].text
-        object.namespace = Namespace.find(ModelUtility.extractCid(sSet[0].text))
+        object.namespace = IsoNamespace.find(ModelUtility.extractCid(sSet[0].text))
         ConsoleLogger::log(C_CLASS_NAME,"all","Created object=" + object.id)
         results.push (object)
       end
@@ -194,7 +194,7 @@ class ScopedIdentifier
       object.version = version
       object.versionLabel = versionLabel
       object.identifier = identifier
-      object.namespace = Namespace.find(scopeId)
+      object.namespace = IsoNamespace.find(scopeId)
     else
       object = self.new
       object.assign_errors(data) if response.response_code == 422

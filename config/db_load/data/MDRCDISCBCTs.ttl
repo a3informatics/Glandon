@@ -268,33 +268,33 @@ mdrItems:SI-BCT_Obs_PQR
 	cbc:alias "Result"^^xsd:string ;
 	cbc:hasDatatype :BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR ;
 .
-:PerformedClinicalResult_value_PQR
+:BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR
 	rdf:type cbc:Datatype ;
 	cbc:isDatatypeOf :BCT-PerformedClinicalResult_value ;
 	cbc:hasDatatypeRef mdrIso21090:DT-PQR ;
-	cbc:hasProperty :PerformedClinicalResult_value_PQR_value ;
-	cbc:hasProperty :PerformedClinicalResult_value_PQR_code ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR_value ;
+	cbc:hasProperty :BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR_code ;
 .
-:PerformedClinicalResult_value_PQR_value
+:BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR_value
 	rdf:type cbc:Property ;
-	cbc:isPropertyOf :PerformedClinicalResult_value_PQR ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR ;
 	cbc:alias "Result Value (--ORRES)"^^xsd:string ;
-	cbc:hasValue :PerformedClinicalResult_value_PQR_value_Value ;
+	cbc:hasValue :BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR_value_Value ;
 	cbc:bridgPath "PerformedClinicalResult.value.PQR.value"^^xsd:string ;
 	cbc:simpleDatatype "float"^^xsd:string ;
 .
-:PerformedClinicalResult_value_PQR_value_Value
+:BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR_value_Value
 	rdf:type cbc:PropertyValue ;
 .
-:PerformedClinicalResult_value_PQR_code
+:BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR_code
 	rdf:type cbc:Property ;
-	cbc:isPropertyOf :PerformedClinicalResult_value_PQR ;
+	cbc:isPropertyOf :BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR ;
 	cbc:alias "Result Units (--ORRESU)"^^xsd:string ;
-	cbc:hasValue :PerformedClinicalResult_value_PQR_code_Value ;
+	cbc:hasValue :BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR_code_Value ;
 	cbc:bridgPath "PerformedClinicalResult.value.PQR.code"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
-:PerformedClinicalResult_value_PQR_code_Value
+:BCT-BCT_Obs_PQR_PerformedClinicalResult_value_PQR_code_Value
 	rdf:type cbc:PropertyValue ;
 .
 :BCT-BCT_Obs_PQR_baselineIndicator

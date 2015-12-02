@@ -84,7 +84,7 @@ class SponsorTerm
     
     results = Array.new
     if @@organization == nil 
-      @@organization = Namespace.findByShortName("ACME")
+      @@organization = IsoNamespace.findByShortName("ACME")
     end
     tSet = Thesaurus.findByNamespaceId(@@organization.id)
     tSet.each do |thesaurus|
@@ -105,7 +105,7 @@ class SponsorTerm
       ConsoleLogger::log(C_CLASS_NAME,"Current","Current nil")
       latest = nil
       if @@organization == nil 
-        @@organization = Namespace.findByShortName("ACME")
+        @@organization = IsoNamespace.findByShortName("ACME")
       end
       tSet = Thesaurus.findByNamespaceId(@@organization.id)
       tSet.each do |thesaurus|

@@ -75,7 +75,7 @@ class RegistrationAuthority
         ra.id = id
         ra.number = oSet[0].text
         ra.scheme = sSet[0].text
-        ra.namespace = Namespace.find(ModelUtility.extractCid(siSet[0].text))
+        ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
         ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
         ConsoleLogger::log(C_CLASS_NAME,"find","Namespace, id=" + ra.namespace.id)
         end
@@ -117,7 +117,7 @@ class RegistrationAuthority
         ra.id = ModelUtility.extractCid(uriSet[0].text)
         ra.number = oSet[0].text
         ra.scheme = sSet[0].text
-        ra.namespace = Namespace.find(ModelUtility.extractCid(siSet[0].text))
+        ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
         ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + ra.id)
         ConsoleLogger::log(C_CLASS_NAME,"all","Namespace, id=" + ra.namespace.id)
         results[ra.id] = ra

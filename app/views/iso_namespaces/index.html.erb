@@ -15,10 +15,10 @@
 			    	<td><%= namespace.name %></td>
 			    	<td><%= namespace.shortName %></td>
 			    	<td><%= namespace.id %></td>
-			    	<td><%= link_to "Delete", namespace_path(namespace), :class => "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure?" } %></td>
+			    	<td><%= link_to "Delete", iso_namespace_path(namespace), :class => "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure?" } %></td>
 			  	</tr>
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "New Namespace", new_namespace_path, :class => "btn btn-success" %>
+	<%= link_to "New Namespace", new_iso_namespace_path, :class => "btn btn-success" %>
 </div>

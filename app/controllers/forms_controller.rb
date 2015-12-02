@@ -22,7 +22,7 @@ class FormsController < ApplicationController
   end
 
   def placeholder_create
-    @form = Form.create_placeholder(the_params)
+    @form = Form.createPlaceholder(the_params)
     if @form.errors.empty?
       redirect_to forms_path
     else
@@ -32,7 +32,7 @@ class FormsController < ApplicationController
   end
   
   def bc_normal_create
-    @form = Form.create_bc_normal(the_params)
+    @form = Form.createBcNormal(the_params)
     if @form.errors.empty?
       redirect_to forms_path
     else

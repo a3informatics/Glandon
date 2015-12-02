@@ -56,9 +56,10 @@ class Form::FormGroup < IsoConceptInstance
 
   def self.createPlaceholder (formId, ns, freeText)
    
+    ordinal = 1
     id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
-    id = ModelUtility.cidAddSuffix(id, 1)
-    item = Form::FormItem.create_placeholder(id, ns, 1, freeText)
+    id = ModelUtility.cidAddSuffix(id, ordinal)
+    item = Form::FormItem.createPlaceholder(id, ns, freeText)
     update = UriManagement.buildNs(ns, ["bf"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -79,24 +80,17 @@ class Form::FormGroup < IsoConceptInstance
     if response.success?
       object = self.new
       object.id = id
-      object.name = "Placeholder"
-      object.optional = false
-      object.repeating = false
-      object.note = ""
-      object.ordinal = ordinal
-      object.items = Hash.new
-      object.items[item.id] = item
-      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Success, id=" + id)
+      ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Success, id=" + id)
     else
       object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Failed")
+      ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Failed")
     end
 
     return object
   
   end
 
-  def self.create_bc_normal (formId, ns, ordinal, bc)
+  def self.createBcNormal (formId, ns, ordinal, bc)
    
     id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
     id = ModelUtility.cidAddSuffix(id, ordinal)
@@ -106,9 +100,8 @@ class Form::FormGroup < IsoConceptInstance
     bc.properties.each do |property_id, property|
       ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add item for Group=" + property_id)
       if property[:Enabled]
-        item = Form::FormItem.create_bc_normal(id, ns, itemOrdinal, bc, property_id)
+        item = Form::FormItem.createBcNormal(id, ns, itemOrdinal, bc, property_id)
         itemOrdinal += 1
-        items[item.id] = item
         insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
       end
     end
@@ -134,12 +127,6 @@ class Form::FormGroup < IsoConceptInstance
     if response.success?
       object = self.new
       object.id = id
-      object.name = bc.label
-      object.optional = false
-      object.repeating = false
-      object.note = ""
-      object.ordinal = ordinal
-      object.items = items
       ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Success, id=" + id)
     else
       object = nil

@@ -157,8 +157,10 @@
                                     </xsl:call-template>
                                     <xsl:call-template name="SubjectEnd"/> 
                                     <xsl:apply-templates select=".">
+                                        <xsl:with-param name="pPrefix" select="concat($pPrefix,$MinorSeparator)" />
                                         <xsl:with-param name="pClass" select="$ClassName" />
                                         <xsl:with-param name="pDatatype" select="@Datatype" />
+                                        <xsl:with-param name="pRawDatatype" select="@DataType" />
                                         <xsl:with-param name="pBRIDGPath" select="$BRIDGPath" />
                                     </xsl:apply-templates>
                                 </xsl:when>

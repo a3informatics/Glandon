@@ -20,11 +20,14 @@ class IsoConceptInstance < IsoItem
   
   def self.find(id, ns=nil)
     
+    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
+    
     # Set the namespace
     useNs = ns || @@baseNs
 
     # Find the object, get the properties and the links
     object = super(id, ns)
+    ConsoleLogger::log(C_CLASS_NAME,"find","Object return, object=" + object.to_s)
     object.properties = IsoPropertyInstance.findForConcept(id, useNs)
     object.links = IsoLinkInstance.findForConcept(id, useNs)
     

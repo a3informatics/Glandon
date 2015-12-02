@@ -69,7 +69,7 @@
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoR:registrationStatus'"/>
-            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,'Standard',$quote,'^^xsd:string')"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoR:administrativeNote'"/>
@@ -89,7 +89,7 @@
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoR:previousState'"/>
-            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,'Qualified',$quote,'^^xsd:string')"/>
         </xsl:call-template>
         <xsl:call-template name="SubjectEnd"/>
     </xsl:template>

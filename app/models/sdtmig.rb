@@ -137,7 +137,7 @@ class Sdtmig
     object = self.new
     ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     
-    namespace = Namespace.findByShortName("CDISC")
+    namespace = IsoNamespace.findByShortName("CDISC")
     identifier = "SDTM IG"
     itemType = "SDTM_IG"
     version = "1"

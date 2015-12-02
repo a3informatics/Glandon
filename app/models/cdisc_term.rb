@@ -84,7 +84,7 @@ class CdiscTerm
     
     results = Array.new
     if @@cdiscNamespace == nil 
-      @@cdiscNamespace = Namespace.findByShortName("CDISC")
+      @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
     end
     tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
@@ -102,7 +102,7 @@ class CdiscTerm
     
     results = Array.new
     if @@cdiscNamespace == nil 
-      @@cdiscNamespace = Namespace.findByShortName("CDISC")
+      @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
     end
     tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
@@ -122,7 +122,7 @@ class CdiscTerm
     
     results = Array.new
     if @@cdiscNamespace == nil 
-      @@cdiscNamespace = Namespace.findByShortName("CDISC")
+      @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
     end
     tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
     tSet.each do |thesaurus|
@@ -145,7 +145,7 @@ class CdiscTerm
       ConsoleLogger::log(C_CLASS_NAME,"Current","Current nil")
       latest = nil
       if @@cdiscNamespace == nil 
-        @@cdiscNamespace = Namespace.findByShortName("CDISC")
+        @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
       end
       tSet = Thesaurus.findByNamespaceId(@@cdiscNamespace.id)
       tSet.each do |thesaurus|
@@ -171,7 +171,7 @@ class CdiscTerm
     
     object = self.new
     
-    namespace = Namespace.findByShortName("CDISC")
+    namespace = IsoNamespace.findByShortName("CDISC")
     identifier = "CDISC Terminology"
     version = params[:version]
     date = params[:date]

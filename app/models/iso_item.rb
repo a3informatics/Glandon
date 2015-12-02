@@ -9,7 +9,7 @@ class IsoItem
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :id, :namespace, :isoType, :rdfType, :label, :comment, :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment
+  attr_accessor :id, :namespace, :rdfType, :label, :comment, :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment
   
   # Constants
   C_SCHEMA_PREFIX = "isoC"
@@ -41,12 +41,10 @@ class IsoItem
   end
 
   # Does the item exist. Cannot be used for child objects!
-  def self.itemExists?(identifier, registrationAuthority)
-    
+  def self.exists?(identifier, registrationAuthority)
     ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + registrationAuthority.namespace.id)
     result = ScopedIdentifier.exists?(identifier, registrationAuthority.namespace.id)
-
   end
 
   # Note: The id is the identifier for the enclosing managed object. 
@@ -94,14 +92,15 @@ class IsoItem
       lastSet = node.xpath("binding[@name='f']/literal")
       commentSet = node.xpath("binding[@name='g']/literal")
       label = ModelUtility.getValue('h', false, node)
-      rdfType = ModelUtility.getValue('i', false, node)
-      ConsoleLogger::log(C_CLASS_NAME,"find","Label=" + label)
-      if label != ""
+      rdfType = ModelUtility.getValue('i', true, node)
+      ConsoleLogger::log(C_CLASS_NAME,"find","rdfType=" + rdfType)
+      if rdfType != ""
         object = self.new
         object.id = id
         object.namespace = ns
         object.label = label
         object.rdfType = rdfType
+        ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
         if iiSet.length == 1
           object.scopedIdentifier = ScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
           if rsSet.length == 1
@@ -111,7 +110,7 @@ class IsoItem
             object.creationDate = dateSet[0].text
             object.lastChangedDate = lastSet[0].text
             object.explanoratoryComment = commentSet[0].text
-            object.isoType = C_Administered
+            #object.isoType = C_Administered
           else
             object.registrationState = nil
             object.origin = ""
@@ -119,13 +118,14 @@ class IsoItem
             object.creationDate = ""
             object.lastChangedDate = ""
             object.explanoratoryComment = ""
-            object.isoType = C_Identified
+            #object.isoType = C_Identified
           end
         end
       end
     end
     
     # Return
+    ConsoleLogger::log(C_CLASS_NAME,"find","Object return, object=" + object.to_s)
     return object
     
   end
@@ -187,7 +187,7 @@ class IsoItem
             object.creationDate = dateSet[0].text
             object.lastChangedDate = lastSet[0].text
             object.explanoratoryComment = commentSet[0].text
-            object.isoType = C_Administered
+            #object.isoType = C_Administered
           else
             object.registrationState = nil
             object.origin = ""
@@ -195,11 +195,11 @@ class IsoItem
             object.creationDate = ""
             object.lastChangedDate = ""
             object.explanoratoryComment = ""
-            object.isoType = C_Identified
+            #object.isoType = C_Identified
           end
         else
           object.scopedIdentifier = nil
-          object.isoType = C_Child
+          #object.isoType = C_Child
         end
         results[object.id] = object
       end
@@ -218,7 +218,7 @@ class IsoItem
     object.id = ModelUtility.buildCidIdentifier(prefix, params[:identifier])
     object.scopedIdentifier = nil
     object.registrationState = nil
-    object.isoType = C_Other
+    #object.isoType = C_Other
     object.origin = ""
     object.changeDescription = ""
     object.creationDate = ""
@@ -250,59 +250,16 @@ class IsoItem
   
   end
 
-  def self.createDesignatableItem(prefix, params, rdfType, schemaNs, instanceNs)
-  
-    ConsoleLogger::log(C_CLASS_NAME,"createDesignatableItem","*****Entry*****")
-    
-    object = self.new
-    object.id = ModelUtility.buildCidIdentifier(prefix, params[:identifier])
-    object.scopedIdentifier = nil
-    object.registrationState = nil
-    object.isoType = C_Designatable
-    object.origin = ""
-    object.changeDescription = ""
-    object.creationDate = ""
-    object.lastChangedDate = ""
-    object.explanoratoryComment = ""
-    object.label = params[:label]
-    object.definition = params[:definition]
-    object.identifier = params[:identifier]
-    object.rdfType = rdfType
-
-    prefixSet = []
-    prefixSet << UriManagement.getPrefix(schemaNs)
-    update = UriManagement.buildNs(instanceNs, prefixSet) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      "  :" + object.id + " rdf:type :" + object.rdfType + " . \n" +
-      "  :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
-      "  :" + object.id + " isoC:identifier \"" + object.identifier + "\"^^xsd:string . \n" +
-      "  :" + object.id + " isoC:definition \"" + object.definition + "\"^^xsd:string . \n" +
-      "}"
-
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"createDesignatableItem","Success, id=" + id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"createDesignatableItem","Failed")
-    end
-    return object
-  
-  end
-
   def self.createIdentifiedItem(prefix, params, scopeId, rdfType, schemaNs, instanceNs)
   
     ConsoleLogger::log(C_CLASS_NAME,"createImport","*****Entry*****")
     
+    identifier = params[:identifier]
     object = self.new
-    object.id = ModelUtility.buildCidIdentifier(prefix, params[:identifier])
-    object.scopedIdentifier = ScopedIdentifier.create(params, uid, scopeId)
+    object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
+    object.scopedIdentifier = ScopedIdentifier.create(params, identifier, scopeId)
     object.registrationState = nil
-    object.isoType = C_Identified
+    #object.isoType = C_Identified
     object.origin = ""
     object.changeDescription = ""
     object.creationDate = ""
@@ -312,12 +269,13 @@ class IsoItem
     object.rdfType = rdfType
 
     prefixSet = ["mdrItems", "isoI"]
-    prefixSet << UriManagement.getPrefix(schemaNs)
+    schemaPrefix = UriManagement.getPrefix(schemaNs)
+    prefixSet << schemaPrefix
     update = UriManagement.buildNs(instanceNs, prefixSet) +
       "INSERT DATA \n" +
       "{ \n" +
       "  :" + object.id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
-      "  :" + object.id + " rdf:type :" + object.typeName + " . \n" +
+      "  :" + object.id + " rdf:type " + schemaPrefix + ":" + rdfType + " . \n" +
       "  :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
       "}"
 
@@ -357,12 +315,13 @@ class IsoItem
     timestamp = Time.now
     
     # Create the object
+    identifier = params[:identifier]
     object = self.new
-    object.id = ModelUtility.buildCidIdentifier(prefix, params[:identifier])
+    object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
     object.namespace = useNs
-    object.scopedIdentifier = ScopedIdentifier.create(params, uid, scopeId)
-    object.registrationState = RegistrationState.create(params, uid)
-    object.isoType = C_Administered
+    object.scopedIdentifier = ScopedIdentifier.create(params, identifier, scopeId)
+    object.registrationState = RegistrationState.create(params, identifier)
+    #object.isoType = C_Administered
     object.origin = ""
     object.changeDescription = "Creation"
     object.creationDate = timestamp
@@ -372,7 +331,8 @@ class IsoItem
     object.rdfType = rdfType
 
     prefixSet = ["mdrItems", "isoT", "isoI"]
-    prefixSet << UriManagement.getPrefix(schemaNs)
+    schemaPrefix = UriManagement.getPrefix(schemaNs)
+    prefixSet << schemaPrefix
     update = UriManagement.buildNs(useNs, prefixSet) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -383,7 +343,7 @@ class IsoItem
       "  :" + object.id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +
       "  :" + object.id + " isoT:lastChangedDate \"\"^^xsd:string . \n" +
       "  :" + object.id + " isoT:explanoratoryComment \"\"^^xsd:string . \n" +
-      "  :" + object.id + " rdf:type " + typePrefix + ":" + rdfType + " . \n" +
+      "  :" + object.id + " rdf:type " + schemaPrefix + ":" + rdfType + " . \n" +
       "  :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
     "}"
 
