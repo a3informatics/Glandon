@@ -44,13 +44,13 @@
   rdfs:subClassOf :Item ;
   skos:definition ""^^xsd:string
 .
-:BcBased
+:BcProperty
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept based Item"^^xsd:string ;
   rdfs:subClassOf :Item ;
   skos:definition ""^^xsd:string
 .
-:VarBased
+:Question
   rdf:type owl:Class ;
   rdfs:label "Variable Item"^^xsd:string ;
   rdfs:subClassOf :Item ;
@@ -104,20 +104,28 @@
   rdfs:range :Group ;
   skos:definition ""^^xsd:string
 .
-:hasProperty
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Item ;
-  rdfs:label "Has group relationship"^^xsd:string ;
-  rdfs:range cbc:Property ;
-  skos:definition ""^^xsd:string
-.
 :hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :bcBased ;
-  rdfs:label "Has group relationship"^^xsd:string ;
-  rdfs:range cbc:BiomedicalConcept ;
+  rdfs:domain :Group ;
+  rdfs:label "Reference to Biomedical Concept"^^xsd:string ;
+  rdfs:range bo:BcReference ;
+  skos:definition ""^^xsd:string
+.
+:hasProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :BcProperty ;
+  rdfs:label "Reference to Biomedical Concept property."^^xsd:string ;
+  rdfs:range bo:BcReference;
+  skos:definition ""^^xsd:string
+.
+:hasValue
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :BcProperty ;
+  rdfs:label "Reference to Biomedical Concept value."^^xsd:string ;
+  rdfs:range bo:BcReference ;
   skos:definition ""^^xsd:string
 .
 :note

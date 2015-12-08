@@ -53,7 +53,6 @@ class Thesaurus
     useNs = ns || @@baseNs
     object = self.new 
     object.id = id
-    object.namespace = useNs
     object.managedItem = ManagedItem.find(id,useNs)
     object.children = ThesaurusConcept.allTopLevel(id,useNs)
     return object
@@ -124,7 +123,7 @@ class Thesaurus
           if (managedItem != nil)
             object = self.new 
             object.id = ModelUtility.extractCid(uriSet[0].text)
-            object.namespace = ModelUtility.extractNs(uriSet[0].text)
+            #object.namespace = ModelUtility.extractNs(uriSet[0].text)
             object.managedItem = managedItem
             object.children = ThesaurusConcept.allTopLevel(object.id,object.namespace)
             ConsoleLogger::log(C_CLASS_NAME,"findWithoutNs","Object created id=" + object.id)

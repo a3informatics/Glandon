@@ -251,7 +251,21 @@
                     <xsl:value-of select="."/>
                 </xsl:attribute>
                 <xsl:attribute name="SDSVarName">
-                    <xsl:value-of select="concat($SDTM,' where ',$Topic,'=',$TopicValue)"/>
+                    <xsl:choose>
+                        <xsl:when test="$SDTM">
+                            <xsl:choose>
+                                <xsl:when test="$Topic">
+                                    <xsl:value-of select="concat($SDTM,' where ',$Topic,'=',$TopicValue)"/>                                    
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="$SDTM"/>                                    
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="''"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:attribute>
                 <xsl:choose>
                     <xsl:when test="$Presentation='integer'">

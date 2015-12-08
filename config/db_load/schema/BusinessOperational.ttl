@@ -1,9 +1,11 @@
 @prefix : <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 <http://www.assero.co.uk/BusinessOperational>
   rdf:type owl:Ontology ;
@@ -15,9 +17,44 @@
   rdfs:label "Component"^^xsd:string ;
   rdfs:subClassOf isoC:Concept ;
 .
+:BcReference
+  rdf:type owl:Class ;
+  rdfs:label "Component"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+.
+:hasBiomedicalConcept
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :bcReference ;
+  rdfs:label "Biomedical Concept reference."^^xsd:string ;
+  rdfs:range cbc:BiomedicalConceptInstance ;
+  skos:definition "Reference to a Biomedical Concept instance."^^xsd:string
+.
+:hasProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :bcReference ;
+  rdfs:label "Biomedical Concept property reference."^^xsd:string ;
+  rdfs:range cbc:Property ;
+  skos:definition "Reference to a Biomedical Concept property."^^xsd:string
+.
+:hasValue
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :bcReference ;
+  rdfs:label "Biomedical Concept value reference."^^xsd:string ;
+  rdfs:range cbc:Value ;
+  skos:definition "Reference to a Biomedical Concept value."^^xsd:string
+.
 :ordinal
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :Component ;
   rdfs:label "ordinal"^^xsd:string ;
-  rdfs:range xsd:integer ;
+  rdfs:range xsd:postiveInteger ;
+.
+:enabled
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :BcReference ;
+  rdfs:label "enabled"^^xsd:string ;
+  rdfs:range xsd:boolean ;
 .

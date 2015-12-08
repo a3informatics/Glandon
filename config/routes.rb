@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :dashboard do
     collection do
       get :view
+      get :database
     end
   end
   resources :iso_namespaces
@@ -71,6 +72,7 @@ Rails.application.routes.draw do
       post :bc_normal_create
       post :bc_log_create
       get :acrf
+      get :crf
     end
   end
   namespace :forms do

@@ -19,6 +19,12 @@ class FormsController < ApplicationController
   end
   
   def create
+    @form = Form.create(params[:form])
+    if @form.errors.empty?
+      render :nothing => true, :status => 200, :content_type => 'text/html'
+    else
+      render :json => { :errors => @form.errors.full_messages}, :status => 422
+    end
   end
 
   def placeholder_create
@@ -62,8 +68,12 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id], params[:namespace])
   end
 
+  def crf
+    @form = Form.find(params[:id], params[:namespace])
+  end
+
 private
   def the_params
-    params.require(:form).permit(:formId, :namespace, :freeText, :identifier, :label, :bcs => [])
+    params.require(:form).permit(:formId, :namespace, :freeText, :identifier, :label, :children => {}, :bcs => [])
   end  
 end

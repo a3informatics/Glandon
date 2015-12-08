@@ -18,7 +18,7 @@
 			    	<td><%= thesaurus.versionLabel %></td>
 			    	<td><%= thesaurus.version %></td>
 			    	<td><%= thesaurus.id %></td>
-			    	<td><%= link_to "Show", thesauri_path(:id => thesaurus.id, :namespace => thesaurus.namespace), :class => "btn btn-primary" %></td>
+			    	<td><%= link_to "Show", thesauri_path(:id => thesaurus.id, :namespace => thesaurus.namespace), :class => "btn btn-primary btn-xs" %></td>
 			    	<!--<td><%= link_to "Remove", thesauri_path(:id => thesaurus.id, :namespace => thesaurus.namespace), :class => "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></td>-->
 			  	</tr>
 			<% end %>

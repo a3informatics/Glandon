@@ -9,10 +9,10 @@ class Uri
   # CID = Class Identifier, used as the id for Rails classes and based on the URI
   # CID and fragment are the same thing
 
-  
+  C_CLASS_NAME = "Uri"  
   C_SCHEME_SEPARATOR = "://"
   C_PATH_SEPARATOR = "/"
-  C_FRAGMENT_SECTION_SEPARATOR = "-"
+  C_FRAGMENT_SECTION_SEPARATOR = "-" 
   C_UID_SECTION_SEPARATOR = "_"
   C_FRAGMENT_SEPARATOR = "#"
   
@@ -51,11 +51,13 @@ class Uri
   end
 
   def setNsCid(ns, cid)
+    @authority = getAuthority(ns)
     @path = getPath(ns)
     setCid(cid)
   end
 
   def setNs(ns)
+    @authority = getAuthority(ns)
     @path = getPath(ns)
   end
 
@@ -66,6 +68,7 @@ class Uri
   end
   
   def setUri(uri)
+    @authority = getAuthority(uri)
     @path = getPath(uri)
     fragment = getFragment(uri)
     @prefix = getPrefix(fragment)
@@ -108,6 +111,23 @@ class Uri
 
 private
   
+  def getAuthority(uri)
+    parts = uri.split(C_FRAGMENT_SEPARATOR)
+    if parts.size == 1 or parts.size == 2
+      temp = parts[0].sub(@scheme + C_SCHEME_SEPARATOR,"")
+      innerParts = temp.split(C_PATH_SEPARATOR)
+      if innerParts.size >= 1
+        result = innerParts[0]
+      else
+        result = ""
+      end
+    else
+      result = ""
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"getAuthority","Authority=" + result)
+    return result  
+  end
+
   def getPath(uri)
     parts = uri.split(C_FRAGMENT_SEPARATOR)
     if parts.size == 1 or parts.size == 2

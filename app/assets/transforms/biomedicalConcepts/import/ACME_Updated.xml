@@ -3,10 +3,10 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="BC C25347_ACME" Name="Height">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>C25347</Value>
 				</Property>
-				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+				<Property Enabled="true" Collect="false" Alias="Name" Name="originalText">
 					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
 						<Value>C25347</Value>
 					</Property>
@@ -56,10 +56,10 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="BC C25208_ACME" Name="Weight">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>C25208</Value>
 				</Property>
-				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+				<Property Enabled="true" Collect="false" Alias="Name" Name="originalText">
 					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
 						<Value>C25208</Value>
 					</Property>
@@ -109,10 +109,10 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="BC C16358_ACME" Name="Body Mass Index">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>C16358</Value>
 				</Property>
-				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+				<Property Enabled="true" Collect="false" Alias="Name" Name="originalText">
 					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
 						<Value>C16358</Value>
 					</Property>
@@ -159,10 +159,10 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="BC C49677_ACME" Name="Heart Rate">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>C49677</Value>
 				</Property>
-				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+				<Property Enabled="true" Collect="false" Alias="Name" Name="originalText">
 					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
 						<Value>C49677</Value>
 					</Property>
@@ -414,7 +414,7 @@
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
 				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
 				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
-					<Value>C66770</Value>
+					<Value>C49668</Value>
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">

@@ -44,14 +44,15 @@ function treeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
 
   node.append("circle")
     .attr("r", 4.5)
-    .attr("fill", function(d) { return d.expand ? "skyblue" : "white"; });
+    .attr("fill", function(d) { return nodeColour(d); });
 
   node.append("text")
     .attr("dx", function(d) { return d.children ? -8 : 8; })
     .attr("dy", 3)
     .attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
-    .text(function(d) { return d.name; });
-  
+    .text(function(d) { if (d.name.length > 15) { return d.name.substring(0,12) + "..."} else { return d.name;} });
+//    .text(function(d) { return d.name; });
+
   d3.select(self.frameElement).style("height", height + "px");
   
 }
@@ -97,7 +98,7 @@ function treeCircular(d3Div,jsonData,clickCallBack, dblClickCallBack) {
 
   node.append("circle")
     .attr("r", 4.5)
-    .attr("fill", function(d) { return d.expand ? "skyblue" : "white"; });
+    .attr("fill", function(d) { return nodeColour(d); });
 
   node.append("text")
     .attr("dy", ".31em")
@@ -122,8 +123,30 @@ function markNode (node, ref) {
 function clearNode (node, ref) {
   if (node.expand) {
     d3.select(ref).select('circle').style("fill", "skyblue");
+  } else if ('enabled' in node) {
+    if (node.enabled) {
+      d3.select(ref).select('circle').style("fill", "mediumseagreen");
+    } else {
+      d3.select(ref).select('circle').style("fill", "orangered");
+    }
   } else {
     d3.select(ref).select('circle').style("fill", "white");
   }
 }
 
+/*
+ * Clear node
+ */ 
+function nodeColour (node) {
+  if (node.expand) {
+    return "skyblue";
+  } else if ('enabled' in node) {
+    if (node.enabled) {
+      return "mediumseagreen";
+    } else {
+      return "orangered";
+    }
+  } else {
+    return "white";
+  }
+}

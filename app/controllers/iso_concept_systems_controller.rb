@@ -5,6 +5,10 @@ class IsoConceptSystemsController < ApplicationController
   def index
     @conceptSystems = IsoConceptSystem.all
   end
+
+  def new
+    @conceptSystem = IsoConceptSystem.new
+  end
   
   def create
     @conceptSystem = IsoConceptSystem.create(the_params)

@@ -6,6 +6,18 @@ class CdiscBcsController < ApplicationController
   
   def index
     @cdiscBcs = CdiscBc.all
+    respond_to do |format|
+      format.html 
+      format.json do
+        results = {}
+        results[:aaData] = []
+        @cdiscBcs.each do |key, bc|
+          item = {:id => bc.id, :namespace => bc.namespace, :identifier => bc.identifier, :label => bc.label}
+          results[:aaData] << item
+        end
+        render json: results
+      end
+    end
   end
   
   def new
@@ -31,19 +43,25 @@ class CdiscBcsController < ApplicationController
     end
   end
 
-  def update
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
-
   def show 
     id = params[:id]
     namespace = params[:namespace]
     @cdiscBc = CdiscBc.find(id, namespace)
+    respond_to do |format|
+      format.html 
+      format.json do
+        results = {}
+        results[:id] = id
+        results[:identifier] = @cdiscBc.identifier
+        results[:label] = @cdiscBc.label
+        results[:namespace] = namespace
+        results[:properties] = []
+        @cdiscBc.properties.each do |property|
+          results[:properties] << property
+        end
+        render json: results
+      end
+    end
   end
   
 private

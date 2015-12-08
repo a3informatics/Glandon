@@ -22,5 +22,1025 @@
     <variable name="sdtmTopicSub"/>
   </head>
   <results>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_1_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_A00003_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">dateTime</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_1_2</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_A00003_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C62122</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">SITTING</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_1_2</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_A00003_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C62166</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">STANDING</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_1_2</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_A00003_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C62167</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">SUPINE</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_1_3</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_A00003_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25228</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">RIGHT</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_1_3</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_A00003_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25229</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">LEFT</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_1_4</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedClinicalResult_value_PQR_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_A00003_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_1_5</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_A00003_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49668</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">cm</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_2_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Name (--TEST)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_DefinedObservation_nameCode_CD_originalText_ED_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Name (--TEST)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25347</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_2_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Name (--TEST)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_DefinedObservation_nameCode_CD_originalText_ED_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Name (--TEST)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25347</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">HEIGHT</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_2_2</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">dateTime</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_2_3</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_2_4</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49668</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">cm</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_2_4</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C48500</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">in</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_2_4</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C41139</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">m</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_2_4</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C71253</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">ft</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_3_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Name (--TEST)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_DefinedObservation_nameCode_CD_originalText_ED_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Name (--TEST)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25208</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_3_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Name (--TEST)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_DefinedObservation_nameCode_CD_originalText_ED_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Name (--TEST)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25208</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">WEIGHT</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_3_2</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">dateTime</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_3_3</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_3_4</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C28252</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">kg</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_3_4</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C48531</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">LB</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_3_4</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C48155</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">g</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Test Form Number 10</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-TEST_3_4</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string"/>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C48519</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">oz</literal>
+      </binding>
+    </result>
   </results>
 </sparql>

@@ -50,6 +50,7 @@ items:RS-VS-1 rdf:type isoR:RegistrationState ;
 .
 :FG-Height
   rdf:type bf:Group ;
+  bf:hasBiomedicalConcept :FG-Height_BCRef ;
   bf:hasItem :FI-Height_Result ;
   bf:hasItem :FI-Height_Units ;
   bf:isGroupOf :F-VS ;
@@ -59,8 +60,14 @@ items:RS-VS-1 rdf:type isoR:RegistrationState ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:repeating "false"^^xsd:boolean ;
 .
+:FG-Height_BCRef
+  rdf:type bo:BcReference ;
+  bo:hasBiomedicalConcept MDRBcs:BC-BC_C25347 ;
+  bo:enabled "true"^^xsd:boolean ;
+.
 :FG-Weight
   rdf:type bf:Group ;
+  bf:hasBiomedicalConcept :FG-Weight_BCRef ;
   bf:hasItem :FI-Weight_Result ;
   bf:hasItem :FI-Weight_Units ;
   bf:isGroupOf :F-VS ;
@@ -70,43 +77,88 @@ items:RS-VS-1 rdf:type isoR:RegistrationState ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:repeating "false"^^xsd:boolean ;
 .
+:FG-Weight_BCRef
+  rdf:type bo:BcReference ;
+  bo:hasBiomedicalConcept MDRBcs:BC-BC_C25208 ;
+  bo:enabled "true"^^xsd:boolean ;
+.
 :FI-Weight_Result
-  rdf:type bf:bcBased ;
+  rdf:type bf:BcProperty ;
   bf:isItemOf :FG-Weight ;
-  bf:hasBiomedicalConcept MDRBcs:BC-BC_C25208 ;
-  bf:hasProperty MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_value ;
+  bf:hasProperty :FG-Weight_Result_BCRef ;
 	rdfs:label "Weight result"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Weight result note."^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 .
+:FG-Weight_Result_BCRef
+  rdf:type bo:BcReference ;
+  bo:hasProperty MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_value ;
+  bo:enabled "true"^^xsd:boolean ;
+.
 :FI-Weight_Units
-  rdf:type bf:bcBased ;
+  rdf:type bf:BcProperty ;
   bf:isItemOf :FG-Weight ;
-  bf:hasBiomedicalConcept MDRBcs:BC-BC_C25208 ;
-  bf:hasProperty MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_code ;
-	rdfs:label "Weight units"^^xsd:string ;
+  bf:hasProperty :FG-Weight_Units_PRef ;
+  bf:hasValue :FG-Weight_Units_VRef1 ;
+  bf:hasValue :FG-Weight_Units_VRef2 ;
+  rdfs:label "Weight units"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Weight units note."^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 .
+:FG-Weight_Units_PRef
+  rdf:type bo:BcReference ;
+  bo:hasProperty MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_code ;
+  bo:enabled "true"^^xsd:boolean ;
+.
+:FG-Weight_Units_VRef1
+  rdf:type bo:BcReference ;
+  bo:hasValue MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_code_Value_1 ;
+  bo:enabled "true"^^xsd:boolean ;
+.
+:FG-Weight_Units_VRef2
+  rdf:type bo:BcReference ;
+  bo:hasValue MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_code_Value_2 ;
+  bo:enabled "true"^^xsd:boolean ;
+.
 :FI-Height_Result
-  rdf:type bf:bcBased ;
+  rdf:type bf:BcProperty ;
   bf:isItemOf :FG-Height ;
-  bf:hasBiomedicalConcept MDRBcs:BC-BC_C25347 ;
-  bf:hasProperty MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_value ;
-	rdfs:label "Height result"^^xsd:string ;
+  bf:hasProperty :FG-Height_Result_BCRef ;
+  rdfs:label "Height result"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Height result note."^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 .
+:FG-Height_Result_BCRef
+  rdf:type bo:BcReference ;
+  bo:hasProperty MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_value ;
+  bo:enabled "true"^^xsd:boolean ;
+.
 :FI-Height_Units
-  rdf:type bf:bcBased ;
+  rdf:type bf:BcProperty ;
   bf:isItemOf :FG-Height ;
-  bf:hasBiomedicalConcept MDRBcs:BC-BC_C25347 ;
-  bf:hasProperty MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_code ;
-	rdfs:label "Height units"^^xsd:string ;
+  bf:hasProperty :FG-Height_Units_PRef ;
+  bf:hasValue :FG-Height_Units_VRef1 ;
+  bf:hasValue :FG-Height_Units_VRef2 ;
+  rdfs:label "Height units"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:note "Height units note."^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
+.
+:FG-Height_Units_PRef
+  rdf:type bo:BcReference ;
+  bo:hasProperty MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_code ;
+  bo:enabled "true"^^xsd:boolean ;
+.
+:FG-Height_Units_VRef1
+  rdf:type bo:BcReference ;
+  bo:hasValue MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_code_Value_1 ;
+  bo:enabled "true"^^xsd:boolean ;
+.
+:FG-Height_Units_VRef2
+  rdf:type bo:BcReference ;
+  bo:hasValue MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_code_Value_2 ;
+  bo:enabled "true"^^xsd:boolean ;
 .

@@ -138,10 +138,16 @@ class CdiscBc
         end  
         properties[propertyCid] = property
         if value != ""
-          clHash = {:cCode => value, :clis => ThesaurusConcept.findByIdentifier(value, CdiscTerm.current.id, CdiscTerm.current.namespace)}
+          clHash = {
+            :id => ModelUtility.extractCid(vNode), 
+            :namespace => useNs,
+            :cCode => value, 
+            :clis => ThesaurusConcept.findByIdentifier(value, CdiscTerm.current.id, CdiscTerm.current.namespace)
+          }
           values.push(clHash)
         end
         property[:id] = propertyCid
+        property[:namespace] = useNs
         property[:Alias] = aliasName
         property[:Name] = name
         property[:Collect] = ModelUtility.toBoolean(collect)
@@ -442,13 +448,6 @@ class CdiscBc
     # Return
     return object
 
-  end
-
-  def update
-    return nil
-  end
-
-  def destroy
   end
 
 private

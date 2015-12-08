@@ -12975,7 +12975,7 @@ mdrItems:RS-BC_C25347_ACME-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.code"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
@@ -13368,7 +13368,7 @@ mdrItems:RS-BC_C25208_ACME-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.code"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
@@ -13761,7 +13761,7 @@ mdrItems:RS-BC_C16358_ACME-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.code"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
@@ -14139,7 +14139,7 @@ mdrItems:RS-BC_C49677_ACME-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.code"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
@@ -15975,7 +15975,7 @@ mdrItems:RS-BC_A00003_ACME-1
 .
 :BC-BC_A00003_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C66770"^^xsd:string ;
+	cbc:value "C49668"^^xsd:string ;
 .
 :BC-BC_A00003_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
