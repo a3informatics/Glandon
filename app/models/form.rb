@@ -170,9 +170,11 @@ class Form < IsoConceptInstance
       params[:version] = "1"
       children = params[:children]
       ConsoleLogger::log(C_CLASS_NAME,"create","Children=" + children.to_s)
-        
-      ex = true
-      if !ex #exists?(identifier, RegistrationAuthority.owner) 
+       
+      # Check the form does not exist 
+      #ex = true
+      #if !ex
+      if exists?(identifier, RegistrationAuthority.owner) 
     
         # Note the error
         object.errors.add(:base, "The identifier is already in use.")

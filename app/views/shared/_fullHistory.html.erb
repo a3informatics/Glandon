@@ -2,11 +2,11 @@
 	<div class="panel-heading">Full History</div>
 	<div class="panel-body">
     <% if type == "CT" %>
-			<%= link_to "History", history_cdisc_terms_path(:id => currTerm.id), :class => "btn btn-info" %>
+			<%= link_to "History", history_cdisc_terms_path(:id => currTerm.id), :class => "btn btn-info btn-xs" %>
     <% elsif type == "CL" %>
-			<%= link_to "History", history_cdisc_cls_path(:id => object.id, :new => currTerm.id), :class => "btn btn-info" %>
+			<%= link_to "History", history_cdisc_cls_path(:id => object.id, :new => currTerm.id), :class => "btn btn-info btn-xs" %>
     <% elsif type == "CLI" %>
-			<%= link_to "History", history_cdisc_clis_path(:id => object.id, :new => currTerm.id), :class => "btn btn-info" %>
+			<%= link_to "History", history_cdisc_clis_path(:id => object.id, :new => currTerm.id), :class => "btn btn-info btn-xs" %>
     <% else %>
 		<% end %>		
 	</div>

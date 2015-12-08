@@ -14,21 +14,21 @@
 			    <td><%= ct.versionLabel %> (V<%= ct.version %>)</td>
 			    <% if type == "CT" %>
 						<td>
-							<%= link_to compare_cdisc_terms_path(:new => currTerm.id, :old => ct.id, :type => "ALL"), :class => "btn btn-info" do %>
+							<%= link_to compare_cdisc_terms_path(:new => currTerm.id, :old => ct.id, :type => "ALL"), :class => "btn btn-info btn-xs" do %>
 								All
 								<i class="fa fa-spinner fa-spin"></i>
 							<% end %>
 						</td>
-				    <td><%= link_to "Up", compare_cdisc_terms_path(:new => currTerm.id, :old => ct.id, :type => "UPDATE"), :class => "btn btn-warning" %></td>
-				    <td><%= link_to "New", compare_cdisc_terms_path(:new => currTerm.id, :old => ct.id, :type => "NEW"), :class => "btn btn-danger" %></td>
-				    <td><%= link_to "Del", compare_cdisc_terms_path(:new => currTerm.id, :old => ct.id, :type => "DELETE"), :class => "btn btn-danger" %></td>
+				    <td><%= link_to "Up", compare_cdisc_terms_path(:new => currTerm.id, :old => ct.id, :type => "UPDATE"), :class => "btn btn-warning btn-xs" %></td>
+				    <td><%= link_to "New", compare_cdisc_terms_path(:new => currTerm.id, :old => ct.id, :type => "NEW"), :class => "btn btn-danger btn-xs" %></td>
+				    <td><%= link_to "Del", compare_cdisc_terms_path(:new => currTerm.id, :old => ct.id, :type => "DELETE"), :class => "btn btn-danger btn-xs" %></td>
 			    <% elsif type == "CL" %>
-				    <td><%= link_to "All" , compare_cdisc_cls_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "ALL"), :class => "btn btn-info" %></td>
-				    <td><%= link_to "Up" , compare_cdisc_cls_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "UPDATE"), :class => "btn btn-warning" %></td>
-				    <td><%= link_to "New" , compare_cdisc_cls_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "NEW"), :class => "btn btn-danger" %></td>
-				    <td><%= link_to "Del" , compare_cdisc_cls_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "DELETE"), :class => "btn btn-danger" %></td>
+				    <td><%= link_to "All" , compare_cdisc_cls_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "ALL"), :class => "btn btn-info btn-xs" %></td>
+				    <td><%= link_to "Up" , compare_cdisc_cls_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "UPDATE"), :class => "btn btn-warning btn-xs" %></td>
+				    <td><%= link_to "New" , compare_cdisc_cls_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "NEW"), :class => "btn btn-danger btn-xs" %></td>
+				    <td><%= link_to "Del" , compare_cdisc_cls_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "DELETE"), :class => "btn btn-danger btn-xs" %></td>
 			    <% elsif type == "CLI" %>
-			    	<td><%= link_to "All" , compare_cdisc_clis_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "ALL") , :class => "btn btn-info" %></td>
+			    	<td><%= link_to "All" , compare_cdisc_clis_path(:id => object.id, :new => currTerm.id, :old => ct.id, :type => "ALL") , :class => "btn btn-info btn-xs" %></td>
 			    	<td></td>
 			    	<td></td>
 			    	<td></td>

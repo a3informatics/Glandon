@@ -1,9 +1,13 @@
 $(document).ready( function() {
 	
-		$('#cl').DataTable({
+	$('#main').DataTable({
         columnDefs: [ ]
     } );
 				
+	$('#cl').DataTable({
+        columnDefs: [ ]
+    } );
+
 } );
 
 $(function(){

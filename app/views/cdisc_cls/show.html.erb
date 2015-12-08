@@ -1,6 +1,6 @@
-<h1><%= @cdiscCl.preferredTerm %> <small>(CDISC, <%= @cdiscCl.identifier %>, <%= @cdiscTerm.versionLabel %>, V<%= @cdiscTerm.version %>)</small></h1>
-<div class="col-md-7">
-	<h2>Details</h2>
+<h3><%= @cdiscCl.preferredTerm %> <small>(CDISC, <%= @cdiscCl.identifier %>, <%= @cdiscTerm.versionLabel %>, V<%= @cdiscTerm.version %>)</small></h3>
+<div class="col-md-8">
+	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
 	  <thead>
 			<tr>
@@ -23,7 +23,7 @@
 		  </tr>
 		</tbody>
 	</table>
-	<h2>Code List Items</h2>
+	<h4>Code List Items</h4>
 	<table id="cli" class="table table-striped table-bordered table-condensed">
 	  	<thead>
 			<tr>
@@ -43,13 +43,13 @@
 			    <td><%= cli.preferredTerm %></td>
 			    <td><%= cli.synonym %></td>
 			    <td><%= cli.definition %></td>
-			    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id,:termId => @cdiscTerm.id), :class => "btn btn-primary" %></td>
+			    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id,:termId => @cdiscTerm.id), :class => "btn btn-primary btn-xs" %></td>
 			  </tr>
 			<% end %>
 		</tbody>
 	</table>
 </div>
-<div class="col-md-3">
+<div class="col-md-4">
 	<%= render partial: "shared/previousHistory", :locals => {:type => "CL", :object => @cdiscCl, :currTerm => @cdiscTerm, :cdiscTerms => @cdiscTerms} %>
 	<%= render partial: "shared/fullHistory", :locals => {:type => "CL", :object => @cdiscCl, :currTerm => @cdiscTerm} %>
 </div>
