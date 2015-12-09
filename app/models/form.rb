@@ -385,6 +385,40 @@ class Form < IsoConceptInstance
 
   end
 
+  def self.impact(params)
+  
+    id = params[:id]
+    namespace = params[:namespace]
+    results = Hash.new
+
+    # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
+    query = UriManagement.buildPrefix(C_INSTANCE_PREFIX, ["bf", "bo"])  +
+      "SELECT DISTINCT ?form WHERE \n" +
+      "{ \n " +
+      "  ?form rdf:type bf:Form . \n " +
+      "  ?form bf:hasGroup/bf:hasBiomedicalConcept/bo:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +"
+      "  "}\n"
+
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
+      form = ModelUtility.getValue('form', true, node)
+      if form != ""
+        id = ModelUtility.extractCid(form)
+        namespace = ModelUtility.extractNs(form)
+        results[id] = find(id, namespace)
+        ConsoleLogger::log(C_CLASS_NAME,"impact","Object found, id=" + id)        
+      end
+    end
+
+    return results
+  end
+
   def self.empty
     text = {:name => "Not set", :identifier => "New Form", :label => "Not set", :type => "Form"}
     text[:children] = []

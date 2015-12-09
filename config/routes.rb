@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :cdisc_bcs do
     collection do
       get :bct_select
+      get :impact
     end
   end
   resources :cdisc_terms do

@@ -45,6 +45,10 @@ class CdiscBc
     return self.managedItem.owner
   end
 
+  def registrationState
+    return self.managedItem.registrationState
+  end
+
   def persisted?
     id.present?
   end
@@ -56,7 +60,12 @@ class CdiscBc
   def baseNs
     return @baseNs
   end
-  
+
+  def self.count 
+    result = ManagedItem.count("cbc", "BiomedicalConceptInstance")
+    return result
+  end 
+
   def self.find(id, ns=nil)
     
     ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")

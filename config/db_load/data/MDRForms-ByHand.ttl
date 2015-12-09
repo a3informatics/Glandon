@@ -37,7 +37,7 @@ items:SI-VS-1 rdf:type isoI:ScopedIdentifier ;
   isoI:identifier "Vital Signs Baseline"^^xsd:string ;
   isoI:versionLabel "1"^^xsd:string ;
   isoI:version "1"^^xsd:positiveInteger ;
-  isoI:hasScope :NS-ACME ;
+  isoI:hasScope items:NS-ACME ;
 .
 items:RS-VS-1 rdf:type isoR:RegistrationState ;
   isoR:byAuthority items:RA-123456789 ;
@@ -83,7 +83,7 @@ items:RS-VS-1 rdf:type isoR:RegistrationState ;
   bo:enabled "true"^^xsd:boolean ;
 .
 :FI-Weight_Result
-  rdf:type bf:bcBased ;
+  rdf:type bf:BcProperty ;
   bf:isItemOf :FG-Weight ;
   bf:hasProperty :FG-Weight_Result_BCRef ;
 	rdfs:label "Weight result"^^xsd:string ;
@@ -97,7 +97,7 @@ items:RS-VS-1 rdf:type isoR:RegistrationState ;
   bo:enabled "true"^^xsd:boolean ;
 .
 :FI-Weight_Units
-  rdf:type bf:bcBased ;
+  rdf:type bf:BcProperty ;
   bf:isItemOf :FG-Weight ;
   bf:hasProperty :FG-Weight_Units_PRef ;
   bf:hasValue :FG-Weight_Units_VRef1 ;
@@ -114,16 +114,16 @@ items:RS-VS-1 rdf:type isoR:RegistrationState ;
 .
 :FG-Weight_Units_VRef1
   rdf:type bo:BcReference ;
-  bo:hasProperty MDRBcs:BC-BC_C25208_PerformedClinicalResult_baselineIndicator_BL_value_Value_1 ;
+  bo:hasValue MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_code_Value_1 ;
   bo:enabled "true"^^xsd:boolean ;
 .
 :FG-Weight_Units_VRef2
   rdf:type bo:BcReference ;
-  bo:hasProperty MDRBcs:BC-BC_C25208_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
+  bo:hasValue MDRBcs:BC-BC_C25208_PerformedClinicalResult_value_PQR_code_Value_2 ;
   bo:enabled "true"^^xsd:boolean ;
 .
 :FI-Height_Result
-  rdf:type bf:bcBased ;
+  rdf:type bf:BcProperty ;
   bf:isItemOf :FG-Height ;
   bf:hasProperty :FG-Height_Result_BCRef ;
   rdfs:label "Height result"^^xsd:string ;
@@ -137,7 +137,7 @@ items:RS-VS-1 rdf:type isoR:RegistrationState ;
   bo:enabled "true"^^xsd:boolean ;
 .
 :FI-Height_Units
-  rdf:type bf:bcBased ;
+  rdf:type bf:BcProperty ;
   bf:isItemOf :FG-Height ;
   bf:hasProperty :FG-Height_Units_PRef ;
   bf:hasValue :FG-Height_Units_VRef1 ;
@@ -154,11 +154,11 @@ items:RS-VS-1 rdf:type isoR:RegistrationState ;
 .
 :FG-Height_Units_VRef1
   rdf:type bo:BcReference ;
-  bo:hasProperty MDRBcs:BC-BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value_Value_1 ;
+  bo:hasValue MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_code_Value_1 ;
   bo:enabled "true"^^xsd:boolean ;
 .
 :FG-Height_Units_VRef2
   rdf:type bo:BcReference ;
-  bo:hasProperty MDRBcs:BC-BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
+  bo:hasValue MDRBcs:BC-BC_C25347_PerformedClinicalResult_value_PQR_code_Value_2 ;
   bo:enabled "true"^^xsd:boolean ;
 .

@@ -6,8 +6,11 @@
 				<th>Identifer</th>
 				<th>Label</th>
 				<th>Owner</th>
-				<th>Internal Version</th>
+				<th>Registration Status</th>
 				<th>Version</th>
+				<th>Internal Version</th>
+				<th></th>
+				<th></th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -18,9 +21,12 @@
 					<td><%= bc.identifier %></td>
 					<td><%= bc.label %></td>
 					<td><%= bc.owner %></td>
-					<td><%= bc.version %></td>
+					<td></td>
 					<td><%= bc.versionLabel %></td>
+					<td><%= bc.version %></td>
 					<td><%= link_to "Show", cdisc_bc_path(:id => bc.id, :namespace => bc.namespace), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "Impact", impact_cdisc_bcs_path(:id => bc.id, :namespace => bc.namespace), :class => "btn btn-info btn-xs" %></td>
+					<td></td>
 					<td><%= link_to "Triples", view_dashboard_index_path(:id => bc.id, :namespace => bc.namespace), :class => "btn btn-warning btn-xs" %></td>
 				</tr>
 			<% end %>

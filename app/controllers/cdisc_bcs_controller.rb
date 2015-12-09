@@ -33,6 +33,14 @@ class CdiscBcsController < ApplicationController
     render json: @bct
   end
 
+  def impact
+    id = params[:id]
+    namespace = params[:namespace]
+    @cdiscBc = CdiscBc.find(id, namespace)
+    @forms = Form.impact(params)
+    @domains = Domain.impact(params)
+  end
+
   def create
     ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     @bc = CdiscBc.create(params[:data])

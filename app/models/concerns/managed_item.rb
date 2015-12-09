@@ -232,6 +232,37 @@ class ManagedItem
 
   end 
 
+  def self.count(prefix, type)
+
+    result = {}
+    
+    # Create the query
+    query = UriManagement.buildPrefix(prefix, ["isoI", "isoB"]) +
+      "SELECT ?orgSN (COUNT(?s) as ?count) WHERE \n" +
+      "{ \n" +
+      "  ?s rdf:type :" + type + " . \n" +
+      "  ?s isoI:hasIdentifier ?si . \n" +
+      "  ?si isoI:hasScope ?ns . \n" +
+      "  ?ns isoI:ofOrganization ?org . \n" +
+      "  ?org isoB:shortName ?orgSN . \n" +
+      "}"
+
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    result[:type] = type
+    xmlDoc.xpath("//result").each do |node|
+      orgSN = ModelUtility.getValue('orgSN', false, node)
+      count = ModelUtility.getValue('count', false, node)
+      result[orgSN] = count
+    end
+    return result
+
+  end
+
   def update(id)
     return nil
   end

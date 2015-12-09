@@ -14,15 +14,36 @@ class RegistrationState
   
   # Base namespace 
   @@baseNs
-  
-  # Status Constants
-  C_STANDARD = "Standard"
-  C_QUALIFIED = "Qualified"
-  C_RECORDED = "Recorded"
-  C_CANDIDATE = "Candidate"
+
+  C_NOTSET = ""
   C_INCOMPLETE = "Incomplete"
+  C_CANDIDATE =  "Candidate"
+  C_RECORDED = "Recorded"
+  C_QUALIFIED = "Qualified"
+  C_STANDARD = "Standard"
   C_RETIRED = "Retired"
   C_SUPERSEDED = "Superseded"
+
+  # States
+  @@stateKeys = {
+    C_NOTSET => 0,
+    C_INCOMPLETE  => 0,
+    C_CANDIDATE => 1,
+    C_RECORDED => 2,
+    C_QUALIFIED => 3,
+    C_STANDARD => 4,
+    C_RETIRED => 5,
+    C_SUPERSEDED => 6
+  }
+  @@stateInfo = [
+    { :key => C_INCOMPLETE, :label => "Incomplete", :definition => "Submitter wishes to make the community that uses this metadata register aware of the existence of an Administered Item in their local domain." },
+    { :key => C_CANDIDATE, :label => "Candidate", :definition => "The Administered Item has been proposed for progression through the registration levels." },
+    { :key => C_RECORDED, :label => "Recorded", :definition => "The Registration Authority has confirmed that: a) all mandatory metadata attributes have been completed." },
+    { :key => C_QUALIFIED, :label => "Qualified", :definition => "The Registration Authority has confirmed that: a) the mandatory metadata attributes are complete and b) the mandatory metadata attributes conform to applicable quality requirements." },
+    { :key => C_STANDARD, :label => "Standard", :definition => "The Registration Authority confirms that the Administered Item is: a) of sufficient quality and b) of broad interest for use in the community that uses this metadata register." },
+    { :key => C_RETIRED, :label => "Retired", :definition => "The Registration Authority has approved the Administered Item as: a) no longer recommended for use in the community that uses this metadata register and b) should no longer be used." },
+    { :key => C_SUPERSEDED, :label => "Superseded", :definition => "The Registration Authority determined that the Administered Item is: a) no longer recommended for use by the community that uses this metadata register, and b) a successor Administered Item is now preferred for use." },
+  ]
   
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -48,6 +69,28 @@ class RegistrationState
     return @@owner
   end
   
+  def self.nextState (state)
+    ConsoleLogger::log(C_CLASS_NAME,"nextState","*****Entry******")
+    index = @@stateKeys[state]
+    if index < (@@stateInfo.length-1)
+      nextState = @@stateInfo[index+1][:key]
+      ConsoleLogger::log(C_CLASS_NAME,"nextState","Index=" + index.to_s + ", state=" + nextState)
+    else
+      nextState = state
+    end
+    return nextState
+  end
+
+  def self.stateLabel (state)
+    index = @@stateKeys[state]
+    return @@stateInfo[index][:label]
+  end
+
+  def self.stateDefinition (state)
+    index = @@stateKeys[state]
+    return @@stateInfo[index][:definition]
+  end
+
   def self.find(id)
     
     ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
@@ -189,8 +232,50 @@ class RegistrationState
     
   end
 
-  def update(id)
-    return nil
+  def update(id, params)
+    
+    registrationStatus = params[:registrationStatus]
+    previousState  = params[:previousState]
+    note = params[:administrativeNote]
+    issue = params[:unresolvedIssue]
+    date = params[:effectiveDate]
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+      "DELETE \n" +
+      "{ \n" +
+      " :" + id + " isoR:registrationStatus ?a . \n" +
+      " :" + id + " isoR:administrativeNote ?b . \n" +
+      " :" + id + " isoR:effectiveDate ?c . \n" +
+      " :" + id + " isoR:unresolvedIssue ?d . \n" +
+      " :" + id + " isoR:previousState ?e . \n" +
+      "} \n" +
+      "INSERT \n" +
+      "{ \n" +
+      " :" + id + " isoR:registrationStatus \"" + registrationStatus + "\"^^xsd:string . \n" +
+      " :" + id + " isoR:administrativeNote \"" + note + "\"^^xsd:string . \n" +
+      " :" + id + " isoR:effectiveDate \"" + date + "\"^^xsd:date . \n" +
+      " :" + id + " isoR:unresolvedIssue \"" + issue + "\"^^xsd:string . \n" +
+      " :" + id + " isoR:previousState \"" + previousState + "\"^^xsd:string . \n" +
+      "} \n" +
+      "WHERE \n" +
+      "{ \n" +
+      " :" + id + " isoR:registrationStatus ?a . \n" +
+      " :" + id + " isoR:administrativeNote ?b . \n" +
+      " :" + id + " isoR:effectiveDate ?c . \n" +
+      " :" + id + " isoR:unresolvedIssue ?d . \n" +
+      " :" + id + " isoR:previousState ?e . \n" +
+      "}"
+
+      # Send the request, wait the resonse
+    response = CRUD.update(update)
+    
+    # Response
+    if response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"create","Created Id=" + id.to_s)
+    else
+      ConsoleLogger::log(C_CLASS_NAME,"create","Failed to create object")
+      #ßobject.assign_errors(data) if response.response_code == 422
+    end
+
   end
 
   def destroy

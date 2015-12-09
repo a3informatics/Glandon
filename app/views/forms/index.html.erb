@@ -6,8 +6,10 @@
 		    	<th>Identifer</th>
 				<th>Label</th>
 				<th>Owner</th>
-				<th>Internal Version</th>
+				<th>Registration Status</th>
 				<th>Version</th>
+				<th>Internal Version</th>
+				<th></th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -19,10 +21,12 @@
 		    		<td><%= form.identifier %></td>
 					<td><%= form.label %></td>
 					<td><%= form.owner %></td>
-					<td><%= form.version %></td>
+					<td><%= form.registrationStatus %></td>
 					<td><%= form.versionLabel %></td>
+					<td><%= form.version %></td>
 					<td><%= link_to "Show", form_path(:id => form.id, :namespace => form.namespace), :class => "btn btn-primary btn-xs" %></td>
 					<td><%= link_to "View", view_forms_path(:id => form.id, :namespace => form.namespace), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "Status", edit_registration_state_path(:id => form.registrationState.id), :class => "btn btn-primary btn-xs" %></td>
 					<td><%= link_to "Triples", view_dashboard_index_path(:id => form.id, :namespace => form.namespace), :class => "btn btn-warning btn-xs" %></td>
 		  		</tr>
 			<% end %>

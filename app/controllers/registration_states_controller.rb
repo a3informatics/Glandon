@@ -16,9 +16,15 @@ class RegistrationStatesController < ApplicationController
   end
 
   def update
+    referer = this_params[:referer]
+    registrationState = RegistrationState.find(params[:id])
+    registrationState.update(params[:id], this_params)
+    redirect_to referer
   end
 
   def edit
+    @referer = request.referer
+    @registrationState = RegistrationState.find(params[:id])
   end
 
   def destroy
@@ -33,7 +39,7 @@ class RegistrationStatesController < ApplicationController
   
   private
     def this_params
-      params.require(:registration_state).permit(:shortName, :name, :number)
+      params.require(:registration_state).permit(:registrationAuthority, :registrationStatus, :administrativeNote, :effectiveDate, :unresolvedIssue, :administrativeStatus, :previousState, :referer)
     end
 
 end

@@ -40,6 +40,14 @@ class IsoItem
     return self.scopedIdentifier.owner
   end
 
+  def registrationStatus
+    if registrationState == nil
+      return ""
+    else
+      return self.registrationState.registrationStatus
+    end
+  end
+
   # Does the item exist. Cannot be used for child objects!
   def self.exists?(identifier, registrationAuthority)
     ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")

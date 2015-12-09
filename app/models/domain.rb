@@ -259,6 +259,44 @@ class Domain
 
   end
 
+  def self.impact(params)
+  
+    ConsoleLogger::log(C_CLASS_NAME,"impact","*****Entry*****")
+
+    id = params[:id]
+    namespace = params[:namespace]
+    results = Hash.new
+
+    # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bd", "bo", "mms"])  +
+      "SELECT DISTINCT ?domain WHERE \n" +
+      "{ \n " +
+      "  ?domain rdf:type bd:Domain . \n " +
+      "  ?domain bd:basedOn/^mms:context ?column . \n " +
+      "  ?variable bd:basedOn ?column . \n " +
+      "  ?variable bd:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +
+      "}\n"
+
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      ConsoleLogger::log(C_CLASS_NAME,"impact","Node=" + node.to_s)
+      domain = ModelUtility.getValue('domain', true, node)
+      if domain != ""
+        id = ModelUtility.extractCid(domain)
+        namespace = ModelUtility.extractNs(domain)
+        results[id] = find(id, namespace)
+        ConsoleLogger::log(C_CLASS_NAME,"impact","Object found, id=" + id)        
+      end
+    end
+
+    return results
+  end
+
   def destroy
   end
 
