@@ -4,11 +4,11 @@
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
-					<Value>C25347</Value>
+					<Value>CLI-C66741_C25347</Value>
 				</Property>
 				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
 					<Property Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
-						<Value>C25347</Value>
+						<Value>CLI-C67153_C25347</Value>
 					</Property>
 				</Property>
 			</Attribute>
@@ -39,14 +39,14 @@
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
 				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
 				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
-					<Value>C49668</Value>
-					<Value>C48500</Value>
+					<Value>CLI-C66770_C49668</Value>
+					<Value>CLI-C66770_C48500</Value>
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
 				<Property Enabled="false" Collect="false" Alias="Baseline (--BLFL)" Name="value">
-					<Value>C49487</Value>
-					<Value>C49488</Value>
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
 				</Property>
 			</Attribute>
 		</Class>
@@ -55,11 +55,11 @@
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
-					<Value>C25208</Value>
+					<Value>CLI-C66741_C25208</Value>
 				</Property>
 				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
 					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
-						<Value>C25208</Value>
+						<Value>CLI-C67153_C25208</Value>
 					</Property>
 				</Property>
 			</Attribute>
@@ -90,14 +90,14 @@
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
 				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
 				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
-					<Value>C28252</Value>
-					<Value>C48531</Value>
+					<Value>CLI-C66770_C28252</Value>
+					<Value>CLI-C66770_C48531</Value>
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
 				<Property Enabled="false" Collect="false" Alias="Baseline (--BLFL)" Name="value">
-					<Value>C49487</Value>
-					<Value>C49488</Value>
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
 				</Property>
 			</Attribute>
 		</Class>

@@ -69,8 +69,8 @@ class CdiscBc
   def self.find(id, ns=nil)
     
     ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"find","id=" + id)
-    ConsoleLogger::log(C_CLASS_NAME,"find","ns=" + ns)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","id=" + id)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","ns=" + ns)
     
     object = nil
     useNs = ns || @@baseNs
@@ -108,7 +108,7 @@ class CdiscBc
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node)
+      #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node)
       dtnSet = node.xpath("binding[@name='datatypeN']/uri")
       dtRef = ModelUtility.getValue('datatypeRef', true, node)
       pnSet = node.xpath("binding[@name='propertyN']/uri")
@@ -121,7 +121,7 @@ class CdiscBc
       enabled = ModelUtility.getValue('enabled', false, node)
       collect = ModelUtility.getValue('collect', false, node)
       vNode = ModelUtility.getValue('valueN', true, node)
-      value = ModelUtility.getValue('value', false, node)
+      value = ModelUtility.getValue('value', true, node)
       bridg = ModelUtility.getValue('bridg', false, node)
       ConsoleLogger::log(C_CLASS_NAME,"find","sdtNode=" + sdtNode)  
       if sdtNode != ""
@@ -147,13 +147,18 @@ class CdiscBc
         end  
         properties[propertyCid] = property
         if value != ""
-          clHash = {
-            :id => ModelUtility.extractCid(vNode), 
-            :namespace => useNs,
-            :cCode => value, 
-            :clis => ThesaurusConcept.findByIdentifier(value, CdiscTerm.current.id, CdiscTerm.current.namespace)
-          }
-          values.push(clHash)
+          cli = ThesaurusConcept.find(ModelUtility.extractCid(value),ModelUtility.extractNs(value))
+          if cli != nil
+            clHash = {
+              :id => ModelUtility.extractCid(vNode), 
+              :namespace => useNs,
+              :cCode => cli.notation, 
+              :cli => cli
+            }
+            values.push(clHash)
+          else
+            ConsoleLogger::log(C_CLASS_NAME,"find","Failed to find CLI, uri=" + value)
+          end
         end
         property[:id] = propertyCid
         property[:namespace] = useNs
@@ -292,10 +297,15 @@ class CdiscBc
           #ConsoleLogger::log(C_CLASS_NAME,"createLocal","Candidate. Parts=" + parts.to_s)
           if line.start_with?(":")
             preceedingSubject = line
+            ConsoleLogger::log(C_CLASS_NAME,"createLocal","Setting preceedingSubject=" + preceedingSubject.to_s)
           elsif line.length == 0 && inProperty
             aliasPropertyHash[toKey(preceedingSubject.dup)] = aliasKey
             aliasPropertyValueHash[toKey(simpleUri.dup)] = aliasKey
+            ConsoleLogger::log(C_CLASS_NAME,"createLocal","Setting Alias. Subject=" + preceedingSubject.to_s + ", URI=" + simpleUri.to_s + ", Alias=" + aliasKey.to_s)
             inProperty = false
+            preceedingSubject = ""
+            simpleUri = ""
+            aliasKey = ""
           elsif parts.length == 4 && !inProperty
             if parts[2].start_with?("cbc:PropertyValue")
               # Do nothing, stops confusing Property with PropertyValue
@@ -307,7 +317,7 @@ class CdiscBc
               simpleUri = parts[2]
             elsif parts[1].start_with?("cbc:alias")
               aParts = line1.split('"')
-              #ConsoleLogger::log(C_CLASS_NAME,"createLocal","Alias. Parts=" + aParts.to_s)
+              ConsoleLogger::log(C_CLASS_NAME,"createLocal","Alias. Parts=" + aParts.to_s)
               if aParts.length == 3 
                 aliasKey = aParts[1]
               end     
@@ -366,7 +376,7 @@ class CdiscBc
                         text = text + updateCidIndex(preceedingSubject, itemType, index, version) + "\n"
                       end
                       text = text + predicateObject('a','cbc:PropertyValue') + "\n"
-                      text = text + predicateObject('cbc:value','"' + cli[:id] + '"^^xsd:string') 
+                      text = text + predicateObject('cbc:value',uri(cli[:namespace],cli[:id])) + "\n"
                       if index < (cliSet.length - 1)
                         text = text + "\n"
                         text = text + predicateObject('cbc:nextValue',updateCidIndex(preceedingSubject, itemType, (index+1), version)) + "\n"
@@ -386,6 +396,7 @@ class CdiscBc
                 child = findChild(children, aliasKey)
                 if child != nil
                   text = line + "\n"
+                  text = text + predicateObject("cbc:name",'"' + child[:name] + '"^^xsd:string') + "\n"
                   text = text + predicateObject("cbc:pText",'"' + child[:pText] + '"^^xsd:string') + "\n"
                   text = text + predicateObject("cbc:qText",'"' + child[:qText] + '"^^xsd:string') + "\n"
                   text = text + predicateObject("cbc:enabled",'"' + child[:enable] + '"^^xsd:boolean') + "\n"
@@ -463,6 +474,11 @@ private
 
   def self.subject(subjectUri)
       text = ':' + subjectUri 
+      return text
+  end
+
+  def self.uri(ns, uri)
+      text = '<' + ns + '#' + uri + '>'
       return text
   end
 

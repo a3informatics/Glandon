@@ -60,7 +60,7 @@ function treeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
 /**
  *  Function to draw circular tree.
  */
-function treeCircular(d3Div,jsonData,clickCallBack, dblClickCallBack) {
+function treeCircular(d3Div, jsonData, clickCallBack, dblClickCallBack) {
 
   d3.select('svg').remove();
 
@@ -118,6 +118,13 @@ function markNode (node, ref) {
 }
 
 /*
+ * Mark node
+ */
+function markNode1 (ref) {
+  d3.select(ref).select('circle').style("fill", "steelblue");
+}
+
+/*
  * Clear node
  */ 
 function clearNode (node, ref) {
@@ -135,7 +142,7 @@ function clearNode (node, ref) {
 }
 
 /*
- * Clear node
+ * Node colour function. 
  */ 
 function nodeColour (node) {
   if (node.expand) {

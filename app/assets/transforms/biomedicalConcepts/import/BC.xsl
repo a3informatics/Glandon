@@ -44,6 +44,8 @@
         <xsl:text disable-output-escaping="yes">@prefix mdrIso21090: &lt;http://www.assero.co.uk/MDRISO21090#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrItems: &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrBcts: &lt;http://www.assero.co.uk/MDRBcts/V1#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix cCt: &lt;http://www.assero.co.uk/MDRThesaurus/CDISC/V42#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix aCt: &lt;http://www.assero.co.uk/MDRThesaurus/ACME/V1#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .&#xa;</xsl:text>
@@ -443,9 +445,22 @@
             <xsl:with-param name="pPredicateName" select="'rdf:type'" /> 
             <xsl:with-param name="pObjectName" select="'cbc:PropertyValue'" /> 
         </xsl:call-template>
+        <xsl:variable name="Value">
+            <xsl:choose>
+                <xsl:when test="substring($pValue,1,3)='CLI'">
+                    <xsl:value-of select="concat('cCt:',string($pValue))"/>
+                </xsl:when>
+                <xsl:when test="substring($pValue,1,5)='MDRT-'">
+                    <xsl:value-of select="concat('aCt:',string($pValue))"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="concat($quote,string($pValue),$quote,'^^xsd:string')"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:call-template name="PredicateObject"> 
             <xsl:with-param name="pPredicateName" select="'cbc:value'" /> 
-            <xsl:with-param name="pObjectName" select="concat($quote,string($pValue),$quote,'^^xsd:string')" /> 
+            <xsl:with-param name="pObjectName" select="$Value" /> 
         </xsl:call-template>
         <xsl:choose>
             <xsl:when test="$pValue/following-sibling::Value[1]">

@@ -45,7 +45,7 @@ class SponsorTermsController < ApplicationController
   def show
     id = params[:id]
     @sponsorTerm = SponsorTerm.find(id)
-    @sponsorCls = SponsorTerm.thesaurus.all.all(@sponsorTerm)
+    #@sponsorCls = SponsorTerm.thesaurus.all.all(@sponsorTerm)
   end
   
 private

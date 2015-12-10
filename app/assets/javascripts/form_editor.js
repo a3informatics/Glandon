@@ -16,6 +16,7 @@ $(document).ready(function() {
   var clEnableElement = document.getElementById("clEnable");
   var alertsId = document.getElementById("alerts")
   
+  var nodeKey;
   var normal;
   var currentNode;
   var currentThis;
@@ -71,7 +72,7 @@ $(document).ready(function() {
       selectCl();
       displayCl(node);
     }
-    markNode(node, this);
+    markNode1(this);
     currentNode = node;
     currentThis = this;
   }  
@@ -137,37 +138,65 @@ $(document).ready(function() {
    * Functions to handle click on the update button.
    */
   $('#formUpdate').click(function() {
-    saveForm(currentNode)
-    redraw();
+    if (currentNode == null) {
+      var html = alertWarning("You need to select the form node.");
+      displayAlerts(html);
+    } else {
+      saveForm(currentNode)
+      redraw();
+    }
     //markNode(currentNode, currentThis);
   });
 
   $('#groupUpdate').click(function() {
-    saveGroup(currentNode)
-    redraw();
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      saveGroup(currentNode)
+      redraw();
+    }
   });
   
   $('#itemUpdate').click(function() {
-    saveItem(currentNode)
-    //redraw();
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      saveItem(currentNode);
+    }
   });
   
   $('#clUpdate').click(function() {
-    saveCl(currentNode)
-    //redraw();
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      saveCl(currentNode)
+    }
   });
   
   /*
    * Functions to handle click on the add group button.
    */
   $('#formAddGroup').click(function() {
-    addGroup();
-    redraw();
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      addGroup();
+      redraw();
+    }
   });
 
   $('#groupAddGroup').click(function() {
-    addGroup();
-    redraw();
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      addGroup();
+      redraw();
+    }
   });
 
   /*
@@ -176,7 +205,8 @@ $(document).ready(function() {
   $('#groupDeleteGroup').click(function() {
     var parentNode;
     if (currentNode.hasOwnProperty('children')) {
-      
+      var html = alertWarning("You need to delete the child nodes.");
+      displayAlerts(html);
     } else {
       parentNode = currentNode.parent
       parentIndex = currentNode.index
@@ -194,11 +224,21 @@ $(document).ready(function() {
    * Functions to handle click on the BC add button.
    */
   $('#formAddBc').click(function() {
-    addBc();
+    if (currentNode == null) {
+      var html = alertWarning("You need to select the form node.");
+      displayAlerts(html);
+    } else {
+      addBc();
+    }
   });
 
   $('#groupAddBc').click(function() {
-    addBc();
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      addBc();
+    }
   }); 
 
   /*
@@ -211,7 +251,6 @@ $(document).ready(function() {
   /* ****************
   * Utility Functions
   */
-
 
   function selectForm() {
     $("#formInfo").removeClass('hidden');
@@ -248,9 +287,10 @@ $(document).ready(function() {
   function initData () {
     normal = true;
     currentNode = null;
-    currentThis = null;
+    //currentThis = null;
     bcCurrent = null;
     bcCurrentRow = null;
+    nodeKey = 2; // 1 id the root node.
   }
 
   function setParent(node) {
@@ -374,6 +414,7 @@ $(document).ready(function() {
         currentNode.children[index].type = "BCGroup";
         //currentNode.children[index].label = bc.label;
         currentNode.children[index].children = [];
+        nodeKey += 1
         pIndex = 0;
         for (i=0; i<bc.properties.length; i++) {
           var property = bc.properties[i];
@@ -391,13 +432,13 @@ $(document).ready(function() {
               currentNode.children[index].children[pIndex].children = [];
               for (j=0; j<values.length; j++) {
                 currentNode.children[index].children[pIndex].children[j] = {};
-                var keys = Object.keys(values[j].clis); 
+                //var keys = Object.keys(values[j].clis); 
                 currentNode.children[index].children[pIndex].children[j].id = values[j].id;
                 currentNode.children[index].children[pIndex].children[j].namespace = values[j].namespace;
-                currentNode.children[index].children[pIndex].children[j].name = values[j].clis[keys[0]].notation;
+                currentNode.children[index].children[pIndex].children[j].name = values[j].cli.notation;
                 currentNode.children[index].children[pIndex].children[j].type = "CL";
-                currentNode.children[index].children[pIndex].children[j].identifier = values[j].clis[keys[0]].identifier;
-                currentNode.children[index].children[pIndex].children[j].label = values[j].clis[keys[0]].notation;
+                currentNode.children[index].children[pIndex].children[j].identifier = values[j].cli.identifier;
+                currentNode.children[index].children[pIndex].children[j].label = values[j].cli.notation;
                 currentNode.children[index].children[pIndex].children[j].enabled = true;
               }
               currentNode.children[index].children[pIndex].save = currentNode.children[index].children[pIndex].children;
@@ -420,6 +461,8 @@ $(document).ready(function() {
     } else {
       treeCircular(d3Div, formDefinition, click, dblClick);
     }
+    currentNode = null;
+    currentThis = null;
   }
   
   function handleDataTable(table,ref) {

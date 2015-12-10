@@ -25,6 +25,7 @@
 					<% aliasEntry.each do |key, value| %>
 			    		<% if key.to_s == "id"  %>
 						<% elsif key.to_s == "bridgPath"  %>
+						<% elsif key.to_s == "namespace"  %>
 						<% else %>
 							<th><%= key %></th>
 						<% end %>
@@ -42,12 +43,10 @@
 				    	<% if key.to_s == "Values"  %>
 							<td>
 								<% value.each do |innerValue| %>
-								  	<% cCode = innerValue[:cCode] %>	
-									<i><%= cCode %>: </i>
-							    	<% clis = innerValue[:clis] %>	
-								  	<% clis.each do |cliKey, cli| %>
-							    		<%= cli.notation %> (<%= cli.id %>)
-						  	  		<% end %>
+								  	<!--<% cCode = innerValue[:cCode] %>	
+									<i><%= cCode %>: </i>-->
+							    	<% cli = innerValue[:cli] %>	
+								  	<%= cli.notation %> (<%= cli.id %>)
 					  	    		<br/>
 					  	  		<% end %>
 							</td>
@@ -69,6 +68,7 @@
 							</td>
 						<% elsif key.to_s == "id"  %>
 						<% elsif key.to_s == "bridgPath"  %>
+						<% elsif key.to_s == "namespace"  %>
 						<% else %>
 							<td><%= value %></td>
 						<% end %>

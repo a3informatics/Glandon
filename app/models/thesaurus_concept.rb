@@ -107,6 +107,7 @@ class ThesaurusConcept
       if idSet.length == 1
         object = self.new 
         object.id = id
+        object.namespace = useNs
         object.identifier = idSet[0].text
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
@@ -173,6 +174,7 @@ class ThesaurusConcept
         ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","uri=" + uriSet[0].text)
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.namespace = ModelUtility.extractNs(uriSet[0].text)
         object.identifier = identifier
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
@@ -229,6 +231,7 @@ class ThesaurusConcept
       if uriSet.length == 1 
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.namespace = ModelUtility.extractNs(uriSet[0].text)
         object.identifier = idSet[0].text
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
@@ -339,6 +342,7 @@ class ThesaurusConcept
       if uriSet.length == 1 
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.namespace = ModelUtility.extractNs(uriSet[0].text)
         object.identifier = idSet[0].text
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
@@ -393,6 +397,7 @@ class ThesaurusConcept
       if uriSet.length == 1 
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.namespace = ModelUtility.extractNs(uriSet[0].text)
         object.identifier = idSet[0].text
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
@@ -524,6 +529,7 @@ class ThesaurusConcept
       if uriSet.length == 1 
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.namespace = ModelUtility.extractNs(uriSet[0].text)
         object.identifier = idSet[0].text
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
@@ -577,6 +583,7 @@ class ThesaurusConcept
       if uriSet.length == 1 
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
+        object.namespace = ModelUtility.extractNs(uriSet[0].text)
         object.identifier = idSet[0].text
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
@@ -611,7 +618,7 @@ class ThesaurusConcept
     definition = params[:definition]
     
     # Create the query
-    id = ModelUtility.buildCidIdentifier(ns, identifier)
+    id = ModelUtility.buildCidIdentifier(C_CLASS_PREFIX, identifier)
     update = UriManagement.buildNs(ns, ["iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -664,7 +671,7 @@ class ThesaurusConcept
     ConsoleLogger::log(C_CLASS_NAME,"createTopLevel","params=" + params.to_s)
     
     # Create the query
-    id = ModelUtility.buildCidIdentifier(ns, identifier)
+    id = ModelUtility.buildCidIdentifier(C_CLASS_PREFIX, identifier)
     update = UriManagement.buildNs(ns, ["iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -822,6 +829,8 @@ class ThesaurusConcept
 
     result = Hash.new
     result[:name] = self.identifier
+    result[:id] = self.id
+    result[:namespace] = self.namespace
     result[:identifier] = self.identifier
     result[:notation] = self.notation
     result[:definition] = self.definition
@@ -835,6 +844,7 @@ class ThesaurusConcept
       result[:children][index][:name] = child.identifier + ' [' + child.notation + ']'
       result[:children][index][:identifier] = child.identifier
       result[:children][index][:id] = child.id
+      result[:children][index][:namespace] = child.namespace
       result[:children][index][:notation] = child.notation
       result[:children][index][:definition] = child.definition
       result[:children][index][:synonym] = child.synonym

@@ -10,6 +10,8 @@
 @prefix mdrIso21090: <http://www.assero.co.uk/MDRISO21090#> .
 @prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
 @prefix mdrBcts: <http://www.assero.co.uk/MDRBcts/V1#> .
+@prefix cCt: <http://www.assero.co.uk/MDRThesaurus/CDISC/V42#> .
+@prefix aCt: <http://www.assero.co.uk/MDRThesaurus/ACME/V1#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -71,7 +73,7 @@ mdrItems:SI-BC_C111361-1
 .
 :BC-BC_C111361_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111361"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C111361 ;
 .
 :BC-BC_C111361_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -101,7 +103,7 @@ mdrItems:SI-BC_C111361-1
 .
 :BC-BC_C111361_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111361"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C111361 ;
 .
 :BC-BC_C111361_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -132,7 +134,7 @@ mdrItems:SI-BC_C111361-1
 .
 :BC-BC_C111361_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C111361_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -163,7 +165,7 @@ mdrItems:SI-BC_C111361-1
 .
 :BC-BC_C111361_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C111361_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -344,12 +346,12 @@ mdrItems:SI-BC_C111361-1
 .
 :BC-BC_C111361_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C111361_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C111361_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C111361_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -380,12 +382,12 @@ mdrItems:SI-BC_C111361-1
 .
 :BC-BC_C111361_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C111361_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C111361_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112381
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -439,7 +441,7 @@ mdrItems:SI-BC_C112381-1
 .
 :BC-BC_C112381_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112381"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112381 ;
 .
 :BC-BC_C112381_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -469,7 +471,7 @@ mdrItems:SI-BC_C112381-1
 .
 :BC-BC_C112381_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112381"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112381 ;
 .
 :BC-BC_C112381_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -500,7 +502,7 @@ mdrItems:SI-BC_C112381-1
 .
 :BC-BC_C112381_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112381_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -531,7 +533,7 @@ mdrItems:SI-BC_C112381-1
 .
 :BC-BC_C112381_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112381_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -712,12 +714,12 @@ mdrItems:SI-BC_C112381-1
 .
 :BC-BC_C112381_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112381_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112381_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112381_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -748,12 +750,12 @@ mdrItems:SI-BC_C112381-1
 .
 :BC-BC_C112381_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112381_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112381_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C38084
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -807,7 +809,7 @@ mdrItems:SI-BC_C38084-1
 .
 :BC-BC_C38084_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C38084"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C38084 ;
 .
 :BC-BC_C38084_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -837,7 +839,7 @@ mdrItems:SI-BC_C38084-1
 .
 :BC-BC_C38084_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C38084"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C38084 ;
 .
 :BC-BC_C38084_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -868,7 +870,7 @@ mdrItems:SI-BC_C38084-1
 .
 :BC-BC_C38084_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C38084_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -899,7 +901,7 @@ mdrItems:SI-BC_C38084-1
 .
 :BC-BC_C38084_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C38084_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -1080,12 +1082,12 @@ mdrItems:SI-BC_C38084-1
 .
 :BC-BC_C38084_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C38084_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C38084_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C38084_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -1116,12 +1118,12 @@ mdrItems:SI-BC_C38084-1
 .
 :BC-BC_C38084_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C38084_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C38084_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112376
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -1175,7 +1177,7 @@ mdrItems:SI-BC_C112376-1
 .
 :BC-BC_C112376_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112376"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112376 ;
 .
 :BC-BC_C112376_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -1205,7 +1207,7 @@ mdrItems:SI-BC_C112376-1
 .
 :BC-BC_C112376_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112376"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112376 ;
 .
 :BC-BC_C112376_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -1236,7 +1238,7 @@ mdrItems:SI-BC_C112376-1
 .
 :BC-BC_C112376_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112376_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -1267,7 +1269,7 @@ mdrItems:SI-BC_C112376-1
 .
 :BC-BC_C112376_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112376_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -1448,12 +1450,12 @@ mdrItems:SI-BC_C112376-1
 .
 :BC-BC_C112376_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112376_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112376_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112376_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -1484,12 +1486,12 @@ mdrItems:SI-BC_C112376-1
 .
 :BC-BC_C112376_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112376_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112376_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112285
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -1543,7 +1545,7 @@ mdrItems:SI-BC_C112285-1
 .
 :BC-BC_C112285_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112285"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112285 ;
 .
 :BC-BC_C112285_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -1573,7 +1575,7 @@ mdrItems:SI-BC_C112285-1
 .
 :BC-BC_C112285_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112285"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112285 ;
 .
 :BC-BC_C112285_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -1604,7 +1606,7 @@ mdrItems:SI-BC_C112285-1
 .
 :BC-BC_C112285_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112285_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -1635,7 +1637,7 @@ mdrItems:SI-BC_C112285-1
 .
 :BC-BC_C112285_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112285_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -1816,12 +1818,12 @@ mdrItems:SI-BC_C112285-1
 .
 :BC-BC_C112285_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112285_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112285_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112285_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -1852,12 +1854,12 @@ mdrItems:SI-BC_C112285-1
 .
 :BC-BC_C112285_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112285_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112285_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C111359
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -1911,7 +1913,7 @@ mdrItems:SI-BC_C111359-1
 .
 :BC-BC_C111359_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111359"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C111359 ;
 .
 :BC-BC_C111359_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -1941,7 +1943,7 @@ mdrItems:SI-BC_C111359-1
 .
 :BC-BC_C111359_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111359"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C111359 ;
 .
 :BC-BC_C111359_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -1972,7 +1974,7 @@ mdrItems:SI-BC_C111359-1
 .
 :BC-BC_C111359_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C111359_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -2003,7 +2005,7 @@ mdrItems:SI-BC_C111359-1
 .
 :BC-BC_C111359_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C111359_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -2184,7 +2186,7 @@ mdrItems:SI-BC_C111359-1
 .
 :BC-BC_C111359_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C17998"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 .
 :BC-BC_C111359_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -2215,12 +2217,12 @@ mdrItems:SI-BC_C111359-1
 .
 :BC-BC_C111359_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C111359_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C111359_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112377
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -2274,7 +2276,7 @@ mdrItems:SI-BC_C112377-1
 .
 :BC-BC_C112377_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112377"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112377 ;
 .
 :BC-BC_C112377_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -2304,7 +2306,7 @@ mdrItems:SI-BC_C112377-1
 .
 :BC-BC_C112377_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112377"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112377 ;
 .
 :BC-BC_C112377_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -2335,7 +2337,7 @@ mdrItems:SI-BC_C112377-1
 .
 :BC-BC_C112377_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112377_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -2366,7 +2368,7 @@ mdrItems:SI-BC_C112377-1
 .
 :BC-BC_C112377_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112377_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -2578,12 +2580,12 @@ mdrItems:SI-BC_C112377-1
 .
 :BC-BC_C112377_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112377_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112377_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C2000000_8
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -2698,7 +2700,7 @@ mdrItems:SI-BC_C2000000_8-1
 .
 :BC-BC_C2000000_8_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C2000000_8_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -2729,7 +2731,7 @@ mdrItems:SI-BC_C2000000_8-1
 .
 :BC-BC_C2000000_8_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C2000000_8_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -2910,22 +2912,22 @@ mdrItems:SI-BC_C2000000_8-1
 .
 :BC-BC_C2000000_8_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C67390"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C67390 ;
 	cbc:nextValue :BC-BC_C2000000_8_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C2000000_8_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C69073"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C69073 ;
 	cbc:nextValue :BC-BC_C2000000_8_PerformedClinicalResult_value_PQR_code_Value_3 ;
 .
 :BC-BC_C2000000_8_PerformedClinicalResult_value_PQR_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C67388"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C67388 ;
 	cbc:nextValue :BC-BC_C2000000_8_PerformedClinicalResult_value_PQR_code_Value_4 ;
 .
 :BC-BC_C2000000_8_PerformedClinicalResult_value_PQR_code_Value_4
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C64777"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C64777 ;
 .
 :BC-BC_C2000000_8_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -2956,12 +2958,12 @@ mdrItems:SI-BC_C2000000_8-1
 .
 :BC-BC_C2000000_8_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C2000000_8_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C2000000_8_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C2000000_9
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -3076,7 +3078,7 @@ mdrItems:SI-BC_C2000000_9-1
 .
 :BC-BC_C2000000_9_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C2000000_9_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -3107,7 +3109,7 @@ mdrItems:SI-BC_C2000000_9-1
 .
 :BC-BC_C2000000_9_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C2000000_9_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -3288,12 +3290,12 @@ mdrItems:SI-BC_C2000000_9-1
 .
 :BC-BC_C2000000_9_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C2000000_9_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C2000000_9_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C2000000_9_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -3324,12 +3326,12 @@ mdrItems:SI-BC_C2000000_9-1
 .
 :BC-BC_C2000000_9_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C2000000_9_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C2000000_9_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C41372
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -3383,7 +3385,7 @@ mdrItems:SI-BC_C41372-1
 .
 :BC-BC_C41372_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C41372"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C41372 ;
 .
 :BC-BC_C41372_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -3413,7 +3415,7 @@ mdrItems:SI-BC_C41372-1
 .
 :BC-BC_C41372_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C41372"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C41372 ;
 .
 :BC-BC_C41372_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -3444,7 +3446,7 @@ mdrItems:SI-BC_C41372-1
 .
 :BC-BC_C41372_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C41372_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -3475,7 +3477,7 @@ mdrItems:SI-BC_C41372-1
 .
 :BC-BC_C41372_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C41372_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -3656,22 +3658,22 @@ mdrItems:SI-BC_C41372-1
 .
 :BC-BC_C41372_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C67390"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C67390 ;
 	cbc:nextValue :BC-BC_C41372_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C41372_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C69073"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C69073 ;
 	cbc:nextValue :BC-BC_C41372_PerformedClinicalResult_value_PQR_code_Value_3 ;
 .
 :BC-BC_C41372_PerformedClinicalResult_value_PQR_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C67388"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C67388 ;
 	cbc:nextValue :BC-BC_C41372_PerformedClinicalResult_value_PQR_code_Value_4 ;
 .
 :BC-BC_C41372_PerformedClinicalResult_value_PQR_code_Value_4
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C64777"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C64777 ;
 .
 :BC-BC_C41372_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -3702,12 +3704,12 @@ mdrItems:SI-BC_C41372-1
 .
 :BC-BC_C41372_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C41372_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C41372_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112384
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -3761,7 +3763,7 @@ mdrItems:SI-BC_C112384-1
 .
 :BC-BC_C112384_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112384"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112384 ;
 .
 :BC-BC_C112384_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -3791,7 +3793,7 @@ mdrItems:SI-BC_C112384-1
 .
 :BC-BC_C112384_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112384"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112384 ;
 .
 :BC-BC_C112384_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -3822,7 +3824,7 @@ mdrItems:SI-BC_C112384-1
 .
 :BC-BC_C112384_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112384_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -3853,7 +3855,7 @@ mdrItems:SI-BC_C112384-1
 .
 :BC-BC_C112384_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112384_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -4034,12 +4036,12 @@ mdrItems:SI-BC_C112384-1
 .
 :BC-BC_C112384_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112384_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112384_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112384_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -4070,12 +4072,12 @@ mdrItems:SI-BC_C112384-1
 .
 :BC-BC_C112384_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112384_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112384_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112368
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -4129,7 +4131,7 @@ mdrItems:SI-BC_C112368-1
 .
 :BC-BC_C112368_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112368"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112368 ;
 .
 :BC-BC_C112368_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -4159,7 +4161,7 @@ mdrItems:SI-BC_C112368-1
 .
 :BC-BC_C112368_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112368"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112368 ;
 .
 :BC-BC_C112368_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -4190,7 +4192,7 @@ mdrItems:SI-BC_C112368-1
 .
 :BC-BC_C112368_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112368_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -4221,7 +4223,7 @@ mdrItems:SI-BC_C112368-1
 .
 :BC-BC_C112368_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112368_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -4402,12 +4404,12 @@ mdrItems:SI-BC_C112368-1
 .
 :BC-BC_C112368_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112368_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112368_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112368_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -4438,12 +4440,12 @@ mdrItems:SI-BC_C112368-1
 .
 :BC-BC_C112368_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112368_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112368_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C47843
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -4497,7 +4499,7 @@ mdrItems:SI-BC_C47843-1
 .
 :BC-BC_C47843_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C47843"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C47843 ;
 .
 :BC-BC_C47843_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -4527,7 +4529,7 @@ mdrItems:SI-BC_C47843-1
 .
 :BC-BC_C47843_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C47843"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C47843 ;
 .
 :BC-BC_C47843_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -4558,7 +4560,7 @@ mdrItems:SI-BC_C47843-1
 .
 :BC-BC_C47843_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C47843_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -4589,7 +4591,7 @@ mdrItems:SI-BC_C47843-1
 .
 :BC-BC_C47843_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C47843_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -4770,12 +4772,12 @@ mdrItems:SI-BC_C47843-1
 .
 :BC-BC_C47843_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C47843_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C47843_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C47843_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -4806,12 +4808,12 @@ mdrItems:SI-BC_C47843-1
 .
 :BC-BC_C47843_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C47843_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C47843_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112378
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -4865,7 +4867,7 @@ mdrItems:SI-BC_C112378-1
 .
 :BC-BC_C112378_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112378"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112378 ;
 .
 :BC-BC_C112378_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -4895,7 +4897,7 @@ mdrItems:SI-BC_C112378-1
 .
 :BC-BC_C112378_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112378"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112378 ;
 .
 :BC-BC_C112378_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -4926,7 +4928,7 @@ mdrItems:SI-BC_C112378-1
 .
 :BC-BC_C112378_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112378_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -4957,7 +4959,7 @@ mdrItems:SI-BC_C112378-1
 .
 :BC-BC_C112378_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112378_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -5138,12 +5140,12 @@ mdrItems:SI-BC_C112378-1
 .
 :BC-BC_C112378_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112378_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112378_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112378_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -5174,12 +5176,12 @@ mdrItems:SI-BC_C112378-1
 .
 :BC-BC_C112378_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112378_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112378_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C111360
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -5233,7 +5235,7 @@ mdrItems:SI-BC_C111360-1
 .
 :BC-BC_C111360_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111360"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C111360 ;
 .
 :BC-BC_C111360_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -5263,7 +5265,7 @@ mdrItems:SI-BC_C111360-1
 .
 :BC-BC_C111360_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111360"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C111360 ;
 .
 :BC-BC_C111360_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -5294,7 +5296,7 @@ mdrItems:SI-BC_C111360-1
 .
 :BC-BC_C111360_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C111360_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -5325,7 +5327,7 @@ mdrItems:SI-BC_C111360-1
 .
 :BC-BC_C111360_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C111360_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -5506,12 +5508,12 @@ mdrItems:SI-BC_C111360-1
 .
 :BC-BC_C111360_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C111360_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C111360_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C111360_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -5542,12 +5544,12 @@ mdrItems:SI-BC_C111360-1
 .
 :BC-BC_C111360_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C111360_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C111360_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112380
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -5601,7 +5603,7 @@ mdrItems:SI-BC_C112380-1
 .
 :BC-BC_C112380_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112380"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112380 ;
 .
 :BC-BC_C112380_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -5631,7 +5633,7 @@ mdrItems:SI-BC_C112380-1
 .
 :BC-BC_C112380_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112380"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112380 ;
 .
 :BC-BC_C112380_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -5662,7 +5664,7 @@ mdrItems:SI-BC_C112380-1
 .
 :BC-BC_C112380_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112380_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -5693,7 +5695,7 @@ mdrItems:SI-BC_C112380-1
 .
 :BC-BC_C112380_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112380_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -5874,12 +5876,12 @@ mdrItems:SI-BC_C112380-1
 .
 :BC-BC_C112380_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112380_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112380_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112380_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -5910,12 +5912,12 @@ mdrItems:SI-BC_C112380-1
 .
 :BC-BC_C112380_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112380_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112380_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C111324
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -5969,7 +5971,7 @@ mdrItems:SI-BC_C111324-1
 .
 :BC-BC_C111324_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111324"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C111324 ;
 .
 :BC-BC_C111324_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -5999,7 +6001,7 @@ mdrItems:SI-BC_C111324-1
 .
 :BC-BC_C111324_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111324"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C111324 ;
 .
 :BC-BC_C111324_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -6030,7 +6032,7 @@ mdrItems:SI-BC_C111324-1
 .
 :BC-BC_C111324_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C111324_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -6061,7 +6063,7 @@ mdrItems:SI-BC_C111324-1
 .
 :BC-BC_C111324_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C111324_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -6242,12 +6244,12 @@ mdrItems:SI-BC_C111324-1
 .
 :BC-BC_C111324_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C111324_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C111324_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C111324_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -6278,12 +6280,12 @@ mdrItems:SI-BC_C111324-1
 .
 :BC-BC_C111324_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C111324_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C111324_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112387
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -6337,7 +6339,7 @@ mdrItems:SI-BC_C112387-1
 .
 :BC-BC_C112387_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112387"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112387 ;
 .
 :BC-BC_C112387_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -6367,7 +6369,7 @@ mdrItems:SI-BC_C112387-1
 .
 :BC-BC_C112387_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112387"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112387 ;
 .
 :BC-BC_C112387_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -6398,7 +6400,7 @@ mdrItems:SI-BC_C112387-1
 .
 :BC-BC_C112387_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112387_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -6429,7 +6431,7 @@ mdrItems:SI-BC_C112387-1
 .
 :BC-BC_C112387_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112387_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -6610,12 +6612,12 @@ mdrItems:SI-BC_C112387-1
 .
 :BC-BC_C112387_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112387_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112387_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112387_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -6646,12 +6648,12 @@ mdrItems:SI-BC_C112387-1
 .
 :BC-BC_C112387_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112387_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112387_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C111362
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -6705,7 +6707,7 @@ mdrItems:SI-BC_C111362-1
 .
 :BC-BC_C111362_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111362"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C111362 ;
 .
 :BC-BC_C111362_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -6735,7 +6737,7 @@ mdrItems:SI-BC_C111362-1
 .
 :BC-BC_C111362_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111362"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C111362 ;
 .
 :BC-BC_C111362_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -6766,7 +6768,7 @@ mdrItems:SI-BC_C111362-1
 .
 :BC-BC_C111362_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C111362_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -6797,7 +6799,7 @@ mdrItems:SI-BC_C111362-1
 .
 :BC-BC_C111362_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C111362_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -6978,12 +6980,12 @@ mdrItems:SI-BC_C111362-1
 .
 :BC-BC_C111362_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C111362_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C111362_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C111362_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -7014,12 +7016,12 @@ mdrItems:SI-BC_C111362-1
 .
 :BC-BC_C111362_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C111362_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C111362_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112382
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -7073,7 +7075,7 @@ mdrItems:SI-BC_C112382-1
 .
 :BC-BC_C112382_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112382"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112382 ;
 .
 :BC-BC_C112382_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -7103,7 +7105,7 @@ mdrItems:SI-BC_C112382-1
 .
 :BC-BC_C112382_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112382"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112382 ;
 .
 :BC-BC_C112382_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -7134,7 +7136,7 @@ mdrItems:SI-BC_C112382-1
 .
 :BC-BC_C112382_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112382_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -7165,7 +7167,7 @@ mdrItems:SI-BC_C112382-1
 .
 :BC-BC_C112382_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112382_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -7346,12 +7348,12 @@ mdrItems:SI-BC_C112382-1
 .
 :BC-BC_C112382_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112382_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112382_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112382_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -7382,12 +7384,12 @@ mdrItems:SI-BC_C112382-1
 .
 :BC-BC_C112382_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112382_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112382_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112321
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -7441,7 +7443,7 @@ mdrItems:SI-BC_C112321-1
 .
 :BC-BC_C112321_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112321"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112321 ;
 .
 :BC-BC_C112321_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -7471,7 +7473,7 @@ mdrItems:SI-BC_C112321-1
 .
 :BC-BC_C112321_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112321"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112321 ;
 .
 :BC-BC_C112321_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -7502,7 +7504,7 @@ mdrItems:SI-BC_C112321-1
 .
 :BC-BC_C112321_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112321_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -7533,7 +7535,7 @@ mdrItems:SI-BC_C112321-1
 .
 :BC-BC_C112321_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112321_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -7714,7 +7716,7 @@ mdrItems:SI-BC_C112321-1
 .
 :BC-BC_C112321_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 .
 :BC-BC_C112321_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -7745,12 +7747,12 @@ mdrItems:SI-BC_C112321-1
 .
 :BC-BC_C112321_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112321_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112321_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C111200
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -7804,7 +7806,7 @@ mdrItems:SI-BC_C111200-1
 .
 :BC-BC_C111200_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111200"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C111200 ;
 .
 :BC-BC_C111200_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -7834,7 +7836,7 @@ mdrItems:SI-BC_C111200-1
 .
 :BC-BC_C111200_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111200"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C111200 ;
 .
 :BC-BC_C111200_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -7865,7 +7867,7 @@ mdrItems:SI-BC_C111200-1
 .
 :BC-BC_C111200_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C111200_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -7896,7 +7898,7 @@ mdrItems:SI-BC_C111200-1
 .
 :BC-BC_C111200_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C111200_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -8077,12 +8079,12 @@ mdrItems:SI-BC_C111200-1
 .
 :BC-BC_C111200_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C111200_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C111200_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C111200_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -8113,12 +8115,12 @@ mdrItems:SI-BC_C111200-1
 .
 :BC-BC_C111200_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C111200_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C111200_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112375
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -8172,7 +8174,7 @@ mdrItems:SI-BC_C112375-1
 .
 :BC-BC_C112375_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112375"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112375 ;
 .
 :BC-BC_C112375_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -8202,7 +8204,7 @@ mdrItems:SI-BC_C112375-1
 .
 :BC-BC_C112375_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112375"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112375 ;
 .
 :BC-BC_C112375_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -8233,7 +8235,7 @@ mdrItems:SI-BC_C112375-1
 .
 :BC-BC_C112375_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112375_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -8264,7 +8266,7 @@ mdrItems:SI-BC_C112375-1
 .
 :BC-BC_C112375_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112375_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -8445,12 +8447,12 @@ mdrItems:SI-BC_C112375-1
 .
 :BC-BC_C112375_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112375_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112375_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112375_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -8481,12 +8483,12 @@ mdrItems:SI-BC_C112375-1
 .
 :BC-BC_C112375_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112375_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112375_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C111237
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -8540,7 +8542,7 @@ mdrItems:SI-BC_C111237-1
 .
 :BC-BC_C111237_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111237"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C111237 ;
 .
 :BC-BC_C111237_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -8570,7 +8572,7 @@ mdrItems:SI-BC_C111237-1
 .
 :BC-BC_C111237_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111237"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C111237 ;
 .
 :BC-BC_C111237_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -8601,7 +8603,7 @@ mdrItems:SI-BC_C111237-1
 .
 :BC-BC_C111237_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C111237_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -8632,7 +8634,7 @@ mdrItems:SI-BC_C111237-1
 .
 :BC-BC_C111237_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C111237_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -8813,12 +8815,12 @@ mdrItems:SI-BC_C111237-1
 .
 :BC-BC_C111237_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C111237_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C111237_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C111237_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -8849,12 +8851,12 @@ mdrItems:SI-BC_C111237-1
 .
 :BC-BC_C111237_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C111237_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C111237_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112383
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -8908,7 +8910,7 @@ mdrItems:SI-BC_C112383-1
 .
 :BC-BC_C112383_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112383"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112383 ;
 .
 :BC-BC_C112383_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -8938,7 +8940,7 @@ mdrItems:SI-BC_C112383-1
 .
 :BC-BC_C112383_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112383"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112383 ;
 .
 :BC-BC_C112383_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -8969,7 +8971,7 @@ mdrItems:SI-BC_C112383-1
 .
 :BC-BC_C112383_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112383_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -9000,7 +9002,7 @@ mdrItems:SI-BC_C112383-1
 .
 :BC-BC_C112383_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112383_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -9181,12 +9183,12 @@ mdrItems:SI-BC_C112383-1
 .
 :BC-BC_C112383_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112383_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112383_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112383_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -9217,12 +9219,12 @@ mdrItems:SI-BC_C112383-1
 .
 :BC-BC_C112383_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112383_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112383_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C111315
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -9276,7 +9278,7 @@ mdrItems:SI-BC_C111315-1
 .
 :BC-BC_C111315_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111315"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C111315 ;
 .
 :BC-BC_C111315_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -9306,7 +9308,7 @@ mdrItems:SI-BC_C111315-1
 .
 :BC-BC_C111315_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111315"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C111315 ;
 .
 :BC-BC_C111315_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -9337,7 +9339,7 @@ mdrItems:SI-BC_C111315-1
 .
 :BC-BC_C111315_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C111315_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -9368,7 +9370,7 @@ mdrItems:SI-BC_C111315-1
 .
 :BC-BC_C111315_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C111315_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -9549,12 +9551,12 @@ mdrItems:SI-BC_C111315-1
 .
 :BC-BC_C111315_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C111315_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C111315_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C111315_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -9585,12 +9587,12 @@ mdrItems:SI-BC_C111315-1
 .
 :BC-BC_C111315_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C111315_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C111315_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112386
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -9644,7 +9646,7 @@ mdrItems:SI-BC_C112386-1
 .
 :BC-BC_C112386_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112386"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112386 ;
 .
 :BC-BC_C112386_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -9674,7 +9676,7 @@ mdrItems:SI-BC_C112386-1
 .
 :BC-BC_C112386_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112386"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112386 ;
 .
 :BC-BC_C112386_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -9705,7 +9707,7 @@ mdrItems:SI-BC_C112386-1
 .
 :BC-BC_C112386_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112386_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -9736,7 +9738,7 @@ mdrItems:SI-BC_C112386-1
 .
 :BC-BC_C112386_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112386_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -9917,12 +9919,12 @@ mdrItems:SI-BC_C112386-1
 .
 :BC-BC_C112386_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112386_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112386_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112386_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -9953,12 +9955,12 @@ mdrItems:SI-BC_C112386-1
 .
 :BC-BC_C112386_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112386_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112386_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112333
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -10012,7 +10014,7 @@ mdrItems:SI-BC_C112333-1
 .
 :BC-BC_C112333_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112333"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112333 ;
 .
 :BC-BC_C112333_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -10042,7 +10044,7 @@ mdrItems:SI-BC_C112333-1
 .
 :BC-BC_C112333_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112333"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112333 ;
 .
 :BC-BC_C112333_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -10073,7 +10075,7 @@ mdrItems:SI-BC_C112333-1
 .
 :BC-BC_C112333_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112333_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -10104,7 +10106,7 @@ mdrItems:SI-BC_C112333-1
 .
 :BC-BC_C112333_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112333_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -10285,22 +10287,22 @@ mdrItems:SI-BC_C112333-1
 .
 :BC-BC_C112333_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C67390"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C67390 ;
 	cbc:nextValue :BC-BC_C112333_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112333_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C69073"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C69073 ;
 	cbc:nextValue :BC-BC_C112333_PerformedClinicalResult_value_PQR_code_Value_3 ;
 .
 :BC-BC_C112333_PerformedClinicalResult_value_PQR_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C67388"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C67388 ;
 	cbc:nextValue :BC-BC_C112333_PerformedClinicalResult_value_PQR_code_Value_4 ;
 .
 :BC-BC_C112333_PerformedClinicalResult_value_PQR_code_Value_4
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C64777"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C64777 ;
 .
 :BC-BC_C112333_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -10331,12 +10333,12 @@ mdrItems:SI-BC_C112333-1
 .
 :BC-BC_C112333_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112333_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112333_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112379
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -10390,7 +10392,7 @@ mdrItems:SI-BC_C112379-1
 .
 :BC-BC_C112379_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112379"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112379 ;
 .
 :BC-BC_C112379_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -10420,7 +10422,7 @@ mdrItems:SI-BC_C112379-1
 .
 :BC-BC_C112379_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112379"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112379 ;
 .
 :BC-BC_C112379_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -10451,7 +10453,7 @@ mdrItems:SI-BC_C112379-1
 .
 :BC-BC_C112379_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112379_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -10482,7 +10484,7 @@ mdrItems:SI-BC_C112379-1
 .
 :BC-BC_C112379_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112379_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -10663,12 +10665,12 @@ mdrItems:SI-BC_C112379-1
 .
 :BC-BC_C112379_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112379_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112379_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112379_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -10699,12 +10701,12 @@ mdrItems:SI-BC_C112379-1
 .
 :BC-BC_C112379_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112379_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112379_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C89836
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -10758,7 +10760,7 @@ mdrItems:SI-BC_C89836-1
 .
 :BC-BC_C89836_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C89836"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C89836 ;
 .
 :BC-BC_C89836_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -10788,7 +10790,7 @@ mdrItems:SI-BC_C89836-1
 .
 :BC-BC_C89836_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C89836"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C89836 ;
 .
 :BC-BC_C89836_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -10819,7 +10821,7 @@ mdrItems:SI-BC_C89836-1
 .
 :BC-BC_C89836_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C89836_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -10850,7 +10852,7 @@ mdrItems:SI-BC_C89836-1
 .
 :BC-BC_C89836_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C89836_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -11031,12 +11033,12 @@ mdrItems:SI-BC_C89836-1
 .
 :BC-BC_C89836_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C89836_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C89836_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C89836_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -11067,12 +11069,12 @@ mdrItems:SI-BC_C89836-1
 .
 :BC-BC_C89836_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C89836_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C89836_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112385
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -11126,7 +11128,7 @@ mdrItems:SI-BC_C112385-1
 .
 :BC-BC_C112385_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112385"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112385 ;
 .
 :BC-BC_C112385_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -11156,7 +11158,7 @@ mdrItems:SI-BC_C112385-1
 .
 :BC-BC_C112385_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112385"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112385 ;
 .
 :BC-BC_C112385_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -11187,7 +11189,7 @@ mdrItems:SI-BC_C112385-1
 .
 :BC-BC_C112385_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112385_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -11218,7 +11220,7 @@ mdrItems:SI-BC_C112385-1
 .
 :BC-BC_C112385_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112385_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -11399,12 +11401,12 @@ mdrItems:SI-BC_C112385-1
 .
 :BC-BC_C112385_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112385_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112385_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112385_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -11435,12 +11437,12 @@ mdrItems:SI-BC_C112385-1
 .
 :BC-BC_C112385_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112385_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112385_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C111325
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -11494,7 +11496,7 @@ mdrItems:SI-BC_C111325-1
 .
 :BC-BC_C111325_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111325"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C111325 ;
 .
 :BC-BC_C111325_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -11524,7 +11526,7 @@ mdrItems:SI-BC_C111325-1
 .
 :BC-BC_C111325_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C111325"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C111325 ;
 .
 :BC-BC_C111325_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -11555,7 +11557,7 @@ mdrItems:SI-BC_C111325-1
 .
 :BC-BC_C111325_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C111325_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -11586,7 +11588,7 @@ mdrItems:SI-BC_C111325-1
 .
 :BC-BC_C111325_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C111325_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -11767,12 +11769,12 @@ mdrItems:SI-BC_C111325-1
 .
 :BC-BC_C111325_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48505"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C48505 ;
 	cbc:nextValue :BC-BC_C111325_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C111325_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28254"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C28254 ;
 .
 :BC-BC_C111325_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -11803,12 +11805,12 @@ mdrItems:SI-BC_C111325-1
 .
 :BC-BC_C111325_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C111325_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C111325_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C112388
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -11862,7 +11864,7 @@ mdrItems:SI-BC_C112388-1
 .
 :BC-BC_C112388_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112388"^^xsd:string ;
+	cbc:value cCt:CLI-C111106_C112388 ;
 .
 :BC-BC_C112388_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -11892,7 +11894,7 @@ mdrItems:SI-BC_C112388-1
 .
 :BC-BC_C112388_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C112388"^^xsd:string ;
+	cbc:value cCt:CLI-C111107_C112388 ;
 .
 :BC-BC_C112388_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -11923,7 +11925,7 @@ mdrItems:SI-BC_C112388-1
 .
 :BC-BC_C112388_DefinedObservation_targetAnatomicSiteCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C12421"^^xsd:string ;
+	cbc:value cCt:CLI-C74456_C12421 ;
 .
 :BC-BC_C112388_DefinedObservation_methodCode
 	rdf:type cbc:Item ;
@@ -11954,7 +11956,7 @@ mdrItems:SI-BC_C112388-1
 .
 :BC-BC_C112388_DefinedObservation_methodCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C85397"^^xsd:string ;
+	cbc:value cCt:CLI-C85492_C85397 ;
 .
 :BC-BC_C112388_PerformedObservation_dateRange
 	rdf:type cbc:Item ;
@@ -12135,12 +12137,12 @@ mdrItems:SI-BC_C112388-1
 .
 :BC-BC_C112388_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25613"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C25613 ;
 	cbc:nextValue :BC-BC_C112388_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C112388_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C44256"^^xsd:string ;
+	cbc:value cCt:CLI-C71620_C44256 ;
 .
 :BC-BC_C112388_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -12171,12 +12173,12 @@ mdrItems:SI-BC_C112388-1
 .
 :BC-BC_C112388_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C112388_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C112388_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C25347
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -12230,7 +12232,7 @@ mdrItems:SI-BC_C25347-1
 .
 :BC-BC_C25347_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25347"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C25347 ;
 .
 :BC-BC_C25347_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -12260,7 +12262,7 @@ mdrItems:SI-BC_C25347-1
 .
 :BC-BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25347"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C25347 ;
 .
 :BC-BC_C25347_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -12503,12 +12505,12 @@ mdrItems:SI-BC_C25347-1
 .
 :BC-BC_C25347_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49668"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C49668 ;
 	cbc:nextValue :BC-BC_C25347_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C25347_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48500"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C48500 ;
 .
 :BC-BC_C25347_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -12539,12 +12541,12 @@ mdrItems:SI-BC_C25347-1
 .
 :BC-BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C25208
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -12598,7 +12600,7 @@ mdrItems:SI-BC_C25208-1
 .
 :BC-BC_C25208_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25208"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C25208 ;
 .
 :BC-BC_C25208_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -12628,7 +12630,7 @@ mdrItems:SI-BC_C25208-1
 .
 :BC-BC_C25208_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25208"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C25208 ;
 .
 :BC-BC_C25208_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -12871,12 +12873,12 @@ mdrItems:SI-BC_C25208-1
 .
 :BC-BC_C25208_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28252"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C28252 ;
 	cbc:nextValue :BC-BC_C25208_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C25208_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48531"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C48531 ;
 .
 :BC-BC_C25208_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -12907,12 +12909,12 @@ mdrItems:SI-BC_C25208-1
 .
 :BC-BC_C25208_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C25208_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C25208_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C25347_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -12981,7 +12983,7 @@ mdrItems:RS-BC_C25347_ACME-1
 .
 :BC-BC_C25347_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25347"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C25347 ;
 .
 :BC-BC_C25347_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -13005,13 +13007,13 @@ mdrItems:RS-BC_C25347_ACME-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
 :BC-BC_C25347_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25347"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C25347 ;
 .
 :BC-BC_C25347_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -13254,22 +13256,22 @@ mdrItems:RS-BC_C25347_ACME-1
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49668"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C49668 ;
 	cbc:nextValue :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48500"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C48500 ;
 	cbc:nextValue :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_3 ;
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C41139"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C41139 ;
 	cbc:nextValue :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_4 ;
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_4
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C71253"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C71253 ;
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -13300,12 +13302,12 @@ mdrItems:RS-BC_C25347_ACME-1
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C25347_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C25208_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -13374,7 +13376,7 @@ mdrItems:RS-BC_C25208_ACME-1
 .
 :BC-BC_C25208_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25208"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C25208 ;
 .
 :BC-BC_C25208_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -13398,13 +13400,13 @@ mdrItems:RS-BC_C25208_ACME-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
 :BC-BC_C25208_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25208"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C25208 ;
 .
 :BC-BC_C25208_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -13647,22 +13649,22 @@ mdrItems:RS-BC_C25208_ACME-1
 .
 :BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28252"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C28252 ;
 	cbc:nextValue :BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code_Value_2 ;
 .
 :BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48531"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C48531 ;
 	cbc:nextValue :BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code_Value_3 ;
 .
 :BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48155"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C48155 ;
 	cbc:nextValue :BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code_Value_4 ;
 .
 :BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code_Value_4
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C48519"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C48519 ;
 .
 :BC-BC_C25208_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -13693,12 +13695,12 @@ mdrItems:RS-BC_C25208_ACME-1
 .
 :BC-BC_C25208_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C25208_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C25208_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C16358_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -13767,7 +13769,7 @@ mdrItems:RS-BC_C16358_ACME-1
 .
 :BC-BC_C16358_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C16358"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C16358 ;
 .
 :BC-BC_C16358_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -13791,13 +13793,13 @@ mdrItems:RS-BC_C16358_ACME-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
 :BC-BC_C16358_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C16358"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C16358 ;
 .
 :BC-BC_C16358_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -14040,7 +14042,7 @@ mdrItems:RS-BC_C16358_ACME-1
 .
 :BC-BC_C16358_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49671"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C49671 ;
 .
 :BC-BC_C16358_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -14071,12 +14073,12 @@ mdrItems:RS-BC_C16358_ACME-1
 .
 :BC-BC_C16358_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C16358_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C16358_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C49677_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -14145,7 +14147,7 @@ mdrItems:RS-BC_C49677_ACME-1
 .
 :BC-BC_C49677_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49677"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C49677 ;
 .
 :BC-BC_C49677_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -14169,13 +14171,13 @@ mdrItems:RS-BC_C49677_ACME-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
 :BC-BC_C49677_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49677"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C49677 ;
 .
 :BC-BC_C49677_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -14338,17 +14340,17 @@ mdrItems:RS-BC_C49677_ACME-1
 .
 :BC-BC_C49677_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62122"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62122 ;
 	cbc:nextValue :BC-BC_C49677_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_2 ;
 .
 :BC-BC_C49677_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62166"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62166 ;
 	cbc:nextValue :BC-BC_C49677_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_3 ;
 .
 :BC-BC_C49677_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62167"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62167 ;
 .
 :BC-BC_C49677_ACME_PerformedObservation_targetAnatomicSiteLateralityCode
 	rdf:type cbc:Item ;
@@ -14428,7 +14430,7 @@ mdrItems:RS-BC_C49677_ACME-1
 .
 :BC-BC_C49677_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49673"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C49673 ;
 .
 :BC-BC_C49677_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -14459,12 +14461,12 @@ mdrItems:RS-BC_C49677_ACME-1
 .
 :BC-BC_C49677_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C49677_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C49677_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C25298_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -14533,7 +14535,7 @@ mdrItems:RS-BC_C25298_ACME-1
 .
 :BC-BC_C25298_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25298"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C25298 ;
 .
 :BC-BC_C25298_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -14563,7 +14565,7 @@ mdrItems:RS-BC_C25298_ACME-1
 .
 :BC-BC_C25298_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25298"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C25298 ;
 .
 :BC-BC_C25298_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -14726,17 +14728,17 @@ mdrItems:RS-BC_C25298_ACME-1
 .
 :BC-BC_C25298_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62122"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62122 ;
 	cbc:nextValue :BC-BC_C25298_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_2 ;
 .
 :BC-BC_C25298_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62166"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62166 ;
 	cbc:nextValue :BC-BC_C25298_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_3 ;
 .
 :BC-BC_C25298_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62167"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62167 ;
 .
 :BC-BC_C25298_ACME_PerformedObservation_targetAnatomicSiteLateralityCode
 	rdf:type cbc:Item ;
@@ -14816,7 +14818,7 @@ mdrItems:RS-BC_C25298_ACME-1
 .
 :BC-BC_C25298_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49670"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C49670 ;
 .
 :BC-BC_C25298_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -14847,12 +14849,12 @@ mdrItems:RS-BC_C25298_ACME-1
 .
 :BC-BC_C25298_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C25298_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C25298_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C25299_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -14921,7 +14923,7 @@ mdrItems:RS-BC_C25299_ACME-1
 .
 :BC-BC_C25299_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25299"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C25299 ;
 .
 :BC-BC_C25299_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -14951,7 +14953,7 @@ mdrItems:RS-BC_C25299_ACME-1
 .
 :BC-BC_C25299_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25299"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C25299 ;
 .
 :BC-BC_C25299_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -15114,17 +15116,17 @@ mdrItems:RS-BC_C25299_ACME-1
 .
 :BC-BC_C25299_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62122"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62122 ;
 	cbc:nextValue :BC-BC_C25299_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_2 ;
 .
 :BC-BC_C25299_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62166"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62166 ;
 	cbc:nextValue :BC-BC_C25299_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_3 ;
 .
 :BC-BC_C25299_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62167"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62167 ;
 .
 :BC-BC_C25299_ACME_PerformedObservation_targetAnatomicSiteLateralityCode
 	rdf:type cbc:Item ;
@@ -15204,7 +15206,7 @@ mdrItems:RS-BC_C25299_ACME-1
 .
 :BC-BC_C25299_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49670"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C49670 ;
 .
 :BC-BC_C25299_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -15235,12 +15237,12 @@ mdrItems:RS-BC_C25299_ACME-1
 .
 :BC-BC_C25299_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C25299_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C25299_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C98793_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -15309,7 +15311,7 @@ mdrItems:RS-BC_C98793_ACME-1
 .
 :BC-BC_C98793_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C98793"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C98793 ;
 .
 :BC-BC_C98793_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -15339,7 +15341,7 @@ mdrItems:RS-BC_C98793_ACME-1
 .
 :BC-BC_C98793_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C98793"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C98793 ;
 .
 :BC-BC_C98793_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -15582,7 +15584,7 @@ mdrItems:RS-BC_C98793_ACME-1
 .
 :BC-BC_C98793_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C28251"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C28251 ;
 .
 :BC-BC_C98793_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -15613,12 +15615,12 @@ mdrItems:RS-BC_C98793_ACME-1
 .
 :BC-BC_C98793_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C98793_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C98793_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_A00003_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -15687,7 +15689,7 @@ mdrItems:RS-BC_A00003_ACME-1
 .
 :BC-BC_A00003_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "A00003"^^xsd:string ;
+	cbc:value aCt:MDRT-A00003 ;
 .
 :BC-BC_A00003_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -15717,7 +15719,7 @@ mdrItems:RS-BC_A00003_ACME-1
 .
 :BC-BC_A00003_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "A00003"^^xsd:string ;
+	cbc:value aCt:MDRT-A00003 ;
 .
 :BC-BC_A00003_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -15880,17 +15882,17 @@ mdrItems:RS-BC_A00003_ACME-1
 .
 :BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62122"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62122 ;
 	cbc:nextValue :BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_2 ;
 .
 :BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62166"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62166 ;
 	cbc:nextValue :BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_3 ;
 .
 :BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C62167"^^xsd:string ;
+	cbc:value cCt:CLI-C71148_C62167 ;
 .
 :BC-BC_A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode
 	rdf:type cbc:Item ;
@@ -15921,12 +15923,12 @@ mdrItems:RS-BC_A00003_ACME-1
 .
 :BC-BC_A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25228"^^xsd:string ;
+	cbc:value cCt:CLI-C99073_C25228 ;
 	cbc:nextValue :BC-BC_A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code_Value_2 ;
 .
 :BC-BC_A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25229"^^xsd:string ;
+	cbc:value cCt:CLI-C99073_C25229 ;
 .
 :BC-BC_A00003_ACME_PerformedClinicalResult_value
 	rdf:type cbc:Item ;
@@ -15975,7 +15977,7 @@ mdrItems:RS-BC_A00003_ACME-1
 .
 :BC-BC_A00003_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49668"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C49668 ;
 .
 :BC-BC_A00003_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -16006,12 +16008,12 @@ mdrItems:RS-BC_A00003_ACME-1
 .
 :BC-BC_A00003_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_A00003_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_A00003_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C81255_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -16080,7 +16082,7 @@ mdrItems:RS-BC_C81255_ACME-1
 .
 :BC-BC_C81255_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C81255"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C81255 ;
 .
 :BC-BC_C81255_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -16110,7 +16112,7 @@ mdrItems:RS-BC_C81255_ACME-1
 .
 :BC-BC_C81255_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C81255"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C81255 ;
 .
 :BC-BC_C81255_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -16353,7 +16355,7 @@ mdrItems:RS-BC_C81255_ACME-1
 .
 :BC-BC_C81255_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49668"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C49668 ;
 .
 :BC-BC_C81255_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -16384,12 +16386,12 @@ mdrItems:RS-BC_C81255_ACME-1
 .
 :BC-BC_C81255_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C81255_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C81255_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C49678_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -16458,7 +16460,7 @@ mdrItems:RS-BC_C49678_ACME-1
 .
 :BC-BC_C49678_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49678"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C49678 ;
 .
 :BC-BC_C49678_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -16488,7 +16490,7 @@ mdrItems:RS-BC_C49678_ACME-1
 .
 :BC-BC_C49678_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49678"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C49678 ;
 .
 :BC-BC_C49678_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -16731,7 +16733,7 @@ mdrItems:RS-BC_C49678_ACME-1
 .
 :BC-BC_C49678_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49674"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C49674 ;
 .
 :BC-BC_C49678_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -16762,12 +16764,12 @@ mdrItems:RS-BC_C49678_ACME-1
 .
 :BC-BC_C49678_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C49678_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C49678_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C98785_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -16836,7 +16838,7 @@ mdrItems:RS-BC_C98785_ACME-1
 .
 :BC-BC_C98785_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C98785"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C98785 ;
 .
 :BC-BC_C98785_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -16866,7 +16868,7 @@ mdrItems:RS-BC_C98785_ACME-1
 .
 :BC-BC_C98785_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C98785"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C98785 ;
 .
 :BC-BC_C98785_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -17060,12 +17062,12 @@ mdrItems:RS-BC_C98785_ACME-1
 .
 :BC-BC_C98785_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25228"^^xsd:string ;
+	cbc:value cCt:CLI-C99073_C25228 ;
 	cbc:nextValue :BC-BC_C98785_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code_Value_2 ;
 .
 :BC-BC_C98785_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25229"^^xsd:string ;
+	cbc:value cCt:CLI-C99073_C25229 ;
 .
 :BC-BC_C98785_ACME_PerformedClinicalResult_value
 	rdf:type cbc:Item ;
@@ -17114,7 +17116,7 @@ mdrItems:RS-BC_C98785_ACME-1
 .
 :BC-BC_C98785_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C71620"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C71620 ;
 .
 :BC-BC_C98785_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -17145,12 +17147,12 @@ mdrItems:RS-BC_C98785_ACME-1
 .
 :BC-BC_C98785_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C98785_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C98785_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_C25206_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -17219,7 +17221,7 @@ mdrItems:RS-BC_C25206_ACME-1
 .
 :BC-BC_C25206_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25206"^^xsd:string ;
+	cbc:value cCt:CLI-C66741_C25206 ;
 .
 :BC-BC_C25206_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -17249,7 +17251,7 @@ mdrItems:RS-BC_C25206_ACME-1
 .
 :BC-BC_C25206_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C25206"^^xsd:string ;
+	cbc:value cCt:CLI-C67153_C25206 ;
 .
 :BC-BC_C25206_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -17492,7 +17494,7 @@ mdrItems:RS-BC_C25206_ACME-1
 .
 :BC-BC_C25206_ACME_PerformedClinicalResult_value_PQR_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C42559"^^xsd:string ;
+	cbc:value cCt:CLI-C66770_C42559 ;
 .
 :BC-BC_C25206_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -17523,12 +17525,12 @@ mdrItems:RS-BC_C25206_ACME-1
 .
 :BC-BC_C25206_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_C25206_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_C25206_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .
 :BC-BC_A00002_ACME
 	rdf:type cbc:BiomedicalConceptInstance ;
@@ -17597,7 +17599,7 @@ mdrItems:RS-BC_A00002_ACME-1
 .
 :BC-BC_A00002_ACME_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "A00002"^^xsd:string ;
+	cbc:value aCt:MDRT-A00002 ;
 .
 :BC-BC_A00002_ACME_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -17627,7 +17629,7 @@ mdrItems:RS-BC_A00002_ACME-1
 .
 :BC-BC_A00002_ACME_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "A00002"^^xsd:string ;
+	cbc:value aCt:MDRT-A00002 ;
 .
 :BC-BC_A00002_ACME_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -17901,10 +17903,10 @@ mdrItems:RS-BC_A00002_ACME-1
 .
 :BC-BC_A00002_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_1
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49487"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49487 ;
 	cbc:nextValue :BC-BC_A00002_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2 ;
 .
 :BC-BC_A00002_ACME_PerformedClinicalResult_baselineIndicator_BL_value_Value_2
 	rdf:type cbc:PropertyValue ;
-	cbc:value "C49488"^^xsd:string ;
+	cbc:value cCt:CLI-C66742_C49488 ;
 .

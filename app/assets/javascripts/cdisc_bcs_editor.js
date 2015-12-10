@@ -14,7 +14,6 @@ $(document).ready(function() {
   var searchSponsorTextId = document.getElementById("searchSponsorText")
   var searchSponsorRadioName = document.getElementsByName('searchSponsor_radio');
   var d3Div = document.getElementById("d3");
-  var alertsId = document.getElementById("alerts")
           
   var cdiscDataTableReload = false;
   var cdiscDataTable;
@@ -250,21 +249,18 @@ $(document).ready(function() {
       data: { "data": saveData
             },
       success: function(result){
-        alert("Saved.");
+        var html = alertSuccess("Biomedical Concept has been saved.");
+        displayAlerts(html);
       },
       error: function(xhr,status,error){
         var errors;
         var html;
-        errors = $.parseJSON(xhr.responseText).errors;
-        html = "";  
+        var errors = $.parseJSON(xhr.responseText).errors;
+        var html = ""
         for (var i=0; i<errors.length; i++) {
-          html = html + '<div class="alert alert-danger alert-dismissible" role="alert">' + 
-            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
-            errors[i] + 
-            '</div>'
-          //alert("Error=" + errors[i]);
+          html = html + alertError(errors[i]);
         }
-        alertsId.innerHTML = html;
+        displayAlerts(html);
       }
     }); 
 
@@ -434,5 +430,45 @@ $(document).ready(function() {
     }
   }
 
+  /*function alertError(text) {
+    html = '<div class="alert alert-danger alert-dismissible" role="alert">' + 
+            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
+            text + 
+            '</div>'
+    return html
+  }
+
+  function alertSuccess(text) {
+    html = '<div class="alert alert-success alert-dismissible" role="alert">' + 
+            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
+            text + 
+            '</div>'
+    return html
+  }
+
+  function alertWarning(text) {
+    html = '<div class="alert alert-warning alert-dismissible" role="alert">' + 
+            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
+            text + 
+            '</div>'
+    return html
+  }
+
+  function alertInfo(text) {
+    html = '<div class="alert alert-info alert-dismissible" role="alert">' + 
+            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
+            text + 
+            '</div>'
+    return html
+  }
+
+  function displayAlerts() {
+    alertsId.innerHTML = html;
+    window.setTimeout(function() 
+      {
+        alertsId.innerHTML = "";
+      }, 
+      5000);
+  }*/
 
 });

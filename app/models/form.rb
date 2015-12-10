@@ -231,13 +231,16 @@ class Form < IsoConceptInstance
       "  ?node1 bd:hasProperty ?node4 . \n " +
       "  ?node4 (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
       "  ?node4 cbc:hasValue ?valueRef . \n " +
-      "  ?valueRef cbc:value ?sdtmTopicValue . \n " +
-      "  ?node3 rdf:type iso25964:ThesaurusConcept . \n " +
-      "  ?node3 iso25964:identifier ?sdtmTopicValue . \n " +
-      "  ?node3 iso25964:notation ?x . \n " +
-      "  ?node3 iso25964:notation ?sdtmTopicSub . \n " +
-      "  FILTER(STRSTARTS(STR(?node3), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) .  \n " +
-      "  FILTER(STR(?sdtmTopicSub) = UCASE(?x)) .  \n " +
+      # "  ?valueRef cbc:value ?sdtmTopicValue . \n " +
+      "  ?valueRef cbc:value ?sdtmTopicValueObj . \n " +
+      "  ?sdtmTopicValueObj iso25964:identifier ?sdtmTopicValue . \n " +
+      "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +
+      # "  ?node3 rdf:type iso25964:ThesaurusConcept . \n " +
+      # "  ?node3 iso25964:identifier ?sdtmTopicValue . \n " +
+      # "  ?node3 iso25964:notation ?x . \n " +
+      # "  ?node3 iso25964:notation ?sdtmTopicSub . \n " +
+      # "  FILTER(STRSTARTS(STR(?node3), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) .  \n " +
+      # "  FILTER(STR(?sdtmTopicSub) = UCASE(?x)) .  \n " +
       "  {\n " +
       "    SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName WHERE \n " +
       "    { \n " + 
@@ -273,12 +276,13 @@ class Form < IsoConceptInstance
       # "            ?bcValue rdf:type cbc:PropertyValue . \n " +       
       "            ?item bf:hasValue ?y . \n " +             
       "            ?y bo:hasValue ?bcValue  . \n " +      
-      "            ?bcValue cbc:value ?cCode . \n " +       
+      # "            ?bcValue cbc:value ?cCode . \n " +       
+      "            ?bcValue cbc:value ?cli . \n " +       
       "            ?cli iso25964:identifier ?cCode . \n " +       
       "            ?cli iso25964:notation ?subValue . \n " +       
-      "            ?cl skos:narrower ?cli . \n " +       
-      "            ?cl skos:inScheme ?th . \n " +       
-      "            FILTER(STRSTARTS(STR(?th), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) \n " +    
+      # "            ?cl skos:narrower ?cli . \n " +       
+      # "            ?cl skos:inScheme ?th . \n " +       
+      # "            FILTER(STRSTARTS(STR(?th), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) \n " +    
       "          } \n " +  
       "        }  \n " + 
       "      } \n " +
@@ -334,12 +338,13 @@ class Form < IsoConceptInstance
       # "            ?bcValue rdf:type cbc:PropertyValue . \n " +       
       "            ?item bf:hasValue ?y . \n " +             
       "            ?y bo:hasValue ?bcValue  . \n " +      
-      "            ?bcValue cbc:value ?cCode . \n " +       
+      # "            ?bcValue cbc:value ?cCode . \n " +       
+      "            ?bcValue cbc:value ?cli . \n " +       
       "            ?cli iso25964:identifier ?cCode . \n " +       
       "            ?cli iso25964:notation ?subValue . \n " +       
-      "            ?cl skos:narrower ?cli . \n " +       
-      "            ?cl skos:inScheme ?th . \n " +       
-      "            FILTER(STRSTARTS(STR(?th), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) \n " +    
+      # "            ?cl skos:narrower ?cli . \n " +       
+      # "            ?cl skos:inScheme ?th . \n " +       
+      # "            FILTER(STRSTARTS(STR(?th), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) \n " +    
       "          } \n " +  
       "        }  \n " + 
       "}\n"
@@ -420,7 +425,7 @@ class Form < IsoConceptInstance
   end
 
   def self.empty
-    text = {:name => "Not set", :identifier => "New Form", :label => "Not set", :type => "Form"}
+    text = {:name => "Not set", :identifier => "New Form", :label => "Not set", :type => "Form", :key => "1"}
     text[:children] = []
     text[:save] = []
     #text[:children][0] = {:name => "Blank Group", :label => "Not Set", :type => "Group"}

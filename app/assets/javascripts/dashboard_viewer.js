@@ -17,9 +17,13 @@ $(document).ready(function() {
   historyCount = 0;
   historyCurrent = null;
   historyCurrentRow = null;
-  
-  function initialSearch () {
+  initialSearch();
+  addHistory(subjectId.value, subjectNs.value);
 
+  /*
+   * Function for the initial search.
+   */
+  function initialSearch () {
     triplesTable = $('#triplesTable').DataTable( {
       "ajax": {
         "url": "../dashboard/database",
@@ -38,7 +42,6 @@ $(document).ready(function() {
       ]
     });
     triplesReload = true;
-    
   }
 
   /*
@@ -53,13 +56,9 @@ $(document).ready(function() {
       triplesTable.ajax.reload();
     }
 
-    // Save the history
-    var id = subjectId.value;
-    var namespace = subjectNs.value;
-    historyCount += 1;
-    var idChunked = chunk(id);
-    var namespaceChunked = chunk(namespace);
-    mainTable.row.add([historyCount, idChunked, namespaceChunked, id, namespace]).draw( false );
+    // Add the history
+    addHistory(subjectId.value, subjectNs.value);
+      
   });
 
   /*
@@ -68,21 +67,27 @@ $(document).ready(function() {
   $('#triplesTable tbody').on( 'click', 'button', function () {
     var data = triplesTable.row( $(this).parents('tr') ).data();
     if (data.link) {
-
       // Get the triples
       subjectId.value = data.linkId;
       subjectNs.value = data.linkNamespace;
       triplesTable.ajax.reload();
 
-      // Save history
-      historyCount += 1;
-      var id = data.linkId;
-      var namespace = data.linkNamespace;
-      var idChunked = chunk(id);
-      var namespaceChunked = chunk(namespace);
-      mainTable.row.add([historyCount, idChunked, namespaceChunked, id, namespace]).draw( false );
+      // Add the history
+      addHistory(data.linkId, data.linkNamespace);      
     }
   });
+
+  /*
+   * Function to add history entry.
+   */
+  function addHistory (id, namespace) {
+    historyCount += 1;
+    var idChunked = chunk(id);
+    var namespaceChunked = chunk(namespace);
+    mainTable.row.add([historyCount, idChunked, namespaceChunked, id, namespace]).draw( false );
+    mainTable.order( [ 0, 'desc' ] );
+    mainTable.draw();
+  }
 
   /*
    * Function to handle click on the history table.
@@ -102,12 +107,14 @@ $(document).ready(function() {
     // Get the triples
     subjectId.value = data[3];
     subjectNs.value = data[4];
-    //triplesTable.ajax.reload();
 
   });
   
+  /*
+   * Function to handle click on the history table.
+   */
   function chunk(text) {
-    var textArray = text.match(/.{1,25}/g);
+    var textArray = text.match(/.{1,35}/g);
     var result = ""
     for (var i=0; i<textArray.length; i++) {
       result = result + textArray[i] + " ";
