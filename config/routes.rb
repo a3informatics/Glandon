@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     collection do
       get :compare
       get :history
+      get :impact
     end
   end
   resources :iso_concept_systems do

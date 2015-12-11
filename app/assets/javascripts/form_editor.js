@@ -114,21 +114,18 @@ $(document).ready(function() {
       type: 'POST',
       data: { "form": formSave },
       success: function(result){
-        alert("Saved.");
+        var html = alertSuccess("Form has been saved.");
+        displayAlerts(html);
       },
       error: function(xhr,status,error){
         var errors;
         var html;
         errors = $.parseJSON(xhr.responseText).errors;
-        html = "";  
+        var html = ""
         for (var i=0; i<errors.length; i++) {
-          html = html + '<div class="alert alert-danger alert-dismissible" role="alert">' + 
-            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
-            errors[i] + 
-            '</div>'
-          //alert("Error=" + errors[i]);
+          html = html + alertError(errors[i]);
         }
-        alertsId.innerHTML = html;
+        displayAlerts(html);
       }
     }); 
 

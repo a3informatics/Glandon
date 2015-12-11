@@ -5,6 +5,7 @@
     <th>Version</th>
     <th>Date</th>
     <th></th>
+    <th></th>
   </tr>
 	<% @cdiscTerms.each do |cdiscTerm| %>
 	  <tr>
@@ -12,7 +13,7 @@
 	    <td><%= cdiscTerm.version %></td>
 	    <td><%= cdiscTerm.date %></td>
 	    <td><%= link_to "Show", cdiscTerm %></td>
-	    <td></td>
+	    <td><%= link_to "Impact", impact_cdisc_clis_path(:id => cdiscTerm.id, :namespace => cdiscTerm.namespace), :class => "btn btn-info btn-xs" %></td>
 	  </tr>
 	<% end %>
 </table>

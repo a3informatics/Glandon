@@ -12594,7 +12594,7 @@ mdrItems:SI-BC_C25208-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.code"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .
@@ -12624,7 +12624,7 @@ mdrItems:SI-BC_C25208-1
 	cbc:qText ""^^xsd:string ;
 	cbc:pText ""^^xsd:string ;
 	cbc:enabled "true"^^xsd:boolean ;
-	cbc:collect "true"^^xsd:boolean ;
+	cbc:collect "false"^^xsd:boolean ;
 	cbc:bridgPath "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string ;
 	cbc:simpleDatatype "string"^^xsd:string ;
 .

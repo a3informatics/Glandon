@@ -6,7 +6,7 @@
 				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>CLI-C66741_C25347</Value>
 				</Property>
-				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+				<Property Enabled="true" Collect="false" Alias="Name" Name="originalText">
 					<Property Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
 						<Value>CLI-C67153_C25347</Value>
 					</Property>
@@ -54,11 +54,11 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C25208" Name="Weight Biomedical Concept">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>CLI-C66741_C25208</Value>
 				</Property>
-				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
-					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+				<Property Enabled="true" Collect="false" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
 						<Value>CLI-C67153_C25208</Value>
 					</Property>
 				</Property>

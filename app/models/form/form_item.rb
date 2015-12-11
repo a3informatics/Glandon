@@ -152,11 +152,13 @@ class Form::FormItem < IsoConceptInstance
     if params.has_key?(:children)
       params[:children].each do |key, value|
         valueId = value[:id]
+        enabled = value[:enabled]
         ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId)
         vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
         insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
         " :" + vRefId + " rdf:type bo:BcReference . \n" +
-        " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(params[:namespace], valueId) + " . \n"
+        " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(params[:namespace], valueId) + " . \n" +
+        " :" + vRefId + " bo:enabled \"" + enabled + "\"^^xsd:boolean . \n"
         valueOrdinal += 1
       end
     end
@@ -184,10 +186,10 @@ class Form::FormItem < IsoConceptInstance
     if response.success?
       object = self.new
       object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Success, id=" + id)
+      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Success, id=" + id)
     else
       object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Failed")
+      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Failed")
     end
 
     return object

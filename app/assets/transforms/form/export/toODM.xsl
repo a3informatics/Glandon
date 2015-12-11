@@ -228,7 +228,8 @@
             <xsl:variable name="QText" select="$pQs/sr:binding[@name='alias']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
             
             <xsl:variable name="TempCL" select="$pQs/sr:binding[@name='cCode']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
-            <xsl:variable name="CL" select="$TempCL[not(.=preceding::*)]"/>
+            <!--<xsl:variable name="CL" select="$TempCL[not(.=preceding::*)]"/>-->
+            <xsl:variable name="CL" select="$TempCL"/>
             
             <!--<xsl:variable name="TempPresentation" select="$pQs/sr:binding[@name='datatype']/sr:literal[../../sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
             <xsl:variable name="Presentation" select="$TempPresentation[not(.=preceding::*)]"/>-->
@@ -329,7 +330,8 @@
                     </xsl:attribute>
                     <xsl:variable name="CLIs" select="$pQs[sr:binding[@name='bcProperty']/sr:uri/text()=$Q]"/>
                     <xsl:variable name="TempCCodes" select="$CLIs/sr:binding[@name='cCode']/sr:literal"/>
-                    <xsl:variable name="CCodes" select="$TempCCodes[not(.=preceding::*)]"/>
+                    <!--<xsl:variable name="CCodes" select="$TempCCodes[not(.=preceding::*)]"/>-->
+                    <xsl:variable name="CCodes" select="$TempCCodes"/>
                     <xsl:for-each select="$CCodes">
                         <xsl:variable name="CCode" select="."/>
                         <xsl:variable name="CLI" select="$CLIs[sr:binding[@name='cCode']/sr:literal/text()=$CCode]"/>
@@ -344,7 +346,8 @@
                                     </xsl:attribute>
                                     
                                     <xsl:variable name="X" select="$CLI/sr:binding[@name='subValue']/sr:literal"/>
-                                    <xsl:value-of select="$X[not(.=preceding::*)]"/>
+                                    <!--<xsl:value-of select="$X[not(.=preceding::*)]"/>-->
+                                    <xsl:value-of select="$X"/>
                                     
                                 </TranslatedText>
                             </Decode>

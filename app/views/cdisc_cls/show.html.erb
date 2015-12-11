@@ -32,7 +32,8 @@
 			    <th>Preferred</th>
 			    <th>Synonym</th>
 			    <th>Definition</th>
-			    <th>View</th>
+			    <th></th>
+			    <th></th>
 		  	</tr>
 		</thead>
 		<tbody>
@@ -43,7 +44,8 @@
 			    <td><%= cli.preferredTerm %></td>
 			    <td><%= cli.synonym %></td>
 			    <td><%= cli.definition %></td>
-			    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id,:termId => @cdiscTerm.id), :class => "btn btn-primary btn-xs" %></td>
+			    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id, :termId => @cdiscTerm.id), :class => "btn btn-primary btn-xs" %></td>
+			    <td><%= link_to "Impact", impact_cdisc_clis_path(:id => cli.id,  :termId => @cdiscTerm.id), :class => "btn btn-info btn-xs" %></td>
 			  </tr>
 			<% end %>
 		</tbody>

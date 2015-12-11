@@ -23,6 +23,24 @@ class CdiscClisController < ApplicationController
   def destroy
   end
 
+  def impact
+    id = params[:id]
+    termId = params[:termId]
+    @cdiscTerm = CdiscTerm.find(params[:termId])
+    @cdiscCli = CdiscCli.find(id, @cdiscTerm)
+    id = params[:id]
+    params[:namespace] = @cdiscTerm.namespace
+    @bcs = CdiscBc.impact(params)
+  end
+
+  def show
+    id = params[:id]
+    termId = params[:termId]
+    @cdiscTerm = CdiscTerm.find(params[:termId])
+    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
+    @cdiscCli = CdiscCli.find(id, @cdiscTerm)
+  end
+
   def compare
     
     id = params[:id]
@@ -95,15 +113,7 @@ class CdiscClisController < ApplicationController
     p "Results=" + @Results.to_s
     
   end
-  
-  def show
-    id = params[:id]
-    termId = params[:termId]
-    @cdiscTerm = CdiscTerm.find(params[:termId])
-    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
-    @cdiscCli = CdiscCli.find(id, @cdiscTerm)
-  end
-  
+    
 private
 
     def this_params

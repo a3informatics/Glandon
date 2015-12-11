@@ -16,8 +16,7 @@
 	    <td><%= @cdiscCli.synonym %></td>
 	    <td><%= @cdiscCli.definition %></td>
 	  </tr>
-	</table>
-	
+	</table>	
 </div>
 <div class="col-md-4">
 	<%= render partial: "shared/previousHistory", :locals => {:type => "CLI", :object => @cdiscCli, :currTerm => @cdiscTerm, :cdiscTerms => @cdiscTerms} %>

@@ -223,7 +223,8 @@ class Form < IsoConceptInstance
   def acrf
   
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
-      "SELECT DISTINCT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName ?sdtmTopicValue ?sdtmTopicSub WHERE \n" +
+      "SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName ?sdtmTopicValue ?sdtmTopicSub WHERE \n" +
+      "{ \n " +
       "{ \n " +
       "  ?node1 bd:basedOn ?node2 . \n " +
       "  ?node1 rdf:type bd:Variable . \n " +
@@ -276,20 +277,58 @@ class Form < IsoConceptInstance
       # "            ?bcValue rdf:type cbc:PropertyValue . \n " +       
       "            ?item bf:hasValue ?y . \n " +             
       "            ?y bo:hasValue ?bcValue  . \n " +      
+      "            ?y bo:enabled ?enabled  . \n " +      
       # "            ?bcValue cbc:value ?cCode . \n " +       
       "            ?bcValue cbc:value ?cli . \n " +       
       "            ?cli iso25964:identifier ?cCode . \n " +       
       "            ?cli iso25964:notation ?subValue . \n " +       
       # "            ?cl skos:narrower ?cli . \n " +       
       # "            ?cl skos:inScheme ?th . \n " +       
-      # "            FILTER(STRSTARTS(STR(?th), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) \n " +    
+      "            FILTER(?enabled=true) . \n " +    
       "          } \n " +  
       "        }  \n " + 
       "      } \n " +
       "    } \n " +
       "  } \n " +
-      "}\n"
-
+      "} UNION { \n " +
+      "SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain ?var WHERE \n " + 
+      "        { \n " +    
+      "          :" + self.id + " bf:hasGroup ?group . \n " +     
+      "          ?form bf:hasGroup ?group . \n " +
+      "          ?form rdfs:label ?fName . \n " +
+      "          ?group rdfs:label ?gName . \n " +
+      "          ?group bf:hasItem ?item . \n " +
+      "          ?item rdfs:label ?iName . \n " +
+      "          ?item bf:hasProperty ?x . \n " +             
+      "          ?x bo:hasProperty ?bcProperty  . \n " +      
+      # "          ?var bd:hasProperty ?bcProperty . \n " +     
+      "          ?bcProperty (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
+      "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
+      "          ?bcProperty cbc:alias ?alias . \n " +     
+      "          ?bcProperty cbc:qText ?qText . \n " +     
+      "          ?bcProperty cbc:simpleDatatype ?datatype . \n " +     
+      "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
+      "          ?si isoI:identifier ?bcIdent . \n " + 
+      "          FILTER NOT EXISTS { ?var bd:hasProperty ?bcProperty } \n " + 
+      "          OPTIONAL \n " +    
+      "          { \n " +      
+      # "            ?bcProperty (cbc:hasValue | cbc:nextValue)%2B  ?bcValue . \n " +       
+      # "            ?bcValue rdf:type cbc:PropertyValue . \n " +       
+      "            ?item bf:hasValue ?y . \n " +             
+      "            ?y bo:hasValue ?bcValue  . \n " +      
+      "            ?y bo:enabled ?enabled  . \n " +      
+      # "            ?bcValue cbc:value ?cCode . \n " +       
+      "            ?bcValue cbc:value ?cli . \n " +       
+      "            ?cli iso25964:identifier ?cCode . \n " +       
+      "            ?cli iso25964:notation ?subValue . \n " +       
+      # "            ?cl skos:narrower ?cli . \n " +       
+      # "            ?cl skos:inScheme ?th . \n " +       
+      "            FILTER(?enabled=true) . \n " +    
+      "          } \n " +  
+      "        }  \n " + 
+      "      } \n " +
+      "      } \n " 
+      
     # Send the request, wait the resonse
     response = CRUD.query(query)
     
@@ -313,40 +352,38 @@ class Form < IsoConceptInstance
   def crf
   
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
-      "SELECT DISTINCT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName ?sdtmTopicValue ?sdtmTopicSub WHERE \n" +
+      "SELECT DISTINCT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue WHERE \n" +
       "{ \n " +
-      "        SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain ?var WHERE \n " + 
-      "        { \n " +    
-      "          :" + self.id + " bf:hasGroup ?group . \n " +     
-      "          ?form bf:hasGroup ?group . \n " +
-      "          ?form rdfs:label ?fName . \n " +
-      "          ?group rdfs:label ?gName . \n " +
-      "          ?group bf:hasItem ?item . \n " +
-      "          ?item rdfs:label ?iName . \n " +
-      "          ?item bf:hasProperty ?x . \n " +             
-      "          ?x bo:hasProperty ?bcProperty  . \n " +      
-      "          ?bcProperty (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
-      "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
-      "          ?bcProperty cbc:alias ?alias . \n " +     
-      "          ?bcProperty cbc:qText ?qText . \n " +     
-      "          ?bcProperty cbc:simpleDatatype ?datatype . \n " +     
-      "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
-      "          ?si isoI:identifier ?bcIdent . \n " +     
-      "          OPTIONAL \n " +    
-      "          { \n " +      
-      # "            ?bcProperty (cbc:hasValue | cbc:nextValue)%2B  ?bcValue . \n " +       
-      # "            ?bcValue rdf:type cbc:PropertyValue . \n " +       
-      "            ?item bf:hasValue ?y . \n " +             
-      "            ?y bo:hasValue ?bcValue  . \n " +      
-      # "            ?bcValue cbc:value ?cCode . \n " +       
-      "            ?bcValue cbc:value ?cli . \n " +       
-      "            ?cli iso25964:identifier ?cCode . \n " +       
-      "            ?cli iso25964:notation ?subValue . \n " +       
-      # "            ?cl skos:narrower ?cli . \n " +       
-      # "            ?cl skos:inScheme ?th . \n " +       
-      # "            FILTER(STRSTARTS(STR(?th), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) \n " +    
-      "          } \n " +  
-      "        }  \n " + 
+      "  :" + self.id + " bf:hasGroup ?group . \n " +     
+      "  ?form bf:hasGroup ?group . \n " +
+      "  ?form rdfs:label ?fName . \n " +
+      "  ?group rdfs:label ?gName . \n " +
+      "  ?group bf:hasItem ?item . \n " +
+      "  ?item rdfs:label ?iName . \n " +
+      "  ?item bf:hasProperty ?x . \n " +             
+      "  ?x bo:hasProperty ?bcProperty  . \n " +      
+      "  ?bcProperty (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
+      "  ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
+      "  ?bcProperty cbc:alias ?alias . \n " +     
+      "  ?bcProperty cbc:qText ?qText . \n " +     
+      "  ?bcProperty cbc:simpleDatatype ?datatype . \n " +     
+      "  ?bcRoot isoI:hasIdentifier ?si . \n " +     
+      "  ?si isoI:identifier ?bcIdent . \n " +     
+      "  OPTIONAL \n " +    
+      "  { \n " +      
+      # "    ?bcProperty (cbc:hasValue | cbc:nextValue)%2B  ?bcValue . \n " +       
+      # "    ?bcValue rdf:type cbc:PropertyValue . \n " +       
+      "    ?item bf:hasValue ?y . \n " +             
+      "    ?y bo:hasValue ?bcValue  . \n " +      
+      "    ?y bo:enabled ?enabled  . \n " +      
+      # "    ?bcValue cbc:value ?cCode . \n " +       
+      "    ?bcValue cbc:value ?cli . \n " +       
+      "    ?cli iso25964:identifier ?cCode . \n " +       
+      "    ?cli iso25964:notation ?subValue . \n " +       
+      # "    ?cl skos:narrower ?cli . \n " +       
+      # "    ?cl skos:inScheme ?th . \n " +       
+      "    FILTER(?enabled=true) . \n " +    
+      "  } \n " +  
       "}\n"
 
     # Send the request, wait the resonse
