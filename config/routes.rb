@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   
   devise_for :users
   
+  match 'api(/:id)' => 'api#options', via: [:options]
+  resources :api
+  
   resources :dashboard do
     collection do
       get :view

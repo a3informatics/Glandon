@@ -297,6 +297,8 @@
         <xsl:variable name="PropertyAlias" select="string(@Alias)"/>
         <xsl:variable name="PropertyEnabled" select="string(@Enabled)"/>
         <xsl:variable name="PropertyCollect" select="string(@Collect)"/>
+        <xsl:variable name="QText" select="string(@QText)"/>
+        <xsl:variable name="PText" select="string(@PText)"/>
         <xsl:variable name="PropertyNode" select="."/>
         
         <xsl:variable name="Datatype" select="$DatatypeDocument/ISO21090DataTypes/ISO21090DataType[@Name=$pDatatype]"/>
@@ -345,11 +347,11 @@
                             <!-- Question text etc -->
                             <xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="'cbc:qText'" /> 
-                                <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$QText,$quote,'^^xsd:string')" /> 
                             </xsl:call-template>
                             <xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="'cbc:pText'" /> 
-                                <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$PText,$quote,'^^xsd:string')" /> 
                             </xsl:call-template>
                             <xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="'cbc:enabled'" /> 

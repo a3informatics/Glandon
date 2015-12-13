@@ -8,15 +8,15 @@
         </xsl:copy>
     </xsl:template>
 
-    <!--<xsl:template match="Property">
+    <xsl:template match="Property">
         <xsl:copy>
-            <xsl:attribute name="Enabled">true</xsl:attribute>
-            <xsl:attribute name="Collect">true</xsl:attribute>
+            <xsl:attribute name="QText">Question text</xsl:attribute>
+            <xsl:attribute name="PText">Prompt text</xsl:attribute>
             <xsl:apply-templates select="@* | node()"/>
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="Class">
+    <!--<xsl:template match="Class">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()"/>
             <xsl:if test="@Name='PerformedObservation'">
@@ -27,13 +27,13 @@
         </xsl:copy>   
     </xsl:template>-->
 
-    <xsl:template match="Attribute[@Alias='DateTime']/Property/Property">
+    <!--<xsl:template match="Attribute[@Alias='DateTime']/Property/Property">
         <xsl:copy>
-            <xsl:attribute name="Alias">Date and Time (--DTC)</xsl:attribute>
+            <xsl:attribute name="Alias">Date and Time (xxDTC)</xsl:attribute>
             <xsl:apply-templates select="@* | node()"/>
         </xsl:copy>
     </xsl:template>
-
+-->
 
 
 </xsl:stylesheet>

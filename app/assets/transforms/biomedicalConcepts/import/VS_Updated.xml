@@ -3,48 +3,48 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C25347" Name="Height Biomedical Concept">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>CLI-C66741_C25347</Value>
 				</Property>
-				<Property Enabled="true" Collect="false" Alias="Name" Name="originalText">
-					<Property Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Name" Name="originalText">
+					<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
 						<Value>CLI-C67153_C25347</Value>
 					</Property>
 				</Property>
 			</Attribute>
 			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
-				<Property Enabled="false" Collect="true" Alias="Location (--LOC)" Name="code"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Location (--LOC)" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Method" Name="methodCode">
-				<Property Enabled="false" Collect="true" Alias="Method Code (--METHOD)" Name="code"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Method Code (--METHOD)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedObservation">
 			<Attribute Alias="DateTime" Name="dateRange">
-				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
-					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property QText="Question text" PText="Prompt text" Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
 				</Property>
 			</Attribute>
 			<Attribute Alias="ReasonNotDone" Name="negationReason">
-				<Property Enabled="false" Collect="true" Alias="Code" Name="code"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Code" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Position" Name="bodyPositionCode">
-				<Property Alias="Body Position (--POS)" Name="code" Enabled="false" Collect="true"/>
+				<Property QText="Question text" PText="Prompt text" Alias="Body Position (--POS)" Name="code" Enabled="false" Collect="true"/>
 			</Attribute>
 			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
-				<Property Enabled="false" Collect="true" Alias="Laterality (--LAT)" Name="code"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Laterality (--LAT)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedClinicalResult">
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
-				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
-				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
 					<Value>CLI-C66770_C49668</Value>
 					<Value>CLI-C66770_C48500</Value>
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Enabled="false" Collect="false" Alias="Baseline (--BLFL)" Name="value">
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="false" Alias="Baseline (--BLFL)" Name="value">
 					<Value>CLI-C66742_C49487</Value>
 					<Value>CLI-C66742_C49488</Value>
 				</Property>
@@ -54,48 +54,48 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C25208" Name="Weight Biomedical Concept">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>CLI-C66741_C25208</Value>
 				</Property>
-				<Property Enabled="true" Collect="false" Alias="Name" Name="originalText">
-					<Property Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Name" Name="originalText">
+					<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
 						<Value>CLI-C67153_C25208</Value>
 					</Property>
 				</Property>
 			</Attribute>
 			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
-				<Property Enabled="false" Collect="true" Alias="Location (--LOC)" Name="code"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Location (--LOC)" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Method" Name="methodCode">
-				<Property Enabled="false" Collect="true" Alias="Method Code (--METHOD)" Name="code"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Method Code (--METHOD)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedObservation">
 			<Attribute Alias="DateTime" Name="dateRange">
-				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
-					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property QText="Question text" PText="Prompt text" Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
 				</Property>
 			</Attribute>
 			<Attribute Alias="ReasonNotDone" Name="negationReason">
-				<Property Enabled="false" Collect="true" Alias="Code" Name="code"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Code" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Position" Name="bodyPositionCode">
-				<Property Alias="Body Position (--POS)" Name="code" Enabled="false" Collect="true"/>
+				<Property QText="Question text" PText="Prompt text" Alias="Body Position (--POS)" Name="code" Enabled="false" Collect="true"/>
 			</Attribute>
 			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
-				<Property Enabled="false" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedClinicalResult">
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
-				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
-				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
 					<Value>CLI-C66770_C28252</Value>
 					<Value>CLI-C66770_C48531</Value>
 				</Property>
 			</Attribute>
 			<Attribute Alias="Baseline" Name="baselineIndicator">
-				<Property Enabled="false" Collect="false" Alias="Baseline (--BLFL)" Name="value">
+				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="false" Alias="Baseline (--BLFL)" Name="value">
 					<Value>CLI-C66742_C49487</Value>
 					<Value>CLI-C66742_C49488</Value>
 				</Property>

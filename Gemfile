@@ -23,6 +23,9 @@ gem 'diffy'
 # XML
 gem 'nokogiri', '~> 1.6.6.2'
 
+# CORS
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

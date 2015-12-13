@@ -117,7 +117,7 @@ class CdiscBc
       aliasName = ModelUtility.getValue('alias', false, node)
       name = ModelUtility.getValue('name', false, node)
       pText = ModelUtility.getValue('pText', false, node)
-      qText = ModelUtility.getValue('pText', false, node)
+      qText = ModelUtility.getValue('qText', false, node)
       enabled = ModelUtility.getValue('enabled', false, node)
       collect = ModelUtility.getValue('collect', false, node)
       vNode = ModelUtility.getValue('valueN', true, node)

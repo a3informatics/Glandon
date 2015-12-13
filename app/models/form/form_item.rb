@@ -98,11 +98,13 @@ class Form::FormItem < IsoConceptInstance
     insertSparql = "" 
     propertyValues.each do |value|
       valueId = value[:id]
+      namespace = value[:namespace]
       ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId)
       vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
       insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
       " :" + vRefId + " rdf:type bo:BcReference . \n" +
-      " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(bc.namespace, valueId) + " . \n"
+      " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(namespace, valueId) + " . \n" +
+      " :" + vRefId + " bo:enabled \"true\"^^xsd:boolean . \n"
       valueOrdinal += 1
     end
 
@@ -209,7 +211,7 @@ class Form::FormItem < IsoConceptInstance
       result[:name] = self.label
       result[:identifier] = self.id
       result[:nodeType] = "item"
-      result[:item] = self.to_json
+      result[:item] = self.to_jsonXXX
     #end
     return result
 
