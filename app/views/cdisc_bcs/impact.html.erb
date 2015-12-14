@@ -10,6 +10,7 @@
 			    <th>Version</th>
 			    <th>Version Label</th>
 			    <th></th>
+			    <th></th>
 		  	</tr>
 		</thead>
 		<tbody>
@@ -21,6 +22,7 @@
 			    	<td><%= item.version %></td>
 			    	<td><%= item.versionLabel %></td>
 			    	<td><%= link_to "Show", form_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary btn-xs" %></td>
+			    	<td><%= link_to "View", view_forms_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary btn-xs" %></td>
 				</tr>
 			<% end %>
 		</tbody>

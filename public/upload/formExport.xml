@@ -15,28 +15,427 @@
     <variable name="datatype"/>
     <variable name="cCode"/>
     <variable name="subValue"/>
-    <variable name="sdtmVarName"/>
-    <variable name="domain"/>
-    <variable name="sdtmTopicName"/>
-    <variable name="sdtmTopicValue"/>
-    <variable name="sdtmTopicSub"/>
   </head>
   <results>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-BCTEST6</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC Test Number 6</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-BCTEST6_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_1_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">dateTime</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_1_2</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_1_3</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C28252</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">kg</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_1</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Weight (BC C25208_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_1_3</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25208_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C48155</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">g</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_2_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">dateTime</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_2_2</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Height (BC C25347_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_2_3</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C25347_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49668</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">cm</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Triceps Skinfold Thickness (BC C98793_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_3_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C98793_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C98793_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C98793_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">dateTime</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Triceps Skinfold Thickness (BC C98793_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_3_2</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C98793_ACME_PerformedClinicalResult_value_PQR_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C98793_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C98793_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_3</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Triceps Skinfold Thickness (BC C98793_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_3_3</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C98793_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C98793_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C98793_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C28251</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">mm</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_4</uri>
       </binding>
       <binding name="gName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-BCTEST6_1_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_4_1</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
@@ -62,19 +461,19 @@
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-BCTEST6</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC Test Number 6</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-BCTEST6_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_4</uri>
       </binding>
       <binding name="gName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-BCTEST6_1_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_4_2</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
@@ -106,19 +505,19 @@
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-BCTEST6</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC Test Number 6</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-BCTEST6_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_4</uri>
       </binding>
       <binding name="gName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-BCTEST6_1_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_4_2</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
@@ -150,19 +549,19 @@
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-BCTEST6</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC Test Number 6</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-BCTEST6_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_4</uri>
       </binding>
       <binding name="gName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-BCTEST6_1_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_4_2</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
@@ -194,19 +593,19 @@
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-BCTEST6</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC Test Number 6</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-BCTEST6_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_4</uri>
       </binding>
       <binding name="gName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-BCTEST6_1_3</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_4_3</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
@@ -238,19 +637,19 @@
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-BCTEST6</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC Test Number 6</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-BCTEST6_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_4</uri>
       </binding>
       <binding name="gName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-BCTEST6_1_3</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_4_3</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
@@ -282,19 +681,19 @@
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-BCTEST6</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC Test Number 6</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-BCTEST6_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_4</uri>
       </binding>
       <binding name="gName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-BCTEST6_1_4</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_4_4</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
@@ -320,19 +719,19 @@
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-BCTEST6</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC Test Number 6</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-BCTEST6_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_4</uri>
       </binding>
       <binding name="gName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (BC A00003_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-BCTEST6_1_5</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_4_5</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
@@ -345,6 +744,126 @@
       </binding>
       <binding name="bcIdent">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_A00003_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
+      </binding>
+      <binding name="cCode">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49668</literal>
+      </binding>
+      <binding name="subValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">cm</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_5</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Head Circumference (BC C81255_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_5_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C81255_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C81255_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C81255_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">dateTime</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_5</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Head Circumference (BC C81255_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_5_2</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C81255_ACME_PerformedClinicalResult_value_PQR_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C81255_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C81255_ACME</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-VSBABYM</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Vital Signs Baby (Metric)</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-VSBABYM_5</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Head Circumference (BC C81255_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-VSBABYM_5_3</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C81255_ACME_PerformedClinicalResult_value_PQR_code</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-BC_C81255_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">BC_C81255_ACME</literal>
       </binding>
       <binding name="alias">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>

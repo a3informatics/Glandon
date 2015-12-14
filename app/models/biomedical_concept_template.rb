@@ -170,7 +170,7 @@ class BiomedicalConceptTemplate
 
     ConsoleLogger::log(C_CLASS_NAME,"to_ttl","*****Entry*****")
     results = ""
-    query = UriManagement.buildNs(self.namespace, ["cbc"]) +
+    query = UriManagement.buildNs(self.namespace, ["cbc","isoI"]) +
       "CONSTRUCT \n" +
       "{ \n" + 
       "  ?a ?b ?c .\n" + 

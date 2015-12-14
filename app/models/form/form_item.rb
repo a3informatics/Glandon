@@ -211,7 +211,7 @@ class Form::FormItem < IsoConceptInstance
       result[:name] = self.label
       result[:identifier] = self.id
       result[:nodeType] = "item"
-      result[:item] = self.to_jsonXXX
+      result[:item] = self.to_json
     #end
     return result
 

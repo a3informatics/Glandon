@@ -8,6 +8,7 @@
 	    <th>Owner</th>
 	    <th>Version</th>
 	    <th>Version Label</th>
+	    <th></th>
 	  </tr>
 	  <tr>
 	    <td><%= @cdiscBc.identifier %></td>
@@ -15,6 +16,7 @@
 	    <td><%= @cdiscBc.owner %></td>
 	    <td><%= @cdiscBc.version %></td>
 	    <td><%= @cdiscBc.versionLabel %></td>
+	    <td><%= link_to "Impact", impact_cdisc_bcs_path(:id => @cdiscBc.id, :namespace => @cdiscBc.namespace), :class => "btn btn-info btn-xs" %></td>
 	  </tr>
 	</table>
 	<h4>Items</h4>

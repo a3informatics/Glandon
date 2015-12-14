@@ -409,6 +409,7 @@ class CdiscBc
                 # instance.
                 bc3[-1] = subject(id)
                 text = predicateObject("a","cbc:BiomedicalConceptInstance") + "\n"
+                text = text + predicateObject("isoI:hasIdentifier","mdrItems:" + managedItem.scopedIdentifier.id) + "\n"
                 text = text + predicateObject("cbc:basedOn","mdrBcts:" + templateIdentifier) 
               elsif parts[2].start_with?(":")
                 # Predicate object, update the object URI.
@@ -439,7 +440,7 @@ class CdiscBc
         end 
       
         # Create the query
-        update = UriManagement.buildNs(useNs,["isoI", "cbc","mdrIso21090","mdrBridg","mdrBcts"]) +
+        update = UriManagement.buildNs(useNs,["isoI", "cbc","mdrIso21090","mdrBridg","mdrBcts","mdrItems"]) +
           "INSERT DATA \n" +
           "{ \n"
         bc3.each do |triple|
