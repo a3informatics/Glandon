@@ -201,10 +201,66 @@ class Form::FormGroup < IsoConceptInstance
   
   end
 
-  def self.createBlank (formId, ns, ordinal, params)
+  def self.createCommon (formId, ns, ordinal, params)
+   
+    id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
+    id = ModelUtility.cidAddSuffix(id, ordinal)
+    refId = ModelUtility.cidAddSuffix(id, "BCRef")
+    
+    # Add the properties. Only add if Enabled and Collected (i.e. ignore test codes etc, we only
+    # want the visibale stuff on the form).
+    insertSparql = ""
+    items = Hash.new
+    itemOrdinal = 1
+    children = params[:children]
+    children.each do |key, child|
+      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Add item for Group=" + child.to_s)
+      #if child[:enabled] 
+        item = Form::FormItem.createBcEdit(id, ns, itemOrdinal, child)
+        itemOrdinal += 1
+        insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
+      #end
+    end
+      
+    # Build the query
+    update = UriManagement.buildNs(ns, ["bf", "bo"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      " :" + id + " rdf:type bf:Group . \n" +
+      " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
+      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+      " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
+      " :" + id + " bf:note \"\"^^xsd:string . \n" +
+      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+      insertSparql + 
+      " :" + id + " bf:isGroupOf :" + formId + " . \n" +
+      # " :" + id + " bf:hasBiomedicalConcept :" + refId + " . \n" +
+      # " :" + refId + " rdf:type bo:BcReference . \n" +
+      # " :" + refId + " bo:enabled \"true\"^^xsd:boolean . \n" +
+      # " :" + refId + " bo:hasBiomedicalConcept " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
+    "}"
+
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+
+    # Response
+    if response.success?
+      object = self.new
+      object.id = id
+      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Success, id=" + id)
+    else
+      object = nil
+      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
+    end
+
+    return object
+  
+  end
+
+  def self.createBlank (parentId, ns, ordinal, params)
    
     ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","*****Blank*****")
-    id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
+    id = ModelUtility.cidSwapPrefix(parentId, C_CID_PREFIX)
     id = ModelUtility.cidAddSuffix(id, ordinal)
     
     # Build the query
@@ -217,7 +273,7 @@ class Form::FormGroup < IsoConceptInstance
       " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      " :" + id + " bf:isGroupOf :" + formId + " . \n" +
+      " :" + id + " bf:isGroupOf :" + parentId + " . \n" +
     "}"
 
     # Send the request, wait the resonse

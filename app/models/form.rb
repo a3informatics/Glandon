@@ -255,9 +255,10 @@ class Form < IsoConceptInstance
       "      { \n " +
       "        SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain ?var WHERE \n " + 
       "        { \n " +    
-      "          :" + self.id + " bf:hasGroup ?group . \n " +     
-      "          ?form bf:hasGroup ?group . \n " +
+      "          :" + self.id + " bf:hasGroup ?groupM . \n " +     
+      "          ?form bf:hasGroup ?groupM . \n " +     
       "          ?form rdfs:label ?fName . \n " +
+      "          ?groupM bf:hasSubGroup ?group . \n " +
       "          ?group rdfs:label ?gName . \n " +
       "          ?group bf:hasItem ?item . \n " +
       "          ?item rdfs:label ?iName . \n " +
@@ -293,9 +294,10 @@ class Form < IsoConceptInstance
       "} UNION { \n " +
       "SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain ?var WHERE \n " + 
       "        { \n " +    
-      "          :" + self.id + " bf:hasGroup ?group . \n " +     
-      "          ?form bf:hasGroup ?group . \n " +
+      "          :" + self.id + " bf:hasGroup ?groupM . \n " +     
+      "          ?form bf:hasGroup ?groupM . \n " +     
       "          ?form rdfs:label ?fName . \n " +
+      "          ?groupM bf:hasSubGroup ?group . \n " +
       "          ?group rdfs:label ?gName . \n " +
       "          ?group bf:hasItem ?item . \n " +
       "          ?item rdfs:label ?iName . \n " +
@@ -354,9 +356,10 @@ class Form < IsoConceptInstance
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
       "SELECT DISTINCT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue WHERE \n" +
       "{ \n " +
-      "  :" + self.id + " bf:hasGroup ?group . \n " +     
-      "  ?form bf:hasGroup ?group . \n " +
+      "  :" + self.id + " bf:hasGroup ?groupM . \n " +     
+      "  ?form bf:hasGroup ?groupM . \n " +     
       "  ?form rdfs:label ?fName . \n " +
+      "  ?groupM bf:hasSubGroup ?group . \n " +
       "  ?group rdfs:label ?gName . \n " +
       "  ?group bf:hasItem ?item . \n " +
       "  ?item rdfs:label ?iName . \n " +
@@ -462,11 +465,9 @@ class Form < IsoConceptInstance
   end
 
   def self.empty
-    text = {:name => "Not set", :identifier => "New Form", :label => "Not set", :type => "Form", :key => "1"}
+    text = {:name => "Form", :identifier => "New Form", :label => "Form", :type => "Form", :key => "1", :id => "Not set", :nextKeyId => "3"}
     text[:children] = []
-    text[:save] = []
-    #text[:children][0] = {:name => "Blank Group", :label => "Not Set", :type => "Group"}
-    #text[:save] = text[:children]
+    text[:children][0] = {:name => "Group", :identifier => "New Group", :label => "Group", :type => "Group", :key => "2", :id => "Not set"}
     return text
   end
 
@@ -511,8 +512,9 @@ private
         ConsoleLogger::log(C_CLASS_NAME,"addGroup","Child")
         innerOrdinal = 1
         insertSparql = ""
-        child.children.each do |key, child|
-          subGroup = addGroup(formId, namespace, innerOrdinal, child)
+        children = params[:children]
+        children.each do |key, child|
+          subGroup = addGroup(group.id, namespace, innerOrdinal, child)
           innerOrdinal += 1;
           insertSparql = insertSparql + "  :" + group.id + " bf:hasSubGroup :" + subGroup.id + " . \n"
         end
@@ -536,10 +538,9 @@ private
         end
       end
 
+    elsif params[:type] == "CommonGroup"
+      group = FormGroup.createCommon(formId, namespace, ordinal, params)
     elsif params[:type] == "BCGroup"
-      #bcId = params[:id]
-      #bcNamespace = params[:namespace]
-      #bc = CdiscBc.find(bcId, bcNamespace)
       group = FormGroup.createBcEdit(formId, namespace, ordinal, params)
     end
 

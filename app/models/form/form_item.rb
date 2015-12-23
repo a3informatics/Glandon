@@ -165,6 +165,15 @@ class Form::FormItem < IsoConceptInstance
       end
     end
 
+    commonOrdinal = 1
+    if params.has_key?(:otherCommon)
+      params[:otherCommon].each do |key, common|
+        item = createCommon(id, ns, commonOrdinal, common)
+        commonOrdinal += 1
+        insertSparql = insertSparql + " :" + id + " bf:hasCommonItem :" + item.id + " . \n"
+      end
+    end
+
     update = UriManagement.buildNs(ns, ["bf", "bo"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -197,6 +206,64 @@ class Form::FormItem < IsoConceptInstance
     return object
 
   end
+
+  def self.createCommon(itemId, ns, ordinal, params)
+
+    id = ModelUtility.cidSwapPrefix(itemId, C_CID_PREFIX)
+    id = ModelUtility.cidAddSuffix(id, ordinal)
+    pRefId = ModelUtility.cidAddSuffix(id, "PRef")
+    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
+    
+    valueOrdinal = 1
+    insertSparql = "" 
+    if params.has_key?(:children)
+      params[:children].each do |key, value|
+        valueId = value[:id]
+        enabled = value[:enabled]
+        ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId)
+        vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
+        insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
+        " :" + vRefId + " rdf:type bo:BcReference . \n" +
+        " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(params[:namespace], valueId) + " . \n" +
+        " :" + vRefId + " bo:enabled \"" + enabled + "\"^^xsd:boolean . \n"
+        valueOrdinal += 1
+      end
+    end
+
+    update = UriManagement.buildNs(ns, ["bf", "bo"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      " :" + id + " rdf:type bf:BcProperty . \n" +
+      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+      " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
+      " :" + id + " bf:note \"\"^^xsd:string . \n" +
+      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+      # " :" + id + " bf:isItemOf :" + itemId + " . \n" +
+      " :" + id + " bf:hasProperty :" + pRefId + " . \n" +
+      " :" + pRefId + " rdf:type bo:BcReference . \n" +
+      " :" + pRefId + " bo:hasProperty " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
+      " :" + pRefId + " bo:enabled \"" + params[:enabled] + "\"^^xsd:boolean . \n" +
+      insertSparql +
+    "}"
+
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+
+    # Response
+    if response.success?
+      object = self.new
+      object.id = id
+      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Success, id=" + id)
+    else
+      object = nil
+      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Failed")
+    end
+
+    return object
+
+  end
+
   def update
     return nil
   end

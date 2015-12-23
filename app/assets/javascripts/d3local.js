@@ -124,6 +124,23 @@ function markNode1 (ref) {
   d3.select(ref).select('circle').style("fill", "steelblue");
 }
 
+
+/*
+ * find node
+ */
+function findNode (key) {
+  var node;
+  var nodes = d3.selectAll("g.node");
+  for (var i=0; i<nodes[0].length; i++) {
+    var data = nodes[0][i].__data__;
+    if (data.key == key) {
+      node = nodes[0][i];
+      break;
+    }
+  }
+  return node;
+}
+
 /*
  * Clear node
  */ 
@@ -140,6 +157,23 @@ function clearNode (node, ref) {
     d3.select(ref).select('circle').style("fill", "white");
   }
 }
+
+/*
+ * Clear node
+ */ 
+/*function clearNode1 (node) {
+  if (node.expand) {
+    d3.select(node).select('circle').style("fill", "skyblue");
+  } else if ('enabled' in node) {
+    if (node.enabled) {
+      d3.select(node).select('circle').style("fill", "mediumseagreen");
+    } else {
+      d3.select(node).select('circle').style("fill", "orangered");
+    }
+  } else {
+    d3.select(node).select('circle').style("fill", "white");
+  }
+}*/
 
 /*
  * Node colour function. 

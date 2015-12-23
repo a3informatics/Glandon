@@ -8,6 +8,10 @@ $(document).ready(function() {
   var formLabelElement = document.getElementById("formLabel");
   var groupIdentifierElement = document.getElementById("groupIdentifier");
   var groupLabelElement = document.getElementById("groupLabel");
+  var commonIdentifierElement = document.getElementById("commonIdentifier");
+  var commonLabelElement = document.getElementById("commonLabel");
+  var bcIdentifierElement = document.getElementById("bcIdentifier");
+  var bcLabelElement = document.getElementById("bcLabel");
   var itemIdentifierElement = document.getElementById("itemIdentifier");
   var itemLabelElement = document.getElementById("itemLabel");
   var itemEnableElement = document.getElementById("itemEnable");
@@ -16,10 +20,10 @@ $(document).ready(function() {
   var clEnableElement = document.getElementById("clEnable");
   var alertsId = document.getElementById("alerts")
   
-  var nodeKey;
+  var nextKeyId;
   var normal;
   var currentNode;
-  var currentThis;
+  var currentGRef;
   var bcCurrent;
   var bcCurrentRow;
   var bcSelect = $('#bcTable').DataTable( {
@@ -31,6 +35,8 @@ $(document).ready(function() {
           alert("data!")
         },
     "pageLength": 5,
+    "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+    "pagingType": "full",
     "bProcessing": true,
     "columns": [
       {"data" : "identifier", "width" : "50%"},
@@ -43,38 +49,27 @@ $(document).ready(function() {
   initData();
 
   // Draw the initial tree and select the form.
-  redraw();
-  selectForm();
+  setRoot();
 
   /**
    * Function to handle click on the D3 tree.
    * Show the node info. Highlight the node.
    */
   function click(node) {    
-    if (currentNode != null) {
-      clearNode(currentNode, currentThis);
+    if (currentGRef != null) {
+      clearNode(currentNode, currentGRef);
       if (currentNode.type == "Form") {
         saveForm(currentNode)
-      } else if (currentNode.type == "Group" || currentNode.type == "BCGroup") {
+      } else if (currentNode.type == "Group") {
         saveGroup(currentNode)
+      } else if (currentNode.type == "CommonGroup") {
+        saveCommon(currentNode)
       }
     }
-    if (node.type == "Form") {
-      selectForm();
-      displayForm(node);
-    } else if (node.type == "Group" || node.type == "BCGroup") {
-      selectGroup();
-      displayGroup(node);
-    } else if (node.type == "Item") {
-      selectItem();
-      displayItem(node);
-    } else if (node.type == "CL") {
-      selectCl();
-      displayCl(node);
-    }
+    displayNode(node)
     markNode1(this);
+    currentGRef = this;
     currentNode = node;
-    currentThis = this;
   }  
 
   /**
@@ -82,18 +77,16 @@ $(document).ready(function() {
    * Expand/delete the node clicked.
    */
   function dblClick(node) {
-    
     var index;
-
     if (node.hasOwnProperty('children')) {
       node.children = [];
       node.expand = true;
-      redraw();
+      displayTree(node.key);
     } else if (node.hasOwnProperty('save')) {
       node.children = [];
       node.children = node.save;
       node.expand = false;
-      redraw();
+      displayTree(node.key);
     }
   } 
 
@@ -102,6 +95,8 @@ $(document).ready(function() {
   */
   $('#formSave').click(function() {
     
+    var formSave;
+
     // Copy the definition. Removes the circulart references and 
     // preserves the structure fo rfurther editing.
     formSave = {};
@@ -132,106 +127,84 @@ $(document).ready(function() {
   });
 
   /*
-   * Functions to handle click on the update button.
+   * Functions to handle the form actions.
    */
   $('#formUpdate').click(function() {
-    if (currentNode == null) {
+    if (currentGRef == null) {
       var html = alertWarning("You need to select the form node.");
       displayAlerts(html);
     } else {
-      saveForm(currentNode)
-      redraw();
+      saveForm(currentNode);
+      displayTree(currentNode.key);
     }
-    //markNode(currentNode, currentThis);
   });
 
+  $('#formAddGroup').click(function() {
+    if (currentGRef == null) {
+      var html = alertWarning("You need to select the form node.");
+      displayAlerts(html);
+    } else {
+      var node = addGroup();
+      displayNode(node);
+      displayTree(node.key);  
+    }
+  });
+
+  /*
+  * Functions to handle the group actions
+  */
   $('#groupUpdate').click(function() {
-    if (currentNode == null) {
+    if (currentGRef == null) {
       var html = alertWarning("You need to select a group node.");
       displayAlerts(html);
     } else {
       saveGroup(currentNode)
-      redraw();
+      displayTree(currentNode.key);
     }
   });
   
-  $('#itemUpdate').click(function() {
-    if (currentNode == null) {
-      var html = alertWarning("You need to select a group node.");
-      displayAlerts(html);
-    } else {
-      saveItem(currentNode);
-    }
-  });
-  
-  $('#clUpdate').click(function() {
-    if (currentNode == null) {
-      var html = alertWarning("You need to select a group node.");
-      displayAlerts(html);
-    } else {
-      saveCl(currentNode)
-    }
-  });
-  
-  /*
-   * Functions to handle click on the add group button.
-   */
-  $('#formAddGroup').click(function() {
-    if (currentNode == null) {
-      var html = alertWarning("You need to select a group node.");
-      displayAlerts(html);
-    } else {
-      addGroup();
-      redraw();
-    }
-  });
-
   $('#groupAddGroup').click(function() {
-    if (currentNode == null) {
+    if (currentGRef == null) {
       var html = alertWarning("You need to select a group node.");
       displayAlerts(html);
     } else {
-      addGroup();
-      redraw();
+      var node = addGroup();
+      displayNode(node);
+      displayTree(node.key);  
     }
   });
 
-  /*
-   * Function to handle click on the Form Group add button.
-   */
-  $('#groupDeleteGroup').click(function() {
-    var parentNode;
-    if (currentNode.hasOwnProperty('children')) {
+  $('#groupDelete').click(function() {
+    if (currentNode.hasOwnProperty('save')) {
       var html = alertWarning("You need to delete the child nodes.");
       displayAlerts(html);
     } else {
-      parentNode = currentNode.parent
-      parentIndex = currentNode.index
-      parentNode.children.splice(parentIndex, 1);
-      if (parentNode.children.length == 0) {
-        parentNode.children = [];
-        parentNode.save = [];
-      }
-      setParent(parentNode);
-      redraw();
+      var node = deleteNode(currentNode);
+      displayNode(node);
+      displayTree(node.key);
     }     
   });
 
-  /*
-   * Functions to handle click on the BC add button.
-   */
-  $('#formAddBc').click(function() {
+  $('#groupAddCommon').click(function() {
     if (currentNode == null) {
-      var html = alertWarning("You need to select the form node.");
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else if (hasCommon(currentNode)) {
+      var html = alertWarning("Group already has a common node.");
       displayAlerts(html);
     } else {
-      addBc();
+      var node = addCommon();
+      displayNode(node);
+      displayTree(node.key);
     }
-  });
+  }); 
 
   $('#groupAddBc').click(function() {
     if (currentNode == null) {
       var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else if (bcCurrent ==  null) {
+      var html = alertWarning("You need to select a Biomedical Concept.");
       displayAlerts(html);
     } else {
       addBc();
@@ -239,7 +212,86 @@ $(document).ready(function() {
   }); 
 
   /*
-   * Function to handle click on the BC table.
+  * Functions to handle the common actions
+  */
+  $('#commonUpdate').click(function() {
+    if (currentGRef == null) {
+      var html = alertWarning("You need to select a common node.");
+      displayAlerts(html);
+    } else {
+      saveCommon(currentNode)
+      displayTree(currentNode.key);
+    }
+  });
+  
+  $('#commonDelete').click(function() {
+    if (currentNode.hasOwnProperty('save')) {
+      var html = alertWarning("You need to remove the child nodes.");
+      displayAlerts(html);
+    } else {
+      var node = deleteNode(currentNode);
+      displayNode(node);
+      displayTree(node.key);
+    }     
+  });
+
+  /*
+  * Functions to handle the BC actions
+  */
+  $('#bcDelete').click(function() {
+    //var node = deleteNode(currentNode);
+    //displayNode(node);
+    //displayTree(node.key);
+    notImplementedYet();     
+  });
+
+  /*
+  * Functions to handle the item actions
+  */
+  $('#itemUpdate').click(function() {
+    if (currentGRef == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      saveItem(currentNode);
+      displayTree(currentNode.key);
+    }
+  });
+  
+  $('#itemCommon').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select an item node.");
+      displayAlerts(html);
+    } else {
+      makeCommon(currentNode);
+    }
+  }); 
+
+  $('#itemRestore').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select an item node.");
+      displayAlerts(html);
+    } else {
+      restoreCommon(currentNode);
+      //notImplementedYet();
+    }
+  }); 
+
+  /*
+  * Functions to handle the code list items actions
+  */
+  $('#clUpdate').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      saveCl(currentNode)
+      displayTree(currentNode.key);
+    }
+  });
+  
+  /*
+   * Function to handle click on the BC selection table.
    */
   $('#bcTable tbody').on('click', 'tr', function () {
     handleDataTable(bcSelect, this);
@@ -252,7 +304,8 @@ $(document).ready(function() {
   function selectForm() {
     $("#formInfo").removeClass('hidden');
     $("#groupInfo").addClass('hidden');
-    $("#bcInfo").removeClass('hidden');
+    $("#bcInfo").addClass('hidden');
+    $("#commonInfo").addClass('hidden');
     $("#itemInfo").addClass('hidden');
     $("#clInfo").addClass('hidden');
   }
@@ -260,7 +313,26 @@ $(document).ready(function() {
   function selectGroup() {
     $("#formInfo").addClass('hidden');
     $("#groupInfo").removeClass('hidden');
+    $("#bcInfo").addClass('hidden');
+    $("#commonInfo").addClass('hidden');
+    $("#itemInfo").addClass('hidden');
+    $("#clInfo").addClass('hidden');
+  }
+  
+  function selectBC() {
+    $("#formInfo").addClass('hidden');
+    $("#groupInfo").addClass('hidden');
     $("#bcInfo").removeClass('hidden');
+    $("#commonInfo").addClass('hidden');
+    $("#itemInfo").addClass('hidden');
+    $("#clInfo").addClass('hidden');
+  }
+  
+  function selectCommon() {
+    $("#formInfo").addClass('hidden');
+    $("#groupInfo").addClass('hidden');
+    $("#bcInfo").addClass('hidden');
+    $("#commonInfo").removeClass('hidden');
     $("#itemInfo").addClass('hidden');
     $("#clInfo").addClass('hidden');
   }
@@ -269,6 +341,7 @@ $(document).ready(function() {
     $("#formInfo").addClass('hidden');
     $("#groupInfo").addClass('hidden');
     $("#bcInfo").addClass('hidden');
+    $("#commonInfo").addClass('hidden');
     $("#itemInfo").removeClass('hidden');
     $("#clInfo").addClass('hidden');
   }
@@ -277,28 +350,9 @@ $(document).ready(function() {
     $("#formInfo").addClass('hidden');
     $("#groupInfo").addClass('hidden');
     $("#bcInfo").addClass('hidden');
+    $("#commonInfo").addClass('hidden');
     $("#itemInfo").addClass('hidden');
     $("#clInfo").removeClass('hidden');
-  }
-
-  function initData () {
-    normal = true;
-    currentNode = null;
-    //currentThis = null;
-    bcCurrent = null;
-    bcCurrentRow = null;
-    nodeKey = 2; // 1 id the root node.
-  }
-
-  function setParent(node) {
-    if (node.hasOwnProperty('children')) {
-      for (i=0; i<node.children.length; i++) {
-        child = node.children[i];
-        child.parent = node;
-        child.index = i;
-        setParent(child);
-      }
-    }
   }
 
   /**
@@ -314,25 +368,39 @@ $(document).ready(function() {
     groupLabelElement.value = node.label;
   }
 
-  function displayItem(node) {
-    itemIdentifierElement.innerHTML = node.identifier;
-    itemLabelElement.innerHTML = node.label;
-    itemEnableElement.checked = node.enabled;
-    //itemIdentifierElement.value = node.identifer;
-    //itemLabelElement.value = node.label;
+  function displayBC(node) {
+    bcIdentifierElement.innerHTML = node.identifier;
+    bcLabelElement.innerHTML = node.label;
   }
 
-  function displayQuestion(node) {
-    itemIdentifierElement.value = node.identifier;
-    itemLabelElement.value = node.label;
+  function displayCommon(node) {
+    commonIdentifierElement.value = node.identifier;
+    commonLabelElement.value = node.label;
+  }
+
+  function displayItem(node) {
+    var parentNode;
+    itemIdentifierElement.innerHTML = node.identifier;
+    itemLabelElement.innerHTML = node.label;
+    parentNode = node.parent;
+    if (isCommon(parentNode)) {
+      $("#itemEnable").prop('disabled', true);
+      $("#itemUpdate").prop('disabled', true);
+      $("#itemCommon").prop('disabled', true);
+      $("#itemRestore").prop('disabled', false);
+    } else {
+      $("#itemEnable").prop('disabled', false);
+      $("#itemUpdate").prop('disabled', false);
+      $("#itemCommon").prop('disabled', false);
+      $("#itemRestore").prop('disabled', true);
+      itemEnableElement.checked = node.enabled;
+    }
   }
 
   function displayCl(node) {
     clIdentifierElement.innerHTML = node.identifier;
     clLabelElement.innerHTML = node.label;
     clEnableElement.checked = node.enabled;
-    //clIdentifierElement.value = node.identifier;
-    //clLabelElement.value = node.label;
   }
 
   /**
@@ -350,6 +418,12 @@ $(document).ready(function() {
     node.name = node.label;
   }
 
+  function saveCommon(node) {
+    node.identifier = commonIdentifierElement.value;
+    node.label = commonLabelElement.value;
+    node.name = node.label;
+  }
+
   function saveItem(node) {
     node.enabled = itemEnableElement.checked;
   }
@@ -358,30 +432,151 @@ $(document).ready(function() {
     node.enabled = clEnableElement.checked;
   }
 
+  function makeCommon(node) {
+    var child;
+    var item;
+    var commonGroup;
+    var otherNodes = [];
+    var bcParent = node.parent;
+    var groupParent = bcParent.parent;
+    if (bcParent != null && groupParent != null) {
+      for (var i=0; i<groupParent.save.length; i++) {
+        child = groupParent.save[i];
+        if (child.type == 'CommonGroup') {
+          commonGroup = child;
+        } else if (child.type == 'BCGroup') {
+          for (var j=0; j<child.save.length; j++) {
+            item = child.save[j];
+            if ('bridgPath' in item) {
+              if (node.key == item.key) {
+                // Same node, ignore.
+              } else if (node.bridgPath == item.bridgPath) {
+                otherNodes.push(item);
+
+                // Delete the item from its current position
+                item.realParent = item.parent;
+                child.save.splice(item.index, 1);
+                setParent(child);
+              }
+            }
+          }
+        }
+      }
+      if (commonGroup != null) {
+        node.otherCommon = [];
+        node.otherCommon = otherNodes
+        if (!commonGroup.hasOwnProperty('save')) {
+          commonGroup.children = [];
+          commonGroup.save = [];
+        }  
+        commonGroup.children.push(node);
+        commonGroup.save = commonGroup.children;
+
+        // Delete the clicked-on node from current position.
+        node.realParent = node.parent;
+        //bcParent.children.splice(node.index, 1);
+        bcParent.save.splice(node.index, 1);
+        setParent(bcParent);
+
+        // Display the tree. Will need to set the parents in the new common group.
+        setParent(commonGroup);
+        displayNode(commonGroup);
+        displayTree(commonGroup.key);  
+
+      } else {
+        var html = alertWarning("Common group not found within this group.");
+        displayAlerts(html);
+      }
+    } else {
+      if (bcParent == null && groupParent == null) {
+        var html = alertWarning("Something has gone wrong! Cannot find Biomedical Concept and the Group parent nodes.");
+      } else if (bcParent == null) {
+        var html = alertWarning("Something has gone wrong! Cannot find Biomedical Concept parent nodes.");
+      } else if (groupParent == null) {
+        var html = alertWarning("Something has gone wrong! Cannot find Group parent nodes.");
+      }
+      displayAlerts(html);
+    }
+  }
+
+  function restoreCommon(node) {
+    var item;
+    var parentNode;
+    var index;
+
+    // Restore the 'other' nodes. These are the copies.
+    for (i=0; i<node.otherCommon.length; i++) {
+      item = node.otherCommon[i];
+      parentNode = item.realParent
+      index = item.index;
+      parentNode.save.splice(index, 0, item);
+    }
+
+    // Restore the 'main' node.
+    parentNode = node.realParent
+    index = node.index;
+    parentNode.save.splice(index, 0, node);
+
+    // Delete the item from its current position and clean out the other
+    // common nodes.
+    node.otherCommon = [];
+    deleteNode(node);
+
+    // Draw the tree. Set the root as the selected node.
+    setRoot();
+  }
+
+  function addCommon() {
+    if (!currentNode.hasOwnProperty('save')) {
+      currentNode.children = [];
+      currentNode.save = [];
+    }   
+    var myHash = {};
+    myHash.identifier = "New Common";
+    myHash.name = "Common";
+    myHash.label = "Common";
+    myHash.type = "CommonGroup";
+    myHash.parent = currentNode;
+    myHash.index = 0;
+    myHash.id = 'Not set';
+    myHash.key = nextKeyId;
+    nextKeyId += 1;
+    currentNode.children.unshift(myHash);
+    currentNode.save = currentNode.children;
+    return currentNode.children[0];
+  }
+
+  /*
+  * Group generic functions
+  */
   function addGroup() {
     var index;
-    if (currentNode.hasOwnProperty('children')) {
-      index = currentNode.children.length;
+    if (currentNode.hasOwnProperty('save')) {
+      index = currentNode.save.length;
     } else {
       currentNode.children = [];
       currentNode.save = [];
       index = 0;
     }     
     currentNode.children[index] = {};
-    currentNode.children[index].identifier = "New Group"
-    currentNode.children[index].name = "Not set"
-    currentNode.children[index].label = "Not set"
-    currentNode.children[index].type = "Group"
-    currentNode.children[index].parent = currentNode
-    currentNode.children[index].index = index
-    currentNode.save = currentNode.children
+    currentNode.children[index].identifier = "New Group";
+    currentNode.children[index].name = "Group";
+    currentNode.children[index].label = "Group";
+    currentNode.children[index].type = "Group";
+    currentNode.children[index].parent = currentNode;
+    currentNode.children[index].index = index;
+    currentNode.children[index].id = 'Not set';
+    currentNode.children[index].key = nextKeyId;
+    nextKeyId += 1;
+    currentNode.save = currentNode.children;
+    return currentNode.children[index];
   }
 
   function addBc() {
     var parentNode;
     var data = bcSelect.row(bcCurrentRow).data();
-
-    //alert ("BC id=" + data.id);
+    
+    bcNode = null;
     $.ajax({
       url: "../cdisc_bcs/" + data.id,
       data: {
@@ -391,12 +586,13 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(result){
         var bc = $.parseJSON(JSON.stringify(result));
+        var bcNode;
         var index;
         var pIndex;
         var cIndex;
         var i,j;
-        if (currentNode.hasOwnProperty('children')) {
-          index = currentNode.children.length;
+        if (currentNode.hasOwnProperty('save')) {
+          index = currentNode.save.length;
         } else {
           currentNode.children = [];
           currentNode.save = [];
@@ -404,39 +600,50 @@ $(document).ready(function() {
         }     
         currentNode.children[index] = {};
         currentNode.children[index].id = bc.id;
+        currentNode.children[index].parent = currentNode;
         currentNode.children[index].namespace = bc.namespace;
         currentNode.children[index].name = bc.label;
         currentNode.children[index].identifier = bc.identifier;
         currentNode.children[index].label = bc.label;
         currentNode.children[index].type = "BCGroup";
-        //currentNode.children[index].label = bc.label;
+        currentNode.children[index].key = nextKeyId;
+        currentNode.children[index].index = index;
         currentNode.children[index].children = [];
-        nodeKey += 1
+        bcNode = currentNode.children[index];
+        nextKeyId += 1;
         pIndex = 0;
         for (i=0; i<bc.properties.length; i++) {
           var property = bc.properties[i];
           if (property[1].Enabled && property[1].Collect) {
             currentNode.children[index].children[pIndex] = {};
             currentNode.children[index].children[pIndex].id = property[1].id;
+            currentNode.children[index].children[pIndex].parent = currentNode.children[index];
             currentNode.children[index].children[pIndex].namespace = property[1].namespace;
             currentNode.children[index].children[pIndex].name = property[1].Alias;
             currentNode.children[index].children[pIndex].type = "Item";
             currentNode.children[index].children[pIndex].identifer = property[1].Name;
+            currentNode.children[index].children[pIndex].bridgPath = property[1].bridgPath;
+            currentNode.children[index].children[pIndex].index = pIndex;
             currentNode.children[index].children[pIndex].label = property[1].Alias;
             currentNode.children[index].children[pIndex].enabled = true;
+            currentNode.children[index].children[pIndex].key = nextKeyId;
+            nextKeyId += 1;
             var values = property[1].Values
             if (values.length > 0) {
               currentNode.children[index].children[pIndex].children = [];
               for (j=0; j<values.length; j++) {
                 currentNode.children[index].children[pIndex].children[j] = {};
-                //var keys = Object.keys(values[j].clis); 
                 currentNode.children[index].children[pIndex].children[j].id = values[j].id;
+                currentNode.children[index].children[pIndex].children[j].parent = currentNode.children[index].children[pIndex];
                 currentNode.children[index].children[pIndex].children[j].namespace = values[j].namespace;
                 currentNode.children[index].children[pIndex].children[j].name = values[j].cli.notation;
                 currentNode.children[index].children[pIndex].children[j].type = "CL";
                 currentNode.children[index].children[pIndex].children[j].identifier = values[j].cli.identifier;
+                currentNode.children[index].children[pIndex].children[j].index = j;
                 currentNode.children[index].children[pIndex].children[j].label = values[j].cli.notation;
                 currentNode.children[index].children[pIndex].children[j].enabled = true;
+                currentNode.children[index].children[pIndex].children[j].key = nextKeyId;
+                nextKeyId += 1;
               }
               currentNode.children[index].children[pIndex].save = currentNode.children[index].children[pIndex].children;
             }
@@ -444,24 +651,67 @@ $(document).ready(function() {
           }
         }
         currentNode.children[index].save = currentNode.children[index].children;
-        redraw();
+        currentNode.save = currentNode.children;
+        
+        /* Now check for a common group and, if present, see if anything needs
+        * moving.
+        */
+        if (hasCommon(currentNode)) {
+          var item;
+          var commonItem;
+          var commonNode = currentNode.save[0];
+          if (commonNode.hasOwnProperty('save')) {
+            for (i=0; i<commonNode.save.length; i++) {
+              commonItem = commonNode.save[i];
+              for (j=0; j<bcNode.save.length; j++) {
+                item = bcNode.save[j];
+                if (item.bridgPath == commonItem.bridgPath) {
+                  // Delete the item from its current position
+                  item.realParent = item.parent;
+                  bcNode.save.splice(item.index, 1);
+                  //bcNode.children.splice(item.index, 1);
+                  setParent(bcNode);
+                  // And add to the common other nodes  
+                  if (!commonNode.hasOwnProperty('otherCommon')) {
+                    commonNode.otherCommon = [];
+                  }
+                  commonNode.otherCommon.push(item);
+                }
+              }
+            }
+          }
+        }
+
+        // And display everything.
+        displayNode(currentNode);
+        displayTree(currentNode.key);
       }
-    });   
+    });
   }
 
   /**
    *  Function to draw the tree
    */
-  function redraw () {
+  function displayTree(nodeKey) {
     if (normal) {
       treeNormal(d3Div, formDefinition, click, dblClick);
     } else {
       treeCircular(d3Div, formDefinition, click, dblClick);
     }
-    currentNode = null;
-    currentThis = null;
+    var gRef = findNode(nodeKey);
+    currentGRef = gRef;
+    currentNode = gRef.__data__;
+    markNode1(currentGRef);    
   }
   
+  function notImplementedYet() {
+    var html = alertWarning("Function not implemented yet.");
+    displayAlerts(html);
+  }
+
+  /*
+  * Other utility functions
+  */
   function handleDataTable(table,ref) {
     // Toggle the highlight for the row
     if (bcCurrent !=  null) {
@@ -482,18 +732,121 @@ $(document).ready(function() {
     var key;
     var i;
     for (key in sourceNode) {
-      if (key == 'parent' || key == 'children' || key == 'save') {
+      if (key == 'parent' || key == 'realParent' || key == 'children' || key == 'otherCommon' || key == 'save') {
       } else {
         targetNode[key] = sourceNode[key]
       }
     }
-    if (sourceNode.hasOwnProperty('children')) {
+    if (sourceNode.hasOwnProperty('save')) {
       targetNode.children = [];
-      for (i=0; i<sourceNode.children.length; i++) {
+      for (i=0; i<sourceNode.save.length; i++) {
         //sourceChild = sourceNode.children[i];
         targetNode.children[i] = {}; 
-        copyNode(sourceNode.children[i], targetNode.children[i]);
+        copyNode(sourceNode.save[i], targetNode.children[i]);
       }
+    } else if (sourceNode.hasOwnProperty('otherCommon')) {
+      targetNode.otherCommon = [];
+      for (i=0; i<sourceNode.otherCommon.length; i++) {
+        //sourceChild = sourceNode.children[i];
+        targetNode.otherCommon[i] = {}; 
+        copyNode(sourceNode.otherCommon[i], targetNode.otherCommon[i]);
+      }
+    }
+  }
+
+  function initData () {
+    normal = true;
+    currentNode = null;
+    currentGRef = null;
+    bcCurrent = null;
+    bcCurrentRow = null;
+    nextKeyId = parseInt(formDefinition.nextKeyId); // 1 id the root node.
+    setParent(formDefinition);
+    setSave(formDefinition);
+  }
+
+  function setRoot() {
+    displayTree(1);
+    selectForm();
+    displayForm(currentNode);
+  }
+
+  function setParent(node) {
+    if (node.hasOwnProperty('save')) {
+      for (i=0; i<node.save.length; i++) {
+        child = node.save[i];
+        child.parent = node;
+        child.index = i;
+        setParent(child);
+      }
+    }
+  }
+
+  function setSave(node) {
+    if (node.hasOwnProperty('children')) {
+      node.save = node.children;
+      for (i=0; i<node.children.length; i++) {
+        child = node.children[i];
+        setSave(child);
+      }
+    }
+  }
+
+  function deleteNode(node) {
+    var parentNode = node.parent
+    var parentIndex = node.index
+    parentNode.save.splice(parentIndex, 1);
+    if (parentNode.save.length == 0) {
+      delete parentNode.children;
+      delete parentNode.save;
+    }
+    setParent(parentNode);
+    return parentNode;
+  }
+
+  function displayNode(node) {
+    if (node.type == "Form") {
+      selectForm();
+      displayForm(node);
+    } else if (node.type == "Group") {
+      selectGroup();
+      displayGroup(node);
+    } else if (node.type == "BCGroup") {
+      selectBC();
+      displayBC(node);
+    } else if (node.type == "CommonGroup") {
+      selectCommon();
+      displayCommon(node);
+    } else if (node.type == "Item") {
+      selectItem();
+      displayItem(node);
+    } else if (node.type == "CL") {
+      selectCl();
+      displayCl(node);
+    }
+  }
+
+  /*
+  * Common node functions
+  */
+  function hasCommon(node) {
+    if (node.hasOwnProperty('save')) {
+      child = node.save[0];
+      if (child.type == 'CommonGroup') {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }  
+  }
+
+  function isCommon(node) {
+    if (node.type == 'CommonGroup') {
+      return true;
+    } else {
+      return false;
     }
   }
   
