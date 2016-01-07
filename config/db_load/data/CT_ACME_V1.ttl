@@ -1,7 +1,7 @@
 @prefix :      <http://www.assero.co.uk/MDRThesaurus/ACME/V1#> .
 @prefix isoI:  <http://www.assero.co.uk/ISO11179Identification#> .
-@prefix isoR:  <http://www.assero.co.uk/isoR#> .
-@prefix isoT:  <http://www.assero.co.uk/isoT#> .
+@prefix isoR:  <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoT:  <http://www.assero.co.uk/ISO11179Types#> .
 @prefix iso25964: <http://www.assero.co.uk/ISO25964#> .
 @prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -11,13 +11,13 @@
 
 :TH-SPONSOR_CT-1  
         a                              iso25964:Thesaurus ;
-        rdfs:label                     "" ;
+        rdfs:label                     "CDISC Extensions" ;
         isoI:hasIdentifier             mdrItems:SI-SPONSOR_CT-1 ;
         isoI:hasState                  mdrItems:RS-SPONSOR_CT ;
         isoT:changeDescription         "Creation" ;
         isoT:creationDate              "2015-11-22 13:29:50  0000" ;
-        isoT:explanoratoryComment      "" ;
-        isoT:lastChangedDate           "" ;
+        isoT:explanatoryComment      "" ;
+        isoT:lastChangeDate           "" ;
         isoT:origin                    "" .
 
 mdrItems:RS-SPONSOR_CT  
@@ -26,33 +26,33 @@ mdrItems:RS-SPONSOR_CT
         isoR:administrativeStatus        "" ;
         isoR:byAuthority                 mdrItems:RA-123456789 ;
         isoR:effectiveDate               "" ;
-        isoR:previousState               "" ;
-        isoR:registrationStatus          "" ;
+        isoR:previousState               "Qualified" ;
+        isoR:registrationStatus          "Standard" ;
         isoR:unresolvedIssue             "" .
 
 mdrItems:SI-SPONSOR_CT-1
         a                  isoI:ScopedIdentifier ;
         isoI:hasScope      mdrItems:NS-ACME ;
-        isoI:identifier    "ACME Terminology" ;
+        isoI:identifier    "CDISC_EXT" ;
         isoI:version       1 ;
         isoI:versionLabel  "0.1" .
 
 :MDRT-A00001  
         a                       iso25964:ThesaurusConcept ;
-        iso25964:definition     "Additional Vital Sign Test Codes" ;
-        iso25964:extensible     "" ;
+        rdfs:label              "Additional Vital Sign Test Codes" ;
+        iso25964:definition     "A set of additional Vital Sign Test Codes to extend the CDISC set." ;
         iso25964:identifier     "A00001" ;
         iso25964:notation       "VSTEST" ;
         iso25964:preferredTerm  "" ;
         iso25964:synonym        "" ;
-        skos:inScheme           :TH-SPONSOR_CT-1 ;
-        skos:narrower           :MDRT-A00003 ;
-        skos:narrower           :MDRT-A00002 .
+        iso25964:inScheme       :TH-SPONSOR_CT-1 ;
+        iso25964:narrower       :MDRT-A00003 ;
+        iso25964:narrower       :MDRT-A00002 .
 
 :MDRT-A00002  
         a                       iso25964:ThesaurusConcept ;
-        iso25964:definition     "APGAR Score" ;
-        iso25964:extensible     "" ;
+        rdfs:label              "APGAR Score" ;
+        iso25964:definition     "An APGAR Score" ;
         iso25964:identifier     "A00002" ;
         iso25964:notation       "APGAR" ;
         iso25964:preferredTerm  "" ;
@@ -60,8 +60,8 @@ mdrItems:SI-SPONSOR_CT-1
 
 :MDRT-A00003  
         a                       iso25964:ThesaurusConcept ;
-        iso25964:definition     "Mid upper arm circumference" ;
-        iso25964:extensible     "" ;
+        rdfs:label              "Mid upper arm circumference" ;
+        iso25964:definition     "The measurement of the mid upper arm circumference" ;
         iso25964:identifier     "A00003" ;
         iso25964:notation       "MUAC" ;
         iso25964:preferredTerm  "" ;

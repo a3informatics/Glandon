@@ -52,7 +52,7 @@ class IsoItem
   def self.exists?(identifier, registrationAuthority)
     ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + registrationAuthority.namespace.id)
-    result = ScopedIdentifier.exists?(identifier, registrationAuthority.namespace.id)
+    result = IsoScopedIdentifier.exists?(identifier, registrationAuthority.namespace.id)
   end
 
   # Note: The id is the identifier for the enclosing managed object. 
@@ -79,8 +79,8 @@ class IsoItem
       "      :" + id + " isoT:origin ?c . \n" +
       "      :" + id + " isoT:changeDescription ?d . \n" +
       "      :" + id + " isoT:creationDate ?e . \n" +
-      "      :" + id + " isoT:lastChangedDate  ?f . \n" +
-      "      :" + id + " isoT:explanoratoryComment ?g . \n" +
+      "      :" + id + " isoT:lastChangeDate  ?f . \n" +
+      "      :" + id + " isoT:explanatoryComment ?g . \n" +
       "    } \n" +
       "  } \n" +
       "}"
@@ -110,9 +110,9 @@ class IsoItem
         object.rdfType = rdfType
         ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
         if iiSet.length == 1
-          object.scopedIdentifier = ScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
+          object.scopedIdentifier = IsoScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
           if rsSet.length == 1
-            object.registrationState = RegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
+            object.registrationState = IsoRegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
             object.origin = oSet[0].text
             object.changeDescription = descSet[0].text
             object.creationDate = dateSet[0].text
@@ -157,8 +157,8 @@ class IsoItem
       "      ?a isoT:origin ?c . \n" +
       "      ?a isoT:changeDescription ?d . \n" +
       "      ?a isoT:creationDate ?e . \n" +
-      "      ?a isoT:lastChangedDate  ?f . \n" +
-      "      ?a isoT:explanoratoryComment ?g . \n" +
+      "      ?a isoT:lastChangeDate  ?f . \n" +
+      "      ?a isoT:explanatoryComment ?g . \n" +
       "    } \n" +
       "  } \n" +
       "}"
@@ -187,9 +187,9 @@ class IsoItem
         object.rdfType = rdfType
         object.label = label
         if iiSet.length == 1
-          object.scopedIdentifier = ScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
+          object.scopedIdentifier = IsoScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
           if rsSet.length == 1
-            object.registrationState = RegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
+            object.registrationState = IsoRegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
             object.origin = oSet[0].text
             object.changeDescription = descSet[0].text
             object.creationDate = dateSet[0].text
@@ -265,7 +265,7 @@ class IsoItem
     identifier = params[:identifier]
     object = self.new
     object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
-    object.scopedIdentifier = ScopedIdentifier.create(params, identifier, scopeId)
+    object.scopedIdentifier = IsoScopedIdentifier.create(params, identifier, scopeId)
     object.registrationState = nil
     #object.isoType = C_Identified
     object.origin = ""
@@ -308,7 +308,7 @@ class IsoItem
     version = params[:version]
 
     # Set the registration authority to teh owner
-    ra = RegistrationAuthority.owner
+    ra = IsoRegistrationAuthority.owner
     orgName = ra.namespace.shortName
     scopeId = ra.namespace.id
 
@@ -327,8 +327,8 @@ class IsoItem
     object = self.new
     object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
     object.namespace = useNs
-    object.scopedIdentifier = ScopedIdentifier.create(params, identifier, scopeId)
-    object.registrationState = RegistrationState.create(params, identifier)
+    object.scopedIdentifier = IsoScopedIdentifier.create(params, identifier, scopeId)
+    object.registrationState = IsoRegistrationState.create(params, identifier)
     #object.isoType = C_Administered
     object.origin = ""
     object.changeDescription = "Creation"
@@ -349,8 +349,8 @@ class IsoItem
       "  :" + object.id + " isoT:origin \"\"^^xsd:string . \n" +
       "  :" + object.id + " isoT:changeDescription \"Creation\"^^xsd:string . \n" +
       "  :" + object.id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +
-      "  :" + object.id + " isoT:lastChangedDate \"\"^^xsd:string . \n" +
-      "  :" + object.id + " isoT:explanoratoryComment \"\"^^xsd:string . \n" +
+      "  :" + object.id + " isoT:lastChangeDate \"\"^^xsd:string . \n" +
+      "  :" + object.id + " isoT:explanatoryComment \"\"^^xsd:string . \n" +
       "  :" + object.id + " rdf:type " + schemaPrefix + ":" + rdfType + " . \n" +
       "  :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
     "}"

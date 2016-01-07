@@ -1,4 +1,4 @@
-<h3>Impact Analysis: <%= @cdiscCli.preferredTerm %> <small>(CDISC, <%= @cdiscCli.identifier %>, <%= @cdiscTerm.versionLabel %>, V<%= @cdiscTerm.version %>)</small></h3>
+<%= render partial: "shared/stdChildTitle", :locals => {:title => "Impact Analysis:", :label => @cdiscCli.label, :identifier => @cdiscCli.identifier} %>
 <div class="col-md-12">
 	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">

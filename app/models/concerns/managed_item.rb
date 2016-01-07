@@ -38,7 +38,7 @@ class ManagedItem
     ra = RegistrationAuthority.owner
     ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + ra.namespace.id)
-    result = ScopedIdentifier.exists?(identifier, ra.namespace.id)
+    result = IsoScopedIdentifier.exists?(identifier, ra.namespace.id)
 
   end
 
@@ -71,8 +71,8 @@ class ManagedItem
       "      :" + id + " isoT:origin ?c . \n" +
       "      :" + id + " isoT:changeDescription ?d . \n" +
       "      :" + id + " isoT:creationDate ?e . \n" +
-      "      :" + id + " isoT:lastChangedDate  ?f . \n" +
-      "      :" + id + " isoT:explanoratoryComment ?g . \n" +
+      "      :" + id + " isoT:lastChangeDate  ?f . \n" +
+      "      :" + id + " isoT:explanatoryComment ?g . \n" +
       "    } \n" +
       "  } \n" +
       "}"
@@ -98,9 +98,9 @@ class ManagedItem
         object.id = id
         object.namespace = ns
         object.label = label
-        object.scopedIdentifier = ScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
+        object.scopedIdentifier = IsoScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
         if rsSet.length == 1
-          object.registrationState = RegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
+          object.registrationState = IsoRegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
           object.origin = oSet[0].text
           object.changeDescription = descSet[0].text
           object.creationDate = dateSet[0].text
@@ -136,7 +136,7 @@ class ManagedItem
     
     object = self.new
     object.id = ModelUtility.buildCidIdentifier(prefix, uid)
-    object.scopedIdentifier = ScopedIdentifier.create(params, uid, scopeId)
+    object.scopedIdentifier = IsoScopedIdentifier.create(params, uid, scopeId)
     object.registrationState = nil
     object.type = C_II
     object.origin = ""
@@ -193,8 +193,8 @@ class ManagedItem
     object = self.new
     object.id = ModelUtility.buildCidIdentifier(prefix, uid)
     object.namespace = useNs
-    object.scopedIdentifier = ScopedIdentifier.create(params, uid, scopeId)
-    object.registrationState = RegistrationState.create(params, uid)
+    object.scopedIdentifier = IsoScopedIdentifier.create(params, uid, scopeId)
+    object.registrationState = IsoRegistrationState.create(params, uid)
     object.type = C_AI
     object.origin = ""
     object.changeDescription = "Creation"
@@ -211,8 +211,8 @@ class ManagedItem
       " :" + object.id + " isoT:origin \"\"^^xsd:string . \n" +
       " :" + object.id + " isoT:changeDescription \"Creation\"^^xsd:string . \n" +
       " :" + object.id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +
-      " :" + object.id + " isoT:lastChangedDate \"\"^^xsd:string . \n" +
-      " :" + object.id + " isoT:explanoratoryComment \"\"^^xsd:string . \n" +
+      " :" + object.id + " isoT:lastChangeDate \"\"^^xsd:string . \n" +
+      " :" + object.id + " isoT:explanatoryComment \"\"^^xsd:string . \n" +
       " :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
     #  " :" + object.id + " rdfs:comment \"\"^^xsd:string . \n" +
     "}"

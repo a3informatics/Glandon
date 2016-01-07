@@ -26,7 +26,7 @@
 					<td><%= form.version %></td>
 					<td><%= link_to "Show", form_path(:id => form.id, :namespace => form.namespace), :class => "btn btn-primary btn-xs" %></td>
 					<td><%= link_to "View", view_forms_path(:id => form.id, :namespace => form.namespace), :class => "btn btn-primary btn-xs" %></td>
-					<td><%= link_to "Status", edit_registration_state_path(:id => form.registrationState.id), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "Status", edit_iso_registration_state_path(:id => form.registrationState.id), :class => "btn btn-primary btn-xs" %></td>
 					<td><%= link_to "Triples", view_dashboard_index_path(:id => form.id, :namespace => form.namespace), :class => "btn btn-warning btn-xs" %></td>
 		  		</tr>
 			<% end %>

@@ -6,74 +6,56 @@ class CdiscClsController < ApplicationController
     @cdiscCls = CdiscCl.all
   end
   
-  def new
-  end
-  
-  def create
-  end
-
-  def update
-  end
-
-  def edit
-  end
-
   def compare
     
     # Get the parameters
     type = params[:type]
     id = params[:id]
-    newId = params[:new]
-    oldId = params[:old]
+    newTermId = params[:newTermId]
+    newTermNs = params[:newTermNs]
+    oldTermId = params[:oldTermId]
+    oldTermNs = params[:oldTermNs]
     
     # Get the new and old terminologies and the Code Lists
-    nCT = CdiscTerm.find(newId)
-    nCl = CdiscCl.find(id, nCT)
-    oCT = CdiscTerm.find(oldId)
-    oCl = CdiscCl.find(id, oCT)    
-
+    @newCdiscTerm = CdiscTerm.find(newTermId, newTermNs, false)
+    @oldCdiscTerm = CdiscTerm.find(oldTermId, oldTermNs, false)
+    
     # Build the Code List Item differences. Filter if required.
     data = Array.new
-    clisForCl(id, nCT, data)
-    clisForCl(id, oCT, data)   
+    @newCl = clisForCl(id, @newCdiscTerm, data)
+    @oldCl = clisForCl(id, @oldCdiscTerm, data)   
     @CliResults = buildResults(data)
     if type != "ALL"
       @CliResults = filterResults(@CliResults, type)
     end
 
     # Build the difference in the Code List info
+    #yyy=xxx
     @ClResults = Array.new
     result = Hash.new
-    result = currentCL(oCT, oCl)
+    result = currentCL(@oldCdiscTerm, @oldCl)
     @ClResults.push(result)
-    result = compareCL(nCT, oCl, nCl)
+    result = compareCL(@newCdiscTerm, @oldCl, @newCl)
     @ClResults.push(result)
-    
-    # Set the key parameters
-    @id = oCl.id
-    @identifier = oCl.identifier
-    @title = oCl.preferredTerm
-    
   end
   
-  def history
-    
+  def changes    
     id = params[:id]
     data = Array.new
     cdiscTerms = CdiscTerm.all()
-    cdiscTerms.each do |ct|
+    cdiscTerms.each do |key, ct|
     	clisForCl(id, ct, data)
     end
     @CliResults = buildResults(data)
       
     # Get the CLI object from each version of the terminology
-    data = Array.new
-    cdiscTerms = CdiscTerm.all()
-  	cdiscTerms.each do |ct|
-      cdiscCl = CdiscCl.find(id, ct)
-      temp = {:term => ct, :cl => cdiscCl}
-      data.push(temp)        
-    end
+    #data = Array.new
+    #cdiscTerms = CdiscTerm.all()
+  	#cdiscTerms.each do |key, ct|
+    #  cdiscCl = CdiscCl.find(id, ct.namespace)
+    #  temp = {:term => ct, :cl => cdiscCl}
+    #  data.push(temp)        
+    #end
     
     # Now compare. Note there may well be nil entries
     @ClResults = Array.new
@@ -105,38 +87,29 @@ class CdiscClsController < ApplicationController
     end   
   end
   
-  def destroy
-  end
-
   def show
     id = params[:id]
-    termId = params[:termId]
-    @cdiscTerm = CdiscTerm.find(params[:termId])
-    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
-    @cdiscCl = CdiscCl.find(id, @cdiscTerm)
-    @cdiscClis = CdiscCli.allForCl(id, @cdiscTerm)
+    namespace = params[:namespace]
+    @cdiscCl = CdiscCl.find(id, namespace)
   end
   
 private
 
   def this_params
-    params.require(:cdisc_term).permit(:id, :termId)
+    params.require(:cdisc_term).permit(:id, :namespace)
   end
 
   def clisForCl(id, cdiscTerm, data)
   
-    cdiscCl = CdiscCl.find(id, cdiscTerm)
+    cdiscCl = CdiscCl.find(id, cdiscTerm.namespace)
   	if cdiscCl != nil
-      if @cdiscCl == nil
-        @cdiscCl = cdiscCl
-      end
-      clis = CdiscCli.allForCl(id, cdiscTerm)
+      clis = CdiscCl.allChildren(id, cdiscTerm.namespace)
     else
       clis = nil
     end
     temp = {:term => cdiscTerm, :cl => cdiscCl, :cli => clis}
     data.push(temp)        
-
+    return cdiscCl
   end
 
   def buildResults (data)
@@ -157,7 +130,7 @@ private
             currClis.each do |cliId, currCli|
               if prevClis.has_key?(cliId)
                 prevCli = prevClis[cliId]
-                if currCli.diff?(prevCli)
+                if CdiscCli.diff?(currCli, prevCli)
                   mark = "M"
                 else
                   mark = "."

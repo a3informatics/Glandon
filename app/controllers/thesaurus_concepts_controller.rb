@@ -2,10 +2,6 @@ class ThesaurusConceptsController < ApplicationController
  
   before_action :authenticate_user!
   
-  def index
-    @thesaurusConcepts = ThesaurusConcept.all
-  end
-  
   def new
     @thesaurusConcept = ThesaurusConcept.new
   end
@@ -15,13 +11,13 @@ class ThesaurusConceptsController < ApplicationController
       @thesaurusConcept = ThesaurusConcept.create(the_params)
     end
     redirect_to thesaurus_concepts_path
-    
   end
 
-  def update
-  end
-
-  def edit
+  def impact
+    id = params[:id]
+    namespace = params[:namespace]
+    @thesaurusConcept = ThesaurusConcept.find(id, namespace)
+    @bcs = CdiscBc.impact(params)
   end
 
   def destroy
@@ -31,7 +27,9 @@ class ThesaurusConceptsController < ApplicationController
   end
 
   def show
-    redirect_to thesaurus_concepts_path
+    id = params[:id]
+    namespace = params[:namespace]
+    @thesaurusConcept = ThesaurusConcept.find(id, namespace)
   end
   
   def showD3

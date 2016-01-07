@@ -1,0 +1,23 @@
+<h3>Search: <%= @cdiscTerm.label %></h3>
+<div class="col-md-12">
+	<h4>Details</h4>
+	<table id="searchTable" class="table table-striped table-bordered table-condensed">
+	  	<thead>
+			<tr>
+			    <th>Identifer</th>
+			    <th>Notation</th>
+			    <th>Definition</th>
+			    <th>Synonym</th>
+			    <th>Preferred Term</th>
+			    <th>CL</th>
+			    <th>Ext</th>
+		  	</tr>
+		</thead>
+		<tbody>
+			<tr>
+			</tr>
+		</tbody>
+	</table>
+	<input type="hidden" id="termId" value="<%= @cdiscTerm.id %>">
+	<input type="hidden" id="namespace" value="<%= @cdiscTerm.namespace %>" %>	
+</div>

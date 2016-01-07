@@ -6,6 +6,17 @@ class FormsController < ApplicationController
 
   def index
     @forms = Form.all
+    respond_to do |format|
+      format.html 
+      format.json do
+        results = {}
+        results[:data] = []
+        @forms.each do |key, item|
+          results[:data] << {:identifier => item.identifier, :label => item.label}
+        end
+        render json: results
+      end
+    end
   end
   
   def placeholder_new

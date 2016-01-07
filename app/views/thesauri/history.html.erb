@@ -1,0 +1,15 @@
+<h3>History: <%= @identifier %></h3>
+<div class="col-md-12">
+	<table id="main" class="table table-striped table-bordered table-condensed">
+		<%= render partial: "shared/stdInstanceHeader" %>
+		<tbody>
+			<% @thesauri.each do |key, item| %>
+				<%= render partial: "shared/stdInstanceRow", :locals => {:item => item, 
+	  				:showPath => thesauri_path(:id => item.id, :namespace => item.namespace), 
+	  				:searchPath => search_thesauri_index_path(:id => item.id, :namespace => item.namespace), 
+	  				:viewPath => view_thesauri_index_path(:id => item.id, :namespace => item.namespace)} %>
+			<% end %>				
+		</tbody>
+	</table>
+	<%= link_to "New", new_thesauri_path, :class => "btn btn-success" %>
+</div>

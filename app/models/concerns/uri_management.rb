@@ -59,6 +59,14 @@ module UriManagement
     return @@optional[prefix]
   end
         
+  def UriManagement.getNs1(prefix)
+    ns = @@optional[prefix]
+    if ns == nil 
+      ns = @@required[prefix]
+    end
+    return ns
+  end
+        
   def UriManagement.buildPrefix(defaultNsPrefix, optional)
     if defaultNsPrefix == ""
       result = ""

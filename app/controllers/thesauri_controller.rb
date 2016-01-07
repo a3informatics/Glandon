@@ -4,17 +4,22 @@ class ThesauriController < ApplicationController
 
   before_action :authenticate_user!
   
-  def index
-    @thesauri = Thesaurus.all
-  end
-  
   def new
     @thesaurus = Thesaurus.new
+  end
+
+  def index
+    @thesauri = Thesaurus.unique
+  end
+  
+  def history
+    @identifier = params[:identifier]
+    @thesauri = Thesaurus.history(@identifier)
   end
   
   def create
     identifier = params[:identifier]
-    @thesaurus = Thesaurus.createLocal(the_params)
+    @thesaurus = Thesaurus.create(the_params)
     redirect_to thesauri_index_path
   end
 
@@ -22,12 +27,14 @@ class ThesauriController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     data = params[:data]
-    ConsoleLogger::log(C_CLASS_NAME,"ThesauriController","id=" + id + ", namespace=" + namespace + ", data=" + data.to_s)
     @thesaurus = Thesaurus.find(id,namespace)
-    ConsoleLogger::log(C_CLASS_NAME,"ThesauriController","*****Back*****")
     @thesaurus.update(params)
-    @thesaurus = Thesaurus.find(id,namespace)
-    render json: @thesaurus.to_D3
+    if @thesaurus.errors.empty?
+      @thesaurus = Thesaurus.find(id,namespace)
+      render json: @thesaurus.to_D3
+    else
+      render :json => { :errors => @thesaurus.errors.full_messages}, :status => 422
+    end
   end
 
   def edit
@@ -45,9 +52,60 @@ class ThesauriController < ApplicationController
   def show
     id = params[:id]
     namespace = params[:namespace]
-    @thesaurus = Thesaurus.find(id,namespace)
+    @thesaurus = Thesaurus.find(id, namespace)
   end
   
+  def view
+    id = params[:id]
+    namespace = params[:namespace]
+    @thesaurus = Thesaurus.find(id, namespace)
+  end
+
+  def search
+    id = params[:id]
+    namespace = params[:namespace]
+    @thesaurus = Thesaurus.find(id, namespace, false)
+  end
+  
+  def searchOld
+    term = params[:term]
+    textSearch = params[:textSearch]
+    cCodeSearch = params[:cCodeSearch]
+    ConsoleLogger::log(C_CLASS_NAME,"search","Term=" + term.to_s + ", textSearch=" + textSearch.to_s + ", codeSearch=" + cCodeSearch)
+    if term != "" && textSearch == "text"
+      @results = SponsorTerm.searchText(term)  
+    elsif term != "" && cCodeSearch == "ccode"
+      @results = SponsorTerm.searchIdentifier(term)
+    else
+      @results = Array.new
+    end
+    render json: @results
+  end
+
+  def searchNew
+    id = params[:id]
+    ns = params[:namespace]
+    offset = params[:start]
+    length = params[:length]
+    draw = params[:draw].to_i
+    search = params[:search]
+    searchTerm = search[:value]
+    order = params[:order]["0"]
+    col = order[:column]
+    dir = order[:dir]
+    ConsoleLogger::log(C_CLASS_NAME,"full","Search Term=" + searchTerm.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"full","Order=[" + col.to_s + "," + dir + "]")
+    count = Thesaurus.count(searchTerm, ns)
+    items = Thesaurus.search(offset, length, col, dir, searchTerm, ns)
+    ConsoleLogger::log(C_CLASS_NAME,"full","Counts=[C=" + count.to_s + ",L=" + items.length.to_s + "]")
+    @results = {
+      :draw => draw.to_s,
+      :recordsTotal => length.to_s,
+      :recordsFiltered => count.to_s,
+      :data => items }
+    render json: @results
+  end 
+
 private
 
   def the_params

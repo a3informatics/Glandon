@@ -1,0 +1,21 @@
+<tr>
+	<td><%= item.label %></td>
+	<td><%= item.identifier %></td>
+	<td><%= item.version %></td>
+	<td><%= item.versionLabel %></td>
+	<td><%= item.owner %></td>
+	<% if item.registered? %>
+		<td><%= item.registrationState.registrationStatus %></td>
+	<% else %>
+		<td></td>
+	<% end %>
+	<td><%= link_to "Show", showPath, :class => "btn btn-primary btn-xs" %></td>
+	<td><%= link_to "View", viewPath, :class => "btn btn-primary btn-xs" %></td>
+	<% if item.registered? %>
+		<td><%= link_to "Status", edit_iso_registration_state_path(:id => item.registrationState.id), :class => "btn btn-primary btn-xs" %></td>
+	<% else %>
+		<td></td>
+	<% end %>
+	<td><%= link_to "Search", searchPath, :class => "btn btn-primary btn-xs" %></td>
+	<td><%= link_to "Triples", view_dashboard_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-warning btn-xs" %></td>
+</tr>

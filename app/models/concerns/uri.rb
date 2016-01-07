@@ -56,6 +56,14 @@ class Uri
     setCid(cid)
   end
 
+  def setNsFragment(ns, fragment)
+    @authority = getAuthority(ns)
+    @path = getPath(ns)
+    @prefix = ""
+    @uid = fragment
+    @version = ""
+  end
+  
   def setNs(ns)
     @authority = getAuthority(ns)
     @path = getPath(ns)

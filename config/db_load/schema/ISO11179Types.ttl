@@ -48,6 +48,7 @@
 .
 :creationDate
   rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :AdministeredItem ;
   rdfs:label "Creation Date"^^xsd:string ;
   rdfs:range xsd:date ;
@@ -55,6 +56,7 @@
 .
 :lastChangeDate
   rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :AdministeredItem ;
   rdfs:label "Last Change Date"^^xsd:string ;
   rdfs:range xsd:date ;
@@ -62,6 +64,7 @@
 .
 :changeDescription
   rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :AdministeredItem ;
   rdfs:label "Change Description"^^xsd:string ;
   rdfs:range xsd:date ;
@@ -69,6 +72,7 @@
 .
 :explanatoryComment
   rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :AdministeredItem ;
   rdfs:label "Explanatory Comment"^^xsd:string ;
   rdfs:range xsd:string ;
@@ -76,6 +80,7 @@
 .
 :origin
   rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :AdministeredItem ;
   rdfs:label "origin"^^xsd:string ;
   rdfs:range xsd:string ;

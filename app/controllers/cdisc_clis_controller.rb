@@ -8,82 +8,52 @@ class CdiscClisController < ApplicationController
     @cdiscClis = CdiscCli.all
   end
   
-  def new
-  end
-  
-  def create
-  end
-
-  def update
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
-
   def impact
     id = params[:id]
-    termId = params[:termId]
-    @cdiscTerm = CdiscTerm.find(params[:termId])
-    @cdiscCli = CdiscCli.find(id, @cdiscTerm)
-    id = params[:id]
-    params[:namespace] = @cdiscTerm.namespace
+    namespace = params[:namespace]
+    @cdiscCli = CdiscCli.find(id, namespace)
     @bcs = CdiscBc.impact(params)
   end
 
   def show
     id = params[:id]
-    termId = params[:termId]
-    @cdiscTerm = CdiscTerm.find(params[:termId])
-    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
-    @cdiscCli = CdiscCli.find(id, @cdiscTerm)
+    namespace = params[:namespace]
+    @cdiscCli = CdiscCli.find(id, namespace)
   end
 
   def compare
     
+    # Get the parameters
+    type = params[:type]
     id = params[:id]
-    newId = params[:new]
-    oldId = params[:old]
+    newTermId = params[:newTermId]
+    newTermNs = params[:newTermNs]
+    oldTermId = params[:oldTermId]
+    oldTermNs = params[:oldTermNs]
     
-    p "Compare n=" + newId + ", o=" + oldId
-    
-    nCT = CdiscTerm.find(newId)
-    oCT = CdiscTerm.find(oldId)
-    nCli = CdiscCli.find(id, nCT)
-    oCli = CdiscCli.find(id, oCT)    
-    
+    # Get the new and old terminologies and the Code Lists
+    @newCdiscTerm = CdiscTerm.find(newTermId, newTermNs, false)
+    @newCli = CdiscCli.find(id, newTermNs)
+    @oldCdiscTerm = CdiscTerm.find(oldTermId, oldTermNs, false)
+    @oldCli = CdiscCli.find(id, oldTermNs)    
+
     @Results = Array.new
     result = Hash.new
-    result = currentCLI(oCT, oCli)
+    result = currentCLI(@oldCdiscTerm, @oldCli)
     @Results.push(result)
-    result = compareCLI(nCT, oCli, nCli)
+    result = compareCLI(@newCdiscTerm, @oldCli, @newCli)
     @Results.push(result)
-    
-    # Set the key parameters
-    @id = oCli.id
-    @identifier = oCli.identifier
-    @title = oCli.preferredTerm
-
-    
   end
   
-  def history
-
-    # Get the identifier for the CLI
+  def changes
     id = params[:id]
-    
-    # Get the CLI object from each version of the terminology
     data = Array.new
     cdiscTerms = CdiscTerm.all()
-  	cdiscTerms.each do |ct|
-      cdiscCli = CdiscCli.find(id, ct)
+  	cdiscTerms.each do |key, ct|
+      cdiscCli = CdiscCli.find(id, ct.namespace)
       temp = {:term => ct, :cli => cdiscCli}
       data.push(temp)        
     end
-    
-    # Now compare. Note there may well be nil entries
     @Results = Array.new
     last = data.length - 1
   	data.each_with_index do |curr, index|
@@ -109,15 +79,12 @@ class CdiscClisController < ApplicationController
         @Results.push(result)
       end
     end
-    
-    p "Results=" + @Results.to_s
-    
   end
     
 private
 
     def this_params
-      params.require(:cdisc_term).permit(:id, :termId)
+      params.require(:cdisc_term).permit(:id, :namespace)
     end
 
     def compareCLI (term, previousCli, currentCli)

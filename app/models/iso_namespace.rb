@@ -21,7 +21,9 @@ class IsoNamespace
   
   # Base namespace 
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-
+  @@idMap = Hash.new
+  @@nameMap = Hash.new
+  
   def persisted?
     id.present?
   end
@@ -37,122 +39,126 @@ class IsoNamespace
   end
   
   def self.exists?(shortName)
+    ConsoleLogger::log(C_CLASS_NAME,"exists?","*****ENTRY*****")
+    if @@nameMap.has_key?(shortName)
+      result = true
+    else
+      result = false
     
-    ConsoleLogger::log(C_CLASS_NAME,"findExists?","*****ENTRY*****")
-    result = false
-    
-    # Create the query
-    query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
-      "SELECT ?a ?c WHERE \n" +
-      "{ \n" +
-        "?a isoI:ofOrganization ?b . \n" +
-        "?b isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
-      uriSet = node.xpath("binding[@name='a']/uri")
-      if uriSet.length == 1
-        result = true
-        ConsoleLogger::log(C_CLASS_NAME,"findByShortName","Object exists!")        
+      # Create the query
+      query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
+        "SELECT ?a ?c WHERE \n" +
+        "{ \n" +
+          "?a isoI:ofOrganization ?b . \n" +
+          "?b isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
+        "}"
+      
+      # Send the request, wait the resonse
+      response = CRUD.query(query)
+      
+      # Process the response
+      xmlDoc = Nokogiri::XML(response.body)
+      xmlDoc.remove_namespaces!
+      xmlDoc.xpath("//result").each do |node|
+        #ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
+        uriSet = node.xpath("binding[@name='a']/uri")
+        if uriSet.length == 1
+          result = true
+          ConsoleLogger::log(C_CLASS_NAME,"exists?","Object exists!")        
+        end
       end
-    
+      return result
     end
-    
-    # Return
-    return result
-    
   end
 
   def self.findByShortName(shortName)
-    
     ConsoleLogger::log(C_CLASS_NAME,"findByShortName","*****ENTRY*****")
     object = nil
-    
-    # Create the query
-    query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
-      "SELECT ?a ?c WHERE \n" +
-      "{ \n" +
-        "?a isoI:ofOrganization ?b . \n" +
-        "?b isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
-        "?b isoB:name ?c . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
-      uriSet = node.xpath("binding[@name='a']/uri")
-      nSet = node.xpath("binding[@name='c']/literal")
-      if nSet.length == 1 and uriSet.length == 1
-        object = self.new 
-        object.id = ModelUtility::extractCid(uriSet[0].text)
-        object.namespace = @@baseNs 
-        object.name = nSet[0].text
-        object.shortName = name
-        ConsoleLogger::log(C_CLASS_NAME,"findByShortName","Object created, id=" + object.id)        
+    if @@nameMap.has_key?(shortName)
+      ConsoleLogger::log(C_CLASS_NAME,"findByShortName","Exisitng entry")
+      object = @@nameMap[shortName]
+    else
+      # Create the query
+      query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
+        "SELECT ?a ?c WHERE \n" +
+        "{ \n" +
+          "?a isoI:ofOrganization ?b . \n" +
+          "?b isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
+          "?b isoB:name ?c . \n" +
+        "}"
+      
+      # Send the request, wait the resonse
+      response = CRUD.query(query)
+      
+      # Process the response
+      xmlDoc = Nokogiri::XML(response.body)
+      xmlDoc.remove_namespaces!
+      xmlDoc.xpath("//result").each do |node|
+        #ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
+        uriSet = node.xpath("binding[@name='a']/uri")
+        nSet = node.xpath("binding[@name='c']/literal")
+        if nSet.length == 1 and uriSet.length == 1
+          object = self.new 
+          object.id = ModelUtility::extractCid(uriSet[0].text)
+          object.namespace = @@baseNs 
+          object.name = nSet[0].text
+          object.shortName = shortName
+          ConsoleLogger::log(C_CLASS_NAME,"findByShortName","Object created, id=" + object.id)        
+          @@nameMap[object.shortName] = object
+          @@idMap[object.id] = object
+        end
       end
-    
     end
-    
-    # Return
     return object
-    
   end
   
   def self.find(id)
-    
     ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id)
+    ConsoleLogger::log(C_CLASS_NAME,"find","@@idMap=" + @@idMap.to_s)
     object = nil
-    
-    # Create the query
-    query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
-      "SELECT ?b ?c WHERE \n" +
-      "{ \n" +
-      "  :" + id.to_s + " isoI:ofOrganization ?a . \n" +
-      "  ?a isoB:shortName ?b . \n" +
-      "  ?a isoB:name ?c . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node.to_s)
-      snSet = node.xpath("binding[@name='b']/literal")
-      nSet = node.xpath("binding[@name='c']/literal")
-      if nSet.length == 1 and snSet.length == 1
-        object = self.new 
-        object.id = id
-        object.namespace = @@baseNs 
-        object.name = nSet[0].text
-        object.shortName = snSet[0].text
-        ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
+    if @@idMap.has_key?(id)
+      ConsoleLogger::log(C_CLASS_NAME,"find","Exisitng entry")
+      object = @@idMap[id]
+    else
+      
+      # Create the query
+      query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
+        "SELECT ?b ?c WHERE \n" +
+        "{ \n" +
+        "  :" + id.to_s + " isoI:ofOrganization ?a . \n" +
+        "  ?a isoB:shortName ?b . \n" +
+        "  ?a isoB:name ?c . \n" +
+        "}"
+      
+      # Send the request, wait the resonse
+      response = CRUD.query(query)
+      
+      # Process the response
+      xmlDoc = Nokogiri::XML(response.body)
+      xmlDoc.remove_namespaces!
+      xmlDoc.xpath("//result").each do |node|
+        #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node.to_s)
+        snSet = node.xpath("binding[@name='b']/literal")
+        nSet = node.xpath("binding[@name='c']/literal")
+        if nSet.length == 1 and snSet.length == 1
+          object = self.new 
+          object.id = id
+          object.namespace = @@baseNs 
+          object.name = nSet[0].text
+          object.shortName = snSet[0].text
+          ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
+          @@nameMap[object.shortName] = object
+          @@idMap[object.id] = object
+          ConsoleLogger::log(C_CLASS_NAME,"find","@@idMap=" + @@idMap.to_s)
+        end
+      
       end
-    
-    end
-    
-    # Return
+    end    
     return object
-    
   end
 
   def self.all
-    
     results = Hash.new
     
     # Create the query
@@ -183,17 +189,15 @@ class IsoNamespace
         object.name = nSet[0].text
         object.shortName = snSet[0].text
         ConsoleLogger::log(C_CLASS_NAME,"all","Created object=" + object.id)
+        @@nameMap[object.shortName] = object
+        @@idMap[object.id] = object
         results[object.id] = object
       end
     end
-    
-    # Return
     return results
-    
   end
 
   def self.create(params)
-    
     object = self.new
     object.errors.clear
 
@@ -249,8 +253,11 @@ class IsoNamespace
   end
 
   def destroy
-    
     ConsoleLogger::log(C_CLASS_NAME,"destroy","*****Entry*****")
+
+    # Destroy the exisitng maps
+    @@idMap = Hash.new
+    @@nameMap = Hash.new
 
     # Create the query
     orgId = ModelUtility.cidSwapPrefix(self.id, C_ORG_CID_PREFIX)
@@ -279,11 +286,9 @@ class IsoNamespace
 private
 
   def self.params_valid?(params, object)
-    
     result1 = ModelUtility::validShortName?(params[:shortName], object)
     result2 = ModelUtility::validFreeText?(:name, params[:name], object)
     return result1 && result2
-
   end
 
 end

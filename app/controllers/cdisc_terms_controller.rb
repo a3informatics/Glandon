@@ -4,27 +4,58 @@ class CdiscTermsController < ApplicationController
   
   C_CLASS_NAME = "CdiscTermsController"
   
-  def index
+  def history
     @cdiscTerms = CdiscTerm.all
   end
   
-  def new
+  def import
     @files = Dir.glob(Rails.root.join("public","upload") + "*")
     @cdiscTerm = CdiscTerm.new
   end
   
   def create
     @cdiscTerm = CdiscTerm.create(this_params)
-    redirect_to cdisc_terms_path
+    redirect_to history_cdisc_terms_path
   end
-
-  def update
+  
+  def show
+    id = params[:id]
+    namespace = params[:namespace]
+    @cdiscTerm = CdiscTerm.find(id, namespace)
+    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
   end
-
-  def edit
-  end
-
+  
   def search
+    id = params[:id]
+    namespace = params[:namespace]
+    @cdiscTerm = CdiscTerm.find(id, namespace, false)
+  end
+  
+  def searchNew
+    id = params[:id]
+    ns = params[:namespace]
+    offset = params[:start]
+    length = params[:length]
+    draw = params[:draw].to_i
+    search = params[:search]
+    searchTerm = search[:value]
+    order = params[:order]["0"]
+    col = order[:column]
+    dir = order[:dir]
+    ConsoleLogger::log(C_CLASS_NAME,"full","Search Term=" + searchTerm.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"full","Order=[" + col.to_s + "," + dir + "]")
+    count = CdiscTerm.count(searchTerm, ns)
+    items = CdiscTerm.search(offset, length, col, dir, searchTerm, ns)
+    ConsoleLogger::log(C_CLASS_NAME,"full","Counts=[C=" + count.to_s + ",L=" + items.length.to_s + "]")
+    @results = {
+      :draw => draw.to_s,
+      :recordsTotal => length.to_s,
+      :recordsFiltered => count.to_s,
+      :data => items }
+    render json: @results
+  end 
+
+  def searchOld
     term = params[:term]
     textSearch = params[:textSearch]
     cCodeSearch = params[:cCodeSearch]
@@ -40,81 +71,46 @@ class CdiscTermsController < ApplicationController
   end
   
   def compare
-    
-    # Get the parameters
     type = params[:type]
-    newId = params[:new]
-    oldId = params[:old]
-    
-    # Create the results structure
+    newId = params[:newId]
+    newNamespace = params[:newNamespace]
+    oldId = params[:oldId]
+    oldNamespace = params[:oldNamespace]
     data = Array.new
-    
-    # Get the CLs for the old version
-    oldCdiscTerm = CdiscTerm.find(oldId)
-    clsForTerm(oldCdiscTerm, data)   
-        
-    # Get the CLs for the new version
-    newCdiscTerm = CdiscTerm.find(newId)
-    clsForTerm(newCdiscTerm, data)
-
-    # And build the results. Filter if required.
+    @oldCdiscTerm = CdiscTerm.find(oldId, oldNamespace, false)
+    clsForTerm(@oldCdiscTerm, data)   
+    @newCdiscTerm = CdiscTerm.find(newId, newNamespace, false)
+    clsForTerm(@newCdiscTerm, data)
     @Results = buildResults(data)
     if type != "ALL"
       @Results = filterResults(@Results, type)
     end
-   
-    # Set the key parameters
-    @id = oldCdiscTerm.id
-    @identifier = oldCdiscTerm.version
-    @title = oldCdiscTerm.identifier
-           
   end
   
-  def history
-
+  def changes
     data = Array.new
     cdiscTerms = CdiscTerm.all()
-  	cdiscTerms.each do |ct|
+  	cdiscTerms.each do |key, ct|
       clsForTerm(ct, data)
       if @id == nil
-
-        # Set the key parameters
         @id = ct.id
-        @identifier = ct.date
-        @title = ct.identifier
-
+        @identifier = ct.identifier
+        @title = ct.label
       end
     end
     @Results = buildResults(data)
-
-  end
-  
-  def destroy
   end
 
-  def show
-    id = params[:id]
-    @cdiscTerm = CdiscTerm.find(id)
-    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
-    @CdiscCls = CdiscCl.all(@cdiscTerm)
-  end
-  
 private
 
   def this_params
-    params.require(:cdisc_term).permit({:files => []}, :version, :date, :term, :textSearch, :cCodeSearch)
+    params.require(:cdisc_term).permit(:version, :date, :term, :textSearch, :cCodeSearch, :files => [] )
   end
   
-  def clsForTerm(cdiscTerm, data)
-  
-    cdiscCls = CdiscCl.all(cdiscTerm)
-    cls = Hash.new
-    cdiscCls.each do |cl|
-      cls[cl.identifier] = cl
-    end
-    temp = {:term => cdiscTerm, :cls => cls}
+  def clsForTerm(cdiscTerm, data)  
+    cdiscCls = CdiscCl.allTopLevel(cdiscTerm.id, cdiscTerm.namespace)
+    temp = {:term => cdiscTerm, :cls => cdiscCls}
     data.push(temp)        
-
   end
 
   def buildResults (data)
@@ -137,14 +133,14 @@ private
             currCls.each do |clId, currCl|
               if prevCls.has_key?(clId)
                 prevCl = prevCls[clId]
-                if currCl.diff?(prevCl)
+                if CdiscCl.diff?(currCl, prevCl)
                   mark = "M"
                 else
-                  if cliDifference?(currTerm, currCl, prevTerm, prevCl)
-                    mark = "M"
-                  else
+                  #if currCl.diff?(prevCl)
+                  #  mark = "M"
+                  #else
                     mark = "."
-                  end
+                  #end
                 end
               else
                 mark = "."
@@ -160,7 +156,7 @@ private
                 end    
                 result[key] = mark
                 clEntry = Hash.new
-                clEntry = {:id => currCl.id, :name => currCl.notation, :result => result }
+                clEntry = {:cl => currCl, :result => result }
                 results[clId] = clEntry
               end
             end
@@ -174,7 +170,7 @@ private
             result = Hash.new
             result[key] = "."
             clEntry = Hash.new
-            clEntry = {:id => currCl.id, :name => currCl.notation, :result => result }
+            clEntry = {:cl => currCl, :result => result }
             results[clId] = clEntry
           end
         end
@@ -226,31 +222,6 @@ private
       end
     end  
 
-  end
-  
-  def cliDifference?(currTerm, currCl, prevTerm, prevCl)
-  
-    result = false
-    currClis = CdiscCli.allForCl(currCl.id, currTerm)
-    prevClis = CdiscCli.allForCl(prevCl.id, prevTerm)
-    if currClis.length == prevClis.length
-      currClis.each do |id, cli|
-        if prevClis.has_key?(id)
-          prevCli = prevClis[id]
-          if cli.diff?(prevCli)
-            result = true
-            break
-          end
-        else
-          result = true
-          break
-        end
-      end  
-    else
-      result = true
-    end
-    return result
-    
   end
 
 end

@@ -1,417 +1,83 @@
 require "nokogiri"
 require "uri"
 
-class ThesaurusConcept
+class ThesaurusConcept < IsoConcept
 
   include CRUD
   include ModelUtility
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
       
-  attr_accessor :id, :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :topLevel, :children, :namespace
-  validates_presence_of :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :topLevel, :children, :namespace
+  attr_accessor :identifier, :notation, :synonym, :definition, :preferredTerm, :topLevel, :children
   
   # Constants
   C_CLASS_PREFIX = "THC"
-  C_NS_PREFIX = "mdrTh"
+  C_SCHEMA_PREFIX = "iso25964"
+  C_INSTANCE_PREFIX = "mdrTh"
   C_CLASS_NAME = "ThesaurusConcept"
-  
+  C_RDF_TYPE = "ThesaurusConcept"
+
   # Base namespace 
-  @@baseNs = UriManagement.getNs(C_NS_PREFIX)     
+  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
+  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def persisted?
-    id.present?
-  end
- 
-  def initialize()
+  def self.unique
+    results = super(C_RDF_TYPE, @@schemaNs)
+    return results
   end
 
-  def self.baseNs
-    return @@baseNs 
-  end
-  
-  def self.exists?(identifier, ns=nil)
-    
+  def self.exists?(identifier, ns)
     ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-
-    result = false
-    useNs = ns || @@baseNs
-    id = ModelUtility.buildCidIdentifier(useNs, identifier)
-    
-    # Create the query
-    query = UriManagement.buildNs(useNs, ["iso25964"]) +
-      "SELECT ?a WHERE \n" +
-      "{ \n" +
-      "  :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
-      "  :" + id + " iso25964:identifier ?a . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"exists?","Node=" + node.to_s)
-      idReturned = ModelUtility.getValue('a', false, node)
-      if idReturned == identifier
-        result = true
-      end
-    end
-    
-    # Return
-    return result
-    
+    schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
+    return super("identifier", identifier, "ThesaurusConcept", schemaNs, ns)
   end
 
-  def self.find(id, ns=nil)
-    
+  def self.find(id, ns)   
     ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-
-    object = nil
-    
-    # Create the query
-    useNs = ns || @@baseNs
-    query = UriManagement.buildNs(useNs, ["iso25964"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
-      "{ \n" +
-      "	 :" + id + " iso25964:identifier ?a . \n" +
-      "	 :" + id + " iso25964:notation ?b . \n" +
-      "	 :" + id + " iso25964:preferredTerm ?c . \n" +
-      "	 :" + id + " iso25964:synonym ?d . \n" +
-      "	 :" + id + " iso25964:definition ?f . \n" +
-      "	 OPTIONAL\n" +
-      "  {\n" +
-      "    :" + id + " iso25964:extensible ?e . \n" +
-      "    :" + id + " skos:inScheme ?g . \n" +
-      "  }\n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      idSet = node.xpath("binding[@name='a']/literal")
-      nSet = node.xpath("binding[@name='b']/literal")
-      ptSet = node.xpath("binding[@name='c']/literal")
-      sSet = node.xpath("binding[@name='d']/literal")
-      eSet = node.xpath("binding[@name='e']/literal")
-      dSet = node.xpath("binding[@name='f']/literal")
-      eSet = node.xpath("binding[@name='e']/literal")
-      isSet = node.xpath("binding[@name='g']/uri")
-      if idSet.length == 1
-        object = self.new 
-        object.id = id
-        object.namespace = useNs
-        object.identifier = idSet[0].text
-        object.notation = nSet[0].text
-        object.preferredTerm = ptSet[0].text
-        object.synonym = sSet[0].text
-        object.definition = dSet[0].text
-        object.children = allChildren(id, useNs)
-        if eSet.length == 1
-          object.extensible = eSet[0].text
-        else
-          object.extensible = ""
-        end
-        if isSet.length == 1
-          object.topLevel = true
-        else
-          object.topLevel = false
-        end   
-      end
-    end
-    
-    # Return
-    return object
-    
-  end
-
-  # Find all the lower level items for a given top-level identifier
-  def self.findByIdentifier(identifier, termId, ns=nil)
-  #  
-  #  ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","identifier=" + identifier)
-  #  ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","ns=" + ns)
-    results = Hash.new
-    
-    # Create the query
-    useNs = ns || @@baseNs
-    query = UriManagement.buildNs(useNs, ["iso25964"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
-      "{ \n" +
-      "	 ?a iso25964:identifier \"" + identifier + "\"^^xsd:string . \n" +
-      "  ?g skos:narrower ?a . \n" +
-      "  ?g skos:inScheme :" + termId + " . \n" +
-      "	 ?a iso25964:notation ?b . \n" +
-      "	 ?a iso25964:preferredTerm ?c . \n" +
-      "	 ?a iso25964:synonym ?d . \n" +
-      "	 ?a iso25964:definition ?f . \n" +
-      "	 OPTIONAL\n" +
-      "  {\n" +
-      "    ?a iso25964:extensible ?e . \n" +
-      "  }\n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
-      nSet = node.xpath("binding[@name='b']/literal")
-      ptSet = node.xpath("binding[@name='c']/literal")
-      sSet = node.xpath("binding[@name='d']/literal")
-      eSet = node.xpath("binding[@name='e']/literal")
-      dSet = node.xpath("binding[@name='f']/literal")
-      if uriSet.length == 1
-        ConsoleLogger::log(C_CLASS_NAME,"findByIdentifier","uri=" + uriSet[0].text)
-        object = self.new 
-        object.id = ModelUtility.extractCid(uriSet[0].text)
-        object.namespace = ModelUtility.extractNs(uriSet[0].text)
-        object.identifier = identifier
-        object.notation = nSet[0].text
-        object.preferredTerm = ptSet[0].text
-        object.synonym = sSet[0].text
-        object.definition = dSet[0].text
+    object = super(id, ns)
+    if object != nil
+      object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")
+      object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")
+      object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")
+      object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")
+      object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")
+      object.children = allChildren(id, ns)
+      if object.links.exists?(C_SCHEMA_PREFIX,"inScheme")
+        object.topLevel = true
+      else
         object.topLevel = false
-        if eSet.length == 1
-          object.extensible = eSet[0].text
-        else
-          object.extensible = ""
-        end 
-        results[object.id] = object
-      end
+      end   
     end
-    
-    # Return
-    return results
-    
+    return object    
   end
-  
-  def self.all()
-    
-    ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
-
-    results = Array.new
-    
-    # Create the query
-    query = UriManagement.buildPrefix("", ["iso25964"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
-      "{ \n" +
-      "	 ?a rdf:type iso25964:ThesaurusConcept . \n" +
-      "	 ?a iso25964:identifier ?b . \n" +
-      "	 ?a iso25964:notation ?c . \n" +
-      "	 ?a iso25964:preferredTerm ?d . \n" +
-      "	 ?a iso25964:synonym ?e . \n" +
-      "	 ?a iso25964:extensible ?f . \n" +
-      "	 ?a iso25964:definition ?g . \n" +
-      "} ORDER BY ?b"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
-      idSet = node.xpath("binding[@name='b']/literal")
-      nSet = node.xpath("binding[@name='c']/literal")
-      ptSet = node.xpath("binding[@name='d']/literal")
-      sSet = node.xpath("binding[@name='e']/literal")
-      eSet = node.xpath("binding[@name='f']/literal")
-      dSet = node.xpath("binding[@name='g']/literal")
-      if uriSet.length == 1 
-        object = self.new 
-        object.id = ModelUtility.extractCid(uriSet[0].text)
-        object.namespace = ModelUtility.extractNs(uriSet[0].text)
-        object.identifier = idSet[0].text
-        object.notation = nSet[0].text
-        object.preferredTerm = ptSet[0].text
-        object.synonym = sSet[0].text
-        object.extensible = eSet[0].text
-        object.definition = dSet[0].text
-        object.children = nil
-        results.push (object)
-      end
-    end
-    return results
-    
-  end
-  
-  #def self.allTopLevel()
-  #  
-  #  results = Array.new
-  #  
-  #  # Create the query
-  #  query = UriManagement.buildPrefix("", ["iso25964"]) +
-  #    "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
-  #    "{ \n" +
-  #    "	 ?a rdf:type iso25964:ThesaurusConcept . \n" +
-  #    "  ?a skos:inScheme ?h . \n" +
-  #    "	 ?a iso25964:identifier ?b . \n" +
-  #    "	 ?a iso25964:notation ?c . \n" +
-  #    "	 ?a iso25964:preferredTerm ?d . \n" +
-  #    "	 ?a iso25964:synonym ?e . \n" +
-  #    "	 ?a iso25964:extensible ?f . \n" +
-  #    "	 ?a iso25964:definition ?g . \n" +
-  #    "}"
-  #  
-  #  # Send the request, wait the resonse
-  #  response = CRUD.query(query)
-  #  
-  #  # Process the response
-  # xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  xmlDoc.xpath("//result").each do |node|
-  #    
-  #    #p "Node: " + node.text
-  #    
-  #    uriSet = node.xpath("binding[@name='a']/uri")
-  #    idSet = node.xpath("binding[@name='b']/literal")
-  #    nSet = node.xpath("binding[@name='c']/literal")
-  #    ptSet = node.xpath("binding[@name='d']/literal")
-  #    sSet = node.xpath("binding[@name='e']/literal")
-  #    eSet = node.xpath("binding[@name='f']/literal")
-  #    dSet = node.xpath("binding[@name='g']/literal")
-  #    
-  #    if uriSet.length == 1 
-  #      
-  #      #p "Found"
-  #      
-  #      object = self.new 
-  #      object.id = ModelUtility.extractCid(uriSet[0].text)
-  #      object.identifier = idSet[0].text
-  #      object.notation = nSet[0].text
-  #      object.preferredTerm = ptSet[0].text
-  #      object.synonym = sSet[0].text
-  #      object.extensible = eSet[0].text
-  #      object.definition = dSet[0].text
-  #      object.topLevel = true
-  #      results.push (object)
-  #      
-  #    end
-  #  end
-  #  
-  #  return results
-  #  
-  #end
 
   def self.allTopLevel(id, ns)
-    
     ConsoleLogger::log(C_CLASS_NAME,"allTopLevel","*****Entry*****")
-
-    results = Hash.new
-    
-    # Create the query
-    query = UriManagement.buildNs(ns, ["iso25964"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
-      "	 { \n" +
-      "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
-      "    ?a skos:inScheme :" + id + " . \n" +
-      "	   ?a iso25964:identifier ?b . \n" +
-      "	   ?a iso25964:notation ?c . \n" +
-      "	   ?a iso25964:preferredTerm ?d . \n" +
-      "	   ?a iso25964:synonym ?e . \n" +
-      "	   ?a iso25964:extensible ?f . \n" +
-      "	   ?a iso25964:definition ?g . \n" +
-      "} ORDER BY ?b"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"allTopLevel","Node=" + node.to_s)
-      uriSet = node.xpath("binding[@name='a']/uri")
-      idSet = node.xpath("binding[@name='b']/literal")
-      nSet = node.xpath("binding[@name='c']/literal")
-      ptSet = node.xpath("binding[@name='d']/literal")
-      sSet = node.xpath("binding[@name='e']/literal")
-      eSet = node.xpath("binding[@name='f']/literal")
-      dSet = node.xpath("binding[@name='g']/literal")
-      if uriSet.length == 1 
-        object = self.new 
-        object.id = ModelUtility.extractCid(uriSet[0].text)
-        object.namespace = ModelUtility.extractNs(uriSet[0].text)
-        object.identifier = idSet[0].text
-        object.notation = nSet[0].text
-        object.preferredTerm = ptSet[0].text
-        object.synonym = sSet[0].text
-        object.extensible = eSet[0].text
-        object.definition = dSet[0].text
-        object.topLevel = true
-        object.children = nil
-        results[object.id] = object
-        ConsoleLogger::log(C_CLASS_NAME,"allTopLevel","Object created, id=" + object.id)
-      end
+    results = findWithCondition("?a iso25964:inScheme :" + id, ns, ["iso25964"])
+    results.each do |key, object|
+      object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")
+      object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")
+      object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")
+      object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")
+      object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")
+      object.children = nil
+      object.topLevel = true
     end
     return results
-    
   end
   
   # Find all children of a given concept (identified by the CID)
   def self.allChildren(id, ns)
-    
     ConsoleLogger::log(C_CLASS_NAME,"allChildren","*****Entry*****")
-
-    # Create empty array for the results
-    results = Hash.new
-    
-    # Create the query
-    query = UriManagement.buildNs(ns, ["iso25964"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
-      "{\n" +
-      "  :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
-      "  :" + id + " skos:narrower ?a . \n" +
-      "  ?a iso25964:identifier ?b .  \n" +
-      "  ?a iso25964:definition ?c . \n" +
-      "  ?a iso25964:synonym ?d . \n" +
-      "  ?a iso25964:preferredTerm ?e . \n" +
-      "  ?a iso25964:notation ?f .	\n" +
-      "} ORDER BY ?b"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"allChildren","Node=" + node.to_s)
-      uriSet = node.xpath("binding[@name='a']/uri")
-      idSet = node.xpath("binding[@name='b']/literal")
-      dSet = node.xpath("binding[@name='c']/literal")
-      sSet = node.xpath("binding[@name='d']/literal")
-      ptSet = node.xpath("binding[@name='e']/literal")
-      nSet = node.xpath("binding[@name='f']/literal")
-      if uriSet.length == 1 
-        object = self.new 
-        object.id = ModelUtility.extractCid(uriSet[0].text)
-        object.namespace = ModelUtility.extractNs(uriSet[0].text)
-        object.identifier = idSet[0].text
-        object.notation = nSet[0].text
-        object.preferredTerm = ptSet[0].text
-        object.synonym = sSet[0].text
-        object.definition = dSet[0].text
-        object.extensible = ""
-        object.topLevel = false
-        object.children = nil
-        results[object.id] = object
-        ConsoleLogger::log(C_CLASS_NAME,"allChildren","Object created, id=" + object.id)
-      end
+    results = findWithCondition(":" + id + " iso25964:narrower ?a", ns, ["iso25964"])
+    results.each do |key, object|
+      object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")
+      object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")
+      object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")
+      object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")
+      object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")
+      object.children = nil
+      object.topLevel = false
     end
     return results
-    
   end
   
   def self.searchTextWithNs(termId, ns, term)
@@ -430,15 +96,14 @@ class ThesaurusConcept
       "    ?a iso25964:definition ?g . \n" +
       "    OPTIONAL\n" +
       "    {\n" +
-      "      ?a iso25964:extensible ?f . \n" +
-      "      ?a skos:inScheme ?h . \n" +
+      "      ?a iso25964:inScheme ?h . \n" +
       "    }\n" +
       "    ?a ( iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?i . FILTER regex(?i, \"" + term + "\") . \n" +
       "    {\n" +
       "      SELECT ?a WHERE\n" +
       "      {\n" +
       "        ?a rdf:type iso25964:ThesaurusConcept . \n" +
-      "        { ?a skos:inScheme :" + termId + " } UNION { ?j skos:inScheme :" + termId + " . ?j skos:narrower ?a } . \n" +
+      "        { ?a iso25964:inScheme :" + termId + " } UNION { ?j iso25964:inScheme :" + termId + " . ?j iso25964:narrower ?a } . \n" +
       "      }\n" +
       "    }\n" +
       "  } ORDER BY ?b"
@@ -456,7 +121,6 @@ class ThesaurusConcept
       nSet = node.xpath("binding[@name='c']/literal")
       ptSet = node.xpath("binding[@name='d']/literal")
       sSet = node.xpath("binding[@name='e']/literal")
-      eSet = node.xpath("binding[@name='f']/literal")
       dSet = node.xpath("binding[@name='g']/literal")
       tlSet = node.xpath("binding[@name='h']/uri")
       if uriSet.length == 1 
@@ -468,15 +132,9 @@ class ThesaurusConcept
         object.preferredTerm = ptSet[0].text
         object.synonym = sSet[0].text
         object.children = nil
-        if eSet.length == 1 
-          object.extensible = eSet[0].text
-        else
-          object.extensible = ""
-        end
+        object.topLevel = false
         if tlSet.length == 1 
           object.topLevel = true
-        else
-          object.topLevel = false
         end
         object.definition = dSet[0].text
         results.push (object)
@@ -498,17 +156,13 @@ class ThesaurusConcept
       "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
       "  {\n" +
       "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
-      "    ?a skos:inScheme :" + termId + " . \n" +
+      "    ?a iso25964:inScheme :" + termId + " . \n" +
       "    ?a iso25964:notation ?b . \n" +
       "    ?a iso25964:identifier \"" + term + "\" . \n" +
       "    ?a iso25964:preferredTerm ?c . \n" +
       "    ?a iso25964:synonym ?d . \n" +
       "    ?a iso25964:definition ?e . \n" +
       "    ?a iso25964:identifier ?f . \n" +
-      "    OPTIONAL\n" +
-      "    {\n" +
-      "      ?a iso25964:extensible ?g . \n" +
-      "    }\n" +
       "  }\n"
 
     # Send the request, wait the resonse
@@ -536,11 +190,6 @@ class ThesaurusConcept
         object.synonym = sSet[0].text
         object.definition = dSet[0].text
         object.children = nil
-        if eSet.length == 1 
-          object.extensible = eSet[0].text
-        else
-          object.extensible = false
-        end
         object.topLevel = true
         results.push (object)
       end
@@ -551,18 +200,14 @@ class ThesaurusConcept
       "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
       "  {\n" +
       "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
-      "    ?a skos:inScheme :" + termId + " . \n" +
+      "    ?a iso25964:inScheme :" + termId + " . \n" +
       "    ?a iso25964:identifier \"" + term + "\" . \n" +
-      "    ?a skos:narrower ?h . \n" +
+      "    ?a iso25964:narrower ?h . \n" +
       "    ?h iso25964:notation ?b . \n" +
       "    ?h iso25964:preferredTerm ?c . \n" +
       "    ?h iso25964:synonym ?d . \n" +
       "    ?h iso25964:definition ?e . \n" +
       "    ?h iso25964:identifier ?f . \n" +
-      "    OPTIONAL\n" +
-      "    {\n" +
-      "      ?h iso25964:extensible ?g . \n" +
-      "    }\n" +
       "  }\n"
 
     # Send the request, wait the resonse
@@ -590,11 +235,6 @@ class ThesaurusConcept
         object.synonym = sSet[0].text
         object.definition = dSet[0].text
         object.children = nil
-        if eSet.length == 1 
-          object.extensible = eSet[0].text
-        else
-          object.extensible = false
-        end
         object.topLevel = false
         results.push (object)
       end
@@ -608,9 +248,12 @@ class ThesaurusConcept
     
     ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
 
-    object = nil
+    # Create the object
+    object = self.new 
+    object.errors.clear
 
     identifier  = params[:identifier]
+    label  = params[:label]
     notation = params[:notation]
     preferredTerm = params[:preferredTerm]
     synonym = params[:synonym]
@@ -623,11 +266,11 @@ class ThesaurusConcept
       "INSERT DATA \n" +
       "{ \n" +
       "	 :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
+      "  :" + id + " rdfs:label  \"" + label.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " iso25964:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " iso25964:notation \"" + notation.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " iso25964:preferredTerm \"" + preferredTerm.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " iso25964:synonym \"" + synonym.to_s + "\"^^xsd:string . \n" +
-      "	 :" + id + " iso25964:extensible \"" + extensible.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " iso25964:definition \"" + definition.to_s + "\"^^xsd:string . \n" +
       "}"
     
@@ -636,20 +279,17 @@ class ThesaurusConcept
     
     # Response
     if response.success?
-      object = self.new
       object.id = id
       object.identifier = identifier
       object.notation = notation
       object.preferredTerm = preferredTerm
       object.synonym = synonym
-      object.extensible = extensible
       object.definition = definition
       object.children = nil
-        p "It worked!"
+      ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + id)
     else
-      p "It didn't work!"
-      object = self.new
-      object.assign_errors(data) if response.response_code == 422
+      ConsoleLogger::log(C_CLASS_NAME,"createTopLevel","Object created failed!")
+      object.errors.add(:base, "The concept was not created in the database.")
     end
     return object
     
@@ -661,7 +301,12 @@ class ThesaurusConcept
     ConsoleLogger::log(C_CLASS_NAME,"createTopLevel","ns=" + ns)
     ConsoleLogger::log(C_CLASS_NAME,"createTopLevel","thId=" + thesauriId)
 
+    # Create the object
+    object = self.new 
+    object.errors.clear
+
     identifier  = params[:identifier]
+    label  = params[:label]
     notation = params[:notation]
     preferredTerm = params[:preferredTerm]
     synonym = params[:synonym]
@@ -676,12 +321,12 @@ class ThesaurusConcept
       "INSERT DATA \n" +
       "{ \n" +
       "  :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +
-      "  :" + id + " skos:inScheme :" + thesauriId + " . \n" +
+      "  :" + id + " iso25964:inScheme :" + thesauriId + " . \n" +
+      "  :" + id + " rdfs:label  \"" + label.to_s + "\"^^xsd:string . \n" +
       "  :" + id + " iso25964:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
       "  :" + id + " iso25964:notation \"" + notation.to_s + "\"^^xsd:string . \n" +
       "  :" + id + " iso25964:preferredTerm \"" + preferredTerm.to_s + "\"^^xsd:string . \n" +
       "  :" + id + " iso25964:synonym \"" + synonym.to_s + "\"^^xsd:string . \n" +
-      "  :" + id + " iso25964:extensible \"" + extensible.to_s + "\"^^xsd:string . \n" +
       "  :" + id + " iso25964:definition \"" + definition.to_s + "\"^^xsd:string . \n" +
       "}"
     
@@ -690,20 +335,17 @@ class ThesaurusConcept
     
     # Response
     if response.success?
-      object = self.new
       object.id = id
       object.identifier = identifier
       object.notation = notation
       object.preferredTerm = preferredTerm
       object.synonym = synonym
-      object.extensible = extensible
       object.definition = definition
       object.children = nil
       ConsoleLogger::log(C_CLASS_NAME,"createTopLevel","Object created, id=" + id)
     else
       ConsoleLogger::log(C_CLASS_NAME,"createTopLevel","Object created failed!")
-      object = self.new
-      object.assign_errors(data) if response.response_code == 422
+      object.errors.add(:base, "The concept was not created in the database.")
     end
     return object
     
@@ -713,11 +355,14 @@ class ThesaurusConcept
     
     ConsoleLogger::log(C_CLASS_NAME,"addChild","*****Entry*****")
 
+    # Clear errors
+    self.errors.clear
+
     # Create the query
     update = UriManagement.buildNs(ns, ["iso25964"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      "  :" + self.id + " skos:narrower :" + child.id + " . \n" +
+      "  :" + self.id + " iso25964:narrower :" + child.id + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -729,21 +374,24 @@ class ThesaurusConcept
       ConsoleLogger::log(C_CLASS_NAME,"createTopLevel","Object created, id=" + self.id)
     else
       ConsoleLogger::log(C_CLASS_NAME,"createTopLevel","Object created failed!")
-      object.assign_errors(data) if response.response_code == 422
+      self.errors.add(:base, "The concept was not created in the database.")
     end
     
   end
 
   def update(params, ns)
-    
+    result = false
     ConsoleLogger::log(C_CLASS_NAME,"update","*****Entry*****")
+
+    # Clear errors
+    self.errors.clear
 
     # Note extensible cannot be modified.
     identifier  = params[:identifier]
+    label  = params[:label]
     notation = params[:notation]
     preferredTerm = params[:preferredTerm]
     synonym = params[:synonym]
-    extensible = self.extensible
     definition = params[:definition]
 
     # Create the query
@@ -753,16 +401,16 @@ class ThesaurusConcept
       "{ \n" +
       #"  :" + self.id + " rdf:type iso25964:ThesaurusConcept . \n" +
       #"  :" + self.id + " skos:inScheme :?o2 . \n" +
+      "  :" + self.id + " rdfs:label \"" + label.to_s + "\"^^xsd:string . \n" +
       "  :" + self.id + " iso25964:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
       "  :" + self.id + " iso25964:notation \"" + notation.to_s + "\"^^xsd:string . \n" +
       "  :" + self.id + " iso25964:preferredTerm \"" + preferredTerm.to_s + "\"^^xsd:string . \n" +
       "  :" + self.id + " iso25964:synonym \"" + synonym.to_s + "\"^^xsd:string . \n" +
-      "  :" + self.id + " iso25964:extensible \"" + extensible.to_s + "\"^^xsd:string . \n" +
       "  :" + self.id + " iso25964:definition \"" + definition.to_s + "\"^^xsd:string . \n" +
       "} \n" +
       "WHERE \n" +
       "{\n" +
-      "  :" + self.id + " (iso25964:identifier|iso25964:notation|iso25964:preferredTerm|iso25964:synonym|iso25964:extensible|iso25964:definition) ?o .\n" +
+      "  :" + self.id + " (iso25964:identifier|iso25964:notation|iso25964:preferredTerm|iso25964:synonym|iso25964:definition) ?o .\n" +
       "}\n"
       
     # Send the request, wait the resonse
@@ -770,16 +418,15 @@ class ThesaurusConcept
     
     # Response
     if response.success?
+      result = true
       self.children = ThesaurusConcept::allChildren(self.id, ns)
       ConsoleLogger::log(C_CLASS_NAME,"updated","Object created, id=" + self.id)
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"updated","Object created failed!")
-      object.assign_errors(data) if response.response_code == 422
     end
+    return result
   end
 
   def destroy(ns, thesauriId)
-    
+    result = false
     ConsoleLogger::log(C_CLASS_NAME,"destroy","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"destroy","Namespace=" + ns)
 
@@ -788,7 +435,7 @@ class ThesaurusConcept
       "DELETE \n" +
       "{\n" +
       "  :" + self.id + " ?a ?b . \n" +
-      "  ?c skos:narrower :" + self.id + " . \n" +
+      "  ?c iso25964:narrower :" + self.id + " . \n" +
       "}\n" +
       "WHERE\n" + 
       "{\n" +
@@ -796,41 +443,44 @@ class ThesaurusConcept
       "  OPTIONAL \n" +
       "  {\n" +
       "    ?c iso25964:inScheme :" + thesauriId + " . \n" +
-      "    ?c skos:narrower :" + self.id + " . \n" +
+      "    ?c iso25964:narrower :" + self.id + " . \n" +
       "  }\n" +
       "}\n"
 
-    # Create the query
-    # update = UriManagement.buildPrefix(C_NS_PREFIX, ["iso25964"]) +
-    #   "DELETE DATA \n" +
-    #   "{ \n" +
-    #   "	 :" + self.id + " rdf:type iso25964:ThesaurusConcept . \n" +
-    #   "  :" + self.id + " iso25964:identifier \"" + self.identifier.to_s + "\"^^xsd:string . \n" +
-    #   "	 :" + self.id + " iso25964:notation \"" + self.notation.to_s + "\"^^xsd:string . \n" +
-    #   "	 :" + self.id + " iso25964:preferredTerm \"" + self.preferredTerm.to_s + "\"^^xsd:string . \n" +
-    #   "	 :" + self.id + " iso25964:synonym \"" + self.synonym.to_s + "\"^^xsd:string . \n" +
-    #   "	 :" + self.id + " iso25964:extensible \"" + self.extensible.to_s + "\"^^xsd:string . \n" +
-    #   "	 :" + self.id + " iso25964:definition \"" + self.definition.to_s + "\"^^xsd:string . \n" +
-    #   "}"
-    
     # Send the request, wait the resonse
     response = CRUD.update(update)
 
     # Response
     if response.success?
       ConsoleLogger::log(C_CLASS_NAME,"destroy","Object deleted")
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"destroy","Object deletion failed!")
+      result = true
     end
-     
+    return result 
   end
   
+  def self.diff? (thcA, thcB)
+    #ConsoleLogger::log(C_CLASS_NAME,"diff?","*****Entry*****")
+    result = false
+    if ((thcA.id == thcB.id) &&
+      (thcA.identifier == thcB.identifier) &&
+      (thcA.notation == thcB.notation) &&
+      (thcA.preferredTerm == thcB.preferredTerm) &&
+      (thcA.synonym == thcB.synonym) &&
+      (thcA.definition == thcB.definition))
+      result = false
+    else
+      result = true
+    end
+    return result
+  end
+
   def to_D3
 
     result = Hash.new
     result[:name] = self.identifier
     result[:id] = self.id
     result[:namespace] = self.namespace
+    result[:label] = self.label
     result[:identifier] = self.identifier
     result[:notation] = self.notation
     result[:definition] = self.definition
@@ -841,8 +491,9 @@ class ThesaurusConcept
     index = 0
     self.children.each do |key, child|
       result[:children][index] = Hash.new
-      result[:children][index][:name] = child.identifier + ' [' + child.notation + ']'
+      result[:children][index][:name] = child.label + ' [' + child.identifier + ']'
       result[:children][index][:identifier] = child.identifier
+      result[:children][index][:label] = child.label
       result[:children][index][:id] = child.id
       result[:children][index][:namespace] = child.namespace
       result[:children][index][:notation] = child.notation

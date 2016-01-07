@@ -3,6 +3,7 @@ $(document).ready(function() {
   var sourceJson ;
   var d3Div = document.getElementById("d3");
   var html  = $("#jsonData").html();
+  var conceptLabelElement = document.getElementById("conceptLabel");
   var conceptIdElement = document.getElementById("conceptId");
   var conceptNotationElement = document.getElementById("conceptNotation");
   var conceptDefinitionElement = document.getElementById("conceptDefinition");
@@ -36,6 +37,7 @@ $(document).ready(function() {
     currentThis = this;
 
     if (!node.expand) {
+      conceptLabelElement.value = node.label;
       conceptIdElement.value = node.identifier;
       conceptNotationElement.value = node.notation;
       conceptDefinitionElement.value = node.definition;
@@ -106,6 +108,7 @@ $(document).ready(function() {
     } else if (currentNode.expand) {
       alert ("Cannot add to this node");
     } else {
+      label = conceptLabelElement.value
       identifier = conceptIdElement.value
       notation = conceptNotationElement.value;
       definition = conceptDefinitionElement.value;
@@ -122,7 +125,8 @@ $(document).ready(function() {
       currentNode.children[index] = {};
       currentNode.children[index].id = "NEW_" + newIndex;
       currentNode.children[index].add = true;
-      currentNode.children[index].name = identifier + " [" + notation + "]";
+      currentNode.children[index].name = label + " [" + notation + "]";
+      currentNode.children[index].label = label;
       currentNode.children[index].identifier = identifier;
       currentNode.children[index].definition = definition;
       currentNode.children[index].notation = notation;
@@ -163,7 +167,8 @@ $(document).ready(function() {
             } 
           } else {
             redraw();
-            alert ("Node has children. Delete these first.");
+            var html = alertWarning("The concept has children. Delete these first.");
+            displayAlerts(html);
           }    
         }
       }); 
@@ -179,28 +184,22 @@ $(document).ready(function() {
     } else if (currentNode.expand) {
       alert ("Cannot update this node");
     } else {
+      label = conceptLabelElement.value
       identifier = conceptIdElement.value
       notation = conceptNotationElement.value;
       definition = conceptDefinitionElement.value;
       preferredTerm= conceptPreferredTermElement.value;
       synonym = conceptSynonymElement.value;
-      currentNode.name = identifier + " [" + notation + "]";
+      currentNode.name = label + " [" + notation + "]";
+      currentNode.label = label;
       currentNode.identifier = identifier;
       currentNode.definition = definition;
       currentNode.notation = notation;
       currentNode.preferredTerm = preferredTerm;
       currentNode.synonym = synonym;
       currentNode.update = true;
-      //updateList.push(currentNode);
       save(currentNode);
     }
-  });
-
-  /* 
-  * Function to handle the delete button click.
-  */
-  $('#saveButton').click(function() {
-  
   });
 
   /**
@@ -302,6 +301,7 @@ $(document).ready(function() {
       saveData.addItem = {
         id: node.id, 
         parent: node.parent.id ,
+        label: node.label , 
         identifier: node.identifier , 
         notation: node.notation, 
         definition: node.definition, 
@@ -317,6 +317,7 @@ $(document).ready(function() {
       saveData.updateItem = {
         id: node.id, 
         parent: node.parent.id ,
+        label: node.label , 
         identifier: node.identifier , 
         notation: node.notation, 
         definition: node.definition, 
@@ -328,7 +329,7 @@ $(document).ready(function() {
     } 
 
     //buildPath(node);
-    alert("Data=" + JSON.stringify(saveData));
+    //alert("Data=" + JSON.stringify(saveData));
 
     // Send to the server
     $.ajax({
@@ -339,11 +340,23 @@ $(document).ready(function() {
               "data": saveData
             },
       success: function(result){
+        var html = alertSuccess("The concept has been saved.");
+        displayAlerts(html);
         var intJson = JSON.stringify(result);
         sourceJson = $.parseJSON(intJson);
         initData();
         expandPath(path.pop(), sourceJson, null);
         redraw();
+      },
+      error: function(xhr,status,error){
+        var errors;
+        var html;
+        errors = $.parseJSON(xhr.responseText).errors;
+        var html = ""
+        for (var i=0; i<errors.length; i++) {
+          html = html + alertError(errors[i]);
+        }
+        displayAlerts(html);
       }
     }); 
 

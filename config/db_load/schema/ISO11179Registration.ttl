@@ -6,8 +6,8 @@
 # imports: http://www.w3.org/2004/02/skos/core
 
 @prefix : <http://www.assero.co.uk/ISO11179Registration#> .
-@prefix ISO11179Identification: <http://www.assero.co.uk/ISO11179Identification#> .
-@prefix ISO11179Types: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -18,8 +18,8 @@
   rdf:type owl:Ontology ;
   owl:imports <http://purl.org/dc/elements/1.1/> ;
   owl:imports <http://purl.org/dc/terms/> ;
-  owl:imports <http://www.assero.co.uk/ISO11179Identification> ;
   owl:imports <http://www.assero.co.uk/ISO11179Types> ;
+  owl:imports <http://www.assero.co.uk/ISO11179Concepts> ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
@@ -44,7 +44,7 @@
   rdf:type owl:ObjectProperty ;
   rdfs:domain :RegistrationState ;
   rdfs:label "administeredItem"^^xsd:string ;
-  rdfs:range ISO11179Types:AdministeredItem ;
+  rdfs:range isoT:AdministeredItem ;
 .
 :byAuthority
   rdf:type owl:ObjectProperty ;
@@ -54,7 +54,8 @@
 .
 :hasState
   rdf:type owl:ObjectProperty ;
-  rdfs:domain ISO11179Types:AdministeredItem ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain isoT:AdministeredItem ;
   rdfs:label "Item Registration Relationship"^^xsd:string ;
   rdfs:range :RegistrationState ;
 .

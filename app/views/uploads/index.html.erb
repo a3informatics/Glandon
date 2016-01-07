@@ -1,13 +1,13 @@
-<h1>File Upload</h1>
-<%= form_for @upload do |f| %>
-   <div class="field">
-		 <%= form_tag 'create', :multipart => true %>
-		 	<p>
-		 		<%= f.file_field 'datafile' %>
-		 	</p>
-		 <%= form_tag %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Upload" %>
-  </div>
-<% end %>
+<h3>File Upload</h3>
+<div class="col-md-3">
+	<%= form_for @upload do |f| %>
+	  	<div class="form-group">
+			<%= form_tag 'create', :multipart => true , class: "form-control" %>
+			 	<p>
+			 		<%= f.file_field 'datafile' %>
+			 	</p>
+			<%= form_tag %>
+	  	</div>
+		<%= f.submit "Upload", class: "btn btn-default btn-primary" %>
+	<% end %>
+</div>

@@ -14,13 +14,21 @@ Rails.application.routes.draw do
     end
   end
   resources :iso_namespaces
-  resources :scoped_identifiers
-  resources :registration_authorities
-  resources :registration_states
-  resources :managed_items
-  resources :thesauri
+  resources :iso_scoped_identifiers
+  resources :iso_registration_authorities
+  resources :iso_registration_states
+  resources :thesauri do
+    collection do
+      get :history
+      get :view
+      get :search
+      get :searchNew
+      get :searchOld
+    end
+  end
   resources :thesaurus_concepts do
     collection do
+      get :impact
       get :showD3
     end
   end
@@ -34,20 +42,21 @@ Rails.application.routes.draw do
   end
   resources :cdisc_terms do
     collection do
+      get :changes
       get :compare
       get :history
+      get :import
       get :search
-    end
-  end
-  resources :sponsor_terms do
-    collection do
-      get :search
+      get :searchNew
+      get :searchOld
+      get :import
     end
   end
   resources :cdisc_cls do
     collection do
       get :compare
       get :history
+      get :changes
     end
   end
   resources :cdisc_clis do
@@ -55,6 +64,7 @@ Rails.application.routes.draw do
       get :compare
       get :history
       get :impact
+      get :changes
     end
   end
   resources :iso_concept_systems do

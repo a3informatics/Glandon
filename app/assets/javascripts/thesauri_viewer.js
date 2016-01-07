@@ -6,6 +6,7 @@ $(document).ready(function() {
   var normal = true;
   var currentNode = null;
   var currentThis = null;
+  var conceptLabelElement = document.getElementById("conceptLabel");
   var conceptIdElement = document.getElementById("conceptId");
   var conceptNotationElement = document.getElementById("conceptNotation");
   var conceptDefinitionElement = document.getElementById("conceptDefinition");
@@ -46,6 +47,7 @@ $(document).ready(function() {
     currentThis = this;
 
     if (!node.expand) {
+      conceptLabelElement.innerHTML = node.label;
       conceptIdElement.innerHTML = node.identifier;
       conceptNotationElement.innerHTML = node.notation;
       conceptDefinitionElement.innerHTML = node.definition;

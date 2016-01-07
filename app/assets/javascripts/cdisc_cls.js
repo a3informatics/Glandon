@@ -1,7 +1,11 @@
 $(document).ready( function() {
 
-    $('#cli').DataTable({
+    $('#main').DataTable({
+        columnDefs: [ ]
+    } );
+
+    $('#secondary').DataTable({
         columnDefs: [ ]
     } );		
-		
+    
 } );

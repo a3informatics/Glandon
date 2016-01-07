@@ -1,28 +1,20 @@
-<h3>Thesauri Index</h3>
+<h3>Index: Terminology</h3>
 <div class="col-md-12">
 	<table id="main" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
 		    	<th>Identifier</th>
-		    	<th>Version Label</th>
-		    	<th>Version</th>
-		    	<th>CID</th>
 		    	<th></th>
-		    	<!--<th></th>-->
 		  	</tr>
 		</thead>
 		<tbody>
 			<% @thesauri.each do |thesaurus| %>
 				<tr>
-			    	<td><%= thesaurus.identifier %></td>
-			    	<td><%= thesaurus.versionLabel %></td>
-			    	<td><%= thesaurus.version %></td>
-			    	<td><%= thesaurus.id %></td>
-			    	<td><%= link_to "Show", thesauri_path(:id => thesaurus.id, :namespace => thesaurus.namespace), :class => "btn btn-primary btn-xs" %></td>
-			    	<!--<td><%= link_to "Remove", thesauri_path(:id => thesaurus.id, :namespace => thesaurus.namespace), :class => "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></td>-->
+			    	<td><%= thesaurus %></td>
+			    	<td><%= link_to "History", history_thesauri_index_path(:identifier => thesaurus), :class => "btn btn-success btn-xs" %></td>
 			  	</tr>
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "New Thesauri", new_thesauri_path, :class => "btn btn-success" %>
+	<%= link_to "New", new_thesauri_path, :class => "btn btn-success" %>
 </div>

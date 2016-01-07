@@ -1,7 +1,7 @@
 require "nokogiri"
 require "uri"
 
-class Thesaurus
+class Thesaurus < IsoManaged
 
   include CRUD
   include ModelUtility
@@ -9,258 +9,107 @@ class Thesaurus
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :managedItem, :children
-  validates_presence_of :id, :managedItem, :children
+  attr_accessor :children
+  validates_presence_of :children
  
   # Constants
   C_CLASS_NAME = "Thesaurus"
   C_CID_PREFIX = "TH"
-  C_NS_PREFIX = "mdrTh"
-  
+  C_SCHEMA_PREFIX = "iso25964"
+  C_INSTANCE_PREFIX = "mdrTh"
+  C_RDF_TYPE = "Thesaurus"
+
   # Base namespace 
-  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
+  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
+  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def version
-    return self.managedItem.version
+  def self.baseNs()
+    return @@instanceNs
   end
 
-  def versionLabel
-    return self.managedItem.versionLabel
-  end
-
-  def identifier
-    return self.managedItem.identifier
-  end
-
-  def namespace
-    return self.managedItem.namespace
-  end
-
-  def persisted?
-    id.present?
-  end
- 
   def initialize()
   end
 
-  def self.baseNs
-    return @@baseNs 
-  end
-  
-  def self.find(id, ns=nil)
-    
-    object = nil
-    useNs = ns || @@baseNs
-    object = self.new 
-    object.id = id
-    object.managedItem = ManagedItem.find(id,useNs)
-    object.children = ThesaurusConcept.allTopLevel(id,useNs)
-    return object
-    
-  end
-
-  def self.findByNamespaceId(namespaceId)
-    
-    results = Array.new
-    
-    query = UriManagement.buildPrefix("",["isoI", "iso25964"]) +
-      "SELECT ?a ?b ?c WHERE \n" +
-      "{ \n" +
-      "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
-      if uriSet.length == 1
-        managedItem = ManagedItem.find(ModelUtility.extractCid(uriSet[0].text),ModelUtility.extractNs(uriSet[0].text))
-        if (managedItem != nil)
-          if (managedItem.scopedIdentifier.namespace.id == namespaceId)
-            object = self.new 
-            object.id = ModelUtility.extractCid(uriSet[0].text)
-            #object.namespace = ModelUtility.extractNs(uriSet[0].text)
-            object.managedItem = managedItem
-            results.push (object)
-            ConsoleLogger::log(C_CLASS_NAME,"findByNamespaceId","Object created id=" + object.id)
-          end 
-        end
-        
-      end
+  def self.find(id, ns, children=true)   
+    object = super(id, ns)
+    if children
+      object.children = ThesaurusConcept.allTopLevel(id, ns)
     end
-    
-    return results
-    
-  end
-  
-  def self.findWithoutNs(id)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"findWithoutNs","id=" + id)
-    object = nil
-    query = UriManagement.buildPrefix("",["isoI", "iso25964"]) +
-      "SELECT ?a WHERE \n" +
-      "{ \n" +
-      "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
-      if uriSet.length == 1 
-        tId = ModelUtility.extractCid(uriSet[0].text)
-        ConsoleLogger::log(C_CLASS_NAME,"findWithoutNs","tid=" + tId)
-        if (tId == id)
-          managedItem = ManagedItem.find(ModelUtility.extractCid(uriSet[0].text),ModelUtility.extractNs(uriSet[0].text))
-          if (managedItem != nil)
-            object = self.new 
-            object.id = ModelUtility.extractCid(uriSet[0].text)
-            #object.namespace = ModelUtility.extractNs(uriSet[0].text)
-            object.managedItem = managedItem
-            object.children = ThesaurusConcept.allTopLevel(object.id,object.namespace)
-            ConsoleLogger::log(C_CLASS_NAME,"findWithoutNs","Object created id=" + object.id)
-          end
-        end
-      end
-    end
-    
-    return object
-    
+    return object    
   end
   
   def self.all
-    
+    results = super(C_RDF_TYPE, @@schemaNs)
+    return results
+  end
+
+  def self.unique
+    results = super(C_RDF_TYPE, @@schemaNs)
+    return results
+  end
+
+  def self.history(identifier)
+    results = super(C_RDF_TYPE, identifier, @@schemaNs)
+    return results
+  end
+
+  def self.create(params)
+    object = super(C_CID_PREFIX, params, 'Thesaurus', @@schemaNs, @@instanceNs)
+    return object
+  end
+
+  def self.import(params, ownerNamespace)
+    object = super(C_CID_PREFIX, params, ownerNamespace, 'Thesaurus', @@schemaNs, @@instanceNs)
+    return object
+  end
+
+  def self.count(searchTerm, ns)
+    count = 0
+    if searchTerm == ""
+      query = UriManagement.buildNs(ns, ["iso25964"]) +
+        "SELECT DISTINCT (COUNT(?b) as ?total) WHERE \n" +
+        "  {\n" +
+        "    ?a iso25964:identifier ?b . \n" +
+        "    FILTER(STRSTARTS(STR(?a), \"" + ns + "\"))" +
+        "  }"
+      response = CRUD.query(query)
+      xmlDoc = Nokogiri::XML(response.body)
+      xmlDoc.remove_namespaces!
+      xmlDoc.xpath("//result").each do |node|
+        countSet = node.xpath("binding[@name='total']/literal")
+        count = countSet[0].text.to_i
+      end
+    else
+      query = UriManagement.buildNs(ns, ["iso25964"]) + queryString(searchTerm, ns) 
+      response = CRUD.query(query)
+      xmlDoc = Nokogiri::XML(response.body)
+      xmlDoc.remove_namespaces!
+      count = xmlDoc.xpath("//result").length
+    end
+    return count
+  end
+
+  def self.search(offset, limit, col, dir, searchTerm, ns)
     results = Array.new
-    
-    # Create the query
-    query = UriManagement.buildPrefix("",["isoI", "iso25964"]) +
-      "SELECT ?a ?b ?c WHERE \n" +
-      "{ \n" +
-      "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
+    variable = getOrderVariable(col)
+    order = getOrdering(dir)
+    query = UriManagement.buildNs(ns, ["iso25964"]) + 
+      queryString(searchTerm, ns) + 
+      " ORDER BY " + order + "(" + variable + ") OFFSET " + offset.to_s + " LIMIT " + limit.to_s
     response = CRUD.query(query)
-    
-    # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
-      if uriSet.length == 1
-        object = self.new 
-        object.id = ModelUtility.extractCid(uriSet[0].text)
-        object.managedItem = ManagedItem.find(object.id,ModelUtility.extractNs(uriSet[0].text))
-        results.push (object)
-        
-      end
+      processNode(node, results)
     end
-    
     return results
-    
   end
-
-  def self.createLocal(params)
-    
-    # Get the parameters
-    version = params[:version]
-    versionLabel = params[:versionLabel]
-    identifier = params[:identifier]
-    label = params[:label]
-    
-    # Create the managed item for the thesaurus. 
-    managedItem = ManagedItem.create(C_CID_PREFIX, params, @@baseNs)
-    id = managedItem.id
-    useNs = managedItem.namespace
-
-    # Create the query
-    update = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      "	 :" + id + " rdf:type iso25964:Thesaurus . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      object.managedItem = managedItem
-      ConsoleLogger::log(C_CLASS_NAME,"createLocal","Object created, id=" + id)
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"createLocal","Object not created!")
-      object = self.new
-      object.assign_errors(data) if response.response_code == 422
-    end
-    return object
-    
-  end
-
-  def self.createImported(params, ns=nil)
-    
-    # Set the namespaceitemTy
-    useNs = ns || @@baseNs
-
-    # Get the parameters
-    version = params[:version]
-    versionLabel = params[:versionLabel]
-    identifier = params[:identifier]
-    namespaceId = params[:namespaceId]
-    label = params[:label]
-    
-    ConsoleLogger::log(C_CLASS_NAME,"createImported","*****ENTRY*****")
-    ConsoleLogger::log(C_CLASS_NAME,"createImported",
-      "namespaceId=" + namespaceId + ", " + 
-      "versionLabel=" + versionLabel + ", " + 
-      "version=" + version + ", " + 
-      "identifier" + identifier + ", " + 
-      "itemType=" + itemType )
-
-    # Create the managed item for the thesaurus.
-    managedItem = ManagedItem.import(C_CID_PREFIX, params, namespaceId, @@baseNs)
-    id = managedItem.id
-
-    # Create the query
-    update = UriManagement.buildNs(useNs,["isoI", "iso25964"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      "  :" + id + " rdf:type iso25964:Thesaurus . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      object.namespace = useNs
-      object.managedItem = managedItem
-      ConsoleLogger::log(C_CLASS_NAME,"createImported","Object created, id=" + id)
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"createImported","Object not created!")
-      object = self.new
-      object.assign_errors(data) if response.response_code == 422
-    end
-    return object
-    
-  end
-
+  
   def update(params)
-
     ConsoleLogger::log(C_CLASS_NAME,"update","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"update","Params=" + params.to_s)
-
+    self.errors.clear
+    
     # Access the data
     data = params[:data]
     if data != nil
@@ -273,21 +122,27 @@ class Thesaurus
       if (deleteItem != nil)
         ConsoleLogger::log(C_CLASS_NAME,"update","Delete, item=" + deleteItem.to_s)
         concept = ThesaurusConcept.find(deleteItem[:id], self.namespace)
-        concept.destroy(self.namespace, self.id)
+        if !concept.destroy(self.namespace, self.id)
+          self.errors.add(:base, "The concept deletion failed.")          
+        end
       end
 
       # Add items
       if (addItem != nil)
         ConsoleLogger::log(C_CLASS_NAME,"update","Insert, item=" + addItem.to_s)
         if (addItem[:parent] == self.id) 
-          ThesaurusConcept.createTopLevel(addItem, self.namespace, self.id)
+          if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
+            ThesaurusConcept.createTopLevel(addItem, self.namespace, self.id)
+          else
+            self.errors.add(:base, "The concept identifier already exisits.")
+          end
         else
           if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
             parentConcept = ThesaurusConcept.find(addItem[:parent], self.namespace)
             newConcept = ThesaurusConcept.create(addItem, self.namespace)
             parentConcept.addChild(newConcept, self.namespace)
           else
-            ConsoleLogger::log(C_CLASS_NAME,"update","Update, concept exisits already" + addItem.to_s)
+            self.errors.add(:base, "The concept identifier already exisits.")
           end
         end
       end
@@ -296,13 +151,11 @@ class Thesaurus
       if (updateItem != nil)
         ConsoleLogger::log(C_CLASS_NAME,"update","Update, item=" + updateItem.to_s)
         concept = ThesaurusConcept.find(updateItem[:id], self.namespace)
-        concept.update(updateItem, self.namespace)
+        if !concept.update(updateItem, self.namespace)
+          self.errors.add(:base, "The concept update failed.")        
+        end
       end
     end
-
-  end
-
-  def destroy(ns=nil)
   end
   
   def to_D3
@@ -311,59 +164,159 @@ class Thesaurus
     result[:name] = self.identifier
     result[:namespace] = self.namespace
     result[:id] = self.id
+    result[:label] = "";
+    result[:identifier] = "";
+    result[:notation] = "";
+    result[:definition] = "";
+    result[:synonym] = "";
+    result[:preferredTerm] = "";
     result[:children] = Array.new
-
+        
     count = 0
     index = 0
     baseChildId = ""
-    self.children.each do |key, child|
-      if count == 0
-        baseChildId = child.identifier;
+    if self.children.length <= 10
+      self.children.each do |key, child|
         result[:children][index] = Hash.new
-        result[:children][index][:name] = child.identifier;
-        result[:children][index][:id] = child.id;
-        result[:children][index][:expand] = true
-        result[:children][index][:expansion] = Array.new        
-        result[:children][index][:expansion][count] = Hash.new
-        result[:children][index][:expansion][count][:name] = child.identifier + ' [' + child.notation + ']'
-        result[:children][index][:expansion][count][:id] = child.id;
-        result[:children][index][:expansion][count][:expand] = false
-        result[:children][index][:expansion][count][:identifier] = child.identifier;
-        result[:children][index][:expansion][count][:notation] = child.notation;
-        result[:children][index][:expansion][count][:definition] = child.definition;
-        result[:children][index][:expansion][count][:synonym] = child.synonym;
-        result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm;
-        count += 1
-      elsif count == 9
-        result[:children][index][:name] = baseChildId + ' - ' + child.identifier;
-        result[:children][index][:expansion][count] = Hash.new
-        result[:children][index][:expansion][count][:name] = child.identifier + ' [' + child.notation + ']'
-        result[:children][index][:expansion][count][:id] = child.id;
-        result[:children][index][:expansion][count][:expand] = false
-        result[:children][index][:expansion][count][:identifier] = child.identifier;
-        result[:children][index][:expansion][count][:notation] = child.notation;
-        result[:children][index][:expansion][count][:definition] = child.definition;
-        result[:children][index][:expansion][count][:synonym] = child.synonym;
-        result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm;
-        count = 0
-        index += 1        
-      else
-        result[:children][index][:name] = baseChildId + ' - ' + child.identifier;
-        result[:children][index][:expansion][count] = Hash.new
-        result[:children][index][:expansion][count][:name] = child.identifier + ' [' + child.notation + ']'
-        result[:children][index][:expansion][count][:id] = child.id;
-        result[:children][index][:expansion][count][:expand] = false
-        result[:children][index][:expansion][count][:identifier] = child.identifier;
-        result[:children][index][:expansion][count][:notation] = child.notation;
-        result[:children][index][:expansion][count][:definition] = child.definition;
-        result[:children][index][:expansion][count][:synonym] = child.synonym;
-        result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm;
-        count += 1
+        result[:children][index][:name] = child.label
+        result[:children][index][:id] = child.id
+        result[:children][index][:expand] = false
+        result[:children][index][:label] = child.label
+        result[:children][index][:identifier] = child.identifier
+        result[:children][index][:notation] = child.notation
+        result[:children][index][:definition] = child.definition
+        result[:children][index][:synonym] = child.synonym
+        result[:children][index][:preferredTerm] = child.preferredTerm
+        index += 1
+      end
+    else      
+      self.children.each do |key, child|
+        if count == 0
+          baseChildId = child.identifier;
+          result[:children][index] = Hash.new
+          result[:children][index][:name] = child.label
+          result[:children][index][:id] = child.id
+          result[:children][index][:expand] = true
+          result[:children][index][:expansion] = Array.new        
+          result[:children][index][:expansion][count] = Hash.new
+          result[:children][index][:expansion][count][:name] = child.label + ' [' + child.identifier + ']'
+          result[:children][index][:expansion][count][:id] = child.id
+          result[:children][index][:expansion][count][:expand] = false
+          result[:children][index][:expansion][count][:label] = child.label
+          result[:children][index][:expansion][count][:identifier] = child.identifier
+          result[:children][index][:expansion][count][:notation] = child.notation
+          result[:children][index][:expansion][count][:definition] = child.definition
+          result[:children][index][:expansion][count][:synonym] = child.synonym
+          result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm
+          count += 1
+        elsif count == 9
+          result[:children][index][:name] = baseChildId + ' - ' + child.identifier
+          result[:children][index][:expansion][count] = Hash.new
+          result[:children][index][:expansion][count][:name] = child.label + ' [' + child.identifier + ']'
+          result[:children][index][:expansion][count][:id] = child.id
+          result[:children][index][:expansion][count][:expand] = false
+          result[:children][index][:expansion][count][:label] = child.label
+          result[:children][index][:expansion][count][:identifier] = child.identifier
+          result[:children][index][:expansion][count][:notation] = child.notation
+          result[:children][index][:expansion][count][:definition] = child.definition
+          result[:children][index][:expansion][count][:synonym] = child.synonym
+          result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm
+          count = 0
+          index += 1        
+        else
+          result[:children][index][:name] = baseChildId + ' - ' + child.identifier;
+          result[:children][index][:expansion][count] = Hash.new
+          result[:children][index][:expansion][count][:name] = child.label + ' [' + child.identifier + ']'
+          result[:children][index][:expansion][count][:id] = child.id
+          result[:children][index][:expansion][count][:expand] = false
+          result[:children][index][:expansion][count][:label] = child.label
+          result[:children][index][:expansion][count][:identifier] = child.identifier
+          result[:children][index][:expansion][count][:notation] = child.notation
+          result[:children][index][:expansion][count][:definition] = child.definition
+          result[:children][index][:expansion][count][:synonym] = child.synonym
+          result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm
+          count += 1
+        end
       end
     end
     ConsoleLogger::log(C_CLASS_NAME,"to_D3","D3=" + result.to_s)
     return result
 
   end
+
+private
+
+  def self.processNode(node, results)
+    object = nil
+    uriSet = node.xpath("binding[@name='a']/uri")
+    idSet = node.xpath("binding[@name='b']/literal")
+    nSet = node.xpath("binding[@name='c']/literal")
+    ptSet = node.xpath("binding[@name='d']/literal")
+    sSet = node.xpath("binding[@name='e']/literal")
+    dSet = node.xpath("binding[@name='f']/literal")
+    tlSet = node.xpath("binding[@name='g']/uri")
+    if uriSet.length == 1 
+      object = ThesaurusConcept.new 
+      object.identifier = idSet[0].text
+      object.notation = nSet[0].text
+      object.preferredTerm = ptSet[0].text
+      object.synonym = sSet[0].text
+      object.definition = dSet[0].text
+      object.topLevel = false
+      if tlSet.length == 1 
+        object.topLevel = true
+      end
+      results.push(object)
+    end
+  end
+
+  def self.queryString(searchTerm, ns)
+    query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
+      "  {\n" +
+      "    ?a iso25964:identifier ?b . \n" +
+      "    ?a iso25964:notation ?c . \n" +
+      "    ?a iso25964:preferredTerm ?d . \n" +
+      "    ?a iso25964:synonym ?e . \n" +
+      "    ?a iso25964:definition ?f . \n" +
+      "    OPTIONAL { ?a iso25964:inScheme ?g . }\n"
+      if searchTerm != ""
+        query += "    ?a ( iso25964:identifier | iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?h . FILTER regex(?h, \"" + 
+          searchTerm + "\") . \n"
+      end
+      query += "    FILTER(STRSTARTS(STR(?a), \"" + ns + "\"))" +
+      "  }"
+      return query
+  end
+
+  def self.getOrderVariable(col)
+    columnMap = 
+      {
+        # See query above to map the columns to variables
+        "0" => "?b", # identifier
+        "1" => "?c", # notation
+        "2" => "?f", # definition
+        "3" => "?e", # synonym
+        "4" => "?d"  # preferred term
+      }  
+    variable = columnMap["0"]
+    if columnMap.has_key?(col)
+      variable = columnMap[col]
+    end
+    return variable
+  end  
+  
+  def self.getOrdering(dir)
+    orderMap = 
+      {
+        "desc" => "DESC",
+        "asc" => "ASC"
+      }
+    order = orderMap["asc"]
+    if orderMap.has_key?(dir)
+      order = orderMap[dir]
+    end
+    return order
+  end
+
 
 end

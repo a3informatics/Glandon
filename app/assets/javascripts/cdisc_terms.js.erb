@@ -1,0 +1,43 @@
+$(document).ready( function() {
+	
+	$('#main').DataTable({
+        columnDefs: [ ]
+    } );
+				
+	$('#secondary').DataTable({
+        columnDefs: [ ]
+    } );
+
+    var termId = document.getElementById("termId");
+    var namespace = document.getElementById("namespace");
+    var table = $('#searchTable').DataTable( {
+        "ajax": {
+          "url": "searchNew",
+          "data": function( d ) {
+              d.id = termId.value,
+              d.namespace = encodeURIComponent(namespace.value)
+            },
+        "dataSrc": "data" 
+        },
+        "processing": true,
+        "serverSide": true,
+        "language": {
+             "infoFiltered": "",
+             "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+        },
+        //"bPaginate": true,
+        //"bFilter" : true,
+        "pageLength": 5,
+        "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+        "columns": [
+            {"data" : "identifier", "width" : "10%"},
+            {"data" : "notation", "width" : "10%"},
+            {"data" : "definition", "width" : "40%"},
+            {"data" : "synonym", "width" : "15%" },
+            {"data" : "preferredTerm", "width" : "15%" },
+            {"data" : "topLevel", "width" : "5%" },
+            {"data" : "extensible", "width" : "5%" }
+          ]
+      });
+
+} );

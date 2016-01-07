@@ -1,106 +1,77 @@
-require "uri"
+class CdiscCl < ThesaurusConcept
+  
+  attr_accessor :extensible
+  
+  # Constants
+  C_CLASS_PREFIX = "THC"
+  C_SCHEMA_PREFIX = "iso25964"
+  C_INSTANCE_PREFIX = "mdrTh"
+  C_CLASS_NAME = "CdiscCl"
+  C_RDF_TYPE = "ThesaurusConcept"
 
-class CdiscCl
-  
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  include Xml
-  include Xslt
-      
-  attr_accessor :id, :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace
-  validates_presence_of :identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace
-  
   # Base namespace 
-  @@cdiscOrg # CDISC Organization identifier
+  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
+  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  # Base namespace 
-  @@BaseNs = ThesaurusConcept.baseNs()
-  
-  def persisted?
-    id.present?
-  end
-  
-  def initialize()
-  end
-
-  def baseNs
-    return @baseNs
-  end
-  
-  def diff? (otherCl)
-  
-    result = false
-    if ((self.id == otherCl.id) &&
-      (self.identifier == otherCl.identifier) &&
-      (self.notation == otherCl.notation) &&
-      (self.preferredTerm == otherCl.preferredTerm) &&
-      (self.synonym == otherCl.synonym) &&
-      (self.extensible == otherCl.extensible) &&
-      (self.definition == otherCl.definition))
+  def self.diff?(clA, clB)
+    #ConsoleLogger::log(C_CLASS_NAME,"diff?","*****Entry*****")
+    result = super(clA, clB)
+    if !result && (clA.extensible == clB.extensible)
       result = false
+      if clA.children == nil
+        clA.children = CdiscCl.allChildren(clA.id, clA.namespace)
+      end
+      if clB.children == nil
+        clB.children = CdiscCl.allChildren(clB.id, clB.namespace)
+      end
+      if clA.children.length == clB.children.length
+        #ConsoleLogger::log(C_CLASS_NAME,"diff?","A")
+        clA.children.each do |key, cliA|
+          #ConsoleLogger::log(C_CLASS_NAME,"diff?","B")
+          if clB.children.has_key?(key)
+            #ConsoleLogger::log(C_CLASS_NAME,"diff?","C")
+            cliB = clB.children[key]
+            if CdiscCli.diff?(cliA, cliB)
+              #ConsoleLogger::log(C_CLASS_NAME,"diff?","D")
+              result = true
+              break
+            end
+          else
+            result = true
+            break
+          end
+        end  
+      else
+        result = true
+      end
     else
       result = true
     end
     return result
-  
   end
   
-  def self.find(clId, cdiscTerm)
-    
-    object = nil
-    tc = ThesaurusConcept.find(clId, cdiscTerm.namespace)
-    if tc != nil
-      object = self.new 
-      object.id = tc.id
-    
-      p "[CdiscCl            ][find                ] id=" + tc.id
-  
-      object.identifier = tc.identifier
-      object.notation = tc.notation
-      object.preferredTerm = tc.preferredTerm
-      object.synonym = tc.synonym
-      object.extensible = tc.extensible
-      object.definition = tc.definition
-      object.namespace = cdiscTerm.namespace
+  def self.find(id, ns)
+    object = super(id, ns)
+    if object != nil
+      object.extensible = object.properties.getOnly(C_SCHEMA_PREFIX, "extensible")
     end
     return object  
-    
   end
 
-  def self.all(cdiscTerm)
-    
-    results = Array.new
-    tcSet = ThesaurusConcept.allTopLevel(cdiscTerm.id, cdiscTerm.thesaurus.namespace)
-    tcSet.each do |key, tc|
-      object = self.new 
-      object.id = tc.id
-      
-      # p "[CdiscCl            ][all                 ] id=" + tc.id
-    
-      object.identifier = tc.identifier
-      object.notation = tc.notation
-      object.preferredTerm = tc.preferredTerm
-      object.synonym = tc.synonym
-      object.extensible = tc.extensible
-      object.definition = tc.definition
-      object.namespace = cdiscTerm.thesaurus.namespace
-      results.push(object)
+  def self.allTopLevel(id, ns)
+    results = super(id, ns)
+    results.each do |key, tc|
+      tc.extensible = tc.properties.getOnly(C_SCHEMA_PREFIX, "extensible")
     end
     return results  
-    
   end
 
-  def self.create(params)
-    object = nil
-    return object
+  def self.allChildren(id, ns)
+    results = super(id, ns)
+    results.each do |key, tc|
+      tc.extensible = tc.properties.getOnly(C_SCHEMA_PREFIX, "extensible")
+    end
+    return results
   end
 
-  def update
-    return nil
-  end
-
-  def destroy
-  end
-  
 end

@@ -19,7 +19,7 @@ class SponsorTerm
   
   # Class-wide variables
   @@organization = nil # CDISC Organization identifier
-  @@currentVersionId = nil # The namespace for the current term version
+  @@currentVersion = nil # The namespace for the current term version
     
   # Base namespace 
   @@baseNs = Thesaurus.baseNs()
@@ -80,20 +80,21 @@ class SponsorTerm
 
   end
 
-  def self.all
-    
+  def self.all   
     results = Array.new
     if @@organization == nil 
       @@organization = IsoNamespace.findByShortName("ACME")
     end
-    tSet = Thesaurus.findByNamespaceId(@@organization.id)
-    tSet.each do |thesaurus|
-      object = self.new 
-      object.id = thesaurus.id
-      object.thesaurus = thesaurus
-      results.push(object)
+    tSet = Thesaurus.all
+    tSet.each do |key, thesaurus|
+      if thesaurus.owner == @@organization.shortName
+        object = self.new 
+        object.id = thesaurus.id
+        object.thesaurus = thesaurus
+        results.push(object)
+      end
     end
-    results.sort! { |a,b| a.thesaurus.managedItem.versionLabel <=> b.thesaurus.managedItem.versionLabel }
+    #results.sort! { |a,b| a.thesaurus.managedItem.versionLabel <=> b.thesaurus.managedItem.versionLabel }
     return results  
     
   end
@@ -101,13 +102,10 @@ class SponsorTerm
   def self.current 
     ConsoleLogger::log(C_CLASS_NAME,"Current","*****ENTRY*****")
     object = nil
-    if @@currentVersionId == nil
+    if @@currentVersion == nil
       ConsoleLogger::log(C_CLASS_NAME,"Current","Current nil")
       latest = nil
-      if @@organization == nil 
-        @@organization = IsoNamespace.findByShortName("ACME")
-      end
-      tSet = Thesaurus.findByNamespaceId(@@organization.id)
+      tSet = self.all
       tSet.each do |thesaurus|
         if latest == nil
           latest = thesaurus
@@ -115,14 +113,9 @@ class SponsorTerm
           latest = thesaurus
         end
       end
-      object = self.new 
-      object.id = latest.id
-      object.thesaurus = latest
-      @@currentVersionId = object.id
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"Current","CurrentVersionId=" + @@currentVersionId)
-      object = self.find(@@currentVersionId)
+      @@currentVersion = latest
     end
+    object = @@currentVersion
     ConsoleLogger::log(C_CLASS_NAME,"Current","*****EXIT***** " + object.id)   
     return object
   end
@@ -135,13 +128,6 @@ class SponsorTerm
     object.thesaurus = thesaurus
     return object
     
-  end
-
-  def update
-    return nil
-  end
-
-  def destroy    
   end
   
 end

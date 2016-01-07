@@ -44,7 +44,7 @@ class Form < IsoConceptInstance
       params[:versionLabel] = "0.1"
       params[:version] = "1"
       ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","FreeText=" + freeText.to_s)
-      if exists?(identifier, RegistrationAuthority.owner()) 
+      if exists?(identifier, IsoRegistrationAuthority.owner()) 
     
         # Note the error
         object.errors.add(:base, "The identifier is already in use.")
@@ -102,7 +102,7 @@ class Form < IsoConceptInstance
       params[:version] = "1"
       ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","BCs=" + bcs.to_s)
         
-      if exists?(identifier, RegistrationAuthority.owner) 
+      if exists?(identifier, IsoRegistrationAuthority.owner) 
     
         # Note the error
         object.errors.add(:base, "The identifier is already in use.")
@@ -174,7 +174,7 @@ class Form < IsoConceptInstance
       # Check the form does not exist 
       #ex = true
       #if !ex
-      if exists?(identifier, RegistrationAuthority.owner) 
+      if exists?(identifier, IsoRegistrationAuthority.owner) 
     
         # Note the error
         object.errors.add(:base, "The identifier is already in use.")
@@ -441,7 +441,7 @@ class Form < IsoConceptInstance
       "SELECT DISTINCT ?form WHERE \n" +
       "{ \n " +
       "  ?form rdf:type bf:Form . \n " +
-      "  ?form bf:hasGroup/bf:hasBiomedicalConcept/bo:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +"
+      "  ?form (bf:hasGroup|bf:hasSubGroup|bf:hasBiomedicalConcept|bo:hasBiomedicalConcept)%2B " + ModelUtility.buildUri(namespace, id) + " . \n " +"
       "  "}\n"
 
     # Send the request, wait the resonse

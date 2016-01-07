@@ -5,7 +5,7 @@
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
-@prefix isoT: <http://www.assero.co.uk/ISO11179Type#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix mdrBridg: <http://www.assero.co.uk/MDRBRIDG#> .
 @prefix mdrIso21090: <http://www.assero.co.uk/MDRISO21090#> .
 @prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
@@ -12947,7 +12947,8 @@ mdrItems:SI-BC_C25347_ACME-1
 mdrItems:RS-BC_C25347_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -13266,12 +13267,12 @@ mdrItems:RS-BC_C25347_ACME-1
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_3
 	rdf:type cbc:PropertyValue ;
-	cbc:value cCt:CLI-C66770_C41139 ;
+	cbc:value cCt:CLI-C71620_C41139 ;
 	cbc:nextValue :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_4 ;
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code_Value_4
 	rdf:type cbc:PropertyValue ;
-	cbc:value cCt:CLI-C66770_C71253 ;
+	cbc:value cCt:CLI-C71620_C71253 ;
 .
 :BC-BC_C25347_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -13340,7 +13341,8 @@ mdrItems:SI-BC_C25208_ACME-1
 mdrItems:RS-BC_C25208_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -13664,7 +13666,7 @@ mdrItems:RS-BC_C25208_ACME-1
 .
 :BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code_Value_4
 	rdf:type cbc:PropertyValue ;
-	cbc:value cCt:CLI-C66770_C48519 ;
+	cbc:value cCt:CLI-C71620_C48519 ;
 .
 :BC-BC_C25208_ACME_PerformedClinicalResult_baselineIndicator
 	rdf:type cbc:Item ;
@@ -13733,7 +13735,8 @@ mdrItems:SI-BC_C16358_ACME-1
 mdrItems:RS-BC_C16358_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -14111,7 +14114,8 @@ mdrItems:SI-BC_C49677_ACME-1
 mdrItems:RS-BC_C49677_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -14499,7 +14503,8 @@ mdrItems:SI-BC_C25298_ACME-1
 mdrItems:RS-BC_C25298_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -14887,7 +14892,8 @@ mdrItems:SI-BC_C25299_ACME-1
 mdrItems:RS-BC_C25299_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -15275,7 +15281,8 @@ mdrItems:SI-BC_C98793_ACME-1
 mdrItems:RS-BC_C98793_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -15653,7 +15660,8 @@ mdrItems:SI-BC_A00003_ACME-1
 mdrItems:RS-BC_A00003_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -16046,7 +16054,8 @@ mdrItems:SI-BC_C81255_ACME-1
 mdrItems:RS-BC_C81255_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -16424,7 +16433,8 @@ mdrItems:SI-BC_C49678_ACME-1
 mdrItems:RS-BC_C49678_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -16802,7 +16812,8 @@ mdrItems:SI-BC_C98785_ACME-1
 mdrItems:RS-BC_C98785_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -17185,7 +17196,8 @@ mdrItems:SI-BC_C25206_ACME-1
 mdrItems:RS-BC_C25206_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
@@ -17563,7 +17575,8 @@ mdrItems:SI-BC_A00002_ACME-1
 mdrItems:RS-BC_A00002_ACME-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+    isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate ""^^xsd:string ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;

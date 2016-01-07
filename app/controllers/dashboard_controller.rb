@@ -4,6 +4,13 @@ class DashboardController < ApplicationController
   
   def index
   	@forms = Form.all()
+    @thesauri = Thesaurus.unique
+    @cdiscBcs = CdiscBc.all
+    @results = IsoRegistrationState.count()
+    @statusCounts = []
+    @results.each do |key, value|
+      @statusCounts << {:y => key, :a => value}
+    end
   end
 
   def view

@@ -6,6 +6,17 @@ class DomainsController < ApplicationController
 
   def index
     @domains = Domain.all
+    respond_to do |format|
+      format.html 
+      format.json do
+        results = {}
+        results[:data] = []
+        @domains.each do |key, item|
+          results[:data] << {:identifier => item.identifier, :label => item.label}
+        end
+        render json: results
+      end
+    end
   end
   
   def update_add
