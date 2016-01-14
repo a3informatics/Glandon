@@ -1,4 +1,4 @@
-<h3>Domain: <%= @domain.label %> <small>(<%= @domain.owner %>, V<%= @domain.version %>)</small></h3>
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @domain} %>
 <div class="col-md-12">
 	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">

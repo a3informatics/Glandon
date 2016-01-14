@@ -6,16 +6,20 @@ $(document).ready(function () {
 		    "url": "forms",
 		    "dataSrc": "data"  
       	},
-      	"language": {
-             "infoFiltered": "",
-             "processing": "<img src='<%= asset_path('processing.gif') %>'>"
-        },
-        "bProcessing": true,
-        "pageLength": 5,
-        "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-        "columns": [ 
-        	{"data" : "identifier", "width" : "50%"},
-            {"data" : "label", "width" : "50%"}
+    	"language": {
+           "infoFiltered": "",
+           "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      },
+      "bProcessing": true,
+      "pageLength": 5,
+      "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+      "columns": [ 
+      	{"data" : "identifier", "width" : "80%"},
+        {"data" : "identifier", "render": function(data,type,full,meta) 
+          { 
+            return '<a href="forms/history?identifier='+ data +'"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
+          }
+        }
   		]
     } );
 
@@ -24,8 +28,8 @@ $(document).ready(function () {
     	"pageLength": 5,
         "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
         "columns": [ 
-        	{ "width": "70%" },
-        	{ "width": "30%" }
+        	{ "width": "80%" },
+        	{ "width": "20%" }
   		]
     } );
 
@@ -34,12 +38,12 @@ $(document).ready(function () {
     	"pageLength": 5,
         "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
         "columns": [ 
-        	{ "width": "70%" },
-        	{ "width": "30%" }
+        	{ "width": "80%" },
+        	{ "width": "20%" }
   		]
     } );
 
-    $('#main4').DataTable({
+    $('#main5').DataTable({
         "pagingType": "full",
     	"ajax": {
 		    "url": "domains",
@@ -53,18 +57,22 @@ $(document).ready(function () {
         "pageLength": 5,
         "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
         "columns": [ 
-        	{"data" : "identifier", "width" : "50%"},
-            {"data" : "label", "width" : "50%"}
+        	{"data" : "identifier", "width" : "80%"},
+          {"data" : "identifier", "render": function(data,type,full,meta) 
+            { 
+              return '<a href="domains/history?identifier='+ data +'"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
+            }
+          }
   		]
     } );
 
-    $('#main5').DataTable({
+    $('#main4').DataTable({
         "pagingType": "full",
     	"pageLength": 5,
         "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
         "columns": [ 
-        	{ "width": "70%" },
-        	{ "width": "30%" }
+        	{ "width": "80%" },
+        	{ "width": "20%" }
   		]
     } );
 

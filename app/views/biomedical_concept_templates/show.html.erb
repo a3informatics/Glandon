@@ -1,4 +1,4 @@
-<h3>Biomedical Concept Template: <%= @bct.label %> <small>(<%=@bct.owner %>, <%=@bct.identifier %>, V<%= @bct.versionLabel %>)</small></h3>
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @bct} %>
 <div class="col-md-12">
 	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
@@ -16,11 +16,11 @@
 	<h4>Items</h4>
 	<table class="table table-striped table-bordered table-condensed">
 	  <tr>
-		<% aliasEntry = @bct.properties.values[0] %>
+		<% aliasEntry = @bct.items.values[0] %>
 		<% aliasEntry.each do |key, value| %>
     		<th><%= key %></th>
 		<% end %>
-		<% @bct.properties.each do |key, aliasEntry| %>
+		<% @bct.items.each do |key, aliasEntry| %>
 			<tr>
 				<% aliasEntry.each do |key, value| %>
 					<td><%= value %></td>

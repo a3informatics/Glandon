@@ -26,7 +26,8 @@
   bf:hasGroup :FG-Weight ;
   rdfs:label "Vital Signs Form (Baseline)"^^xsd:string ;
   isoI:hasIdentifier items:SI-VS-1 ;
-  isoI:hasState items:RS-VS-1 ;
+  isoR:hasState
+ items:RS-VS-1 ;
   isoT:origin "" ;
   isoT:changeDescription "" ;
   isoT:creationDate "" ;

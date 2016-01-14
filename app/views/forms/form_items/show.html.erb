@@ -3,26 +3,14 @@
 	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
 	  <tr>
-	    <% @formItem.properties.each do |property| %>
-			<th><%= property.label %></th>
+	    <% properties = @formItem.properties.all %>
+		<% properties.each do |property| %>
+			<th><%= property[:label] %></th>
 		<% end %>
 	  </tr>
 	  <tr>
-	    <% @formItem.properties.each do |property| %>
-			<td><%= property.value %></td>
-		<% end %>
-	  </tr>
-	</table>
-	<h4>Links</h4>
-	<table class="table table-striped table-bordered table-condensed">
-	  <tr>
-	    <% @formItem.links.each do |property| %>
-			<th><%= property.label %></th>
-		<% end %>
-	  </tr>
-	  <tr>
-	    <% @formItem.links.each do |property| %>
-			<td><%= property.range %></td>
+	    <% properties.each do |property| %>
+			<td><%= property[:value] %></td>
 		<% end %>
 	  </tr>
 	</table>

@@ -135,7 +135,8 @@
                 <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
             </xsl:call-template>
             <xsl:call-template name="PredicateObject"> 
-                <xsl:with-param name="pPredicateName" select="'isoI:hasState'" /> 
+                <xsl:with-param name="pPredicateName" select="'isoR:hasState
+'" /> 
                 <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RSName)" /> 
             </xsl:call-template>
         </xsl:if>

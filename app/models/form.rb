@@ -1,4 +1,4 @@
-class Form < IsoConceptInstance
+class Form < IsoManaged
   
   attr_accessor :groups
   validates_presence_of :groups
@@ -9,26 +9,35 @@ class Form < IsoConceptInstance
   C_CLASS_NAME = "Form"
   C_CID_PREFIX = "F"
   C_RDF_TYPE = "Form"
-
-  # Base namespace 
-  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
-  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def self.find(id, ns)
+  def self.find(id, ns, children=true)
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
     object = super(id, ns)
-    object.groups = Form::FormGroup.findForForm(object.links, ns)
-    return object  
-    
+    if children
+      object.groups = Form::Group.findForForm(object.links, ns)
+    end
+    return object     
   end
 
   def self.all
-    super(C_RDF_TYPE, @@schemaNs)
+    super(C_RDF_TYPE, C_SCHEMA_NS)
+  end
+
+  def self.unique
+    ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
+  end
+
+  def self.history(identifier)
+    results = super(C_RDF_TYPE, identifier, C_SCHEMA_NS)
+    return results
   end
 
   def self.createPlaceholder(params)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Entry")
+    ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","*****Entry*****")
     
     # Create the object
     object = self.new 
@@ -52,11 +61,11 @@ class Form < IsoConceptInstance
       else  
     
         # Create the adminstered item for the form. 
-        object = createAdministeredItem(C_CID_PREFIX, params, C_RDF_TYPE, @@schemaNs, @@instanceNs)
+        object = create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
       
         # Now create the group (which will create the item). We only need a 
         # single group for a placeholder form.
-        group = FormGroup.createPlaceholder(object.id, object.namespace, freeText)
+        group = Group.createPlaceholder(object.id, object.namespace, freeText)
       
         # Create the update query
         update = UriManagement.buildNs(object.namespace,["bf"]) +
@@ -110,7 +119,7 @@ class Form < IsoConceptInstance
       else  
 
         # Create the adminstered item for the form. 
-        object = createAdministeredItem(C_CID_PREFIX, params, C_RDF_TYPE, @@schemaNs, @@instanceNs)
+        object = create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
       
         # Now create the groups (which will create the item). We create a 
         # single group for each BC.
@@ -122,8 +131,8 @@ class Form < IsoConceptInstance
           parts = key.split("|")
           bcId = parts[0]
           bcNamespace = parts[1]
-          bc = CdiscBc.find(bcId, bcNamespace)
-          group = FormGroup.createBcNormal(object.id, object.namespace, ordinal, bc)
+          bc = BiomedicalConcept.find(bcId, bcNamespace)
+          group = Group.createBcNormal(object.id, object.namespace, ordinal, bc)
           ordinal += 1
           insertSparql = insertSparql + "  :" + object.id + " bf:hasGroup :" + group.id + " . \n"
         end
@@ -152,7 +161,7 @@ class Form < IsoConceptInstance
 
   end
   
-  def self.create(params)
+  def self.createFull(params)
     
     ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     
@@ -182,7 +191,7 @@ class Form < IsoConceptInstance
       else  
 
         # Create the adminstered item for the form. 
-        object = createAdministeredItem(C_CID_PREFIX, params, C_RDF_TYPE, @@schemaNs, @@instanceNs)
+        object = create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
       
         # Now create the groups (which will create the item). We create a 
         # single group for each BC.
@@ -409,25 +418,15 @@ class Form < IsoConceptInstance
 
   end
 
-  def to_D3
-
-    result = Hash.new
-    result[:name] = self.id
-    result[:namespace] = self.namespace
-    result[:identifier] = self.id
-    result[:nodeType] = "form"
-    result[:children] = Array.new
-
+  def d3
     ig = 0
+    result = FormNode.new(self.id, self.namespace, "Form", self.label, self.label, self.identifier, "", "", 0, true)
     self.groups.each do |key, group|
-      result[:children][ig] = Hash.new
-      result[:children][ig] = group.to_D3
+      result[:children][ig] = group.d3(ig)
       ig += 1
     end
-    result[:expansion] = Array.new
-    result[:expansion] = result[:children]
+    result[:save] = result[:children]
     return result
-
   end
 
   def self.impact(params)
@@ -507,16 +506,35 @@ private
     
     if params[:type] == "Group"
       ConsoleLogger::log(C_CLASS_NAME,"addGroup","Group")
-      group = FormGroup.createBlank(formId, namespace, ordinal, params)
+      group = Group.createBlank(formId, namespace, ordinal, params)
       if params.has_key?(:children)
         ConsoleLogger::log(C_CLASS_NAME,"addGroup","Child")
         innerOrdinal = 1
         insertSparql = ""
         children = params[:children]
         children.each do |key, child|
-          subGroup = addGroup(group.id, namespace, innerOrdinal, child)
-          innerOrdinal += 1;
-          insertSparql = insertSparql + "  :" + group.id + " bf:hasSubGroup :" + subGroup.id + " . \n"
+          if child[:type] == "Question"
+            ConsoleLogger::log(C_CLASS_NAME,"addGroup","Question detected")
+            ConsoleLogger::log(C_CLASS_NAME,"addGroup","Child=" + child.to_s)
+            qText = child[:freeText]
+            format = child[:freeText]
+            datatype = child[:freeText]
+            mapping = child[:freeText]
+            item = Form::Item.createQuestion(group.id, namespace, qText, datatype, format, mapping)
+            innerOrdinal += 1;
+            insertSparql = insertSparql + "  :" + group.id + " bf:hasItem :" + item.id + " . \n"
+          elsif child[:type] == "Placeholder"
+            ConsoleLogger::log(C_CLASS_NAME,"addGroup","Placeholder detected")
+            freeText = child[:freeText]
+            item = Form::Item.createPlaceholder(group.id, namespace, freeText)
+            innerOrdinal += 1;
+            insertSparql = insertSparql + "  :" + group.id + " bf:hasItem :" + item.id + " . \n"
+          else
+            ConsoleLogger::log(C_CLASS_NAME,"addGroup","Subgroup detected")
+            subGroup = addGroup(group.id, namespace, innerOrdinal, child)
+            innerOrdinal += 1;
+            insertSparql = insertSparql + "  :" + group.id + " bf:hasSubGroup :" + subGroup.id + " . \n"
+          end
         end
       
         # Create the update query
@@ -539,9 +557,9 @@ private
       end
 
     elsif params[:type] == "CommonGroup"
-      group = FormGroup.createCommon(formId, namespace, ordinal, params)
+      group = Group.createCommon(formId, namespace, ordinal, params)
     elsif params[:type] == "BCGroup"
-      group = FormGroup.createBcEdit(formId, namespace, ordinal, params)
+      group = Group.createBcEdit(formId, namespace, ordinal, params)
     end
 
     return group      

@@ -1,10 +1,11 @@
 require "uri"
 
-class Form::FormItem < IsoConceptInstance
-  
+class Form::Item < IsoConcept
+
   # Constants
-  C_NS_PREFIX = "mdrForms"
-  C_CLASS_NAME = "FormItem"
+  C_SCHEMA_PREFIX = "bf"
+  C_INSTANCE_PREFIX = "mdrForms"
+  C_CLASS_NAME = "Form::Item"
   C_CID_PREFIX = "FI"
   C_BC = 1
   C_VARIABLE = 2
@@ -12,44 +13,66 @@ class Form::FormItem < IsoConceptInstance
   C_UNKNOWN = 4
   C_ID_SEPARATOR = "_"
   
-  def persisted?
-    id.present?
-  end
-  
-  def initialize()
-  end
-
-  def baseNs
-    #return @baseNs
-  end
-  
   def self.find(id, ns)
     object = super(id, ns)
     return object  
   end
 
-  def self.findForGroup(links, ns=nil)
-    
+  def self.findForGroup(links, ns=nil)    
     ConsoleLogger::log(C_CLASS_NAME,"findForGroup","*****ENTRY******")
-    
     results = Hash.new
-    links.each do |link|
-      ConsoleLogger::log(C_CLASS_NAME,"findForGroup","Id=" + link.objectUri)
-      if link.range == UriManagement.getNs("bf") + "#" + "Item"
-        object = find(ModelUtility.extractCid(link.objectUri), ns)
-        results[object.id] = object
-      end
+    linkSet = links.get("bf", "hasItem")
+    linkSet.each do |link|
+      object = find(ModelUtility.extractCid(link), ns)
+      results[object.id] = object
     end
     return results
-  
   end
   
-  def self.all()
-    return nil
-  end
+  def self.createQuestion(groupId, ns, qText, datatype, format, mapping)
 
-  def self.create()
-    return nil
+    ordinal = 1
+    id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
+    id = ModelUtility.cidAddSuffix(id, ordinal)
+    if params.has_key?(:children)
+      params[:children].each do |key, value|
+        clId = value[:id]
+        clNs = value[:namespace]
+        ConsoleLogger::log(C_CLASS_NAME,"createQuestion","id=" + clId + ", ns=" + clNamespace)
+        insertSparql = " :" + id + " bo:hasThesaurusConcept " + ModelUtility.buildUri(clNs, clId) + " . \n" 
+        valueOrdinal += 1
+      end
+    end
+
+    update = UriManagement.buildNs(ns, ["bf"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      " :" + id + " rdf:type bf:Question . \n" +
+      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+      " :" + id + " rdfs:label \"Placeholder\"^^xsd:string . \n" +
+      " :" + id + " bf:note \"\"^^xsd:string . \n" +
+      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+      " :" + id + " bf:qText \"" + qText.to_s + "\"^^xsd:string . \n" +
+      " :" + id + " bf:datatype \"" + datatype.to_s + "\"^^xsd:string . \n" +
+      " :" + id + " bf:format \"" + format.to_s + "\"^^xsd:string . \n" +
+      " :" + id + " bf:mapping \"" + mapping.to_s + "\"^^xsd:string . \n" +
+      " :" + id + " bf:isItemOf :" + groupId + " . \n" +
+      "}"
+
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+
+    # Response
+    if response.success?
+      object = self.new
+      object.id = id
+      ConsoleLogger::log(C_CLASS_NAME,"createQuestion","Success, id=" + id)
+    else
+      object = nil
+      ConsoleLogger::log(C_CLASS_NAME,"createQuestion","Failed")
+    end
+    return object
+
   end
 
   def self.createPlaceholder(groupId, ns, freeText)
@@ -76,10 +99,10 @@ class Form::FormItem < IsoConceptInstance
     if response.success?
       object = self.new
       object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Success, id=" + id)
+      ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Success, id=" + id)
     else
       object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"create_placeholder","Failed")
+      ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Failed")
     end
     return object
 
@@ -155,7 +178,7 @@ class Form::FormItem < IsoConceptInstance
       params[:children].each do |key, value|
         valueId = value[:id]
         enabled = value[:enabled]
-        ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId)
+        ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Add value for Item=" + valueId)
         vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
         insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
         " :" + vRefId + " rdf:type bo:BcReference . \n" +
@@ -264,24 +287,29 @@ class Form::FormItem < IsoConceptInstance
 
   end
 
-  def update
-    return nil
-  end
-
-  def destroy
-  end
-
-  def to_D3
-
-    result = Hash.new
-    #if bc.properties[bcPropertyId][:Enabled]
-      result[:name] = self.label
-      result[:identifier] = self.id
-      result[:nodeType] = "item"
-      result[:item] = self.to_json
-    #end
+  def d3(index)
+    ord = "1"
+    ordinal = self.properties.getOnly(C_SCHEMA_PREFIX, "ordinal")
+    if ordinal.has_key?(:value) 
+      ord = ordinal[:value]
+    end
+    if self.properties.exists?(C_SCHEMA_PREFIX, "freeText")
+      name = "Placeholder " + ord
+      result = FormNode.new(self.id, self.namespace,  "Placeholder", name, "", "", "", "", index, true)
+      result[:freeText] = self.properties.getOnly(C_SCHEMA_PREFIX, "freeText")[:value]
+    elsif self.properties.exists?(C_SCHEMA_PREFIX, "datatype")
+      name = Question + ord
+      result = FormNode.new(self.id, self.namespace,  "Question", name, "", "", "", "", index, true)
+      result[:datatype] = self.properties.getOnly(C_SCHEMA_PREFIX, "datatype")[:value]
+      result[:format] = self.properties.getOnly(C_SCHEMA_PREFIX, "format")[:value]
+      result[:qText] = self.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]
+      result[:mapping] = self.properties.getOnly(C_SCHEMA_PREFIX, "mapping")[:value]
+    else
+      name = "Temp"
+      result = FormNode.new(self.id, self.namespace,  "BCItem", name, "", "", "", "", index, true)
+    end  
+    result[:save] = result[:children]
     return result
-
   end
 
 private

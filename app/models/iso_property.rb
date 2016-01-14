@@ -8,6 +8,10 @@ class IsoProperty
     @properties = Array.new
   end
 
+  def all
+    return @properties
+  end
+  
   def get(prefix, type)
     results = []
     ns = UriManagement.getNs1(prefix)
@@ -18,7 +22,7 @@ class IsoProperty
     p = @properties.select {|prop| prop[:rdfType] == uri.all} 
     if p.length > 0
       #ConsoleLogger::log(C_CLASS_NAME,"get","Found")
-      results = p.map { |prop| prop[:value] }
+      results = p.map { |prop| { value: prop[:value], label: prop[:label] } }
       @properties = @properties.reject {|prop| prop[:rdfType] == uri.all}
     end
     #ConsoleLogger::log(C_CLASS_NAME,"get","results=" + results.to_s)
@@ -30,8 +34,8 @@ class IsoProperty
     if results.length == 1
       return results[0]
     else
-      #ConsoleLogger::log(C_CLASS_NAME,"getOnly","Multiple results detected")
-      return ""
+      result = {}
+      return result
     end
   end
 
@@ -48,10 +52,11 @@ class IsoProperty
     end
   end
 
-  def set(predicate, objectLiteral)
+  def set(predicate, objectLiteral, label)
     property = Hash.new
     property[:rdfType] = predicate
     property[:value] = objectLiteral
+    property[:label] = label
     @properties << property
     #ConsoleLogger::log(C_CLASS_NAME,"set","@property=" + @property.to_s)
   end

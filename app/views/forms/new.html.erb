@@ -4,13 +4,14 @@
     <%= raw Form::empty.to_json %>
 </script>
 <div class="row">
-    <h3>Form Creation</h3>
     <div class="col-md-7">
+        <h3>New Form:</h3>
         <div style="height: 800px;" id="d3">
             <!-- D3 Area -->
         </div>
     </div>
     <div class="col-md-5" >
+        <br/>
         <div>
             <div id="formInfo" class="panel panel-default">
                 <div class="panel-heading">
@@ -46,12 +47,21 @@
                             <label for="groupLabel">Label:</label>
                             <input type="text" class="form-control" id="groupLabel">
                         </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="groupRepeating"><strong>Repeating</strong>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <button type="button" id="groupUpdate" class="btn btn-primary">Update</button>
-                    <button type="button" id="groupAddGroup" class="btn btn-primary">Add Group</button>
                     <button type="button" id="groupDelete" class="btn btn-primary">Delete</button>
-                    <button type="button" id="groupAddCommon" class="btn btn-primary">Add Common</button>
-                    <button type="button" id="groupAddBc" class="btn btn-primary">Add BC</button>
+                    <button type="button" id="groupAddGroup" class="btn btn-primary">Grp+</button>
+                    <button type="button" id="groupAddCommon" class="btn btn-primary">Common+</button>
+                    <button type="button" id="groupAddBc" class="btn btn-primary">BC+</button>
+                    <button type="button" id="groupAddQuestion" class="btn btn-primary">Q+</button>
+                    <button type="button" id="groupAddPlaceholder" class="btn btn-primary">P'holder+</button>
                 </div>    
             </div>
             <div id="commonInfo" class="panel panel-default">
@@ -91,6 +101,76 @@
                         </tbody>
                     </table>
                     <button type="button" id="bcDelete" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+            <div id="questionInfo" class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Question Details</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <div>
+                            <div class="form-group">
+                                <label for="questionText">Question Text:</label>
+                                <input type="text" class="form-control" id="questionText">
+                            </div>
+                            <div class="form-group">
+                                <label for="questionDatatype">Mapping:</label>
+                                <input type="text" class="form-control" id="questionMapping">
+                            </div>
+                            <div id="questionDatatype" class="col-sm-8">
+                                <label for="questionDatatype">Datatype:</label><br/>
+                                <label class="radio-inline">
+                                  <input type="radio" name="dtRadio" value="I"> I
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="dtRadio" value="F"> F
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="dtRadio" value="C"> C
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="dtRadio" value="CL"> CL
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="dtRadio" value="BL"> BL
+                                </label>
+                            </div>
+                            <div class="form-group  col-sm-4">
+                                <label for="questionFormat">Format:</label>
+                                <input type="text" class="form-control" id="questionFormat">
+                            </div>
+                        </div>
+                        <label for="questionClTable">Code List:</label>
+                        <table id="questionClTable" class="table table-striped table-bordered"  cellspacing="0" width="100%">
+                            <thead>
+                                <tr> 
+                                    <th>Identifier</th>
+                                    <th>Notation</th>                                        
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <button type="button" id="addTerm" class="btn btn-primary">Add</button>   
+                        <button type="button" id="deleteTerm" class="btn btn-primary">Delete</button><br/><br/>
+                        <button type="button" id="questionUpdate" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div id="placeholderInfo" class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Placeholder Details</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <div class="form-group">
+                            <label for="placeholderText">Placeholder Text:</label>
+                            <input type="text" class="form-control" id="placeholderText">
+                        </div>
+                    </div>
+                    <button type="button" id="placeholderUpdate" class="btn btn-primary">Update</button>
+                    <button type="button" id="placeholderDelete" class="btn btn-primary">Delete</button>
                 </div>
             </div>
             <div id="itemInfo" class="panel panel-default">
@@ -174,7 +254,31 @@
                     </table>
                 </div>
             </div>
-            
+            <div id="termSelection" class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Terminology Selection</h3>
+                </div>
+                <div class="panel-body">
+                    <label for="name">Terminology:</label>
+                    <div>
+                        <%= select_tag(:termSelect, options_for_select(@termList)) %>
+                    </div><br/>  
+                    <table id="termTable" class="table table-striped table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Identifier</th>
+                                <th>Notation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

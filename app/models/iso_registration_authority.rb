@@ -76,8 +76,8 @@ class IsoRegistrationAuthority
         ra.number = oSet[0].text
         ra.scheme = sSet[0].text
         ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
-        ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
-        ConsoleLogger::log(C_CLASS_NAME,"find","Namespace, id=" + ra.namespace.id)
+        #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
+        #ConsoleLogger::log(C_CLASS_NAME,"find","Namespace, id=" + ra.namespace.id)
         end
     end
     
@@ -118,8 +118,8 @@ class IsoRegistrationAuthority
         ra.number = oSet[0].text
         ra.scheme = sSet[0].text
         ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
-        ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + ra.id)
-        ConsoleLogger::log(C_CLASS_NAME,"all","Namespace, id=" + ra.namespace.id)
+        #ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + ra.id)
+        #ConsoleLogger::log(C_CLASS_NAME,"all","Namespace, id=" + ra.namespace.id)
         results[ra.id] = ra
       end
     end
@@ -141,8 +141,8 @@ class IsoRegistrationAuthority
     if @@repositoryOwner == nil
       results = self.all
     end
-    ConsoleLogger::log(C_CLASS_NAME,"owner","Owner, id=" + @@repositoryOwner.id)
-    ConsoleLogger::log(C_CLASS_NAME,"owner","Namespace, id=" + @@repositoryOwner.namespace.id)
+    #ConsoleLogger::log(C_CLASS_NAME,"owner","Owner, id=" + @@repositoryOwner.id)
+    #ConsoleLogger::log(C_CLASS_NAME,"owner","Namespace, id=" + @@repositoryOwner.namespace.id)
     return @@repositoryOwner
     
   end
@@ -176,9 +176,9 @@ class IsoRegistrationAuthority
       ra.id = id
       ra.number = number
       ra.scheme = C_DUNS
-      ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + id)
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + id)
     else
-      ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
       ra = nil
       #object.assign_errors(data) if response.response_code == 422
     end

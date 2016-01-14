@@ -1,4 +1,4 @@
-class IsoConceptSystem::Classification < IsoConceptInstance
+class IsoConceptSystem::Classification < IsoConcept
   
   attr_accessor :links
   validates_presence_of :links
@@ -11,8 +11,9 @@ class IsoConceptSystem::Classification < IsoConceptInstance
   C_RDF_TYPE = "Classification"
 
   # Base namespace 
-  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
-  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_SCHEMA_NS
+ = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
   def self.find(id, ns)
     
@@ -25,12 +26,14 @@ class IsoConceptSystem::Classification < IsoConceptInstance
   end
 
   def self.all
-    super(C_RDF_TYPE, @@schemaNs)
+    super(C_RDF_TYPE, C_SCHEMA_NS
+)
   end
 
   def self.create(params)
   
-    object = createOtherItem(C_CID_PREFIX, params, C_RDF_TYPE, @@schemaNs, @@instanceNs)
+    object = createOtherItem(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS
+, C_INSTANCE_NS)
     return object
 
   end

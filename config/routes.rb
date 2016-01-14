@@ -33,10 +33,21 @@ Rails.application.routes.draw do
     end
   end
   resources :uploads
-  resources :biomedical_concept_templates
-  resources :cdisc_bcs do
+  resources :biomedical_concept_templates do
     collection do
-      get :bct_select
+      get :history
+    end
+  end
+  namespace :biomedical_concepts do
+    resources :items
+    resources :datatypes
+    resources :properties
+    resources :property_values
+  end
+  resources :biomedical_concepts do
+    collection do
+      get :list
+      get :history
       get :impact
     end
   end
@@ -45,7 +56,6 @@ Rails.application.routes.draw do
       get :changes
       get :compare
       get :history
-      get :import
       get :search
       get :searchNew
       get :searchOld
@@ -79,6 +89,7 @@ Rails.application.routes.draw do
   end
   resources :forms do
     collection do
+      get :history
       get :view
       get :placeholder_new
       get :bc_normal_new
@@ -91,11 +102,12 @@ Rails.application.routes.draw do
     end
   end
   namespace :forms do
-    resources :form_groups
-    resources :form_items
+    resources :groups
+    resources :items
   end
   resources :domains do
     collection do
+      get :history
       get :add
       get :remove
       post :update_add

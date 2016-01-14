@@ -16,29 +16,29 @@ class ThesaurusConcept < IsoConcept
   C_RDF_TYPE = "ThesaurusConcept"
 
   # Base namespace 
-  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
-  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
   def self.unique
-    results = super(C_RDF_TYPE, @@schemaNs)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
 
   def self.exists?(identifier, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
     schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
     return super("identifier", identifier, "ThesaurusConcept", schemaNs, ns)
   end
 
   def self.find(id, ns)   
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     object = super(id, ns)
     if object != nil
-      object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")
-      object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")
-      object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")
-      object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")
-      object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")
+      object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")[:value]
+      object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")[:value]
+      object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
+      object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
+      object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
       object.children = allChildren(id, ns)
       if object.links.exists?(C_SCHEMA_PREFIX,"inScheme")
         object.topLevel = true
@@ -50,14 +50,14 @@ class ThesaurusConcept < IsoConcept
   end
 
   def self.allTopLevel(id, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"allTopLevel","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"allTopLevel","*****Entry*****")
     results = findWithCondition("?a iso25964:inScheme :" + id, ns, ["iso25964"])
     results.each do |key, object|
-      object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")
-      object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")
-      object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")
-      object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")
-      object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")
+      object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")[:value]
+      object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")[:value]
+      object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
+      object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
+      object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
       object.children = nil
       object.topLevel = true
     end
@@ -66,14 +66,14 @@ class ThesaurusConcept < IsoConcept
   
   # Find all children of a given concept (identified by the CID)
   def self.allChildren(id, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"allChildren","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"allChildren","*****Entry*****")
     results = findWithCondition(":" + id + " iso25964:narrower ?a", ns, ["iso25964"])
     results.each do |key, object|
-      object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")
-      object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")
-      object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")
-      object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")
-      object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")
+      object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")[:value]
+      object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")[:value]
+      object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
+      object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
+      object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
       object.children = nil
       object.topLevel = false
     end
@@ -82,7 +82,7 @@ class ThesaurusConcept < IsoConcept
   
   def self.searchTextWithNs(termId, ns, term)
     
-    ConsoleLogger::log(C_CLASS_NAME,"searchTextWithNs","Id=" + termId.to_s + ", ns=" + ns.to_s + ", term=" + term)
+    #ConsoleLogger::log(C_CLASS_NAME,"searchTextWithNs","Id=" + termId.to_s + ", ns=" + ns.to_s + ", term=" + term)
     results = Array.new
     
     # Create the query

@@ -15,10 +15,8 @@ class IsoDesignatableItem
   C_SCHEMA_PREFIX = "isoT"
   C_INSTANCE_PREFIX = "mdrItems"
   C_CLASS_NAME = "IsoDesignatableItem"
-  
-  # Base namespace 
-  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
-  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
   # Does the item exist. Cannot be used for child objects!
   def self.exists?(rdfType, identifier)
@@ -27,7 +25,7 @@ class IsoDesignatableItem
     result = false
     
     # Create the query
-    query = UriManagement.buildNs(@@instanceNs, ["isoT"]) +
+    query = UriManagement.buildNs(C_INSTANCE_NS, ["isoT"]) +
       "SELECT ?a ?b ?c ?d WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdfType + " . \n" +

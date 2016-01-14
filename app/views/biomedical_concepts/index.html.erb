@@ -1,4 +1,4 @@
-<h3>Index: Biomedical Concept Templates</h3>
+<h3>Index: Biomedical Concepts</h3>
 <div class="col-md-6">
 		<table id="main" class="table table-striped table-bordered table-condensed">
 		<thead>
@@ -8,12 +8,13 @@
 		  	</tr>
 		</thead>
 		<tbody>
-			<% @bcts.each do |identifier| %>
+			<% @bcs.each do |identifier| %>
 				<tr>
 			    	<td><%= identifier %></td>
-			    	<td><%= link_to "History", history_biomedical_concept_templates_path(:identifier => identifier), :class => "btn btn-primary btn-xs" %></td>
+			    	<td><%= link_to "History", history_biomedical_concepts_path(:identifier => identifier), :class => "btn btn-primary btn-xs" %></td>
 			  	</tr>
 			<% end %>
 		</tbody>
 	</table>
+	<%= link_to "New", new_biomedical_concept_path, :class => "btn btn-success" %>
 </div>

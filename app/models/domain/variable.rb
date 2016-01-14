@@ -1,20 +1,24 @@
 require "uri"
 
-class Domain::Variable
+class Domain::Variable < IsoConcept
   
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :bcs, :namespace, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, 
+  attr_accessor :bcs, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, 
     :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype, :bcRefs
-  validates_presence_of :id, :bcs, :namespace, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, 
+  validates_presence_of :bcs, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, 
     :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype, :bcRefs
   
   # Constants
-  C_NS_PREFIX = "mdrDomains"
+  C_SCHEMA_PREFIX = "bd"
+  C_INSTANCE_PREFIX = "mdrDomains"
   C_CLASS_NAME = "Domain::Variable"
   C_CID_PREFIX = "DV"
+  C_RDF_TYPE = "Domain"
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   C_ID_SEPARATOR = "_"
 
   C_ROLE = { 
@@ -36,23 +40,12 @@ class Domain::Variable
     "Classifier.Character" => "Character",
     "Classifier.Numeric" => "Numeric" }
   
-  def persisted?
-    id.present?
-  end
-  
-  def initialize()
-  end
-
-  def baseNs
-    #return @baseNs
-  end
-  
   # Find a given variable
-  def self.find(id, variableNamespace)
+  def self.find(id, ns)
     
     ConsoleLogger::log(C_CLASS_NAME,"find","***** ENTRY *****")
     object = nil
-    query = UriManagement.buildNs(variableNamespace, ["bd", "mms", "cdisc"]) +
+    query = UriManagement.buildNs(ns, ["bd", "mms", "cdisc"]) +
       "SELECT ?a ?name ?description ?label ?datatype ?ordinal ?format ?defComment ?defCommentSet ?type ?role ?compliance WHERE\n" + 
       "{ \n" + 
       " :" + id + " bd:basedOn ?a . \n" +
@@ -88,7 +81,7 @@ class Domain::Variable
       if nameSet.length == 1 && descSet.length == 1 
         object = self.new 
         object.id = id
-        object.namespace = variableNamespace
+        object.namespace = ns
         ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id)
         object.name = nameSet[0].text
         object.description = descSet[0].text
@@ -105,7 +98,7 @@ class Domain::Variable
         object.notes = ""
         object.length = ""
         object.origin = ""
-        object.bcRefs = findBcRefs(id, variableNamespace)
+        object.bcRefs = findBcRefs(id, ns)
       end
     end
     return object  
@@ -182,33 +175,17 @@ class Domain::Variable
     return results
     
   end
-  
-  def self.create(params)
-    object = nil
-    return object
-  end
-
-  def self.all()
-    return nil
-  end
-
-  def update
-    return nil
-  end
-
-  def destroy
-  end
 
 private
 
   # Find a given variable
-  def self.findBcRefs(id, variableNamespace)
+  def self.findBcRefs(id, ns)
     
     results = Hash.new
 
     ConsoleLogger::log(C_CLASS_NAME,"findBcRefs","***** ENTRY *****")
     object = nil
-    query = UriManagement.buildNs(variableNamespace, ["bd", "cbc"]) +
+    query = UriManagement.buildNs(ns, ["bd", "cbc"]) +
       "SELECT ?a ?b WHERE\n" + 
       "{ \n" + 
       " :" + id + " bd:hasProperty ?a . \n" +

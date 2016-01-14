@@ -1,5 +1,5 @@
 <h3>Index: Terminology</h3>
-<div class="col-md-12">
+<div class="col-md-6">
 	<table id="main" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
@@ -11,7 +11,7 @@
 			<% @thesauri.each do |thesaurus| %>
 				<tr>
 			    	<td><%= thesaurus %></td>
-			    	<td><%= link_to "History", history_thesauri_index_path(:identifier => thesaurus), :class => "btn btn-success btn-xs" %></td>
+			    	<td><%= link_to "History", history_thesauri_index_path(:identifier => thesaurus), :class => "btn btn-primary btn-xs" %></td>
 			  	</tr>
 			<% end %>
 		</tbody>

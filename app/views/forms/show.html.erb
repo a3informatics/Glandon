@@ -1,4 +1,4 @@
-<h3>Form: <%= @form.label %> <small>(<%= @form.owner %>, V<%= @form.version %>)</small></h3>
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @form} %>
 <div class="col-md-12">
 	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
@@ -22,8 +22,9 @@
 		<thead>
 			<tr>
 				<% group = @form.groups.values[0] %>
-		  		<% group.properties.each do |property| %>
-		    		<th><%= property.label %></th>
+		  		<% properties = group.properties.all %>
+		  		<% properties.each do |property| %>
+		    		<th><%= property[:label] %></th>
 				<% end %>	
 				<td></td>
 			</tr>
@@ -31,13 +32,13 @@
 		<tbody>
 			<% @form.groups.each do |grpId, group| %>
 				<tr>
-			  		<% group.properties.each do |property| %>
-			    		<td><%= property.value %></td>
+			  		<% properties = group.properties.all %>
+		  			<% properties.each do |property| %>
+			    		<td><%= property[:value] %></td>
 					<% end %>	
 				    <td><%= link_to "Show", forms_form_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
 				</tr>
 			<% end %>	
 		</tbody>
 	</table>
-	<%= link_to "New Group", new_forms_form_group_path(@form.id), :class => "btn btn-success" %>
 </div>

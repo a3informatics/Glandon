@@ -1,65 +1,72 @@
 require "uri"
 
-class Form::FormGroup < IsoConceptInstance
+class Form::Group < IsoConcept
   
-  attr_accessor :items
-  validates_presence_of :items
+  attr_accessor :items, :groups, :groupType, :bc
+  validates_presence_of :items, :groups, :groupType, :bc
   
   # Constants
-  C_NS_PREFIX = "mdrForms"
-  C_CLASS_NAME = "FormGroup"
+  C_SCHEMA_PREFIX = "bf"
+  C_INSTANCE_PREFIX = "mdrForms"
+  C_CLASS_NAME = "Form::Group"
   C_CID_PREFIX = "FG"
-  #C_ID_SEPARATOR = "_"
-  
-  def persisted?
-    id.present?
-  end
-  
-  def initialize()
-  end
-
-  def baseNs
-    #return @baseNs
-  end
+  C_BC_TYPE = "BCGroup"
+  C_COMMON_TYPE = "CommonGroup"
+  C_NORMAL_TYPE = "Group"
   
   def self.find(id, ns)
-    
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
-    
     object = super(id, ns)
-    object.items = Form::FormItem.findForGroup(object.links, ns)
+    object.groups = findSubGroups(object.links, ns)
+    object.items = Form::Item.findForGroup(object.links, ns)
+    if object.links.exists?(C_SCHEMA_PREFIX, "hasBiomedicalConcept")
+      object.groupType = C_BC_TYPE
+      uri = object.links.get(C_SCHEMA_PREFIX, "hasBiomedicalConcept")
+      bcId = ModelUtility.extractCid(uri[0])
+      bcNs = ModelUtility.extractNs(uri[0])
+      object.bc = BiomedicalConcept.findByReference(bcId, bcNs)
+    else
+      object.groupType = C_NORMAL_TYPE
+      object.bc = nil
+    end      
     return object  
-    
+  end
+
+  def self.findSubGroups(links, ns)
+    ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
+    ConsoleLogger::log(C_CLASS_NAME,"findForForm","namespace=" + ns)
+    results = Hash.new
+    linkSet = links.get("bf", "hasSubGroup")
+    linkSet.each do |link|
+      object = find(ModelUtility.extractCid(link), ns)
+      results[object.id] = object
+    end
+    linkSet = links.get("bf", "hasCommon")
+    linkSet.each do |link|
+      object = find(ModelUtility.extractCid(link), ns)
+      object.groupType = C_COMMON_TYPE
+      results[object.id] = object
+    end
+    return results
   end
 
   def self.findForForm(links, ns)
-    
     ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
-    #ConsoleLogger::log(C_CLASS_NAME,"findForForm","Id=" + formId)
     ConsoleLogger::log(C_CLASS_NAME,"findForForm","namespace=" + ns)
-    
     results = Hash.new
-    links.each do |link|
-      ConsoleLogger::log(C_CLASS_NAME,"findForForm","Id=" + link.range)
-      if link.range == UriManagement.getNs("bf") + "#" + "Group"
-        object = find(ModelUtility.extractCid(link.objectUri), ns)
-        results[object.id] = object
-      end 
+    linkSet = links.get("bf", "hasGroup")
+    linkSet.each do |link|
+      object = find(ModelUtility.extractCid(link), ns)
+      results[object.id] = object
     end
     return results
-    
   end
   
-  def self.all()
-    return nil
-  end
-
-  def self.createPlaceholder (formId, ns, freeText)
-   
+  def self.createPlaceholder (formId, ns, freeText) 
     ordinal = 1
     id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
     id = ModelUtility.cidAddSuffix(id, ordinal)
-    item = Form::FormItem.createPlaceholder(id, ns, freeText)
+    item = Form::Item.createPlaceholder(id, ns, freeText)
     update = UriManagement.buildNs(ns, ["bf"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -87,11 +94,9 @@ class Form::FormGroup < IsoConceptInstance
     end
 
     return object
-  
   end
 
   def self.createBcNormal (formId, ns, ordinal, bc)
-   
     id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
     id = ModelUtility.cidAddSuffix(id, ordinal)
     refId = ModelUtility.cidAddSuffix(id, "BCRef")
@@ -104,7 +109,7 @@ class Form::FormGroup < IsoConceptInstance
     bc.properties.each do |propertyId, property|
       ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add item for Group=" + propertyId)
       if property[:Enabled] && property[:Collect]
-        item = Form::FormItem.createBcNormal(id, ns, itemOrdinal, bc, propertyId, property[:Values])
+        item = Form::Item.createBcNormal(id, ns, itemOrdinal, bc, propertyId, property[:Values])
         itemOrdinal += 1
         insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
       end
@@ -140,13 +145,10 @@ class Form::FormGroup < IsoConceptInstance
       object = nil
       ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
     end
-
     return object
-  
   end
 
   def self.createBcEdit (formId, ns, ordinal, params)
-   
     id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
     id = ModelUtility.cidAddSuffix(id, ordinal)
     refId = ModelUtility.cidAddSuffix(id, "BCRef")
@@ -160,7 +162,7 @@ class Form::FormGroup < IsoConceptInstance
     children.each do |key, child|
       ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Add item for Group=" + child.to_s)
       #if child[:enabled] 
-        item = Form::FormItem.createBcEdit(id, ns, itemOrdinal, child)
+        item = Form::Item.createBcEdit(id, ns, itemOrdinal, child)
         itemOrdinal += 1
         insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
       #end
@@ -196,13 +198,10 @@ class Form::FormGroup < IsoConceptInstance
       object = nil
       ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
     end
-
     return object
-  
   end
 
   def self.createCommon (formId, ns, ordinal, params)
-   
     id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
     id = ModelUtility.cidAddSuffix(id, ordinal)
     refId = ModelUtility.cidAddSuffix(id, "BCRef")
@@ -214,9 +213,9 @@ class Form::FormGroup < IsoConceptInstance
     itemOrdinal = 1
     children = params[:children]
     children.each do |key, child|
-      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Add item for Group=" + child.to_s)
+      ConsoleLogger::log(C_CLASS_NAME,"createCommon","Add item for Group=" + child.to_s)
       #if child[:enabled] 
-        item = Form::FormItem.createBcEdit(id, ns, itemOrdinal, child)
+        item = Form::Item.createBcEdit(id, ns, itemOrdinal, child)
         itemOrdinal += 1
         insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
       #end
@@ -252,13 +251,10 @@ class Form::FormGroup < IsoConceptInstance
       object = nil
       ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
     end
-
     return object
-  
   end
 
   def self.createBlank (parentId, ns, ordinal, params)
-   
     ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","*****Blank*****")
     id = ModelUtility.cidSwapPrefix(parentId, C_CID_PREFIX)
     id = ModelUtility.cidAddSuffix(id, ordinal)
@@ -288,36 +284,22 @@ class Form::FormGroup < IsoConceptInstance
       object = nil
       ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","Failed")
     end
-
     return object
+  end
   
-  end
-  def update
-    return nil
-  end
-
-  def destroy
-  end
- 
-  def to_D3
-
-    result = Hash.new
-    result[:name] = self.label
-    result[:identifier] = self.id
-    result[:group] = self.to_json
-    result[:nodeType] = "group"
-    result[:children] = Array.new
-
+  def d3(index)
     ii = 0
+    result = FormNode.new(self.id, self.namespace, self.groupType, self.label, self.label, "", "", "", index, true)
     self.items.each do |key, item|
-      result[:children][ii] = Hash.new
-      result[:children][ii] = item.to_D3
+      result[:children][ii] = item.d3(ii)
       ii += 1
     end
-    result[:expansion] = Array.new
-    result[:expansion] = result[:children]
+    self.groups.each do |key, group|
+      result[:children][ii] = group.d3(ii)
+      ii += 1
+    end
+    result[:save] = result[:children]
     return result
-
   end
 
 end

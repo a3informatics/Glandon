@@ -13,10 +13,8 @@ class IsoManaged < IsoConcept
   C_CLASS_NAME = "IsoManaged"
   C_SCHEMA_PREFIX = "isoC"
   C_INSTANCE_PREFIX = "mdrItems"
-  
-  # Base namespace 
-  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
-  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
   def version
     return self.scopedIdentifier.version
@@ -48,18 +46,16 @@ class IsoManaged < IsoConcept
 
   # Does the item exist. Cannot be used for child objects!
   def self.exists?(identifier, registrationAuthority)
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + registrationAuthority.namespace.id)
-    result = ScopedIdentifier.exists?(identifier, registrationAuthority.namespace.id)
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + registrationAuthority.namespace.id)
+    result = IsoScopedIdentifier.exists?(identifier, registrationAuthority.namespace.id)
   end
 
   # Note: The id is the identifier for the enclosing managed object. 
-  def self.find(id, ns)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + ns)
-    
+  def self.find(id, ns)  
+    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + ns)   
     object = super(id, ns)
     object.registrationState = nil
     object.origin = ""
@@ -75,8 +71,8 @@ class IsoManaged < IsoConcept
       links = object.links.get("isoI", "hasIdentifier")
       cid = ModelUtility.extractCid(links[0])
       object.scopedIdentifier = IsoScopedIdentifier.find(cid)
-      if object.links.exists?("isoI", "hasState")
-        links = object.links.get("isoI", "hasState")
+      if object.links.exists?("isoR", "hasState")
+        links = object.links.get("isoR", "hasState")
         cid = ModelUtility.extractCid(links[0])
         object.registrationState = IsoRegistrationState.find(cid)
         object.origin = object.properties.get("isoT", "origin")
@@ -89,24 +85,24 @@ class IsoManaged < IsoConcept
     
     # Return
     ConsoleLogger::log(C_CLASS_NAME,"find","Object return, object=" + object.to_s)
-    return object
-    
+    return object   
   end
 
   # Find list of managed items of a given type.
   def self.unique(rdfType, ns)
+    #ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + ns.to_s)
     results = IsoScopedIdentifier.allIdentifier(rdfType, ns)
   end
 
   # Find all managed items based on their type.
   def self.all(rdfType, ns)
     
-    ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
     
     results = Hash.new
     
     # Create the query
-    query = UriManagement.buildNs(ns, ["isoI", "isoT"]) +
+    query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?h ?i WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdfType + " . \n" +
@@ -114,7 +110,7 @@ class IsoManaged < IsoConcept
       "  OPTIONAL { \n" +
       "    ?a isoI:hasIdentifier ?h . \n" +
       "    OPTIONAL { \n" +
-      "      ?a isoI:hasState ?b . \n" +
+      "      ?a isoR:hasState ?b . \n" +
       "      ?a isoT:origin ?c . \n" +
       "      ?a isoT:changeDescription ?d . \n" +
       "      ?a isoT:creationDate ?e . \n" +
@@ -140,7 +136,7 @@ class IsoManaged < IsoConcept
       lastSet = node.xpath("binding[@name='f']/literal")
       commentSet = node.xpath("binding[@name='g']/literal")
       label = ModelUtility.getValue('i', false, node)
-      ConsoleLogger::log(C_CLASS_NAME,"find","Label=" + label)
+      #ConsoleLogger::log(C_CLASS_NAME,"find","Label=" + label)
       if uri != "" 
         object = self.new
         object.id = ModelUtility.extractCid(uri)
@@ -177,14 +173,12 @@ class IsoManaged < IsoConcept
   end
 
   # Find history for a given identifier
-  def self.history(rdfType, identifier, ns)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"history","*****Entry*****")
-    
+  def self.history(rdfType, identifier, ns)    
+    #ConsoleLogger::log(C_CLASS_NAME,"history","*****Entry*****")    
     results = Hash.new
     
     # Create the query
-    query = UriManagement.buildNs(ns, ["isoI", "isoT"]) +
+    query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?h ?i ?j WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdfType + " . \n" +
@@ -194,7 +188,7 @@ class IsoManaged < IsoConcept
       "    ?h isoI:identifier \"" + identifier + "\" . \n" +
       "    ?h isoI:version ?j . \n" +
       "    OPTIONAL { \n" +
-      "      ?a isoI:hasState ?b . \n" +
+      "      ?a isoR:hasState ?b . \n" +
       "      ?a isoT:origin ?c . \n" +
       "      ?a isoT:changeDescription ?d . \n" +
       "      ?a isoT:creationDate ?e . \n" +
@@ -202,7 +196,7 @@ class IsoManaged < IsoConcept
       "      ?a isoT:explanatoryComment ?g . \n" +
       "    } \n" +
       # "  } \n" +
-      "} ORDER BY ?j"
+      "} ORDER BY DESC(?j)"
     
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -220,7 +214,7 @@ class IsoManaged < IsoConcept
       lastSet = node.xpath("binding[@name='f']/literal")
       commentSet = node.xpath("binding[@name='g']/literal")
       label = ModelUtility.getValue('i', false, node)
-      ConsoleLogger::log(C_CLASS_NAME,"history","Label=" + label)
+      #ConsoleLogger::log(C_CLASS_NAME,"history","Label=" + label)
       if uri != "" 
         object = self.new
         object.id = ModelUtility.extractCid(uri)
@@ -252,16 +246,84 @@ class IsoManaged < IsoConcept
     end
     
     # Return
-    return results
-    
+    return results  
   end
 
-  def latest(history)
+  # Find latest item for all identifiers.
+  def self.list(rdfType, ns)    
+    #ConsoleLogger::log(C_CLASS_NAME,"list","*****Entry*****")    
+    results = Hash.new
+    
+    # Create the query
+    query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
+      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
+      "{ \n" +
+      "  ?a rdf:type :" + rdfType + " . \n" +
+      "  ?a rdfs:label ?d . \n" +
+      "  ?a isoI:hasIdentifier ?b . \n" +
+      "  ?b isoI:identifier ?e . \n" +
+      "  ?b isoI:version ?f . \n" +
+      "  OPTIONAL { \n" +
+      "    ?a isoR:hasState ?c . \n" +
+      "    ?c isoR:registrationStatus ?g . \n" +
+      "  } \n" +
+      "} ORDER BY DESC(?f)"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('a', true, node)
+      label = ModelUtility.getValue('d', false, node)
+      identifier = ModelUtility.getValue('e', false, node)
+      version = ModelUtility.getValue('f', false, node)
+      status = ModelUtility.getValue('g', false, node)
+      #ConsoleLogger::log(C_CLASS_NAME,"list","node=" + node.to_s)
+      if uri != "" 
+        if results.has_key?(identifier)
+          object = results[identifier]
+          if (object.registrationState != nil) && (status != "")
+            if (object.registrationState.registrationStatus != IsoRegistrationState.releasedState) &&
+              (status == IsoRegistrationState.releasedState)
+              object = self.new
+              object.id = ModelUtility.extractCid(uri)
+              object.namespace = ModelUtility.extractNs(uri)
+              object.rdfType = rdfType
+              object.label = label
+              object.registrationState.registrationStatus = status
+              results[identifier] = object
+            end
+          end
+        else
+          object = self.new
+          object.id = ModelUtility.extractCid(uri)
+          object.namespace = ModelUtility.extractNs(uri)
+          object.rdfType = rdfType
+          object.label = label
+          object.scopedIdentifier = IsoScopedIdentifier.new
+          object.scopedIdentifier.identifier = identifier
+          if status == ""
+            object.registrationState = nil
+          else
+            object.registrationState = IsoRegistrationState.new
+            object.registrationState.registrationStatus = status
+          end
+          results[identifier] = object
+        end
+      end
+    end
+    return results  
+  end
+
+  def self.latest(history)
     result = nil
     history.each do |key, item|
-      if registered?
-        result = item
-        break if item.registrationState.status == IsoRegistrationState.releasedState
+      result = item
+      if item.registered?
+        break if item.registrationState.registrationStatus == IsoRegistrationState.releasedState
       else
         break
       end
@@ -270,7 +332,7 @@ class IsoManaged < IsoConcept
   end
 
   def self.import(prefix, params, ownerNamespace, rdfType, schemaNs, instanceNs)
-    ConsoleLogger::log(C_CLASS_NAME,"import","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"import","*****Entry*****")
     version = params[:version]
 
     # Set the registration authority to teh owner
@@ -325,7 +387,7 @@ class IsoManaged < IsoConcept
   end
 
   def self.create(prefix, params, rdfType, schemaNs, instanceNs)
-    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     version = params[:version]
 
     # Set the registration authority to teh owner
@@ -357,14 +419,14 @@ class IsoManaged < IsoConcept
     object.explanoratoryComment = ""
     object.label = params[:label]
     object.rdfType = rdfType
-    prefixSet = ["mdrItems", "isoT", "isoI"]
+    prefixSet = ["mdrItems", "isoT", "isoI", "isoR"]
     schemaPrefix = UriManagement.getPrefix(schemaNs)
     prefixSet << schemaPrefix
     update = UriManagement.buildNs(useNs, prefixSet) +
       "INSERT DATA \n" +
       "{ \n" +
       "  :" + object.id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
-      "  :" + object.id + " isoI:hasState mdrItems:" + object.registrationState.id + " . \n" +
+      "  :" + object.id + " isoR:hasState mdrItems:" + object.registrationState.id + " . \n" +
       "  :" + object.id + " isoT:origin \"\"^^xsd:string . \n" +
       "  :" + object.id + " isoT:changeDescription \"Creation\"^^xsd:string . \n" +
       "  :" + object.id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +

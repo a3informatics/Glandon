@@ -2,23 +2,29 @@ class DomainsController < ApplicationController
   
   before_action :authenticate_user!
   
-  C_CLASS_NAME = "FormsController"
+  C_CLASS_NAME = "DomainsController"
 
   def index
-    @domains = Domain.all
+    @domains = Domain.unique
     respond_to do |format|
       format.html 
       format.json do
         results = {}
         results[:data] = []
-        @domains.each do |key, item|
-          results[:data] << {:identifier => item.identifier, :label => item.label}
+        @domains.each do |id|
+          item = {:identifier => id}
+          results[:data] << item
         end
         render json: results
       end
     end
   end
   
+  def history
+    @identifier = params[:identifier]
+    @domain = Domain.history(@identifier)
+  end
+
   def update_add
     id = params[:id]
     namespace = params[:namespace]
@@ -39,14 +45,14 @@ class DomainsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @domain = Domain.find(id, namespace)
-    @bcs = CdiscBc.all
+    @bcs = BiomedicalConcept.all
   end
 
   def remove 
     id = params[:id]
     namespace = params[:namespace]
     @domain = Domain.find(id, namespace)
-    @bcs = CdiscBc.all
+    @bcs = BiomedicalConcept.all
   end
 
   def show 

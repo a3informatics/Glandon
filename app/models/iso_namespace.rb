@@ -39,7 +39,7 @@ class IsoNamespace
   end
   
   def self.exists?(shortName)
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","*****ENTRY*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****ENTRY*****")
     if @@nameMap.has_key?(shortName)
       result = true
     else
@@ -72,10 +72,10 @@ class IsoNamespace
   end
 
   def self.findByShortName(shortName)
-    ConsoleLogger::log(C_CLASS_NAME,"findByShortName","*****ENTRY*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"findByShortName","*****ENTRY*****")
     object = nil
     if @@nameMap.has_key?(shortName)
-      ConsoleLogger::log(C_CLASS_NAME,"findByShortName","Exisitng entry")
+      #ConsoleLogger::log(C_CLASS_NAME,"findByShortName","Exisitng entry")
       object = @@nameMap[shortName]
     else
       # Create the query
@@ -113,12 +113,12 @@ class IsoNamespace
   end
   
   def self.find(id)
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id)
-    ConsoleLogger::log(C_CLASS_NAME,"find","@@idMap=" + @@idMap.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","@@idMap=" + @@idMap.to_s)
     object = nil
     if @@idMap.has_key?(id)
-      ConsoleLogger::log(C_CLASS_NAME,"find","Exisitng entry")
+      #ConsoleLogger::log(C_CLASS_NAME,"find","Exisitng entry")
       object = @@idMap[id]
     else
       
@@ -147,10 +147,10 @@ class IsoNamespace
           object.namespace = @@baseNs 
           object.name = nSet[0].text
           object.shortName = snSet[0].text
-          ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
+          #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
           @@nameMap[object.shortName] = object
           @@idMap[object.id] = object
-          ConsoleLogger::log(C_CLASS_NAME,"find","@@idMap=" + @@idMap.to_s)
+          #ConsoleLogger::log(C_CLASS_NAME,"find","@@idMap=" + @@idMap.to_s)
         end
       
       end
@@ -178,7 +178,7 @@ class IsoNamespace
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"all","Node=" + node.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"all","Node=" + node.to_s)
       snSet = node.xpath("binding[@name='c']/literal")
       nSet = node.xpath("binding[@name='d']/literal")
       uriSet = node.xpath("binding[@name='a']/uri")
@@ -188,7 +188,7 @@ class IsoNamespace
         object.namespace = @@baseNs 
         object.name = nSet[0].text
         object.shortName = snSet[0].text
-        ConsoleLogger::log(C_CLASS_NAME,"all","Created object=" + object.id)
+        #ConsoleLogger::log(C_CLASS_NAME,"all","Created object=" + object.id)
         @@nameMap[object.shortName] = object
         @@idMap[object.id] = object
         results[object.id] = object
@@ -233,27 +233,20 @@ class IsoNamespace
           object.namespace = @@baseNs 
           object.name = name
           object.shortName = shortName
-          ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + id)
+          #ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + id)
         else
-          ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
+          #ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
           object.errors.add(:base, "The namespace was not created in the database.")
-          #object.assign_errors(data) if response.response_code == 422
         end
-      
       else
-        
-        # Object exists
         object.errors.add(:base, "The short name entered is already in use.")
-
       end
     end
-
     return object
-    
   end
 
   def destroy
-    ConsoleLogger::log(C_CLASS_NAME,"destroy","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"destroy","*****Entry*****")
 
     # Destroy the exisitng maps
     @@idMap = Hash.new

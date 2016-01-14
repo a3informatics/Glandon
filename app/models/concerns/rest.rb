@@ -24,7 +24,7 @@ module Rest
     hydra.queue(req)
     hydra.run
     response = req.response
-    ConsoleLogger::log(C_CLASS_NAME,"sendRequest",response.body)
+    #ConsoleLogger::log(C_CLASS_NAME,"sendRequest",response.body)
     return response
     
   end
@@ -50,7 +50,7 @@ module Rest
     #hydra.run
     req.run
     response = req.response
-    ConsoleLogger::log(C_CLASS_NAME,"sendFile",response.body)
+    #ConsoleLogger::log(C_CLASS_NAME,"sendFile",response.body)
     return response
     
   end

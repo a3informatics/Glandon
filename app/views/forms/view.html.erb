@@ -1,13 +1,13 @@
 <%= stylesheet_link_tag    'd3local' %>
 <%= javascript_include_tag 'd3local' %>
 <script id="jsonData" type="text/json">
-    <%= raw @form.to_D3.to_json %>
+    <%= raw @form.d3.to_json %>
 </script>
 <%= javascript_include_tag 'form_viewer' %>
 <div class="col-md-8" style="padding-right:20px; border-right: 1px solid #ccc;">
-    <h3>Form Viewer</h3>
+    <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "View:", :item => @form} %>
     <!--<div id="debug">
-        <%= raw @form.to_D3.to_json %>
+        <%= raw @form.d3.to_json %>
     </div>-->
     <div style="height: 800px;" id="d3">
         <!-- D3 Area -->
@@ -22,6 +22,9 @@
             <div class="panel-body">
                 <table class="table table-striped table-condensed">
                     <tbody>
+                        <tr>
+                            <td><strong>Label:</strong></td><td><%= @form.label %></td>
+                        </tr>
                         <tr>
                             <td><strong>Identifier:</strong></td><td><%= @form.identifier %></td>
                         </tr>

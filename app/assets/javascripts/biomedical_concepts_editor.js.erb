@@ -281,7 +281,7 @@ $(document).ready(function() {
   	//alert("value=" + value);
   	var parts = value.split("|");
     $.ajax({
-      url: "bct_select",
+      url: "../biomedical_concept_templates/" + parts[0],
       data: {
         id: parts[0],
         namespace: parts[1]
@@ -300,9 +300,9 @@ $(document).ready(function() {
         //element.innerHTML = JSON.stringify(data)  + "<br/>";
         //element.innerHTML = data.name + data.properties;
         //alert("data=" + data.name);
-        for (var prop in data.properties)
+        for (var prop in data.items)
         {
-          var property = data.properties[prop]
+          var property = data.items[prop]
           bcObject.children[index] = {};
           bcObject.children[index].name = property.Alias;
           bcObject.children[index].pText = "";

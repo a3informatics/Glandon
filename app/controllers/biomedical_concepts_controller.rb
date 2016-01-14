@@ -1,17 +1,32 @@
-class CdiscBcsController < ApplicationController
+class BiomedicalConceptsController < ApplicationController
   
-  C_CLASS_NAME = "CdiscBcsController"
+  C_CLASS_NAME = "BiomedicalConceptsController"
 
   before_action :authenticate_user!
   
   def index
-    @cdiscBcs = CdiscBc.all
+    @bcs = BiomedicalConcept.unique
     respond_to do |format|
       format.html 
       format.json do
         results = {}
+        results[:data] = []
+        @bcs.each do |key, bc|
+          item = {:identifier => bc.identifier}
+          results[:data] << item
+        end
+        render json: results
+      end
+    end
+  end
+  
+  def list
+    @bcs = BiomedicalConcept.list
+    respond_to do |format|
+      format.json do
+        results = {}
         results[:aaData] = []
-        @cdiscBcs.each do |key, bc|
+        @bcs.each do |key, bc|
           item = {:id => bc.id, :namespace => bc.namespace, :identifier => bc.identifier, :label => bc.label}
           results[:aaData] << item
         end
@@ -20,30 +35,26 @@ class CdiscBcsController < ApplicationController
     end
   end
   
-  def new
-    #@cdiscTerm = CdiscTerm.current
-    #@bcts = BiomedicalConceptTemplate.all
-    @bcts_options = BiomedicalConceptTemplate.all.map{|key,u|[u.identifier,u.id + "|" + u.namespace]}
+  def history
+    @identifier = params[:identifier]
+    @bc = BiomedicalConcept.history(@identifier)
   end
 
-  def bct_select
-    id = params[:id]
-    namespace = params[:namespace]
-    @bct = BiomedicalConceptTemplate.find(id, namespace)
-    render json: @bct
+  def new
+    @bcts_options = BiomedicalConceptTemplate.all.map{|key,u|[u.identifier,u.id + "|" + u.namespace]}
   end
 
   def impact
     id = params[:id]
     namespace = params[:namespace]
-    @cdiscBc = CdiscBc.find(id, namespace)
+    @cdiscBc = BiomedicalConcept.find(id, namespace)
     @forms = Form.impact(params)
     @domains = Domain.impact(params)
   end
 
   def create
     ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
-    @bc = CdiscBc.create(params[:data])
+    @bc = BiomedicalConcept.create(params[:data])
     if @bc.errors.empty?
       render :nothing => true, :status => 200, :content_type => 'text/html'
     else
@@ -54,17 +65,18 @@ class CdiscBcsController < ApplicationController
   def show 
     id = params[:id]
     namespace = params[:namespace]
-    @cdiscBc = CdiscBc.find(id, namespace)
+    @bc = BiomedicalConcept.find(id, namespace)
+    @items = @bc.flatten
     respond_to do |format|
       format.html 
       format.json do
         results = {}
         results[:id] = id
-        results[:identifier] = @cdiscBc.identifier
-        results[:label] = @cdiscBc.label
+        results[:identifier] = @bc.identifier
+        results[:label] = @bc.label
         results[:namespace] = namespace
         results[:properties] = []
-        @cdiscBc.properties.each do |property|
+        @items.each do |property|
           results[:properties] << property
         end
         render json: results

@@ -1,4 +1,4 @@
-<h3>Variable <%= @variable.name %></h3>
+<h3>Show: <%= @variable.label %></h3>
 <div class="col-md-12">
 	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
@@ -89,7 +89,7 @@
 	    			<td><%= ref[:id] %></td>
 				    <td><%= ref[:namespace] %></td>
 				    <td><%= ref[:property] %></td>
-				    <td><%= link_to "Show", cdisc_bc_path(:id => ref[:id], :namespace => ref[:namespace]), :class => "btn btn-primary btn-xs" %></td>
+				    <td><%= link_to "Show", biomedical_concept_path(:id => ref[:id], :namespace => ref[:namespace]), :class => "btn btn-primary btn-xs" %></td>
 	  			</tr>
 	  		<% end %>
 		</tbody>

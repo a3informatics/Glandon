@@ -3,27 +3,13 @@ class Forms::FormGroupsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @formGroups = Form::FormGroup.all
+    @formGroups = Form::Group.all
   end
   
-  def new
-  end
-  
-  def create
-  end
-
-  def update
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
-
   def show 
-    @form = Form.find(params[:formId], params[:namespace])
-    @formGroup = @form.groups[params[:id]]
+    @form = Form.find(params[:formId], params[:namespace], false)
+    #@formGroup = @form.groups[params[:id]]
+    @formGroup = Form::Group.find(params[:id], params[:namespace])
   end
   
 private

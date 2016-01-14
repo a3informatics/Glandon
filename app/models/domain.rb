@@ -1,170 +1,70 @@
 require "uri"
 
-class Domain
+class Domain < IsoManaged
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-      
-  attr_accessor :id, :managedItem, :variables, :bcs, :namespace
-  validates_presence_of :id, :managedItem, :variables, :bcs, :namespace
+  attr_accessor :variables, :bcs
+  validates_presence_of :variables, :bcs
   
   # Constants
-  C_NS_PREFIX = "mdrDomains"
+  C_SCHEMA_PREFIX = "bd"
+  C_INSTANCE_PREFIX = "mdrDomains"
   C_CLASS_NAME = "Domain"
   C_CID_PREFIX = "D"
-  
-  # Base namespace 
-  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-  
-  def version
-    return self.managedItem.version
-  end
-
-  def versionLabel
-    return self.managedItem.versionLabel
-  end
-
-  def identifier
-    return self.managedItem.identifier
-  end
-
-  def label
-    return self.managedItem.label
-  end
-
-  def owner
-    return self.managedItem.owner
-  end
-
-  def persisted?
-    id.present?
-  end
-  
-  def initialize()
-  end
-
-  def self.baseNs
-    return @@baseNs
-  end
+  C_RDF_TYPE = "Domain"
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
 
   # Find a given domain
-  def self.find(id, ns=nil)
-    
+  def self.find(id, ns, children=true)
     ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"find","Namespace=" + ns)
-    useNs = ns || @@baseNs
-    
-    object = self.new 
-    object.id = id
-    object.namespace = useNs
-    object.managedItem = ManagedItem.find(id, useNs)
-    object.variables = Domain::Variable.findForDomain(id, useNs)
+    ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
+    object = super(id, ns)
+    object.variables = Domain::Variable.findForDomain(id, ns)
     object.bcs = Hash.new
     ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id.to_s)
-    
-    results = Hash.new
-    query = UriManagement.buildNs(useNs, ["bd", "mms"]) +
-      "SELECT ?d WHERE\n" + 
-      "{ \n" + 
-      " :" + id + " bd:basedOn ?a . \n" +
-      " ?b mms:context ?a . \n" +
-      " ?c bd:basedOn ?b . \n" +
-      " ?c bd:hasBiomedicalConcept ?d . \n" +
-      "} \n"
-                  
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='d']/uri")
-      if uriSet.length == 1 
-        id = ModelUtility.extractCid(uriSet[0].text)
-        namespace = ModelUtility.extractNs(uriSet[0].text)
-        object.bcs[id] = CdiscBc.find(id, namespace)
-      end
-    end
-    return object
-
-  end
-
-  # Find domains for an specified SDTM IG
-  #def self.findForIg(igId, igNamespace)
-  #  
-  #  ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-  #  ConsoleLogger::log(C_CLASS_NAME,"find","Namespace=" + igNamespace)
-  #  results = Hash.new
-  #  query = UriManagement.buildNs(igNamespace, ["bo", "bd", "bs"]) +
-  #    "SELECT ?a WHERE\n" + 
-  #    "{ \n" + 
-  #    " ?a rdf:type bd:Domain . \n" +
-  #    "} \n"
-  #                
-  #  # Send the request, wait the resonse
-  #  response = CRUD.query(query)
-  #  
-  #  # Process the response
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  xmlDoc.xpath("//result").each do |node|
-  #    uriSet = node.xpath("binding[@name='a']/uri")
-  #    if uriSet.length == 1 
-  #      id = ModelUtility.extractCid(uriSet[0].text)
-  #      namespace = ModelUtility.extractNs(uriSet[0].text)
-  #      object = self.new 
-  #      object.id = id
-  #      object.namespace = namespace
-  #      ConsoleLogger::log(C_CLASS_NAME,"find","Namespace=" + namespace)
-  #      object.managedItem = ManagedItem.find(id, namespace)
-  #      object.variables = Hash.new
-  #      ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id.to_s)
-  #      results[id] = object
-  #    end
-  #  end
-  #  return results  
-  #  
-  #end
-
-  def self.all()
-    
-    results = Hash.new
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bd", "bd"]) 
-    query = query +
-      "SELECT ?a WHERE\n" + 
-      "{ \n" + 
-      " ?a rdf:type bd:Domain . \n" +
-      "} \n"
+    if children
+      results = Hash.new
+      query = UriManagement.buildNs(ns, ["bd", "mms"]) +
+        "SELECT ?d WHERE\n" + 
+        "{ \n" + 
+        " :" + id + " bd:basedOn ?a . \n" +
+        " ?b mms:context ?a . \n" +
+        " ?c bd:basedOn ?b . \n" +
+        " ?c bd:hasBiomedicalConcept ?d . \n" +
+        "} \n"
+                    
+      # Send the request, wait the resonse
+      response = CRUD.query(query)
       
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='a']/uri")
-      if uriSet.length == 1 
-        namespace = ModelUtility.extractNs(uriSet[0].text)
-        id = ModelUtility.extractCid(uriSet[0].text)
-        object = self.new 
-        object.id = id
-        object.namespace = namespace
-        ConsoleLogger::log(C_CLASS_NAME,"all","Id=" + id.to_s)
-        object.managedItem = ManagedItem.find(id, ModelUtility.extractNs(uriSet[0].text))
-        object.variables = Hash.new
-        results[object.id] = object
+      # Process the response
+      xmlDoc = Nokogiri::XML(response.body)
+      xmlDoc.remove_namespaces!
+      xmlDoc.xpath("//result").each do |node|
+        uriSet = node.xpath("binding[@name='d']/uri")
+        if uriSet.length == 1 
+          id = ModelUtility.extractCid(uriSet[0].text)
+          namespace = ModelUtility.extractNs(uriSet[0].text)
+          object.bcs[id] = BiomedicalConcept.find(id, namespace, false)
+        end
       end
     end
-    return results  
-    
+    return object
   end
 
-  def self.create(params)
-    object = nil
-    return object
+  def self.all
+    super(C_RDF_TYPE, C_SCHEMA_NS)
+  end
+
+  def self.unique
+    ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
+  end
+
+  def self.history(identifier)
+    results = super(C_RDF_TYPE, identifier, C_SCHEMA_NS)
+    return results
   end
 
   def add(params)
@@ -180,10 +80,10 @@ class Domain
       parts = key.split("|")
       bcId = parts[0]
       bcNamespace = parts[1]
-      bc = CdiscBc.find(bcId, bcNamespace)
-      bc.properties.each do |keyP, property|
-        if property[:Enabled]
-          bridg = property[:bridgPath]
+      bc = BiomedicalConcept.find(bcId, bcNamespace)
+      bc.flatten.each do |keyP, property|
+        if property.enabled
+          bridg = property.bridgPath
           sdtm = BridgSdtm::get(bridg)
           ConsoleLogger::log(C_CLASS_NAME,"add","bridg=" + bridg.to_s + " , sdtm=" + sdtm.to_s )
           if sdtm != ""

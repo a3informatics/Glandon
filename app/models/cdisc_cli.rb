@@ -8,8 +8,8 @@ class CdiscCli < ThesaurusConcept
   C_RDF_TYPE = "ThesaurusConcept"
 
   # Base namespace 
-  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
-  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
   def self.diff? (cliA, cliB)
     #ConsoleLogger::log(C_CLASS_NAME,"diff?","*****Entry*****")

@@ -11,8 +11,8 @@ class IsoConceptSystem::Node < IsoDesignatableItem
   C_RDF_TYPE = "Concept"
 
   # Base namespace 
-  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
-  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
   def self.find(id, ns)
     
@@ -22,7 +22,7 @@ class IsoConceptSystem::Node < IsoDesignatableItem
     object = super(id, ns)
 
     # Get any links
-    query = UriManagement.buildNs(@@instanceNs, ["isoC"]) +
+    query = UriManagement.buildNs(C_INSTANCE_NS, ["isoC"]) +
       "SELECT ?a WHERE \n" +
       "{ \n" +
       "  :" + id.to_s + " isoC:hasMember ?a . \n" +
@@ -49,12 +49,14 @@ class IsoConceptSystem::Node < IsoDesignatableItem
   end
 
   def self.all
-    super(C_RDF_TYPE, @@schemaNs)
+    super(C_RDF_TYPE, C_SCHEMA_NS
+)
   end
 
   def self.create(params)
     ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
-    object = super(C_CID_PREFIX, params, C_RDF_TYPE, @@schemaNs, @@instanceNs)
+    object = super(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS
+, C_INSTANCE_NS)
     return object
 
   end

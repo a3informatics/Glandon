@@ -20,16 +20,9 @@ class Thesaurus < IsoManaged
   C_RDF_TYPE = "Thesaurus"
 
   # Base namespace 
-  @@schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
-  @@instanceNs = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def self.baseNs()
-    return @@instanceNs
-  end
-
-  def initialize()
-  end
-
   def self.find(id, ns, children=true)   
     object = super(id, ns)
     if children
@@ -39,27 +32,27 @@ class Thesaurus < IsoManaged
   end
   
   def self.all
-    results = super(C_RDF_TYPE, @@schemaNs)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
 
   def self.unique
-    results = super(C_RDF_TYPE, @@schemaNs)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
 
   def self.history(identifier)
-    results = super(C_RDF_TYPE, identifier, @@schemaNs)
+    results = super(C_RDF_TYPE, identifier, C_SCHEMA_NS)
     return results
   end
 
   def self.create(params)
-    object = super(C_CID_PREFIX, params, 'Thesaurus', @@schemaNs, @@instanceNs)
+    object = super(C_CID_PREFIX, params, 'Thesaurus', C_SCHEMA_NS, C_INSTANCE_NS)
     return object
   end
 
   def self.import(params, ownerNamespace)
-    object = super(C_CID_PREFIX, params, ownerNamespace, 'Thesaurus', @@schemaNs, @@instanceNs)
+    object = super(C_CID_PREFIX, params, ownerNamespace, 'Thesaurus', C_SCHEMA_NS, C_INSTANCE_NS)
     return object
   end
 

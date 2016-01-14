@@ -8,6 +8,7 @@ $(document).ready(function() {
   var formLabelElement = document.getElementById("formLabel");
   var groupIdentifierElement = document.getElementById("groupIdentifier");
   var groupLabelElement = document.getElementById("groupLabel");
+  var groupRepeatingElement = document.getElementById("groupRepeating");
   var commonIdentifierElement = document.getElementById("commonIdentifier");
   var commonLabelElement = document.getElementById("commonLabel");
   var bcIdentifierElement = document.getElementById("bcIdentifier");
@@ -18,6 +19,11 @@ $(document).ready(function() {
   var clIdentifierElement = document.getElementById("clIdentifier");
   var clLabelElement = document.getElementById("clLabel");
   var clEnableElement = document.getElementById("clEnable");
+  var plTextElement = document.getElementById("placeholderText");
+  var questionTextElement = document.getElementById("questionText");
+  var questionMappingElement = document.getElementById("questionMapping");
+  var questionDatatypeElement = document.getElementById("questionDatatype");
+  var questionFormatElement = document.getElementById("questionFormat");
   var alertsId = document.getElementById("alerts")
   
   var nextKeyId;
@@ -26,23 +32,77 @@ $(document).ready(function() {
   var currentGRef;
   var bcCurrent;
   var bcCurrentRow;
+  var termCurrent;
+  var termCurrentRow;
+  var varClCurrent;
+  var varClCurrentRow;
+  var questionDatatypeValue
+  
+  questionClTable = $('#questionClTable').DataTable({
+    "searching": false,
+    "pageLength": 5,
+    "lengthChange": false,
+    "columns": [
+      {"data" : "identifier", "width" : "50%"},
+      {"data" : "notation", "width" : "50%"},
+    ]
+  });
+  questionClTable.clear();
+
   var bcSelect = $('#bcTable').DataTable( {
     "ajax": {
-      "url": "../cdisc_bcs"
+      "url": "../biomedical_concepts/list",
+      "dataSrc": "data",
+      error: function (xhr, status, error) {
+        var html = alertError("An error has occurred loading the Biomedical Concepts table.");
+        displayAlerts(html);
+      }
     },
     dataType: 'json',
-        success: function(result){
-          alert("data!")
-        },
     "pageLength": 5,
     "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
     "pagingType": "full",
     "bProcessing": true,
+    "language": {
+      "infoFiltered": "",
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    },
     "columns": [
       {"data" : "identifier", "width" : "50%"},
       {"data" : "label", "width" : "50%"}
     ]
   });
+
+  var termSelect = document.getElementById("termSelect")
+  var termInfo = termSelect.value;
+  var parts = termInfo.split("|");
+  var termTable = $('#termTable').DataTable( {
+      "ajax": {
+        "url": "../thesauri/searchNew",
+        "data": function( d ) {
+            d.id = parts[0],
+            d.namespace = encodeURIComponent(parts[1])
+          },
+        "dataSrc": "data", 
+        error: function (xhr, status, error) {
+          var html = alertError("An error has occurred loading the Terminology table.");
+          displayAlerts(html);
+        }  
+      },
+      "pagingType": "full",
+      "processing": true,
+      "serverSide": true,
+      "language": {
+           "infoFiltered": "",
+           "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      },
+      "pageLength": 5,
+      "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+      "columns": [
+          {"data" : "identifier", "width" : "50%"},
+          {"data" : "notation", "width" : "50%"}
+        ]
+    });
 
   // Get the JSON structure. Set the namespace of the thesauri.
   formDefinition = $.parseJSON(html);
@@ -64,6 +124,8 @@ $(document).ready(function() {
         saveGroup(currentNode)
       } else if (currentNode.type == "CommonGroup") {
         saveCommon(currentNode)
+      } else if (currentNode.type == "Placeholder") {
+        savePlaceholder(currentNode)
       }
     }
     displayNode(node)
@@ -112,7 +174,7 @@ $(document).ready(function() {
         var html = alertSuccess("Form has been saved.");
         displayAlerts(html);
       },
-      error: function(xhr,status,error){
+      error: function(xhr, status, error){
         var errors;
         var html;
         errors = $.parseJSON(xhr.responseText).errors;
@@ -211,6 +273,28 @@ $(document).ready(function() {
     }
   }); 
 
+  $('#groupAddQuestion').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      node = addQuestion();
+      displayNode(node);
+      displayTree(node.key);
+    }
+  }); 
+
+  $('#groupAddPlaceholder').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      node = addPlaceholder();
+      displayNode(node);
+      displayTree(node.key);
+    }
+  }); 
+
   /*
   * Functions to handle the common actions
   */
@@ -233,6 +317,44 @@ $(document).ready(function() {
       displayNode(node);
       displayTree(node.key);
     }     
+  });
+
+  /*
+  * Functions to handle the placeholder actions
+  */
+  $('#questionUpdate').click(function() {
+    if (currentGRef == null) {
+      var html = alertWarning("You need to select a question node.");
+      displayAlerts(html);
+    } else {
+      saveQuestion(currentNode)
+      displayTree(currentNode.key);
+    }
+  });
+  
+  $('#questionDelete').click(function() {
+    var node = deleteNode(currentNode);
+    displayNode(node);
+    displayTree(node.key);
+  });
+
+  /*
+  * Functions to handle the placeholder actions
+  */
+  $('#placeholderUpdate').click(function() {
+    if (currentGRef == null) {
+      var html = alertWarning("You need to select a placeholder node.");
+      displayAlerts(html);
+    } else {
+      savePlaceholder(currentNode)
+      displayTree(currentNode.key);
+    }
+  });
+  
+  $('#placeholderDelete').click(function() {
+    var node = deleteNode(currentNode);
+    displayNode(node);
+    displayTree(node.key);
   });
 
   /*
@@ -294,65 +416,118 @@ $(document).ready(function() {
    * Function to handle click on the BC selection table.
    */
   $('#bcTable tbody').on('click', 'tr', function () {
-    handleDataTable(bcSelect, this);
+    handleBCTable(bcSelect, this);
   });
+
+  /*
+   * Function to handle click on terminology table
+   */
+  $('#termTable tbody').on('click', 'tr', function () {
+    handleTermTable(termTable, this);
+  });
+
+  /*
+   * Function to handle click on question cl table
+   */
+  $('#questionClTable tbody').on('click', 'tr', function () {
+    handleQuestionTable(questionClTable, this);
+  });
+
+  /* 
+  * Function to handle the terminology button clicks.
+  */
+  $('#addTerm').click(function() {
+    var data;
+    if (termCurrentRow != null) {
+      data = termTable.row(termCurrentRow).data();
+      questionClTable.row.add(data);
+      questionClTable.draw(false);
+    }
+  });
+
+  $('#deleteTerm').click(function() {
+    var data;
+    if (varClCurrentRow != null) {
+      questionClTable.row(varClCurrentRow).remove();
+      varClCurrentRow = null;
+      questionClTable.draw();
+    }
+  });
+
+  $('#questionDatatype input:radio').click(function() {
+    var value = $(this).val();
+    clEnableDisable(value);
+    questionDatatypeValue = value;
+  });
+
+  function clEnableDisable (value) {
+    if (value == "I" || value == "C" || value == "F") {
+      $("#questionFormat").prop('disabled', false);
+      $("#addTerm").prop('disabled', true);
+      $("#deleteTerm").prop('disabled', true);
+    } else {
+      $("#questionFormat").prop('disabled', true);
+      $("#addTerm").prop('disabled', false);
+      $("#deleteTerm").prop('disabled', false);
+    }
+  }
 
   /* ****************
   * Utility Functions
   */
-
   function selectForm() {
+    clearSelect();
     $("#formInfo").removeClass('hidden');
-    $("#groupInfo").addClass('hidden');
-    $("#bcInfo").addClass('hidden');
-    $("#commonInfo").addClass('hidden');
-    $("#itemInfo").addClass('hidden');
-    $("#clInfo").addClass('hidden');
   }
 
   function selectGroup() {
-    $("#formInfo").addClass('hidden');
+    clearSelect();
     $("#groupInfo").removeClass('hidden');
-    $("#bcInfo").addClass('hidden');
-    $("#commonInfo").addClass('hidden');
-    $("#itemInfo").addClass('hidden');
-    $("#clInfo").addClass('hidden');
+    $("#bcSelection").removeClass('hidden');
   }
   
   function selectBC() {
-    $("#formInfo").addClass('hidden');
-    $("#groupInfo").addClass('hidden');
+    clearSelect();
     $("#bcInfo").removeClass('hidden');
-    $("#commonInfo").addClass('hidden');
-    $("#itemInfo").addClass('hidden');
-    $("#clInfo").addClass('hidden');
   }
   
   function selectCommon() {
-    $("#formInfo").addClass('hidden');
-    $("#groupInfo").addClass('hidden');
-    $("#bcInfo").addClass('hidden');
+    clearSelect();
     $("#commonInfo").removeClass('hidden');
-    $("#itemInfo").addClass('hidden');
-    $("#clInfo").addClass('hidden');
   }
   
   function selectItem() {
-    $("#formInfo").addClass('hidden');
-    $("#groupInfo").addClass('hidden');
-    $("#bcInfo").addClass('hidden');
-    $("#commonInfo").addClass('hidden');
+    clearSelect();
     $("#itemInfo").removeClass('hidden');
-    $("#clInfo").addClass('hidden');
+  }
+
+  function selectQuestion() {
+    clearSelect();
+    $("#questionInfo").removeClass('hidden');
+    $("#termSelection").removeClass('hidden');
+  }
+
+  function selectPlaceholder() {
+    clearSelect();
+    $("#placeholderInfo").removeClass('hidden');
   }
 
   function selectCl() {
+    clearSelect();
+    $("#clInfo").removeClass('hidden');
+  }
+
+  function clearSelect() {
     $("#formInfo").addClass('hidden');
     $("#groupInfo").addClass('hidden');
     $("#bcInfo").addClass('hidden');
     $("#commonInfo").addClass('hidden');
+    $("#questionInfo").addClass('hidden');
+    $("#placeholderInfo").addClass('hidden');
     $("#itemInfo").addClass('hidden');
-    $("#clInfo").removeClass('hidden');
+    $("#clInfo").addClass('hidden');
+    $("#bcSelection").addClass('hidden');
+    $("#termSelection").addClass('hidden');
   }
 
   /**
@@ -366,6 +541,7 @@ $(document).ready(function() {
   function displayGroup(node) {
     groupIdentifierElement.value = node.identifier;
     groupLabelElement.value = node.label;
+    groupRepeatingElement.checked = node.repeating;
   }
 
   function displayBC(node) {
@@ -397,6 +573,26 @@ $(document).ready(function() {
     }
   }
 
+  function displayQuestion(node) {
+    questionTextElement.value = node.qText;
+    questionMappingElement.value= node.mapping;
+    var $radios = $('input:radio[name=dtRadio]');
+    $radios.filter('[value=' + node.datatype +']').attr('checked', true);
+    questionFormatElement.value = node.format;
+    questionClTable.clear();
+    if (node.hasOwnProperty('children')) {
+      for (j=0; j<node.children.length; j++) {
+        var row = node.children[j].cli;
+        questionClTable.row.add(row);
+      }
+    }
+    clEnableDisable(node.datatype);
+  }
+
+  function displayPlaceholder(node) {
+    plTextElement.value = node.freeText;
+  }
+
   function displayCl(node) {
     clIdentifierElement.innerHTML = node.identifier;
     clLabelElement.innerHTML = node.label;
@@ -416,6 +612,8 @@ $(document).ready(function() {
     node.identifier = groupIdentifierElement.value;
     node.label = groupLabelElement.value;
     node.name = node.label;
+    node.repeating = groupRepeatingElement.checked;
+
   }
 
   function saveCommon(node) {
@@ -426,6 +624,42 @@ $(document).ready(function() {
 
   function saveItem(node) {
     node.enabled = itemEnableElement.checked;
+  }
+
+  function saveQuestion(node) {
+    var rowData;
+    var i;
+    var row;
+    node.qText = questionTextElement.value;
+    node.mapping = questionMappingElement.value;
+    //node.datatype = questionDatatypeValue;
+    node.datatype = $('input:radio[name=dtRadio]:checked').val();
+    node.format = questionFormatElement.value;
+    node.children = [];
+    rowData = questionClTable.rows().data();
+    for (i=0; i<rowData.length; i++) {
+      row = rowData.row(i).data();
+      if (typeof row != 'undefined') {
+        node.children[i] = {};
+        node.children[i].id = row.id;
+        node.children[i].parent = node;
+        node.children[i].namespace = row.namespace;
+        node.children[i].name = row.notation;
+        node.children[i].type = "QCL";
+        node.children[i].identifier = row.identifier;
+        node.children[i].index = i;
+        node.children[i].label = row.notation;
+        node.children[i].enabled = true;
+        node.children[i].cli = row;
+        node.children[i].key = nextKeyId;
+        nextKeyId += 1;
+      }
+    }
+    node.save = node.children;
+  }
+
+  function savePlaceholder(node) {
+    node.freeText = plTextElement.value;
   }
 
   function saveCl(node) {
@@ -572,18 +806,75 @@ $(document).ready(function() {
     return currentNode.children[index];
   }
 
+  function addQuestion() {
+    var index;
+    if (currentNode.hasOwnProperty('save')) {
+      index = currentNode.save.length;
+    } else {
+      currentNode.children = [];
+      currentNode.save = [];
+      index = 0;
+    }     
+    var count = index + 1;
+    currentNode.children[index] = {};
+    currentNode.children[index].identifier = "Question" + count;
+    currentNode.children[index].name = "Question " + count;
+    currentNode.children[index].label = "Question " + count;
+    currentNode.children[index].type = "Question";
+    currentNode.children[index].parent = currentNode;
+    currentNode.children[index].index = index;
+    currentNode.children[index].id = "V" + count;
+    currentNode.children[index].key = nextKeyId;
+    currentNode.children[index].qText = "";
+    currentNode.children[index].mapping = "";
+    currentNode.children[index].datatype = "I";
+    currentNode.children[index].format = "3";
+    nextKeyId += 1;
+    currentNode.save = currentNode.children;
+    return currentNode.children[index];
+  }
+
+  function addPlaceholder() {
+    var index;
+    if (currentNode.hasOwnProperty('save')) {
+      index = currentNode.save.length;
+    } else {
+      currentNode.children = [];
+      currentNode.save = [];
+      index = 0;
+    }     
+    var count = index + 1;
+    currentNode.children[index] = {};
+    currentNode.children[index].identifier = "Placeholder" + count;
+    currentNode.children[index].name = "Placeholder " + count;
+    currentNode.children[index].label = "Placeholder " + count;
+    currentNode.children[index].type = "Placeholder";
+    currentNode.children[index].parent = currentNode;
+    currentNode.children[index].index = index;
+    currentNode.children[index].id = "P" + count;
+    currentNode.children[index].freeText = "";
+    currentNode.children[index].key = nextKeyId;
+    nextKeyId += 1;
+    currentNode.save = currentNode.children;
+    return currentNode.children[index];
+  }
+
   function addBc() {
     var parentNode;
     var data = bcSelect.row(bcCurrentRow).data();
     
     bcNode = null;
     $.ajax({
-      url: "../cdisc_bcs/" + data.id,
+      url: "../biomedical_concepts/" + data.id,
       data: {
         "id": data.id,
         "namespace": data.namespace
       },
       dataType: 'json',
+      error: function (xhr, status, error) {
+        var html = alertError("An error has occurred loading the Biomedical Concept.");
+        displayAlerts(html);
+      },
       success: function(result){
         var bc = $.parseJSON(JSON.stringify(result));
         var bcNode;
@@ -614,36 +905,41 @@ $(document).ready(function() {
         pIndex = 0;
         for (i=0; i<bc.properties.length; i++) {
           var property = bc.properties[i];
-          if (property[1].Enabled && property[1].Collect) {
+          if (property[1].enabled && property[1].collect) {
             currentNode.children[index].children[pIndex] = {};
             currentNode.children[index].children[pIndex].id = property[1].id;
             currentNode.children[index].children[pIndex].parent = currentNode.children[index];
             currentNode.children[index].children[pIndex].namespace = property[1].namespace;
-            currentNode.children[index].children[pIndex].name = property[1].Alias;
+            currentNode.children[index].children[pIndex].name = property[1].alias;
             currentNode.children[index].children[pIndex].type = "Item";
-            currentNode.children[index].children[pIndex].identifer = property[1].Name;
+            currentNode.children[index].children[pIndex].identifer = property[1].name;
             currentNode.children[index].children[pIndex].bridgPath = property[1].bridgPath;
             currentNode.children[index].children[pIndex].index = pIndex;
-            currentNode.children[index].children[pIndex].label = property[1].Alias;
+            currentNode.children[index].children[pIndex].label = property[1].alias;
             currentNode.children[index].children[pIndex].enabled = true;
             currentNode.children[index].children[pIndex].key = nextKeyId;
             nextKeyId += 1;
-            var values = property[1].Values
-            if (values.length > 0) {
+            var values = property[1].values
+            for (var key in values) {
+              var j=0
+              object = values[key];
+              var clis = object.clis;
               currentNode.children[index].children[pIndex].children = [];
-              for (j=0; j<values.length; j++) {
+              for (var cliKey in clis) {
+                var cli = clis[cliKey];
                 currentNode.children[index].children[pIndex].children[j] = {};
-                currentNode.children[index].children[pIndex].children[j].id = values[j].id;
+                currentNode.children[index].children[pIndex].children[j].id = cli.id;
                 currentNode.children[index].children[pIndex].children[j].parent = currentNode.children[index].children[pIndex];
-                currentNode.children[index].children[pIndex].children[j].namespace = values[j].namespace;
-                currentNode.children[index].children[pIndex].children[j].name = values[j].cli.notation;
+                currentNode.children[index].children[pIndex].children[j].namespace = cli.namespace;
+                currentNode.children[index].children[pIndex].children[j].name = cli.notation;
                 currentNode.children[index].children[pIndex].children[j].type = "CL";
-                currentNode.children[index].children[pIndex].children[j].identifier = values[j].cli.identifier;
+                currentNode.children[index].children[pIndex].children[j].identifier = cli.identifier;
                 currentNode.children[index].children[pIndex].children[j].index = j;
-                currentNode.children[index].children[pIndex].children[j].label = values[j].cli.notation;
+                currentNode.children[index].children[pIndex].children[j].label = cli.notation;
                 currentNode.children[index].children[pIndex].children[j].enabled = true;
                 currentNode.children[index].children[pIndex].children[j].key = nextKeyId;
                 nextKeyId += 1;
+                j += 1;
               }
               currentNode.children[index].children[pIndex].save = currentNode.children[index].children[pIndex].children;
             }
@@ -712,9 +1008,9 @@ $(document).ready(function() {
   /*
   * Other utility functions
   */
-  function handleDataTable(table,ref) {
+  function handleBCTable(table, ref) {
     // Toggle the highlight for the row
-    if (bcCurrent !=  null) {
+    if (bcCurrent != null) {
       $(bcCurrent).toggleClass('success');
     }
     $(ref).toggleClass('success');
@@ -726,6 +1022,38 @@ $(document).ready(function() {
     // Save the selection
     bcCurrent = ref;
     bcCurrentRow = row;
+  }
+
+  function handleTermTable(table, ref) {
+    // Toggle the highlight for the row
+    if (termCurrent != null) {
+      $(termCurrent).toggleClass('success');
+    }
+    $(ref).toggleClass('success');
+
+    // Get the row
+    var row = table.row(ref).index();
+    var data = table.row(row).data();
+
+    // Save the selection
+    termCurrent = ref;
+    termCurrentRow = row;
+  }
+
+  function handleQuestionTable(table, ref) {
+    // Toggle the highlight for the row
+    if (varClCurrent != null) {
+      $(varClCurrent).toggleClass('success');
+    }
+    $(ref).toggleClass('success');
+
+    // Get the row
+    var row = table.row(ref).index();
+    var data = table.row(row).data();
+
+    // Save the selection
+    varClCurrent = ref;
+    varClCurrentRow = row;
   }
 
   function copyNode(sourceNode, targetNode) {
@@ -760,6 +1088,11 @@ $(document).ready(function() {
     currentGRef = null;
     bcCurrent = null;
     bcCurrentRow = null;
+    termCurrent = null;
+    termCurrentRow = null;
+    varClCurrent = null;
+    varClCurrentRow = null;
+    questionDatatypeValue = "I";
     nextKeyId = parseInt(formDefinition.nextKeyId); // 1 id the root node.
     setParent(formDefinition);
     setSave(formDefinition);
@@ -820,6 +1153,14 @@ $(document).ready(function() {
     } else if (node.type == "Item") {
       selectItem();
       displayItem(node);
+    } else if (node.type == "Question") {
+      questionClTable.clear();
+      selectQuestion();
+      displayQuestion(node);
+      questionClTable.draw(false);
+    } else if (node.type == "Placeholder") {
+      selectPlaceholder();
+      displayPlaceholder(node);
     } else if (node.type == "CL") {
       selectCl();
       displayCl(node);

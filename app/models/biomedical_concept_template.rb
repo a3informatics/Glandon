@@ -1,63 +1,29 @@
 require "uri"
 
-class BiomedicalConceptTemplate
+class BiomedicalConceptTemplate < IsoManaged
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-      
-  attr_accessor :id, :managedItem, :properties, :namespace
-  validates_presence_of :id, :managedItem, :properties, :namespace
+  attr_accessor :items
+  validates_presence_of :items
   
   # Constants
+  C_SCHEMA_PREFIX = "cbc"
+  C_INSTANCE_PREFIX = "mdrBcts"
   C_CLASS_NAME = "BiomedicalConceptTemplate"
-  C_NS_PREFIX = "mdrBcts"
   C_CID_PREFIX = "BCT"
+  C_RDF_TYPE = "BiomedicalConceptTemplate"
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+
   
   # BC object
   #
-  # object: id, scopeId, identifier, version, namespace, name, properties where properties is
-  # properties [:cid => {:id, :alias, :datatype}]
+  # object: id, scopeId, identifier, version, namespace, name, items where items is
+  # items [:cid => {:id, :alias, :datatype}]
   
-  # Base namespace 
-  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-  
-  def version
-    return self.managedItem.version
-  end
-
-  def versionLabel
-    return self.managedItem.versionLabel
-  end
-
-  def identifier
-    return self.managedItem.identifier
-  end
-
-  def label
-    return self.managedItem.label
-  end
-
-  def owner
-    return self.managedItem.owner
-  end
-
-  def persisted?
-    id.present?
-  end
-  
-  def initialize()
-  end
-
-  def baseNs
-    return @baseNs
-  end
-  
-  def self.find(id, templateNamespace)
-    
+  def self.find(id, ns)
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
-    object = nil
-    query = UriManagement.buildNs(templateNamespace, ["cbc", "mdrItems", "isoI"]) +
+    object = super(id, ns)
+    query = UriManagement.buildNs(ns, ["cbc", "mdrItems", "isoI"]) +
       "SELECT ?bcDtNode ?bcPropertyNode ?datatype ?propertyAlias ?simple WHERE\n" + 
       "{ \n" + 
       "  :" + id + " (cbc:hasItem | cbc:hasDatatype )%2B ?bcDtNode .\n" + 
@@ -83,87 +49,45 @@ class BiomedicalConceptTemplate
       simpleURI = ModelUtility.getValue("simple", true, node)
       if dtNodeURI != "" && simpleURI != ""
         #ConsoleLogger::log(C_CLASS_NAME,"find","Found")
-        if object != nil
-          properties = object.properties          
+        if object.items != nil
+          items = object.items          
         else
-          object = self.new 
-          properties = Hash.new
-          object.properties = properties
-          object.id = id
-          object.namespace = templateNamespace
-          object.managedItem = ManagedItem.find(id, templateNamespace)
-          ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
+          items = Hash.new
+          object.items = items
         end
-        propertyUri = ModelUtility.getValue("bcPropertyNode", true, node)
-        propertyCid = ModelUtility.extractCid(propertyUri)
+        itemUri = ModelUtility.getValue("bcPropertyNode", true, node)
+        itemCid = ModelUtility.extractCid(itemUri)
         aliasName = ModelUtility.getValue("propertyAlias", false, node)
         dt = ModelUtility.getValue("datatype", true, node)
         #ConsoleLogger::log(C_CLASS_NAME,"find","Property URI=" + propertyUri)
         #ConsoleLogger::log(C_CLASS_NAME,"find","Property Alias=" + aliasName)
-        if properties.has_key?(propertyCid)
-          property = properties[propertyCid]
+        if items.has_key?(itemCid)
+          item = items[itemCid]
         else
-          property = Hash.new
+          item = Hash.new
         end  
-        properties[propertyCid] = property
-        property[:Alias] = aliasName
-        property[:Datatype] = getDatatype(dt)
+        items[itemCid] = item
+        item[:Alias] = aliasName
+        item[:Datatype] = getDatatype(dt)
       end
     end
     return object  
     
   end
 
-  def self.all()
-    
-    ConsoleLogger::log(C_CLASS_NAME,"all","*****ENTRY*****")
-    results = Hash.new
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["cbc"]) +
-      "SELECT ?a ?b WHERE\n" + 
-      "{ \n" + 
-      " ?a rdf:type cbc:BiomedicalConceptTemplate . \n" +
-      "}\n"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uri = ModelUtility.getValue("a", true, node)
-      ConsoleLogger::log(C_CLASS_NAME,"all","URI=" + uri)
-      if uri != ""
-        id = ModelUtility.extractCid(uri)
-        namespace = ModelUtility.extractNs(uri)
-        object = self.new 
-        object.id = id
-        object.namespace = namespace
-        object.managedItem = ManagedItem.find(id, namespace)
-        if ManagedItem != nil
-          object.properties = Hash.new
-          ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + id)
-          results[id] = object
-        else
-          ConsoleLogger::log(C_CLASS_NAME,"all","Object not created!" + id)
-          object = nil
-        end
-      end
-    end
-    return results  
-    
+  def self.all
+    super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
-  def self.create(params)
-    object = nil
-    return object
+  def self.unique
+    ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
   end
 
-  def update
-    return nil
-  end
-
-  def destroy
+  def self.history(identifier)
+    results = super(C_RDF_TYPE, identifier, C_SCHEMA_NS)
+    return results
   end
 
   def to_ttl()

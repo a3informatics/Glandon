@@ -4,33 +4,49 @@ class FormsController < ApplicationController
   
   C_CLASS_NAME = "FormsController"
 
+  def new
+    @termList = []
+    terms = Thesaurus.unique
+    terms.each do |identifier|
+      history = Thesaurus.history(identifier)
+      term = Thesaurus.latest(history)
+      @termList << [term.label, term.id + "|" + term.namespace]
+    end
+  end
+
   def index
-    @forms = Form.all
+    @forms = Form.unique
     respond_to do |format|
       format.html 
       format.json do
         results = {}
         results[:data] = []
-        @forms.each do |key, item|
-          results[:data] << {:identifier => item.identifier, :label => item.label}
+        @forms.each do |id|
+          item = {:identifier => id}
+          results[:data] << item
         end
         render json: results
       end
     end
   end
   
+  def history
+    @identifier = params[:identifier]
+    @form = Form.history(@identifier)
+  end
+
   def placeholder_new
     @form = Form.new
   end
   
   def bc_normal_new
     ConsoleLogger::log(C_CLASS_NAME,"bc_normal_new", "******Entry*****")
-    @bcs = CdiscBc.all
+    @bcs = BiomedicalConcept.all
     @form = Form.new
   end
   
   def create
-    @form = Form.create(params[:form])
+    @form = Form.createFull(params[:form])
     if @form.errors.empty?
       render :nothing => true, :status => 200, :content_type => 'text/html'
     else
@@ -58,15 +74,6 @@ class FormsController < ApplicationController
     end
   end
   
-  def update
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
-
   def show 
     @form = Form.find(params[:id], params[:namespace])
   end

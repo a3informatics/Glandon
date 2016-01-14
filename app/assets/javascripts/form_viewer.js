@@ -38,21 +38,12 @@ $(document).ready(function() {
    * Show the node info. Highlight the node.
    */
   function click(node) {
-    
     if (currentNode != null) {
       clearNode(currentNode, currentThis);
     }
     markNode(node, this);
     currentNode = node;
     currentThis = this;
-
-    /*if (!node.expand) {
-      conceptIdElement.innerHTML = node.identifier;
-      conceptNotationElement.innerHTML = node.notation;
-      conceptDefinitionElement.innerHTML = node.definition;
-      conceptPreferredTermElement.innerHTML = node.preferredTerm;
-      conceptSynonymElement.innerHTML = node.synonym; 
-    }*/
     if (currentNode.nodeType == "form") {
       selectForm();
     } else if (currentNode.nodeType == "group") {
@@ -62,7 +53,6 @@ $(document).ready(function() {
       selectItem();
       displayItem(currentNode)
     }
-    
   }  
 
   /**
@@ -70,17 +60,13 @@ $(document).ready(function() {
    * Expand/delete the node clicked.
    */
   function dblClick(node) {
-    
     var index;
-
     if (node.hasOwnProperty('children')) {
       node.children = [];
     } else {
-      node.children = node.expansion;  
+      node.children = node.save;  
     }  
-  
     redraw();
-
   } 
 
   /**
@@ -133,7 +119,6 @@ $(document).ready(function() {
     document.getElementById("iOpt").innerHTML = item.optional;
     document.getElementById("iNote").innerHTML = item.item;
     document.getElementById("iOrd").innerHTML = item.ordinal;
-    //document.getElementById("iProp").innerHTML = property.qText;
     var text = ""
     for (i=0;i<values.length;i++) {
       var value = values[i];

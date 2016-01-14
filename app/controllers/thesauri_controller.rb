@@ -71,7 +71,6 @@ class ThesauriController < ApplicationController
     term = params[:term]
     textSearch = params[:textSearch]
     cCodeSearch = params[:cCodeSearch]
-    ConsoleLogger::log(C_CLASS_NAME,"search","Term=" + term.to_s + ", textSearch=" + textSearch.to_s + ", codeSearch=" + cCodeSearch)
     if term != "" && textSearch == "text"
       @results = SponsorTerm.searchText(term)  
     elsif term != "" && cCodeSearch == "ccode"
@@ -93,11 +92,8 @@ class ThesauriController < ApplicationController
     order = params[:order]["0"]
     col = order[:column]
     dir = order[:dir]
-    ConsoleLogger::log(C_CLASS_NAME,"full","Search Term=" + searchTerm.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"full","Order=[" + col.to_s + "," + dir + "]")
     count = Thesaurus.count(searchTerm, ns)
     items = Thesaurus.search(offset, length, col, dir, searchTerm, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"full","Counts=[C=" + count.to_s + ",L=" + items.length.to_s + "]")
     @results = {
       :draw => draw.to_s,
       :recordsTotal => length.to_s,

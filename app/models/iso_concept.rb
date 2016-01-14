@@ -27,10 +27,7 @@ class IsoConcept
  
   # Does the item exist. Cannot be used for child objects!
   def self.exists?(property, propertyValue, rdfType, schemaNs, instanceNs)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-    
-    # Initialise
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
     result = false
     
     # Create the query
@@ -60,17 +57,14 @@ class IsoConcept
 
   # Note: The id is the identifier for the enclosing managed object. 
   def self.find(id, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + ns)
     object = nil
-
+    
     # Create the query
     query = UriManagement.buildNs(ns, ["isoC"]) +
-      "SELECT ?a ?b ?c WHERE \n" +
+      "SELECT ?a ?b ?c ?d WHERE \n" +
       "{ \n" +
       "  :" + id + " ?a ?b . \n" +
-      "  OPTIONAL { ?a rdfs:subPropertyOf ?c .  }\n" +
+      "  OPTIONAL { ?a rdfs:subPropertyOf ?c . ?a rdfs:label ?d . }\n" +
       "}"
     
     # Send the request, wait the resonse
@@ -85,6 +79,7 @@ class IsoConcept
       objectUri = ModelUtility.getValue('b', true, node)
       objectLiteral = ModelUtility.getValue('b', false, node)
       plSubProperty = ModelUtility.getValue('c', true, node)
+      objectLabel = ModelUtility.getValue('d', false, node)
       if predicate != ""
         #ConsoleLogger::log(C_CLASS_NAME,"find","Predicate")
         if object == nil
@@ -107,7 +102,7 @@ class IsoConcept
           object.links.set(predicate, objectUri)
         elsif plSubProperty == C_ISO_PROPERTY
           #ConsoleLogger::log(C_CLASS_NAME,"findWithCondition","Property")
-          object.properties.set(predicate, objectLiteral)
+          object.properties.set(predicate, objectLiteral, objectLabel)
         end
       end
     end
@@ -124,11 +119,11 @@ class IsoConcept
     # Create the query
     prefix = ["isoC"] + prefixSet
     query = UriManagement.buildNs(ns, prefix) +
-      "SELECT ?a ?b ?c ?d WHERE \n" +
+      "SELECT ?a ?b ?c ?d ?e WHERE \n" +
       "{ \n" +
       conditionTriple + " . \n" +
       "  ?a ?b ?c . \n" +
-      "  OPTIONAL { ?b rdfs:subPropertyOf ?d . FILTER(STRSTARTS(STR(?d), \"http://www.assero.co.uk/ISO11179Concepts#\")). }\n" +
+      "  OPTIONAL { ?b rdfs:subPropertyOf ?d . ?b rdfs:label ?e . FILTER(STRSTARTS(STR(?d), \"http://www.assero.co.uk/ISO11179Concepts#\")). }\n" +
       "}"
     
     # Send the request, wait the resonse
@@ -144,6 +139,7 @@ class IsoConcept
       objectUri = ModelUtility.getValue('c', true, node)
       objectLiteral = ModelUtility.getValue('c', false, node)
       plSubProperty = ModelUtility.getValue('d', true, node)
+      objectLabel = ModelUtility.getValue('e', false, node)
       if subject != ""
         #ConsoleLogger::log(C_CLASS_NAME,"findWithCondition","Predicate")
         id = ModelUtility.extractCid(subject)
@@ -170,17 +166,37 @@ class IsoConcept
           object.links.set(predicate, objectUri)
         elsif plSubProperty == C_ISO_PROPERTY
           #ConsoleLogger::log(C_CLASS_NAME,"findWithCondition","Property")
-          object.properties.set(predicate, objectLiteral)
+          object.properties.set(predicate, objectLiteral, objectLabel)
         end
       end
     end
     return results
   end
 
+  def self.findForParent(prefix, rdfType, links, ns)    
+    #ConsoleLogger::log(C_CLASS_NAME,"findForParent","*****ENTRY******")
+    #ConsoleLogger::log(C_CLASS_NAME,"findForParent","Type=" + rdfType + ", links=" + links.to_json + ", ns=" + ns)
+    results = Hash.new
+    linkSet = links.get(prefix, rdfType)
+    linkSet.each do |link|
+      object = find(ModelUtility.extractCid(link), ns)
+      results[object.id] = object
+    end
+    return results
+  end
+
+  def self.findForChild(prefix, rdfType, links, ns)    
+    results = Hash.new
+    linkSet = links.get(prefix, rdfType)
+    linkSet.each do |link|
+      object = find(ModelUtility.extractCid(link), ns)
+      results[object.id] = object
+    end
+    return results
+  end
+
   def self.all(rdfType, ns)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
-    
+    #ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
     results = Hash.new
     
     # Create the query
@@ -212,7 +228,6 @@ class IsoConcept
     
     # Return
     return results
-    
   end
 
   def self.create(prefix, params, rdfType, schemaNs, instanceNs)

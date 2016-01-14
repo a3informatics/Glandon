@@ -35,11 +35,10 @@ class IsoScopedIdentifier
     return self.namespace.shortName
   end
   
-  def self.exists?(identifier, scopeId)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","Identifier=" + identifier.to_s )
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","ScopeId=" + scopeId.to_s )
+  def self.exists?(identifier, scopeId)   
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","Identifier=" + identifier.to_s )
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","ScopeId=" + scopeId.to_s )
     result = false
     
     # Create the query
@@ -65,13 +64,11 @@ class IsoScopedIdentifier
       end
     end
     return result
-
   end
 
-  def self.find(id)
-    
+  def self.find(id)    
     object = nil
-    ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
     
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
@@ -102,18 +99,16 @@ class IsoScopedIdentifier
         object.version = (vSet[0].text).to_i
         object.versionLabel = vlSet[0].text
         object.namespace = IsoNamespace.find(ModelUtility.extractCid(sSet[0].text))
-        ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + id)
+        #ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + id)
       end
       
     end
     
     # Return
-    return object
-    
+    return object    
   end
 
-  def self.all
-    
+  def self.all    
     results = Array.new
     
     # Create the query
@@ -134,7 +129,7 @@ class IsoScopedIdentifier
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"all","Node=" + node.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"all","Node=" + node.to_s)
       uriSet = node.xpath("binding[@name='a']/uri")
       iSet = node.xpath("binding[@name='b']/literal")
       vlSet = node.xpath("binding[@name='c']/literal")
@@ -147,32 +142,27 @@ class IsoScopedIdentifier
         object.version = (vSet[0].text).to_i
         object.versionLabel = vlSet[0].text
         object.namespace = IsoNamespace.find(ModelUtility.extractCid(sSet[0].text))
-        ConsoleLogger::log(C_CLASS_NAME,"all","Created object=" + object.id)
+        #ConsoleLogger::log(C_CLASS_NAME,"all","Created object=" + object.id)
         results.push (object)
       end
-    end
-    
+    end    
     return results
     
   end
 
   # Find all managed items of a given type by unique identifier.
   def self.allIdentifier(rdfType, ns)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
-    
+    #ConsoleLogger::log(C_CLASS_NAME,"allIdentifier","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"allIdentifier","ns=" + ns.to_s)
     results = Array.new
-    
+
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT"]) +
       "SELECT DISTINCT ?d WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdfType + " . \n" +
-      "  ?a rdfs:label ?b . \n" +
-      "  OPTIONAL { \n" +
-      "    ?a isoI:hasIdentifier ?c . \n" +
-      "    ?c isoI:identifier ?d . \n" +
-      "  } \n" +
+      "  ?a isoI:hasIdentifier ?c . \n" +
+      "  ?c isoI:identifier ?d . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -190,10 +180,7 @@ class IsoScopedIdentifier
         results << identifier
       end
     end
-    
-    # Return
-    return results
-    
+    return results    
   end
 
   def self.create(params, uid, scopeId)
@@ -202,13 +189,13 @@ class IsoScopedIdentifier
     versionLabel = params[:versionLabel]
     version = params[:version]
     identifier = params[:identifier]
-    ConsoleLogger::log(C_CLASS_NAME,"create","*****ENTRY*****")
-    ConsoleLogger::log(C_CLASS_NAME,"create",
-      "ScopeId=" + scopeId + ", " + 
-      "versionLabel=" + versionLabel + ", " + 
-      "version=" + version + ", " + 
-      "identifier" + identifier + ", " + 
-      "itemUid=" + uid )
+    #ConsoleLogger::log(C_CLASS_NAME,"create","*****ENTRY*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"create",
+    #  "ScopeId=" + scopeId + ", " + 
+    #  "versionLabel=" + versionLabel + ", " + 
+    #  "version=" + version + ", " + 
+    #  "identifier" + identifier + ", " + 
+    #  "itemUid=" + uid )
         
     # Create the CID
     id = ModelUtility.buildCidIdentifierVersion(C_CLASS_PREFIX, uid, version)
@@ -250,7 +237,7 @@ class IsoScopedIdentifier
   def destroy
     
     # Log
-    ConsoleLogger::log(C_CLASS_NAME,"destroy","Id=" + self.id)
+    #ConsoleLogger::log(C_CLASS_NAME,"destroy","Id=" + self.id)
     
     # Create the query
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI"]) +

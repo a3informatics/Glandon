@@ -70,11 +70,11 @@ class IsoRegistrationState
   end
   
   def self.nextState (state)
-    ConsoleLogger::log(C_CLASS_NAME,"nextState","*****Entry******")
+    #ConsoleLogger::log(C_CLASS_NAME,"nextState","*****Entry******")
     index = @@stateKeys[state]
     if index < (@@stateInfo.length-1)
       nextState = @@stateInfo[index+1][:key]
-      ConsoleLogger::log(C_CLASS_NAME,"nextState","Index=" + index.to_s + ", state=" + nextState)
+      #ConsoleLogger::log(C_CLASS_NAME,"nextState","Index=" + index.to_s + ", state=" + nextState)
     else
       nextState = state
     end
@@ -97,7 +97,7 @@ class IsoRegistrationState
   
   def self.find(id)
     
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     object = nil
     
     # Create the query
@@ -121,7 +121,7 @@ class IsoRegistrationState
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node.to_s)
       raSet = node.xpath("binding[@name='b']/uri")
       rsSet = node.xpath("binding[@name='c']/literal")
       anSet = node.xpath("binding[@name='d']/literal")
@@ -139,7 +139,7 @@ class IsoRegistrationState
         object.unresolvedIssue = uiSet[0].text
         object.administrativeStatus = asSet[0].text
         object.previousState  = psSet[0].text
-        ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + object.id)
+        #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + object.id)
       end
     end
     
@@ -226,9 +226,9 @@ class IsoRegistrationState
       object.unresolvedIssue = ""
       object.administrativeStatus = ""
       object.previousState  = C_INCOMPLETE 
-      ConsoleLogger::log(C_CLASS_NAME,"create","Created Id=" + id.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Created Id=" + id.to_s)
     else
-      ConsoleLogger::log(C_CLASS_NAME,"create","Failed to create object")
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Failed to create object")
       object = self.new
       object.assign_errors(data) if response.response_code == 422
     end

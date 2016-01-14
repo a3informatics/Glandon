@@ -3,9 +3,10 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
   
   def index
-  	@forms = Form.all()
+  	#@forms = Form.all()
     @thesauri = Thesaurus.unique
-    @cdiscBcs = CdiscBc.all
+    @bcs = BiomedicalConcept.unique
+    @bcts = BiomedicalConceptTemplate.unique
     @results = IsoRegistrationState.count()
     @statusCounts = []
     @results.each do |key, value|

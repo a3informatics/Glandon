@@ -1,81 +1,42 @@
 require "uri"
 
-class CdiscBc
+class BiomedicalConcept < IsoManaged
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-      
-  attr_accessor :id, :managedItem, :properties, :namespace
-  #validates_presence_of :id, :managedItem, :properties, :namespace
+  attr_accessor :items
   
   # Constants
-  C_CLASS_NAME = "CdiscBc"
-  C_NS_PREFIX = "mdrBcs"
+  C_SCHEMA_PREFIX = "cbc"
+  C_INSTANCE_PREFIX = "mdrBcs"
+  C_CLASS_NAME = "BiomedicalConcept"
   C_CID_PREFIX = "BC"
-  
-  # BC object
-  #
-  # object: id, scopeId, identifier, version, namespace, name, properties where properties is
-  # properties [:alias => {:id, :alias, :qText, :pText, :format, :values[{:id, :value}]}]
-  
-  # Base namespace 
-  #@@cdiscOrg # CDISC Organization identifier
-  
-  # Base namespace 
-  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-  
-  def version
-    return self.managedItem.version
+  C_RDF_TYPE = "BiomedicalConceptInstance"
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+ 
+  def self.find(id, ns, children=true)
+    object = super(id, ns)
+    if children
+      object.items = BiomedicalConcept::Item.findForParent(object.links, ns)
+    end
+    return object 
   end
 
-  def versionLabel
-    return self.managedItem.versionLabel
+  def flatten
+    #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
+    results = Hash.new
+    items.each do |iKey, item|
+      more = item.flatten
+      more.each do |rKey, result|
+        results[rKey] = result
+      end
+    end
+    return results
   end
 
-  def identifier
-    return self.managedItem.identifier
-  end
-
-  def label
-    return self.managedItem.label
-  end
-
-  def owner
-    return self.managedItem.owner
-  end
-
-  def registrationState
-    return self.managedItem.registrationState
-  end
-
-  def persisted?
-    id.present?
-  end
-
-  def initialize()
-    @errors = ActiveModel::Errors.new(self)
-  end
-
-  def baseNs
-    return @baseNs
-  end
-
-  def self.count 
-    result = ManagedItem.count("cbc", "BiomedicalConceptInstance")
-    return result
-  end 
-
-  def self.find(id, ns=nil)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"find","id=" + id)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","ns=" + ns)
-    
-    object = nil
-    useNs = ns || @@baseNs
-    
-    query = UriManagement.buildNs(useNs, ["cbc", "mdrItems", "isoI"]) +
+  def self.findOld(id, ns)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
+    object = super(id, ns)
+    query = UriManagement.buildNs(ns, ["cbc", "mdrItems", "isoI"]) +
       "SELECT ?datatypeN ?datatypeRef ?propertyN ?simpleDatatypeN ?alias ?name ?pText ?qText ?enabled ?collect ?bridg ?valueN ?value WHERE\n" + 
       "{ \n" + 
       " :" + id + " rdf:type cbc:BiomedicalConceptInstance . \n" +
@@ -126,32 +87,28 @@ class CdiscBc
       ConsoleLogger::log(C_CLASS_NAME,"find","sdtNode=" + sdtNode)  
       if sdtNode != ""
         ConsoleLogger::log(C_CLASS_NAME,"find","Found")
-        if object != nil
-          properties = object.properties          
+        if object.items != nil
+          items = object.items          
         else
-          object = self.new 
-          properties = Hash.new
-          object.properties = properties
-          object.id = id
-          object.namespace = useNs
-          object.managedItem = ManagedItem.find(id, useNs)
+          items = Hash.new
+          object.items = items
           ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
         end
-        propertyCid = ModelUtility.extractCid(propertyNode)
-        if properties.has_key?(propertyCid)
-          property = properties[propertyCid]
-          values = property[:Values]
+        itemCid = ModelUtility.extractCid(propertyNode)
+        if items.has_key?(itemCid)
+          item = items[itemCid]
+          values = item[:Values]
         else
-          property = Hash.new
+          item = Hash.new
           values = Array.new
         end  
-        properties[propertyCid] = property
+        items[itemCid] = item
         if value != ""
           cli = ThesaurusConcept.find(ModelUtility.extractCid(value),ModelUtility.extractNs(value))
           if cli != nil
             clHash = {
               :id => ModelUtility.extractCid(vNode), 
-              :namespace => useNs,
+              :namespace => ns,
               :cCode => cli.notation, 
               :cli => cli
             }
@@ -160,55 +117,68 @@ class CdiscBc
             ConsoleLogger::log(C_CLASS_NAME,"find","Failed to find CLI, uri=" + value)
           end
         end
-        property[:id] = propertyCid
-        property[:namespace] = useNs
-        property[:Alias] = aliasName
-        property[:Name] = name
-        property[:Collect] = ModelUtility.toBoolean(collect)
-        property[:Enabled] = ModelUtility.toBoolean(enabled)
-        property[:QuestionText] = qText
-        property[:PromptText] = pText
-        property[:Datatype] = getDatatype(dtRef,values.length)
-        property[:Values] = values
-        property[:Format] = getFormat(property[:Datatype])
-        property[:bridgPath] = bridg
+        item[:id] = itemCid
+        item[:namespace] = ns
+        item[:Alias] = aliasName
+        item[:Name] = name
+        item[:Collect] = ModelUtility.toBoolean(collect)
+        item[:Enabled] = ModelUtility.toBoolean(enabled)
+        item[:QuestionText] = qText
+        item[:PromptText] = pText
+        item[:Datatype] = getDatatype(dtRef,values.length)
+        item[:Values] = values
+        item[:Format] = getFormat(item[:Datatype])
+        item[:bridgPath] = bridg
       end
     end
     return object  
-    
   end
 
-  def self.all()
-    
-    results = Hash.new
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["cbc", "mdrItems", "isoI"]) +
-      "SELECT ?bcRoot WHERE\n" + 
+  def self.findByReference(id, ns)
+    ConsoleLogger::log(C_CLASS_NAME,"findByReference","*****ENTRY*****")
+    query = UriManagement.buildNs(ns, ["bo"]) +
+      "SELECT ?bc WHERE\n" + 
       "{ \n" + 
-      " ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n" +
+      " :" + id + " bo:hasBiomedicalConcept ?bc . \n" +
+      " ?bc rdf:type cbc:BiomedicalConceptInstance . \n" +
       "}\n"
-    
-    # Send the request, wait the resonse
     response = CRUD.query(query)
-    
-    # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uriSet = node.xpath("binding[@name='bcRoot']/uri")
-      ConsoleLogger::log(C_CLASS_NAME,"find","URI=" + uriSet.text)
-      if uriSet.length == 1 
-        bcId = ModelUtility.extractCid(uriSet[0].text)
-        object = self.new 
-        object.id = bcId
-        object.namespace = ModelUtility.extractNs(uriSet[0].text)
-        object.managedItem = ManagedItem.find(bcId, object.namespace)
-        object.properties = Hash.new
-        ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + bcId)
-        results[bcId] = object
-      end
-    end
-    return results  
-    
+    results = xmlDoc.xpath("//result")
+    if results.length == 1 
+      node = results[0]
+      ConsoleLogger::log(C_CLASS_NAME,"findByReference","Node=" + node.to_s)
+      uri = ModelUtility.getValue('bc', true, node)
+      bcId = ModelUtility.extractCid(uri)
+      bcNs = ModelUtility.extractNs(uri)
+      ConsoleLogger::log(C_CLASS_NAME,"findByReference","BC id=" + bcId + ", ns=" + bcNs)
+      object = self.find(bcId, bcNs)
+    else
+      object = nil
+    end  
+    return object
+  end
+
+  def self.all
+    super(C_RDF_TYPE, C_SCHEMA_NS)
+  end
+
+  def self.unique
+    ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
+  end
+
+  def self.list
+    ConsoleLogger::log(C_CLASS_NAME,"list","ns=" + C_SCHEMA_NS)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
+  end
+
+  def self.history(identifier)
+    results = super(C_RDF_TYPE, identifier, C_SCHEMA_NS)
+    return results
   end
 
   def self.create(params, ns=nil)
@@ -242,7 +212,7 @@ class CdiscBc
       #ConsoleLogger::log(C_CLASS_NAME,"createLocal","A=" + templateAndNs + ", B=" + templateIdentifier + ", C=" + templateNs)
     
       # Create the managed item for the thesaurus. The namespace id is a shortcut for the moment.
-      if ManagedItem.exists?(identifier)
+      if exists?(identifier, IsoRegistrationAuthority.owner()) 
 
         # Item already exists
         object.errors.add(:biomedical_concept, "already exists. Need to create with a different identifier.")
@@ -250,10 +220,10 @@ class CdiscBc
       else
 
         # Create the managed item
-        managedItem = ManagedItem.create(C_CID_PREFIX, params, @@baseNs)
-        id = managedItem.id
-        useNs = managedItem.namespace
-
+        object = create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
+        id = object.id
+        useNs = object.namespace
+        
         # Get the named template. Sort the white space.
         bcTemplate = BiomedicalConceptTemplate.find(templateIdentifier, templateNs)
         ttl = bcTemplate.to_ttl
@@ -409,7 +379,7 @@ class CdiscBc
                 # instance.
                 bc3[-1] = subject(id)
                 text = predicateObject("a","cbc:BiomedicalConceptInstance") + "\n"
-                text = text + predicateObject("isoI:hasIdentifier","mdrItems:" + managedItem.scopedIdentifier.id) + "\n"
+                text = text + predicateObject("isoI:hasIdentifier","mdrItems:" + object.scopedIdentifier.id) + "\n"
                 text = text + predicateObject("cbc:basedOn","mdrBcts:" + templateIdentifier) 
               elsif parts[2].start_with?(":")
                 # Predicate object, update the object URI.
@@ -454,10 +424,7 @@ class CdiscBc
         
         # Response
         if response.success?
-          object.id = managedItem.id
-          object.namespace = useNs
-          object.managedItem = managedItem
-          object.properties = Hash.new
+          object.items = Hash.new
           ConsoleLogger::log(C_CLASS_NAME,"createLocal","Object created, id=" + id)
         else
           ConsoleLogger::log(C_CLASS_NAME,"createLocal","Object not created!")
@@ -507,6 +474,79 @@ class CdiscBc
   end
 
 private
+
+  def self.process(object, query)
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node)
+      dtnSet = node.xpath("binding[@name='datatypeN']/uri")
+      dtRef = ModelUtility.getValue('datatypeRef', true, node)
+      pnSet = node.xpath("binding[@name='propertyN']/uri")
+      propertyNode = ModelUtility.getValue('propertyN', true, node)
+      sdtNode = ModelUtility.getValue('simpleDatatypeN', true, node)
+      aliasName = ModelUtility.getValue('alias', false, node)
+      name = ModelUtility.getValue('name', false, node)
+      pText = ModelUtility.getValue('pText', false, node)
+      qText = ModelUtility.getValue('qText', false, node)
+      enabled = ModelUtility.getValue('enabled', false, node)
+      collect = ModelUtility.getValue('collect', false, node)
+      vNode = ModelUtility.getValue('valueN', true, node)
+      value = ModelUtility.getValue('value', true, node)
+      bridg = ModelUtility.getValue('bridg', false, node)
+      ConsoleLogger::log(C_CLASS_NAME,"find","sdtNode=" + sdtNode)  
+      if sdtNode != ""
+        ConsoleLogger::log(C_CLASS_NAME,"find","Found")
+        if object.items != nil
+          items = object.items          
+        else
+          items = Hash.new
+          object.items = items
+          ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
+        end
+        itemCid = ModelUtility.extractCid(propertyNode)
+        if items.has_key?(itemCid)
+          item = items[itemCid]
+          values = item[:Values]
+        else
+          item = Hash.new
+          values = Array.new
+        end  
+        items[itemCid] = item
+        if value != ""
+          cli = ThesaurusConcept.find(ModelUtility.extractCid(value),ModelUtility.extractNs(value))
+          if cli != nil
+            clHash = {
+              :id => ModelUtility.extractCid(vNode), 
+              :namespace => ns,
+              :cCode => cli.notation, 
+              :cli => cli
+            }
+            values.push(clHash)
+          else
+            ConsoleLogger::log(C_CLASS_NAME,"find","Failed to find CLI, uri=" + value)
+          end
+        end
+        item[:id] = itemCid
+        item[:namespace] = ns
+        item[:Alias] = aliasName
+        item[:Name] = name
+        item[:Collect] = ModelUtility.toBoolean(collect)
+        item[:Enabled] = ModelUtility.toBoolean(enabled)
+        item[:QuestionText] = qText
+        item[:PromptText] = pText
+        item[:Datatype] = getDatatype(dtRef,values.length)
+        item[:Values] = values
+        item[:Format] = getFormat(item[:Datatype])
+        item[:bridgPath] = bridg
+      end
+    end
+    return object  
+  end
 
   def self.subject(subjectUri)
       text = ':' + subjectUri 

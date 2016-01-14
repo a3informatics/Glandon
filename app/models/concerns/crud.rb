@@ -24,7 +24,7 @@ module CRUD
                     'Content-type'=> "application/x-www-form-urlencoded"}
         end
         data = "query=" + sparql
-        ConsoleLogger::log(C_CLASS_NAME,"query",data)
+        #ConsoleLogger::log(C_CLASS_NAME,"query",data)
                 
         # Send the request, wait the resonse
         response = Rest.sendRequest(endpoint,:post,key,secret,data,headers)
@@ -39,7 +39,7 @@ module CRUD
         endpoint = SEMANTIC_DB_CONFIG['updateEndpoint']
         headers = {'Content-type'=> "application/x-www-form-urlencoded"}
         data = "update=" + sparql
-        ConsoleLogger::log(C_CLASS_NAME,"update",data)
+        #ConsoleLogger::log(C_CLASS_NAME,"update",data)
         
         # Send the request, wait the resonse
         response = Rest.sendRequest(endpoint,:post,key,secret,data,headers)
@@ -57,7 +57,7 @@ module CRUD
         #headers = {'Content-Type'=> "application/json"}
         data = { "filename" => file}
         jsonData = data.to_json
-        ConsoleLogger::log(C_CLASS_NAME,"file",jsonData.to_s)
+        #ConsoleLogger::log(C_CLASS_NAME,"file",jsonData.to_s)
         
         # Send the file, wait for the response
         response = Rest.sendFile(endpoint,:post,key,secret,jsonData,file,headers)

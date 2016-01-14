@@ -45,12 +45,12 @@ module UriManagement
   end
     
   def UriManagement.getPrefix1(ns)
-    ConsoleLogger::log(C_CLASS_NAME,"getPrefix1","Ns=" + ns)
+    #ConsoleLogger::log(C_CLASS_NAME,"getPrefix1","Ns=" + ns)
     prefix = @@optional.key(ns)
-    ConsoleLogger::log(C_CLASS_NAME,"getPrefix1","Opt=" + prefix.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"getPrefix1","Opt=" + prefix.to_s)
     if prefix == nil
       prefix = @@required.key(ns)
-      ConsoleLogger::log(C_CLASS_NAME,"getPrefix1","Reqd=" + prefix.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"getPrefix1","Reqd=" + prefix.to_s)
     end
     return prefix
   end
@@ -78,7 +78,7 @@ module UriManagement
   end
   
   def UriManagement.buildNs(defaultNs, optional)
-    ConsoleLogger::log(C_CLASS_NAME,"buildNs","DefaultNs=" + defaultNs + ", Optional=" + optional.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"buildNs","DefaultNs=" + defaultNs + ", Optional=" + optional.to_s)
     if defaultNs == ""
       result = ""
     else

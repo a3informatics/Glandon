@@ -13,7 +13,8 @@
         a                              iso25964:Thesaurus ;
         rdfs:label                     "CDISC Extensions" ;
         isoI:hasIdentifier             mdrItems:SI-SPONSOR_CT-1 ;
-        isoI:hasState                  mdrItems:RS-SPONSOR_CT ;
+        isoR:hasState
+                  mdrItems:RS-SPONSOR_CT ;
         isoT:changeDescription         "Creation" ;
         isoT:creationDate              "2015-11-22 13:29:50  0000" ;
         isoT:explanatoryComment      "" ;

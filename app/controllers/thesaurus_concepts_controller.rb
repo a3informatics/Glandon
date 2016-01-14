@@ -17,7 +17,7 @@ class ThesaurusConceptsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @thesaurusConcept = ThesaurusConcept.find(id, namespace)
-    @bcs = CdiscBc.impact(params)
+    @bcs = BiomedicalConcept.impact(params)
   end
 
   def destroy
