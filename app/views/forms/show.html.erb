@@ -36,7 +36,7 @@
 		  			<% properties.each do |property| %>
 			    		<td><%= property[:value] %></td>
 					<% end %>	
-				    <td><%= link_to "Show", forms_form_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
+				    <td><%= link_to "Show", forms_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
 				</tr>
 			<% end %>	
 		</tbody>

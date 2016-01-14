@@ -1,4 +1,4 @@
-class Forms::FormGroupsController < ApplicationController
+class Forms::GroupsController < ApplicationController
   
   before_action :authenticate_user!
   

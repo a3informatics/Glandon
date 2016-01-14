@@ -1,4 +1,4 @@
-class Forms::FormItemsController < ApplicationController
+class Forms::ItemsController < ApplicationController
   
   before_action :authenticate_user!
   
