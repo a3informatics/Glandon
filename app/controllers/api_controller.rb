@@ -19,4 +19,16 @@ class ApiController < ApplicationController
     end
   end
 
+  def form
+    id = params[:id]
+    ns = params[:namespace]
+    @form = Form.find(id, ns)
+    respond_to do |format|
+      format.json do
+        results = @form.d3
+        render json: results
+      end
+    end
+  end
+
 end

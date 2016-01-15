@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   devise_for :users
   
   match 'api(/:id)' => 'api#options', via: [:options]
-  resources :api
+  resources :api do
+    collection do
+      get :form
+    end
+  end
   
   resources :dashboard do
     collection do

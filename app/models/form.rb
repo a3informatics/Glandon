@@ -26,7 +26,7 @@ class Form < IsoManaged
   end
 
   def self.unique
-    ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
+    #ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end

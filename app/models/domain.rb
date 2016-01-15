@@ -16,13 +16,12 @@ class Domain < IsoManaged
 
   # Find a given domain
   def self.find(id, ns, children=true)
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"find","Namespace=" + ns)
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"find","Namespace=" + ns)
     object = super(id, ns)
     object.variables = Domain::Variable.findForDomain(id, ns)
     object.bcs = Hash.new
-    ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id.to_s)
     if children
       results = Hash.new
       query = UriManagement.buildNs(ns, ["bd", "mms"]) +
@@ -57,7 +56,7 @@ class Domain < IsoManaged
   end
 
   def self.unique
-    ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
+    #ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
@@ -68,15 +67,12 @@ class Domain < IsoManaged
   end
 
   def add(params)
-  
-    ConsoleLogger::log(C_CLASS_NAME,"add","*****Entry*****")
-    
+    #ConsoleLogger::log(C_CLASS_NAME,"add","*****Entry*****")
     bcs = params[:bcs]
-    ConsoleLogger::log(C_CLASS_NAME,"add","BCs=" + bcs.to_s)
-    
+    #ConsoleLogger::log(C_CLASS_NAME,"add","BCs=" + bcs.to_s)
     insertSparql = ""    
     bcs.each do |key|
-      ConsoleLogger::log(C_CLASS_NAME,"add","Add BC=" + key.to_s )
+      #ConsoleLogger::log(C_CLASS_NAME,"add","Add BC=" + key.to_s )
       parts = key.split("|")
       bcId = parts[0]
       bcNamespace = parts[1]
@@ -85,11 +81,11 @@ class Domain < IsoManaged
         if property.enabled
           bridg = property.bridgPath
           sdtm = BridgSdtm::get(bridg)
-          ConsoleLogger::log(C_CLASS_NAME,"add","bridg=" + bridg.to_s + " , sdtm=" + sdtm.to_s )
+          #ConsoleLogger::log(C_CLASS_NAME,"add","bridg=" + bridg.to_s + " , sdtm=" + sdtm.to_s )
           if sdtm != ""
             variable = findVariableByLabel(sdtm)
             if variable != nil
-              ConsoleLogger::log(C_CLASS_NAME,"add","variable=" + variable.name )
+              #ConsoleLogger::log(C_CLASS_NAME,"add","variable=" + variable.name )
               insertSparql = insertSparql + "  :" + variable.id + " bd:hasBiomedicalConcept " + ModelUtility.buildUri(bc.namespace, bc.id) + " . \n"
               insertSparql = insertSparql + "  :" + variable.id + " bd:hasProperty " + ModelUtility.buildUri(bc.namespace, keyP) + " . \n"
             end

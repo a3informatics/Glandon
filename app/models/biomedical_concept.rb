@@ -135,8 +135,8 @@ class BiomedicalConcept < IsoManaged
   end
 
   def self.findByReference(id, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"findByReference","*****ENTRY*****")
-    query = UriManagement.buildNs(ns, ["bo"]) +
+    #ConsoleLogger::log(C_CLASS_NAME,"findByReference","*****ENTRY*****")
+    query = UriManagement.buildNs(ns, ["bo", "cbc"]) +
       "SELECT ?bc WHERE\n" + 
       "{ \n" + 
       " :" + id + " bo:hasBiomedicalConcept ?bc . \n" +
@@ -146,13 +146,14 @@ class BiomedicalConcept < IsoManaged
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     results = xmlDoc.xpath("//result")
+    #ConsoleLogger::log(C_CLASS_NAME,"findByReference","Results=" + results.to_s)
     if results.length == 1 
       node = results[0]
-      ConsoleLogger::log(C_CLASS_NAME,"findByReference","Node=" + node.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"findByReference","Node=" + node.to_s)
       uri = ModelUtility.getValue('bc', true, node)
       bcId = ModelUtility.extractCid(uri)
       bcNs = ModelUtility.extractNs(uri)
-      ConsoleLogger::log(C_CLASS_NAME,"findByReference","BC id=" + bcId + ", ns=" + bcNs)
+      #ConsoleLogger::log(C_CLASS_NAME,"findByReference","BC id=" + bcId + ", ns=" + bcNs)
       object = self.find(bcId, bcNs)
     else
       object = nil

@@ -11,7 +11,59 @@
       <Protocol>
         <StudyEventRef StudyEventOID="SE.001" OrderNumber="1" Mandatory="Yes"/>
       </Protocol>
-      <StudyEventDef OID="SE.001" Name="???" Repeating="No" Type="Scheduled"/>
+      <StudyEventDef OID="SE.001" Name="???" Repeating="No" Type="Scheduled">
+        <FormRef FormOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST2"/>
+      </StudyEventDef>
+      <FormDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-TEST2" Name="Test From 2"> select=""
+                <ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST2_1_2"/><ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST2_1_1"/><ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST2_1_3"/><Alias Context="Domain" Name="Vital Signs"/></FormDef>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST2_1_2" Name="Mid Upper Arm Circumference (BC A00003_ACME)">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedClinicalResult_value_PQR_value"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedClinicalResult_value_PQR_code"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST2_1_1" Name="Common">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-TEST2_1_3" Name="Temperature (BC C25206_ACME)">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25206_ACME_PerformedClinicalResult_value_PQR_value"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25206_ACME_PerformedClinicalResult_value_PQR_code"/>
+      </ItemGroupDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedClinicalResult_value_PQR_value" SDSVarName="VSORRES where VSTESTCD=MUAC" DataType="float" Length="5" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Result Value (--ORRES)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedClinicalResult_value_PQR_code" SDSVarName="VSORRESU where VSTESTCD=MUAC" DataType="string">
+        <Question>
+          <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_bodyPositionCode_CD_code" SDSVarName="VSPOS where VSTESTCD=MUAC" DataType="string">
+        <Question>
+          <TranslatedText xml:lang="en">Body Position (--POS)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value" SDSVarName="" DataType="datetime">
+        <Question>
+          <TranslatedText xml:lang="en">Date and Time (--DTC)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code" SDSVarName="" DataType="string">
+        <Question>
+          <TranslatedText xml:lang="en">Laterality (--LAT)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25206_ACME_PerformedClinicalResult_value_PQR_value" SDSVarName="" DataType="float" Length="5" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Result Value (--ORRES)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25206_ACME_PerformedClinicalResult_value_PQR_code" SDSVarName="" DataType="string">
+        <Question>
+          <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
+        </Question>
+      </ItemDef>
     </MetaDataVersion>
   </Study>
 </ODM>

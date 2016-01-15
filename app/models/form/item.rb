@@ -2,20 +2,50 @@ require "uri"
 
 class Form::Item < IsoConcept
 
+  attr_accessor :items, :bcProperty, :bcValues, :itemType
+  validates_presence_of :items, :bcProperty, :bcValues, :itemType
+  
   # Constants
   C_SCHEMA_PREFIX = "bf"
   C_INSTANCE_PREFIX = "mdrForms"
   C_CLASS_NAME = "Form::Item"
   C_CID_PREFIX = "FI"
-  C_BC = 1
-  C_VARIABLE = 2
-  C_PLACEHOLDER = 3
-  C_UNKNOWN = 4
-  C_ID_SEPARATOR = "_"
+  C_BC = "BCItem"
+  C_QUESTION = "Question"
+  C_PLACEHOLDER = "Placeholder"  
   
   def self.find(id, ns)
     object = super(id, ns)
+    object.items = findSubItems(object.links, ns)
+    if object.links.exists?(C_SCHEMA_PREFIX, "hasProperty")
+      object.itemType = C_BC
+      uri = object.links.get(C_SCHEMA_PREFIX, "hasProperty")
+      bcId = ModelUtility.extractCid(uri[0])
+      bcNs = ModelUtility.extractNs(uri[0])
+      object.bcProperty = BiomedicalConcept::Property.findByReference(bcId, bcNs)
+      object.bcValues = object.bcProperty.values
+    elsif object.properties.exists?(C_SCHEMA_PREFIX, "freeText")
+      object.bcProperty = nil
+      object.bcValues = nil
+      object.itemType = C_PLACEHOLDER
+    else
+      object.bcProperty = nil
+      object.bcValues = nil
+      object.itemType = C_QUESTION
+    end   
     return object  
+  end
+
+  def self.findSubItems(links, ns)
+    ConsoleLogger::log(C_CLASS_NAME,"findSubItems","*****ENTRY******")
+    ConsoleLogger::log(C_CLASS_NAME,"findSubItems","namespace=" + ns)
+    results = Hash.new
+    linkSet = links.get("bf", "hasCommonItem")
+    linkSet.each do |link|
+      object = find(ModelUtility.extractCid(link), ns)
+      results[object.id] = object
+    end
+    return results
   end
 
   def self.findForGroup(links, ns=nil)    
@@ -293,11 +323,11 @@ class Form::Item < IsoConcept
     if ordinal.has_key?(:value) 
       ord = ordinal[:value]
     end
-    if self.properties.exists?(C_SCHEMA_PREFIX, "freeText")
+    if self.itemType == C_PLACEHOLDER
       name = "Placeholder " + ord
       result = FormNode.new(self.id, self.namespace,  "Placeholder", name, "", "", "", "", index, true)
       result[:freeText] = self.properties.getOnly(C_SCHEMA_PREFIX, "freeText")[:value]
-    elsif self.properties.exists?(C_SCHEMA_PREFIX, "datatype")
+    elsif self.itemType == C_QUESTION
       name = Question + ord
       result = FormNode.new(self.id, self.namespace,  "Question", name, "", "", "", "", index, true)
       result[:datatype] = self.properties.getOnly(C_SCHEMA_PREFIX, "datatype")[:value]
@@ -305,8 +335,16 @@ class Form::Item < IsoConcept
       result[:qText] = self.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]
       result[:mapping] = self.properties.getOnly(C_SCHEMA_PREFIX, "mapping")[:value]
     else
-      name = "Temp"
+      name = bcProperty.alias
       result = FormNode.new(self.id, self.namespace,  "BCItem", name, "", "", "", "", index, true)
+      localIndex = 0
+      pvSet = self.bcValues
+      pvSet.each do |pvKey, pv|
+        pv.clis.each do |cliKey, cli|
+          result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", "", "", "", localIndex, true)
+          localIndex += 1;
+        end
+      end
     end  
     result[:save] = result[:children]
     return result

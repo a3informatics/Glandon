@@ -53,16 +53,4 @@ class BiomedicalConcept::PropertyValue < IsoConcept
     return results
   end
 
-private
-  
-  def self.setAttributes(object)
-    object.label = object.properties.getOnly(C_SCHEMA_PREFIX, "name")[:value]      
-    object.alias = object.properties.getOnly(C_SCHEMA_PREFIX, "alias")[:value]      
-    object.collect = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "collect")[:collect])      
-    object.enabled = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "enbaled")[:enabled])      
-    object.qText = object.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]    
-    object.pText = object.properties.getOnly(C_SCHEMA_PREFIX, "pText")[:value]  
-    object.bridgPath = object.properties.getOnly(C_SCHEMA_PREFIX, "bridgPath")[:value]  
-  end
-
 end

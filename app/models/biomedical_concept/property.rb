@@ -16,11 +16,7 @@ class BiomedicalConcept::Property < IsoConcept
     #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
     object = super(id, ns)
     if object.links.exists?(C_SCHEMA_PREFIX, "hasComplexDatatype")
-      #ConsoleLogger::log(C_CLASS_NAME,"find","Finding Complex")
-      #links = object.links.get(C_SCHEMA_PREFIX, "hasComplexDatatype")
-      #ConsoleLogger::log(C_CLASS_NAME,"find","Finding Complex, Links=" + object.links.to_json)
       object.complex = BiomedicalConcept::Datatype.findForChild(object.links, ns)
-      #ConsoleLogger::log(C_CLASS_NAME,"find","Finding Complex, Result=" + object.complex.to_json)
       object.values = nil
     else
       object.values = BiomedicalConcept::PropertyValue.findForParent(object.links, ns)
@@ -34,6 +30,33 @@ class BiomedicalConcept::Property < IsoConcept
     #ConsoleLogger::log(C_CLASS_NAME,"findForParent","*****ENTRY*****")
     results = super(C_SCHEMA_PREFIX, "hasProperty", links, ns)
     return results
+  end
+
+  def self.findByReference(id, ns)
+    ConsoleLogger::log(C_CLASS_NAME,"findByReference","*****ENTRY*****")
+    query = UriManagement.buildNs(ns, ["bo", "cbc"]) +
+      "SELECT ?bc WHERE\n" + 
+      "{ \n" + 
+      " :" + id + " bo:hasProperty ?bc . \n" +
+      " ?bc rdf:type cbc:Property . \n" +
+      "}\n"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    results = xmlDoc.xpath("//result")
+    ConsoleLogger::log(C_CLASS_NAME,"findByReference","results=" + results.to_s)
+    if results.length == 1 
+      node = results[0]
+      ConsoleLogger::log(C_CLASS_NAME,"findByReference","Node=" + node.to_s)
+      uri = ModelUtility.getValue('bc', true, node)
+      bcId = ModelUtility.extractCid(uri)
+      bcNs = ModelUtility.extractNs(uri)
+      ConsoleLogger::log(C_CLASS_NAME,"findByReference","BC id=" + bcId + ", ns=" + bcNs)
+      object = self.find(bcId, bcNs)
+    else
+      object = nil
+    end  
+    return object
   end
 
   def isComplex?

@@ -34,20 +34,19 @@ class CdiscTerm < Thesaurus
   end
 
   def self.all
-    ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
     results = Hash.new
     if @@cdiscNamespace == nil 
       @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
     end
     tSet = Thesaurus.all
     tSet.each do |key, thesaurus|
-      ConsoleLogger::log(C_CLASS_NAME,"all","CDISC NS=" + @@cdiscNamespace.shortName)
-      ConsoleLogger::log(C_CLASS_NAME,"all","TH NS=" + thesaurus.scopedIdentifier.namespace.shortName)
+      #ConsoleLogger::log(C_CLASS_NAME,"all","CDISC NS=" + @@cdiscNamespace.shortName)
+      #ConsoleLogger::log(C_CLASS_NAME,"all","TH NS=" + thesaurus.scopedIdentifier.namespace.shortName)
       if thesaurus.scopedIdentifier.namespace.shortName == @@cdiscNamespace.shortName
         results[key] = thesaurus
       end
     end
-    #results.sort! { |a,b| a.version <=> b.version }
     return results  
   end
 
@@ -74,10 +73,10 @@ class CdiscTerm < Thesaurus
   end
   
   def self.current 
-    ConsoleLogger::log(C_CLASS_NAME,"Current","*****ENTRY*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"Current","*****ENTRY*****")
     object = nil
     if @@currentVersion == nil
-      ConsoleLogger::log(C_CLASS_NAME,"Current","Current nil")
+      #ConsoleLogger::log(C_CLASS_NAME,"Current","Current nil")
       latest = nil
       results = self.all
       results.each do |key, thesaurus|
@@ -88,10 +87,10 @@ class CdiscTerm < Thesaurus
         end
       end
       @@currentVersion = latest
-      ConsoleLogger::log(C_CLASS_NAME,"Current","CurrentVersion Id=" + @@currentVersion.id)
+      #ConsoleLogger::log(C_CLASS_NAME,"Current","CurrentVersion Id=" + @@currentVersion.id)
     end
     object = @@currentVersion
-    ConsoleLogger::log(C_CLASS_NAME,"Current","*****EXIT***** " + object.id)   
+    #ConsoleLogger::log(C_CLASS_NAME,"Current","*****EXIT***** " + object.id)   
     return object
   end
   
