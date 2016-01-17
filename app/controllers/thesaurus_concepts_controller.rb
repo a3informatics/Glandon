@@ -36,7 +36,7 @@ class ThesaurusConceptsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     thesaurusConcept = ThesaurusConcept.find(id, namespace)
-    @thesaurusConcept = thesaurusConcept.to_D3
+    @thesaurusConcept = thesaurusConcept.d3
     render json: @thesaurusConcept
   end
 

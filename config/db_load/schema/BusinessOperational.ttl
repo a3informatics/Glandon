@@ -48,12 +48,14 @@
 .
 :ordinal
   rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Component ;
   rdfs:label "ordinal"^^xsd:string ;
   rdfs:range xsd:postiveInteger ;
 .
 :enabled
   rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :BcReference ;
   rdfs:label "enabled"^^xsd:string ;
   rdfs:range xsd:boolean ;

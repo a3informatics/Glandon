@@ -184,8 +184,8 @@ class BiomedicalConcept < IsoManaged
 
   def self.create(params, ns=nil)
     
-    ConsoleLogger::log(C_CLASS_NAME,"createLocal","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"createLocal","Params=" + params.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+    ConsoleLogger::log(C_CLASS_NAME,"create","Params=" + params.to_s)
     
     # Initialise anything necessary
     bc = []
@@ -210,7 +210,7 @@ class BiomedicalConcept < IsoManaged
       parts = templateAndNs.split('|')
       templateIdentifier = parts[0]
       templateNs = parts[1]
-      #ConsoleLogger::log(C_CLASS_NAME,"createLocal","A=" + templateAndNs + ", B=" + templateIdentifier + ", C=" + templateNs)
+      #ConsoleLogger::log(C_CLASS_NAME,"create","A=" + templateAndNs + ", B=" + templateIdentifier + ", C=" + templateNs)
     
       # Create the managed item for the thesaurus. The namespace id is a shortcut for the moment.
       if exists?(identifier, IsoRegistrationAuthority.owner()) 
@@ -221,7 +221,7 @@ class BiomedicalConcept < IsoManaged
       else
 
         # Create the managed item
-        object = create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
+        object = super(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
         id = object.id
         useNs = object.namespace
         
@@ -238,8 +238,8 @@ class BiomedicalConcept < IsoManaged
         bc2 = []
         bc1.each do |line|
           parts = line.split(/\s+/)
-          ConsoleLogger::log(C_CLASS_NAME,"createLocal","Line(1)=" + line)
-          ConsoleLogger::log(C_CLASS_NAME,"createLocal","Parts(1)=" + parts.to_s)
+          ConsoleLogger::log(C_CLASS_NAME,"create","Line(1)=" + line)
+          ConsoleLogger::log(C_CLASS_NAME,"create","Parts(1)=" + parts.to_s)
           # Separate subject from predicate and object so lines are consistent
           if line.start_with?(":") && parts.length > 1
             bc2 << parts[0]
@@ -249,7 +249,7 @@ class BiomedicalConcept < IsoManaged
             bc2 << line
           end
         end
-        ConsoleLogger::log(C_CLASS_NAME,"createLocal","BC Split=" + bc.to_s)
+        ConsoleLogger::log(C_CLASS_NAME,"create","BC Split=" + bc.to_s)
           
         # Build hash to map Property and PropertyValues reiples to alias values to allow the data
         # being saved to be keyed and matched
@@ -260,19 +260,19 @@ class BiomedicalConcept < IsoManaged
         inProperty = false
         simpleUri = ""
         bc2.each do |line|
-          ConsoleLogger::log(C_CLASS_NAME,"createLocal","Line(2A)=" + line)
+          ConsoleLogger::log(C_CLASS_NAME,"create","Line(2A)=" + line)
           line1 = line
           line2 = line
           parts = line2.split(/\s+/)
-          ConsoleLogger::log(C_CLASS_NAME,"createLocal","Parts(2)=" + parts.to_s)
-          #ConsoleLogger::log(C_CLASS_NAME,"createLocal","Candidate. Parts=" + parts.to_s)
+          ConsoleLogger::log(C_CLASS_NAME,"create","Parts(2)=" + parts.to_s)
+          #ConsoleLogger::log(C_CLASS_NAME,"create","Candidate. Parts=" + parts.to_s)
           if line.start_with?(":")
             preceedingSubject = line
-            ConsoleLogger::log(C_CLASS_NAME,"createLocal","Setting preceedingSubject=" + preceedingSubject.to_s)
+            ConsoleLogger::log(C_CLASS_NAME,"create","Setting preceedingSubject=" + preceedingSubject.to_s)
           elsif line.length == 0 && inProperty
             aliasPropertyHash[toKey(preceedingSubject.dup)] = aliasKey
             aliasPropertyValueHash[toKey(simpleUri.dup)] = aliasKey
-            ConsoleLogger::log(C_CLASS_NAME,"createLocal","Setting Alias. Subject=" + preceedingSubject.to_s + ", URI=" + simpleUri.to_s + ", Alias=" + aliasKey.to_s)
+            ConsoleLogger::log(C_CLASS_NAME,"create","Setting Alias. Subject=" + preceedingSubject.to_s + ", URI=" + simpleUri.to_s + ", Alias=" + aliasKey.to_s)
             inProperty = false
             preceedingSubject = ""
             simpleUri = ""
@@ -288,23 +288,23 @@ class BiomedicalConcept < IsoManaged
               simpleUri = parts[2]
             elsif parts[1].start_with?("cbc:alias")
               aParts = line1.split('"')
-              ConsoleLogger::log(C_CLASS_NAME,"createLocal","Alias. Parts=" + aParts.to_s)
+              ConsoleLogger::log(C_CLASS_NAME,"create","Alias. Parts=" + aParts.to_s)
               if aParts.length == 3 
                 aliasKey = aParts[1]
               end     
             end 
           end
-          ConsoleLogger::log(C_CLASS_NAME,"createLocal","Line(2B)=" + line)
+          ConsoleLogger::log(C_CLASS_NAME,"create","Line(2B)=" + line)
         end
-        ConsoleLogger::log(C_CLASS_NAME,"createLocal","aliasPropertyValueHash=" + aliasPropertyValueHash.to_s)
-        ConsoleLogger::log(C_CLASS_NAME,"createLocal","aliasPropertyHash=" + aliasPropertyHash.to_s)
+        ConsoleLogger::log(C_CLASS_NAME,"create","aliasPropertyValueHash=" + aliasPropertyValueHash.to_s)
+        ConsoleLogger::log(C_CLASS_NAME,"create","aliasPropertyHash=" + aliasPropertyHash.to_s)
         
         # Parse each line of the template. Remove any prefix statements
         #supprendSubjectEnd = false
         header = true
         bc3 = []
         bc2.each do |line|
-          ConsoleLogger::log(C_CLASS_NAME,"createLocal","Line(3)=" + line)
+          ConsoleLogger::log(C_CLASS_NAME,"create","Line(3)=" + line)
           ignore = false
           text = ""
           if line.start_with?("@prefix") 
@@ -328,7 +328,7 @@ class BiomedicalConcept < IsoManaged
             # 3. Insert the values for any cbc:PropertyValue hooks
             header = false
             parts = line.split(/\s+/)
-            ConsoleLogger::log(C_CLASS_NAME,"createLocal","Parts(4)=" + parts.to_s)
+            ConsoleLogger::log(C_CLASS_NAME,"create","Parts(4)=" + parts.to_s)
             if parts.length == 4 
               if parts[1].start_with?("isoI:hasIdentifier")
                 # This will be replaced with a new Managed Instance
@@ -338,11 +338,11 @@ class BiomedicalConcept < IsoManaged
                 aliasKey = aliasPropertyValueHash[preceedingSubject]
                 child = findChild(children, aliasKey)
                 if child != nil
-                  ConsoleLogger::log(C_CLASS_NAME,"createLocal","Child=" + child.to_s)
+                  ConsoleLogger::log(C_CLASS_NAME,"create","Child=" + child.to_s)
                   if child.has_key?(:cli)
                     cliSet = child[:cli]
                     cliSet.each_with_index do |(key, cli), index|
-                      ConsoleLogger::log(C_CLASS_NAME,"createLocal","Key=" + key + ", index=" + index.to_s + ", cli" + cli.to_s)
+                      ConsoleLogger::log(C_CLASS_NAME,"create","Key=" + key + ", index=" + index.to_s + ", cli" + cli.to_s)
                       if index > 0
                         text = text + updateCidIndex(preceedingSubject, itemType, index, version) + "\n"
                       end
@@ -360,7 +360,7 @@ class BiomedicalConcept < IsoManaged
                 else
                   text = predicateObject(parts[1],parts[2])
                 end
-                ConsoleLogger::log(C_CLASS_NAME,"createLocal","Text=" + text)
+                ConsoleLogger::log(C_CLASS_NAME,"create","Text=" + text)
               elsif parts[2].start_with?("cbc:Property")
                 # Values hook
                 aliasKey = aliasPropertyHash[preceedingSubject]
@@ -390,15 +390,15 @@ class BiomedicalConcept < IsoManaged
                 text = predicateObject(parts[1],parts[2])
               end
             elsif parts[1].start_with?("cbc:hasItem") || parts[1].start_with?("cbc:hasProperty")
-              ConsoleLogger::log(C_CLASS_NAME,"createLocal","Has Item=" + parts.to_s)
+              ConsoleLogger::log(C_CLASS_NAME,"create","Has Item=" + parts.to_s)
               (2..(parts.length-1)).each do |i|
-                #ConsoleLogger::log(C_CLASS_NAME,"createLocal","Item=" + parts[i].to_s)
+                #ConsoleLogger::log(C_CLASS_NAME,"create","Item=" + parts[i].to_s)
                 if parts[i] == "," 
                   text = text + predicateObject(parts[1],updateCid(parts[i-1], itemType, version)) + "\n"
                 elsif parts[i] == ";" 
                   text = text + predicateObject(parts[1],updateCid(parts[i-1], itemType, version))
                 end
-                ConsoleLogger::log(C_CLASS_NAME,"createLocal","Text=" + text)
+                ConsoleLogger::log(C_CLASS_NAME,"create","Text=" + text)
               end
             else
               text = line   
@@ -420,15 +420,15 @@ class BiomedicalConcept < IsoManaged
         update = update + "}"
         
         # Send the request, wait the resonse
-        #ConsoleLogger::log(C_CLASS_NAME,"createLocal","Update query=" + update)
+        #ConsoleLogger::log(C_CLASS_NAME,"create","Update query=" + update)
         response = CRUD.update(update)
         
         # Response
         if response.success?
           object.items = Hash.new
-          ConsoleLogger::log(C_CLASS_NAME,"createLocal","Object created, id=" + id)
+          ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + id)
         else
-          ConsoleLogger::log(C_CLASS_NAME,"createLocal","Object not created!")
+          ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
           object.errors.add(:biomedical_concept, "was not created, something went wrong communicating with the database.")
         end
       end 
@@ -461,7 +461,6 @@ class BiomedicalConcept < IsoManaged
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
       bc = ModelUtility.getValue('bc', true, node)
       if bc != ""
         id = ModelUtility.extractCid(bc)

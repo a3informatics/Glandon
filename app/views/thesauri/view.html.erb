@@ -1,14 +1,11 @@
 <%= stylesheet_link_tag    'd3local' %>
 <%= javascript_include_tag 'd3local' %>
 <script id="jsonData" type="text/json">
-    <%= raw @thesaurus.to_D3.to_json %>
+    <%= raw @thesaurus.d3.to_json %>
 </script>
 <%= javascript_include_tag 'thesauri_viewer' %>
 <div class="col-md-9" style="padding-right:20px; border-right: 1px solid #ccc;">
     <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "View:", :item => @thesaurus} %>
-    <!--<div id="debug">
-        <%= raw @thesaurus.to_D3.to_json %>
-    </div>-->
     <div style="height: 800px;" id="d3">
         <!-- D3 Area -->
     </div>

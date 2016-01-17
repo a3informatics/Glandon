@@ -2,8 +2,8 @@ require "uri"
 
 class Form::Item < IsoConcept
 
-  attr_accessor :items, :bcProperty, :bcValues, :itemType
-  validates_presence_of :items, :bcProperty, :bcValues, :itemType
+  attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet
+  validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet
   
   # Constants
   C_SCHEMA_PREFIX = "bf"
@@ -16,14 +16,23 @@ class Form::Item < IsoConcept
   
   def self.find(id, ns)
     object = super(id, ns)
+    object.bcValueSet = Array.new
     object.items = findSubItems(object.links, ns)
     if object.links.exists?(C_SCHEMA_PREFIX, "hasProperty")
       object.itemType = C_BC
       uri = object.links.get(C_SCHEMA_PREFIX, "hasProperty")
       bcId = ModelUtility.extractCid(uri[0])
       bcNs = ModelUtility.extractNs(uri[0])
-      object.bcProperty = BiomedicalConcept::Property.findByReference(bcId, bcNs)
+      ref = OperationalReference.find(bcId, bcNs)
+      object.bcProperty = ref.property
+      #object.bcProperty = BiomedicalConcept::Property.findByReference(bcId, bcNs)
       object.bcValues = object.bcProperty.values
+      linkSet = object.links.get("bf", "hasValue")
+      linkSet.each do |link|
+        id = ModelUtility.extractCid(link)
+        ns = ModelUtility.extractNs(link)
+        object.bcValueSet << OperationalReference.find(id, ns)
+      end
     elsif object.properties.exists?(C_SCHEMA_PREFIX, "freeText")
       object.bcProperty = nil
       object.bcValues = nil
@@ -152,7 +161,7 @@ class Form::Item < IsoConcept
     propertyValues.each do |value|
       valueId = value[:id]
       namespace = value[:namespace]
-      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId)
+      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId + ", namespace=" + namespace)
       vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
       insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
       " :" + vRefId + " rdf:type bo:BcReference . \n" +
@@ -207,12 +216,13 @@ class Form::Item < IsoConcept
     if params.has_key?(:children)
       params[:children].each do |key, value|
         valueId = value[:id]
+        namespace = value[:namespace]
         enabled = value[:enabled]
-        ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Add value for Item=" + valueId)
+        ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId + ", namespace=" + namespace + ", enabled=" + enabled)
         vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
         insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
         " :" + vRefId + " rdf:type bo:BcReference . \n" +
-        " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(params[:namespace], valueId) + " . \n" +
+        " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(namespace, valueId) + " . \n" +
         " :" + vRefId + " bo:enabled \"" + enabled + "\"^^xsd:boolean . \n"
         valueOrdinal += 1
       end
@@ -338,9 +348,16 @@ class Form::Item < IsoConcept
       name = bcProperty.alias
       result = FormNode.new(self.id, self.namespace,  "BCItem", name, "", "", "", "", index, true)
       localIndex = 0
-      pvSet = self.bcValues
-      pvSet.each do |pvKey, pv|
-        pv.clis.each do |cliKey, cli|
+      #pvSet = self.bcValues
+      #pvSet.each do |pvKey, pv|
+      #  pv.clis.each do |cliKey, cli|
+      #    result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", "", "", "", localIndex, true)
+      #    localIndex += 1;
+      #  end
+      clis = self.bcValueSet
+      clis.each do |cliRef|
+        if cliRef.enabled
+          cli = cliRef.value
           result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", "", "", "", localIndex, true)
           localIndex += 1;
         end

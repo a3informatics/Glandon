@@ -151,7 +151,7 @@ class Thesaurus < IsoManaged
     end
   end
   
-  def to_D3
+  def d3
 
     result = Hash.new
     result[:name] = self.identifier
@@ -170,16 +170,7 @@ class Thesaurus < IsoManaged
     baseChildId = ""
     if self.children.length <= 10
       self.children.each do |key, child|
-        result[:children][index] = Hash.new
-        result[:children][index][:name] = child.label
-        result[:children][index][:id] = child.id
-        result[:children][index][:expand] = false
-        result[:children][index][:label] = child.label
-        result[:children][index][:identifier] = child.identifier
-        result[:children][index][:notation] = child.notation
-        result[:children][index][:definition] = child.definition
-        result[:children][index][:synonym] = child.synonym
-        result[:children][index][:preferredTerm] = child.preferredTerm
+        result[:children][index] = ThesaurusNode.new(child)
         index += 1
       end
     else      
@@ -191,48 +182,21 @@ class Thesaurus < IsoManaged
           result[:children][index][:id] = child.id
           result[:children][index][:expand] = true
           result[:children][index][:expansion] = Array.new        
-          result[:children][index][:expansion][count] = Hash.new
-          result[:children][index][:expansion][count][:name] = child.label + ' [' + child.identifier + ']'
-          result[:children][index][:expansion][count][:id] = child.id
-          result[:children][index][:expansion][count][:expand] = false
-          result[:children][index][:expansion][count][:label] = child.label
-          result[:children][index][:expansion][count][:identifier] = child.identifier
-          result[:children][index][:expansion][count][:notation] = child.notation
-          result[:children][index][:expansion][count][:definition] = child.definition
-          result[:children][index][:expansion][count][:synonym] = child.synonym
-          result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm
+          result[:children][index][:expansion][count] = ThesaurusNode.new(child)
           count += 1
         elsif count == 9
           result[:children][index][:name] = baseChildId + ' - ' + child.identifier
-          result[:children][index][:expansion][count] = Hash.new
-          result[:children][index][:expansion][count][:name] = child.label + ' [' + child.identifier + ']'
-          result[:children][index][:expansion][count][:id] = child.id
-          result[:children][index][:expansion][count][:expand] = false
-          result[:children][index][:expansion][count][:label] = child.label
-          result[:children][index][:expansion][count][:identifier] = child.identifier
-          result[:children][index][:expansion][count][:notation] = child.notation
-          result[:children][index][:expansion][count][:definition] = child.definition
-          result[:children][index][:expansion][count][:synonym] = child.synonym
-          result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm
+          result[:children][index][:expansion][count] = ThesaurusNode.new(child)
           count = 0
           index += 1        
         else
           result[:children][index][:name] = baseChildId + ' - ' + child.identifier;
-          result[:children][index][:expansion][count] = Hash.new
-          result[:children][index][:expansion][count][:name] = child.label + ' [' + child.identifier + ']'
-          result[:children][index][:expansion][count][:id] = child.id
-          result[:children][index][:expansion][count][:expand] = false
-          result[:children][index][:expansion][count][:label] = child.label
-          result[:children][index][:expansion][count][:identifier] = child.identifier
-          result[:children][index][:expansion][count][:notation] = child.notation
-          result[:children][index][:expansion][count][:definition] = child.definition
-          result[:children][index][:expansion][count][:synonym] = child.synonym
-          result[:children][index][:expansion][count][:preferredTerm] = child.preferredTerm
+          result[:children][index][:expansion][count] = ThesaurusNode.new(child)
           count += 1
         end
       end
     end
-    ConsoleLogger::log(C_CLASS_NAME,"to_D3","D3=" + result.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"d3","D3=" + result.to_s)
     return result
 
   end

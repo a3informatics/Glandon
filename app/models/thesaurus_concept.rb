@@ -61,7 +61,12 @@ class ThesaurusConcept < IsoConcept
       object.children = nil
       object.topLevel = true
     end
-    return results
+    #TODO - Fix this in the query, will be quicker.
+    sorted = {}
+    results.keys.sort.each do |k|
+      sorted[k] = results[k]
+    end
+    return sorted
   end
   
   # Find all children of a given concept (identified by the CID)
@@ -77,7 +82,12 @@ class ThesaurusConcept < IsoConcept
       object.children = nil
       object.topLevel = false
     end
-    return results
+    #TODO - Fix this in the query, will be quicker.
+    sorted = {}
+    results.keys.sort.each do |k|
+      sorted[k] = results[k]
+    end
+    return sorted
   end
   
   def self.searchTextWithNs(termId, ns, term)
@@ -474,39 +484,14 @@ class ThesaurusConcept < IsoConcept
     return result
   end
 
-  def to_D3
-
-    result = Hash.new
-    result[:name] = self.identifier
-    result[:id] = self.id
-    result[:namespace] = self.namespace
-    result[:label] = self.label
-    result[:identifier] = self.identifier
-    result[:notation] = self.notation
-    result[:definition] = self.definition
-    result[:synonym] = self.synonym
-    result[:preferredTerm] = self.preferredTerm
+  def d3
+    result = ThesaurusNode.new(self)
     result[:children] = Array.new
-
     index = 0
     self.children.each do |key, child|
-      result[:children][index] = Hash.new
-      result[:children][index][:name] = child.label + ' [' + child.identifier + ']'
-      result[:children][index][:identifier] = child.identifier
-      result[:children][index][:label] = child.label
-      result[:children][index][:id] = child.id
-      result[:children][index][:namespace] = child.namespace
-      result[:children][index][:notation] = child.notation
-      result[:children][index][:definition] = child.definition
-      result[:children][index][:synonym] = child.synonym
-      result[:children][index][:preferredTerm] = child.preferredTerm
-      result[:children][index][:expand] = false
-      result[:children][index][:endIndex] = 0
-      result[:children][index][:startIndex] = 0
-      result[:children][index][:expansion] = Array.new        
+      result[:children][index] = ThesaurusNode.new(child)
       index += 1
     end
     return result
-
   end
 end

@@ -16,8 +16,8 @@ class BiomedicalConcept::Datatype < IsoConcept
     #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
     object = super(id, ns)
     #ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + object.to_json)
-    object.propertySet = BiomedicalConcept::Property.findForParent(object.links, ns)
     setAttributes(object)
+    object.propertySet = BiomedicalConcept::Property.findForParent(object.links, ns, object.datatype)
     return object  
   end
 
@@ -53,40 +53,23 @@ class BiomedicalConcept::Datatype < IsoConcept
 private
 
   def self.setAttributes(object)
-    datatypeLinks = object.links.get(C_SCHEMA_PREFIX, "hasDataRef")
+    datatypeLinks = object.links.get(C_SCHEMA_PREFIX, "hasDatatypeRef")
+    ConsoleLogger::log(C_CLASS_NAME,"setAttributes","datatypeLinks=" + datatypeLinks.to_s)
     if datatypeLinks.length >= 1
-      object.datatype = getDatatype(ModelUtility.extractCid(datatypeLinks[0]), 0)
+      object.datatype = getDatatype(datatypeLinks[0])
     else
-      object.datatype = "S"
+      object.datatype = ""
     end
   end
 
-  # Temporary datatype function
-  def self.getDatatype (text, count)
-    result = ""
-    if count > 0 then
-      result = "CL"
+  def self.getDatatype (uri)
+    text = ModelUtility.extractCid(uri)
+    parts = text.split("-")
+    if parts.size == 2
+      result = parts[1]
     else
-      parts = text.split("-")
-      if parts.size == 2
-        if parts[1] == "CD"
-          result = "CL"
-        elsif parts[1] == "PQR"
-          result = "F"
-        elsif parts[1] == "BL"
-          result = "BL"
-        elsif parts[1] == "SC"
-          result = "CL"
-        elsif parts[1] == "IVL_TS_DATETIME"
-          result = "D+T"
-        else
-          result = ""
-        end
-      else
-        result = ""
-      end
+      result = ""
     end
-    ConsoleLogger::log(C_CLASS_NAME,"getDatatype","Text=" + text + ", Result=" + result + ", Count=" + count.to_s)
     return result 
   end
 

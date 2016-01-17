@@ -283,17 +283,11 @@ class Form < IsoManaged
       "          ?si isoI:identifier ?bcIdent . \n " +     
       "          OPTIONAL \n " +    
       "          { \n " +      
-      # "            ?bcProperty (cbc:hasValue | cbc:nextValue)%2B  ?bcValue . \n " +       
-      # "            ?bcValue rdf:type cbc:PropertyValue . \n " +       
       "            ?item bf:hasValue ?y . \n " +             
-      "            ?y bo:hasValue ?bcValue  . \n " +      
+      "            ?y bo:hasValue ?cli  . \n " +      
       "            ?y bo:enabled ?enabled  . \n " +      
-      # "            ?bcValue cbc:value ?cCode . \n " +       
-      "            ?bcValue cbc:value ?cli . \n " +       
       "            ?cli iso25964:identifier ?cCode . \n " +       
       "            ?cli iso25964:notation ?subValue . \n " +       
-      # "            ?cl skos:narrower ?cli . \n " +       
-      # "            ?cl skos:inScheme ?th . \n " +       
       "            FILTER(?enabled=true) . \n " +    
       "          } \n " +  
       "        }  \n " + 
@@ -323,17 +317,11 @@ class Form < IsoManaged
       "          FILTER NOT EXISTS { ?var bd:hasProperty ?bcProperty } \n " + 
       "          OPTIONAL \n " +    
       "          { \n " +      
-      # "            ?bcProperty (cbc:hasValue | cbc:nextValue)%2B  ?bcValue . \n " +       
-      # "            ?bcValue rdf:type cbc:PropertyValue . \n " +       
       "            ?item bf:hasValue ?y . \n " +             
-      "            ?y bo:hasValue ?bcValue  . \n " +      
+      "            ?y bo:hasValue ?cli  . \n " +      
       "            ?y bo:enabled ?enabled  . \n " +      
-      # "            ?bcValue cbc:value ?cCode . \n " +       
-      "            ?bcValue cbc:value ?cli . \n " +       
       "            ?cli iso25964:identifier ?cCode . \n " +       
       "            ?cli iso25964:notation ?subValue . \n " +       
-      # "            ?cl skos:narrower ?cli . \n " +       
-      # "            ?cl skos:inScheme ?th . \n " +       
       "            FILTER(?enabled=true) . \n " +    
       "          } \n " +  
       "        }  \n " + 
@@ -383,17 +371,11 @@ class Form < IsoManaged
       "  ?si isoI:identifier ?bcIdent . \n " +     
       "  OPTIONAL \n " +    
       "  { \n " +      
-      # "    ?bcProperty (cbc:hasValue | cbc:nextValue)%2B  ?bcValue . \n " +       
-      # "    ?bcValue rdf:type cbc:PropertyValue . \n " +       
       "    ?item bf:hasValue ?y . \n " +             
-      "    ?y bo:hasValue ?bcValue  . \n " +      
+      "    ?y bo:hasValue ?cli  . \n " +      
       "    ?y bo:enabled ?enabled  . \n " +      
-      # "    ?bcValue cbc:value ?cCode . \n " +       
-      "    ?bcValue cbc:value ?cli . \n " +       
       "    ?cli iso25964:identifier ?cCode . \n " +       
       "    ?cli iso25964:notation ?subValue . \n " +       
-      # "    ?cl skos:narrower ?cli . \n " +       
-      # "    ?cl skos:inScheme ?th . \n " +       
       "    FILTER(?enabled=true) . \n " +    
       "  } \n " +  
       "}\n"

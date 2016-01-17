@@ -296,7 +296,10 @@
                     </xsl:when>
                     <xsl:when test="$Presentation='string'">
                         <xsl:attribute name="DataType">
-                            <xsl:value-of select="'string'"/>
+                            <xsl:value-of select="'text'"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Length">
+                            <xsl:value-of select="'20'"/>
                         </xsl:attribute>
                     </xsl:when>
                 </xsl:choose>

@@ -84,7 +84,7 @@ class IsoManaged < IsoConcept
     end
     
     # Return
-    ConsoleLogger::log(C_CLASS_NAME,"find","Object return, object=" + object.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","Object return, object=" + object.to_s)
     return object   
   end
 

@@ -28,6 +28,7 @@
 				<th>Prompt Text</th> 
 				<th>Enabled</th> 
 				<th>Collect</th> 
+				<th>Datatype</th> 
 				<th>Terminology</th> 
 			</tr>
 		</thead>
@@ -43,6 +44,7 @@
 					<td><%= item.pText %></td>
 					<td><%= item.enabled %></td>
 					<td><%= item.collect %></td>
+					<td><%= item.datatype %></td>
 					<td>
 						<% values = item.values %>
 						<% values.each do |vKey, value| %>
