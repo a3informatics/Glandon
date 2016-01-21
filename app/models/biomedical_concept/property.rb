@@ -16,12 +16,9 @@ class BiomedicalConcept::Property < IsoConcept
     #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
     object = super(id, ns)
     if object.links.exists?(C_SCHEMA_PREFIX, "hasComplexDatatype")
-      object.childComplex = nil
-      result = BiomedicalConcept::Datatype.findForChild(object, ns)
-      if result.length >= 1
-        object.childComplex = result[0]
-      end
       object.values = nil
+      object.childComplex = BiomedicalConcept::Datatype.findForChild(object, ns)
+      object.datatypeComplex = nil
     else
       object.values = BiomedicalConcept::PropertyValue.findForParent(object, ns)
       if object.links.exists?(C_SCHEMA_PREFIX, "isPropertyOf")
@@ -48,10 +45,19 @@ class BiomedicalConcept::Property < IsoConcept
    def flatten
     #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
     results = Hash.new
+    #if self.isComplex? 
+    #  more = self.childComplex.flatten
+    #  more.each do |iKey, datatype|
+    #    results[iKey] = datatype
+    #  end
+    #end
+
     if self.isComplex? 
-      more = self.childComplex.flatten
-      more.each do |iKey, datatype|
-        results[iKey] = datatype
+      self.childComplex.each do |key, item|
+        more = item.flatten
+        more.each do |iKey, datatype|
+          results[iKey] = datatype
+        end
       end
     end
     return results
