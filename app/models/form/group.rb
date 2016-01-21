@@ -33,8 +33,8 @@ class Form::Group < IsoConcept
   end
 
   def self.findSubGroups(links, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
-    ConsoleLogger::log(C_CLASS_NAME,"findForForm","namespace=" + ns)
+    #ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
+    #ConsoleLogger::log(C_CLASS_NAME,"findForForm","namespace=" + ns)
     results = Hash.new
     linkSet = links.get("bf", "hasSubGroup")
     linkSet.each do |link|
@@ -51,8 +51,8 @@ class Form::Group < IsoConcept
   end
 
   def self.findForForm(links, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
-    ConsoleLogger::log(C_CLASS_NAME,"findForForm","namespace=" + ns)
+    #ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
+    #ConsoleLogger::log(C_CLASS_NAME,"findForForm","namespace=" + ns)
     results = Hash.new
     linkSet = links.get("bf", "hasGroup")
     linkSet.each do |link|

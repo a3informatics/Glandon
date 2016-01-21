@@ -115,8 +115,8 @@
 :hasItem
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :BiomedicalConcept ;
   rdfs:label "Link to the constiuent parts of the Biomedical Concept (Instance or Template)"^^xsd:string ;
+  rdfs:domain :BiomedicalConcept ;
   rdfs:range :Item ;
 .
 :hasProperty
@@ -138,6 +138,7 @@
 :isDatatypeOf
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
+  rdfs:label ""^^xsd:string ;
   rdfs:domain :Datatype ;
   rdfs:range :Item ;
   owl:inverseOf :hasDataType ;
@@ -145,6 +146,7 @@
 :isItemOf
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
+  rdfs:label ""^^xsd:string ;
   rdfs:domain :Item ;
   rdfs:range :BiomedicalConcept ;
   owl:inverseOf :hasItem ;
@@ -152,6 +154,7 @@
 :isPropertyOf
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Property of complex datatype"^^xsd:string ;
   rdfs:domain :Property ;
   rdfs:range :Datatype ;
   owl:inverseOf :hasProperty ;

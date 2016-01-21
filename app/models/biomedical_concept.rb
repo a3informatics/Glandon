@@ -16,7 +16,7 @@ class BiomedicalConcept < IsoManaged
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
-      object.items = BiomedicalConcept::Item.findForParent(object.links, ns)
+      object.items = BiomedicalConcept::Item.findForParent(object, ns)
     end
     return object 
   end

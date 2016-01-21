@@ -11,9 +11,9 @@ class OperationalReference < IsoConcept
   
   def self.find(id, ns)
     object = super(id, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"find","enabled=" + object.to_json)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","enabled=" + object.to_json)
     object.enabled = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "enabled")[:value])
-    ConsoleLogger::log(C_CLASS_NAME,"find","enabled=" + object.enabled.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","enabled=" + object.enabled.to_s)
     object.concept = getReference(object, "hasBiomedicalConcept")
     object.property = getReference(object, "hasProperty")
     object.value = getReference(object, "hasValue")

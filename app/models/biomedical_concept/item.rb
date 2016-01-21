@@ -15,13 +15,13 @@ class BiomedicalConcept::Item < IsoConcept
   def self.find(id, ns)
     #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
     object = super(id, ns)
-    object.datatypes = BiomedicalConcept::Datatype.findForParent(object.links, ns)
+    object.datatypes = BiomedicalConcept::Datatype.findForParent(object, ns)
     return object  
   end
 
-  def self.findForParent(links, ns)
+  def self.findForParent(object, ns)
     #ConsoleLogger::log(C_CLASS_NAME,"findForParent","*****ENTRY*****")
-    results = super(C_SCHEMA_PREFIX, "hasItem", links, ns)
+    results = super(C_SCHEMA_PREFIX, "hasItem", object.links, ns)
     return results
   end
 

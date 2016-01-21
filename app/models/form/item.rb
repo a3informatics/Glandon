@@ -25,7 +25,6 @@ class Form::Item < IsoConcept
       bcNs = ModelUtility.extractNs(uri[0])
       ref = OperationalReference.find(bcId, bcNs)
       object.bcProperty = ref.property
-      #object.bcProperty = BiomedicalConcept::Property.findByReference(bcId, bcNs)
       object.bcValues = object.bcProperty.values
       linkSet = object.links.get("bf", "hasValue")
       linkSet.each do |link|
@@ -46,8 +45,8 @@ class Form::Item < IsoConcept
   end
 
   def self.findSubItems(links, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"findSubItems","*****ENTRY******")
-    ConsoleLogger::log(C_CLASS_NAME,"findSubItems","namespace=" + ns)
+    #ConsoleLogger::log(C_CLASS_NAME,"findSubItems","*****ENTRY******")
+    #ConsoleLogger::log(C_CLASS_NAME,"findSubItems","namespace=" + ns)
     results = Hash.new
     linkSet = links.get("bf", "hasCommonItem")
     linkSet.each do |link|
@@ -58,7 +57,7 @@ class Form::Item < IsoConcept
   end
 
   def self.findForGroup(links, ns=nil)    
-    ConsoleLogger::log(C_CLASS_NAME,"findForGroup","*****ENTRY******")
+    #ConsoleLogger::log(C_CLASS_NAME,"findForGroup","*****ENTRY******")
     results = Hash.new
     linkSet = links.get("bf", "hasItem")
     linkSet.each do |link|
@@ -77,7 +76,7 @@ class Form::Item < IsoConcept
       params[:children].each do |key, value|
         clId = value[:id]
         clNs = value[:namespace]
-        ConsoleLogger::log(C_CLASS_NAME,"createQuestion","id=" + clId + ", ns=" + clNamespace)
+        #ConsoleLogger::log(C_CLASS_NAME,"createQuestion","id=" + clId + ", ns=" + clNamespace)
         insertSparql = " :" + id + " bo:hasThesaurusConcept " + ModelUtility.buildUri(clNs, clId) + " . \n" 
         valueOrdinal += 1
       end
@@ -345,8 +344,12 @@ class Form::Item < IsoConcept
       result[:qText] = self.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]
       result[:mapping] = self.properties.getOnly(C_SCHEMA_PREFIX, "mapping")[:value]
     else
-      name = bcProperty.alias
+      #ConsoleLogger::log(C_CLASS_NAME,"d3","property=" + self.bcProperty.to_json)
+      name = self.bcProperty.alias
       result = FormNode.new(self.id, self.namespace,  "BCItem", name, "", "", "", "", index, true)
+      result[:datatype] = self.bcProperty.datatype
+      result[:format] = self.bcProperty.format
+      result[:qText] = self.bcProperty.qText
       localIndex = 0
       #pvSet = self.bcValues
       #pvSet.each do |pvKey, pv|
@@ -358,7 +361,8 @@ class Form::Item < IsoConcept
       clis.each do |cliRef|
         if cliRef.enabled
           cli = cliRef.value
-          result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", "", "", "", localIndex, true)
+          #ConsoleLogger::log(C_CLASS_NAME,"d3","cli=" + cli.to_json)
+          result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", cli.identifier, "", "", localIndex, true)
           localIndex += 1;
         end
       end

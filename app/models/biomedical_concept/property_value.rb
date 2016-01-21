@@ -47,9 +47,9 @@ class BiomedicalConcept::PropertyValue < IsoConcept
     return object  
   end
 
-  def self.findForParent(links, ns)    
+  def self.findForParent(object, ns)    
     #ConsoleLogger::log(C_CLASS_NAME,"findForParent","*****ENTRY*****")
-    results = super(C_SCHEMA_PREFIX, "hasValue", links, ns)
+    results = super(C_SCHEMA_PREFIX, "hasValue", object.links, ns)
     return results
   end
 

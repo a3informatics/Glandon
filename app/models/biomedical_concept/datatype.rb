@@ -12,28 +12,32 @@ class BiomedicalConcept::Datatype < IsoConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def self.find(id, ns)
+  def self.find(id, ns, children=true)
     #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
     object = super(id, ns)
     #ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + object.to_json)
     setAttributes(object)
-    object.propertySet = BiomedicalConcept::Property.findForParent(object.links, ns, object.datatype)
+    if children
+      object.propertySet = BiomedicalConcept::Property.findForParent(object, ns)
+    end
     return object  
   end
 
-  def self.findForParent(links, ns)    
-    #ConsoleLogger::log(C_CLASS_NAME,"findForParent","*****ENTRY*****")
-    results = super(C_SCHEMA_PREFIX, "hasDatatype", links, ns)
+  def self.findForParent(object, ns)    
+    results = super(C_SCHEMA_PREFIX, "hasDatatype", object.links, ns)
     return results
   end
 
-  def self.findForChild(links, ns)    
-    #ConsoleLogger::log(C_CLASS_NAME,"findForChild","*****ENTRY*****")
-    results = super(C_SCHEMA_PREFIX, "hasComplexDatatype", links, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + results.to_json)
+  def self.findForChild(object, ns)    
+    results = super(C_SCHEMA_PREFIX, "hasComplexDatatype", object.links, ns)
     return results
   end
 
+  def self.findParent(id, ns)
+    object = find(id, ns, false)
+    return object
+  end
+  
   def flatten
     #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
     results = Hash.new
@@ -54,7 +58,6 @@ private
 
   def self.setAttributes(object)
     datatypeLinks = object.links.get(C_SCHEMA_PREFIX, "hasDatatypeRef")
-    ConsoleLogger::log(C_CLASS_NAME,"setAttributes","datatypeLinks=" + datatypeLinks.to_s)
     if datatypeLinks.length >= 1
       object.datatype = getDatatype(datatypeLinks[0])
     else

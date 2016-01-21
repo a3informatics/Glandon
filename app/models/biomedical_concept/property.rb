@@ -1,7 +1,7 @@
 class BiomedicalConcept::Property < IsoConcept
 
-  attr_accessor :alias, :collect, :enabled, :qText, :pText, :datatype, :format,  :bridgPath, :values, :complex, :parentDatatype
-  validates_presence_of :alias, :label, :collect, :enabled, :questionText, :promptText, :datatype, :format, :bridgPath, :values, :complex, :parentDatatype
+  attr_accessor :alias, :collect, :enabled, :qText, :pText, :datatype, :format,  :bridgPath, :values, :childComplex, :datatypeComplex
+  validates_presence_of :alias, :label, :collect, :enabled, :questionText, :promptText, :datatype, :format, :bridgPath, :values, :childComplex, :datatypeComplex
 
   # Constants
   C_SCHEMA_PREFIX = "cbc"
@@ -16,70 +16,42 @@ class BiomedicalConcept::Property < IsoConcept
     #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
     object = super(id, ns)
     if object.links.exists?(C_SCHEMA_PREFIX, "hasComplexDatatype")
-      object.complex = BiomedicalConcept::Datatype.findForChild(object.links, ns)
+      object.childComplex = nil
+      result = BiomedicalConcept::Datatype.findForChild(object, ns)
+      if result.length >= 1
+        object.childComplex = result[0]
+      end
       object.values = nil
     else
-      object.values = BiomedicalConcept::PropertyValue.findForParent(object.links, ns)
-      object.complex = nil
+      object.values = BiomedicalConcept::PropertyValue.findForParent(object, ns)
+      if object.links.exists?(C_SCHEMA_PREFIX, "isPropertyOf")
+        links = object.links.get(C_SCHEMA_PREFIX, "isPropertyOf")
+        if links[0] != ""
+          object.datatypeComplex = BiomedicalConcept::Datatype.findParent(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
+        end
+      end
+      object.childComplex = nil
       setAttributes(object)
     end
     return object  
   end
 
-  def self.findForParent(links, ns, parentDatatype)    
-    #ConsoleLogger::log(C_CLASS_NAME,"findForParent","*****ENTRY*****")
-    results = super(C_SCHEMA_PREFIX, "hasProperty", links, ns)
-    results.each do |key, result|
-      result.parentDatatype = parentDatatype
-      if result.values != nil
-        result.datatype = getDatatype(result.parentDatatype, result.values.values[0].clis.length)
-      else
-        result.datatype = ""
-      end
-    end
+  def self.findForParent(object, ns)
+    results = super(C_SCHEMA_PREFIX, "hasProperty", object.links, ns)
     return results
   end
 
-  #def self.findByReference(id, ns)
-  #  ConsoleLogger::log(C_CLASS_NAME,"findByReference","*****ENTRY*****")
-  #  query = UriManagement.buildNs(ns, ["bo", "cbc"]) +
-  #    "SELECT ?bc WHERE\n" + 
-  #    "{ \n" + 
-  #    " :" + id + " bo:hasProperty ?bc . \n" +
-  #    " ?bc rdf:type cbc:Property . \n" +
-  #    "}\n"
-  #  response = CRUD.query(query)
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  results = xmlDoc.xpath("//result")
-  #  ConsoleLogger::log(C_CLASS_NAME,"findByReference","results=" + results.to_s)
-  #  if results.length == 1 
-  #    node = results[0]
-  #    ConsoleLogger::log(C_CLASS_NAME,"findByReference","Node=" + node.to_s)
-  #    uri = ModelUtility.getValue('bc', true, node)
-  #    bcId = ModelUtility.extractCid(uri)
-  #    bcNs = ModelUtility.extractNs(uri)
-  #    ConsoleLogger::log(C_CLASS_NAME,"findByReference","BC id=" + bcId + ", ns=" + bcNs)
-  #    object = self.find(bcId, bcNs)
-  #  else
-  #    object = nil
-  #  end  
-  #  return object
-  #end
-
   def isComplex?
-    return self.complex != nil
+    return self.childComplex != nil
   end
 
    def flatten
     #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
     results = Hash.new
     if self.isComplex? 
-      self.complex.each do |key, item|
-        more = item.flatten
-        more.each do |iKey, datatype|
-          results[iKey] = datatype
-        end
+      more = self.childComplex.flatten
+      more.each do |iKey, datatype|
+        results[iKey] = datatype
       end
     end
     return results
@@ -88,13 +60,33 @@ class BiomedicalConcept::Property < IsoConcept
 private
   
   def self.setAttributes(object)
+    count = 0
     object.label = object.properties.getOnly(C_SCHEMA_PREFIX, "name")[:value]      
     object.alias = object.properties.getOnly(C_SCHEMA_PREFIX, "alias")[:value]      
     object.collect = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "collect")[:value])      
     object.enabled = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "enabled")[:value])      
     object.qText = object.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]    
     object.pText = object.properties.getOnly(C_SCHEMA_PREFIX, "pText")[:value]  
-    object.bridgPath = object.properties.getOnly(C_SCHEMA_PREFIX, "bridgPath")[:value]  
+    object.bridgPath = object.properties.getOnly(C_SCHEMA_PREFIX, "bridgPath")[:value]
+    if object.values != nil
+        count = object.values.values[0].clis.length
+    end
+    if object.datatypeComplex != nil
+      object.datatype = getDatatype(object.datatypeComplex.datatype, count)  
+      object.format = getFormat(object.datatype)  
+    else
+      object.datatype = ""
+      object.format = ""
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"setAttributes","datatype=" + object.to_json)
+  end
+
+  def self.getFormat(datatype)
+    if datatype == "F"
+      return "5.1"
+    else
+      return ""
+    end
   end
 
   def self.getDatatype (parentDatatype, count)
@@ -118,7 +110,7 @@ private
         result = "S"
       end
     end
-    ConsoleLogger::log(C_CLASS_NAME,"getDatatype","Parent=" + parentDatatype + ", Result=" + result + ", Count=" + count.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"getDatatype","Parent=" + parentDatatype + ", Result=" + result + ", Count=" + count.to_s)
     return result 
   end
 
