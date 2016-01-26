@@ -12,89 +12,83 @@
         <StudyEventRef StudyEventOID="SE.001" OrderNumber="1" Mandatory="Yes"/>
       </Protocol>
       <StudyEventDef OID="SE.001" Name="???" Repeating="No" Type="Scheduled">
-        <FormRef FormOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO2"/>
+        <FormRef FormOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4"/>
       </StudyEventDef>
-      <FormDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO2" Name="Demonstration Form Number 2."> select=""
-                <ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO2_1_2"/><ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO2_1_3"/><ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO2_1_1"/><Alias Context="Domain" Name="Vital Signs"/></FormDef>
-      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO2_1_2" Name="Height (BC C25347_ACME)">
-        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_value"/>
-        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code"/>
+      <FormDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4" Name="Demonstration Form 4"> select=""
+                <ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_3"/><ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_2"/><ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_1"/><Alias Context="Domain" Name="Vital Signs"/></FormDef>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_3" Name="Systolic Blood Pressure (C25298_ACME)">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-C25298_ACME_PerformedClinicalResult_value_PQR_value"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-C25298_ACME_PerformedClinicalResult_value_PQR_code"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO2_1_3" Name="Weight (BC C25208_ACME)">
-        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_value"/>
-        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code"/>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_2" Name="Diastolic Blood Pressure (C25299_ACME)">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedClinicalResult_value_PQR_value"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedClinicalResult_value_PQR_code"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO2_1_1" Name="Common">
-        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"/>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_1" Name="Common">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedObservation_bodyPositionCode_CD_code"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"/>
       </ItemGroupDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_value" SDSVarName="VSORRES where VSTESTCD=HEIGHT" DataType="float" Length="5" SignificantDigits="1">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-C25298_ACME_PerformedClinicalResult_value_PQR_value" SDSVarName="VSORRES where VSTESTCD=SYSBP" DataType="float" Length="5" SignificantDigits="1">
         <Question>
           <TranslatedText xml:lang="en">Result Value (--ORRES)</TranslatedText>
         </Question>
       </ItemDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code" SDSVarName="VSORRESU where VSTESTCD=HEIGHT" DataType="text" Length="20">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-C25298_ACME_PerformedClinicalResult_value_PQR_code" SDSVarName="VSORRESU where VSTESTCD=SYSBP" DataType="text" Length="20">
         <Question>
           <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code"/>
+        <CodeListRef CodeListOID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-C25298_ACME_PerformedClinicalResult_value_PQR_code"/>
       </ItemDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_value" SDSVarName="VSORRES where VSTESTCD=WEIGHT" DataType="float" Length="5" SignificantDigits="1">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedClinicalResult_value_PQR_value" SDSVarName="VSORRES where VSTESTCD=DIABP" DataType="float" Length="5" SignificantDigits="1">
         <Question>
           <TranslatedText xml:lang="en">Result Value (--ORRES)</TranslatedText>
         </Question>
       </ItemDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code" SDSVarName="VSORRESU where VSTESTCD=WEIGHT" DataType="text" Length="20">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedClinicalResult_value_PQR_code" SDSVarName="VSORRESU where VSTESTCD=DIABP" DataType="text" Length="20">
         <Question>
           <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code"/>
+        <CodeListRef CodeListOID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedClinicalResult_value_PQR_code"/>
       </ItemDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value" SDSVarName="" DataType="datetime">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedObservation_bodyPositionCode_CD_code" SDSVarName="VSPOS where VSTESTCD=DIABP" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Body Position (--POS)</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedObservation_bodyPositionCode_CD_code"/>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value" SDSVarName="" DataType="datetime">
         <Question>
           <TranslatedText xml:lang="en">Date and Time (--DTC)</TranslatedText>
         </Question>
       </ItemDef>
-      <CodeList OID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25347_ACME_PerformedClinicalResult_value_PQR_code">
-        <CodeListItem CodedValue="C49668">
+      <CodeList OID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-C25298_ACME_PerformedClinicalResult_value_PQR_code">
+        <CodeListItem CodedValue="C49670">
           <Decode>
-            <TranslatedText xml:lang="en">cm</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="C48500">
-          <Decode>
-            <TranslatedText xml:lang="en">in</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="C41139">
-          <Decode>
-            <TranslatedText xml:lang="en">m</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="C71253">
-          <Decode>
-            <TranslatedText xml:lang="en">ft</TranslatedText>
+            <TranslatedText xml:lang="en">mmHg</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>
-      <CodeList OID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-BC_C25208_ACME_PerformedClinicalResult_value_PQR_code">
-        <CodeListItem CodedValue="C28252">
+      <CodeList OID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedClinicalResult_value_PQR_code">
+        <CodeListItem CodedValue="C49670">
           <Decode>
-            <TranslatedText xml:lang="en">kg</TranslatedText>
+            <TranslatedText xml:lang="en">mmHg</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="C48531">
+      </CodeList>
+      <CodeList OID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-C25299_ACME_PerformedObservation_bodyPositionCode_CD_code">
+        <CodeListItem CodedValue="C62122">
           <Decode>
-            <TranslatedText xml:lang="en">LB</TranslatedText>
+            <TranslatedText xml:lang="en">SITTING</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="C48155">
+        <CodeListItem CodedValue="C62166">
           <Decode>
-            <TranslatedText xml:lang="en">g</TranslatedText>
+            <TranslatedText xml:lang="en">STANDING</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="C48519">
+        <CodeListItem CodedValue="C62167">
           <Decode>
-            <TranslatedText xml:lang="en">oz</TranslatedText>
+            <TranslatedText xml:lang="en">SUPINE</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>

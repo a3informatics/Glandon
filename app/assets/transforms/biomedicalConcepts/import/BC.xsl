@@ -74,6 +74,7 @@
     <!-- Template for the RCT -->
     <xsl:template match="BiomedicalConcept">
 
+        <xsl:variable name="BCIdentifier" select="concat(@Name,' (',@Id, ')')"/>
         <xsl:variable name="BCItemType" select="replace(@Id,' ',$MinorSeparator)"/>
         <xsl:variable name="Prefix" select="concat($URIPrefix,$MainSeparator,$BCItemType)"/>
         
@@ -145,7 +146,7 @@
         <!-- Scoped Identifier -->
         <xsl:call-template name="ScopedIdentifier">
             <xsl:with-param name="pCID" select="$SIName"/>
-            <xsl:with-param name="pIdentifier" select="$BCItemType"/>
+            <xsl:with-param name="pIdentifier" select="$BCIdentifier"/>
             <xsl:with-param name="pVersionLabel" select="'0.1'"/>
             <xsl:with-param name="pVersion" select="'1'"/>
             <xsl:with-param name="pScope" select="@Scope"/>

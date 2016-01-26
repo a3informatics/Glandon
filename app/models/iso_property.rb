@@ -17,16 +17,13 @@ class IsoProperty
     ns = UriManagement.getNs1(prefix)
     uri = Uri.new
     uri.setNsFragment(ns, type)
-    #ConsoleLogger::log(C_CLASS_NAME,"get","ns=" + ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"get","uri=" + uri.all)
     p = @properties.select {|prop| prop[:rdfType] == uri.all} 
-    if p.length > 0
-      #ConsoleLogger::log(C_CLASS_NAME,"get","Found")
-      results = p.map { |prop| { value: prop[:value], label: prop[:label] } }
-      @properties = @properties.reject {|prop| prop[:rdfType] == uri.all}
-    end
-    #ConsoleLogger::log(C_CLASS_NAME,"get","results=" + results.to_s)
-    return results
+    #if p.length > 0
+    #  results = p.map { |prop| { value: prop[:value], label: prop[:label] } }
+      #@properties = @properties.reject {|prop| prop[:rdfType] == uri.all}
+    #end
+    #return results
+    return p
   end
 
   def getOnly(prefix, type)
@@ -53,11 +50,12 @@ class IsoProperty
   end
 
   def set(predicate, objectLiteral, label)
-    property = Hash.new
-    property[:rdfType] = predicate
-    property[:value] = objectLiteral
-    property[:label] = label
-    @properties << property
+    #property = Hash.new
+    #property[:rdfType] = predicate
+    #property[:value] = objectLiteral
+    #property[:label] = label
+    #@properties << property
+    @properties << {:rdfType => predicate, :value => objectLiteral, :lable => label}
     #ConsoleLogger::log(C_CLASS_NAME,"set","@property=" + @property.to_s)
   end
 

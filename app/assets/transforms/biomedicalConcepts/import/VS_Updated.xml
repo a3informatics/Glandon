@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BiomedicalConcepts>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C25347" Name="Height Biomedical Concept">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C25347" Name="Height Biomedical Concept">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -51,7 +51,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C25208" Name="Weight Biomedical Concept">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C25208" Name="Weight Biomedical Concept">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">

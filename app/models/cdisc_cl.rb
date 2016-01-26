@@ -53,7 +53,7 @@ class CdiscCl < ThesaurusConcept
   def self.find(id, ns)
     object = super(id, ns)
     if object != nil
-      object.extensible = object.properties.getOnly(C_SCHEMA_PREFIX, "extensible")
+      object.extensible = object.properties.getOnly(C_SCHEMA_PREFIX, "extensible")[:value]
     end
     return object  
   end
@@ -61,7 +61,7 @@ class CdiscCl < ThesaurusConcept
   def self.allTopLevel(id, ns)
     results = super(id, ns)
     results.each do |key, tc|
-      tc.extensible = tc.properties.getOnly(C_SCHEMA_PREFIX, "extensible")
+      tc.extensible = tc.properties.getOnly(C_SCHEMA_PREFIX, "extensible")[:value]
     end
     return results  
   end
@@ -69,7 +69,7 @@ class CdiscCl < ThesaurusConcept
   def self.allChildren(id, ns)
     results = super(id, ns)
     results.each do |key, tc|
-      tc.extensible = tc.properties.getOnly(C_SCHEMA_PREFIX, "extensible")
+      tc.extensible = tc.properties.getOnly(C_SCHEMA_PREFIX, "extensible")[:value]
     end
     return results
   end

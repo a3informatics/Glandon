@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BiomedicalConcepts>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111361" Name="Forced Vital Capacity">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C111361" Name="Forced Vital Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -55,7 +55,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112381" Name="Percent Predicted Forced Vital Capacity">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112381" Name="Percent Predicted Forced Vital Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -110,7 +110,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C38084" Name="Forced Expiratory Volume in 1 Second">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C38084" Name="Forced Expiratory Volume in 1 Second">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -165,7 +165,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112376" Name="Percent Predicted FEV1">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112376" Name="Percent Predicted FEV1">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -220,7 +220,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112285" Name="FEV1 Reversibility">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112285" Name="FEV1 Reversibility">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -275,7 +275,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111359" Name="FEV1/FVC">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C111359" Name="FEV1/FVC">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -329,7 +329,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112377" Name="Percent Predicted FEV1/FVC">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112377" Name="Percent Predicted FEV1/FVC">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -381,7 +381,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C2000000_8" Name="Forced Expiratory Flow 25-75% Capacity">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C2000000_8" Name="Forced Expiratory Flow 25-75% Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -438,7 +438,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C2000000_9" Name="Percent predicted FEF 25-75">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C2000000_9" Name="Percent predicted FEF 25-75">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -493,7 +493,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C41372" Name="Peak Expiratory Flow">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C41372" Name="Peak Expiratory Flow">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -550,7 +550,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112384" Name="Percent Predicted Peak Expiratory Flow">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112384" Name="Percent Predicted Peak Expiratory Flow">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -605,7 +605,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112368" Name="PEF Reversibility">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112368" Name="PEF Reversibility">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -660,7 +660,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C47843" Name="Forced Expiratory Volume in 6 Seconds">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C47843" Name="Forced Expiratory Volume in 6 Seconds">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -715,7 +715,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112378" Name="Percent Predicted FEV6">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112378" Name="Percent Predicted FEV6">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -770,7 +770,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111360" Name="Forced Inspiratory Volume in 1 Second">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C111360" Name="Forced Inspiratory Volume in 1 Second">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -825,7 +825,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112380" Name="Percent Predicted FIV1">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112380" Name="Percent Predicted FIV1">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -880,7 +880,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111324" Name="Tidal Volume">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C111324" Name="Tidal Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -935,7 +935,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112387" Name="Percent Predicted Tidal Volume">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112387" Name="Percent Predicted Tidal Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -990,7 +990,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111362" Name="Inspiratory Capacity">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C111362" Name="Inspiratory Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1045,7 +1045,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112382" Name="Percent Predicted Inspiratory Capacity">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112382" Name="Percent Predicted Inspiratory Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1100,7 +1100,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112321" Name="IC Reversibility">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112321" Name="IC Reversibility">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1154,7 +1154,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111200" Name="Expiratory Reserve Volume">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C111200" Name="Expiratory Reserve Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1209,7 +1209,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112375" Name="Percent Predicted ERV">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112375" Name="Percent Predicted ERV">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1264,7 +1264,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111237" Name="Inspiratory Reserve Volume">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C111237" Name="Inspiratory Reserve Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1319,7 +1319,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112383" Name="Percent Predicted IRV">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112383" Name="Percent Predicted IRV">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1374,7 +1374,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111315" Name="Slow Vital Capacity">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C111315" Name="Slow Vital Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1429,7 +1429,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112386" Name="Percent Predicted Slow Vital Capacity">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112386" Name="Percent Predicted Slow Vital Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1484,7 +1484,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112333" Name="Maximum Forced Inspiratory Flow">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112333" Name="Maximum Forced Inspiratory Flow">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1541,7 +1541,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112379" Name="Percent Predicted FIFmax">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112379" Name="Percent Predicted FIFmax">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1596,7 +1596,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C89836" Name="Residual Volume">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C89836" Name="Residual Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1651,7 +1651,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112385" Name="Percent Predicted Residual Volume">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112385" Name="Percent Predicted Residual Volume">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1706,7 +1706,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C111325" Name="Total Lung Capacity">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C111325" Name="Total Lung Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
@@ -1761,7 +1761,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="BC C112388" Name="Percent Predicted Total Lung Capacity">
+	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-CDISC" Id="C112388" Name="Percent Predicted Total Lung Capacity">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">

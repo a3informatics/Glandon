@@ -19,7 +19,7 @@ class IsoLink
     if l.length > 0
       #ConsoleLogger::log(C_CLASS_NAME,"get","Found")
       results = l.map { |link| link[:value] }
-      @links = @links.reject { |link| link[:rdfType] == uri.all }
+    #  @links = @links.reject { |link| link[:rdfType] == uri.all }
     end
     #ConsoleLogger::log(C_CLASS_NAME,"get","results=" + results.to_s)
     return results

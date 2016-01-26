@@ -51,7 +51,7 @@ class ThesaurusConcept < IsoConcept
 
   def self.allTopLevel(id, ns)
     #ConsoleLogger::log(C_CLASS_NAME,"allTopLevel","*****Entry*****")
-    results = findWithCondition("?a iso25964:inScheme :" + id, ns, ["iso25964"])
+    results = findWithCondition("?a iso25964:inScheme :" + id, ns, ["iso25964"], false)
     results.each do |key, object|
       object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")[:value]
       object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")[:value]
@@ -67,6 +67,7 @@ class ThesaurusConcept < IsoConcept
       sorted[k] = results[k]
     end
     return sorted
+    #return results
   end
   
   # Find all children of a given concept (identified by the CID)
@@ -88,6 +89,7 @@ class ThesaurusConcept < IsoConcept
       sorted[k] = results[k]
     end
     return sorted
+    #return results
   end
   
   def self.searchTextWithNs(termId, ns, term)

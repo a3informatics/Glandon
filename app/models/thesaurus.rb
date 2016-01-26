@@ -196,7 +196,7 @@ class Thesaurus < IsoManaged
         end
       end
     end
-    ConsoleLogger::log(C_CLASS_NAME,"d3","D3=" + result.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"d3","D3=" + result.to_s)
     return result
 
   end

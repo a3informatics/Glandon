@@ -110,7 +110,7 @@ class IsoConcept
     return object
   end
 
-  def self.findWithCondition(conditionTriple, ns, prefixSet)
+  def self.findWithCondition(conditionTriple, ns, prefixSet, links=true)
     #ConsoleLogger::log(C_CLASS_NAME,"findWithCondition","*****Entry*****")
     #ConsoleLogger::log(C_CLASS_NAME,"findWithCondition","Triple=" + conditionTriple)
     #ConsoleLogger::log(C_CLASS_NAME,"findWithCondition","namespace=" + ns)
@@ -123,8 +123,15 @@ class IsoConcept
       "{ \n" +
       conditionTriple + " . \n" +
       "  ?a ?b ?c . \n" +
-      "  OPTIONAL { ?b rdfs:subPropertyOf ?d . ?b rdfs:label ?e . FILTER(STRSTARTS(STR(?d), \"http://www.assero.co.uk/ISO11179Concepts#\")). }\n" +
-      "}"
+      "  OPTIONAL {  \n" +
+      "    ?b rdfs:subPropertyOf ?d .  \n" +
+      "    ?b rdfs:label ?e .  \n" +
+      "    FILTER(STRSTARTS(STR(?d), \"http://www.assero.co.uk/ISO11179Concepts#\")) .  \n" +
+      "  } \n"
+      if !links
+        query += "  FILTER(STR(?d) = \"http://www.assero.co.uk/ISO11179Concepts#property\" || !BOUND(?d) ) . \n"
+      end
+      query += "}"
     
     # Send the request, wait the resonse
     response = CRUD.query(query)
