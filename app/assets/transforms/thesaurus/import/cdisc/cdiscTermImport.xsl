@@ -4,6 +4,8 @@
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:cts="http://rdf.cdisc.org/ct/schema#" exclude-result-prefixes="xs" version="1.0">
 
+    <xsl:import href="../../../utility/utility.xsl" />
+    
     <!-- 
         Parameters
         UseVersion:     The version to be transformed. Must exist in the manifest document (the XML being transformed). Used
@@ -26,6 +28,8 @@
     <xsl:variable name="tab" select="'&#x09;'" />
     <xsl:variable name="apos">'</xsl:variable>
     <xsl:variable name="quote">"</xsl:variable>
+    <xsl:variable name="CTIdentifier">CDISC Terminology</xsl:variable>
+    <xsl:variable name="CTLabel">CDISC Terminology</xsl:variable>
     <xsl:variable name="CLPrefix">CL-</xsl:variable>
     <xsl:variable name="CLIPrefix">CLI-</xsl:variable>
     <xsl:variable name="ReleaseDate" select="/CDISCTerminology/Update[@version=$UseVersion]/@date"/>
@@ -70,6 +74,33 @@
         <xsl:text>&#009;rdfs:label "CDISC Terminology </xsl:text><xsl:value-of select="$ReleaseDate"/><xsl:text>"^^xsd:string ;&#xa;</xsl:text>
         <xsl:value-of select="concat('&#009;isoI:hasIdentifier mdrItems:',$SI,' ;',$newline)"/>
         <xsl:text>.&#xa;</xsl:text>-->
+
+        <!-- Create the Thesaurus Entry -->
+        <xsl:call-template name="Subject"> 
+            <xsl:with-param name="pName" select="concat(':',$CID)" /> 
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject"> 
+            <xsl:with-param name="pPredicateName" select="'rdf:type'" /> 
+            <xsl:with-param name="pObjectName" select="'iso25964:Thesaurus'" /> 
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject"> 
+            <xsl:with-param name="pPredicateName" select="'rdfs:label'" /> 
+            <xsl:with-param name="pObjectName" select="concat($quote,$CTLabel,' ',$ReleaseDate,$quote,'^^xsd:string')" /> 
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject"> 
+            <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
+            <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SI)" /> 
+        </xsl:call-template>
+        <xsl:text>.&#xa;</xsl:text>
+        
+        <!-- Scoped Identifier -->
+        <xsl:call-template name="ScopedIdentifier">
+            <xsl:with-param name="pCID" select="$SI"/>
+            <xsl:with-param name="pIdentifier" select="$CTIdentifier"/>
+            <xsl:with-param name="pVersionLabel" select="$ReleaseDate"/>
+            <xsl:with-param name="pVersion" select="$UseVersion"/>
+            <xsl:with-param name="pScope" select="'NS-CDISC'"/>
+        </xsl:call-template>
 
         <!-- For each file making up the CDISC Terminology version, select the file set from the catalog file -->
         <xsl:for-each select="/CDISCTerminology/Update[@version=$UseVersion]/File">

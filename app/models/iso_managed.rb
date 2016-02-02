@@ -51,6 +51,13 @@ class IsoManaged < IsoConcept
     result = IsoScopedIdentifier.exists?(identifier, registrationAuthority.namespace.id)
   end
 
+  # Does the item exist. Cannot be used for child objects!
+  def self.versionExists?(identifier, version, namespace)
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + registrationAuthority.namespace.id)
+    result = IsoScopedIdentifier.versionExists?(identifier, version, namespace.id)
+  end
+
   # Note: The id is the identifier for the enclosing managed object. 
   def self.find(id, ns)  
     #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
@@ -331,7 +338,7 @@ class IsoManaged < IsoConcept
     return result
   end
 
-  def self.import(prefix, params, ownerNamespace, rdfType, schemaNs, instanceNs)
+  def self.importOld(prefix, params, ownerNamespace, rdfType, schemaNs, instanceNs)
     #ConsoleLogger::log(C_CLASS_NAME,"import","*****Entry*****")
     version = params[:version]
 
@@ -384,6 +391,31 @@ class IsoManaged < IsoConcept
     end
     return object
   
+  end
+
+  # Rewritten to return an object with the desired settings for the import.
+  def self.import(prefix, params, ownerNamespace, rdfType, schemaNs, instanceNs)
+    #ConsoleLogger::log(C_CLASS_NAME,"import","*****Entry*****")
+    version = params[:version]
+
+    # Set the registration authority to teh owner
+    orgName = ownerNamespace.shortName
+    scopeId = ownerNamespace.id
+
+    # Create the required namespace. Use owner name to extend
+    uri = Uri.new
+    uri.setUri(instanceNs)
+    uri.extendPath(orgName + "/V" + version.to_s)
+    useNs = uri.getNs()
+    ConsoleLogger::log(C_CLASS_NAME,"create","useNs=" + useNs)
+     
+    # Create the SI etc. Note no registration state.
+    identifier = params[:identifier]
+    object = self.new
+    object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
+    object.namespace = useNs
+    object.scopedIdentifier = IsoScopedIdentifier.createDummy(params, identifier, scopeId)
+    return object
   end
 
   def self.create(prefix, params, rdfType, schemaNs, instanceNs)

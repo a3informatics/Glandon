@@ -1,0 +1,43 @@
+@prefix : <http://www.assero.co.uk/MDRItems#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoB: <http://www.assero.co.uk/ISO11179Basic#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://wwwasserocouk/MDRItems>
+	rdf:type owl:Ontology ;
+	owl:imports <http://wwww3org/2004/02/skos/core> ;
+.
+:O-CDISC 
+	rdf:type isoB:Organization ;
+  isoB:name "Clinical Data Interchange Standards Consortium"^^xsd:string ;
+  isoB:shortName "CDISC"^^xsd:string ; 
+.
+:NS-CDISC
+  rdf:type isoI:Namespace ;
+  isoI:ofOrganization :O-CDISC ; 
+.
+:O-ACME 
+	rdf:type isoB:Organization ;
+  isoB:name "ACME Pharma"^^xsd:string ; 
+  isoB:shortName "ACME"^^xsd:string ; 
+.
+:NS-ACME
+  rdf:type isoI:Namespace ;
+  isoI:ofOrganization :O-ACME ;
+.
+:RAI-123456789 
+	rdf:type isoB:RegistrationAuthorityIdentifier ; 
+  isoB:organizationIdentifier "123456789"^^xsd:string ;
+  isoB:internationalCodeDesignator "DUNS"^^xsd:string ; 
+.
+:RA-123456789
+  rdf:type isoR:RegistrationAuthority ;
+  isoR:raNamespace :NS-ACME ;
+  isoR:hasAuthorityIdentifier :RAI-123456789 ; 
+.

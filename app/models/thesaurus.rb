@@ -47,12 +47,12 @@ class Thesaurus < IsoManaged
   end
 
   def self.create(params)
-    object = super(C_CID_PREFIX, params, 'Thesaurus', C_SCHEMA_NS, C_INSTANCE_NS)
+    object = super(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
     return object
   end
 
   def self.import(params, ownerNamespace)
-    object = super(C_CID_PREFIX, params, ownerNamespace, 'Thesaurus', C_SCHEMA_NS, C_INSTANCE_NS)
+    object = super(C_CID_PREFIX, params, ownerNamespace, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
     return object
   end
 

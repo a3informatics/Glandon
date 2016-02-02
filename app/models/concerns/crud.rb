@@ -51,10 +51,8 @@ module CRUD
         db = SEMANTIC_DB_CONFIG['dbType']
         key = SEMANTIC_DB_CONFIG['apiKey'] 
         secret = SEMANTIC_DB_CONFIG['secret']
-        #endpoint = SEMANTIC_DB_CONFIG['fileEndpoint']
-        endpoint = "http://192.168.2.101:3030/mdr/upload"
+        endpoint = SEMANTIC_DB_CONFIG['fileEndpoint']
         headers = {'Content-type'=> "multipart/form-data"}
-        #headers = {'Content-Type'=> "application/json"}
         data = { "filename" => file}
         jsonData = data.to_json
         #ConsoleLogger::log(C_CLASS_NAME,"file",jsonData.to_s)

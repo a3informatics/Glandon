@@ -96,6 +96,7 @@ class CdiscTerm < Thesaurus
   
   def self.create(params)
     object = self.new
+    object.errors.clear
     namespace = IsoNamespace.findByShortName("CDISC")
     identifier = "CDISC Terminology"
     version = params[:version]
@@ -105,38 +106,30 @@ class CdiscTerm < Thesaurus
     params[:versionLabel] = date.to_s
     params[:label] = identifier + " " + date.to_s
     
-    # Clean any empty entries
-    files.reject!(&:blank?)
-    
-    # Create manifest file
-    manifest = Xml::buildCdiscTermImportManifest(date, version, files)
-    
-    #Create the thesaurus
-    thesaurus = Thesaurus.import(params, namespace)
-    si = thesaurus.scopedIdentifier.id
-    ns = thesaurus.namespace
-    cid = thesaurus.id
+    # Check to ensure version does not exist
+    if !versionExists?(identifier, version, namespace)
+      ConsoleLogger::log(C_CLASS_NAME,"create","Proceding")
 
-    # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
-    Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", {:UseVersion => version, :Namespace => "'" + ns + "'", :SI => "'" + si + "'", :CID => "'" + cid + "'"}, "CT.ttl")
-    
-    # upload the file to the database. Send the request, wait the resonse
-    publicDir = Rails.root.join("public","upload")
-    outputFile = File.join(publicDir, "CT.ttl")
-    response = CRUD.file(outputFile)
+      # Clean any empty entries
+      files.reject!(&:blank?)
 
-    # Response
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"Create","CDISC import success")   
+      # Determine the SI, namespace and CID
+      thesaurus = Thesaurus.import(params, namespace)
+      params[:si] = thesaurus.scopedIdentifier.id
+      params[:ns] = thesaurus.namespace
+      params[:cid] = thesaurus.id
+
+      # Create the background job status
+      job = Background.create
+      job.importCdiscTerm(params)
     else
-      ConsoleLogger::log(C_CLASS_NAME,"Create","CDISC import failed!")   
+      ConsoleLogger::log(C_CLASS_NAME,"create","Duplicate")
+      object.errors.add(:base, "The version has already been created.")
+      job = nil
     end
-    
-    # Set the object
-    object = thesaurus
-    return object
+    return { :object => object, :job => job }
   end
-
+  
   def self.count(searchTerm, ns)
     count = 0
     if searchTerm == ""

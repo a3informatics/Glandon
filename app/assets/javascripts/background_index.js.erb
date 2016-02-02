@@ -1,0 +1,73 @@
+$(document).ready(function() {
+
+  var statusTable;
+  var statusTableReload;
+  var notComplete;
+  
+  statusTableReload = false;
+  loadStatus();
+  check();
+  
+  // Not being used at present
+  function checkTable () {
+    notComplete = true
+    while (notComplete) {
+      var rowData;
+      var i;
+      notComplete = false;
+      rowData = statusTable.rows().data();
+      for (i=0; i<rowData.length; i++) {
+        row = rowData.row(i).data();
+        if (typeof row != 'undefined') {
+          if (!row.complete) {
+            notComplete = true;
+          }
+        }
+      }
+    }
+  }
+
+  function check () {
+    setTimeout(function(){
+      loadStatus();
+      check();
+    }, 5000);
+  }
+ 
+  /*
+   * Load functions
+   */
+  function loadStatus () {
+    if (!statusTableReload) {
+      initialLoadStatus();
+    } else {
+      statusTable.ajax.reload();
+    }
+  }
+
+  function initialLoadStatus () {
+    statusTable = $('#statusTable').DataTable( {
+      "ajax": {
+        "url": "backgrounds/running",
+        "dataSrc": "data"  
+      },
+      "bProcessing": true,
+      "language": {
+          "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+        },
+      error: function(xhr,status,error){
+        handleAjaxError(xhr, status, error);
+      },
+      "columns": [
+        {"data" : "description", "width" : "40%"},
+        {"data" : "status", "width" : "20%"},
+        {"data" : "started", "width" : "15%"},
+        {"data" : "percentage", "width" : "5%"},
+        {"data" : "complete", "width" : "5%"},
+        {"data" : "completed", "width" : "15%"}
+      ]
+    });
+    statusTableReload = true;
+  }
+
+});

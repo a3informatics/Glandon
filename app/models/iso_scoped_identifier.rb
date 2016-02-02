@@ -66,6 +66,39 @@ class IsoScopedIdentifier
     return result
   end
 
+  def self.versionExists?(identifier, version, scopeId)   
+    ConsoleLogger::log(C_CLASS_NAME,"versionExists?","*****Entry*****")
+    ConsoleLogger::log(C_CLASS_NAME,"versionExists?","Identifier=" + identifier.to_s )
+    ConsoleLogger::log(C_CLASS_NAME,"versionExists?","Version=" + version.to_s )
+    ConsoleLogger::log(C_CLASS_NAME,"versionExists?","ScopeId=" + scopeId.to_s )
+    result = false
+    
+    # Create the query
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+      "SELECT ?a WHERE \n" +
+      "{\n" +
+      "  ?a rdf:type isoI:ScopedIdentifier . \n" +
+      "  ?a isoI:identifier \"" + identifier + "\" . \n" +
+      "  ?a isoI:version " + version + " . \n" +
+      "  ?a isoI:hasScope :" + scopeId + ". \n" +
+      "}"
+    
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('a', true, node)
+      if uri != "" 
+        ConsoleLogger::log(C_CLASS_NAME,"versionExists?","exisits")
+        result = true
+      end
+    end
+    return result
+  end
+
   def self.find(id)    
     object = nil
     #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
@@ -230,15 +263,17 @@ class IsoScopedIdentifier
     
   end
 
-  def update(id)
-    return nil
+  def self.createDummy(params, uid, scopeId)
+    object = self.new
+    object.id = ModelUtility.buildCidIdentifierVersion(C_CLASS_PREFIX, uid, params[:version])
+    object.version = params[:version]
+    object.versionLabel = params[:versionLabel]
+    object.identifier = params[:identifier]
+    object.namespace = IsoNamespace.find(scopeId)
+    return object
   end
 
   def destroy
-    
-    # Log
-    #ConsoleLogger::log(C_CLASS_NAME,"destroy","Id=" + self.id)
-    
     # Create the query
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI"]) +
       "DELETE \n" +
@@ -259,7 +294,6 @@ class IsoScopedIdentifier
     else
       ConsoleLogger::log(C_CLASS_NAME,"destroy","Error!")
     end
-    
   end
 
 end

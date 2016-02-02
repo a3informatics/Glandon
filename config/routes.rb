@@ -121,6 +121,12 @@ Rails.application.routes.draw do
   namespace :domains do
     resources :variables
   end
+  resources :backgrounds do
+    collection do
+      get :running
+      post :clear
+    end
+  end
   resources :standards
   resources :sdtmigs
 end

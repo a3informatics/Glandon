@@ -14,8 +14,15 @@ class CdiscTermsController < ApplicationController
   end
   
   def create
-    @cdiscTerm = CdiscTerm.create(this_params)
-    redirect_to history_cdisc_terms_path
+    hash = CdiscTerm.create(this_params)
+    @cdiscTerm = hash[:object]
+    @job = hash[:job]
+    if @cdiscTerm.errors.empty?
+      redirect_to backgrounds_path
+    else
+      flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
+      redirect_to history_cdisc_terms_path
+    end
   end
   
   def show
