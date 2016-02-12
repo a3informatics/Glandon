@@ -1105,6 +1105,8 @@ $(document).ready(function() {
   }
 
   function setParent(node) {
+    var i;
+    var child;
     if (node.hasOwnProperty('save')) {
       for (i=0; i<node.save.length; i++) {
         child = node.save[i];

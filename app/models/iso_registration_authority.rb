@@ -141,8 +141,8 @@ class IsoRegistrationAuthority
     if @@repositoryOwner == nil
       results = self.all
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"owner","Owner, id=" + @@repositoryOwner.id)
-    #ConsoleLogger::log(C_CLASS_NAME,"owner","Namespace, id=" + @@repositoryOwner.namespace.id)
+    ConsoleLogger::log(C_CLASS_NAME,"owner","Owner, id=" + @@repositoryOwner.id)
+    ConsoleLogger::log(C_CLASS_NAME,"owner","Namespace, id=" + @@repositoryOwner.namespace.id)
     return @@repositoryOwner
     
   end
