@@ -5,11 +5,11 @@
 		  <tr>
 				<th>Identifier</th>
 				<th>Label</th>
-				<th>Notation</th>
+				<th>Submission</th>
 				<% clEntry = @Results.values[0] %>
 				<% value = clEntry[:result]%>
 				<% value.each do |vKey, value| %>
-			    	<th><%= vKey %></th>
+			    	<th class="text-center"><%= vKey %></th>
 			  	<% end %>
 				<th></th>
 				<th></th>
@@ -24,7 +24,19 @@
 					<td><%= cl.label %></td>
 					<td><%= cl.notation %></td>
 					<% value.each do |vKey, status| %>
-			    		<%= render partial: "shared/historyCell", :locals => {:historyValue => status} %>
+			    		<% if status == "." %>
+							<td class="text-center"><span class="glyphicon glyphicon-ok-circle"/></td>
+						<% elsif status == "M"  %>
+							<td class="text-center bg-warning">
+								<span class="text-center glyphicon glyphicon-pencil"/>
+							</td>
+						<% elsif status == "X"  %>
+							<td class="text-center bg-danger">	
+								<span class="glyphicon glyphicon-remove-circle"/>
+							</td>
+						<% else %>
+							<td class="text-center">&nbsp;</td>
+						<% end %>
 					<% end %>
 					<td><%=link_to "Show", cdisc_cl_path(:id => cl.id, :namespace => cl.namespace ), :class => "btn btn-primary btn-xs" %></td>
 					<td><%=link_to "Compare", compare_cdisc_cls_path(:id => cl.id, :oldTermId => @oldCdiscTerm.id, :oldTermNs => @oldCdiscTerm.namespace, :newTermId => @newCdiscTerm.id, :newTermNs => @newCdiscTerm.namespace, :type => "ALL"), :class => "btn btn-primary btn-xs" %></td>

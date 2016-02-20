@@ -38,6 +38,34 @@ class CdiscTermsController < ApplicationController
     @cdiscTerm = CdiscTerm.find(id, namespace, false)
   end
   
+  def search2
+    id = params[:id]
+    namespace = params[:namespace]
+    @cdiscTerm = CdiscTerm.find(id, namespace, false)
+  end
+  
+  def next
+    id = params[:id]
+    namespace = params[:namespace]
+    @cdiscTerm = CdiscTerm.find(id, namespace, false)
+    items = []
+    more = true
+    offset = params[:offset].to_i
+    limit = params[:limit].to_i
+    #ConsoleLogger::log(C_CLASS_NAME,"next","Offset=" + offset.to_s + ", limit=" + limit.to_s)  
+    items = CdiscTerm.next(offset, limit, namespace)
+    if items.count == 0
+      more = false
+    end
+    results = {}
+    results[:offset] = offset + items.count
+    results[:limit] = limit
+    results[:more] = more
+    results[:data] = items
+    ConsoleLogger::log(C_CLASS_NAME,"next","Offset=" + results[:offset].to_s + ", limit=" + results[:limit].to_s + ", count=" + items.count.to_s)  
+    render :json => results, :status => 200
+  end
+
   def searchNew
     id = params[:id]
     ns = params[:namespace]
@@ -95,17 +123,34 @@ class CdiscTermsController < ApplicationController
   end
   
   def changes
-    data = Array.new
-    cdiscTerms = CdiscTerm.all()
-  	cdiscTerms.each do |key, ct|
-      clsForTerm(ct, data)
-      if @id == nil
-        @id = ct.id
-        @identifier = ct.identifier
-        @title = ct.label
+    @results = CdiscCtChanges.read
+  end
+
+  def changesCalc
+    #data = Array.new
+    #cdiscTerms = CdiscTerm.all()
+  	#cdiscTerms.each do |key, ct|
+    #  clsForTerm(ct, data)
+    #  if @id == nil
+    #    @id = ct.id
+    #    @identifier = ct.identifier
+    #    @title = ct.label
+    #  end
+    #end
+    #@Results = buildResults(data)
+    if CdiscCtChanges.exists?
+        redirect_to changes_cdisc_terms_path
+    else
+      hash = CdiscTerm.changes()
+      @cdiscTerm = hash[:object]
+      @job = hash[:job]
+      if @cdiscTerm.errors.empty?
+        redirect_to backgrounds_path
+      else
+        flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
+        redirect_to history_cdisc_terms_path
       end
     end
-    @Results = buildResults(data)
   end
 
 private

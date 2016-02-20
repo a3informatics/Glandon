@@ -130,6 +130,14 @@ class CdiscTerm < Thesaurus
     return { :object => object, :job => job }
   end
   
+  def self.changes
+    object = self.new
+    object.errors.clear
+    job = Background.create
+    job.changesCdiscTerm()
+    return { :object => object, :job => job }
+  end
+
   def self.count(searchTerm, ns)
     count = 0
     if searchTerm == ""
@@ -172,6 +180,23 @@ class CdiscTerm < Thesaurus
     return results
   end
 
+  def self.next(offset, limit, ns)
+    results = Array.new
+    variable = getOrderVariable(0)
+    order = getOrdering("asc")
+    query = UriManagement.buildNs(ns, ["iso25964"]) + 
+      queryString("", ns) + 
+      " ORDER BY " + order + "(" + variable + ") OFFSET " + offset.to_s + " LIMIT " + limit.to_s
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      processNode(node, results)
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"next","Results=" + results.to_json.to_s)
+    return results
+  end
+
 private
 
   def self.processNode(node, results)
@@ -184,6 +209,7 @@ private
     eSet = node.xpath("binding[@name='f']/literal")
     dSet = node.xpath("binding[@name='g']/literal")
     tlSet = node.xpath("binding[@name='h']/uri")
+    parentSet = node.xpath("binding[@name='k']/literal")
     if uriSet.length == 1 
       object = CdiscCl.new 
       object.identifier = idSet[0].text
@@ -193,18 +219,23 @@ private
       object.definition = dSet[0].text
       object.extensible = false
       object.topLevel = false
+      object.parentIdentifier = ""
       if eSet.length == 1 
         object.extensible = true
       end
       if tlSet.length == 1 
         object.topLevel = true
+        object.parentIdentifier = object.identifier
+      end
+      if parentSet.length == 1 
+        object.parentIdentifier = parentSet[0].text
       end
       results.push(object)
     end
   end
 
   def self.queryString(searchTerm, ns)
-    query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
+    query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g ?h ?k WHERE \n" +
       "  {\n" +
       "    ?a iso25964:identifier ?b . \n" +
       "    ?a iso25964:notation ?c . \n" +
@@ -218,7 +249,12 @@ private
       "    OPTIONAL\n" +
       "    {\n" +
       "      ?a iso25964:inScheme ?h . \n" +
-      "    }\n"
+      "    }\n" +
+      "    OPTIONAL\n" +
+      "    { \n" +
+      "      ?j iso25964:narrower ?a .  \n" +
+      "      ?j iso25964:identifier ?k .  \n" +
+      "    } \n"
       if searchTerm != ""
         query += "    ?a ( iso25964:identifier | iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?i . FILTER regex(?i, \"" + 
           searchTerm + "\") . \n"

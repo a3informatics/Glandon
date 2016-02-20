@@ -57,12 +57,13 @@ Rails.application.routes.draw do
   end
   resources :cdisc_terms do
     collection do
+      get :changesCalc
       get :changes
       get :compare
       get :history
       get :search
-      get :searchNew
-      get :searchOld
+      get :search2
+      get :next
       get :import
     end
   end

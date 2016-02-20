@@ -63,3 +63,23 @@ function displayAlerts(html) {
       }, 
       5000);
 }
+
+function handleAjaxError (xhr, status, error) {
+    var json;
+    var errors;
+    var html;
+    try {
+      // Populate errorText with the comment errors
+      json = $.parseJSON(xhr.responseText);
+      errors = json['errors'];
+    } catch(err) {
+      // If the responseText is not valid JSON (like if a 500 exception was thrown), populate errors with a generic error message.
+      errors = [];
+      errors[0] = "Error communicating with the server.";
+    }
+    var html = ""
+    for (var i=0; i<errors.length; i++) {
+        html = html + alertError(errors[i]);
+    }
+    displayAlerts(html);
+}

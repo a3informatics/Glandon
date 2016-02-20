@@ -10,7 +10,7 @@
 		    <th>Version</th>
 		    <th class="col-sm-1">Date</th>
 		    <th class="col-sm-1">Identifier</th>
-		    <th class="col-sm-1">Notation</th>
+		    <th class="col-sm-1">Submision</th>
 		    <th class="col-sm-2">Preferred Term</th>
 		    <th class="col-sm-2">Synonym</th>
   			<th class="col-sm-1">Extensible</th>
@@ -41,7 +41,7 @@
 				<% cliEntry = @CliResults.values[0] %>
 				<% value = cliEntry[:result]%>
 				<% value.each do |vKey, value| %>
-			    <th><%= vKey %></th>
+			    <th class="text-center"><%= vKey %></th>
 			  <% end %>
 				<th></th>
 			</tr>
@@ -54,7 +54,19 @@
 					<td><%= cli.identifier %></td>
 					<td><%= cli.notation %></td>
 					<% value.each do |vKey, status| %>
-						<%= render partial: "shared/historyCell", :locals => {:historyValue => status} %>
+						<% if status == "." %>
+							<td class="text-center"><span class="glyphicon glyphicon-ok-circle"/></td>
+						<% elsif status == "M"  %>
+							<td class="text-center bg-warning">
+								<span class="text-center glyphicon glyphicon-pencil"/>
+							</td>
+						<% elsif status == "X"  %>
+							<td class="text-center bg-danger">	
+								<span class="glyphicon glyphicon-remove-circle"/>
+							</td>
+						<% else %>
+							<td class="text-center">&nbsp;</td>
+						<% end %>
 					<% end %>
 					<td><%=link_to "Changes", changes_cdisc_clis_path(:id => cli.id), :class => "btn btn-success btn-xs" %></td>
 				</tr>	

@@ -6,7 +6,7 @@ class ThesaurusConcept < IsoConcept
   include CRUD
   include ModelUtility
       
-  attr_accessor :identifier, :notation, :synonym, :definition, :preferredTerm, :topLevel, :children
+  attr_accessor :identifier, :notation, :synonym, :definition, :preferredTerm, :topLevel, :children, :parentIdentifier
   
   # Constants
   C_CLASS_PREFIX = "THC"
@@ -39,7 +39,8 @@ class ThesaurusConcept < IsoConcept
       object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
       object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
       object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
-      object.children = allChildren(id, ns)
+      object.children = allChildren(id, ns) 
+      object.parentIdentifier = ""
       if object.links.exists?(C_SCHEMA_PREFIX,"inScheme")
         object.topLevel = true
       else
@@ -58,6 +59,7 @@ class ThesaurusConcept < IsoConcept
       object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
       object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
       object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
+      object.parentIdentifier = ""
       object.children = nil
       object.topLevel = true
     end
@@ -80,6 +82,7 @@ class ThesaurusConcept < IsoConcept
       object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
       object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
       object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
+      object.parentIdentifier = ""
       object.children = nil
       object.topLevel = false
     end
@@ -143,6 +146,7 @@ class ThesaurusConcept < IsoConcept
         object.notation = nSet[0].text
         object.preferredTerm = ptSet[0].text
         object.synonym = sSet[0].text
+        object.parentIdentifier = ""
         object.children = nil
         object.topLevel = false
         if tlSet.length == 1 
@@ -201,6 +205,7 @@ class ThesaurusConcept < IsoConcept
         object.preferredTerm = ptSet[0].text
         object.synonym = sSet[0].text
         object.definition = dSet[0].text
+        object.parentIdentifier = ""
         object.children = nil
         object.topLevel = true
         results.push (object)
@@ -246,6 +251,7 @@ class ThesaurusConcept < IsoConcept
         object.preferredTerm = ptSet[0].text
         object.synonym = sSet[0].text
         object.definition = dSet[0].text
+        object.parentIdentifier = ""
         object.children = nil
         object.topLevel = false
         results.push (object)

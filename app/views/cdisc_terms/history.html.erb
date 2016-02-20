@@ -22,12 +22,12 @@
 			    	<td><%= item.versionLabel %></td>
 			    	<td><%= item.owner %></td>
 			    	<td><%= link_to "Show", cdisc_term_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary btn-xs" %></td>
-			    	<td><%= link_to "Search", search_cdisc_terms_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary btn-xs" %></td>
+			    	<td><%= link_to "Search", search2_cdisc_terms_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary btn-xs" %></td>
 			    	<td><%= link_to "Triples", view_dashboard_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-warning btn-xs" %></td>
 			  	</tr>
 			<% end %>	
 	  	</tbody>
 	</table>
 	<%= link_to "Import", import_cdisc_terms_path, :class => "btn btn-success" %>
-	<%= link_to "Changes", changes_cdisc_terms_path() , :class => "btn btn-success" %>
+	<%= link_to "Changes", changesCalc_cdisc_terms_path() , :class => "btn btn-success" %>
 </div>

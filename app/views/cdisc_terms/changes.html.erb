@@ -4,27 +4,42 @@
 	  	<thead>
 	  		<tr>
 				<th>Code List</th>
-				<th>Submission Value</th>
-				<% clEntry = @Results.values[0] %>
-				<% result = clEntry[:result]%>
+				<th>Label</th>
+				<% clEntry = @results.values[0] %>
+				<% result = clEntry["result"]%>
 				<% result.each do |vKey, status| %>
-		    		<th><%= vKey %></th>
+		    		<th class="text-center"><%= vKey %></th>
 		  		<% end %>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>	
-			<% @Results.each do |clKey, clEntry| %>
-				<% result = clEntry[:result]%>
-				<% identifier = clEntry[:identifier]%>
-				<% clId = clEntry[:id]%>
+			<% @results.each do |clKey, clEntry| %>
+				<% result = clEntry["result"]%>
+				<% cl = clEntry["cl"]%>
+				<% id = cl["id"]%>
+				<% namespace = cl["id"]%>
+				<% identifier = cl["identifier"]%>
+				<% label = cl["label"]%>
 				<tr>
-					<td><%= clKey %></td>
 					<td><%= identifier %></td>
+					<td><%= label %></td>
 					<% result.each do |vKey, status| %>
-						<%= render partial: "shared/historyCell", :locals => {:historyValue => status} %>
+						<% if status == "." %>
+							<td class="text-center"><span class="glyphicon glyphicon-ok-circle"/></td>
+						<% elsif status == "M"  %>
+							<td class="text-center bg-warning">
+								<span class="text-center glyphicon glyphicon-pencil"/>
+							</td>
+						<% elsif status == "X"  %>
+							<td class="text-center bg-danger">	
+								<span class="glyphicon glyphicon-remove-circle"/>
+							</td>
+						<% else %>
+							<td class="text-center">&nbsp;</td>
+						<% end %>
 					<% end %>
-					<td><%=link_to "Changes", changes_cdisc_cls_path(:id => clId), :class => "btn btn-info btn-xs" %></td>
+					<td><%=link_to "Changes", changes_cdisc_cls_path(:id => id), :class => "btn btn-info btn-xs" %></td>
 				</tr>	
 			<% end %>
 		</tbody>

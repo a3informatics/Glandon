@@ -1,43 +1,114 @@
 $(document).ready( function() {
 	
 	$('#main').DataTable({
-        columnDefs: [ ]
-    } );
+    columnDefs: [ ]
+  });
 				
 	$('#secondary').DataTable({
-        columnDefs: [ ]
-    } );
+    columnDefs: [ ]
+  });
 
-    var termId = document.getElementById("termId");
-    var namespace = document.getElementById("namespace");
-    var table = $('#searchTable').DataTable( {
-        "ajax": {
-          "url": "searchNew",
-          "data": function( d ) {
-              d.id = termId.value,
-              d.namespace = encodeURIComponent(namespace.value)
-            },
-        "dataSrc": "data" 
+  var termId = document.getElementById("termId");
+  var namespace = document.getElementById("namespace");
+  /*var table = $('#searchTable').DataTable( {
+    "ajax": {
+      "url": "searchNew",
+      "data": function( d ) {
+          d.id = termId.value,
+          d.namespace = encodeURIComponent(namespace.value)
         },
-        "processing": true,
-        "serverSide": true,
-        "language": {
-             "infoFiltered": "",
-             "processing": "<img src='<%= asset_path('processing.gif') %>'>"
-        },
-        //"bPaginate": true,
-        //"bFilter" : true,
-        "pageLength": 5,
-        "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-        "columns": [
-            {"data" : "identifier", "width" : "10%"},
-            {"data" : "notation", "width" : "10%"},
-            {"data" : "definition", "width" : "40%"},
-            {"data" : "synonym", "width" : "15%" },
-            {"data" : "preferredTerm", "width" : "15%" },
-            {"data" : "topLevel", "width" : "5%" },
-            {"data" : "extensible", "width" : "5%" }
-          ]
-      });
+    "dataSrc": "data" 
+    },
+    "processing": true,
+    "serverSide": true,
+    "language": {
+         "infoFiltered": "",
+         "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    },
+    //"bPaginate": true,
+    //"bFilter" : true,
+    "pageLength": 5,
+    "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+    "columns": [
+        {"data" : "identifier", "width" : "10%"},
+        {"data" : "notation", "width" : "10%"},
+        {"data" : "definition", "width" : "40%"},
+        {"data" : "synonym", "width" : "15%" },
+        {"data" : "preferredTerm", "width" : "15%" },
+        {"data" : "topLevel", "width" : "5%" },
+        {"data" : "extensible", "width" : "5%" }
+      ]
+  });*/
 
-} );
+  var offset;
+  var limit;
+  //var termData = $("#term").html();
+  //var term = $.parseJSON(termData);
+  //var termId = term['id']
+  var more;
+
+  more = true;
+  offset = 1;
+  limit = 1000;
+
+  next();
+
+  var searchTable = $('#search2Table').DataTable({
+    "columns": [
+      {"data" : "parentIdentifier", "width" : "5%"},
+      {"data" : "identifier", "width" : "5%"},
+      {"data" : "notation", "width" : "10%"},
+      {"data" : "definition", "width" : "50%"},
+      {"data" : "synonym", "width" : "10%"},
+      {"data" : "preferredTerm", "width" : "15%"},
+      {"data" : "extensible", "width" : "5%"}
+    ]
+  });
+
+  // Setup - add a text input to each footer cell
+  $('#search2Table tfoot th').each( function () {
+      var title = $(this).text();
+      $(this).html( '<input type="text" class="form-control" placeholder="Search '+title+'" />' );
+  } );
+ 
+  // Apply the search
+  searchTable.columns().every( function () {
+      var that = this;
+
+      $( 'input', this.footer() ).on( 'keyup change', function () {
+          if ( that.search() !== this.value ) {
+              that
+                  .search( this.value )
+                  .draw();
+          }
+      } );
+  });
+
+  function next() {
+    $.ajax({
+      url: "next",
+      data: { "id": termId.value, "namespace": namespace.value, "offset": offset, "limit": limit },
+      type: 'GET',
+      dataType: 'json',
+      success: function(result){
+        var data = result['data'];
+        offset = result['offset'];
+        limit = result['limit'];
+        more = result['more'];
+        var i;
+        for (i=0; i<data.length; i++) {
+          var row = data[i]
+          searchTable.row.add(row);
+        }
+        searchTable.draw();
+        if (more) {
+          next();
+        }
+      },
+      error: function(xhr,status,error){
+        handleAjaxError(xhr, status, error);
+      }
+    });    
+  }
+
+});
