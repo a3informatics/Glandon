@@ -8,8 +8,15 @@ $(document).ready( function() {
     columnDefs: [ ]
   });
 
+  jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
+    return this.iterator( 'table', function ( ctx ) {
+        ctx.oApi._fnProcessingDisplay( ctx, show );
+    } );
+  });
+
   var termId = document.getElementById("termId");
   var namespace = document.getElementById("namespace");
+  
   /*var table = $('#searchTable').DataTable( {
     "ajax": {
       "url": "searchNew",
@@ -51,8 +58,6 @@ $(document).ready( function() {
   offset = 1;
   limit = 1000;
 
-  next();
-
   var searchTable = $('#search2Table').DataTable({
     "columns": [
       {"data" : "parentIdentifier", "width" : "5%"},
@@ -62,8 +67,16 @@ $(document).ready( function() {
       {"data" : "synonym", "width" : "10%"},
       {"data" : "preferredTerm", "width" : "15%"},
       {"data" : "extensible", "width" : "5%"}
-    ]
+    ],
+    "processing": true,
+    "language": {
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    }
   });
+
+  searchTable.processing(true);
+  next();
+
 
   // Setup - add a text input to each footer cell
   $('#search2Table tfoot th').each( function () {
@@ -103,6 +116,8 @@ $(document).ready( function() {
         searchTable.draw();
         if (more) {
           next();
+        } else {
+          searchTable.processing(false);
         }
       },
       error: function(xhr,status,error){

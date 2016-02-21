@@ -1,4 +1,4 @@
-<h3>Changes: <%= @identifier %> <small>(CDISC, <%= @identifier %>)</small></h3>
+<h3>Changes: <%= @identifier %> <small><%= @identifier %></small></h3>
 <div class="col-md-12">
 	<table id="main" class="table table-striped table-bordered table-condensed">
 	  	<thead>
@@ -39,7 +39,7 @@
 							<td class="text-center">&nbsp;</td>
 						<% end %>
 					<% end %>
-					<td><%=link_to "Changes", changes_cdisc_cls_path(:id => id), :class => "btn btn-info btn-xs" %></td>
+					<td><%=link_to "Changes", changes_cdisc_cls_path(:id => id), :class => "btn btn-primary btn-xs" %></td>
 				</tr>	
 			<% end %>
 		</tbody>

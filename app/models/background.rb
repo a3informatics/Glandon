@@ -38,6 +38,38 @@ class Background < ActiveRecord::Base
   end
   handle_asynchronously :importCdiscTerm
 
+  def compareCdiscTerm(old_term, new_term)
+    
+    # Create the background job status
+    self.update(
+      description: "Detect CDISC Terminology changes, " + new_term.versionLabel + " (V" + new_term.version.to_s + ") to " + old_term.versionLabel + " (V" + old_term.version.to_s + ").", 
+      status: "Starting.",
+      started: Time.now())
+
+    # Get the CT top level items
+    data = Array.new
+    total_ct_count = 2
+    counts = Hash.new
+    counts[:cl_count] = 0
+    counts[:ct_count] = 0
+    load_cls(data, old_term, counts, total_ct_count)
+    ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
+    load_cls(data, new_term, counts, total_ct_count)
+    ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
+    
+    # Compare
+    results = compare(data, counts[:cl_count])
+
+    # Save the results
+    version_hash = {:new_version => new_term.version.to_s, :old_version => old_term.version.to_s} 
+    CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT, results, version_hash)
+
+    # Finish
+    self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
+
+  end
+  handle_asynchronously :compareCdiscTerm
+
   def changesCdiscTerm()
     
     # Create the background job status
@@ -49,26 +81,47 @@ class Background < ActiveRecord::Base
     # Get the CT top level items
     data = Array.new
     cdiscTerms = CdiscTerm.all()
-    ctCount = cdiscTerms.length
-    totalCount = 0
-    currentCount = 0
+    total_ct_count = cdiscTerms.length
+    counts = Hash.new
+    counts[:cl_count] = 0
+    counts[:ct_count] = 0
     cdiscTerms.each do |key, ct|
-
-      # Get the Cls
-      cls = CdiscCl.allTopLevel(ct.id, ct.namespace)
-      temp = {:term => ct, :cls => cls}
-      data.push(temp)   
-      totalCount += cls.length
-
-      #ConsoleLogger::log(C_CLASS_NAME,"changesCdiscTerm","CT=" + ct.to_json.to_s)
-    
-      # Report Status
-      currentCount += 1
-      p = (currentCount / ctCount.to_f) * 10.0
-      self.update(status: "Loading release of " + ct.versionLabel + ".", percentage: p.to_i)
+      load_cls(data, ct, counts, total_ct_count)
     end
 
-    # Do the comparison
+    # Compare
+    results = compare(data, counts[:cl_count])
+
+    # Save the results
+    CdiscCtChanges.save(CdiscCtChanges::C_ALL_CT, results)
+
+    # Report Status
+    self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
+
+  end
+  handle_asynchronously :changesCdiscTerm
+
+private
+
+  def load_cls(data, ct, counts, total_ct_count)
+    
+    # Get the Cls
+    cls = CdiscCl.allTopLevel(ct.id, ct.namespace)
+    temp = {:term => ct, :cls => cls}
+    data.push(temp)   
+    counts[:cl_count] += cls.length
+
+    # Report Status
+    counts[:ct_count] += 1
+    #ConsoleLogger::log(C_CLASS_NAME, "load_cls", "CT Count=" + counts[:ct_count].to_s + ", Total CT Count=" + total_ct_count.to_s)
+    p = (counts[:ct_count].to_f / total_ct_count.to_f) * 10.0
+    self.update(status: "Loading release of " + ct.versionLabel + ".", percentage: p.to_i)
+    return counts
+
+  end
+
+  def compare(data, totalCount)    
+# Do the comparison
     currentCount = 0
     missing = Array.new
     results = Hash.new
@@ -132,7 +185,7 @@ class Background < ActiveRecord::Base
             # Report Status
             currentCount += 1
             p = 10.0 + ((currentCount.to_f * 85.0)/totalCount.to_f)
-              self.update(status: "Checking " + currTerm.versionLabel + " [" + currCl.identifier + ", " + currentCount.to_s + "]", percentage: p.to_i)
+            self.update(status: "Checking " + currTerm.versionLabel + " [" + currCl.identifier + ", " + currentCount.to_s + "]", percentage: p.to_i)
           end
         end
       end
@@ -152,15 +205,10 @@ class Background < ActiveRecord::Base
       if update
         clEntry[:result] = result
       end
-    end  
-    
-    # Save the results
-    CdiscCtChanges.save(results)
+    end 
 
-    # Report Status
-    self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
-
-  end
-  handle_asynchronously :changesCdiscTerm
+    # And return
+    return results 
+  end    
 
 end

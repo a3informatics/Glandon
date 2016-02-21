@@ -68,7 +68,7 @@
 					<td><%= ct.version %></td>
 					<td><%= ct.versionLabel %></td>
 					<td><%= link_to "Show", cdisc_term_path(:id => ct.id, :namespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
-					<td><%= link_to "Compare", compare_cdisc_terms_path(:newId => @cdiscTerm.id, :newNamespace => @cdiscTerm.namespace, :oldId => ct.id, :oldNamespace => ct.namespace, :type => "ALL"), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "Compare", compareCalc_cdisc_terms_path(:newId => @cdiscTerm.id, :newNamespace => @cdiscTerm.namespace, :oldId => ct.id, :oldNamespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
 			  	</tr>
 			<% end %>
 		</tbody>

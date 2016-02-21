@@ -106,39 +106,51 @@ class CdiscTermsController < ApplicationController
   end
   
   def compare
-    type = params[:type]
     newId = params[:newId]
     newNamespace = params[:newNamespace]
     oldId = params[:oldId]
     oldNamespace = params[:oldNamespace]
-    data = Array.new
     @oldCdiscTerm = CdiscTerm.find(oldId, oldNamespace, false)
-    clsForTerm(@oldCdiscTerm, data)   
     @newCdiscTerm = CdiscTerm.find(newId, newNamespace, false)
-    clsForTerm(@newCdiscTerm, data)
-    @Results = buildResults(data)
-    if type != "ALL"
-      @Results = filterResults(@Results, type)
-    end
+    version_hash = {:new_version => @newCdiscTerm.version.to_s, :old_version => @oldCdiscTerm.version.to_s}
+    @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, version_hash)
   end
   
+  def compareCalc
+    
+    # Get the two terminology versions
+    newId = params[:newId]
+    newNamespace = params[:newNamespace]
+    oldId = params[:oldId]
+    oldNamespace = params[:oldNamespace]
+    oldCdiscTerm = CdiscTerm.find(oldId, oldNamespace, false)
+    newCdiscTerm = CdiscTerm.find(newId, newNamespace, false)
+    
+    # If results already prepared redirect, else calculate.
+    version_hash = {:new_version => newCdiscTerm.version.to_s, :old_version => oldCdiscTerm.version.to_s}
+    if CdiscCtChanges.exists?(CdiscCtChanges::C_TWO_CT, version_hash)
+      redirect_to compare_cdisc_terms_path(params)
+    else
+      hash = CdiscTerm.compare(oldCdiscTerm, newCdiscTerm)
+      @cdiscTerm = hash[:object]
+      @job = hash[:job]
+      if @cdiscTerm.errors.empty?
+        redirect_to backgrounds_path
+      else
+        flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
+        redirect_to history_cdisc_terms_path
+      end
+    end
+  end
+
   def changes
-    @results = CdiscCtChanges.read
+    ct = CdiscTerm.current
+    @identifier = ct.identifier
+    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
   end
 
   def changesCalc
-    #data = Array.new
-    #cdiscTerms = CdiscTerm.all()
-  	#cdiscTerms.each do |key, ct|
-    #  clsForTerm(ct, data)
-    #  if @id == nil
-    #    @id = ct.id
-    #    @identifier = ct.identifier
-    #    @title = ct.label
-    #  end
-    #end
-    #@Results = buildResults(data)
-    if CdiscCtChanges.exists?
+    if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_CT)
         redirect_to changes_cdisc_terms_path
     else
       hash = CdiscTerm.changes()

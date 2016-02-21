@@ -2,6 +2,8 @@ require "diffy"
 
 class CdiscClisController < ApplicationController
   
+  C_CLASS_NAME = "CdiscClisController"
+
   before_action :authenticate_user!
   
   def index
@@ -24,7 +26,6 @@ class CdiscClisController < ApplicationController
   def compare
     
     # Get the parameters
-    type = params[:type]
     id = params[:id]
     newTermId = params[:newTermId]
     newTermNs = params[:newTermNs]
@@ -36,13 +37,21 @@ class CdiscClisController < ApplicationController
     @newCli = CdiscCli.find(id, newTermNs)
     @oldCdiscTerm = CdiscTerm.find(oldTermId, oldTermNs, false)
     @oldCli = CdiscCli.find(id, oldTermNs)    
-
+    #ConsoleLogger::log(C_CLASS_NAME,"compare","P=" + @oldCli.to_json.to_s + ", C=" + @newCli.to_json.to_s)
+      
     @Results = Array.new
     result = Hash.new
     result = currentCLI(@oldCdiscTerm, @oldCli)
     @Results.push(result)
     result = compareCLI(@newCdiscTerm, @oldCli, @newCli)
     @Results.push(result)
+    if @oldCli != nil
+      @title = @oldCli.preferredTerm
+      @identifier = @oldCli.identifier
+    else
+      @title = @newCli.preferredTerm
+      @identifier = @newCli.identifier
+    end
   end
   
   def changes
@@ -88,28 +97,69 @@ private
     end
 
     def compareCLI (term, previousCli, currentCli)
+      #ConsoleLogger::log(C_CLASS_NAME,"compareCLI","P=" + previousCli.to_json.to_s + ", C=" + currentCli.to_json.to_s)
       result = Hash.new
-      result = {
-        "version" => term.version, 
-        "date" => term.versionLabel, 
-        "identifier" => Diffy::Diff.new(previousCli.identifier, currentCli.identifier).to_s(:html),
-        "notation" => Diffy::Diff.new(previousCli.notation, currentCli.notation).to_s(:html),
-        "preferredTerm" => Diffy::Diff.new(previousCli.preferredTerm, currentCli.preferredTerm).to_s(:html),
-        "synonym" => Diffy::Diff.new(previousCli.synonym, currentCli.synonym).to_s(:html),
-        "definition" => Diffy::Diff.new(previousCli.definition, currentCli.definition).to_s(:html) }
+      if currentCli == nil && previousCli == nil
+        result = {
+          "version" => term.version, 
+          "date" => term.versionLabel, 
+          "identifier" => "",
+          "notation" => "",
+          "preferredTerm" => "",
+          "synonym" => "",
+          "definition" => "" }
+      elsif currentCli == nil 
+        result = {
+          "version" => term.version, 
+          "date" => term.versionLabel, 
+          "identifier" => Diffy::Diff.new(previousCli.identifier, "").to_s(:html),
+          "notation" => Diffy::Diff.new(previousCli.notation, "").to_s(:html),
+          "preferredTerm" => Diffy::Diff.new(previousCli.preferredTerm, "").to_s(:html),
+          "synonym" => Diffy::Diff.new(previousCli.synonym, "").to_s(:html),
+          "definition" => Diffy::Diff.new(previousCli.definition, "").to_s(:html) }
+      elsif previousCli == nil 
+        result = {
+          "version" => term.version, 
+          "date" => term.versionLabel, 
+          "identifier" => Diffy::Diff.new("", currentCli.identifier).to_s(:html),
+          "notation" => Diffy::Diff.new("", currentCli.notation).to_s(:html),
+          "preferredTerm" => Diffy::Diff.new("", currentCli.preferredTerm).to_s(:html),
+          "synonym" => Diffy::Diff.new("", currentCli.synonym).to_s(:html),
+          "definition" => Diffy::Diff.new("", currentCli.definition).to_s(:html) }
+      else
+        result = {
+          "version" => term.version, 
+          "date" => term.versionLabel, 
+          "identifier" => Diffy::Diff.new(previousCli.identifier, currentCli.identifier).to_s(:html),
+          "notation" => Diffy::Diff.new(previousCli.notation, currentCli.notation).to_s(:html),
+          "preferredTerm" => Diffy::Diff.new(previousCli.preferredTerm, currentCli.preferredTerm).to_s(:html),
+          "synonym" => Diffy::Diff.new(previousCli.synonym, currentCli.synonym).to_s(:html),
+          "definition" => Diffy::Diff.new(previousCli.definition, currentCli.definition).to_s(:html) }
+      end
       return result
     end
     
     def currentCLI (term, cli)
       result = Hash.new
-      result = {
-        "version" => term.version,
-        "date" => term.versionLabel,
-        "identifier" => cli.identifier,
-        "notation" => cli.notation,
-        "preferredTerm" => cli.preferredTerm,
-        "synonym" => cli.synonym,
-        "definition" => cli.definition }
+      if cli == nil
+        result = {
+          "version" => term.version,
+          "date" => term.versionLabel,
+          "identifier" => "",
+          "notation" => "",
+          "preferredTerm" => "",
+          "synonym" => "",
+          "definition" => "" }
+      else
+        result = {
+          "version" => term.version,
+          "date" => term.versionLabel,
+          "identifier" => cli.identifier,
+          "notation" => cli.notation,
+          "preferredTerm" => cli.preferredTerm,
+          "synonym" => cli.synonym,
+          "definition" => cli.definition }
+      end
       return result
     end
       

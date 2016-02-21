@@ -1,4 +1,4 @@
-<h3><%= @title %> <small>(CDISC, <%= @identifier %>)</small></h3>
+<h3>Compare: <%= @title %> <small><%= @identifier %></small></h3>
 <div class="col-md-12">
 	<h4>Code List Version Comparison</h4>
 	<style>
@@ -10,11 +10,11 @@
 			    <th>Version</th>
 			    <th class="col-sm-1">Date</th>
 			    <th class="col-sm-1">Identifier</th>
-			    <th class="col-sm-1">Notation</th>
+			    <th class="col-sm-2">Submission Value</th>
 			    <th class="col-sm-2">Preferred Term</th>
 			    <th class="col-sm-2">Synonym</th>
-			    <th class="col-sm-2">Extensible</th>
-			    <th class="col-sm-4">Definition</th>
+			    <th class="col-sm-1">Extensible</th>
+			    <th class="col-sm-3">Definition</th>
 		  	</tr>
 		</thead>
 		<tbody>
@@ -38,7 +38,7 @@
 	  		<tr>
 				<th>Identifier</th>
 				<th>Label</th>
-				<th>Notation</th>
+				<th>Submission Value</th>
 				<% cliEntry = @CliResults.values[0] %>
 				<% result = cliEntry[:result]%>
 				<% result.each do |vKey, value| %>
@@ -53,7 +53,7 @@
 				<% cli = cliEntry[:cli]%>
 				<tr>
 					<td><%= cli.identifier %></td>
-					<td><%= cli.label %></td>
+					<td><%= cli.preferredTerm %></td>
 					<td><%= cli.notation %></td>
 					<% result.each do |vKey, status| %>
 			    		<% if status == "." %>
@@ -70,7 +70,7 @@
 							<td class="text-center">&nbsp;</td>
 						<% end %>
 					<% end %>
-					<td><%=link_to "Compare", compare_cdisc_clis_path(:id => @newCl.id, :oldTermId => @oldCdiscTerm.id, :oldTermNs => @oldCdiscTerm.namespace, :newTermId => @newCdiscTerm.id, :newTermNs => @newCdiscTerm.namespace, :type => "ALL"), :class => "btn btn-primary btn-xs" %></td>
+					<td><%=link_to "Compare", compare_cdisc_clis_path(:id => cli.id, :oldTermId => @oldCdiscTerm.id, :oldTermNs => @oldCdiscTerm.namespace, :newTermId => @newCdiscTerm.id, :newTermNs => @newCdiscTerm.namespace, :type => "ALL"), :class => "btn btn-primary btn-xs" %></td>
 				</tr>	
 			<% end %>
 		</tbody>

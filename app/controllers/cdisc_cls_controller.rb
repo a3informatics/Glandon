@@ -2,6 +2,8 @@ class CdiscClsController < ApplicationController
   
   before_action :authenticate_user!
   
+  C_CLASS_NAME = "CdiscClsController"
+
   def index
     @cdiscCls = CdiscCl.all
   end
@@ -9,7 +11,6 @@ class CdiscClsController < ApplicationController
   def compare
     
     # Get the parameters
-    type = params[:type]
     id = params[:id]
     newTermId = params[:newTermId]
     newTermNs = params[:newTermNs]
@@ -22,21 +23,26 @@ class CdiscClsController < ApplicationController
     
     # Build the Code List Item differences. Filter if required.
     data = Array.new
-    @newCl = clisForCl(id, @newCdiscTerm, data)
     @oldCl = clisForCl(id, @oldCdiscTerm, data)   
+    @newCl = clisForCl(id, @newCdiscTerm, data)
+    #ConsoleLogger::log(C_CLASS_NAME,"compare","Data=" + data.to_json.to_s)
     @CliResults = buildResults(data)
-    if type != "ALL"
-      @CliResults = filterResults(@CliResults, type)
-    end
-
+    #ConsoleLogger::log(C_CLASS_NAME,"compare","CliResults=" + @CliResults.to_json.to_s)
+    
     # Build the difference in the Code List info
-    #yyy=xxx
     @ClResults = Array.new
     result = Hash.new
     result = currentCL(@oldCdiscTerm, @oldCl)
     @ClResults.push(result)
     result = compareCL(@newCdiscTerm, @oldCl, @newCl)
     @ClResults.push(result)
+    if @oldCl != nil
+      @title = @oldCl.label
+      @identifier = @oldCl.identifier
+    else
+      @title = @newCl.label
+      @identifier = @newCl.identifier
+    end
   end
   
   def changes    
@@ -99,8 +105,7 @@ private
     params.require(:cdisc_term).permit(:id, :namespace)
   end
 
-  def clisForCl(id, cdiscTerm, data)
-  
+  def clisForCl(id, cdiscTerm, data) 
     cdiscCl = CdiscCl.find(id, cdiscTerm.namespace)
   	if cdiscCl != nil
       clis = CdiscCl.allChildren(id, cdiscTerm.namespace)
@@ -113,7 +118,6 @@ private
   end
 
   def buildResults (data)
-  
     missing = Array.new
     results = Hash.new
     last = data.length - 1
@@ -153,10 +157,27 @@ private
                 results[cliId] = temp
               end
             end
+          else
+            currClis.each do |cliId, currCli|
+              mark = "."
+              if results.has_key?(cliId)
+                temp = results[cliId]
+                result = temp[:result]
+                result[key] = mark
+              else
+                result = Hash.new
+                missing.each do |mKey|
+                  result[mKey] = ""
+                end    
+                result[key] = mark
+                temp = Hash.new
+                temp = {:cli => currCli, :result => result }
+                results[cliId] = temp
+              end
+            end
           end
         end
       else
-        
         # First item. Build an entry for every member
         if currClis != nil
           currClis.each do |cliId, currCli|
@@ -219,33 +240,76 @@ private
     return results
   
   end
-  
-  
+    
   def compareCL (term, previousCl, currentCl)
     result = Hash.new
-    result = {
-      "version" => term.version, 
-      "date" => term.versionLabel, 
-      "identifier" => Diffy::Diff.new(previousCl.identifier, currentCl.identifier).to_s(:html),
-      "notation" => Diffy::Diff.new(previousCl.notation, currentCl.notation).to_s(:html),
-      "preferredTerm" => Diffy::Diff.new(previousCl.preferredTerm, currentCl.preferredTerm).to_s(:html),
-      "synonym" => Diffy::Diff.new(previousCl.synonym, currentCl.synonym).to_s(:html),
-      "extensible" => Diffy::Diff.new(previousCl.extensible, currentCl.extensible).to_s(:html),
-      "definition" => Diffy::Diff.new(previousCl.definition, currentCl.definition).to_s(:html) }
+    if currentCl == nil && previousCl == nil
+      result = {
+        "version" => term.version, 
+        "date" => term.versionLabel, 
+        "identifier" => "",
+        "notation" => "",
+        "preferredTerm" => "",
+        "synonym" => "",
+        "extensible" => "",
+        "definition" => "" }
+    elsif currentCl == nil 
+      result = {
+        "version" => term.version, 
+        "date" => term.versionLabel, 
+        "identifier" => Diffy::Diff.new(previousCl.identifier, "").to_s(:html),
+        "notation" => Diffy::Diff.new(previousCl.notation, "").to_s(:html),
+        "preferredTerm" => Diffy::Diff.new(previousCl.preferredTerm, "").to_s(:html),
+        "synonym" => Diffy::Diff.new(previousCl.synonym, "").to_s(:html),
+        "extensible" => Diffy::Diff.new(previousCl.extensible, "").to_s(:html),
+        "definition" => Diffy::Diff.new(previousCl.definition, "").to_s(:html) }
+    elsif previousCl == nil 
+      result = {
+        "version" => term.version, 
+        "date" => term.versionLabel, 
+        "identifier" => Diffy::Diff.new("", currentCl.identifier).to_s(:html),
+        "notation" => Diffy::Diff.new("", currentCl.notation).to_s(:html),
+        "preferredTerm" => Diffy::Diff.new("", currentCl.preferredTerm).to_s(:html),
+        "synonym" => Diffy::Diff.new("", currentCl.synonym).to_s(:html),
+        "extensible" => Diffy::Diff.new("", currentCl.extensible).to_s(:html),
+        "definition" => Diffy::Diff.new("", currentCl.definition).to_s(:html) }
+    else
+      result = {
+        "version" => term.version, 
+        "date" => term.versionLabel, 
+        "identifier" => Diffy::Diff.new(previousCl.identifier, currentCl.identifier).to_s(:html),
+        "notation" => Diffy::Diff.new(previousCl.notation, currentCl.notation).to_s(:html),
+        "preferredTerm" => Diffy::Diff.new(previousCl.preferredTerm, currentCl.preferredTerm).to_s(:html),
+        "synonym" => Diffy::Diff.new(previousCl.synonym, currentCl.synonym).to_s(:html),
+        "extensible" => Diffy::Diff.new(previousCl.extensible, currentCl.extensible).to_s(:html),
+        "definition" => Diffy::Diff.new(previousCl.definition, currentCl.definition).to_s(:html) }
+    end
     return result
   end
   
   def currentCL (term, cl)
     result = Hash.new
-    result = {
-      "version" => term.version,
-      "date" => term.versionLabel,
-      "identifier" => cl.identifier,
-      "notation" => cl.notation,
-      "preferredTerm" => cl.preferredTerm,
-      "synonym" => cl.synonym,
-      "extensible" => cl.extensible,
-      "definition" => cl.definition }
+    if cl == nil
+      result = {
+        "version" => term.version,
+        "date" => term.versionLabel,
+        "identifier" => "",
+        "notation" => "",
+        "preferredTerm" => "",
+        "synonym" => "",
+        "extensible" => "",
+        "definition" => "" }
+    else
+      result = {
+        "version" => term.version,
+        "date" => term.versionLabel,
+        "identifier" => cl.identifier,
+        "notation" => cl.notation,
+        "preferredTerm" => cl.preferredTerm,
+        "synonym" => cl.synonym,
+        "extensible" => cl.extensible,
+        "definition" => cl.definition }
+    end  
     return result
   end
    

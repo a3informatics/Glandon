@@ -487,6 +487,25 @@ class ThesaurusConcept < IsoConcept
       (thcA.definition == thcB.definition))
       result = false
     else
+      #ConsoleLogger::log(C_CLASS_NAME,"diff?","Difference detected. A=" + thcA.to_json.to_s + ", B=" + thcB.to_json.to_s)
+      #if thcA.id != thcB.id
+      #  ConsoleLogger::log(C_CLASS_NAME,"diff?","Id Difference detected. A=" + thcA.id + ", B=" + thcB.id)
+      #end
+      #if thcA.identifier != thcB.identifier
+      #  ConsoleLogger::log(C_CLASS_NAME,"diff?","Identifier Difference detected. A=" + thcA.identifier + ", B=" + thcB.identifier)
+      #end
+      #if thcA.notation != thcB.notation
+      #  ConsoleLogger::log(C_CLASS_NAME,"diff?","Not Difference detected. A=" + thcA.notation + ", B=" + thcB.notation)
+      #end
+      #if thcA.preferredTerm != thcB.preferredTerm
+      #  ConsoleLogger::log(C_CLASS_NAME,"diff?","PT Difference detected. A=" + thcA.preferredTerm + ", B=" + thcB.preferredTerm)
+      #end
+      #if thcA.synonym != thcB.synonym
+      #  ConsoleLogger::log(C_CLASS_NAME,"diff?","Syn Difference detected. A=" + thcA.synonym + ", B=" + thcB.synonym)
+      #end
+      #if thcA.definition != thcB.definition
+      #  ConsoleLogger::log(C_CLASS_NAME,"diff?","Def Difference detected. A=" + thcA.definition + ", B=" + thcB.definition)
+      #end
       result = true
     end
     return result

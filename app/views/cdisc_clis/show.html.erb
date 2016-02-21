@@ -1,4 +1,4 @@
-<%= render partial: "shared/stdChildTitle", :locals => {:title => "Show:", :label => @cdiscCli.label, :identifier => @cdiscCli.identifier} %>
+<%= render partial: "shared/stdChildTitle", :locals => {:title => "Show:", :label => @cdiscCli.preferredTerm, :identifier => @cdiscCli.identifier} %>
 <div class="col-md-12">
 	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
@@ -11,7 +11,7 @@
 	    <th>Definition</th>
 	  </tr>
 	  <tr>
-	    <td><%= @cdiscCli.label %></td>
+	    <td><%= @cdiscCli.preferredTerm %></td>
 	    <td><%= @cdiscCli.identifier %></td>
 	    <td><%= @cdiscCli.notation %></td>
 	    <td><%= @cdiscCli.preferredTerm %></td>
@@ -19,5 +19,5 @@
 	    <td><%= @cdiscCli.definition %></td>
 	  </tr>
 	</table>
-	<%= link_to "Changes", changes_cdisc_clis_path(:id => @cdiscCli.id, :namespace => @cdiscCli.namespace), :class => "btn btn-success" %>
+	<%= link_to "Changes", changes_cdisc_clis_path(:id => @cdiscCli.id, :namespace => @cdiscCli.namespace), :class => "btn btn-primary" %>
 </div>
