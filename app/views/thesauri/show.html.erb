@@ -20,7 +20,7 @@
                 <td><%= @thesaurus.versionLabel %></td>
                 <td><%= @thesaurus.owner %></td>
                 <% if @thesaurus.registered? %>
-                    <td><%= link_to "Status", edit_iso_registration_state_path(:id => item.registrationState.id), :class => "btn btn-primary btn-xs" %></td>
+                    <td><%= link_to "Status", edit_iso_registration_state_path(:id => @thesaurus.registrationState.id), :class => "btn btn-primary btn-xs" %></td>
                 <% else %>
                     <td></td>
                 <% end %>
