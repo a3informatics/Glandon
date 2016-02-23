@@ -58,7 +58,7 @@ class CdiscClisController < ApplicationController
     id = params[:id]
     data = Array.new
     cdiscTerms = CdiscTerm.all()
-  	cdiscTerms.each do |key, ct|
+  	cdiscTerms.each do |ct|
       cdiscCli = CdiscCli.find(id, ct.namespace)
       temp = {:term => ct, :cli => cdiscCli}
       data.push(temp)        

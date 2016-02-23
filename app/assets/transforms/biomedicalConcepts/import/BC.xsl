@@ -169,6 +169,7 @@
         
         <xsl:param name="pPrefix"/>
         <xsl:variable name="BRIDGPath" select="@Name"/>
+        <xsl:variable name="ACount" select="count(preceding-sibling::Class/Attribute)" />
         
         <xsl:for-each select="Attribute">
             <xsl:call-template name="Subject"> 
@@ -177,7 +178,12 @@
             <xsl:call-template name="PredicateObject"> 
                 <xsl:with-param name="pPredicateName" select="'rdf:type'" /> 
                 <xsl:with-param name="pObjectName" select="'cbc:Item'" /> 
-            </xsl:call-template>
+            </xsl:call-template>          
+            <xsl:call-template name="PredicateObject"> 
+                <xsl:with-param name="pPredicateName" select="'cbc:ordinal'" /> 
+                <!--<xsl:with-param name="pObjectName" select="count(preceding::Attribute)+1" />--> 
+                <xsl:with-param name="pObjectName" select="position()+$ACount" /> 
+            </xsl:call-template>            
             <xsl:call-template name="PredicateObject"> 
                 <xsl:with-param name="pPredicateName" select="'cbc:isItemOf'" /> 
                 <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$URIFinish)" /> 
@@ -303,9 +309,10 @@
         <xsl:variable name="PText" select="string(@PText)"/>
         <xsl:variable name="PropertyNode" select="."/>
         
+        <xsl:variable name="PCount" select="count(preceding-sibling::Property)+1" />
+        
         <xsl:variable name="Datatype" select="$DatatypeDocument/ISO21090DataTypes/ISO21090DataType[@Name=$pDatatype]"/>
         <xsl:for-each select="$Datatype/ISO21090Property">
-            
             <xsl:choose>
                 <xsl:when test="./@Name=$PropertyName">
                     <xsl:call-template name="Subject"> 
@@ -344,6 +351,12 @@
                             <xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="'cbc:hasValue'" /> 
                                 <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$MinorSeparator,@Name,$MinorSeparator,'Value',$MinorSeparator,$Level,$URIFinish)" /> 
+                            </xsl:call-template>
+                            
+                            <!-- Ordinal -->
+                            <xsl:call-template name="PredicateObject"> 
+                                <xsl:with-param name="pPredicateName" select="'cbc:ordinal'" /> 
+                                <xsl:with-param name="pObjectName" select="$PCount" /> 
                             </xsl:call-template>
                             
                             <!-- Question text etc -->

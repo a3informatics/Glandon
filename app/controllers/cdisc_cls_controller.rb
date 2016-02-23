@@ -49,20 +49,11 @@ class CdiscClsController < ApplicationController
     id = params[:id]
     data = Array.new
     cdiscTerms = CdiscTerm.all()
-    cdiscTerms.each do |key, ct|
+    cdiscTerms.each do |ct|
     	clisForCl(id, ct, data)
     end
     @CliResults = buildResults(data)
       
-    # Get the CLI object from each version of the terminology
-    #data = Array.new
-    #cdiscTerms = CdiscTerm.all()
-  	#cdiscTerms.each do |key, ct|
-    #  cdiscCl = CdiscCl.find(id, ct.namespace)
-    #  temp = {:term => ct, :cl => cdiscCl}
-    #  data.push(temp)        
-    #end
-    
     # Now compare. Note there may well be nil entries
     @ClResults = Array.new
     last = data.length - 1

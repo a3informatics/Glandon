@@ -34,14 +34,14 @@ class CdiscTerm < Thesaurus
   end
 
   def self.all
-    results = Hash.new
+    results = Array.new
     if @@cdiscNamespace == nil 
       @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
     end
     tSet = Thesaurus.all
     tSet.each do |key, thesaurus|
       if thesaurus.scopedIdentifier.namespace.shortName == @@cdiscNamespace.shortName
-        results[key] = thesaurus
+        results << thesaurus
       end
     end
     return results  
@@ -49,7 +49,7 @@ class CdiscTerm < Thesaurus
 
   def self.allExcept(version)
     results = self.all
-    results.each do |key, thesaurus|
+    results.each do |thesaurus|
       if (version == thesaurus.version)
         results.delete(theasurus.id)
         break
@@ -60,10 +60,10 @@ class CdiscTerm < Thesaurus
   
   def self.allPrevious(version)
     results = self.all
-    newResults = Hash.new
-    results.each do |key, thesaurus|
+    newResults = Array.new
+    results.each do |thesaurus|
       if (version > thesaurus.version)
-        newResults[key] = thesaurus
+        newResults << thesaurus
       end
     end
     return newResults  
@@ -74,7 +74,7 @@ class CdiscTerm < Thesaurus
     if @@currentVersion == nil
       latest = nil
       results = self.all
-      results.each do |key, thesaurus|
+      results.each do |thesaurus|
         if latest == nil
           latest = thesaurus
         elsif thesaurus.version > latest.version

@@ -232,7 +232,7 @@ class Form < IsoManaged
   def acrf
   
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
-      "SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName ?sdtmTopicValue ?sdtmTopicSub WHERE \n" +
+      "SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName ?sdtmTopicValue ?sdtmTopicSub ?gord ?pord WHERE \n" +
       "{ \n " +
       "{ \n " +
       "  ?node1 bd:basedOn ?node2 . \n " +
@@ -241,18 +241,11 @@ class Form < IsoManaged
       "  ?node1 bd:hasProperty ?node4 . \n " +
       "  ?node4 (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
       "  ?node4 cbc:hasValue ?valueRef . \n " +
-      # "  ?valueRef cbc:value ?sdtmTopicValue . \n " +
       "  ?valueRef cbc:value ?sdtmTopicValueObj . \n " +
       "  ?sdtmTopicValueObj iso25964:identifier ?sdtmTopicValue . \n " +
       "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +
-      # "  ?node3 rdf:type iso25964:ThesaurusConcept . \n " +
-      # "  ?node3 iso25964:identifier ?sdtmTopicValue . \n " +
-      # "  ?node3 iso25964:notation ?x . \n " +
-      # "  ?node3 iso25964:notation ?sdtmTopicSub . \n " +
-      # "  FILTER(STRSTARTS(STR(?node3), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V42\")) .  \n " +
-      # "  FILTER(STR(?sdtmTopicSub) = UCASE(?x)) .  \n " +
       "  {\n " +
-      "    SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName WHERE \n " +
+      "    SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?domain ?sdtmTopicName ?gord ?pord WHERE \n " +
       "    { \n " + 
       "      ?var bd:basedOn ?col . \n " +     
       "      ?col mms:dataElementName ?sdtmVarName . \n " +     
@@ -262,7 +255,7 @@ class Form < IsoManaged
       "      ?node5 cdisc:dataElementRole <http://rdf.cdisc.org/std/sdtm-1-2#Classifier.TopicVariable> . \n " +     
       "      ?node5 mms:dataElementName ?sdtmTopicName . \n " +     
       "      { \n " +
-      "        SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain ?var WHERE \n " + 
+      "        SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain ?var ?gord ?pord WHERE \n " + 
       "        { \n " +    
       "          :" + self.id + " bf:hasGroup ?groupM . \n " +     
       "          ?form bf:hasGroup ?groupM . \n " +     
@@ -270,6 +263,7 @@ class Form < IsoManaged
       "          ?groupM bf:hasSubGroup ?group . \n " +
       "          ?group rdfs:label ?gName . \n " +
       "          ?group bf:hasItem ?item . \n " +
+      "          ?group bf:ordinal ?gord . \n " +      
       "          ?item rdfs:label ?iName . \n " +
       "          ?item bf:hasProperty ?x . \n " +             
       "          ?x bo:hasProperty ?bcProperty  . \n " +      
@@ -279,6 +273,7 @@ class Form < IsoManaged
       "          ?bcProperty cbc:alias ?alias . \n " +     
       "          ?bcProperty cbc:qText ?qText . \n " +     
       "          ?bcProperty cbc:simpleDatatype ?datatype . \n " +     
+      "          ?bcProperty cbc:ordinal ?pord . \n " +     
       "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
       "          ?si isoI:identifier ?bcIdent . \n " +     
       "          OPTIONAL \n " +    
@@ -295,7 +290,7 @@ class Form < IsoManaged
       "    } \n " +
       "  } \n " +
       "} UNION { \n " +
-      "SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain ?var WHERE \n " + 
+      "SELECT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?sdtmVarName ?dataset ?domain ?var ?gord ?pord WHERE \n " + 
       "        { \n " +    
       "          :" + self.id + " bf:hasGroup ?groupM . \n " +     
       "          ?form bf:hasGroup ?groupM . \n " +     
@@ -303,15 +298,16 @@ class Form < IsoManaged
       "          ?groupM bf:hasSubGroup ?group . \n " +
       "          ?group rdfs:label ?gName . \n " +
       "          ?group bf:hasItem ?item . \n " +
+      "          ?group bf:ordinal ?gord . \n " +      
       "          ?item rdfs:label ?iName . \n " +
       "          ?item bf:hasProperty ?x . \n " +             
       "          ?x bo:hasProperty ?bcProperty  . \n " +      
-      # "          ?var bd:hasProperty ?bcProperty . \n " +     
       "          ?bcProperty (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
       "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
       "          ?bcProperty cbc:alias ?alias . \n " +     
       "          ?bcProperty cbc:qText ?qText . \n " +     
       "          ?bcProperty cbc:simpleDatatype ?datatype . \n " +     
+      "          ?bcProperty cbc:ordinal ?pord . \n " +     
       "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
       "          ?si isoI:identifier ?bcIdent . \n " + 
       "          FILTER NOT EXISTS { ?var bd:hasProperty ?bcProperty } \n " + 
@@ -326,7 +322,7 @@ class Form < IsoManaged
       "          } \n " +  
       "        }  \n " + 
       "      } \n " +
-      "      } \n " 
+      "      } ORDER BY ?gord ?pord \n " 
       
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -351,7 +347,7 @@ class Form < IsoManaged
   def crf
   
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
-      "SELECT DISTINCT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue WHERE \n" +
+      "SELECT DISTINCT ?form ?fName ?group ?gName ?item ?iName ?bcProperty ?bcRoot ?bcIdent ?alias ?qText ?datatype ?cCode ?subValue ?gord ?pord WHERE \n" +
       "{ \n " +
       "  :" + self.id + " bf:hasGroup ?groupM . \n " +     
       "  ?form bf:hasGroup ?groupM . \n " +     
@@ -359,6 +355,7 @@ class Form < IsoManaged
       "  ?groupM bf:hasSubGroup ?group . \n " +
       "  ?group rdfs:label ?gName . \n " +
       "  ?group bf:hasItem ?item . \n " +
+      "  ?group bf:ordinal ?gord . \n " +      
       "  ?item rdfs:label ?iName . \n " +
       "  ?item bf:hasProperty ?x . \n " +             
       "  ?x bo:hasProperty ?bcProperty  . \n " +      
@@ -367,6 +364,7 @@ class Form < IsoManaged
       "  ?bcProperty cbc:alias ?alias . \n " +     
       "  ?bcProperty cbc:qText ?qText . \n " +     
       "  ?bcProperty cbc:simpleDatatype ?datatype . \n " +     
+      "  ?bcProperty cbc:ordinal ?pord . \n " +     
       "  ?bcRoot isoI:hasIdentifier ?si . \n " +     
       "  ?si isoI:identifier ?bcIdent . \n " +     
       "  OPTIONAL \n " +    
@@ -378,7 +376,7 @@ class Form < IsoManaged
       "    ?cli iso25964:notation ?subValue . \n " +       
       "    FILTER(?enabled=true) . \n " +    
       "  } \n " +  
-      "}\n"
+      "} ORDER BY ?gord ?pord\n"
 
     # Send the request, wait the resonse
     response = CRUD.query(query)

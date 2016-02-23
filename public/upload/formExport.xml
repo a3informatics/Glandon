@@ -15,40 +15,81 @@
     <variable name="datatype"/>
     <variable name="cCode"/>
     <variable name="subValue"/>
-    <variable name="sdtmVarName"/>
-    <variable name="domain"/>
-    <variable name="sdtmTopicName"/>
-    <variable name="sdtmTopicValue"/>
-    <variable name="sdtmTopicSub"/>
+    <variable name="gord"/>
+    <variable name="pord"/>
   </head>
   <results>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO1</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration No. 1</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO1_1_1</uri>
       </binding>
       <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Common</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_2_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO1_1_1_1</uri>
       </binding>
       <binding name="iName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
       </binding>
       <binding name="bcProperty">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME_PerformedClinicalResult_value_PQR_value</uri>
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value</uri>
       </binding>
       <binding name="bcRoot">
         <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME</uri>
       </binding>
       <binding name="bcIdent">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
+      </binding>
+      <binding name="alias">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
+      </binding>
+      <binding name="qText">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
+      </binding>
+      <binding name="datatype">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">dateTime</literal>
+      </binding>
+      <binding name="gord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
+      </binding>
+      <binding name="pord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="form">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO1</uri>
+      </binding>
+      <binding name="fName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration No. 1</literal>
+      </binding>
+      <binding name="group">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO1_1_2</uri>
+      </binding>
+      <binding name="gName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Mass Index (C16358_ACME)</literal>
+      </binding>
+      <binding name="item">
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO1_1_2_1</uri>
+      </binding>
+      <binding name="iName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
+      </binding>
+      <binding name="bcProperty">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C16358_ACME_PerformedClinicalResult_value_PQR_value</uri>
+      </binding>
+      <binding name="bcRoot">
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C16358_ACME</uri>
+      </binding>
+      <binding name="bcIdent">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Mass Index (C16358_ACME)</literal>
       </binding>
       <binding name="alias">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
@@ -59,49 +100,40 @@
       <binding name="datatype">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
       </binding>
-      <binding name="sdtmVarName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSORRES</literal>
+      <binding name="gord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">2</literal>
       </binding>
-      <binding name="domain">
-        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
-      </binding>
-      <binding name="sdtmTopicName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
-      </binding>
-      <binding name="sdtmTopicValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49677</literal>
-      </binding>
-      <binding name="sdtmTopicSub">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">HR</literal>
+      <binding name="pord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
       </binding>
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO1</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration No. 1</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO1_1_2</uri>
       </binding>
       <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Mass Index (C16358_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_2_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO1_1_2_2</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
       </binding>
       <binding name="bcProperty">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME_PerformedClinicalResult_value_PQR_code</uri>
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C16358_ACME_PerformedClinicalResult_value_PQR_code</uri>
       </binding>
       <binding name="bcRoot">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME</uri>
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C16358_ACME</uri>
       </binding>
       <binding name="bcIdent">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Mass Index (C16358_ACME)</literal>
       </binding>
       <binding name="alias">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
@@ -113,42 +145,33 @@
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
       </binding>
       <binding name="cCode">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49673</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49671</literal>
       </binding>
       <binding name="subValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">beats/min</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">kg/m2</literal>
       </binding>
-      <binding name="sdtmVarName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSORRESU</literal>
+      <binding name="gord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">2</literal>
       </binding>
-      <binding name="domain">
-        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
-      </binding>
-      <binding name="sdtmTopicName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
-      </binding>
-      <binding name="sdtmTopicValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49677</literal>
-      </binding>
-      <binding name="sdtmTopicSub">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">HR</literal>
+      <binding name="pord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">2</literal>
       </binding>
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO1</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration No. 1</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO1_1_3</uri>
       </binding>
       <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Common</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_1_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO1_1_3_1</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
@@ -177,37 +200,28 @@
       <binding name="subValue">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">SITTING</literal>
       </binding>
-      <binding name="sdtmVarName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSPOS</literal>
+      <binding name="gord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">3</literal>
       </binding>
-      <binding name="domain">
-        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
-      </binding>
-      <binding name="sdtmTopicName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
-      </binding>
-      <binding name="sdtmTopicValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49677</literal>
-      </binding>
-      <binding name="sdtmTopicSub">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">HR</literal>
+      <binding name="pord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
       </binding>
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO1</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration No. 1</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO1_1_3</uri>
       </binding>
       <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Common</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_1_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO1_1_3_1</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
@@ -236,37 +250,28 @@
       <binding name="subValue">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">STANDING</literal>
       </binding>
-      <binding name="sdtmVarName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSPOS</literal>
+      <binding name="gord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">3</literal>
       </binding>
-      <binding name="domain">
-        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
-      </binding>
-      <binding name="sdtmTopicName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
-      </binding>
-      <binding name="sdtmTopicValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49677</literal>
-      </binding>
-      <binding name="sdtmTopicSub">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">HR</literal>
+      <binding name="pord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
       </binding>
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO1</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration No. 1</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_1</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO1_1_3</uri>
       </binding>
       <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Common</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_1_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO1_1_3_1</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Body Position (--POS)</literal>
@@ -295,49 +300,40 @@
       <binding name="subValue">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">SUPINE</literal>
       </binding>
-      <binding name="sdtmVarName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSPOS</literal>
+      <binding name="gord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">3</literal>
       </binding>
-      <binding name="domain">
-        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
-      </binding>
-      <binding name="sdtmTopicName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
-      </binding>
-      <binding name="sdtmTopicValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49677</literal>
-      </binding>
-      <binding name="sdtmTopicSub">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">HR</literal>
+      <binding name="pord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
       </binding>
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO1</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration No. 1</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_3</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO1_1_3</uri>
       </binding>
       <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (A00003_ACME)</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_3_2</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO1_1_3_2</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
       </binding>
       <binding name="bcProperty">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-A00003_ACME_PerformedClinicalResult_value_PQR_value</uri>
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME_PerformedClinicalResult_value_PQR_value</uri>
       </binding>
       <binding name="bcRoot">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-A00003_ACME</uri>
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME</uri>
       </binding>
       <binding name="bcIdent">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (A00003_ACME)</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
       </binding>
       <binding name="alias">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Value (--ORRES)</literal>
@@ -348,102 +344,34 @@
       <binding name="datatype">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
       </binding>
-      <binding name="sdtmVarName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSORRES</literal>
+      <binding name="gord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">3</literal>
       </binding>
-      <binding name="domain">
-        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
-      </binding>
-      <binding name="sdtmTopicName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
-      </binding>
-      <binding name="sdtmTopicValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">A00003</literal>
-      </binding>
-      <binding name="sdtmTopicSub">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">MUAC</literal>
+      <binding name="pord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
       </binding>
     </result>
     <result>
       <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO1</uri>
       </binding>
       <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration No. 1</literal>
       </binding>
       <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_3</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO1_1_3</uri>
       </binding>
       <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (A00003_ACME)</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
       </binding>
       <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_3_3</uri>
+        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO1_1_3_3</uri>
       </binding>
       <binding name="iName">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
       </binding>
       <binding name="bcProperty">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-A00003_ACME_PerformedClinicalResult_value_PQR_code</uri>
-      </binding>
-      <binding name="bcRoot">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-A00003_ACME</uri>
-      </binding>
-      <binding name="bcIdent">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (A00003_ACME)</literal>
-      </binding>
-      <binding name="alias">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
-      </binding>
-      <binding name="qText">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
-      </binding>
-      <binding name="datatype">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
-      </binding>
-      <binding name="cCode">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49668</literal>
-      </binding>
-      <binding name="subValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">cm</literal>
-      </binding>
-      <binding name="sdtmVarName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSORRESU</literal>
-      </binding>
-      <binding name="domain">
-        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
-      </binding>
-      <binding name="sdtmTopicName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
-      </binding>
-      <binding name="sdtmTopicValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">A00003</literal>
-      </binding>
-      <binding name="sdtmTopicSub">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">MUAC</literal>
-      </binding>
-    </result>
-    <result>
-      <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
-      </binding>
-      <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
-      </binding>
-      <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_1</uri>
-      </binding>
-      <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Common</literal>
-      </binding>
-      <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_1_1</uri>
-      </binding>
-      <binding name="iName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
-      </binding>
-      <binding name="bcProperty">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value</uri>
+        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME_PerformedClinicalResult_value_PQR_code</uri>
       </binding>
       <binding name="bcRoot">
         <uri>http://www.assero.co.uk/MDRBCs/V1#BC-C49677_ACME</uri>
@@ -452,45 +380,7 @@
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Heart Rate (C49677_ACME)</literal>
       </binding>
       <binding name="alias">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Date and Time (--DTC)</literal>
-      </binding>
-      <binding name="qText">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
-      </binding>
-      <binding name="datatype">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">dateTime</literal>
-      </binding>
-    </result>
-    <result>
-      <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
-      </binding>
-      <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
-      </binding>
-      <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_3</uri>
-      </binding>
-      <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (A00003_ACME)</literal>
-      </binding>
-      <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_3_1</uri>
-      </binding>
-      <binding name="iName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
-      </binding>
-      <binding name="bcProperty">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code</uri>
-      </binding>
-      <binding name="bcRoot">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-A00003_ACME</uri>
-      </binding>
-      <binding name="bcIdent">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (A00003_ACME)</literal>
-      </binding>
-      <binding name="alias">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Result Units (--ORRESU)</literal>
       </binding>
       <binding name="qText">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
@@ -499,54 +389,16 @@
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
       </binding>
       <binding name="cCode">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25228</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C49673</literal>
       </binding>
       <binding name="subValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">RIGHT</literal>
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">beats/min</literal>
       </binding>
-    </result>
-    <result>
-      <binding name="form">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#F-DEMO4</uri>
+      <binding name="gord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">3</literal>
       </binding>
-      <binding name="fName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Demonstration Four</literal>
-      </binding>
-      <binding name="group">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FG-DEMO4_1_3</uri>
-      </binding>
-      <binding name="gName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (A00003_ACME)</literal>
-      </binding>
-      <binding name="item">
-        <uri>http://www.assero.co.uk/MDRForms/ACME/V1#FI-DEMO4_1_3_1</uri>
-      </binding>
-      <binding name="iName">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
-      </binding>
-      <binding name="bcProperty">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-A00003_ACME_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code</uri>
-      </binding>
-      <binding name="bcRoot">
-        <uri>http://www.assero.co.uk/MDRBCs/V1#BC-A00003_ACME</uri>
-      </binding>
-      <binding name="bcIdent">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Mid Upper Arm Circumference (A00003_ACME)</literal>
-      </binding>
-      <binding name="alias">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Laterality (--LAT)</literal>
-      </binding>
-      <binding name="qText">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">Question text</literal>
-      </binding>
-      <binding name="datatype">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">string</literal>
-      </binding>
-      <binding name="cCode">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25229</literal>
-      </binding>
-      <binding name="subValue">
-        <literal datatype="http://www.w3.org/2001/XMLSchema#string">LEFT</literal>
+      <binding name="pord">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">2</literal>
       </binding>
     </result>
   </results>

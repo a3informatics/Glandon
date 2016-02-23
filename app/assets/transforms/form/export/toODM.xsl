@@ -196,7 +196,8 @@
                     <xsl:value-of select="."/>
                 </xsl:attribute>
                 <xsl:variable name="TempName" select="$pGroups/sr:binding[@name='gName']/sr:literal[../../sr:binding[@name='group']/sr:uri/text()=$group]"/>
-                <xsl:variable name="GroupName" select="$TempName[not(.=preceding::*)]"/>
+                <!--<xsl:variable name="GroupName" select="$TempName[not(.=preceding::*)]"/>-->
+                <xsl:variable name="GroupName" select="$TempName"/>
                 <xsl:attribute name="Name">
                     <xsl:value-of  select="$GroupName"/>
                 </xsl:attribute>

@@ -69,6 +69,13 @@
   rdfs:label "A short hand name for the item to allow easy use"^^xsd:string ;
   rdfs:range xsd:string ;
 .
+:ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :ComplexNode ;
+  rdfs:label "Order of the node withing the collection"^^xsd:string ;
+  rdfs:range xsd:positiveInteger ;
+.
 :hasAttributeRef
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
