@@ -1,7 +1,8 @@
 class CdiscCtChanges
 
 	C_ALL_CT = "All_CT"
-	C_TWO_CT = "Two_CT"
+	C_ALL_SUB = "All_Submission"
+    C_TWO_CT = "Two_CT"
 	C_CODELIST = "Codelist"
 	C_CLASS_NAME = "CdiscCtChanges"
 
@@ -23,16 +24,24 @@ class CdiscCtChanges
 		return JSON.parse(file)
 	end
 
+    def self.delete()
+        publicDir = dir_path()
+        FileUtils.rm_rf(Dir.glob(publicDir + '/*'))
+    end
+
 private
 
 	def self.file_path(type, params)
 		#ConsoleLogger::log(C_CLASS_NAME, "file_path", "*****ENTRY*****")
     	#ConsoleLogger::log(C_CLASS_NAME, "file_path", "Type=" + type.to_s + ", params=" + params.to_s)
-    	publicDir = Rails.root.join("public","upload")
+    	publicDir = dir_path()
     	if type == C_ALL_CT
     		filename = "CDISC_CT_Changes.txt"
     		outputFile = File.join(publicDir, filename)
-    	elsif type == C_TWO_CT
+    	elsif type == C_ALL_SUB
+            filename = "CDISC_CT_Submission_Changes.txt"
+            outputFile = File.join(publicDir, filename)
+        elsif type == C_TWO_CT
     		filename = "CDISC_CT_" + params[:new_version] + "_" + params[:old_version] + "_Changes.txt"
     		outputFile = File.join(publicDir, filename)
     	elsif type == C_CODELIST
@@ -45,4 +54,7 @@ private
     	return outputFile
     end
 
+    def self.dir_path()
+        return Rails.root.join("public","results")
+    end
 end

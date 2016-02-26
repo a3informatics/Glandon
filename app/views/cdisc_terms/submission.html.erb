@@ -1,0 +1,44 @@
+<h3>Submission: <%= @identifier %> <small><%= @identifier %></small></h3>
+<div class="col-md-12">
+	<table id="main" class="table table-striped table-bordered table-condensed">
+	  	<thead>
+	  		<tr>
+				<th>Code List</th>
+				<th>Item</th>
+				<th>Label</th>
+				<% clEntry = @results.values[0] %>
+				<% result = clEntry["result"]%>
+				<% result.each do |vKey, status| %>
+		    		<th class="text-center"><%= vKey %></th>
+		  		<% end %>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>	
+			<% @results.each do |clKey, clEntry| %>
+				<% result = clEntry["result"]%>
+				<% cli = clEntry["cli"]%>
+				<% id = cli["id"]%>
+				<% identifier = cli["identifier"]%>
+				<% parent_identifier = cli["parent_identifier"]%>
+				<% label = cli["label"]%>
+				<tr>
+					<td><%= parent_identifier %></td>
+					<td><%= identifier %></td>
+					<td><%= label %></td>
+					<% result.each do |vKey, status| %>
+						<% if status != "" %>
+							<td class="text-center bg-warning">
+								<span class="text-center glyphicon glyphicon-pencil"/>
+								<!--<%= status %>-->
+							</td>
+						<% else %>
+							<td class="text-center">&nbsp;</td>
+						<% end %>
+					<% end %>
+					<td><%=link_to "Changes", changes_cdisc_clis_path(:id => id), :class => "btn btn-primary btn-xs" %></td>
+				</tr>	
+			<% end %>
+		</tbody>
+	</table>
+</div>

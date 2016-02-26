@@ -106,7 +106,7 @@ class IsoManaged < IsoConcept
     
     #ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
     
-    results = Hash.new
+    results = Array.new
     
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
@@ -170,7 +170,7 @@ class IsoManaged < IsoConcept
         else
           object.scopedIdentifier = nil
         end
-        results[object.id] = object
+        results << object
       end
     end
     

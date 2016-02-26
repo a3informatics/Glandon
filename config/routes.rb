@@ -61,6 +61,8 @@ Rails.application.routes.draw do
       get :changes
       get :compareCalc
       get :compare
+      get :submissionCalc
+      get :submission
       get :history
       get :searchOld
       get :search

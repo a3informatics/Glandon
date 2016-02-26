@@ -39,7 +39,7 @@ class CdiscTerm < Thesaurus
       @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
     end
     tSet = Thesaurus.all
-    tSet.each do |key, thesaurus|
+    tSet.each do |thesaurus|
       if thesaurus.scopedIdentifier.namespace.shortName == @@cdiscNamespace.shortName
         results << thesaurus
       end
@@ -137,6 +137,57 @@ class CdiscTerm < Thesaurus
     job = Background.create
     job.compareCdiscTerm(old_term, new_term)
     return { :object => object, :job => job }
+  end
+
+  def self.submission_changes
+    object = self.new
+    object.errors.clear
+    job = Background.create
+    job.submission_changes_cdisc_term()
+    return { :object => object, :job => job }
+  end
+
+  def self.submission_diff(old_term, new_term)
+    results = Array.new
+    query = UriManagement.buildPrefix("", ["iso25964"]) +
+      "SELECT DISTINCT ?a1 ?b1 ?c1 ?d1 ?a2 ?c2 WHERE \n" +
+      "  {\n" +
+      "    ?a1 iso25964:identifier ?b1 . \n" +
+      "    ?a1 iso25964:notation ?c1 . \n" +
+      "    OPTIONAL \n" +
+      "    {\n" +
+      "      ?e1 iso25964:narrower ?a1 . \n" +
+      "      ?e1 iso25964:identifier ?d1 . \n" +
+      "    }\n" +
+      "    FILTER(STRSTARTS(STR(?a1), \"" + old_term.namespace + "\")) \n" +
+      "    ?a2 iso25964:identifier ?b1 . \n" +
+      "    ?a2 iso25964:notation ?c2 . \n" +
+      "    OPTIONAL \n" +
+      "    {\n" +
+      "      ?e2 iso25964:narrower ?a2 . \n" +
+      "      ?e2 iso25964:identifier ?d2 . \n" +
+      "    }\n" +
+      "    FILTER(STRSTARTS(STR(?a2), \"" + new_term.namespace + "\")) \n" +
+      "    FILTER(?c1 != ?c2 %26%26 $d1 = $d2) \n" +
+      "  }"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri1Set = node.xpath("binding[@name='a1']/uri")
+      uri2Set = node.xpath("binding[@name='a2']/uri")
+      i1Set = node.xpath("binding[@name='b1']/literal")
+      n1Set = node.xpath("binding[@name='c1']/literal")
+      n2Set = node.xpath("binding[@name='c2']/literal")
+      p1Set = node.xpath("binding[@name='d1']/literal")
+      if uri1Set.length == 1 
+        object = Hash.new 
+        object = {:old_uri => uri1Set[0].text, :new_uri => uri2Set[0].text, :identifier => i1Set[0].text, 
+          :old_notation => n1Set[0].text, :new_notation => n2Set[0].text, :parent_identifier => p1Set[0].text}
+        results << object
+      end
+    end
+    return results
   end
 
   def self.count(searchTerm, ns)

@@ -53,7 +53,7 @@
 				<% cli = cliEntry[:cli]%>
 				<tr>
 					<td><%= cli.identifier %></td>
-					<td><%= cli.label %></td>
+					<td><%= cli.preferredTerm %></td>
 					<td><%= cli.notation %></td>
 					<% value.each do |vKey, status| %>
 						<% if status == "." %>

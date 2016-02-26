@@ -101,6 +101,65 @@ class Background < ActiveRecord::Base
   end
   handle_asynchronously :changesCdiscTerm
 
+  def submission_changes_cdisc_term()
+    
+    # Create the background job status
+    self.update(
+      description: "Detect CDISC Terminology submission value changes, all versions.", 
+      status: "Starting.",
+      started: Time.now())
+
+    # Get the CT top level items
+    results = Hash.new
+    cdisc_terms = CdiscTerm.all()
+    prev_ct = nil
+    missing = Array.new
+    cdisc_terms.each_with_index do |ct, index|
+      key = "V" + ct.version.to_s
+      missing << key
+      if index != 0 
+        diffs = CdiscTerm.submission_diff(prev_ct, ct)
+        diffs.each do |diff|
+          old_id = ModelUtility.extractCid(diff[:old_uri])
+          old_ns = ModelUtility.extractNs(diff[:old_uri])
+          if results.has_key?(old_id)
+            entry = results[old_id]
+            result = entry[:result]
+            result[key] = diff[:old_notation] + " -> " + diff[:new_notation]
+            results[old_id] = entry
+          else
+            cli = CdiscCli.find(old_id, old_ns)
+            entry = {:cli => {:id => old_id, :parent_identifier => diff[:parent_identifier], 
+              :identifier => diff[:identifier], :label => cli.preferredTerm}, :result => {}}
+            result = entry[:result]
+            missing.each do |ver|
+              result[ver] = ""
+            end
+            result[key] = diff[:old_notation] + " -> " + diff[:new_notation]
+            results[old_id] = entry
+          end
+        end
+      end
+      results.each do |cli, entry|
+        result = entry[:result]
+        if !result.has_key?(key)
+          result[key] = ""
+        end
+      end
+      prev_ct = ct
+      p = 95.0 * (index.to_f/cdisc_terms.count.to_f)
+      self.update(status: "Checked " + ct.versionLabel + ".", percentage: p.to_i)
+    end
+
+    # Save the results
+    CdiscCtChanges.save(CdiscCtChanges::C_ALL_SUB, results)
+
+    # Report Status
+    self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
+
+  end
+  #handle_asynchronously :changesCdiscTerm
+
 private
 
   def load_cls(data, ct, counts, total_ct_count)
