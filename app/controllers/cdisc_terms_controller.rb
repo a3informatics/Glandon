@@ -171,6 +171,14 @@ class CdiscTermsController < ApplicationController
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
   end
 
+  def submission_report
+    ct = CdiscTerm.current
+    @identifier = ct.identifier
+    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+    pdf = Reports::CdiscSubmissionReport.new(@results)
+    send_data pdf.render, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
+  end
+
   def submissionCalc
     if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_SUB)
         redirect_to submission_cdisc_terms_path

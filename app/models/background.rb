@@ -85,7 +85,7 @@ class Background < ActiveRecord::Base
     counts = Hash.new
     counts[:cl_count] = 0
     counts[:ct_count] = 0
-    cdiscTerms.each do |key, ct|
+    cdiscTerms.each do |ct|
       load_cls(data, ct, counts, total_ct_count)
     end
 
@@ -158,7 +158,7 @@ class Background < ActiveRecord::Base
     self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
 
   end
-  #handle_asynchronously :changesCdiscTerm
+  handle_asynchronously :submission_changes_cdisc_term
 
 private
 

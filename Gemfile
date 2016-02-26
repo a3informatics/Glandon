@@ -51,6 +51,10 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 # Delayed job
 gem 'delayed_job_active_record'
 
+# PDF gem
+gem 'prawn'
+gem 'prawn-table'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
