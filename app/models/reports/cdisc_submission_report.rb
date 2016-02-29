@@ -7,7 +7,7 @@ class Reports::CdiscSubmissionReport < Reports::PdfReport
     super()
     
     # Header
-    header 'Submission Change Report'
+    header 'Report', 'CDISC Submission Values Change'
     
     start_new_page(:size => "A4", :layout => :landscape)
     table_data = []

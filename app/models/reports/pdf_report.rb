@@ -11,12 +11,17 @@ class Reports::PdfReport < Prawn::Document
     font_size 10
   end
 
-  def header(title=nil)
+  def header(doc_type=nil, title=nil)
     #image 'app/assets/images/favicon.gif', height: 30
-    text "My Organization", size: 18, style: :bold, align: :center
-    if title
-      text title, size: 14, style: :bold_italic, align: :center
+    text "ACME Pharmaceuticals", size: 18, style: :bold, align: :center
+    move_down 200
+    if doc_type
+      text doc_type, size: 24, style: :bold, align: :center
     end
+    if title
+      text title, size: 24, style: :bold, align: :center
+    end
+    move_down 200
   end
 
   def footer
