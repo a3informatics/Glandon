@@ -21,8 +21,7 @@ class FormsController < ApplicationController
       format.json do
         results = {}
         results[:data] = []
-        @forms.each do |id|
-          item = {:identifier => id}
+        @forms.each do |item|
           results[:data] << item
         end
         render json: results

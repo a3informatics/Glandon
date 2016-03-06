@@ -14,9 +14,10 @@ class IsoScopedIdentifier
   
   # Constants
   C_NS_PREFIX = "mdrItems"
-  C_CLASS_PREFIX = "SI"
+  C_CID_PREFIX  = "SI"
   C_CLASS_NAME = "IsoScopedIdentifier"
-        
+  C_FIRST_VERSION = 1
+
   # Base namespace 
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
   
@@ -33,6 +34,18 @@ class IsoScopedIdentifier
   
   def owner
     return self.namespace.shortName
+  end
+  
+  def next_version
+    return version + 1
+  end
+  
+  def first_version
+    return C_FIRST_VERSION
+  end
+  
+  def self.first_version
+    return C_FIRST_VERSION
   end
   
   def self.exists?(identifier, scopeId)   
@@ -67,10 +80,10 @@ class IsoScopedIdentifier
   end
 
   def self.versionExists?(identifier, version, scopeId)   
-    ConsoleLogger::log(C_CLASS_NAME,"versionExists?","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"versionExists?","Identifier=" + identifier.to_s )
-    ConsoleLogger::log(C_CLASS_NAME,"versionExists?","Version=" + version.to_s )
-    ConsoleLogger::log(C_CLASS_NAME,"versionExists?","ScopeId=" + scopeId.to_s )
+    #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","Identifier=" + identifier.to_s )
+    #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","Version=" + version.to_s )
+    #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","ScopeId=" + scopeId.to_s )
     result = false
     
     # Create the query
@@ -188,13 +201,15 @@ class IsoScopedIdentifier
     #ConsoleLogger::log(C_CLASS_NAME,"allIdentifier","*****Entry*****")
     #ConsoleLogger::log(C_CLASS_NAME,"allIdentifier","ns=" + ns.to_s)
     results = Array.new
+    check = Hash.new
 
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT"]) +
-      "SELECT DISTINCT ?d WHERE \n" +
+      "SELECT DISTINCT ?d ?e WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdfType + " . \n" +
       "  ?a isoI:hasIdentifier ?c . \n" +
+      "  ?a rdfs:label ?e . \n" +
       "  ?c isoI:identifier ?d . \n" +
       "}"
     
@@ -205,33 +220,22 @@ class IsoScopedIdentifier
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      # uri = ModelUtility.getValue('a', true, node)
-      # label = ModelUtility.getValue('b', false, node)
-      # si = ModelUtility.getValue('c', true, node)
       identifier = ModelUtility.getValue('d', false, node)
+      label = ModelUtility.getValue('e', false, node)
       if identifier != "" 
-        results << identifier
+        if !check.has_key?(identifier)
+          results << {:identifier => identifier, :label => label}
+          check[identifier] = identifier
+        end
       end
     end
     return results    
   end
 
-  def self.create(params, uid, scopeId)
-    
-    # Get the parameters from the user. 
-    versionLabel = params[:versionLabel]
-    version = params[:version]
-    identifier = params[:identifier]
-    #ConsoleLogger::log(C_CLASS_NAME,"create","*****ENTRY*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"create",
-    #  "ScopeId=" + scopeId + ", " + 
-    #  "versionLabel=" + versionLabel + ", " + 
-    #  "version=" + version + ", " + 
-    #  "identifier" + identifier + ", " + 
-    #  "itemUid=" + uid )
-        
+  def self.create(identifier, version, version_label, scope_org)
+
     # Create the CID
-    id = ModelUtility.buildCidIdentifierVersion(C_CLASS_PREFIX, uid, version)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
     
     # Create the query
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
@@ -240,8 +244,8 @@ class IsoScopedIdentifier
       "	 :" + id + " rdf:type isoI:ScopedIdentifier . \n" +
       "	 :" + id + " isoI:identifier \"" + identifier.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " isoI:version \"" + version.to_s + "\"^^xsd:positiveInteger . \n" +
-      "  :" + id + " isoI:versionLabel \"" + versionLabel.to_s + "\"^^xsd:string . \n" +
-      "	 :" + id + " isoI:hasScope :" + scopeId.to_s + " . \n" +
+      "  :" + id + " isoI:versionLabel \"" + version_label.to_s + "\"^^xsd:string . \n" +
+      "	 :" + id + " isoI:hasScope :" + scope_org.id.to_s + " . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -252,9 +256,9 @@ class IsoScopedIdentifier
       object = self.new
       object.id = id
       object.version = version
-      object.versionLabel = versionLabel
+      object.versionLabel = version_label
       object.identifier = identifier
-      object.namespace = IsoNamespace.find(scopeId)
+      object.namespace = scope_org
     else
       object = self.new
       object.assign_errors(data) if response.response_code == 422
@@ -263,14 +267,24 @@ class IsoScopedIdentifier
     
   end
 
-  def self.createDummy(params, uid, scopeId)
+  def self.create_dummy(identifier, version, version_label, scope_org)
     object = self.new
-    object.id = ModelUtility.buildCidIdentifierVersion(C_CLASS_PREFIX, uid, params[:version])
-    object.version = params[:version]
-    object.versionLabel = params[:versionLabel]
-    object.identifier = params[:identifier]
-    object.namespace = IsoNamespace.find(scopeId)
+    object.id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
+    object.version = version
+    object.versionLabel = version_label
+    object.identifier = identifier
+    object.namespace = scope_org
     return object
+  end
+
+  def self.create_sparql(identifier, version, version_label, scope_org, sparql)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
+    sparql.add_prefix("isoI")
+    sparql.triple(C_NS_PREFIX, id, "rdf", "type", "isoI", "ScopedIdentifier")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoI", "identifier", identifier.to_s, "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoI", "version", version.to_s, "positiveInteger")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoI", "versionLabel", version_label.to_s, "string")
+    sparql.triple(C_NS_PREFIX, id, "isoI", "hasScope", C_NS_PREFIX, scope_org.id.to_s)
   end
 
   def destroy

@@ -50,12 +50,7 @@ class IsoProperty
   end
 
   def set(predicate, objectLiteral, label)
-    #property = Hash.new
-    #property[:rdfType] = predicate
-    #property[:value] = objectLiteral
-    #property[:label] = label
-    #@properties << property
-    @properties << {:rdfType => predicate, :value => objectLiteral, :lable => label}
+    @properties << {:rdfType => predicate, :value => objectLiteral, :label => label}
     #ConsoleLogger::log(C_CLASS_NAME,"set","@property=" + @property.to_s)
   end
 

@@ -19,9 +19,9 @@
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
-:ComplexNode
+:Node
   rdf:type owl:Class ;
-  rdfs:label "Node (either BRIDG class & attribute) or property that contains a complex data type"^^xsd:string ;
+  rdfs:label "Generic node"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf isoC:Concept ;
 .
@@ -34,18 +34,18 @@
 :Item
   rdf:type owl:Class ;
   rdfs:label "An item within a Biomedical Concept Template. A reference to a BRIDG class and attribute used."^^xsd:string ;
-  rdfs:subClassOf :ComplexNode ;
+  rdfs:subClassOf :Node ;
 .
 :Property
   rdf:type owl:Class ;
   rdfs:label "ISO21090Property"^^xsd:string ;
-  rdfs:subClassOf :ComplexNode ;
+  rdfs:subClassOf :Node ;
 .
 :PropertyValue
   rdf:type owl:Class ;
   rdfs:label "Value"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
-  rdfs:subClassOf isoC:Concept ;
+  rdfs:subClassOf isoC:Node ;
 .
 :BiomedicalConcept
   rdf:type owl:Class ;
@@ -65,14 +65,14 @@
 :alias
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :ComplexNode ;
+  rdfs:domain :Node ;
   rdfs:label "A short hand name for the item to allow easy use"^^xsd:string ;
   rdfs:range xsd:string ;
 .
 :ordinal
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :ComplexNode ;
+  rdfs:domain :Node ;
   rdfs:label "Order of the node withing the collection"^^xsd:string ;
   rdfs:range xsd:positiveInteger ;
 .
@@ -214,13 +214,6 @@
   rdfs:domain :Item ;
   rdfs:label "next item"^^xsd:string ;
   rdfs:range :Item ;
-.
-:nextValue
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :PropertyValue ;
-  rdfs:label "next value"^^xsd:string ;
-  rdfs:range :PropertyValue ;
 .
 :simpleDatatype
   rdf:type owl:DatatypeProperty ;

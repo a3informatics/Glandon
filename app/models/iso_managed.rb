@@ -44,6 +44,38 @@ class IsoManaged < IsoConcept
     return registrationState != nil
   end
 
+  def edit?
+    if registrationState == nil
+      return false
+    else
+      return self.registrationState.edit?
+    end
+  end
+
+  def delete?
+    if registrationState == nil
+      return false
+    else
+      return self.registrationState.delete?
+    end
+  end
+
+  def new_version?
+    if registrationState == nil
+      return false
+    else
+      return self.registrationState.new_version?
+    end
+  end
+
+  def next_version
+    scopedIdentifier.next_version
+  end
+
+  def first_version
+    scopedIdentifier.first_version
+  end
+
   # Does the item exist. Cannot be used for child objects!
   def self.exists?(identifier, registrationAuthority)
     #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
@@ -60,9 +92,9 @@ class IsoManaged < IsoConcept
 
   # Note: The id is the identifier for the enclosing managed object. 
   def self.find(id, ns)  
-    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + ns)   
+    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
+    ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + ns)   
     object = super(id, ns)
     object.registrationState = nil
     object.origin = ""
@@ -182,7 +214,7 @@ class IsoManaged < IsoConcept
   # Find history for a given identifier
   def self.history(rdfType, identifier, ns)    
     #ConsoleLogger::log(C_CLASS_NAME,"history","*****Entry*****")    
-    results = Hash.new
+    results = Array.new
     
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
@@ -248,7 +280,7 @@ class IsoManaged < IsoConcept
         else
           object.scopedIdentifier = nil
         end
-        results[object.id] = object
+        results << object
       end
     end
     
@@ -327,7 +359,7 @@ class IsoManaged < IsoConcept
 
   def self.latest(history)
     result = nil
-    history.each do |key, item|
+    history.each do |item|
       result = item
       if item.registered?
         break if item.registrationState.registrationStatus == IsoRegistrationState.releasedState
@@ -338,89 +370,66 @@ class IsoManaged < IsoConcept
     return result
   end
 
-  def self.importOld(prefix, params, ownerNamespace, rdfType, schemaNs, instanceNs)
-    #ConsoleLogger::log(C_CLASS_NAME,"import","*****Entry*****")
-    version = params[:version]
-
-    # Set the registration authority to teh owner
-    orgName = ownerNamespace.shortName
-    scopeId = ownerNamespace.id
-
-    # Create the required namespace. Use owner name to extend
-    uri = Uri.new
-    uri.setUri(instanceNs)
-    uri.extendPath(orgName + "/V" + version.to_s)
-    useNs = uri.getNs()
-    ConsoleLogger::log(C_CLASS_NAME,"create","useNs=" + useNs)
-     
-    # Create the SI etc. Note no registration state.
-    identifier = params[:identifier]
-    object = self.new
-    object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
-    object.namespace = useNs
-    object.scopedIdentifier = IsoScopedIdentifier.create(params, identifier, scopeId)
-    object.registrationState = nil
-    object.origin = ""
-    object.changeDescription = ""
-    object.creationDate = ""
-    object.lastChangedDate = ""
-    object.explanoratoryComment = ""
-    object.label = params[:label]
-    object.rdfType = rdfType
-
-    prefixSet = ["mdrItems", "isoI"]
-    schemaPrefix = UriManagement.getPrefix(schemaNs)
-    prefixSet << schemaPrefix
-    update = UriManagement.buildNs(useNs, prefixSet) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      "  :" + object.id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
-      "  :" + object.id + " rdf:type " + schemaPrefix + ":" + rdfType + " . \n" +
-      "  :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
-      "}"
-
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"import","Success, id=" + object.id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"import","Failed")
-    end
-    return object
-  
-  end
-
   # Rewritten to return an object with the desired settings for the import.
   def self.import(prefix, params, ownerNamespace, rdfType, schemaNs, instanceNs)
     #ConsoleLogger::log(C_CLASS_NAME,"import","*****Entry*****")
+    identifier = params[:identifier]
     version = params[:version]
+    version_label = params[:versionLabel]
 
     # Set the registration authority to teh owner
     orgName = ownerNamespace.shortName
     scopeId = ownerNamespace.id
 
     # Create the required namespace. Use owner name to extend
-    uri = Uri.new
-    uri.setUri(instanceNs)
-    uri.extendPath(orgName + "/V" + version.to_s)
+    #uri = Uri.new
+    #uri.setUri(instanceNs)
+    #uri.extendPath(orgName + "/V" + version.to_s)
+    uri = ModelUtility::version_namespace(version, instanceNs, orgName)
     useNs = uri.getNs()
     ConsoleLogger::log(C_CLASS_NAME,"create","useNs=" + useNs)
      
     # Create the SI etc. Note no registration state.
     identifier = params[:identifier]
     object = self.new
-    object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
+    object.id = ModelUtility.build_full_cid(prefix, orgName, identifier)
     object.namespace = useNs
-    object.scopedIdentifier = IsoScopedIdentifier.createDummy(params, identifier, scopeId)
+    object.scopedIdentifier = IsoScopedIdentifier.create_dummy(identifier, version, version_label, ownerNamespace)
     return object
+  end
+
+  def self.create_permitted?(identifier, version, object)
+    result = true
+    exists = exists?(identifier, IsoRegistrationAuthority.owner)
+    ra = IsoRegistrationAuthority.owner
+    org_name = ra.namespace.shortName
+    scope = ra.namespace
+    ConsoleLogger::log(C_CLASS_NAME,"create_permitted","identifier=" + identifier + ", version=" + version.to_s + ", exists=" + exists.to_s)
+    if version == IsoScopedIdentifier.first_version && exists
+      result = false
+      object.errors.add(:base, "The item cannot be created. The identifier is already in use.")
+    elsif version == IsoScopedIdentifier.first_version && !exists
+      result = true
+    elsif version != IsoScopedIdentifier.first_version && exists
+      if versionExists?(identifier, version, scope)
+        result = false
+        object.errors.add(:base, "The item cannot be created. The identifier and version is already in use.")
+      else
+        result = true
+      end
+    elsif version != IsoScopedIdentifier.first_version && !exists
+      result = false
+      object.errors.add(:base, "The item cannot be created. Identifier does not exist but not first version. Logic error.")
+      # TO DO: Exception here.
+    end 
+    return result
   end
 
   def self.create(prefix, params, rdfType, schemaNs, instanceNs)
     #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+    identifier = params[:identifier]
     version = params[:version]
+    version_label = params[:versionLabel]
 
     # Set the registration authority to teh owner
     ra = IsoRegistrationAuthority.owner
@@ -428,9 +437,10 @@ class IsoManaged < IsoConcept
     scopeId = ra.namespace.id
 
     # Create the required namespace. Use owner name to extend
-    uri = Uri.new
-    uri.setUri(instanceNs)
-    uri.extendPath(orgName + "/V" + version.to_s)
+    #uri = Uri.new
+    #uri.setUri(instanceNs)
+    #uri.extendPath(orgName + "/V" + version.to_s)
+    uri = ModelUtility::version_namespace(version, instanceNs, orgName)
     useNs = uri.getNs()
     ConsoleLogger::log(C_CLASS_NAME,"create","useNs=" + useNs)
      
@@ -438,12 +448,11 @@ class IsoManaged < IsoConcept
     timestamp = Time.now
     
     # Create the object
-    identifier = params[:identifier]
     object = self.new
     object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
     object.namespace = useNs
-    object.scopedIdentifier = IsoScopedIdentifier.create(params, identifier, scopeId)
-    object.registrationState = IsoRegistrationState.create(params, identifier)
+    object.scopedIdentifier = IsoScopedIdentifier.create(identifier, version, version_label, ra.namespace)
+    object.registrationState = IsoRegistrationState.create(identifier, version, ra.namespace)
     object.origin = ""
     object.changeDescription = "Creation"
     object.creationDate = timestamp
@@ -482,5 +491,50 @@ class IsoManaged < IsoConcept
     return object
 
   end 
+
+  def self.create_sparql(prefix, params, rdfType, schemaNs, instanceNs, sparql)
+    #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+    version = params[:new_version]
+    identifier = params[:identifier]
+    version_label = params[:versionLabel]
+    timestamp = Time.now
+    schema_prefix = UriManagement.getPrefix(schemaNs)
+
+    # Set the registration authority to the owner
+    ra = IsoRegistrationAuthority.owner
+    org_name = ra.namespace.shortName
+    scopeId = ra.namespace.id
+
+    # Create the required namespace. Use owner name to extend
+    uri = ModelUtility::version_namespace(version, instanceNs, org_name)
+    useNs = uri.getNs()
+    ConsoleLogger::log(C_CLASS_NAME,"create_sparql","useNs=" + useNs)
+    
+    dummy_SI = IsoScopedIdentifier.create_dummy(identifier, version, version_label, ra.namespace)
+    dummy_RS = IsoRegistrationState.create_dummy(identifier, version, ra.namespace)
+    id = ModelUtility.build_full_cid(prefix, org_name, identifier)
+    
+    IsoScopedIdentifier.create_sparql(identifier, version, version_label, ra.namespace, sparql)
+    IsoRegistrationState.create_sparql(identifier, version, ra.namespace, sparql)
+    sparql.add_default_namespace(useNs)
+    #sparql.add_prefix(UriManagement::C_ISO_R)
+    #sparql.add_prefix(UriManagement::C_ISO_I)
+    #sparql.add_prefix(UriManagement::C_ISO_T)
+    #sparql.add_prefix(UriManagement::C_MDR_ITEMS)
+    sparql.triple("", id, UriManagement::C_RDF, "type", schema_prefix, rdfType)
+    sparql.triple("", id, UriManagement::C_ISO_I, "hasIdentifier", C_INSTANCE_PREFIX, dummy_SI.id)
+    sparql.triple("", id, UriManagement::C_ISO_R, "hasState", C_INSTANCE_PREFIX, dummy_RS.id)
+    sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", params[:label], "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "explanatoryComment", "", "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "lastChangeDate", "", "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "creationDate", timestamp.to_s, "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "changeDescription", "Creation", "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "origin", "", "string")
+
+    # Result URI
+    uri = Uri.new
+    uri.setNsCid(useNs, id)
+    return uri
+  end
 
 end

@@ -3,11 +3,13 @@
 	<table id="main" class="table table-striped table-bordered table-condensed">
 		<%= render partial: "shared/stdInstanceHeader" %>
 		<tbody>
-			<% @bct.each do |key, item| %>
+			<% @bct.each do |item| %>
 				<%= render partial: "shared/stdInstanceRow", :locals => {:item => item, 
 	  				:showPath => biomedical_concept_template_path(:id => item.id, :namespace => item.namespace), 
 	  				:searchPath => "", 
-	  				:viewPath => ""} %>
+	  				:viewPath => "",
+	  				:editPath => "",
+	  				:deletePath => "" } %>
 			<% end %>				
 		</tbody>
 	</table>

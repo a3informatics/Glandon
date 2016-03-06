@@ -39,11 +39,11 @@
         <xsl:text disable-output-escaping="yes">@prefix cbc: &lt;http://www.assero.co.uk/CDISCBiomedicalConcept#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoR: &lt;http://www.assero.co.uk/ISO11179Registration#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix isoT: &lt;http://www.assero.co.uk/ISO11179Type#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix isoT: &lt;http://www.assero.co.uk/ISO11179Types#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrBridg: &lt;http://www.assero.co.uk/MDRBRIDG#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrIso21090: &lt;http://www.assero.co.uk/MDRISO21090#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrItems: &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix mdrBcts: &lt;http://www.assero.co.uk/MDRBcts/V1#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix mdrBcts: &lt;http://www.assero.co.uk/MDRBCTs/V1#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix cCt: &lt;http://www.assero.co.uk/MDRThesaurus/CDISC/V42#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix aCt: &lt;http://www.assero.co.uk/MDRThesaurus/ACME/V1#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .&#xa;</xsl:text>
@@ -74,9 +74,20 @@
     <!-- Template for the RCT -->
     <xsl:template match="BiomedicalConcept">
 
-        <xsl:variable name="BCIdentifier" select="concat(@Name,' (',@Id, ')')"/>
+        <!--<xsl:variable name="BCIdentifier" select="concat(@Name,' (',@Id, ')')"/>-->
+        <xsl:variable name="BCIdentifier" select="@Id"/>
         <xsl:variable name="BCItemType" select="replace(@Id,' ',$MinorSeparator)"/>
-        <xsl:variable name="Prefix" select="concat($URIPrefix,$MainSeparator,$BCItemType)"/>
+        <xsl:variable name="Org"> 
+            <xsl:choose>
+                <xsl:when test="@Scope='NS-ACME'">
+                    <xsl:text>ACME</xsl:text>    
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>CDISC</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable> 
+        <xsl:variable name="Prefix" select="concat($URIPrefix,$MainSeparator,$Org,$MinorSeparator,$BCItemType)"/>
         
         <!-- Create the actual class -->
         <xsl:call-template name="Subject"> 
@@ -107,57 +118,79 @@
             <xsl:with-param name="pPredicateName" select="'rdfs:label'" /> 
             <xsl:with-param name="pObjectName" select="concat($quote,@Name,' (',@Id,')',$quote,'^^xsd:string')" /> 
         </xsl:call-template>
-        <xsl:variable name="SIName" select="concat('SI',$MainSeparator,$BCItemType,$MainSeparator,'1')"/>
-        <xsl:variable name="RSName" select="concat('RS',$MainSeparator,$BCItemType,$MainSeparator,'1')"/>
-        <xsl:call-template name="PredicateObject"> 
-            <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
-            <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SIName)" /> 
-        </xsl:call-template>
-        <xsl:variable name="RSName" select="concat('RS',$MainSeparator,$BCItemType,$MainSeparator,'1')"/>
-        <xsl:if test="@Scope='NS-ACME'">
-            <xsl:call-template name="PredicateObject">
-                <xsl:with-param name="pPredicateName" select="'isoT:origin'"/>
-                <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
-            </xsl:call-template>
-            <xsl:call-template name="PredicateObject">
-                <xsl:with-param name="pPredicateName" select="'isoT:changeDescription'"/>
-                <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
-            </xsl:call-template>
-            <xsl:call-template name="PredicateObject">
-                <xsl:with-param name="pPredicateName" select="'isoT:creationDate'"/>
-                <xsl:with-param name="pObjectName" select="concat($quote,'2015-11-20',$quote,'^^xsd:date')"/>
-            </xsl:call-template>
-            <xsl:call-template name="PredicateObject">
-                <xsl:with-param name="pPredicateName" select="'isoT:lastChangeDate'"/>
-                <xsl:with-param name="pObjectName" select="concat($quote,'2015-11-20',$quote,'^^xsd:date')"/>
-            </xsl:call-template>
-            <xsl:call-template name="PredicateObject">
-                <xsl:with-param name="pPredicateName" select="'isoT:explanatoryComment'"/>
-                <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
-            </xsl:call-template>
-            <xsl:call-template name="PredicateObject"> 
-                <xsl:with-param name="pPredicateName" select="'isoR:hasState
-'" /> 
-                <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RSName)" /> 
-            </xsl:call-template>
-        </xsl:if>
-        <xsl:call-template name="SubjectEnd"/> 
         
-        <!-- Scoped Identifier -->
-        <xsl:call-template name="ScopedIdentifier">
-            <xsl:with-param name="pCID" select="$SIName"/>
-            <xsl:with-param name="pIdentifier" select="$BCIdentifier"/>
-            <xsl:with-param name="pVersionLabel" select="'0.1'"/>
-            <xsl:with-param name="pVersion" select="'1'"/>
-            <xsl:with-param name="pScope" select="@Scope"/>
-        </xsl:call-template>
-
-        <xsl:if test="@Scope='NS-ACME'">
-            <xsl:call-template name="RegistrationState">
-                <xsl:with-param name="pCID" select="$RSName"/>
-            </xsl:call-template>   
-        </xsl:if>
-            
+        <xsl:choose>
+            <xsl:when test="@Scope='NS-ACME'">
+                <xsl:variable name="SIName" select="concat('SI',$MainSeparator,'ACME',$MinorSeparator,$BCItemType,$MainSeparator,'1')"/>
+                <xsl:variable name="RSName" select="concat('RS',$MainSeparator,'ACME',$MinorSeparator,$BCItemType,$MainSeparator,'1')"/>
+                <xsl:call-template name="PredicateObject"> 
+                    <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
+                    <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SIName)" /> 
+                </xsl:call-template>
+                <xsl:call-template name="PredicateObject">
+                    <xsl:with-param name="pPredicateName" select="'isoT:origin'"/>
+                    <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+                </xsl:call-template>
+                <xsl:call-template name="PredicateObject">
+                    <xsl:with-param name="pPredicateName" select="'isoT:changeDescription'"/>
+                    <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+                </xsl:call-template>
+                <xsl:call-template name="PredicateObject">
+                    <xsl:with-param name="pPredicateName" select="'isoT:creationDate'"/>
+                    <xsl:with-param name="pObjectName" select="concat($quote,'2015-11-20',$quote,'^^xsd:date')"/>
+                </xsl:call-template>
+                <xsl:call-template name="PredicateObject">
+                    <xsl:with-param name="pPredicateName" select="'isoT:lastChangeDate'"/>
+                    <xsl:with-param name="pObjectName" select="concat($quote,'2015-11-20',$quote,'^^xsd:date')"/>
+                </xsl:call-template>
+                <xsl:call-template name="PredicateObject">
+                    <xsl:with-param name="pPredicateName" select="'isoT:explanatoryComment'"/>
+                    <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+                </xsl:call-template>
+                <xsl:call-template name="PredicateObject"> 
+                    <xsl:with-param name="pPredicateName" select="'isoR:hasState'" /> 
+                    <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RSName)" /> 
+                </xsl:call-template>
+                
+                <xsl:call-template name="SubjectEnd"/> 
+                
+                <!-- Scoped Identifier -->
+                <xsl:call-template name="ScopedIdentifier">
+                    <xsl:with-param name="pCID" select="$SIName"/>
+                    <xsl:with-param name="pIdentifier" select="$BCIdentifier"/>
+                    <xsl:with-param name="pVersionLabel" select="'0.1'"/>
+                    <xsl:with-param name="pVersion" select="'1'"/>
+                    <xsl:with-param name="pScope" select="@Scope"/>
+                </xsl:call-template>
+        
+                <!-- Registration State -->
+                <xsl:call-template name="RegistrationState">
+                    <xsl:with-param name="pCID" select="$RSName"/>
+                    <xsl:with-param name="pRA" select="'RA-123456789'"/>
+                </xsl:call-template>   
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="SIName" select="concat('SI',$MainSeparator,'CDISC',$MinorSeparator,$BCItemType,$MainSeparator,'1')"/>
+                <xsl:variable name="RSName" select="concat('RS',$MainSeparator,'CDISC',$MinorSeparator,$BCItemType,$MainSeparator,'1')"/>
+                <xsl:call-template name="PredicateObject"> 
+                    <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
+                    <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SIName)" /> 
+                </xsl:call-template>
+                
+                <xsl:call-template name="SubjectEnd"/> 
+                
+                <!-- Scoped Identifier -->
+                <xsl:call-template name="ScopedIdentifier">
+                    <xsl:with-param name="pCID" select="$SIName"/>
+                    <xsl:with-param name="pIdentifier" select="$BCIdentifier"/>
+                    <xsl:with-param name="pVersionLabel" select="'0.1'"/>
+                    <xsl:with-param name="pVersion" select="'1'"/>
+                    <xsl:with-param name="pScope" select="@Scope"/>
+                </xsl:call-template>
+                
+            </xsl:otherwise>
+        </xsl:choose>
+        
         <!-- Build document -->
         <xsl:apply-templates select="./Class">
             <xsl:with-param name="pPrefix" select="$Prefix"/>
@@ -182,7 +215,7 @@
             <xsl:call-template name="PredicateObject"> 
                 <xsl:with-param name="pPredicateName" select="'cbc:ordinal'" /> 
                 <!--<xsl:with-param name="pObjectName" select="count(preceding::Attribute)+1" />--> 
-                <xsl:with-param name="pObjectName" select="position()+$ACount" /> 
+                <xsl:with-param name="pObjectName" select="concat($quote,position()+$ACount,$quote,'^^xsd:positiveInteger')" /> 
             </xsl:call-template>            
             <xsl:call-template name="PredicateObject"> 
                 <xsl:with-param name="pPredicateName" select="'cbc:isItemOf'" /> 
@@ -330,10 +363,10 @@
                         <xsl:with-param name="pPredicateName" select="'cbc:alias'" /> 
                         <xsl:with-param name="pObjectName" select="concat($quote,$PropertyAlias,$quote,'^^xsd:string')" /> 
                     </xsl:call-template>
-                    <xsl:call-template name="PredicateObject"> 
+                    <!--<xsl:call-template name="PredicateObject"> 
                         <xsl:with-param name="pPredicateName" select="'cbc:name'" /> 
                         <xsl:with-param name="pObjectName" select="concat($quote,$PropertyAlias,$quote,'^^xsd:string')" /> 
-                    </xsl:call-template>
+                    </xsl:call-template>-->
                     <xsl:variable name="PropertyDatatype" select="string(./@DataType)"/>
                     <xsl:variable name="FixedDatatype">
                         <xsl:call-template name="extractBRIDGDatatype2">
@@ -347,16 +380,17 @@
                             <xsl:variable name="simpleDT" select="$DatatypeDocument/ISO21090DataTypes/primitiveTypes/primitiveType[@Name=$PropertyDatatype]"/>
                             <xsl:variable name="schemaType" select="$simpleDT/@Map"/>
                             
-                            <xsl:variable name="Level" select="1"/>
-                            <xsl:call-template name="PredicateObject"> 
-                                <xsl:with-param name="pPredicateName" select="'cbc:hasValue'" /> 
-                                <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$MinorSeparator,@Name,$MinorSeparator,'Value',$MinorSeparator,$Level,$URIFinish)" /> 
-                            </xsl:call-template>
+                            <xsl:for-each select="$PropertyNode/Value">
+                                <xsl:call-template name="PredicateObject"> 
+                                    <xsl:with-param name="pPredicateName" select="'cbc:hasValue'" /> 
+                                    <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$MinorSeparator,$PropertyNode/@Name,$MinorSeparator,'Value',$MinorSeparator,position(),$URIFinish)" /> 
+                                </xsl:call-template>
+                            </xsl:for-each>
                             
                             <!-- Ordinal -->
                             <xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="'cbc:ordinal'" /> 
-                                <xsl:with-param name="pObjectName" select="$PCount" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$PCount,$quote,'^^xsd:positiveInteger')" /> 
                             </xsl:call-template>
                             
                             <!-- Question text etc -->
@@ -393,11 +427,13 @@
                             <xsl:call-template name="SubjectEnd"/> 
                             
                             <!-- Values -->
-                            <xsl:call-template name="Value" >
-                                <xsl:with-param name="pPrefix" select="concat($pPrefix,$MinorSeparator,@Name)" /> 
-                                <xsl:with-param name="pValue" select="$PropertyNode/*[1]"/>
-                                <xsl:with-param name="pLevel" select="$Level" />
-                            </xsl:call-template>
+                            <xsl:for-each select="$PropertyNode/Value">
+                                <xsl:call-template name="Value" >
+                                    <xsl:with-param name="pPrefix" select="concat($pPrefix,$MinorSeparator,$PropertyNode/@Name)" /> 
+                                    <xsl:with-param name="pValue" select="."/>
+                                    <xsl:with-param name="pOrdinal" select="position()" />
+                                </xsl:call-template>
+                            </xsl:for-each>
                             
                         </xsl:when>
                         <xsl:otherwise>
@@ -452,16 +488,22 @@
         
         <xsl:param name="pPrefix" /> 
         <xsl:param name="pValue"/>
-        <xsl:param name="pLevel"/>
+        <xsl:param name="pOrdinal"/>
         
-        <xsl:variable name="pNextLevel" select="($pLevel + 1)"/>
         <xsl:call-template name="Subject"> 
-            <xsl:with-param name="pName" select="concat(':',$pPrefix,$MinorSeparator,'Value_',$pLevel,$URIFinish)" /> 
+            <xsl:with-param name="pName" select="concat(':',$pPrefix,$MinorSeparator,'Value_',$pOrdinal,$URIFinish)" /> 
         </xsl:call-template>
         <xsl:call-template name="PredicateObject"> 
             <xsl:with-param name="pPredicateName" select="'rdf:type'" /> 
             <xsl:with-param name="pObjectName" select="'cbc:PropertyValue'" /> 
         </xsl:call-template>
+        
+        <!-- Ordinal -->
+        <xsl:call-template name="PredicateObject"> 
+            <xsl:with-param name="pPredicateName" select="'cbc:ordinal'" /> 
+            <xsl:with-param name="pObjectName" select="concat($quote,$pOrdinal,$quote,'^^xsd:positiveInteger')" /> 
+        </xsl:call-template>
+        
         <xsl:variable name="Value">
             <xsl:choose>
                 <xsl:when test="substring($pValue,1,3)='CLI'">
@@ -479,24 +521,8 @@
             <xsl:with-param name="pPredicateName" select="'cbc:value'" /> 
             <xsl:with-param name="pObjectName" select="$Value" /> 
         </xsl:call-template>
-        <xsl:choose>
-            <xsl:when test="$pValue/following-sibling::Value[1]">
-                <xsl:call-template name="PredicateObject"> 
-                    <xsl:with-param name="pPredicateName" select="'cbc:nextValue'" /> 
-                    <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$MinorSeparator,'Value',$MinorSeparator,$pNextLevel,$URIFinish)" /> 
-                </xsl:call-template>
-                <xsl:call-template name="SubjectEnd"/> 
-                <xsl:call-template name="Value" >
-                    <xsl:with-param name="pPrefix" select="$pPrefix" /> 
-                    <xsl:with-param name="pValue" select="$pValue/following-sibling::Value[1]"/>
-                    <xsl:with-param name="pLevel" select="$pNextLevel"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:call-template name="SubjectEnd"/> 
-            </xsl:otherwise>
-        </xsl:choose>
-               
+        <xsl:call-template name="SubjectEnd"/>
+        
     </xsl:template>
     
     <xsl:template name="X">

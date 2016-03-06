@@ -9,12 +9,11 @@ class BiomedicalConceptTemplatesController < ApplicationController
       format.json do
         results = {}
         results[:data] = []
-        @bcts.each do |id|
-          item = {:identifier => id}
+        @bcts.each do |item|
           results[:data] << item
         end
         render json: results
-      end
+     end
     end
   end
   
@@ -27,10 +26,20 @@ class BiomedicalConceptTemplatesController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @bct = BiomedicalConceptTemplate.find(id, namespace)
+    @items = @bct.flatten
     respond_to do |format|
-      format.html
+      format.html 
       format.json do
-        render json: @bct
+        results = {}
+        results[:id] = id
+        results[:identifier] = @bct.identifier
+        results[:label] = @bct.label
+        results[:namespace] = namespace
+        results[:properties] = []
+        @items.each do |property|
+          results[:properties] << property
+        end
+        render json: results
       end
     end
   end

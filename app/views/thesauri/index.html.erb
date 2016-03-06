@@ -4,14 +4,16 @@
 		<thead>
 			<tr>
 		    	<th>Identifier</th>
+		    	<th>Label</th>
 		    	<th></th>
 		  	</tr>
 		</thead>
 		<tbody>
 			<% @thesauri.each do |thesaurus| %>
 				<tr>
-			    	<td><%= thesaurus %></td>
-			    	<td><%= link_to "History", history_thesauri_index_path(:identifier => thesaurus), :class => "btn btn-primary btn-xs" %></td>
+			    	<td><%= thesaurus[:identifier] %></td>
+			    	<td><%= thesaurus[:label] %></td>
+			    	<td><%= link_to "History", history_thesauri_index_path(:identifier => thesaurus[:identifier]), :class => "btn btn-primary btn-xs" %></td>
 			  	</tr>
 			<% end %>
 		</tbody>

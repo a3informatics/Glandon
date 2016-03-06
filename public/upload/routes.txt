@@ -1,0 +1,314 @@
+                                 Prefix Verb    URI Pattern                                             Controller#Action
+                                   root GET     /                                                       dashboard#index
+                       new_user_session GET     /users/sign_in(.:format)                                devise/sessions#new
+                           user_session POST    /users/sign_in(.:format)                                devise/sessions#create
+                   destroy_user_session DELETE  /users/sign_out(.:format)                               devise/sessions#destroy
+                          user_password POST    /users/password(.:format)                               devise/passwords#create
+                      new_user_password GET     /users/password/new(.:format)                           devise/passwords#new
+                     edit_user_password GET     /users/password/edit(.:format)                          devise/passwords#edit
+                                        PATCH   /users/password(.:format)                               devise/passwords#update
+                                        PUT     /users/password(.:format)                               devise/passwords#update
+               cancel_user_registration GET     /users/cancel(.:format)                                 devise/registrations#cancel
+                      user_registration POST    /users(.:format)                                        devise/registrations#create
+                  new_user_registration GET     /users/sign_up(.:format)                                devise/registrations#new
+                 edit_user_registration GET     /users/edit(.:format)                                   devise/registrations#edit
+                                        PATCH   /users(.:format)                                        devise/registrations#update
+                                        PUT     /users(.:format)                                        devise/registrations#update
+                                        DELETE  /users(.:format)                                        devise/registrations#destroy
+                                        OPTIONS /api(/:id)(.:format)                                    api#options
+                         form_api_index GET     /api/form(.:format)                                     api#form
+                              api_index GET     /api(.:format)                                          api#index
+                                        POST    /api(.:format)                                          api#create
+                                new_api GET     /api/new(.:format)                                      api#new
+                               edit_api GET     /api/:id/edit(.:format)                                 api#edit
+                                    api GET     /api/:id(.:format)                                      api#show
+                                        PATCH   /api/:id(.:format)                                      api#update
+                                        PUT     /api/:id(.:format)                                      api#update
+                                        DELETE  /api/:id(.:format)                                      api#destroy
+                   view_dashboard_index GET     /dashboard/view(.:format)                               dashboard#view
+               database_dashboard_index GET     /dashboard/database(.:format)                           dashboard#database
+                        dashboard_index GET     /dashboard(.:format)                                    dashboard#index
+                                        POST    /dashboard(.:format)                                    dashboard#create
+                          new_dashboard GET     /dashboard/new(.:format)                                dashboard#new
+                         edit_dashboard GET     /dashboard/:id/edit(.:format)                           dashboard#edit
+                              dashboard GET     /dashboard/:id(.:format)                                dashboard#show
+                                        PATCH   /dashboard/:id(.:format)                                dashboard#update
+                                        PUT     /dashboard/:id(.:format)                                dashboard#update
+                                        DELETE  /dashboard/:id(.:format)                                dashboard#destroy
+                         iso_namespaces GET     /iso_namespaces(.:format)                               iso_namespaces#index
+                                        POST    /iso_namespaces(.:format)                               iso_namespaces#create
+                      new_iso_namespace GET     /iso_namespaces/new(.:format)                           iso_namespaces#new
+                     edit_iso_namespace GET     /iso_namespaces/:id/edit(.:format)                      iso_namespaces#edit
+                          iso_namespace GET     /iso_namespaces/:id(.:format)                           iso_namespaces#show
+                                        PATCH   /iso_namespaces/:id(.:format)                           iso_namespaces#update
+                                        PUT     /iso_namespaces/:id(.:format)                           iso_namespaces#update
+                                        DELETE  /iso_namespaces/:id(.:format)                           iso_namespaces#destroy
+                 iso_scoped_identifiers GET     /iso_scoped_identifiers(.:format)                       iso_scoped_identifiers#index
+                                        POST    /iso_scoped_identifiers(.:format)                       iso_scoped_identifiers#create
+              new_iso_scoped_identifier GET     /iso_scoped_identifiers/new(.:format)                   iso_scoped_identifiers#new
+             edit_iso_scoped_identifier GET     /iso_scoped_identifiers/:id/edit(.:format)              iso_scoped_identifiers#edit
+                  iso_scoped_identifier GET     /iso_scoped_identifiers/:id(.:format)                   iso_scoped_identifiers#show
+                                        PATCH   /iso_scoped_identifiers/:id(.:format)                   iso_scoped_identifiers#update
+                                        PUT     /iso_scoped_identifiers/:id(.:format)                   iso_scoped_identifiers#update
+                                        DELETE  /iso_scoped_identifiers/:id(.:format)                   iso_scoped_identifiers#destroy
+           iso_registration_authorities GET     /iso_registration_authorities(.:format)                 iso_registration_authorities#index
+                                        POST    /iso_registration_authorities(.:format)                 iso_registration_authorities#create
+         new_iso_registration_authority GET     /iso_registration_authorities/new(.:format)             iso_registration_authorities#new
+        edit_iso_registration_authority GET     /iso_registration_authorities/:id/edit(.:format)        iso_registration_authorities#edit
+             iso_registration_authority GET     /iso_registration_authorities/:id(.:format)             iso_registration_authorities#show
+                                        PATCH   /iso_registration_authorities/:id(.:format)             iso_registration_authorities#update
+                                        PUT     /iso_registration_authorities/:id(.:format)             iso_registration_authorities#update
+                                        DELETE  /iso_registration_authorities/:id(.:format)             iso_registration_authorities#destroy
+                iso_registration_states GET     /iso_registration_states(.:format)                      iso_registration_states#index
+                                        POST    /iso_registration_states(.:format)                      iso_registration_states#create
+             new_iso_registration_state GET     /iso_registration_states/new(.:format)                  iso_registration_states#new
+            edit_iso_registration_state GET     /iso_registration_states/:id/edit(.:format)             iso_registration_states#edit
+                 iso_registration_state GET     /iso_registration_states/:id(.:format)                  iso_registration_states#show
+                                        PATCH   /iso_registration_states/:id(.:format)                  iso_registration_states#update
+                                        PUT     /iso_registration_states/:id(.:format)                  iso_registration_states#update
+                                        DELETE  /iso_registration_states/:id(.:format)                  iso_registration_states#destroy
+                 history_thesauri_index GET     /thesauri/history(.:format)                             thesauri#history
+                    view_thesauri_index GET     /thesauri/view(.:format)                                thesauri#view
+                  search_thesauri_index GET     /thesauri/search(.:format)                              thesauri#search
+               searchNew_thesauri_index GET     /thesauri/searchNew(.:format)                           thesauri#searchNew
+               searchOld_thesauri_index GET     /thesauri/searchOld(.:format)                           thesauri#searchOld
+                         thesauri_index GET     /thesauri(.:format)                                     thesauri#index
+                                        POST    /thesauri(.:format)                                     thesauri#create
+                           new_thesauri GET     /thesauri/new(.:format)                                 thesauri#new
+                          edit_thesauri GET     /thesauri/:id/edit(.:format)                            thesauri#edit
+                               thesauri GET     /thesauri/:id(.:format)                                 thesauri#show
+                                        PATCH   /thesauri/:id(.:format)                                 thesauri#update
+                                        PUT     /thesauri/:id(.:format)                                 thesauri#update
+                                        DELETE  /thesauri/:id(.:format)                                 thesauri#destroy
+              impact_thesaurus_concepts GET     /thesaurus_concepts/impact(.:format)                    thesaurus_concepts#impact
+              showD3_thesaurus_concepts GET     /thesaurus_concepts/showD3(.:format)                    thesaurus_concepts#showD3
+                     thesaurus_concepts GET     /thesaurus_concepts(.:format)                           thesaurus_concepts#index
+                                        POST    /thesaurus_concepts(.:format)                           thesaurus_concepts#create
+                  new_thesaurus_concept GET     /thesaurus_concepts/new(.:format)                       thesaurus_concepts#new
+                 edit_thesaurus_concept GET     /thesaurus_concepts/:id/edit(.:format)                  thesaurus_concepts#edit
+                      thesaurus_concept GET     /thesaurus_concepts/:id(.:format)                       thesaurus_concepts#show
+                                        PATCH   /thesaurus_concepts/:id(.:format)                       thesaurus_concepts#update
+                                        PUT     /thesaurus_concepts/:id(.:format)                       thesaurus_concepts#update
+                                        DELETE  /thesaurus_concepts/:id(.:format)                       thesaurus_concepts#destroy
+                                uploads GET     /uploads(.:format)                                      uploads#index
+                                        POST    /uploads(.:format)                                      uploads#create
+                             new_upload GET     /uploads/new(.:format)                                  uploads#new
+                            edit_upload GET     /uploads/:id/edit(.:format)                             uploads#edit
+                                 upload GET     /uploads/:id(.:format)                                  uploads#show
+                                        PATCH   /uploads/:id(.:format)                                  uploads#update
+                                        PUT     /uploads/:id(.:format)                                  uploads#update
+                                        DELETE  /uploads/:id(.:format)                                  uploads#destroy
+                    index_term_notepads GET     /notepads/index_term(.:format)                          notepads#index_term
+                   create_term_notepads POST    /notepads/create_term(.:format)                         notepads#create_term
+                               notepads GET     /notepads(.:format)                                     notepads#index
+                                        POST    /notepads(.:format)                                     notepads#create
+                            new_notepad GET     /notepads/new(.:format)                                 notepads#new
+                           edit_notepad GET     /notepads/:id/edit(.:format)                            notepads#edit
+                                notepad GET     /notepads/:id(.:format)                                 notepads#show
+                                        PATCH   /notepads/:id(.:format)                                 notepads#update
+                                        PUT     /notepads/:id(.:format)                                 notepads#update
+                                        DELETE  /notepads/:id(.:format)                                 notepads#destroy
+   history_biomedical_concept_templates GET     /biomedical_concept_templates/history(.:format)         biomedical_concept_templates#history
+           biomedical_concept_templates GET     /biomedical_concept_templates(.:format)                 biomedical_concept_templates#index
+                                        POST    /biomedical_concept_templates(.:format)                 biomedical_concept_templates#create
+        new_biomedical_concept_template GET     /biomedical_concept_templates/new(.:format)             biomedical_concept_templates#new
+       edit_biomedical_concept_template GET     /biomedical_concept_templates/:id/edit(.:format)        biomedical_concept_templates#edit
+            biomedical_concept_template GET     /biomedical_concept_templates/:id(.:format)             biomedical_concept_templates#show
+                                        PATCH   /biomedical_concept_templates/:id(.:format)             biomedical_concept_templates#update
+                                        PUT     /biomedical_concept_templates/:id(.:format)             biomedical_concept_templates#update
+                                        DELETE  /biomedical_concept_templates/:id(.:format)             biomedical_concept_templates#destroy
+              biomedical_concepts_items GET     /biomedical_concepts/items(.:format)                    biomedical_concepts/items#index
+                                        POST    /biomedical_concepts/items(.:format)                    biomedical_concepts/items#create
+           new_biomedical_concepts_item GET     /biomedical_concepts/items/new(.:format)                biomedical_concepts/items#new
+          edit_biomedical_concepts_item GET     /biomedical_concepts/items/:id/edit(.:format)           biomedical_concepts/items#edit
+               biomedical_concepts_item GET     /biomedical_concepts/items/:id(.:format)                biomedical_concepts/items#show
+                                        PATCH   /biomedical_concepts/items/:id(.:format)                biomedical_concepts/items#update
+                                        PUT     /biomedical_concepts/items/:id(.:format)                biomedical_concepts/items#update
+                                        DELETE  /biomedical_concepts/items/:id(.:format)                biomedical_concepts/items#destroy
+          biomedical_concepts_datatypes GET     /biomedical_concepts/datatypes(.:format)                biomedical_concepts/datatypes#index
+                                        POST    /biomedical_concepts/datatypes(.:format)                biomedical_concepts/datatypes#create
+       new_biomedical_concepts_datatype GET     /biomedical_concepts/datatypes/new(.:format)            biomedical_concepts/datatypes#new
+      edit_biomedical_concepts_datatype GET     /biomedical_concepts/datatypes/:id/edit(.:format)       biomedical_concepts/datatypes#edit
+           biomedical_concepts_datatype GET     /biomedical_concepts/datatypes/:id(.:format)            biomedical_concepts/datatypes#show
+                                        PATCH   /biomedical_concepts/datatypes/:id(.:format)            biomedical_concepts/datatypes#update
+                                        PUT     /biomedical_concepts/datatypes/:id(.:format)            biomedical_concepts/datatypes#update
+                                        DELETE  /biomedical_concepts/datatypes/:id(.:format)            biomedical_concepts/datatypes#destroy
+         biomedical_concepts_properties GET     /biomedical_concepts/properties(.:format)               biomedical_concepts/properties#index
+                                        POST    /biomedical_concepts/properties(.:format)               biomedical_concepts/properties#create
+       new_biomedical_concepts_property GET     /biomedical_concepts/properties/new(.:format)           biomedical_concepts/properties#new
+      edit_biomedical_concepts_property GET     /biomedical_concepts/properties/:id/edit(.:format)      biomedical_concepts/properties#edit
+           biomedical_concepts_property GET     /biomedical_concepts/properties/:id(.:format)           biomedical_concepts/properties#show
+                                        PATCH   /biomedical_concepts/properties/:id(.:format)           biomedical_concepts/properties#update
+                                        PUT     /biomedical_concepts/properties/:id(.:format)           biomedical_concepts/properties#update
+                                        DELETE  /biomedical_concepts/properties/:id(.:format)           biomedical_concepts/properties#destroy
+    biomedical_concepts_property_values GET     /biomedical_concepts/property_values(.:format)          biomedical_concepts/property_values#index
+                                        POST    /biomedical_concepts/property_values(.:format)          biomedical_concepts/property_values#create
+ new_biomedical_concepts_property_value GET     /biomedical_concepts/property_values/new(.:format)      biomedical_concepts/property_values#new
+edit_biomedical_concepts_property_value GET     /biomedical_concepts/property_values/:id/edit(.:format) biomedical_concepts/property_values#edit
+     biomedical_concepts_property_value GET     /biomedical_concepts/property_values/:id(.:format)      biomedical_concepts/property_values#show
+                                        PATCH   /biomedical_concepts/property_values/:id(.:format)      biomedical_concepts/property_values#update
+                                        PUT     /biomedical_concepts/property_values/:id(.:format)      biomedical_concepts/property_values#update
+                                        DELETE  /biomedical_concepts/property_values/:id(.:format)      biomedical_concepts/property_values#destroy
+               list_biomedical_concepts GET     /biomedical_concepts/list(.:format)                     biomedical_concepts#list
+            history_biomedical_concepts GET     /biomedical_concepts/history(.:format)                  biomedical_concepts#history
+             impact_biomedical_concepts GET     /biomedical_concepts/impact(.:format)                   biomedical_concepts#impact
+       new_template_biomedical_concepts POST    /biomedical_concepts/new_template(.:format)             biomedical_concepts#new_template
+                    biomedical_concepts GET     /biomedical_concepts(.:format)                          biomedical_concepts#index
+                                        POST    /biomedical_concepts(.:format)                          biomedical_concepts#create
+                 new_biomedical_concept GET     /biomedical_concepts/new(.:format)                      biomedical_concepts#new
+                edit_biomedical_concept GET     /biomedical_concepts/:id/edit(.:format)                 biomedical_concepts#edit
+                     biomedical_concept GET     /biomedical_concepts/:id(.:format)                      biomedical_concepts#show
+                                        PATCH   /biomedical_concepts/:id(.:format)                      biomedical_concepts#update
+                                        PUT     /biomedical_concepts/:id(.:format)                      biomedical_concepts#update
+                                        DELETE  /biomedical_concepts/:id(.:format)                      biomedical_concepts#destroy
+                changesCalc_cdisc_terms GET     /cdisc_terms/changesCalc(.:format)                      cdisc_terms#changesCalc
+                    changes_cdisc_terms GET     /cdisc_terms/changes(.:format)                          cdisc_terms#changes
+                compareCalc_cdisc_terms GET     /cdisc_terms/compareCalc(.:format)                      cdisc_terms#compareCalc
+                    compare_cdisc_terms GET     /cdisc_terms/compare(.:format)                          cdisc_terms#compare
+          submission_report_cdisc_terms GET     /cdisc_terms/submission_report(.:format)                cdisc_terms#submission_report
+             submissionCalc_cdisc_terms GET     /cdisc_terms/submissionCalc(.:format)                   cdisc_terms#submissionCalc
+                 submission_cdisc_terms GET     /cdisc_terms/submission(.:format)                       cdisc_terms#submission
+                    history_cdisc_terms GET     /cdisc_terms/history(.:format)                          cdisc_terms#history
+                  searchOld_cdisc_terms GET     /cdisc_terms/searchOld(.:format)                        cdisc_terms#searchOld
+                     search_cdisc_terms GET     /cdisc_terms/search(.:format)                           cdisc_terms#search
+                    search2_cdisc_terms GET     /cdisc_terms/search2(.:format)                          cdisc_terms#search2
+                       next_cdisc_terms GET     /cdisc_terms/next(.:format)                             cdisc_terms#next
+                     import_cdisc_terms GET     /cdisc_terms/import(.:format)                           cdisc_terms#import
+                            cdisc_terms GET     /cdisc_terms(.:format)                                  cdisc_terms#index
+                                        POST    /cdisc_terms(.:format)                                  cdisc_terms#create
+                         new_cdisc_term GET     /cdisc_terms/new(.:format)                              cdisc_terms#new
+                        edit_cdisc_term GET     /cdisc_terms/:id/edit(.:format)                         cdisc_terms#edit
+                             cdisc_term GET     /cdisc_terms/:id(.:format)                              cdisc_terms#show
+                                        PATCH   /cdisc_terms/:id(.:format)                              cdisc_terms#update
+                                        PUT     /cdisc_terms/:id(.:format)                              cdisc_terms#update
+                                        DELETE  /cdisc_terms/:id(.:format)                              cdisc_terms#destroy
+                      compare_cdisc_cls GET     /cdisc_cls/compare(.:format)                            cdisc_cls#compare
+                      history_cdisc_cls GET     /cdisc_cls/history(.:format)                            cdisc_cls#history
+                      changes_cdisc_cls GET     /cdisc_cls/changes(.:format)                            cdisc_cls#changes
+                              cdisc_cls GET     /cdisc_cls(.:format)                                    cdisc_cls#index
+                                        POST    /cdisc_cls(.:format)                                    cdisc_cls#create
+                           new_cdisc_cl GET     /cdisc_cls/new(.:format)                                cdisc_cls#new
+                          edit_cdisc_cl GET     /cdisc_cls/:id/edit(.:format)                           cdisc_cls#edit
+                               cdisc_cl GET     /cdisc_cls/:id(.:format)                                cdisc_cls#show
+                                        PATCH   /cdisc_cls/:id(.:format)                                cdisc_cls#update
+                                        PUT     /cdisc_cls/:id(.:format)                                cdisc_cls#update
+                                        DELETE  /cdisc_cls/:id(.:format)                                cdisc_cls#destroy
+                     compare_cdisc_clis GET     /cdisc_clis/compare(.:format)                           cdisc_clis#compare
+                     history_cdisc_clis GET     /cdisc_clis/history(.:format)                           cdisc_clis#history
+                      impact_cdisc_clis GET     /cdisc_clis/impact(.:format)                            cdisc_clis#impact
+                     changes_cdisc_clis GET     /cdisc_clis/changes(.:format)                           cdisc_clis#changes
+                             cdisc_clis GET     /cdisc_clis(.:format)                                   cdisc_clis#index
+                                        POST    /cdisc_clis(.:format)                                   cdisc_clis#create
+                          new_cdisc_cli GET     /cdisc_clis/new(.:format)                               cdisc_clis#new
+                         edit_cdisc_cli GET     /cdisc_clis/:id/edit(.:format)                          cdisc_clis#edit
+                              cdisc_cli GET     /cdisc_clis/:id(.:format)                               cdisc_clis#show
+                                        PATCH   /cdisc_clis/:id(.:format)                               cdisc_clis#update
+                                        PUT     /cdisc_clis/:id(.:format)                               cdisc_clis#update
+                                        DELETE  /cdisc_clis/:id(.:format)                               cdisc_clis#destroy
+           node_new_iso_concept_systems GET     /iso_concept_systems/node_new(.:format)                 iso_concept_systems#node_new
+           node_add_iso_concept_systems POST    /iso_concept_systems/node_add(.:format)                 iso_concept_systems#node_add
+                    iso_concept_systems GET     /iso_concept_systems(.:format)                          iso_concept_systems#index
+                                        POST    /iso_concept_systems(.:format)                          iso_concept_systems#create
+                 new_iso_concept_system GET     /iso_concept_systems/new(.:format)                      iso_concept_systems#new
+                edit_iso_concept_system GET     /iso_concept_systems/:id/edit(.:format)                 iso_concept_systems#edit
+                     iso_concept_system GET     /iso_concept_systems/:id(.:format)                      iso_concept_systems#show
+                                        PATCH   /iso_concept_systems/:id(.:format)                      iso_concept_systems#update
+                                        PUT     /iso_concept_systems/:id(.:format)                      iso_concept_systems#update
+                                        DELETE  /iso_concept_systems/:id(.:format)                      iso_concept_systems#destroy
+              iso_concept_systems_nodes GET     /iso_concept_systems/nodes(.:format)                    iso_concept_systems/nodes#index
+                                        POST    /iso_concept_systems/nodes(.:format)                    iso_concept_systems/nodes#create
+           new_iso_concept_systems_node GET     /iso_concept_systems/nodes/new(.:format)                iso_concept_systems/nodes#new
+          edit_iso_concept_systems_node GET     /iso_concept_systems/nodes/:id/edit(.:format)           iso_concept_systems/nodes#edit
+               iso_concept_systems_node GET     /iso_concept_systems/nodes/:id(.:format)                iso_concept_systems/nodes#show
+                                        PATCH   /iso_concept_systems/nodes/:id(.:format)                iso_concept_systems/nodes#update
+                                        PUT     /iso_concept_systems/nodes/:id(.:format)                iso_concept_systems/nodes#update
+                                        DELETE  /iso_concept_systems/nodes/:id(.:format)                iso_concept_systems/nodes#destroy
+    iso_concept_systems_classifications GET     /iso_concept_systems/classifications(.:format)          iso_concept_systems/classifications#index
+                                        POST    /iso_concept_systems/classifications(.:format)          iso_concept_systems/classifications#create
+ new_iso_concept_systems_classification GET     /iso_concept_systems/classifications/new(.:format)      iso_concept_systems/classifications#new
+edit_iso_concept_systems_classification GET     /iso_concept_systems/classifications/:id/edit(.:format) iso_concept_systems/classifications#edit
+     iso_concept_systems_classification GET     /iso_concept_systems/classifications/:id(.:format)      iso_concept_systems/classifications#show
+                                        PATCH   /iso_concept_systems/classifications/:id(.:format)      iso_concept_systems/classifications#update
+                                        PUT     /iso_concept_systems/classifications/:id(.:format)      iso_concept_systems/classifications#update
+                                        DELETE  /iso_concept_systems/classifications/:id(.:format)      iso_concept_systems/classifications#destroy
+                          history_forms GET     /forms/history(.:format)                                forms#history
+                             view_forms GET     /forms/view(.:format)                                   forms#view
+                  placeholder_new_forms GET     /forms/placeholder_new(.:format)                        forms#placeholder_new
+                    bc_normal_new_forms GET     /forms/bc_normal_new(.:format)                          forms#bc_normal_new
+                       bc_log_new_forms GET     /forms/bc_log_new(.:format)                             forms#bc_log_new
+               placeholder_create_forms POST    /forms/placeholder_create(.:format)                     forms#placeholder_create
+                 bc_normal_create_forms POST    /forms/bc_normal_create(.:format)                       forms#bc_normal_create
+                    bc_log_create_forms POST    /forms/bc_log_create(.:format)                          forms#bc_log_create
+                             acrf_forms GET     /forms/acrf(.:format)                                   forms#acrf
+                              crf_forms GET     /forms/crf(.:format)                                    forms#crf
+                                  forms GET     /forms(.:format)                                        forms#index
+                                        POST    /forms(.:format)                                        forms#create
+                               new_form GET     /forms/new(.:format)                                    forms#new
+                              edit_form GET     /forms/:id/edit(.:format)                               forms#edit
+                                   form GET     /forms/:id(.:format)                                    forms#show
+                                        PATCH   /forms/:id(.:format)                                    forms#update
+                                        PUT     /forms/:id(.:format)                                    forms#update
+                                        DELETE  /forms/:id(.:format)                                    forms#destroy
+                           forms_groups GET     /forms/groups(.:format)                                 forms/groups#index
+                                        POST    /forms/groups(.:format)                                 forms/groups#create
+                        new_forms_group GET     /forms/groups/new(.:format)                             forms/groups#new
+                       edit_forms_group GET     /forms/groups/:id/edit(.:format)                        forms/groups#edit
+                            forms_group GET     /forms/groups/:id(.:format)                             forms/groups#show
+                                        PATCH   /forms/groups/:id(.:format)                             forms/groups#update
+                                        PUT     /forms/groups/:id(.:format)                             forms/groups#update
+                                        DELETE  /forms/groups/:id(.:format)                             forms/groups#destroy
+                            forms_items GET     /forms/items(.:format)                                  forms/items#index
+                                        POST    /forms/items(.:format)                                  forms/items#create
+                         new_forms_item GET     /forms/items/new(.:format)                              forms/items#new
+                        edit_forms_item GET     /forms/items/:id/edit(.:format)                         forms/items#edit
+                             forms_item GET     /forms/items/:id(.:format)                              forms/items#show
+                                        PATCH   /forms/items/:id(.:format)                              forms/items#update
+                                        PUT     /forms/items/:id(.:format)                              forms/items#update
+                                        DELETE  /forms/items/:id(.:format)                              forms/items#destroy
+                        history_domains GET     /domains/history(.:format)                              domains#history
+                            add_domains GET     /domains/add(.:format)                                  domains#add
+                         remove_domains GET     /domains/remove(.:format)                               domains#remove
+                     update_add_domains POST    /domains/update_add(.:format)                           domains#update_add
+                  update_remove_domains POST    /domains/update_remove(.:format)                        domains#update_remove
+                                domains GET     /domains(.:format)                                      domains#index
+                                        POST    /domains(.:format)                                      domains#create
+                             new_domain GET     /domains/new(.:format)                                  domains#new
+                            edit_domain GET     /domains/:id/edit(.:format)                             domains#edit
+                                 domain GET     /domains/:id(.:format)                                  domains#show
+                                        PATCH   /domains/:id(.:format)                                  domains#update
+                                        PUT     /domains/:id(.:format)                                  domains#update
+                                        DELETE  /domains/:id(.:format)                                  domains#destroy
+                      domains_variables GET     /domains/variables(.:format)                            domains/variables#index
+                                        POST    /domains/variables(.:format)                            domains/variables#create
+                   new_domains_variable GET     /domains/variables/new(.:format)                        domains/variables#new
+                  edit_domains_variable GET     /domains/variables/:id/edit(.:format)                   domains/variables#edit
+                       domains_variable GET     /domains/variables/:id(.:format)                        domains/variables#show
+                                        PATCH   /domains/variables/:id(.:format)                        domains/variables#update
+                                        PUT     /domains/variables/:id(.:format)                        domains/variables#update
+                                        DELETE  /domains/variables/:id(.:format)                        domains/variables#destroy
+                    running_backgrounds GET     /backgrounds/running(.:format)                          backgrounds#running
+                      clear_backgrounds POST    /backgrounds/clear(.:format)                            backgrounds#clear
+                            backgrounds GET     /backgrounds(.:format)                                  backgrounds#index
+                                        POST    /backgrounds(.:format)                                  backgrounds#create
+                         new_background GET     /backgrounds/new(.:format)                              backgrounds#new
+                        edit_background GET     /backgrounds/:id/edit(.:format)                         backgrounds#edit
+                             background GET     /backgrounds/:id(.:format)                              backgrounds#show
+                                        PATCH   /backgrounds/:id(.:format)                              backgrounds#update
+                                        PUT     /backgrounds/:id(.:format)                              backgrounds#update
+                                        DELETE  /backgrounds/:id(.:format)                              backgrounds#destroy
+                              standards GET     /standards(.:format)                                    standards#index
+                                        POST    /standards(.:format)                                    standards#create
+                           new_standard GET     /standards/new(.:format)                                standards#new
+                          edit_standard GET     /standards/:id/edit(.:format)                           standards#edit
+                               standard GET     /standards/:id(.:format)                                standards#show
+                                        PATCH   /standards/:id(.:format)                                standards#update
+                                        PUT     /standards/:id(.:format)                                standards#update
+                                        DELETE  /standards/:id(.:format)                                standards#destroy
+                                sdtmigs GET     /sdtmigs(.:format)                                      sdtmigs#index
+                                        POST    /sdtmigs(.:format)                                      sdtmigs#create
+                             new_sdtmig GET     /sdtmigs/new(.:format)                                  sdtmigs#new
+                            edit_sdtmig GET     /sdtmigs/:id/edit(.:format)                             sdtmigs#edit
+                                 sdtmig GET     /sdtmigs/:id(.:format)                                  sdtmigs#show
+                                        PATCH   /sdtmigs/:id(.:format)                                  sdtmigs#update
+                                        PUT     /sdtmigs/:id(.:format)                                  sdtmigs#update
+                                        DELETE  /sdtmigs/:id(.:format)                                  sdtmigs#destroy

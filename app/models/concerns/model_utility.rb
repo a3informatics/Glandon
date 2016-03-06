@@ -29,29 +29,41 @@ module ModelUtility
     return validFreeText?(:label, value, object)
   end
 
+  def ModelUtility.version_namespace(version, ns, org)
+    uri = Uri.new
+    uri.setUri(ns)
+    uri.extendPath(org + "/V" + version.to_s)
+    return uri
+  end
+
   def ModelUtility.buildUri(namespace, id)
     uri = Uri.new
     uri.setNsCid(namespace, id)
     return "<" + uri.all + ">"
   end
   
-  def ModelUtility.buildCidIdentifier(prefix, identifer)  
+  def ModelUtility.buildCidIdentifier(prefix, identifier)  
     uri = Uri.new
-    uid = createUid(identifer)
-    uri.setCidNoVersion(prefix, uid)
+    uri.setCidNoVersion(prefix, identifier)
     return uri.getCid
   end
   
-  def ModelUtility.buildCidIdentifierVersion(prefix, identifer, version)
+  def ModelUtility.build_full_cid(prefix, org_name, identifier, version="")  
     uri = Uri.new
-    uid = createUid(identifer)
-    uri.setCidWithVersion(prefix, uid, version)
+    uri.set_full_cid(prefix, org_name, identifier, version)
     return uri.getCid
   end
   
-  def ModelUtility.buildCid(prefix)
-    return buildCidUid(prefix, SecureRandom.hex(8))
-  end
+  #def ModelUtility.buildCidIdentifierVersion(prefix, identifer, version)
+  #  uri = Uri.new
+  #  uid = createUid(identifer)
+  #  uri.setCidWithVersion(prefix, uid, version)
+  #  return uri.getCid
+  #end
+  
+  #def ModelUtility.buildCid(prefix)
+  #  return buildCidUid(prefix, SecureRandom.hex(8))
+  #end
 
   def ModelUtility.cidSwapPrefix(cid, prefix)
     uri = Uri.new
@@ -108,13 +120,6 @@ module ModelUtility
     else
       return false
     end
-  end
-
-private
-
-  def ModelUtility.createUid(name)
-    #return SecureRandom.hex(8)  
-    return name.gsub(/[^0-9A-Za-z_]/, '')
   end
 
 end

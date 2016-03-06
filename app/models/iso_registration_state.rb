@@ -24,27 +24,102 @@ class IsoRegistrationState
   C_RETIRED = "Retired"
   C_SUPERSEDED = "Superseded"
 
-  # States
-  @@stateKeys = {
-    C_NOTSET => 0,
-    C_INCOMPLETE  => 0,
-    C_CANDIDATE => 1,
-    C_RECORDED => 2,
-    C_QUALIFIED => 3,
-    C_STANDARD => 4,
-    C_RETIRED => 5,
-    C_SUPERSEDED => 6
+  @@stateInfo = {
+    C_NOTSET => 
+      { 
+        :key => C_NOTSET, 
+        :label => "Not set", 
+        :definition => "State has not beeen set",
+        :delete_enabled => true, 
+        :edit_enabled => true, 
+        :edit_up_version => false, 
+        :state_on_edit => C_INCOMPLETE,
+        :next_state => C_INCOMPLETE
+      },
+    C_INCOMPLETE  => 
+      { 
+        :key => C_INCOMPLETE, 
+        :label => "Incomplete", 
+        :definition => "Submitter wishes to make the community that uses this metadata register aware of the existence of an Administered Item in their local domain.",        
+        :delete_enabled => true, 
+        :edit_enabled  => true,
+        :edit_up_version => false,
+        :state_on_edit => C_INCOMPLETE,
+        :next_state => C_CANDIDATE
+      },
+    C_CANDIDATE =>
+      { 
+        :key => C_CANDIDATE, 
+        :label => "Candidate", 
+        :definition => "The Administered Item has been proposed for progression through the registration levels.",
+        :delete_enabled => false, 
+        :edit_enabled  => true,
+        :edit_up_version => false,
+        :state_on_edit => C_CANDIDATE,
+        :next_state => C_RECORDED
+      },
+    C_RECORDED =>
+      { 
+        :key => C_RECORDED, 
+        :label => "Recorded", 
+        :definition => "The Registration Authority has confirmed that: a) all mandatory metadata attributes have been completed.",
+        :delete_enabled => false, 
+        :edit_enabled  => true,
+        :edit_up_version => true,
+        :state_on_edit => C_RECORDED,
+        :next_state => C_QUALIFIED
+      },
+    C_QUALIFIED =>
+      { 
+        :key => C_QUALIFIED, 
+        :label => "Qualified", 
+        :definition => "The Registration Authority has confirmed that: a) the mandatory metadata attributes are complete and b) the mandatory metadata attributes conform to applicable quality requirements.",
+        :delete_enabled => false, 
+        :edit_enabled  => true,
+        :edit_up_version => true,
+        :state_on_edit => C_QUALIFIED,
+        :next_state => C_STANDARD
+      },
+    C_STANDARD =>
+      { 
+        :key => C_STANDARD, 
+        :label => "Standard", 
+        :definition => "The Registration Authority confirms that the Administered Item is: a) of sufficient quality and b) of broad interest for use in the community that uses this metadata register.",
+        :delete_enabled => false, 
+        :edit_enabled  => true,
+        :edit_up_version => true,
+        :state_on_edit => C_INCOMPLETE,
+        :next_state => C_SUPERSEDED
+      },
+    C_RETIRED =>
+      { 
+        :key => C_RETIRED, 
+        :label => "Retired", 
+        :definition => "The Registration Authority has approved the Administered Item as: a) no longer recommended for use in the community that uses this metadata register and b) should no longer be used.",
+        :delete_enabled => false, 
+        :edit_enabled  => false,
+        :edit_up_version => false,
+        :state_on_edit => C_RETIRED,
+        :next_state => C_RETIRED
+      },
+    C_SUPERSEDED =>
+      { 
+        :key => C_SUPERSEDED, 
+        :label => "Superseded", 
+        :definition => "The Registration Authority determined that the Administered Item is: a) no longer recommended for use by the community that uses this metadata register, and b) a successor Administered Item is now preferred for use.",
+        :delete_enabled => false, 
+        :edit_enabled => false, 
+        :edit_up_version => false, 
+        :state_on_edit => C_SUPERSEDED,
+        :next_state => C_SUPERSEDED
+      }
   }
-  @@stateInfo = [
-    { :key => C_INCOMPLETE, :label => "Incomplete", :definition => "Submitter wishes to make the community that uses this metadata register aware of the existence of an Administered Item in their local domain." },
-    { :key => C_CANDIDATE, :label => "Candidate", :definition => "The Administered Item has been proposed for progression through the registration levels." },
-    { :key => C_RECORDED, :label => "Recorded", :definition => "The Registration Authority has confirmed that: a) all mandatory metadata attributes have been completed." },
-    { :key => C_QUALIFIED, :label => "Qualified", :definition => "The Registration Authority has confirmed that: a) the mandatory metadata attributes are complete and b) the mandatory metadata attributes conform to applicable quality requirements." },
-    { :key => C_STANDARD, :label => "Standard", :definition => "The Registration Authority confirms that the Administered Item is: a) of sufficient quality and b) of broad interest for use in the community that uses this metadata register." },
-    { :key => C_RETIRED, :label => "Retired", :definition => "The Registration Authority has approved the Administered Item as: a) no longer recommended for use in the community that uses this metadata register and b) should no longer be used." },
-    { :key => C_SUPERSEDED, :label => "Superseded", :definition => "The Registration Authority determined that the Administered Item is: a) no longer recommended for use by the community that uses this metadata register, and b) a successor Administered Item is now preferred for use." },
-  ]
-  
+
+  # Edit control
+  @@edit_control = {
+    
+  }  
+
   # Constants
   C_NS_PREFIX = "mdrItems"
   C_CID_PREFIX = "RS"
@@ -69,32 +144,47 @@ class IsoRegistrationState
     return @@owner
   end
   
-  def self.nextState (state)
-    #ConsoleLogger::log(C_CLASS_NAME,"nextState","*****Entry******")
-    index = @@stateKeys[state]
-    if index < (@@stateInfo.length-1)
-      nextState = @@stateInfo[index+1][:key]
-      #ConsoleLogger::log(C_CLASS_NAME,"nextState","Index=" + index.to_s + ", state=" + nextState)
-    else
-      nextState = state
-    end
+  def self.nextState(state)
+    info = @@stateInfo[state]
+    nextState = info[:next_state]
+    ConsoleLogger::log(C_CLASS_NAME,"nextState","Old=" + state.to_s + ", New=" + nextState)
     return nextState
   end
 
-  def self.stateLabel (state)
-    index = @@stateKeys[state]
-    return @@stateInfo[index][:label]
+  def self.stateLabel(state)
+    info = @@stateInfo[state]
+    return info[:label]
   end
 
-  def self.stateDefinition (state)
-    index = @@stateKeys[state]
-    return @@stateInfo[index][:definition]
+  def self.stateDefinition(state)
+    info = @@stateInfo[state]
+    return info[:definition]
   end
 
   def self.releasedState
     return C_STANDARD
   end
   
+  def edit?()
+    info = @@stateInfo[self.registrationStatus]
+    return info[:edit_enabled]
+  end
+
+  def delete?()
+    info = @@stateInfo[self.registrationStatus]
+    return info[:delete_enabled]
+  end
+
+  def state_on_edit()
+    info = @@stateInfo[self.registrationStatus]
+    return info[:state_on_edit]
+  end
+
+  def new_version?()
+    info = @@stateInfo[self.registrationStatus]
+    return info[:edit_up_version]
+  end
+
   def self.find(id)
     
     #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
@@ -196,10 +286,10 @@ class IsoRegistrationState
     
   end
 
-  def self.create(params, uid)
+  def self.create(identifier, version, scope_org)
     
     # Create the query
-    id = ModelUtility.buildCidIdentifier(C_CID_PREFIX, uid)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -236,6 +326,32 @@ class IsoRegistrationState
     
   end
 
+  def self.create_dummy(identifier, version, scope_org)
+    object = self.new
+    object.id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
+    object.registrationStatus = C_INCOMPLETE
+    object.administrativeNote = ""
+    object.effectiveDate = ""
+    object.unresolvedIssue = ""
+    object.administrativeStatus = ""
+    object.previousState  = C_INCOMPLETE 
+    return object
+  end
+
+  def self.create_sparql(identifier, version, scope_org, sparql)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
+    sparql.add_prefix("isoR")
+    sparql.add_prefix("isoI")
+    sparql.triple(C_NS_PREFIX, id, "rdf", "type", "isoR", "RegistrationState")
+    sparql.triple(C_NS_PREFIX, id, "isoR", "byAuthority", C_NS_PREFIX, @@owner.id)
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "registrationStatus", C_INCOMPLETE, "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeNote", "", "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "effectiveDate", "", "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "unresolvedIssue", "", "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeStatus", "", "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "previousState", C_INCOMPLETE, "string")
+  end
+  
   def self.count
     results = Hash.new
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoR"]) +
@@ -300,10 +416,6 @@ class IsoRegistrationState
       #ßobject.assign_errors(data) if response.response_code == 422
     end
 
-  end
-
-  def destroy
-    return nil
   end
   
 end

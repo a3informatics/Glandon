@@ -4,14 +4,16 @@
 		<thead>
 			<tr>
 		    	<th>Identifier</th>
+		    	<th>Label</th>
 		    	<th></th>
 		  	</tr>
 		</thead>
 		<tbody>
-			<% @forms.each do |identifier| %>
+			<% @forms.each do |item| %>
 				<tr>
-			    	<td><%= identifier %></td>
-			    	<td><%= link_to "History", history_forms_path(:identifier => identifier), :class => "btn btn-primary btn-xs" %></td>
+			    	<td><%= item[:identifier] %></td>
+			    	<td><%= item[:label] %></td>
+			    	<td><%= link_to "History", history_forms_path(:identifier => item[:identifier]), :class => "btn btn-primary btn-xs" %></td>
 			  	</tr>
 			<% end %>
 		</tbody>

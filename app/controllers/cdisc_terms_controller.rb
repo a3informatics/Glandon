@@ -5,7 +5,7 @@ class CdiscTermsController < ApplicationController
   C_CLASS_NAME = "CdiscTermsController"
   
   def history
-    @cdiscTerms = CdiscTerm.all
+    @cdiscTerms = CdiscTerm.history(CdiscTerm::C_IDENTIFIER)
   end
   
   def import
@@ -42,6 +42,7 @@ class CdiscTermsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @cdiscTerm = CdiscTerm.find(id, namespace, false)
+    @items = Notepad.where(user_id: current_user).find_each
   end
   
   def next

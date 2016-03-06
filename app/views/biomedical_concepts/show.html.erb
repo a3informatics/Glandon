@@ -47,11 +47,9 @@
 					<td><%= item.datatype %></td>
 					<td>
 						<% values = item.values %>
-						<% values.each do |vKey, value| %>
-							<% clis = value.clis %>
-							<% clis.each do |clKey, cli| %>
-								<%= cli.notation %> (<%= cli.identifier %>)<br/>
-							<% end %>
+						<% values.each do |value| %>
+							<% cli = value.cli %>
+							<%= cli.notation %> (<%= cli.identifier %>)<br/>
 						<% end %>
 					</td>
 			  	</tr>

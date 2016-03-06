@@ -88,7 +88,7 @@
             <xsl:with-param name="pPredicateName" select="'rdfs:label'" /> 
             <xsl:with-param name="pObjectName" select="concat($quote,@Name,$quote,'^^xsd:string')" /> 
         </xsl:call-template>
-        <xsl:variable name="SIName" select="concat('SI',$MainSeparator,$BCTItemType,$URIFinish)"/>
+        <xsl:variable name="SIName" select="concat('SI',$MainSeparator,$BCTItemType,$URIFinish,$MainSeparator,'1')"/>
         <xsl:call-template name="PredicateObject"> 
             <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
             <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SIName)" /> 
@@ -283,10 +283,10 @@
                             <xsl:variable name="simpleDT" select="$DatatypeDocument/ISO21090DataTypes/primitiveTypes/primitiveType[@Name=$PropertyDatatype]"/>
                             <xsl:variable name="schemaType" select="$simpleDT/@Map"/>
                             
-                            <xsl:call-template name="PredicateObject"> 
+                            <!--<xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':hasValue')" /> 
                                 <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$MinorSeparator,@Name,$MinorSeparator,'Value',$URIFinish)" /> 
-                            </xsl:call-template>
+                            </xsl:call-template>-->
                             
                             <!-- BRIDG Path -->
                             <xsl:call-template name="PredicateObject"> 
@@ -302,14 +302,14 @@
                             
                             <xsl:call-template name="SubjectEnd"/> 
                             
-                            <xsl:call-template name="Subject"> 
+                            <!--<xsl:call-template name="Subject"> 
                                 <xsl:with-param name="pName" select="concat(':',$pPrefix,$MinorSeparator,@Name,$MinorSeparator,'Value',$URIFinish)" /> 
                             </xsl:call-template>
                             <xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="'rdf:type'" /> 
                                 <xsl:with-param name="pObjectName" select="concat($BCPrefix,':PropertyValue')" /> 
                             </xsl:call-template>
-                            <xsl:call-template name="SubjectEnd"/>
+                            <xsl:call-template name="SubjectEnd"/>-->
                             
                         </xsl:when>
                         <xsl:otherwise>

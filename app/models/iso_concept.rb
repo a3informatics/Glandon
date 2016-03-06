@@ -181,8 +181,6 @@ class IsoConcept
   end
 
   def self.findForParent(prefix, rdfType, links, ns)    
-    #ConsoleLogger::log(C_CLASS_NAME,"findForParent","*****ENTRY******")
-    #ConsoleLogger::log(C_CLASS_NAME,"findForParent","Type=" + rdfType + ", links=" + links.to_json + ", ns=" + ns)
     results = Hash.new
     linkSet = links.get(prefix, rdfType)
     linkSet.each do |link|

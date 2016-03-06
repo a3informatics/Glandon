@@ -6,7 +6,8 @@ class CdiscTerm < Thesaurus
   # Constants
   C_NS_PREFIX = "thC"
   C_CLASS_NAME = "CdiscTerm"
-  
+  C_IDENTIFIER = "CDISC Terminology"
+    
   # Class-wide variables
   @@cdiscNamespace = nil # CDISC Organization identifier
   @@currentVersion = nil # The namespace for the current term version
@@ -91,7 +92,7 @@ class CdiscTerm < Thesaurus
     object = self.new
     object.errors.clear
     namespace = IsoNamespace.findByShortName("CDISC")
-    identifier = "CDISC Terminology"
+    identifier = C_IDENTIFIER
     version = params[:version]
     date = params[:date]
     files = params[:files]
@@ -264,6 +265,8 @@ private
     parentSet = node.xpath("binding[@name='k']/literal")
     if uriSet.length == 1 
       object = CdiscCl.new 
+      object.id = ModelUtility.extractCid(uriSet[0].text)
+      object.namespace = ModelUtility.extractNs(uriSet[0].text)
       object.identifier = idSet[0].text
       object.notation = nSet[0].text
       object.preferredTerm = ptSet[0].text

@@ -3,11 +3,13 @@
 	<table id="main" class="table table-striped table-bordered table-condensed">
 		<%= render partial: "shared/stdInstanceHeader" %>
 		<tbody>
-			<% @form.each do |key, item| %>
+			<% @form.each do |item| %>
 				<%= render partial: "shared/stdInstanceRow", :locals => {:item => item, 
 	  				:showPath => form_path(:id => item.id, :namespace => item.namespace), 
 	  				:searchPath => "", 
-	  				:viewPath => view_forms_path(:id => item.id, :namespace => item.namespace) } %>
+	  				:viewPath => view_forms_path(:id => item.id, :namespace => item.namespace),
+	  				:editPath => edit_form_path(:id => item.id, :namespace => item.namespace),
+	  				:deletePath => ""  } %>
 			<% end %>				
 		</tbody>
 	</table>

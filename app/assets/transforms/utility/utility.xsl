@@ -60,6 +60,7 @@
     <!-- Create Registration identifier -->
     <xsl:template name="RegistrationState">
         <xsl:param name="pCID"/>
+        <xsl:param name="pRA"/>
         <xsl:call-template name="Subject">
             <xsl:with-param name="pName" select="concat('mdrItems:',$pCID)"/>
         </xsl:call-template>
@@ -90,6 +91,10 @@
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoR:previousState'"/>
             <xsl:with-param name="pObjectName" select="concat($quote,'Qualified',$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoR:byAuthority'"/>
+            <xsl:with-param name="pObjectName" select="concat('mdrItems:',$pRA)"/>
         </xsl:call-template>
         <xsl:call-template name="SubjectEnd"/>
     </xsl:template>

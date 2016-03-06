@@ -1,28 +1,48 @@
 module UriManagement
 
+  # Constants
   C_CLASS_NAME = "UriManagement"
-
+  
+  # Application namespace prefixes
+  C_ISO_B = "isoB"
+  C_ISO_I = "isoI"
+  C_ISO_R = "isoR"
+  C_ISO_C = "isoC"
+  C_ISO_T = "isoT"
+  C_CBC = "cbc"
+  C_MDR_ITEMS = "mdrItems"
+  C_MDR_BCTS = "mdrBcts"
+  C_MDR_BCS = "mdrBcs"
+  C_MDR_BRIDG = "mdrBridg"
+  C_MDR_ISO21090 = "mdrIso21090"
+  
+  # Standard semantic schema prefixes
+  C_RDF = "rdf"
+  C_RDFS = "rdfs"
+  C_XSD = "xsd"
+  C_SKOS = "skos"
+  
   @@optional = 
-    { "isoB" => "http://www.assero.co.uk/ISO11179Basic" ,
-      "isoI" => "http://www.assero.co.uk/ISO11179Identification" ,
-      "isoR" => "http://www.assero.co.uk/ISO11179Registration" , 
-      "isoC" => "http://www.assero.co.uk/ISO11179Concepts" , 
-      "isoT" => "http://www.assero.co.uk/ISO11179Types" , 
+    { C_ISO_B => "http://www.assero.co.uk/ISO11179Basic" ,
+      C_ISO_I => "http://www.assero.co.uk/ISO11179Identification" ,
+      C_ISO_R => "http://www.assero.co.uk/ISO11179Registration" , 
+      C_ISO_C => "http://www.assero.co.uk/ISO11179Concepts" , 
+      C_ISO_T => "http://www.assero.co.uk/ISO11179Types" , 
       "iso25964" => "http://www.assero.co.uk/ISO25964" , 
       "iso21090" => "http://www.assero.co.uk/ISO21090" ,
-      "cbc" => "http://www.assero.co.uk/CDISCBiomedicalConcept",
+      C_CBC => "http://www.assero.co.uk/CDISCBiomedicalConcept",
       "bo" => "http://www.assero.co.uk/BusinessOperational" ,
       "bf" => "http://www.assero.co.uk/BusinessForm" ,
       "bd" => "http://www.assero.co.uk/BusinessDomain" ,
       "bs" => "http://www.assero.co.uk/BusinessStandard" ,
       "mms" => "http://rdf.cdisc.org/mms" ,
       "cdisc" => "http://rdf.cdisc.org/std/schema" ,
-      "mdrItems" => "http://www.assero.co.uk/MDRItems" ,
+      C_MDR_ITEMS => "http://www.assero.co.uk/MDRItems" ,
       "mdrCons" => "http://www.assero.co.uk/MDRConcepts" ,
-      "mdrBridg" => "http://www.assero.co.uk/MDRBRIDG" ,
-      "mdrIso21090" => "http://www.assero.co.uk/MDRISO21090" ,
-      "mdrBcs" => "http://www.assero.co.uk/MDRBCs" ,
-      "mdrBcts" => "http://www.assero.co.uk/MDRBCTs" ,
+      C_MDR_BRIDG => "http://www.assero.co.uk/MDRBRIDG" ,
+      C_MDR_ISO21090 => "http://www.assero.co.uk/MDRISO21090" ,
+      C_MDR_BCS => "http://www.assero.co.uk/MDRBCs" ,
+      C_MDR_BCTS => "http://www.assero.co.uk/MDRBCTs" ,
       "mdrForms" => "http://www.assero.co.uk/MDRForms" ,
       "mdrSch" => "http://www.assero.co.uk/MDRSchemes" ,
       "mdrDomains" => "http://www.assero.co.uk/MDRDomains" ,
@@ -31,10 +51,10 @@ module UriManagement
      }
 
   @@required = 
-    { "rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns" ,
-      "rdfs" => "http://www.w3.org/2000/01/rdf-schema" ,
-      "xsd" => "http://www.w3.org/2001/XMLSchema" ,
-      "skos" => "http://www.w3.org/2004/02/skos/core" }
+    { C_RDF => "http://www.w3.org/1999/02/22-rdf-syntax-ns" ,
+      C_RDFS => "http://www.w3.org/2000/01/rdf-schema" ,
+      C_XSD => "http://www.w3.org/2001/XMLSchema" ,
+      C_SKOS => "http://www.w3.org/2004/02/skos/core" }
   
   def UriManagement.get()
     return @@optional
@@ -78,7 +98,6 @@ module UriManagement
   end
   
   def UriManagement.buildNs(defaultNs, optional)
-    #ConsoleLogger::log(C_CLASS_NAME,"buildNs","DefaultNs=" + defaultNs + ", Optional=" + optional.to_s)
     if defaultNs == ""
       result = ""
     else
@@ -93,7 +112,9 @@ private
   def self.buildPrefixes(optional)
     result = ""
     optional.each do |key|
-      result = result + formEntry(key,@@optional[key])
+      if @@optional.has_key?(key)
+        result = result + formEntry(key,@@optional[key])
+      end
     end
     @@required.each do |key,value|
       result = result + formEntry(key,value)

@@ -3,11 +3,13 @@
 	<table id="main" class="table table-striped table-bordered table-condensed">
 		<%= render partial: "shared/stdInstanceHeader" %>
 		<tbody>
-			<% @domain.each do |key, item| %>
+			<% @domain.each do |item| %>
 				<%= render partial: "shared/stdInstanceRow", :locals => {:item => item, 
 	  				:showPath => domain_path(:id => item.id, :namespace => item.namespace), 
 	  				:searchPath => "", 
-	  				:viewPath => ""} %>
+	  				:viewPath => "",
+	  				:editPath => "",
+	  				:deletePath => "" } %>
 			<% end %>				
 		</tbody>
 	</table>

@@ -33,18 +33,16 @@ class Uri
   
   # Note: no setPath as can use default path accessor
    
-  def setCidNoVersion(prefix, uid)  
-    #@prefix = prefix.gsub(/[^A-Z]/, '')    
-    #@uid = id.gsub(/[^0-9A-Za-z_]/, '')
+  def setCidNoVersion(prefix, identifier)  
+    uid = identifier.gsub(/[^0-9A-Za-z_]/, '')
     @prefix = prefix
     @uid = uid
     @version = ""    
   end
 
-  def setCidWithVersion(prefix, uid, version)  
-    #@prefix = prefix.gsub(/[^A-Z]/, '')    
-    #@uid = uid.gsub(/[^0-9A-Za-z_]/, '')
-    #@version = version.gsub(/[^0-9]/, '')
+  def set_full_cid(prefix, org_name, identifier, version)  
+    uid = org_name + C_UID_SECTION_SEPARATOR + identifier
+    uid = uid.gsub(/[^0-9A-Za-z_]/, '')
     @prefix = prefix
     @uid = uid
     @version = version.to_s
@@ -101,10 +99,6 @@ class Uri
   end
 
   def getCid()
-    #p "Prefix=" + @prefix
-    #p "Short Name=" + @uid
-    #p "Version=" + @version
-    
     result = ""
     if @prefix != ""
       result = @prefix + C_FRAGMENT_SECTION_SEPARATOR

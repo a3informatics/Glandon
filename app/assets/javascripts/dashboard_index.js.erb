@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $('#main1').DataTable({
-        "pagingType": "full",
+      "pagingType": "full",
     	"ajax": {
 		    "url": "forms",
 		    "dataSrc": "data"  
@@ -14,7 +14,7 @@ $(document).ready(function () {
       "pageLength": 5,
       "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
       "columns": [ 
-      	{"data" : "identifier", "width" : "80%"},
+      	{"data" : "label", "width" : "80%"},
         {"data" : "identifier", "render": function(data,type,full,meta) 
           { 
             return '<a href="forms/history?identifier='+ data +'"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
@@ -57,7 +57,7 @@ $(document).ready(function () {
         "pageLength": 5,
         "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
         "columns": [ 
-        	{"data" : "identifier", "width" : "80%"},
+        	{"data" : "label", "width" : "80%"},
           {"data" : "identifier", "render": function(data,type,full,meta) 
             { 
               return '<a href="domains/history?identifier='+ data +'"><button type="button" class="btn btn-primary btn-xs">History</button></a>';

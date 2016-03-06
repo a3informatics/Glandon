@@ -11,8 +11,7 @@ class DomainsController < ApplicationController
       format.json do
         results = {}
         results[:data] = []
-        @domains.each do |id|
-          item = {:identifier => id}
+        @domains.each do |item|
           results[:data] << item
         end
         render json: results

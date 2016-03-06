@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BiomedicalConcepts>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C25347_ACME" Name="Height">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C25347" Name="Height">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -53,7 +53,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C25208_ACME" Name="Weight">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C25208" Name="Weight">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -106,7 +106,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C16358_ACME" Name="Body Mass Index">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C16358" Name="Body Mass Index">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -156,7 +156,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C49677_ACME" Name="Heart Rate">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C49677" Name="Heart Rate">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -210,7 +210,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C25298_ACME" Name="Systolic Blood Pressure">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C25298" Name="Systolic Blood Pressure">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Test code" PText="Test name" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -264,7 +264,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C25299_ACME" Name="Diastolic Blood Pressure">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C25299" Name="Diastolic Blood Pressure">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -318,7 +318,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C98793_ACME" Name="Triceps Skinfold Thickness">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C98793" Name="Triceps Skinfold Thickness">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -368,7 +368,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="A00003_ACME" Name="Mid Upper Arm Circumference">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_A00003" Name="Mid Upper Arm Circumference">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -425,7 +425,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C81255_ACME" Name="Head Circumference">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C81255" Name="Head Circumference">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -475,7 +475,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C49678_ACME" Name="Respiratory Rate">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C49678" Name="Respiratory Rate">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -525,7 +525,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C98785_ACME" Name="Subscapular Skinfold Thickness">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C98785" Name="Subscapular Skinfold Thickness">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -578,7 +578,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="C25206_ACME" Name="Temperature">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C25206" Name="Temperature">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -628,7 +628,7 @@
 			</Attribute>
 		</Class>
 	</BiomedicalConcept>
-	<BiomedicalConcept Template="BCT-Obs_PQR-1" Scope="NS-ACME" Id="A00002_ACME" Name="APGAR Score">
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_A00002" Name="APGAR Score">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
@@ -641,7 +641,7 @@
 				</Property>
 			</Attribute>
 			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
-				<Property QText="Location of test" PText="Location" Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code"> </Property>
+				<Property QText="Location of test" PText="Location" Enabled="false" Collect="true" Alias="Location (--LOC)" Name="code"> </Property>
 			</Attribute>
 			<Attribute Alias="Method" Name="methodCode">
 				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Method Code (--METHOD)" Name="code"/>

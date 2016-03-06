@@ -30,7 +30,7 @@ private
         if rdfType == "hasBiomedicalConcept"
           reference = BiomedicalConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
         elsif rdfType == "hasProperty"
-          reference = BiomedicalConcept::Property.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
+          reference = BiomedicalConceptCore::Property.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
         else
           reference = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
         end

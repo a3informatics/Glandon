@@ -1,4 +1,4 @@
-class BiomedicalConcept::Datatype < IsoConcept
+class BiomedicalConceptCore::Datatype < IsoConcept
 
   attr_accessor :datatype, :propertySet
   validates_presence_of :datatype, :propertySet
@@ -18,7 +18,7 @@ class BiomedicalConcept::Datatype < IsoConcept
     #ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + object.to_json)
     setAttributes(object)
     if children
-      object.propertySet = BiomedicalConcept::Property.findForParent(object, ns)
+      object.propertySet = BiomedicalConceptCore::Property.findForParent(object, ns)
     end
     return object  
   end
@@ -54,7 +54,52 @@ class BiomedicalConcept::Datatype < IsoConcept
     return results
   end
 
+	def to_edit
+    #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
+    results = Hash.new
+    self.propertySet.each do |oKey, oProperty|
+      if !oProperty.isComplex? 
+        results[oKey] = oProperty.to_minimum
+      else
+        set = oProperty.to_edit
+        set.each do |iKey, iProperty|
+          results[iKey] = iProperty
+        end
+      end
+    end
+    return results
+  end
+  
+  def to_sparql(parent, ordinal, params, sparql, prefix)
+    id = parent + Uri::C_UID_SECTION_SEPARATOR + 'DT' + ordinal.to_s
+    sparql.triple("", id, "rdf", "type", prefix, "DataType")
+    sparql.triple_primitive_type("", id, prefix, "ordinal", ordinal.to_s, "positiveInteger")
+    sparql.triple("", id, prefix, "isDatatypeOf", "", parent.to_s)
+    sparql.triple("", id, prefix, "hasDatatypeRef", UriManagement::C_MDR_ISO21090, get_ref("hasDatatypeRef"))
+    
+    ordinal = 1
+    self.propertySet.each do |key, property|
+      sparql.triple("", id, prefix, "hasProperty", "", id + Uri::C_UID_SECTION_SEPARATOR + 'P' + ordinal.to_s)
+      ordinal += 1
+    end
+
+    ordinal = 1
+    self.propertySet.each do |key, property|
+      property.to_sparql(id, ordinal, params, sparql, prefix)
+      ordinal += 1
+    end
+  end
+
 private
+
+  def get_ref(predicate)
+    result = ""
+    ref = self.links.get(C_SCHEMA_PREFIX, predicate)
+    if ref.length >= 1
+      result = ModelUtility::extractCid(ref[0])
+    end
+    return result
+  end
 
   def self.setAttributes(object)
     datatypeLinks = object.links.get(C_SCHEMA_PREFIX, "hasDatatypeRef")

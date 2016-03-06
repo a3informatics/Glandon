@@ -19,6 +19,13 @@
 //= require morris.min
 //= require raphael
 
+// Small attempt to collapse nav. Ignore for the moment
+//$(document).ready(function() {
+//  $('#page_nav_menu_hide').click(function() {
+//    $('#page_nav_menu').hide();
+//  });
+//});
+
 /*
 * General Alert handling functions
 */
@@ -82,4 +89,10 @@ function handleAjaxError (xhr, status, error) {
         html = html + alertError(errors[i]);
     }
     displayAlerts(html);
+}
+
+function pad(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }

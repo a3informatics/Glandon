@@ -37,6 +37,12 @@ Rails.application.routes.draw do
     end
   end
   resources :uploads
+  resources :notepads do
+    collection do
+      get :index_term
+      post :create_term
+    end
+  end
   resources :biomedical_concept_templates do
     collection do
       get :history
@@ -53,6 +59,7 @@ Rails.application.routes.draw do
       get :list
       get :history
       get :impact
+      post :new_template
     end
   end
   resources :cdisc_terms do
