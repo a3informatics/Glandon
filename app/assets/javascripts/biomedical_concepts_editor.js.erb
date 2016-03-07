@@ -26,7 +26,7 @@ $(document).ready(function() {
   var bcTableRI;    // Current BC table row index
   var bcTextInput ; // BC text input
   var bcColAttributeMap;
-
+    
   var notepadTable;       // Notepad table
   var notepadTableReload; // Notepad reload table flag
   var notepadData;        // Current notepad row data
@@ -118,7 +118,7 @@ $(document).ready(function() {
     newItem = false;
   }
   if (editItem) {
-    propertyTableAddBC(1); 
+    propertyTableAddBC(bcInfo,1); 
   }
   
   // Hide panels
@@ -236,8 +236,39 @@ $(document).ready(function() {
   });
 
   $('#cl_delete').click(function() {
-    var html = alertWarning("Function not implemented yet.");
-    displayAlerts(html);
+    var rowData;
+    var i;
+    var item;
+    var text;
+    var bcIndex;
+    var propertyKey;
+    var bc;
+    var properties;
+    var property;
+    var values;
+
+    if (clRow != null) {
+      clTable.row(clRow).remove();
+      clRow = null;
+      clTable.draw();
+    }
+    text = "";
+    data = propertyTable.row(propertyTableRI).data();
+    bcIndex = data.bcId - 1;
+    propertyKey = data.key;
+    bc = bcInstances[bcIndex];
+    properties = bc.properties;
+    property = properties[propertyKey]
+    values = property.values;
+    values = [];
+    rowData = clTable.rows().data();
+    for (i=0; i<rowData.length; i++) {
+      item = rowData.row(i).data();
+      addPropertyValue(bcIndex, propertyKey, item); 
+      text = addClItemText(text, item.useful_1, item.identifier);
+    }
+    property.term = text;
+    propertyTableCell.html(text);
   });
   
   $('#notepad_table tbody').on('click', 'tr', function () {
@@ -344,6 +375,8 @@ $(document).ready(function() {
     var tr = $(this).closest('tr');
     var row = propertyTable.row(tr).index();
     var data = propertyTable.row(row).data();
+    var bcIndex = data.bcId - 1;
+    var bcPropertyKey = data.key;
     propertyTableRI = tr.index();
     if (propertyTableCell != null) {
       propertyTableCell.toggleClass('success');
@@ -364,9 +397,9 @@ $(document).ready(function() {
       }
       propertyTableCell = null;    
     } else if (propertyTableCI === PT_FORMAT_COL) {
-      var bc = bci[data.bcId - 1];
+      var bc = bcInstances[bcIndex];
       var properties = bc['properties'];
-      var property = properties[data.key]
+      var property = properties[bcPropertyKey]
       if (property['datatype'] === "F" || property['datatype'] === "I") {
         propertyTextShow ();
         propertyClHide ();
@@ -387,7 +420,7 @@ $(document).ready(function() {
       propertyTableCell = propertyGetCell();
       propertyTableCell.toggleClass('success');
       clTable.clear();
-      var values = getPropertyValues(data.bcId-1, data.key)
+      var values = getPropertyValues(bcIndex, bcPropertyKey)
       for (var i=0; i<values.length; i++) {
         var item = values[i]
         clTable.row.add(item); 
@@ -499,7 +532,7 @@ $(document).ready(function() {
     propertyTableAddBC(bcSource, bcCount);
   }
   
-  function propertyTableAddBC(bcSource, count) {
+  function propertyTableAddBC(bcSourceXXX, count) {
     var i;
     var text;
     var properties;
@@ -508,7 +541,7 @@ $(document).ready(function() {
     var value;
     var index;
     index = 1;
-    properties = bcSource['properties'];
+    properties = bcSourceXXX['properties'];
     for (var key in properties) {
       if (properties.hasOwnProperty(key)) {
         property = properties[key];
@@ -526,7 +559,7 @@ $(document).ready(function() {
         propertyTable.row.add(property);
       }
     }
-    bcInstances.push(bcSource); // Odd place to put this, probably better in addBC
+    bcInstances.push(bcSourceXXX); // Odd place to put this, probably better in addBC
     propertyTable.draw(false);  
   }
 
@@ -537,11 +570,38 @@ $(document).ready(function() {
     return text;    
   }
 
-  $.fn.dataTable.ext.order['dom-checkbox'] = function  ( settings, col )
+  /*
+  * Not used but useful if going to use checkboxes
+  */
+  /*$.fn.dataTable.ext.order['dom-checkbox'] = function  ( settings, col )
   {
     return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
       return $('input', td).prop('checked') ? '1' : '0';
     } );
-  }
+  }*/
+
+
+
+/*
+var i;
+    var rowData;
+    var item;
+    var rows;
+
+    node.qText = qTextId.value;
+    node.pText = pTextId.value;
+    node.collect = collectId.checked;
+    node.enable = enableId.checked;
+    rowData = bcClDataTable.rows().data();
+    node.cli = [];
+    for (i=0; i<rowData.length; i++) {
+      item = rowData.row(i).data();
+      if (typeof item != 'undefined') {
+        node.cli.push(item);
+      }
+    }
+*/
+
+
 
 });
