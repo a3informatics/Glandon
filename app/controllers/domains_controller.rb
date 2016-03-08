@@ -21,7 +21,7 @@ class DomainsController < ApplicationController
   
   def history
     @identifier = params[:identifier]
-    @domain = Domain.history(@identifier)
+    @domain = Domain.history(params)
   end
 
   def update_add

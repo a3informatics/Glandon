@@ -31,7 +31,7 @@ class FormsController < ApplicationController
   
   def history
     @identifier = params[:identifier]
-    @form = Form.history(@identifier)
+    @form = Form.history(params)
   end
 
   def placeholder_new

@@ -19,7 +19,7 @@ class BiomedicalConceptTemplatesController < ApplicationController
   
   def history
     @identifier = params[:identifier]
-    @bct = BiomedicalConceptTemplate.history(@identifier)
+    @bct = BiomedicalConceptTemplate.history(params)
   end
 
   def show 

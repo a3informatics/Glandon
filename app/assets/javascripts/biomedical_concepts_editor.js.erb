@@ -12,8 +12,6 @@ $(document).ready(function() {
   var PT_TERM_COL = 9;
 
   var html;
-  var newItem;
-  var newItemInput;
   var editItem;
   var editItemInput;
 
@@ -39,18 +37,18 @@ $(document).ready(function() {
   var propertyTableCell;
   var propertyTableCI;
   var propertyTableRI;
-  var propertytextInput;
+  var propertyTextInput;
   var propertyColAttributeMap;
 
   var clTable;  // Code list table
   
   // Set table column to attribute name map
   bcColAttributeMap = ['bcId', 'identifier', 'label'];
-  propertyColAttributeMap = ['bcId', 'alias', 'qText', 'pText', 'enabled', 'collect', 'datatype', 'format', 'values'];
+  propertyColAttributeMap = ['bcId', 'pId', 'alias', 'qText', 'pText', 'enabled', 'collect', 'datatype', 'format', 'values'];
 
   // Set up remainder of data
-  bcInstances = [];
   bcCount = 0;
+  bcInstances = [];
   propertyTableCell = null;
   bcTableCell = null;
   notepadTableReload = false;
@@ -62,7 +60,7 @@ $(document).ready(function() {
   propertyTableRI = null;
   bcTableCI = null;
   bcTableRI = null;
-  propertytextInput = document.getElementById("pText");
+  propertyTextInput = document.getElementById("pText");
   bcTextInput = document.getElementById("bcText");
   
   // Set the flags
@@ -112,13 +110,9 @@ $(document).ready(function() {
   html = $("#bcJson").html();
   bcInfo = $.parseJSON(html);
   opType = bcInfo.operation
-  if (opType === "BC_NEW" || opType === "BCT_NEW") {
-    newItem = true;
-  } else {
-    newItem = false;
-  }
   if (editItem) {
-    propertyTableAddBC(bcInfo,1); 
+    var clone = $.parseJSON(html);
+    addBC(clone, bcCount, false);   
   }
   
   // Hide panels
@@ -180,8 +174,10 @@ $(document).ready(function() {
   });
 
   $('#bc_add').click(function() {
-    addBC(bcInfo);
+    var clone = $.parseJSON(html);
+    addBC(clone, bcCount, true);
   });
+
 
   $('#bc_delete').click(function() {
     var html = alertWarning("Function not implemented yet.");
@@ -189,33 +185,29 @@ $(document).ready(function() {
   });
   
   $('#bc_save').click(function() {
-    var addId;
     var url;
     var method;
     var data;
     var bc;
     var bcInstance;
     var i;
-    if (newItem) {
-      url = "/biomedical_concepts";
-      method = 'POST';
-      addId = false;
-    } else {
-      url = "/biomedical_concepts/";
-      method = 'PUT';
-      addId = true;
-    }
+    var opType;
     bcCount = 0;
     bcTable.clear();
     propertyTable.clear();
     for (i=0; i<bcInstances.length; i++) {
       bcInstance = bcInstances[i];
-      bc = bcInstance['source']
-      if (addId) {
-        url = url + bc['id']
-        data = { "instance": i, "namespace": bc['namespace'], "data": bcInstance };  
-      } else {
+      bc = bcInstance['source'];
+      opType = bcInstance['operation'];
+      if (opType === "BC_NEW" || opType === "BCT_NEW") {
+        url = "/biomedical_concepts";
+        method = 'POST';
         data = { "data": bcInstance };  
+        $('#bc_add').prop('disabled',true);
+      } else {
+        url = "/biomedical_concepts/" + bc['id'];
+        method = 'PUT';
+        data = { "instance": i, "namespace": bc['namespace'], "data": bcInstance };  
       }
       $.ajax({
         url: url,
@@ -225,13 +217,14 @@ $(document).ready(function() {
           var html = alertSuccess("Biomedical Concept has been saved.");
           displayAlerts(html);
           newItem = false;
-          var instance = result['instance']
-          addBC(result['data']);
+          var instance = parseInt(result['instance']);
+          addBC(result['data'], instance, false);
         },
         error: function(xhr,status,error){
           handleAjaxError (xhr, status, error)
         }
-      }); 
+      });
+      bcInstances[i] = {};
     }
   });
 
@@ -302,7 +295,10 @@ $(document).ready(function() {
 
   $('#property_update_text').click(function() {
     if (propertyTableCell != null) {
-      propertyTableCell.html(propertytextInput.value);
+      propertyTableCell.html(propertyTextInput.value);
+      var data = propertyTable.row(propertyTableRI).data();
+      var attribute = propertyColAttributeMap[propertyTableCI];
+      setPropertyAttribute(data.bcId-1, data.key, attribute, propertyTextInput.value);
     }
   });
 
@@ -310,14 +306,7 @@ $(document).ready(function() {
     if (e.keyCode == 13) {
       if (bcTableCell != null) {
         bcTableCell.html(bcTextInput.value);
-        //setBcIdentifier(bcTableRI, bcTextInput.value);
-        var rows = $('#bc_table tbody tr').length;
-        if (bcTableRI < (rows - 1)) {
-          bcTableCell.toggleClass('success');
-          bcTableRI += 1;
-          bcTableCell = bcGetCell();
-          bcTableCell.toggleClass('success');
-        }
+        setBcAttribute(bcTableRI, bcColAttributeMap[bcTableCI], bcTextInput.value);
       }
     }
   });
@@ -325,17 +314,10 @@ $(document).ready(function() {
   $('#pText').keyup(function (e) {
     if (e.keyCode == 13) {
       if (propertyTableCell != null) {
-        propertyTableCell.html(propertytextInput.value);
+        propertyTableCell.html(propertyTextInput.value);
         var data = propertyTable.row(propertyTableRI).data();
         attribute = propertyColAttributeMap[propertyTableCI];
-        setPropertyAttribute(data.bcId-1, data.key, attribute, propertytextInput.value)
-        var rows = $('#property_table tbody tr').length;
-        if (propertyTableRI < (rows - 1)) {
-          propertyTableCell.toggleClass('success');
-          propertyTableRI += 1;
-          propertyTableCell = propertyGetCell();
-          propertyTableCell.toggleClass('success');
-        }
+        setPropertyAttribute(data.bcId-1, data.key, attribute, propertyTextInput.value);
       }
     }
   });
@@ -357,6 +339,7 @@ $(document).ready(function() {
         bcTextShow ();
         bcTableCell = bcGetCell();
         bcTableCell.toggleClass('success');
+        bcTextInput.value = bcTableCell.html();
         bcTextInput.focus();
       } else {
         bcTextHide ();
@@ -366,6 +349,7 @@ $(document).ready(function() {
       bcTextShow ();
       bcTableCell = bcGetCell();
       bcTableCell.toggleClass('success');
+      bcTextInput.value = bcTableCell.html();
       bcTextInput.focus();
     }      
   });
@@ -406,7 +390,7 @@ $(document).ready(function() {
         propertyNotepadHide ();
         propertyTableCell = propertyGetCell();
         propertyTableCell.toggleClass('success');
-        propertytextInput.focus();  
+        propertyTextInput.focus();  
       } else {
         propertyTextHide ();
         propertyClHide ();
@@ -432,7 +416,8 @@ $(document).ready(function() {
       propertyNotepadHide ();
       propertyTableCell = propertyGetCell();
       propertyTableCell.toggleClass('success');
-      propertytextInput.focus();
+      propertyTextInput.value = propertyTableCell.html();
+      propertyTextInput.focus();
     }      
   });
 
@@ -521,31 +506,34 @@ $(document).ready(function() {
     return property['values'];
   }
 
-  function addBC(bcSource) {
+  function addBC(bcSource, index, newBC) {
     var bcData;
+    var bcId;
     bcCount += 1;
+    bcId = bcCount;
     bcData = bcSource['source'];
-    bcData['bcId'] = bcCount;
-    bcData['identifier'] = "Biomedical Concept No. " + bcCount;
+    bcData['bcId'] = bcId;
+    if (newBC) {
+      bcData['identifier'] = "Biomedical Concept No. " + bcId;
+    }
     bcTable.row.add(bcData);
     bcTable.draw(false);
-    propertyTableAddBC(bcSource, bcCount);
+    propertyTableAddBC(bcSource['properties'], bcId);
+    bcInstances[index] = bcSource;
   }
   
-  function propertyTableAddBC(bcSourceXXX, count) {
+  function propertyTableAddBC(properties, bcId) {
     var i;
     var text;
-    var properties;
     var property;
     var values;
     var value;
     var index;
     index = 1;
-    properties = bcSourceXXX['properties'];
     for (var key in properties) {
       if (properties.hasOwnProperty(key)) {
         property = properties[key];
-        property['bcId'] = parseInt(count);
+        property['bcId'] = bcId;
         property['propId'] = parseInt(index);
         index += 1;
         values = property['values'];
@@ -559,8 +547,7 @@ $(document).ready(function() {
         propertyTable.row.add(property);
       }
     }
-    bcInstances.push(bcSourceXXX); // Odd place to put this, probably better in addBC
-    propertyTable.draw(false);  
+    propertyTable.draw(false); 
   }
 
   function addClItemText(existing, notation, identifier) {
@@ -579,29 +566,5 @@ $(document).ready(function() {
       return $('input', td).prop('checked') ? '1' : '0';
     } );
   }*/
-
-
-
-/*
-var i;
-    var rowData;
-    var item;
-    var rows;
-
-    node.qText = qTextId.value;
-    node.pText = pTextId.value;
-    node.collect = collectId.checked;
-    node.enable = enableId.checked;
-    rowData = bcClDataTable.rows().data();
-    node.cli = [];
-    for (i=0; i<rowData.length; i++) {
-      item = rowData.row(i).data();
-      if (typeof item != 'undefined') {
-        node.cli.push(item);
-      }
-    }
-*/
-
-
 
 });

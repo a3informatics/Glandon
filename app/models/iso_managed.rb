@@ -6,7 +6,7 @@ class IsoManaged < IsoConcept
   include CRUD
   include ModelUtility
   
-  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment
+  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment, :latest
   
   # Constants
   C_CID_PREFIX = "ISOM"
@@ -16,6 +16,17 @@ class IsoManaged < IsoConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
+  def new
+    @registrationState = nil
+    @scopedIdentifier = nil
+    @origin = ""
+    @changeDescription = ""
+    @creationDate = Time.now
+    @lastChangedDate = Time.now
+    @explanoratoryComment = ""
+    @latest = false
+  end
+   
   def version
     return self.scopedIdentifier.version
   end
@@ -30,6 +41,10 @@ class IsoManaged < IsoConcept
 
   def owner
     return self.scopedIdentifier.owner
+  end
+
+  def owner_id
+    return self.scopedIdentifier.owner_id
   end
 
   def registrationStatus
@@ -78,23 +93,19 @@ class IsoManaged < IsoConcept
 
   # Does the item exist. Cannot be used for child objects!
   def self.exists?(identifier, registrationAuthority)
-    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + registrationAuthority.namespace.id)
     result = IsoScopedIdentifier.exists?(identifier, registrationAuthority.namespace.id)
   end
 
-  # Does the item exist. Cannot be used for child objects!
+  # Does the version exist. Cannot be used for child objects!
   def self.versionExists?(identifier, version, namespace)
-    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"exists?","Namespace=" + registrationAuthority.namespace.id)
     result = IsoScopedIdentifier.versionExists?(identifier, version, namespace.id)
   end
 
   # Note: The id is the identifier for the enclosing managed object. 
   def self.find(id, ns)  
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + ns)   
+    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","namespace=" + ns)   
     object = super(id, ns)
     object.registrationState = nil
     object.origin = ""
@@ -104,8 +115,6 @@ class IsoManaged < IsoConcept
     object.explanoratoryComment = ""
     object.scopedIdentifier = nil
     object.registrationState = nil
-    #object.rdfType = object.properties.get("rdf", "type")
-    #object.label = object.properties.get("rdfs", "label")
     if object.links.exists?("isoI", "hasIdentifier")
       links = object.links.get("isoI", "hasIdentifier")
       cid = ModelUtility.extractCid(links[0])
@@ -121,9 +130,6 @@ class IsoManaged < IsoConcept
         object.explanoratoryComment = object.properties.get("isoT", "explanoratoryComment") 
       end
     end
-    
-    # Return
-    #ConsoleLogger::log(C_CLASS_NAME,"find","Object return, object=" + object.to_s)
     return object   
   end
 
@@ -212,19 +218,23 @@ class IsoManaged < IsoConcept
   end
 
   # Find history for a given identifier
-  def self.history(rdfType, identifier, ns)    
+  def self.history(rdfType, ns, params)    
     #ConsoleLogger::log(C_CLASS_NAME,"history","*****Entry*****")    
+    identifier = params[:identifier]
+    namespace_id = params[:scope_id]
     results = Array.new
-    
+    latest = IsoScopedIdentifier::first_version
+
     # Create the query
-    query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
+    query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR", "mdrItems"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?h ?i ?j WHERE \n" +
       "{ \n" +
-      "  ?a rdf:type :" + rdfType + " . \n" +
+      "  ?a rdf:type :" + rdfType.to_s + " . \n" +
       "  ?a rdfs:label ?i . \n" +
       # "  OPTIONAL { \n" +
       "    ?a isoI:hasIdentifier ?h . \n" +
-      "    ?h isoI:identifier \"" + identifier + "\" . \n" +
+      "    ?h isoI:identifier \"" + identifier.to_s + "\" . \n" +
+      "    ?h isoI:hasScope mdrItems:" + namespace_id.to_s + " . \n" +
       "    ?h isoI:version ?j . \n" +
       "    OPTIONAL { \n" +
       "      ?a isoR:hasState ?b . \n" +
@@ -253,6 +263,7 @@ class IsoManaged < IsoConcept
       lastSet = node.xpath("binding[@name='f']/literal")
       commentSet = node.xpath("binding[@name='g']/literal")
       label = ModelUtility.getValue('i', false, node)
+      version = ModelUtility.getValue('j', false, node)
       #ConsoleLogger::log(C_CLASS_NAME,"history","Label=" + label)
       if uri != "" 
         object = self.new
@@ -261,7 +272,17 @@ class IsoManaged < IsoConcept
         object.rdfType = rdfType
         object.label = label
         if iiSet.length == 1
+
+          # Set scoped identifier
           object.scopedIdentifier = IsoScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
+
+          # Determine if latest version in the history
+          if IsoScopedIdentifier.later_version?(object.version, latest)
+            latest = object.version
+            object.latest = true
+          end
+
+          # Registration state?
           if rsSet.length == 1
             object.registrationState = IsoRegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
             object.origin = oSet[0].text
@@ -269,13 +290,13 @@ class IsoManaged < IsoConcept
             object.creationDate = dateSet[0].text
             object.lastChangedDate = lastSet[0].text
             object.explanoratoryComment = commentSet[0].text
-          else
-            object.registrationState = nil
-            object.origin = ""
-            object.changeDescription = ""
-            object.creationDate = ""
-            object.lastChangedDate = ""
-            object.explanoratoryComment = ""
+          #else
+          #  object.registrationState = nil
+          #  object.origin = ""
+          #  object.changeDescription = ""
+          #  object.creationDate = ""
+          #  object.lastChangedDate = ""
+          #  object.explanoratoryComment = ""
           end
         else
           object.scopedIdentifier = nil
@@ -291,16 +312,18 @@ class IsoManaged < IsoConcept
   # Find latest item for all identifiers.
   def self.list(rdfType, ns)    
     #ConsoleLogger::log(C_CLASS_NAME,"list","*****Entry*****")    
-    results = Hash.new
-    
+    check = Hash.new
+    results = Array.new
+
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
+      "SELECT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdfType + " . \n" +
       "  ?a rdfs:label ?d . \n" +
       "  ?a isoI:hasIdentifier ?b . \n" +
       "  ?b isoI:identifier ?e . \n" +
+      "  ?b isoI:hasScope ?h . \n" +
       "  ?b isoI:version ?f . \n" +
       "  OPTIONAL { \n" +
       "    ?a isoR:hasState ?c . \n" +
@@ -320,10 +343,13 @@ class IsoManaged < IsoConcept
       identifier = ModelUtility.getValue('e', false, node)
       version = ModelUtility.getValue('f', false, node)
       status = ModelUtility.getValue('g', false, node)
+      scope = ModelUtility.getValue('h', true, node)
       #ConsoleLogger::log(C_CLASS_NAME,"list","node=" + node.to_s)
       if uri != "" 
-        if results.has_key?(identifier)
-          object = results[identifier]
+        scope_namespace = IsoNamespace.find(ModelUtility.extractCid(scope))
+        key = scope_namespace.shortName + "_" + identifier
+        if !check.has_key?(key)
+          object = check[key]
           if (object.registrationState != nil) && (status != "")
             if (object.registrationState.registrationStatus != IsoRegistrationState.releasedState) &&
               (status == IsoRegistrationState.releasedState)
@@ -333,7 +359,7 @@ class IsoManaged < IsoConcept
               object.rdfType = rdfType
               object.label = label
               object.registrationState.registrationStatus = status
-              results[identifier] = object
+              check[key] = object
             end
           end
         else
@@ -350,24 +376,16 @@ class IsoManaged < IsoConcept
             object.registrationState = IsoRegistrationState.new
             object.registrationState.registrationStatus = status
           end
-          results[identifier] = object
+          check[key] = object
         end
       end
     end
+    results = check.values
     return results  
   end
 
-  def self.latest(history)
-    result = nil
-    history.each do |item|
-      result = item
-      if item.registered?
-        break if item.registrationState.registrationStatus == IsoRegistrationState.releasedState
-      else
-        break
-      end
-    end
-    return result
+  def latest?
+    return self.latest
   end
 
   # Rewritten to return an object with the desired settings for the import.
@@ -456,7 +474,7 @@ class IsoManaged < IsoConcept
     object.origin = ""
     object.changeDescription = "Creation"
     object.creationDate = timestamp
-    object.lastChangedDate = ""
+    object.lastChangedDate = timestamp
     object.explanoratoryComment = ""
     object.label = params[:label]
     object.rdfType = rdfType
@@ -517,10 +535,6 @@ class IsoManaged < IsoConcept
     IsoScopedIdentifier.create_sparql(identifier, version, version_label, ra.namespace, sparql)
     IsoRegistrationState.create_sparql(identifier, version, ra.namespace, sparql)
     sparql.add_default_namespace(useNs)
-    #sparql.add_prefix(UriManagement::C_ISO_R)
-    #sparql.add_prefix(UriManagement::C_ISO_I)
-    #sparql.add_prefix(UriManagement::C_ISO_T)
-    #sparql.add_prefix(UriManagement::C_MDR_ITEMS)
     sparql.triple("", id, UriManagement::C_RDF, "type", schema_prefix, rdfType)
     sparql.triple("", id, UriManagement::C_ISO_I, "hasIdentifier", C_INSTANCE_PREFIX, dummy_SI.id)
     sparql.triple("", id, UriManagement::C_ISO_R, "hasState", C_INSTANCE_PREFIX, dummy_RS.id)

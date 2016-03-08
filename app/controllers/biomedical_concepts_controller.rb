@@ -27,7 +27,7 @@ class BiomedicalConceptsController < ApplicationController
       format.json do
         results = {}
         results[:aaData] = []
-        @bcs.each do |key, bc|
+        @bcs.each do |bc|
           item = {:id => bc.id, :namespace => bc.namespace, :identifier => bc.identifier, :label => bc.label}
           results[:aaData] << item
         end
@@ -38,7 +38,7 @@ class BiomedicalConceptsController < ApplicationController
   
   def history
     @identifier = params[:identifier]
-    @bc = BiomedicalConcept.history(@identifier)
+    @bc = BiomedicalConcept.history(params)
   end
 
   def new_template
@@ -65,7 +65,7 @@ class BiomedicalConceptsController < ApplicationController
 
   def create
     instance = params[:instance]
-    @bc = BiomedicalConcept.create(params[:data])
+    @bc = BiomedicalConcept.create(params)
     if @bc.errors.empty?
       render :json => { :instance => instance, :data => @bc.to_edit}, :status => 200
     else
@@ -74,12 +74,8 @@ class BiomedicalConceptsController < ApplicationController
   end
 
   def update
-    id = params[:id]
-    namespace = params[:namespace]
     instance = params[:instance]
-    bc = BiomedicalConcept.find(id, namespace)
-    bc.destroy
-    @bc = BiomedicalConcept.create(params[:data])
+    @bc = BiomedicalConcept.update(params)
     if @bc.errors.empty?
       render :json => { :instance => instance, :data => @bc.to_edit}, :status => 200
     else

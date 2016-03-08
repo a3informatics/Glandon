@@ -80,8 +80,8 @@ class BiomedicalConceptCore < IsoManaged
     return results
   end
 
-  def self.history(type, ns, identifier)
-    results = super(type, identifier, ns)
+  def self.history(type, ns, params)
+    results = super(type, ns, params)
     return results
   end
 

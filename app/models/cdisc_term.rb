@@ -48,6 +48,13 @@ class CdiscTerm < Thesaurus
     return results  
   end
 
+  def self.history
+    if @@cdiscNamespace == nil 
+      @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
+    end
+    results = Thesaurus.history({ :identifier => C_IDENTIFIER, :scope_id => @@cdiscNamespace.id })
+  end
+
   def self.allExcept(version)
     results = self.all
     results.each do |thesaurus|

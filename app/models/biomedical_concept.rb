@@ -82,8 +82,8 @@ class BiomedicalConcept < BiomedicalConceptCore
     return results
   end
 
-  def self.history(identifier)
-    results = super(C_RDF_TYPE, C_SCHEMA_NS, identifier)
+  def self.history(params)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
     return results
   end
 
@@ -91,22 +91,19 @@ class BiomedicalConcept < BiomedicalConceptCore
     ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     object = self.new 
     object.errors.clear
-    source = params[:source]
+    data = params[:data]
+    source = data[:source]
+    operation = data[:operation]
     ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + source[:identifier] + ", new version=" + source[:new_version])
+    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
     if create_permitted?(source[:identifier], source[:new_version].to_i, object) 
-      bc = nil
-      operation = params[:operation]
-      if operation == "BC_NEW"
-        bc = BiomedicalConceptTemplate.find(source[:id], source[:namespace])
-      else
-        bc = BiomedicalConcept.find(source[:id], source[:namespace])
-      end
-      params[:source][:versionLabel] = "0.1"
+      bc = BiomedicalConceptTemplate.find(source[:id], source[:namespace])
+      source[:versionLabel] = "0.1"
       sparql = SparqlUpdate.new
-      uri = create_sparql(C_CID_PREFIX, params[:source], C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+      uri = create_sparql(C_CID_PREFIX, source, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
       id = uri.getCid()
       ns = uri.getNs()
-      bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, params, sparql, C_SCHEMA_PREFIX)
+      bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, data, sparql, C_SCHEMA_PREFIX)
       ConsoleLogger::log(C_CLASS_NAME,"create","Sparql=" + sparql.to_s)
       response = CRUD.update(sparql.to_s)
       if response.success?
@@ -118,6 +115,41 @@ class BiomedicalConcept < BiomedicalConceptCore
         ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
       end
     end
+    return object
+  end
+
+   def self.update(params)
+    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+    object = self.new 
+    object.errors.clear
+    id = params[:id]
+    namespace = params[:namespace]
+    data = params[:data]
+    source = data[:source]
+    operation = data[:operation]
+    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + source[:identifier] + ", new version=" + source[:new_version])
+    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
+    #if create_permitted?(source[:identifier], source[:new_version].to_i, object) 
+      bc = BiomedicalConcept.find(id, namespace)
+      source[:versionLabel] = "0.1"
+      sparql = SparqlUpdate.new
+      uri = create_sparql(C_CID_PREFIX, source, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+      id = uri.getCid()
+      ns = uri.getNs()
+      ConsoleLogger::log(C_CLASS_NAME,"create","URI=" + uri.to_json.to_s)
+      bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, data, sparql, C_SCHEMA_PREFIX)
+      ConsoleLogger::log(C_CLASS_NAME,"create","Sparql=" + sparql.to_s)
+      bc.destroy # Destroys the old entry before the creation of the new item
+      response = CRUD.update(sparql.to_s)
+      if response.success?
+        object = BiomedicalConcept.find(id, ns)
+        object.errors.clear
+        ConsoleLogger::log(C_CLASS_NAME,"create","Object created")
+      else
+        object.errors.add(:base, "The Biomedical Concept was not created in the database.")
+        ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
+      end
+    #end
     return object
   end
 

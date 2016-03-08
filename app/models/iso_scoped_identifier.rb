@@ -36,8 +36,16 @@ class IsoScopedIdentifier
     return self.namespace.shortName
   end
   
+  def owner_id
+    return self.namespace.id
+  end
+  
   def next_version
     return version + 1
+  end
+  
+  def self.later_version?(version_1, version_2)
+    return version_1 >= version_2
   end
   
   def first_version
@@ -92,7 +100,7 @@ class IsoScopedIdentifier
       "{\n" +
       "  ?a rdf:type isoI:ScopedIdentifier . \n" +
       "  ?a isoI:identifier \"" + identifier + "\" . \n" +
-      "  ?a isoI:version " + version + " . \n" +
+      "  ?a isoI:version " + version.to_s + " . \n" +
       "  ?a isoI:hasScope :" + scopeId + ". \n" +
       "}"
     
@@ -197,20 +205,20 @@ class IsoScopedIdentifier
   end
 
   # Find all managed items of a given type by unique identifier.
+  # Uses hash for results rather than object as results are a hybrid.
   def self.allIdentifier(rdfType, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"allIdentifier","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"allIdentifier","ns=" + ns.to_s)
     results = Array.new
     check = Hash.new
 
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT"]) +
-      "SELECT DISTINCT ?d ?e WHERE \n" +
+      "SELECT DISTINCT ?d ?e ?f WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdfType + " . \n" +
       "  ?a isoI:hasIdentifier ?c . \n" +
       "  ?a rdfs:label ?e . \n" +
       "  ?c isoI:identifier ?d . \n" +
+      "  ?c isoI:hasScope ?f . \n" +
       "}"
     
     # Send the request, wait the resonse
@@ -221,11 +229,15 @@ class IsoScopedIdentifier
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       identifier = ModelUtility.getValue('d', false, node)
+      uri = ModelUtility.getValue('a', true, node)
       label = ModelUtility.getValue('e', false, node)
+      scope = ModelUtility.getValue('f', true, node)
       if identifier != "" 
-        if !check.has_key?(identifier)
-          results << {:identifier => identifier, :label => label}
-          check[identifier] = identifier
+        scope_namespace = IsoNamespace.find(ModelUtility.extractCid(scope))
+        key = scope_namespace.shortName + "_" + identifier
+        if !check.has_key?(key)
+          results << {:identifier => identifier, :label => label, :owner_id => scope_namespace.id, :owner => scope_namespace.shortName}
+          check[key] = key
         end
       end
     end

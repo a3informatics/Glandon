@@ -14,7 +14,7 @@ class ThesauriController < ApplicationController
   
   def history
     @identifier = params[:identifier]
-    @thesauri = Thesaurus.history(@identifier)
+    @thesauri = Thesaurus.history(params)
   end
   
   def create

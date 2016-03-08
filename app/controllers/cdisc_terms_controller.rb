@@ -5,7 +5,7 @@ class CdiscTermsController < ApplicationController
   C_CLASS_NAME = "CdiscTermsController"
   
   def history
-    @cdiscTerms = CdiscTerm.history(CdiscTerm::C_IDENTIFIER)
+    @cdiscTerms = CdiscTerm.history()
   end
   
   def import

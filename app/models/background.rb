@@ -115,7 +115,8 @@ class Background < ActiveRecord::Base
     prev_ct = nil
     missing = Array.new
     cdisc_terms.each_with_index do |ct, index|
-      key = "V" + ct.version.to_s
+      #key = "V" + ct.version.to_s
+      key = ct.versionLabel
       missing << key
       if index != 0 
         diffs = CdiscTerm.submission_diff(prev_ct, ct)

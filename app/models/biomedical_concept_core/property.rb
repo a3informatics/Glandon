@@ -92,7 +92,7 @@ class BiomedicalConceptCore::Property < IsoConcept
       sparql.triple_primitive_type("", id, prefix, "alias", property[:alias], "string")
       sparql.triple_primitive_type("", id, prefix, "ordinal", ordinal.to_s, "positiveInteger")
       sparql.triple_primitive_type("", id, prefix, "qText", property[:qText], "string")
-      sparql.triple_primitive_type("", id, prefix, "ptext", property[:pText], "string")
+      sparql.triple_primitive_type("", id, prefix, "pText", property[:pText], "string")
       sparql.triple_primitive_type("", id, prefix, "enabled", property[:enabled], "boolean")
       sparql.triple_primitive_type("", id, prefix, "collect", property[:collect], "boolean")
       sparql.triple_primitive_type("", id, prefix, "bridgPath", get_literal("bridgPath"), "string")
