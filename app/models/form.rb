@@ -167,73 +167,73 @@ class Form < IsoManaged
 
   end
   
-  def self.createFull(params)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
-    
-    # Create the object
-    object = self.new 
-    object.errors.clear
-
-    # Check parameters
-    if params_valid?(params, object)
-      
-      # add the version info to the parameters
-      identifier = params[:identifier]
-      label = params[:label]
-      params[:versionLabel] = "0.1"
-      params[:version] = "1"
-      children = params[:children]
-      ConsoleLogger::log(C_CLASS_NAME,"create","Children=" + children.to_s)
-       
-      # Check the form does not exist 
-      #ex = true
-      #if !ex
-      if exists?(identifier, IsoRegistrationAuthority.owner) 
-    
-        # Note the error
-        object.errors.add(:base, "The identifier is already in use.")
-    
-      else  
-
-        # Create the adminstered item for the form. 
-        object = create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
-      
-        # Now create the groups (which will create the item). We create a 
-        # single group for each BC.
-        insertSparql = ""
-        groups = Hash.new
-        ordinal = 1
-        children.each do |key, child|
-          ConsoleLogger::log(C_CLASS_NAME,"create","Child=" + child.to_s )
-          group = addGroup(object.id, object.namespace, ordinal, child)
-          ordinal += 1
-          insertSparql = insertSparql + "  :" + object.id + " bf:hasGroup :" + group.id + " . \n"
-        end
-
-        # Create the update query
-        update = UriManagement.buildNs(object.namespace,["bf"]) +
-          "INSERT DATA \n" +
-          "{ \n" +
-          insertSparql +
-          "}"
-        
-        # Send the request, wait the resonse
-        response = CRUD.update(update)
-        
-        # Response
-        if response.success?
-          ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Object created, id=" + object.id)
-        else
-          object.errors.add(:base, "The namespace was not created in the database.")
-          ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Object not created!")
-        end
-      end
-    end
-
-    return object
-
-  end
+  #def self.createFull(params)
+  #  
+  #  ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+  #  
+  #  # Create the object
+  #  object = self.new 
+  #  object.errors.clear
+  #
+  #  # Check parameters
+  #  if params_valid?(params, object)
+  #    
+  #    # add the version info to the parameters
+  #    identifier = params[:identifier]
+  #    label = params[:label]
+  #    params[:versionLabel] = "0.1"
+  #    params[:version] = "1"
+  #    children = params[:children]
+  #    ConsoleLogger::log(C_CLASS_NAME,"create","Children=" + children.to_s)
+  #     
+  #    # Check the form does not exist 
+  #    #ex = true
+  #    #if !ex
+  #    if exists?(identifier, IsoRegistrationAuthority.owner) 
+  #  
+  #      # Note the error
+  #      object.errors.add(:base, "The identifier is already in use.")
+  #  
+  #    else  
+  #
+  #      # Create the adminstered item for the form. 
+  #      object = create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
+  #    
+  #      # Now create the groups (which will create the item). We create a 
+  #      # single group for each BC.
+  #      insertSparql = ""
+  #      groups = Hash.new
+  #      ordinal = 1
+  #      children.each do |key, child|
+  #        ConsoleLogger::log(C_CLASS_NAME,"create","Child=" + child.to_s )
+  #        group = addGroup(object.id, object.namespace, ordinal, child)
+  #        ordinal += 1
+  #        insertSparql = insertSparql + "  :" + object.id + " bf:hasGroup :" + group.id + " . \n"
+  #      end
+  #
+  #      # Create the update query
+  #      update = UriManagement.buildNs(object.namespace,["bf"]) +
+  #        "INSERT DATA \n" +
+  #        "{ \n" +
+  #        insertSparql +
+  #        "}"
+  #      
+  #      # Send the request, wait the resonse
+  #      response = CRUD.update(update)
+  #      
+  #      # Response
+  #      if response.success?
+  #        ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Object created, id=" + object.id)
+  #      else
+  #        object.errors.add(:base, "The namespace was not created in the database.")
+  #        ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Object not created!")
+  #      end
+  #    end
+  #  end
+  #
+  #  return object
+  #
+  #end
 
   def self.create(params)
     ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
@@ -469,6 +469,12 @@ class Form < IsoManaged
 
   end
 
+  def crf_new
+    form = self.to_api_json
+    html = crf_node(form)
+    return html
+  end
+
   def self.impact(params)
   
     id = params[:id]
@@ -525,12 +531,12 @@ class Form < IsoManaged
     return result
   end
 
-  def self.empty
-    text = {:name => "Form", :identifier => "New Form", :label => "Form", :type => "Form", :key => "1", :id => "Not set", :nextKeyId => "3"}
-    text[:children] = []
-    text[:children][0] = {:name => "Group", :identifier => "New Group", :label => "Group", :type => "Group", :key => "2", :id => "Not set"}
-    return text
-  end
+  #def self.empty
+  #  text = {:name => "Form", :identifier => "New Form", :label => "Form", :type => "Form", :key => "1", :id => "Not set", :nextKeyId => "3"}
+  #  text[:children] = []
+  #  text[:children][0] = {:name => "Group", :identifier => "New Group", :label => "Group", :type => "Group", :key => "2", :id => "Not set"}
+  #  return text
+  #end
 
   def self.to_sparql(parent_id, sparql, schema_prefix, json)
     ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
@@ -612,71 +618,133 @@ private
     end
   end
 
-  def self.addGroup(formId, namespace, ordinal, params)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"addGroup","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"addGroup","Params=" + params.to_s)
-    
-    if params[:type] == "Group"
-      ConsoleLogger::log(C_CLASS_NAME,"addGroup","Group")
-      group = Group.createBlank(formId, namespace, ordinal, params)
-      if params.has_key?(:children)
-        ConsoleLogger::log(C_CLASS_NAME,"addGroup","Child")
-        innerOrdinal = 1
-        insertSparql = ""
-        children = params[:children]
-        children.each do |key, child|
-          if child[:type] == "Question"
-            ConsoleLogger::log(C_CLASS_NAME,"addGroup","Question detected")
-            ConsoleLogger::log(C_CLASS_NAME,"addGroup","Child=" + child.to_s)
-            qText = child[:freeText]
-            format = child[:freeText]
-            datatype = child[:freeText]
-            mapping = child[:freeText]
-            item = Form::Item.createQuestion(group.id, namespace, qText, datatype, format, mapping)
-            innerOrdinal += 1;
-            insertSparql = insertSparql + "  :" + group.id + " bf:hasItem :" + item.id + " . \n"
-          elsif child[:type] == "Placeholder"
-            ConsoleLogger::log(C_CLASS_NAME,"addGroup","Placeholder detected")
-            freeText = child[:freeText]
-            item = Form::Item.createPlaceholder(group.id, namespace, freeText)
-            innerOrdinal += 1;
-            insertSparql = insertSparql + "  :" + group.id + " bf:hasItem :" + item.id + " . \n"
-          else
-            ConsoleLogger::log(C_CLASS_NAME,"addGroup","Subgroup detected")
-            subGroup = addGroup(group.id, namespace, innerOrdinal, child)
-            innerOrdinal += 1;
-            insertSparql = insertSparql + "  :" + group.id + " bf:hasSubGroup :" + subGroup.id + " . \n"
-          end
-        end
-      
-        # Create the update query
-        update = UriManagement.buildNs(namespace,["bf"]) +
-          "INSERT DATA \n" +
-          "{ \n" +
-          insertSparql +
-          "}"
-        
-        # Send the request, wait the resonse
-        response = CRUD.update(update)
-        
-        # Response
-        if response.success?
-          ConsoleLogger::log(C_CLASS_NAME,"addGroup","Updated group, id=" + group.id)
-        else
-          object.errors.add(:base, "The group was not updated in the database.")
-          ConsoleLogger::log(C_CLASS_NAME,"addGroup","Object not updated!")
-        end
+  #def self.addGroup(formId, namespace, ordinal, params)
+  #  
+  #  ConsoleLogger::log(C_CLASS_NAME,"addGroup","*****Entry*****")
+  #  ConsoleLogger::log(C_CLASS_NAME,"addGroup","Params=" + params.to_s)
+  #  
+  #  if params[:type] == "Group"
+  #    ConsoleLogger::log(C_CLASS_NAME,"addGroup","Group")
+  #    group = Group.createBlank(formId, namespace, ordinal, params)
+  #    if params.has_key?(:children)
+  #      ConsoleLogger::log(C_CLASS_NAME,"addGroup","Child")
+  #      innerOrdinal = 1
+  #      insertSparql = ""
+  #      children = params[:children]
+  #      children.each do |key, child|
+  #        if child[:type] == "Question"
+  #          ConsoleLogger::log(C_CLASS_NAME,"addGroup","Question detected")
+  #          ConsoleLogger::log(C_CLASS_NAME,"addGroup","Child=" + child.to_s)
+  #          qText = child[:freeText]
+  #          format = child[:freeText]
+  #          datatype = child[:freeText]
+  #          mapping = child[:freeText]
+  #          item = Form::Item.createQuestion(group.id, namespace, qText, datatype, format, mapping)
+  #          innerOrdinal += 1;
+  #          insertSparql = insertSparql + "  :" + group.id + " bf:hasItem :" + item.id + " . \n"
+  #        elsif child[:type] == "Placeholder"
+  #          ConsoleLogger::log(C_CLASS_NAME,"addGroup","Placeholder detected")
+  #          freeText = child[:freeText]
+  #          item = Form::Item.createPlaceholder(group.id, namespace, freeText)
+  #          innerOrdinal += 1;
+  #          insertSparql = insertSparql + "  :" + group.id + " bf:hasItem :" + item.id + " . \n"
+  #        else
+  #          ConsoleLogger::log(C_CLASS_NAME,"addGroup","Subgroup detected")
+  #          subGroup = addGroup(group.id, namespace, innerOrdinal, child)
+  #          innerOrdinal += 1;
+  #          insertSparql = insertSparql + "  :" + group.id + " bf:hasSubGroup :" + subGroup.id + " . \n"
+  #        end
+  #      end
+  #    
+  #      # Create the update query
+  #      update = UriManagement.buildNs(namespace,["bf"]) +
+  #        "INSERT DATA \n" +
+  #        "{ \n" +
+  #        insertSparql +
+  #        "}"
+  #      
+  #      # Send the request, wait the resonse
+  #      response = CRUD.update(update)
+  #      
+  #      # Response
+  #      if response.success?
+  #        ConsoleLogger::log(C_CLASS_NAME,"addGroup","Updated group, id=" + group.id)
+  #      else
+  #        object.errors.add(:base, "The group was not updated in the database.")
+  #        ConsoleLogger::log(C_CLASS_NAME,"addGroup","Object not updated!")
+  #      end
+  #    end
+  #
+  #  elsif params[:type] == "CommonGroup"
+  #    group = Group.createCommon(formId, namespace, ordinal, params)
+  #  elsif params[:type] == "BCGroup"
+  #    group = Group.createBcEdit(formId, namespace, ordinal, params)
+  #  end
+  #
+  #  return group      
+  #
+  #end
+
+  def crf_node(node)
+    html = ""
+    #ConsoleLogger.log("Mdr", "crfNode", "Node=" + node.to_s)
+    if node[:type] == "Form"
+      html += '<table class="table table-striped table-bordered table-condensed">'
+      html += '<tr>'
+      html += '<td colspan="2"><h4>' + node[:label].to_s + '</h4></td>'
+      html += '<td></td>'
+      html += '</tr>'
+      node[:children].each do |child|
+        html += crf_node(child)
       end
-
-    elsif params[:type] == "CommonGroup"
-      group = Group.createCommon(formId, namespace, ordinal, params)
-    elsif params[:type] == "BCGroup"
-      group = Group.createBcEdit(formId, namespace, ordinal, params)
+      html += '</table>'
+    elsif node[:type] == "Group"
+      node[:children].each do |child|
+        html += crf_node(child)
+      end
+    elsif node[:type] == "BCGroup"
+      html += '<tr>'
+      html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
+      html += '</tr>'
+      node[:children].each do |child|
+        html += crf_node(child)
+      end
+    elsif node[:type] == "Placeholder"
+      html += '<tr>'
+      html += '<td colspan="3"><h5>Placeholder Text</h5><p><i>' + node[:free_text].to_s + '</i></p></td>'
+      html += '</tr>'
+      node[:children].each do |child|
+        html += crf_node(child)
+      end
+    elsif node[:type] == "BCItem"
+      datatype = node[:datatype]
+      html += '<tr>'
+      html += '<td>' + node[:qText].to_s + '</td>'
+      html += '<td>' + node[:datatype].to_s + '</td>'
+      html += '<td>'
+      if datatype == "CL"
+        node[:children].each do |child|
+          html += crf_node(child)
+        end
+      elsif datatype == "D+T"
+        html += '<input type="date" name="date"> <input type="time" name="time">'
+      elsif datatype == "F"
+        html += '<input type="number"> . <input type="number">' 
+      else
+        html += "Not implemented yet."
+      end
+      html += '</td>'
+      html += '</tr>'
+    elsif node[:type] == "CL"
+      html += '<p><input type="radio" name="' + node[:name].to_s + '" value="' + node[:name].to_s + '"></input> ' + node[:name].to_s + '</p>'
+    else
+      html += '<tr>'
+      html += '<td>Not Recognized: ' + node[:type].to_s + '</td>'
+      html += '<td></td>'
+      html += '<td></td>'
+      html += '</tr>'
     end
-
-    return group      
-  
+    return html
   end
 
 end

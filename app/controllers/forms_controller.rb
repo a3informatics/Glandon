@@ -4,21 +4,21 @@ class FormsController < ApplicationController
   
   C_CLASS_NAME = "FormsController"
 
-  def new
-    @form = Form.new
-    @termList = []
-    terms = Thesaurus.unique
-    terms.each do |identifier|
-      history = Thesaurus.history(identifier)
-      history.each do |term|
-        if term.latest?
-          @termList << [term.label, term.id + "|" + term.namespace]
-        end
-      end
-    end
-  end
+  #def new
+  #  @form = Form.new
+  #  @termList = []
+  #  terms = Thesaurus.unique
+  #  terms.each do |identifier|
+  #    history = Thesaurus.history(identifier)
+  #    history.each do |term|
+  #      if term.latest?
+  #        @termList << [term.label, term.id + "|" + term.namespace]
+  #      end
+  #    end
+  #  end
+  #end
 
-  def newX
+  def new
     @form = Form.new
   end
 
@@ -52,14 +52,14 @@ class FormsController < ApplicationController
     @form = Form.new
   end
   
-  def create
-    @form = Form.createFull(params[:form])
-    if @form.errors.empty?
-      render :nothing => true, :status => 200, :content_type => 'text/html'
-    else
-      render :json => { :errors => @form.errors.full_messages}, :status => 422
-    end
-  end
+  #def create
+  #  @form = Form.createFull(params[:form])
+  #  if @form.errors.empty?
+  #    render :nothing => true, :status => 200, :content_type => 'text/html'
+  #  else
+  #    render :json => { :errors => @form.errors.full_messages}, :status => 422
+  #  end
+  #end
 
   def placeholder_create
     @form = Form.createPlaceholder(the_params)
@@ -87,7 +87,7 @@ class FormsController < ApplicationController
     @form = Form.find(id, ns)
   end
 
-  def create_new
+  def create
     @form = Form.create(params)
     if @form.errors.empty?
       render :json => { :data => @form.to_edit}, :status => 200
