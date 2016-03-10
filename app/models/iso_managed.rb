@@ -7,7 +7,7 @@ class IsoManaged < IsoConcept
   include ModelUtility
   
   attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment, :latest
-  
+
   # Constants
   C_CID_PREFIX = "ISOM"
   C_CLASS_NAME = "IsoManaged"
@@ -15,18 +15,19 @@ class IsoManaged < IsoConcept
   C_INSTANCE_PREFIX = "mdrItems"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  
-  def new
-    @registrationState = nil
-    @scopedIdentifier = nil
-    @origin = ""
-    @changeDescription = ""
-    @creationDate = Time.now
-    @lastChangedDate = Time.now
-    @explanoratoryComment = ""
-    @latest = false
+
+  def initialize
+    super
+    self.registrationState = IsoRegistrationState.new
+    self.scopedIdentifier = IsoScopedIdentifier.new
+    self.origin = ""
+    self.changeDescription = ""
+    self.creationDate = Time.now
+    self.lastChangedDate = Time.now
+    self.explanoratoryComment = ""
+    self.latest = false
   end
-   
+
   def version
     return self.scopedIdentifier.version
   end
@@ -231,20 +232,18 @@ class IsoManaged < IsoConcept
       "{ \n" +
       "  ?a rdf:type :" + rdfType.to_s + " . \n" +
       "  ?a rdfs:label ?i . \n" +
-      # "  OPTIONAL { \n" +
-      "    ?a isoI:hasIdentifier ?h . \n" +
-      "    ?h isoI:identifier \"" + identifier.to_s + "\" . \n" +
-      "    ?h isoI:hasScope mdrItems:" + namespace_id.to_s + " . \n" +
-      "    ?h isoI:version ?j . \n" +
-      "    OPTIONAL { \n" +
-      "      ?a isoR:hasState ?b . \n" +
-      "      ?a isoT:origin ?c . \n" +
-      "      ?a isoT:changeDescription ?d . \n" +
-      "      ?a isoT:creationDate ?e . \n" +
-      "      ?a isoT:lastChangeDate  ?f . \n" +
-      "      ?a isoT:explanatoryComment ?g . \n" +
-      "    } \n" +
-      # "  } \n" +
+      "  ?a isoI:hasIdentifier ?h . \n" +
+      "  ?h isoI:identifier \"" + identifier.to_s + "\" . \n" +
+      "  ?h isoI:hasScope mdrItems:" + namespace_id.to_s + " . \n" +
+      "  ?h isoI:version ?j . \n" +
+      "  OPTIONAL { \n" +
+      "    ?a isoR:hasState ?b . \n" +
+      "    ?a isoT:origin ?c . \n" +
+      "    ?a isoT:changeDescription ?d . \n" +
+      "    ?a isoT:creationDate ?e . \n" +
+      "    ?a isoT:lastChangeDate  ?f . \n" +
+      "    ?a isoT:explanatoryComment ?g . \n" +
+      "  } \n" +
       "} ORDER BY DESC(?j)"
     
     # Send the request, wait the resonse
@@ -264,7 +263,6 @@ class IsoManaged < IsoConcept
       commentSet = node.xpath("binding[@name='g']/literal")
       label = ModelUtility.getValue('i', false, node)
       version = ModelUtility.getValue('j', false, node)
-      #ConsoleLogger::log(C_CLASS_NAME,"history","Label=" + label)
       if uri != "" 
         object = self.new
         object.id = ModelUtility.extractCid(uri)
@@ -290,13 +288,6 @@ class IsoManaged < IsoConcept
             object.creationDate = dateSet[0].text
             object.lastChangedDate = lastSet[0].text
             object.explanoratoryComment = commentSet[0].text
-          #else
-          #  object.registrationState = nil
-          #  object.origin = ""
-          #  object.changeDescription = ""
-          #  object.creationDate = ""
-          #  object.lastChangedDate = ""
-          #  object.explanoratoryComment = ""
           end
         else
           object.scopedIdentifier = nil
@@ -348,7 +339,7 @@ class IsoManaged < IsoConcept
       if uri != "" 
         scope_namespace = IsoNamespace.find(ModelUtility.extractCid(scope))
         key = scope_namespace.shortName + "_" + identifier
-        if !check.has_key?(key)
+        if check.has_key?(key)
           object = check[key]
           if (object.registrationState != nil) && (status != "")
             if (object.registrationState.registrationStatus != IsoRegistrationState.releasedState) &&
@@ -358,6 +349,9 @@ class IsoManaged < IsoConcept
               object.namespace = ModelUtility.extractNs(uri)
               object.rdfType = rdfType
               object.label = label
+              object.scopedIdentifier = IsoScopedIdentifier.new
+              object.scopedIdentifier.identifier = identifier
+              object.registrationState = IsoRegistrationState.new
               object.registrationState.registrationStatus = status
               check[key] = object
             end
@@ -390,7 +384,6 @@ class IsoManaged < IsoConcept
 
   # Rewritten to return an object with the desired settings for the import.
   def self.import(prefix, params, ownerNamespace, rdfType, schemaNs, instanceNs)
-    #ConsoleLogger::log(C_CLASS_NAME,"import","*****Entry*****")
     identifier = params[:identifier]
     version = params[:version]
     version_label = params[:versionLabel]
@@ -400,9 +393,6 @@ class IsoManaged < IsoConcept
     scopeId = ownerNamespace.id
 
     # Create the required namespace. Use owner name to extend
-    #uri = Uri.new
-    #uri.setUri(instanceNs)
-    #uri.extendPath(orgName + "/V" + version.to_s)
     uri = ModelUtility::version_namespace(version, instanceNs, orgName)
     useNs = uri.getNs()
     ConsoleLogger::log(C_CLASS_NAME,"create","useNs=" + useNs)
@@ -444,7 +434,6 @@ class IsoManaged < IsoConcept
   end
 
   def self.create(prefix, params, rdfType, schemaNs, instanceNs)
-    #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     identifier = params[:identifier]
     version = params[:version]
     version_label = params[:versionLabel]
@@ -455,9 +444,6 @@ class IsoManaged < IsoConcept
     scopeId = ra.namespace.id
 
     # Create the required namespace. Use owner name to extend
-    #uri = Uri.new
-    #uri.setUri(instanceNs)
-    #uri.extendPath(orgName + "/V" + version.to_s)
     uri = ModelUtility::version_namespace(version, instanceNs, orgName)
     useNs = uri.getNs()
     ConsoleLogger::log(C_CLASS_NAME,"create","useNs=" + useNs)
@@ -510,8 +496,8 @@ class IsoManaged < IsoConcept
 
   end 
 
+  # Build the SPARQL for the managed item creation.
   def self.create_sparql(prefix, params, rdfType, schemaNs, instanceNs, sparql)
-    #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     version = params[:new_version]
     identifier = params[:identifier]
     version_label = params[:versionLabel]
@@ -549,6 +535,38 @@ class IsoManaged < IsoConcept
     uri = Uri.new
     uri.setNsCid(useNs, id)
     return uri
+  end
+
+  # Starting to develop
+  def to_api_json
+    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
+    result = 
+    { 
+      :type => "",
+      :id => self.id, 
+      :namespace => self.namespace, 
+      :identifier => self.identifier, 
+      :label => self.label, 
+      :version => self.version,
+      :children => [] 
+    }
+    return result
+  end
+
+  def to_edit
+    result = 
+    {
+      :operation => {},
+      :managed_item => {}
+    }
+    if new_version?
+      result[:operation] = { :action => "CREATE", :new_version => self.next_version }
+    else
+      result[:operation] = { :action => "UPDATE", :new_version => self.version }
+    end
+    result[:managed_item] = to_api_json
+    ConsoleLogger::log(C_CLASS_NAME,"to_edit","Result=" + result.to_s)
+    return result
   end
 
 end

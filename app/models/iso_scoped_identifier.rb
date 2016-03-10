@@ -21,13 +21,18 @@ class IsoScopedIdentifier
   # Base namespace 
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
   
+  def initialize
+    self.id = ""
+    self.identifier = ""
+    self.versionLabel = ""
+    self.version = 0
+    self.namespace = ""
+  end
+
   def persisted?
     id.present?
   end
  
-  def initialize()
-  end
-
   def baseNs
     return @@baseNs 
   end

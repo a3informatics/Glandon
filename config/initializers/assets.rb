@@ -14,6 +14,6 @@ Rails.application.config.assets.version = '1.0'
 	iso_registration_states iso_namespaces 
 	biomedical_concept_templates biomedical_concepts biomedical_concepts_editor 
 	cdisc_cls cdisc_clis cdisc_terms sponsor_terms forms iso_scoped_identifiers thesauri thesaurus_concepts 
-	thesauri_editor thesauri_viewer form_editor form_viewer d3local).each do |controller|
+	thesauri_editor thesauri_viewer form_editor form_editor_new form_viewer d3local).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end

@@ -2,8 +2,8 @@ require "uri"
 
 class Form::Item < IsoConcept
 
-  attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet
-  validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet
+  attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional
+  validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional
   
   # Constants
   C_SCHEMA_PREFIX = "bf"
@@ -16,6 +16,9 @@ class Form::Item < IsoConcept
   
   def self.find(id, ns)
     object = super(id, ns)
+    object.ordinal = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "ordinal").to_i
+    object.note = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "note")
+    object.optional = ModelUtility.to_boolean(object.properties.getLiteralValue(C_SCHEMA_PREFIX, "optional"))
     object.bcValueSet = Array.new
     object.items = findSubItems(object.links, ns)
     if object.links.exists?(C_SCHEMA_PREFIX, "hasProperty")
@@ -371,10 +374,115 @@ class Form::Item < IsoConcept
     return result
   end
 
+  def to_api_json()
+    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
+    result = 
+    { 
+      :id => self.id, 
+      :namespace => self.namespace, 
+      :type => self.itemType,
+      :label => self.label, 
+      :ordinal => self.ordinal,
+      :optional => self.optional,
+      :note => self.note,
+      :free_text => "",
+      :datatype => "",
+      :format => "",
+      :qText => "",
+      :pText => "",
+      :mapping => "",
+      :property_reference => {},
+      :children => [],
+      :common => []
+    }
+    if self.itemType == C_PLACEHOLDER
+      result[:free_text] = self.properties.getOnly(C_SCHEMA_PREFIX, "freeText")[:value]
+    elsif self.itemType == C_QUESTION
+      result[:datatype] = self.properties.getOnly(C_SCHEMA_PREFIX, "datatype")[:value]
+      result[:format] = self.properties.getOnly(C_SCHEMA_PREFIX, "format")[:value]
+      result[:qText] = self.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]
+      result[:mapping] = self.properties.getOnly(C_SCHEMA_PREFIX, "mapping")[:value]
+    else
+      if self.bcProperty != nil
+        result[:property_reference] = {:id => self.bcProperty.id, :namespace => self.bcProperty.namespace, :enabled => true}
+      end
+      result[:datatype] = self.bcProperty.datatype
+      result[:format] = self.bcProperty.format
+      result[:qText] = self.bcProperty.qText
+      result[:pText] = self.bcProperty.pText
+      result[:bridgPath] = self.bcProperty.bridgPath
+      clis = self.bcValueSet
+      ordinal = 1  
+      clis.each do |cliRef|
+        #if cliRef.enabled
+          cli = cliRef.value
+          result[:children] << { :value_reference => {:id => cli.id, :namespace => cli.namespace, :enabled => cliRef.enabled}, :label => cli.notation, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal }
+          ordinal += 1
+        #end
+      end
+    end
+    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
+    return result
+  end
+
+  def self.to_sparql(parent_id, sparql, schema_prefix, json)
+    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
+    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","json=" + json.to_s)
+    
+    rdf_type = {C_PLACEHOLDER => "Placeholder", C_QUESTION => "Question", C_BC => "BcProperty"} 
+    
+    id = parent_id + Uri::C_UID_SECTION_SEPARATOR + 'I' + json[:ordinal].to_s  
+    super(id, sparql, schema_prefix, rdf_type[json[:type]], json[:label])
+    sparql.triple_primitive_type("", id, schema_prefix, "ordinal", json[:ordinal].to_s, "positiveInteger")
+    sparql.triple_primitive_type("", id, schema_prefix, "optional", json[:optional].to_s, "boolean")
+    sparql.triple_primitive_type("", id, schema_prefix, "note", json[:note].to_s, "string")
+    sparql.triple("", id, schema_prefix, "isItemOf", "", parent_id.to_s)
+    if json[:type] == C_PLACEHOLDER
+      sparql.triple_primitive_type("", id, schema_prefix, "freeText", json[:free_text].to_s, "string")
+    elsif json[:type] == C_QUESTION
+      sparql.triple_primitive_type("", id, schema_prefix, "datatype", json[:datatype].to_s, "string")
+      sparql.triple_primitive_type("", id, schema_prefix, "format", json[:format].to_s, "string")
+      sparql.triple_primitive_type("", id, schema_prefix, "qText", json[:qText].to_s, "string")
+      sparql.triple_primitive_type("", id, schema_prefix, "mapping", json[:mapping].to_s, "string")
+      if json.has_key?(:values)
+        json[:values].each do |key, value|
+          sparql.triple_uri("", id, "bo", "hasThesaurusConcept", value[:namespace], value[:id])
+        end
+      end
+    else
+      if json.has_key?(:children)
+        value_ordinal = 1
+        json[:children].each do |key, child|
+          value = child[:value_reference]
+          ConsoleLogger::log(C_CLASS_NAME,"sparql","Add value for Item=" + value.to_s)
+          ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'VR' + value_ordinal.to_s
+          sparql.triple("", id, schema_prefix, "hasValue", "", ref_id.to_s)
+          sparql.triple("", ref_id, UriManagement::C_RDF, "type", schema_prefix, "BcReference")
+          sparql.triple_uri("", ref_id, "bo", "hasValue", value[:namespace], value[:id])
+          sparql.triple_primitive_type("", ref_id, schema_prefix, "enabled", value[:enabled].to_s, "boolean")
+          value_ordinal += 1
+        end
+      end
+
+      if json.has_key?(:common)
+        json[:common].each do |key, item|
+          Form::Item.to_sparql(id, sparql, schema_prefix, item)
+          item = createCommon(id, ns, commonOrdinal, common)
+        end
+      end
+
+      property = json[:property_reference]
+      ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'PR'
+      sparql.triple("", id, schema_prefix, "hasProperty", "", ref_id.to_s)
+      sparql.triple("", ref_id, UriManagement::C_RDF, "type", schema_prefix, "BcReference")
+      sparql.triple_uri("", ref_id, "bo", "hasProperty", property[:namespace], property[:id])
+      sparql.triple_primitive_type("", ref_id, schema_prefix, "enabled", property[:enabled].to_s, "boolean")
+    end
+  end
+
 private
 
   def self.getType (uri)
- 
     ConsoleLogger::log(C_CLASS_NAME,"getType","uri=" + uri)
     type = ModelUtility.extractCid(uri)
     ConsoleLogger::log(C_CLASS_NAME,"getType","type=" + type)
@@ -387,8 +495,7 @@ private
     else
       type = C_UNKNOWN
     end
-    return type
-  
+    return type  
    end
     
  end

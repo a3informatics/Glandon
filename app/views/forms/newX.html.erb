@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag    'd3local', 'form_editor'%>
+<%= javascript_include_tag 'd3local', 'form_editor_new'%>
+<script id="formJson" type="text/json">
+    <%= raw @form.to_edit.to_json %>
+</script>
+<div class="row">
+    <div class="col-md-7">
+        <h3>New Form:</h3>
+        <div style="height: 800px;" id="d3">
+            <!-- D3 Area -->
+        </div>
+    </div>
+    <%= render partial: "shared/formEditor"%>
+</div>
+<input type="hidden" id="edit_flag" value="false">
+  
+
+
+

@@ -12,6 +12,12 @@ class Form < IsoManaged
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
+  def initialize
+    super
+    self.groups = []
+    self.label = "New Form"
+  end
+
   def self.find(id, ns, children=true)
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
     object = super(id, ns)
@@ -229,6 +235,71 @@ class Form < IsoManaged
 
   end
 
+  def self.create(params)
+    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+    object = self.new 
+    object.errors.clear
+    data = params[:data]
+    operation = data[:operation]
+    managed_item = data[:managed_item]
+    if params_valid?(managed_item, object)
+      ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + managed_item[:identifier] + ", new version=" + operation[:new_version])
+      ConsoleLogger::log(C_CLASS_NAME,"create","action=" + operation[:action])
+      if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object) 
+        sparql = SparqlUpdate.new
+        managed_item[:versionLabel] = "0.1"
+        managed_item[:new_version] = operation[:new_version]
+        uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+        id = uri.getCid()
+        ns = uri.getNs()
+        Form.to_sparql(id, sparql, C_SCHEMA_PREFIX, managed_item)
+        ConsoleLogger::log(C_CLASS_NAME,"create","Sparql=" + sparql.to_s)
+        response = CRUD.update(sparql.to_s)
+        if response.success?
+          object = Form.find(id, ns)
+          object.errors.clear
+          ConsoleLogger::log(C_CLASS_NAME,"create","Object created")
+        else
+          object.errors.add(:base, "The Form was not created in the database.")
+          ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
+        end
+      end
+    end
+    return object
+  end
+
+   def self.update(params)
+    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+    object = self.new 
+    object.errors.clear
+    data = params[:data]
+    operation = data[:operation]
+    managed_item = data[:managed_item]
+    ConsoleLogger::log(C_CLASS_NAME,"update","identifier=" + managed_item[:identifier] + ", new version=" + operation[:new_version])
+    ConsoleLogger::log(C_CLASS_NAME,"update","action=" + operation[:action])
+    form = Form.find(managed_item[:id], managed_item[:namespace])
+    sparql = SparqlUpdate.new
+    managed_item[:versionLabel] = "0.1"
+    managed_item[:new_version] = operation[:new_version]
+    uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+    id = uri.getCid()
+    ns = uri.getNs()
+    ConsoleLogger::log(C_CLASS_NAME,"update","URI=" + uri.to_json.to_s)
+    Form.to_sparql(id, sparql, C_SCHEMA_PREFIX, managed_item)
+    ConsoleLogger::log(C_CLASS_NAME,"update","Sparql=" + sparql.to_s)
+    form.destroy # Destroys the old entry before the creation of the new item
+    response = CRUD.update(sparql.to_s)
+    if response.success?
+      object = Form.find(id, ns)
+      object.errors.clear
+      ConsoleLogger::log(C_CLASS_NAME,"create","Object created")
+    else
+      object.errors.add(:base, "The Form was not created in the database.")
+      ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
+    end
+    return object
+  end
+
   def acrf
   
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
@@ -398,17 +469,6 @@ class Form < IsoManaged
 
   end
 
-  def d3
-    ig = 0
-    result = FormNode.new(self.id, self.namespace, "Form", self.label, self.label, self.identifier, "", "", 0, true)
-    self.groups.each do |key, group|
-      result[:children][ig] = group.d3(ig)
-      ig += 1
-    end
-    result[:save] = result[:children]
-    return result
-  end
-
   def self.impact(params)
   
     id = params[:id]
@@ -443,11 +503,84 @@ class Form < IsoManaged
     return results
   end
 
+  def d3
+    ig = 0
+    result = FormNode.new(self.id, self.namespace, "Form", self.label, self.label, self.identifier, "", "", 0, true)
+    self.groups.each do |key, group|
+      result[:children][ig] = group.d3(ig)
+      ig += 1
+    end
+    result[:save] = result[:children]
+    return result
+  end
+
+  def to_api_json
+    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
+    result = super
+    result[:type] = "Form"
+    self.groups.each do |key, group|
+      result[:children][group.ordinal - 1] = group.to_api_json
+    end
+    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
+    return result
+  end
+
   def self.empty
     text = {:name => "Form", :identifier => "New Form", :label => "Form", :type => "Form", :key => "1", :id => "Not set", :nextKeyId => "3"}
     text[:children] = []
     text[:children][0] = {:name => "Group", :identifier => "New Group", :label => "Group", :type => "Group", :key => "2", :id => "Not set"}
     return text
+  end
+
+  def self.to_sparql(parent_id, sparql, schema_prefix, json)
+    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
+    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","json=" + json.to_s)
+    id = parent_id 
+    #super(id, sparql, schema_prefix, "form", json[:label]) #Inconsistent at the moment. Handled within the SI & RS creation
+    if json.has_key?(:children)
+      json[:children].each do |key, group|
+        sparql.triple("", id, schema_prefix, "hasGroup", "", id + Uri::C_UID_SECTION_SEPARATOR + 'G' + group[:ordinal].to_s  )
+      end
+    end
+    if json.has_key?(:children)
+      json[:children].each do |key, item|
+        Form::Group.to_sparql(id, sparql, schema_prefix, item)
+      end
+    end
+  end
+
+  def destroy
+    # Create the query
+    update = UriManagement.buildNs(self.namespace, [C_SCHEMA_PREFIX, "isoI", "isoR"]) +
+      "DELETE \n" +
+      "{\n" +
+      "  ?s ?p ?o . \n" +
+      "}\n" +
+      "WHERE\n" + 
+      "{\n" +
+      "  {\n" +
+      "    :" + self.id + " (:|!:)* ?s . \n" +  
+      "    ?s ?p ?o . \n" +
+      "    FILTER(STRSTARTS(STR(?s), \"" + self.namespace + "\"))" +
+      "  } UNION {\n" + 
+      "    :" + self.id + " isoI:hasIdentifier ?s . \n" +
+      "    ?s ?p ?o . \n" +
+      "  } UNION {\n" + 
+      "    :" + self.id + " isoR:hasState ?s . \n" +
+      "    ?s ?p ?o . \n" +
+      "  }\n" + 
+      "}\n"
+
+    # Send the request, wait the resonse
+    ConsoleLogger::log(C_CLASS_NAME,"destroy","Update=" + update.to_s)
+    response = CRUD.update(update)
+    
+    # Process response
+    if response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"destroy","Deleted")
+    else
+      ConsoleLogger::log(C_CLASS_NAME,"destroy","Error!")
+    end
   end
 
 private
@@ -456,17 +589,17 @@ private
     
     result1 = ModelUtility::validIdentifier?(params[:identifier], object)
     result2 = ModelUtility::validLabel?(params[:label], object)
-    if params.has_key?(:bcs)
-      result3 = validBcs?(params[:bcs], object)
-    else
-      result3 = true
-    end 
-    if params.has_key?(:freeText)
-      result4 = ModelUtility::validFreeText?(:free_text,params[:freeText], object)
-    else
-      result4 = true
-    end 
-    return result1 && result2 && result3 && result4
+    #if params.has_key?(:bcs)
+    #  result3 = validBcs?(params[:bcs], object)
+    #else
+    #  result3 = true
+    #end 
+    #if params.has_key?(:freeText)
+    #  result4 = ModelUtility::validFreeText?(:free_text,params[:freeText], object)
+    #else
+    #  result4 = true
+    #end 
+    return result1 && result2 # && result3 && result4
 
   end
 

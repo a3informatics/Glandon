@@ -114,6 +114,8 @@ Rails.application.routes.draw do
       post :placeholder_create
       post :bc_normal_create
       post :bc_log_create
+      get :newX
+      post :create_new
       get :acrf
       get :crf
     end

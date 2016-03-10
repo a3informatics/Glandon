@@ -30,9 +30,9 @@ class IsoRegistrationState
         :key => C_NOTSET, 
         :label => "Not set", 
         :definition => "State has not beeen set",
-        :delete_enabled => true, 
+        :delete_enabled => false, 
         :edit_enabled => true, 
-        :edit_up_version => false, 
+        :edit_up_version => true, # New items set to this state 
         :state_on_edit => C_INCOMPLETE,
         :next_state => C_INCOMPLETE
       },
@@ -134,6 +134,14 @@ class IsoRegistrationState
   end
  
   def initialize()
+    self.id = ""
+    self.registrationAuthority = nil
+    self.registrationStatus = C_NOTSET
+    self.administrativeNote = ""
+    self.effectiveDate = Time.now
+    self.unresolvedIssue = ""
+    self.administrativeStatus = ""
+    self.previousState  = C_NOTSET
   end
 
   def baseNs

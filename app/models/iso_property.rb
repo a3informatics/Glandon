@@ -13,16 +13,10 @@ class IsoProperty
   end
   
   def get(prefix, type)
-    results = []
     ns = UriManagement.getNs1(prefix)
     uri = Uri.new
     uri.setNsFragment(ns, type)
     p = @properties.select {|prop| prop[:rdfType] == uri.all} 
-    #if p.length > 0
-    #  results = p.map { |prop| { value: prop[:value], label: prop[:label] } }
-      #@properties = @properties.reject {|prop| prop[:rdfType] == uri.all}
-    #end
-    #return results
     return p
   end
 
@@ -33,6 +27,15 @@ class IsoProperty
     else
       result = {}
       return result
+    end
+  end
+
+  def getLiteralValue(prefix, type)
+    results = get(prefix, type)
+    if results.length == 1
+      return results[0][:value]
+    else
+      return ""
     end
   end
 

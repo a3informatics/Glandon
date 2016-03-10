@@ -96,6 +96,21 @@ class BiomedicalConceptsController < ApplicationController
     namespace = params[:namespace]
     @bc = BiomedicalConcept.find(id, namespace)
     @items = @bc.flatten
+    respond_to do |format|
+      format.html 
+      format.json do
+        results = {}
+        results[:id] = id
+        results[:identifier] = @bc.identifier
+        results[:label] = @bc.label
+        results[:namespace] = namespace
+        results[:properties] = []
+        @items.each do |property|
+          results[:properties] << property
+        end
+        render json: results
+      end
+    end
   end
   
 private

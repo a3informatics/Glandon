@@ -104,7 +104,7 @@ class BiomedicalConceptCore < IsoManaged
       "  } UNION {\n" + 
       "    :" + self.id + " isoR:hasState ?s . \n" +
       "    ?s ?p ?o . \n" +
-      "  }" + 
+      "  }\n" + 
       "}\n"
 
     # Send the request, wait the resonse

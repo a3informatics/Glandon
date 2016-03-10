@@ -2,8 +2,8 @@ require "uri"
 
 class Form::Group < IsoConcept
   
-  attr_accessor :items, :groups, :groupType, :bc
-  validates_presence_of :items, :groups, :groupType, :bc
+  attr_accessor :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating
+  validates_presence_of :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating
   
   # Constants
   C_SCHEMA_PREFIX = "bf"
@@ -17,6 +17,10 @@ class Form::Group < IsoConcept
   def self.find(id, ns)
     ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
     object = super(id, ns)
+    object.ordinal = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "ordinal").to_i
+    object.note = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "note")
+    object.optional = ModelUtility.to_boolean(object.properties.getLiteralValue(C_SCHEMA_PREFIX, "optional"))
+    object.repeating = ModelUtility.to_boolean(object.properties.getLiteralValue(C_SCHEMA_PREFIX, "optional"))
     object.groups = findSubGroups(object.links, ns)
     object.items = Form::Item.findForGroup(object.links, ns)
     if object.links.exists?(C_SCHEMA_PREFIX, "hasBiomedicalConcept")
@@ -300,6 +304,75 @@ class Form::Group < IsoConcept
     end
     result[:save] = result[:children]
     return result
+  end
+
+  def to_api_json()
+    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
+    result = 
+    { 
+      :id => self.id, 
+      :namespace => self.namespace, 
+      :type => self.groupType,
+      :label => self.label, 
+      :ordinal => self.ordinal,
+      :optional => self.optional,
+      :repeating => self.repeating,
+      :note => self.note,
+      :biomedical_concept_reference => {},
+      :children => []
+    }
+    if self.bc != nil
+      result[:biomedical_concept_reference] = {:id => self.bc.id, :namespace => self.bc.namespace, :enabled => true}
+    end  
+    self.items.each do |key, item|
+      result[:children][item.ordinal - 1] = item.to_api_json
+    end
+    self.groups.each do |key, group|
+      result[:children][group.ordinal - 1] = group.to_api_json
+    end
+    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
+    return result
+  end
+
+  def self.to_sparql(parent_id, sparql, schema_prefix, json)
+    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
+    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","json=" + json.to_s)
+    
+    #rdf_type = {C_PLACEHOLDER => "Placeholder", C_QUESTION => "Question", C_BC => "BcProperty"} 
+    
+    id = parent_id + Uri::C_UID_SECTION_SEPARATOR + 'G' + json[:ordinal].to_s  
+    super(id, sparql, schema_prefix, "Group", json[:label])
+    sparql.triple_primitive_type("", id, schema_prefix, "ordinal", json[:ordinal].to_s, "positiveInteger")
+    sparql.triple_primitive_type("", id, schema_prefix, "optional", json[:optional].to_s, "boolean")
+    sparql.triple_primitive_type("", id, schema_prefix, "repeating", json[:repeating].to_s, "boolean")
+    sparql.triple_primitive_type("", id, schema_prefix, "note", json[:note].to_s, "string")
+    sparql.triple("", id, schema_prefix, "isGroupOf", "", parent_id.to_s)
+    if json.has_key?(:biomedical_concept_reference)
+      bc_ref = json[:biomedical_concept_reference]
+      ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'BCR'
+      sparql.triple("", id, schema_prefix, "hasBiomedicalConcept", "", ref_id.to_s)
+      sparql.triple("", ref_id, UriManagement::C_RDF, "type", schema_prefix, "BcReference")
+      sparql.triple_uri("", ref_id, "bo", "hasBiomedicalConcept", bc_ref[:namespace], bc_ref[:id])
+      sparql.triple_primitive_type("", ref_id, schema_prefix, "enabled", bc_ref[:enabled].to_s, "boolean")
+    end
+    if json.has_key?(:children)
+      json[:children].each do |key, child|
+        if child[:type] == C_NORMAL_TYPE || child[:type] == C_BC_TYPE || child[:type] == C_COMMON_TYPE
+          sparql.triple("", id, schema_prefix, "hasSubGroup", "", id + Uri::C_UID_SECTION_SEPARATOR + 'G' + child[:ordinal].to_s)
+        elsif child[:type] == Form::Item::C_BC || child[:type] == Form::Item::C_QUESTION || child[:type] == Form::Item::C_PLACEHOLDER
+          sparql.triple("", id, schema_prefix, "hasItem", "", id + Uri::C_UID_SECTION_SEPARATOR + 'I' + child[:ordinal].to_s)
+        end    
+      end
+    end
+    if json.has_key?(:children)
+      json[:children].each do |key, child|
+        if child[:type] == C_NORMAL_TYPE || child[:type] == C_BC_TYPE || child[:type] == C_COMMON_TYPE
+          Form::Group.to_sparql(id, sparql, schema_prefix, child)
+        elsif child[:type] == Form::Item::C_BC || child[:type] == Form::Item::C_QUESTION || child[:type] == Form::Item::C_PLACEHOLDER
+          Form::Item.to_sparql(id, sparql, schema_prefix, child)
+        end    
+      end
+    end
   end
 
 end

@@ -4,6 +4,10 @@ module ModelUtility
 
   C_CLASS_NAME = "ModelUtility"
 
+  def ModelUtility.to_boolean(s)
+    !!(s =~ /^(true|t|yes|y|1)$/i)
+  end
+  
   def ModelUtility.validIdentifier?(value, object)
     result = value.match /\A[A-Za-z0-9 ]+\z/ 
     return true if result != nil

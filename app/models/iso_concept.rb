@@ -25,6 +25,12 @@ class IsoConcept
     id.present?
   end
  
+  def initialize
+    self.id = ""
+    self.namespace = ""
+    self.label = ""
+  end
+
   # Does the item exist. Cannot be used for child objects!
   def self.exists?(property, propertyValue, rdfType, schemaNs, instanceNs)
     #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
@@ -265,6 +271,11 @@ class IsoConcept
     end
     return object
   
+  end
+
+  def self.to_sparql(parent_id, sparql, schema_prefix, rdf_type, label)
+    sparql.triple("", parent_id, UriManagement::C_RDF, "type", schema_prefix, rdf_type)
+    sparql.triple_primitive_type("", parent_id, UriManagement::C_RDFS, "label", label, "string")
   end
 
 end
