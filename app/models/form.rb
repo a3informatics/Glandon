@@ -669,6 +669,7 @@ private
       end
       html += '</table>'
     elsif node[:type] == "CommonGroup"
+      #ConsoleLogger::log(C_CLASS_NAME,"crf_node","node=" + node.to_json.to_s)
       html += '<tr>'
       html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
       html += '</tr>'
