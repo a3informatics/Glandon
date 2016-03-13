@@ -12,7 +12,7 @@ class BiomedicalConceptTemplate < BiomedicalConceptCore
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
 
   def self.find(id, ns, children=true)
-    object = super(id, ns)
+    object = super(id, ns, children)
     return object 
   end
 

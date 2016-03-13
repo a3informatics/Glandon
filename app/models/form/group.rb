@@ -15,7 +15,7 @@ class Form::Group < IsoConcept
   C_NORMAL_TYPE = "Group"
   
   def self.find(id, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
+    #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
     object = super(id, ns)
     object.ordinal = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "ordinal").to_i
     object.note = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "note")
@@ -152,144 +152,144 @@ class Form::Group < IsoConcept
     return object
   end
 
-  def self.createBcEdit (formId, ns, ordinal, params)
-    id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
-    id = ModelUtility.cidAddSuffix(id, ordinal)
-    refId = ModelUtility.cidAddSuffix(id, "BCRef")
-    
-    # Add the properties. Only add if Enabled and Collected (i.e. ignore test codes etc, we only
-    # want the visibale stuff on the form).
-    insertSparql = ""
-    items = Hash.new
-    itemOrdinal = 1
-    children = params[:children]
-    children.each do |key, child|
-      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Add item for Group=" + child.to_s)
-      #if child[:enabled] 
-        item = Form::Item.createBcEdit(id, ns, itemOrdinal, child)
-        itemOrdinal += 1
-        insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
-      #end
-    end
-      
-    # Build the query
-    update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      " :" + id + " rdf:type bf:Group . \n" +
-      " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
-      " :" + id + " bf:note \"\"^^xsd:string . \n" +
-      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      insertSparql + 
-      " :" + id + " bf:isGroupOf :" + formId + " . \n" +
-      " :" + id + " bf:hasBiomedicalConcept :" + refId + " . \n" +
-      " :" + refId + " rdf:type bo:BcReference . \n" +
-      " :" + refId + " bo:enabled \"true\"^^xsd:boolean . \n" +
-      " :" + refId + " bo:hasBiomedicalConcept " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
-    "}"
+  #def self.createBcEdit (formId, ns, ordinal, params)
+  #  id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
+  #  id = ModelUtility.cidAddSuffix(id, ordinal)
+  #  refId = ModelUtility.cidAddSuffix(id, "BCRef")
+  #  
+  #  # Add the properties. Only add if Enabled and Collected (i.e. ignore test codes etc, we only
+  #  # want the visibale stuff on the form).
+  #  insertSparql = ""
+  #  items = Hash.new
+  #  itemOrdinal = 1
+  #  children = params[:children]
+  #  children.each do |key, child|
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Add item for Group=" + child.to_s)
+  #    #if child[:enabled] 
+  #      item = Form::Item.createBcEdit(id, ns, itemOrdinal, child)
+  #      itemOrdinal += 1
+  #      insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
+  #    #end
+  #  end
+  #    
+  #  # Build the query
+  #  update = UriManagement.buildNs(ns, ["bf", "bo"]) +
+  #    "INSERT DATA \n" +
+  #    "{ \n" +
+  #    " :" + id + " rdf:type bf:Group . \n" +
+  #    " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
+  #    " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+  #    " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
+  #    " :" + id + " bf:note \"\"^^xsd:string . \n" +
+  #    " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+  #    insertSparql + 
+  #    " :" + id + " bf:isGroupOf :" + formId + " . \n" +
+  #    " :" + id + " bf:hasBiomedicalConcept :" + refId + " . \n" +
+  #    " :" + refId + " rdf:type bo:BcReference . \n" +
+  #    " :" + refId + " bo:enabled \"true\"^^xsd:boolean . \n" +
+  #    " :" + refId + " bo:hasBiomedicalConcept " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
+  #  "}"
+  #
+  #  # Send the request, wait the resonse
+  #  response = CRUD.update(update)
+  #
+  #  # Response
+  #  if response.success?
+  #    object = self.new
+  #    object.id = id
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Success, id=" + id)
+  #  else
+  #    object = nil
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
+  #  end
+  #  return object
+  #end
 
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
+  #def self.createCommon (formId, ns, ordinal, params)
+  #  id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
+  #  id = ModelUtility.cidAddSuffix(id, ordinal)
+  #  refId = ModelUtility.cidAddSuffix(id, "BCRef")
+  #  
+  #  # Add the properties. Only add if Enabled and Collected (i.e. ignore test codes etc, we only
+  #  # want the visibale stuff on the form).
+  #  insertSparql = ""
+  #  items = Hash.new
+  #  itemOrdinal = 1
+  #  children = params[:children]
+  #  children.each do |key, child|
+  #    ConsoleLogger::log(C_CLASS_NAME,"createCommon","Add item for Group=" + child.to_s)
+  #    #if child[:enabled] 
+  #      item = Form::Item.createBcEdit(id, ns, itemOrdinal, child)
+  #      itemOrdinal += 1
+  #      insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
+  #    #end
+  #  end
+  #    
+  #  # Build the query
+  #  update = UriManagement.buildNs(ns, ["bf", "bo"]) +
+  #    "INSERT DATA \n" +
+  #    "{ \n" +
+  #    " :" + id + " rdf:type bf:Group . \n" +
+  #    " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
+  #    " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+  #    " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
+  #    " :" + id + " bf:note \"\"^^xsd:string . \n" +
+  #    " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+  #    insertSparql + 
+  #    " :" + id + " bf:isGroupOf :" + formId + " . \n" +
+  #    # " :" + id + " bf:hasBiomedicalConcept :" + refId + " . \n" +
+  #    # " :" + refId + " rdf:type bo:BcReference . \n" +
+  #    # " :" + refId + " bo:enabled \"true\"^^xsd:boolean . \n" +
+  #    # " :" + refId + " bo:hasBiomedicalConcept " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
+  #  "}"
+  #
+  #  # Send the request, wait the resonse
+  #  response = CRUD.update(update)
+  #
+  #  # Response
+  #  if response.success?
+  #    object = self.new
+  #    object.id = id
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Success, id=" + id)
+  #  else
+  #    object = nil
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
+  #  end
+  #  return object
+  #end
 
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Success, id=" + id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
-    end
-    return object
-  end
-
-  def self.createCommon (formId, ns, ordinal, params)
-    id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
-    id = ModelUtility.cidAddSuffix(id, ordinal)
-    refId = ModelUtility.cidAddSuffix(id, "BCRef")
-    
-    # Add the properties. Only add if Enabled and Collected (i.e. ignore test codes etc, we only
-    # want the visibale stuff on the form).
-    insertSparql = ""
-    items = Hash.new
-    itemOrdinal = 1
-    children = params[:children]
-    children.each do |key, child|
-      ConsoleLogger::log(C_CLASS_NAME,"createCommon","Add item for Group=" + child.to_s)
-      #if child[:enabled] 
-        item = Form::Item.createBcEdit(id, ns, itemOrdinal, child)
-        itemOrdinal += 1
-        insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
-      #end
-    end
-      
-    # Build the query
-    update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      " :" + id + " rdf:type bf:Group . \n" +
-      " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
-      " :" + id + " bf:note \"\"^^xsd:string . \n" +
-      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      insertSparql + 
-      " :" + id + " bf:isGroupOf :" + formId + " . \n" +
-      # " :" + id + " bf:hasBiomedicalConcept :" + refId + " . \n" +
-      # " :" + refId + " rdf:type bo:BcReference . \n" +
-      # " :" + refId + " bo:enabled \"true\"^^xsd:boolean . \n" +
-      # " :" + refId + " bo:hasBiomedicalConcept " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
-    "}"
-
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Success, id=" + id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
-    end
-    return object
-  end
-
-  def self.createBlank (parentId, ns, ordinal, params)
-    ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","*****Blank*****")
-    id = ModelUtility.cidSwapPrefix(parentId, C_CID_PREFIX)
-    id = ModelUtility.cidAddSuffix(id, ordinal)
-    
-    # Build the query
-    update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      " :" + id + " rdf:type bf:Group . \n" +
-      " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
-      " :" + id + " bf:note \"\"^^xsd:string . \n" +
-      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      " :" + id + " bf:isGroupOf :" + parentId + " . \n" +
-    "}"
-
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","Success, id=" + id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","Failed")
-    end
-    return object
-  end
+  #def self.createBlank (parentId, ns, ordinal, params)
+  #  ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","*****Blank*****")
+  #  id = ModelUtility.cidSwapPrefix(parentId, C_CID_PREFIX)
+  #  id = ModelUtility.cidAddSuffix(id, ordinal)
+  #  
+  #  # Build the query
+  #  update = UriManagement.buildNs(ns, ["bf", "bo"]) +
+  #    "INSERT DATA \n" +
+  #    "{ \n" +
+  #    " :" + id + " rdf:type bf:Group . \n" +
+  #    " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
+  #    " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+  #    " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
+  #    " :" + id + " bf:note \"\"^^xsd:string . \n" +
+  #    " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+  #    " :" + id + " bf:isGroupOf :" + parentId + " . \n" +
+  #  "}"
+  #
+  #  # Send the request, wait the resonse
+  #  response = CRUD.update(update)
+  #
+  #  # Response
+  #  if response.success?
+  #    object = self.new
+  #    object.id = id
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","Success, id=" + id)
+  #  else
+  #    object = nil
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","Failed")
+  #  end
+  #  return object
+  #end
   
   def d3(index)
     ii = 0
@@ -307,7 +307,7 @@ class Form::Group < IsoConcept
   end
 
   def to_api_json()
-    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
     result = 
     { 
       :id => self.id, 
@@ -330,13 +330,13 @@ class Form::Group < IsoConcept
     self.groups.each do |key, group|
       result[:children][group.ordinal - 1] = group.to_api_json
     end
-    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
     return result
   end
 
   def self.to_sparql(parent_id, sparql, schema_prefix, json)
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
-    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","json=" + json.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","json=" + json.to_s)
     
     #rdf_type = {C_PLACEHOLDER => "Placeholder", C_QUESTION => "Question", C_BC => "BcProperty"} 
     
@@ -357,8 +357,10 @@ class Form::Group < IsoConcept
     end
     if json.has_key?(:children)
       json[:children].each do |key, child|
-        if child[:type] == C_NORMAL_TYPE || child[:type] == C_BC_TYPE || child[:type] == C_COMMON_TYPE
+        if child[:type] == C_NORMAL_TYPE || child[:type] == C_BC_TYPE 
           sparql.triple("", id, schema_prefix, "hasSubGroup", "", id + Uri::C_UID_SECTION_SEPARATOR + 'G' + child[:ordinal].to_s)
+        elsif child[:type] == C_COMMON_TYPE
+          sparql.triple("", id, schema_prefix, "hasCommon", "", id + Uri::C_UID_SECTION_SEPARATOR + 'G' + child[:ordinal].to_s)
         elsif child[:type] == Form::Item::C_BC || child[:type] == Form::Item::C_QUESTION || child[:type] == Form::Item::C_PLACEHOLDER
           sparql.triple("", id, schema_prefix, "hasItem", "", id + Uri::C_UID_SECTION_SEPARATOR + 'I' + child[:ordinal].to_s)
         end    

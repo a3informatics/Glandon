@@ -15,7 +15,7 @@ class BiomedicalConcept < BiomedicalConceptCore
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
  
   def self.find(id, ns, children=true)
-    object = super(id, ns)
+    object = super(id, ns, children)
     setAttributes(object)
     return object 
   end
@@ -192,7 +192,7 @@ private
   def self.setAttributes(object)
     if object.links.exists?(C_SCHEMA_PREFIX, "basedOn")
       bct_uri = object.links.get(C_SCHEMA_PREFIX, "basedOn")[0]
-      object.bct = BiomedicalConceptTemplate.find(ModelUtility.extractCid(bct_uri), ModelUtility.extractNs(bct_uri))
+      object.bct = BiomedicalConceptTemplate.find(ModelUtility.extractCid(bct_uri), ModelUtility.extractNs(bct_uri), false)
     else
       object.bct = nil 
     end   

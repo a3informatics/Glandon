@@ -105,6 +105,14 @@ class FormsController < ApplicationController
     end
   end
 
+  def destroy
+    id = params[:id]
+    namespace = params[:namespace]
+    form = Form.find(id, namespace)
+    form.destroy
+    redirect_to forms_path
+  end
+
   def show 
     @form = Form.find(params[:id], params[:namespace])
   end

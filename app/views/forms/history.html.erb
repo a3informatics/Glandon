@@ -9,7 +9,7 @@
 	  				:searchPath => "", 
 	  				:viewPath => view_forms_path(:id => item.id, :namespace => item.namespace),
 	  				:editPath => edit_form_path(:id => item.id, :namespace => item.namespace),
-	  				:deletePath => ""  } %>
+	  				:deletePath => form_path(:id => item.id, :namespace => item.namespace) } %>
 			<% end %>				
 		</tbody>
 	</table>

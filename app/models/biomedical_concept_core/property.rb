@@ -167,18 +167,22 @@ private
     count = 0
     object.label = object.properties.getOnly(C_SCHEMA_PREFIX, "name")[:value]      
     object.alias = object.properties.getOnly(C_SCHEMA_PREFIX, "alias")[:value]      
+    object.format = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "format")
     object.collect = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "collect")[:value])      
     object.enabled = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "enabled")[:value])      
     object.qText = object.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]    
     object.pText = object.properties.getOnly(C_SCHEMA_PREFIX, "pText")[:value]  
     object.bridgPath = object.properties.getOnly(C_SCHEMA_PREFIX, "bridgPath")[:value]
     object.ordinal = object.properties.getOnly(C_SCHEMA_PREFIX, "ordinal")[:value]
-    #if object.values != nil
-    #    count = object.values.values[0].clis.length
-    #end
+    if object.values != nil
+      count = object.values.length
+    end
     if object.datatypeComplex != nil
       object.datatype = getDatatype(object.datatypeComplex.datatype, count)  
-      object.format = getFormat(object.datatype)  
+      #ConsoleLogger::log(C_CLASS_NAME,"setAttributes","format=" + object.format)
+      if object.format == ""
+        object.format = getFormat(object.datatype)  
+      end
     else
       object.datatype = ""
       object.format = ""

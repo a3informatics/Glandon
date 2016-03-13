@@ -190,7 +190,7 @@ private
       currTerm = curr[:term]
       version = currTerm.version
       currCls = curr[:cls]
-      key = "V" + version.to_s
+      key = currTerm.versionLabel
       missing.push(key)
       if index >= 1
         if currCls != nil

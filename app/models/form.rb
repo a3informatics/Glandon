@@ -19,7 +19,6 @@ class Form < IsoManaged
   end
 
   def self.find(id, ns, children=true)
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
     object = super(id, ns)
     if children
       object.groups = Form::Group.findForForm(object.links, ns)
@@ -32,7 +31,6 @@ class Form < IsoManaged
   end
 
   def self.unique
-    #ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
@@ -43,59 +41,31 @@ class Form < IsoManaged
   end
 
   def self.createPlaceholder(params)
-    ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","*****Entry*****")
-    
-    # Create the object
     object = self.new 
     object.errors.clear
-
-    # Check parameters
     if params_valid?(params, object)
-      
-      # Get the parameters
       identifier = params[:identifier]
       freeText = params[:freeText]
       label = params[:label]
       params[:versionLabel] = "0.1"
       params[:version] = "1"
-      ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","FreeText=" + freeText.to_s)
       if exists?(identifier, IsoRegistrationAuthority.owner()) 
-    
-        # Note the error
         object.errors.add(:base, "The identifier is already in use.")
-    
       else  
-    
-        # Create the adminstered item for the form. 
-        object = create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
-      
-        # Now create the group (which will create the item). We only need a 
-        # single group for a placeholder form.
+        object = IsoManaged.create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
         group = Group.createPlaceholder(object.id, object.namespace, freeText)
-      
-        # Create the update query
         update = UriManagement.buildNs(object.namespace,["bf"]) +
           "INSERT DATA \n" +
           "{ \n" +
           "  :" + object.id + " bf:hasGroup :" + group.id + " . \n" +
           "}"
-        
-        # Send the request, wait the resonse
         response = CRUD.update(update)
-        
-        # Response
-        if response.success?
-          ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Object created, id=" + object.id)
-        else
+        if !response.success?
           object.errors.add(:base, "The group was not created in the database.")
-          ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Object not created!")
         end
-
       end
     end
-    
     return object
-
   end
 
   def self.createBcNormal(params)
@@ -521,13 +491,13 @@ class Form < IsoManaged
   end
 
   def to_api_json
-    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
     result = super
     result[:type] = "Form"
     self.groups.each do |key, group|
       result[:children][group.ordinal - 1] = group.to_api_json
     end
-    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
     return result
   end
 
@@ -539,8 +509,8 @@ class Form < IsoManaged
   #end
 
   def self.to_sparql(parent_id, sparql, schema_prefix, json)
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
-    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","json=" + json.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","json=" + json.to_s)
     id = parent_id 
     #super(id, sparql, schema_prefix, "form", json[:label]) #Inconsistent at the moment. Handled within the SI & RS creation
     if json.has_key?(:children)
@@ -578,14 +548,14 @@ class Form < IsoManaged
       "}\n"
 
     # Send the request, wait the resonse
-    ConsoleLogger::log(C_CLASS_NAME,"destroy","Update=" + update.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"destroy","Update=" + update.to_s)
     response = CRUD.update(update)
     
     # Process response
     if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"destroy","Deleted")
+      #ConsoleLogger::log(C_CLASS_NAME,"destroy","Deleted")
     else
-      ConsoleLogger::log(C_CLASS_NAME,"destroy","Error!")
+      #ConsoleLogger::log(C_CLASS_NAME,"destroy","Error!")
     end
   end
 
@@ -698,6 +668,13 @@ private
         html += crf_node(child)
       end
       html += '</table>'
+    elsif node[:type] == "CommonGroup"
+      html += '<tr>'
+      html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
+      html += '</tr>'
+      node[:children].each do |child|
+        html += crf_node(child)
+      end
     elsif node[:type] == "Group"
       node[:children].each do |child|
         html += crf_node(child)
@@ -736,7 +713,8 @@ private
       html += '</td>'
       html += '</tr>'
     elsif node[:type] == "CL"
-      html += '<p><input type="radio" name="' + node[:name].to_s + '" value="' + node[:name].to_s + '"></input> ' + node[:name].to_s + '</p>'
+      #ConsoleLogger::log(C_CLASS_NAME,"crf_node","node=" + node.to_json.to_s)
+      html += '<p><input type="radio" name="' + node[:identifier].to_s + '" value="' + node[:identifier].to_s + '"></input> ' + node[:label].to_s + '</p>'
     else
       html += '<tr>'
       html += '<td>Not Recognized: ' + node[:type].to_s + '</td>'

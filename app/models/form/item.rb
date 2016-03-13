@@ -70,51 +70,51 @@ class Form::Item < IsoConcept
     return results
   end
   
-  def self.createQuestion(groupId, ns, qText, datatype, format, mapping)
-
-    ordinal = 1
-    id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
-    id = ModelUtility.cidAddSuffix(id, ordinal)
-    if params.has_key?(:children)
-      params[:children].each do |key, value|
-        clId = value[:id]
-        clNs = value[:namespace]
-        #ConsoleLogger::log(C_CLASS_NAME,"createQuestion","id=" + clId + ", ns=" + clNamespace)
-        insertSparql = " :" + id + " bo:hasThesaurusConcept " + ModelUtility.buildUri(clNs, clId) + " . \n" 
-        valueOrdinal += 1
-      end
-    end
-
-    update = UriManagement.buildNs(ns, ["bf"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      " :" + id + " rdf:type bf:Question . \n" +
-      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " rdfs:label \"Placeholder\"^^xsd:string . \n" +
-      " :" + id + " bf:note \"\"^^xsd:string . \n" +
-      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      " :" + id + " bf:qText \"" + qText.to_s + "\"^^xsd:string . \n" +
-      " :" + id + " bf:datatype \"" + datatype.to_s + "\"^^xsd:string . \n" +
-      " :" + id + " bf:format \"" + format.to_s + "\"^^xsd:string . \n" +
-      " :" + id + " bf:mapping \"" + mapping.to_s + "\"^^xsd:string . \n" +
-      " :" + id + " bf:isItemOf :" + groupId + " . \n" +
-      "}"
-
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"createQuestion","Success, id=" + id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"createQuestion","Failed")
-    end
-    return object
-
-  end
+  #def self.createQuestion(groupId, ns, qText, datatype, format, mapping)
+  #
+  #  ordinal = 1
+  #  id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
+  #  id = ModelUtility.cidAddSuffix(id, ordinal)
+  #  if params.has_key?(:children)
+  #    params[:children].each do |key, value|
+  #      clId = value[:id]
+  #      clNs = value[:namespace]
+  #      #ConsoleLogger::log(C_CLASS_NAME,"createQuestion","id=" + clId + ", ns=" + clNamespace)
+  #      insertSparql = " :" + id + " bo:hasThesaurusConcept " + ModelUtility.buildUri(clNs, clId) + " . \n" 
+  #      valueOrdinal += 1
+  #    end
+  #  end
+  #
+  #  update = UriManagement.buildNs(ns, ["bf"]) +
+  #    "INSERT DATA \n" +
+  #    "{ \n" +
+  #    " :" + id + " rdf:type bf:Question . \n" +
+  #    " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+  #    " :" + id + " rdfs:label \"Placeholder\"^^xsd:string . \n" +
+  #    " :" + id + " bf:note \"\"^^xsd:string . \n" +
+  #    " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+  #    " :" + id + " bf:qText \"" + qText.to_s + "\"^^xsd:string . \n" +
+  #    " :" + id + " bf:datatype \"" + datatype.to_s + "\"^^xsd:string . \n" +
+  #    " :" + id + " bf:format \"" + format.to_s + "\"^^xsd:string . \n" +
+  #    " :" + id + " bf:mapping \"" + mapping.to_s + "\"^^xsd:string . \n" +
+  #    " :" + id + " bf:isItemOf :" + groupId + " . \n" +
+  #    "}"
+  #
+  #  # Send the request, wait the resonse
+  #  response = CRUD.update(update)
+  #
+  #  # Response
+  #  if response.success?
+  #    object = self.new
+  #    object.id = id
+  #    ConsoleLogger::log(C_CLASS_NAME,"createQuestion","Success, id=" + id)
+  #  else
+  #    object = nil
+  #    ConsoleLogger::log(C_CLASS_NAME,"createQuestion","Failed")
+  #  end
+  #  return object
+  #
+  #end
 
   def self.createPlaceholder(groupId, ns, freeText)
 
@@ -205,129 +205,129 @@ class Form::Item < IsoConcept
 
   end
 
-  def self.createBcEdit(groupId, ns, ordinal, params)
+  #def self.createBcEdit(groupId, ns, ordinal, params)
+  #
+  #  id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
+  #  id = ModelUtility.cidAddSuffix(id, ordinal)
+  #  pRefId = ModelUtility.cidAddSuffix(id, "PRef")
+  #  #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
+  #  #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
+  #   
+  #  valueOrdinal = 1
+  #  insertSparql = "" 
+  #  if params.has_key?(:children)
+  #    params[:children].each do |key, value|
+  #      valueId = value[:id]
+  #      namespace = value[:namespace]
+  #      enabled = value[:enabled]
+  #      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId + ", namespace=" + namespace + ", enabled=" + enabled)
+  #      vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
+  #      insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
+  #      " :" + vRefId + " rdf:type bo:BcReference . \n" +
+  #      " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(namespace, valueId) + " . \n" +
+  #      " :" + vRefId + " bo:enabled \"" + enabled + "\"^^xsd:boolean . \n"
+  #      valueOrdinal += 1
+  #    end
+  #  end
+  #
+  #  commonOrdinal = 1
+  #  if params.has_key?(:otherCommon)
+  #    params[:otherCommon].each do |key, common|
+  #      item = createCommon(id, ns, commonOrdinal, common)
+  #      commonOrdinal += 1
+  #      insertSparql = insertSparql + " :" + id + " bf:hasCommonItem :" + item.id + " . \n"
+  #    end
+  #  end
+  #
+  #  update = UriManagement.buildNs(ns, ["bf", "bo"]) +
+  #    "INSERT DATA \n" +
+  #    "{ \n" +
+  #    " :" + id + " rdf:type bf:BcProperty . \n" +
+  #    " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+  #    " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
+  #    " :" + id + " bf:note \"\"^^xsd:string . \n" +
+  #    " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+  #    " :" + id + " bf:isItemOf :" + groupId + " . \n" +
+  #    " :" + id + " bf:hasProperty :" + pRefId + " . \n" +
+  #    " :" + pRefId + " rdf:type bo:BcReference . \n" +
+  #    " :" + pRefId + " bo:hasProperty " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
+  #    " :" + pRefId + " bo:enabled \"" + params[:enabled] + "\"^^xsd:boolean . \n" +
+  #    insertSparql +
+  #  "}"
+  #
+  #  # Send the request, wait the resonse
+  #  response = CRUD.update(update)
+  #
+  #  # Response
+  #  if response.success?
+  #    object = self.new
+  #    object.id = id
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Success, id=" + id)
+  #  else
+  #    object = nil
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Failed")
+  #  end
+  #
+  #  return object
+  #
+  #end
 
-    id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
-    id = ModelUtility.cidAddSuffix(id, ordinal)
-    pRefId = ModelUtility.cidAddSuffix(id, "PRef")
-    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
-    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
-    
-    valueOrdinal = 1
-    insertSparql = "" 
-    if params.has_key?(:children)
-      params[:children].each do |key, value|
-        valueId = value[:id]
-        namespace = value[:namespace]
-        enabled = value[:enabled]
-        ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId + ", namespace=" + namespace + ", enabled=" + enabled)
-        vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
-        insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
-        " :" + vRefId + " rdf:type bo:BcReference . \n" +
-        " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(namespace, valueId) + " . \n" +
-        " :" + vRefId + " bo:enabled \"" + enabled + "\"^^xsd:boolean . \n"
-        valueOrdinal += 1
-      end
-    end
-
-    commonOrdinal = 1
-    if params.has_key?(:otherCommon)
-      params[:otherCommon].each do |key, common|
-        item = createCommon(id, ns, commonOrdinal, common)
-        commonOrdinal += 1
-        insertSparql = insertSparql + " :" + id + " bf:hasCommonItem :" + item.id + " . \n"
-      end
-    end
-
-    update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      " :" + id + " rdf:type bf:BcProperty . \n" +
-      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
-      " :" + id + " bf:note \"\"^^xsd:string . \n" +
-      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      " :" + id + " bf:isItemOf :" + groupId + " . \n" +
-      " :" + id + " bf:hasProperty :" + pRefId + " . \n" +
-      " :" + pRefId + " rdf:type bo:BcReference . \n" +
-      " :" + pRefId + " bo:hasProperty " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
-      " :" + pRefId + " bo:enabled \"" + params[:enabled] + "\"^^xsd:boolean . \n" +
-      insertSparql +
-    "}"
-
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Success, id=" + id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Failed")
-    end
-
-    return object
-
-  end
-
-  def self.createCommon(itemId, ns, ordinal, params)
-
-    id = ModelUtility.cidSwapPrefix(itemId, C_CID_PREFIX)
-    id = ModelUtility.cidAddSuffix(id, ordinal)
-    pRefId = ModelUtility.cidAddSuffix(id, "PRef")
-    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
-    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
-    
-    valueOrdinal = 1
-    insertSparql = "" 
-    if params.has_key?(:children)
-      params[:children].each do |key, value|
-        valueId = value[:id]
-        enabled = value[:enabled]
-        ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId)
-        vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
-        insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
-        " :" + vRefId + " rdf:type bo:BcReference . \n" +
-        " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(params[:namespace], valueId) + " . \n" +
-        " :" + vRefId + " bo:enabled \"" + enabled + "\"^^xsd:boolean . \n"
-        valueOrdinal += 1
-      end
-    end
-
-    update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      " :" + id + " rdf:type bf:BcProperty . \n" +
-      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
-      " :" + id + " bf:note \"\"^^xsd:string . \n" +
-      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      # " :" + id + " bf:isItemOf :" + itemId + " . \n" +
-      " :" + id + " bf:hasProperty :" + pRefId + " . \n" +
-      " :" + pRefId + " rdf:type bo:BcReference . \n" +
-      " :" + pRefId + " bo:hasProperty " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
-      " :" + pRefId + " bo:enabled \"" + params[:enabled] + "\"^^xsd:boolean . \n" +
-      insertSparql +
-    "}"
-
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Success, id=" + id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Failed")
-    end
-
-    return object
-
-  end
+  #def self.createCommon(itemId, ns, ordinal, params)
+  #
+  #  id = ModelUtility.cidSwapPrefix(itemId, C_CID_PREFIX)
+  #  id = ModelUtility.cidAddSuffix(id, ordinal)
+  #  pRefId = ModelUtility.cidAddSuffix(id, "PRef")
+  #  #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
+  #  #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
+  #  
+  #  valueOrdinal = 1
+  #  insertSparql = "" 
+  #  if params.has_key?(:children)
+  #    params[:children].each do |key, value|
+  #      valueId = value[:id]
+  #      enabled = value[:enabled]
+  #      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId)
+  #      vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
+  #      insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
+  #      " :" + vRefId + " rdf:type bo:BcReference . \n" +
+  #      " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(params[:namespace], valueId) + " . \n" +
+  #      " :" + vRefId + " bo:enabled \"" + enabled + "\"^^xsd:boolean . \n"
+  #      valueOrdinal += 1
+  #    end
+  #  end
+  #
+  #  update = UriManagement.buildNs(ns, ["bf", "bo"]) +
+  #    "INSERT DATA \n" +
+  #    "{ \n" +
+  #    " :" + id + " rdf:type bf:BcProperty . \n" +
+  #    " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
+  #    " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
+  #    " :" + id + " bf:note \"\"^^xsd:string . \n" +
+  #    " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
+  #    # " :" + id + " bf:isItemOf :" + itemId + " . \n" +
+  #    " :" + id + " bf:hasProperty :" + pRefId + " . \n" +
+  #    " :" + pRefId + " rdf:type bo:BcReference . \n" +
+  #    " :" + pRefId + " bo:hasProperty " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
+  #    " :" + pRefId + " bo:enabled \"" + params[:enabled] + "\"^^xsd:boolean . \n" +
+  #    insertSparql +
+  #  "}"
+  #
+  #  # Send the request, wait the resonse
+  #  response = CRUD.update(update)
+  #
+  #  # Response
+  #  if response.success?
+  #    object = self.new
+  #    object.id = id
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Success, id=" + id)
+  #  else
+  #    object = nil
+  #    ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Failed")
+  #  end
+  #
+  #  return object
+  #
+  #end
 
   def d3(index)
     ord = "1"
@@ -354,12 +354,6 @@ class Form::Item < IsoConcept
       result[:format] = self.bcProperty.format
       result[:qText] = self.bcProperty.qText
       localIndex = 0
-      #pvSet = self.bcValues
-      #pvSet.each do |pvKey, pv|
-      #  pv.clis.each do |cliKey, cli|
-      #    result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", "", "", "", localIndex, true)
-      #    localIndex += 1;
-      #  end
       clis = self.bcValueSet
       clis.each do |cliRef|
         if cliRef.enabled
@@ -375,7 +369,7 @@ class Form::Item < IsoConcept
   end
 
   def to_api_json()
-    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
     result = 
     { 
       :id => self.id, 
@@ -421,13 +415,13 @@ class Form::Item < IsoConcept
         #end
       end
     end
-    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
     return result
   end
 
   def self.to_sparql(parent_id, sparql, schema_prefix, json)
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","json=" + json.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","json=" + json.to_s)
     
     rdf_type = {C_PLACEHOLDER => "Placeholder", C_QUESTION => "Question", C_BC => "BcProperty"} 
     
@@ -454,7 +448,7 @@ class Form::Item < IsoConcept
         value_ordinal = 1
         json[:children].each do |key, child|
           value = child[:value_reference]
-          ConsoleLogger::log(C_CLASS_NAME,"sparql","Add value for Item=" + value.to_s)
+          #ConsoleLogger::log(C_CLASS_NAME,"sparql","Add value for Item=" + value.to_s)
           ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'VR' + value_ordinal.to_s
           sparql.triple("", id, schema_prefix, "hasValue", "", ref_id.to_s)
           sparql.triple("", ref_id, UriManagement::C_RDF, "type", schema_prefix, "BcReference")
@@ -483,9 +477,9 @@ class Form::Item < IsoConcept
 private
 
   def self.getType (uri)
-    ConsoleLogger::log(C_CLASS_NAME,"getType","uri=" + uri)
+    #ConsoleLogger::log(C_CLASS_NAME,"getType","uri=" + uri)
     type = ModelUtility.extractCid(uri)
-    ConsoleLogger::log(C_CLASS_NAME,"getType","type=" + type)
+    #ConsoleLogger::log(C_CLASS_NAME,"getType","type=" + type)
     if type == "bcBased"
       type = C_BC
     elsif type == "vBased"

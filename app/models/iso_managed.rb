@@ -142,9 +142,6 @@ class IsoManaged < IsoConcept
 
   # Find all managed items based on their type.
   def self.all(rdfType, ns)
-    
-    #ConsoleLogger::log(C_CLASS_NAME,"all","*****Entry*****")
-    
     results = Array.new
     
     # Create the query
@@ -537,9 +534,8 @@ class IsoManaged < IsoConcept
     return uri
   end
 
-  # Starting to develop
   def to_api_json
-    ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
     result = 
     { 
       :type => "",
@@ -565,7 +561,7 @@ class IsoManaged < IsoConcept
       result[:operation] = { :action => "UPDATE", :new_version => self.version }
     end
     result[:managed_item] = to_api_json
-    ConsoleLogger::log(C_CLASS_NAME,"to_edit","Result=" + result.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"to_edit","Result=" + result.to_s)
     return result
   end
 

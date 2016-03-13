@@ -11,7 +11,39 @@
       <Protocol>
         <StudyEventRef StudyEventOID="SE.001" OrderNumber="1" Mandatory="Yes"/>
       </Protocol>
-      <StudyEventDef OID="SE.001" Name="???" Repeating="No" Type="Scheduled"/>
+      <StudyEventDef OID="SE.001" Name="???" Repeating="No" Type="Scheduled">
+        <FormRef FormOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DEMO3"/>
+      </StudyEventDef>
+      <FormDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DEMO3" Name="Demonstration No. 3"> select=""
+                <ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DEMO3_G1_G1"/><ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DEMO3_G1_G2"/><Alias Context="Domain" Name="Vital Signs"/></FormDef>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DEMO3_G1_G1" Name="Hip Circumference">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100947_I8_DT1_P1"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100947_I8_DT1_P2"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DEMO3_G1_G2" Name="Waist Circumference">
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P1"/>
+        <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P2"/>
+      </ItemGroupDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100947_I8_DT1_P1" SDSVarName="VSORRES where VSTESTCD=HIPCIR" DataType="float" Length="5" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Result Value (--ORRES)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100947_I8_DT1_P2" SDSVarName="VSORRESU where VSTESTCD=HIPCIR" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P1" SDSVarName="" DataType="float" Length="5" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Result Value (--ORRES)</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P2" SDSVarName="" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
+        </Question>
+      </ItemDef>
     </MetaDataVersion>
   </Study>
 </ODM>
