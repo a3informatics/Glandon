@@ -1,21 +1,21 @@
 class BackgroundsController < ApplicationController
 
-	def index
-	end
-
 	def running
-		#jobs = Background.where(complete: false).find_each
-        jobs = Background.all
-        results = {}
-	    results[:data] = []
-	    jobs.each do |job|
-	      results[:data] << job
-	    end
-	    render :json => results, :status => 200
+		jobs = Background.all
+    results = {}
+    results[:data] = []
+    jobs.each do |job|
+      results[:data] << job
+    end
+    render :json => results, :status => 200
 	end
 
 	def clear
-		Background.destroy_all
+		#Background.destroy_all
+		jobs = Background.where(complete: true).find_each
+		jobs.each do |job|
+			job.destroy
+		end
 		redirect_to backgrounds_path
 	end
 

@@ -10,7 +10,7 @@ class ApiController < ApplicationController
       format.json do
         results = {}
         results[:aaData] = []
-        @forms.each do |key, form|
+        @forms.each do |form|
           item = {:id => form.id, :namespace => form.namespace, :identifier => form.identifier, :label => form.label}
           results[:aaData] << item
         end

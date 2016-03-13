@@ -351,9 +351,9 @@ class Form::Group < IsoConcept
       bc_ref = json[:biomedical_concept_reference]
       ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'BCR'
       sparql.triple("", id, schema_prefix, "hasBiomedicalConcept", "", ref_id.to_s)
-      sparql.triple("", ref_id, UriManagement::C_RDF, "type", schema_prefix, "BcReference")
+      sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
       sparql.triple_uri("", ref_id, "bo", "hasBiomedicalConcept", bc_ref[:namespace], bc_ref[:id])
-      sparql.triple_primitive_type("", ref_id, schema_prefix, "enabled", bc_ref[:enabled].to_s, "boolean")
+      sparql.triple_primitive_type("", ref_id, "bo", "enabled", bc_ref[:enabled].to_s, "boolean")
     end
     if json.has_key?(:children)
       json[:children].each do |key, child|

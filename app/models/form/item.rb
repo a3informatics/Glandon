@@ -448,12 +448,12 @@ class Form::Item < IsoConcept
         value_ordinal = 1
         json[:children].each do |key, child|
           value = child[:value_reference]
-          #ConsoleLogger::log(C_CLASS_NAME,"sparql","Add value for Item=" + value.to_s)
+          ConsoleLogger::log(C_CLASS_NAME,"sparql","Add value for Item=" + value.to_s)
           ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'VR' + value_ordinal.to_s
           sparql.triple("", id, schema_prefix, "hasValue", "", ref_id.to_s)
-          sparql.triple("", ref_id, UriManagement::C_RDF, "type", schema_prefix, "BcReference")
+          sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
           sparql.triple_uri("", ref_id, "bo", "hasValue", value[:namespace], value[:id])
-          sparql.triple_primitive_type("", ref_id, schema_prefix, "enabled", value[:enabled].to_s, "boolean")
+          sparql.triple_primitive_type("", ref_id, "bo", "enabled", value[:enabled].to_s, "boolean")
           value_ordinal += 1
         end
       end
@@ -468,9 +468,9 @@ class Form::Item < IsoConcept
       property = json[:property_reference]
       ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'PR'
       sparql.triple("", id, schema_prefix, "hasProperty", "", ref_id.to_s)
-      sparql.triple("", ref_id, UriManagement::C_RDF, "type", schema_prefix, "BcReference")
+      sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
       sparql.triple_uri("", ref_id, "bo", "hasProperty", property[:namespace], property[:id])
-      sparql.triple_primitive_type("", ref_id, schema_prefix, "enabled", property[:enabled].to_s, "boolean")
+      sparql.triple_primitive_type("", ref_id, "bo", "enabled", property[:enabled].to_s, "boolean")
     end
   end
 

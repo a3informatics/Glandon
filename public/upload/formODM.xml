@@ -33,17 +33,43 @@
         <Question>
           <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
         </Question>
+        <CodeListRef CodeListOID="CL_http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100947_I8_DT1_P2"/>
       </ItemDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P1" SDSVarName="" DataType="float" Length="5" SignificantDigits="1">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P1" SDSVarName="VSORRES where VSTESTCD=WSTCIR" DataType="float" Length="5" SignificantDigits="1">
         <Question>
           <TranslatedText xml:lang="en">Result Value (--ORRES)</TranslatedText>
         </Question>
       </ItemDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P2" SDSVarName="" DataType="text" Length="20">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P2" SDSVarName="VSORRESU where VSTESTCD=WSTCIR" DataType="text" Length="20">
         <Question>
           <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
         </Question>
+        <CodeListRef CodeListOID="CL_http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P2"/>
       </ItemDef>
+      <CodeList OID="CL_http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100947_I8_DT1_P2">
+        <CodeListItem CodedValue="C48500">
+          <Decode>
+            <TranslatedText xml:lang="en">in</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="C49668">
+          <Decode>
+            <TranslatedText xml:lang="en">cm</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="CL_http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C100948_I8_DT1_P2">
+        <CodeListItem CodedValue="C48500">
+          <Decode>
+            <TranslatedText xml:lang="en">in</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="C49668">
+          <Decode>
+            <TranslatedText xml:lang="en">cm</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
     </MetaDataVersion>
   </Study>
 </ODM>

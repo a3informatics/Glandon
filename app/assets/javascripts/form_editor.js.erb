@@ -449,7 +449,7 @@ $(document).ready(function() {
   /*
   * Functions to handle the code list items actions
   */
-  /*$('#clUpdate').click(function() {
+  $('#clUpdate').click(function() {
     if (currentNode == null) {
       var html = alertWarning("You need to select a group node.");
       displayAlerts(html);
@@ -611,7 +611,7 @@ $(document).ready(function() {
       $("#itemUpdate").prop('disabled', false);
       $("#itemCommon").prop('disabled', false);
       $("#itemRestore").prop('disabled', true);
-      itemEnableElement.checked = node.data.enabled;
+      itemEnableElement.checked = node.data.property_reference.enabled;
     }
   }
 
@@ -638,7 +638,7 @@ $(document).ready(function() {
   function displayCl(node) {
     clIdentifierElement.innerHTML = node.data.identifier;
     clLabelElement.innerHTML = node.data.label;
-    clEnableElement.checked = node.data.enabled;
+    clEnableElement.checked = node.data.value_reference.enabled;
   }
 
   /**
@@ -665,7 +665,7 @@ $(document).ready(function() {
   }
 
   function saveItem(node) {
-    node.enabled = itemEnableElement.checked;
+    node.property_reference.data.enabled = itemEnableElement.checked;
   }
 
   function saveQuestion(node) {
@@ -703,9 +703,9 @@ $(document).ready(function() {
     node.data.free_text = plTextElement.value;
   }
 
-  /*function saveCl(node) {
-    node.enabled = clEnableElement.checked;
-  }*/
+  function saveCl(node) {
+    node.data.value_reference.enabled = clEnableElement.checked;
+  }
 
   function makeCommon(node) {
     var child;
