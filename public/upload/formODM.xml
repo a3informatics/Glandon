@@ -36,7 +36,7 @@
         <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_value"/>
         <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_code"/>
       </ItemGroupDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code" SDSVarName="" DataType="text" Length="20">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code" SDSVarName="VSPOS where VSTESTCD=SYSBP" DataType="text" Length="20">
         <Question>
           <TranslatedText xml:lang="en">Body Position (--POS)</TranslatedText>
         </Question>
@@ -69,12 +69,12 @@
         </Question>
         <CodeListRef CodeListOID="CL_http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code"/>
       </ItemDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_value" SDSVarName="" DataType="float" Length="5" SignificantDigits="1">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_value" SDSVarName="VSORRES where VSTESTCD=SYSBP" DataType="float" Length="5" SignificantDigits="1">
         <Question>
           <TranslatedText xml:lang="en">Result Value (--ORRES)</TranslatedText>
         </Question>
       </ItemDef>
-      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code" SDSVarName="" DataType="text" Length="20">
+      <ItemDef OID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code" SDSVarName="VSORRESU where VSTESTCD=SYSBP" DataType="text" Length="20">
         <Question>
           <TranslatedText xml:lang="en">Result Units (--ORRESU)</TranslatedText>
         </Question>

@@ -142,6 +142,9 @@ class IsoRegistrationState
     self.unresolvedIssue = ""
     self.administrativeStatus = ""
     self.previousState  = C_NOTSET
+    if @@owner == nil # Temp fix, not getting set in circumstances. Needs better fix.
+      @@owner = IsoRegistrationAuthority.owner()
+    end
   end
 
   def baseNs

@@ -67,6 +67,21 @@
       <binding name="subValue">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">SITTING</literal>
       </binding>
+      <binding name="sdtmVarName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSPOS</literal>
+      </binding>
+      <binding name="domain">
+        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
+      </binding>
+      <binding name="sdtmTopicName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
+      </binding>
+      <binding name="sdtmTopicValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25298</literal>
+      </binding>
+      <binding name="sdtmTopicSub">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">SYSBP</literal>
+      </binding>
       <binding name="gord">
         <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
       </binding>
@@ -117,6 +132,21 @@
       <binding name="subValue">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">STANDING</literal>
       </binding>
+      <binding name="sdtmVarName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSPOS</literal>
+      </binding>
+      <binding name="domain">
+        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
+      </binding>
+      <binding name="sdtmTopicName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
+      </binding>
+      <binding name="sdtmTopicValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25298</literal>
+      </binding>
+      <binding name="sdtmTopicSub">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">SYSBP</literal>
+      </binding>
       <binding name="gord">
         <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
       </binding>
@@ -166,6 +196,21 @@
       </binding>
       <binding name="subValue">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">SUPINE</literal>
+      </binding>
+      <binding name="sdtmVarName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSPOS</literal>
+      </binding>
+      <binding name="domain">
+        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
+      </binding>
+      <binding name="sdtmTopicName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
+      </binding>
+      <binding name="sdtmTopicValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25298</literal>
+      </binding>
+      <binding name="sdtmTopicSub">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">SYSBP</literal>
       </binding>
       <binding name="gord">
         <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
@@ -893,6 +938,21 @@
       <binding name="datatype">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">float</literal>
       </binding>
+      <binding name="sdtmVarName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSORRES</literal>
+      </binding>
+      <binding name="domain">
+        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
+      </binding>
+      <binding name="sdtmTopicName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
+      </binding>
+      <binding name="sdtmTopicValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25298</literal>
+      </binding>
+      <binding name="sdtmTopicSub">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">SYSBP</literal>
+      </binding>
       <binding name="gord">
         <literal datatype="http://www.w3.org/2001/XMLSchema#integer">4</literal>
       </binding>
@@ -942,6 +1002,21 @@
       </binding>
       <binding name="subValue">
         <literal datatype="http://www.w3.org/2001/XMLSchema#string">mmHg</literal>
+      </binding>
+      <binding name="sdtmVarName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSORRESU</literal>
+      </binding>
+      <binding name="domain">
+        <literal datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vital Signs</literal>
+      </binding>
+      <binding name="sdtmTopicName">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">VSTESTCD</literal>
+      </binding>
+      <binding name="sdtmTopicValue">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">C25298</literal>
+      </binding>
+      <binding name="sdtmTopicSub">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#string">SYSBP</literal>
       </binding>
       <binding name="gord">
         <literal datatype="http://www.w3.org/2001/XMLSchema#integer">4</literal>
