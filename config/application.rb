@@ -31,5 +31,13 @@ module Glandon
       end
     end
     
+    # Environment variable extra
+    config.before_configuration do
+        file = Rails.root.to_s + "/config/local_env.yml"
+        YAML.load_file(file)[Rails.env].try :each do |key, value|
+            ENV[key.to_s] = value
+        end
+    end
+
   end
 end

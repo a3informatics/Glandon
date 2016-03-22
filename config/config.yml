@@ -1,0 +1,12 @@
+defaults: &defaults
+  self_registration: false
+
+development:
+  <<: *defaults
+  self_registration: true
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults
