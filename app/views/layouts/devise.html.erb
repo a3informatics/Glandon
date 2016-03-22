@@ -12,7 +12,6 @@
     <title>Login</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <%= stylesheet_link_tag 'base' %>
   <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
   <%= csrf_meta_tags %>
   <style>
@@ -23,7 +22,7 @@
 		}
 
 		.new_user {
-		  max-width: 330px;
+		  max-width: 400px;
 		  padding: 15px;
 		  margin: 0 auto;
 		}
@@ -55,6 +54,9 @@
 		  margin-bottom: 10px;
 		  border-top-left-radius: 0;
 		  border-top-right-radius: 0;
+		}
+		.checkbox input[type="checkbox"] {
+	  		margin-left: 0;
 		}
   </style>
 </head>
