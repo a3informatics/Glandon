@@ -1,0 +1,2 @@
+class IsoRegistrationAuthorityPolicy < IsoPolicy
+end

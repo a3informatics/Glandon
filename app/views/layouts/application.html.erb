@@ -40,6 +40,10 @@
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="/">Dashboard</a></li>
+                  <% if current_user.has_role? :sys_admin %>
+                    <li><%= link_to "Users", users_path %></li>
+                  <% end %>  
+                  <li><%= link_to "Settings", dashboard_index_path %></li>
                   <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
                 </ul>
               </div>
@@ -49,20 +53,22 @@
       </div>
       <div class="row">
         <div id="page_nav_menu" class="col-md-2">
-					<ul class="well">
-            <li class="active"><a href="/iso_registration_authorities">Registration Authorities<span class="sr-only">(current)</span></a></li>
-            <li><a href="/iso_namespaces">Namespaces</a></li>
-            <li><a href="/iso_scoped_identifiers">Scoped Identifiers</a></li>
-            <li><a href="/iso_registration_states">Registration States</a></li>
-					</ul>
-					<ul class="well">
-            <li><a href="/uploads">Upload</a></li>
-            <li><a href="/backgrounds">Background Jobs</a></li>
-          </ul>
+					<% if current_user.has_role? :sys_admin %>
+            <ul class="well">
+              <li class="active"><a href="/iso_registration_authorities">Registration Authorities<span class="sr-only">(current)</span></a></li>
+              <li><a href="/iso_namespaces">Namespaces</a></li>
+              <li><a href="/iso_scoped_identifiers">Scoped Identifiers</a></li>
+              <li><a href="/iso_registration_states">Registration States</a></li>
+  					</ul>
+  					<ul class="well">
+              <li><a href="/uploads">Upload</a></li>
+              <li><a href="/backgrounds">Background Jobs</a></li>
+            </ul>
+            <ul class="well">
+              <li><a href="/iso_concept_systems">Classification Systems</a></li>
+            </ul>
+					<% end %>
           <ul class="well">
-            <li><a href="/iso_concept_systems">Classification Systems</a></li>
-          </ul>
-					<ul class="well">
             <li><a href="/notepads">Notepad</a></li>
           </ul>
           <ul class="well">

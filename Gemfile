@@ -55,8 +55,9 @@ gem 'delayed_job_active_record'
 gem 'prawn'
 gem 'prawn-table'
 
-# Rolify role management
+# Rolify role management and Pundit authorization
 gem 'rolify'
+gem 'pundit'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,0 +1,2 @@
+class ThesaurusPolicy < ApplicationPolicy
+end

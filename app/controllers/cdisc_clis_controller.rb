@@ -7,10 +7,12 @@ class CdiscClisController < ApplicationController
   before_action :authenticate_user!
   
   def index
+    authorize CdiscClis
     @cdiscClis = CdiscCli.all
   end
   
   def impact
+    authorize CdiscClis
     id = params[:id]
     namespace = params[:namespace]
     @cdiscCli = CdiscCli.find(id, namespace)
@@ -18,12 +20,14 @@ class CdiscClisController < ApplicationController
   end
 
   def show
+    authorize CdiscClis
     id = params[:id]
     namespace = params[:namespace]
     @cdiscCli = CdiscCli.find(id, namespace)
   end
 
   def compare
+    authorize CdiscClis, :view?
     
     # Get the parameters
     id = params[:id]
@@ -55,6 +59,7 @@ class CdiscClisController < ApplicationController
   end
   
   def changes
+    authorize CdiscClis, :view?
     id = params[:id]
     data = Array.new
     cdiscTerms = CdiscTerm.all()

@@ -3,10 +3,12 @@ class ThesaurusConceptsController < ApplicationController
   before_action :authenticate_user!
   
   def new
+    authorize ThesaurusConcept
     @thesaurusConcept = ThesaurusConcept.new
   end
   
   def create
+    authorize ThesaurusConcept
     if !ThesaurusConcept.exists?(param[:identifier])
       @thesaurusConcept = ThesaurusConcept.create(the_params)
     end
@@ -14,6 +16,7 @@ class ThesaurusConceptsController < ApplicationController
   end
 
   def impact
+    authorize ThesaurusConcept
     id = params[:id]
     namespace = params[:namespace]
     @thesaurusConcept = ThesaurusConcept.find(id, namespace)
@@ -21,18 +24,21 @@ class ThesaurusConceptsController < ApplicationController
   end
 
   def destroy
-     @thesaurusConcept = ThesaurusConcept.find(params[:id])
-     @thesaurusConcept.destroy
-     redirect_to thesaurus_concepts_path
+    authorize ThesaurusConcept
+    @thesaurusConcept = ThesaurusConcept.find(params[:id])
+    @thesaurusConcept.destroy
+    redirect_to thesaurus_concepts_path
   end
 
   def show
+    authorize ThesaurusConcept
     id = params[:id]
     namespace = params[:namespace]
     @thesaurusConcept = ThesaurusConcept.find(id, namespace)
   end
   
   def showD3
+    authorize ThesaurusConcept, :view?
     id = params[:id]
     namespace = params[:namespace]
     thesaurusConcept = ThesaurusConcept.find(id, namespace)

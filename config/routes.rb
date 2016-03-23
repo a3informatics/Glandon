@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   
   devise_for :users
+  resources :users
   
   match 'api(/:id)' => 'api#options', via: [:options]
   resources :api do

@@ -1,12 +1,13 @@
 class UploadsController < ApplicationController
   
     def index
-       @upload = Upload.new
+      authorize Upload
+    	@upload = Upload.new
     end
     
     def create
+      authorize Upload
       post = Upload.save(params[:upload])
-      #render :text => "File has been uploaded successfully"
       redirect_to uploads_path
     end
   

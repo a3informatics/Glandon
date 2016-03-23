@@ -1,0 +1,2 @@
+class IsoNamespacePolicy < IsoPolicy
+end

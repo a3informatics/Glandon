@@ -5,25 +5,30 @@ class ThesauriController < ApplicationController
   before_action :authenticate_user!
   
   def new
+    authorize Thesaurus
     @thesaurus = Thesaurus.new
   end
 
   def index
+    authorize Thesaurus
     @thesauri = Thesaurus.unique
   end
   
   def history
+    authorize Thesaurus
     @identifier = params[:identifier]
     @thesauri = Thesaurus.history(params)
   end
   
   def create
+    authorize Thesaurus
     identifier = params[:identifier]
     @thesaurus = Thesaurus.create(the_params)
     redirect_to thesauri_index_path
   end
 
   def update
+    authorize Thesaurus
     id = params[:id]
     namespace = params[:namespace]
     data = params[:data]
@@ -38,36 +43,42 @@ class ThesauriController < ApplicationController
   end
 
   def edit
+    authorize Thesaurus
     id = params[:id]
     namespace = params[:namespace]
     @thesaurus = Thesaurus.find(id,namespace)
   end
 
   def destroy
+    authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id])
     @thesaurus.destroy()
     redirect_to thesauri_index_path
   end
 
   def show
+    authorize Thesaurus
     id = params[:id]
     namespace = params[:namespace]
     @thesaurus = Thesaurus.find(id, namespace)
   end
   
   def view
+    authorize Thesaurus
     id = params[:id]
     namespace = params[:namespace]
     @thesaurus = Thesaurus.find(id, namespace)
   end
 
   def search
+    authorize Thesaurus, :view?
     id = params[:id]
     namespace = params[:namespace]
     @thesaurus = Thesaurus.find(id, namespace, false)
   end
   
   def searchOld
+    authorize Thesaurus, :view?
     term = params[:term]
     textSearch = params[:textSearch]
     cCodeSearch = params[:cCodeSearch]
@@ -82,6 +93,7 @@ class ThesauriController < ApplicationController
   end
 
   def searchNew
+    authorize Thesaurus, :view?
     id = params[:id]
     ns = params[:namespace]
     offset = params[:start]

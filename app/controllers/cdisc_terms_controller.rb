@@ -5,15 +5,18 @@ class CdiscTermsController < ApplicationController
   C_CLASS_NAME = "CdiscTermsController"
   
   def history
+    authorize CdiscTerm
     @cdiscTerms = CdiscTerm.history()
   end
   
   def import
+    authorize CdiscTerm
     @files = Dir.glob(Rails.root.join("public","upload") + "*")
     @cdiscTerm = CdiscTerm.new
   end
   
   def create
+    authorize CdiscTerm
     hash = CdiscTerm.create(this_params)
     @cdiscTerm = hash[:object]
     @job = hash[:job]
@@ -26,6 +29,7 @@ class CdiscTermsController < ApplicationController
   end
   
   def show
+    authorize CdiscTerm
     id = params[:id]
     namespace = params[:namespace]
     @cdiscTerm = CdiscTerm.find(id, namespace)
@@ -33,12 +37,14 @@ class CdiscTermsController < ApplicationController
   end
   
   def search
+    authorize CdiscTerm, :view?
     id = params[:id]
     namespace = params[:namespace]
     @cdiscTerm = CdiscTerm.find(id, namespace, false)
   end
   
   def search2
+    authorize CdiscTerm, :view?
     id = params[:id]
     namespace = params[:namespace]
     @cdiscTerm = CdiscTerm.find(id, namespace, false)
@@ -46,6 +52,7 @@ class CdiscTermsController < ApplicationController
   end
   
   def next
+    authorize CdiscTerm, :view?
     id = params[:id]
     namespace = params[:namespace]
     @cdiscTerm = CdiscTerm.find(id, namespace, false)
@@ -68,6 +75,7 @@ class CdiscTermsController < ApplicationController
   end
 
   def searchNew
+    authorize CdiscTerm, :view?
     id = params[:id]
     ns = params[:namespace]
     offset = params[:start]
@@ -92,6 +100,7 @@ class CdiscTermsController < ApplicationController
   end 
 
   def searchOld
+    authorize CdiscTerm, :view?
     term = params[:term]
     textSearch = params[:textSearch]
     cCodeSearch = params[:cCodeSearch]
@@ -107,6 +116,7 @@ class CdiscTermsController < ApplicationController
   end
   
   def compare
+    authorize CdiscTerm, :view?
     newId = params[:newId]
     newNamespace = params[:newNamespace]
     oldId = params[:oldId]
@@ -118,6 +128,7 @@ class CdiscTermsController < ApplicationController
   end
   
   def compareCalc
+    authorize CdiscTerm, :view?
     
     # Get the two terminology versions
     newId = params[:newId]
@@ -145,12 +156,14 @@ class CdiscTermsController < ApplicationController
   end
 
   def changes
+    authorize CdiscTerm, :view?
     ct = CdiscTerm.current
     @identifier = ct.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
   end
 
   def changesCalc
+    authorize CdiscTerm, :view?
     if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_CT)
         redirect_to changes_cdisc_terms_path
     else
@@ -167,12 +180,14 @@ class CdiscTermsController < ApplicationController
   end
 
   def submission
+    authorize CdiscTerm, :view?
     ct = CdiscTerm.current
     @identifier = ct.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
   end
 
   def submission_report
+    authorize CdiscTerm, :view?
     ct = CdiscTerm.current
     @identifier = ct.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
@@ -181,6 +196,7 @@ class CdiscTermsController < ApplicationController
   end
 
   def submissionCalc
+    authorize CdiscTerm, :view?
     if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_SUB)
         redirect_to submission_cdisc_terms_path
     else

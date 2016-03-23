@@ -5,6 +5,7 @@ class BiomedicalConceptsController < ApplicationController
   before_action :authenticate_user!
   
   def index
+    authorize BiomedicalConcept
     @bcts = BiomedicalConceptTemplate.all
     @bcs = BiomedicalConcept.unique
     @biomedical_concept = BiomedicalConcept.new
@@ -22,6 +23,7 @@ class BiomedicalConceptsController < ApplicationController
   end
   
   def list
+    authorize BiomedicalConcept
     @bcs = BiomedicalConcept.list
     respond_to do |format|
       format.json do
@@ -37,11 +39,13 @@ class BiomedicalConceptsController < ApplicationController
   end
   
   def history
+    authorize BiomedicalConcept
     @identifier = params[:identifier]
     @bc = BiomedicalConcept.history(params)
   end
 
   def new_template
+    authorize BiomedicalConcept, :new?
     uri = params[:uri]
     parts = uri.split('#')
     ns = parts[0]
@@ -50,12 +54,14 @@ class BiomedicalConceptsController < ApplicationController
   end
 
   def edit
+    authorize BiomedicalConcept
     ns = params[:namespace]
     id = params[:id]
     @bc = BiomedicalConcept.find(id, ns)
   end
 
   def impact
+    authorize BiomedicalConcept, :view?
     id = params[:id]
     namespace = params[:namespace]
     @bc = BiomedicalConcept.find(id, namespace)
@@ -64,6 +70,7 @@ class BiomedicalConceptsController < ApplicationController
   end
 
   def create
+    authorize BiomedicalConcept
     instance = params[:instance]
     @bc = BiomedicalConcept.create(params)
     if @bc.errors.empty?
@@ -74,6 +81,7 @@ class BiomedicalConceptsController < ApplicationController
   end
 
   def update
+    authorize BiomedicalConcept
     instance = params[:instance]
     @bc = BiomedicalConcept.update(params)
     if @bc.errors.empty?
@@ -84,6 +92,7 @@ class BiomedicalConceptsController < ApplicationController
   end
 
   def destroy
+    authorize BiomedicalConcept
     id = params[:id]
     namespace = params[:namespace]
     bc = BiomedicalConcept.find(id, namespace)
@@ -92,6 +101,7 @@ class BiomedicalConceptsController < ApplicationController
   end
 
   def show 
+    authorize BiomedicalConcept
     id = params[:id]
     namespace = params[:namespace]
     @bc = BiomedicalConcept.find(id, namespace)

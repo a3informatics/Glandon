@@ -1,0 +1,2 @@
+class IsoConceptSystemPolicy < IsoPolicy
+end

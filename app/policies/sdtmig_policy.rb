@@ -1,0 +1,2 @@
+class SdtmigPolicy < ApplicationPolicy
+end

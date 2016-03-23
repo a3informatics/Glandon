@@ -1,0 +1,2 @@
+class IsoScopedIdentifierPolicy < IsoPolicy
+end

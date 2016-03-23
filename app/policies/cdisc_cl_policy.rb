@@ -1,0 +1,2 @@
+class CdiscClPolicy < ApplicationPolicy
+end

@@ -1,0 +1,2 @@
+class NotepadPolicy < ApplicationPolicy
+end

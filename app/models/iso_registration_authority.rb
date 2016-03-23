@@ -151,8 +151,9 @@ class IsoRegistrationAuthority
     
     number = params[:number]
     namespaceId = params[:namespaceId]
-    uid = ModelUtility.createUid(number)
-
+    #uid = ModelUtility.createUid(number)
+    uid = number
+    
     # Create the query
     raiId = ModelUtility.buildCidIdentifier(C_CLASS_RAI_PREFIX, uid)
     id = ModelUtility.buildCidIdentifier(C_CLASS_RA_PREFIX, uid)

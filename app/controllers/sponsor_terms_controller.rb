@@ -5,26 +5,24 @@ class SponsorTermsController < ApplicationController
   C_CLASS_NAME = "SponsorTermsController"
   
   def index
+    authorize SponsorTerm
     @sponsorTerms = SponsorTerm.all
   end
   
   def new
+    authorize SponsorTerm
     @files = Dir.glob(Rails.root.join("public","upload") + "*")
     @sponsorTerm = SponsorTerm.new
   end
   
   def create
+    authorize SponsorTerm
     @sponsorTerm = SponsorTerm.create(this_params)
     redirect_to sponsor_terms_path
   end
 
-  def update
-  end
-
-  def edit
-  end
-
   def search
+    authorize SponsorTerm
     term = params[:term]
     textSearch = params[:textSearch]
     cCodeSearch = params[:cCodeSearch]
@@ -39,10 +37,8 @@ class SponsorTermsController < ApplicationController
     render json: @results
   end
   
-  def destroy
-  end
-
   def show
+    authorize SponsorTerm
     id = params[:id]
     @sponsorTerm = SponsorTerm.find(id)
     #@sponsorCls = SponsorTerm.thesaurus.all.all(@sponsorTerm)

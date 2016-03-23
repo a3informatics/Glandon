@@ -1,11 +1,13 @@
 class NotepadsController < ApplicationController
 
     def index
+        authorize Notepad
         user_id = current_user.id
         @items = Notepad.where(user_id: user_id, note_type: 0).find_each
     end
 
     def index_term
+        authorize Notepad, :view?
         results = {}
         user_id = current_user.id
         @items = Notepad.where(user_id: user_id, note_type: 0).find_each
@@ -21,6 +23,7 @@ class NotepadsController < ApplicationController
     end
 
 	def create_term
+        authorize Notepad, :edit?
 		user_id = current_user.id
 		@cli = CdiscCli.find(the_params[:item_id], the_params[:item_ns])
         if (@cli != nil)
@@ -37,6 +40,7 @@ class NotepadsController < ApplicationController
 	end
 
 	def destroy
+        authorize Notepad
 		Notepad.delete(params[:id])
 		redirect_to notepads_path
 	end	

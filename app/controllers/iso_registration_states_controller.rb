@@ -3,19 +3,12 @@ class IsoRegistrationStatesController < ApplicationController
   before_action :authenticate_user!
   
   def index
+    authorize IsoRegistrationState
     @registrationStates = IsoRegistrationState.all
   end
   
-  #def new
-  #  @RegistrationState = IsoRegistrationState.new
-  #end
-  
-  #def create
-  #  @RegistrationState = IsoRegistrationState.create(this_params)
-  #  redirect_to iso_registration_states_path
-  #end
-
   def update
+    authorize IsoRegistrationState
     referer = this_params[:referer]
     registrationState = IsoRegistrationState.find(params[:id])
     registrationState.update(params[:id], this_params)
@@ -23,20 +16,11 @@ class IsoRegistrationStatesController < ApplicationController
   end
 
   def edit
+    authorize IsoRegistrationState
     @referer = request.referer
     @registrationState = IsoRegistrationState.find(params[:id])
   end
 
-  #def destroy
-  #   @RegistrationState = IsoRegistrationState.find(params[:id])
-  #   @RegistrationState.destroy
-  #   redirect_to iso_registration_states_path
-  #end
-
-  #def show
-  #  redirect_to iso_registration_states_path
-  #end
-  
   private
     def this_params
       params.require(:iso_registration_state).permit(:registrationAuthority, :registrationStatus, :administrativeNote, :effectiveDate, :unresolvedIssue, :administrativeStatus, :previousState, :referer)

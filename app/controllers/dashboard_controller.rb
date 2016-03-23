@@ -3,7 +3,8 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
   
   def index
-  	#@forms = Form.all()
+  	authorize Dashboard
+    #@forms = Form.all()
     @thesauri = Thesaurus.unique
     @bcs = BiomedicalConcept.unique
     @bcts = BiomedicalConceptTemplate.unique
@@ -15,14 +16,16 @@ class DashboardController < ApplicationController
   end
 
   def view
-  	@dashboard = Dashboard.new
+  	authorize Dashboard
+    @dashboard = Dashboard.new
   	@namespaces = UriManagement.get()
   	@id = params[:id]
     @namespace = params[:namespace]
   end
 
   def database
-  	@triples = Dashboard.find(params[:id], params[:namespace])
+  	authorize Dashboard, :view?
+    @triples = Dashboard.find(params[:id], params[:namespace])
     render json: @triples
   end
 

@@ -1,7 +1,12 @@
 class BackgroundsController < ApplicationController
 
+	def index
+		authorize Background
+  end
+
 	def running
-		jobs = Background.all
+		authorize Background
+    jobs = Background.all
     results = {}
     results[:data] = []
     jobs.each do |job|
@@ -11,8 +16,8 @@ class BackgroundsController < ApplicationController
 	end
 
 	def clear
-		#Background.destroy_all
-		jobs = Background.where(complete: true).find_each
+		authorize Background
+    jobs = Background.where(complete: true).find_each
 		jobs.each do |job|
 			job.destroy
 		end

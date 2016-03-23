@@ -252,7 +252,7 @@ class IsoScopedIdentifier
   def self.create(identifier, version, version_label, scope_org)
 
     # Create the CID
-    id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX, scope_org.shortName, identifier, version)
     
     # Create the query
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +

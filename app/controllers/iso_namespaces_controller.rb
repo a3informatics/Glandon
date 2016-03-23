@@ -3,14 +3,17 @@ class IsoNamespacesController < ApplicationController
   before_action :authenticate_user!
   
   def index
+    authorize IsoNamespace
     @namespaces = IsoNamespace.all
   end
   
   def new
+    authorize IsoNamespace
     @namespace = IsoNamespace.new
   end
   
   def create
+    authorize IsoNamespace
     @namespace = IsoNamespace.create(this_params)
     if @namespace.errors.empty?
       redirect_to iso_namespaces_path
@@ -20,19 +23,15 @@ class IsoNamespacesController < ApplicationController
     end
   end
 
-  def update
-  end
-
-  def edit
-  end
-
   def destroy
-     @namespace = IsoNamespace.find(params[:id])
-     @namespace.destroy
-     redirect_to iso_namespaces_path
+    authorize IsoNamespace
+    @namespace = IsoNamespace.find(params[:id])
+    @namespace.destroy
+    redirect_to iso_namespaces_path
   end
 
   def show
+    authorize IsoNamespace
     redirect_to namespaces_path
   end
   

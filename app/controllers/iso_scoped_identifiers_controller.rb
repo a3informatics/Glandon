@@ -3,32 +3,32 @@ class IsoScopedIdentifiersController < ApplicationController
   before_action :authenticate_user!
   
   def index
+    authorize IsoScopedIdentifier
     @scopedIdentifiers = IsoScopedIdentifier.all
   end
   
   def new
+    authorize IsoScopedIdentifier
     @namespaces = IsoNamespace.all.map{|key,u|[u.name,u.id]}
     @scopedIdentifier = IsoScopedIdentifier.new
   end
   
   def create
-    @scopedIdentifier = IsoScopedIdentifier.create(this_params, ModelUtility.createUid(this_params[:identifier]), this_params[:namespaceId])
+    authorize IsoScopedIdentifier
+    namespace = IsoNamespace.find(this_params[:namespaceId])
+    @scopedIdentifier = IsoScopedIdentifier.create(this_params[:identifier], this_params[:version], this_params[:versionLabel], namespace)
     redirect_to iso_scoped_identifiers_path
   end
 
-  def update
-  end
-
-  def edit
-  end
-
   def destroy
-     @scopedIdentifier = IsoScopedIdentifier.find(params[:id])
-     @scopedIdentifier.destroy
-     redirect_to iso_scoped_identifiers_path
+    authorize IsoScopedIdentifier
+    @scopedIdentifier = IsoScopedIdentifier.find(params[:id])
+    @scopedIdentifier.destroy
+    redirect_to iso_scoped_identifiers_path
   end
 
   def show
+    authorize IsoScopedIdentifier
     redirect_to iso_scoped_identifier_path
   end
   

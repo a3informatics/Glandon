@@ -1,0 +1,2 @@
+class CdiscTermPolicy < ApplicationPolicy
+end

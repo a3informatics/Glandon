@@ -5,6 +5,7 @@ class DomainsController < ApplicationController
   C_CLASS_NAME = "DomainsController"
 
   def index
+    authorize Domain
     @domains = Domain.unique
     respond_to do |format|
       format.html 
@@ -20,11 +21,13 @@ class DomainsController < ApplicationController
   end
   
   def history
+    authorize Domain
     @identifier = params[:identifier]
     @domain = Domain.history(params)
   end
 
   def update_add
+    authorize Domain, :edit?
     id = params[:id]
     namespace = params[:namespace]
     @domain = Domain.find(id, namespace)
@@ -33,6 +36,7 @@ class DomainsController < ApplicationController
   end
 
   def update_remove
+    authorize Domain, :edit?
     id = params[:id]
     namespace = params[:namespace]
     @domain = Domain.find(id, namespace)
@@ -41,6 +45,7 @@ class DomainsController < ApplicationController
   end
 
   def add
+    authorize Domain, :edit?
     id = params[:id]
     namespace = params[:namespace]
     @domain = Domain.find(id, namespace)
@@ -48,6 +53,7 @@ class DomainsController < ApplicationController
   end
 
   def remove 
+    authorize Domain, :destroy?
     id = params[:id]
     namespace = params[:namespace]
     @domain = Domain.find(id, namespace)
@@ -55,6 +61,7 @@ class DomainsController < ApplicationController
   end
 
   def show 
+    authorize Domain
     id = params[:id]
     namespace = params[:namespace]
     @domain = Domain.find(id, namespace)

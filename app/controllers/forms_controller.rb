@@ -19,10 +19,12 @@ class FormsController < ApplicationController
   #end
 
   def new
+    authorize Form
     @form = Form.new
   end
 
   def index
+    authorize Form
     @forms = Form.unique
     respond_to do |format|
       format.html 
@@ -38,30 +40,24 @@ class FormsController < ApplicationController
   end
   
   def history
+    authorize Form
     @identifier = params[:identifier]
     @form = Form.history(params)
   end
 
   def placeholder_new
+    authorize Form, :new?
     @form = Form.new
   end
   
   def bc_normal_new
-    ConsoleLogger::log(C_CLASS_NAME,"bc_normal_new", "******Entry*****")
+    authorize Form, :new?
     @bcs = BiomedicalConcept.all
     @form = Form.new
   end
   
-  #def create
-  #  @form = Form.createFull(params[:form])
-  #  if @form.errors.empty?
-  #    render :nothing => true, :status => 200, :content_type => 'text/html'
-  #  else
-  #    render :json => { :errors => @form.errors.full_messages}, :status => 422
-  #  end
-  #end
-
   def placeholder_create
+    authorize Form, :create?
     @form = Form.createPlaceholder(the_params)
     if @form.errors.empty?
       redirect_to forms_path
@@ -72,6 +68,7 @@ class FormsController < ApplicationController
   end
   
   def bc_normal_create
+    authorize Form, :create?
     @form = Form.createBcNormal(the_params)
     if @form.errors.empty?
       redirect_to forms_path
@@ -82,12 +79,14 @@ class FormsController < ApplicationController
   end
   
   def edit
+    authorize Form
     ns = params[:namespace]
     id = params[:id]
     @form = Form.find(id, ns)
   end
 
   def create
+    authorize Form
     @form = Form.create(params)
     if @form.errors.empty?
       render :json => { :data => @form.to_edit}, :status => 200
@@ -97,6 +96,7 @@ class FormsController < ApplicationController
   end
 
   def update
+    authorize Form
     @form = Form.update(params)
     if @form.errors.empty?
       render :json => { :data => @form.to_edit}, :status => 200
@@ -106,6 +106,7 @@ class FormsController < ApplicationController
   end
 
   def destroy
+    authorize Form
     id = params[:id]
     namespace = params[:namespace]
     form = Form.find(id, namespace)
@@ -114,18 +115,22 @@ class FormsController < ApplicationController
   end
 
   def show 
+    authorize Form
     @form = Form.find(params[:id], params[:namespace])
   end
   
   def view 
+    authorize Form
     @form = Form.find(params[:id], params[:namespace])
   end
   
   def acrf
+    authorize Form, :view?
     @form = Form.find(params[:id], params[:namespace])
   end
 
   def crf
+    authorize Form, :view?
     @form = Form.find(params[:id], params[:namespace])
   end
 
