@@ -12,9 +12,11 @@ class IsoRegistrationState
   attr_accessor :id, :registrationAuthority, :registrationStatus, :administrativeNote, :effectiveDate, :unresolvedIssue, :administrativeStatus, :previousState
   validates_presence_of :registrationAuthority, :registrationStatus, :administrativeNote, :effectiveDate, :unresolvedIssue, :administrativeStatus, :previousState
   
-  # Base namespace 
-  @@baseNs
-
+  # Constants
+  C_NS_PREFIX = "mdrItems"
+  C_CID_PREFIX = "RS"
+  C_CLASS_NAME = "IsoRegistrationState"
+  
   C_NOTSET = ""
   C_INCOMPLETE = "Incomplete"
   C_CANDIDATE =  "Candidate"
@@ -24,6 +26,7 @@ class IsoRegistrationState
   C_RETIRED = "Retired"
   C_SUPERSEDED = "Superseded"
 
+  # Class variables
   @@stateInfo = {
     C_NOTSET => 
       { 
@@ -115,35 +118,42 @@ class IsoRegistrationState
       }
   }
 
-  # Edit control
-  @@edit_control = {
-    
-  }  
-
-  # Constants
-  C_NS_PREFIX = "mdrItems"
-  C_CID_PREFIX = "RS"
-  C_CLASS_NAME = "IsoRegistrationState"
-  
-  # Class varaibles
-  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-  @@owner = IsoRegistrationAuthority.owner()
+  @@owner
 
   def persisted?
     id.present?
   end
  
   def initialize()
-    self.id = ""
-    self.registrationAuthority = nil
-    self.registrationStatus = C_NOTSET
-    self.administrativeNote = ""
-    self.effectiveDate = Time.now
-    self.unresolvedIssue = ""
-    self.administrativeStatus = ""
-    self.previousState  = C_NOTSET
-    if @@owner == nil # Temp fix, not getting set in circumstances. Needs better fix.
-      @@owner = IsoRegistrationAuthority.owner()
+  end
+
+  def initialize(triples=nil)
+    @@owner ||= IsoRegistrationAuthority.owner()
+    if triples.nil?
+      self.id = ""
+      self.registrationAuthority = nil
+      self.registrationStatus = C_NOTSET
+      self.administrativeNote = ""
+      self.effectiveDate = Time.now
+      self.unresolvedIssue = ""
+      self.administrativeStatus = ""
+      self.previousState  = C_NOTSET
+    else
+      self.id = ModelUtility.extractCid(triples[0][:subject])
+      self.registrationAuthority = nil
+      if Triples::link_exists?(triples, UriManagement::C_ISO_R, "byAuthority")
+        links = Triples::get_links(triples, UriManagement::C_ISO_R, "byAuthority")
+        cid = ModelUtility.extractCid(links[0])
+        self.registrationAuthority  = IsoRegistrationAuthority.find(cid)
+      end
+      triples.each do |triple|
+        self.registrationStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
+        self.administrativeNote = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
+        self.effectiveDate = Triples::get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
+        self.unresolvedIssue = Triples::get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
+        self.administrativeStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeStatus")
+        self.previousState  = Triples::get_property_value(triples, UriManagement::C_ISO_R, "previousState")
+      end
     end
   end
 

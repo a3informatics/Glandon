@@ -4,19 +4,12 @@ class FormsController < ApplicationController
   
   C_CLASS_NAME = "FormsController"
 
-  #def new
-  #  @form = Form.new
-  #  @termList = []
-  #  terms = Thesaurus.unique
-  #  terms.each do |identifier|
-  #    history = Thesaurus.history(identifier)
-  #    history.each do |term|
-  #      if term.latest?
-  #        @termList << [term.label, term.id + "|" + term.namespace]
-  #      end
-  #    end
-  #  end
-  #end
+  def test
+    authorize Form, :view?
+    ns = params[:namespace]
+    id = params[:id]
+    @form = Form.find(id,ns)
+  end
 
   def new
     authorize Form

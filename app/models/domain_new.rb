@@ -1,6 +1,6 @@
 require "uri"
 
-class Domain < IsoManaged
+class Domain < IsoManagedNew
   
   attr_accessor :variables, :bcs
   validates_presence_of :variables, :bcs
@@ -14,41 +14,25 @@ class Domain < IsoManaged
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
 
-  # Find a given domain
-  def self.find(id, ns, children=true)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"find","Namespace=" + ns)
-    object = super(id, ns)
-    object.variables = Domain::Variable.findForDomain(id, ns)
-    object.bcs = Hash.new
-    #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id.to_s)
-    if children
-      results = Hash.new
-      query = UriManagement.buildNs(ns, ["bd", "mms"]) +
-        "SELECT ?d WHERE\n" + 
-        "{ \n" + 
-        " :" + id + " bd:basedOn ?a . \n" +
-        " ?b mms:context ?a . \n" +
-        " ?c bd:basedOn ?b . \n" +
-        " ?c bd:hasBiomedicalConcept ?d . \n" +
-        "} \n"
-                    
-      # Send the request, wait the resonse
-      response = CRUD.query(query)
-      
-      # Process the response
-      xmlDoc = Nokogiri::XML(response.body)
-      xmlDoc.remove_namespaces!
-      xmlDoc.xpath("//result").each do |node|
-        uriSet = node.xpath("binding[@name='d']/uri")
-        if uriSet.length == 1 
-          id = ModelUtility.extractCid(uriSet[0].text)
-          namespace = ModelUtility.extractNs(uriSet[0].text)
-          object.bcs[id] = BiomedicalConcept.find(id, namespace, false)
-        end
-      end
+  def initialize(triples=nil, id=nil)
+    self.variables = Array.new
+    self.bcs = Array.new
+    if triples.nil?
+      super
+      self.label = "New Form"
+    else
+      super(triples, id)
     end
-    return object
+  end
+
+  def self.find(id, ns, children=true)
+    object = super(id, ns)
+    if children
+      object.groups = Domain::Variable.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
+      object.bcs = find_bcs
+    end
+    object.triples = ""
+    return object     
   end
 
   def self.all
@@ -67,12 +51,9 @@ class Domain < IsoManaged
   end
 
   def add(params)
-    ConsoleLogger::log(C_CLASS_NAME,"add","*****Entry*****")
     bcs = params[:bcs]
-    ConsoleLogger::log(C_CLASS_NAME,"add","BCs=" + bcs.to_s)
     insertSparql = ""    
     bcs.each do |key|
-      #ConsoleLogger::log(C_CLASS_NAME,"add","Add BC=" + key.to_s )
       parts = key.split("|")
       bcId = parts[0]
       bcNamespace = parts[1]
@@ -81,11 +62,9 @@ class Domain < IsoManaged
         if property.enabled
           bridg = property.bridgPath
           sdtm = BridgSdtm::get(bridg)
-          ConsoleLogger::log(C_CLASS_NAME,"add","bridg=" + bridg.to_s + " , sdtm=" + sdtm.to_s )
           if sdtm != ""
             variable = findVariableByLabel(sdtm)
             if variable != nil
-              ConsoleLogger::log(C_CLASS_NAME,"add","variable=" + variable.name )
               insertSparql = insertSparql + "  :" + variable.id + " bd:hasBiomedicalConcept " + ModelUtility.buildUri(bc.namespace, bc.id) + " . \n"
               insertSparql = insertSparql + "  :" + variable.id + " bd:hasProperty " + ModelUtility.buildUri(bc.namespace, keyP) + " . \n"
             end
@@ -93,39 +72,28 @@ class Domain < IsoManaged
         end
       end
     end
-    ConsoleLogger::log(C_CLASS_NAME,"add","sparql=" + insertSparql )
-    
     # Create the query
     update = UriManagement.buildNs(self.namespace, ["bd"]) +
       "INSERT DATA \n" +
       "{ \n" +
       insertSparql +
       "}"
-
     # Send the request, wait the resonse
     response = CRUD.update(update)
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"add","Update success.")
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"add","Update failed!.")
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to update object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
-
   end
 
   def remove(params)
-  
-    ConsoleLogger::log(C_CLASS_NAME,"remove","*****Entry*****")
-    
     bcs = params[:bcs]
-    ConsoleLogger::log(C_CLASS_NAME,"remove","BCs=" + bcs.to_s)
-    
     deleteSparql = ""    
     bcs.each do |key|
       ConsoleLogger::log(C_CLASS_NAME,"remove","Add BC=" + key.to_s )
       parts = key.split("|")
       bcId = parts[0]
       bcNamespace = parts[1]
-      
       # Create the query
       update = UriManagement.buildNs(self.namespace, ["bd", "mms"]) +
         "DELETE \n" +
@@ -142,27 +110,19 @@ class Domain < IsoManaged
         "  ?c bd:hasProperty ?d . \n" +
         "  filter contains(str(?d),\"" + bcId + "\")" +
         "}"
-
       # Send the request, wait the resonse
       response = CRUD.update(update)
-      if response.success?
-        ConsoleLogger::log(C_CLASS_NAME,"remove","Update success.")
-      else
-        ConsoleLogger::log(C_CLASS_NAME,"remove","Update failed!.")
+      if !response.success?
+        ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+        raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
       end
-
     end
-
   end
 
   def self.impact(params)
-  
-    ConsoleLogger::log(C_CLASS_NAME,"impact","*****Entry*****")
-
     id = params[:id]
     namespace = params[:namespace]
     results = Hash.new
-
     # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["bd", "bo", "mms"])  +
       "SELECT DISTINCT ?domain WHERE \n" +
@@ -172,10 +132,8 @@ class Domain < IsoManaged
       "  ?variable bd:basedOn ?column . \n " +
       "  ?variable bd:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +
       "}\n"
-
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -189,14 +147,36 @@ class Domain < IsoManaged
         ConsoleLogger::log(C_CLASS_NAME,"impact","Object found, id=" + id)        
       end
     end
-
     return results
   end
 
-  def destroy
-  end
-
 private
+
+  def self.find_bcs
+    results = Array.new
+    query = UriManagement.buildNs(ns, ["bd", "mms"]) +
+      "SELECT ?d WHERE\n" + 
+      "{ \n" + 
+      " :" + id + " bd:basedOn ?a . \n" +
+      " ?b mms:context ?a . \n" +
+      " ?c bd:basedOn ?b . \n" +
+      " ?c bd:hasBiomedicalConcept ?d . \n" +
+      "}"        
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = node.xpath("binding[@name='d']/uri")
+      if uri.length == 1 
+        id = ModelUtility.extractCid(uriSet[0].text)
+        namespace = ModelUtility.extractNs(uriSet[0].text)
+        results << BiomedicalConcept.find(id, namespace, false)
+      end
+    end
+    return results
+  end
 
   def findVariableByLabel(name)
     endName = name

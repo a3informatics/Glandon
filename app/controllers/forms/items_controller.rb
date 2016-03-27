@@ -3,12 +3,12 @@ class Forms::ItemsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    authorize Forms::Item
+    authorize Form::Item
     @formItems = Form::Item.all
   end
   
   def show 
-    authorize Forms::Item
+    authorize Form::Item
     @form = Form.find(params[:formId], params[:namespace], false)
     @formGroup = Form::Group.find(params[:groupId], params[:namespace])
     @formItem = @formGroup.items[params[:id]]

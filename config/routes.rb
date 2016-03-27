@@ -111,12 +111,11 @@ Rails.application.routes.draw do
       get :view
       get :placeholder_new
       get :bc_normal_new
-      #get :bc_log_new
       post :placeholder_create
       post :bc_normal_create
-      #post :bc_log_create
       get :acrf
       get :crf
+      get :test
     end
   end
   namespace :forms do

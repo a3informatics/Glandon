@@ -1,6 +1,6 @@
 require "uri"
 
-class Domain::Variable < IsoConcept
+class Domain::Variable < IsoConceptNew
   
   include ActiveModel::Naming
   include ActiveModel::Conversion
@@ -40,6 +40,38 @@ class Domain::Variable < IsoConcept
     "Classifier.Character" => "Character",
     "Classifier.Numeric" => "Numeric" }
   
+  def initialize(triples=nil, id=nil)
+    self.items = Array.new
+    self.groups = Array.new
+    self.bc = nil
+    if triples.nil?
+      super
+      self.groupType = C_BC_TYPE
+      self.ordinal = 1
+      self.note = ""
+      self.optional = false
+      self.repeating = false
+    else
+      super(triples, id)    
+    end
+  end
+
+  def self.find(id, ns, children=true)
+    object = super(id, ns)
+    if children
+      children_from_triples(object, object.triples, id)
+    end
+    object.triples = ""
+    return object
+  end
+
+  def self.find_from_triples(triples, id)
+    object = new(triples, id)
+    children_from_triples(object, triples, id)
+    object.triples = ""
+    return object
+  end
+
   # Find a given variable
   def self.find(id, ns)
     
@@ -82,7 +114,7 @@ class Domain::Variable < IsoConcept
         object = self.new 
         object.id = id
         object.namespace = ns
-        #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id)
+        ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id)
         object.name = nameSet[0].text
         object.description = descSet[0].text
         object.schemaDatatype = sDtSet[0].text
@@ -136,7 +168,7 @@ class Domain::Variable < IsoConcept
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node)
+      ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node)
       uriSet = node.xpath("binding[@name='c']/uri")
       nameSet = node.xpath("binding[@name='name']/literal")
       descSet = node.xpath("binding[@name='description']/literal")
@@ -149,7 +181,7 @@ class Domain::Variable < IsoConcept
       if uriSet.length == 1 && nameSet.length == 1 && descSet.length == 1
         id = ModelUtility.extractCid(uriSet[0].text)
         namespace = ModelUtility.extractNs(uriSet[0].text)
-        #ConsoleLogger::log(C_CLASS_NAME,"findForDomain","Id=" + id)
+        ConsoleLogger::log(C_CLASS_NAME,"findForDomain","Id=" + id)
         object = self.new 
         object.id = id
         object.namespace = namespace

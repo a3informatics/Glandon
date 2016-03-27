@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  #include Pundit
+  
   include Pundit
 
   # Prevent CSRF attacks by raising an exception.
@@ -18,5 +18,17 @@ class ApplicationController < ActionController::Base
     true
   end
 
+  # CRUD exceptions
+  rescue_from Exceptions::DestroyError, :with => :crud_error
+  rescue_from Exceptions::CreateError, :with => :crud_error
+  rescue_from Exceptions::UpdateError, :with => :crud_error
+
+  def crud_error(exception)
+    # TODO: This is wierd but not going to worry about it for the mo. Something odd in the 
+    # exception def?
+    flash[:error] = 'A database operation failed. ' + exception.message[:message].to_s
+    redirect_to root_path
+    true
+  end
 
 end

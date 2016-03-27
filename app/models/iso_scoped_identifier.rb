@@ -18,24 +18,40 @@ class IsoScopedIdentifier
   C_CLASS_NAME = "IsoScopedIdentifier"
   C_FIRST_VERSION = 1
 
-  # Base namespace 
-  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-  
-  def initialize
-    self.id = ""
-    self.identifier = ""
-    self.versionLabel = ""
-    self.version = 0
-    self.namespace = ""
+  # Class variables
+  @@baseNs
+
+  def initialize(triples=nil)
+    @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
+    if triples.nil?
+      self.id = ""
+      self.namespace = nil
+      self.identifier = ""
+      self.versionLabel = ""
+      self.version = 0
+    else
+      self.id = ModelUtility.extractCid(triples[0][:subject])
+      self.namespace = nil
+      if Triples::link_exists?(triples, UriManagement::C_ISO_I, "hasScope")
+        links = Triples::get_links(triples, UriManagement::C_ISO_I, "hasScope")
+        cid = ModelUtility.extractCid(links[0])
+        self.namespace = IsoNamespace.find(cid)
+      end
+      triples.each do |triple|
+        self.identifier = Triples::get_property_value(triples, UriManagement::C_ISO_I, "identifier")
+        self.version = Triples::get_property_value(triples, UriManagement::C_ISO_I, "version")
+        self.versionLabel = Triples::get_property_value(triples, UriManagement::C_ISO_I, "versionLabel")
+      end
+    end
   end
 
   def persisted?
     id.present?
   end
  
-  def baseNs
-    return @@baseNs 
-  end
+  #def baseNs
+  #  return @@baseNs 
+  #end
   
   def owner
     return self.namespace.shortName
@@ -250,11 +266,9 @@ class IsoScopedIdentifier
   end
 
   def self.create(identifier, version, version_label, scope_org)
-
     # Create the CID
     id = ModelUtility.build_full_cid(C_CID_PREFIX, scope_org.shortName, identifier, version)
-    
-    # Create the query
+    # Create the query and submit.
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "INSERT DATA \n" +
       "{ \n" +
@@ -264,11 +278,8 @@ class IsoScopedIdentifier
       "  :" + id + " isoI:versionLabel \"" + version_label.to_s + "\"^^xsd:string . \n" +
       "	 :" + id + " isoI:hasScope :" + scope_org.id.to_s + " . \n" +
       "}"
-    
-    # Send the request, wait the resonse
     response = CRUD.update(update)
-    
-    # Response
+    # Process the response
     if response.success?
       object = self.new
       object.id = id
@@ -277,11 +288,10 @@ class IsoScopedIdentifier
       object.identifier = identifier
       object.namespace = scope_org
     else
-      object = self.new
-      object.assign_errors(data) if response.response_code == 422
+      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
+      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
     end
     return object
-    
   end
 
   def self.create_dummy(identifier, version, version_label, scope_org)
@@ -305,7 +315,7 @@ class IsoScopedIdentifier
   end
 
   def destroy
-    # Create the query
+    # Create the query and submit
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI"]) +
       "DELETE \n" +
       "{\n" +
@@ -315,15 +325,11 @@ class IsoScopedIdentifier
       "{\n" +
       "  :" + self.id + " ?a ?b . \n" +
       "}\n"
-
-    # Send the request, wait the resonse
     response = CRUD.update(update)
-    
-    # Process response
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"destroy","Deleted")
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"destroy","Error!")
+    # Process the response
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
     end
   end
 

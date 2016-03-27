@@ -1,6 +1,6 @@
 require "uri"
 
-class Form::Group < IsoConcept
+class Form::Group < IsoConceptNew
   
   attr_accessor :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating
   validates_presence_of :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating
@@ -14,58 +14,38 @@ class Form::Group < IsoConcept
   C_COMMON_TYPE = "CommonGroup"
   C_NORMAL_TYPE = "Group"
   
-  def self.find(id, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
-    object = super(id, ns)
-    object.ordinal = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "ordinal").to_i
-    object.note = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "note")
-    object.optional = ModelUtility.to_boolean(object.properties.getLiteralValue(C_SCHEMA_PREFIX, "optional"))
-    object.repeating = ModelUtility.to_boolean(object.properties.getLiteralValue(C_SCHEMA_PREFIX, "optional"))
-    object.groups = findSubGroups(object.links, ns)
-    object.items = Form::Item.findForGroup(object.links, ns)
-    if object.links.exists?(C_SCHEMA_PREFIX, "hasBiomedicalConcept")
-      object.groupType = C_BC_TYPE
-      uri = object.links.get(C_SCHEMA_PREFIX, "hasBiomedicalConcept")
-      bcId = ModelUtility.extractCid(uri[0])
-      bcNs = ModelUtility.extractNs(uri[0])
-      object.bc = BiomedicalConcept.findByReference(bcId, bcNs)
+  def initialize(triples=nil, id=nil)
+    self.items = Array.new
+    self.groups = Array.new
+    self.bc = nil
+    if triples.nil?
+      super
+      self.groupType = C_BC_TYPE
+      self.ordinal = 1
+      self.note = ""
+      self.optional = false
+      self.repeating = false
     else
-      object.groupType = C_NORMAL_TYPE
-      object.bc = nil
-    end      
-    return object  
+      super(triples, id)    
+    end
   end
 
-  def self.findSubGroups(links, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
-    #ConsoleLogger::log(C_CLASS_NAME,"findForForm","namespace=" + ns)
-    results = Hash.new
-    linkSet = links.get("bf", "hasSubGroup")
-    linkSet.each do |link|
-      object = find(ModelUtility.extractCid(link), ns)
-      results[object.id] = object
+  def self.find(id, ns, children=true)
+    object = super(id, ns)
+    if children
+      children_from_triples(object, object.triples, id)
     end
-    linkSet = links.get("bf", "hasCommon")
-    linkSet.each do |link|
-      object = find(ModelUtility.extractCid(link), ns)
-      object.groupType = C_COMMON_TYPE
-      results[object.id] = object
-    end
-    return results
+    object.triples = ""
+    return object
   end
 
-  def self.findForForm(links, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"findForForm","*****ENTRY******")
-    #ConsoleLogger::log(C_CLASS_NAME,"findForForm","namespace=" + ns)
-    results = Hash.new
-    linkSet = links.get("bf", "hasGroup")
-    linkSet.each do |link|
-      object = find(ModelUtility.extractCid(link), ns)
-      results[object.id] = object
-    end
-    return results
+  def self.find_from_triples(triples, id)
+    object = new(triples, id)
+    children_from_triples(object, triples, id)
+    object.triples = ""
+    return object
   end
-  
+
   def self.createPlaceholder (formId, ns, freeText) 
     ordinal = 1
     id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
@@ -83,11 +63,9 @@ class Form::Group < IsoConcept
       " :" + id + " bf:hasItem :" + item.id + " . \n" +
       " :" + id + " bf:isGroupOf :" + formId + " . \n" +
     "}"
-
     # Send the request, wait the resonse
     response = CRUD.update(update)
-
-    # Response
+    # Process the response
     if response.success?
       object = self.new
       object.id = id
@@ -96,7 +74,6 @@ class Form::Group < IsoConcept
       object = nil
       ConsoleLogger::log(C_CLASS_NAME,"createPlaceholder","Failed")
     end
-
     return object
   end
 
@@ -152,153 +129,16 @@ class Form::Group < IsoConcept
     return object
   end
 
-  #def self.createBcEdit (formId, ns, ordinal, params)
-  #  id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
-  #  id = ModelUtility.cidAddSuffix(id, ordinal)
-  #  refId = ModelUtility.cidAddSuffix(id, "BCRef")
-  #  
-  #  # Add the properties. Only add if Enabled and Collected (i.e. ignore test codes etc, we only
-  #  # want the visibale stuff on the form).
-  #  insertSparql = ""
-  #  items = Hash.new
-  #  itemOrdinal = 1
-  #  children = params[:children]
-  #  children.each do |key, child|
-  #    ConsoleLogger::log(C_CLASS_NAME,"createBcEdit","Add item for Group=" + child.to_s)
-  #    #if child[:enabled] 
-  #      item = Form::Item.createBcEdit(id, ns, itemOrdinal, child)
-  #      itemOrdinal += 1
-  #      insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
-  #    #end
-  #  end
-  #    
-  #  # Build the query
-  #  update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-  #    "INSERT DATA \n" +
-  #    "{ \n" +
-  #    " :" + id + " rdf:type bf:Group . \n" +
-  #    " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
-  #    " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-  #    " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
-  #    " :" + id + " bf:note \"\"^^xsd:string . \n" +
-  #    " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-  #    insertSparql + 
-  #    " :" + id + " bf:isGroupOf :" + formId + " . \n" +
-  #    " :" + id + " bf:hasBiomedicalConcept :" + refId + " . \n" +
-  #    " :" + refId + " rdf:type bo:BcReference . \n" +
-  #    " :" + refId + " bo:enabled \"true\"^^xsd:boolean . \n" +
-  #    " :" + refId + " bo:hasBiomedicalConcept " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
-  #  "}"
-  #
-  #  # Send the request, wait the resonse
-  #  response = CRUD.update(update)
-  #
-  #  # Response
-  #  if response.success?
-  #    object = self.new
-  #    object.id = id
-  #    ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Success, id=" + id)
-  #  else
-  #    object = nil
-  #    ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
-  #  end
-  #  return object
-  #end
-
-  #def self.createCommon (formId, ns, ordinal, params)
-  #  id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
-  #  id = ModelUtility.cidAddSuffix(id, ordinal)
-  #  refId = ModelUtility.cidAddSuffix(id, "BCRef")
-  #  
-  #  # Add the properties. Only add if Enabled and Collected (i.e. ignore test codes etc, we only
-  #  # want the visibale stuff on the form).
-  #  insertSparql = ""
-  #  items = Hash.new
-  #  itemOrdinal = 1
-  #  children = params[:children]
-  #  children.each do |key, child|
-  #    ConsoleLogger::log(C_CLASS_NAME,"createCommon","Add item for Group=" + child.to_s)
-  #    #if child[:enabled] 
-  #      item = Form::Item.createBcEdit(id, ns, itemOrdinal, child)
-  #      itemOrdinal += 1
-  #      insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
-  #    #end
-  #  end
-  #    
-  #  # Build the query
-  #  update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-  #    "INSERT DATA \n" +
-  #    "{ \n" +
-  #    " :" + id + " rdf:type bf:Group . \n" +
-  #    " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
-  #    " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-  #    " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
-  #    " :" + id + " bf:note \"\"^^xsd:string . \n" +
-  #    " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-  #    insertSparql + 
-  #    " :" + id + " bf:isGroupOf :" + formId + " . \n" +
-  #    # " :" + id + " bf:hasBiomedicalConcept :" + refId + " . \n" +
-  #    # " :" + refId + " rdf:type bo:BcReference . \n" +
-  #    # " :" + refId + " bo:enabled \"true\"^^xsd:boolean . \n" +
-  #    # " :" + refId + " bo:hasBiomedicalConcept " + ModelUtility.buildUri(params[:namespace], params[:id]) + " . \n" +
-  #  "}"
-  #
-  #  # Send the request, wait the resonse
-  #  response = CRUD.update(update)
-  #
-  #  # Response
-  #  if response.success?
-  #    object = self.new
-  #    object.id = id
-  #    ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Success, id=" + id)
-  #  else
-  #    object = nil
-  #    ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
-  #  end
-  #  return object
-  #end
-
-  #def self.createBlank (parentId, ns, ordinal, params)
-  #  ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","*****Blank*****")
-  #  id = ModelUtility.cidSwapPrefix(parentId, C_CID_PREFIX)
-  #  id = ModelUtility.cidAddSuffix(id, ordinal)
-  #  
-  #  # Build the query
-  #  update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-  #    "INSERT DATA \n" +
-  #    "{ \n" +
-  #    " :" + id + " rdf:type bf:Group . \n" +
-  #    " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
-  #    " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-  #    " :" + id + " rdfs:label \"" + params[:label] + "\"^^xsd:string . \n" +
-  #    " :" + id + " bf:note \"\"^^xsd:string . \n" +
-  #    " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-  #    " :" + id + " bf:isGroupOf :" + parentId + " . \n" +
-  #  "}"
-  #
-  #  # Send the request, wait the resonse
-  #  response = CRUD.update(update)
-  #
-  #  # Response
-  #  if response.success?
-  #    object = self.new
-  #    object.id = id
-  #    ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","Success, id=" + id)
-  #  else
-  #    object = nil
-  #    ConsoleLogger::log(C_CLASS_NAME,"createBcBlank","Failed")
-  #  end
-  #  return object
-  #end
-  
   def d3(index)
     ii = 0
     result = FormNode.new(self.id, self.namespace, self.groupType, self.label, self.label, "", "", "", index, true)
-    self.items.each do |key, item|
+    self.items.sort_by! {|u| u.ordinal}
+    self.items.each do |item|
       result[:children][ii] = item.d3(ii)
       ii += 1
     end
-    self.groups.each do |key, group|
+    self.groups.sort_by! {|u| u.ordinal}
+    self.groups.each do |group|
       result[:children][ii] = group.d3(ii)
       ii += 1
     end
@@ -324,22 +164,19 @@ class Form::Group < IsoConcept
     if self.bc != nil
       result[:biomedical_concept_reference] = {:id => self.bc.id, :namespace => self.bc.namespace, :enabled => true}
     end  
-    self.items.each do |key, item|
-      result[:children][item.ordinal - 1] = item.to_api_json
+    self.items.sort_by! {|u| u.ordinal}
+    self.items.each do |item|
+      result[:children] << item.to_api_json
     end
-    self.groups.each do |key, group|
-      result[:children][group.ordinal - 1] = group.to_api_json
+    self.groups.sort_by! {|u| u.ordinal}
+    self.groups.each do |group|
+      result[:children] << group.to_api_json
     end
     #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","Result=" + result.to_s)
     return result
   end
 
   def self.to_sparql(parent_id, sparql, schema_prefix, json)
-    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","*****Entry******")
-    #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","json=" + json.to_s)
-    
-    #rdf_type = {C_PLACEHOLDER => "Placeholder", C_QUESTION => "Question", C_BC => "BcProperty"} 
-    
     id = parent_id + Uri::C_UID_SECTION_SEPARATOR + 'G' + json[:ordinal].to_s  
     super(id, sparql, schema_prefix, "Group", json[:label])
     sparql.triple_primitive_type("", id, schema_prefix, "ordinal", json[:ordinal].to_s, "positiveInteger")
@@ -375,6 +212,30 @@ class Form::Group < IsoConcept
         end    
       end
     end
+  end
+
+private
+
+  def self.children_from_triples(object, triples, id)
+    # Subgroups first
+    object.groups = Form::Group.find_for_parent(triples, object.get_links("bf", "hasSubGroup"))
+    common_groups = Form::Group.find_for_parent(triples, object.get_links("bf", "hasCommon"))
+    common_groups.each do |group|
+      group.groupType = C_COMMON_TYPE
+    end
+    object.groups += common_groups
+    # Items
+    object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasItem"))
+    # BC if we have one
+    if object.link_exists?(C_SCHEMA_PREFIX, "hasBiomedicalConcept")
+      object.groupType = C_BC_TYPE
+      uri = object.get_links(C_SCHEMA_PREFIX, "hasBiomedicalConcept")
+      bcId = ModelUtility.extractCid(uri[0])
+      bcNs = ModelUtility.extractNs(uri[0])
+      object.bc = BiomedicalConcept.findByReference(bcId, bcNs)
+    else
+      object.groupType = C_NORMAL_TYPE
+    end  
   end
 
 end

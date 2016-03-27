@@ -48,7 +48,7 @@ module Xslt
     
     # Nokogiri transform to return an XMl document
     transform = template.transform(document, paramString)
-    ConsoleLogger::log(C_CLASS_NAME,"executeXML","Transform=" + transform.to_s )
+    #ConsoleLogger::log(C_CLASS_NAME,"executeXML","Transform=" + transform.to_s )
     #transform = template.apply_to(document, paramString)
     #File.open(outputFile, 'w').write(transform.to_s)
     if outFile != nil
