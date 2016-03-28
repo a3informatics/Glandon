@@ -42,8 +42,6 @@ class Domain::Variable < IsoConcept
   
   # Find a given variable
   def self.find(id, ns)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"find","***** ENTRY *****")
     object = nil
     query = UriManagement.buildNs(ns, ["bd", "mms", "cdisc"]) +
       "SELECT ?a ?name ?description ?label ?datatype ?ordinal ?format ?defComment ?defCommentSet ?type ?role ?compliance WHERE\n" + 

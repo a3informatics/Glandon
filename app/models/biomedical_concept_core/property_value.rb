@@ -1,4 +1,4 @@
-class BiomedicalConceptCore::PropertyValue < IsoConcept
+class BiomedicalConceptCore::PropertyValue < IsoConceptNew
 
   attr_accessor :cli, :ordinal
   validates_presence_of :cli, :ordinal
@@ -12,28 +12,31 @@ class BiomedicalConceptCore::PropertyValue < IsoConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
 
-  # Instance data
-  @cli
-
-  def self.find(id, ns)
-    object = super(id, ns)
-    object.ordinal = object.properties.getOnly(C_SCHEMA_PREFIX, "ordinal")[:value].to_i
-    if object.links.exists?(C_SCHEMA_PREFIX, "value")
-      links = object.links.get(C_SCHEMA_PREFIX, "value")
-      if links[0] != ""
-        object.cli = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
-      else
-        object.cli = nil
-      end
+  def initialize(triples=nil, id=nil)
+    self.cli = nil
+    if triples.nil?
+      super
+      ordinal = ""
     else
-      object.cli = nil
+      super(triples, id)    
     end
+  end
+
+  def self.find(id, ns, children=true)
+    object = super(id, ns)
+    if children
+      children_from_triples(object, object.triples, id)
+    end
+    object.triples = ""
     return object  
   end
 
-  def self.findForParent(object, ns)    
-    results = super(C_SCHEMA_PREFIX, "hasValue", object.links, ns)
-    return results
+  def self.find_from_triples(triples, id)
+    #ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","*****ENTRY*****")
+    object = new(triples, id)
+    children_from_triples(object, triples, id)
+    object.triples = ""
+    return object
   end
 
   def self.to_sparql(parent, ordinal, params, sparql, prefix)
@@ -41,6 +44,18 @@ class BiomedicalConceptCore::PropertyValue < IsoConcept
     sparql.triple("", id, UriManagement::C_RDF, "type", prefix, "PropertyValue")
     sparql.triple_primitive_type("", id, prefix, "ordinal", ordinal.to_s, "positiveInteger")
     sparql.triple_uri("", id, prefix, "value", params[:uri_ns], params[:uri_id])
+  end
+
+private
+
+  def self.children_from_triples(object, triples, id)
+    #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****ENTRY*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","id=" + id.to_s)
+    if object.link_exists?(C_SCHEMA_PREFIX, "value")
+      links = object.get_links(C_SCHEMA_PREFIX, "value")
+      object.cli = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
+      #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","cli=" + object.to_json.to_s)
+    end
   end
 
 end

@@ -985,7 +985,8 @@ $(document).ready(function() {
         bcNode = addD3Node(currentNode, bc.label, C_BC_GROUP, sourceBcNode, true);     
         addSourceNode(currentNode.data, sourceBcNode)
         for (i=0; i<bc.properties.length; i++) {
-          var property = bc.properties[i][1];
+          //var property = bc.properties[i][1];
+          var property = bc.properties[i];
           if (property.enabled && property.collect) {
             sourcePropertyNode = newBCProperty(property);
             propertyNode = addD3Node(bcNode, property.alias, C_BC_ITEM, sourcePropertyNode, true);     

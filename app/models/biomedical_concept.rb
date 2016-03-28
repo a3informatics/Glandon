@@ -16,7 +16,15 @@ class BiomedicalConcept < BiomedicalConceptCore
  
   def self.find(id, ns, children=true)
     object = super(id, ns, children)
-    setAttributes(object)
+    if children
+      if object.link_exists?(C_SCHEMA_PREFIX, "basedOn")
+        bct_uri = object.get_links(C_SCHEMA_PREFIX, "basedOn")[0]
+        object.bct = BiomedicalConceptTemplate.find(ModelUtility.extractCid(bct_uri), ModelUtility.extractNs(bct_uri), false)
+      else
+        object.bct = nil 
+      end 
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"find","object=" + object.to_json.to_s)
     return object 
   end
 
@@ -185,17 +193,6 @@ class BiomedicalConcept < BiomedicalConceptCore
     end
 
     return results
-  end
-
-private
-  
-  def self.setAttributes(object)
-    if object.links.exists?(C_SCHEMA_PREFIX, "basedOn")
-      bct_uri = object.links.get(C_SCHEMA_PREFIX, "basedOn")[0]
-      object.bct = BiomedicalConceptTemplate.find(ModelUtility.extractCid(bct_uri), ModelUtility.extractNs(bct_uri), false)
-    else
-      object.bct = nil 
-    end   
   end
 
 end

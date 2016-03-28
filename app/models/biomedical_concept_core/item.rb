@@ -1,7 +1,7 @@
-class BiomedicalConceptCore::Item < IsoConcept
+class BiomedicalConceptCore::Item < IsoConceptNew
 
-  attr_accessor :datatypes
-  validates_presence_of :datatypes
+  attr_accessor :datatypes, :alias, :ordinal
+  validates_presence_of :datatypes, :alias, :ordinal
 
   # Constants
   C_SCHEMA_PREFIX = "cbc"
@@ -12,37 +12,50 @@ class BiomedicalConceptCore::Item < IsoConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def self.find(id, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
+  def initialize(triples=nil, id=nil)
+    self.datatypes = Array.new
+    if triples.nil?
+      super
+    else
+      super(triples, id)    
+    end
+  end
+
+  def self.find(id, ns, children=true)
     object = super(id, ns)
-    object.datatypes = BiomedicalConceptCore::Datatype.findForParent(object, ns)
+    if children
+      children_from_triples(object, object.triples, id)
+    end
+    object.triples = ""
     return object  
   end
 
-  def self.findForParent(object, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"findForParent","*****ENTRY*****")
-    results = super(C_SCHEMA_PREFIX, "hasItem", object.links, ns)
-    return results
+  def self.find_from_triples(triples, id)
+    #ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","*****ENTRY*****")
+    object = new(triples, id)
+    children_from_triples(object, triples, id)
+    object.triples = ""
+    return object
   end
 
   def flatten
     #ßConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
-    results = Hash.new
-    self.datatypes.each do |key, datatype|
+    results = Array.new
+    self.datatypes.each do |datatype|
       more = datatype.flatten
-      more.each do |key, datatype|
-        results[key] = datatype
+      more.each do |datatype|
+        results << datatype
       end
     end
     return results
   end
 
 	def to_edit
-    results = Hash.new
-    self.datatypes.each do |key, datatype|
+    results = Array.new
+    self.datatypes.each do |datatype|
       more = datatype.to_edit
-      more.each do |key, datatype|
-        results[key] = datatype
+      more.each do |datatype|
+        results << datatype
       end
     end
     return results
@@ -55,16 +68,14 @@ class BiomedicalConceptCore::Item < IsoConcept
     sparql.triple("", id, prefix, "isItemOf", "", parent.to_s)
     sparql.triple("", id, prefix, "hasClassRef", UriManagement::C_MDR_BRIDG, get_ref("hasClassRef"))
     sparql.triple("", id, prefix, "hasAttributeRef", UriManagement::C_MDR_BRIDG, get_ref("hasAttributeRef"))
-    sparql.triple_primitive_type("", id, prefix, "alias", get_literal("alias"), "string")
-    
+    sparql.triple_primitive_type("", id, prefix, "alias", self.alias.to_s, "string")
     ordinal = 1
-    self.datatypes.each do |key, datatype|
+    self.datatypes.each do |datatype|
       sparql.triple("", id, prefix, "hasDatatype", "", id + Uri::C_UID_SECTION_SEPARATOR + 'DT' + ordinal.to_s)
       ordinal += 1
     end
-
     ordinal = 1
-    self.datatypes.each do |key, datatype|
+    self.datatypes.each do |datatype|
       datatype.to_sparql(id, ordinal, params, sparql, prefix)
       ordinal += 1
     end
@@ -72,20 +83,16 @@ class BiomedicalConceptCore::Item < IsoConcept
 
 private
 
-  def get_ref(predicate)
-    result = ""
-    ref = self.links.get(C_SCHEMA_PREFIX, predicate)
-    if ref.length >= 1
-      result = ModelUtility::extractCid(ref[0])
-    end
-    return result
+  def self.children_from_triples(object, triples, id)
+    #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****ENTRY*****")
+    object.datatypes = BiomedicalConceptCore::Datatype.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "hasDatatype"))
   end
 
-  def get_literal(predicate)
+  def get_ref(predicate)
     result = ""
-    ref = self.properties.get(C_SCHEMA_PREFIX, predicate)
+    ref = self.get_links(C_SCHEMA_PREFIX, predicate)
     if ref.length >= 1
-      result = ref[0][:value]
+      result = ModelUtility::extractCid(ref[0])
     end
     return result
   end

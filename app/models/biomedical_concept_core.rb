@@ -1,37 +1,46 @@
 require "uri"
 
-class BiomedicalConceptCore < IsoManaged
+class BiomedicalConceptCore < IsoManagedNew
   
   attr_accessor :items
   
   C_SCHEMA_PREFIX = "cbc"
   
+  def initialize(triples=nil, id=nil)
+    if triples.nil?
+      super
+    else
+      super(triples, id)
+    end
+  end
+
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
-      object.items = BiomedicalConceptCore::Item.findForParent(object, ns)
+      object.items = BiomedicalConceptCore::Item.find_for_parent(object.triples, object.get_links(C_SCHEMA_PREFIX, "hasItem"))
     end
+    object.triples = ""
     return object 
   end
 
   def flatten
     #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
-    results = Hash.new
-    items.each do |iKey, item|
+    results = Array.new
+    items.each do |item|
       more = item.flatten
-      more.each do |rKey, result|
-        results[rKey] = result
+      more.each do |result|
+        results << result
       end
     end
     return results
   end
 
 	def to_edit
-    results = Hash.new
-    items.each do |iKey, item|
+    results = Array.new
+    items.each do |item|
       more = item.to_edit
-      more.each do |rKey, result|
-        results[rKey] = result
+      more.each do |result|
+        results << result
       end
     end
     result =
@@ -50,15 +59,13 @@ class BiomedicalConceptCore < IsoManaged
     properties = params[:properties]
     sparql.triple_uri("", id, prefix, "basedOn", template[:namespace], template[:id])
     sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", bc[:label], "string")
-    
     ordinal = 1
-    self.items.each do |key, item|
+    self.items.each do |item|
       sparql.triple("", id, prefix, "hasItem", "", id + Uri::C_UID_SECTION_SEPARATOR + 'I' + ordinal.to_s)
       ordinal += 1
-    end
-    
+    end 
     ordinal = 1
-    self.items.each do |key, item|
+    self.items.each do |item|
       item.to_sparql(id, ordinal, properties, sparql, prefix)
       ordinal += 1
     end

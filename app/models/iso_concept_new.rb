@@ -109,7 +109,6 @@ class IsoConceptNew
       predicate = ModelUtility.getValue('p', true, node)
       objectUri = ModelUtility.getValue('o', true, node)
       objectLiteral = ModelUtility.getValue('o', false, node)
-      ConsoleLogger::log(C_CLASS_NAME,"find","p=" + predicate.to_s + ", o(uri)=" + objectUri.to_s + ", o(lit)=" + objectLiteral)
       if predicate != ""
         triple_object = objectUri
         if triple_object == ""
@@ -125,14 +124,6 @@ class IsoConceptNew
   end
 
   # Find all objects of a given type using the link set.
-  #def self.findForParent(prefix, rdfType, links, ns)    
-  #  results = Hash.new
-  #  get_links(prefix, rdfType).each do |link|
-  #    object = find(ModelUtility.extractCid(link), ns)
-  #    results[object.id] = object
-  #  end
-  #  return results
-  #end
   def self.find_for_parent(triples, links)
     results = Array.new
     links.each do |link|
@@ -144,12 +135,11 @@ class IsoConceptNew
   
   # Find all objects of a given type using the link set.
   # TODO: Why different from the above, code is the same?
-  def self.findForChild(prefix, rdfType, links, ns)    
-    results = Hash.new
-    get_links(prefix, rdfType).each do |link|
-      object = find(ModelUtility.extractCid(link), ns)
-      object.childrenFromTriples(triples)
-      results[object.id] = object
+  def self.find_for_child(triples, links)    
+    results = Array.new
+    links.each do |link|
+      object = find_from_triples(triples, ModelUtility.extractCid(link))
+      results << object
     end
     return results
   end
@@ -218,7 +208,7 @@ private
     xsd_type = @@property_attributes[triple[:predicate]][:rdf_type]
     literal = triple[:object]
     if xsd_type == "http://www.w3.org/2001/XMLSchema#string"
-      self.instance_variable_set("@#{name}", "\"#{literal}\"")
+      self.instance_variable_set("@#{name}", "#{literal}")
     elsif xsd_type == "http://www.w3.org/2001/XMLSchema#boolean"
       value = literal.to_bool
       self.instance_variable_set("@#{name}", value)
@@ -226,22 +216,9 @@ private
       value = literal.to_i
       self.instance_variable_set("@#{name}", value)
     else
-      self.instance_variable_set("@#{name}", "\"#{literal}\"")
+      self.instance_variable_set("@#{name}", "#{literal}")
     end
   end
-
-  # decode the xsd schema type literal
-  #def decode_value(literal, xsd_type)
-  #  if xsd_type == "xsd:string"
-  #    return literal
-  #  elsif xsd_type == "xsd:boolean"
-  #    return literal.to_bool
-  #  elsif xsd_type == "xsd:integer" || xsd_type == "xsd:positiveInteger"
-  #    return literal.to_i
-  #  else
-  #    return literal
-  #  end
-  #end
 
   # Find the list of properties from the DB schema.
   def get_property_attributes

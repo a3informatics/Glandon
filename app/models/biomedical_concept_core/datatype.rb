@@ -1,4 +1,4 @@
-class BiomedicalConceptCore::Datatype < IsoConcept
+class BiomedicalConceptCore::Datatype < IsoConceptNew
 
   attr_accessor :datatype, :propertySet
   validates_presence_of :datatype, :propertySet
@@ -12,42 +12,54 @@ class BiomedicalConceptCore::Datatype < IsoConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def self.find(id, ns, children=true)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
-    object = super(id, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + object.to_json)
-    setAttributes(object)
-    if children
-      object.propertySet = BiomedicalConceptCore::Property.findForParent(object, ns)
+  def initialize(triples=nil, id=nil)
+    self.propertySet = Array.new
+    if triples.nil?
+      super
+      self.datatype = ""
+    else
+      super(triples, id)    
     end
+  end
+
+  def self.find(id, ns, children=true)
+    object = super(id, ns)
+    if children
+      children_from_triples(object, object.triples, id)
+    end
+    object.triples = ""
     return object  
   end
 
-  def self.findForParent(object, ns)    
-    results = super(C_SCHEMA_PREFIX, "hasDatatype", object.links, ns)
-    return results
+  def self.find_from_triples(triples, id, children=true)
+    #ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","*****ENTRY*****")
+    object = new(triples, id)
+    if children
+      children_from_triples(object, triples, id)
+    end
+    object.triples = ""
+    return object
   end
 
-  def self.findForChild(object, ns)    
-    results = super(C_SCHEMA_PREFIX, "hasComplexDatatype", object.links, ns)
-    return results
-  end
-
-  def self.findParent(id, ns)
-    object = find(id, ns, false)
+  def self.find_parent(triples, id)
+    object = new(triples, id)
+    datatypeLinks = object.get_links(C_SCHEMA_PREFIX, "hasDatatypeRef")
+    if datatypeLinks.length >= 1
+      object.datatype = getDatatype(datatypeLinks[0])
+    end
     return object
   end
   
   def flatten
     #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
-    results = Hash.new
-    self.propertySet.each do |oKey, oProperty|
+    results = Array.new
+    self.propertySet.each do |oProperty|
       if !oProperty.isComplex? 
-        results[oKey] = oProperty
+        results << oProperty
       else
         set = oProperty.flatten
-        set.each do |iKey, iProperty|
-          results[iKey] = iProperty
+        set.each do |iProperty|
+          results << iProperty
         end
       end
     end
@@ -55,15 +67,15 @@ class BiomedicalConceptCore::Datatype < IsoConcept
   end
 
 	def to_edit
-    #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
-    results = Hash.new
-    self.propertySet.each do |oKey, oProperty|
+    #ConsoleLogger::log(C_CLASS_NAME,"to_edit","*****ENTRY*****")
+    results = Array.new
+    self.propertySet.each do |oProperty|
       if !oProperty.isComplex? 
-        results[oKey] = oProperty.to_minimum
+        results << oProperty.to_minimum
       else
         set = oProperty.to_edit
-        set.each do |iKey, iProperty|
-          results[iKey] = iProperty
+        set.each do |iProperty|
+          results << iProperty
         end
       end
     end
@@ -76,15 +88,13 @@ class BiomedicalConceptCore::Datatype < IsoConcept
     sparql.triple_primitive_type("", id, prefix, "ordinal", ordinal.to_s, "positiveInteger")
     sparql.triple("", id, prefix, "isDatatypeOf", "", parent.to_s)
     sparql.triple("", id, prefix, "hasDatatypeRef", UriManagement::C_MDR_ISO21090, get_ref("hasDatatypeRef"))
-    
     ordinal = 1
-    self.propertySet.each do |key, property|
+    self.propertySet.each do |property|
       sparql.triple("", id, prefix, "hasProperty", "", id + Uri::C_UID_SECTION_SEPARATOR + 'P' + ordinal.to_s)
       ordinal += 1
     end
-
     ordinal = 1
-    self.propertySet.each do |key, property|
+    self.propertySet.each do |property|
       property.to_sparql(id, ordinal, params, sparql, prefix)
       ordinal += 1
     end
@@ -92,22 +102,23 @@ class BiomedicalConceptCore::Datatype < IsoConcept
 
 private
 
+  def self.children_from_triples(object, triples, id)
+    #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****ENTRY*****")
+    object.propertySet = BiomedicalConceptCore::Property.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "hasProperty"))
+    #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","Datatype=" + object.datatype.to_json.to_s)
+    datatypeLinks = object.get_links(C_SCHEMA_PREFIX, "hasDatatypeRef")
+    if datatypeLinks.length >= 1
+      object.datatype = getDatatype(datatypeLinks[0])
+    end
+  end
+
   def get_ref(predicate)
     result = ""
-    ref = self.links.get(C_SCHEMA_PREFIX, predicate)
+    ref = self.get_links(C_SCHEMA_PREFIX, predicate)
     if ref.length >= 1
       result = ModelUtility::extractCid(ref[0])
     end
     return result
-  end
-
-  def self.setAttributes(object)
-    datatypeLinks = object.links.get(C_SCHEMA_PREFIX, "hasDatatypeRef")
-    if datatypeLinks.length >= 1
-      object.datatype = getDatatype(datatypeLinks[0])
-    else
-      object.datatype = ""
-    end
   end
 
   def self.getDatatype (uri)

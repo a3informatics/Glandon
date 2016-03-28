@@ -1,7 +1,7 @@
-class BiomedicalConceptCore::Property < IsoConcept
+class BiomedicalConceptCore::Property < IsoConceptNew
 
-  attr_accessor :alias, :collect, :enabled, :qText, :pText, :datatype, :format,  :bridgPath, :values, :childComplex, :datatypeComplex, :ordinal
-  validates_presence_of :alias, :label, :collect, :enabled, :questionText, :promptText, :datatype, :format, :bridgPath, :values, :childComplex, :datatypeComplex, :ordinal
+  attr_accessor :alias, :collect, :enabled, :qText, :pText, :simpleDatatype, :datatype, :format,  :bridgPath, :values, :childComplex, :datatypeComplex, :ordinal
+  validates_presence_of :alias, :label, :collect, :enabled, :qText, :pText, :simpleDatatype, :datatype, :format, :bridgPath, :values, :childComplex, :datatypeComplex, :ordinal
 
   # Constants
   C_SCHEMA_PREFIX = "cbc"
@@ -12,34 +12,50 @@ class BiomedicalConceptCore::Property < IsoConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def self.find(id, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY*****")
-    object = super(id, ns)
-    if object.links.exists?(C_SCHEMA_PREFIX, "hasComplexDatatype")
-      object.values = nil
-      object.childComplex = BiomedicalConceptCore::Datatype.findForChild(object, ns)
-      object.datatypeComplex = nil
+  def initialize(triples=nil, id=nil)
+    self.values = Array.new
+    self.childComplex = nil
+    self.datatypeComplex = nil
+    if triples.nil?
+      super
+      self.alias = ""
+      self.collect = false
+      self.enabled = false
+      self.qText = ""
+      self.pText = ""
+      self.datatype = ""
+      self.format = ""
+      self.bridgPath = ""
+      self.ordinal = 0
     else
-      values_hash = BiomedicalConceptCore::PropertyValue.findForParent(object, ns)
-      object.values = []
-      values_hash.each do |key, value|
-        object.values[value.ordinal-1] = value 
-      end
-      if object.links.exists?(C_SCHEMA_PREFIX, "isPropertyOf")
-        links = object.links.get(C_SCHEMA_PREFIX, "isPropertyOf")
-        if links[0] != ""
-          object.datatypeComplex = BiomedicalConceptCore::Datatype.findParent(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
-        end
-      end
-      object.childComplex = nil
-      setAttributes(object)
+      self.alias = ""
+      self.collect = false
+      self.enabled = false
+      self.qText = ""
+      self.pText = ""
+      self.datatype = ""
+      self.format = ""
+      self.bridgPath = ""
+      self.ordinal = 0
+      super(triples, id)    
     end
+  end
+
+  def self.find(id, ns, children=true)
+    object = super(id, ns)
+    if children
+      children_from_triples(object, object.triples, id)
+    end
+    object.triples = ""
     return object  
   end
 
-  def self.findForParent(object, ns)
-    results = super(C_SCHEMA_PREFIX, "hasProperty", object.links, ns)
-    return results
+  def self.find_from_triples(triples, id)
+    #ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","*****ENTRY*****")
+    object = new(triples, id)
+    children_from_triples(object, triples, id)
+    object.triples = ""
+    return object
   end
 
   def isComplex?
@@ -48,12 +64,12 @@ class BiomedicalConceptCore::Property < IsoConcept
 
 	def flatten
 		#ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
-		results = Hash.new
+		results = Array.new
 		if self.isComplex? 
-			self.childComplex.each do |key, item|
+			self.childComplex.each do |item|
 				more = item.flatten
-				more.each do |iKey, datatype|
-					results[iKey] = datatype
+				more.each do |datatype|
+					results << datatype
 				end
 			end
 		end
@@ -62,12 +78,12 @@ class BiomedicalConceptCore::Property < IsoConcept
 
 	def to_edit
 		#ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
-		results = Hash.new
+		results = Array.new
 		if self.isComplex? 
-			self.childComplex.each do |key, item|
+			self.childComplex.each do |item|
 				more = item.to_edit
-				more.each do |iKey, datatype|
-					results[iKey] = datatype
+				more.each do |datatype|
+					results << datatype
 				end
 			end
 		end
@@ -88,34 +104,36 @@ class BiomedicalConceptCore::Property < IsoConcept
         ordinal += 1
       end
     else
-      property = params[self.id]
+      # TODO: This needs to be made better. Array versus hash handling. Currently an array.
+      properties = params.select {|key, item| item[:id] == self.id}
+      property = properties.values[0]
+      #ConsoleLogger::log(C_CLASS_NAME,"to_bc","Property=" + property.to_s)
       sparql.triple_primitive_type("", id, prefix, "alias", property[:alias], "string")
       sparql.triple_primitive_type("", id, prefix, "ordinal", ordinal.to_s, "positiveInteger")
       sparql.triple_primitive_type("", id, prefix, "qText", property[:qText], "string")
       sparql.triple_primitive_type("", id, prefix, "pText", property[:pText], "string")
       sparql.triple_primitive_type("", id, prefix, "enabled", property[:enabled], "boolean")
       sparql.triple_primitive_type("", id, prefix, "collect", property[:collect], "boolean")
-      sparql.triple_primitive_type("", id, prefix, "bridgPath", get_literal("bridgPath"), "string")
-      sparql.triple_primitive_type("", id, prefix, "simpleDatatype", get_literal("simpleDatatype"), "string")
-      ConsoleLogger::log(C_CLASS_NAME,"to_bc","Property=" + property.to_s)
+      sparql.triple_primitive_type("", id, prefix, "bridgPath", self.bridgPath.to_s, "string")
+      sparql.triple_primitive_type("", id, prefix, "simpleDatatype", self.simpleDatatype.to_s, "string")
+      #ConsoleLogger::log(C_CLASS_NAME,"to_bc","Property=" + property.to_s)
       if property.has_key?(:values)
         ordinal = 1
         values = property[:values]
-        values.each do |key, value|
+        values.each do |value|
           sparql.triple("", id, prefix, "hasValue", "", id + Uri::C_UID_SECTION_SEPARATOR + 'PV' + ordinal.to_s)
           ordinal += 1
         end
       end
-    end
-    
+    end  
     if self.isComplex? 
       ordinal = 1
-      self.childComplex.each do |key, datatype|
+      self.childComplex.each do |datatype|
         datatype.to_sparql(id, ordinal, params, sparql, prefix)
         ordinal += 1
       end
     else
-      property = params[self.id]
+      property = params.select {|key, item| item[:id] == self.id}
       if property.has_key?(:values)
         ordinal = 1
         values = property[:values]
@@ -138,13 +156,40 @@ class BiomedicalConceptCore::Property < IsoConcept
       end
 		end
     return {
-			:alias => self.alias, :collect => self.collect.to_s, :enabled => self.enabled.to_s, :qText => self.qText, 
+			:id => self.id, :alias => self.alias, :collect => self.collect.to_s, :enabled => self.enabled.to_s, :qText => self.qText, 
 			:pText => self.pText, :datatype => self.datatype, :format => self.format, :values => values 
 			}
 	end
 	
 private
   
+  def self.children_from_triples(object, triples, id)
+    #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****ENTRY*****")
+    if object.link_exists?(C_SCHEMA_PREFIX, "hasComplexDatatype")
+      #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","Complex")
+      object.values = nil
+      links = object.get_links(C_SCHEMA_PREFIX, "hasComplexDatatype")
+      object.childComplex = BiomedicalConceptCore::Datatype.find_for_child(triples, links)
+      object.datatypeComplex = nil
+    else
+      #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","Simple")
+      object.childComplex = nil
+      links = object.get_links(C_SCHEMA_PREFIX, "hasValue")
+      values = BiomedicalConceptCore::PropertyValue.find_for_parent(triples, links)
+      values.sort! {|item| item.ordinal }
+      object.values = values
+      count = object.values.length
+
+      if object.link_exists?(C_SCHEMA_PREFIX, "isPropertyOf")
+        links = object.get_links(C_SCHEMA_PREFIX, "isPropertyOf")
+        object.datatypeComplex = BiomedicalConceptCore::Datatype.find_parent(triples, ModelUtility.extractCid(links[0]))
+        object.datatype = getDatatype(object.datatypeComplex.datatype, count)  
+        object.format = getFormat(object.datatype)  
+      end
+    end
+    return object  
+  end
+
   def get_ref(predicate)
     result = ""
     ref = self.links.get(C_SCHEMA_PREFIX, predicate)
@@ -152,42 +197,6 @@ private
       result = ModelUtility::extractCid(ref[0])
     end
     return result
-  end
-
-  def get_literal(predicate)
-    result = ""
-    ref = self.properties.get(C_SCHEMA_PREFIX, predicate)
-    if ref.length >= 1
-      result = ref[0][:value]
-    end
-    return result
-  end
-
-  def self.setAttributes(object)
-    count = 0
-    object.label = object.properties.getOnly(C_SCHEMA_PREFIX, "name")[:value]      
-    object.alias = object.properties.getOnly(C_SCHEMA_PREFIX, "alias")[:value]      
-    object.format = object.properties.getLiteralValue(C_SCHEMA_PREFIX, "format")
-    object.collect = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "collect")[:value])      
-    object.enabled = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "enabled")[:value])      
-    object.qText = object.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]    
-    object.pText = object.properties.getOnly(C_SCHEMA_PREFIX, "pText")[:value]  
-    object.bridgPath = object.properties.getOnly(C_SCHEMA_PREFIX, "bridgPath")[:value]
-    object.ordinal = object.properties.getOnly(C_SCHEMA_PREFIX, "ordinal")[:value]
-    if object.values != nil
-      count = object.values.length
-    end
-    if object.datatypeComplex != nil
-      object.datatype = getDatatype(object.datatypeComplex.datatype, count)  
-      #ConsoleLogger::log(C_CLASS_NAME,"setAttributes","format=" + object.format)
-      if object.format == ""
-        object.format = getFormat(object.datatype)  
-      end
-    else
-      object.datatype = ""
-      object.format = ""
-    end
-    #ConsoleLogger::log(C_CLASS_NAME,"setAttributes","datatype=" + object.to_json)
   end
 
   def self.getFormat(datatype)

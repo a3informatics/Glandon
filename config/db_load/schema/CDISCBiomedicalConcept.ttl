@@ -195,14 +195,14 @@
   rdfs:range xsd:boolean ;
 .
 :simpleDatatype
-  rdf:type owl:datatypeProperty ;
+  rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Property ;
   rdfs:label "The simple datatype for the property. Derived from the ISO21090 datatype"^^xsd:string ;
   rdfs:range xsd:string ;
 .
 :bridgPath
-  rdf:type owl:datatypeProperty ;
+  rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Property ;
   rdfs:label "The BRIDG path for the property."^^xsd:string ;
@@ -214,13 +214,6 @@
   rdfs:domain :Item ;
   rdfs:label "next item"^^xsd:string ;
   rdfs:range :Item ;
-.
-:simpleDatatype
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :Property ;
-  rdfs:label "Simple Datatype"^^xsd:string ;
-  rdfs:range xsd:boolean ;
 .
 :value
   rdf:type owl:ObjectProperty ;

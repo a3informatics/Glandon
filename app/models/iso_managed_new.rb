@@ -213,7 +213,7 @@ class IsoManagedNew < IsoConceptNew
         object = self.new
         object.id = ModelUtility.extractCid(uri)
         object.namespace = ModelUtility.extractNs(uri)
-        object.rdfType = rdfType
+        object.rdf_type = rdfType
         object.label = label
         if iiSet.length == 1
           object.scopedIdentifier = IsoScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
@@ -373,7 +373,7 @@ class IsoManagedNew < IsoConceptNew
               object = self.new
               object.id = ModelUtility.extractCid(uri)
               object.namespace = ModelUtility.extractNs(uri)
-              object.rdfType = rdfType
+              object.rdf_type = rdfType
               object.label = label
               object.scopedIdentifier = IsoScopedIdentifier.new
               object.scopedIdentifier.identifier = identifier
@@ -386,7 +386,7 @@ class IsoManagedNew < IsoConceptNew
           object = self.new
           object.id = ModelUtility.extractCid(uri)
           object.namespace = ModelUtility.extractNs(uri)
-          object.rdfType = rdfType
+          object.rdf_type = rdfType
           object.label = label
           object.scopedIdentifier = IsoScopedIdentifier.new
           object.scopedIdentifier.identifier = identifier
@@ -489,7 +489,7 @@ class IsoManagedNew < IsoConceptNew
     object.lastChangedDate = timestamp
     object.explanoratoryComment = ""
     object.label = params[:label]
-    object.rdfType = rdfType
+    object.rdf_type = rdfType
     prefixSet = ["mdrItems", "isoT", "isoI", "isoR"]
     schemaPrefix = UriManagement.getPrefix(schemaNs)
     prefixSet << schemaPrefix

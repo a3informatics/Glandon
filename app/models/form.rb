@@ -197,19 +197,17 @@ class Form < IsoManagedNew
 
   def acrf
     form = self.to_api_json
-    ConsoleLogger::log(C_CLASS_NAME,"acrf_new","Form=" + form.to_s)       
+    #ConsoleLogger::log(C_CLASS_NAME,"acrf_new","Form=" + form.to_s)       
     annotations = self.annotation
-    ConsoleLogger::log(C_CLASS_NAME,"acrf_new","Annotations=" + annotations.to_json.to_s)       
+    #ConsoleLogger::log(C_CLASS_NAME,"acrf_new","Annotations=" + annotations.to_json.to_s)       
     html = crf_node(form, annotations)
     return html
   end
 
   def self.impact(params)
-  
     id = params[:id]
     namespace = params[:namespace]
     results = Hash.new
-
     # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
     query = UriManagement.buildPrefix(C_INSTANCE_PREFIX, ["bf", "bo"])  +
       "SELECT DISTINCT ?form WHERE \n" +
@@ -217,10 +215,8 @@ class Form < IsoManagedNew
       "  ?form rdf:type bf:Form . \n " +
       "  ?form (bf:hasGroup|bf:hasSubGroup|bf:hasBiomedicalConcept|bo:hasBiomedicalConcept)%2B " + ModelUtility.buildUri(namespace, id) + " . \n " +"
       "  "}\n"
-
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -230,8 +226,7 @@ class Form < IsoManagedNew
       if form != ""
         id = ModelUtility.extractCid(form)
         namespace = ModelUtility.extractNs(form)
-        results[id] = find(id, namespace)
-        ConsoleLogger::log(C_CLASS_NAME,"impact","Object found, id=" + id)        
+        results[id] = find(id, namespace, false)
       end
     end
     return results
