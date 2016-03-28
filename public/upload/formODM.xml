@@ -12,16 +12,16 @@
         <StudyEventRef StudyEventOID="SE.001" OrderNumber="1" Mandatory="Yes"/>
       </Protocol>
       <StudyEventDef OID="SE.001" Name="???" Repeating="No" Type="Scheduled">
-        <FormRef FormOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_WWWW"/>
+        <FormRef FormOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_EEEE"/>
       </StudyEventDef>
-      <FormDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_WWWW" Name="W Form"> select=""
-                <ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_WWWW_G1_G2"/><ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_WWWW_G1_G3"/><Alias Context="Domain" Name="Vital Signs"/></FormDef>
-      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_WWWW_G1_G2" Name="Systolic Blood Pressure (BC_C25298)">
+      <FormDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_EEEE" Name="New Form"> select=""
+                <ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_EEEE_G1_G2"/><ItemGroupRef ItemGroupOID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_EEEE_G1_G3"/><Alias Context="Domain" Name="Vital Signs"/></FormDef>
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_EEEE_G1_G2" Name="Systolic Blood Pressure (BC_C25298)">
         <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"/>
         <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_value"/>
         <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_WWWW_G1_G3" Name="Diastolic Blood Pressure (BC_C25299)">
+      <ItemGroupDef OID="http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_EEEE_G1_G3" Name="Diastolic Blood Pressure (BC_C25299)">
         <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"/>
         <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_value"/>
         <ItemRef ItemOID="http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_code"/>
