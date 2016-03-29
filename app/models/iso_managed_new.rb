@@ -438,7 +438,6 @@ class IsoManagedNew < IsoConceptNew
     ra = IsoRegistrationAuthority.owner
     org_name = ra.namespace.shortName
     scope = ra.namespace
-    ConsoleLogger::log(C_CLASS_NAME,"create_permitted","identifier=" + identifier + ", version=" + version.to_s + ", exists=" + exists.to_s)
     if version == IsoScopedIdentifier.first_version && exists
       result = false
       object.errors.add(:base, "The item cannot be created. The identifier is already in use.")
@@ -454,7 +453,7 @@ class IsoManagedNew < IsoConceptNew
     elsif version != IsoScopedIdentifier.first_version && !exists
       result = false
       object.errors.add(:base, "The item cannot be created. Identifier does not exist but not first version. Logic error.")
-      # TO DO: Exception here.
+      # TODO: Exception here.
     end 
     return result
   end
@@ -538,7 +537,6 @@ class IsoManagedNew < IsoConceptNew
     # Create the required namespace. Use owner name to extend
     uri = ModelUtility::version_namespace(version, instanceNs, org_name)
     useNs = uri.getNs()
-    ConsoleLogger::log(C_CLASS_NAME,"create_sparql","useNs=" + useNs)
     
     dummy_SI = IsoScopedIdentifier.create_dummy(identifier, version, version_label, ra.namespace)
     dummy_RS = IsoRegistrationState.create_dummy(identifier, version, ra.namespace)

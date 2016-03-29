@@ -5,12 +5,12 @@ class CdiscClsController < ApplicationController
   C_CLASS_NAME = "CdiscClsController"
 
   def index
-    authorize CdiscCls
+    authorize CdiscCl
     @cdiscCls = CdiscCl.all
   end
   
   def compare
-    authorize CdiscCls, :view?
+    authorize CdiscCl, :view?
     
     # Get the parameters
     id = params[:id]
@@ -48,7 +48,7 @@ class CdiscClsController < ApplicationController
   end
   
   def changes    
-    authorize CdiscCls, :view?
+    authorize CdiscCl, :view?
     id = params[:id]
     data = Array.new
     cdiscTerms = CdiscTerm.all()
@@ -88,7 +88,7 @@ class CdiscClsController < ApplicationController
   end
   
   def show
-    authorize CdiscCls
+    authorize CdiscCl
     id = params[:id]
     namespace = params[:namespace]
     @cdiscCl = CdiscCl.find(id, namespace)

@@ -2,8 +2,8 @@ require "uri"
 
 class Form::Item < IsoConceptNew
 
-  attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional
-  validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional
+  attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText
+  validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText
   
   # Constants
   C_SCHEMA_PREFIX = "bf"
@@ -12,7 +12,8 @@ class Form::Item < IsoConceptNew
   C_CID_PREFIX = "FI"
   C_BC = "BCItem"
   C_QUESTION = "Question"
-  C_PLACEHOLDER = "Placeholder"  
+  C_PLACEHOLDER = "Placeholder"
+  C_UNKNOWN = C_PLACEHOLDER  
   
   def initialize(triples=nil, id=nil)
     self.items = Array.new
@@ -25,6 +26,11 @@ class Form::Item < IsoConceptNew
       self.ordinal = 1
       self.note = ""
       self.optional = false
+      self.freeText = ""
+      self.datatype = ""
+      self.format = ""
+      self.mapping = ""
+      self.qText = ""
     else
       super(triples, id)
     end        
@@ -42,6 +48,7 @@ class Form::Item < IsoConceptNew
   def self.find_from_triples(triples, id)
     object = new(triples, id)
     children_from_triples(object, triples, id)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","find=" + object.to_json.to_s)
     object.triples = ""
     return object
   end
@@ -79,75 +86,19 @@ class Form::Item < IsoConceptNew
 
   end
 
-  def self.createBcNormal(groupId, ns, ordinal, bc, propertyId, propertyValues)
-
-    id = ModelUtility.cidSwapPrefix(groupId, C_CID_PREFIX)
-    id = ModelUtility.cidAddSuffix(id, ordinal)
-    pRefId = ModelUtility.cidAddSuffix(id, "PRef")
-    name = bc.properties[propertyId][:Name]
-    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Id=" + id.to_s)
-    #ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Ordinal=" + ordinal.to_s)
-    
-    valueOrdinal = 1
-    insertSparql = "" 
-    propertyValues.each do |value|
-      valueId = value[:id]
-      namespace = value[:namespace]
-      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Add value for Item=" + valueId + ", namespace=" + namespace)
-      vRefId = ModelUtility.cidAddSuffix(id, "VRef" + valueOrdinal.to_s)
-      insertSparql = insertSparql + " :" + id + " bf:hasValue :" + vRefId + " . \n" +
-      " :" + vRefId + " rdf:type bo:BcReference . \n" +
-      " :" + vRefId + " bo:hasValue " + ModelUtility.buildUri(namespace, valueId) + " . \n" +
-      " :" + vRefId + " bo:enabled \"true\"^^xsd:boolean . \n"
-      valueOrdinal += 1
-    end
-
-    update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      " :" + id + " rdf:type bf:BcProperty . \n" +
-      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " rdfs:label \"" + name + "\"^^xsd:string . \n" +
-      " :" + id + " bf:note \"\"^^xsd:string . \n" +
-      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      " :" + id + " bf:isItemOf :" + groupId + " . \n" +
-      " :" + id + " bf:hasProperty :" + pRefId + " . \n" +
-      " :" + pRefId + " rdf:type bo:BcReference . \n" +
-      " :" + pRefId + " bo:hasProperty " + ModelUtility.buildUri(bc.namespace, propertyId) + " . \n" +
-      " :" + pRefId + " bo:enabled \"true\"^^xsd:boolean . \n" +
-      insertSparql +
-    "}"
-
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Success, id=" + id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Failed")
-    end
-
-    return object
-
-  end
-
   def d3(index)
     ord = "1"
     if self.itemType == C_PLACEHOLDER
-      name = "Placeholder " + self.ordinal
+      name = "Placeholder " + self.ordinal.to_s
       result = FormNode.new(self.id, self.namespace,  "Placeholder", name, "", "", "", "", index, true)
       result[:freeText] = self.freeText
     elsif self.itemType == C_QUESTION
-      name = Question + ord
+      name = "Question " + self.ordinal.to_s
       result = FormNode.new(self.id, self.namespace,  "Question", name, "", "", "", "", index, true)
-      result[:datatype] = self.properties.getOnly(C_SCHEMA_PREFIX, "datatype")[:value]
-      result[:format] = self.properties.getOnly(C_SCHEMA_PREFIX, "format")[:value]
-      result[:qText] = self.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]
-      result[:mapping] = self.properties.getOnly(C_SCHEMA_PREFIX, "mapping")[:value]
+      result[:datatype] = self.datatype
+      result[:format] = self.format
+      result[:qText] = self.qText
+      result[:mapping] = self.mapping
     else
       #ConsoleLogger::log(C_CLASS_NAME,"d3","property=" + self.bcProperty.to_json)
       name = self.bcProperty.alias
@@ -192,12 +143,12 @@ class Form::Item < IsoConceptNew
       :otherCommon => []
     }
     if self.itemType == C_PLACEHOLDER
-      result[:free_text] = self.properties.getOnly(C_SCHEMA_PREFIX, "freeText")[:value]
+      result[:free_text] = self.freeText
     elsif self.itemType == C_QUESTION
-      result[:datatype] = self.properties.getOnly(C_SCHEMA_PREFIX, "datatype")[:value]
-      result[:format] = self.properties.getOnly(C_SCHEMA_PREFIX, "format")[:value]
-      result[:qText] = self.properties.getOnly(C_SCHEMA_PREFIX, "qText")[:value]
-      result[:mapping] = self.properties.getOnly(C_SCHEMA_PREFIX, "mapping")[:value]
+      result[:datatype] = self.datatype
+      result[:format] = self.format
+      result[:qText] = self.qText
+      result[:mapping] = self.mapping
     else
       if self.bcProperty != nil
         result[:property_reference] = {:id => self.bcProperty.id, :namespace => self.bcProperty.namespace, :enabled => true}
@@ -252,7 +203,6 @@ class Form::Item < IsoConceptNew
         value_ordinal = 1
         json[:children].each do |key, child|
           value = child[:value_reference]
-          ConsoleLogger::log(C_CLASS_NAME,"sparql","Add value for Item=" + value.to_s)
           ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'VR' + value_ordinal.to_s
           sparql.triple("", id, schema_prefix, "hasValue", "", ref_id.to_s)
           sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
@@ -283,35 +233,30 @@ private
 
   def self.children_from_triples(object, triples, id)
     object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasCommonItem"))
+    object.itemType = get_type(object)
     if object.link_exists?(C_SCHEMA_PREFIX, "hasProperty")
       object.itemType = C_BC
       uri = object.get_links(C_SCHEMA_PREFIX, "hasProperty")
       bcId = ModelUtility.extractCid(uri[0])
-      bcNs = ModelUtility.extractNs(uri[0])
-      ref = OperationalReference.find(bcId, bcNs)
+      #bcNs = ModelUtility.extractNs(uri[0])
+      ref = OperationalReference.find_from_triples(triples, bcId)
       object.bcProperty = ref.property
       object.bcValues = object.bcProperty.values
       links = object.get_links("bf", "hasValue")
       links.each do |link|
         id = ModelUtility.extractCid(link)
-        ns = ModelUtility.extractNs(link)
-        object.bcValueSet << OperationalReference.find(id, ns)
+        #ns = ModelUtility.extractNs(link)
+        object.bcValueSet << OperationalReference.find_from_triples(triples, id)
       end
-    elsif object.properties.exists?(C_SCHEMA_PREFIX, "freeText")
-      object.itemType = C_PLACEHOLDER
-    else
-      object.itemType = C_QUESTION
     end   
   end
 
-  def self.getType (uri)
-    #ConsoleLogger::log(C_CLASS_NAME,"getType","uri=" + uri)
-    type = ModelUtility.extractCid(uri)
-    #ConsoleLogger::log(C_CLASS_NAME,"getType","type=" + type)
+  def self.get_type(object)
+    type = ModelUtility.extractCid(object.rdf_type)
     if type == "bcBased"
       type = C_BC
-    elsif type == "vBased"
-      type = C_VARIABLE
+    elsif type == "Question"
+      type = C_QUESTION
     elsif type == "Placeholder"
       type = C_PLACEHOLDER
     else

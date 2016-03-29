@@ -31,7 +31,6 @@ class BiomedicalConceptCore::Item < IsoConceptNew
   end
 
   def self.find_from_triples(triples, id)
-    #ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","*****ENTRY*****")
     object = new(triples, id)
     children_from_triples(object, triples, id)
     object.triples = ""
@@ -39,7 +38,6 @@ class BiomedicalConceptCore::Item < IsoConceptNew
   end
 
   def flatten
-    #ßConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
     results = Array.new
     self.datatypes.each do |datatype|
       more = datatype.flatten

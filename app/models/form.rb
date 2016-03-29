@@ -88,6 +88,7 @@ class Form < IsoManagedNew
         id = uri.getCid()
         ns = uri.getNs()
         Form.to_sparql(id, sparql, C_SCHEMA_PREFIX, managed_item)
+        ConsoleLogger::log(C_CLASS_NAME,"create", "SPARQL=" + sparql.to_s)
         response = CRUD.update(sparql.to_s)
         if response.success?
           object = Form.find(id, ns)
@@ -320,7 +321,16 @@ private
       html += '<table class="table table-striped table-bordered table-condensed">'
       html += '<tr>'
       html += '<td colspan="2"><h4>' + node[:label].to_s + '</h4></td>'
-      html += '<td></td>'
+      if annotations != nil
+        html += '<td><font color="red"><h4>' 
+        domains = annotations.uniq {|entry| entry[:domain] }
+        domains.each do |domain|
+          html += domain[:domain].to_s + '<br/>'
+        end
+        html += '</h4></font></td>'
+      else
+        html += '<td></td>'
+      end
       html += '</tr>'
       node[:children].each do |child|
         html += crf_node(child, annotations)
@@ -352,6 +362,20 @@ private
       node[:children].each do |child|
         html += crf_node(child, annotations)
       end
+    elsif node[:type] == "Question"
+      ConsoleLogger::log(C_CLASS_NAME,"crf_node", "node=" + node.to_json.to_s)
+      html += '<tr>'
+      html += '<td>' + node[:qText].to_s + '</td>'
+      if annotations != nil
+        html += '<td><font color="red">' + node[:mapping].to_s + '</font></td>'
+      else
+        html += '<td></td>'
+      end
+      html += input_field(node, annotations)
+      html += '</tr>'
+      node[:children].each do |child|
+        html += crf_node(child, annotations)
+      end
     elsif node[:type] == "BCItem"
       html += '<tr>'
       html += '<td>' + node[:qText].to_s + '</td>'
@@ -378,19 +402,7 @@ private
         end
       end
       html += '</td>'
-      html += '<td>'
-      if node[:datatype] == "CL"
-        node[:children].each do |child|
-          html += crf_node(child, annotations)
-        end
-      elsif node[:datatype] == "D+T"
-        html += '<input type="date" name="date"> <input type="time" name="time">'
-      elsif node[:datatype] == "F"
-        html += '<input type="number"> . <input type="number">' 
-      else
-        html += "Not implemented yet."
-      end
-      html += '</td>'
+      html += input_field(node, annotations)
       html += '</tr>'
     elsif node[:type] == "CL"
       #ConsoleLogger::log(C_CLASS_NAME,"crf_node","node=" + node.to_json.to_s)
@@ -405,4 +417,22 @@ private
     return html
   end
 
+  def input_field(node, annotations)
+    html = '<td>'
+    if node[:datatype] == "CL"
+      node[:children].each do |child|
+        html += crf_node(child, annotations)
+      end
+    elsif node[:datatype] == "D+T"
+      html += '<input type="date" name="date"> <input type="time" name="time">'
+    elsif node[:datatype] == "F"
+      html += '<input type="number"> . <input type="number">' 
+    elsif node[:datatype] == "I"
+      html += '<input type="number">' 
+    else
+      html += "Not implemented yet."
+    end
+    html += '</td>'
+    return html
+  end
 end

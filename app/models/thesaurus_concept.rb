@@ -30,7 +30,7 @@ class ThesaurusConcept < IsoConcept
     return super("identifier", identifier, "ThesaurusConcept", schemaNs, ns)
   end
 
-  def self.find(id, ns)   
+  def self.find(id, ns, children=true)   
     #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     object = super(id, ns)
     if object != nil
@@ -39,13 +39,15 @@ class ThesaurusConcept < IsoConcept
       object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
       object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
       object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
-      object.children = allChildren(id, ns) 
-      object.parentIdentifier = ""
       if object.links.exists?(C_SCHEMA_PREFIX,"inScheme")
         object.topLevel = true
       else
         object.topLevel = false
-      end   
+      end
+      object.parentIdentifier = ""
+      if children
+        object.children = allChildren(id, ns) 
+      end 
     end
     return object    
   end

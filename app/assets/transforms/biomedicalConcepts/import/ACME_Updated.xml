@@ -3,11 +3,11 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C25347" Name="Height">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
+				<Property QText="" PText="" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>CLI-C66741_C25347</Value>
 				</Property>
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Name" Name="originalText">
-					<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
+					<Property QText="" PText="" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
 						<Value>CLI-C67153_C25347</Value>
 					</Property>
 				</Property>
@@ -37,8 +37,8 @@
 		</Class>
 		<Class Name="PerformedClinicalResult">
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+				<Property QText="Result value?" PText="Result" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property QText="Result units?" PText="Units" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
 					<Value>CLI-C66770_C49668</Value>
 					<Value>CLI-C66770_C48500</Value>
 					<Value>CLI-C71620_C41139</Value>
@@ -56,11 +56,11 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C25208" Name="Weight">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
+				<Property QText="" PText="" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>CLI-C66741_C25208</Value>
 				</Property>
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Name" Name="originalText">
-					<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
+					<Property QText="" PText="" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
 						<Value>CLI-C67153_C25208</Value>
 					</Property>
 				</Property>
@@ -90,8 +90,8 @@
 		</Class>
 		<Class Name="PerformedClinicalResult">
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+				<Property QText="Result value?" PText="Result" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property QText="Result units?" PText="Units" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
 					<Value>CLI-C66770_C28252</Value>
 					<Value>CLI-C66770_C48531</Value>
 					<Value>CLI-C66770_C48155</Value>
@@ -213,11 +213,11 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C25298" Name="Systolic Blood Pressure">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property QText="Test code" PText="Test name" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
+				<Property QText="" PText="" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>CLI-C66741_C25298</Value>
 				</Property>
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Name" Name="originalText">
-					<Property QText="Test name" PText="Test name" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
+					<Property QText="" PText="" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
 						<Value>CLI-C67153_C25298</Value>
 					</Property>
 				</Property>
@@ -239,7 +239,7 @@
 				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Code" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Position" Name="bodyPositionCode">
-				<Property QText="Question text" PText="Prompt text" Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="true">
+				<Property QText="Body position?" PText="Position" Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="true">
 					<Value>CLI-C71148_C62122</Value>
 					<Value>CLI-C71148_C62166</Value>
 					<Value>CLI-C71148_C62167</Value>
@@ -251,8 +251,8 @@
 		</Class>
 		<Class Name="PerformedClinicalResult">
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+				<Property QText="Result value?" PText="Result" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property QText="Result units?" PText="Units" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
 					<Value>CLI-C66770_C49670</Value>
 				</Property>
 			</Attribute>
@@ -267,11 +267,11 @@
 	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-ACME" Id="BC_C25299" Name="Diastolic Blood Pressure">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
+				<Property QText="" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Code (--TESTCD)" Name="code">
 					<Value>CLI-C66741_C25299</Value>
 				</Property>
 				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Name" Name="originalText">
-					<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
+					<Property QText="" PText="Prompt text" Enabled="true" Collect="false" Alias="Test Name (--TEST)" Name="value">
 						<Value>CLI-C67153_C25299</Value>
 					</Property>
 				</Property>
@@ -293,7 +293,7 @@
 				<Property QText="Question text" PText="Prompt text" Enabled="false" Collect="true" Alias="Code" Name="code"/>
 			</Attribute>
 			<Attribute Alias="Position" Name="bodyPositionCode">
-				<Property QText="Question text" PText="Prompt text" Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="true">
+				<Property QText="Body position?" PText="Position" Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="true">
 					<Value>CLI-C71148_C62122</Value>
 					<Value>CLI-C71148_C62166</Value>
 					<Value>CLI-C71148_C62167</Value>
@@ -305,8 +305,8 @@
 		</Class>
 		<Class Name="PerformedClinicalResult">
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
-				<Property QText="Question text" PText="Prompt text" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+				<Property QText="Result value?" PText="Result" Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property QText="Result units?" PText="Units" Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
 					<Value>CLI-C66770_C49670</Value>
 				</Property>
 			</Attribute>

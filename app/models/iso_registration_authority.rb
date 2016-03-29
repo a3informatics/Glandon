@@ -12,9 +12,6 @@ class IsoRegistrationAuthority
   attr_accessor :id, :number, :scheme, :namespace
   validates_presence_of :number, :scheme, :namespace
   
-  # Base namespace 
-  @@baseNs
-  
   # Constants
   C_NS_PREFIX = "mdrItems"
   C_CLASS_RA_PREFIX = "RA"
@@ -24,19 +21,19 @@ class IsoRegistrationAuthority
       
   #Class variables
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-  @@repositoryOwner = nil # The owner of the repository
-  
+  @@repositoryOwner = nil
+  @@id_map = Hash.new
+
   def persisted?
     id.present?
   end
  
   def initialize()
+    @@repositoryOwner = nil
+    @@id_map = Hash.new
+    @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
   end
 
-  def baseNs
-    return @@baseNs 
-  end
-  
   def name
     return namespace.name
   end
@@ -46,50 +43,45 @@ class IsoRegistrationAuthority
   end
 
   def self.find(id)
-    
     ra = nil
-    
-    # Create the query
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "SELECT ?c ?d ?e WHERE \n" +
-      "{ \n" +
-      "	 :" + id + " rdf:type isoR:RegistrationAuthority . \n" +
-      "  :" + id + " isoR:hasAuthorityIdentifier ?b . \n" +
-      "  :" + id + " isoR:raNamespace ?e . \n" +
-      "	 ?b isoB:organizationIdentifier ?c . \n" +
-      "	 ?b isoB:internationalCodeDesignator ?d . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      oSet = node.xpath("binding[@name='c']/literal")
-      sSet = node.xpath("binding[@name='d']/literal")
-      siSet = node.xpath("binding[@name='e']/uri")
-      if oSet.length == 1 && sSet.length == 1 && siSet.length == 1
-        ra = self.new 
-        ra.id = id
-        ra.number = oSet[0].text
-        ra.scheme = sSet[0].text
-        ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
-        #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id)
-        #ConsoleLogger::log(C_CLASS_NAME,"find","Namespace, id=" + ra.namespace.id)
+    if @@id_map.has_key?(id)
+      ra = @@id_map[id]
+    else
+      # Create the query
+      query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+        "SELECT ?c ?d ?e WHERE \n" +
+        "{ \n" +
+        "	 :" + id + " rdf:type isoR:RegistrationAuthority . \n" +
+        "  :" + id + " isoR:hasAuthorityIdentifier ?b . \n" +
+        "  :" + id + " isoR:raNamespace ?e . \n" +
+        "	 ?b isoB:organizationIdentifier ?c . \n" +
+        "	 ?b isoB:internationalCodeDesignator ?d . \n" +
+        "}"
+      # Send the request, wait the resonse
+      response = CRUD.query(query)
+      # Process the response
+      xmlDoc = Nokogiri::XML(response.body)
+      xmlDoc.remove_namespaces!
+      xmlDoc.xpath("//result").each do |node|
+        oSet = node.xpath("binding[@name='c']/literal")
+        sSet = node.xpath("binding[@name='d']/literal")
+        siSet = node.xpath("binding[@name='e']/uri")
+        if oSet.length == 1 && sSet.length == 1 && siSet.length == 1
+          ra = self.new 
+          ra.id = id
+          ra.number = oSet[0].text
+          ra.scheme = sSet[0].text
+          ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
+          @@id_map[ra.id] = ra
         end
+      end
     end
-    
-    # Return
     return ra
-    
   end
 
-  def self.all
-    
+  def self.all  
     results = Hash.new
-    
+    @@id_map = Hash.new
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "SELECT ?a ?c ?d ?e WHERE \n" +
@@ -100,10 +92,8 @@ class IsoRegistrationAuthority
       "	 ?b isoB:organizationIdentifier ?c . \n" +
       "	 ?b isoB:internationalCodeDesignator ?d . \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -118,42 +108,31 @@ class IsoRegistrationAuthority
         ra.number = oSet[0].text
         ra.scheme = sSet[0].text
         ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
-        #ConsoleLogger::log(C_CLASS_NAME,"all","Object created, id=" + ra.id)
-        #ConsoleLogger::log(C_CLASS_NAME,"all","Namespace, id=" + ra.namespace.id)
         results[ra.id] = ra
+        @@id_map[ra.id] = ra
       end
     end
-    
     # Set owner. Assumed to be first authority.
     if @@repositoryOwner == nil
       @@repositoryOwner = results.values[0]
     end
-
     # Return
     return results
-    
   end
 
   # Get the repository owner.
   def self.owner
-
     # The owner is assumed to be the first entry.
     if @@repositoryOwner == nil
       results = self.all
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"owner","Owner, id=" + @@repositoryOwner.id)
-    #ConsoleLogger::log(C_CLASS_NAME,"owner","Namespace, id=" + @@repositoryOwner.namespace.id)
     return @@repositoryOwner
-    
   end
 
   def self.create(params)
-    
     number = params[:number]
     namespaceId = params[:namespaceId]
-    #uid = ModelUtility.createUid(number)
     uid = number
-    
     # Create the query
     raiId = ModelUtility.buildCidIdentifier(C_CLASS_RAI_PREFIX, uid)
     id = ModelUtility.buildCidIdentifier(C_CLASS_RA_PREFIX, uid)
@@ -167,32 +146,22 @@ class IsoRegistrationAuthority
       " :" + id + " isoR:raNamespace :" + namespaceId + " . \n" +
       "	:" + id + " isoR:hasAuthorityIdentifier :" + raiId + " ; \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.update(update)
-    
     # Response
     if response.success?
       ra = self.new
       ra.id = id
       ra.number = number
       ra.scheme = C_DUNS
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Object created, id=" + id)
     else
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
-      ra = nil
-      #object.assign_errors(data) if response.response_code == 422
+      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
+      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
     end
     return ra
-    
-  end
-
-  def update(id)
-    return nil
   end
 
   def destroy
-    
     # Create the query
     raiId = ModelUtility.cidSwapPrefix(self.id,C_CLASS_RAI_PREFIX)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
@@ -205,17 +174,13 @@ class IsoRegistrationAuthority
       " :" + self.id + " isoR:raNamespace :" + self.namespace.id + " . \n" +
       "	:" + self.id + " isoR:hasAuthorityIdentifier :" + raiId + " ; \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"destroy","Object destroyed.")
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"destroy","Object not destroyed!")
+    # Process the response
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
     end
-     
   end
   
 end

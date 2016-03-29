@@ -1,16 +1,20 @@
 $(document).ready(function() {
   
+  var C_FORM = "Form";
+  var C_GROUP ="Group";
+  var C_COMMON_GROUP = "CommonGroup";
+  var C_PLACEHOLDER = "Placeholder";
+  var C_BC_GROUP = "BCGroup";
+  var C_BC_ITEM = "BCItem";
+  var C_QUESTION = "Question";
+  var C_CL = "CL";
+
   var sourceJson ;
   var d3Div = document.getElementById("d3");
   var html  = $("#jsonData").html();
   var normal = true;
   var currentNode = null;
   var currentThis = null;
-  var conceptIdElement = document.getElementById("conceptId");
-  var conceptNotationElement = document.getElementById("conceptNotation");
-  var conceptDefinitionElement = document.getElementById("conceptDefinition");
-  var conceptPreferredTermElement = document.getElementById("conceptPreferredTerm");
-  var conceptSynonymElement = document.getElementById("conceptSynonym");
   var namespace;
 
   // Get the JSON structure. Set the namespace of the thesauri.
@@ -19,7 +23,7 @@ $(document).ready(function() {
 
   // Draw the initial tree;
   redraw();
-  selectForm();
+  selectNone();
 
   /**
    *  Function to handle click on the D3 tree.
@@ -44,14 +48,24 @@ $(document).ready(function() {
     markNode(node, this);
     currentNode = node;
     currentThis = this;
-    if (currentNode.nodeType == "form") {
+    if (currentNode.type == C_FORM) {
       selectForm();
-    } else if (currentNode.nodeType == "group") {
+      displayForm(currentNode);
+    } else if (currentNode.type == C_GROUP) {
       selectGroup();
       displayGroup(currentNode);
-    } else {
-      selectItem();
-      displayItem(currentNode)
+    } else if (currentNode.type == C_BC_GROUP) {
+      selectBc();
+      displayBc(currentNode);
+    } else if (currentNode.type == C_BC_ITEM) {
+      selectBcItem();
+      displayBcItem(currentNode);
+    } else if (currentNode.type == C_QUESTION) {
+      selectQuestion();
+      displayQuestion(currentNode);
+    } else if (currentNode.type == C_CL) {
+      selectCl();
+      displayCl(currentNode);
     }
   }  
 
@@ -82,59 +96,100 @@ $(document).ready(function() {
     currentThis = null;
   }
 
-  function selectForm() {
-    $("#fromTable").removeClass('hidden');
+  function selectNone() {
+    $("#formTable").addClass('hidden');
     $("#groupTable").addClass('hidden');
-    $("#itemTable").addClass('hidden');
+    $("#bcTable").addClass('hidden');
+    $("#bcItemTable").addClass('hidden');
+    $("#questionTable").addClass('hidden');
+    $("#clTable").addClass('hidden');
+  }
+
+  function selectForm() {
+    $("#formTable").removeClass('hidden');
+    $("#groupTable").addClass('hidden');
+    $("#bcTable").addClass('hidden');
+    $("#bcItemTable").addClass('hidden');
+    $("#questionTable").addClass('hidden');
+    $("#clTable").addClass('hidden');
   }
 
   function selectGroup() {
     $("#formTable").addClass('hidden');
     $("#groupTable").removeClass('hidden');
-    $("#itemTable").addClass('hidden');
+    $("#bcTable").addClass('hidden');
+    $("#bcItemTable").addClass('hidden');
+    $("#questionTable").addClass('hidden');
+    $("#clTable").addClass('hidden');
   }
   
-  function selectItem() {
+  function selectBc() {
     $("#formTable").addClass('hidden');
     $("#groupTable").addClass('hidden');
-    $("#itemTable").removeClass('hidden');
+    $("#bcTable").removeClass('hidden');
+    $("#bcItemTable").addClass('hidden');
+    $("#questionTable").addClass('hidden');
+    $("#clTable").addClass('hidden');
   }
   
-  function displayGroup(node) {
-    group = $.parseJSON(node.group)
-    document.getElementById("gName").innerHTML = group.name;
-    document.getElementById("gOpt").innerHTML = group.optional;
-    document.getElementById("gNote").innerHTML = group.item;
-    document.getElementById("gOrd").innerHTML = group.ordinal;
-    document.getElementById("gRpt").innerHTML = group.repeat;
+  function selectBcItem() {
+    $("#formTable").addClass('hidden');
+    $("#groupTable").addClass('hidden');
+    $("#bcTable").addClass('hidden');
+    $("#bcItemTable").removeClass('hidden');
+    $("#questionTable").addClass('hidden');
+    $("#clTable").addClass('hidden');
+  }
+  
+  function selectQuestion() {
+    $("#formTable").addClass('hidden');
+    $("#groupTable").addClass('hidden');
+    $("#bcTable").addClass('hidden');
+    $("#bcItemTable").addClass('hidden');
+    $("#questionTable").removeClass('hidden');
+    $("#clTable").addClass('hidden');
+  }
+  
+  function selectCl() {
+    $("#formTable").addClass('hidden');
+    $("#groupTable").addClass('hidden');
+    $("#bcTable").addClass('hidden');
+    $("#bcItemTable").addClass('hidden');
+    $("#questionTable").addClass('hidden');
+    $("#clTable").removeClass('hidden');
+  }
+  
+  function displayForm(node) {
+    document.getElementById("formIdentifier").innerHTML = node.identifier;
+    document.getElementById("formLabel").innerHTML = node.label;
   }
 
-  function displayItem(node) {
-    var item = $.parseJSON(node.item);
-    var bc = item.bc;
-    var id = item.bcPropertyId
-    var property = bc.properties[id];
-    var values = property.Values;
-    document.getElementById("iName").innerHTML = item.name;
-    document.getElementById("iOpt").innerHTML = item.optional;
-    document.getElementById("iNote").innerHTML = item.item;
-    document.getElementById("iOrd").innerHTML = item.ordinal;
-    var text = ""
-    for (i=0;i<values.length;i++) {
-      var value = values[i];
-      var cCode = value.cCode;
-      var cli;
-      for (key in value.clis) {
-        if (value.clis.hasOwnProperty(key)) {
-          cli = value.clis[key];
-        }
-      } 
-      text = text + cli.notation + " (" + cCode + ")";
-      if (i < (values.length - 1)) {
-        text = text + ", "
-      }
-    }
-    document.getElementById("iProp").innerHTML = text;
+  function displayGroup(node) {
+    document.getElementById("groupLabel").innerHTML = node.label;
+  }
+
+  function displayBc(node) {
+    document.getElementById("bcLabel").innerHTML = node.name;
+  }
+
+  function displayBcItem(node) {
+    document.getElementById("bcItemLabel").innerHTML = node.name;
+    document.getElementById("bcItemQText").innerHTML = node.qText;
+    document.getElementById("bcItemDatatype").innerHTML = node.datatype;
+    document.getElementById("bcItemFormat").innerHTML = node.format;
+  }
+
+  function displayQuestion(node) {
+    document.getElementById("questionLabel").innerHTML = node.name;
+    document.getElementById("questionQText").innerHTML = node.qText;
+    document.getElementById("questionMapping").innerHTML = node.mapping;
+    document.getElementById("questionDatatype").innerHTML = node.datatype;
+    document.getElementById("questionFormat").innerHTML = node.format;
+  }
+
+  function displayCl(node) {
+    document.getElementById("clIdentifier").innerHTML = node.identifier;
+    document.getElementById("clSubmission").innerHTML = node.name;
   }
   
 });

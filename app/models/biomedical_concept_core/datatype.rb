@@ -31,12 +31,12 @@ class BiomedicalConceptCore::Datatype < IsoConceptNew
     return object  
   end
 
-  def self.find_from_triples(triples, id, children=true)
+  def self.find_from_triples(triples, id)
     #ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","*****ENTRY*****")
     object = new(triples, id)
-    if children
+    #if children
       children_from_triples(object, triples, id)
-    end
+    #end
     object.triples = ""
     return object
   end

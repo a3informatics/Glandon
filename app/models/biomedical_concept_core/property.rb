@@ -103,6 +103,11 @@ class BiomedicalConceptCore::Property < IsoConceptNew
         sparql.triple("", id, prefix, "hasComplexDatatype", "", id + Uri::C_UID_SECTION_SEPARATOR + 'DT' + ordinal.to_s)
         ordinal += 1
       end
+      ordinal = 1
+      self.childComplex.each do |datatype|
+        datatype.to_sparql(id, ordinal, params, sparql, prefix)
+        ordinal += 1
+      end
     else
       # TODO: This needs to be made better. Array versus hash handling. Currently an array.
       properties = params.select {|key, item| item[:id] == self.id}
@@ -124,17 +129,6 @@ class BiomedicalConceptCore::Property < IsoConceptNew
           sparql.triple("", id, prefix, "hasValue", "", id + Uri::C_UID_SECTION_SEPARATOR + 'PV' + ordinal.to_s)
           ordinal += 1
         end
-      end
-    end  
-    if self.isComplex? 
-      ordinal = 1
-      self.childComplex.each do |datatype|
-        datatype.to_sparql(id, ordinal, params, sparql, prefix)
-        ordinal += 1
-      end
-    else
-      property = params.select {|key, item| item[:id] == self.id}
-      if property.has_key?(:values)
         ordinal = 1
         values = property[:values]
         ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Values=" + values.to_s)
@@ -144,7 +138,7 @@ class BiomedicalConceptCore::Property < IsoConceptNew
           ordinal += 1
         end
       end
-    end
+    end  
   end
 
 	def to_minimum

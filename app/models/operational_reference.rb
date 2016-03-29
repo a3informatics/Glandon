@@ -1,4 +1,4 @@
-class OperationalReference < IsoConcept
+class OperationalReference < IsoConceptNew
 
   attr_accessor :concept, :property, :value, :enabled
   validates_presence_of :concept, :property, :value, :enabled
@@ -9,30 +9,49 @@ class OperationalReference < IsoConcept
   C_RDF_TYPE = "BcReference"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   
+  def initialize(triples=nil, id=nil)
+    self.concept = nil
+    self.property = nil
+    self.value = nil
+    if triples.nil?
+      super
+      self.enabled = true
+    else
+      super(triples, id)
+    end        
+  end
+
   def self.find(id, ns)
     object = super(id, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","enabled=" + object.to_json)
-    object.enabled = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "enabled")[:value])
-    #ConsoleLogger::log(C_CLASS_NAME,"find","enabled=" + object.enabled.to_s)
+    #object.enabled = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "enabled")[:value])
     object.concept = getReference(object, "hasBiomedicalConcept")
     object.property = getReference(object, "hasProperty")
     object.value = getReference(object, "hasValue")
     return object
   end
 
+  def self.find_from_triples(triples, id)
+    object = new(triples, id)
+    object.concept = getReference(object, "hasBiomedicalConcept")
+    object.property = getReference(object, "hasProperty")
+    object.value = getReference(object, "hasValue")
+    object.triples = ""
+    return object
+  end
+
 private
 
-  def self.getReference(object, rdfType)
+  def self.getReference(object, rdf_type)
     reference = nil
-    if object.links.exists?(C_SCHEMA_PREFIX, rdfType)
-      links = object.links.get(C_SCHEMA_PREFIX, rdfType)
+    if object.link_exists?(C_SCHEMA_PREFIX, rdf_type)
+      links = object.get_links(C_SCHEMA_PREFIX, rdf_type)
       if links[0] != ""
-        if rdfType == "hasBiomedicalConcept"
+        if rdf_type == "hasBiomedicalConcept"
           reference = BiomedicalConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
-        elsif rdfType == "hasProperty"
+        elsif rdf_type == "hasProperty"
           reference = BiomedicalConceptCore::Property.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
         else
-          reference = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
+          reference = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]), false)
         end
       end
     end

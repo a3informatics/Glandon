@@ -176,3 +176,35 @@
   rdfs:range xsd:integer ;
   skos:definition ""^^xsd:string
 .
+:datatype
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Question ;
+  rdfs:label "Datatype"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition ""^^xsd:string
+.
+:format
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Question ;
+  rdfs:label "Format"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition ""^^xsd:string
+.
+:mapping
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Question ;
+  rdfs:label "Mapping"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition ""^^xsd:string
+.
+:qText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Question ;
+  rdfs:label "Question text"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition ""^^xsd:string
+.

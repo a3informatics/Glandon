@@ -42,7 +42,6 @@ class SparqlUpdate
   end
 
   def to_s
-    ConsoleLogger::log(C_CLASS_NAME,"to_s","Prefix Set=" + @prefix_set.to_s)
     update = UriManagement.buildNs(@default_ns, @prefix_set) +
       "INSERT DATA \n" +
       "{ \n" +

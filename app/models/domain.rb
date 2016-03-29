@@ -77,7 +77,7 @@ class Domain < IsoManaged
       bcId = parts[0]
       bcNamespace = parts[1]
       bc = BiomedicalConcept.find(bcId, bcNamespace)
-      bc.flatten.each do |keyP, property|
+      bc.flatten.each do |property|
         if property.enabled
           bridg = property.bridgPath
           sdtm = BridgSdtm::get(bridg)
@@ -87,7 +87,7 @@ class Domain < IsoManaged
             if variable != nil
               ConsoleLogger::log(C_CLASS_NAME,"add","variable=" + variable.name )
               insertSparql = insertSparql + "  :" + variable.id + " bd:hasBiomedicalConcept " + ModelUtility.buildUri(bc.namespace, bc.id) + " . \n"
-              insertSparql = insertSparql + "  :" + variable.id + " bd:hasProperty " + ModelUtility.buildUri(bc.namespace, keyP) + " . \n"
+              insertSparql = insertSparql + "  :" + variable.id + " bd:hasProperty " + ModelUtility.buildUri(property.namespace, property.id) + " . \n"
             end
           end
         end

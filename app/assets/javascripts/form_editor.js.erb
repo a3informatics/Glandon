@@ -750,19 +750,21 @@ $(document).ready(function() {
           commonGroup.data.children = [];
         }  
         
-        // Move the clicked on node
+        // Move the clicked on node. Set the ordinals.
         detachForCommon(node);
         commonGroup.save.push(node);
         commonGroup.children = commonGroup.save;
         commonGroup.data.children.push(sourceNode);
+        setOrdinal(commonGroup.data);
 
-        // Move the other noted (found) nodes.
+        // Move the other noted (found) nodes. Set the ordinals
         for (var k=0; k<otherNodes.length; k++) {
           var otherNode = otherNodes[k];
           detachForCommon(otherNode);
         } 
         node.otherCommon = otherNodes
         sourceNode.otherCommon = otherSourceNodes;
+        setOrdinal(sourceNode.otherCommon);
 
         // Display the tree. Will need to set the parents in the new common group.
         setParent(commonGroup);
@@ -785,6 +787,7 @@ $(document).ready(function() {
     }
   }
 
+  // Detaches the node from its 'natural' position
   function detachForCommon(node) {
     var sourceParent;
     var parent;
@@ -797,6 +800,7 @@ $(document).ready(function() {
     setOrdinal(sourceParent);
   }
 
+  // Restore from common to 'natural' position.
   function restoreCommon(node) {
     var item;
     var parentNode;
@@ -811,6 +815,7 @@ $(document).ready(function() {
       index = item.index;
       parentNode.save.splice(index, 0, item);
       parentSourceNode.children.splice(index, 0, item.data);
+      setOrdinal(parentSourceNode);
     }
 
     // Restore the 'main' node.
@@ -819,6 +824,7 @@ $(document).ready(function() {
     index = node.index;
     parentNode.save.splice(index, 0, node);
     parentSourceNode.children.splice(index, 0, node.data);
+    setOrdinal(parentSourceNode);
 
     // Delete the item from its current position and clean out the other
     // common nodes.

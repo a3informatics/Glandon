@@ -77,58 +77,6 @@ class Form::Group < IsoConceptNew
     return object
   end
 
-  def self.createBcNormal (formId, ns, ordinal, bc)
-    id = ModelUtility.cidSwapPrefix(formId, C_CID_PREFIX)
-    id = ModelUtility.cidAddSuffix(id, ordinal)
-    refId = ModelUtility.cidAddSuffix(id, "BCRef")
-    
-    # Add the properties. Only add if Enabled and Collected (i.e. ignore test codes etc, we only
-    # want the visibale stuff on the form).
-    insertSparql = ""
-    items = Hash.new
-    itemOrdinal = 1
-    bc.properties.each do |propertyId, property|
-      ConsoleLogger::log(C_CLASS_NAME,"create_bc_normal","Add item for Group=" + propertyId)
-      if property[:Enabled] && property[:Collect]
-        item = Form::Item.createBcNormal(id, ns, itemOrdinal, bc, propertyId, property[:Values])
-        itemOrdinal += 1
-        insertSparql = insertSparql + " :" + id + " bf:hasItem :" + item.id + " . \n"
-      end
-    end
-      
-    # Build the query
-    update = UriManagement.buildNs(ns, ["bf", "bo"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      " :" + id + " rdf:type bf:Group . \n" +
-      " :" + id + " bf:repeating \"false\"^^xsd:boolean . \n" +
-      " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
-      " :" + id + " rdfs:label \"" + bc.label + "\"^^xsd:string . \n" +
-      " :" + id + " bf:note \"\"^^xsd:string . \n" +
-      " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
-      insertSparql + 
-      " :" + id + " bf:isGroupOf :" + formId + " . \n" +
-      " :" + id + " bf:hasBiomedicalConcept :" + refId + " . \n" +
-      " :" + refId + " rdf:type bo:BcReference . \n" +
-      " :" + refId + " bo:hasBiomedicalConcept " + ModelUtility.buildUri(bc.namespace, bc.id) + " . \n" +
-      " :" + refId + " bo:enabled \"true\"^^xsd:boolean . \n" +
-    "}"
-
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-
-    # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Success, id=" + id)
-    else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"createBcNormal","Failed")
-    end
-    return object
-  end
-
   def d3(index)
     ii = 0
     result = FormNode.new(self.id, self.namespace, self.groupType, self.label, self.label, "", "", "", index, true)
@@ -224,8 +172,6 @@ private
       group.groupType = C_COMMON_TYPE
     end
     object.groups += common_groups
-    # Items
-    object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasItem"))
     # BC if we have one
     if object.link_exists?(C_SCHEMA_PREFIX, "hasBiomedicalConcept")
       object.groupType = C_BC_TYPE
@@ -235,7 +181,9 @@ private
       object.bc = BiomedicalConcept.findByReference(bcId, bcNs)
     else
       object.groupType = C_NORMAL_TYPE
-    end  
+    end
+    # Items
+    object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasItem"))  
   end
 
 end

@@ -39,7 +39,7 @@ class IsoScopedIdentifier
       end
       triples.each do |triple|
         self.identifier = Triples::get_property_value(triples, UriManagement::C_ISO_I, "identifier")
-        self.version = Triples::get_property_value(triples, UriManagement::C_ISO_I, "version")
+        self.version = Triples::get_property_value(triples, UriManagement::C_ISO_I, "version").to_i
         self.versionLabel = Triples::get_property_value(triples, UriManagement::C_ISO_I, "versionLabel")
       end
     end
@@ -233,14 +233,15 @@ class IsoScopedIdentifier
 
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT"]) +
-      "SELECT DISTINCT ?d ?e ?f WHERE \n" +
+      "SELECT DISTINCT ?d ?e ?f ?g WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdfType + " . \n" +
       "  ?a isoI:hasIdentifier ?c . \n" +
       "  ?a rdfs:label ?e . \n" +
       "  ?c isoI:identifier ?d . \n" +
+      "  ?c isoI:version ?g . \n" +
       "  ?c isoI:hasScope ?f . \n" +
-      "}"
+      "} ORDER BY DESC(?g)"
     
     # Send the request, wait the resonse
     response = CRUD.query(query)

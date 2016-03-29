@@ -53,7 +53,7 @@ private
     #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","id=" + id.to_s)
     if object.link_exists?(C_SCHEMA_PREFIX, "value")
       links = object.get_links(C_SCHEMA_PREFIX, "value")
-      object.cli = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
+      object.cli = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]), false)
       #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","cli=" + object.to_json.to_s)
     end
   end
