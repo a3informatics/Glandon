@@ -181,17 +181,17 @@ class CdiscTermsController < ApplicationController
 
   def submission
     authorize CdiscTerm, :view?
-    ct = CdiscTerm.current
-    @identifier = ct.identifier
+    #ct = CdiscTerm.current
+    #@identifier = ct.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
   end
 
   def submission_report
     authorize CdiscTerm, :view?
-    ct = CdiscTerm.current
-    @identifier = ct.identifier
+    #ct = CdiscTerm.current
+    #@identifier = ct.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    pdf = Reports::CdiscSubmissionReport.new(@results)
+    pdf = Reports::CdiscSubmissionReport.new(@results, current_user)
     send_data pdf.render, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
   end
 

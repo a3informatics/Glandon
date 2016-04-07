@@ -29,7 +29,7 @@ class NotepadsController < ApplicationController
         if (@cli != nil)
         	Notepad.create :uri_id => @cli.id, :uri_ns => @cli.namespace, :identifier => @cli.identifier, 
         		:useful_1 => @cli.notation, :useful_2 => "", :user_id => user_id, :note_type => :term
-        	# There must be a better way og handling note_type parameter (should be :term not 0)
+        	# TODO: There must be a better way og handling note_type parameter (should be :term not 0)
         	@items = Notepad.where(user_id: user_id, note_type: 0).find_each
         		render :json => { :count => @items.count }, :status => 200
         else

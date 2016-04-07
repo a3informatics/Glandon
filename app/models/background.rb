@@ -28,6 +28,9 @@ class Background < ActiveRecord::Base
     outputFile = File.join(publicDir, "CT.ttl")
     response = CRUD.file(outputFile)
 
+    # Delete result files
+    CdiscCtChanges.delete
+
     # And report ...
     if response.success?
       self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())

@@ -4,7 +4,13 @@ class ApiController < ApplicationController
 
   C_CLASS_NAME = "ApiController"
 
+  def pundit_user
+    # TODO: Temporary fix to get around pundit authorisation. Need proper API user or someother solution
+    User.find(1)
+  end
+
   def index
+    authorize Form, :view?
     @forms = Form.all
     respond_to do |format|
       format.json do
@@ -20,6 +26,7 @@ class ApiController < ApplicationController
   end
 
   def form
+    authorize Form, :view?
     id = params[:id]
     ns = params[:namespace]
     @form = Form.find(id, ns)

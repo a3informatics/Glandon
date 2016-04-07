@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  # Include the user settings
+  include UserSettings
+
 	# Constants
   C_CLASS_NAME = "User"
 
@@ -17,7 +20,6 @@ class User < ActiveRecord::Base
   def set_extra
   	# Set the reader default role.
     self.add_role :reader
-    #ConsoleLogger::log(C_CLASS_NAME,"set_extra","Role set to reader")
   end
 
 end

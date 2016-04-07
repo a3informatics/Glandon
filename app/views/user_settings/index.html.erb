@@ -1,0 +1,38 @@
+<h3>Index: User Settings</h3>
+<div class="row">
+	<div class="col-md-8">
+		<table id="main" class="table table-striped table-bordered table-condensed">
+			<thead>
+				<tr>
+		    	<th>Setting</th>
+		    	<th>Current Value</th>
+		    	<th>Options</th>
+		  	</tr>
+			</thead>
+			<tbody>
+				<% @settings.each do |key, value| %>
+					<% md = @settings_metadata[key] %>
+					<tr>
+			    	<td><%= md[:label] %></td>
+			    	<% if md[:type] == "enum" %>
+			    		<% md[:enum_values].each do |option| %>
+			    			<% if option == value %>
+			    				<td>
+			    			 		<button type="button" class="btn btn-success btn-xs disabled"><%= value %></button>
+			    			 	</td>
+			    			<% end %>
+			    		<% end %>
+			    		<td>
+				  			<% md[:enum_values].each do |option| %>
+			    				<% if option != value %>
+			    					<%= link_to option, user_setting_path(:user_id => @user.id, :id => key, :value => option), :method => :put, :class => "btn btn-primary btn-xs" %>
+			    				<% end %>
+			    			<% end %>
+			    		</td>			    			
+			    	<% end %>
+				  </tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
