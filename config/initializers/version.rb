@@ -1,5 +1,5 @@
 module Version
 
-  VERSION = '0.1.8d' 
+  VERSION = '0.1.8' 
 
 end
