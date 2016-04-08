@@ -74,46 +74,46 @@ class CdiscTermsController < ApplicationController
     render :json => results, :status => 200
   end
 
-  def searchNew
-    authorize CdiscTerm, :view?
-    id = params[:id]
-    ns = params[:namespace]
-    offset = params[:start]
-    length = params[:length]
-    draw = params[:draw].to_i
-    search = params[:search]
-    searchTerm = search[:value]
-    order = params[:order]["0"]
-    col = order[:column]
-    dir = order[:dir]
-    ConsoleLogger::log(C_CLASS_NAME,"full","Search Term=" + searchTerm.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"full","Order=[" + col.to_s + "," + dir + "]")
-    count = CdiscTerm.count(searchTerm, ns)
-    items = CdiscTerm.search(offset, length, col, dir, searchTerm, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"full","Counts=[C=" + count.to_s + ",L=" + items.length.to_s + "]")
-    @results = {
-      :draw => draw.to_s,
-      :recordsTotal => length.to_s,
-      :recordsFiltered => count.to_s,
-      :data => items }
-    render json: @results
-  end 
+  #def searchNew
+  #  authorize CdiscTerm, :view?
+  #  id = params[:id]
+  #  ns = params[:namespace]
+  #  offset = params[:start]
+  #  length = params[:length]
+  #  draw = params[:draw].to_i
+  #  search = params[:search]
+  #  searchTerm = search[:value]
+  #  order = params[:order]["0"]
+  #  col = order[:column]
+  #  dir = order[:dir]
+  #  ConsoleLogger::log(C_CLASS_NAME,"full","Search Term=" + searchTerm.to_s)
+  #  ConsoleLogger::log(C_CLASS_NAME,"full","Order=[" + col.to_s + "," + dir + "]")
+  #  count = CdiscTerm.count(searchTerm, ns)
+  #  items = CdiscTerm.search(offset, length, col, dir, searchTerm, ns)
+  #  ConsoleLogger::log(C_CLASS_NAME,"full","Counts=[C=" + count.to_s + ",L=" + items.length.to_s + "]")
+  #  @results = {
+  #    :draw => draw.to_s,
+  #    :recordsTotal => length.to_s,
+  #    :recordsFiltered => count.to_s,
+  #    :data => items }
+  #  render json: @results
+  #end 
 
-  def searchOld
-    authorize CdiscTerm, :view?
-    term = params[:term]
-    textSearch = params[:textSearch]
-    cCodeSearch = params[:cCodeSearch]
-    ConsoleLogger::log(C_CLASS_NAME,"search","Term=" + term.to_s + ", textSearch=" + textSearch.to_s + ", codeSearch=" + cCodeSearch)
-    if term != "" && textSearch == "text"
-      @results = CdiscTerm.searchText(term)  
-    elsif term != "" && cCodeSearch == "ccode"
-      @results = CdiscTerm.searchIdentifier(term)
-    else
-      @results = Array.new
-    end
-    render json: @results
-  end
+  #def searchOld
+  #  authorize CdiscTerm, :view?
+  #  term = params[:term]
+  #  textSearch = params[:textSearch]
+  #  cCodeSearch = params[:cCodeSearch]
+  #  ConsoleLogger::log(C_CLASS_NAME,"search","Term=" + term.to_s + ", textSearch=" + textSearch.to_s + ", codeSearch=" + cCodeSearch)
+  #  if term != "" && textSearch == "text"
+  #    @results = CdiscTerm.searchText(term)  
+  #  elsif term != "" && cCodeSearch == "ccode"
+  #    @results = CdiscTerm.searchIdentifier(term)
+  #  else
+  #    @results = Array.new
+  #  end
+  #  render json: @results
+  #end
   
   def compare
     authorize CdiscTerm, :view?
@@ -160,6 +160,13 @@ class CdiscTermsController < ApplicationController
     ct = CdiscTerm.current
     @identifier = ct.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
+  end
+
+  def changes_report
+    authorize CdiscTerm, :view?
+    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
+    pdf = Reports::CdiscChangesReport.new(@results, current_user)
+    send_data pdf.render, filename: 'cdisc_changes.pdf', type: 'application/pdf', disposition: 'inline'
   end
 
   def changesCalc

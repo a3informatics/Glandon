@@ -15,13 +15,14 @@ class Reports::PdfReport < Prawn::Document
     dir = Rails.root.join("app", "assets", "images")
     file = File.join(dir, image_file)
     # Set document metadata
+    time_generated = Time.now
     info = {
      :Title => title,
      :Author => "Application Generated",
      :Subject => doc_type,
      :Creator => "Glandon MDR",
      :Producer => "Prawn Gem",
-     :CreationDate => Time.now
+     :CreationDate => time_generated
     }
     # Set paper size and layout
     paper_size = user.paper_size.upcase
@@ -38,7 +39,16 @@ class Reports::PdfReport < Prawn::Document
     if title
       text title, size: 24, style: :bold, align: :center
     end
-    move_down 200
+    move_down 250
+    table_data = []
+    table_data << ["Run at:", time_generated.strftime("%Y-%b-%d, %H:%M:%S")]
+    table_data << ["Run by:", user.email]
+    table(table_data, :column_widths => [50, 150], :position => :right)  do
+      style(row(0), :size => 11)
+      style(row(1), :size => 11)
+      style(column(0), :font_style => :bold)
+      cells.border_width = 0
+    end
   end
 
   def header

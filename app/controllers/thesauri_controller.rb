@@ -77,20 +77,20 @@ class ThesauriController < ApplicationController
     @thesaurus = Thesaurus.find(id, namespace, false)
   end
   
-  def searchOld
-    authorize Thesaurus, :view?
-    term = params[:term]
-    textSearch = params[:textSearch]
-    cCodeSearch = params[:cCodeSearch]
-    if term != "" && textSearch == "text"
-      @results = SponsorTerm.searchText(term)  
-    elsif term != "" && cCodeSearch == "ccode"
-      @results = SponsorTerm.searchIdentifier(term)
-    else
-      @results = Array.new
-    end
-    render json: @results
-  end
+  #def searchOld
+  #  authorize Thesaurus, :view?
+  #  term = params[:term]
+  #  textSearch = params[:textSearch]
+  #  cCodeSearch = params[:cCodeSearch]
+  #  if term != "" && textSearch == "text"
+  #    @results = SponsorTerm.searchText(term)  
+  #  elsif term != "" && cCodeSearch == "ccode"
+  #    @results = SponsorTerm.searchIdentifier(term)
+  #  else
+  #    @results = Array.new
+  #  end
+  #  render json: @results
+  #end
 
   def searchNew
     authorize Thesaurus, :view?

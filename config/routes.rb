@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       get :view
       get :search
       get :searchNew
-      get :searchOld
+      #get :searchOld
     end
   end
   resources :thesaurus_concepts do
@@ -68,13 +68,14 @@ Rails.application.routes.draw do
     collection do
       get :changesCalc
       get :changes
+      get :changes_report
       get :compareCalc
       get :compare
       get :submission_report
       get :submissionCalc
       get :submission
       get :history
-      get :searchOld
+      #get :searchOld
       get :search
       get :search2
       get :next

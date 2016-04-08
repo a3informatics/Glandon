@@ -1,14 +1,14 @@
-class Reports::CdiscSubmissionReport < Reports::PdfReport
+class Reports::CdiscChangesReport < Reports::PdfReport
 
   TABLE_WIDTHS = [40, 40, 100]
   TABLE_HEADERS = ["Code List", "Item", "Label"]
 
   def initialize(results, user)
-    super('Report', 'CDISC Submission Value Changes', user)
+    super('Report', 'CDISC Terminology Changes', user)
     # Build header
     entry = results.values[0]
     result = entry["result"]
-    title_row = ["Code List", "Item", "Label"]
+    title_row = ["Code List", "Label", "Submission Value"]
     result.each do |vKey, status|
         title_row << vKey
     end
@@ -16,47 +16,43 @@ class Reports::CdiscSubmissionReport < Reports::PdfReport
     rows = 1
     counter = 0
     table_data = main_setup(title_row)
-    detail_data = detail_setup
     # Build data
     results.each do |key, entry|
       row = []
-      cli = entry["cli"]
+      cli = entry["cl"]
       result = entry["result"]
-      row << cli["parent_identifier"]
       row << cli["identifier"]
       row << cli["label"]
+      row << cli["notation"]
       result.each do |vKey, status|
-        if status == ""
-          row << status
+        if status == "."
+          row << "."
+        elsif status == "X"
+          row << "X"
+        elsif status == "M"
+          row << "M"
         else
-          counter += 1
-          row << "[#{counter}]"
-          amendment = status.split('->')
-          from = amendment[0]
-          to = amendment[1]
-          detail_data << ["[#{counter}]", "#{amendment[0]}", "#{amendment[1]}"]
+          row << ""
         end
+        counter += 1
       end
       table_data << row
-      if rows % 7 == 0
+      if rows % 12 == 0
         # New page
         start_new_page(:layout => :landscape)
         # Output current content
-        table(table_data, :header => true, :column_widths => [60, 60, 150])  do
+        table(table_data, :header => true, :column_widths => [60, 150, 100])  do
           row(0).background_color = "F0F0F0"
           style(row(0), :size => 10, :font_style => :bold)
           style(columns(3..-1), :align => :center)
         end
         text "\n"
-        table(detail_data, :column_widths => [40]) do
-          row(0).background_color = "F0F0F0"
-          style(row(0), :size => 10, :font_style => :bold)
-        end
+        text "\n"
+        text "'.' = Unchanged, 'M' = Modified, 'X' = Deleted, ' ' = Not Defined", size: 9, align: :center, :style => :italic
         # Init again
         rows = 1
         counter = 0
         table_data = main_setup(title_row)
-        detail_data = detail_setup
       else
         rows += 1
       end
@@ -65,24 +61,14 @@ class Reports::CdiscSubmissionReport < Reports::PdfReport
       # New page
       start_new_page(:layout => :landscape)
       # Output current content if anything left over
-      table(table_data, :header => true, :column_widths => [50, 50, 150])  do
+      table(table_data, :header => true, :column_widths => [60, 150, 100]) do
         row(0).background_color = "F0F0F0"
         style(row(0), :size => 10, :font_style => :bold)
         style(columns(3..-1), :align => :center)
       end
-      text "\n"
-      table(detail_data, :column_widths => [40])  do
-        row(0).background_color = "F0F0F0"
-        style(row(0), :size => 10, :font_style => :bold)
-      end
     end
     # Footer
     footer
-  end
-
-  def detail_setup
-    local = Array.new
-    local << ["Index", "From", "To"]
   end
 
   def main_setup(headers)
