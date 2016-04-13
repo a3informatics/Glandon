@@ -140,6 +140,7 @@ Rails.application.routes.draw do
     collection do
       get :running
       post :clear
+      post :clear_completed
     end
   end
   resources :standards

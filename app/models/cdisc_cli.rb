@@ -11,14 +11,14 @@ class CdiscCli < ThesaurusConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def self.diff? (cliA, cliB)
-    result = super(cliA, cliB)
-    return result
-  end
+  #def self.diff? (cliA, cliB)
+  #  result = super(cliA, cliB)
+  #  return result
+  #end
   
-  def self.find(id, ns)
-    object = super(id, ns)
-    return object
-  end
+  #def self.find(id, ns)
+  #  object = super(id, ns)
+  #  return object
+  #end
   
 end

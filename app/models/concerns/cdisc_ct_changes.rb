@@ -24,10 +24,11 @@ class CdiscCtChanges
 		return JSON.parse(file)
 	end
 
-    def self.delete()
-        publicDir = dir_path()
-        FileUtils.rm_rf(Dir.glob(publicDir + '/*'))
-    end
+    # Be very careful, this is dangerous!!!!
+    #def self.delete()
+    #    publicDir = dir_path()
+    #    #FileUtils.rm_rf(Dir.glob(publicDir + '/*'))
+    #end
 
 private
 

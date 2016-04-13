@@ -12,27 +12,41 @@ class CdiscTerm < Thesaurus
   @@cdiscNamespace = nil # CDISC Organization identifier
   @@currentVersion = nil # The namespace for the current term version
     
+  def initialize(triples=nil, id=nil)
+    if triples.nil?
+      super
+    else
+      super(triples, id)
+    end
+  end
+
   def self.find(id, ns, children=true)
+    #object = super(id, ns, children)
+    #if children
+    #  object.children.each do |child|
+    #    child.set_extensible
+    #  end
+    #end
     object = super(id, ns, false)
     if children
-      object.children = CdiscCl.allTopLevel(id, ns)
+      object.children = CdiscCl.find_for_parent(object.triples, object.get_links(UriManagement::C_ISO_25964, "hasConcept"))
     end
     return object
   end
 
-  def self.searchText(searchTerm)
-    currentCdiscTerm = current()
-    ConsoleLogger::log(C_CLASS_NAME,"searchText","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
-    results = ThesaurusConcept.searchTextWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
-    return results
-  end
+  #def self.searchText(searchTerm)
+  #  currentCdiscTerm = current()
+  #  ConsoleLogger::log(C_CLASS_NAME,"searchText","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
+  #  results = ThesaurusConcept.searchTextWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
+  #  return results
+  #end
 
-  def self.searchIdentifier(searchTerm)
-    currentCdiscTerm = current()
-    ConsoleLogger::log(C_CLASS_NAME,"searchIdentifier","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
-    results = ThesaurusConcept.searchIdentifierWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
-    return results
-  end
+  #def self.searchIdentifier(searchTerm)
+  #  currentCdiscTerm = current()
+  #  ConsoleLogger::log(C_CLASS_NAME,"searchIdentifier","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
+  #  results = ThesaurusConcept.searchIdentifierWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
+  #  return results
+  #end
 
   def self.all
     results = Array.new
@@ -164,7 +178,7 @@ class CdiscTerm < Thesaurus
       "    ?a1 iso25964:notation ?c1 . \n" +
       "    OPTIONAL \n" +
       "    {\n" +
-      "      ?e1 iso25964:narrower ?a1 . \n" +
+      "      ?e1 iso25964:hasChild ?a1 . \n" +
       "      ?e1 iso25964:identifier ?d1 . \n" +
       "    }\n" +
       "    FILTER(STRSTARTS(STR(?a1), \"" + old_term.namespace + "\")) \n" +
@@ -172,7 +186,7 @@ class CdiscTerm < Thesaurus
       "    ?a2 iso25964:notation ?c2 . \n" +
       "    OPTIONAL \n" +
       "    {\n" +
-      "      ?e2 iso25964:narrower ?a2 . \n" +
+      "      ?e2 iso25964:hasChild ?a2 . \n" +
       "      ?e2 iso25964:identifier ?d2 . \n" +
       "    }\n" +
       "    FILTER(STRSTARTS(STR(?a2), \"" + new_term.namespace + "\")) \n" +
@@ -310,11 +324,11 @@ private
       "    }\n" +
       "    OPTIONAL\n" +
       "    {\n" +
-      "      ?a iso25964:inScheme ?h . \n" +
+      "      ?h iso25964:hasConcept ?a . \n" +
       "    }\n" +
       "    OPTIONAL\n" +
       "    { \n" +
-      "      ?j iso25964:narrower ?a .  \n" +
+      "      ?j iso25964:hasChild ?a .  \n" +
       "      ?j iso25964:identifier ?k .  \n" +
       "    } \n"
       if searchTerm != ""

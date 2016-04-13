@@ -36,7 +36,7 @@ class ThesauriController < ApplicationController
     @thesaurus.update(params)
     if @thesaurus.errors.empty?
       @thesaurus = Thesaurus.find(id,namespace)
-      render json: @thesaurus.to_D3
+      render json: @thesaurus.d3
     else
       render :json => { :errors => @thesaurus.errors.full_messages}, :status => 422
     end

@@ -1,7 +1,7 @@
 require "nokogiri"
 require "uri"
 
-class Thesaurus < IsoManaged
+class Thesaurus <  IsoManagedNew
 
   include CRUD
   include ModelUtility
@@ -23,11 +23,66 @@ class Thesaurus < IsoManaged
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
-  def self.find(id, ns, children=true)   
-    object = super(id, ns)
-    if children
-      object.children = ThesaurusConcept.allTopLevel(id, ns)
+  def initialize(triples=nil, id=nil)
+    self.children = Array.new
+    if triples.nil?
+      super
+    else
+      super(triples, id)
     end
+  end
+
+  def self.find(id, ns, children=true)   
+    # Initialise.
+    object = nil
+    # Create the query and action. Not using the base class query as returns the whole terminology tree. This query is slightly
+    # constrained and gets the first level only.
+    query = UriManagement.buildNs(ns, [UriManagement::C_ISO_I, UriManagement::C_ISO_R, UriManagement::C_ISO_25964]) +
+      "SELECT ?s ?p ?o WHERE \n" +
+      "{ \n" +
+      "  { \n" +
+      "    :" + id + " ?p ?o .\n" +
+      "    ?s ?p ?o .\n" +
+      "    FILTER(CONTAINS(STR(?s), \"" + ns + "\"))  \n" +
+      "  } UNION {\n" +
+      "    :" + id + " iso25964:hasConcept ?s .\n" +
+      "    ?s ?p ?o .\n" + 
+      "    FILTER(!CONTAINS(STR(?p), \"hasChild\"))  \n" +
+      "  } UNION {\n" +
+      "    :" + id + " isoI:hasIdentifier ?s . \n" +
+      "    ?s ?p ?o . \n" +
+      "  } UNION {\n" +
+      "    :" + id + " isoR:hasState ?s . \n" +
+      "    ?s ?p ?o . \n" +
+      "  }\n" +
+      "} ORDER BY (?s)"
+    response = CRUD.query(query)
+    # Process the response.
+    triples = Hash.new { |h,k| h[k] = [] }
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      subject = ModelUtility.getValue('s', true, node)
+      predicate = ModelUtility.getValue('p', true, node)
+      objectUri = ModelUtility.getValue('o', true, node)
+      objectLiteral = ModelUtility.getValue('o', false, node)
+      #ConsoleLogger::log(C_CLASS_NAME,"find","p=" + predicate.to_s + ", o(uri)=" + objectUri.to_s + ", o(lit)=" + objectLiteral)
+      if predicate != ""
+        triple_object = objectUri
+        if triple_object == ""
+          triple_object = objectLiteral
+        end
+        key = ModelUtility.extractCid(subject)
+        triples[key] << {:subject => subject, :predicate => predicate, :object => triple_object}
+      end
+    end
+    # Create the object based on the triples.
+    object = new(triples, id)
+    #ConsoleLogger::log(C_CLASS_NAME,"find","object=" + object.to_json.to_s)
+    if children
+      object.children = ThesaurusConcept.find_for_parent(object.triples, object.get_links(UriManagement::C_ISO_25964, "hasConcept"))
+    end
+    #object.triples = ""
     return object    
   end
   
@@ -102,7 +157,6 @@ class Thesaurus < IsoManaged
     ConsoleLogger::log(C_CLASS_NAME,"update","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"update","Params=" + params.to_s)
     self.errors.clear
-    
     # Access the data
     data = params[:data]
     if data != nil
@@ -110,7 +164,6 @@ class Thesaurus < IsoManaged
       deleteItem = data[:deleteItem]
       updateItem = data[:updateItem]
       addItem = data[:addItem]
-
       # Delete items
       if (deleteItem != nil)
         ConsoleLogger::log(C_CLASS_NAME,"update","Delete, item=" + deleteItem.to_s)
@@ -119,13 +172,12 @@ class Thesaurus < IsoManaged
           self.errors.add(:base, "The concept deletion failed.")          
         end
       end
-
       # Add items
       if (addItem != nil)
         ConsoleLogger::log(C_CLASS_NAME,"update","Insert, item=" + addItem.to_s)
         if (addItem[:parent] == self.id) 
           if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
-            ThesaurusConcept.createTopLevel(addItem, self.namespace, self.id)
+            ThesaurusConcept.create_top_level(addItem, self.namespace, self.id)
           else
             self.errors.add(:base, "The concept identifier already exisits.")
           end
@@ -133,13 +185,12 @@ class Thesaurus < IsoManaged
           if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
             parentConcept = ThesaurusConcept.find(addItem[:parent], self.namespace)
             newConcept = ThesaurusConcept.create(addItem, self.namespace)
-            parentConcept.addChild(newConcept, self.namespace)
+            parentConcept.add_child(newConcept, self.namespace)
           else
             self.errors.add(:base, "The concept identifier already exisits.")
           end
         end
       end
-
       # Update items
       if (updateItem != nil)
         ConsoleLogger::log(C_CLASS_NAME,"update","Update, item=" + updateItem.to_s)
@@ -169,12 +220,12 @@ class Thesaurus < IsoManaged
     index = 0
     baseChildId = ""
     if self.children.length <= 10
-      self.children.each do |key, child|
+      self.children.each do |child|
         result[:children][index] = ThesaurusNode.new(child)
         index += 1
       end
     else      
-      self.children.each do |key, child|
+      self.children.each do |child|
         if count == 0
           baseChildId = child.identifier;
           result[:children][index] = Hash.new

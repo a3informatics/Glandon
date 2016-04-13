@@ -13,13 +13,13 @@
         a                              iso25964:Thesaurus ;
         rdfs:label                     "CDISC Extensions" ;
         isoI:hasIdentifier             mdrItems:SI-SPONSOR_CT-1 ;
-        isoR:hasState
-                  mdrItems:RS-SPONSOR_CT ;
+        isoR:hasState                  mdrItems:RS-SPONSOR_CT ;
         isoT:changeDescription         "Creation" ;
         isoT:creationDate              "2015-11-22 13:29:50  0000" ;
-        isoT:explanatoryComment      "" ;
-        isoT:lastChangeDate           "" ;
-        isoT:origin                    "" .
+        isoT:explanatoryComment        "" ;
+        isoT:lastChangeDate            "" ;
+        isoT:origin                    "" ;
+        iso25964:hasConcept            :THC-A00001 .
 
 mdrItems:RS-SPONSOR_CT  
         a                                isoR:RegistrationState ;
@@ -38,7 +38,7 @@ mdrItems:SI-SPONSOR_CT-1
         isoI:version       1 ;
         isoI:versionLabel  "0.1" .
 
-:MDRT-A00001  
+:THC-A00001  
         a                       iso25964:ThesaurusConcept ;
         rdfs:label              "Additional Vital Sign Test Codes" ;
         iso25964:definition     "A set of additional Vital Sign Test Codes to extend the CDISC set." ;
@@ -46,11 +46,10 @@ mdrItems:SI-SPONSOR_CT-1
         iso25964:notation       "VSTEST" ;
         iso25964:preferredTerm  "" ;
         iso25964:synonym        "" ;
-        iso25964:inScheme       :TH-SPONSOR_CT-1 ;
-        iso25964:narrower       :MDRT-A00003 ;
-        iso25964:narrower       :MDRT-A00002 .
+        iso25964:hasChild       :THC-A00003 ;
+        iso25964:hasChild       :THC-A00002 .
 
-:MDRT-A00002  
+:THC-A00002  
         a                       iso25964:ThesaurusConcept ;
         rdfs:label              "APGAR Score" ;
         iso25964:definition     "An APGAR Score" ;
@@ -59,7 +58,7 @@ mdrItems:SI-SPONSOR_CT-1
         iso25964:preferredTerm  "" ;
         iso25964:synonym        "" .
 
-:MDRT-A00003  
+:THC-A00003  
         a                       iso25964:ThesaurusConcept ;
         rdfs:label              "Mid upper arm circumference" ;
         iso25964:definition     "The measurement of the mid upper arm circumference" ;

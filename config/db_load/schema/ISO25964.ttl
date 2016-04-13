@@ -30,21 +30,21 @@
   rdfs:subClassOf skos:Concept ;
   skos:definition "Thesaurus Concept"^^xsd:string ;
 .
-:inScheme
+:hasConcept
   rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:Link ;
-  rdfs:subPropertyOf skos:inScheme ;
-  rdfs:domain :ThesaurusConcept ;
-  rdfs:label "inScheme Relationship"^^xsd:string ;
-  rdfs:range :Thesaurus ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:subPropertyOf skos:isTopConcept;
+  rdfs:domain :Thesaurus ;
+  rdfs:label "hasConcept Relationship"^^xsd:string ;
+  rdfs:range :ThesaurusConcept ;
   skos:definition "Concepts belongs to thesaurus relationship."^^xsd:string ;
 .
-:narrower
+:hasChild
   rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:Link ;
+  rdfs:subPropertyOf isoC:link ;
   rdfs:subPropertyOf skos:narrower ;
   rdfs:domain :ThesaurusConcept ;
-  rdfs:label "Narrower"^^xsd:string ;
+  rdfs:label "hasChild Relationship"^^xsd:string ;
   rdfs:range :ThesaurusConcept ;
   skos:definition "Concepts belongs to concept relationship."^^xsd:string ;
 .

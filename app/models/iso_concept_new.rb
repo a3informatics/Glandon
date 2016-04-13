@@ -201,6 +201,21 @@ class IsoConceptNew
     return results
   end
 
+  # Get the links of a certain type from the set of links.
+  def get_extension(prefix, rdf_type)
+    result = ""
+    ns = UriManagement.getNs1(prefix)
+    uri = Uri.new
+    uri.setNsFragment(ns, rdf_type)
+    l = @extension_properties.select {|property| property[:rdf_type] == uri.all } 
+    #ConsoleLogger::log(C_CLASS_NAME,"get_extension","l=" + l.to_json.to_s)
+    if l.length == 1
+      result = l[0][:value]
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"get_extension","result=" + result.to_s)
+    return result
+  end
+
 private
 
   def set_class_instance(triple)

@@ -16,7 +16,6 @@
 .
 :extensible
   rdf:type rdf:Property ;
-  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :ThesaurusConcept ;
   rdfs:label "Extensible"^^xsd:string ;
   rdfs:range xsd:boolean ;

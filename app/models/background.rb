@@ -3,52 +3,40 @@ class Background < ActiveRecord::Base
   C_CLASS_NAME = "Background"
 
 	def importCdiscTerm(params)
-
     # Create the background job status
     self.update(
     	description: "Import CDISC terminology file(s). Date: " + params[:date] + ", Internal Version: " + params[:version] + ".", 
     	status: "Building manifest file.",
     	started: Time.now())
-
     # Create manifest file
     manifest = Xml::buildCdiscTermImportManifest(params[:date], params[:version], params[:files])
-    
     # Create the thesaurus (does not actually create the database entries).
     # Entries in DB created as part of the XSLT and load
     self.update(status: "Transforming terminology file.", percentage: 10)
-    
     # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
     Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", 
       { :UseVersion => params[:version], :Namespace => "'" + params[:ns] + "'", 
         :SI => "'" + params[:si] + "'", :CID => "'" + params[:cid] + "'"}, "CT.ttl")
-    
     # upload the file to the database. Send the request, wait the resonse
     self.update(status: "Loading file into database.", percentage: 50)
     publicDir = Rails.root.join("public","upload")
     outputFile = File.join(publicDir, "CT.ttl")
     response = CRUD.file(outputFile)
-
-    # Delete result files
-    CdiscCtChanges.delete
-
     # And report ...
     if response.success?
       self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
     else
       self.update(status: "Complete. Unsuccessful import.", percentage: 100, complete: true, completed: Time.now())
     end
-    
   end
   handle_asynchronously :importCdiscTerm
 
   def compareCdiscTerm(old_term, new_term)
-    
     # Create the background job status
     self.update(
       description: "Detect CDISC Terminology changes, " + new_term.versionLabel + " (V" + new_term.version.to_s + ") to " + old_term.versionLabel + " (V" + old_term.version.to_s + ").", 
       status: "Starting.",
       started: Time.now())
-
     # Get the CT top level items
     data = Array.new
     total_ct_count = 2
@@ -59,28 +47,22 @@ class Background < ActiveRecord::Base
     ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
     load_cls(data, new_term, counts, total_ct_count)
     ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
-    
     # Compare
     results = compare(data, counts[:cl_count])
-
     # Save the results
     version_hash = {:new_version => new_term.version.to_s, :old_version => old_term.version.to_s} 
     CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT, results, version_hash)
-
     # Finish
     self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
-
   end
   handle_asynchronously :compareCdiscTerm
 
   def changesCdiscTerm()
-    
     # Create the background job status
     self.update(
       description: "Detect CDISC Terminology changes, all versions.", 
       status: "Starting.",
       started: Time.now())
-
     # Get the CT top level items
     data = Array.new
     cdiscTerms = CdiscTerm.all()
@@ -91,34 +73,27 @@ class Background < ActiveRecord::Base
     cdiscTerms.each do |ct|
       load_cls(data, ct, counts, total_ct_count)
     end
-
     # Compare
     results = compare(data, counts[:cl_count])
-
     # Save the results
     CdiscCtChanges.save(CdiscCtChanges::C_ALL_CT, results)
-
     # Report Status
     self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
-
   end
   handle_asynchronously :changesCdiscTerm
 
   def submission_changes_cdisc_term()
-    
     # Create the background job status
     self.update(
       description: "Detect CDISC Terminology submission value changes, all versions.", 
       status: "Starting.",
       started: Time.now())
-
     # Get the CT top level items
     results = Hash.new
     cdisc_terms = CdiscTerm.all()
     prev_ct = nil
     missing = Array.new
     cdisc_terms.each_with_index do |ct, index|
-      #key = "V" + ct.version.to_s
       key = ct.versionLabel
       missing << key
       if index != 0 
@@ -154,42 +129,42 @@ class Background < ActiveRecord::Base
       p = 95.0 * (index.to_f/cdisc_terms.count.to_f)
       self.update(status: "Checked " + ct.versionLabel + ".", percentage: p.to_i)
     end
-
     # Save the results
     CdiscCtChanges.save(CdiscCtChanges::C_ALL_SUB, results)
-
     # Report Status
     self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
-
   end
   handle_asynchronously :submission_changes_cdisc_term
 
 private
 
   def load_cls(data, ct, counts, total_ct_count)
-    
     # Get the Cls
-    cls = CdiscCl.allTopLevel(ct.id, ct.namespace)
-    temp = {:term => ct, :cls => cls}
+    cdisc_term = CdiscTerm.find(ct.id, ct.namespace)
+    cls = cdisc_term.children
+    cls_hash = Hash.new
+    cls.each do |cl|
+      cls_hash[cl.id] = cl
+    end
+    temp = {:term => ct, :cls => cls_hash}
     data.push(temp)   
     counts[:cl_count] += cls.length
-
     # Report Status
     counts[:ct_count] += 1
-    #ConsoleLogger::log(C_CLASS_NAME, "load_cls", "CT Count=" + counts[:ct_count].to_s + ", Total CT Count=" + total_ct_count.to_s)
     p = (counts[:ct_count].to_f / total_ct_count.to_f) * 10.0
     self.update(status: "Loading release of " + ct.versionLabel + ".", percentage: p.to_i)
     return counts
-
   end
 
   def compare(data, totalCount)    
-# Do the comparison
+    ConsoleLogger::log(C_CLASS_NAME,"compare","*****Entry*****")
+    # Do the comparison
     currentCount = 0
     missing = Array.new
     results = Hash.new
     last = data.length - 1
     data.each_with_index do |curr, index|
+      ConsoleLogger::log(C_CLASS_NAME,"compare","Index=" + index.to_s)
       currTerm = curr[:term]
       version = currTerm.version
       currCls = curr[:cls]
@@ -203,14 +178,19 @@ private
           if prevCls != nil
             clCount = currCls.length
             currCls.each do |clId, currCl|
+              ConsoleLogger::log(C_CLASS_NAME,"compare","CL=" + clId)
               if prevCls.has_key?(clId)
+                ConsoleLogger::log(C_CLASS_NAME,"compare","Prev CL=" + clId)
                 prevCl = prevCls[clId]
                 if CdiscCl.diff?(currCl, prevCl)
+                  ConsoleLogger::log(C_CLASS_NAME,"compare"," M ")
                   mark = "M"
                 else
+                  ConsoleLogger::log(C_CLASS_NAME,"compare"," . ")
                   mark = "."
                 end
               else
+                ConsoleLogger::log(C_CLASS_NAME,"compare","No Prev CL")
                 mark = "."
               end
               if results.has_key?(clId)
@@ -227,7 +207,6 @@ private
                 clEntry = {:cl => {:id => currCl.id, :namespace => currCl.namespace, :identifier => currCl.identifier, :label => currCl.label, :notation => currCl.notation}, :result => result }
                 results[clId] = clEntry
               end
-
               # Report Status
               currentCount += 1
               p = 10.0 + ((currentCount.to_f * 85.0)/totalCount.to_f)
@@ -238,13 +217,12 @@ private
       else
         # First item. Build an entry for every member
         if currCls != nil
-           currCls.each do |clId, currCl|
+          currCls.each do |clId, currCl|
             result = Hash.new
             result[key] = "."
             clEntry = Hash.new
             clEntry = {:cl => {:id => currCl.id, :namespace => currCl.namespace, :identifier => currCl.identifier, :label => currCl.label, :notation => currCl.notation}, :result => result }
             results[clId] = clEntry
-
             # Report Status
             currentCount += 1
             p = 10.0 + ((currentCount.to_f * 85.0)/totalCount.to_f)
@@ -253,7 +231,6 @@ private
         end
       end
     end
-
     # Run through the entire set of results and check for missing entries.
     # If any found then mark as deleted
     results.each do |clId, clEntry|
@@ -269,7 +246,6 @@ private
         clEntry[:result] = result
       end
     end 
-
     # And return
     return results 
   end    

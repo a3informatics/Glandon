@@ -102,12 +102,12 @@ private
 
   def clisForCl(id, cdiscTerm, data) 
     cdiscCl = CdiscCl.find(id, cdiscTerm.namespace)
-  	if cdiscCl != nil
-      clis = CdiscCl.allChildren(id, cdiscTerm.namespace)
-    else
-      clis = nil
+  	clis = cdiscCl.children
+    clis_hash = Hash.new
+    clis.each do |cli|
+      clis_hash[cli.id] = cli
     end
-    temp = {:term => cdiscTerm, :cl => cdiscCl, :cli => clis}
+    temp = {:term => cdiscTerm, :cl => cdiscCl, :cli => clis_hash}
     data.push(temp)        
     return cdiscCl
   end

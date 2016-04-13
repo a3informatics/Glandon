@@ -26,7 +26,7 @@ class IsoManagedNew < IsoConceptNew
       self.explanoratoryComment = ""
       self.latest = false
       self.triples = nil
-      self.registrationState = IsoRegistrationState.new
+      self.registrationState = nil
       self.scopedIdentifier = IsoScopedIdentifier.new
     else
       super(triples, id)

@@ -91,6 +91,11 @@
             <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
             <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SI)" /> 
         </xsl:call-template>
+        <xsl:for-each select="/CDISCTerminology/Update[@version=$UseVersion]/File">
+            <xsl:call-template name="TopLevel">
+                <xsl:with-param name="pRoot" select="document(@filename)/rdf:RDF"/>
+            </xsl:call-template>
+        </xsl:for-each>
         <xsl:text>.&#xa;</xsl:text>
         
         <!-- Scoped Identifier -->
@@ -109,6 +114,29 @@
     </xsl:template>
 
     <!-- Template for each file -->
+    <xsl:template name="TopLevel">
+        
+        <xsl:param name="pRoot"/>
+        
+        <!-- Create a node set of all the code list items -->
+        <xsl:variable name="ref" select="$pRoot/mms:PermissibleValue/mms:inValueDomain"/>
+        
+        <!-- Create each code list -->
+        <xsl:for-each select="$pRoot/mms:PermissibleValue">
+            <xsl:if test="mms:inValueDomain/mms:EnumeratedValueDomain/cts:nciCode">
+                <xsl:variable name="cCode" select="mms:inValueDomain/mms:EnumeratedValueDomain/cts:nciCode"/>
+                <xsl:value-of select="concat('&#009;','iso25964:hasConcept :',$CLPrefix,$cCode,' ;',$newline)"/>
+            </xsl:if>
+        </xsl:for-each>
+        
+        <!-- Create each code list item -->
+        <xsl:for-each select=".">
+            <xsl:apply-templates select="mms:PermissibleValue"/>
+        </xsl:for-each>
+        
+    </xsl:template>
+    
+    <!-- Template for each file -->
     <xsl:template match="rdf:RDF">
 
         <!-- Create a node set of all the code list items -->
@@ -120,11 +148,11 @@
                 <xsl:variable name="cCode"
                     select="mms:inValueDomain/mms:EnumeratedValueDomain/cts:nciCode"/>
                 <xsl:apply-templates select="mms:inValueDomain/mms:EnumeratedValueDomain"/>
-                <xsl:value-of select="concat('&#009;','iso25964:narrower :',$CLIPrefix,translate(./@rdf:ID,'.','_'),' ;')"/>
+                <xsl:value-of select="concat('&#009;','iso25964:hasChild :',$CLIPrefix,translate(./@rdf:ID,'.','_'),' ;')"/>
                 <xsl:text>&#xa;</xsl:text>
                 <xsl:variable name="subref" select="$ref[@rdf:resource=concat('#',$cCode)]"/>
                 <xsl:for-each select="$subref">
-                    <xsl:value-of select="concat('&#009;','iso25964:narrower :',$CLIPrefix,translate(../@rdf:ID,'.','_'),' ;')"/>
+                    <xsl:value-of select="concat('&#009;','iso25964:hasChild :',$CLIPrefix,translate(../@rdf:ID,'.','_'),' ;')"/>
                     <xsl:text>&#xa;</xsl:text>
                 </xsl:for-each>
                 <xsl:text>.&#xa;</xsl:text>
@@ -162,7 +190,7 @@
         <xsl:text>&#009;iso25964:extensible "</xsl:text>
         <xsl:value-of select="cts:isExtensibleCodelist"/>
         <xsl:text>"^^xsd:boolean ;&#xa;</xsl:text>
-        <xsl:value-of select="concat('&#009;','iso25964:inScheme :',$CID,' ;',$newline)"/>
+        <!--<xsl:value-of select="concat('&#009;','iso25964:inScheme :',$CID,' ;',$newline)"/>-->
     </xsl:template>
 
     <!-- Template for the code list item entry -->

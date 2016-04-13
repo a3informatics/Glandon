@@ -10,6 +10,8 @@ module UriManagement
   C_ISO_C = "isoC"
   C_ISO_T = "isoT"
   C_CBC = "cbc"
+  C_ISO_25964 = "iso25964"
+  C_ISO_21090 = "iso21090"
   C_MDR_ITEMS = "mdrItems"
   C_MDR_BCTS = "mdrBcts"
   C_MDR_BCS = "mdrBcs"
@@ -28,8 +30,8 @@ module UriManagement
       C_ISO_R => "http://www.assero.co.uk/ISO11179Registration" , 
       C_ISO_C => "http://www.assero.co.uk/ISO11179Concepts" , 
       C_ISO_T => "http://www.assero.co.uk/ISO11179Types" , 
-      "iso25964" => "http://www.assero.co.uk/ISO25964" , 
-      "iso21090" => "http://www.assero.co.uk/ISO21090" ,
+      C_ISO_25964 => "http://www.assero.co.uk/ISO25964" , 
+      C_ISO_21090 => "http://www.assero.co.uk/ISO21090" ,
       C_CBC => "http://www.assero.co.uk/CDISCBiomedicalConcept",
       "bo" => "http://www.assero.co.uk/BusinessOperational" ,
       "bf" => "http://www.assero.co.uk/BusinessForm" ,
