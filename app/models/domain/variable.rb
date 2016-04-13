@@ -1,14 +1,12 @@
 require "uri"
 
-class Domain::Variable < IsoConcept
+class Domain::Variable < IsoConceptNew
   
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :bcs, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, 
-    :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype, :bcRefs
-  validates_presence_of :bcs, :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, 
+  attr_accessor :name, :description, :ordinal, :core, :defaultComment, :defaultCommentSet, :supplementalQualifier, 
     :used, :role, :origin, :notes, :length, :label, :datatype, :schemaDatatype, :bcRefs
   
   # Constants
@@ -40,7 +38,31 @@ class Domain::Variable < IsoConcept
     "Classifier.Character" => "Character",
     "Classifier.Numeric" => "Numeric" }
   
-  # Find a given variable
+  def initialize(triples=nil, id=nil)
+    self.bcRefs = Hash.new
+    if triples.nil?
+      super
+      self.name = ""
+      self.description = ""
+      self.schemaDatatype = ""
+      self.label = ""
+      self.ordinal = ""
+      self.core = ""
+      self.role = ""
+      self.datatype = ""
+      self.defaultComment = ""
+      self.defaultCommentSet = false
+      self.supplementalQualifier = false
+      self.used = true
+      self.notes = ""
+      self.length = ""
+      self.origin = ""
+    else
+      super(triples, id)    
+    end
+  end
+
+  # Find a given variable. Does not follow standard pattern due to using mms schema.
   def self.find(id, ns)
     object = nil
     query = UriManagement.buildNs(ns, ["bd", "mms", "cdisc"]) +
@@ -166,7 +188,7 @@ class Domain::Variable < IsoConcept
         object.notes = ""
         object.length = ""
         object.origin = ""
-        object.bcs = Hash.new
+        #object.bcs = Hash.new
         results[id] = object
       end
     end
@@ -176,11 +198,9 @@ class Domain::Variable < IsoConcept
 
 private
 
-  # Find a given variable
+  # Find BC references
   def self.findBcRefs(id, ns)
-    
     results = Hash.new
-
     ConsoleLogger::log(C_CLASS_NAME,"findBcRefs","***** ENTRY *****")
     object = nil
     query = UriManagement.buildNs(ns, ["bd", "cbc"]) +
@@ -190,10 +210,8 @@ private
       " ?a (cbc:isPropertyOf|cbc:isDatatypeOf|cbc:isItemOf)%2B ?b . \n" +
       " ?b rdf:type cbc:BiomedicalConceptInstance . \n" +
       "} \n"
-                  
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -213,6 +231,6 @@ private
       end
     end
     return results
-    
   end  
+
 end

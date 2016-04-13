@@ -1,6 +1,6 @@
 require "uri"
 
-class Domain < IsoManaged
+class Domain < IsoManagedNew
   
   attr_accessor :variables, :bcs
   validates_presence_of :variables, :bcs
@@ -14,15 +14,20 @@ class Domain < IsoManaged
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
 
-  # Find a given domain
+  def initialize(triples=nil, id=nil)
+    self.variables = Hash.new
+    self.bcs = Hash.new
+    if triples.nil?
+      super
+    else
+      super(triples, id)
+    end
+  end
+
   def self.find(id, ns, children=true)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"find","Namespace=" + ns)
     object = super(id, ns)
-    object.variables = Domain::Variable.findForDomain(id, ns)
-    object.bcs = Hash.new
-    #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id.to_s)
     if children
+      object.variables = Domain::Variable.findForDomain(id, ns)
       results = Hash.new
       query = UriManagement.buildNs(ns, ["bd", "mms"]) +
         "SELECT ?d WHERE\n" + 
@@ -48,8 +53,46 @@ class Domain < IsoManaged
         end
       end
     end
-    return object
+    object.triples = ""
+    return object     
   end
+
+  # Find a given domain
+  #def self.find(id, ns, children=true)
+  #  #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
+  #  #ConsoleLogger::log(C_CLASS_NAME,"find","Namespace=" + ns)
+  #  object = super(id, ns)
+  #  object.variables = Domain::Variable.findForDomain(id, ns)
+  #  object.bcs = Hash.new
+  #  #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id.to_s)
+  #  if children
+  #    results = Hash.new
+  #    query = UriManagement.buildNs(ns, ["bd", "mms"]) +
+  #      "SELECT ?d WHERE\n" + 
+  #      "{ \n" + 
+  #      " :" + id + " bd:basedOn ?a . \n" +
+  #      " ?b mms:context ?a . \n" +
+  #      " ?c bd:basedOn ?b . \n" +
+  #      " ?c bd:hasBiomedicalConcept ?d . \n" +
+  #      "} \n"
+  #                  
+  #    # Send the request, wait the resonse
+  #    response = CRUD.query(query)
+  #    
+  #    # Process the response
+  #    xmlDoc = Nokogiri::XML(response.body)
+  #    xmlDoc.remove_namespaces!
+  #    xmlDoc.xpath("//result").each do |node|
+  #      uriSet = node.xpath("binding[@name='d']/uri")
+  #      if uriSet.length == 1 
+  #        id = ModelUtility.extractCid(uriSet[0].text)
+  #        namespace = ModelUtility.extractNs(uriSet[0].text)
+  #        object.bcs[id] = BiomedicalConcept.find(id, namespace, false)
+  #      end
+  #    end
+  #  end
+  #  return object
+  #end
 
   def self.all
     super(C_RDF_TYPE, C_SCHEMA_NS)
