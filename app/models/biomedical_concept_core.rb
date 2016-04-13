@@ -23,6 +23,16 @@ class BiomedicalConceptCore < IsoManagedNew
     return object 
   end
 
+  def find_item(id)
+    flatten = self.flatten
+    items = flatten.select {|item| item.id == id}
+    if items.length > 0
+      return items[0]
+    else
+      return nil
+    end
+  end
+
   def flatten
     #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
     results = Array.new
@@ -113,10 +123,8 @@ class BiomedicalConceptCore < IsoManagedNew
       "    ?s ?p ?o . \n" +
       "  }\n" + 
       "}\n"
-
     # Send the request, wait the resonse
     response = CRUD.update(update)
-    
     # Process response
     if response.success?
       ConsoleLogger::log(C_CLASS_NAME,"destroy","Deleted")

@@ -45,14 +45,25 @@ class Form::Item < IsoConceptNew
     return object
   end
 
-  def self.find_from_triples(triples, id)
+  def self.find_from_triples(triples, id, bc)
     object = new(triples, id)
-    children_from_triples(object, triples, id)
+    children_from_triples(object, triples, id, bc)
     #ConsoleLogger::log(C_CLASS_NAME,"find","find=" + object.to_json.to_s)
     object.triples = ""
     return object
   end
   
+  # Overwrites the base definition, extra param for the BC.
+  def self.find_for_parent(triples, links, bc)
+    results = Array.new
+    links.each do |link|
+      object = find_from_triples(triples, ModelUtility.extractCid(link), bc)
+      results << object
+    end
+    sorted = results.sort_by{|item| item.id}
+    return sorted
+  end
+
   def self.createPlaceholder(groupId, ns, freeText)
 
     ordinal = 1
@@ -231,21 +242,19 @@ class Form::Item < IsoConceptNew
 
 private
 
-  def self.children_from_triples(object, triples, id)
-    object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasCommonItem"))
+  def self.children_from_triples(object, triples, id, bc=nil)
+    object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasCommonItem"), bc)
     object.itemType = get_type(object)
     if object.link_exists?(C_SCHEMA_PREFIX, "hasProperty")
       object.itemType = C_BC
       uri = object.get_links(C_SCHEMA_PREFIX, "hasProperty")
       bcId = ModelUtility.extractCid(uri[0])
-      #bcNs = ModelUtility.extractNs(uri[0])
-      ref = OperationalReference.find_from_triples(triples, bcId)
+      ref = OperationalReference.find_from_triples(triples, bcId, bc)
       object.bcProperty = ref.property
       object.bcValues = object.bcProperty.values
       links = object.get_links("bf", "hasValue")
       links.each do |link|
         id = ModelUtility.extractCid(link)
-        #ns = ModelUtility.extractNs(link)
         object.bcValueSet << OperationalReference.find_from_triples(triples, id)
       end
     end   

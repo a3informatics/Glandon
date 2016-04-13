@@ -12,13 +12,10 @@ class IsoConceptNew
   C_CID_PREFIX = "ISOC"
   C_NS_PREFIX = "mdrCons"
   C_CLASS_NAME = "IsoConcept"
-  
   C_RDF_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
   C_RDFS_LABEL = "http://www.w3.org/2000/01/rdf-schema#label"
-  #C_ISO_LINK = "http://www.assero.co.uk/ISO11179Concepts#link"
-  #C_ISO_PROPERTY = "http://www.assero.co.uk/ISO11179Concepts#property"
-
-  # Class data
+  
+  # Instance data
   @@property_attributes 
   @@link_attributes 
   
@@ -28,7 +25,7 @@ class IsoConceptNew
  
   def initialize(triples=nil, id=nil)    
     # Make sure we have the attributes and link info set. 
-    # Should only execute once. Class level info.
+    # Should only execute once as we use a simple cache mechanism.
     @@property_attributes ||= get_property_attributes
     @@link_attributes ||= get_link_attributes
     # Set default values
@@ -130,7 +127,8 @@ class IsoConceptNew
       object = find_from_triples(triples, ModelUtility.extractCid(link))
       results << object
     end
-    return results
+    sorted = results.sort_by{|item| item.id}
+    return sorted
   end
   
   # Find all objects of a given type using the link set.
@@ -249,6 +247,7 @@ private
 
   # Find the list of properties from the schema.
   def get_attributes(rdf_type)
+    ConsoleLogger::log(C_CLASS_NAME,"get_attributes","*****Entry*****")
     result = Hash.new
     query = UriManagement.buildNs("", [UriManagement::C_ISO_C]) +
       "SELECT ?a ?b ?c WHERE\n" +

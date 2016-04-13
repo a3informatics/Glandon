@@ -1,4 +1,5 @@
 module UserSettings
+  
   extend ActiveSupport::Concern
 
   # Constants

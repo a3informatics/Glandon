@@ -178,12 +178,14 @@ private
       uri = object.get_links(C_SCHEMA_PREFIX, "hasBiomedicalConcept")
       bcId = ModelUtility.extractCid(uri[0])
       bcNs = ModelUtility.extractNs(uri[0])
-      object.bc = BiomedicalConcept.findByReference(bcId, bcNs)
+      #object.bc = BiomedicalConcept.findByReference(bcId, bcNs)
+      ref = OperationalReference.find_from_triples(triples, bcId)
+      object.bc = ref.concept
     else
       object.groupType = C_NORMAL_TYPE
     end
     # Items
-    object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasItem"))  
+    object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasItem"), object.bc)  
   end
 
 end

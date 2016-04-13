@@ -30,10 +30,10 @@ class OperationalReference < IsoConceptNew
     return object
   end
 
-  def self.find_from_triples(triples, id)
+  def self.find_from_triples(triples, id, bc=nil)
     object = new(triples, id)
     object.concept = getReference(object, "hasBiomedicalConcept")
-    object.property = getReference(object, "hasProperty")
+    object.property = getReference(object, "hasProperty", bc)
     object.value = getReference(object, "hasValue")
     object.triples = ""
     return object
@@ -41,7 +41,7 @@ class OperationalReference < IsoConceptNew
 
 private
 
-  def self.getReference(object, rdf_type)
+  def self.getReference(object, rdf_type, bc=nil)
     reference = nil
     if object.link_exists?(C_SCHEMA_PREFIX, rdf_type)
       links = object.get_links(C_SCHEMA_PREFIX, rdf_type)
@@ -49,7 +49,11 @@ private
         if rdf_type == "hasBiomedicalConcept"
           reference = BiomedicalConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
         elsif rdf_type == "hasProperty"
-          reference = BiomedicalConceptCore::Property.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
+          if bc != nil
+            reference = bc.find_item(ModelUtility.extractCid(links[0]))
+          else
+            reference = BiomedicalConceptCore::Property.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
+          end
         else
           reference = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]), false)
         end

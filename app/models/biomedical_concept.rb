@@ -19,7 +19,9 @@ class BiomedicalConcept < BiomedicalConceptCore
     if children
       if object.link_exists?(C_SCHEMA_PREFIX, "basedOn")
         bct_uri = object.get_links(C_SCHEMA_PREFIX, "basedOn")[0]
-        object.bct = BiomedicalConceptTemplate.find(ModelUtility.extractCid(bct_uri), ModelUtility.extractNs(bct_uri), false)
+        # TODO: Don't get the template, not used as yet. Think about this this, save a query or two.
+        #object.bct = BiomedicalConceptTemplate.find(ModelUtility.extractCid(bct_uri), ModelUtility.extractNs(bct_uri), false)
+        object.bct = nil 
       else
         object.bct = nil 
       end 
