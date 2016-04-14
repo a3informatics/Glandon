@@ -66,14 +66,17 @@ Rails.application.routes.draw do
   end
   resources :cdisc_terms do
     collection do
-      get :changesCalc
       get :changes
+      get :changesCalc
       get :changes_report
-      get :compareCalc
       get :compare
-      get :submission_report
-      get :submissionCalc
+      get :compareCalc
       get :submission
+      get :submissionCalc
+      get :submission_report
+      get :impact
+      get :impact_calc
+      get :impact_report
       get :history
       #get :searchOld
       get :search
@@ -117,7 +120,7 @@ Rails.application.routes.draw do
       post :bc_normal_create
       get :acrf
       get :crf
-      get :test
+      #get :test
     end
   end
   namespace :forms do

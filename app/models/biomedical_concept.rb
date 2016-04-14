@@ -164,11 +164,9 @@ class BiomedicalConcept < BiomedicalConceptCore
   end
 
   def self.impact(params)
-  
     id = params[:id]
     namespace = params[:namespace]
     results = Hash.new
-
     # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["cbc"])  +
       "SELECT DISTINCT ?bc WHERE \n" +
@@ -177,10 +175,8 @@ class BiomedicalConcept < BiomedicalConceptCore
       "  ?bc (cbc:hasItem|cbc:hasDatatype|cbc:hasProperty|cbc:hasComplexDatatype|cbc:hasValue|cbc:nextValue)%2B ?o . \n " +
       "  ?o cbc:value " + ModelUtility.buildUri(namespace, id) + " . \n " +
       "}\n"
-
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -189,11 +185,10 @@ class BiomedicalConcept < BiomedicalConceptCore
       if bc != ""
         id = ModelUtility.extractCid(bc)
         namespace = ModelUtility.extractNs(bc)
-        results[id] = find(id, namespace)
+        results[id] = find(id, namespace, false)
         ConsoleLogger::log(C_CLASS_NAME,"impact","Object found, id=" + id)        
       end
     end
-
     return results
   end
 

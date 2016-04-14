@@ -4,12 +4,12 @@ class FormsController < ApplicationController
   
   C_CLASS_NAME = "FormsController"
 
-  def test
-    authorize Form, :view?
-    ns = params[:namespace]
-    id = params[:id]
-    @form = Form.find(id,ns)
-  end
+  #def test
+  #  authorize Form, :view?
+  #  ns = params[:namespace]
+  #  id = params[:id]
+  #  @form = Form.find(id,ns)
+  #end
 
   def new
     authorize Form

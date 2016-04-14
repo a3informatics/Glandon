@@ -26,7 +26,7 @@ class IsoManagedNew < IsoConceptNew
       self.explanoratoryComment = ""
       self.latest = false
       self.triples = nil
-      self.registrationState = nil
+      self.registrationState = IsoRegistrationState.new
       self.scopedIdentifier = IsoScopedIdentifier.new
     else
       super(triples, id)
@@ -73,7 +73,11 @@ class IsoManagedNew < IsoConceptNew
   end
 
   def registered?
-    return registrationState != nil
+    if registrationState == nil
+      return false
+    else
+      return self.registrationState.registered?
+    end
   end
 
   def edit?

@@ -188,18 +188,7 @@ class CdiscTermsController < ApplicationController
 
   def submission
     authorize CdiscTerm, :view?
-    #ct = CdiscTerm.current
-    #@identifier = ct.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-  end
-
-  def submission_report
-    authorize CdiscTerm, :view?
-    #ct = CdiscTerm.current
-    #@identifier = ct.identifier
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    pdf = Reports::CdiscSubmissionReport.new(@results, current_user)
-    send_data pdf.render, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
   end
 
   def submissionCalc
@@ -217,6 +206,45 @@ class CdiscTermsController < ApplicationController
         redirect_to history_cdisc_terms_path
       end
     end
+  end
+
+  def submission_report
+    authorize CdiscTerm, :view?
+    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+    pdf = Reports::CdiscSubmissionReport.new(@results, current_user)
+    send_data pdf.render, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
+  end
+
+  def impact
+    authorize CdiscTerm, :view?
+    @new_version = params[:new_version]
+    @old_version = params[:old_version]
+    @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+  end
+
+  def impact_calc
+    authorize CdiscTerm, :view?
+    # If results already prepared redirect, else calculate.
+    if CdiscCtChanges.exists?(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+      redirect_to impact_cdisc_terms_path(params)
+    else
+      hash = CdiscTerm.impact(params)
+      @cdiscTerm = hash[:object]
+      @job = hash[:job]
+      if @cdiscTerm.errors.empty?
+        redirect_to backgrounds_path
+      else
+        flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
+        redirect_to history_cdisc_terms_path
+      end
+    end
+  end
+
+  def impact_report
+    authorize CdiscTerm, :view?
+    @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+    pdf = Reports::CdiscImpactReport.new(@results, current_user)
+    send_data pdf.render, filename: 'cdisc_impact.pdf', type: 'application/pdf', disposition: 'inline'
   end
 
 private

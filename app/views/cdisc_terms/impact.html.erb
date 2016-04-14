@@ -1,0 +1,59 @@
+<h3>Impact: <%= @identifier %> <small><%= @identifier %></small></h3>
+<div class="col-md-12">
+	<table id="main" class="table table-striped table-bordered table-condensed">
+	  	<thead>
+	  		<tr>
+				<th>Code List</th>
+				<th>Item</th>
+				<th>Old Submission</th>
+				<th>New Submission</th>
+				<th>Biomedical Concept</th>
+				<th></th>
+				<th>Form</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>	
+			<% @results.each do |cli| %>
+				<% identifier = cli["identifier"] %>
+				<% parent_identifier = cli["parent_identifier"] %>
+				<% old_sub = cli["old_notation"] %>
+				<% new_sub = cli["new_notation"] %>
+				<% bcs = cli["bcs"] %>
+				<% bcs.each do |bc| %>
+					<% forms = bc["forms"] %>
+					<% if forms.length > 0 %>
+						<% bc_identifier = bc["identifier"] %>
+						<% bc_label = bc["label"] %>
+						<% forms.each do |form| %>
+							<% form_identifier = form["identifier"] %>
+							<% form_label = form["label"] %>
+							<tr>
+								<td><%= parent_identifier %></td>
+								<td><%= identifier %></td>
+								<td><%= old_sub %></td>
+								<td><%= new_sub %></td>
+								<td><%= bc_label %></td>
+								<td><%=link_to "Show", biomedical_concepts_path(:id => bc["id"], :namespace => bc["ns"]), :class => "btn btn-primary btn-xs" %></td>
+								<td><%= form_label %></td>
+								<td><%=link_to "Show", forms_path(:id => form["id"], :namespace => form["ns"]), :class => "btn btn-primary btn-xs" %></td>
+							</tr>	
+						<% end %>
+					<% else %>
+						<tr>
+							<td><%= parent_identifier %></td>
+							<td><%= identifier %></td>
+							<td><%= old_sub %></td>
+							<td><%= new_sub %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>	
+					<% end %>
+				<%end %>
+			<% end %>
+		</tbody>
+	</table>
+	<%= link_to "Report", impact_report_cdisc_terms_path(:format => :pdf, :new_version => @new_version, :old_version => @old_version) , :class => "btn btn-primary", :target => "_blank" %>
+</div>

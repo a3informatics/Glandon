@@ -165,6 +165,10 @@ class IsoRegistrationState
     return @@owner
   end
   
+  def registered?()
+    return self.registrationStatus != C_NOTSET
+  end
+
   def self.nextState(state)
     info = @@stateInfo[state]
     nextState = info[:next_state]

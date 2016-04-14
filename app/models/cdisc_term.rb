@@ -169,6 +169,14 @@ class CdiscTerm < Thesaurus
     return { :object => object, :job => job }
   end
 
+  def self.impact(params)
+    object = self.new
+    object.errors.clear
+    job = Background.create
+    job.submission_changes_impact(params)
+    return { :object => object, :job => job }
+  end
+
   def self.submission_diff(old_term, new_term)
     results = Array.new
     query = UriManagement.buildPrefix("", ["iso25964"]) +

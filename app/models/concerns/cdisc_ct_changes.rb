@@ -2,8 +2,9 @@ class CdiscCtChanges
 
 	C_ALL_CT = "All_CT"
 	C_ALL_SUB = "All_Submission"
-    C_TWO_CT = "Two_CT"
-	C_CODELIST = "Codelist"
+    C_TWO_CT = "Compare_Two_CT"
+	C_TWO_CT_IMPACT = "Impact_Two_CT"
+    C_CODELIST = "Codelist"
 	C_CLASS_NAME = "CdiscCtChanges"
 
 	def self.save(type, results, params={})
@@ -45,7 +46,10 @@ private
         elsif type == C_TWO_CT
     		filename = "CDISC_CT_" + params[:new_version] + "_" + params[:old_version] + "_Changes.txt"
     		outputFile = File.join(publicDir, filename)
-    	elsif type == C_CODELIST
+    	elsif type == C_TWO_CT_IMPACT
+            filename = "CDISC_CT_" + params[:new_version] + "_" + params[:old_version] + "_Impact.txt"
+            outputFile = File.join(publicDir, filename)
+        elsif type == C_CODELIST
     		filename = "CDISC_CT_" + params[:codelist] + "_Changes.txt"
     		outputFile = File.join(publicDir, filename)    		
     	else

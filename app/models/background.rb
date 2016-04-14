@@ -136,6 +136,56 @@ class Background < ActiveRecord::Base
   end
   handle_asynchronously :submission_changes_cdisc_term
 
+  def submission_changes_impact(params)
+    results = Hash.new
+    # Create the background job status
+    self.update(
+      description: "Detect CDISC Terminology submission value changes impact.", 
+      status: "Starting.",
+      started: Time.now())
+    # Get the CTs
+    new_id = params[:new_id]
+    new_ns = params[:new_ns]
+    old_id = params[:old_id]
+    old_ns = params[:old_ns]
+    old_ct = CdiscTerm.find(old_id, old_ns, false)
+    new_ct = CdiscTerm.find(new_id, new_ns, false)   
+    # Get the submission differences  
+    diffs = CdiscTerm.submission_diff(old_ct, new_ct)
+    # Assess impact
+    index = 1
+    count = diffs.length
+    diffs.each do |diff|
+      uri = diff[:old_uri]
+      id = ModelUtility.extractCid(uri)
+      ns = ModelUtility.extractNs(uri)
+      bcs = BiomedicalConcept.impact({:id => id, :namespace => ns})
+      bc_results = Array.new  
+      if bcs.length > 0
+        bcs.each do |bc_id, bc|
+          forms = Form.impact({:id => bc.id, :namespace => bc.namespace})
+          form_results = Array.new
+          forms.each do |form_id, form|
+            form_results << {:id => form.id, :ns => form.namespace, :identifier => form.identifier, :label => form.label}
+          end
+          bc_results << {:id => bc.id, :ns => bc.namespace, :identifier => bc.identifier, :label => bc.label, :forms => form_results}
+        end
+      else
+        form_results = Array.new
+        bc_results << {:forms => form_results}
+      end
+      diff[:bcs] = bc_results
+      p = (index.to_f/count.to_f)*100.0
+      self.update(status: "Checked " + diff[:identifier] + ".", percentage: p.to_i)
+      index += 1
+    end
+    # Save the results
+    CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT_IMPACT, diffs, params)
+    # Report Status
+    self.update(status: "Impact assessment complete.", percentage: 100, complete: true, completed: Time.now())
+  end
+  handle_asynchronously :submission_changes_impact
+
 private
 
   def load_cls(data, ct, counts, total_ct_count)
