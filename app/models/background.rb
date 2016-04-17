@@ -14,13 +14,14 @@ class Background < ActiveRecord::Base
     # Entries in DB created as part of the XSLT and load
     self.update(status: "Transforming terminology file.", percentage: 10)
     # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
+    filename = "CT_V" + params[:version ] + ".ttl"
     Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", 
       { :UseVersion => params[:version], :Namespace => "'" + params[:ns] + "'", 
-        :SI => "'" + params[:si] + "'", :CID => "'" + params[:cid] + "'"}, "CT.ttl")
+        :SI => "'" + params[:si] + "'", :RS => "'" + params[:rs] + "'", :CID => "'" + params[:cid] + "'"}, filename)
     # upload the file to the database. Send the request, wait the resonse
     self.update(status: "Loading file into database.", percentage: 50)
     publicDir = Rails.root.join("public","upload")
-    outputFile = File.join(publicDir, "CT.ttl")
+    outputFile = File.join(publicDir, filename)
     response = CRUD.file(outputFile)
     # And report ...
     if response.success?

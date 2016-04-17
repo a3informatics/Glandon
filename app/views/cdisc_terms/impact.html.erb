@@ -34,9 +34,9 @@
 								<td><%= old_sub %></td>
 								<td><%= new_sub %></td>
 								<td><%= bc_label %></td>
-								<td><%=link_to "Show", biomedical_concepts_path(:id => bc["id"], :namespace => bc["ns"]), :class => "btn btn-primary btn-xs" %></td>
+								<td><%=link_to "Show", biomedical_concept_path(:id => bc["id"], :namespace => bc["ns"]), :class => "btn btn-primary btn-xs" %></td>
 								<td><%= form_label %></td>
-								<td><%=link_to "Show", forms_path(:id => form["id"], :namespace => form["ns"]), :class => "btn btn-primary btn-xs" %></td>
+								<td><%=link_to "Show", form_path(:id => form["id"], :namespace => form["ns"]), :class => "btn btn-primary btn-xs" %></td>
 							</tr>	
 						<% end %>
 					<% else %>

@@ -19,7 +19,6 @@
     <xsl:variable name="DatatypeDocument" select="document('../../iso21090/import/iso21090.xml')"/>
     
     <!-- Remove version suffix. Namespace will have version in it. Not required. -->
-    <!-- <xsl:variable name="URIFinish" select="concat($MainSeparator,'1')"/> -->
     <xsl:variable name="URIFinish" select="''"/>
     
     <!-- Text document (.ttl Turtle) -->
@@ -101,11 +100,6 @@
             <xsl:with-param name="pPredicateName" select="'cbc:basedOn'" /> 
             <xsl:with-param name="pObjectName" select="concat('mdrBcts:',@Template)" /> 
         </xsl:call-template>
-        <!-- No longer using name predicate -->
-        <!--<xsl:call-template name="PredicateObject"> 
-            <xsl:with-param name="pPredicateName" select="'cbc:name'" /> 
-            <xsl:with-param name="pObjectName" select="concat($quote,@Name,$quote,'^^xsd:string')" /> 
-        </xsl:call-template>-->
         <xsl:for-each select="Class">
             <xsl:for-each select="Attribute">
                 <xsl:call-template name="PredicateObject"> 
@@ -127,31 +121,13 @@
                     <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
                     <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SIName)" /> 
                 </xsl:call-template>
-                <xsl:call-template name="PredicateObject">
-                    <xsl:with-param name="pPredicateName" select="'isoT:origin'"/>
-                    <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
-                </xsl:call-template>
-                <xsl:call-template name="PredicateObject">
-                    <xsl:with-param name="pPredicateName" select="'isoT:changeDescription'"/>
-                    <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
-                </xsl:call-template>
-                <xsl:call-template name="PredicateObject">
-                    <xsl:with-param name="pPredicateName" select="'isoT:creationDate'"/>
-                    <xsl:with-param name="pObjectName" select="concat($quote,'2015-11-20',$quote,'^^xsd:date')"/>
-                </xsl:call-template>
-                <xsl:call-template name="PredicateObject">
-                    <xsl:with-param name="pPredicateName" select="'isoT:lastChangeDate'"/>
-                    <xsl:with-param name="pObjectName" select="concat($quote,'2015-11-20',$quote,'^^xsd:date')"/>
-                </xsl:call-template>
-                <xsl:call-template name="PredicateObject">
-                    <xsl:with-param name="pPredicateName" select="'isoT:explanatoryComment'"/>
-                    <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
-                </xsl:call-template>
                 <xsl:call-template name="PredicateObject"> 
                     <xsl:with-param name="pPredicateName" select="'isoR:hasState'" /> 
                     <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RSName)" /> 
                 </xsl:call-template>
-                
+                <xsl:call-template name="CommonFields">
+                    <xsl:with-param name="pDate" select="'2016-01-01'"/>
+                </xsl:call-template>
                 <xsl:call-template name="SubjectEnd"/> 
                 
                 <!-- Scoped Identifier -->
@@ -167,6 +143,8 @@
                 <xsl:call-template name="RegistrationState">
                     <xsl:with-param name="pCID" select="$RSName"/>
                     <xsl:with-param name="pRA" select="'RA-123456789'"/>
+                    <xsl:with-param name="pEffectiveDate" select="'2016-01-01'"/>
+                    <xsl:with-param name="pUntilDate" select="'2016-01-01'"/>
                 </xsl:call-template>   
             </xsl:when>
             <xsl:otherwise>
@@ -176,7 +154,13 @@
                     <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
                     <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SIName)" /> 
                 </xsl:call-template>
-                
+                <xsl:call-template name="PredicateObject"> 
+                    <xsl:with-param name="pPredicateName" select="'isoR:hasState'" /> 
+                    <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RSName)" /> 
+                </xsl:call-template>
+                <xsl:call-template name="CommonFields">
+                    <xsl:with-param name="pDate" select="'2016-01-01'"/>
+                </xsl:call-template>
                 <xsl:call-template name="SubjectEnd"/> 
                 
                 <!-- Scoped Identifier -->
@@ -188,6 +172,13 @@
                     <xsl:with-param name="pScope" select="@Scope"/>
                 </xsl:call-template>
                 
+                <!-- Registration State -->
+                <xsl:call-template name="RegistrationState">
+                    <xsl:with-param name="pCID" select="$RSName"/>
+                    <xsl:with-param name="pRA" select="'RA-084433759'"/>
+                    <xsl:with-param name="pEffectiveDate" select="'2016-01-01'"/>
+                    <xsl:with-param name="pUntilDate" select="'2016-01-01'"/>
+                </xsl:call-template>  
             </xsl:otherwise>
         </xsl:choose>
         
@@ -509,7 +500,7 @@
                 <xsl:when test="substring($pValue,1,3)='CLI'">
                     <xsl:value-of select="concat('cCt:',string($pValue))"/>
                 </xsl:when>
-                <xsl:when test="substring($pValue,1,5)='MDRT-'">
+                <xsl:when test="substring($pValue,1,5)='THC-'">
                     <xsl:value-of select="concat('aCt:',string($pValue))"/>
                 </xsl:when>
                 <xsl:otherwise>

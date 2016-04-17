@@ -1,4 +1,5 @@
 module ApplicationHelper
+	
 	def bootstrap_class_for(flash_type)
 	  case flash_type
 	    when "success"
@@ -13,4 +14,14 @@ module ApplicationHelper
 	      flash_type.to_s
 	  end
 	end
+
+	def get_current_item(items)
+	  current_set = items.select{|item| item.current?}
+	  if current_set.length == 1
+	  	return current_set[0]
+	  else
+	  	return nil
+	  end
+	end
+	  	
 end

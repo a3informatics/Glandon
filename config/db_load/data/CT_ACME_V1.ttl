@@ -15,7 +15,7 @@
         isoI:hasIdentifier             mdrItems:SI-SPONSOR_CT-1 ;
         isoR:hasState                  mdrItems:RS-SPONSOR_CT ;
         isoT:changeDescription         "Creation" ;
-        isoT:creationDate              "2015-11-22 13:29:50  0000" ;
+        isoT:creationDate              "2015-11-22" ;
         isoT:explanatoryComment        "" ;
         isoT:lastChangeDate            "" ;
         isoT:origin                    "" ;
@@ -26,7 +26,8 @@ mdrItems:RS-SPONSOR_CT
         isoR:administrativeNote          "" ;
         isoR:administrativeStatus        "" ;
         isoR:byAuthority                 mdrItems:RA-123456789 ;
-        isoR:effectiveDate               "" ;
+        isoR:effectiveDate               "2016-01-01T00:00:00Z" ;
+        isoR:untilDate                   "2100-01-01T00:00:00Z" ;
         isoR:previousState               "Qualified" ;
         isoR:registrationStatus          "Standard" ;
         isoR:unresolvedIssue             "" .

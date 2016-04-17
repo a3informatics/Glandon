@@ -252,8 +252,8 @@ $(document).ready(function() {
     bc = bcInstances[bcIndex];
     properties = bc.properties;
     property = properties[propertyKey]
-    values = property.values;
-    values = [];
+    //values = property.values;
+    property.values = [];
     rowData = clTable.rows().data();
     for (i=0; i<rowData.length; i++) {
       item = rowData.row(i).data();

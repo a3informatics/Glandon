@@ -15,6 +15,20 @@ class CdiscTermsController < ApplicationController
     @cdiscTerm = CdiscTerm.new
   end
   
+  def load
+    authorize CdiscTerm
+    local_params = set_local_params
+    local_params.each do |param|
+      hash = CdiscTerm.create({:version=>param["version"], :date=>param["date"], :files=>param["files"]})
+      @cdiscTerm = hash[:object]
+      @job = hash[:job]
+      if !@cdiscTerm.errors.empty?
+        ConsoleLogger::log(C_CLASS_NAME,"load","Load errors=" + @cdiscTerm.errors.full_messages.to_sentence + ", Params=" + param.to_s)
+      end
+    end
+    redirect_to backgrounds_path
+  end
+
   def create
     authorize CdiscTerm
     hash = CdiscTerm.create(this_params)
@@ -368,6 +382,11 @@ private
       end
     end  
 
+  end
+
+  def set_local_params
+    json = JSON.parse(IO.read("/Users/daveih/Documents/Rails/Glandon/public/upload/cdiscImportManifest.json"))
+    return json
   end
 
 end

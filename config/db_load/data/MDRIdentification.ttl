@@ -41,3 +41,13 @@
   isoR:raNamespace :NS-ACME ;
   isoR:hasAuthorityIdentifier :RAI-123456789 ; 
 .
+:RAI-084433759 
+  rdf:type isoB:RegistrationAuthorityIdentifier ; 
+  isoB:organizationIdentifier "084433759"^^xsd:string ;
+  isoB:internationalCodeDesignator "DUNS"^^xsd:string ; 
+.
+:RA-084433759
+  rdf:type isoR:RegistrationAuthority ;
+  isoR:raNamespace :NS-CDISC ;
+  isoR:hasAuthorityIdentifier :RAI-084433759 ; 
+.

@@ -1,0 +1,2 @@
+class IsoManagedNewPolicy < IsoPolicy
+end

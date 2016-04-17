@@ -42,6 +42,8 @@
         <xsl:text disable-output-escaping="yes">@prefix : &lt;http://www.assero.co.uk/MDRBCTs/V1#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix cbc: &lt;http://www.assero.co.uk/CDISCBiomedicalConcept#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix isoR: &lt;http://www.assero.co.uk/ISO11179Registration#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix isoT: &lt;http://www.assero.co.uk/ISO11179Types#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrBridg: &lt;http://www.assero.co.uk/MDRBRIDG#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrItems: &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrIso21090: &lt;http://www.assero.co.uk/MDRISO21090#&gt; .&#xa;</xsl:text>
@@ -89,9 +91,17 @@
             <xsl:with-param name="pObjectName" select="concat($quote,@Name,$quote,'^^xsd:string')" /> 
         </xsl:call-template>
         <xsl:variable name="SIName" select="concat('SI',$MainSeparator,$BCTItemType,$URIFinish,$MainSeparator,'1')"/>
+        <xsl:variable name="RSName" select="concat('RS',$MainSeparator,$BCTItemType,$URIFinish,$MainSeparator,'1')"/>
         <xsl:call-template name="PredicateObject"> 
             <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
             <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SIName)" /> 
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject"> 
+            <xsl:with-param name="pPredicateName" select="'isoR:hasState'" /> 
+            <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RSName)" /> 
+        </xsl:call-template>
+        <xsl:call-template name="CommonFields">
+            <xsl:with-param name="pDate" select="'2016-01-01'"/>
         </xsl:call-template>
         <xsl:call-template name="SubjectEnd"/> 
         
@@ -104,6 +114,14 @@
             <xsl:with-param name="pScope" select="'NS-CDISC'"/>
         </xsl:call-template>
 
+        <!-- Registration State -->
+        <xsl:call-template name="RegistrationState">
+            <xsl:with-param name="pCID" select="$RSName"/>
+            <xsl:with-param name="pRA" select="'RA-084433759'"/>
+            <xsl:with-param name="pEffectiveDate" select="'2016-01-01'"/>
+            <xsl:with-param name="pUntilDate" select="'2016-01-01'"/>
+        </xsl:call-template>  
+        
         <!-- Build document -->
         <xsl:apply-templates select="./Class">
             <xsl:with-param name="pPrefix" select="$Prefix"/>

@@ -35,6 +35,12 @@
 	cbc:hasItem :BC-CDISC_BC_C111361_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Forced Vital Capacity (BC_C111361)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C111361-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C111361-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C111361-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -42,6 +48,17 @@ mdrItems:SI-CDISC_BC_C111361-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C111361-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C111361_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -397,6 +414,12 @@ mdrItems:SI-CDISC_BC_C111361-1
 	cbc:hasItem :BC-CDISC_BC_C112381_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted Forced Vital Capacity (BC_C112381)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112381-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112381-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112381-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -404,6 +427,17 @@ mdrItems:SI-CDISC_BC_C112381-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112381-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112381_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -759,6 +793,12 @@ mdrItems:SI-CDISC_BC_C112381-1
 	cbc:hasItem :BC-CDISC_BC_C38084_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Forced Expiratory Volume in 1 Second (BC_C38084)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C38084-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C38084-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C38084-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -766,6 +806,17 @@ mdrItems:SI-CDISC_BC_C38084-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C38084-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C38084_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -1121,6 +1172,12 @@ mdrItems:SI-CDISC_BC_C38084-1
 	cbc:hasItem :BC-CDISC_BC_C112376_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted FEV1 (BC_C112376)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112376-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112376-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112376-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -1128,6 +1185,17 @@ mdrItems:SI-CDISC_BC_C112376-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112376-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112376_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -1483,6 +1551,12 @@ mdrItems:SI-CDISC_BC_C112376-1
 	cbc:hasItem :BC-CDISC_BC_C112285_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "FEV1 Reversibility (BC_C112285)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112285-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112285-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112285-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -1490,6 +1564,17 @@ mdrItems:SI-CDISC_BC_C112285-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112285-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112285_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -1845,6 +1930,12 @@ mdrItems:SI-CDISC_BC_C112285-1
 	cbc:hasItem :BC-CDISC_BC_C111359_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "FEV1/FVC (BC_C111359)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C111359-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C111359-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C111359-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -1852,6 +1943,17 @@ mdrItems:SI-CDISC_BC_C111359-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C111359-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C111359_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -2201,6 +2303,12 @@ mdrItems:SI-CDISC_BC_C111359-1
 	cbc:hasItem :BC-CDISC_BC_C112377_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted FEV1/FVC (BC_C112377)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112377-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112377-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112377-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -2208,6 +2316,17 @@ mdrItems:SI-CDISC_BC_C112377-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112377-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112377_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -2551,6 +2670,12 @@ mdrItems:SI-CDISC_BC_C112377-1
 	cbc:hasItem :BC-CDISC_BC_C2000000_8_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Forced Expiratory Flow 25-75% Capacity (BC_C2000000_8)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C2000000_8-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C2000000_8-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C2000000_8-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -2558,6 +2683,17 @@ mdrItems:SI-CDISC_BC_C2000000_8-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C2000000_8-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C2000000_8_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -2925,6 +3061,12 @@ mdrItems:SI-CDISC_BC_C2000000_8-1
 	cbc:hasItem :BC-CDISC_BC_C2000000_9_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent predicted FEF 25-75 (BC_C2000000_9)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C2000000_9-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C2000000_9-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C2000000_9-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -2932,6 +3074,17 @@ mdrItems:SI-CDISC_BC_C2000000_9-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C2000000_9-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C2000000_9_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -3287,6 +3440,12 @@ mdrItems:SI-CDISC_BC_C2000000_9-1
 	cbc:hasItem :BC-CDISC_BC_C41372_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Peak Expiratory Flow (BC_C41372)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C41372-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C41372-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C41372-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -3294,6 +3453,17 @@ mdrItems:SI-CDISC_BC_C41372-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C41372-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C41372_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -3661,6 +3831,12 @@ mdrItems:SI-CDISC_BC_C41372-1
 	cbc:hasItem :BC-CDISC_BC_C112384_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted Peak Expiratory Flow (BC_C112384)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112384-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112384-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112384-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -3668,6 +3844,17 @@ mdrItems:SI-CDISC_BC_C112384-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112384-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112384_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -4023,6 +4210,12 @@ mdrItems:SI-CDISC_BC_C112384-1
 	cbc:hasItem :BC-CDISC_BC_C112368_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "PEF Reversibility (BC_C112368)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112368-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112368-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112368-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -4030,6 +4223,17 @@ mdrItems:SI-CDISC_BC_C112368-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112368-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112368_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -4385,6 +4589,12 @@ mdrItems:SI-CDISC_BC_C112368-1
 	cbc:hasItem :BC-CDISC_BC_C47843_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Forced Expiratory Volume in 6 Seconds (BC_C47843)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C47843-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C47843-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C47843-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -4392,6 +4602,17 @@ mdrItems:SI-CDISC_BC_C47843-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C47843-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C47843_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -4747,6 +4968,12 @@ mdrItems:SI-CDISC_BC_C47843-1
 	cbc:hasItem :BC-CDISC_BC_C112378_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted FEV6 (BC_C112378)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112378-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112378-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112378-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -4754,6 +4981,17 @@ mdrItems:SI-CDISC_BC_C112378-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112378-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112378_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -5109,6 +5347,12 @@ mdrItems:SI-CDISC_BC_C112378-1
 	cbc:hasItem :BC-CDISC_BC_C111360_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Forced Inspiratory Volume in 1 Second (BC_C111360)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C111360-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C111360-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C111360-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -5116,6 +5360,17 @@ mdrItems:SI-CDISC_BC_C111360-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C111360-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C111360_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -5471,6 +5726,12 @@ mdrItems:SI-CDISC_BC_C111360-1
 	cbc:hasItem :BC-CDISC_BC_C112380_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted FIV1 (BC_C112380)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112380-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112380-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112380-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -5478,6 +5739,17 @@ mdrItems:SI-CDISC_BC_C112380-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112380-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112380_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -5833,6 +6105,12 @@ mdrItems:SI-CDISC_BC_C112380-1
 	cbc:hasItem :BC-CDISC_BC_C111324_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Tidal Volume (BC_C111324)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C111324-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C111324-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C111324-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -5840,6 +6118,17 @@ mdrItems:SI-CDISC_BC_C111324-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C111324-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C111324_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -6195,6 +6484,12 @@ mdrItems:SI-CDISC_BC_C111324-1
 	cbc:hasItem :BC-CDISC_BC_C112387_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted Tidal Volume (BC_C112387)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112387-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112387-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112387-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -6202,6 +6497,17 @@ mdrItems:SI-CDISC_BC_C112387-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112387-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112387_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -6557,6 +6863,12 @@ mdrItems:SI-CDISC_BC_C112387-1
 	cbc:hasItem :BC-CDISC_BC_C111362_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Inspiratory Capacity (BC_C111362)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C111362-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C111362-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C111362-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -6564,6 +6876,17 @@ mdrItems:SI-CDISC_BC_C111362-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C111362-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C111362_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -6919,6 +7242,12 @@ mdrItems:SI-CDISC_BC_C111362-1
 	cbc:hasItem :BC-CDISC_BC_C112382_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted Inspiratory Capacity (BC_C112382)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112382-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112382-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112382-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -6926,6 +7255,17 @@ mdrItems:SI-CDISC_BC_C112382-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112382-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112382_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -7281,6 +7621,12 @@ mdrItems:SI-CDISC_BC_C112382-1
 	cbc:hasItem :BC-CDISC_BC_C112321_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "IC Reversibility (BC_C112321)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112321-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112321-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112321-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -7288,6 +7634,17 @@ mdrItems:SI-CDISC_BC_C112321-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112321-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112321_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -7637,6 +7994,12 @@ mdrItems:SI-CDISC_BC_C112321-1
 	cbc:hasItem :BC-CDISC_BC_C111200_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Expiratory Reserve Volume (BC_C111200)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C111200-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C111200-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C111200-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -7644,6 +8007,17 @@ mdrItems:SI-CDISC_BC_C111200-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C111200-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C111200_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -7999,6 +8373,12 @@ mdrItems:SI-CDISC_BC_C111200-1
 	cbc:hasItem :BC-CDISC_BC_C112375_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted ERV (BC_C112375)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112375-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112375-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112375-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -8006,6 +8386,17 @@ mdrItems:SI-CDISC_BC_C112375-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112375-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112375_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -8361,6 +8752,12 @@ mdrItems:SI-CDISC_BC_C112375-1
 	cbc:hasItem :BC-CDISC_BC_C111237_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Inspiratory Reserve Volume (BC_C111237)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C111237-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C111237-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C111237-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -8368,6 +8765,17 @@ mdrItems:SI-CDISC_BC_C111237-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C111237-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C111237_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -8723,6 +9131,12 @@ mdrItems:SI-CDISC_BC_C111237-1
 	cbc:hasItem :BC-CDISC_BC_C112383_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted IRV (BC_C112383)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112383-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112383-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112383-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -8730,6 +9144,17 @@ mdrItems:SI-CDISC_BC_C112383-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112383-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112383_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -9085,6 +9510,12 @@ mdrItems:SI-CDISC_BC_C112383-1
 	cbc:hasItem :BC-CDISC_BC_C111315_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Slow Vital Capacity (BC_C111315)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C111315-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C111315-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C111315-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -9092,6 +9523,17 @@ mdrItems:SI-CDISC_BC_C111315-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C111315-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C111315_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -9447,6 +9889,12 @@ mdrItems:SI-CDISC_BC_C111315-1
 	cbc:hasItem :BC-CDISC_BC_C112386_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted Slow Vital Capacity (BC_C112386)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112386-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112386-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112386-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -9454,6 +9902,17 @@ mdrItems:SI-CDISC_BC_C112386-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112386-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112386_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -9809,6 +10268,12 @@ mdrItems:SI-CDISC_BC_C112386-1
 	cbc:hasItem :BC-CDISC_BC_C112333_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Maximum Forced Inspiratory Flow (BC_C112333)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112333-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112333-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112333-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -9816,6 +10281,17 @@ mdrItems:SI-CDISC_BC_C112333-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112333-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112333_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -10183,6 +10659,12 @@ mdrItems:SI-CDISC_BC_C112333-1
 	cbc:hasItem :BC-CDISC_BC_C112379_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted FIFmax (BC_C112379)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112379-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112379-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112379-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -10190,6 +10672,17 @@ mdrItems:SI-CDISC_BC_C112379-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112379-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112379_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -10545,6 +11038,12 @@ mdrItems:SI-CDISC_BC_C112379-1
 	cbc:hasItem :BC-CDISC_BC_C89836_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Residual Volume (BC_C89836)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C89836-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C89836-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C89836-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -10552,6 +11051,17 @@ mdrItems:SI-CDISC_BC_C89836-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C89836-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C89836_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -10907,6 +11417,12 @@ mdrItems:SI-CDISC_BC_C89836-1
 	cbc:hasItem :BC-CDISC_BC_C112385_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted Residual Volume (BC_C112385)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112385-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112385-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112385-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -10914,6 +11430,17 @@ mdrItems:SI-CDISC_BC_C112385-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112385-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112385_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -11269,6 +11796,12 @@ mdrItems:SI-CDISC_BC_C112385-1
 	cbc:hasItem :BC-CDISC_BC_C111325_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Total Lung Capacity (BC_C111325)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C111325-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C111325-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C111325-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -11276,6 +11809,17 @@ mdrItems:SI-CDISC_BC_C111325-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C111325-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C111325_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -11631,6 +12175,12 @@ mdrItems:SI-CDISC_BC_C111325-1
 	cbc:hasItem :BC-CDISC_BC_C112388_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Percent Predicted Total Lung Capacity (BC_C112388)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C112388-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C112388-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C112388-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -11638,6 +12188,17 @@ mdrItems:SI-CDISC_BC_C112388-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C112388-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C112388_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -11993,6 +12554,12 @@ mdrItems:SI-CDISC_BC_C112388-1
 	cbc:hasItem :BC-CDISC_BC_C25347_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Height Biomedical Concept (BC_C25347)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C25347-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C25347-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C25347-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -12000,6 +12567,17 @@ mdrItems:SI-CDISC_BC_C25347-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C25347-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C25347_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -12343,6 +12921,12 @@ mdrItems:SI-CDISC_BC_C25347-1
 	cbc:hasItem :BC-CDISC_BC_C25208_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Weight Biomedical Concept (BC_C25208)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-CDISC_BC_C25208-1 ;
+	isoR:hasState mdrItems:RS-CDISC_BC_C25208-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-CDISC_BC_C25208-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -12350,6 +12934,17 @@ mdrItems:SI-CDISC_BC_C25208-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_BC_C25208-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BC-CDISC_BC_C25208_DefinedObservation_nameCode
 	rdf:type cbc:Item ;
@@ -12693,12 +13288,12 @@ mdrItems:SI-CDISC_BC_C25208-1
 	cbc:hasItem :BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Height (BC_C25347)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25347-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C25347-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25347-1 ;
 .
 mdrItems:SI-ACME_BC_C25347-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -12711,7 +13306,8 @@ mdrItems:RS-ACME_BC_C25347-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -13071,12 +13667,12 @@ mdrItems:RS-ACME_BC_C25347-1
 	cbc:hasItem :BC-ACME_BC_C25208_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Weight (BC_C25208)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25208-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C25208-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25208-1 ;
 .
 mdrItems:SI-ACME_BC_C25208-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -13089,7 +13685,8 @@ mdrItems:RS-ACME_BC_C25208-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -13449,12 +14046,12 @@ mdrItems:RS-ACME_BC_C25208-1
 	cbc:hasItem :BC-ACME_BC_C16358_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Body Mass Index (BC_C16358)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C16358-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C16358-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C16358-1 ;
 .
 mdrItems:SI-ACME_BC_C16358-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -13467,7 +14064,8 @@ mdrItems:RS-ACME_BC_C16358-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -13809,12 +14407,12 @@ mdrItems:RS-ACME_BC_C16358-1
 	cbc:hasItem :BC-ACME_BC_C49677_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Heart Rate (BC_C49677)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C49677-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C49677-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C49677-1 ;
 .
 mdrItems:SI-ACME_BC_C49677-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -13827,7 +14425,8 @@ mdrItems:RS-ACME_BC_C49677-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -14187,12 +14786,12 @@ mdrItems:RS-ACME_BC_C49677-1
 	cbc:hasItem :BC-ACME_BC_C25298_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Systolic Blood Pressure (BC_C25298)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25298-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C25298-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25298-1 ;
 .
 mdrItems:SI-ACME_BC_C25298-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -14205,7 +14804,8 @@ mdrItems:RS-ACME_BC_C25298-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -14565,12 +15165,12 @@ mdrItems:RS-ACME_BC_C25298-1
 	cbc:hasItem :BC-ACME_BC_C25299_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Diastolic Blood Pressure (BC_C25299)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25299-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C25299-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25299-1 ;
 .
 mdrItems:SI-ACME_BC_C25299-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -14583,7 +15183,8 @@ mdrItems:RS-ACME_BC_C25299-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -14943,12 +15544,12 @@ mdrItems:RS-ACME_BC_C25299-1
 	cbc:hasItem :BC-ACME_BC_C98793_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Triceps Skinfold Thickness (BC_C98793)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C98793-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C98793-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C98793-1 ;
 .
 mdrItems:SI-ACME_BC_C98793-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -14961,7 +15562,8 @@ mdrItems:RS-ACME_BC_C98793-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -15303,12 +15905,12 @@ mdrItems:RS-ACME_BC_C98793-1
 	cbc:hasItem :BC-ACME_BC_A00003_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Mid Upper Arm Circumference (BC_A00003)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_A00003-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_A00003-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_A00003-1 ;
 .
 mdrItems:SI-ACME_BC_A00003-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -15321,7 +15923,8 @@ mdrItems:RS-ACME_BC_A00003-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -15359,7 +15962,7 @@ mdrItems:RS-ACME_BC_A00003-1
 :BC-ACME_BC_A00003_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
 	cbc:ordinal "1"^^xsd:positiveInteger ;
-	cbc:value aCt:MDRT-A00003 ;
+	cbc:value "THC-A00003"^^xsd:string ;
 .
 :BC-ACME_BC_A00003_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -15389,7 +15992,7 @@ mdrItems:RS-ACME_BC_A00003-1
 :BC-ACME_BC_A00003_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
 	cbc:ordinal "1"^^xsd:positiveInteger ;
-	cbc:value aCt:MDRT-A00003 ;
+	cbc:value "THC-A00003"^^xsd:string ;
 .
 :BC-ACME_BC_A00003_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
@@ -15693,12 +16296,12 @@ mdrItems:RS-ACME_BC_A00003-1
 	cbc:hasItem :BC-ACME_BC_C81255_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Head Circumference (BC_C81255)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C81255-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C81255-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C81255-1 ;
 .
 mdrItems:SI-ACME_BC_C81255-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -15711,7 +16314,8 @@ mdrItems:RS-ACME_BC_C81255-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -16053,12 +16657,12 @@ mdrItems:RS-ACME_BC_C81255-1
 	cbc:hasItem :BC-ACME_BC_C49678_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Respiratory Rate (BC_C49678)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C49678-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C49678-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C49678-1 ;
 .
 mdrItems:SI-ACME_BC_C49678-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -16071,7 +16675,8 @@ mdrItems:RS-ACME_BC_C49678-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -16413,12 +17018,12 @@ mdrItems:RS-ACME_BC_C49678-1
 	cbc:hasItem :BC-ACME_BC_C98785_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Subscapular Skinfold Thickness (BC_C98785)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C98785-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C98785-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C98785-1 ;
 .
 mdrItems:SI-ACME_BC_C98785-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -16431,7 +17036,8 @@ mdrItems:RS-ACME_BC_C98785-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -16785,12 +17391,12 @@ mdrItems:RS-ACME_BC_C98785-1
 	cbc:hasItem :BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Temperature (BC_C25206)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25206-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_C25206-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25206-1 ;
 .
 mdrItems:SI-ACME_BC_C25206-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -16803,7 +17409,8 @@ mdrItems:RS-ACME_BC_C25206-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -17145,12 +17752,12 @@ mdrItems:RS-ACME_BC_C25206-1
 	cbc:hasItem :BC-ACME_BC_A00002_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "APGAR Score (BC_A00002)"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-ACME_BC_A00002-1 ;
+	isoR:hasState mdrItems:RS-ACME_BC_A00002-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-11-20"^^xsd:date ;
-	isoT:lastChangeDate "2015-11-20"^^xsd:date ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	isoR:hasState mdrItems:RS-ACME_BC_A00002-1 ;
 .
 mdrItems:SI-ACME_BC_A00002-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -17163,7 +17770,8 @@ mdrItems:RS-ACME_BC_A00002-1
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
@@ -17201,7 +17809,7 @@ mdrItems:RS-ACME_BC_A00002-1
 :BC-ACME_BC_A00002_DefinedObservation_nameCode_CD_code_Value_1
 	rdf:type cbc:PropertyValue ;
 	cbc:ordinal "1"^^xsd:positiveInteger ;
-	cbc:value aCt:MDRT-A00002 ;
+	cbc:value "THC-A00002"^^xsd:string ;
 .
 :BC-ACME_BC_A00002_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
@@ -17231,7 +17839,7 @@ mdrItems:RS-ACME_BC_A00002-1
 :BC-ACME_BC_A00002_DefinedObservation_nameCode_CD_originalText_ED_value_Value_1
 	rdf:type cbc:PropertyValue ;
 	cbc:ordinal "1"^^xsd:positiveInteger ;
-	cbc:value aCt:MDRT-A00002 ;
+	cbc:value "THC-A00002"^^xsd:string ;
 .
 :BC-ACME_BC_A00002_DefinedObservation_targetAnatomicSiteCode
 	rdf:type cbc:Item ;

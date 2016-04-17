@@ -7,6 +7,8 @@
 @prefix mdrDomainsV1: <http://www.assero.co.uk/MDRDomains/V1#> .
 @prefix isoB: <http://www.assero.co.uk/ISO11179Basic#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix bd: <http://www.assero.co.uk/BusinessDomain#> .
 @prefix bs: <http://www.assero.co.uk/BusinessStandard#> .
@@ -39,6 +41,12 @@ mdrDomainsV1:D-AE
 	rdf:type bd:Domain ;
 	rdfs:label "Adverse Events"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_AE-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_AE-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.AE> ;
 .
 mdrItems:SI-DOMAIN_AE-1
@@ -48,10 +56,27 @@ mdrItems:SI-DOMAIN_AE-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_AE-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-CE
 	rdf:type bd:Domain ;
 	rdfs:label "Clinical Events"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_CE-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_CE-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.CE> ;
 .
 mdrItems:SI-DOMAIN_CE-1
@@ -61,10 +86,27 @@ mdrItems:SI-DOMAIN_CE-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_CE-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-CO
 	rdf:type bd:Domain ;
 	rdfs:label "Comments"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_CO-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_CO-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.CO> ;
 .
 mdrItems:SI-DOMAIN_CO-1
@@ -74,10 +116,27 @@ mdrItems:SI-DOMAIN_CO-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_CO-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-CM
 	rdf:type bd:Domain ;
 	rdfs:label "Concomitant Medications"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_CM-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_CM-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.CM> ;
 .
 mdrItems:SI-DOMAIN_CM-1
@@ -87,10 +146,27 @@ mdrItems:SI-DOMAIN_CM-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_CM-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-DM
 	rdf:type bd:Domain ;
 	rdfs:label "Demographics"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_DM-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_DM-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.DM> ;
 .
 mdrItems:SI-DOMAIN_DM-1
@@ -100,10 +176,27 @@ mdrItems:SI-DOMAIN_DM-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_DM-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-DS
 	rdf:type bd:Domain ;
 	rdfs:label "Disposition"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_DS-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_DS-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.DS> ;
 .
 mdrItems:SI-DOMAIN_DS-1
@@ -113,10 +206,27 @@ mdrItems:SI-DOMAIN_DS-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_DS-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-DA
 	rdf:type bd:Domain ;
 	rdfs:label "Drug Accountability"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_DA-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_DA-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.DA> ;
 .
 mdrItems:SI-DOMAIN_DA-1
@@ -126,10 +236,27 @@ mdrItems:SI-DOMAIN_DA-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_DA-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-EG
 	rdf:type bd:Domain ;
 	rdfs:label "ECG Test Results"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_EG-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_EG-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.EG> ;
 .
 mdrItems:SI-DOMAIN_EG-1
@@ -139,10 +266,27 @@ mdrItems:SI-DOMAIN_EG-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_EG-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-EX
 	rdf:type bd:Domain ;
 	rdfs:label "Exposure"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_EX-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_EX-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.EX> ;
 .
 mdrItems:SI-DOMAIN_EX-1
@@ -152,10 +296,27 @@ mdrItems:SI-DOMAIN_EX-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_EX-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-FA
 	rdf:type bd:Domain ;
 	rdfs:label "Findings About"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_FA-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_FA-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.FA> ;
 .
 mdrItems:SI-DOMAIN_FA-1
@@ -165,10 +326,27 @@ mdrItems:SI-DOMAIN_FA-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_FA-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-IE
 	rdf:type bd:Domain ;
 	rdfs:label "Inclusion/Exclusion Criterion Not Met"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_IE-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_IE-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.IE> ;
 .
 mdrItems:SI-DOMAIN_IE-1
@@ -178,10 +356,27 @@ mdrItems:SI-DOMAIN_IE-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_IE-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-LB
 	rdf:type bd:Domain ;
 	rdfs:label "Laboratory Test Results"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_LB-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_LB-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.LB> ;
 .
 mdrItems:SI-DOMAIN_LB-1
@@ -191,10 +386,27 @@ mdrItems:SI-DOMAIN_LB-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_LB-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-MH
 	rdf:type bd:Domain ;
 	rdfs:label "Medical History"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_MH-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_MH-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.MH> ;
 .
 mdrItems:SI-DOMAIN_MH-1
@@ -204,10 +416,27 @@ mdrItems:SI-DOMAIN_MH-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_MH-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-MB
 	rdf:type bd:Domain ;
 	rdfs:label "Microbiology Specimen"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_MB-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_MB-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.MB> ;
 .
 mdrItems:SI-DOMAIN_MB-1
@@ -217,10 +446,27 @@ mdrItems:SI-DOMAIN_MB-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_MB-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-MS
 	rdf:type bd:Domain ;
 	rdfs:label "Microbiology Susceptibility Test"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_MS-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_MS-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.MS> ;
 .
 mdrItems:SI-DOMAIN_MS-1
@@ -230,10 +476,27 @@ mdrItems:SI-DOMAIN_MS-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_MS-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-PC
 	rdf:type bd:Domain ;
 	rdfs:label "PK Concentrations"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_PC-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_PC-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.PC> ;
 .
 mdrItems:SI-DOMAIN_PC-1
@@ -243,10 +506,27 @@ mdrItems:SI-DOMAIN_PC-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_PC-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-PP
 	rdf:type bd:Domain ;
 	rdfs:label "PK Parameters"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_PP-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_PP-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.PP> ;
 .
 mdrItems:SI-DOMAIN_PP-1
@@ -256,10 +536,27 @@ mdrItems:SI-DOMAIN_PP-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_PP-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-PE
 	rdf:type bd:Domain ;
 	rdfs:label "Physical Examination"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_PE-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_PE-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.PE> ;
 .
 mdrItems:SI-DOMAIN_PE-1
@@ -269,10 +566,27 @@ mdrItems:SI-DOMAIN_PE-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_PE-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-DV
 	rdf:type bd:Domain ;
 	rdfs:label "Protocol Deviations"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_DV-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_DV-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.DV> ;
 .
 mdrItems:SI-DOMAIN_DV-1
@@ -282,10 +596,27 @@ mdrItems:SI-DOMAIN_DV-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_DV-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-QS
 	rdf:type bd:Domain ;
 	rdfs:label "Questionnaires"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_QS-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_QS-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.QS> ;
 .
 mdrItems:SI-DOMAIN_QS-1
@@ -295,10 +626,27 @@ mdrItems:SI-DOMAIN_QS-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_QS-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-RELREC
 	rdf:type bd:Domain ;
 	rdfs:label "Related Records"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_RELREC-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_RELREC-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.RELREC> ;
 .
 mdrItems:SI-DOMAIN_RELREC-1
@@ -308,10 +656,27 @@ mdrItems:SI-DOMAIN_RELREC-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_RELREC-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-SC
 	rdf:type bd:Domain ;
 	rdfs:label "Subject Characteristics"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_SC-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_SC-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SC> ;
 .
 mdrItems:SI-DOMAIN_SC-1
@@ -321,10 +686,27 @@ mdrItems:SI-DOMAIN_SC-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_SC-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-SE
 	rdf:type bd:Domain ;
 	rdfs:label "Subject Elements"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_SE-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_SE-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SE> ;
 .
 mdrItems:SI-DOMAIN_SE-1
@@ -334,10 +716,27 @@ mdrItems:SI-DOMAIN_SE-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_SE-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-SV
 	rdf:type bd:Domain ;
 	rdfs:label "Subject Visits"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_SV-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_SV-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SV> ;
 .
 mdrItems:SI-DOMAIN_SV-1
@@ -347,10 +746,27 @@ mdrItems:SI-DOMAIN_SV-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_SV-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-SU
 	rdf:type bd:Domain ;
 	rdfs:label "Substance Use"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_SU-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_SU-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SU> ;
 .
 mdrItems:SI-DOMAIN_SU-1
@@ -360,10 +776,27 @@ mdrItems:SI-DOMAIN_SU-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_SU-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-SUPPQUAL
 	rdf:type bd:Domain ;
 	rdfs:label "Supplemental Qualifiers"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_SUPPQUAL-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_SUPPQUAL-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.SUPPQUAL> ;
 .
 mdrItems:SI-DOMAIN_SUPPQUAL-1
@@ -373,10 +806,27 @@ mdrItems:SI-DOMAIN_SUPPQUAL-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_SUPPQUAL-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-TA
 	rdf:type bd:Domain ;
 	rdfs:label "Trial Arms"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TA-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_TA-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TA> ;
 .
 mdrItems:SI-DOMAIN_TA-1
@@ -386,10 +836,27 @@ mdrItems:SI-DOMAIN_TA-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_TA-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-TE
 	rdf:type bd:Domain ;
 	rdfs:label "Trial Elements"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TE-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_TE-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TE> ;
 .
 mdrItems:SI-DOMAIN_TE-1
@@ -399,10 +866,27 @@ mdrItems:SI-DOMAIN_TE-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_TE-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-TI
 	rdf:type bd:Domain ;
 	rdfs:label "Trial Inclusion/Exclusion Criteria"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TI-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_TI-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TI> ;
 .
 mdrItems:SI-DOMAIN_TI-1
@@ -412,10 +896,27 @@ mdrItems:SI-DOMAIN_TI-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_TI-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-TS
 	rdf:type bd:Domain ;
 	rdfs:label "Trial Summary"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TS-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_TS-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TS> ;
 .
 mdrItems:SI-DOMAIN_TS-1
@@ -425,10 +926,27 @@ mdrItems:SI-DOMAIN_TS-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_TS-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-TV
 	rdf:type bd:Domain ;
 	rdfs:label "Trial Visits"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_TV-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_TV-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.TV> ;
 .
 mdrItems:SI-DOMAIN_TV-1
@@ -438,10 +956,27 @@ mdrItems:SI-DOMAIN_TV-1
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
+mdrItems:RS-DOMAIN_TV-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
 mdrDomainsV1:D-VS
 	rdf:type bd:Domain ;
 	rdfs:label "Vital Signs"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-DOMAIN_VS-1 ;
+	isoR:hasState mdrItems:RS-DOMAIN_VS-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bd:basedOn <http://rdf.cdisc.org/std/sdtmig-3-1-2#Dataset.VS> ;
 .
 mdrItems:SI-DOMAIN_VS-1
@@ -450,6 +985,17 @@ mdrItems:SI-DOMAIN_VS-1
 	isoI:versionLabel "3.1.2"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-ACME ;
+.
+mdrItems:RS-DOMAIN_VS-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 mdrDomainsV1:V-AE_AEACN
 	rdf:type bd:Variable ;

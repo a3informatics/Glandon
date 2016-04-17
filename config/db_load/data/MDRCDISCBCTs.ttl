@@ -4,6 +4,8 @@
 @prefix : <http://www.assero.co.uk/MDRBCTs/V1#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix mdrBridg: <http://www.assero.co.uk/MDRBRIDG#> .
 @prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
 @prefix mdrIso21090: <http://www.assero.co.uk/MDRISO21090#> .
@@ -29,6 +31,12 @@
 	cbc:hasItem :BCT-Obs_PQR_baselineIndicator ;
 	rdfs:label "Simple Observation PQR Biomedical Research Concept Template"^^xsd:string ;
 	isoI:hasIdentifier mdrItems:SI-Obs_PQR-1 ;
+	isoR:hasState mdrItems:RS-Obs_PQR-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
 .
 mdrItems:SI-Obs_PQR-1
 	rdf:type isoI:ScopedIdentifier ;
@@ -36,6 +44,17 @@ mdrItems:SI-Obs_PQR-1
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-Obs_PQR-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
 .
 :BCT-Obs_PQR_nameCode
 	rdf:type cbc:Item ;

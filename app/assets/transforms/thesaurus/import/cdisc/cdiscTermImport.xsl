@@ -12,11 +12,13 @@
                         as a key into the document. Should be consistent the namespace provided in the other parameter
         Namespace:      The namespace to be used with the turtle document for the Thesaurus being created.
         SI:             The URI (partial, minus namespace, assumed to be :org) of the ScopedIdentifier for the thesaurus being created.
+        RS:             The URI (partial, minus namespace, assumed to be :org) of the RegistrationState for the thesaurus being created.
         CID:            The URI (partial, minus namespace, assumed to be :org) of the thesaurus being created.
     -->
     <xsl:param name="UseVersion"/>
     <xsl:param name="Namespace"/>
     <xsl:param name= "SI"/>
+    <xsl:param name= "RS"/>
     <xsl:param name= "CID"/>
     
     <!-- Text document (.ttl Turtle) -->
@@ -50,6 +52,8 @@
         <xsl:value-of disable-output-escaping="yes" select="concat('@prefix : &lt;',$Namespace,'#&gt; .&#xa;')"/>
         <xsl:text disable-output-escaping="yes">@prefix isoB: &lt;http://www.assero.co.uk/ISO11179Basic#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix isoR: &lt;http://www.assero.co.uk/ISO11179Registration#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix isoT: &lt;http://www.assero.co.uk/ISO11179Types#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix iso25964: &lt;http://www.assero.co.uk/ISO25964#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix mdrItems: &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .&#xa;</xsl:text>
@@ -67,14 +71,6 @@
         <xsl:text disable-output-escaping="yes">&#009;owl:imports &lt;http://www.w3.org/2004/02/skos/core&gt; ;&#xa;</xsl:text>
         <xsl:text>.&#xa;</xsl:text>
         
-        <!-- Build the thesaurus entry -->
-        <!-- Now built by the import code -->
-        <!--<xsl:value-of select="concat(':',$CID,$newline)"/>
-        <xsl:text>&#009;rdf:type iso25964:Thesaurus ;&#xa;</xsl:text>
-        <xsl:text>&#009;rdfs:label "CDISC Terminology </xsl:text><xsl:value-of select="$ReleaseDate"/><xsl:text>"^^xsd:string ;&#xa;</xsl:text>
-        <xsl:value-of select="concat('&#009;isoI:hasIdentifier mdrItems:',$SI,' ;',$newline)"/>
-        <xsl:text>.&#xa;</xsl:text>-->
-
         <!-- Create the Thesaurus Entry -->
         <xsl:call-template name="Subject"> 
             <xsl:with-param name="pName" select="concat(':',$CID)" /> 
@@ -91,12 +87,21 @@
             <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
             <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SI)" /> 
         </xsl:call-template>
+        <xsl:call-template name="PredicateObject"> 
+            <xsl:with-param name="pPredicateName" select="'isoR:hasState'" /> 
+            <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RS)" /> 
+        </xsl:call-template>
+        <xsl:call-template name="CommonFields">
+            <xsl:with-param name="pDate" select="$ReleaseDate"/>
+        </xsl:call-template>
+        
+        <!-- Add the concept references -->
         <xsl:for-each select="/CDISCTerminology/Update[@version=$UseVersion]/File">
             <xsl:call-template name="TopLevel">
                 <xsl:with-param name="pRoot" select="document(@filename)/rdf:RDF"/>
             </xsl:call-template>
         </xsl:for-each>
-        <xsl:text>.&#xa;</xsl:text>
+        <xsl:call-template name="SubjectEnd"/> 
         
         <!-- Scoped Identifier -->
         <xsl:call-template name="ScopedIdentifier">
@@ -107,6 +112,14 @@
             <xsl:with-param name="pScope" select="'NS-CDISC'"/>
         </xsl:call-template>
 
+        <!-- Registration State -->
+        <xsl:call-template name="RegistrationState">
+            <xsl:with-param name="pCID" select="$RS"/>
+            <xsl:with-param name="pRA" select="'RA-084433759'"/>
+            <xsl:with-param name="pEffectiveDate" select="$ReleaseDate"/>
+            <xsl:with-param name="pUntilDate" select="$ReleaseDate"/>
+        </xsl:call-template>   
+        
         <!-- For each file making up the CDISC Terminology version, select the file set from the catalog file -->
         <xsl:for-each select="/CDISCTerminology/Update[@version=$UseVersion]/File">
             <xsl:apply-templates select="document(@filename)/rdf:RDF"/>

@@ -24,6 +24,31 @@
         <xsl:value-of select="concat('.','&#xa;')"/>
     </xsl:template>
 
+    <!-- Managed Items common fields -->
+    <xsl:template name="CommonFields">
+        <xsl:param name="pDate"/>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:origin'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:changeDescription'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:creationDate'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pDate,$quote,'^^xsd:date')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:lastChangeDate'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pDate,$quote,'^^xsd:date')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:explanatoryComment'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+    </xsl:template>
+    
     <!-- Create ScopedIdentifier -->
     <xsl:template name="ScopedIdentifier">
         <xsl:param name="pCID"/>
@@ -61,6 +86,8 @@
     <xsl:template name="RegistrationState">
         <xsl:param name="pCID"/>
         <xsl:param name="pRA"/>
+        <xsl:param name="pUntilDate"/>
+        <xsl:param name="pEffectiveDate"/>
         <xsl:call-template name="Subject">
             <xsl:with-param name="pName" select="concat('mdrItems:',$pCID)"/>
         </xsl:call-template>
@@ -78,7 +105,11 @@
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoR:effectiveDate'"/>
-            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pEffectiveDate,'T00:00:00Z',$quote,'^^xsd:dateTime')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoR:untilDate'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pUntilDate,'T00:00:00Z',$quote,'^^xsd:dateTime')"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoR:unresolvedIssue'"/>

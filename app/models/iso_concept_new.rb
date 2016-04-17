@@ -127,8 +127,9 @@ class IsoConceptNew
       object = find_from_triples(triples, ModelUtility.extractCid(link))
       results << object
     end
-    sorted = results.sort_by{|item| item.id}
-    return sorted
+    return results
+    #sorted = results.sort_by{|item| item.id}
+    #return sorted
   end
   
   # Find all objects of a given type using the link set.

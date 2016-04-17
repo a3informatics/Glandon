@@ -20,18 +20,17 @@ class BiomedicalConcept < BiomedicalConceptCore
       if object.link_exists?(C_SCHEMA_PREFIX, "basedOn")
         bct_uri = object.get_links(C_SCHEMA_PREFIX, "basedOn")[0]
         # TODO: Don't get the template, not used as yet. Think about this this, save a query or two.
-        #object.bct = BiomedicalConceptTemplate.find(ModelUtility.extractCid(bct_uri), ModelUtility.extractNs(bct_uri), false)
-        object.bct = nil 
+        # TODO: Amended to put back in. Used when editing the BC. 
+        object.bct = BiomedicalConceptTemplate.find(ModelUtility.extractCid(bct_uri), ModelUtility.extractNs(bct_uri), false)
+        #object.bct = nil 
       else
         object.bct = nil 
       end 
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"find","object=" + object.to_json.to_s)
     return object 
   end
 
   def flatten
-    #ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
     results = super
   end
 
@@ -49,39 +48,38 @@ class BiomedicalConcept < BiomedicalConceptCore
     return result
   end
 
-  def self.findByReference(id, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"findByReference","*****ENTRY*****")
-    query = UriManagement.buildNs(ns, ["bo", "cbc"]) +
-      "SELECT ?bc WHERE\n" + 
-      "{ \n" + 
-      " :" + id + " bo:hasBiomedicalConcept ?bc . \n" +
-      " ?bc rdf:type cbc:BiomedicalConceptInstance . \n" +
-      "}\n"
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    results = xmlDoc.xpath("//result")
-    #ConsoleLogger::log(C_CLASS_NAME,"findByReference","Results=" + results.to_s)
-    if results.length == 1 
-      node = results[0]
-      #ConsoleLogger::log(C_CLASS_NAME,"findByReference","Node=" + node.to_s)
-      uri = ModelUtility.getValue('bc', true, node)
-      bcId = ModelUtility.extractCid(uri)
-      bcNs = ModelUtility.extractNs(uri)
-      #ConsoleLogger::log(C_CLASS_NAME,"findByReference","BC id=" + bcId + ", ns=" + bcNs)
-      object = self.find(bcId, bcNs)
-    else
-      object = nil
-    end  
-    return object
-  end
+  #def self.findByReference(id, ns)
+  #  #ConsoleLogger::log(C_CLASS_NAME,"findByReference","*****ENTRY*****")
+  #  query = UriManagement.buildNs(ns, ["bo", "cbc"]) +
+  #    "SELECT ?bc WHERE\n" + 
+  #    "{ \n" + 
+  #    " :" + id + " bo:hasBiomedicalConcept ?bc . \n" +
+  #    " ?bc rdf:type cbc:BiomedicalConceptInstance . \n" +
+  #    "}\n"
+  #  response = CRUD.query(query)
+  #  xmlDoc = Nokogiri::XML(response.body)
+  #  xmlDoc.remove_namespaces!
+  #  results = xmlDoc.xpath("//result")
+  #  #ConsoleLogger::log(C_CLASS_NAME,"findByReference","Results=" + results.to_s)
+  #  if results.length == 1 
+  #    node = results[0]
+  #    #ConsoleLogger::log(C_CLASS_NAME,"findByReference","Node=" + node.to_s)
+  #    uri = ModelUtility.getValue('bc', true, node)
+  #    bcId = ModelUtility.extractCid(uri)
+  #    bcNs = ModelUtility.extractNs(uri)
+  #    #ConsoleLogger::log(C_CLASS_NAME,"findByReference","BC id=" + bcId + ", ns=" + bcNs)
+  #    object = self.find(bcId, bcNs)
+  #  else
+  #    object = nil
+  #  end  
+  #  return object
+  #end
 
   def self.all
     super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   def self.unique
-    ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + C_SCHEMA_NS)
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
@@ -98,14 +96,14 @@ class BiomedicalConcept < BiomedicalConceptCore
   end
 
   def self.create(params)
-    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     object = self.new 
     object.errors.clear
     data = params[:data]
     source = data[:source]
     operation = data[:operation]
-    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + source[:identifier] + ", new version=" + source[:new_version])
-    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
+    #ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + source[:identifier] + ", new version=" + source[:new_version])
+    #ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
     if create_permitted?(source[:identifier], source[:new_version].to_i, object) 
       bc = BiomedicalConceptTemplate.find(source[:id], source[:namespace])
       source[:versionLabel] = "0.1"
@@ -114,22 +112,22 @@ class BiomedicalConcept < BiomedicalConceptCore
       id = uri.getCid()
       ns = uri.getNs()
       bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, data, sparql, C_SCHEMA_PREFIX)
-      ConsoleLogger::log(C_CLASS_NAME,"create","Sparql=" + sparql.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Sparql=" + sparql.to_s)
       response = CRUD.update(sparql.to_s)
       if response.success?
         object = BiomedicalConceptTemplate.find(id, ns)
         object.errors.clear
-        ConsoleLogger::log(C_CLASS_NAME,"create","Object created")
+        #ConsoleLogger::log(C_CLASS_NAME,"create","Object created")
       else
         object.errors.add(:base, "The Biomedical Concept was not created in the database.")
-        ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
+        #ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
       end
     end
     return object
   end
 
    def self.update(params)
-    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     object = self.new 
     object.errors.clear
     id = params[:id]
@@ -137,29 +135,27 @@ class BiomedicalConcept < BiomedicalConceptCore
     data = params[:data]
     source = data[:source]
     operation = data[:operation]
-    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + source[:identifier] + ", new version=" + source[:new_version])
-    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
-    #if create_permitted?(source[:identifier], source[:new_version].to_i, object) 
-      bc = BiomedicalConcept.find(id, namespace)
-      source[:versionLabel] = "0.1"
-      sparql = SparqlUpdate.new
-      uri = create_sparql(C_CID_PREFIX, source, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
-      id = uri.getCid()
-      ns = uri.getNs()
-      ConsoleLogger::log(C_CLASS_NAME,"create","URI=" + uri.to_json.to_s)
-      bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, data, sparql, C_SCHEMA_PREFIX)
-      ConsoleLogger::log(C_CLASS_NAME,"create","Sparql=" + sparql.to_s)
-      bc.destroy # Destroys the old entry before the creation of the new item
-      response = CRUD.update(sparql.to_s)
-      if response.success?
-        object = BiomedicalConcept.find(id, ns)
-        object.errors.clear
-        ConsoleLogger::log(C_CLASS_NAME,"create","Object created")
-      else
-        object.errors.add(:base, "The Biomedical Concept was not created in the database.")
-        ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
-      end
-    #end
+    #ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + source[:identifier] + ", new version=" + source[:new_version])
+    #ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
+    bc = BiomedicalConcept.find(id, namespace)
+    source[:versionLabel] = "0.1"
+    sparql = SparqlUpdate.new
+    uri = create_sparql(C_CID_PREFIX, source, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+    id = uri.getCid()
+    ns = uri.getNs()
+    #ConsoleLogger::log(C_CLASS_NAME,"create","URI=" + uri.to_json.to_s)
+    bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, data, sparql, C_SCHEMA_PREFIX)
+    #ConsoleLogger::log(C_CLASS_NAME,"create","Sparql=" + sparql.to_s)
+    bc.destroy # Destroys the old entry before the creation of the new item
+    response = CRUD.update(sparql.to_s)
+    if response.success?
+      object = BiomedicalConcept.find(id, ns)
+      object.errors.clear
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Object created")
+    else
+      object.errors.add(:base, "The Biomedical Concept was not created in the database.")
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
+    end
     return object
   end
 

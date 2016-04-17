@@ -6,7 +6,7 @@ class IsoManagedNew < IsoConceptNew
   include CRUD
   include ModelUtility
   
-  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment, :latest, :triples
+  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment, :triples
 
   # Constants
   C_CID_PREFIX = "ISOM"
@@ -24,8 +24,7 @@ class IsoManagedNew < IsoConceptNew
       self.creationDate = Time.now
       self.lastChangedDate = Time.now
       self.explanoratoryComment = ""
-      self.latest = false
-      self.triples = nil
+      self.triples = ""
       self.registrationState = IsoRegistrationState.new
       self.scopedIdentifier = IsoScopedIdentifier.new
     else
@@ -104,12 +103,28 @@ class IsoManagedNew < IsoConceptNew
     end
   end
 
+  def can_be_current?
+    if registrationState == nil
+      return false
+    else
+      return self.registrationState.can_be_current?
+    end
+  end
+
   def next_version
     scopedIdentifier.next_version
   end
 
   def first_version
     scopedIdentifier.first_version
+  end
+
+  def current?
+    if registrationState == nil
+      return false
+    else
+      return self.registrationState.current
+    end
   end
 
   # Does the item exist. Cannot be used for child objects!
@@ -123,17 +138,25 @@ class IsoManagedNew < IsoConceptNew
   end
 
   # Note: The id is the identifier for the enclosing managed object. 
-  def self.find(id, ns)  
+  def self.find(id, ns, full=true)  
     # Initialise.
     object = nil
     # Create the query and action.
     query = UriManagement.buildNs(ns, [UriManagement::C_ISO_I, UriManagement::C_ISO_R]) +
       "SELECT ?s ?p ?o WHERE \n" +
       "{ \n" +
-      "  { \n" +
+      "  { \n"
+    if full
+      query += 
       "    :" + id + " (:|!:)* ?s .\n" +
       "    ?s ?p ?o .\n" + 
-      "    FILTER(STRSTARTS(STR(?s), \"" + ns + "\"))  \n" +
+      "    FILTER(STRSTARTS(STR(?s), \"" + ns + "\"))  \n" 
+    else
+      query += 
+      "    BIND ( :" + id + " as ?s ) .\n" +
+      "    ?s ?p ?o .\n" 
+    end
+    query +=  
       "  } UNION {\n" +
       "    :" + id + " isoI:hasIdentifier ?s . \n" +
       "    ?s ?p ?o . \n" +
@@ -169,14 +192,12 @@ class IsoManagedNew < IsoConceptNew
 
   # Find list of managed items of a given type.
   def self.unique(rdfType, ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + ns.to_s)
     results = IsoScopedIdentifier.allIdentifier(rdfType, ns)
   end
 
   # Find all managed items based on their type.
   def self.all(rdfType, ns)
     results = Array.new
-    
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?h ?i WHERE \n" +
@@ -195,10 +216,8 @@ class IsoManagedNew < IsoConceptNew
       "    } \n" +
       "  } \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -212,7 +231,6 @@ class IsoManagedNew < IsoConceptNew
       lastSet = node.xpath("binding[@name='f']/literal")
       commentSet = node.xpath("binding[@name='g']/literal")
       label = ModelUtility.getValue('i', false, node)
-      #ConsoleLogger::log(C_CLASS_NAME,"find","Label=" + label)
       if uri != "" 
         object = self.new
         object.id = ModelUtility.extractCid(uri)
@@ -242,20 +260,14 @@ class IsoManagedNew < IsoConceptNew
         results << object
       end
     end
-    
-    # Return
     return results
-    
   end
 
   # Find history for a given identifier
   def self.history(rdfType, ns, params)    
-    #ConsoleLogger::log(C_CLASS_NAME,"history","*****Entry*****")    
     identifier = params[:identifier]
     namespace_id = params[:scope_id]
     results = Array.new
-    latest = IsoScopedIdentifier::first_version
-
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR", "mdrItems"]) +
       "SELECT ?a ?b ?c ?d ?e ?f ?g ?h ?i ?j WHERE \n" +
@@ -275,10 +287,8 @@ class IsoManagedNew < IsoConceptNew
       "    ?a isoT:explanatoryComment ?g . \n" +
       "  } \n" +
       "} ORDER BY DESC(?j)"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -299,38 +309,27 @@ class IsoManagedNew < IsoConceptNew
         object.namespace = ModelUtility.extractNs(uri)
         object.rdf_type = rdfType
         object.label = label
+        object.origin = oSet[0].text
+        object.changeDescription = descSet[0].text
+        object.creationDate = dateSet[0].text
+        object.lastChangedDate = lastSet[0].text
+        object.explanoratoryComment = commentSet[0].text
         if iiSet.length == 1
-
           # Set scoped identifier
           object.scopedIdentifier = IsoScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
-
-          # Determine if latest version in the history
-          if IsoScopedIdentifier.later_version?(object.version, latest)
-            latest = object.version
-            object.latest = true
-          end
-
           # Registration state?
           if rsSet.length == 1
-            object.registrationState = IsoRegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
-            object.origin = oSet[0].text
-            object.changeDescription = descSet[0].text
-            object.creationDate = dateSet[0].text
-            object.lastChangedDate = lastSet[0].text
-            object.explanoratoryComment = commentSet[0].text
+            object.registrationState = IsoRegistrationState.find(ModelUtility.extractCid(rsSet[0].text))           
           end
-        else
-          object.scopedIdentifier = nil
         end
         results << object
       end
     end
-    
-    # Return
     return results  
   end
 
-  # Find latest item for all identifiers.
+  # Find latest item for all identifiers of a given type.
+  # TODO: Needs to be updated with current mechanism
   def self.list(rdfType, ns)    
     #ConsoleLogger::log(C_CLASS_NAME,"list","*****Entry*****")    
     check = Hash.new
@@ -408,8 +407,43 @@ class IsoManagedNew < IsoConceptNew
     return results  
   end
 
-  def latest?
-    return self.latest
+  def self.current(rdfType, ns, params)    
+    #ConsoleLogger::log(C_CLASS_NAME,"latest","*****Entry*****")    
+    identifier = params[:identifier]
+    namespace_id = params[:scope_id]
+    date_time = Time.now
+    results = Array.new
+    # Create the query
+    query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR", "mdrItems"]) +
+      "SELECT ?a ?b ?c ?d ?e WHERE \n" +
+      "{ \n" +
+      "  ?a rdf:type :" + rdfType.to_s + " . \n" +
+      "  ?a isoI:hasIdentifier ?b . \n" +
+      "  ?a isoR:hasState ?c . \n" +
+      "  ?b isoI:identifier \"" + identifier.to_s + "\" . \n" +
+      "  ?b isoI:hasScope mdrItems:" + namespace_id.to_s + " . \n" +
+      "  ?c isoR:effectiveDate ?d . \n" +
+      "  ?c isoR:untilDate ?e . \n" +
+      "  FILTER ( ?d <= \"" + date_time + "\"^^xsd:dateTime ) . \n" +
+      "  FILTER ( ?e >= \"" + date_time + "\"^^xsd:dateTime ) . \n" +
+      "  } \n" +
+      "} ORDER BY DESC(?e)"
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    if xmlDoc.xpath("//result").length > 0
+      uri = ModelUtility.getValue('a', true, node)
+      if uri != "" 
+        object = find(ModelUtility.extractCid(uri), ModelUtility.extractNs(uri))
+      else
+        object = nil
+      end
+    else
+      object = nil
+    end
+    return object
   end
 
   # Rewritten to return an object with the desired settings for the import.
@@ -417,22 +451,20 @@ class IsoManagedNew < IsoConceptNew
     identifier = params[:identifier]
     version = params[:version]
     version_label = params[:versionLabel]
-
     # Set the registration authority to teh owner
     orgName = ownerNamespace.shortName
     scopeId = ownerNamespace.id
-
     # Create the required namespace. Use owner name to extend
     uri = ModelUtility::version_namespace(version, instanceNs, orgName)
     useNs = uri.getNs()
     ConsoleLogger::log(C_CLASS_NAME,"create","useNs=" + useNs)
-     
-    # Create the SI etc. Note no registration state.
+    # Create the SI, RS etc.
     identifier = params[:identifier]
     object = self.new
     object.id = ModelUtility.build_full_cid(prefix, orgName, identifier)
     object.namespace = useNs
     object.scopedIdentifier = IsoScopedIdentifier.create_dummy(identifier, version, version_label, ownerNamespace)
+    object.registrationState = IsoRegistrationState.create_dummy(identifier, version, ownerNamespace)
     return object
   end
 
@@ -466,20 +498,15 @@ class IsoManagedNew < IsoConceptNew
     identifier = params[:identifier]
     version = params[:version]
     version_label = params[:versionLabel]
-
     # Set the registration authority to teh owner
     ra = IsoRegistrationAuthority.owner
     orgName = ra.namespace.shortName
     scopeId = ra.namespace.id
-
     # Create the required namespace. Use owner name to extend
     uri = ModelUtility::version_namespace(version, instanceNs, orgName)
     useNs = uri.getNs()
-    ConsoleLogger::log(C_CLASS_NAME,"create","useNs=" + useNs)
-     
     # Set the timestamp
     timestamp = Time.now
-    
     # Create the object
     object = self.new
     object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
@@ -509,20 +536,16 @@ class IsoManagedNew < IsoConceptNew
       "  :" + object.id + " rdf:type " + schemaPrefix + ":" + rdfType + " . \n" +
       "  :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
     "}"
-
     # Send the request, wait the resonse
     response = CRUD.update(update)
-
     # Response
     if response.success?
       ConsoleLogger::log(C_CLASS_NAME,"create","Success, id=" + object.id)
     else
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"create","Failed")
+      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
+      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
     end
-
     return object
-
   end 
 
   # Build the SPARQL for the managed item creation.
@@ -532,22 +555,21 @@ class IsoManagedNew < IsoConceptNew
     version_label = params[:versionLabel]
     timestamp = Time.now
     schema_prefix = UriManagement.getPrefix(schemaNs)
-
     # Set the registration authority to the owner
     ra = IsoRegistrationAuthority.owner
     org_name = ra.namespace.shortName
     scopeId = ra.namespace.id
-
     # Create the required namespace. Use owner name to extend
     uri = ModelUtility::version_namespace(version, instanceNs, org_name)
     useNs = uri.getNs()
-    
+    # Dummy SI and RS to get the right identifiers.
     dummy_SI = IsoScopedIdentifier.create_dummy(identifier, version, version_label, ra.namespace)
     dummy_RS = IsoRegistrationState.create_dummy(identifier, version, ra.namespace)
     id = ModelUtility.build_full_cid(prefix, org_name, identifier)
-    
+    # SI and RS
     IsoScopedIdentifier.create_sparql(identifier, version, version_label, ra.namespace, sparql)
     IsoRegistrationState.create_sparql(identifier, version, ra.namespace, sparql)
+    # And the object.
     sparql.add_default_namespace(useNs)
     sparql.triple("", id, UriManagement::C_RDF, "type", schema_prefix, rdfType)
     sparql.triple("", id, UriManagement::C_ISO_I, "hasIdentifier", C_INSTANCE_PREFIX, dummy_SI.id)
@@ -558,7 +580,6 @@ class IsoManagedNew < IsoConceptNew
     sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "creationDate", timestamp.to_s, "string")
     sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "changeDescription", "Creation", "string")
     sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "origin", "", "string")
-
     # Result URI
     uri = Uri.new
     uri.setNsCid(useNs, id)

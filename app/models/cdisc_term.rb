@@ -131,6 +131,7 @@ class CdiscTerm < Thesaurus
       # Determine the SI, namespace and CID
       thesaurus = Thesaurus.import(params, namespace)
       params[:si] = thesaurus.scopedIdentifier.id
+      params[:rs] = thesaurus.registrationState.id
       params[:ns] = thesaurus.namespace
       params[:cid] = thesaurus.id
 

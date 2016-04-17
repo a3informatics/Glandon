@@ -9,8 +9,8 @@ class IsoRegistrationState
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :registrationAuthority, :registrationStatus, :administrativeNote, :effectiveDate, :unresolvedIssue, :administrativeStatus, :previousState
-  validates_presence_of :registrationAuthority, :registrationStatus, :administrativeNote, :effectiveDate, :unresolvedIssue, :administrativeStatus, :previousState
+  attr_accessor :id, :registrationAuthority, :registrationStatus, :administrativeNote, :effective_date, :until_date, :current, :unresolvedIssue , :administrativeStatus, :previousState
+  validates_presence_of :registrationAuthority, :registrationStatus, :administrativeNote, :effective_date, :until_date, :unresolvedIssue, :current, :administrativeStatus, :previousState
   
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -26,6 +26,9 @@ class IsoRegistrationState
   C_RETIRED = "Retired"
   C_SUPERSEDED = "Superseded"
 
+  C_DEFAULT_DATETIME = "2016-01-01T00:00:00Z"
+  C_UNTIL_DATETIME = "2100-01-01T00:00:00Z"
+
   # Class variables
   @@stateInfo = {
     C_NOTSET => 
@@ -37,6 +40,7 @@ class IsoRegistrationState
         :edit_enabled => true, 
         :edit_up_version => true, # New items set to this state 
         :state_on_edit => C_INCOMPLETE,
+        :can_be_current => false, 
         :next_state => C_INCOMPLETE
       },
     C_INCOMPLETE  => 
@@ -48,6 +52,7 @@ class IsoRegistrationState
         :edit_enabled  => true,
         :edit_up_version => false,
         :state_on_edit => C_INCOMPLETE,
+        :can_be_current => false, 
         :next_state => C_CANDIDATE
       },
     C_CANDIDATE =>
@@ -59,6 +64,7 @@ class IsoRegistrationState
         :edit_enabled  => true,
         :edit_up_version => false,
         :state_on_edit => C_CANDIDATE,
+        :can_be_current => false, 
         :next_state => C_RECORDED
       },
     C_RECORDED =>
@@ -70,6 +76,7 @@ class IsoRegistrationState
         :edit_enabled  => true,
         :edit_up_version => true,
         :state_on_edit => C_RECORDED,
+        :can_be_current => false, 
         :next_state => C_QUALIFIED
       },
     C_QUALIFIED =>
@@ -81,6 +88,7 @@ class IsoRegistrationState
         :edit_enabled  => true,
         :edit_up_version => true,
         :state_on_edit => C_QUALIFIED,
+        :can_be_current => false, 
         :next_state => C_STANDARD
       },
     C_STANDARD =>
@@ -92,6 +100,7 @@ class IsoRegistrationState
         :edit_enabled  => true,
         :edit_up_version => true,
         :state_on_edit => C_INCOMPLETE,
+        :can_be_current => true, 
         :next_state => C_SUPERSEDED
       },
     C_RETIRED =>
@@ -103,6 +112,7 @@ class IsoRegistrationState
         :edit_enabled  => false,
         :edit_up_version => false,
         :state_on_edit => C_RETIRED,
+        :can_be_current => false, 
         :next_state => C_RETIRED
       },
     C_SUPERSEDED =>
@@ -114,27 +124,25 @@ class IsoRegistrationState
         :edit_enabled => false, 
         :edit_up_version => false, 
         :state_on_edit => C_SUPERSEDED,
+        :can_be_current => false, 
         :next_state => C_SUPERSEDED
       }
   }
-
-  @@owner
 
   def persisted?
     id.present?
   end
  
-  def initialize()
-  end
-
   def initialize(triples=nil)
     @@owner ||= IsoRegistrationAuthority.owner()
+    date_time = Time.now
     if triples.nil?
       self.id = ""
       self.registrationAuthority = nil
       self.registrationStatus = C_NOTSET
       self.administrativeNote = ""
-      self.effectiveDate = Time.now
+      self.effective_date = Time.parse(C_DEFAULT_DATETIME)
+      self.until_date = Time.parse(C_DEFAULT_DATETIME)
       self.unresolvedIssue = ""
       self.administrativeStatus = ""
       self.previousState  = C_NOTSET
@@ -149,18 +157,19 @@ class IsoRegistrationState
       triples.each do |triple|
         self.registrationStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
         self.administrativeNote = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
-        self.effectiveDate = Triples::get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
+        effective_date = Triples::get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
+        until_date = Triples::get_property_value(triples, UriManagement::C_ISO_R, "untilDate")
+        self.set_current_datetimes(effective_date, until_date)
         self.unresolvedIssue = Triples::get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
         self.administrativeStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeStatus")
         self.previousState  = Triples::get_property_value(triples, UriManagement::C_ISO_R, "previousState")
       end
     end
+    if date_time >= self.effective_date && date_time <= self.until_date
+      self.current = true
+    end
   end
 
-  def baseNs
-    return @@baseNs 
-  end
-  
   def registrationAuthority
     return @@owner
   end
@@ -190,6 +199,10 @@ class IsoRegistrationState
     return C_STANDARD
   end
   
+  def released_state?
+    self.registrationStatus == C_STANDARD
+  end
+  
   def edit?()
     info = @@stateInfo[self.registrationStatus]
     return info[:edit_enabled]
@@ -210,28 +223,30 @@ class IsoRegistrationState
     return info[:edit_up_version]
   end
 
+  def can_be_current?()
+    info = @@stateInfo[self.registrationStatus]
+    return info[:can_be_current]
+  end
+
   def self.find(id)
-    
-    #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
     object = nil
-    
+    date_time = Time.now
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "SELECT ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
+      "SELECT ?b ?c ?d ?e ?f ?g ?h ?i WHERE \n" +
       "{ \n" +
       "  :" + id + " rdf:type isoR:RegistrationState . \n" +
       "  :" + id + " isoR:byAuthority ?b . \n" +
       "  :" + id + " isoR:registrationStatus ?c . \n" +
       "  :" + id + " isoR:administrativeNote ?d . \n" +       
       "  :" + id + " isoR:effectiveDate ?e . \n" + 
+      "  :" + id + " isoR:untilDate ?i . \n" + 
       "  :" + id + " isoR:unresolvedIssue ?f . \n" +
       "  :" + id + " isoR:administrativeStatus ?g . \n" +   
       "  :" + id + " isoR:previousState ?h . \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -241,48 +256,47 @@ class IsoRegistrationState
       rsSet = node.xpath("binding[@name='c']/literal")
       anSet = node.xpath("binding[@name='d']/literal")
       edSet = node.xpath("binding[@name='e']/literal")
+      unSet = node.xpath("binding[@name='i']/literal")
       uiSet = node.xpath("binding[@name='f']/literal")
       asSet = node.xpath("binding[@name='g']/literal")
       psSet = node.xpath("binding[@name='h']/literal")
-      if raSet.length == 1 && rsSet.length == 1 && anSet.length == 1 && edSet.length == 1 && uiSet.length == 1 && asSet.length == 1 && psSet.length == 1
+      if raSet.length == 1 # && rsSet.length == 1 && anSet.length == 1 && edSet.length == 1 && uiSet.length == 1 && asSet.length == 1 && psSet.length == 1
         object = self.new 
         object.id = id
         object.registrationAuthority = IsoRegistrationAuthority.find(ModelUtility.extractCid(raSet[0].text))
         object.registrationStatus = rsSet[0].text
         object.administrativeNote = anSet[0].text
-        object.effectiveDate = edSet[0].text
+        object.set_current_datetimes(edSet[0].text, unSet[0].text)
         object.unresolvedIssue = uiSet[0].text
         object.administrativeStatus = asSet[0].text
         object.previousState  = psSet[0].text
-        #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + object.id)
+        # Determine if current
+        if date_time >= object.effective_date && date_time <= object.until_date
+            object.current = true
+        end
       end
     end
-    
-    # Return
     return object
-    
   end
 
   def self.all
-    
     results = Array.new
-    
+    date_time = Time.now
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "SELECT ?a ?c ?d ?e ?f ?g ?h WHERE \n" +
+      "SELECT ?a ?c ?d ?e ?f ?g ?h ?i WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type isoR:RegistrationState . \n" +
       "	 ?a isoR:registrationStatus ?c . \n" +
       "	 ?a isoR:administrativeNote ?d . \n" +       
       "	 ?a isoR:effectiveDate ?e . \n" + 
+      "  ?a isoR:untilDate ?i . \n" + 
       "	 ?a isoR:unresolvedIssue ?f . \n" +
       "	 ?a isoR:administrativeStatus ?g . \n" +   
       "	 ?a isoR:previousState ?h . \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -291,28 +305,30 @@ class IsoRegistrationState
       rsSet = node.xpath("binding[@name='c']/literal")
       rnSet = node.xpath("binding[@name='d']/literal")
       edSet = node.xpath("binding[@name='e']/literal")
+      unSet = node.xpath("binding[@name='i']/literal")
       uiSet = node.xpath("binding[@name='f']/literal")
       asSet = node.xpath("binding[@name='g']/literal")
       psSet = node.xpath("binding[@name='h']/literal")
-      if uriSet.length == 1 && rsSet.length == 1 && rnSet.length == 1 && edSet.length == 1 && uiSet.length == 1 && asSet.length == 1 && psSet.length == 1
+      if uriSet.length == 1 # && rsSet.length == 1 && rnSet.length == 1 && edSet.length == 1 && uiSet.length == 1 && asSet.length == 1 && psSet.length == 1
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.registrationStatus = rsSet[0].text
         object.administrativeNote = rnSet[0].text
-        object.effectiveDate = edSet[0].text
+        object.set_current_datetimes(edSet[0].text, unSet[0].text)
         object.unresolvedIssue = uiSet[0].text
         object.administrativeStatus = asSet[0].text
         object.previousState  = psSet[0].text
+        # Determine if current
+        if date_time >= object.effective_date && date_time <= object.until_date
+            object.current = true
+        end
         results.push (object)
       end
     end
-    
     return results
-    
   end
 
-  def self.create(identifier, version, scope_org)
-    
+  def self.create(identifier, version, scope_org)   
     # Create the query
     id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
@@ -322,33 +338,30 @@ class IsoRegistrationState
       "	:" + id + " isoR:byAuthority :" + @@owner.id + " . \n" +
       "	:" + id + " isoR:registrationStatus \"" + C_INCOMPLETE + "\"^^xsd:string . \n" +
       "	:" + id + " isoR:administrativeNote \"\"^^xsd:string . \n" +
-      "	:" + id + " isoR:effectiveDate \"\"^^xsd:string . \n" +
+      "	:" + id + " isoR:effectiveDate \"" + C_DEFAULT_DATETIME + "\"^^xsd:string . \n" +
+      " :" + id + " isoR:untilDate \"" + C_DEFAULT_DATETIME + "\"^^xsd:string . \n" +
       "	:" + id + " isoR:unresolvedIssue \"\"^^xsd:string . \n" +
       "	:" + id + " isoR:administrativeStatus \"\"^^xsd:string . \n" +
       "	:" + id + " isoR:previousState \"" + C_INCOMPLETE + "\"^^xsd:string . \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.update(update)
-    
     # Response
     if response.success?
       object = self.new
       object.id = id
       object.registrationStatus = C_INCOMPLETE
       object.administrativeNote = ""
-      object.effectiveDate = ""
-      object.unresolvedIssue = ""
+      object.effectiveDate = Time.parse(C_DEFAULT_DATETIME)
+      object.unresolvedIssue = Time.parse(C_DEFAULT_DATETIME)
       object.administrativeStatus = ""
       object.previousState  = C_INCOMPLETE 
       #ConsoleLogger::log(C_CLASS_NAME,"create","Created Id=" + id.to_s)
     else
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Failed to create object")
-      object = self.new
-      object.assign_errors(data) if response.response_code == 422
+      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
+      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
     end
-    return object
-    
+    return object    
   end
 
   def self.create_dummy(identifier, version, scope_org)
@@ -356,7 +369,8 @@ class IsoRegistrationState
     object.id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
     object.registrationStatus = C_INCOMPLETE
     object.administrativeNote = ""
-    object.effectiveDate = ""
+    object.effective_date = Time.parse(C_DEFAULT_DATETIME)
+    object.until_date = Time.parse(C_DEFAULT_DATETIME)
     object.unresolvedIssue = ""
     object.administrativeStatus = ""
     object.previousState  = C_INCOMPLETE 
@@ -371,7 +385,8 @@ class IsoRegistrationState
     sparql.triple(C_NS_PREFIX, id, "isoR", "byAuthority", C_NS_PREFIX, @@owner.id)
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "registrationStatus", C_INCOMPLETE, "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeNote", "", "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "effectiveDate", "", "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "effectiveDate", C_DEFAULT_DATETIME, "dateTime")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "untilDate", C_DEFAULT_DATETIME, "dateTime")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "unresolvedIssue", "", "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeStatus", "", "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "previousState", C_INCOMPLETE, "string")
@@ -397,8 +412,7 @@ class IsoRegistrationState
     return results
   end
 
-  def update(id, params)
-    
+  def update(id, params)  
     registrationStatus = params[:registrationStatus]
     previousState  = params[:previousState]
     note = params[:administrativeNote]
@@ -409,7 +423,7 @@ class IsoRegistrationState
       "{ \n" +
       " :" + id + " isoR:registrationStatus ?a . \n" +
       " :" + id + " isoR:administrativeNote ?b . \n" +
-      " :" + id + " isoR:effectiveDate ?c . \n" +
+      #" :" + id + " isoR:effectiveDate ?c . \n" +
       " :" + id + " isoR:unresolvedIssue ?d . \n" +
       " :" + id + " isoR:previousState ?e . \n" +
       "} \n" +
@@ -417,7 +431,7 @@ class IsoRegistrationState
       "{ \n" +
       " :" + id + " isoR:registrationStatus \"" + registrationStatus + "\"^^xsd:string . \n" +
       " :" + id + " isoR:administrativeNote \"" + note + "\"^^xsd:string . \n" +
-      " :" + id + " isoR:effectiveDate \"" + date + "\"^^xsd:date . \n" +
+      #" :" + id + " isoR:effectiveDate \"" + date + "\"^^xsd:date . \n" +
       " :" + id + " isoR:unresolvedIssue \"" + issue + "\"^^xsd:string . \n" +
       " :" + id + " isoR:previousState \"" + previousState + "\"^^xsd:string . \n" +
       "} \n" +
@@ -425,22 +439,73 @@ class IsoRegistrationState
       "{ \n" +
       " :" + id + " isoR:registrationStatus ?a . \n" +
       " :" + id + " isoR:administrativeNote ?b . \n" +
-      " :" + id + " isoR:effectiveDate ?c . \n" +
+      #" :" + id + " isoR:effectiveDate ?c . \n" +
       " :" + id + " isoR:unresolvedIssue ?d . \n" +
       " :" + id + " isoR:previousState ?e . \n" +
       "}"
-
-      # Send the request, wait the resonse
+    # Send the request, wait the resonse
     response = CRUD.update(update)
-    
     # Response
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"create","Created Id=" + id.to_s)
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"create","Failed to create object")
-      #ßobject.assign_errors(data) if response.response_code == 422
+    if !response.success?
+      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
-
   end
   
+  def self.make_current(id)  
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+      "DELETE \n" +
+      "{ \n" +
+      " :" + id + " isoR:effectiveDate ?a . \n" +
+      " :" + id + " isoR:untilDate ?b . \n" +
+      "} \n" +
+      "INSERT \n" +
+      "{ \n" +
+      " :" + id + " isoR:effectiveDate \"" + Time.now.iso8601 + "\"^^xsd:dateTime . \n" +
+      " :" + id + " isoR:untilDate \"" + C_UNTIL_DATETIME + "\"^^xsd:dateTime . \n" +
+      "} \n" +
+      "WHERE \n" +
+      "{ \n" +
+      " :" + id + " isoR:effectiveDate ?a . \n" +
+      " :" + id + " isoR:untilDate ?b . \n" +
+      "}"
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    # Response
+    if !response.success?
+      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    end
+  end
+
+  def self.make_not_current(id)  
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+      "DELETE \n" +
+      "{ \n" +
+      " :" + id + " isoR:untilDate ?a . \n" +
+      "} \n" +
+      "INSERT \n" +
+      "{ \n" +
+      " :" + id + " isoR:untilDate \"" + Time.now.iso8601 + "\"^^xsd:dateTime . \n" +
+      "} \n" +
+      "WHERE \n" +
+      "{ \n" +
+      " :" + id + " isoR:untilDate ?a . \n" +
+      "}"
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    # Response
+    if !response.success?
+      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    end
+  end
+
+  def set_current_datetimes (effective_dt, until_dt)
+    begin
+      self.effective_date = Time.parse(effective_dt)
+      self.until_date = Time.parse(until_dt)
+    rescue
+      self.effective_date = Time.parse(C_DEFAULT_DATETIME)
+      self.until_date = Time.parse(C_DEFAULT_DATETIME)  
+    end
+  end
+
 end

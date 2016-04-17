@@ -112,7 +112,7 @@ class BiomedicalConceptCore::Property < IsoConceptNew
       # TODO: This needs to be made better. Array versus hash handling. Currently an array.
       properties = params.select {|key, item| item[:id] == self.id}
       property = properties.values[0]
-      #ConsoleLogger::log(C_CLASS_NAME,"to_bc","Property=" + property.to_s)
+      ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Property=" + property.to_s)
       sparql.triple_primitive_type("", id, prefix, "alias", property[:alias], "string")
       sparql.triple_primitive_type("", id, prefix, "ordinal", ordinal.to_s, "positiveInteger")
       sparql.triple_primitive_type("", id, prefix, "qText", property[:qText], "string")
@@ -177,7 +177,7 @@ private
       if object.link_exists?(C_SCHEMA_PREFIX, "isPropertyOf")
         links = object.get_links(C_SCHEMA_PREFIX, "isPropertyOf")
         object.datatypeComplex = BiomedicalConceptCore::Datatype.find_parent(triples, ModelUtility.extractCid(links[0]))
-        object.datatype = getDatatype(object.datatypeComplex.datatype, count)  
+        object.datatype = getDatatype(object.datatypeComplex.datatype, count, object.bridgPath)  
         object.format = getFormat(object.datatype)  
       end
     end
@@ -201,7 +201,7 @@ private
     end
   end
 
-  def self.getDatatype (parentDatatype, count)
+  def self.getDatatype (parentDatatype, count, bridg_path)
     result = ""
     if count > 0 then
       result = "CL"
@@ -209,7 +209,13 @@ private
       if parentDatatype == "CD"
         result = "CL"
       elsif parentDatatype == "PQR"
-        result = "F"
+        # TODO: This is horid. Oddity with ISO21090. 
+        # TODO: Need better mechanism
+        if bridg_path.ends_with?(".code")
+          result = "CL"
+        else
+          result = "F"
+        end
       elsif parentDatatype == "BL"
         result = "BL"
       elsif parentDatatype == "SC"

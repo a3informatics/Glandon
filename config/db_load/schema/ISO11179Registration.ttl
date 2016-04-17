@@ -76,15 +76,15 @@
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :RegistrationState ;
   rdfs:label "Effective Date"^^xsd:string ;
-  rdfs:range xsd:date ;
-  skos:definition "???"^^xsd:string ;
+  rdfs:range xsd:dateTime ;
+  skos:definition "The date time from which the item is effective and can be used."^^xsd:string ;
 .
 :untilDate
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :RegistrationState ;
   rdfs:label "Until Date"^^xsd:string ;
-  rdfs:range xsd:date ;
-  skos:definition "???"^^xsd:string ;
+  rdfs:range xsd:dateTime ;
+  skos:definition "The date time until which the item is effective and can be used."^^xsd:string ;
 .
 :administrativeNote
   rdf:type owl:DatatypeProperty ;

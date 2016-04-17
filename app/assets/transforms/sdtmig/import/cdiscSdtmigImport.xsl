@@ -50,6 +50,8 @@
         <xsl:value-of disable-output-escaping="yes" select="concat('@prefix ',$DomainNSPrefix,': &lt;',$DNamespace,'#&gt; .&#xa;')"/>
         <xsl:text disable-output-escaping="yes">@prefix isoB: &lt;http://www.assero.co.uk/ISO11179Basic#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix isoR: &lt;http://www.assero.co.uk/ISO11179Registration#&gt; .&#xa;</xsl:text>
+        <xsl:text disable-output-escaping="yes">@prefix isoT: &lt;http://www.assero.co.uk/ISO11179Types#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix bo: &lt;http://www.assero.co.uk/BusinessOperational#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix bd: &lt;http://www.assero.co.uk/BusinessDomain#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix bs: &lt;http://www.assero.co.uk/BusinessStandard#&gt; .&#xa;</xsl:text>
@@ -134,6 +136,7 @@
         <!-- <xsl:for-each select="$pDomains[not(.=preceding::*)]">-->
             <xsl:variable name="DomainName" select="$pShortName"/>
             <xsl:variable name="SICID" select="concat('SI-DOMAIN_',$DomainName,'-',$InternalVersion)"/>
+            <xsl:variable name="RSCID" select="concat('RS-DOMAIN_',$DomainName,'-',$InternalVersion)"/>
             <xsl:call-template name="Subject">
                 <xsl:with-param name="pName" select="concat($DomainNSPrefix,':',$DPrefix,$DomainName)"/>
             </xsl:call-template>
@@ -153,22 +156,36 @@
                 <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'"/>
                 <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SICID)"/>
             </xsl:call-template>
-            <!--<xsl:call-template name="PredicateObject">
-                <xsl:with-param name="pPredicateName" select="'bs:usedBy'"/>
-                <xsl:with-param name="pObjectName" select="concat(':',$CID)"/>
-            </xsl:call-template>-->
+            <xsl:call-template name="PredicateObject"> 
+                <xsl:with-param name="pPredicateName" select="'isoR:hasState'" /> 
+                <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RSCID)" /> 
+            </xsl:call-template>    
+            <xsl:call-template name="CommonFields">
+                <xsl:with-param name="pDate" select="'2016-01-01'"/>
+            </xsl:call-template>
             <xsl:call-template name="PredicateObject">
                 <xsl:with-param name="pPredicateName" select="'bd:basedOn'"/>
                 <xsl:with-param name="pObjectName" select="concat($lt,../../sr:binding[@name='dataset']/sr:uri,$gt)"/>
             </xsl:call-template>
             <xsl:call-template name="SubjectEnd"/>
+        
+            <!-- Scoped Identifier -->
             <xsl:call-template name="ScopedIdentifier">
                 <xsl:with-param name="pCID" select="$SICID"/>
                 <xsl:with-param name="pIdentifier" select="concat('SDTM ',$DomainName,' Domain')"/>
                 <xsl:with-param name="pVersionLabel" select="$SDTMVersion"/>
                 <xsl:with-param name="pVersion" select="$InternalVersion"/>
                 <xsl:with-param name="pScope" select="'NS-ACME'"/>
-            </xsl:call-template>           
+            </xsl:call-template> 
+            
+            <!-- Registration State -->
+            <xsl:call-template name="RegistrationState">
+                <xsl:with-param name="pCID" select="$RSCID"/>
+                <xsl:with-param name="pRA" select="'RA-084433759'"/>
+                <xsl:with-param name="pEffectiveDate" select="'2016-01-01'"/>
+                <xsl:with-param name="pUntilDate" select="'2016-01-01'"/>
+            </xsl:call-template>   
+        
         <!-- </xsl:for-each> -->
     </xsl:template>
 
