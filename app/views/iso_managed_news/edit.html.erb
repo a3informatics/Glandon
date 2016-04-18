@@ -41,13 +41,14 @@
 					    <%= f.text_area :changeDescription, autofocus: true, class: "form-control", rows:5 %>
 					</div>
 					<div class="form-group">
-					    <%= f.label :explanoratoryComment, "Comments:" %><br />
-					    <%= f.text_area :explanoratoryComment, class: "form-control", rows:5 %>
+					    <%= f.label :explanatoryComment, "Comments:" %><br />
+					    <%= f.text_area :explanatoryComment, class: "form-control", rows:5 %>
 					</div>
 					<div class="form-group">
 					    <%= f.label :origin, "References / Supporting Information:" %><br />
 					    <%= f.text_area :origin, class: "form-control", rows:5 %>
 					</div>
+					<%= f.hidden_field :ns, :value => @managed_item.namespace %>  
 					<%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
 				<% end %>
 			</div>
@@ -110,7 +111,8 @@
 							    <td><%= item.lastChangedDate %></td>
 							    <td><%= item.creationDate %></td>
 							    <td><%= item.changeDescription %></td>
-							    <td><%= item.explanoratoryComment %></td>
+							    <td><%= item.explanatoryComment
+ %></td>
 							    <td><%= item.origin %></td>
 							</tr>
 						<% end %>

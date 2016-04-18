@@ -6,7 +6,7 @@ class IsoManagedNew < IsoConceptNew
   include CRUD
   include ModelUtility
   
-  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanoratoryComment, :triples
+  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanatoryComment, :triples
 
   # Constants
   C_CID_PREFIX = "ISOM"
@@ -23,7 +23,7 @@ class IsoManagedNew < IsoConceptNew
       self.changeDescription = ""
       self.creationDate = Time.now
       self.lastChangedDate = Time.now
-      self.explanoratoryComment = ""
+      self.explanatoryComment = ""
       self.triples = ""
       self.registrationState = IsoRegistrationState.new
       self.scopedIdentifier = IsoScopedIdentifier.new
@@ -245,14 +245,14 @@ class IsoManagedNew < IsoConceptNew
             object.changeDescription = descSet[0].text
             object.creationDate = dateSet[0].text
             object.lastChangedDate = lastSet[0].text
-            object.explanoratoryComment = commentSet[0].text
+            object.explanatoryComment = commentSet[0].text
           else
             object.registrationState = nil
             object.origin = ""
             object.changeDescription = ""
             object.creationDate = ""
             object.lastChangedDate = ""
-            object.explanoratoryComment = ""
+            object.explanatoryComment = ""
           end
         else
           object.scopedIdentifier = nil
@@ -313,7 +313,7 @@ class IsoManagedNew < IsoConceptNew
         object.changeDescription = descSet[0].text
         object.creationDate = dateSet[0].text
         object.lastChangedDate = lastSet[0].text
-        object.explanoratoryComment = commentSet[0].text
+        object.explanatoryComment = commentSet[0].text
         if iiSet.length == 1
           # Set scoped identifier
           object.scopedIdentifier = IsoScopedIdentifier.find(ModelUtility.extractCid(iiSet[0].text))
@@ -506,7 +506,7 @@ class IsoManagedNew < IsoConceptNew
     uri = ModelUtility::version_namespace(version, instanceNs, orgName)
     useNs = uri.getNs()
     # Set the timestamp
-    timestamp = Time.now
+    timestamp = Time.now.iso8601
     # Create the object
     object = self.new
     object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
@@ -517,7 +517,7 @@ class IsoManagedNew < IsoConceptNew
     object.changeDescription = "Creation"
     object.creationDate = timestamp
     object.lastChangedDate = timestamp
-    object.explanoratoryComment = ""
+    object.explanatoryComment = ""
     object.label = params[:label]
     object.rdf_type = rdfType
     prefixSet = ["mdrItems", "isoT", "isoI", "isoR"]
@@ -553,7 +553,7 @@ class IsoManagedNew < IsoConceptNew
     version = params[:new_version]
     identifier = params[:identifier]
     version_label = params[:versionLabel]
-    timestamp = Time.now
+    timestamp = Time.now.iso8601
     schema_prefix = UriManagement.getPrefix(schemaNs)
     # Set the registration authority to the owner
     ra = IsoRegistrationAuthority.owner
@@ -586,6 +586,39 @@ class IsoManagedNew < IsoConceptNew
     return uri
   end
 
+  def update(id, ns, params)  
+    comment = 
+    date_time = Time.now.iso8601
+    update = UriManagement.buildNs(ns, ["isoT"]) +
+      "DELETE \n" +
+      "{ \n" +
+      " :" + id + " isoT:explanatoryComment ?a . \n" +
+      " :" + id + " isoT:changeDescription ?b . \n" +
+      " :" + id + " isoT:origin ?c . \n" +
+      " :" + id + " isoT:lastChangeDate ?d . \n" +
+      "} \n" +
+      "INSERT \n" +
+      "{ \n" +
+      " :" + id + " isoT:explanatoryComment \"" + params[:explanatoryComment].to_s + "\"^^xsd:string . \n" +
+      " :" + id + " isoT:changeDescription \"" + params[:changeDescription].to_s + "\"^^xsd:string . \n" +
+      " :" + id + " isoT:origin \"" + params[:origin].to_s + "\"^^xsd:string . \n" +
+      " :" + id + " isoT:lastChangeDate \"" + date_time + "\"^^xsd:dateTime . \n" +
+      "} \n" +
+      "WHERE \n" +
+      "{ \n" +
+      " :" + id + " isoT:explanatoryComment ?a . \n" +
+      " :" + id + " isoT:changeDescription ?b . \n" +
+      " :" + id + " isoT:origin ?c . \n" +
+      " :" + id + " isoT:lastChangeDate ?d . \n" +
+      "}"
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    # Response
+    if !response.success?
+      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    end
+  end
+  
   def to_api_json
     #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
     result = 

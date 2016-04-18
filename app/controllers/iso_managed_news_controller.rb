@@ -5,9 +5,10 @@ class IsoManagedNewsController < ApplicationController
   def update
     authorize IsoManagedNew
     #referer = this_params[:referer]
-    registrationState = IsoRegistrationState.find(params[:id])
-    registrationState.update(params[:id], this_params)
-    #redirect_to referer
+    @referer = request.referer
+    managed_item = IsoManagedNew.find(params[:id], this_params[:ns])
+    managed_item.update(params[:id], this_params[:ns], this_params)
+    redirect_to @referer
   end
 
   def edit
@@ -26,7 +27,7 @@ class IsoManagedNewsController < ApplicationController
   private
 
     def this_params
-      params.require(:iso_managed_new).permit()
+      params.require(:iso_managed_new).permit(:ns, :changeDescription, :explanatoryComment, :origin)
     end
 
 end

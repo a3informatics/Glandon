@@ -9,10 +9,10 @@ class IsoRegistrationStatesController < ApplicationController
   
   def update
     authorize IsoRegistrationState
-    #referer = this_params[:referer]
+    referer = request.referer
     registrationState = IsoRegistrationState.find(params[:id])
     registrationState.update(params[:id], this_params)
-    #redirect_to referer
+    redirect_to referer
   end
 
   #def edit
