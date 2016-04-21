@@ -84,11 +84,13 @@ Rails.application.routes.draw do
       get :impact_calc
       get :impact_report
       get :history
-      get :load
       get :search
       get :search2
       get :next
       get :import
+      get :load
+      get :file
+      delete :file_delete
     end
   end
   resources :cdisc_cls do

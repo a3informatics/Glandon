@@ -25,6 +25,10 @@ class CdiscCtChanges
 		return JSON.parse(file)
 	end
 
+    def self.dir_path()
+        return Rails.root.join("public","results")
+    end
+
 private
 
 	def self.file_path(type, params)
@@ -53,7 +57,4 @@ private
     	return outputFile
     end
 
-    def self.dir_path()
-        return Rails.root.join("public","results")
-    end
 end

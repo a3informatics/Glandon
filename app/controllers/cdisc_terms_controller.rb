@@ -222,6 +222,22 @@ class CdiscTermsController < ApplicationController
     send_data pdf.render, filename: 'cdisc_impact.pdf', type: 'application/pdf', disposition: 'inline'
   end
 
+  def file
+    authorize CdiscTerm, :import?
+    @files = @files = Dir.glob(CdiscCtChanges.dir_path + "*")
+  end
+
+  def file_delete
+    authorize CdiscTerm, :import?
+    ConsoleLogger::log(C_CLASS_NAME,"file_delete","Params=" + params.to_s)
+    files = this_params[:files]
+    files.each do |file|
+      ConsoleLogger::log(C_CLASS_NAME,"file_delete","File" + file.to_s)
+      File.delete(file) if File.exist?(file)
+    end 
+    redirect_to file_cdisc_terms_path
+  end
+
 private
 
   def this_params
