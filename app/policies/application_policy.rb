@@ -34,7 +34,6 @@ class ApplicationPolicy
   end
 
   def new?
-    ConsoleLogger::log(C_CLASS_NAME,"new?","*****Entry*****") 
     curator?
   end
 

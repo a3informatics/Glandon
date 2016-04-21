@@ -1,6 +1,6 @@
 class Reports::CdiscImpactReport < Reports::PdfReport
 
-  TABLE_HEADERS = ["Code List", "Item", "Old Submission Value", "New Submission Value", "Biomedical Concept", "Form"]
+  TABLE_HEADERS = ["Code List", "Item", "Old Submission Value", "New Submission Value", "Biomedical Concept", "Operational"]
 
   def initialize(results, user)
     super('Report', 'CDISC Submission Changes Impact', user)
@@ -11,6 +11,7 @@ class Reports::CdiscImpactReport < Reports::PdfReport
       bcs = cli["bcs"]
       bcs.each do |bc|
         forms = bc["forms"]
+        domains = bc["domains"]
         if forms.length > 0
           forms.each do |form|
             row = []
@@ -18,11 +19,24 @@ class Reports::CdiscImpactReport < Reports::PdfReport
             row << cli["identifier"]
             row << cli["old_notation"]
             row << cli["new_notation"]
-            row << bc["label"]
-            row << form["label"]
+            row << bc["label"] + "\n(" + bc["identifier"] + ")"
+            row << form["label"] + "\n(" + form["identifier"] + ")"
             table_data << row
           end
-        else
+        end
+        if domains.length > 0
+          domains.each do |domain|
+            row = []
+            row << cli["parent_identifier"]
+            row << cli["identifier"]
+            row << cli["old_notation"]
+            row << cli["new_notation"]
+            row << bc["label"] + "\n(" + bc["identifier"] + ")"
+            row << domain["label"] + "\n(" + domain["identifier"] + ")"
+            table_data << row
+          end
+        end
+        if forms.length == 0 && domains.length == 0
           row = []
           row << cli["parent_identifier"]
           row << cli["identifier"]

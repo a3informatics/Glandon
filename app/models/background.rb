@@ -164,16 +164,21 @@ class Background < ActiveRecord::Base
       bc_results = Array.new  
       if bcs.length > 0
         bcs.each do |bc_id, bc|
-          forms = Form.impact({:id => bc.id, :namespace => bc.namespace})
           form_results = Array.new
+          forms = Form.impact({:id => bc.id, :namespace => bc.namespace})
           forms.each do |form_id, form|
             form_results << {:id => form.id, :ns => form.namespace, :identifier => form.identifier, :label => form.label}
           end
-          bc_results << {:id => bc.id, :ns => bc.namespace, :identifier => bc.identifier, :label => bc.label, :forms => form_results}
+          domain_results = Array.new
+          domains = Domain.impact({:id => bc.id, :namespace => bc.namespace})
+          domains.each do |domain_id, domain|
+            domain_results << {:id => domain.id, :ns => domain.namespace, :identifier => domain.identifier, :label => domain.label}
+          end
+          bc_results << {:id => bc.id, :ns => bc.namespace, :identifier => bc.identifier, :label => bc.label, :forms => form_results, :domains => domain_results}
         end
       else
-        form_results = Array.new
-        bc_results << {:forms => form_results}
+        op_results = Array.new
+        bc_results << {:forms => op_results, :domains => op_results}
       end
       diff[:bcs] = bc_results
       p = (index.to_f/count.to_f)*100.0

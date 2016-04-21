@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     collection do
       get :index_term
       post :create_term
+      delete :destroy_term
     end
   end
   resources :biomedical_concept_templates do

@@ -88,47 +88,6 @@ class CdiscTermsController < ApplicationController
     render :json => results, :status => 200
   end
 
-  #def searchNew
-  #  authorize CdiscTerm, :view?
-  #  id = params[:id]
-  #  ns = params[:namespace]
-  #  offset = params[:start]
-  #  length = params[:length]
-  #  draw = params[:draw].to_i
-  #  search = params[:search]
-  #  searchTerm = search[:value]
-  #  order = params[:order]["0"]
-  #  col = order[:column]
-  #  dir = order[:dir]
-  #  ConsoleLogger::log(C_CLASS_NAME,"full","Search Term=" + searchTerm.to_s)
-  #  ConsoleLogger::log(C_CLASS_NAME,"full","Order=[" + col.to_s + "," + dir + "]")
-  #  count = CdiscTerm.count(searchTerm, ns)
-  #  items = CdiscTerm.search(offset, length, col, dir, searchTerm, ns)
-  #  ConsoleLogger::log(C_CLASS_NAME,"full","Counts=[C=" + count.to_s + ",L=" + items.length.to_s + "]")
-  #  @results = {
-  #    :draw => draw.to_s,
-  #    :recordsTotal => length.to_s,
-  #    :recordsFiltered => count.to_s,
-  #    :data => items }
-  #  render json: @results
-  #end 
-
-  #def searchOld
-  #  authorize CdiscTerm, :view?
-  #  term = params[:term]
-  #  textSearch = params[:textSearch]
-  #  cCodeSearch = params[:cCodeSearch]
-  #  ConsoleLogger::log(C_CLASS_NAME,"search","Term=" + term.to_s + ", textSearch=" + textSearch.to_s + ", codeSearch=" + cCodeSearch)
-  #  if term != "" && textSearch == "text"
-  #    @results = CdiscTerm.searchText(term)  
-  #  elsif term != "" && cCodeSearch == "ccode"
-  #    @results = CdiscTerm.searchIdentifier(term)
-  #  else
-  #    @results = Array.new
-  #  end
-  #  render json: @results
-  #end
-  
   def compare
     authorize CdiscTerm, :view?
     newId = params[:newId]
@@ -231,6 +190,8 @@ class CdiscTermsController < ApplicationController
 
   def impact
     authorize CdiscTerm, :view?
+    @new_cdisc_term = CdiscTerm.find_only(params[:new_id], params[:new_ns])
+    @old_cdisc_term = CdiscTerm.find_only(params[:old_id], params[:old_ns])
     @new_version = params[:new_version]
     @old_version = params[:old_version]
     @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)

@@ -21,12 +21,6 @@ class CdiscTerm < Thesaurus
   end
 
   def self.find(id, ns, children=true)
-    #object = super(id, ns, children)
-    #if children
-    #  object.children.each do |child|
-    #    child.set_extensible
-    #  end
-    #end
     object = super(id, ns, false)
     if children
       object.children = CdiscCl.find_for_parent(object.triples, object.get_links(UriManagement::C_ISO_25964, "hasConcept"))
@@ -34,19 +28,9 @@ class CdiscTerm < Thesaurus
     return object
   end
 
-  #def self.searchText(searchTerm)
-  #  currentCdiscTerm = current()
-  #  ConsoleLogger::log(C_CLASS_NAME,"searchText","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
-  #  results = ThesaurusConcept.searchTextWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
-  #  return results
-  #end
-
-  #def self.searchIdentifier(searchTerm)
-  #  currentCdiscTerm = current()
-  #  ConsoleLogger::log(C_CLASS_NAME,"searchIdentifier","Id=" + currentCdiscTerm.id + ", term=" + searchTerm)
-  #  results = ThesaurusConcept.searchIdentifierWithNs(currentCdiscTerm.id, currentCdiscTerm.namespace, searchTerm)
-  #  return results
-  #end
+  def self.find_only(id, ns)
+    object = IsoManagedNew.find(id, ns, false)
+  end
 
   def self.all
     results = Array.new
