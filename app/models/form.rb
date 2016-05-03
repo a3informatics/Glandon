@@ -84,6 +84,7 @@ class Form < IsoManagedNew
         sparql = SparqlUpdate.new
         managed_item[:versionLabel] = "0.1"
         managed_item[:new_version] = operation[:new_version]
+        managed_item[:new_state] = operation[:new_state]
         uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
         id = uri.getCid()
         ns = uri.getNs()

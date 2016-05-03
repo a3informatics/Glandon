@@ -20,6 +20,14 @@ class IsoScopedIdentifiersController < ApplicationController
     redirect_to iso_scoped_identifiers_path
   end
 
+  def update
+    authorize IsoScopedIdentifier
+    @referer = request.referer
+    @scopedIdentifier = IsoScopedIdentifier.find(params[:id])
+    @scopedIdentifier.update(this_params)
+    redirect_to @referer
+  end
+
   def destroy
     authorize IsoScopedIdentifier
     @scopedIdentifier = IsoScopedIdentifier.find(params[:id])

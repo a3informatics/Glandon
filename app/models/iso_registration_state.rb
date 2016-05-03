@@ -178,6 +178,10 @@ class IsoRegistrationState
     return self.registrationStatus != C_NOTSET
   end
 
+  def self.no_state()
+    return C_NOTSET
+  end
+
   def self.nextState(state)
     info = @@stateInfo[state]
     nextState = info[:next_state]
@@ -377,19 +381,19 @@ class IsoRegistrationState
     return object
   end
 
-  def self.create_sparql(identifier, version, scope_org, sparql)
+  def self.create_sparql(identifier, version, new_state, prev_state, scope_org, sparql)
     id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
     sparql.add_prefix("isoR")
     sparql.add_prefix("isoI")
     sparql.triple(C_NS_PREFIX, id, "rdf", "type", "isoR", "RegistrationState")
     sparql.triple(C_NS_PREFIX, id, "isoR", "byAuthority", C_NS_PREFIX, @@owner.id)
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "registrationStatus", C_INCOMPLETE, "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "registrationStatus", new_state, "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeNote", "", "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "effectiveDate", C_DEFAULT_DATETIME, "dateTime")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "untilDate", C_DEFAULT_DATETIME, "dateTime")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "unresolvedIssue", "", "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeStatus", "", "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "previousState", C_INCOMPLETE, "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "previousState", prev_state, "string")
   end
   
   def self.count
@@ -412,6 +416,7 @@ class IsoRegistrationState
     return results
   end
 
+  # TODO: Should not need id param, fix
   def update(id, params)  
     registrationStatus = params[:registrationStatus]
     previousState  = params[:previousState]

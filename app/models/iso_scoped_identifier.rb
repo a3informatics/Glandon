@@ -315,6 +315,29 @@ class IsoScopedIdentifier
     sparql.triple(C_NS_PREFIX, id, "isoI", "hasScope", C_NS_PREFIX, scope_org.id.to_s)
   end
 
+  def update(params)  
+    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI"]) +
+      "DELETE \n" +
+      "{ \n" +
+      " :" + self.id + " isoI:versionLabel ?a . \n" +
+      "} \n" +
+      "INSERT \n" +
+      "{ \n" +
+      " :" + self.id + " isoI:versionLabel \"" + params[:versionLabel].to_s + "\"^^xsd:string . \n" +
+      "} \n" +
+      "WHERE \n" +
+      "{ \n" +
+      " :" + self.id + " isoI:versionLabel ?a . \n" +
+      "}"
+    # Send the request, wait the resonse
+    ConsoleLogger::log(C_CLASS_NAME,"update", "Update=" + update.to_s)
+    response = CRUD.update(update)
+    # Response
+    if !response.success?
+      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    end
+  end
+
   def destroy
     # Create the query and submit
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI"]) +

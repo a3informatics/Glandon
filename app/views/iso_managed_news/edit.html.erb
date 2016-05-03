@@ -32,6 +32,20 @@
 		</div>
 		<div id="formInfo" class="panel panel-default">
   			<div class="panel-heading">
+      			<h3 class="panel-title">Change Version Label</h3>
+  			</div>
+  			<div class="panel-body">
+				<%= form_for @scoped_identifier do |f| %>
+					<div class="form-group">
+					    <%= f.label :versionLabel, "Version Label:" %><br />
+					    <%= f.text_field :versionLabel, autofocus: true, class: "form-control" %>
+					</div>
+					<%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
+				<% end %>
+			</div>
+		</div>
+		<div id="formInfo" class="panel panel-default">
+  			<div class="panel-heading">
       			<h3 class="panel-title">Change Comments</h3>
   			</div>
   			<div class="panel-body">
