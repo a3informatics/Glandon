@@ -356,8 +356,9 @@ class IsoRegistrationState
       object.id = id
       object.registrationStatus = C_INCOMPLETE
       object.administrativeNote = ""
-      object.effectiveDate = Time.parse(C_DEFAULT_DATETIME)
-      object.unresolvedIssue = Time.parse(C_DEFAULT_DATETIME)
+      object.effective_date = Time.parse(C_DEFAULT_DATETIME)
+      object.until_date = Time.parse(C_DEFAULT_DATETIME)
+      object.unresolvedIssue = ""
       object.administrativeStatus = ""
       object.previousState  = C_INCOMPLETE 
       #ConsoleLogger::log(C_CLASS_NAME,"create","Created Id=" + id.to_s)

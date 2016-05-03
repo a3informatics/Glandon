@@ -57,7 +57,7 @@ class Form < IsoManagedNew
       if exists?(identifier, IsoRegistrationAuthority.owner()) 
         object.errors.add(:base, "The identifier is already in use.")
       else  
-        object = IsoManaged.create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
+        object = IsoManagedNew.create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
         group = Group.createPlaceholder(object.id, object.namespace, freeText)
         update = UriManagement.buildNs(object.namespace,["bf"]) +
           "INSERT DATA \n" +
@@ -112,6 +112,7 @@ class Form < IsoManagedNew
     sparql = SparqlUpdate.new
     managed_item[:versionLabel] = "0.1"
     managed_item[:new_version] = operation[:new_version]
+    managed_item[:new_state] = operation[:new_state]
     uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
     id = uri.getCid()
     ns = uri.getNs()

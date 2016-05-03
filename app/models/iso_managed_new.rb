@@ -64,15 +64,17 @@ class IsoManagedNew < IsoConceptNew
   end
 
   def registrationStatus
-    if registrationState == nil
+    if self.registrationState == nil
+      ConsoleLogger::log(C_CLASS_NAME,"registrationStatus","rs=na")
       return "na"
     else
+      ConsoleLogger::log(C_CLASS_NAME,"registrationStatus","rs=" + self.registrationState.registrationStatus.to_s)
       return self.registrationState.registrationStatus
     end
   end
 
   def registered?
-    if registrationState == nil
+    if self.registrationState == nil
       return false
     else
       return self.registrationState.registered?
@@ -80,7 +82,7 @@ class IsoManagedNew < IsoConceptNew
   end
 
   def edit?
-    if registrationState == nil
+    if self.registrationState == nil
       return false
     else
       return self.registrationState.edit?
@@ -88,7 +90,7 @@ class IsoManagedNew < IsoConceptNew
   end
 
   def delete?
-    if registrationState == nil
+    if self.registrationState == nil
       return false
     else
       return self.registrationState.delete?
@@ -96,7 +98,7 @@ class IsoManagedNew < IsoConceptNew
   end
 
   def new_version?
-    if registrationState == nil
+    if self.registrationState == nil
       return false
     else
       return self.registrationState.new_version?
@@ -104,7 +106,7 @@ class IsoManagedNew < IsoConceptNew
   end
 
   def state_on_edit
-    if registrationState == nil
+    if self.registrationState == nil
       return IsoRegistrationState.no_state
     else
       return self.registrationState.state_on_edit
@@ -112,7 +114,7 @@ class IsoManagedNew < IsoConceptNew
   end
 
   def can_be_current?
-    if registrationState == nil
+    if self.registrationState == nil
       return false
     else
       return self.registrationState.can_be_current?
@@ -120,15 +122,15 @@ class IsoManagedNew < IsoConceptNew
   end
 
   def next_version
-    scopedIdentifier.next_version
+    self.scopedIdentifier.next_version
   end
 
   def first_version
-    scopedIdentifier.first_version
+    self.scopedIdentifier.first_version
   end
 
   def current?
-    if registrationState == nil
+    if self.registrationState == nil
       return false
     else
       return self.registrationState.current

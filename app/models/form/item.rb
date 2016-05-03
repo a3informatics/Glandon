@@ -257,7 +257,7 @@ class Form::Item < IsoConceptNew
 private
 
   def self.children_from_triples(object, triples, id, bc=nil)
-    ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****Entry*****")
     object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasCommonItem"), bc)
     object.itemType = get_type(object)
     if object.link_exists?(C_SCHEMA_PREFIX, "hasProperty")
@@ -274,11 +274,11 @@ private
       end
     end
     if object.link_exists?(C_SCHEMA_PREFIX, "hasThesaurusConcept")
-      ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","hasThesaurusConcept, object=" + object.to_json.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","hasThesaurusConcept, object=" + object.to_json.to_s)
       links = object.get_links(C_SCHEMA_PREFIX, "hasThesaurusConcept")
       links.each do |link|
         object.q_values << ThesaurusConcept.find(ModelUtility.extractCid(link),ModelUtility.extractNs(link), false)
-        ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","link=" + link.to_s)
+        #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","link=" + link.to_s)
       end
     end      
   end

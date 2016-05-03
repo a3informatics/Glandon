@@ -106,8 +106,10 @@ class BiomedicalConcept < BiomedicalConceptCore
     #ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
     if create_permitted?(source[:identifier], source[:new_version].to_i, object) 
       bc = BiomedicalConceptTemplate.find(source[:id], source[:namespace])
-      source[:versionLabel] = "0.1"
       sparql = SparqlUpdate.new
+      source[:versionLabel] = "0.1"
+      #source[:new_version] = operation[:new_version]
+      #source[:new_state] = operation[:new_state]
       uri = create_sparql(C_CID_PREFIX, source, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
       id = uri.getCid()
       ns = uri.getNs()
@@ -138,8 +140,10 @@ class BiomedicalConcept < BiomedicalConceptCore
     #ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + source[:identifier] + ", new version=" + source[:new_version])
     #ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
     bc = BiomedicalConcept.find(id, namespace)
-    source[:versionLabel] = "0.1"
     sparql = SparqlUpdate.new
+    source[:versionLabel] = "0.1"
+    #source[:new_version] = operation[:new_version]
+    #source[:new_state] = operation[:new_state]
     uri = create_sparql(C_CID_PREFIX, source, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
     id = uri.getCid()
     ns = uri.getNs()
