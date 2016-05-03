@@ -2,8 +2,8 @@ require "uri"
 
 class Form::Item < IsoConceptNew
 
-  attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText
-  validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText
+  attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText, :q_values
+  validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText, :q_values
   
   # Constants
   C_SCHEMA_PREFIX = "bf"
@@ -20,6 +20,7 @@ class Form::Item < IsoConceptNew
     self.bcProperty = nil
     self.bcValues = Array.new
     self.bcValueSet = Array.new
+    self.q_values = Array.new
     if triples.nil?
       super
       self.itemType = C_BC
@@ -110,6 +111,12 @@ class Form::Item < IsoConceptNew
       result[:format] = self.format
       result[:qText] = self.qText
       result[:mapping] = self.mapping
+      localIndex = 0
+      clis = self.q_values
+      clis.each do |cli|
+        result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", cli.identifier, "", "", localIndex, true)
+        localIndex += 1;
+      end
     else
       #ConsoleLogger::log(C_CLASS_NAME,"d3","property=" + self.bcProperty.to_json)
       name = self.bcProperty.alias
@@ -160,6 +167,12 @@ class Form::Item < IsoConceptNew
       result[:format] = self.format
       result[:qText] = self.qText
       result[:mapping] = self.mapping
+      clis = self.q_values
+      ordinal = 1  
+      clis.each do |cli|
+        result[:children] << { :value_reference => {:id => cli.id, :namespace => cli.namespace, :enabled => "true"}, :label => cli.notation, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal }
+        ordinal += 1  
+      end
     else
       if self.bcProperty != nil
         result[:property_reference] = {:id => self.bcProperty.id, :namespace => self.bcProperty.namespace, :enabled => true}
@@ -203,9 +216,10 @@ class Form::Item < IsoConceptNew
       sparql.triple_primitive_type("", id, schema_prefix, "format", json[:format].to_s, "string")
       sparql.triple_primitive_type("", id, schema_prefix, "qText", json[:qText].to_s, "string")
       sparql.triple_primitive_type("", id, schema_prefix, "mapping", json[:mapping].to_s, "string")
-      if json.has_key?(:values)
-        json[:values].each do |key, value|
-          sparql.triple_uri("", id, "bo", "hasThesaurusConcept", value[:namespace], value[:id])
+      if json.has_key?(:children)
+        json[:children].each do |key, child|
+          value = child[:value_reference]
+          sparql.triple_uri("", id, schema_prefix, "hasThesaurusConcept", value[:namespace], value[:id])
         end
       end
     else
@@ -243,6 +257,7 @@ class Form::Item < IsoConceptNew
 private
 
   def self.children_from_triples(object, triples, id, bc=nil)
+    ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****Entry*****")
     object.items = Form::Item.find_for_parent(triples, object.get_links("bf", "hasCommonItem"), bc)
     object.itemType = get_type(object)
     if object.link_exists?(C_SCHEMA_PREFIX, "hasProperty")
@@ -257,7 +272,15 @@ private
         id = ModelUtility.extractCid(link)
         object.bcValueSet << OperationalReference.find_from_triples(triples, id)
       end
-    end   
+    end
+    if object.link_exists?(C_SCHEMA_PREFIX, "hasThesaurusConcept")
+      ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","hasThesaurusConcept, object=" + object.to_json.to_s)
+      links = object.get_links(C_SCHEMA_PREFIX, "hasThesaurusConcept")
+      links.each do |link|
+        object.q_values << ThesaurusConcept.find(ModelUtility.extractCid(link),ModelUtility.extractNs(link), false)
+        ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","link=" + link.to_s)
+      end
+    end      
   end
 
   def self.get_type(object)

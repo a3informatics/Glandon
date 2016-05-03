@@ -345,6 +345,9 @@ private
         html += crf_node(child, annotations)
       end
     elsif node[:type] == "Group"
+      html += '<tr>'
+      html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
+      html += '</tr>'
       node[:children].each do |child|
         html += crf_node(child, annotations)
       end
@@ -373,9 +376,6 @@ private
       end
       html += input_field(node, annotations)
       html += '</tr>'
-      node[:children].each do |child|
-        html += crf_node(child, annotations)
-      end
     elsif node[:type] == "BCItem"
       html += '<tr>'
       html += '<td>' + node[:qText].to_s + '</td>'
@@ -406,7 +406,11 @@ private
       html += '</tr>'
     elsif node[:type] == "CL"
       #ConsoleLogger::log(C_CLASS_NAME,"crf_node","node=" + node.to_json.to_s)
-      html += '<p><input type="radio" name="' + node[:identifier].to_s + '" value="' + node[:identifier].to_s + '"></input> ' + node[:label].to_s + '</p>'
+      value_ref = node[:value_reference]
+      #.ConsoleLogger::log(C_CLASS_NAME,"crf_node","value_ref=" + value_ref.to_json.to_s)
+      if value_ref[:enabled]
+        html += '<p><input type="radio" name="' + node[:identifier].to_s + '" value="' + node[:identifier].to_s + '"></input> ' + node[:label].to_s + '</p>'
+      end
     else
       html += '<tr>'
       html += '<td>Not Recognized: ' + node[:type].to_s + '</td>'

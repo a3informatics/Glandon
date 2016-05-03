@@ -165,6 +165,8 @@ $(document).ready(function() {
         saveCommon(currentNode)
       } else if (currentNode.type == C_PLACEHOLDER) {
         savePlaceholder(currentNode)
+      } else if (currentNode.type == C_QUESTION) {
+        saveQuestion(currentNode)
       }
     }
     displayNode(node)
@@ -345,6 +347,40 @@ $(document).ready(function() {
     }
   }); 
 
+  $('#groupUp').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index != 0) {
+        moveNodeUp(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node up.");
+        displayAlerts(html);
+      }
+    }
+  }); 
+
+  $('#groupDown').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index < parentNode.save.length) {
+        moveNodeDown(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node down.");
+        displayAlerts(html);
+      }
+    }
+  }); 
+
   /*
   * Functions to handle the common actions
   */
@@ -467,13 +503,6 @@ $(document).ready(function() {
   });
 
   /*
-   * Function to handle click on terminology table
-   */
-  /*$('#termTable tbody').on('click', 'tr', function () {
-    handleTermTable(termTable, this);
-  });
-
-  /*
    * Function to handle click on question cl table
    */
   $('#questionClTable tbody').on('click', 'tr', function () {
@@ -485,7 +514,10 @@ $(document).ready(function() {
   */
   $('#deleteTerm').click(function() {
     var data;
-    if (varClCurrentRow != null) {
+    if (varClCurrentRow == null) {
+      var html = alertWarning("You need to select a code list item.");
+      displayAlerts(html);
+    } else {
       questionClTable.row(varClCurrentRow).remove();
       varClCurrentRow = null;
       questionClTable.draw();
@@ -495,6 +527,7 @@ $(document).ready(function() {
   $('#questionDatatype input:radio').click(function() {
     var value = $(this).val();
     clEnableDisable(value);
+    clFormat(value);
     questionDatatypeValue = value;
   });
 
@@ -507,6 +540,18 @@ $(document).ready(function() {
       $("#questionFormat").prop('disabled', true);
       $("#notepad_add").prop('disabled', false);
       $("#deleteTerm").prop('disabled', false);
+    }
+  }
+
+  function clFormat (value) {
+    if (value == "I") {
+      questionFormatElement.value = "3"
+    } else if (value == "C") {
+      questionFormatElement.value = "20"
+    } else if (value == "F") {
+      questionFormatElement.value = "6.2"
+    } else {
+      questionFormatElement.value = ""
     }
   }
 
@@ -624,8 +669,11 @@ $(document).ready(function() {
     questionClTable.clear();
     if (node.hasOwnProperty('children')) {
       for (j=0; j<node.children.length; j++) {
-        var row = node.children[j].cli;
-        questionClTable.row.add(row);
+        var child = node.children[j];
+        var data = child.data
+        var ref = data.value_reference;
+        var clRow = { identifier: data.identifier , uri_id: ref.id , uri_ns: ref.namespace , useful_1: data.label}; 
+        questionClTable.row.add(clRow);
       }
     }
     clEnableDisable(node.data.datatype);
@@ -672,31 +720,22 @@ $(document).ready(function() {
     var rowData;
     var i;
     var row;
+    var sourceCliNode;
+    var cliNode;
     node.data.qText = questionTextElement.value;
     node.data.mapping = questionMappingElement.value;
     node.data.datatype = $('input:radio[name=dtRadio]:checked').val();
     node.data.format = questionFormatElement.value;
-    /*node.children = [];
+    node.save = [];
+    node.children = [];
     rowData = questionClTable.rows().data();
     for (i=0; i<rowData.length; i++) {
       row = rowData.row(i).data();
-      if (typeof row != 'undefined') {
-        node.children[i] = {};
-        node.children[i].id = row.id;
-        node.children[i].parent = node;
-        node.children[i].namespace = row.namespace;
-        node.children[i].name = row.notation;
-        node.children[i].type = "QCL";
-        node.children[i].identifier = row.identifier;
-        node.children[i].index = i;
-        node.children[i].label = row.notation;
-        node.children[i].enabled = true;
-        node.children[i].cli = row;
-        node.children[i].key = nextKeyId;
-        nextKeyId += 1;
-      }
+      sourceCliNode = newQuestionCli(row);
+      cliNode = addD3Node(node, row.useful_1, C_CL, sourceCliNode, true); 
+      //cliNode.enabled = true    
+      addSourceNode(node.data, sourceCliNode, true);
     }
-    node.save = node.children;*/
   }
 
   function savePlaceholder(node) {
@@ -705,6 +744,7 @@ $(document).ready(function() {
 
   function saveCl(node) {
     node.data.value_reference.enabled = clEnableElement.checked;
+    node.enabled = clEnableElement.checked;
   }
 
   function makeCommon(node) {
@@ -846,7 +886,7 @@ $(document).ready(function() {
     label = "Group";
     sourceNode = newFormGroup(label)
     d3Node = addD3Node(currentNode, label, C_GROUP, sourceNode, true);     
-    addSourceNode(currentNode.data, sourceNode)
+    addSourceNode(currentNode.data, sourceNode, true)
     return d3Node;
   }
 
@@ -857,7 +897,7 @@ $(document).ready(function() {
     label = "Common";
     sourceNode = newCommonGroup(label)
     d3Node = addD3Node(currentNode, label, C_COMMON_GROUP, sourceNode, false);     
-    addSourceNode(currentNode.data, sourceNode)
+    addSourceNode(currentNode.data, sourceNode, false)
     return d3Node;
  }
 
@@ -922,9 +962,28 @@ $(document).ready(function() {
     };
   }
 
-  function addSourceNode(parent, node) {
-    parent.children.push(node);
-    node.ordinal = parent.children.length;
+  function newQuestionCli(cli) {
+    return {
+      type: C_CL, 
+      label: cli.useful_1, 
+      ordinal: 0, 
+      identifier: cli.identifier, 
+      value_reference: {id: cli.uri_id, namespace: cli.uri_ns, enabled: true}, 
+      children: [] 
+    };
+  }
+
+  function addSourceNode(parent, node, end) {
+    if (end) {
+      parent.children.push(node);
+    } else {
+      parent.children.unshift(node);
+    }
+    //node.ordinal = parent.children.length;
+    for (i=0; i<parent.children.length; i++) {
+      temp = parent.children[i];
+      temp.ordinal = i + 1;
+    }
   }
 
   function addQuestion() {
@@ -940,7 +999,7 @@ $(document).ready(function() {
     label = "Question" + count;
     sourceNode = newQuestion(label);
     d3Node = addD3Node(currentNode, label, C_QUESTION, sourceNode, true);     
-    addSourceNode(currentNode.data, sourceNode)
+    addSourceNode(currentNode.data, sourceNode, true)
     return d3Node;
   }
 
@@ -957,7 +1016,7 @@ $(document).ready(function() {
     label = "Placeholder" + count;
     sourceNode = newPlaceholder(label);
     d3Node = addD3Node(currentNode, label, C_PLACEHOLDER, sourceNode, true);     
-    addSourceNode(currentNode.data, sourceNode)
+    addSourceNode(currentNode.data, sourceNode, true)
     return d3Node;
   }
 
@@ -989,21 +1048,22 @@ $(document).ready(function() {
         var j;
         sourceBcNode = newBCGroup(bc);
         bcNode = addD3Node(currentNode, bc.label, C_BC_GROUP, sourceBcNode, true);     
-        addSourceNode(currentNode.data, sourceBcNode)
+        addSourceNode(currentNode.data, sourceBcNode, true)
         for (i=0; i<bc.properties.length; i++) {
           //var property = bc.properties[i][1];
           var property = bc.properties[i];
           if (property.enabled && property.collect) {
             sourcePropertyNode = newBCProperty(property);
             propertyNode = addD3Node(bcNode, property.alias, C_BC_ITEM, sourcePropertyNode, true);     
-            addSourceNode(sourceBcNode, sourcePropertyNode)
+            addSourceNode(sourceBcNode, sourcePropertyNode, true)
             var values = property.values
             for (j=0; j<values.length; j++) {
               var value = values[j];
               var cli = value.cli;
               sourceCliNode = newBCPropertyCli(cli);
-              cliNode = addD3Node(propertyNode, cli.notation, C_CL, sourceCliNode, true);     
-              addSourceNode(sourcePropertyNode, sourceCliNode);
+              cliNode = addD3Node(propertyNode, cli.notation, C_CL, sourceCliNode, true); 
+              cliNode.enabled = true    
+              addSourceNode(sourcePropertyNode, sourceCliNode, true);
             }
           }
         }
@@ -1209,7 +1269,7 @@ $(document).ready(function() {
     var newNode;
     var i;
     var child;
-    if (sourceNode.type === C_GROUP || sourceNode.type === C_COMMON_GROUP || sourceNode.type === C_BC_GROUP || sourceNode.type === C_BC_ITEM) {
+    if (sourceNode.type === C_GROUP || sourceNode.type === C_COMMON_GROUP || sourceNode.type === C_BC_GROUP || sourceNode.type === C_BC_ITEM || sourceNode.type === C_QUESTION) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
       if (sourceNode.hasOwnProperty('children')) {
         for (i=0; i<sourceNode.children.length; i++) {
@@ -1217,8 +1277,12 @@ $(document).ready(function() {
           setD3(child, newNode);
         }
       }
-    } else if (sourceNode.type === C_PLACEHOLDER || sourceNode.type === C_QUESTION || sourceNode.type === C_CL) {
+    } else if (sourceNode.type === C_PLACEHOLDER ) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
+    } else if (sourceNode.type === C_CL) {
+      newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
+      value_ref = sourceNode.value_reference;
+      newNode.enabled = value_ref.enabled;
     }
   }
 
@@ -1272,7 +1336,10 @@ $(document).ready(function() {
       if (currentNode.save.length == 0) {
         result = false;
       }
+    } else {
+      result = false;
     }
+    return result;
   }
 
   function deleteNode(node) {
@@ -1290,6 +1357,50 @@ $(document).ready(function() {
     setParent(parentNode);
     setOrdinal(sourceParentNode);
     return parentNode;
+  }
+
+  function moveNodeUp(node) {
+    var parentNode = node.parent
+    var parentIndex = node.index
+    var sourceParentNode = parentNode.data;
+    var sourceNode = node.data;
+    if (parentIndex != 0 && parentNode.save.length > 1) {
+      var tempNode1 = parentNode.save[parentIndex - 1];
+      var tempNode2 = parentNode.save[parentIndex];
+      parentNode.save[parentIndex - 1] = tempNode2;
+      parentNode.save[parentIndex] = tempNode1;
+      tempNode1.index = parentIndex;
+      tempNode2.index = parentIndex - 1;
+      tempNode1 = sourceParentNode.children[parentIndex - 1];
+      tempNode2 = sourceParentNode.children[parentIndex];
+      sourceParentNode.children[parentIndex - 1] = tempNode2;
+      sourceParentNode.children[parentIndex] = tempNode1;
+      tempNode1.index = parentIndex;
+      tempNode2.index = parentIndex - 1;
+      setOrdinal(sourceParentNode);
+    }
+  }
+
+  function moveNodeDown(node) {
+    var parentNode = node.parent
+    var parentIndex = node.index
+    var sourceParentNode = parentNode.data;
+    var sourceNode = node.data;
+    if (parentIndex != (parentNode.save.length - 1) && parentNode.save.length > 1) {
+      var tempNode1 = parentNode.save[parentIndex + 1];
+      var tempNode2 = parentNode.save[parentIndex];
+      parentNode.save[parentIndex + 1] = tempNode2;
+      parentNode.save[parentIndex] = tempNode1;
+      tempNode1.index = parentIndex;
+      tempNode2.index = parentIndex + 1;
+      tempNode1 = sourceParentNode.children[parentIndex + 1];
+      tempNode2 = sourceParentNode.children[parentIndex];
+      sourceParentNode.children[parentIndex + 1] = tempNode2;
+      sourceParentNode.children[parentIndex] = tempNode1;
+      tempNode1.index = parentIndex;
+      tempNode2.index = parentIndex + 1;
+      setOrdinal(sourceParentNode);
+    }
   }
 
   function displayNode(node) {

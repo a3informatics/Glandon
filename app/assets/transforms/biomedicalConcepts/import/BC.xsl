@@ -500,7 +500,7 @@
                 <xsl:when test="substring($pValue,1,3)='CLI'">
                     <xsl:value-of select="concat('cCt:',string($pValue))"/>
                 </xsl:when>
-                <xsl:when test="substring($pValue,1,5)='THC-'">
+                <xsl:when test="substring($pValue,1,4)='THC-'">
                     <xsl:value-of select="concat('aCt:',string($pValue))"/>
                 </xsl:when>
                 <xsl:otherwise>

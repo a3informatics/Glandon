@@ -108,11 +108,10 @@
 					<tbody>
 						<% @history.each do |item| %>
 							<tr>
-							    <td><%= item.lastChangedDate %></td>
 							    <td><%= item.creationDate %></td>
+							    <td><%= item.lastChangedDate %></td>
 							    <td><%= item.changeDescription %></td>
-							    <td><%= item.explanatoryComment
- %></td>
+							    <td><%= item.explanatoryComment%></td>
 							    <td><%= item.origin %></td>
 							</tr>
 						<% end %>
