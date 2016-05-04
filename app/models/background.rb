@@ -45,9 +45,9 @@ class Background < ActiveRecord::Base
     counts[:cl_count] = 0
     counts[:ct_count] = 0
     load_cls(data, old_term, counts, total_ct_count)
-    ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
+    #ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
     load_cls(data, new_term, counts, total_ct_count)
-    ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
+    #ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
     # Compare
     results = compare(data, counts[:cl_count])
     # Save the results
@@ -213,14 +213,14 @@ private
   end
 
   def compare(data, totalCount)    
-    ConsoleLogger::log(C_CLASS_NAME,"compare","*****Entry*****")
+    #ConsoleLogger::log(C_CLASS_NAME,"compare","*****Entry*****")
     # Do the comparison
     currentCount = 0
     missing = Array.new
     results = Hash.new
     last = data.length - 1
     data.each_with_index do |curr, index|
-      ConsoleLogger::log(C_CLASS_NAME,"compare","Index=" + index.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"compare","Index=" + index.to_s)
       currTerm = curr[:term]
       version = currTerm.version
       currCls = curr[:cls]
@@ -234,19 +234,19 @@ private
           if prevCls != nil
             clCount = currCls.length
             currCls.each do |clId, currCl|
-              ConsoleLogger::log(C_CLASS_NAME,"compare","CL=" + clId)
+              #ConsoleLogger::log(C_CLASS_NAME,"compare","CL=" + clId)
               if prevCls.has_key?(clId)
-                ConsoleLogger::log(C_CLASS_NAME,"compare","Prev CL=" + clId)
+                #ConsoleLogger::log(C_CLASS_NAME,"compare","Prev CL=" + clId)
                 prevCl = prevCls[clId]
                 if CdiscCl.diff?(currCl, prevCl)
-                  ConsoleLogger::log(C_CLASS_NAME,"compare"," M ")
+                  #ConsoleLogger::log(C_CLASS_NAME,"compare"," M ")
                   mark = "M"
                 else
-                  ConsoleLogger::log(C_CLASS_NAME,"compare"," . ")
+                  #ConsoleLogger::log(C_CLASS_NAME,"compare"," . ")
                   mark = "."
                 end
               else
-                ConsoleLogger::log(C_CLASS_NAME,"compare","No Prev CL")
+                #ConsoleLogger::log(C_CLASS_NAME,"compare","No Prev CL")
                 mark = "."
               end
               if results.has_key?(clId)
@@ -266,7 +266,7 @@ private
               # Report Status
               currentCount += 1
               p = 10.0 + ((currentCount.to_f * 85.0)/totalCount.to_f)
-              self.update(status: "Checking " + currTerm.versionLabel + " [" + currCl.identifier + ", " + currentCount.to_s + "]", percentage: p.to_i)
+              self.update(status: "Checking " + currTerm.versionLabel + " [" + currCl.identifier + ", " + currentCount.to_s + " of " + totalCount.to_s + "]", percentage: p.to_i)
             end
           end
         end
@@ -282,7 +282,7 @@ private
             # Report Status
             currentCount += 1
             p = 10.0 + ((currentCount.to_f * 85.0)/totalCount.to_f)
-            self.update(status: "Checking " + currTerm.versionLabel + " [" + currCl.identifier + ", " + currentCount.to_s + "]", percentage: p.to_i)
+            self.update(status: "Checking " + currTerm.versionLabel + " [" + currCl.identifier + ", " + currentCount.to_s + " of " + totalCount.to_s + "]", percentage: p.to_i)
           end
         end
       end
