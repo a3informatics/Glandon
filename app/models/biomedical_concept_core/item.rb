@@ -48,10 +48,10 @@ class BiomedicalConceptCore::Item < IsoConceptNew
     return results
   end
 
-	def to_edit
+	def to_api_json
     results = Array.new
     self.datatypes.each do |datatype|
-      more = datatype.to_edit
+      more = datatype.to_api_json
       more.each do |datatype|
         results << datatype
       end

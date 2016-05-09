@@ -34,46 +34,12 @@ class BiomedicalConcept < BiomedicalConceptCore
     results = super
   end
 
-  def to_edit
+  def to_api_json
     result = super
-    new_version = version
-    op_type = "BC_UPDATE"
-    if new_version?
-      new_version = next_version
-      op_type = "BC_NEW"
-    end
-    result[:operation] = op_type
-    result[:source][:new_version] = new_version
+    result[:type] = "Biomedical Concept"
     result[:template] = { :id => self.bct.id, :namespace => self.bct.namespace, :identifier => self.bct.identifier, :label => self.bct.label  }
     return result
   end
-
-  #def self.findByReference(id, ns)
-  #  #ConsoleLogger::log(C_CLASS_NAME,"findByReference","*****ENTRY*****")
-  #  query = UriManagement.buildNs(ns, ["bo", "cbc"]) +
-  #    "SELECT ?bc WHERE\n" + 
-  #    "{ \n" + 
-  #    " :" + id + " bo:hasBiomedicalConcept ?bc . \n" +
-  #    " ?bc rdf:type cbc:BiomedicalConceptInstance . \n" +
-  #    "}\n"
-  #  response = CRUD.query(query)
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  results = xmlDoc.xpath("//result")
-  #  #ConsoleLogger::log(C_CLASS_NAME,"findByReference","Results=" + results.to_s)
-  #  if results.length == 1 
-  #    node = results[0]
-  #    #ConsoleLogger::log(C_CLASS_NAME,"findByReference","Node=" + node.to_s)
-  #    uri = ModelUtility.getValue('bc', true, node)
-  #    bcId = ModelUtility.extractCid(uri)
-  #    bcNs = ModelUtility.extractNs(uri)
-  #    #ConsoleLogger::log(C_CLASS_NAME,"findByReference","BC id=" + bcId + ", ns=" + bcNs)
-  #    object = self.find(bcId, bcNs)
-  #  else
-  #    object = nil
-  #  end  
-  #  return object
-  #end
 
   def self.all
     super(C_RDF_TYPE, C_SCHEMA_NS)
@@ -99,18 +65,19 @@ class BiomedicalConcept < BiomedicalConceptCore
     #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     object = self.new 
     object.errors.clear
+    ConsoleLogger::log(C_CLASS_NAME,"create","data=" + params[:data].to_s)
     data = params[:data]
-    source = data[:source]
+    managed_item = data[:managed_item]
     operation = data[:operation]
-    #ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + source[:identifier] + ", new version=" + source[:new_version])
-    #ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
-    if create_permitted?(source[:identifier], source[:new_version].to_i, object) 
-      bc = BiomedicalConceptTemplate.find(source[:id], source[:namespace])
+    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + managed_item[:identifier] + ", new version=" + operation[:new_version].to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation.to_s)
+    if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object) 
+      bc = BiomedicalConceptTemplate.find(managed_item[:id], managed_item[:namespace])
       sparql = SparqlUpdate.new
-      source[:versionLabel] = "0.1"
-      #source[:new_version] = operation[:new_version]
-      #source[:new_state] = operation[:new_state]
-      uri = create_sparql(C_CID_PREFIX, source, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+      managed_item[:versionLabel] = "0.1"
+      managed_item[:new_version] = operation[:new_version]
+      managed_item[:new_state] = operation[:new_state]
+      uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
       id = uri.getCid()
       ns = uri.getNs()
       bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, data, sparql, C_SCHEMA_PREFIX)
@@ -135,16 +102,16 @@ class BiomedicalConcept < BiomedicalConceptCore
     id = params[:id]
     namespace = params[:namespace]
     data = params[:data]
-    source = data[:source]
+    managed_item = data[:managed_item]
     operation = data[:operation]
-    #ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + source[:identifier] + ", new version=" + source[:new_version])
-    #ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
+    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + managed_item[:identifier] + ", new version=" + managed_item[:new_version])
+    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
     bc = BiomedicalConcept.find(id, namespace)
     sparql = SparqlUpdate.new
-    source[:versionLabel] = "0.1"
-    #source[:new_version] = operation[:new_version]
-    #source[:new_state] = operation[:new_state]
-    uri = create_sparql(C_CID_PREFIX, source, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+    managed_item[:versionLabel] = "0.1"
+    managed_item[:new_version] = operation[:new_version]
+    managed_item[:new_state] = operation[:new_state]
+    uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
     id = uri.getCid()
     ns = uri.getNs()
     #ConsoleLogger::log(C_CLASS_NAME,"create","URI=" + uri.to_json.to_s)

@@ -35,26 +35,6 @@ class CdiscCl < ThesaurusConcept
     return object
   end
 
-  #def self.allTopLevel(id, ns)
-  #  results = super(id, ns)
-  #  results.each do |key, tc|
-  #    tc.extensible = tc.get_extension(C_SCHEMA_PREFIX, "extensible").to_bool
-  #  end
-  #  return results  
-  #end
-
-  #def self.allChildren(id, ns)
-  #  results = super(id, ns)
-  #  results.each do |key, tc|
-  #    tc.extensible = tc.get_extension(C_SCHEMA_PREFIX, "extensible").to_bool
-  #  end
-  #  return results
-  #end
-
-  #def set_extensible
-  #  self.extensible = self.get_extension(C_SCHEMA_PREFIX, "extensible").to_bool
-  #end
-  
   def self.diff?(clA, clB)
     result = super(clA, clB)
     if !result && (clA.extensible == clB.extensible)

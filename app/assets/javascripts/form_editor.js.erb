@@ -32,7 +32,6 @@ $(document).ready(function() {
   var questionMappingElement = document.getElementById("questionMapping");
   var questionDatatypeElement = document.getElementById("questionDatatype");
   var questionFormatElement = document.getElementById("questionFormat");
-  var editFlagInput = document.getElementById("edit_flag");
   
   var nextKeyId;
   var currentNode;
@@ -44,12 +43,10 @@ $(document).ready(function() {
   var norepadTable;
   var notepadData;
   var notepadRow;
-  //var termCurrent;
-  //var termCurrentRow;
   var varClCurrent;
   var varClCurrentRow;
   var questionDatatypeValue
-  var editFlag;               // Edit versus new flag     
+  var editIdentifierFlag;               // Edit versus new flag    
   
   questionClTable = $('#questionClTable').DataTable({
     "searching": false,
@@ -140,9 +137,6 @@ $(document).ready(function() {
   // Get elements from the form.
   d3Div = document.getElementById("d3");
   
-  // Set the flags
-  editFlag = (editFlagInput.value === 'true');
-
   // Init any data
   initData();
 
@@ -224,7 +218,7 @@ $(document).ready(function() {
         
         // Indicate now edit. Stops identifier being modified. Probably
         // a better way to do this, existing function.
-        editFlag = true;
+        editIdentifierFlag = false;
         formIdentifierElement.disabled = true;
 
         // Save the URI of the saved form.
@@ -619,10 +613,10 @@ $(document).ready(function() {
   function displayForm(node) {
     formIdentifierElement.value = node.data.identifier;
     formLabelElement.value = node.data.label;
-    if (editFlag) {
-      formIdentifierElement.disabled = true;
+    if (editIdentifierFlag) {
+      formIdentifierElement.disabled = false;
     } else {
-      formIdentifierElement.disabled = false;      
+      formIdentifierElement.disabled = true;      
     }
   }
 
@@ -693,7 +687,7 @@ $(document).ready(function() {
    * Functions to save info.
    */
   function saveForm(node) {
-    if (!editFlag) {
+    if (!editIdentifierFlag) {
       node.data.identifier = formIdentifierElement.value;
     }
     node.data.label = formLabelElement.value;
@@ -1223,6 +1217,8 @@ $(document).ready(function() {
       child = managedItem.children[i];
       setD3(child, rootNode);
     }
+    var operation = formDefinition.operation;
+    editIdentifierFlag = operation.identifier_edit == true;
   }
 
   function setRoot() {

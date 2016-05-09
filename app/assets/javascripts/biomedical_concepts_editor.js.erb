@@ -12,8 +12,10 @@ $(document).ready(function() {
   var PT_TERM_COL = 9;
 
   var html;
-  var editItem;
-  var editItemInput;
+  var loadDataFlag;
+  var operation;
+  var editIdentifierFlag;
+  var loadDataFlagInput;
 
   var bcInfo;     // BC source structure json structure
   var bcInstances;  // Array of BC instances being created
@@ -64,8 +66,8 @@ $(document).ready(function() {
   bcTextInput = document.getElementById("bcText");
   
   // Set the flags
-  editItemInput = document.getElementById("edit_item");
-  editItem = (editItemInput.value === 'true');
+  loadDataFlagInput = document.getElementById("load_data");
+  loadDataFlag = (loadDataFlagInput.value === 'true');
 
   // Initialise the tables
   bcTable = $('#bc_table').DataTable({
@@ -109,8 +111,9 @@ $(document).ready(function() {
   // Get the BCT json data definition
   html = $("#bcJson").html();
   bcInfo = $.parseJSON(html);
-  opType = bcInfo.operation
-  if (editItem) {
+  operation = bcInfo['operation'];
+  editIdentifierFlag = (operation['identifier_edit'] == true);
+  if (loadDataFlag) {
     var clone = $.parseJSON(html);
     addBC(clone, bcCount, false);   
   }
@@ -188,26 +191,22 @@ $(document).ready(function() {
     var url;
     var method;
     var data;
-    var bc;
     var bcInstance;
     var i;
-    var opType;
     bcCount = 0;
     bcTable.clear();
     propertyTable.clear();
     for (i=0; i<bcInstances.length; i++) {
       bcInstance = bcInstances[i];
-      bc = bcInstance['source'];
-      opType = bcInstance['operation'];
-      if (opType === "BC_NEW" || opType === "BCT_NEW") {
+      if (operation['action'] === "CREATE") {
         url = "/biomedical_concepts";
         method = 'POST';
-        data = { "data": bcInstance };  
+        data = { "instance": i, "data": { "operation": operation, "managed_item": bcInstance }};  
         $('#bc_add').prop('disabled',true);
       } else {
         url = "/biomedical_concepts/" + bc['id'];
         method = 'PUT';
-        data = { "instance": i, "namespace": bc['namespace'], "data": bcInstance };  
+        data = { "instance": i, "namespace": bc['namespace'], "data": { "operation": operation, "managed_item": bcInstance }};  
       }
       $.ajax({
         url: url,
@@ -250,7 +249,7 @@ $(document).ready(function() {
     bcIndex = data.bcId - 1;
     propertyKey = data.key;
     bc = bcInstances[bcIndex];
-    properties = bc.properties;
+    properties = bc['children'];
     property = properties[propertyKey]
     //values = property.values;
     property.values = [];
@@ -335,7 +334,7 @@ $(document).ready(function() {
       bcTextHide ();
       bcTableCell = null;        
     } else if (bcTableCI == 1) {
-      if (!editItem) {
+      if (editIdentifierFlag) {
         bcTextShow ();
         bcTableCell = bcGetCell();
         bcTableCell.toggleClass('success');
@@ -382,7 +381,7 @@ $(document).ready(function() {
       propertyTableCell = null;    
     } else if (propertyTableCI === PT_FORMAT_COL) {
       var bc = bcInstances[bcIndex];
-      var properties = bc['properties'];
+      var properties = bc['children'];
       var property = properties[bcPropertyKey]
       if (property['datatype'] === "F" || property['datatype'] === "I") {
         propertyTextShow ();
@@ -472,28 +471,27 @@ $(document).ready(function() {
   }
   
   function setBcAttribute (bcIndex, attribute, text) {
-    var entry = bcInstances[bcIndex];
-    var bc = entry['source'];
+    var bc = bcInstances[bcIndex];
     bc[attribute] = text;
   }
 
   function setPropertyAttribute(bcIndex, property, attribute, text) {
     var bc = bcInstances[bcIndex];
-    var ps = bc['properties'];
+    var ps = bc['children'];
     var p = ps[property]
     p[attribute] = text;
   }
   
   function getPropertyAttribute(bcIndex, property, attribute) {
     var bc = bcInstances[bcIndex];
-    var ps = bc['properties'];
+    var ps = bc['children'];
     var p = ps[property]
     return p[attribute];
   }
 
   function addPropertyValue(bcIndex, property, data) {
     var bc = bcInstances[bcIndex];
-    var properties = bc['properties'];
+    var properties = bc['children'];
     var property = properties[property]
     var values = property['values'];
     values.push(data);
@@ -501,25 +499,25 @@ $(document).ready(function() {
 
   function getPropertyValues(bcIndex, property) {
     var bc = bcInstances[bcIndex];
-    var properties = bc['properties'];
+    var properties = bc['children'];
     var property = properties[property]
     return property['values'];
   }
 
   function addBC(bcSource, index, newBC) {
-    var bcData;
+    var bcManagedItem;
     var bcId;
     bcCount += 1;
     bcId = bcCount;
-    bcData = bcSource['source'];
-    bcData['bcId'] = bcId;
+    bcManagedItem = bcSource['managed_item'];
+    bcManagedItem['bcId'] = bcId;
     if (newBC) {
-      bcData['identifier'] = "Biomedical Concept No. " + bcId;
+      bcManagedItem['identifier'] = "Biomedical Concept No. " + bcId;
     }
-    bcTable.row.add(bcData);
+    bcTable.row.add(bcManagedItem);
     bcTable.draw(false);
-    propertyTableAddBC(bcSource['properties'], bcId);
-    bcInstances[index] = bcSource;
+    propertyTableAddBC(bcManagedItem['children'], bcId);
+    bcInstances[index] = bcManagedItem;
   }
   
   function propertyTableAddBC(properties, bcId) {

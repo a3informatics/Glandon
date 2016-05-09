@@ -78,6 +78,13 @@ class FormsController < ApplicationController
     @form = Form.find(id, ns)
   end
 
+  def clone
+    authorize Form
+    ns = params[:namespace]
+    id = params[:id]
+    @form = Form.find(id, ns)
+  end
+
   def create
     authorize Form
     @form = Form.create(params)

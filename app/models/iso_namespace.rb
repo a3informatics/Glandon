@@ -11,7 +11,7 @@ class IsoNamespace
   include ActiveModel::Validations
 
   attr_accessor :id, :namespace, :name, :shortName
-  validates_presence_of :id, :namespace, :name, :shortName
+  #validates_presence_of :id, :namespace, :name, :shortName
 
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -30,15 +30,12 @@ class IsoNamespace
 
   def initialize()
     @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
+    self.id = ""
     self.namespace = ""
     self.name = ""
     self.shortName = ""
   end
 
-  #def baseNs    
-  #  return @@baseNs     
-  #end
-  
   def self.exists?(shortName)
     # Do we have the result stored.
     if @@nameMap.has_key?(shortName)

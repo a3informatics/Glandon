@@ -66,14 +66,14 @@ class BiomedicalConceptCore::Datatype < IsoConceptNew
     return results
   end
 
-	def to_edit
+	def to_api_json
     #ConsoleLogger::log(C_CLASS_NAME,"to_edit","*****ENTRY*****")
     results = Array.new
     self.propertySet.each do |oProperty|
       if !oProperty.isComplex? 
         results << oProperty.to_minimum
       else
-        set = oProperty.to_edit
+        set = oProperty.to_api_json
         set.each do |iProperty|
           results << iProperty
         end

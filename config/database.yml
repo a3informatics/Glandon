@@ -19,7 +19,7 @@ development:
   database: Glandon_development
   pool:     5
   username: Glandon
-  password: xwe67ind
+  password: 
   template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -47,7 +47,7 @@ test:
   database: Glandon_test
   pool:     5
   username: Glandon
-  password: xwe67ind
+  password: 
   template: template0
 
 production:
@@ -57,5 +57,5 @@ production:
   database: Glandon_production
   pool:     5
   username: Glandon
-  password: xwe67ind
+  password: 
   template: template0

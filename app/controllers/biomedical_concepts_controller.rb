@@ -60,6 +60,13 @@ class BiomedicalConceptsController < ApplicationController
     @bc = BiomedicalConcept.find(id, ns)
   end
 
+  def clone
+    authorize BiomedicalConcept
+    ns = params[:namespace]
+    id = params[:id]
+    @bc = BiomedicalConcept.find(id, ns)
+  end
+
   def impact
     authorize BiomedicalConcept, :view?
     id = params[:id]

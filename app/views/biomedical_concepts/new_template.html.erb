@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag    'biomedical_concepts_editor'%>
 <%= javascript_include_tag 'biomedical_concepts_editor'%>
 <script id="bcJson" type="text/json">
-    <%= raw @bct.to_edit.to_json %>
+    <%= raw @bct.to_clone.to_json %>
 </script>
 <div class="row">
     <div class="col-md-9">
@@ -124,6 +124,5 @@
         </div>
     </div>
 </div>
-<input type="hidden" id="new_item" value="<%= @new %>">
-<input type="hidden" id="edit_item" value="false">
+<input type="hidden" id="load_data" value="false">
 

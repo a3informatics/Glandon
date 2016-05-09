@@ -654,12 +654,27 @@ class IsoManagedNew < IsoConceptNew
       :managed_item => {}
     }
     if new_version?
-      result[:operation] = { :action => "CREATE", :new_version => self.next_version, :new_state => self.state_on_edit }
+      result[:operation] = { :action => "CREATE", :new_version => self.next_version, :new_state => self.state_on_edit, :identifier_edit => false }
+      if self.next_version == self.first_version
+        result[:operation][:identifier_edit] = true
+      end
     else
-      result[:operation] = { :action => "UPDATE", :new_version => self.version, :new_state => self.state_on_edit }
+      result[:operation] = { :action => "UPDATE", :new_version => self.version, :new_state => self.state_on_edit, :identifier_edit => false }
     end
     result[:managed_item] = to_api_json
     ConsoleLogger::log(C_CLASS_NAME,"to_edit","Result=" + result.to_s)
+    return result
+  end
+
+  def to_clone
+    # To clone, reset RS and SI (resets the version info etc). Then edit.
+    # This leaves current content intact but resets version info.
+    # Allow the identifier to be edited.
+    self.scopedIdentifier = IsoScopedIdentifier.new
+    self.registrationState = IsoRegistrationState.new
+    result = to_edit 
+    result[:operation][:identifier_edit] = true
+    ConsoleLogger::log(C_CLASS_NAME,"to_clone","Result=" + result.to_s)
     return result
   end
 

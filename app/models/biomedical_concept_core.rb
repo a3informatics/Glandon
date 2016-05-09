@@ -45,28 +45,24 @@ class BiomedicalConceptCore < IsoManagedNew
     return results
   end
 
-	def to_edit
+	def to_api_json
+    result = super
     results = Array.new
     items.each do |item|
-      more = item.to_edit
+      more = item.to_api_json
       more.each do |result|
         results << result
       end
     end
-    result =
-      {
-        :operation => "",
-        :source => { :id => id, :namespace => namespace, :identifier => identifier, :label => label, :version => version, :new_version => version}, 
-        :template => {},
-        :properties => results
-      }
+    result[:children] = results
     return result
   end
   
   def to_sparql(id, rdfType, schemaNs, params, sparql, prefix)
-    bc = params[:source]
-    template = params[:template]
-    properties = params[:properties]
+    bc = params[:managed_item]
+    template = bc[:template]
+    properties = bc[:children]
+    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + params.to_s)
     sparql.triple_uri("", id, prefix, "basedOn", template[:namespace], template[:id])
     sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", bc[:label], "string")
     ordinal = 1
@@ -86,7 +82,7 @@ class BiomedicalConceptCore < IsoManagedNew
   end
 
   def self.unique(type, ns)
-    ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + ns)
+    #ConsoleLogger::log(C_CLASS_NAME,"unique","ns=" + ns)
     results = super(type, ns)
     return results
   end

@@ -45,6 +45,10 @@ class ApplicationPolicy
     curator?
   end
 
+  def clone?
+    curator?
+  end
+
   def impact?
     curator?
   end

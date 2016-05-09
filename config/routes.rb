@@ -68,6 +68,7 @@ Rails.application.routes.draw do
       get :history
       get :impact
       post :new_template
+      get :clone
     end
   end
   resources :cdisc_terms do
@@ -129,6 +130,7 @@ Rails.application.routes.draw do
       get :acrf
       get :crf
       #get :test
+      get :clone
     end
   end
   namespace :forms do

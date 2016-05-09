@@ -72,18 +72,21 @@ group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
-  gem 'rails_layout'
+  gem 'rails_layout' 
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :production do

@@ -76,12 +76,12 @@ class BiomedicalConceptCore::Property < IsoConceptNew
 		return results
 	end
 
-	def to_edit
+	def to_api_json
 		#ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
 		results = Array.new
 		if self.isComplex? 
 			self.childComplex.each do |item|
-				more = item.to_edit
+				more = item.to_api_json
 				more.each do |datatype|
 					results << datatype
 				end

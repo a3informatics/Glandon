@@ -11,6 +11,7 @@
 	  				:searchPath => "", 
 	  				:viewPath => "",
 	  				:editPath => edit_biomedical_concept_path(:id => item.id, :namespace => item.namespace),
+	  				:clonePath => clone_biomedical_concepts_path(:id => item.id, :namespace => item.namespace),
 	  				:deletePath => biomedical_concept_path(:id => item.id, :namespace => item.namespace) } %>
 			<% end %>				
 		</tbody>

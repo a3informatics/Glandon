@@ -46,12 +46,11 @@ class BiomedicalConceptTemplate < BiomedicalConceptCore
     return results
   end 
 
-  def to_edit
+  def to_api_json
     result = super
-    result[:operation] = "BCT_NEW"
-    result[:source][:new_version] = first_version
+    result[:type] = "Biomedical Concept Template"
     result[:template] = { :id => self.id, :namespace => self.namespace, :identifier => self.identifier, :label => self.label }
     return result
   end
-
+  
 end
