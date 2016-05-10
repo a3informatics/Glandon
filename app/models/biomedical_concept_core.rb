@@ -19,7 +19,7 @@ class BiomedicalConceptCore < IsoManagedNew
     if children
       object.items = BiomedicalConceptCore::Item.find_for_parent(object.triples, object.get_links(C_SCHEMA_PREFIX, "hasItem"))
     end
-    object.triples = ""
+    #object.triples = ""
     return object 
   end
 

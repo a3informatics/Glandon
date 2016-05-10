@@ -61,6 +61,14 @@ class ApplicationPolicy
     curator?
   end
 
+  def export_json?
+    curator?
+  end
+
+  def export_ttl?
+    curator?
+  end
+  
   def scope
     Pundit.policy_scope!(user, record.class)
   end

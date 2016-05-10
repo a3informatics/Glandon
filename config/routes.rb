@@ -69,6 +69,8 @@ Rails.application.routes.draw do
       get :impact
       post :new_template
       get :clone
+      get :export_json
+      get :export_ttl
     end
   end
   resources :cdisc_terms do

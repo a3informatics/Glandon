@@ -129,9 +129,41 @@ class BiomedicalConceptsController < ApplicationController
       end
     end
   end
+
+  def export_ttl
+    authorize BiomedicalConcept
+    id = params[:id]
+    namespace = params[:namespace]
+    @bc = BiomedicalConcept.find(id, namespace)
+    send_data to_turtle(@bc.triples), filename: "#{@bc.owner}_#{@bc.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+  end
+  
+  def export_json
+    authorize BiomedicalConcept
+    id = params[:id]
+    namespace = params[:namespace]
+    @bc = BiomedicalConcept.find(id, namespace)
+    send_data @bc.to_api_json, filename: "#{@bc.owner}_#{@bc.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+  end
   
 private
+
   def the_params
     params.require(:biomedical_concept).permit(:data)
   end  
+
+  def to_turtle(triples)
+    result = ""
+    triples.each do |key, triple_array|
+      triple_array.each do |triple|
+        if triple[:object].start_with?('http://')
+          result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t<#{triple[:object]}> . \n"
+        else
+          result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t\"#{triple[:object]}\" . \n"
+        end
+      end
+    end
+    return result
+  end
+
 end

@@ -58,4 +58,6 @@
 			<% end %>
 		</tbody>
 	</table>
+	<%= link_to "Export JSON", export_json_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-info" %>
+	<%= link_to "Export Turtle", export_ttl_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-info" %>
 </div>
