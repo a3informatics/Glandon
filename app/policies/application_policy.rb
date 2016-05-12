@@ -49,6 +49,10 @@ class ApplicationPolicy
     curator?
   end
 
+  def upgrade?
+    curator?
+  end
+  
   def impact?
     curator?
   end

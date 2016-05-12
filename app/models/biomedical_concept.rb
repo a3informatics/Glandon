@@ -104,8 +104,8 @@ class BiomedicalConcept < BiomedicalConceptCore
     data = params[:data]
     managed_item = data[:managed_item]
     operation = data[:operation]
-    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + managed_item[:identifier] + ", new version=" + managed_item[:new_version])
-    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation)
+    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + managed_item[:identifier] + ", new version=" + operation[:new_version].to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation.to_s)
     bc = BiomedicalConcept.find(id, namespace)
     sparql = SparqlUpdate.new
     managed_item[:versionLabel] = "0.1"
@@ -157,6 +157,74 @@ class BiomedicalConcept < BiomedicalConceptCore
       end
     end
     return results
+  end
+
+  def upgrade
+    term_map = Hash.new
+    thesauri = Thesaurus.unique
+    thesauri.each do |item|
+      params = {:identifier => item[:identifier], :scope_id => item[:owner_id]}
+      history = Thesaurus.history(params)
+      update_ns = ""
+      history.each do |item|
+        update_ns = item.namespace if item.current?
+      end
+      if update_ns != ""
+        history.each do |item|
+          term_map[item.namespace] = {:update => !item.current?, :update_ns => update_ns}
+        end
+      end
+    end
+    ConsoleLogger::log(C_CLASS_NAME,"upgrade","term_map=" + term_map.to_json.to_s)
+
+    bc_edit = self.to_edit
+    ConsoleLogger::log(C_CLASS_NAME,"upgrade","JSON=" + bc_edit.to_s)
+
+    proceed = true
+    mi = bc_edit[:managed_item]
+    op = bc_edit[:operation]
+    children = mi[:children]
+    children.each do |child|
+      term_refs = child[:values]
+      term_refs.each do |term_ref|
+        if term_map[term_ref[:uri_ns]][:update]
+          id = term_ref[:uri_id]
+          ns_old = term_ref[:uri_ns]
+          ns_new = term_map[term_ref[:uri_ns]][:update_ns]
+          old_cli = ThesaurusConcept.find(id, ns_old)
+          new_cli = ThesaurusConcept.find(id, ns_new)
+          ConsoleLogger::log(C_CLASS_NAME,"upgrade","Old CLI=" + old_cli.to_json.to_s)
+          ConsoleLogger::log(C_CLASS_NAME,"upgrade","New CLI=" + new_cli.to_json.to_s)
+          if ThesaurusConcept.diff?(old_cli, new_cli)
+            proceed = false
+          end
+        end
+      end
+    end
+    ConsoleLogger::log(C_CLASS_NAME,"upgrade","Proceed=" + proceed.to_s)
+
+    if proceed
+      children.each do |child|
+        term_refs = child[:values]
+        term_refs.each do |term_ref|
+          if term_map[term_ref[:uri_ns]][:update]
+            id = term_ref[:uri_id]
+            ns_new = term_map[term_ref[:uri_ns]][:update_ns]
+            term_ref[:uri_ns] = ns_new
+          end
+        end
+      end
+      ConsoleLogger::log(C_CLASS_NAME,"upgrade","JSON=" + bc_edit.to_s)
+      bc_json = bc_edit.to_json.to_s
+      ConsoleLogger::log(C_CLASS_NAME,"upgrade","JSON String=" + bc_json)
+      if op[:action] == "CREATE"
+        BiomedicalConcept.create({:data => bc_edit})
+        ConsoleLogger::log(C_CLASS_NAME,"upgrade","Create BC")
+      else
+        BiomedicalConcept.update({:id => self.id, :namespace => self.namespace, :data => bc_edit})
+        ConsoleLogger::log(C_CLASS_NAME,"upgrade","Update BC")
+      end
+    end
   end
 
 end

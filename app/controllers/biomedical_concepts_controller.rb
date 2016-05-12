@@ -145,6 +145,15 @@ class BiomedicalConceptsController < ApplicationController
     @bc = BiomedicalConcept.find(id, namespace)
     send_data @bc.to_api_json, filename: "#{@bc.owner}_#{@bc.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
+
+  def upgrade
+    authorize BiomedicalConcept
+    id = params[:id]
+    namespace = params[:namespace]
+    @bc = BiomedicalConcept.find(id, namespace)
+    @bc.upgrade
+    redirect_to history_biomedical_concepts_path(:identifier => @bc.identifier, :scope_id => @bc.owner_id)
+  end
   
 private
 

@@ -109,9 +109,12 @@ class BiomedicalConceptCore::Property < IsoConceptNew
         ordinal += 1
       end
     else
+      ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + params.to_s)
       # TODO: This needs to be made better. Array versus hash handling. Currently an array.
-      properties = params.select {|key, item| item[:id] == self.id}
-      property = properties.values[0]
+      # Amended original code as a result of the funny JSON hash versus array processing with AJAX
+      properties = params.select {|item| item[:id] == self.id}
+      ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + properties.to_s)
+      property = properties[0]
       ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Property=" + property.to_s)
       sparql.triple_primitive_type("", id, prefix, "alias", property[:alias], "string")
       sparql.triple_primitive_type("", id, prefix, "ordinal", ordinal.to_s, "positiveInteger")
@@ -123,19 +126,21 @@ class BiomedicalConceptCore::Property < IsoConceptNew
       sparql.triple_primitive_type("", id, prefix, "simpleDatatype", self.simpleDatatype.to_s, "string")
       #ConsoleLogger::log(C_CLASS_NAME,"to_bc","Property=" + property.to_s)
       if property.has_key?(:values)
-        ordinal = 1
-        values = property[:values]
-        values.each do |value|
-          sparql.triple("", id, prefix, "hasValue", "", id + Uri::C_UID_SECTION_SEPARATOR + 'PV' + ordinal.to_s)
-          ordinal += 1
-        end
-        ordinal = 1
-        values = property[:values]
-        ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Values=" + values.to_s)
-        values.each do |key, value|
-          ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Value=" + value.to_s)
-          BiomedicalConceptCore::PropertyValue.to_sparql(id, ordinal, value, sparql, prefix)
-          ordinal += 1
+        if property[:values] != nil
+          ordinal = 1
+          values = property[:values]
+          values.each do |value|
+            sparql.triple("", id, prefix, "hasValue", "", id + Uri::C_UID_SECTION_SEPARATOR + 'PV' + ordinal.to_s)
+            ordinal += 1
+          end
+          ordinal = 1
+          values = property[:values]
+          ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Values=" + values.to_s)
+          values.each do |value|
+            ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Value=" + value.to_s)
+            BiomedicalConceptCore::PropertyValue.to_sparql(id, ordinal, value, sparql, prefix)
+            ordinal += 1
+          end
         end
       end
     end  

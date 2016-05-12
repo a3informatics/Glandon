@@ -71,6 +71,7 @@ Rails.application.routes.draw do
       get :clone
       get :export_json
       get :export_ttl
+      get :upgrade
     end
   end
   resources :cdisc_terms do

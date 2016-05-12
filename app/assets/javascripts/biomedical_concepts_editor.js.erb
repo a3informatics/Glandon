@@ -204,14 +204,16 @@ $(document).ready(function() {
         data = { "instance": i, "data": { "operation": operation, "managed_item": bcInstance }};  
         $('#bc_add').prop('disabled',true);
       } else {
-        url = "/biomedical_concepts/" + bc['id'];
+        url = "/biomedical_concepts/" + bcInstance['id'];
         method = 'PUT';
-        data = { "instance": i, "namespace": bc['namespace'], "data": { "operation": operation, "managed_item": bcInstance }};  
+        data = { "instance": i, "namespace": bcInstance['namespace'], "data": { "operation": operation, "managed_item": bcInstance }};  
       }
       $.ajax({
         url: url,
         type: method,
-        data: data,
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json',
         success: function(result){
           var html = alertSuccess("Biomedical Concept has been saved.");
           displayAlerts(html);
