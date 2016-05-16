@@ -44,10 +44,10 @@ class IsoNamespace
       result = false
       # Create the query, submit
       query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
-        "SELECT ?a ?c WHERE \n" +
-        "{ \n" +
-          "?a isoI:ofOrganization ?b . \n" +
-          "?b isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
+        "SELECT ?a WHERE \n" +
+        "{\n" +
+        "  ?a isoI:ofOrganization ?b . \n" +
+        "  ?b isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
         "}"
       response = CRUD.query(query)
       # Process the response
@@ -72,10 +72,10 @@ class IsoNamespace
       # Create the query, submit.
       query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
         "SELECT ?a ?c WHERE \n" +
-        "{ \n" +
-          "?a isoI:ofOrganization ?b . \n" +
-          "?b isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
-          "?b isoB:name ?c . \n" +
+        "{\n" +
+        "  ?a isoI:ofOrganization ?b . \n" +
+        "  ?b isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
+        "  ?b isoB:name ?c . \n" +
         "}"
       response = CRUD.query(query)
       # Process the response.
@@ -107,7 +107,7 @@ class IsoNamespace
       # Build query and submit.
       query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
         "SELECT ?b ?c WHERE \n" +
-        "{ \n" +
+        "{\n" +
         "  :" + id.to_s + " isoI:ofOrganization ?a . \n" +
         "  ?a isoB:shortName ?b . \n" +
         "  ?a isoB:name ?c . \n" +
@@ -137,11 +137,11 @@ class IsoNamespace
     results = Hash.new
     query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
       "SELECT ?a ?c ?d WHERE \n" +
-      "{ \n" +
-      "	?a rdf:type isoI:Namespace . \n" +
-      "	?a isoI:ofOrganization ?b . \n" +
-      "	?b isoB:shortName ?c . \n" +
-      "	?b isoB:name ?d . \n" +
+      "{\n" +
+      "  ?a rdf:type isoI:Namespace . \n" +
+      "  ?a isoI:ofOrganization ?b . \n" +
+      "  ?b isoB:shortName ?c . \n" +
+      "  ?b isoB:name ?d . \n" +
       "}"
     response = CRUD.query(query)
     # Process the response

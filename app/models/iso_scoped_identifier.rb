@@ -10,7 +10,7 @@ class IsoScopedIdentifier
   include ActiveModel::Validations
       
   attr_accessor :id, :identifier, :versionLabel, :version, :namespace
-  validates_presence_of :identifier, :versionLabel, :version, :namespace
+  #validates_presence_of :identifier, :versionLabel, :version, :namespace
   
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -49,10 +49,6 @@ class IsoScopedIdentifier
     id.present?
   end
  
-  #def baseNs
-  #  return @@baseNs 
-  #end
-  
   def owner
     return self.namespace.shortName
   end
@@ -77,12 +73,15 @@ class IsoScopedIdentifier
     return C_FIRST_VERSION
   end
   
+  # Find if the identifier exists within the specified scope (namespace).
+  #
+  # * *Args*    :
+  #   - +identifier+ -> The identifer being checked.
+  #   - +scopeId+ -> The id of the scope namespace (IsoNamespace object)
+  # * *Returns* :
+  #   - Boolean  
   def self.exists?(identifier, scopeId)   
-    #ConsoleLogger::log(C_CLASS_NAME,"exists?","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"exists?","Identifier=" + identifier.to_s )
-    #ConsoleLogger::log(C_CLASS_NAME,"exists?","ScopeId=" + scopeId.to_s )
     result = false
-    
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?a WHERE \n" +
@@ -91,10 +90,8 @@ class IsoScopedIdentifier
       "  ?a isoI:identifier \"" + identifier + "\" . \n" +
       "  ?a isoI:hasScope :" + scopeId + ". \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -225,16 +222,20 @@ class IsoScopedIdentifier
     
   end
 
-  # Find all managed items of a given type by unique identifier.
-  # Uses hash for results rather than object as results are a hybrid.
+  # Find the set of unique identifiers for a given RDF Type
+  #
+  # * *Args*    :
+  #   - +rdfType+ -> The RDF type to be searched for.
+  #   - +ns+ -> The namespace within with the search is to take place.
+  # * *Returns* :
+  #   - Array of hashes. Each hash contains {identifier, label, owner id, owner short name}
   def self.allIdentifier(rdfType, ns)
     results = Array.new
     check = Hash.new
-
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT"]) +
       "SELECT DISTINCT ?d ?e ?f ?g WHERE \n" +
-      "{ \n" +
+      "{\n" +
       "  ?a rdf:type :" + rdfType + " . \n" +
       "  ?a isoI:hasIdentifier ?c . \n" +
       "  ?a rdfs:label ?e . \n" +
@@ -242,10 +243,8 @@ class IsoScopedIdentifier
       "  ?c isoI:version ?g . \n" +
       "  ?c isoI:hasScope ?f . \n" +
       "} ORDER BY DESC(?g)"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!

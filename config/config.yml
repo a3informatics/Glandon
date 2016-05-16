@@ -3,6 +3,7 @@ defaults: &defaults
   self_registration: false
   organization_title: ACME Pharmaceuticals
   organization_image_file: acme.jpg
+  rest_timeout: 5
   # User config
   paper_size:
    - type: enum
