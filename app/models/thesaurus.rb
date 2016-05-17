@@ -86,6 +86,24 @@ class Thesaurus <  IsoManagedNew
     return object    
   end
   
+  def self.find_from_concept(id, ns)
+    result = self.new
+    query = UriManagement.buildNs(ns, ["iso25964"]) +
+      "SELECT ?a WHERE \n" +
+      "{\n" +
+      "  ?a (iso25964:hasConcept|iso25964:hasChild)%2B :" + id + " . \n" +   
+      "  ?a rdf:type iso25964:Thesaurus . \n" +
+      "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('a', true, node)
+      result = self.find(ModelUtility.extractCid(uri), ModelUtility.extractNs(uri), false)
+    end
+    return result
+  end
+
   def self.all
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results

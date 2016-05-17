@@ -227,4 +227,31 @@ class BiomedicalConcept < BiomedicalConceptCore
     end
   end
 
+  def references
+    results = Array.new
+    term_map = Hash.new
+    bc_edit = self.to_edit
+    mi = bc_edit[:managed_item]
+    op = bc_edit[:operation]
+    children = mi[:children]
+    children.each do |child|
+      term_refs = child[:values]
+      term_refs.each do |term_ref|
+        id = term_ref[:uri_id]
+        ns = term_ref[:uri_ns]
+        if child[:enabled]
+          if !term_map.has_key?(ns)
+            thesaurus = Thesaurus.find_from_concept(id, ns)
+            term_map[ns] = thesaurus
+          else  
+            thesaurus = term_map[ns]
+          end
+          results << {cli_identifier: term_ref[:identifier], cli_notation: term_ref[:useful_1], 
+            term_owner: thesaurus.owner, term_identifier: thesaurus.identifier, term_version_label: thesaurus.versionLabel, term_version: thesaurus.version}
+        end
+      end
+    end
+    return results
+  end
+
 end

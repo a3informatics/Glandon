@@ -168,7 +168,7 @@ describe IsoNamespace do
       "SELECT ?a ?c WHERE \n" +
       "{\n" +
       "  ?a isoI:ofOrganization ?b . \n" +
-      "  ?b isoB:shortName \"AAA\"^^xsd:string . \n" +
+      "  ?b isoB:shortName \"XXX\"^^xsd:string . \n" +
       "  ?b isoB:name ?c . \n" +
       "}"
     sparql_result = ""
@@ -180,7 +180,7 @@ describe IsoNamespace do
       '', 
       sparql_query, 
       {"Accept" => "application/sparql-results+xml", "Content-type"=> "application/x-www-form-urlencoded"}).and_return(response)
-    expect(IsoNamespace.findByShortName("AAA")).eql?(result)
+    expect(IsoNamespace.findByShortName("XXX")).eql?(result)
   end
 
 	it "finds namespace" do
@@ -248,7 +248,7 @@ describe IsoNamespace do
       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
       "SELECT ?b ?c WHERE \n" +
       "{\n" +
-      "  :NS-AAA isoI:ofOrganization ?a . \n" +
+      "  :NS-XXX isoI:ofOrganization ?a . \n" +
       "  ?a isoB:shortName ?b . \n" +
       "  ?a isoB:name ?c . \n" +
       "}"
@@ -261,7 +261,7 @@ describe IsoNamespace do
       '', 
       sparql_query, 
       {"Accept" => "application/sparql-results+xml", "Content-type"=> "application/x-www-form-urlencoded"}).and_return(response)
-    expect(IsoNamespace.find("NS-AAA")).eql?(result)  
+    expect(IsoNamespace.find("NS-XXX")).eql?(result)  
   end
 
 	it "all namespace" do
@@ -334,12 +334,267 @@ describe IsoNamespace do
     expect(IsoNamespace.all).eql?(results)   
   end
 
-	it "all handles empty response"
+	it "all handles empty response" do
+    sparql_query = "query=PREFIX : <http://www.assero.co.uk/MDRItems#>\n" +
+      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
+      "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "SELECT ?a ?c ?d WHERE \n" +
+      "{\n" +
+      "  ?a rdf:type isoI:Namespace . \n" +
+      "  ?a isoI:ofOrganization ?b . \n" +
+      "  ?b isoB:shortName ?c . \n" +
+      "  ?b isoB:name ?d . \n" +
+      "}"
+    sparql_result = ""
+    response = Typhoeus::Response.new(code: 200, body: sparql_result)
+    results = Hash.new
+    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/query', 
+      :post, 
+      '', 
+      '', 
+      sparql_query, 
+      {"Accept" => "application/sparql-results+xml", "Content-type"=> "application/x-www-form-urlencoded"}).and_return(response)
+    expect(IsoNamespace.all).eql?(results)  
+  end
 
-	it "create a namespace"
-	it "create a namespace, error response"
-		
-	it "destory a namespace"
-	it "destory a namespace, error response"
+	it "create a namespace" do
+    sparql_query1 = "query=PREFIX : <http://www.assero.co.uk/MDRItems#>\n" +
+      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
+      "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "SELECT ?a WHERE \n" +
+      "{\n" +
+      "  ?a isoI:ofOrganization ?b . \n" +
+      "  ?b isoB:shortName \"CCC\"^^xsd:string . \n" +
+      "}"
+    sparql_result1 = '<?xml version="1.0"?>
+      <sparql xmlns="http://www.w3.org/2005/sparql-results#">
+        <head>
+          <variable name="a"/>
+        </head>
+        <results>
+        </results>
+      </sparql>'
+    response1 = Typhoeus::Response.new(code: 200, body: sparql_result1)
+    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/query', 
+      :post, 
+      '', 
+      '', 
+      sparql_query1, 
+      {"Accept" => "application/sparql-results+xml", "Content-type"=> "application/x-www-form-urlencoded"}).and_return(response1)
+    sparql_query2 = "update=PREFIX : <http://www.assero.co.uk/MDRItems#>\n" +
+      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
+      "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "INSERT DATA \n" +
+      "{\n" +
+      "  :O-CCC rdf:type isoB:Organization . \n" +
+      "  :O-CCC isoB:name \"CCC Long\"^^xsd:string . \n" +
+      "  :O-CCC isoB:shortName \"CCC\"^^xsd:string . \n" +
+      "  :NS-CCC rdf:type isoI:Namespace . \n" +
+      "  :NS-CCC isoI:ofOrganization :O-CCC . \n" +
+      "}"
+    sparql_result2 = ""
+    result = IsoNamespace.new
+    result.id = "NS-CCC"
+    result.namespace = "http://www.assero.co.uk/MDRItems"
+    result.name = "CCC Long"
+    result.shortName = "CCC"
+    response2 = Typhoeus::Response.new(code: 200, body: sparql_result2)
+    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/update', 
+      :post, 
+      '', 
+      '', 
+      sparql_query2, 
+      {"Content-type"=> "application/x-www-form-urlencoded"}).and_return(response2)
+    expect(response2).to receive(:success?).and_return(true)
+    expect(IsoNamespace.create({shortName: "CCC", name: "CCC Long"})).eql?(result)  
+	end
+
+  it "create a namespace, error response" do
+    sparql_query1 = "query=PREFIX : <http://www.assero.co.uk/MDRItems#>\n" +
+      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
+      "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "SELECT ?a WHERE \n" +
+      "{\n" +
+      "  ?a isoI:ofOrganization ?b . \n" +
+      "  ?b isoB:shortName \"CCC\"^^xsd:string . \n" +
+      "}"
+    sparql_result1 = '<?xml version="1.0"?>
+      <sparql xmlns="http://www.w3.org/2005/sparql-results#">
+        <head>
+          <variable name="a"/>
+        </head>
+        <results>
+        </results>
+      </sparql>'
+    response1 = Typhoeus::Response.new(code: 200, body: sparql_result1)
+    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/query', 
+      :post, 
+      '', 
+      '', 
+      sparql_query1, 
+      {"Accept" => "application/sparql-results+xml", "Content-type"=> "application/x-www-form-urlencoded"}).and_return(response1)
+    sparql_query2 = "update=PREFIX : <http://www.assero.co.uk/MDRItems#>\n" +
+      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
+      "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "INSERT DATA \n" +
+      "{\n" +
+      "  :O-CCC rdf:type isoB:Organization . \n" +
+      "  :O-CCC isoB:name \"CCC Long\"^^xsd:string . \n" +
+      "  :O-CCC isoB:shortName \"CCC\"^^xsd:string . \n" +
+      "  :NS-CCC rdf:type isoI:Namespace . \n" +
+      "  :NS-CCC isoI:ofOrganization :O-CCC . \n" +
+      "}"
+    sparql_result2 = ""
+    response2 = Typhoeus::Response.new(code: 200, body: sparql_result2)
+    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/update', 
+      :post, 
+      '', 
+      '', 
+      sparql_query2, 
+      {"Content-type"=> "application/x-www-form-urlencoded"}).and_return(response2)
+    expect(response2).to receive(:success?).and_return(false)
+    expect {
+      IsoNamespace.create({shortName: "CCC", name: "CCC Long"})
+    }.to raise_error(Exceptions::CreateError)
+  end
+
+  it "does not create a namespace with an invalid shortname" do
+    predicted_result = IsoNamespace.new
+    actual_result = IsoNamespace.create({shortName: "CCC%$£@", name: "CCC Long"})
+    expect(actual_result).eql?(predicted_result)
+    expect(actual_result.errors.messages[:short_name]).to include("contains invalid characters or is empty") 
+  end
+
+	it "does not create a namespace with an invalid name" do
+    predicted_result = IsoNamespace.new
+    actual_result = IsoNamespace.create({shortName: "CCC", name: "CCC%$£@ Long"})
+    expect(actual_result).eql?(predicted_result)
+    expect(actual_result.errors.messages[:name]).to include("contains invalid characters or is empty") 
+  end
+
+  it "does not create a namespace that already exists" do
+    sparql_query1 = "query=PREFIX : <http://www.assero.co.uk/MDRItems#>\n" +
+      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
+      "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "SELECT ?a WHERE \n" +
+      "{\n" +
+      "  ?a isoI:ofOrganization ?b . \n" +
+      "  ?b isoB:shortName \"CCC\"^^xsd:string . \n" +
+      "}"
+    sparql_result1 = '<?xml version="1.0"?>
+      <sparql xmlns="http://www.w3.org/2005/sparql-results#">
+        <head>
+          <variable name="a"/>
+        </head>
+        <result>
+            <binding name="a">
+              <uri>http://www.assero.co.uk/MDRItems#NS-ACME</uri>
+            </binding>
+          </result>
+      </sparql>'
+    response1 = Typhoeus::Response.new(code: 200, body: sparql_result1)
+    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/query', 
+      :post, 
+      '', 
+      '', 
+      sparql_query1, 
+      {"Accept" => "application/sparql-results+xml", "Content-type"=> "application/x-www-form-urlencoded"}).and_return(response1)
+    predicted_result = IsoNamespace.new
+    actual_result = IsoNamespace.create({shortName: "CCC", name: "CCC Long"})
+    expect(actual_result).eql?(predicted_result)
+    expect(actual_result.errors.messages[:base]).to include("The short name entered is already in use.")
+  end
+  	
+	it "destroy a namespace" do
+    sparql_query = "update=PREFIX : <http://www.assero.co.uk/MDRItems#>\n" +
+      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
+      "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "DELETE DATA \n" +
+      "{ \n" +
+      "  :O-CCC rdf:type isoB:Organization . \n" +
+      "  :O-CCC isoB:name \"CCC Long\"^^xsd:string . \n" +
+      "  :O-CCC isoB:shortName \"CCC\"^^xsd:string . \n" +
+      "  :NS-CCC rdf:type isoI:Namespace . \n" +
+      "  :NS-CCC isoI:ofOrganization :O-CCC . \n" +
+      "}"
+    sparql_result = ""
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/update', 
+      :post, 
+      '', 
+      '', 
+      sparql_query, 
+      {"Content-type"=> "application/x-www-form-urlencoded"}).and_return(response)
+    expect(response).to receive(:success?).and_return(true)
+    object = IsoNamespace.new
+    object.id = "NS-CCC"
+    object.namespace = "http://www.assero.co.uk/MDRItems"
+    object.name = "CCC Long"
+    object.shortName = "CCC"
+    object.destroy
+  end
+
+	it "destroy a namespace, error response" do
+    sparql_query = "update=PREFIX : <http://www.assero.co.uk/MDRItems#>\n" +
+      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
+      "PREFIX isoB: <http://www.assero.co.uk/ISO11179Basic#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "DELETE DATA \n" +
+      "{ \n" +
+      "  :O-CCC rdf:type isoB:Organization . \n" +
+      "  :O-CCC isoB:name \"CCC Long\"^^xsd:string . \n" +
+      "  :O-CCC isoB:shortName \"CCC\"^^xsd:string . \n" +
+      "  :NS-CCC rdf:type isoI:Namespace . \n" +
+      "  :NS-CCC isoI:ofOrganization :O-CCC . \n" +
+      "}"
+    sparql_result = ""
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/update', 
+      :post, 
+      '', 
+      '', 
+      sparql_query, 
+      {"Content-type"=> "application/x-www-form-urlencoded"}).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    object = IsoNamespace.new
+    object.id = "NS-CCC"
+    object.namespace = "http://www.assero.co.uk/MDRItems"
+    object.name = "CCC Long"
+    object.shortName = "CCC"
+    expect {
+      object.destroy
+    }.to raise_error(Exceptions::DestroyError)
+  end
 
 end

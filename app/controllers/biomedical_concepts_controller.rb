@@ -113,6 +113,7 @@ class BiomedicalConceptsController < ApplicationController
     namespace = params[:namespace]
     @bc = BiomedicalConcept.find(id, namespace)
     @items = @bc.flatten
+    @references = @bc.references
     respond_to do |format|
       format.html 
       format.json do

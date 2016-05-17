@@ -36,6 +36,12 @@ class IsoNamespace
     self.shortName = ""
   end
 
+  # Does the namespace exist?
+  #
+  # * *Args*    :
+  #   - +shortName+ -> The short name of the namespace to be found
+  # * *Returns* :
+  #   - Boolean
   def self.exists?(shortName)
     # Do we have the result stored.
     if @@nameMap.has_key?(shortName)
@@ -63,6 +69,14 @@ class IsoNamespace
     end
   end
 
+  # Find namespace by the short name.
+  #
+  # TODO: Better return for not found (will just be empty at the moment)
+  #
+  # * *Args*    :
+  #   - +shortName+ -> The short name of the namespace to be found
+  # * *Returns* :
+  #   - Namesapce object
   def self.findByShortName(shortName)
     # Do we have a stored result
     object = self.new
@@ -98,6 +112,12 @@ class IsoNamespace
     return object
   end
   
+  # Find based on identifier
+  #
+  # * *Args*    :
+  #   - +id+ -> The id of the object
+  # * *Returns* :
+  #   - Namespce object
   def self.find(id)
     # Do we have a stored result?
     object = self.new 
@@ -132,6 +152,13 @@ class IsoNamespace
     return object
   end
 
+  # Find all namespace objects
+  #
+  # TODO: CHange hash results to array
+  #
+  # * *Args*    :
+  # * *Returns* :
+  #   - Jash of namespace objects
   def self.all
     # Build query and submit.
     results = Hash.new
@@ -165,6 +192,14 @@ class IsoNamespace
     return results
   end
 
+  # Create a namespace object
+  #
+  # * *Args*    :
+  #   - +params+ -> {name, shortName}
+  # * *Returns* :
+  #   - Namespace object. Errors set if duplicate
+  # * *Exceptions* :
+  #   - CreateError if object not created
   def self.create(params)
     object = self.new
     object.errors.clear
@@ -180,12 +215,12 @@ class IsoNamespace
         orgId = ModelUtility.cidSwapPrefix(id, C_ORG_CID_PREFIX)
         update = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
           "INSERT DATA \n" +
-          "{ \n" +
-          "	 :" + orgId + " rdf:type isoB:Organization . \n" +
-          "	 :" + orgId + " isoB:name \"" + name + "\"^^xsd:string . \n" +
-          "	 :" + orgId + " isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
-          "	 :" + id + " rdf:type isoI:Namespace . \n" +
-          "	 :" + id + " isoI:ofOrganization :" + orgId + " . \n" +
+          "{\n" +
+          "  :" + orgId + " rdf:type isoB:Organization . \n" +
+          "  :" + orgId + " isoB:name \"" + name + "\"^^xsd:string . \n" +
+          "  :" + orgId + " isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
+          "  :" + id + " rdf:type isoI:Namespace . \n" +
+          "  :" + id + " isoI:ofOrganization :" + orgId + " . \n" +
           "}"
         response = CRUD.update(update)
         # Process the response
@@ -205,6 +240,13 @@ class IsoNamespace
     return object
   end
 
+  # Destroy a namespace object
+  #
+  # * *Args*    :
+  # * *Returns* :
+  #   - No return
+  # * *Exceptions* :
+  #   - DestroyError if object not destroyed
   def destroy
     # Destroy the exisitng maps
     @@idMap = Hash.new
@@ -214,11 +256,11 @@ class IsoNamespace
     update = UriManagement.buildNs(self.namespace, ["isoI", "isoB"]) +
       "DELETE DATA \n" +
       "{ \n" +
-      "	 :" + orgId + "  rdf:type isoB:Organization . \n" +
-      "	 :" + orgId + " isoB:name \"" + self.name + "\"^^xsd:string . \n" +
-      "	 :" + orgId + " isoB:shortName \"" + self.shortName + "\"^^xsd:string . \n" +
-      "	 :" + self.id + " rdf:type isoI:Namespace . \n" +
-      "	 :" + self.id + " isoI:ofOrganization :" + orgId + " . \n" +
+      "  :" + orgId + " rdf:type isoB:Organization . \n" +
+      "  :" + orgId + " isoB:name \"" + self.name + "\"^^xsd:string . \n" +
+      "  :" + orgId + " isoB:shortName \"" + self.shortName + "\"^^xsd:string . \n" +
+      "  :" + self.id + " rdf:type isoI:Namespace . \n" +
+      "  :" + self.id + " isoI:ofOrganization :" + orgId + " . \n" +
       "}"
     response = CRUD.update(update)
     # Process the response
@@ -235,8 +277,8 @@ class IsoNamespace
 private
 
   def self.params_valid?(params, object)
-    result1 = ModelUtility::validShortName?(params[:shortName], object)
-    result2 = ModelUtility::validFreeText?(:name, params[:name], object)
+    result1 = FieldValidation::valid_short_name?(:short_name, params[:shortName], object)
+    result2 = FieldValidation::valid_free_text?(:name, params[:name], object)
     return result1 && result2
   end
 
