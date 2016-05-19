@@ -687,7 +687,7 @@ $(document).ready(function() {
    * Functions to save info.
    */
   function saveForm(node) {
-    if (!editIdentifierFlag) {
+    if (editIdentifierFlag) {
       node.data.identifier = formIdentifierElement.value;
     }
     node.data.label = formLabelElement.value;

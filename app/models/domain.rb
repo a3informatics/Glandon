@@ -33,9 +33,9 @@ class Domain < IsoManagedNew
         "SELECT ?d WHERE\n" + 
         "{ \n" + 
         " :" + id + " bd:basedOn ?a . \n" +
-        " ?b mms:context ?a . \n" +
-        " ?c bd:basedOn ?b . \n" +
-        " ?c bd:hasBiomedicalConcept ?d . \n" +
+        #" ?b mms:context ?a . \n" +
+        #" ?c bd:basedOn ?b . \n" +
+        " :" + id + " bd:hasBiomedicalConcept ?d . \n" +
         "} \n"
                     
       # Send the request, wait the resonse
@@ -56,43 +56,6 @@ class Domain < IsoManagedNew
     object.triples = ""
     return object     
   end
-
-  # Find a given domain
-  #def self.find(id, ns, children=true)
-  #  #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-  #  #ConsoleLogger::log(C_CLASS_NAME,"find","Namespace=" + ns)
-  #  object = super(id, ns)
-  #  object.variables = Domain::Variable.findForDomain(id, ns)
-  #  object.bcs = Hash.new
-  #  #ConsoleLogger::log(C_CLASS_NAME,"find","Object created, id=" + id.to_s)
-  #  if children
-  #    results = Hash.new
-  #    query = UriManagement.buildNs(ns, ["bd", "mms"]) +
-  #      "SELECT ?d WHERE\n" + 
-  #      "{ \n" + 
-  #      " :" + id + " bd:basedOn ?a . \n" +
-  #      " ?b mms:context ?a . \n" +
-  #      " ?c bd:basedOn ?b . \n" +
-  #      " ?c bd:hasBiomedicalConcept ?d . \n" +
-  #      "} \n"
-  #                  
-  #    # Send the request, wait the resonse
-  #    response = CRUD.query(query)
-  #    
-  #    # Process the response
-  #    xmlDoc = Nokogiri::XML(response.body)
-  #    xmlDoc.remove_namespaces!
-  #    xmlDoc.xpath("//result").each do |node|
-  #      uriSet = node.xpath("binding[@name='d']/uri")
-  #      if uriSet.length == 1 
-  #        id = ModelUtility.extractCid(uriSet[0].text)
-  #        namespace = ModelUtility.extractNs(uriSet[0].text)
-  #        object.bcs[id] = BiomedicalConcept.find(id, namespace, false)
-  #      end
-  #    end
-  #  end
-  #  return object
-  #end
 
   def self.all
     super(C_RDF_TYPE, C_SCHEMA_NS)
@@ -129,22 +92,21 @@ class Domain < IsoManagedNew
             variable = findVariableByLabel(sdtm)
             if variable != nil
               ConsoleLogger::log(C_CLASS_NAME,"add","variable=" + variable.name )
-              insertSparql = insertSparql + "  :" + variable.id + " bd:hasBiomedicalConcept " + ModelUtility.buildUri(bc.namespace, bc.id) + " . \n"
               insertSparql = insertSparql + "  :" + variable.id + " bd:hasProperty " + ModelUtility.buildUri(property.namespace, property.id) + " . \n"
             end
           end
         end
       end
+      # Add in the domain reference
+      insertSparql = insertSparql + "  :" + self.id + " bd:hasBiomedicalConcept " + ModelUtility.buildUri(bc.namespace, bc.id) + " . \n"
     end
-    ConsoleLogger::log(C_CLASS_NAME,"add","sparql=" + insertSparql )
-    
+    ConsoleLogger::log(C_CLASS_NAME,"add","sparql=" + insertSparql )    
     # Create the query
     update = UriManagement.buildNs(self.namespace, ["bd"]) +
       "INSERT DATA \n" +
       "{ \n" +
       insertSparql +
       "}"
-
     # Send the request, wait the resonse
     response = CRUD.update(update)
     if response.success?
@@ -152,40 +114,34 @@ class Domain < IsoManagedNew
     else
       ConsoleLogger::log(C_CLASS_NAME,"add","Update failed!.")
     end
-
   end
 
   def remove(params)
-  
     ConsoleLogger::log(C_CLASS_NAME,"remove","*****Entry*****")
-    
     bcs = params[:bcs]
     ConsoleLogger::log(C_CLASS_NAME,"remove","BCs=" + bcs.to_s)
-    
     deleteSparql = ""    
     bcs.each do |key|
       ConsoleLogger::log(C_CLASS_NAME,"remove","Add BC=" + key.to_s )
       parts = key.split("|")
       bcId = parts[0]
       bcNamespace = parts[1]
-      
       # Create the query
       update = UriManagement.buildNs(self.namespace, ["bd", "mms"]) +
         "DELETE \n" +
         "{ \n" +
-        "  ?c bd:hasBiomedicalConcept " + ModelUtility.buildUri(bcNamespace, bcId) + " . \n" +
+        "  :" + self.id + " bd:hasBiomedicalConcept " + ModelUtility.buildUri(bcNamespace, bcId) + " . \n" +
         "  ?c bd:hasProperty ?d . \n" +
         "} \n" + 
         "WHERE" +
         "{ \n" +
         "  :" + self.id + " bd:basedOn ?a . \n" +
+        "  :" + self.id + " bd:hasBiomedicalConcept " + ModelUtility.buildUri(bcNamespace, bcId) + " . \n" +
         "  ?b mms:context ?a . \n" +
         "  ?c bd:basedOn ?b . \n" +
-        "  ?c bd:hasBiomedicalConcept " + ModelUtility.buildUri(bcNamespace, bcId) + " . \n" +
         "  ?c bd:hasProperty ?d . \n" +
         "  filter contains(str(?d),\"" + bcId + "\")" +
         "}"
-
       # Send the request, wait the resonse
       response = CRUD.update(update)
       if response.success?
@@ -193,7 +149,6 @@ class Domain < IsoManagedNew
       else
         ConsoleLogger::log(C_CLASS_NAME,"remove","Update failed!.")
       end
-
     end
 
   end
@@ -207,9 +162,10 @@ class Domain < IsoManagedNew
       "SELECT DISTINCT ?domain WHERE \n" +
       "{ \n " +
       "  ?domain rdf:type bd:Domain . \n " +
-      "  ?domain bd:basedOn/^mms:context ?column . \n " +
-      "  ?variable bd:basedOn ?column . \n " +
-      "  ?variable bd:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +
+      #"  ?domain bd:basedOn/^mms:context ?column . \n " +
+      #"  ?variable bd:basedOn ?column . \n " +
+      #"  ?variable bd:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +
+      "  ?domain bd:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +
       "}\n"
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -224,7 +180,6 @@ class Domain < IsoManagedNew
         results[id] = find(id, namespace, false)
       end
     end
-
     return results
   end
 

@@ -35,9 +35,10 @@ class IsoNamespacesController < ApplicationController
     redirect_to namespaces_path
   end
   
-  private
-    def this_params
-      params.require(:iso_namespace).permit(:name, :shortName)
-    end
+private
+
+  def this_params
+    params.require(:iso_namespace).permit(:name, :shortName)
+  end
     
 end

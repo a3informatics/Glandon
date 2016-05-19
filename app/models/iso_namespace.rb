@@ -158,7 +158,7 @@ class IsoNamespace
   #
   # * *Args*    :
   # * *Returns* :
-  #   - Jash of namespace objects
+  #   - Hash of namespace objects
   def self.all
     # Build query and submit.
     results = Hash.new
