@@ -235,11 +235,11 @@ class BiomedicalConcept < BiomedicalConceptCore
     op = bc_edit[:operation]
     children = mi[:children]
     children.each do |child|
-      term_refs = child[:values]
-      term_refs.each do |term_ref|
-        id = term_ref[:uri_id]
-        ns = term_ref[:uri_ns]
-        if child[:enabled]
+      if child[:enabled].to_bool
+        term_refs = child[:values]
+        term_refs.each do |term_ref|
+          id = term_ref[:uri_id]
+          ns = term_ref[:uri_ns]
           if !term_map.has_key?(ns)
             thesaurus = Thesaurus.find_from_concept(id, ns)
             term_map[ns] = thesaurus

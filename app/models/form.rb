@@ -1,7 +1,7 @@
 class Form < IsoManagedNew
   
-  attr_accessor :groups
-  validates_presence_of :groups
+  attr_accessor :groups, :formCompletion
+  #validates_presence_of :groups
   
   # Constants
   C_SCHEMA_PREFIX = "bf"
@@ -17,7 +17,9 @@ class Form < IsoManagedNew
     if triples.nil?
       super
       self.label = "New Form"
+      self.formCompletion = ""
     else
+      self.formCompletion = ""
       super(triples, id)
     end
   end
@@ -27,7 +29,8 @@ class Form < IsoManagedNew
     if children
       object.groups = Form::Group.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
     end
-    object.triples = ""
+    #object.triples = ""
+    ConsoleLogger::log(C_CLASS_NAME,"find", "formCompletion=" + object.formCompletion.to_s)
     return object     
   end
 
@@ -249,6 +252,7 @@ class Form < IsoManagedNew
   def to_api_json
     result = super
     result[:type] = "Form"
+    result[:formCompletion] = self.formCompletion
     self.groups.each do |group|
       result[:children][group.ordinal - 1] = group.to_api_json
     end
@@ -256,8 +260,11 @@ class Form < IsoManagedNew
   end
 
   def self.to_sparql(parent_id, sparql, schema_prefix, json)
+    ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "JSON=" + json.to_s)
     id = parent_id 
     #super(id, sparql, schema_prefix, "form", json[:label]) #Inconsistent at the moment. Handled within the SI & RS creation
+    ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "formCompletion=" + json[:formCompletion])
+    sparql.triple_primitive_type("", id, schema_prefix, "formCompletion", json[:formCompletion], "string")
     if json.has_key?(:children)
       json[:children].each do |key, group|
         sparql.triple("", id, schema_prefix, "hasGroup", "", id + Uri::C_UID_SECTION_SEPARATOR + 'G' + group[:ordinal].to_s  )

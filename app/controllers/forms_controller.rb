@@ -45,7 +45,7 @@ class FormsController < ApplicationController
   
   def bc_normal_new
     authorize Form, :new?
-    @bcs = BiomedicalConcept.all
+    @forms = BiomedicalConcept.all
     @form = Form.new
   end
   
@@ -124,6 +124,22 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id], params[:namespace])
   end
   
+  def export_ttl
+    authorize Form
+    id = params[:id]
+    namespace = params[:namespace]
+    @form = Form.find(id, namespace)
+    send_data to_turtle(@form.triples), filename: "#{@form.owner}_#{@form.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+  end
+  
+  def export_json
+    authorize Form
+    id = params[:id]
+    namespace = params[:namespace]
+    @form = Form.find(id, namespace)
+    send_data @form.to_api_json, filename: "#{@form.owner}_#{@form.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+  end
+
   def acrf
     authorize Form, :view?
     @form = Form.find(params[:id], params[:namespace])

@@ -5,13 +5,15 @@
 	  <tr>
 	    <th>Identifer</th>
 	    <th>Label</th>
-	    <th>Registration Status</th>
+	    <th>Owner</th>
+	    <th>Status</th>
 	    <th>Version</th>
 	    <th>Version Label</th>
 	  </tr>
 	  <tr>
 	    <td><%= @form.identifier %></td>
 	    <td><%= @form.label %></td>
+	    <td><%= @form.owner %></td>
 	    <td><%= @form.registrationState.registrationStatus %></td>
 	    <td><%= @form.version %></td>
 	    <td><%= @form.versionLabel %></td>
@@ -21,24 +23,30 @@
 	<table id="main" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<% group = @form.groups[0] %>
-		  		<% properties = group.properties %>
-		  		<% properties.each do |property| %>
-		    		<th><%= property[:label] %></th>
-				<% end %>	
-				<td></td>
+				<th>Ordinal</th>
+				<th>Type</th>
+				<th>Optional</th>
+				<th>Repeating</th>
+				<th>Completion</th>
+				<th>Note</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @form.groups.each do |group| %>
 				<tr>
-			  		<% properties = group.properties %>
-		  			<% properties.each do |property| %>
-			    		<td><%= property[:value] %></td>
-					<% end %>	
-				    <td><%= link_to "Show", forms_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
+			  	<td><%= group.ordinal%></td>
+			  	<td><%= group.groupType%></td>
+			  	<td><%= group.optional%></td>
+			  	<td><%= group.repeating%></td>
+			  	<td><%= group.completion%></td>
+			  	<td><%= group.note%></td>
+			  	<td><%= link_to "Show", forms_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
 				</tr>
 			<% end %>	
 		</tbody>
 	</table>
+	<%= link_to "Clone", clone_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+	<%= link_to "Export JSON", export_json_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-info" %>
+	<%= link_to "Export Turtle", export_ttl_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-info" %>
 </div>

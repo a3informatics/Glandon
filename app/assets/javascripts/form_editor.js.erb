@@ -15,6 +15,7 @@ $(document).ready(function() {
 
   var formIdentifierElement = document.getElementById("formIdentifier");
   var formLabelElement = document.getElementById("formLabel");
+  var formCompletionElement = document.getElementById("formCompletion");
   var groupLabelElement = document.getElementById("groupLabel");
   var groupRepeatingElement = document.getElementById("groupRepeating");
   var commonIdentifierElement = document.getElementById("commonIdentifier");
@@ -47,7 +48,7 @@ $(document).ready(function() {
   var varClCurrentRow;
   var questionDatatypeValue
   var editIdentifierFlag;               // Edit versus new flag    
-  
+
   questionClTable = $('#questionClTable').DataTable({
     "searching": false,
     "pageLength": 5,
@@ -613,6 +614,7 @@ $(document).ready(function() {
   function displayForm(node) {
     formIdentifierElement.value = node.data.identifier;
     formLabelElement.value = node.data.label;
+    formCompletionElement.value = node.data.formCompletion;
     if (editIdentifierFlag) {
       formIdentifierElement.disabled = false;
     } else {
@@ -691,6 +693,7 @@ $(document).ready(function() {
       node.data.identifier = formIdentifierElement.value;
     }
     node.data.label = formLabelElement.value;
+    node.data.formCompletion = formCompletionElement.value;
     node.name = node.data.label;
   }
 

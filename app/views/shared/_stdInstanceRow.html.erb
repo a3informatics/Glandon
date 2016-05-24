@@ -20,11 +20,6 @@
 	<% else %>
 		<td></td>
 	<% end %>
-	<% if clonePath != "" %>
-		<td><%= link_to "Clone", clonePath, :class => "btn btn-primary btn-xs" %></td>
-	<% else %>
-		<td></td>
-	<% end %>
 	<% if item.registered? %>
 		<td><%= item.registrationState.registrationStatus %></td>
 		<% if current_item != nil %>

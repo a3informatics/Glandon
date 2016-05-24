@@ -30,5 +30,19 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
     true
   end
+  
+  def to_turtle(triples)
+    result = ""
+    triples.each do |key, triple_array|
+      triple_array.each do |triple|
+        if triple[:object].start_with?('http://')
+          result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t<#{triple[:object]}> . \n"
+        else
+          result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t\"#{triple[:object]}\" . \n"
+        end
+      end
+    end
+    return result
+  end
 
 end

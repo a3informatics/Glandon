@@ -2,8 +2,8 @@ require "uri"
 
 class Form::Group < IsoConceptNew
   
-  attr_accessor :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating
-  validates_presence_of :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating
+  attr_accessor :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating, :completion
+  #validates_presence_of :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating
   
   # Constants
   C_SCHEMA_PREFIX = "bf"

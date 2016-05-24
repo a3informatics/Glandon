@@ -217,3 +217,20 @@
   rdfs:range xsd:string ;
   skos:definition ""^^xsd:string
 .
+:formCompletion
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Form ;
+  rdfs:label "Completion instructions"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition ""^^xsd:string
+.
+:completion
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Node ;
+  rdfs:label "Completion instructions"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition ""^^xsd:string
+.
+

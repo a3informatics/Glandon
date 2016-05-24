@@ -134,6 +134,8 @@ Rails.application.routes.draw do
       get :crf
       #get :test
       get :clone
+      get :export_json
+      get :export_ttl
     end
   end
   namespace :forms do
