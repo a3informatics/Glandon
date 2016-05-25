@@ -2,6 +2,8 @@ class IsoNamespacesController < ApplicationController
 
   before_action :authenticate_user!
   
+  C_CLASS_NAME = "IsoNamespacesController"
+
   def index
     authorize IsoNamespace
     @namespaces = IsoNamespace.all
