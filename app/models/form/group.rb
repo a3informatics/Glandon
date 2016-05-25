@@ -18,13 +18,14 @@ class Form::Group < IsoConceptNew
     self.items = Array.new
     self.groups = Array.new
     self.bc = nil
+    self.groupType = C_BC_TYPE
+    self.ordinal = 1
+    self.note = ""
+    self.optional = false
+    self.repeating = false
+    self.completion = ""
     if triples.nil?
       super
-      self.groupType = C_BC_TYPE
-      self.ordinal = 1
-      self.note = ""
-      self.optional = false
-      self.repeating = false
     else
       super(triples, id)    
     end
@@ -59,6 +60,7 @@ class Form::Group < IsoConceptNew
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
       " :" + id + " rdfs:label \"Placeholder\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
+      " :" + id + " bf:completion \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
       " :" + id + " bf:hasItem :" + item.id + " . \n" +
       " :" + id + " bf:isGroupOf :" + formId + " . \n" +
@@ -105,6 +107,7 @@ class Form::Group < IsoConceptNew
       :ordinal => self.ordinal,
       :optional => self.optional,
       :repeating => self.repeating,
+      :completion => self.completion,
       :note => self.note,
       :biomedical_concept_reference => {},
       :children => []
@@ -131,6 +134,7 @@ class Form::Group < IsoConceptNew
     sparql.triple_primitive_type("", id, schema_prefix, "optional", json[:optional].to_s, "boolean")
     sparql.triple_primitive_type("", id, schema_prefix, "repeating", json[:repeating].to_s, "boolean")
     sparql.triple_primitive_type("", id, schema_prefix, "note", json[:note].to_s, "string")
+    sparql.triple_primitive_type("", id, schema_prefix, "completion", json[:completion].to_s, "string")
     sparql.triple("", id, schema_prefix, "isGroupOf", "", parent_id.to_s)
     if json.has_key?(:biomedical_concept_reference)
       bc_ref = json[:biomedical_concept_reference]

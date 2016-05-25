@@ -225,6 +225,14 @@
   rdfs:range xsd:string ;
   skos:definition ""^^xsd:string
 .
+:formNote
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Note"^^xsd:string ;
+  rdfs:domain :Form ;
+  rdfs:range xsd:string ;
+  skos:definition ""^^xsd:string
+.
 :completion
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;

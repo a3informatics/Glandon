@@ -19,10 +19,14 @@
                         <label for="formCompletion">Completion:</label>
                         <input type="textarea" class="form-control" id="formCompletion">
                     </div>
+                    <div class="form-group">
+                        <label for="formNote">Note:</label>
+                        <input type="textarea" class="form-control" id="formNote">
+                    </div>
                 </div>
                 <button type="button" id="formUpdate" class="btn btn-primary">Update</button>
                 <button type="button" id="formAddGroup" class="btn btn-primary">Add Group</button>
-                <button type="button" id="formSave" class="btn btn-primary">Save</button>
+                <button type="submit" id="formSave" class="btn btn-primary">Save</button>
             </div>
         </div>
         <div id="groupInfo" class="panel panel-default">
@@ -36,11 +40,19 @@
                         <input type="text" class="form-control" id="groupLabel">
                     </div>
                     <div class="form-group">
+                        <label for="groupCompletion">Completion:</label>
+                        <input type="textarea" class="form-control" id="groupCompletion">
+                    </div>
+                    <div class="form-group">
                         <div class="checkbox">
                             <label class="checkbox-inline">
                                 <input type="checkbox" id="groupRepeating"><strong>Repeating</strong>
                             </label>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="groupNote">Note:</label>
+                        <input type="textarea" class="form-control" id="groupNote">
                     </div>
                 </div>
                 <button type="button" id="groupUpdate" class="btn btn-primary">Update</button>

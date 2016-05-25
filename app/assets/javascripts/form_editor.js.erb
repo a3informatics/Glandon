@@ -16,7 +16,10 @@ $(document).ready(function() {
   var formIdentifierElement = document.getElementById("formIdentifier");
   var formLabelElement = document.getElementById("formLabel");
   var formCompletionElement = document.getElementById("formCompletion");
+  var formNoteElement = document.getElementById("formNote");
   var groupLabelElement = document.getElementById("groupLabel");
+  var groupCompletionElement = document.getElementById("groupCompletion");
+  var groupNoteElement = document.getElementById("groupNote");
   var groupRepeatingElement = document.getElementById("groupRepeating");
   var commonIdentifierElement = document.getElementById("commonIdentifier");
   var commonLabelElement = document.getElementById("commonLabel");
@@ -615,6 +618,7 @@ $(document).ready(function() {
     formIdentifierElement.value = node.data.identifier;
     formLabelElement.value = node.data.label;
     formCompletionElement.value = node.data.formCompletion;
+    formNoteElement.value = node.data.formNote;
     if (editIdentifierFlag) {
       formIdentifierElement.disabled = false;
     } else {
@@ -624,6 +628,8 @@ $(document).ready(function() {
 
   function displayGroup(node) {
     groupLabelElement.value = node.data.label;
+    groupCompletionElement.value = node.data.completion;
+    groupNoteElement.value = node.data.note;
     groupRepeatingElement.checked = node.data.repeating;
   }
 
@@ -694,11 +700,14 @@ $(document).ready(function() {
     }
     node.data.label = formLabelElement.value;
     node.data.formCompletion = formCompletionElement.value;
+    node.data.formNote = formNoteElement.value;
     node.name = node.data.label;
   }
 
   function saveGroup(node) {
     node.data.label = groupLabelElement.value;
+    node.data.completion = groupCompletionElement.value;
+    node.data.note = groupNoteElement.value;
     node.name = node.data.label;
     node.data.repeating = groupRepeatingElement.checked;
   }

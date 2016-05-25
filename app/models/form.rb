@@ -1,6 +1,6 @@
 class Form < IsoManagedNew
   
-  attr_accessor :groups, :formCompletion
+  attr_accessor :groups, :formCompletion, :formNote
   #validates_presence_of :groups
   
   # Constants
@@ -14,12 +14,12 @@ class Form < IsoManagedNew
   
   def initialize(triples=nil, id=nil)
     self.groups = Array.new
+    self.label = "New Form"
+    self.formCompletion = ""
+    self.formNote = ""
     if triples.nil?
       super
-      self.label = "New Form"
-      self.formCompletion = ""
     else
-      self.formCompletion = ""
       super(triples, id)
     end
   end
@@ -66,6 +66,8 @@ class Form < IsoManagedNew
           "INSERT DATA \n" +
           "{ \n" +
           "  :" + object.id + " bf:hasGroup :" + group.id + " . \n" +
+          "  :" + object.id + " bf:formCompletion \"\"^^xsd:string . \n" +
+          "  :" + object.id + " bf:formNote \"\"^^xsd:string . \n" +
           "}"
         response = CRUD.update(update)
         if !response.success?
@@ -253,6 +255,7 @@ class Form < IsoManagedNew
     result = super
     result[:type] = "Form"
     result[:formCompletion] = self.formCompletion
+    result[:formNote] = self.formNote
     self.groups.each do |group|
       result[:children][group.ordinal - 1] = group.to_api_json
     end
@@ -265,6 +268,7 @@ class Form < IsoManagedNew
     #super(id, sparql, schema_prefix, "form", json[:label]) #Inconsistent at the moment. Handled within the SI & RS creation
     ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "formCompletion=" + json[:formCompletion])
     sparql.triple_primitive_type("", id, schema_prefix, "formCompletion", json[:formCompletion], "string")
+    sparql.triple_primitive_type("", id, schema_prefix, "formNote", json[:formNote], "string")
     if json.has_key?(:children)
       json[:children].each do |key, group|
         sparql.triple("", id, schema_prefix, "hasGroup", "", id + Uri::C_UID_SECTION_SEPARATOR + 'G' + group[:ordinal].to_s  )
