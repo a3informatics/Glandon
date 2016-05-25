@@ -1,6 +1,6 @@
 <div class="col-md-5" >
     <br/>
-    <form id="mainForm">
+    <form id="main_form">
         <div id="formInfo" class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Form Details</h3>
@@ -9,19 +9,19 @@
                 <div>
                     <div class="form-group">
                         <label for="formIdentifier">Identifier:</label>
-                        <input type="text" class="form-control" id="formIdentifier">
+                        <input type="text" class="form-control" id="formIdentifier" name="formIdentifier">
                     </div>
                     <div class="form-group">
                         <label for="formLabel">Label:</label>
-                        <input type="text" class="form-control" id="formLabel">
+                        <input type="text" class="form-control" id="formLabel" name="formLabel">
                     </div>
                     <div class="form-group">
                         <label for="formCompletion">Completion:</label>
-                        <input type="textarea" class="form-control" id="formCompletion">
+                        <input type="textarea" class="form-control" id="formCompletion" name="formCompletion">
                     </div>
                     <div class="form-group">
                         <label for="formNote">Note:</label>
-                        <input type="textarea" class="form-control" id="formNote">
+                        <input type="textarea" class="form-control" id="formNote" name="formNote">
                     </div>
                 </div>
                 <button type="button" id="formUpdate" class="btn btn-primary">Update</button>
@@ -37,22 +37,22 @@
                 <div>
                     <div class="form-group">
                         <label for="groupLabel">Label:</label>
-                        <input type="text" class="form-control" id="groupLabel">
+                        <input type="text" class="form-control" id="groupLabel" name="groupLabel">
                     </div>
                     <div class="form-group">
                         <label for="groupCompletion">Completion:</label>
-                        <input type="textarea" class="form-control" id="groupCompletion">
+                        <input type="textarea" class="form-control" id="groupCompletion" name="groupCompletion">
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
                             <label class="checkbox-inline">
-                                <input type="checkbox" id="groupRepeating"><strong>Repeating</strong>
+                                <input type="checkbox" id="groupRepeating" name="groupRepeating"><strong>Repeating</strong>
                             </label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="groupNote">Note:</label>
-                        <input type="textarea" class="form-control" id="groupNote">
+                        <input type="textarea" class="form-control" id="groupNote" name="groupNote">
                     </div>
                 </div>
                 <button type="button" id="groupUpdate" class="btn btn-primary">Update</button>
@@ -73,12 +73,8 @@
             <div class="panel-body">
                 <div>
                     <div class="form-group">
-                        <label for="commonIdentifier">Identifier:</label>
-                        <input type="text" class="form-control" id="commonIdentifier">
-                    </div>
-                    <div class="form-group">
                         <label for="commonLabel">Label:</label>
-                        <input type="text" class="form-control" id="commonLabel">
+                        <input type="text" class="form-control" id="commonLabel" name="commonLabel">
                     </div>
                 </div>
                 <button type="button" id="commonUpdate" class="btn btn-primary">Update</button>

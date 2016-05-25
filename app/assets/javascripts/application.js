@@ -18,6 +18,8 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require morris.min
 //= require raphael
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 
 // Small attempt to collapse nav. Ignore for the moment
 //$(document).ready(function() {
@@ -96,3 +98,54 @@ function pad(n, width, z) {
   n = n + '';
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
+
+/*
+* Validator plugin standard regex functions
+*/
+jQuery.validator.addMethod("identifier", function(value, element) {
+  // allow any non-whitespace characters as the host part
+  var result = /^[A-Za-z0-9 ]+$/.test( value ); 
+  return result;
+}, 'Please enter a valid identifier. Upper case alphanumeric and space characters only.');
+
+jQuery.validator.addMethod("label", function(value, element) {
+  // allow any non-whitespace characters as the host part
+  var result = /^[A-Za-z0-9.!?,_ \-()]+$/.test( value );
+  return result
+}, "Please enter a valid label. Upper and lower case case alphanumerics, space and '.!?,_\\-()' special characters only.");
+
+jQuery.validator.addMethod("freeText", function(value, element) {
+  // allow any non-whitespace characters as the host part
+  var result = /^[A-Za-z0-9.!?,_ \-()\r\n]+$/.test( value );
+  return result
+}, "Please enter valid free text. Upper and lower case case alphanumerics, space, '.!?,_\\-()' special characters and return only.");
+
+jQuery.validator.addMethod("note", function(value, element) {
+  // allow any non-whitespace characters as the host part
+  var result = /^[A-Za-z0-9.!?,_ \-()]*$/.test( value );
+  return result;
+}, "Please enter a valid note. Upper and lowercase alphanumeric, space and '.!?,_-()' special characters only.");
+
+// Set validator plugin defaults.
+// TODO: Think about the span bit, not sure it is needed.
+function validatorDefaults () {
+  jQuery.validator.setDefaults({
+    highlight: function(element) {
+      $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+      $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+      if(element.parent('.input-group').length) {
+          error.insertAfter(element.parent());
+      } else {
+          error.insertAfter(element);
+      }
+    }
+  });
+}
+
+

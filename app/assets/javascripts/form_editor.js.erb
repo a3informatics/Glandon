@@ -50,7 +50,22 @@ $(document).ready(function() {
   var varClCurrent;
   var varClCurrentRow;
   var questionDatatypeValue
-  var editIdentifierFlag;               // Edit versus new flag    
+  var editIdentifierFlag;               // Edit identifier flag    
+
+  // Set up the form validation
+  validatorDefaults ();
+  $('#main_form').validate({
+    rules: {
+        formIdentifier: { required: true, identifier: true },
+        formLabel: { required: true, label: true },
+        formNote: {required: false, note: true},
+        formCompletion: {required: false, note: true},
+        groupLabel: { required: true, label: true },
+        groupNote: {required: false, note: true},
+        groupCompletion: {required: false, note: true},
+        commonLabel: { required: true, label: true },
+    },
+  });
 
   questionClTable = $('#questionClTable').DataTable({
     "searching": false,
@@ -194,7 +209,8 @@ $(document).ready(function() {
   /* 
   * Function to handle the form save click.
   */
-  $('#formSave').click(function() {
+  //$('#formSave').click(function() {
+  function formSave() {
     var uri;
     var method;
     var data;
@@ -236,7 +252,8 @@ $(document).ready(function() {
       }
     }); 
 
-  });
+  //});
+  }
 
   /*
    * Functions to handle the form actions.
@@ -246,8 +263,13 @@ $(document).ready(function() {
       var html = alertWarning("You need to select the form node.");
       displayAlerts(html);
     } else {
-      saveForm(currentNode);
-      displayTree(currentNode.key);
+      if ($('#main_form').valid()) {
+        saveForm(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("Not saved, correct the errors.");
+        displayAlerts(html);
+      }
     }
   });
 
@@ -270,8 +292,13 @@ $(document).ready(function() {
       var html = alertWarning("You need to select a group node.");
       displayAlerts(html);
     } else {
-      saveGroup(currentNode)
-      displayTree(currentNode.key);
+      if ($('#main_form').valid()) {
+        saveGroup(currentNode)
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("Not saved, correct the errors.");
+        displayAlerts(html);
+      }
     }
   });
   
@@ -382,25 +409,31 @@ $(document).ready(function() {
   /*
   * Functions to handle the common actions
   */
-  /*$('#commonUpdate').click(function() {
+  $('#commonUpdate').click(function() {
     if (currentGRef == null) {
       var html = alertWarning("You need to select a common node.");
       displayAlerts(html);
     } else {
-      saveCommon(currentNode)
-      displayTree(currentNode.key);
+      if ($('#main_form').valid()) {
+        saveCommon(currentNode)
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("Not saved, correct the errors.");
+        displayAlerts(html);
+      }
     }
   });
   
   $('#commonDelete').click(function() {
-    if (currentNode.hasOwnProperty('save')) {
+    notImplementedYet();    
+    /*if (currentNode.hasOwnProperty('save')) {
       var html = alertWarning("You need to remove the child nodes.");
       displayAlerts(html);
     } else {
       var node = deleteNode(currentNode);
       displayNode(node);
       displayTree(node.key);
-    }     
+    } */    
   });
 
   /*
@@ -639,7 +672,7 @@ $(document).ready(function() {
   }
 
   function displayCommon(node) {
-    commonIdentifierElement.value = node.data.identifier;
+    //commonIdentifierElement.value = node.data.identifier;
     commonLabelElement.value = node.data.label;
   }
 
@@ -713,7 +746,7 @@ $(document).ready(function() {
   }
 
   function saveCommon(node) {
-    node.data.identifier = commonIdentifierElement.value;
+    //node.data.identifier = commonIdentifierElement.value;
     node.data.label = commonLabelElement.value;
     node.name = node.data.label;
   }
@@ -910,7 +943,7 @@ $(document).ready(function() {
   function newFormGroup(label) {
     return { 
       id: "", namespace: "", type: C_GROUP, label: label, ordinal: 0, optional: false, repeating: false, 
-      note: "", biomedical_concept_reference: {}, children: [] };
+      note: "", completion: "", biomedical_concept_reference: {}, children: [] };
   }
 
   function newCommonGroup(label) {
