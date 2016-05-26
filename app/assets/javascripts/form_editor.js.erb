@@ -65,6 +65,10 @@ $(document).ready(function() {
         groupCompletion: {required: false, note: true},
         commonLabel: { required: true, label: true },
     },
+    submitHandler: function(form) {
+        formSave();
+        return false;
+    }
   });
 
   questionClTable = $('#questionClTable').DataTable({

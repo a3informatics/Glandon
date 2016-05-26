@@ -63,8 +63,13 @@
 							<td><%= identifier %></td>
 							<td><%= old_sub %></td>
 							<td><%= new_sub %></td>
-							<td></td>
-							<td></td>
+							<% if bc_identifier == nil %>
+								<td></td>
+								<td></td>
+							<% else %>
+								<td><%= bc_label + " (" + bc_identifier + ")" %></td>
+								<td><%=link_to "Show", biomedical_concept_path(:id => bc["id"], :namespace => bc["ns"]), :class => "btn btn-primary btn-xs" %></td>
+							<% end %>
 							<td></td>
 							<td></td>
 						</tr>	
