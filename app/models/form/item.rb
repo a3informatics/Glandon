@@ -2,8 +2,8 @@ require "uri"
 
 class Form::Item < IsoConceptNew
 
-  attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText, :q_values
-  validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText, :q_values
+  attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :completion, :optional, :freeText, :datatype, :format, :mapping, :qText, :q_values
+  #validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText, :q_values
   
   # Constants
   C_SCHEMA_PREFIX = "bf"
@@ -78,6 +78,7 @@ class Form::Item < IsoConceptNew
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
       " :" + id + " rdfs:label \"Placeholder\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +
+      " :" + id + " bf:completion \"\"^^xsd:string . \n" +
       " :" + id + " bf:ordinal \"" + ordinal.to_s + "\"^^xsd:integer . \n" +
       " :" + id + " bf:isItemOf :" + groupId + " . \n" +
       "}"
@@ -150,6 +151,7 @@ class Form::Item < IsoConceptNew
       :ordinal => self.ordinal,
       :optional => self.optional,
       :note => self.note,
+      :completion => self.completion,
       :free_text => "",
       :datatype => "",
       :format => "",
@@ -208,6 +210,7 @@ class Form::Item < IsoConceptNew
     sparql.triple_primitive_type("", id, schema_prefix, "ordinal", json[:ordinal].to_s, "positiveInteger")
     sparql.triple_primitive_type("", id, schema_prefix, "optional", json[:optional].to_s, "boolean")
     sparql.triple_primitive_type("", id, schema_prefix, "note", json[:note].to_s, "string")
+    sparql.triple_primitive_type("", id, schema_prefix, "completion", json[:completion].to_s, "string")
     sparql.triple("", id, schema_prefix, "isItemOf", "", parent_id.to_s)
     if json[:type] == C_PLACEHOLDER
       sparql.triple_primitive_type("", id, schema_prefix, "freeText", json[:free_text].to_s, "string")

@@ -11,6 +11,8 @@ class Forms::GroupsController < ApplicationController
     authorize Form::Group
     @form = Form.find(params[:formId], params[:namespace], false)
     @formGroup = Form::Group.find(params[:id], params[:namespace])
+    @completion = MarkdownEngine::render(@formGroup.completion)
+    @note = MarkdownEngine::render(@formGroup.note)
   end
   
 private

@@ -16,12 +16,18 @@
                         <input type="text" class="form-control" id="formLabel" name="formLabel">
                     </div>
                     <div class="form-group">
-                        <label for="formCompletion">Completion:</label>
-                        <input type="textarea" class="form-control" id="formCompletion" name="formCompletion">
+                        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#formCompletion">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </button>
+                        <label for="formCompletion">Completion Instructions:</label><br/>
+                        <textarea class="form-control collapse in" id="formCompletion" name="formCompletion" rows="5" style="font-family:monospace;"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="formNote">Note:</label>
-                        <input type="textarea" class="form-control" id="formNote" name="formNote">
+                        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#formNote">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </button>
+                        <label for="formNote">Notes:</label>
+                        <textarea class="form-control collapse in" id="formNote" name="formNote" rows="5" style="font-family:monospace;"></textarea>
                     </div>
                 </div>
                 <button type="button" id="formUpdate" class="btn btn-primary">Update</button>
@@ -40,10 +46,6 @@
                         <input type="text" class="form-control" id="groupLabel" name="groupLabel">
                     </div>
                     <div class="form-group">
-                        <label for="groupCompletion">Completion:</label>
-                        <input type="textarea" class="form-control" id="groupCompletion" name="groupCompletion">
-                    </div>
-                    <div class="form-group">
                         <div class="checkbox">
                             <label class="checkbox-inline">
                                 <input type="checkbox" id="groupRepeating" name="groupRepeating"><strong>Repeating</strong>
@@ -51,17 +53,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="groupNote">Note:</label>
-                        <input type="textarea" class="form-control" id="groupNote" name="groupNote">
+                        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#groupCompletion">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </button>
+                        <label for="groupCompletion">Completion Instruction:</label>
+                        <textarea class="form-control collapse in" id="groupCompletion" name="groupCompletion" rows="5" style="font-family:monospace;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#groupNote">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </button>
+                        <label for="groupNote">Notes:</label>
+                        <textarea class="form-control collapse in" id="groupNote" name="groupNote" rows="5" style="font-family:monospace;"></textarea>
                     </div>
                 </div>
                 <button type="button" id="groupUpdate" class="btn btn-primary">Update</button>
                 <button type="button" id="groupDelete" class="btn btn-danger">Delete</button>
-                <button type="button" id="groupAddGroup" class="btn btn-primary">Grp+</button>
-                <button type="button" id="groupAddCommon" class="btn btn-primary">Common+</button>
+                <button type="button" id="groupAddGroup" class="btn btn-primary">G+</button>
+                <button type="button" id="groupAddCommon" class="btn btn-primary">C+</button>
                 <button type="button" id="groupAddBc" class="btn btn-primary">BC+</button>
-                <button type="button" id="groupAddQuestion" class="btn btn-primary">Q+</button><br/><br/>
-                <button type="button" id="groupAddPlaceholder" class="btn btn-primary">P'holder+</button><br/><br/>
+                <button type="button" id="groupAddQuestion" class="btn btn-primary">Q+</button>
+                <button type="button" id="groupAddPlaceholder" class="btn btn-primary">P+</button><br/><br/>
                 <button type="button" id="groupUp" class="btn btn-primary">Up</button>
                 <button type="button" id="groupDown" class="btn btn-primary">Down</button>
             </div>    
@@ -151,6 +163,20 @@
                         </tbody>
                     </table>
                     <button type="button" id="deleteTerm" class="btn btn-danger">Delete</button><br/><br/>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#questionCompletion">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </button>
+                        <label for="questionCompletion">Completion Instruction:</label>
+                        <textarea class="form-control collapse in" id="questionCompletion" name="questionCompletion" rows="5" style="font-family:monospace;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#questionNote">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </button>
+                        <label for="questionNote">Notes:</label>
+                        <textarea class="form-control collapse in" id="questionNote" name="questionNote" rows="5" style="font-family:monospace;"></textarea>
+                    </div>
                     <button type="button" id="questionUpdate" class="btn btn-primary">Update</button>
                     <button type="button" id="questionDelete" class="btn btn-danger">Delete</button>
                 </div>
@@ -269,6 +295,16 @@
                 </table>
                 <button type="button" id="notepad_add" class="btn btn-primary">Add</button>
                 <button type="button" id="notepad_refresh" class="btn btn-primary">Refresh</button>    
+            </div>
+        </div>
+        <div id="markdown_panel" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Markdown Preview</h3>
+            </div>
+            <div class="panel-body">
+                <div id="genericCompletion"></div>
+                <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+                <button type="button" id="markdown_hide" class="btn btn-primary">Hide</button>    
             </div>
         </div>
     </form>

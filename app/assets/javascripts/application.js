@@ -103,28 +103,24 @@ function pad(n, width, z) {
 * Validator plugin standard regex functions
 */
 jQuery.validator.addMethod("identifier", function(value, element) {
-  // allow any non-whitespace characters as the host part
   var result = /^[A-Za-z0-9 ]+$/.test( value ); 
   return result;
-}, 'Please enter a valid identifier. Upper case alphanumeric and space characters only.');
+}, "Please enter a valid identifier. Upper case alphanumeric and space characters only.");
 
 jQuery.validator.addMethod("label", function(value, element) {
-  // allow any non-whitespace characters as the host part
-  var result = /^[A-Za-z0-9.!?,_ \-()]+$/.test( value );
+  var result = /^[A-Za-z0-9 .!?,_\-\/\\()]+$/.test( value );
   return result
-}, "Please enter a valid label. Upper and lower case case alphanumerics, space and '.!?,_\\-()' special characters only.");
+}, "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,_-/\\() special characters only.");
 
 jQuery.validator.addMethod("freeText", function(value, element) {
-  // allow any non-whitespace characters as the host part
-  var result = /^[A-Za-z0-9.!?,_ \-()\r\n]+$/.test( value );
+  var result = /^[A-Za-z0-9 .!?,_\-\/\\()\r\n]+$/.test( value );
   return result
-}, "Please enter valid free text. Upper and lower case case alphanumerics, space, '.!?,_\\-()' special characters and return only.");
+}, "Please enter valid free text. Upper and lower case case alphanumerics, space, .!?,_-/\\() special characters and return only.");
 
-jQuery.validator.addMethod("note", function(value, element) {
-  // allow any non-whitespace characters as the host part
-  var result = /^[A-Za-z0-9.!?,_ \-()]*$/.test( value );
+jQuery.validator.addMethod("markdown", function(value, element) {
+  var result = /^[A-Za-z0-9 .!?,_\-\/\\()#*=:&|\r\n]*$/.test( value );
   return result;
-}, "Please enter a valid note. Upper and lowercase alphanumeric, space and '.!?,_-()' special characters only.");
+}, "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,_-/\\()#*=:;&| special characters and return only.");
 
 // Set validator plugin defaults.
 // TODO: Think about the span bit, not sure it is needed.

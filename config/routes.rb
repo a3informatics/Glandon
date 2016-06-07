@@ -132,6 +132,7 @@ Rails.application.routes.draw do
       post :bc_normal_create
       get :acrf
       get :crf
+      get :markdown
       #get :test
       get :clone
       get :export_json

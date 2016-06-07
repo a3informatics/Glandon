@@ -11,6 +11,7 @@
 			    <th>Datatype</th>
 			    <th>Format</th>
 			    <th>Optional</th>
+			    <th>Completion Instructions</th>
 			    <th>Note</th>
 				</tr>
 			</thead>
@@ -22,7 +23,8 @@
 			    <td><%= @formItem.datatype %></td>
 			    <td><%= @formItem.format %></td>
 			    <td><%= @formItem.optional %></td>
-			    <td><%= @formItem.note %></td>
+			    <td><%= @completion %></td>
+			    <td><%= @note %></td>
 			  </tr>
 			</tbody>
 		</table>
@@ -56,6 +58,7 @@
 			    <th>Format</th>
 			    <th>Mapping</th>
 			    <th>Optional</th>
+			    <th>Completion Instructions</th>
 			    <th>Note</th>
 				</tr>
 			</thead>
@@ -68,7 +71,8 @@
 			    <td><%= @formItem.format %></td>
 			    <td><%= @formItem.mapping %></td>
 			    <td><%= @formItem.optional %></td>
-			    <td><%= @formItem.note %></td>
+			    <td><%= @completion %></td>
+			    <td><%= @note %></td>
 			  </tr>
 			</tbody>
 		</table>
@@ -97,6 +101,7 @@
 			    <th>Ordinal</th>
 			    <th>Placeholder Text</th>
 			    <th>Optional</th>
+			    <th>Completion Instructions</th>
 			    <th>Note</th>
 				</tr>
 			</thead>
@@ -105,7 +110,8 @@
 			    <td><%= @formItem.ordinal %></td>
 			    <td><%= @formItem.freeText %></td>
 			    <td><%= @formItem.optional %></td>
-			    <td><%= @formItem.note %></td>
+			    <td><%= @completion %></td>
+			    <td><%= @note %></td>
 			  </tr>
 			</tbody>
 		</table>

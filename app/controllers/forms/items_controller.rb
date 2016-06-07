@@ -10,9 +10,9 @@ class Forms::ItemsController < ApplicationController
   def show 
     authorize Form::Item
     @form = Form.find(params[:formId], params[:namespace], false)
-    #@formGroup = Form::Group.find(params[:groupId], params[:namespace])
-    #@formItem = @formGroup.items[params[:id]]
     @formItem = Form::Item.find(params[:id], params[:namespace])
+    @completion = MarkdownEngine::render(@formItem.completion)
+    @note = MarkdownEngine::render(@formItem.note)
   end
   
 private

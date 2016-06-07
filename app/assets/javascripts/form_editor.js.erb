@@ -36,6 +36,9 @@ $(document).ready(function() {
   var questionMappingElement = document.getElementById("questionMapping");
   var questionDatatypeElement = document.getElementById("questionDatatype");
   var questionFormatElement = document.getElementById("questionFormat");
+  var questionCompletionElement = document.getElementById("questionCompletion");
+  var questionNoteElement = document.getElementById("questionNote");
+  var genericCompletionElement = document.getElementById("genericCompletion");
   
   var nextKeyId;
   var currentNode;
@@ -50,20 +53,24 @@ $(document).ready(function() {
   var varClCurrent;
   var varClCurrentRow;
   var questionDatatypeValue
-  var editIdentifierFlag;               // Edit identifier flag    
+  var editIdentifierFlag;               
+  var markdownElement;
+  var markdownType;
 
   // Set up the form validation
   validatorDefaults ();
   $('#main_form').validate({
     rules: {
         formIdentifier: { required: true, identifier: true },
-        formLabel: { required: true, label: true },
-        formNote: {required: false, note: true},
-        formCompletion: {required: false, note: true},
-        groupLabel: { required: true, label: true },
-        groupNote: {required: false, note: true},
-        groupCompletion: {required: false, note: true},
-        commonLabel: { required: true, label: true },
+        //formLabel: { required: true, label: true },
+        //formNote: {required: false, markdown: true},
+        formCompletion: {required: false, markdown: true}
+        //groupLabel: { required: true, label: true },
+        //groupNote: {required: false, markdown: true},
+        //groupCompletion: {required: false, markdown: true},
+        //questionNote: {required: false, markdown: true},
+        //questionCompletion: {required: false, markdown: true},
+        //commonLabel: { required: true, label: true }
     },
     submitHandler: function(form) {
         formSave();
@@ -526,7 +533,7 @@ $(document).ready(function() {
       displayAlerts(html);
     } else {
       saveCl(currentNode)
-      displayTree(currentNode.key);
+      clIdentifierElement.innerHTML = node.data.identifier;
     }
   });
   
@@ -566,6 +573,88 @@ $(document).ready(function() {
     questionDatatypeValue = value;
   });
 
+  /*
+  * Functions to handle completion instruction preview
+  */
+  $('#markdown_preview').click(function() {
+    if (markdownElement == null) {
+      var html = alertWarning("You need to select a completion instruction field.");
+      displayAlerts(html);
+    } else {
+      var text = markdownElement.value;
+      markdown(text);  
+    }
+  });
+
+  $('#markdown_hide').click(function() {
+    hideCi();
+    if (markdownType == C_GROUP) {
+      showBCSelection();
+    } else if (markdownType == C_QUESTION) {
+      showNotepad();    
+    }
+    markdownElement = null;
+    markdownType = "";
+  });
+
+  /*
+  * Completion and notes focus functions
+  */
+  $( "#formCompletion" ).focus(function() {
+    showCi();
+    markdownType = C_FORM;
+    markdownElement = formCompletionElement;
+    var text = markdownElement.value;
+    markdown(text); 
+  });
+
+  $( "#formNote" ).focus(function() {
+    showCi();
+    markdownType = C_FORM;
+    markdownElement = formNoteElement;
+    var text = markdownElement.value;
+    markdown(text); 
+  });
+
+  $( "#groupCompletion" ).focus(function() {
+    hideBCSelection();
+    showCi();
+    markdownType = C_GROUP;
+    markdownElement = groupCompletionElement;
+    var text = markdownElement.value;
+    markdown(text); 
+  });
+
+  $( "#groupNote" ).focus(function() {
+    hideBCSelection();
+    showCi();
+    markdownType = C_GROUP;
+    markdownElement = groupNoteElement;
+    var text = markdownElement.value;
+    markdown(text); 
+  });
+
+  $( "#questionCompletion" ).focus(function() {
+    hideNotepad();
+    showCi();
+    markdownType = C_QUESTION;
+    markdownElement = questionCompletionElement;
+    var text = markdownElement.value;
+    markdown(text); 
+  });
+
+  $( "#questionNote" ).focus(function() {
+    hideNotepad();
+    showCi();
+    markdownType = C_QUESTION;
+    markdownElement = questionNoteElement;
+    var text = markdownElement.value;
+    markdown(text); 
+  });
+
+  /*
+  *
+  */
   function clEnableDisable (value) {
     if (value == "I" || value == "C" || value == "F") {
       $("#questionFormat").prop('disabled', false);
@@ -590,6 +679,7 @@ $(document).ready(function() {
     }
   }
 
+  
   /* ****************
   * Utility Functions
   */
@@ -607,6 +697,14 @@ $(document).ready(function() {
   function selectBC() {
     clearSelect();
     $("#bcInfo").removeClass('hidden');
+  }
+  
+  function showBCSelection() {
+    $("#bcSelection").removeClass('hidden');
+  }
+  
+  function hideBCSelection() {
+    $("#bcSelection").addClass('hidden');
   }
   
   function selectCommon() {
@@ -635,6 +733,22 @@ $(document).ready(function() {
     $("#clInfo").removeClass('hidden');
   }
 
+  function showNotepad() {
+    $("#notepad_panel").removeClass('hidden');
+  }
+
+  function hideNotepad() {
+    $("#notepad_panel").addClass('hidden');
+  }
+
+  function showCi() {
+    $("#markdown_panel").removeClass('hidden');
+  }
+
+  function hideCi() {
+    $("#markdown_panel").addClass('hidden');
+  }
+
   function clearSelect() {
     $("#formInfo").addClass('hidden');
     $("#groupInfo").addClass('hidden');
@@ -646,6 +760,7 @@ $(document).ready(function() {
     $("#clInfo").addClass('hidden');
     $("#bcSelection").addClass('hidden');
     $("#notepad_panel").addClass('hidden');
+    $("#markdown_panel").addClass('hidden');
   }
 
   /**
@@ -705,6 +820,8 @@ $(document).ready(function() {
     var $radios = $('input:radio[name=dtRadio]');
     $radios.filter('[value=' + node.data.datatype +']').attr('checked', true);
     questionFormatElement.value = node.data.format;
+    questionCompletionElement.value = node.data.completion;
+    questionNoteElement.value = node.data.note;
     questionClTable.clear();
     if (node.hasOwnProperty('children')) {
       for (j=0; j<node.children.length; j++) {
@@ -769,6 +886,8 @@ $(document).ready(function() {
     node.data.mapping = questionMappingElement.value;
     node.data.datatype = $('input:radio[name=dtRadio]:checked').val();
     node.data.format = questionFormatElement.value;
+    node.data.completion = questionCompletionElement.value;
+    node.data.note = questionNoteElement.value;
     node.save = [];
     node.children = [];
     rowData = questionClTable.rows().data();
@@ -953,13 +1072,13 @@ $(document).ready(function() {
   function newCommonGroup(label) {
     return {
       id: "", namespace: "", type: C_COMMON_GROUP, label: label, ordinal: 0, 
-      optional: false, repeating: false, note: "", biomedical_concept_reference: {}, children: [] };
+      optional: false, repeating: false, completion: "", note: "", biomedical_concept_reference: {}, children: [] };
   }
 
   function newQuestion(label) {
     return {
       id: "", namespace: "", type: C_QUESTION, label: label, ordinal: 0, 
-      optional: false, note: "", free_text: "", datatype: "I",
+      optional: false, completion: "", note: "", free_text: "", datatype: "I",
       format: "3", qText: "", pText: "", mapping: "",
       property_reference: {id: "", namespace: "", enabled: true}, 
       children: [] 
@@ -969,7 +1088,7 @@ $(document).ready(function() {
   function newPlaceholder(label) {
     return {
       id: "", namespace: "", type: C_PLACEHOLDER, label: label, ordinal: 0, 
-      optional: false, note: "", free_text: "", datatype: "",
+      optional: false, completion: "", note: "", free_text: "", datatype: "",
       format: "", qText: "", pText: "", mapping: "",
       property_reference: {id: "", namespace: "", enabled: true}, 
       children: [] 
@@ -1247,6 +1366,8 @@ $(document).ready(function() {
     html = $("#formJson").html();
     formDefinition = $.parseJSON(html);
   
+    markdownElement = null;
+    markdownType = "";
     currentNode = null;
     currentGRef = null;
     bcCurrent = null;
@@ -1502,6 +1623,22 @@ $(document).ready(function() {
     }
   }
   
-  
+  function markdown() {
+    $.ajax({
+      url: "/forms/markdown",
+      data: {
+        "markdown": markdownElement.value
+      },
+      dataType: 'json',
+      error: function (xhr, status, error) {
+        var html = alertError("An error has occurred loading the markdown.");
+        displayAlerts(html);
+      },
+      success: function(result){
+        var html_text = $.parseJSON(JSON.stringify(result));
+        genericCompletionElement.innerHTML = html_text.result;
+      }
+    });
+  }
 
 });

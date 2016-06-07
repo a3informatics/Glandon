@@ -30,7 +30,6 @@ class Form < IsoManagedNew
       object.groups = Form::Group.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
     end
     #object.triples = ""
-    ConsoleLogger::log(C_CLASS_NAME,"find", "formCompletion=" + object.formCompletion.to_s)
     return object     
   end
 
@@ -266,7 +265,7 @@ class Form < IsoManagedNew
     ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "JSON=" + json.to_s)
     id = parent_id 
     #super(id, sparql, schema_prefix, "form", json[:label]) #Inconsistent at the moment. Handled within the SI & RS creation
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "formCompletion=" + json[:formCompletion])
+    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "formCompletion=" + json[:formCompletion])
     sparql.triple_primitive_type("", id, schema_prefix, "formCompletion", json[:formCompletion], "string")
     sparql.triple_primitive_type("", id, schema_prefix, "formNote", json[:formNote], "string")
     if json.has_key?(:children)
@@ -452,4 +451,5 @@ private
     html += '</td>'
     return html
   end
+
 end

@@ -117,6 +117,8 @@ class FormsController < ApplicationController
   def show 
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
+    @completion = MarkdownEngine::render(@form.formCompletion)
+    @note = MarkdownEngine::render(@form.formNote)
   end
   
   def view 
@@ -148,6 +150,11 @@ class FormsController < ApplicationController
   def crf
     authorize Form, :view?
     @form = Form.find(params[:id], params[:namespace])
+  end
+
+  def markdown
+    authorize Form, :view?
+    render :json => { :result => MarkdownEngine::render(params[:markdown])}, :status => 200
   end
 
 private
