@@ -1,19 +1,17 @@
 <%= stylesheet_link_tag    'd3local' %>
 <%= javascript_include_tag 'd3local' %>
 <script id="jsonData" type="text/json">
-    <%= raw @form.d3.to_json %>
+    <%= raw @form.to_edit.to_json %>
 </script>
 <%= javascript_include_tag 'form_viewer' %>
-<div class="col-md-8" style="padding-right:20px; border-right: 1px solid #ccc;">
+<div class="col-md-7">
     <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "View:", :item => @form} %>
-    <!--<div id="debug">
-        <%= raw @form.d3.to_json %>
-    </div>-->
     <div style="height: 800px;" id="d3">
         <!-- D3 Area -->
     </div>
 </div>
-<div class="col-md-4">
+<div class="col-md-5">
+    <br/>
     <div>
         <div id="formTable" class="panel panel-default">
             <div class="panel-heading">
@@ -30,6 +28,14 @@
                                 <td><strong>Label:</strong></td>
                                 <td id="formLabel"></td>
                             </tr>
+                            <tr>
+                                <td><strong>Completion Instructions:</strong></td>
+                                <td id="formCompletion"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notes:</strong></td>
+                                <td id="formNote"></td>
+                            </tr>
                         </tbody>
                     </table>
             </div>
@@ -45,6 +51,22 @@
                                 <td><strong>Label:</strong></td>
                                 <td id="groupLabel"></td>
                             </tr>
+                            <tr>
+                                <td><strong>Repeating:</strong></td>
+                                <td id="groupRepeating"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Optional:</strong></td>
+                                <td id="groupOptional"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Completion Instructions:</strong></td>
+                                <td id="groupCompletion"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notes:</strong></td>
+                                <td id="groupNote"></td>
+                            </tr>
                         </tbody>
                     </table>
             </div>
@@ -59,6 +81,22 @@
                             <tr>
                                 <td><strong>Label:</strong></td>
                                 <td id="bcLabel"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Repeating:</strong></td>
+                                <td id="bcRepeating"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Optional:</strong></td>
+                                <td id="bcOptional"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Completion Instructions:</strong></td>
+                                <td id="bcCompletion"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notes:</strong></td>
+                                <td id="bcNote"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -76,6 +114,10 @@
                                 <td id="bcItemLabel"></td>
                             </tr>
                             <tr>
+                                <td><strong>Optional:</strong></td>
+                                <td id="bcItemOptional"></td>
+                            </tr>
+                            <tr>
                                 <td><strong>Question Text:</strong></td>
                                 <td id="bcItemQText"></td>
                             </tr>
@@ -86,6 +128,14 @@
                             <tr>
                                 <td><strong>Format:</strong></td>
                                 <td id="bcItemFormat"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Completion Instructions:</strong></td>
+                                <td id="bcItemCompletion"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notes:</strong></td>
+                                <td id="bcItemNote"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -103,6 +153,10 @@
                                 <td id="questionLabel"></td>
                             </tr>
                             <tr>
+                                <td><strong>Optional:</strong></td>
+                                <td id="questionOptional"></td>
+                            </tr>
+                            <tr>
                                 <td><strong>Question Text:</strong></td>
                                 <td id="questionQText"></td>
                             </tr>
@@ -117,6 +171,45 @@
                             <tr>
                                 <td><strong>Format:</strong></td>
                                 <td id="questionFormat"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Completion Instructions:</strong></td>
+                                <td id="questionCompletion"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notes:</strong></td>
+                                <td id="questionNote"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+        <div id="placeholderTable" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Placeholder</h3>
+            </div>
+            <div class="panel-body">
+                    <table class="table table-striped table-condensed">
+                        <tbody>
+                            <tr>
+                                <td><strong>Label:</strong></td>
+                                <td id="placeholderLabel"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Optional:</strong></td>
+                                <td id="placeholderOptional"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Free Text:</strong></td>
+                                <td id="placeholderFreeText"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Completion Instructions:</strong></td>
+                                <td id="placeholderCompletion"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notes:</strong></td>
+                                <td id="placeholderNote"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -143,7 +236,7 @@
         </div>
     </div>
     <%= link_to "Close", forms_path, :class => "btn btn-primary" %>
+    <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
     <%= link_to "CRF", crf_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
     <%= link_to "aCRF", acrf_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
-    <!--<%= link_to "Edit", edit_thesauri_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>-->
 </div>

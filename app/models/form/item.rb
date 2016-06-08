@@ -99,46 +99,46 @@ class Form::Item < IsoConceptNew
 
   end
 
-  def d3(index)
-    ord = "1"
-    if self.itemType == C_PLACEHOLDER
-      name = "Placeholder " + self.ordinal.to_s
-      result = FormNode.new(self.id, self.namespace,  "Placeholder", name, "", "", "", "", index, true)
-      result[:freeText] = self.freeText
-    elsif self.itemType == C_QUESTION
-      name = "Question " + self.ordinal.to_s
-      result = FormNode.new(self.id, self.namespace,  "Question", name, "", "", "", "", index, true)
-      result[:datatype] = self.datatype
-      result[:format] = self.format
-      result[:qText] = self.qText
-      result[:mapping] = self.mapping
-      localIndex = 0
-      clis = self.q_values
-      clis.each do |cli|
-        result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", cli.identifier, "", "", localIndex, true)
-        localIndex += 1;
-      end
-    else
-      #ConsoleLogger::log(C_CLASS_NAME,"d3","property=" + self.bcProperty.to_json)
-      name = self.bcProperty.alias
-      result = FormNode.new(self.id, self.namespace,  "BCItem", name, "", "", "", "", index, true)
-      result[:datatype] = self.bcProperty.datatype
-      result[:format] = self.bcProperty.format
-      result[:qText] = self.bcProperty.qText
-      localIndex = 0
-      clis = self.bcValueSet
-      clis.each do |cliRef|
-        if cliRef.enabled
-          cli = cliRef.value
-          #ConsoleLogger::log(C_CLASS_NAME,"d3","cli=" + cli.to_json)
-          result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", cli.identifier, "", "", localIndex, true)
-          localIndex += 1;
-        end
-      end
-    end  
-    result[:save] = result[:children]
-    return result
-  end
+  #def d3(index)
+  #  ord = "1"
+  #  if self.itemType == C_PLACEHOLDER
+  #    name = "Placeholder " + self.ordinal.to_s
+  #    result = FormNode.new(self.id, self.namespace,  "Placeholder", name, "", "", "", "", index, true)
+  #    result[:freeText] = self.freeText
+  #  elsif self.itemType == C_QUESTION
+  #    name = "Question " + self.ordinal.to_s
+  #    result = FormNode.new(self.id, self.namespace,  "Question", name, "", "", "", "", index, true)
+  #    result[:datatype] = self.datatype
+  #    result[:format] = self.format
+  #    result[:qText] = self.qText
+  #    result[:mapping] = self.mapping
+  #    localIndex = 0
+  #    clis = self.q_values
+  #    clis.each do |cli|
+  #      result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", cli.identifier, "", "", localIndex, true)
+  #      localIndex += 1;
+  #    end
+  #  else
+  #    #ConsoleLogger::log(C_CLASS_NAME,"d3","property=" + self.bcProperty.to_json)
+  #    name = self.bcProperty.alias
+  #    result = FormNode.new(self.id, self.namespace,  "BCItem", name, "", "", "", "", index, true)
+  #    result[:datatype] = self.bcProperty.datatype
+  #    result[:format] = self.bcProperty.format
+  #    result[:qText] = self.bcProperty.qText
+  #    localIndex = 0
+  #    clis = self.bcValueSet
+  #    clis.each do |cliRef|
+  #      if cliRef.enabled
+  #        cli = cliRef.value
+  #        #ConsoleLogger::log(C_CLASS_NAME,"d3","cli=" + cli.to_json)
+  #        result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", cli.identifier, "", "", localIndex, true)
+  #        localIndex += 1;
+  #      end
+  #    end
+  #  end  
+  #  result[:save] = result[:children]
+  #  return result
+  #end
 
   def to_api_json()
     #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")

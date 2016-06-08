@@ -79,22 +79,22 @@ class Form::Group < IsoConceptNew
     return object
   end
 
-  def d3(index)
-    ii = 0
-    result = FormNode.new(self.id, self.namespace, self.groupType, self.label, self.label, "", "", "", index, true)
-    self.items.sort_by! {|u| u.ordinal}
-    self.items.each do |item|
-      result[:children][ii] = item.d3(ii)
-      ii += 1
-    end
-    self.groups.sort_by! {|u| u.ordinal}
-    self.groups.each do |group|
-      result[:children][ii] = group.d3(ii)
-      ii += 1
-    end
-    result[:save] = result[:children]
-    return result
-  end
+  #def d3(index)
+  #  ii = 0
+  #  result = FormNode.new(self.id, self.namespace, self.groupType, self.label, self.label, "", "", "", index, true)
+  #  self.items.sort_by! {|u| u.ordinal}
+  #  self.items.each do |item|
+  #    result[:children][ii] = item.d3(ii)
+  #    ii += 1
+  #  end
+  #  self.groups.sort_by! {|u| u.ordinal}
+  #  self.groups.each do |group|
+  #    result[:children][ii] = group.d3(ii)
+  #    ii += 1
+  #  end
+  #  result[:save] = result[:children]
+  #  return result
+  #end
 
   def to_api_json()
     #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")

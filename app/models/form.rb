@@ -239,16 +239,16 @@ class Form < IsoManagedNew
     return results
   end
 
-  def d3
-    ig = 0
-    result = FormNode.new(self.id, self.namespace, "Form", self.label, self.label, self.identifier, "", "", 0, true)
-    self.groups.each do |group|
-      result[:children][ig] = group.d3(ig)
-      ig += 1
-    end
-    result[:save] = result[:children]
-    return result
-  end
+  #def d3
+  #  ig = 0
+  #  result = FormNode.new(self.id, self.namespace, "Form", self.label, self.label, self.identifier, "", "", 0, true)
+  #  self.groups.each do |group|
+  #    result[:children][ig] = group.d3(ig)
+  #    ig += 1
+  #  end
+  #  result[:save] = result[:children]
+  #  return result
+  #end
 
   def to_api_json
     result = super
