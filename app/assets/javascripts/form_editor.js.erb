@@ -61,20 +61,24 @@ $(document).ready(function() {
   validatorDefaults ();
   $('#main_form').validate({
     rules: {
-        formIdentifier: { required: true, identifier: true },
-        //formLabel: { required: true, label: true },
-        //formNote: {required: false, markdown: true},
-        formCompletion: {required: false, markdown: true}
-        //groupLabel: { required: true, label: true },
-        //groupNote: {required: false, markdown: true},
-        //groupCompletion: {required: false, markdown: true},
-        //questionNote: {required: false, markdown: true},
-        //questionCompletion: {required: false, markdown: true},
-        //commonLabel: { required: true, label: true }
+        formIdentifier: {required: true, identifier: true },
+        "Form Label": {required: true, label: true },
+        formNote: {required: false, markdown: true},
+        formCompletion: {required: false, markdown: true},
+        groupLabel: {required: true, label: true },
+        groupNote: {required: false, markdown: true},
+        groupCompletion: {required: false, markdown: true},
+        questionNote: {required: false, markdown: true},
+        questionCompletion: {required: false, markdown: true},
+        commonLabel: {required: true, label: true }
     },
     submitHandler: function(form) {
-        formSave();
-        return false;
+      formSave();
+      return false;
+    },
+    invalidHandler: function(event, validator) {
+      var html = alertWarning("The form is not valid. Please correct the errors.");
+      displayAlerts(html);
     }
   });
 
@@ -274,13 +278,14 @@ $(document).ready(function() {
       var html = alertWarning("You need to select the form node.");
       displayAlerts(html);
     } else {
-      if ($('#main_form').valid()) {
+      //if ($('#main_form').valid()) {
+        $('#main_form').valid();
         saveForm(currentNode);
         displayTree(currentNode.key);
-      } else {
-        var html = alertWarning("Not saved, correct the errors.");
-        displayAlerts(html);
-      }
+      //} else {
+      //  var html = alertWarning("Not saved, correct the errors.");
+      //  displayAlerts(html);
+      //}
     }
   });
 
@@ -303,13 +308,14 @@ $(document).ready(function() {
       var html = alertWarning("You need to select a group node.");
       displayAlerts(html);
     } else {
-      if ($('#main_form').valid()) {
+      //if ($('#main_form').valid()) {
+        $('#main_form').valid();
         saveGroup(currentNode)
         displayTree(currentNode.key);
-      } else {
-        var html = alertWarning("Not saved, correct the errors.");
-        displayAlerts(html);
-      }
+      //} else {
+      //  var html = alertWarning("Not saved, correct the errors.");
+      //  displayAlerts(html);
+      //}
     }
   });
   
@@ -425,13 +431,14 @@ $(document).ready(function() {
       var html = alertWarning("You need to select a common node.");
       displayAlerts(html);
     } else {
-      if ($('#main_form').valid()) {
+      //if ($('#main_form').valid()) {
+        $('#main_form').valid();
         saveCommon(currentNode)
         displayTree(currentNode.key);
-      } else {
-        var html = alertWarning("Not saved, correct the errors.");
-        displayAlerts(html);
-      }
+      //} else {
+      //  var html = alertWarning("Not saved, correct the errors.");
+      //  displayAlerts(html);
+      //}
     }
   });
   
@@ -455,6 +462,7 @@ $(document).ready(function() {
       var html = alertWarning("You need to select a question node.");
       displayAlerts(html);
     } else {
+      $('#main_form').valid();
       saveQuestion(currentNode)
       displayTree(currentNode.key);
     }
@@ -474,6 +482,7 @@ $(document).ready(function() {
       var html = alertWarning("You need to select a placeholder node.");
       displayAlerts(html);
     } else {
+      $('#main_form').valid();
       savePlaceholder(currentNode)
       displayTree(currentNode.key);
     }

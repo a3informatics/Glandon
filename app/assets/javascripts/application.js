@@ -132,6 +132,7 @@ function validatorDefaults () {
     unhighlight: function(element) {
       $(element).closest('.form-group').removeClass('has-error');
     },
+    ignore: [],
     errorElement: 'span',
     errorClass: 'help-block',
     errorPlacement: function(error, element) {

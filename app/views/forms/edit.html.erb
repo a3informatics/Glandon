@@ -5,7 +5,7 @@
 </script>
 <div class="row">
     <div class="col-md-7">
-        <h3>Edit Form:</h3>
+        <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Edit:", :item => @form} %>
         <div style="height: 800px;" id="d3">
             <!-- D3 Area -->
         </div>

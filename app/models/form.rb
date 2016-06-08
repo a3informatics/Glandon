@@ -360,8 +360,30 @@ private
       html += '<tr>'
       html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
       html += '</tr>'
-      node[:children].each do |child|
-        html += crf_node(child, annotations)
+      if node[:repeating]
+        html += '<tr>'
+        html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
+        html += '<tr>'
+        node[:children].each do |child|
+          html += '<th>' + child[:qText] + '</th>'
+        end 
+        html += '</tr>'
+        html += '<tr>'
+        node[:children].each do |child|
+          html += '<td><font color="red">' + child[:mapping] + '</font></td>'
+        end 
+        html += '</tr>'
+        html += '<tr>'
+        node[:children].each do |child|
+          html += input_field(child, annotations)
+        end 
+        html += '</tr>'
+        html += '</table></td>'
+        html += '</tr>'
+      else
+        node[:children].each do |child|
+          html += crf_node(child, annotations)
+        end
       end
     elsif node[:type] == "BCGroup"
       html += '<tr>'
@@ -441,6 +463,10 @@ private
       end
     elsif node[:datatype] == "D+T"
       html += '<input type="date" name="date"> <input type="time" name="time">'
+    elsif node[:datatype] == "D"
+      html += '<input type="date" name="date">'
+    elsif node[:datatype] == "T"
+      html += '<input type="time" name="time">'
     elsif node[:datatype] == "F"
       html += '<input type="number"> . <input type="number">' 
     elsif node[:datatype] == "I"
