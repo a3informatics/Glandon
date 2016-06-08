@@ -65,10 +65,10 @@ class IsoManagedNew < IsoConceptNew
 
   def registrationStatus
     if self.registrationState == nil
-      ConsoleLogger::log(C_CLASS_NAME,"registrationStatus","rs=na")
+      #ConsoleLogger::log(C_CLASS_NAME,"registrationStatus","rs=na")
       return "na"
     else
-      ConsoleLogger::log(C_CLASS_NAME,"registrationStatus","rs=" + self.registrationState.registrationStatus.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"registrationStatus","rs=" + self.registrationState.registrationStatus.to_s)
       return self.registrationState.registrationStatus
     end
   end

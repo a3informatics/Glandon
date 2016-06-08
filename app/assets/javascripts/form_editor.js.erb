@@ -21,16 +21,18 @@ $(document).ready(function() {
   var groupCompletionElement = document.getElementById("groupCompletion");
   var groupNoteElement = document.getElementById("groupNote");
   var groupRepeatingElement = document.getElementById("groupRepeating");
+  var groupOptionalElement = document.getElementById("groupOptional");
   var commonIdentifierElement = document.getElementById("commonIdentifier");
   var commonLabelElement = document.getElementById("commonLabel");
   var bcIdentifierElement = document.getElementById("bcIdentifier");
   var bcLabelElement = document.getElementById("bcLabel");
-  var itemIdentifierElement = document.getElementById("itemIdentifier");
   var itemLabelElement = document.getElementById("itemLabel");
   var itemEnableElement = document.getElementById("itemEnable");
+  var itemOptionalElement = document.getElementById("itemOptional");
   var clIdentifierElement = document.getElementById("clIdentifier");
   var clLabelElement = document.getElementById("clLabel");
   var clEnableElement = document.getElementById("clEnable");
+  var clOptionalElement = document.getElementById("clOptional");
   var plTextElement = document.getElementById("placeholderText");
   var questionTextElement = document.getElementById("questionText");
   var questionMappingElement = document.getElementById("questionMapping");
@@ -38,6 +40,7 @@ $(document).ready(function() {
   var questionFormatElement = document.getElementById("questionFormat");
   var questionCompletionElement = document.getElementById("questionCompletion");
   var questionNoteElement = document.getElementById("questionNote");
+  var questionOptionalElement = document.getElementById("questionOptional");
   var genericCompletionElement = document.getElementById("genericCompletion");
   
   var nextKeyId;
@@ -208,8 +211,16 @@ $(document).ready(function() {
    * Expand/delete the node clicked.
    */
   function dblClick(node) {
-    var index;
-    if (node.hasOwnProperty('children')) {
+    if (node.expand) {
+      node.children = node.save;
+      node.expand = false;
+      displayTree(node.key);
+    } else if (node.hasOwnProperty('children')) {
+      node.children = [];
+      node.expand = true;
+      displayTree(node.key); 
+    }
+    /*if (node.hasOwnProperty('children')) {
       node.children = [];
       node.expand = true;
       displayTree(node.key);
@@ -218,13 +229,12 @@ $(document).ready(function() {
       node.children = node.save;
       node.expand = false;
       displayTree(node.key);
-    }
+    }*/
   } 
 
   /* 
   * Function to handle the form save click.
   */
-  //$('#formSave').click(function() {
   function formSave() {
     var uri;
     var method;
@@ -266,8 +276,6 @@ $(document).ready(function() {
         handleAjaxError (xhr, status, error);
       }
     }); 
-
-  //});
   }
 
   /*
@@ -542,7 +550,7 @@ $(document).ready(function() {
       displayAlerts(html);
     } else {
       saveCl(currentNode)
-      clIdentifierElement.innerHTML = node.data.identifier;
+      //clIdentifierElement.innerHTML = node.data.identifier;
     }
   });
   
@@ -792,10 +800,11 @@ $(document).ready(function() {
     groupCompletionElement.value = node.data.completion;
     groupNoteElement.value = node.data.note;
     groupRepeatingElement.checked = node.data.repeating;
+    groupOptionalElement.checked = node.data.optional;
   }
 
   function displayBC(node) {
-    bcIdentifierElement.innerHTML = node.data.identifier;
+    bcIdentifierElement.innerHTML = node.data.biomedical_concept_reference.identifier;
     bcLabelElement.innerHTML = node.data.label;
   }
 
@@ -806,25 +815,29 @@ $(document).ready(function() {
 
   function displayItem(node) {
     var parentNode;
-    itemIdentifierElement.innerHTML = node.data.identifier;
+    //itemIdentifierElement.innerHTML = node.data.identifier;
     itemLabelElement.innerHTML = node.data.label;
     parentNode = node.parent;
     if (isCommon(parentNode)) {
       $("#itemEnable").prop('disabled', true);
+      $("#itemOptional").prop('disabled', true);
       $("#itemUpdate").prop('disabled', true);
       $("#itemCommon").prop('disabled', true);
       $("#itemRestore").prop('disabled', false);
     } else {
       $("#itemEnable").prop('disabled', false);
+      $("#itemOptional").prop('disabled', false);
       $("#itemUpdate").prop('disabled', false);
       $("#itemCommon").prop('disabled', false);
       $("#itemRestore").prop('disabled', true);
-      itemEnableElement.checked = node.data.property_reference.enabled;
+      itemEnableElement.checked = node.data.property_reference.reference.enabled;
+      itemOptionalElement.checked = node.data.property_reference.reference.optional;
     }
   }
 
   function displayQuestion(node) {
     questionTextElement.value = node.data.qText;
+    questionOptionalElement.checked = node.data.optional;
     questionMappingElement.value= node.data.mapping;
     var $radios = $('input:radio[name=dtRadio]');
     $radios.filter('[value=' + node.data.datatype +']').attr('checked', true);
@@ -836,7 +849,7 @@ $(document).ready(function() {
       for (j=0; j<node.children.length; j++) {
         var child = node.children[j];
         var data = child.data
-        var ref = data.value_reference;
+        var ref = data.reference;
         var clRow = { identifier: data.identifier , uri_id: ref.id , uri_ns: ref.namespace , useful_1: data.label}; 
         questionClTable.row.add(clRow);
       }
@@ -851,7 +864,14 @@ $(document).ready(function() {
   function displayCl(node) {
     clIdentifierElement.innerHTML = node.data.identifier;
     clLabelElement.innerHTML = node.data.label;
-    clEnableElement.checked = node.data.value_reference.enabled;
+    clEnableElement.checked = node.data.reference.enabled;
+    clOptionalElement.checked = node.data.reference.optional;
+    parentNode = node.parent;
+    if (parentNode.type == C_QUESTION) {
+      $("#clEnable").prop('disabled', true);
+    } else {
+      $("#clEnable").prop('disabled', false);
+    }
   }
 
   /**
@@ -873,6 +893,7 @@ $(document).ready(function() {
     node.data.note = groupNoteElement.value;
     node.name = node.data.label;
     node.data.repeating = groupRepeatingElement.checked;
+    node.data.optional = groupOptionalElement.checked;
   }
 
   function saveCommon(node) {
@@ -882,7 +903,9 @@ $(document).ready(function() {
   }
 
   function saveItem(node) {
-    node.property_reference.data.enabled = itemEnableElement.checked;
+    node.data.property_reference.reference.enabled = itemEnableElement.checked;
+    node.data.property_reference.reference.optional = itemOptionalElement.checked;
+    node.enabled = itemEnableElement.checked;
   }
 
   function saveQuestion(node) {
@@ -892,11 +915,13 @@ $(document).ready(function() {
     var sourceCliNode;
     var cliNode;
     node.data.qText = questionTextElement.value;
+    node.data.optional = questionOptionalElement.value;
     node.data.mapping = questionMappingElement.value;
     node.data.datatype = $('input:radio[name=dtRadio]:checked').val();
     node.data.format = questionFormatElement.value;
     node.data.completion = questionCompletionElement.value;
     node.data.note = questionNoteElement.value;
+    node.data.children = [];
     node.save = [];
     node.children = [];
     rowData = questionClTable.rows().data();
@@ -904,7 +929,6 @@ $(document).ready(function() {
       row = rowData.row(i).data();
       sourceCliNode = newQuestionCli(row);
       cliNode = addD3Node(node, row.useful_1, C_CL, sourceCliNode, true); 
-      //cliNode.enabled = true    
       addSourceNode(node.data, sourceCliNode, true);
     }
   }
@@ -914,7 +938,8 @@ $(document).ready(function() {
   }
 
   function saveCl(node) {
-    node.data.value_reference.enabled = clEnableElement.checked;
+    node.data.reference.enabled = clEnableElement.checked;
+    node.data.reference.optional = clOptionalElement.checked;
     node.enabled = clEnableElement.checked;
   }
 
@@ -1089,7 +1114,7 @@ $(document).ready(function() {
       id: "", namespace: "", type: C_QUESTION, label: label, ordinal: 0, 
       optional: false, completion: "", note: "", free_text: "", datatype: "I",
       format: "3", qText: "", pText: "", mapping: "",
-      property_reference: {id: "", namespace: "", enabled: true}, 
+      //property_reference: {id: "", namespace: "", enabled: true, optional: false}, 
       children: [] 
     };
   }
@@ -1099,7 +1124,7 @@ $(document).ready(function() {
       id: "", namespace: "", type: C_PLACEHOLDER, label: label, ordinal: 0, 
       optional: false, completion: "", note: "", free_text: "", datatype: "",
       format: "", qText: "", pText: "", mapping: "",
-      property_reference: {id: "", namespace: "", enabled: true}, 
+      //property_reference: {id: "", namespace: "", enabled: true, optional: false}, 
       children: [] 
     };
   }
@@ -1108,7 +1133,7 @@ $(document).ready(function() {
     return {
       id: bc.id, namespace: bc.namespace, type: C_BC_GROUP, label: bc.label, ordinal: 0, 
       optional: bc.optional, repeating: bc.repeating, note: bc.note, 
-      biomedical_concept_reference: {id: bc.id, namespace: bc.namespace, enabled: true}, 
+      biomedical_concept_reference: {id: bc.id, namespace: bc.namespace, enabled: true, optional: false}, 
       children: [] };
   }
 
@@ -1128,7 +1153,7 @@ $(document).ready(function() {
       label: cli.notation, 
       ordinal: 0, 
       identifier: cli.property, 
-      value_reference: {id: cli.id, namespace: cli.namespace, enabled: true}, 
+      reference: {id: cli.id, namespace: cli.namespace, enabled: true, optional: false}, 
       children: [] 
     };
   }
@@ -1139,7 +1164,7 @@ $(document).ready(function() {
       label: cli.useful_1, 
       ordinal: 0, 
       identifier: cli.identifier, 
-      value_reference: {id: cli.uri_id, namespace: cli.uri_ns, enabled: true}, 
+      reference: {id: cli.uri_id, namespace: cli.uri_ns, enabled: true, optional: false}, 
       children: [] 
     };
   }
@@ -1310,22 +1335,6 @@ $(document).ready(function() {
     bcCurrentRow = row;
   }
 
-  /*function handleTermTable(table, ref) {
-    // Toggle the highlight for the row
-    if (termCurrent != null) {
-      $(termCurrent).toggleClass('success');
-    }
-    $(ref).toggleClass('success');
-
-    // Get the row
-    var row = table.row(ref).index();
-    var data = table.row(row).data();
-
-    // Save the selection
-    termCurrent = ref;
-    termCurrentRow = row;
-  }*/
-
   function handleQuestionTable(table, ref) {
     // Toggle the highlight for the row
     if (varClCurrent != null) {
@@ -1341,33 +1350,6 @@ $(document).ready(function() {
     varClCurrent = ref;
     varClCurrentRow = row;
   }
-
-  /*function copyNode(sourceNode, targetNode) {
-    var key;
-    var i;
-    for (key in sourceNode) {
-      if (key == 'parent' || key == 'realParent' || key == 'children' || key == 'otherCommon' || key == 'save') {
-      } else {
-        targetNode[key] = sourceNode[key]
-      }
-    }
-    if (sourceNode.hasOwnProperty('save')) {
-      targetNode.children = [];
-      for (i=0; i<sourceNode.save.length; i++) {
-        //sourceChild = sourceNode.children[i];
-        targetNode.children[i] = {}; 
-        copyNode(sourceNode.save[i], targetNode.children[i]);
-      }
-    } else if (sourceNode.hasOwnProperty('otherCommon')) {
-      targetNode.otherCommon = [];
-      for (i=0; i<sourceNode.otherCommon.length; i++) {
-        //sourceChild = sourceNode.children[i];
-        targetNode.otherCommon[i] = {}; 
-        copyNode(sourceNode.otherCommon[i], targetNode.otherCommon[i]);
-      }
-    }
-  }
-*/
 
   function initData () {
     
@@ -1456,7 +1438,7 @@ $(document).ready(function() {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
     } else if (sourceNode.type === C_CL) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
-      value_ref = sourceNode.value_reference;
+      value_ref = sourceNode.reference;
       newNode.enabled = value_ref.enabled;
     }
   }

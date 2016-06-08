@@ -2,7 +2,6 @@
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
-@prefix iso25964: <http://www.assero.co.uk/ISO25964#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -142,7 +141,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Question ;
   rdfs:label "Reference to Thesaurus Concept."^^xsd:string ;
-  rdfs:range iso25964:ThesaurusConcept ;
+  rdfs:range bo:TcReference ;
   skos:definition ""^^xsd:string
 .
 :note

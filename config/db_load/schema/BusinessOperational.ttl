@@ -1,6 +1,7 @@
 @prefix : <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
+@prefix iso25964: <http://www.assero.co.uk/ISO25964#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -17,15 +18,25 @@
   rdfs:label "Component"^^xsd:string ;
   rdfs:subClassOf isoC:Concept ;
 .
-:BcReference
+:Reference
   rdf:type owl:Class ;
   rdfs:label "Component"^^xsd:string ;
   rdfs:subClassOf isoC:Concept ;
 .
+:BcReference
+  rdf:type owl:Class ;
+  rdfs:label "Component"^^xsd:string ;
+  rdfs:subClassOf :Reference ;
+.
+:TcReference
+  rdf:type owl:Class ;
+  rdfs:label "Component"^^xsd:string ;
+  rdfs:subClassOf :Reference ;
+.
 :hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :bcReference ;
+  rdfs:domain :BcReference ;
   rdfs:label "Biomedical Concept reference."^^xsd:string ;
   rdfs:range cbc:BiomedicalConceptInstance ;
   skos:definition "Reference to a Biomedical Concept instance."^^xsd:string
@@ -33,7 +44,7 @@
 :hasProperty
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :bcReference ;
+  rdfs:domain :BcReference ;
   rdfs:label "Biomedical Concept property reference."^^xsd:string ;
   rdfs:range cbc:Property ;
   skos:definition "Reference to a Biomedical Concept property."^^xsd:string
@@ -41,10 +52,18 @@
 :hasValue
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :bcReference ;
+  rdfs:domain :BcReference ;
   rdfs:label "Biomedical Concept value reference."^^xsd:string ;
   rdfs:range cbc:Value ;
   skos:definition "Reference to a Biomedical Concept value."^^xsd:string
+.
+:hasThesaurusConcept
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :TcReference ;
+  rdfs:label "Thesaurus Concept reference."^^xsd:string ;
+  rdfs:range iso25964:ThesaurusConcept ;
+  skos:definition "Reference to a Thesaurus Concept."^^xsd:string
 .
 :ordinal
   rdf:type owl:DatatypeProperty ;
@@ -56,7 +75,14 @@
 :enabled
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :BcReference ;
+  rdfs:domain :Reference ;
   rdfs:label "enabled"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+.
+:optional
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Reference ;
+  rdfs:label "optional"^^xsd:string ;
   rdfs:range xsd:boolean ;
 .

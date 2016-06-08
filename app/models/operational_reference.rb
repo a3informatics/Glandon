@@ -1,21 +1,26 @@
 class OperationalReference < IsoConceptNew
 
-  attr_accessor :concept, :property, :value, :enabled
-  validates_presence_of :concept, :property, :value, :enabled
+  attr_accessor :reference_type, :thesaurus_concept, :biomedical_concept, :bc_property, :bc_value, :enabled, :optional
+  #validates_presence_of :concept, :property, :value, :enabled
 
   # Constants
+  C_NONE = "None"
+  C_TC = "Thesaurus Concept"
+  C_BC = "Biomedical Concept"
   C_SCHEMA_PREFIX = "bo"
   C_CLASS_NAME = "OperationalReference"
-  C_RDF_TYPE = "BcReference"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   
   def initialize(triples=nil, id=nil)
-    self.concept = nil
-    self.property = nil
-    self.value = nil
+    self.biomedical_concept = nil
+    self.bc_property = nil
+    self.bc_value = nil
+    self.thesaurus_concept = nil
+    self.enabled = true
+    self.optional = false
+    self.reference_type = C_NONE
     if triples.nil?
       super
-      self.enabled = true
     else
       super(triples, id)
     end        
@@ -23,18 +28,28 @@ class OperationalReference < IsoConceptNew
 
   def self.find(id, ns)
     object = super(id, ns)
-    #object.enabled = ModelUtility.toBoolean(object.properties.getOnly(C_SCHEMA_PREFIX, "enabled")[:value])
-    object.concept = getReference(object, "hasBiomedicalConcept")
-    object.property = getReference(object, "hasProperty")
-    object.value = getReference(object, "hasValue")
+    if object.link_exists?(C_SCHEMA_PREFIX, "hasThesaurusConcept")
+      object.reference_type = C_TC
+      object.thesaurus_concept = getReference(object, "hasThesaurusConcept")
+    else
+      object.reference_type = C_BC
+      object.biomedical_concept = getReference(object, "hasBiomedicalConcept")
+      object.bc_property = getReference(object, "hasProperty")
+      object.bc_value = getReference(object, "hasValue")
+    end
     return object
   end
 
   def self.find_from_triples(triples, id, bc=nil)
     object = new(triples, id)
-    object.concept = getReference(object, "hasBiomedicalConcept")
-    object.property = getReference(object, "hasProperty", bc)
-    object.value = getReference(object, "hasValue")
+    if object.link_exists?(C_SCHEMA_PREFIX, "hasThesaurusConcept")
+      object.reference_type = C_TC
+      object.thesaurus_concept = getReference(object, "hasThesaurusConcept")
+    else
+      object.biomedical_concept = getReference(object, "hasBiomedicalConcept")
+      object.bc_property = getReference(object, "hasProperty", bc)
+      object.bc_value = getReference(object, "hasValue")
+    end
     object.triples = ""
     return object
   end
@@ -54,7 +69,9 @@ private
           else
             reference = BiomedicalConceptCore::Property.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]))
           end
-        else
+        elsif rdf_type == "hasValue"
+          reference = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]), false)
+        elsif rdf_type == "hasThesaurusConcept"
           reference = ThesaurusConcept.find(ModelUtility.extractCid(links[0]),ModelUtility.extractNs(links[0]), false)
         end
       end

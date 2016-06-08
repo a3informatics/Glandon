@@ -99,47 +99,6 @@ class Form::Item < IsoConceptNew
 
   end
 
-  #def d3(index)
-  #  ord = "1"
-  #  if self.itemType == C_PLACEHOLDER
-  #    name = "Placeholder " + self.ordinal.to_s
-  #    result = FormNode.new(self.id, self.namespace,  "Placeholder", name, "", "", "", "", index, true)
-  #    result[:freeText] = self.freeText
-  #  elsif self.itemType == C_QUESTION
-  #    name = "Question " + self.ordinal.to_s
-  #    result = FormNode.new(self.id, self.namespace,  "Question", name, "", "", "", "", index, true)
-  #    result[:datatype] = self.datatype
-  #    result[:format] = self.format
-  #    result[:qText] = self.qText
-  #    result[:mapping] = self.mapping
-  #    localIndex = 0
-  #    clis = self.q_values
-  #    clis.each do |cli|
-  #      result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", cli.identifier, "", "", localIndex, true)
-  #      localIndex += 1;
-  #    end
-  #  else
-  #    #ConsoleLogger::log(C_CLASS_NAME,"d3","property=" + self.bcProperty.to_json)
-  #    name = self.bcProperty.alias
-  #    result = FormNode.new(self.id, self.namespace,  "BCItem", name, "", "", "", "", index, true)
-  #    result[:datatype] = self.bcProperty.datatype
-  #    result[:format] = self.bcProperty.format
-  #    result[:qText] = self.bcProperty.qText
-  #    localIndex = 0
-  #    clis = self.bcValueSet
-  #    clis.each do |cliRef|
-  #      if cliRef.enabled
-  #        cli = cliRef.value
-  #        #ConsoleLogger::log(C_CLASS_NAME,"d3","cli=" + cli.to_json)
-  #        result[:children] << FormNode.new(cli.id, cli.namespace, "CL", cli.notation, "", cli.identifier, "", "", localIndex, true)
-  #        localIndex += 1;
-  #      end
-  #    end
-  #  end  
-  #  result[:save] = result[:children]
-  #  return result
-  #end
-
   def to_api_json()
     #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
     result = 
@@ -169,15 +128,26 @@ class Form::Item < IsoConceptNew
       result[:format] = self.format
       result[:qText] = self.qText
       result[:mapping] = self.mapping
-      clis = self.q_values
+      tc_refs = self.q_values
       ordinal = 1  
-      clis.each do |cli|
-        result[:children] << { :value_reference => {:id => cli.id, :namespace => cli.namespace, :enabled => "true"}, :label => cli.notation, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal }
+      tc_refs.each do |tc_ref|
+        cli = tc_ref.thesaurus_concept
+        if !cli.nil? 
+          result[:children] << 
+            { 
+              :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => tc_ref.enabled, :optional => tc_ref.optional }, 
+              :label => cli.notation, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal 
+            }
+        end
         ordinal += 1  
       end
     else
       if self.bcProperty != nil
-        result[:property_reference] = {:id => self.bcProperty.id, :namespace => self.bcProperty.namespace, :enabled => true}
+        result[:property_reference] = 
+          { 
+            :reference => {:id => self.bcProperty.id, :namespace => self.bcProperty.namespace, :enabled => true, :optional => false},
+            :label => bcProperty.label, :identifier => "", :type => "", :ordinal => 1 
+          }
       end
       result[:datatype] = self.bcProperty.datatype
       result[:format] = self.bcProperty.format
@@ -186,12 +156,14 @@ class Form::Item < IsoConceptNew
       result[:bridgPath] = self.bcProperty.bridgPath
       clis = self.bcValueSet
       ordinal = 1  
-      clis.each do |cliRef|
-        #if cliRef.enabled
-          cli = cliRef.value
-          result[:children] << { :value_reference => {:id => cli.id, :namespace => cli.namespace, :enabled => cliRef.enabled}, :label => cli.notation, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal }
-          ordinal += 1
-        #end
+      clis.each do |cli_ref|
+        cli = cli_ref.bc_value
+        result[:children] << 
+          { 
+            :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => cli_ref.enabled, :optional => cli_ref.optional }, 
+            :label => cli.notation, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal 
+          }
+        ordinal += 1
       end
       items.each do |item|
         result[:otherCommon] << item.to_api_json
@@ -220,9 +192,18 @@ class Form::Item < IsoConceptNew
       sparql.triple_primitive_type("", id, schema_prefix, "qText", json[:qText].to_s, "string")
       sparql.triple_primitive_type("", id, schema_prefix, "mapping", json[:mapping].to_s, "string")
       if json.has_key?(:children)
+        value_ordinal = 1
         json[:children].each do |key, child|
-          value = child[:value_reference]
-          sparql.triple_uri("", id, schema_prefix, "hasThesaurusConcept", value[:namespace], value[:id])
+          #value = child[:value_reference]
+          #sparql.triple_uri("", id, schema_prefix, "hasThesaurusConcept", value[:namespace], value[:id])
+          value = child[:reference]
+          ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'TCR' + value_ordinal.to_s
+          sparql.triple("", id, schema_prefix, "hasThesaurusConcept", "", ref_id.to_s)
+          sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "TcReference")
+          sparql.triple_uri("", ref_id, "bo", "hasThesaurusConcept", value[:namespace], value[:id])
+          sparql.triple_primitive_type("", ref_id, "bo", "enabled", value[:enabled].to_s, "boolean")
+          sparql.triple_primitive_type("", ref_id, "bo", "optional", value[:optional].to_s, "boolean")
+          value_ordinal += 1
         end
       end
     else
@@ -236,6 +217,7 @@ class Form::Item < IsoConceptNew
           sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
           sparql.triple_uri("", ref_id, "bo", "hasValue", value[:namespace], value[:id])
           sparql.triple_primitive_type("", ref_id, "bo", "enabled", value[:enabled].to_s, "boolean")
+          sparql.triple_primitive_type("", ref_id, "bo", "optional", value[:optional].to_s, "boolean")
           value_ordinal += 1
         end
       end
@@ -248,11 +230,13 @@ class Form::Item < IsoConceptNew
       end
       # Handle the BC Property references.
       property = json[:property_reference]
+      reference = property[:reference]
       ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'PR'
       sparql.triple("", id, schema_prefix, "hasProperty", "", ref_id.to_s)
       sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
-      sparql.triple_uri("", ref_id, "bo", "hasProperty", property[:namespace], property[:id])
+      sparql.triple_uri("", ref_id, "bo", "hasProperty", reference[:namespace], reference[:id])
       sparql.triple_primitive_type("", ref_id, "bo", "enabled", property[:enabled].to_s, "boolean")
+      sparql.triple_primitive_type("", ref_id, "bo", "optional", property[:optional].to_s, "boolean")
     end
     return id
   end
@@ -268,7 +252,7 @@ private
       uri = object.get_links(C_SCHEMA_PREFIX, "hasProperty")
       bcId = ModelUtility.extractCid(uri[0])
       ref = OperationalReference.find_from_triples(triples, bcId, bc)
-      object.bcProperty = ref.property
+      object.bcProperty = ref.bc_property
       object.bcValues = object.bcProperty.values
       links = object.get_links("bf", "hasValue")
       links.each do |link|
@@ -280,8 +264,12 @@ private
       #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","hasThesaurusConcept, object=" + object.to_json.to_s)
       links = object.get_links(C_SCHEMA_PREFIX, "hasThesaurusConcept")
       links.each do |link|
-        object.q_values << ThesaurusConcept.find(ModelUtility.extractCid(link),ModelUtility.extractNs(link), false)
+        id = ModelUtility.extractCid(link)
+        #op_ref = OperationalReference.find_from_triples(triples, id)
+        #object.q_values << op_ref
+        object.q_values << OperationalReference.find_from_triples(triples, id)
         #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","link=" + link.to_s)
+        #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","ref=" + op_ref.to_json.to_s)
       end
     end      
   end
