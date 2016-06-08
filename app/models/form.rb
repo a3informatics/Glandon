@@ -440,7 +440,7 @@ private
       html += '</tr>'
     elsif node[:type] == "CL"
       #ConsoleLogger::log(C_CLASS_NAME,"crf_node","node=" + node.to_json.to_s)
-      value_ref = node[:value_reference]
+      value_ref = node[:reference]
       #.ConsoleLogger::log(C_CLASS_NAME,"crf_node","value_ref=" + value_ref.to_json.to_s)
       if value_ref[:enabled]
         html += '<p><input type="radio" name="' + node[:identifier].to_s + '" value="' + node[:identifier].to_s + '"></input> ' + node[:label].to_s + '</p>'

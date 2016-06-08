@@ -127,12 +127,16 @@ $(document).ready(function() {
     } else if (currentNode.type == C_CL) {
       selectCl();
       displayCl(currentNode);
+    } else if (currentNode.type == C_COMMON_GROUP) {
+      selectCommon();
+      displayCommon(currentNode);
     }
   }
 
   function selectNone() {
     $("#formTable").addClass('hidden');
     $("#groupTable").addClass('hidden');
+    $("#commonTable").addClass('hidden');
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
@@ -143,6 +147,7 @@ $(document).ready(function() {
   function selectForm() {
     $("#formTable").removeClass('hidden');
     $("#groupTable").addClass('hidden');
+    $("#commonTable").addClass('hidden');
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
@@ -153,6 +158,7 @@ $(document).ready(function() {
   function selectGroup() {
     $("#formTable").addClass('hidden');
     $("#groupTable").removeClass('hidden');
+    $("#commonTable").addClass('hidden');
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
@@ -163,6 +169,7 @@ $(document).ready(function() {
   function selectBc() {
     $("#formTable").addClass('hidden');
     $("#groupTable").addClass('hidden');
+    $("#commonTable").addClass('hidden');
     $("#bcTable").removeClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
@@ -173,6 +180,7 @@ $(document).ready(function() {
   function selectBcItem() {
     $("#formTable").addClass('hidden');
     $("#groupTable").addClass('hidden');
+    $("#commonTable").addClass('hidden');
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").removeClass('hidden');
     $("#questionTable").addClass('hidden');
@@ -183,6 +191,7 @@ $(document).ready(function() {
   function selectQuestion() {
     $("#formTable").addClass('hidden');
     $("#groupTable").addClass('hidden');
+    $("#commonTable").addClass('hidden');
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").removeClass('hidden');
@@ -193,6 +202,7 @@ $(document).ready(function() {
   function selectPlaceholder() {
     $("#formTable").addClass('hidden');
     $("#groupTable").addClass('hidden');
+    $("#commonTable").addClass('hidden');
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
@@ -203,11 +213,23 @@ $(document).ready(function() {
   function selectCl() {
     $("#formTable").addClass('hidden');
     $("#groupTable").addClass('hidden');
+    $("#commonTable").addClass('hidden');
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
     $("#placeholderTable").addClass('hidden');
     $("#clTable").removeClass('hidden');
+  }
+
+  function selectCommon() {
+    $("#formTable").addClass('hidden');
+    $("#groupTable").addClass('hidden');
+    $("#commonTable").removeClass('hidden');
+    $("#bcTable").addClass('hidden');
+    $("#bcItemTable").addClass('hidden');
+    $("#questionTable").addClass('hidden');
+    $("#placeholderTable").addClass('hidden');
+    $("#clTable").addClass('hidden');
   }
   
   function displayForm(node) {
@@ -235,6 +257,8 @@ $(document).ready(function() {
 
   function displayBcItem(node) {
     document.getElementById("bcItemLabel").innerHTML = node.name;
+    document.getElementById("bcItemEnabled").innerHTML = node.property_reference.reference.enabled;
+    document.getElementById("bcItemOptional").innerHTML = node.property_reference.reference.optional;
     document.getElementById("bcItemQText").innerHTML = node.qText;
     document.getElementById("bcItemDatatype").innerHTML = node.datatype;
     document.getElementById("bcItemFormat").innerHTML = node.format;
@@ -264,6 +288,14 @@ $(document).ready(function() {
   function displayCl(node) {
     document.getElementById("clIdentifier").innerHTML = node.identifier;
     document.getElementById("clSubmission").innerHTML = node.name;
+    document.getElementById("clEnabled").innerHTML = node.reference.enabled;
+    document.getElementById("clOptional").innerHTML = node.reference.optional;
+  }
+
+  function displayCommon(node) {
+    document.getElementById("commonLabel").innerHTML = node.label;
+    //getMarkdown(document.getElementById("commonCompletion"), node.completion);
+    //getMarkdown(document.getElementById("commonNote"), node.note);
   }
   
 });
