@@ -48,6 +48,7 @@ class Reports::PdfReport < Prawn::Document
       style(row(1), :size => 11)
       style(column(0), :font_style => :bold)
       cells.border_width = 0
+      cells.padding = 2
     end
   end
 

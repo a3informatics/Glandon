@@ -133,6 +133,9 @@ Rails.application.routes.draw do
       get :acrf
       get :crf
       get :markdown
+      get :crf_report
+      get :acrf_report
+      get :full_crf_report
       #get :test
       get :clone
       get :export_json

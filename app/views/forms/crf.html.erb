@@ -1,9 +1,7 @@
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "CRF:", :item => @form} %>
 <div class="col-md-8" style="padding-right:20px; border-right: 1px solid #ccc;">
     <%= @form.crf.html_safe %>
-</div>
-<div class="col-md-4">
-    <div>
-        <%= link_to "Close", view_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
-    </div>
+    <%= link_to "Report", crf_report_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+    <%= link_to "Full Report", full_crf_report_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+    <%= link_to "Close", view_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
 </div>

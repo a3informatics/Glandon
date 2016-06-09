@@ -12,6 +12,92 @@ class Form < IsoManagedNew
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
+  @@domain_map = {
+    "AD" => "Analysis Dataset",
+    "AE" => "Adverse Events",
+    "AG" => "Procedure Agents",
+    "AU" => "Autopsy",
+    "AX" => "Non-Compliant ADaM Datasets",
+    "BE" => "Biospecimen Events",
+    "BM" => "Bone Measurements",
+    "BR" => "Biopsy",
+    "BS" => "Biospecimen",
+    "CE" => "Clinical Events",
+    "CM" => "Concomitant Meds",
+    "CO" => "Comments",
+    "CV" => "Cardiovascular System Findings",
+    "DA" => "Drug Accountability",
+    "DD" => "Death Diagnosis",
+    "DE" => "Device Events",
+    "DI" => "Device Identifiers",
+    "DM" => "Demographics",
+    "DO" => "Device Properties",
+    "DP" => "Developmental Milestone",
+    "DR" => "Device to Subject Relationship",
+    "DS" => "Disposition",
+    "DT" => "Device Tracking and Disposition",
+    "DU" => "Device-In-Use",
+    "DV" => "Protocol Deviations",
+    "DX" => "Device Exposure",
+    "ED" => "Endocrine System Findings",
+    "EG" => "Electrocardiogram",
+    "EX" => "Exposure",
+    "FA" => "Findings About Events or Interventions",
+    "FH" => "Family History",
+    "FT" => "Functional Tests",
+    "GI" => "Gastrointestinal System Findings",
+    "HM" => "Hematopoietic System Findings",
+    "HO" => "Healthcare Encounters",
+    "HU" => "Healthcare Resource Utilization",
+    "IE" => "Inclusion/Exclusion",
+    "IG" => "Integumentary System Findings",
+    "IM" => "Immune System Findings",
+    "IS" => "Immunogenicity Specimen Assessments",
+    "LB" => "Laboratory Data",
+    "MB" => "Microbiology",
+    "MH" => "Medical History",
+    "MI" => "Microscopic Findings",
+    "MK" => "Musculoskeletal Findings, Connective and Soft Tissue Findings",
+    "ML" => "Meal Data",
+    "MO" => "Morphology Findings",
+    "MS" => "Microbiology Susceptibility",
+    "NV" => "Nervous System Findings",
+    "PB" => "Pharmacogenomics Biomarker",
+    "PC" => "Pharmacokinetic Concentration",
+    "PE" => "Physical Exam",
+    "PF" => "Pharmacogenomics Findings",
+    "PG" => "Pharmacogenomics/Genetics Methods and Supporting Information",
+    "PP" => "Pharmacokinetic Parameters",
+    "PR" => "Procedure",
+    "PS" => "Protocol Summary for PGx",
+    "PT" => "Pharmacogenomics Trial Characteristics",
+    "QS" => "Questionnaires",
+    "RE" => "Respiratory System Findings",
+    "RP" => "Reproductive System Findings",
+    "RS" => "Disease Response",
+    "SB" => "Subject Biomarker",
+    "SC" => "Subject Characteristics",
+    "SE" => "Subject Element",
+    "SG" => "Surgery",
+    "SK" => "Skin Test",
+    "SL" => "Sleep Polysomnography Data",
+    "SR" => "Skin Response",
+    "SU" => "Substance Use",
+    "SV" => "Subject Visits",
+    "TA" => "Trial Arms",
+    "TE" => "Trial Elements",
+    "TF" => "Tumor Findings",
+    "TI" => "Trial Inclusion/Exclusion Criteria",
+    "TP" => "Trial Paths",
+    "TR" => "Tumor Results",
+    "TS" => "Trial Summary",
+    "TU" => "Tumor Identifier",
+    "TV" => "Trial Visits",
+    "TX" => "Trial Sets",
+    "UR" => "Urinary System Findings",
+    "VR" => "Viral Resistance Findings",
+    "VS" => "Vital Signs" }
+
   def initialize(triples=nil, id=nil)
     self.groups = Array.new
     self.label = "New Form"
@@ -132,70 +218,6 @@ class Form < IsoManagedNew
     return object
   end
 
-  def annotation
-    results = Array.new
-    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
-      "SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE \n" +
-      "{ \n " +
-      "  ?node1 bd:basedOn ?node2 . \n " +
-      "  ?node1 rdf:type bd:Variable . \n " +
-      "  ?node2 mms:dataElementName ?sdtmTopicName . \n " +
-      "  ?node1 bd:hasProperty ?node4 . \n " +
-      "  ?node4 (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
-      "  ?node4 cbc:hasValue ?valueRef . \n " +
-      "  ?valueRef cbc:value ?sdtmTopicValueObj . \n " +
-      "  ?sdtmTopicValueObj iso25964:identifier ?sdtmTopicValue . \n " +
-      "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +
-      "  {\n " +
-      "    SELECT ?form ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName WHERE \n " +
-      "    { \n " + 
-      "      ?var bd:basedOn ?col . \n " +     
-      "      ?col mms:dataElementName ?sdtmVarName . \n " +     
-      "      ?col mms:context ?dataset . \n " +     
-      "      ?dataset mms:contextLabel ?domain . \n " +     
-      "      ?node5 mms:context ?dataset . \n " +     
-      "      ?node5 cdisc:dataElementRole <http://rdf.cdisc.org/std/sdtm-1-2#Classifier.TopicVariable> . \n " +     
-      "      ?node5 mms:dataElementName ?sdtmTopicName . \n " +     
-      "      { \n " +
-      "        SELECT ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?dataset ?var ?gord ?pord WHERE \n " + 
-      "        { \n " +    
-      "          :" + self.id + " (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group . \n " +     
-      "          ?group bf:ordinal ?gord . \n " +      
-      "          ?group (bf:hasItem|bf:hasCommonItem)%2B ?item . \n " +        
-      "          ?item bf:hasProperty ?x . \n " +             
-      "          ?x bo:hasProperty ?bcProperty  . \n " +      
-      "          ?var bd:hasProperty ?bcProperty . \n " +     
-      "          ?bcProperty (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
-      "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
-      "          ?bcProperty cbc:ordinal ?pord . \n " +     
-      "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
-      "          ?si isoI:identifier ?bcIdent . \n " +     
-      "        }  \n " + 
-      "      } \n " +
-      "    } \n " +
-      "  } \n " +
-      "} ORDER BY ?gord ?pord \n " 
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      item = ModelUtility.getValue('item', true, node)
-      domain = ModelUtility.getValue('domain', false, node)
-      sdtm_var = ModelUtility.getValue('sdtmVarName', false, node)
-      sdtm_topic = ModelUtility.getValue('sdtmTopicName', false, node)
-      sdtm_topic_value = ModelUtility.getValue('sdtmTopicSub', false, node)
-      if item != ""
-        results << {
-          :id => ModelUtility.extractCid(item), :namespace => ModelUtility.extractNs(item), 
-          :domain => domain, :sdtm_variable => sdtm_var, :sdtm_topic_variable => sdtm_topic, :sdtm_topic_value => sdtm_topic_value
-        }
-      end
-    end
-    return results
-  end
-
   def crf
     form = self.to_api_json
     html = crf_node(form)
@@ -204,11 +226,21 @@ class Form < IsoManagedNew
 
   def acrf
     form = self.to_api_json
-    #ConsoleLogger::log(C_CLASS_NAME,"acrf_new","Form=" + form.to_s)       
-    annotations = self.annotation
-    #ConsoleLogger::log(C_CLASS_NAME,"acrf_new","Annotations=" + annotations.to_json.to_s)       
+    annotations = Array.new
+    annotations += bc_annotations
+    annotations += question_annotations(form)
     html = crf_node(form, annotations)
     return html
+  end
+
+  def report(options, user)
+    form = self.to_api_json
+    annotations = Array.new
+    if options[:annotate]
+      annotations += bc_annotations
+      annotations += question_annotations(form)
+    end
+    pdf = Reports::CrfReport.new(form, options, annotations, user)
   end
 
   def self.impact(params)
@@ -238,17 +270,6 @@ class Form < IsoManagedNew
     end
     return results
   end
-
-  #def d3
-  #  ig = 0
-  #  result = FormNode.new(self.id, self.namespace, "Form", self.label, self.label, self.identifier, "", "", 0, true)
-  #  self.groups.each do |group|
-  #    result[:children][ig] = group.d3(ig)
-  #    ig += 1
-  #  end
-  #  result[:save] = result[:children]
-  #  return result
-  #end
 
   def to_api_json
     result = super
@@ -335,9 +356,15 @@ private
       html += '<td colspan="2"><h4>' + node[:label].to_s + '</h4></td>'
       if annotations != nil
         html += '<td><font color="red"><h4>' 
-        domains = annotations.uniq {|entry| entry[:domain] }
+        domains = annotations.uniq {|entry| entry[:domain_prefix] }
         domains.each do |domain|
-          html += domain[:domain].to_s + '<br/>'
+          ConsoleLogger::log(C_CLASS_NAME,"crf_node","domain=" + domain.to_json.to_s)
+          suffix = ""
+          prefix = domain[:domain_prefix]
+          if domain[:domain_long_name] != ""
+            suffix = "=" + domain[:domain_long_name]
+          end
+          html += domain[:domain_prefix].to_s + suffix + '<br/>'
         end
         html += '</h4></font></td>'
       else
@@ -368,11 +395,13 @@ private
           html += '<th>' + child[:qText] + '</th>'
         end 
         html += '</tr>'
-        html += '<tr>'
-        node[:children].each do |child|
-          html += '<td><font color="red">' + child[:mapping] + '</font></td>'
-        end 
-        html += '</tr>'
+        if annotations != nil
+          html += '<tr>'
+          node[:children].each do |child|
+            html += '<td><font color="red">' + child[:mapping] + '</font></td>'
+          end 
+          html += '</tr>'
+        end
         html += '<tr>'
         node[:children].each do |child|
           html += input_field(child, annotations)
@@ -476,6 +505,136 @@ private
     end
     html += '</td>'
     return html
+  end
+
+  def bc_annotations()
+    ConsoleLogger::log(C_CLASS_NAME,"bc_annotations", "*****Entry*****")
+    results = Array.new
+    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
+      "SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE \n" +
+      "{ \n " +
+      "  ?node1 bd:basedOn ?node2 . \n " +
+      "  ?node1 rdf:type bd:Variable . \n " +
+      "  ?node2 mms:dataElementName ?sdtmTopicName . \n " +
+      "  ?node1 bd:hasProperty ?node4 . \n " +
+      "  ?node4 (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
+      "  ?node4 cbc:hasValue ?valueRef . \n " +
+      "  ?valueRef cbc:value ?sdtmTopicValueObj . \n " +
+      "  ?sdtmTopicValueObj iso25964:identifier ?sdtmTopicValue . \n " +
+      "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +
+      "  {\n " +
+      "    SELECT ?form ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName WHERE \n " +
+      "    { \n " + 
+      "      ?var bd:basedOn ?col . \n " +     
+      "      ?col mms:dataElementName ?sdtmVarName . \n " +     
+      "      ?col mms:context ?dataset . \n " +     
+      "      ?dataset mms:contextName ?domain . \n " +     
+      "      ?node5 mms:context ?dataset . \n " +     
+      "      ?node5 cdisc:dataElementRole <http://rdf.cdisc.org/std/sdtm-1-2#Classifier.TopicVariable> . \n " +     
+      "      ?node5 mms:dataElementName ?sdtmTopicName . \n " +     
+      "      { \n " +
+      "        SELECT ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?dataset ?var ?gord ?pord WHERE \n " + 
+      "        { \n " +    
+      "          :" + self.id + " (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group . \n " +     
+      "          ?group bf:ordinal ?gord . \n " +      
+      "          ?group (bf:hasItem|bf:hasCommonItem)%2B ?item . \n " +        
+      "          ?item bf:hasProperty ?x . \n " +             
+      "          ?x bo:hasProperty ?bcProperty  . \n " +      
+      "          ?var bd:hasProperty ?bcProperty . \n " +     
+      "          ?bcProperty (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
+      "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
+      "          ?bcProperty cbc:ordinal ?pord . \n " +     
+      "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
+      "          ?si isoI:identifier ?bcIdent . \n " +     
+      "        }  \n " + 
+      "      } \n " +
+      "    } \n " +
+      "  } \n " +
+      "} ORDER BY ?gord ?pord \n " 
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      ConsoleLogger::log(C_CLASS_NAME,"bc_annotations", "node=" + node.to_json.to_s)
+      item = ModelUtility.getValue('item', true, node)
+      domain = ModelUtility.getValue('domain', false, node)
+      sdtm_var = ModelUtility.getValue('sdtmVarName', false, node)
+      sdtm_topic = ModelUtility.getValue('sdtmTopicName', false, node)
+      sdtm_topic_value = ModelUtility.getValue('sdtmTopicSub', false, node)
+      domain_long_name = ""
+      if item != ""
+        #ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","domain=" + domain.to_s)
+        if @@domain_map.has_key?(domain)
+          domain_long_name = @@domain_map[domain]
+          #ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","domain long name(1)=" + domain_long_name.to_s)
+        end
+        #ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","domain long name(2)=" + domain_long_name.to_s)
+        results << {
+          :id => ModelUtility.extractCid(item), :namespace => ModelUtility.extractNs(item), 
+          :domain_prefix => domain, :domain_long_name => domain_long_name, :sdtm_variable => sdtm_var, :sdtm_topic_variable => sdtm_topic, :sdtm_topic_value => sdtm_topic_value
+        }
+      end
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","results=" + results.to_json.to_s)
+    return results
+  end
+
+  def question_annotations(node)
+    results = Array.new
+    if node[:type] == "Form"
+      node[:children].each do |child|
+        results += question_annotations(child)
+      end
+    elsif node[:type] == "CommonGroup"
+      node[:children].each do |child|
+        results += question_annotations(child)
+      end
+    elsif node[:type] == "Group"
+      node[:children].each do |child|
+        results += question_annotations(child)
+      end
+    elsif node[:type] == "BCGroup"
+      node[:children].each do |child|
+        results += question_annotations(child,)
+      end
+    elsif node[:type] == "Placeholder"
+      node[:children].each do |child|
+        results += question_annotations(child)
+      end
+    elsif node[:type] == "Question"
+      mapping = node[:mapping].to_s
+      domain_long_name = ""
+      domain_prefix = domain_from_mapping(mapping)
+      if @@domain_map.has_key?(domain_prefix)
+        domain_long_name = @@domain_map[domain_prefix]
+      end
+      results << {
+          :id => node[:id], :namespace => node[:namespace], 
+          :domain_prefix => domain_prefix, :domain_long_name => domain_long_name, 
+          :sdtm_variable => mapping, :sdtm_topic_variable => "", :sdtm_topic_value => ""
+        }
+    elsif node[:type] == "BCItem"
+      # Ignore
+    elsif node[:type] == "CL"
+      # Ignore
+    end
+    return results
+  end
+
+  # TODO: Very simple implementation at the moment
+  def domain_from_mapping(mapping)
+    words = mapping.split(/\W+/)
+    words.each do |word|
+      if word.upcase && (word.length) >= 5 && (word.length <= 8)
+        prefix = word[0,2]
+        if @@domain_map.has_key?(prefix)
+          return prefix
+        end
+      end
+    end
+    return ""
   end
 
 end
