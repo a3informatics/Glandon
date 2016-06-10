@@ -211,7 +211,7 @@ class Form::Item < IsoConceptNew
       if json.has_key?(:children)
         value_ordinal = 1
         json[:children].each do |key, child|
-          value = child[:value_reference]
+          value = child[:reference]
           ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'VR' + value_ordinal.to_s
           sparql.triple("", id, schema_prefix, "hasValue", "", ref_id.to_s)
           sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
