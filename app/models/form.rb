@@ -12,6 +12,7 @@ class Form < IsoManagedNew
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
+  #TODO: This should be a query from the domains
   @@domain_map = {
     "AD" => "Analysis Dataset",
     "AE" => "Adverse Events",
@@ -240,7 +241,7 @@ class Form < IsoManagedNew
       annotations += bc_annotations
       annotations += question_annotations(form)
     end
-    pdf = Reports::CrfReport.new(form, options, annotations, user)
+    pdf = Reports::CrfReport.create(form, options, annotations, user)
   end
 
   def self.impact(params)

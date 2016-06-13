@@ -112,6 +112,11 @@ jQuery.validator.addMethod("label", function(value, element) {
   return result
 }, "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,_-/\\() special characters only.");
 
+jQuery.validator.addMethod("question", function(value, element) {
+  var result = /^[A-Za-z0-9 .?:]+$/.test( value );
+  return result
+}, "Please enter valid question text. Upper and lower case case alphanumerics, space and .?: special characters only.");
+
 jQuery.validator.addMethod("freeText", function(value, element) {
   var result = /^[A-Za-z0-9 .!?,_\-\/\\()\r\n]+$/.test( value );
   return result
@@ -132,7 +137,7 @@ function validatorDefaults () {
     unhighlight: function(element) {
       $(element).closest('.form-group').removeClass('has-error');
     },
-    ignore: [],
+    //ignore: [],
     errorElement: 'span',
     errorClass: 'help-block',
     errorPlacement: function(error, element) {

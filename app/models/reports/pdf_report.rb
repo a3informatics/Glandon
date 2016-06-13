@@ -68,6 +68,18 @@ class Reports::PdfReport < Prawn::Document
     number_pages string, options
   end
 
-  # ... More helpers
+  def transform_html(html)
+    ConsoleLogger.log(C_CLASS_NAME, "from_html", "html=" + html.to_s)
+    #fragment = Nokogiri::HTML::fragment(html)
+    #ConsoleLogger.log(C_CLASS_NAME, "from_html", "fragment=" + fragment.to_json.to_s)
+    html = sanitize html, tags: %w(b h1 h2 h3 h4 li ul ol small i u)
+    ConsoleLogger.log(C_CLASS_NAME, "from_html", "html=" + html.to_s)
+    #fragment.traverse do |node|
+    #  if node.text? && (node.parent.name == "p")
+    #    ConsoleLogger.log(C_CLASS_NAME, "from_markdown", "node=" + node.content.to_s)
+    #  end
+    #end
+    return html
+  end
 
 end

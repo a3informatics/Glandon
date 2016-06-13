@@ -128,8 +128,12 @@
                 <div>
                     <div>
                         <div class="form-group">
+                            <label for="questionText">Label:</label>
+                            <input type="text" class="form-control" id="questionLabel" name="Question Label">
+                        </div>
+                        <div class="form-group">
                             <label for="questionText">Question Text:</label>
-                            <input type="text" class="form-control" id="questionText">
+                            <input type="text" class="form-control" id="questionText" name="Question Text">
                         </div>
                         <div class="form-group">
                             <div class="checkbox">
@@ -140,7 +144,7 @@
                         </div>
                         <div class="form-group">
                             <label for="questionDatatype">Mapping:</label>
-                            <input type="text" class="form-control" id="questionMapping">
+                            <input type="text" class="form-control" id="questionMapping" name="questionMapping">
                         </div>
                         <div id="questionDatatype" class="col-sm-9">
                             <label for="questionDatatype">Datatype:</label><br/>
@@ -151,7 +155,7 @@
                               <input type="radio" name="dtRadio" value="F"> F
                             </label>
                             <label class="radio-inline">
-                              <input type="radio" name="dtRadio" value="C"> C
+                              <input type="radio" name="dtRadio" value="S"> S
                             </label>
                             <label class="radio-inline">
                               <input type="radio" name="dtRadio" value="CL"> CL
@@ -171,7 +175,7 @@
                         </div>
                         <div class="form-group  col-sm-3">
                             <label for="questionFormat">Format:</label>
-                            <input type="text" class="form-control" id="questionFormat">
+                            <input type="text" class="form-control" id="questionFormat" name="questionFormat">
                         </div>
                     </div>
                     <label for="questionClTable">Code List:</label>

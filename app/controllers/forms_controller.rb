@@ -109,7 +109,7 @@ class FormsController < ApplicationController
     authorize Form
     id = params[:id]
     namespace = params[:namespace]
-    form = Form.find(id, namespace)
+    form = Form.find(id, namespace, false)
     form.destroy
     redirect_to forms_path
   end
@@ -169,8 +169,9 @@ class FormsController < ApplicationController
   def full_crf_report
     authorize Form, :view?
     form = Form.find(params[:id], params[:namespace])
-    pdf = form.report({:annotate => true, :full => true}, current_user)
-    send_data pdf.render, filename: "#{form.owner}_#{form.identifier}_FullCRF.pdf", type: 'application/pdf', disposition: 'inline'
+    html = form.report({:annotate => true, :full => true}, current_user)
+    pdf = WickedPdf.new.pdf_from_string(html)
+    send_data pdf, filename: "#{form.owner}_#{form.identifier}_FullCRF.pdf", type: 'application/pdf', disposition: 'inline'
   end
 
   def markdown

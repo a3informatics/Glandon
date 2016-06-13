@@ -1,270 +1,300 @@
-class Reports::CrfReport < Reports::PdfReport
+class Reports::CrfReport
 
   C_CLASS_NAME = "Report::CrfReport"
 
-  def initialize(node, options, annotations, user)
-    ConsoleLogger.log(C_CLASS_NAME, "Initialize", "Node=" + node.to_json.to_s)
-    title = "#{node[:label]}\n#{node[:identifier]}"
-    super('CRF', title, user)
-    start_new_page(:layout => :portrait)
-    # Build data    
+  def self.create(node, options, annotations, user)
+    html = style()
+    html += title_page(node, user)
+    # Create the form. Build the completion instructions and notes
+    # as we do.
     ci_nodes = Array.new
     note_nodes = Array.new
-    table_data = crf_node(node, options, annotations, ci_nodes, note_nodes)
-    # Output table
-    #table(table_data, :cell_style => { :inline_format => true }, :header => true, :column_widths => [150, 150, 250])  do
-    table(table_data, :cell_style => { :inline_format => true}, :header => true, :column_widths => [125])  do
-      cells.padding = 5
-      cells.borders = []
-      row(0).background_color = "F0F0F0"
-      style(row(0), :size => 14, :font_style => :bold)
-    end
+    html += "<h3>Form</>" 
+    html += crf_node(node, options, annotations, ci_nodes, note_nodes)
     # Completion instructions
     if ci_nodes.length > 0
-      data = format_nodes(ci_nodes, {:form => :formCompletion, :default => :completion})
-      data.insert(0, ["Index", "Element", "Completion Instruction"])
-      start_new_page(:layout => :portrait)
-      table(data, :cell_style => { :inline_format => true}, :header => true, :column_widths => [75])  do
-        cells.padding = 5
-        cells.borders = []
-        row(0).background_color = "F0F0F0"
-        style(row(0), :size => 14, :font_style => :bold)
-      end
+      html += page_break
+      html += "<h3>Completion Instructions</>"
+      html += "<table class=\"ci\">"
+      ci_nodes.each do |node|
+        html += "<tr><td><strong>#{node[:label]}</strong></td><td>#{node[:text]}</td></tr>"
+      end 
+      html += "</table>"
     end
     # Notes
-    if note_nodes.length > 0 
-      data = format_nodes(note_nodes, {:form => :formNote, :default => :note})
-      data.insert(0, ["Index", "Element", "Note"])
-      start_new_page(:layout => :portrait)
-      table(data, :cell_style => { :inline_format => true}, :header => true, :column_widths => [75])  do
-        cells.padding = 5
-        cells.borders = []
-        row(0).background_color = "F0F0F0"
-        style(row(0), :size => 14, :font_style => :bold)
-      end
+    if note_nodes.length > 0
+      html += page_break
+      html += "<h3>Notes</>"
+      html += "<table class=\"note\">"
+      note_nodes.each do |node|
+        html += "<tr><td>#{node[:label]}</td><td>#{node[:text]}</td></tr>"
+      end 
+      html += "</table>"
     end
-    # Footer
-    footer
+    ConsoleLogger.log(C_CLASS_NAME, "create", "HTML=" + html.to_s)
+    return html
   end
 
 private
 
-  def crf_node(node, options, annotations, ci_nodes, note_nodes)
-    #ConsoleLogger.log(C_CLASS_NAME, "crfNode", "Node=" + node.to_s)
-    rows = Array.new
+  def self.style
+    html = "<style>"
+    html += "h1 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 24pt; line-height: 34pt; }\n"
+    html += "h1.title { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 24pt; line-height: 30pt; }\n"
+    html += "h2 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 18pt; line-height: 28pt; }\n"
+    html += "h2.title { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 18pt; line-height: 20pt; text-align: center; }\n"
+    html += "h3 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 16pt; line-height: 26pt; }\n"
+    html += "h4 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 14pt; line-height: 24pt; }\n"
+    html += "h5 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 12pt; line-height: 22pt; }\n"
+    html += "p { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 11pt; }\n"
+    html += "table.form_table { border: 1px solid black; width: 100%;}\n"
+    html += "table.form_table tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
+    html += "table.form_table td:first-child{ font: bold; }\n"
+    html += "table.form_repeat { border: 1px solid black; width: 100%;}\n"
+    html += "table.form_repeat th { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; }\n"
+    html += "table.form_repeat tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top;}\n"
+    html += "table.details tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 11pt; }\n"
+    html += "table.ci { border: 1px solid black; width: 100%; border-collapse: collapse;}\n"
+    html += "table.ci tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; font: bold; text-align: left; vertical-align: top; padding: 5px; }\n"
+    html += "table.ci td:first-child{ border-right: 1px solid #D8D8D8;}\n"
+    html += "table.note { border: 1px solid black; width: 100%;}\n"
+    html += "table.note tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; font: bold; text-align: left; vertical-align: top; }\n"
+    html += "table.input_field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
+    html += "table.input_field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; vertical-align: center; padding: 5px; }\n"
+    html += "table.input_field td:not(:last-child){border-right: 1px dashed}\n"
+    html += "table.cl_field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: center; padding: 2px; }\n"
+    html += "table.cl_field td:first-child{ border: 1px solid black; }\n"
+    html += "img.center { display: block; margin-left: auto; margin-right: auto; }"
+    html += "</style>"
+    return html
+  end
+
+  def self.title_page(node, user)
+    name = APP_CONFIG['organization_title']
+    title = "#{node[:label]}<br>#{node[:identifier]}"
+    image_file = APP_CONFIG['organization_image_file']
+    dir = Rails.root.join("app", "assets", "images")
+    file = File.join(dir, image_file)
+    time_generated = Time.now
+    # Generate HTML
+    html = "<div style=\"text-align: center;\"><img src=\"#{file}\" style=\"height:75px;\"></div>"
+    html += "<h2 class=\"title\">#{name}</h2>"
+    html += "<br>" * 10
+    html += "<h1 class=\"title\" align=\"center\">CRF<br>#{title}</h1>"
+    html += "<br>" * 20
+    html += "<table class=\"details\" align=\"right\"><tr><td>Run at:</td><td>#{time_generated.strftime("%Y-%b-%d, %H:%M:%S")}</td></tr><tr><td>Run by:</td><td>#{user.email}</td></tr></table>"
+    html += page_break
+    html += page_break
+    return html
+  end
+
+  def self.crf_node(node, options, annotations, ci_nodes, note_nodes)
+    html = ""
+    #ConsoleLogger.log("Mdr", "crfNode", "Node=" + node.to_s)
     if node[:type] == "Form"
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
-      domain_annotation = ""
+      html += '<table class="form_table">'
+      html += '<tr>'
+      html += '<td colspan="2"><h4>' + node[:label].to_s + '</h4></td>'
       if options[:annotate] 
-        domains = annotations.uniq {|entry| entry[:domain] }
+        html += '<td><font color="red"><h4>' 
+        domains = annotations.uniq {|entry| entry[:domain_prefix] }
         domains.each do |domain|
+          ConsoleLogger::log(C_CLASS_NAME,"crf_node","domain=" + domain.to_json.to_s)
           suffix = ""
-          prefix = domain[:domain_prefix].to_s
-          if domain[:domain_long_name].to_s != ""
-            suffix = "=" + domain[:domain_long_name].to_s
+          prefix = domain[:domain_prefix]
+          if domain[:domain_long_name] != ""
+            suffix = "=" + domain[:domain_long_name]
           end
-          domain_annotation += domain[:domain_prefix].to_s + suffix + "\n"
+          html += domain[:domain_prefix].to_s + suffix + '<br/>'
         end
+        html += '</h4></font></td>'
+      else
+        html += '<td></td>'
       end
-      rows << [{:colspan => 2, :content => node[:label].to_s}, "<color rgb='FF0000'>#{domain_annotation}</color>"]
+      html += '</tr>'
       node[:children].each do |child|
-        rows += crf_node(child, options, annotations, ci_nodes, note_nodes)
+        html += crf_node(child, options, annotations, ci_nodes, note_nodes)
       end
+      html += '</table>'
     elsif node[:type] == "CommonGroup"
-      rows << [{:colspan => 3, :content => node[:label].to_s}]
+      #ConsoleLogger::log(C_CLASS_NAME,"crf_node","node=" + node.to_json.to_s)
+      html += '<tr>'
+      html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
+      html += '</tr>'
       node[:children].each do |child|
-        rows += crf_node(child, options, annotations, ci_nodes, note_nodes)
+        html += crf_node(child, options, annotations, ci_nodes, note_nodes)
       end
     elsif node[:type] == "Group"
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
-      rows << [{:colspan => 3, :content => node[:label].to_s}]
+      html += '<tr>'
+      html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
+      html += '</tr>'
       if node[:repeating]
-        rows << [{:colspan => 3, :content => "Repeating to go here"}]
-      #  html += '<tr>'
-      #  html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
-      #  html += '<tr>'
-      #  node[:children].each do |child|
-      #    html += '<th>' + child[:qText] + '</th>'
-      #  end 
-      #  html += '</tr>'
-      #  if options[:annotate]
-      #    html += '<tr>'
-      #    node[:children].each do |child|
-      #      html += '<td><font color="red">' + child[:mapping] + '</font></td>'
-      #    end 
-      #    html += '</tr>'
-      #  end
-      #  html += '<tr>'
-      #  node[:children].each do |child|
-      #    html += input_field(child, options, annotations)
-      #  end 
-      #  html += '</tr>'
-      #  html += '</table></td>'
-      #  html += '</tr>'
+        html += '<tr>'
+        html += '<td colspan="3"><table class="form_repeat">'
+        html += '<tr>'
+        node[:children].each do |child|
+          html += '<th>' + child[:qText] + '</th>'
+        end 
+        html += '</tr>'
+        if options[:annotate] 
+          html += '<tr>'
+          node[:children].each do |child|
+            html += '<td><font color="red">' + child[:mapping] + '</font></td>'
+          end 
+          html += '</tr>'
+        end
+        html += '<tr>'
+        node[:children].each do |child|
+          html += input_field(child)
+        end 
+        html += '</tr>'
+        html += '</table></td>'
+        html += '</tr>'
       else
         node[:children].each do |child|
-          rows += crf_node(child, options, annotations, ci_nodes, note_nodes)
+          html += crf_node(child, options, annotations, ci_nodes, note_nodes)
         end
       end
     elsif node[:type] == "BCGroup"
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
-      rows << [{:colspan => 3, :content => node[:label].to_s}]
+      html += '<tr>'
+      html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
+      html += '</tr>'
       node[:children].each do |child|
-        rows += crf_node(child, options, annotations, ci_nodes, note_nodes)
+        html += crf_node(child, options, annotations, ci_nodes, note_nodes)
       end
     elsif node[:type] == "Placeholder"
-      add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
-      add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
-      rows << [{:colspan => 3, :content => "Placeholder Text\n#{node[:free_text].to_s}"}]
+      html += '<tr>'
+      html += '<td colspan="3"><h5>Placeholder Text</h5><p><i>' + node[:free_text].to_s + '</i></p></td>'
+      html += '</tr>'
       node[:children].each do |child|
-        rows += crf_node(child, options, annotations, ci_nodes, note_nodes)
+        html += crf_node(child, options, annotations, ci_nodes, note_nodes)
       end
     elsif node[:type] == "Question"
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
-      if options[:annotate]
-        rows << ["#{node[:qText].to_s}","<color rgb='FF0000'>#{node[:mapping].to_s}</color>", input_field(node)]
+      ConsoleLogger::log(C_CLASS_NAME,"crf_node", "node=" + node.to_json.to_s)
+      html += '<tr>'
+      html += '<td>' + node[:qText].to_s + '</td>'
+      if options[:annotate] 
+        html += '<td><font color="red">' + node[:mapping].to_s + '</font></td>'
       else
-        rows << ["#{node[:qText].to_s}","", input_field(node)]
+        html += '<td></td>'
       end
+      html += input_field(node)
+      html += '</tr>'
     elsif node[:type] == "BCItem"
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
-      if options[:annotate]
-        first = true
-        annotation_text = ""
+      html += '<tr>'
+      html += '<td>' + node[:qText].to_s + '</td>'
+      html += '<td>'
+      first = true
+      if options[:annotate] 
         entries = annotations.select {|item| item[:id] == node[:id]}
         entries.each do |entry|
           if !first
-            annotation_text += "\n"
+            html += '<br/>'
           end
-          annotation_text += entry[:sdtm_variable] + ' where ' + entry[:sdtm_topic_variable] + '=' + entry[:sdtm_topic_value]
+          html += '<font color="red">' + entry[:sdtm_variable] + ' where ' + entry[:sdtm_topic_variable] + '=' + entry[:sdtm_topic_value] + '</font>'
           first = false
         end
         node[:otherCommon].each do |child|
           entries = annotations.select {|item| item[:id] == child[:id]}
           entries.each do |entry|
             if !first
-              annotation_text += "\n"
+              html += '<br/>'
             end
-            annotation_text += entry[:sdtm_variable] + ' where ' + entry[:sdtm_topic_variable] + '=' + entry[:sdtm_topic_value]
+            html += '<font color="red">' + entry[:sdtm_variable] + ' where ' + entry[:sdtm_topic_variable] + '=' + entry[:sdtm_topic_value] + '</font>'
             first = false
           end
         end
-        rows << ["#{node[:qText].to_s}","<color rgb='FF0000'>#{annotation_text}</color>", input_field(node)]
-      else
-        rows << ["#{node[:qText].to_s}","", input_field(node)]
       end
+      html += '</td>'
+      html += input_field(node)
+      html += '</tr>'
     elsif node[:type] == "CL"
-      # Ignore, already processed.
+      # Ignore, processed.
     else
-      rows << ["Not Recognized: #{node[:type].to_s}","",""]
+      html += '<tr>'
+      html += '<td>Not Recognized: ' + node[:type].to_s + '</td>'
+      html += '<td></td>'
+      html += '<td></td>'
+      html += '</tr>'
     end
-    return rows
+    return html
   end
 
-  def input_field(node)
-    table = nil
+  def self.input_field(node)
+    html = "<td>"
     if node[:datatype] == "CL"
       values = Array.new
       node[:children].each do |child|
         values_ref = child[:reference]
         if values_ref[:enabled]
-          values << [ "", child[:label]]
-          values << [ "", ""]
+          ConsoleLogger::log(C_CLASS_NAME,"field_table", "Child=" + child.to_json.to_s)
+          values << "#{child[:preferred_term]}"
         end
       end
-      table = cl_table(values)
+      html += cl_table(values)
     elsif node[:datatype] == "D+T"
-      table = field_table(
-        ["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"], 
-        [:fill, :fill, :empty, :fill, :fill, :fill, :empty, :fill, :fill, :fill, :fill, :empty, :fill, :fill, :empty, :fill, :fill])
+      html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
     elsif node[:datatype] == "D"
-      table = field_table(
-        ["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"], 
-        [:fill, :fill, :empty, :fill, :fill, :fill, :empty, :fill, :fill, :fill, :fill])
+      html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
     elsif node[:datatype] == "T"
-      table = field_table(
-        ["H", "H", ":", "M", "M"], 
-        [:fill, :fill, :empty, :fill, :fill])
+      html += field_table(["H", "H", ":", "M", "M"])
     elsif node[:datatype] == "F"
-      table = field_table(
-        ["#", "#", "#", ".", "#", "#"], 
-        [:fill, :fill, :fill, :empty, :fill, :fill])
+      parts = node[:format].split('.')
+      major = parts[0].to_i
+      minor = parts[1].to_i
+      pattern = ["#"] * major
+      pattern[major-minor-1] = "."
+      html += field_table(pattern)
     elsif node[:datatype] == "I"
-      table = field_table(
-        ["#", "#", "#"], 
-        [:fill, :fill, :fill])
+      count = node[:format].to_i
+      html += field_table(["#"]*count)
     else
-      table = field_table(
-        ["?", "?", "?"], 
-        [:fill, :fill, :fill])
+      html += field_table(["?", "?", "?"])
     end
-    return table
+    html += "</td>"
+    return html
   end
 
-  def field_table(cell_content, cell_types)
-    # Make our 1-dim table into a 2-dim table
-    data = Array.new
-    data << cell_content
-    # Now create table
-    my_table = make_table(data) do
-      cells.padding = 2
-      cells.size = 8
-      style(row(0), :align => :center)
-      row(0).borders = [:left, :right]
-      row(0).width = 16
-      row(0).height = 16
-      cell_types.each_with_index do |cell_type, index|
-        if cell_type == :fill
-          row(0).column(index).borders = [:left, :right, :bottom]
-        end
-      end
+  def self.field_table(cell_content)
+    html = "<table class=\"input_field\"><tr>"
+    cell_content.each_with_index do |cell, index|
+      html += "<td>#{cell}</td>"
     end
-    return my_table
+    html += "</tr></table>"
+    ConsoleLogger::log(C_CLASS_NAME,"field_table", "HTML=" + html.to_s)
+    return html
   end
 
-  def cl_table(cell_content)
-    my_table = make_table(cell_content) do
-      cells.padding = 2
-      cells.size = 8
-      column(0).borders = []
-      column(1).borders = []
-      column(0).width = 12
-      column(0).height = 12
-      cell_content.each_with_index do |content, index|
-        if index % 2 == 0
-          row(index).column(0).borders = [:top, :left, :right, :bottom]
-        else
-          row(index).height = 5
-        end
-      end
+  def self.cl_table(cell_content)
+    html = "<table class=\"cl_field\">"
+    cell_content.each do |cell|
+      html += "<tr><td>&nbsp;&nbsp;</td><td>#{cell}</td></tr>"
     end
-    return my_table
+    html += "</table>"
+    return html
   end
 
-  def add_nodes(node, nodes, symbols)
+  def self.add_nodes(node, nodes, symbols)
     text = ""
     symbol = symbols[:default]
     symbol = symbols[:form] if node[:type] == "Form"
     text = node[symbol]
     ConsoleLogger::log(C_CLASS_NAME,"add_nodes", "Text=" + text.to_s)
-    nodes << node unless text.empty?
+    nodes << { :label => node[:label], :text => MarkdownEngine::render(text)} unless text.empty?
   end
 
-  def format_nodes(nodes, symbols)
-    rows = Array.new
-    nodes.each_with_index do |node, index|
-      text = ""
-      symbol = symbols[:default]
-      symbol = symbols[:form] if node[:type] == "Form"
-      text = node[symbol]
-      rows << [index+1, node[:label], text]
-    end
-    return rows
+  def self.page_break
+    return "<p style='page-break-after:always;'></p>"
   end
 
 end

@@ -136,7 +136,7 @@ class Form::Item < IsoConceptNew
           result[:children] << 
             { 
               :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => tc_ref.enabled, :optional => tc_ref.optional }, 
-              :label => cli.notation, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal 
+              :label => cli.label, :notation => cli.notation, :preferred_term => cli.preferredTerm, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal 
             }
         end
         ordinal += 1  
@@ -161,7 +161,7 @@ class Form::Item < IsoConceptNew
         result[:children] << 
           { 
             :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => cli_ref.enabled, :optional => cli_ref.optional }, 
-            :label => cli.notation, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal 
+            :label => cli.label, :notation => cli.notation, :preferred_term => cli.preferredTerm, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal 
           }
         ordinal += 1
       end

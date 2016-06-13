@@ -287,7 +287,8 @@ $(document).ready(function() {
 
   function displayCl(node) {
     document.getElementById("clIdentifier").innerHTML = node.identifier;
-    document.getElementById("clSubmission").innerHTML = node.name;
+    document.getElementById("clPreferredTerm").innerHTML = node.preferred_term;
+    document.getElementById("clSubmission").innerHTML = node.notation;
     document.getElementById("clEnabled").innerHTML = node.reference.enabled;
     document.getElementById("clOptional").innerHTML = node.reference.optional;
   }

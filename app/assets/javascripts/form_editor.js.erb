@@ -34,6 +34,7 @@ $(document).ready(function() {
   var clEnableElement = document.getElementById("clEnable");
   var clOptionalElement = document.getElementById("clOptional");
   var plTextElement = document.getElementById("placeholderText");
+  var questionLabelElement = document.getElementById("questionLabel");
   var questionTextElement = document.getElementById("questionText");
   var questionMappingElement = document.getElementById("questionMapping");
   var questionDatatypeElement = document.getElementById("questionDatatype");
@@ -71,6 +72,8 @@ $(document).ready(function() {
         groupLabel: {required: true, label: true },
         groupNote: {required: false, markdown: true},
         groupCompletion: {required: false, markdown: true},
+        "Question Label": {required: true, label: true },
+        "Question Text": {required: true, question: true },
         questionNote: {required: false, markdown: true},
         questionCompletion: {required: false, markdown: true},
         commonLabel: {required: true, label: true }
@@ -836,11 +839,12 @@ $(document).ready(function() {
   }
 
   function displayQuestion(node) {
+    questionLabelElement.value = node.data.label;
     questionTextElement.value = node.data.qText;
     questionOptionalElement.checked = node.data.optional;
     questionMappingElement.value= node.data.mapping;
     var $radios = $('input:radio[name=dtRadio]');
-    $radios.filter('[value=' + node.data.datatype +']').attr('checked', true);
+    $radios.filter('[value=' + node.data.datatype +']').prop('checked', true);
     questionFormatElement.value = node.data.format;
     questionCompletionElement.value = node.data.completion;
     questionNoteElement.value = node.data.note;
@@ -914,8 +918,10 @@ $(document).ready(function() {
     var row;
     var sourceCliNode;
     var cliNode;
+    node.data.label = questionLabelElement.value;
+    node.name = node.data.label;
     node.data.qText = questionTextElement.value;
-    node.data.optional = questionOptionalElement.value;
+    node.data.optional = questionOptionalElement.checked;
     node.data.mapping = questionMappingElement.value;
     node.data.datatype = $('input:radio[name=dtRadio]:checked').val();
     node.data.format = questionFormatElement.value;

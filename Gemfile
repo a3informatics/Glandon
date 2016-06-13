@@ -52,9 +52,10 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 # Delayed job
 gem 'delayed_job_active_record'
 
-# PDF gem
+# PDF gem. Prawn and Wicked_PDF. Prawn not doing everythign that is needed.
 gem 'prawn'
 gem 'prawn-table'
+gem 'wicked_pdf'
 
 # Rolify role management and Pundit authorization
 gem 'rolify'
