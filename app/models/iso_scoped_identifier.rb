@@ -131,7 +131,7 @@ class IsoScopedIdentifier
     xmlDoc.xpath("//result").each do |node|
       uri = ModelUtility.getValue('a', true, node)
       if uri != "" 
-        ConsoleLogger::log(C_CLASS_NAME,"versionExists?","exisits")
+        #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","exisits")
         result = true
       end
     end

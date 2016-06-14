@@ -15,7 +15,7 @@
 	<% else %>
 		<td></td>
 	<% end %>
-	<% if editPath != "" and item.edit? %>
+	<% if editPath != "" and item.edit? and item.current? %>
 		<td><%= link_to "Edit", editPath, :class => "btn btn-primary btn-xs" %></td>
 	<% else %>
 		<td></td>

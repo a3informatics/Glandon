@@ -641,6 +641,7 @@ class IsoManagedNew < IsoConceptNew
       :identifier => self.identifier, 
       :label => self.label, 
       :version => self.version,
+      :version_label => self.versionLabel,
       :state => self.registrationStatus,
       :children => [] 
     }

@@ -7,7 +7,7 @@ defaults: &defaults
   # User config
   paper_size:
    - type: enum
-     enum_values: A3 A4 LETTER
+     enum_values: A3 A4 Letter
      value: A4
      label: Paper Size
 

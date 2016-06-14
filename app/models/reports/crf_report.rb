@@ -3,60 +3,106 @@ class Reports::CrfReport
   C_CLASS_NAME = "Report::CrfReport"
 
   def self.create(node, options, annotations, user)
-    html = style()
+    paper_size = user.paper_size
+    html = page_header()
     html += title_page(node, user)
     # Create the form. Build the completion instructions and notes
     # as we do.
     ci_nodes = Array.new
     note_nodes = Array.new
-    html += "<h3>Form</>" 
-    html += crf_node(node, options, annotations, ci_nodes, note_nodes)
+    terminology = Array.new
+    html += "<h3>Form: #{node[:label]} <small>#{node[:identifier]} (#{node[:version_label]}, V#{node[:version]}, #{node[:state]})</small></h3>"
+    html += crf_node(node, options, annotations, ci_nodes, note_nodes, terminology)
     # Completion instructions
-    if ci_nodes.length > 0
+    if ci_nodes.length > 0 && options[:full] 
       html += page_break
-      html += "<h3>Completion Instructions</>"
+      html += "<h3>Completion Instructions</h3>"
       html += "<table class=\"ci\">"
-      ci_nodes.each do |node|
-        html += "<tr><td><strong>#{node[:label]}</strong></td><td>#{node[:text]}</td></tr>"
+      ci_nodes.each do |item|
+        node = item[:node]
+        if node[:optional]
+          html += "<tr class=\"warning\">"
+        else
+          html += "<tr>"
+        end
+        html += "<td><strong>#{node[:label]}</strong></td><td>#{item[:html]}</td></tr>"
       end 
       html += "</table>"
     end
     # Notes
-    if note_nodes.length > 0
+    if note_nodes.length > 0 && options[:full] 
       html += page_break
-      html += "<h3>Notes</>"
+      html += "<h3>Notes</h3>"
       html += "<table class=\"note\">"
-      note_nodes.each do |node|
-        html += "<tr><td>#{node[:label]}</td><td>#{node[:text]}</td></tr>"
+      note_nodes.each do |item|
+        node = item[:node]
+        if node[:optional]
+          html += "<tr class=\"warning\">"
+        else
+          html += "<tr>"
+        end
+        html += "<td><strong>#{node[:label]}</strong></td><td>#{item[:html]}</td></tr>"
       end 
       html += "</table>"
     end
+    # Notes
+    if terminology.length > 0 && options[:full] 
+      html += page_break
+      html += "<h3>Terminology</h3>"
+      html += "<table class=\"note\">"
+      html += "<thead><tr><td>Question</td><td>Identifier</td><td>Submission Value</td><td>Preferred Term</td></tr></thead>"
+      terminology.each do |node|
+        if node[:optional]
+          html += "<tr class=\"warning\">"
+        else
+          html += "<tr>"
+        end
+        length = node[:children].length == 0 ? 1 : node[:children].length
+        html += "<td rowspan=\"#{length}\"><strong>#{node[:label]}</strong></td>"
+        node[:children].each do |child|
+          values_ref = child[:reference]
+          if values_ref[:enabled]
+            html += "<td>#{child[:identifier]}</td><td>#{child[:notation]}</td><td>#{child[:preferred_term]}</td>"
+            if child != node[:children].last
+              html += "</tr><tr>"
+            end
+          end
+        end
+        html += "</tr>"
+      end 
+      html += "</table>"
+    end
+    html += page_footer()
     ConsoleLogger.log(C_CLASS_NAME, "create", "HTML=" + html.to_s)
-    return html
+    pdf = WickedPdf.new.pdf_from_string(html, :page_size => paper_size, :footer => {:font_size => "10", :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", :left => "", :center => "", :right => "[page] of [topage]"} )
+    return pdf
   end
 
 private
 
-  def self.style
-    html = "<style>"
+  def self.page_header
+    html = "<html><head>"
+    html += "<style>"
     html += "h1 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 24pt; line-height: 34pt; }\n"
-    html += "h1.title { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 24pt; line-height: 30pt; }\n"
+    html += "h1.title { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 24pt; line-height: 30pt; text-align: center; margin-top: 0; }\n"
     html += "h2 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 18pt; line-height: 28pt; }\n"
-    html += "h2.title { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 18pt; line-height: 20pt; text-align: center; }\n"
-    html += "h3 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 16pt; line-height: 26pt; }\n"
-    html += "h4 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 14pt; line-height: 24pt; }\n"
-    html += "h5 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 12pt; line-height: 22pt; }\n"
-    html += "p { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 11pt; }\n"
+    html += "h2.title { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 18pt; line-height: 24pt; text-align: center; margin-top: 0; }\n"
+    html += "h3 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 16pt; }\n"
+    html += "h4 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 14pt; }\n"
+    html += "h5 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 12pt; }\n"
+    html += "p { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; }\n"
+    html += "table tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
     html += "table.form_table { border: 1px solid black; width: 100%;}\n"
     html += "table.form_table tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
+    html += "table.form_table h4 { vertical-align: middle;}\n"
     html += "table.form_table td:first-child{ font: bold; }\n"
     html += "table.form_repeat { border: 1px solid black; width: 100%;}\n"
     html += "table.form_repeat th { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; }\n"
     html += "table.form_repeat tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top;}\n"
-    html += "table.details tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 11pt; }\n"
+    html += "table.details tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 11pt; text-align: left; vertical-align: top; padding: 1px; }\n"
     html += "table.ci { border: 1px solid black; width: 100%; border-collapse: collapse;}\n"
-    html += "table.ci tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; font: bold; text-align: left; vertical-align: top; padding: 5px; }\n"
-    html += "table.ci td:first-child{ border-right: 1px solid #D8D8D8;}\n"
+    html += "table.ci tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px; border-bottom: 1pt solid black; }\n"
+    html += ".ci td table, .ci td table tbody, .ci td table td { border:none; }\n" # Stops inheritence into markdown
     html += "table.note { border: 1px solid black; width: 100%;}\n"
     html += "table.note tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; font: bold; text-align: left; vertical-align: top; }\n"
     html += "table.input_field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
@@ -64,8 +110,14 @@ private
     html += "table.input_field td:not(:last-child){border-right: 1px dashed}\n"
     html += "table.cl_field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: center; padding: 2px; }\n"
     html += "table.cl_field td:first-child{ border: 1px solid black; }\n"
-    html += "img.center { display: block; margin-left: auto; margin-right: auto; }"
+    html += "tr.warning { background-color: #fcf8e3 !important; }\n"
     html += "</style>"
+    html += "</head><body>"
+    return html
+  end
+
+  def self.page_footer
+    html = "</body></html>"
     return html
   end
 
@@ -77,18 +129,17 @@ private
     file = File.join(dir, image_file)
     time_generated = Time.now
     # Generate HTML
-    html = "<div style=\"text-align: center;\"><img src=\"#{file}\" style=\"height:75px;\"></div>"
+    html = "<br><br><div style=\"text-align: center;\"><img src=\"#{file}\" style=\"height:75px;\"></div>"
     html += "<h2 class=\"title\">#{name}</h2>"
     html += "<br>" * 10
-    html += "<h1 class=\"title\" align=\"center\">CRF<br>#{title}</h1>"
-    html += "<br>" * 20
+    html += "<h1 class=\"title\">CRF<br>#{title}</h1>"
+    html += "<br>" * 23
     html += "<table class=\"details\" align=\"right\"><tr><td>Run at:</td><td>#{time_generated.strftime("%Y-%b-%d, %H:%M:%S")}</td></tr><tr><td>Run by:</td><td>#{user.email}</td></tr></table>"
-    html += page_break
     html += page_break
     return html
   end
 
-  def self.crf_node(node, options, annotations, ci_nodes, note_nodes)
+  def self.crf_node(node, options, annotations, ci_nodes, note_nodes, terminology)
     html = ""
     #ConsoleLogger.log("Mdr", "crfNode", "Node=" + node.to_s)
     if node[:type] == "Form"
@@ -115,7 +166,7 @@ private
       end
       html += '</tr>'
       node[:children].each do |child|
-        html += crf_node(child, options, annotations, ci_nodes, note_nodes)
+        html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
       end
       html += '</table>'
     elsif node[:type] == "CommonGroup"
@@ -124,7 +175,7 @@ private
       html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
       html += '</tr>'
       node[:children].each do |child|
-        html += crf_node(child, options, annotations, ci_nodes, note_nodes)
+        html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
       end
     elsif node[:type] == "Group"
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
@@ -149,14 +200,14 @@ private
         end
         html += '<tr>'
         node[:children].each do |child|
-          html += input_field(child)
+          html += input_field(child, terminology)
         end 
         html += '</tr>'
         html += '</table></td>'
         html += '</tr>'
       else
         node[:children].each do |child|
-          html += crf_node(child, options, annotations, ci_nodes, note_nodes)
+          html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
         end
       end
     elsif node[:type] == "BCGroup"
@@ -173,25 +224,33 @@ private
       html += '<td colspan="3"><h5>Placeholder Text</h5><p><i>' + node[:free_text].to_s + '</i></p></td>'
       html += '</tr>'
       node[:children].each do |child|
-        html += crf_node(child, options, annotations, ci_nodes, note_nodes)
+        html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
       end
     elsif node[:type] == "Question"
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
       ConsoleLogger::log(C_CLASS_NAME,"crf_node", "node=" + node.to_json.to_s)
-      html += '<tr>'
+      if node[:optional]
+        html += '<tr class="warning">'
+      else
+        html += '<tr>'
+      end
       html += '<td>' + node[:qText].to_s + '</td>'
       if options[:annotate] 
         html += '<td><font color="red">' + node[:mapping].to_s + '</font></td>'
       else
         html += '<td></td>'
       end
-      html += input_field(node)
+      html += input_field(node, terminology)
       html += '</tr>'
     elsif node[:type] == "BCItem"
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
-      html += '<tr>'
+      if node[:optional]
+        html += '<tr class="warning">'
+      else
+        html += '<tr>'
+      end
       html += '<td>' + node[:qText].to_s + '</td>'
       html += '<td>'
       first = true
@@ -216,7 +275,7 @@ private
         end
       end
       html += '</td>'
-      html += input_field(node)
+      html += input_field(node, terminology)
       html += '</tr>'
     elsif node[:type] == "CL"
       # Ignore, processed.
@@ -230,14 +289,14 @@ private
     return html
   end
 
-  def self.input_field(node)
+  def self.input_field(node, terminology)
     html = "<td>"
     if node[:datatype] == "CL"
+      terminology << node
       values = Array.new
       node[:children].each do |child|
         values_ref = child[:reference]
         if values_ref[:enabled]
-          ConsoleLogger::log(C_CLASS_NAME,"field_table", "Child=" + child.to_json.to_s)
           values << "#{child[:preferred_term]}"
         end
       end
@@ -290,7 +349,7 @@ private
     symbol = symbols[:form] if node[:type] == "Form"
     text = node[symbol]
     ConsoleLogger::log(C_CLASS_NAME,"add_nodes", "Text=" + text.to_s)
-    nodes << { :label => node[:label], :text => MarkdownEngine::render(text)} unless text.empty?
+    nodes << {:node => node, :html => MarkdownEngine::render(text)} unless text.empty?
   end
 
   def self.page_break

@@ -10,7 +10,7 @@
 	  				:showPath => thesauri_path(:id => item.id, :namespace => item.namespace), 
 	  				:searchPath => search_thesauri_index_path(:id => item.id, :namespace => item.namespace), 
 	  				:viewPath => view_thesauri_index_path(:id => item.id, :namespace => item.namespace),
-	  				:editPath => "",
+	  				:editPath => edit_thesauri_path(:id => item.id, :namespace => item.namespace),
 	  				:deletePath => "" } %>
 			<% end %>				
 		</tbody>

@@ -151,7 +151,7 @@ class FormsController < ApplicationController
     authorize Form, :view?
     form = Form.find(params[:id], params[:namespace])
     pdf = form.report({:annotate => true, :full => false}, current_user)
-    send_data pdf.render, filename: "#{form.owner}_#{form.identifier}_aCRF.pdf", type: 'application/pdf', disposition: 'inline'
+    send_data pdf, filename: "#{form.owner}_#{form.identifier}_aCRF.pdf", type: 'application/pdf', disposition: 'inline'
   end
 
   def crf
@@ -163,14 +163,13 @@ class FormsController < ApplicationController
     authorize Form, :view?
     form = Form.find(params[:id], params[:namespace])
     pdf = form.report({:annotate => false, :full => false}, current_user)
-    send_data pdf.render, filename: "#{form.owner}_#{form.identifier}_CRF.pdf", type: 'application/pdf', disposition: 'inline'
+    send_data pdf, filename: "#{form.owner}_#{form.identifier}_CRF.pdf", type: 'application/pdf', disposition: 'inline'
   end
 
   def full_crf_report
     authorize Form, :view?
     form = Form.find(params[:id], params[:namespace])
-    html = form.report({:annotate => true, :full => true}, current_user)
-    pdf = WickedPdf.new.pdf_from_string(html)
+    pdf = form.report({:annotate => true, :full => true}, current_user)
     send_data pdf, filename: "#{form.owner}_#{form.identifier}_FullCRF.pdf", type: 'application/pdf', disposition: 'inline'
   end
 

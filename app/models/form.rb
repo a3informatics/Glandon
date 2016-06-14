@@ -431,7 +431,11 @@ private
       end
     elsif node[:type] == "Question"
       ConsoleLogger::log(C_CLASS_NAME,"crf_node", "node=" + node.to_json.to_s)
-      html += '<tr>'
+      if node[:optional]
+        html += '<tr class="warning">'
+      else
+        html += '<tr>'
+      end
       html += '<td>' + node[:qText].to_s + '</td>'
       if annotations != nil
         html += '<td><font color="red">' + node[:mapping].to_s + '</font></td>'
@@ -441,7 +445,11 @@ private
       html += input_field(node, annotations)
       html += '</tr>'
     elsif node[:type] == "BCItem"
-      html += '<tr>'
+      if node[:optional]
+        html += '<tr class="warning">'
+      else
+        html += '<tr>'
+      end
       html += '<td>' + node[:qText].to_s + '</td>'
       html += '<td>'
       first = true
