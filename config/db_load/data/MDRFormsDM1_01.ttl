@@ -9,16 +9,7 @@
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_DM101-1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101> 			<http://www.assero.co.uk/BusinessForm#hasGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101> 			<http://www.assero.co.uk/BusinessForm#formCompletion> 			"" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101> 			<http://www.assero.co.uk/BusinessForm#formNote> 			"* This is a mandatory module that must appear in ALL CRFs.
-* CRF Number should be deleted for EDC trials.  This field should only be used for internal UCB paper studies.
-* Ethnic subgroup section can be deleted when not required as per protocol.  If used, the list of races / countries must be customized as per protocol (for internal UCB studies: new codes will need to be created).
-* For extension studies, Race, Ethnicity and Ethnic subgroup should be deleted.
-* Based on a decision made in the 31Oct12 DARC meeting, the Date of Birth field was split into three (3) separate fields: birth day, birth month and birth year.  This split is not represented in the modules within this document.  Depending upon country regulations, acceptable data collections are:
-    * Full birth date = birth day, birth month and birth year
-    * Partial birth date = birth month and birth year
-    * Birth year only
-* Most NIS studies will use version DM3_01.
-" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101> 			<http://www.assero.co.uk/BusinessForm#formNote> 			"* This is a mandatory module that must appear in ALL CRFs.\n* CRF Number should be deleted for EDC trials.  This field should only be used for internal UCB paper studies.\n* Ethnic subgroup section can be deleted when not required as per protocol.  If used, the list of races / countries must be customized as per protocol (for internal UCB studies: new codes will need to be created).\n* For extension studies, Race, Ethnicity and Ethnic subgroup should be deleted.\n* Based on a decision made in the 31Oct12 DARC meeting, the Date of Birth field was split into three (3) separate fields: birth day, birth month and birth year.  This split is not represented in the modules within this document.  Depending upon country regulations, acceptable data collections are:\n    * Full birth date = birth day, birth month and birth year\n    * Partial birth date = birth month and birth year\n    * Birth year only\n* Most NIS studies will use version DM3_01.\n" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Group> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Question Group" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1> 			<http://www.assero.co.uk/BusinessForm#isGroupOf> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101> . 
@@ -55,25 +46,7 @@
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I2> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I2> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"BRTHDTC" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I2> 			<http://www.assero.co.uk/BusinessForm#qText> 			"Date of Birth:" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* Record the birth date using the format DD MMM YYYY.
-
-Example:
-
-| DD | MMM | YYYY |
-|----|-----|------|
-| 15 | Nov | 1966 | 
-
-
-
-* Confirm the subject is 6-17 years of age.
-* **For sites within countries that do not allow the collection of a full date of birth (eg, Germany), the subject s YEAR of birth ONLY must be recorded.  Draw a line through the fields for day and month and ONLY record the 4-digit year the subject was born (see example below).**
-
-Example:
-  
-| DD | MMM | YYYY |
-|----|-----|------|
-| -- | --- | 1966 |
-" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* Record the birth date using the format DD MMM YYYY.\n\nExample:\n\n| DD | MMM | YYYY |\n|----|-----|------|\n| 15 | Nov | 1966 | \n\n\n\n\n* Confirm the subject is 6-17 years of age.\n* **For sites within countries that do not allow the collection of a full date of birth (eg, Germany), the subject s YEAR of birth ONLY must be recorded.  Draw a line through the fields for day and month and ONLY record the 4-digit year the subject was born (see example below).**\n\nExample:\n\n\n| DD | MMM | YYYY |\n|----|-----|------|\n| -- | --- | 1966 |\n" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Sex" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#isItemOf> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1> . 
@@ -111,16 +84,7 @@ Example:
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"RACE" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#qText> 			"Race:" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* **Race must be self-reported by the subject (not judged by the site).** 
-The race definitions below, which have been adapted from the FDA Race & Ethnicity Guideline, can be used to help match subject-reported races with the options in the CRF.  
-Select the race most closely associated with the subject s reported race.  
-* American Indian or Alaska Native: A person having origins in any of the original peoples of North and South America (including Central America)
-    - Asian: A person having origins in any of the original peoples of the Far East, Southeast Asia or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand and Vietnam.
-    - Black: A person having origins in any of the black racial groups of Africa.
-    - Native Hawaiian or Other Pacific Islander: A person having origins in any of the original peoples of Hawaii, Guam, Samoa or other Pacific Island.
-    - White: A person having origins in any of the original peoples of Europe, the Middle East or North Africa.
-* If multiple races have been reported, select Other / Mixed and enter the reported races in the space provided.
-" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* **Race must be self-reported by the subject (not judged by the site).** \nThe race definitions below, which have been adapted from the FDA Race & Ethnicity Guideline, can be used to help match subject-reported races with the options in the CRF. \n\nSelect the race most closely associated with the subject s reported race.  \n* American Indian or Alaska Native: A person having origins in any of the original peoples of North and South America (including Central America)\n    - Asian: A person having origins in any of the original peoples of the Far East, Southeast Asia or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand and Vietnam.\n    - Black: A person having origins in any of the black racial groups of Africa.\n    - Native Hawaiian or Other Pacific Islander: A person having origins in any of the original peoples of Hawaii, Guam, Samoa or other Pacific Island.\n    - White: A person having origins in any of the original peoples of Europe, the Middle East or North Africa.\n* If multiple races have been reported, select Other / Mixed and enter the reported races in the space provided.\n" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I4_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C41259> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
@@ -168,10 +132,7 @@ Select the race most closely associated with the subject s reported race.
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"ETHNIC" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#qText> 			"Ethnicity:" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* Tick the box most closely associated with the subject s ethnicity.
-* The definition below has been adapted from the FDA Race & Ethnicity Guideline:
-    - Hispanic or Latino: A person of Cuban, Mexican, Puerto Rican, South or Central American or other Spanish culture or origin, regardless of race.
-" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* Tick the box most closely associated with the subject s ethnicity.\n* The definition below has been adapted from the FDA Race & Ethnicity Guideline:\n    - Hispanic or Latino: A person of Cuban, Mexican, Puerto Rican, South or Central American or other Spanish culture or origin, regardless of race.\n" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I6_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66790_C17459> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101_G1_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 

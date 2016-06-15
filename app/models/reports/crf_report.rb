@@ -240,7 +240,7 @@ private
       end
     elsif node[:type] == "Placeholder"
       html += '<tr>'
-      html += '<td colspan="3"><h5>Placeholder Text</h5><p><i>' + node[:free_text].to_s + '</i></p></td>'
+      html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:free_text])}</p></td>"
       html += '</tr>'
       node[:children].each do |child|
         html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
@@ -326,6 +326,9 @@ private
       html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
     elsif node[:datatype] == "T"
       html += field_table(["H", "H", ":", "M", "M"])
+    elsif node[:datatype] == "S"
+      length = node[:format].scan /\w/
+      html += field_table([" "]*5 + ["S"] + length + [""]*5)
     elsif node[:datatype] == "F"
       parts = node[:format].split('.')
       major = parts[0].to_i

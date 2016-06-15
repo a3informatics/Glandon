@@ -74,7 +74,7 @@ class Form::Item < IsoConceptNew
       "INSERT DATA \n" +
       "{ \n" +
       " :" + id + " rdf:type bf:Placeholder . \n" +
-      " :" + id + " bf:freeText \"" + freeText + "\"^^xsd:string . \n" +
+      " :" + id + " bf:freeText \"" + SparqlUtility::replace_special_chars(freeText) + "\"^^xsd:string . \n" +
       " :" + id + " bf:optional \"false\"^^xsd:boolean . \n" +
       " :" + id + " rdfs:label \"Placeholder\"^^xsd:string . \n" +
       " :" + id + " bf:note \"\"^^xsd:string . \n" +

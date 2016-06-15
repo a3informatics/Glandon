@@ -38,7 +38,10 @@ class ApplicationController < ActionController::Base
         if triple[:object].start_with?('http://')
           result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t<#{triple[:object]}> . \n"
         else
-          result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t\"#{triple[:object]}\" . \n"
+          object_text = triple[:object]
+          object_text.gsub!("\r", "\\r")
+          object_text.gsub!("\n", "\\n") 
+          result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t\"#{object_text}\" . \n"
         end
       end
     end

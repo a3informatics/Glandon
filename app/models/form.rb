@@ -433,7 +433,7 @@ private
       end
     elsif node[:type] == "Placeholder"
       html += '<tr>'
-      html += '<td colspan="3"><h5>Placeholder Text</h5><p><i>' + node[:free_text].to_s + '</i></p></td>'
+      html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:free_text])}</p></td>"
       html += '</tr>'
       node[:children].each do |child|
         html += crf_node(child, annotations)
@@ -518,6 +518,8 @@ private
       html += '<input type="number"> . <input type="number">' 
     elsif node[:datatype] == "I"
       html += '<input type="number">' 
+    elsif node[:datatype] == "S"
+      html += "<input type=\"text\" value=\"S#{node[:format]}\">" 
     else
       html += "Not implemented yet."
     end

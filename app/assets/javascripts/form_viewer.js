@@ -280,7 +280,8 @@ $(document).ready(function() {
   function displayPlaceholder(node) {
     document.getElementById("placeholderLabel").innerHTML = node.name;
     document.getElementById("placeholderOptional").innerHTML = node.optional;
-    document.getElementById("placeholderFreeText").innerHTML = node.free_text;
+    //document.getElementById("placeholderFreeText").innerHTML = node.free_text;
+    getMarkdown(document.getElementById("placeholderFreeText"), node.free_text)
     getMarkdown(document.getElementById("placeholderCompletion"), node.completion);
     getMarkdown(document.getElementById("placeholderNote"), node.note);
   }

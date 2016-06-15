@@ -150,7 +150,6 @@ class FormsController < ApplicationController
   def acrf_report
     authorize Form, :view?
     form = Form.find(params[:id], params[:namespace])
-    #history = Form.history({:identifier => form.identifier, :scope_id => form.owner_id})
     pdf = form.report({:annotate => true, :full => false}, current_user)
     send_data pdf, filename: "#{form.owner}_#{form.identifier}_aCRF.pdf", type: 'application/pdf', disposition: 'inline'
   end
@@ -163,7 +162,6 @@ class FormsController < ApplicationController
   def crf_report
     authorize Form, :view?
     form = Form.find(params[:id], params[:namespace])
-    #history = Form.history({:identifier => form.identifier, :scope_id => form.owner_id})
     pdf = form.report({:annotate => false, :full => false}, current_user)
     send_data pdf, filename: "#{form.owner}_#{form.identifier}_CRF.pdf", type: 'application/pdf', disposition: 'inline'
   end
@@ -171,7 +169,6 @@ class FormsController < ApplicationController
   def full_crf_report
     authorize Form, :view?
     form = Form.find(params[:id], params[:namespace])
-    #history = Form.history({:identifier => form.identifier, :scope_id => form.owner_id})
     pdf = form.report({:annotate => true, :full => true}, current_user)
     send_data pdf, filename: "#{form.owner}_#{form.identifier}_FullCRF.pdf", type: 'application/pdf', disposition: 'inline'
   end

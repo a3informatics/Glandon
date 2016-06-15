@@ -1,25 +1,41 @@
 <%= javascript_include_tag 'form_placeholder_new' %>
 <h3>New Placeholder Form</h3>
-<%= form_for @form, :html => { :id => "placeholder_form"}, :url => placeholder_create_forms_path do |f| %>
-	<div class="row">
-		<div class="col-md-3">
-			<div class="form-group">
-		    	<%= f.label :identifier, "Identifier:" %><br />
-		    	<input type="text" class="form-control" name="form[identifier]" id="form_identifier">
-		  	</div>
-		  	<div class="form-group">
-		    	<%= label_tag :label, "Label:" %><br />
-		    	<input type="text" class="form-control" name="form[label]" id="form_label">
-		  	</div>
-		</div>
+<div class="row">
+	<div class="col-md-7" >
+		<%= form_for @form, :html => { :id => "placeholder_form"}, :url => placeholder_create_forms_path do |f| %>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+				    	<%= f.label :identifier, "Identifier:" %><br />
+				    	<input type="text" class="form-control" name="form[identifier]" id="form_identifier">
+				  	</div>
+				  	<div class="form-group">
+				    	<%= label_tag :label, "Label:" %><br />
+				    	<input type="text" class="form-control" name="form[label]" id="form_label">
+				  	</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+				    	<%= label_tag :freeText, "Placeholder Text:" %><br/>
+				    	<%= text_area_tag "form[freeText]", nil, rows:10, cols:80, class: 'form-control'%>
+				  	</div>
+			  	</div>
+			</div>
+			<%= f.submit "Create", class: "btn btn-default btn-primary" %>
+		<% end %>
 	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<div class="form-group">
-		    	<%= label_tag :freeText, "Placeholder Text:" %><br/>
-		    	<%= text_area_tag "form[freeText]", nil, rows:10, cols:80, class: 'form-control'%>
-		  	</div>
-	  	</div>
+	<div class="col-md-5" >
+    <br/>
+    <div id="markdown_panel" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Markdown Preview</h3>
+        </div>
+        <div class="panel-body">
+            <div id="generic_markdown"></div>
+            <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+        </div>
+    </div>
 	</div>
-	<%= f.submit "Create", class: "btn btn-default btn-primary" %>
-<% end %>
+</div>
