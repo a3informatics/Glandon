@@ -56,4 +56,5 @@
             <% end %>
         </tbody>
     </table>
+    <%= link_to "Export Turtle", export_ttl_thesauri_index_path(:id => @thesaurus.id, :namespace => @thesaurus.namespace), :class => "btn btn-info" %>
 </div>

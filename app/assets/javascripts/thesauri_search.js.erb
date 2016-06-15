@@ -1,0 +1,149 @@
+$(document).ready( function() {
+  
+  $('#main').DataTable({
+    columnDefs: [ ]
+  });
+        
+  $('#secondary').DataTable({
+    columnDefs: [ ]
+  });
+
+  jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
+    return this.iterator( 'table', function ( ctx ) {
+        ctx.oApi._fnProcessingDisplay( ctx, show );
+    } );
+  });
+
+  var counter = document.getElementById("notepadAdd")
+  var termId = document.getElementById("termId");
+  var namespace = document.getElementById("namespace");
+  var offset;
+  var limit;
+  var more;
+  var currentRef;
+  var currentRow;
+
+  more = true;
+  offset = 1;
+  limit = 1000;
+  currentRef = null;
+  currentRow = null;
+  
+  var searchTable = $('#searchTable').DataTable({
+    "columns": [
+      {"data" : "parentIdentifier", "width" : "10%"},
+      {"data" : "identifier", "width" : "10%"},
+      {"data" : "notation", "width" : "10%"},
+      {"data" : "definition", "width" : "40%"},
+      {"data" : "synonym", "width" : "15%"},
+      {"data" : "preferredTerm", "width" : "15%"}
+    ],
+    "pageLength": 5,
+    "lengthMenu": [[5, 10, 25, 50, 75, 100], [5, 10, 25, 50, 75, 100]],
+    "processing": true,
+    "language": {
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    }
+  });
+
+  searchTable.processing(true);
+  next();
+
+  // Setup - add a text input to each footer cell
+  $('#searchTable tfoot th').each( function () {
+      var title = $(this).text();
+      if (title == "Extensible") {
+        $(this).html("");
+      } else if (title == "Definition") {
+        $(this).html( '<input type="text" class="form-control" size="20" placeholder="Search ..." />' );
+      } else {
+        $(this).html( '<input type="text" class="form-control" size="10" placeholder="Search ..." />' );
+      }
+  } );
+ 
+  // Apply the search
+  searchTable.columns().every( function () {
+    var that = this;
+    $( 'input', this.footer() ).on( 'keyup change', function () {
+      if (that.search() !== this.value) {
+        that
+          .search( this.value )
+          .draw();
+      }
+    });
+  });
+
+  // Handle click on terminology table
+  $('#searchTable tbody').on('click', 'tr', function () {
+    if (currentRef != null) {
+      $(currentRef).toggleClass('success');
+    }
+    $(this).toggleClass('success');
+
+    // Get the row
+    var row = searchTable.row(this).index();
+    var data = searchTable.row(row).data();
+
+    // Save the selection
+    currentRef = this;
+    currentRow = row;
+  });
+
+  $('#notepadAdd').click(function() {
+    if (currentRef != null) {
+      var row = searchTable.row(currentRef).index();
+      var data = searchTable.row(row).data();
+      if (data.identifier == data.parentIdentifier) {
+        var html = alertWarning("You need to select an item not a code list.");
+        displayAlerts(html);    
+      } else {
+        $.ajax({
+          url: "../notepads/create_term",
+          type: 'POST',
+          data: { "notepad": {"item_id": data.id, "item_ns": namespace.value }},
+          success: function(result){
+            var count = result['count'];
+            counter.innerHTML = 'Notepad+ <span class="badge">' + count + '</span>'
+          },
+          error: function(xhr, status, error){
+            handleAjaxError(xhr, status, error);
+          }
+        });
+      }
+    } else {
+      var html = alertWarning("You need to select an item.");
+      displayAlerts(html);
+    }
+  });
+
+  // Get the next block of data for the table
+  function next() {
+    $.ajax({
+      url: "next",
+      data: { "id": termId.value, "namespace": namespace.value, "offset": offset, "limit": limit },
+      type: 'GET',
+      dataType: 'json',
+      success: function(result){
+        var data = result['data'];
+        offset = result['offset'];
+        limit = result['limit'];
+        more = result['more'];
+        var i;
+        for (i=0; i<data.length; i++) {
+          var row = data[i]
+          searchTable.row.add(row);
+        }
+        searchTable.draw();
+        if (more) {
+          next();
+        } else {
+          searchTable.processing(false);
+        }
+      },
+      error: function(xhr,status,error){
+        handleAjaxError(xhr, status, error);
+      }
+    });    
+  }
+
+});

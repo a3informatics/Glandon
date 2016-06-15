@@ -4,30 +4,31 @@ class IsoManagedNewsController < ApplicationController
   
   def update
     authorize IsoManagedNew
-    #referer = this_params[:referer]
-    @referer = request.referer
-    managed_item = IsoManagedNew.find(params[:id], this_params[:ns])
-    managed_item.update(params[:id], this_params[:ns], this_params)
-    redirect_to @referer
+    managed_item = IsoManagedNew.find(params[:id], this_params[:namespace])
+    managed_item.update(this_params)
+    redirect_to this_params[:referer]
   end
 
-  def edit
+  def status
     authorize IsoManagedNew
     @referer = request.referer
-    @managed_item = IsoManagedNew.find(params[:id], params[:ns], false)
+    @managed_item = IsoManagedNew.find(params[:id], params[:namespace], false)
     @registration_state = @managed_item.registrationState
     @scoped_identifier = @managed_item.scopedIdentifier
     @current_id = params[:current_id]
     @owner = IsoRegistrationAuthority.owner.shortName == @managed_item.owner
-    @history = IsoManagedNew.history(ModelUtility.extractCid(@managed_item.rdf_type), 
-      ModelUtility.extractNs(@managed_item.rdf_type), 
-      {:identifier => @managed_item.identifier, :scope_id => @managed_item.owner_id})
+  end
+
+  def edit
+    authorize IsoManagedNew
+    @managed_item = IsoManagedNew.find(params[:id], params[:namespace], false)
+    @referer = request.referer
   end
 
   private
 
     def this_params
-      params.require(:iso_managed_new).permit(:ns, :changeDescription, :explanatoryComment, :origin)
+      params.require(:iso_managed_new).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer)
     end
 
 end

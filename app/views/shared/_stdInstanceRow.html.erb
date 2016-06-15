@@ -1,7 +1,7 @@
 <tr>
+	<td><%= item.version %></td>
 	<td><%= item.label %></td>
 	<td><%= item.identifier %></td>
-	<td><%= item.version %></td>
 	<td><%= item.versionLabel %></td>
 	<td><%= item.owner %></td>
 	<td><%= link_to "Show", showPath, :class => "btn btn-primary btn-xs" %></td>
@@ -15,7 +15,7 @@
 	<% else %>
 		<td></td>
 	<% end %>
-	<% if editPath != "" and item.edit? and item.current? %>
+	<% if editPath != "" and item.edit? and item.latest? %>
 		<td><%= link_to "Edit", editPath, :class => "btn btn-primary btn-xs" %></td>
 	<% else %>
 		<td></td>
@@ -23,9 +23,9 @@
 	<% if item.registered? %>
 		<td><%= item.registrationState.registrationStatus %></td>
 		<% if current_item != nil %>
-			<td><%= link_to "Status", edit_iso_managed_news_path(:id => item.id, :ns => item.namespace, :current_id => current_item.registrationState.id), :class => "btn btn-primary btn-xs" %></td>
+			<td><%= link_to "Status", status_iso_managed_news_index_path(:id => item.id, :namespace => item.namespace, :current_id => current_item.registrationState.id), :class => "btn btn-primary btn-xs" %></td>
 		<% else %>
-			<td><%= link_to "Status", edit_iso_managed_news_path(:id => item.id, :ns => item.namespace, :current_id => ""), :class => "btn btn-primary btn-xs" %></td>
+			<td><%= link_to "Status", status_iso_managed_news_index_path(:id => item.id, :namespace => item.namespace, :current_id => ""), :class => "btn btn-primary btn-xs" %></td>
 		<% end %>
 		<% if item.current? %>
 			<td class="text-center bg-success">

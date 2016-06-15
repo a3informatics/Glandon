@@ -75,45 +75,40 @@ class ThesauriController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @thesaurus = Thesaurus.find(id, namespace, false)
+    @items = Notepad.where(user_id: current_user).find_each
   end
   
-  #def searchOld
-  #  authorize Thesaurus, :view?
-  #  term = params[:term]
-  #  textSearch = params[:textSearch]
-  #  cCodeSearch = params[:cCodeSearch]
-  #  if term != "" && textSearch == "text"
-  #    @results = SponsorTerm.searchText(term)  
-  #  elsif term != "" && cCodeSearch == "ccode"
-  #    @results = SponsorTerm.searchIdentifier(term)
-  #  else
-  #    @results = Array.new
-  #  end
-  #  render json: @results
-  #end
-
-  def searchNew
+  def next
     authorize Thesaurus, :view?
     id = params[:id]
-    ns = params[:namespace]
-    offset = params[:start]
-    length = params[:length]
-    draw = params[:draw].to_i
-    search = params[:search]
-    searchTerm = search[:value]
-    order = params[:order]["0"]
-    col = order[:column]
-    dir = order[:dir]
-    count = Thesaurus.count(searchTerm, ns)
-    items = Thesaurus.search(offset, length, col, dir, searchTerm, ns)
-    @results = {
-      :draw => draw.to_s,
-      :recordsTotal => length.to_s,
-      :recordsFiltered => count.to_s,
-      :data => items }
-    render json: @results
-  end 
+    namespace = params[:namespace]
+    @cdiscTerm = Thesaurus.find(id, namespace, false)
+    items = []
+    more = true
+    offset = params[:offset].to_i
+    limit = params[:limit].to_i
+    #ConsoleLogger::log(C_CLASS_NAME,"next","Offset=" + offset.to_s + ", limit=" + limit.to_s)  
+    items = Thesaurus.next(offset, limit, namespace)
+    if items.count < limit
+      more = false
+    end
+    results = {}
+    results[:offset] = offset + items.count
+    results[:limit] = limit
+    results[:more] = more
+    results[:data] = items
+    ConsoleLogger::log(C_CLASS_NAME,"next","Offset=" + results[:offset].to_s + ", limit=" + results[:limit].to_s + ", count=" + items.count.to_s)  
+    render :json => results, :status => 200
+  end
 
+   def export_ttl
+    authorize Thesaurus
+    id = params[:id]
+    namespace = params[:namespace]
+    item = IsoManagedNew::find(id, namespace)
+    send_data to_turtle(item.triples), filename: "#{item.owner}_#{item.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+  end
+  
 private
 
   def the_params

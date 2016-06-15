@@ -55,6 +55,23 @@ class IsoManagedNew < IsoConceptNew
     return self.scopedIdentifier.identifier
   end
 
+  def latest?
+    latest_version = IsoScopedIdentifier.latest(self.identifier, self.owner_id)
+    return self.version == latest_version
+  end
+
+  def later_version?(version)
+    return self.scopedIdentifier.later_version?(version)
+  end
+  
+  def earlier_version?(version)
+    return self.scopedIdentifier.earlier_version?(version)
+  end
+  
+  def same_version?(version)
+    return self.scopedIdentifier.same_version?(version)
+  end
+  
   def owner
     return self.scopedIdentifier.owner
   end
@@ -587,41 +604,41 @@ class IsoManagedNew < IsoConceptNew
     sparql.triple("", id, UriManagement::C_ISO_I, "hasIdentifier", C_INSTANCE_PREFIX, dummy_SI.id)
     sparql.triple("", id, UriManagement::C_ISO_R, "hasState", C_INSTANCE_PREFIX, dummy_RS.id)
     sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", params[:label], "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "explanatoryComment", "", "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "creationDate", params[:creation_date], "string")
     sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "lastChangeDate", timestamp.to_s, "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "creationDate", timestamp.to_s, "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "changeDescription", "Creation", "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "origin", "", "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "changeDescription", params[:change_description], "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "explanatoryComment", params[:comment], "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "origin", params[:references], "string")
     # Result URI
     uri = Uri.new
     uri.setNsCid(useNs, id)
     return uri
   end
 
-  def update(id, ns, params)  
+  def update(params)  
     comment = 
     date_time = Time.now.iso8601
-    update = UriManagement.buildNs(ns, ["isoT"]) +
+    update = UriManagement.buildNs(self.namespace, ["isoT"]) +
       "DELETE \n" +
       "{ \n" +
-      " :" + id + " isoT:explanatoryComment ?a . \n" +
-      " :" + id + " isoT:changeDescription ?b . \n" +
-      " :" + id + " isoT:origin ?c . \n" +
-      " :" + id + " isoT:lastChangeDate ?d . \n" +
+      " :" + self.id + " isoT:explanatoryComment ?a . \n" +
+      " :" + self.id + " isoT:changeDescription ?b . \n" +
+      " :" + self.id + " isoT:origin ?c . \n" +
+      " :" + self.id + " isoT:lastChangeDate ?d . \n" +
       "} \n" +
       "INSERT \n" +
       "{ \n" +
-      " :" + id + " isoT:explanatoryComment \"" + params[:explanatoryComment].to_s + "\"^^xsd:string . \n" +
-      " :" + id + " isoT:changeDescription \"" + params[:changeDescription].to_s + "\"^^xsd:string . \n" +
-      " :" + id + " isoT:origin \"" + params[:origin].to_s + "\"^^xsd:string . \n" +
-      " :" + id + " isoT:lastChangeDate \"" + date_time + "\"^^xsd:dateTime . \n" +
+      " :" + self.id + " isoT:explanatoryComment \"" + SparqlUtility::replace_special_chars(params[:explanatoryComment]) + "\"^^xsd:string . \n" +
+      " :" + self.id + " isoT:changeDescription \"" + SparqlUtility::replace_special_chars(params[:changeDescription]) + "\"^^xsd:string . \n" +
+      " :" + self.id + " isoT:origin \"" + SparqlUtility::replace_special_chars(params[:origin]) + "\"^^xsd:string . \n" +
+      " :" + self.id + " isoT:lastChangeDate \"" + date_time.to_s + "\"^^xsd:dateTime . \n" +
       "} \n" +
       "WHERE \n" +
       "{ \n" +
-      " :" + id + " isoT:explanatoryComment ?a . \n" +
-      " :" + id + " isoT:changeDescription ?b . \n" +
-      " :" + id + " isoT:origin ?c . \n" +
-      " :" + id + " isoT:lastChangeDate ?d . \n" +
+      " :" + self.id + " isoT:explanatoryComment ?a . \n" +
+      " :" + self.id + " isoT:changeDescription ?b . \n" +
+      " :" + self.id + " isoT:origin ?c . \n" +
+      " :" + self.id + " isoT:lastChangeDate ?d . \n" +
       "}"
     # Send the request, wait the resonse
     response = CRUD.update(update)
@@ -643,6 +660,11 @@ class IsoManagedNew < IsoConceptNew
       :version => self.version,
       :version_label => self.versionLabel,
       :state => self.registrationStatus,
+      :creation_date => self.creationDate,
+      :last_changed_date => self.lastChangedDate,
+      :change_description => self.changeDescription,
+      :comment => self.explanatoryComment,
+      :references => self.origin,
       :children => [] 
     }
     return result

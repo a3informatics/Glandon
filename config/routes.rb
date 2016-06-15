@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   resources :iso_namespaces
   resources :iso_scoped_identifiers
   resources :iso_registration_authorities
-  resources :iso_managed_news
+  resources :iso_managed_news do
+    collection do
+      get :status
+    end
+  end
   resources :iso_registration_states do
     collection do
       get :current
@@ -33,8 +37,8 @@ Rails.application.routes.draw do
       get :history
       get :view
       get :search
-      get :searchNew
-      #get :searchOld
+      get :next
+      get :export_ttl
     end
   end
   resources :thesaurus_concepts do

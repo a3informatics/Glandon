@@ -1,0 +1,83 @@
+<style>
+	.glyph{
+		text-align: center;
+	}
+
+	.glyph span{
+		font-size: large;
+		line-height: 50px;
+	}
+
+</style>
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Status:", :item => @managed_item} %>
+<div class="row">
+	<% state = @registration_state.registrationStatus %>
+	<% nextState = IsoRegistrationState.nextState(@registration_state.registrationStatus) %>
+	<div class="col-md-4">
+		<div id="formInfo" class="panel panel-default">
+  			<div class="panel-heading">
+      			<h3 class="panel-title">Make Current</h3>
+  			</div>
+  			<div class="panel-body">
+  				<% if @registration_state.released_state? %>
+					<% if @managed_item.current? %>
+						<p>The item is the current item.</p>
+					<% else %>
+						<%= link_to "Current", current_iso_registration_states_path(:new_id => @registration_state.id, :old_id => @current_id), :class => "btn btn-primary" %>
+					<% end %>
+				<% else %>
+					<p>Item status is not "<%= IsoRegistrationState.releasedState %>".</p>
+				<% end %>
+			</div>
+		</div>
+		<div id="formInfo" class="panel panel-default">
+  			<div class="panel-heading">
+      			<h3 class="panel-title">Change Version Label</h3>
+  			</div>
+  			<div class="panel-body">
+				<%= form_for @scoped_identifier do |f| %>
+					<div class="form-group">
+					    <%= f.label :versionLabel, "Version Label:" %><br />
+					    <%= f.text_field :versionLabel, autofocus: true, class: "form-control" %>
+					</div>
+					<%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+      			<h3 class="panel-title">Status</h3>
+  			</div>
+  			<div class="panel-body">
+				<div class="panel panel-warning">
+					<div class="panel-heading"><strong>Current Status: <%= IsoRegistrationState.stateLabel(state) %></strong></div>
+					<div class="panel-body"><%= IsoRegistrationState.stateDefinition(state) %></div>
+				</div>
+				<div class="glyph">
+					<span class="glyphicon glyphicon-arrow-down glyphicon-large" aria-hidden="true"></span>
+				</div>
+				<div class="panel panel-success">
+					<div class="panel-heading"><strong>New Status: <%= IsoRegistrationState.stateLabel(nextState) %></strong></div>
+					<div class="panel-body"><%= IsoRegistrationState.stateDefinition(nextState) %></div>
+				</div>
+				<%= form_for @registration_state do |f| %>
+					<div class="form-group">
+					    <%= f.label :administrativeNote, "Administrative Note:" %><br />
+					    <%= f.text_area :administrativeNote, autofocus: true, class: "form-control", rows:5 %>
+					</div>
+					<div class="form-group">
+					    <%= f.label :unresolvedIssue, "Unresolved Issue:" %><br />
+					    <%= f.text_area :unresolvedIssue, class: "form-control", rows:5 %>
+					</div>
+					<%= f.hidden_field :previousState, :value => state %>  
+					<%= f.hidden_field :registrationStatus, :value => nextState %>  
+					<%= f.hidden_field :referer, :value => @referer %>  
+					<%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
+					<!-- :registrationStatus, , , , :administrativeStatus, :previousState -->
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

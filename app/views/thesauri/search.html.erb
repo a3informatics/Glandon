@@ -1,22 +1,39 @@
-<h3>Search: <%= @thesaurus.label %></h3>
+<%= javascript_include_tag 'thesauri_search'%>
+<style>
+	#searchTable { table-layout: fixed; }
+</style>
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Search:", :item => @thesaurus} %>
 <div class="col-md-12">
-	<h4>Details</h4>
+	<% if @thesaurus.current? %>
+		<button id="notepadAdd" class="btn btn-primary" type="button">
+  		Notepad+ <span class="badge"><%= @items.count %></span>
+		</button>
+	<% end %>
+	<h4></h4>
 	<table id="searchTable" class="table table-striped table-bordered table-condensed">
-	  	<thead>
+	  <thead>
 			<tr>
-			    <th>Identifer</th>
+			    <th>Parent</th>
+			    <th>Item</th>
 			    <th>Notation</th>
 			    <th>Definition</th>
 			    <th>Synonym</th>
 			    <th>Preferred Term</th>
-			    <th>CL</th>
 		  	</tr>
 		</thead>
 		<tbody>
-			<tr>
-			</tr>
 		</tbody>
+		<tfoot>
+      <tr>
+          <th>Parent</th>
+          <th>Item</th>
+          <th>Notation</th>
+          <th>Definition</th>
+          <th>Synonym</th>
+          <th>Preferred Term</th>
+      </tr>
+  	</tfoot>
 	</table>
-	<input type="hidden" id="termId" value="<%= @thesaurus.id %>">
-	<input type="hidden" id="namespace" value="<%= @thesaurus.namespace %>" %>	
 </div>
+<input type="hidden" id="termId" value="<%= @thesaurus.id %>">
+<input type="hidden" id="namespace" value="<%= @thesaurus.namespace %>" %>	

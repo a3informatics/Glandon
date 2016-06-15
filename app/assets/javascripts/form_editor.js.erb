@@ -485,6 +485,40 @@ $(document).ready(function() {
     displayTree(node.key);
   });
 
+  $('#questionUp').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a question node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index != 0) {
+        moveNodeUp(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node up.");
+        displayAlerts(html);
+      }
+    }
+  }); 
+
+  $('#questionDown').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a question node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index < parentNode.save.length) {
+        moveNodeDown(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node down.");
+        displayAlerts(html);
+      }
+    }
+  }); 
+
   /*
   * Functions to handle the placeholder actions
   */
@@ -676,7 +710,7 @@ $(document).ready(function() {
   *
   */
   function clEnableDisable (value) {
-    if (value == "I" || value == "C" || value == "F") {
+    if (value == "I" || value == "S" || value == "F") {
       $("#questionFormat").prop('disabled', false);
       $("#notepad_add").prop('disabled', true);
       $("#deleteTerm").prop('disabled', true);
@@ -690,7 +724,7 @@ $(document).ready(function() {
   function clFormat (value) {
     if (value == "I") {
       questionFormatElement.value = "3"
-    } else if (value == "C") {
+    } else if (value == "S") {
       questionFormatElement.value = "20"
     } else if (value == "F") {
       questionFormatElement.value = "6.2"

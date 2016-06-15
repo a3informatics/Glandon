@@ -61,8 +61,16 @@ class IsoScopedIdentifier
     return version + 1
   end
   
-  def self.later_version?(version_1, version_2)
-    return version_1 >= version_2
+  def later_version?(version)
+    return self.version > version
+  end
+  
+  def earlier_version?(version)
+    return self.version < version
+  end
+  
+  def same_version?(version)
+    return self.version == version
   end
   
   def first_version
@@ -136,6 +144,32 @@ class IsoScopedIdentifier
       end
     end
     return result
+  end
+
+  def self.latest(identifier, scopeId)   
+    result = false
+    # Create the query
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+      "SELECT ?b WHERE \n" +
+      "{\n" +
+      "  ?a rdf:type isoI:ScopedIdentifier . \n" +
+      "  ?a isoI:identifier \"" + identifier + "\" . \n" +
+      "  ?a isoI:version ?b . \n" +
+      "  ?a isoI:hasScope :" + scopeId + ". \n" +
+      "} ORDER BY DESC(?b)"
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      latest_version = ModelUtility.getValue('b', false, node)
+      if latest_version != "" 
+        ConsoleLogger::log(C_CLASS_NAME,"latest","Latest: #{latest_version}")
+        return latest_version.to_i
+      end
+    end
+    return C_FIRST_VERSION
   end
 
   def self.find(id)    

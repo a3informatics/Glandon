@@ -229,19 +229,28 @@ class Form < IsoManagedNew
     form = self.to_api_json
     annotations = Array.new
     annotations += bc_annotations
-    annotations += question_annotations(form)
+    annotations += question_annotations
     html = crf_node(form, annotations)
     return html
   end
 
   def report(options, user)
+    doc_history = Array.new
+    if options[:full]
+      history = IsoManagedNew::history(C_RDF_TYPE, C_SCHEMA_NS, {:identifier => self.identifier, :scope_id => self.owner_id})
+      history.each do |item|
+        if self.same_version?(item.version) || self.later_version?(item.version)
+          doc_history << item.to_api_json
+        end
+      end
+    end
     form = self.to_api_json
     annotations = Array.new
     if options[:annotate]
       annotations += bc_annotations
-      annotations += question_annotations(form)
+      annotations += question_annotations
     end
-    pdf = Reports::CrfReport.create(form, options, annotations, user)
+    pdf = Reports::CrfReport.create(form, options, annotations, doc_history, user)
   end
 
   def self.impact(params)
@@ -590,60 +599,52 @@ private
     return results
   end
 
-  def question_annotations(node)
+  def question_annotations()
+    ConsoleLogger::log(C_CLASS_NAME,"question_annotations", "*****Entry*****")
     results = Array.new
-    if node[:type] == "Form"
-      node[:children].each do |child|
-        results += question_annotations(child)
-      end
-    elsif node[:type] == "CommonGroup"
-      node[:children].each do |child|
-        results += question_annotations(child)
-      end
-    elsif node[:type] == "Group"
-      node[:children].each do |child|
-        results += question_annotations(child)
-      end
-    elsif node[:type] == "BCGroup"
-      node[:children].each do |child|
-        results += question_annotations(child,)
-      end
-    elsif node[:type] == "Placeholder"
-      node[:children].each do |child|
-        results += question_annotations(child)
-      end
-    elsif node[:type] == "Question"
-      mapping = node[:mapping].to_s
+    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "bd", "cdisc", "isoI", "iso25964"])  +
+      "SELECT ?var ?domain ?item WHERE \n" +       
+      "{ \n" +         
+      "  ?col mms:dataElementName ?var .  \n" +        
+      "  ?col mms:context ?dataset . \n" +         
+      "  ?dataset mms:contextName ?domain . \n" +         
+      "  { \n" +           
+      "    SELECT ?group ?item ?var ?gord ?pord WHERE \n" +           
+      "    { \n" +             
+      "      :" + self.id + " (bf:hasGroup|bf:hasSubGroup)+ ?group . \n" +
+      "      ?group bf:ordinal ?gord . \n" +   
+      "      ?group (bf:hasItem)+ ?item . \n" +             
+      "      ?item bf:mapping ?var . \n" +  
+      "      ?item bf:ordinal ?pord \n" + 
+      "    } \n" +          
+      "  } \n" +       
+      "} ORDER BY ?gord ?pord \n"   
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      ConsoleLogger::log(C_CLASS_NAME,"bc_annotations", "node=" + node.to_json.to_s)
+      item = ModelUtility.getValue('item', true, node)
+      variable = ModelUtility.getValue('var', false, node)
+      domain = ModelUtility.getValue('domain', false, node)
       domain_long_name = ""
-      domain_prefix = domain_from_mapping(mapping)
-      if @@domain_map.has_key?(domain_prefix)
-        domain_long_name = @@domain_map[domain_prefix]
-      end
-      results << {
-          :id => node[:id], :namespace => node[:namespace], 
-          :domain_prefix => domain_prefix, :domain_long_name => domain_long_name, 
-          :sdtm_variable => mapping, :sdtm_topic_variable => "", :sdtm_topic_value => ""
-        }
-    elsif node[:type] == "BCItem"
-      # Ignore
-    elsif node[:type] == "CL"
-      # Ignore
-    end
-    return results
-  end
-
-  # TODO: Very simple implementation at the moment
-  def domain_from_mapping(mapping)
-    words = mapping.split(/\W+/)
-    words.each do |word|
-      if word.upcase && (word.length) >= 5 && (word.length <= 8)
-        prefix = word[0,2]
-        if @@domain_map.has_key?(prefix)
-          return prefix
+      if item != ""
+        #ConsoleLogger::log(C_CLASS_NAME,"question_annotation","domain=" + domain.to_s)
+        if @@domain_map.has_key?(domain)
+          domain_long_name = @@domain_map[domain]
+          #ConsoleLogger::log(C_CLASS_NAME,"question_annotation","domain long name(1)=" + domain_long_name.to_s)
         end
+        #ConsoleLogger::log(C_CLASS_NAME,"question_annotation","domain long name(2)=" + domain_long_name.to_s)
+        results << {
+          :id => ModelUtility.extractCid(item), :namespace => ModelUtility.extractNs(item), 
+          :domain_prefix => domain, :domain_long_name => domain_long_name, :sdtm_variable => variable, :sdtm_topic_variable => "", :sdtm_topic_value => ""
+        }
       end
     end
-    return ""
+    #ConsoleLogger::log(C_CLASS_NAME,"question_annotation","results=" + results.to_json.to_s)
+    return results
   end
 
 end

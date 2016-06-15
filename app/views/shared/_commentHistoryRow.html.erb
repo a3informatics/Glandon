@@ -1,0 +1,13 @@
+<tr>
+  <td><%= item.version %></td>
+  <td><%= item.creationDate %></td>
+  <td><%= item.lastChangedDate %></td>
+  <td><%= raw MarkdownEngine::render(item.changeDescription) %></td>
+  <td><%= raw MarkdownEngine::render(item.explanatoryComment) %></td>
+  <td><%= raw MarkdownEngine::render(item.origin) %></td>
+  <% if editPath != "" %>
+    <td><%= link_to "Edit", editPath, :class => "btn btn-primary btn-xs" %></td>
+  <% else %>
+    <td></td>
+  <% end %>
+</tr>

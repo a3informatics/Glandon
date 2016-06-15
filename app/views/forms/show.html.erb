@@ -49,8 +49,8 @@
 			  	<td><%= group.groupType%></td>
 			  	<td><%= group.optional%></td>
 			  	<td><%= group.repeating%></td>
-			  	<td><%= group.completion%></td>
-			  	<td><%= group.note%></td>
+			  	<td><%= raw group.completion%></td>
+			  	<td><%= raw group.note%></td>
 			  	<td><%= link_to "Show", forms_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
 				</tr>
 			<% end %>	

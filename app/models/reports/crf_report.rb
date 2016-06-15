@@ -2,10 +2,26 @@ class Reports::CrfReport
 
   C_CLASS_NAME = "Report::CrfReport"
 
-  def self.create(node, options, annotations, user)
+  def self.create(node, options, annotations, history, user)
     paper_size = user.paper_size
     html = page_header()
     html += title_page(node, user)
+    # Document history
+    if history.length > 0 && options[:full] 
+      html += page_break
+      html += "<h3>Item History</h3>"
+      html += "<table class=\"simple\">"
+      html += "<thead><tr><th>Date</th><th>Change</th><th>Comment</th><th>References</th></tr></thead>"
+      history.each do |item|
+        changed_date = MarkdownEngine::render(item[:last_changed_date])
+        description = MarkdownEngine::render(item[:change_description])
+        comment = MarkdownEngine::render(item[:comment])
+        refs = MarkdownEngine::render(item[:references])
+        html += "<td>#{changed_date}</td><td>#{description}</td><td>#{comment}</td><td>#{refs}</td></tr>"
+      end 
+      html += "</table>"
+      html += page_break
+    end
     # Create the form. Build the completion instructions and notes
     # as we do.
     ci_nodes = Array.new
@@ -45,12 +61,12 @@ class Reports::CrfReport
       end 
       html += "</table>"
     end
-    # Notes
+    # Terminology
     if terminology.length > 0 && options[:full] 
       html += page_break
       html += "<h3>Terminology</h3>"
-      html += "<table class=\"note\">"
-      html += "<thead><tr><td>Question</td><td>Identifier</td><td>Submission Value</td><td>Preferred Term</td></tr></thead>"
+      html += "<table class=\"simple\">"
+      html += "<thead><tr><th>Question</th><th>Identifier</th><th>Submission Value</th><th>Preferred Term</th></tr></thead>"
       terminology.each do |node|
         if node[:optional]
           html += "<tr class=\"warning\">"
@@ -58,7 +74,7 @@ class Reports::CrfReport
           html += "<tr>"
         end
         length = node[:children].length == 0 ? 1 : node[:children].length
-        html += "<td rowspan=\"#{length}\"><strong>#{node[:label]}</strong></td>"
+        html += "<td rowspan=\"#{length}\">#{node[:label]}</td>"
         node[:children].each do |child|
           values_ref = child[:reference]
           if values_ref[:enabled]
@@ -92,6 +108,9 @@ private
     html += "h5 { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 12pt; }\n"
     html += "p { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; }\n"
     html += "table tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
+    html += "table.simple { border: 1px solid black; border-collapse: collapse; width: 100%;}\n"
+    html += "table.simple tr td { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
+    html += "table.simple tr th { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
     html += "table.form_table { border: 1px solid black; width: 100%;}\n"
     html += "table.form_table tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
     html += "table.form_table h4 { vertical-align: middle;}\n"

@@ -171,6 +171,23 @@ class Thesaurus <  IsoManagedNew
     return results
   end
   
+  def self.next(offset, limit, ns)
+    results = Array.new
+    variable = getOrderVariable(0)
+    order = getOrdering("asc")
+    query = UriManagement.buildNs(ns, ["iso25964"]) + 
+      queryString("", ns) + 
+      " ORDER BY " + order + "(" + variable + ") OFFSET " + offset.to_s + " LIMIT " + limit.to_s
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      processNode(node, results)
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"next","Results=" + results.to_json.to_s)
+    return results
+  end
+
   def update(params)
     ConsoleLogger::log(C_CLASS_NAME,"update","*****Entry*****")
     ConsoleLogger::log(C_CLASS_NAME,"update","Params=" + params.to_s)
@@ -279,34 +296,50 @@ private
     nSet = node.xpath("binding[@name='c']/literal")
     ptSet = node.xpath("binding[@name='d']/literal")
     sSet = node.xpath("binding[@name='e']/literal")
-    dSet = node.xpath("binding[@name='f']/literal")
-    tlSet = node.xpath("binding[@name='g']/uri")
+    dSet = node.xpath("binding[@name='g']/literal")
+    tlSet = node.xpath("binding[@name='h']/uri")
+    parentSet = node.xpath("binding[@name='k']/literal")
     if uriSet.length == 1 
-      object = ThesaurusConcept.new 
+      object = CdiscCl.new 
+      object.id = ModelUtility.extractCid(uriSet[0].text)
+      object.namespace = ModelUtility.extractNs(uriSet[0].text)
       object.identifier = idSet[0].text
       object.notation = nSet[0].text
       object.preferredTerm = ptSet[0].text
       object.synonym = sSet[0].text
       object.definition = dSet[0].text
       object.topLevel = false
+      object.parentIdentifier = ""
       if tlSet.length == 1 
         object.topLevel = true
+        object.parentIdentifier = object.identifier
+      end
+      if parentSet.length == 1 
+        object.parentIdentifier = parentSet[0].text
       end
       results.push(object)
     end
   end
 
   def self.queryString(searchTerm, ns)
-    query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g WHERE \n" +
+    query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?g ?h ?k WHERE \n" +
       "  {\n" +
       "    ?a iso25964:identifier ?b . \n" +
       "    ?a iso25964:notation ?c . \n" +
       "    ?a iso25964:preferredTerm ?d . \n" +
       "    ?a iso25964:synonym ?e . \n" +
-      "    ?a iso25964:definition ?f . \n" +
-      "    OPTIONAL { ?a iso25964:inScheme ?g . }\n"
+      "    ?a iso25964:definition ?g . \n" +
+      "    OPTIONAL\n" +
+      "    {\n" +
+      "      ?h iso25964:hasConcept ?a . \n" +
+      "    }\n" +
+      "    OPTIONAL\n" +
+      "    { \n" +
+      "      ?j iso25964:hasChild ?a .  \n" +
+      "      ?j iso25964:identifier ?k .  \n" +
+      "    } \n"
       if searchTerm != ""
-        query += "    ?a ( iso25964:identifier | iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?h . FILTER regex(?h, \"" + 
+        query += "    ?a ( iso25964:identifier | iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?i . FILTER regex(?i, \"" + 
           searchTerm + "\") . \n"
       end
       query += "    FILTER(STRSTARTS(STR(?a), \"" + ns + "\"))" +

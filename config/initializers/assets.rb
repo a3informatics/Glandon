@@ -19,7 +19,7 @@ Rails.application.config.assets.version = '1.0'
 	cdisc_cls cdisc_clis cdisc_terms 
   sponsor_terms 
   thesauri thesaurus_concepts 
-	thesauri_editor thesauri_viewer 
+	thesauri_editor thesauri_viewer thesauri_search
   forms forms/groups forms/items form_placeholder_new form_editor form_editor_new form_viewer 
   d3local).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
