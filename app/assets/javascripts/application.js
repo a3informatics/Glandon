@@ -123,9 +123,9 @@ jQuery.validator.addMethod("freeText", function(value, element) {
 }, "Please enter valid free text. Upper and lower case case alphanumerics, space, .!?,_-/\\() special characters and return only.");
 
 jQuery.validator.addMethod("markdown", function(value, element) {
-  var result = /^[A-Za-z0-9 .!?,_\-\/\\()#*=:&|\r\n]*$/.test( value );
+  var result = /^[A-Za-z0-9 .!?,'"_\-\/\\()[\]~#*=:;&|\r\n]*$/.test( value );
   return result;
-}, "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,_-/\\()#*=:;&| special characters and return only.");
+}, "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&| special characters and return only.");
 
 // Set validator plugin defaults.
 // TODO: Think about the span bit, not sure it is needed.
@@ -156,10 +156,9 @@ function validatorDefaults () {
 function getMarkdown(element, text) {
   if (text != "") {
     $.ajax({
-      url: "/forms/markdown",
-      data: {
-        "markdown": text
-      },
+      url: "/markdown_engines",
+      type: "POST",
+      data: { "markdown_engine": { "markdown": text }},
       dataType: 'json',
       error: function (xhr, status, error) {
         var html = alertError("An error has occurred loading the markdown.");

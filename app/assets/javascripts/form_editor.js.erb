@@ -636,7 +636,7 @@ $(document).ready(function() {
       displayAlerts(html);
     } else {
       var text = markdownElement.value;
-      markdown(text);  
+      getMarkdown(genericCompletionElement, text);  
     }
   });
 
@@ -659,7 +659,7 @@ $(document).ready(function() {
     markdownType = C_FORM;
     markdownElement = formCompletionElement;
     var text = markdownElement.value;
-    markdown(text); 
+    getMarkdown(genericCompletionElement, text);
   });
 
   $( "#formNote" ).focus(function() {
@@ -667,7 +667,7 @@ $(document).ready(function() {
     markdownType = C_FORM;
     markdownElement = formNoteElement;
     var text = markdownElement.value;
-    markdown(text); 
+    getMarkdown(genericCompletionElement, text);
   });
 
   $( "#groupCompletion" ).focus(function() {
@@ -676,7 +676,7 @@ $(document).ready(function() {
     markdownType = C_GROUP;
     markdownElement = groupCompletionElement;
     var text = markdownElement.value;
-    markdown(text); 
+    getMarkdown(genericCompletionElement, text);
   });
 
   $( "#groupNote" ).focus(function() {
@@ -685,7 +685,7 @@ $(document).ready(function() {
     markdownType = C_GROUP;
     markdownElement = groupNoteElement;
     var text = markdownElement.value;
-    markdown(text); 
+    getMarkdown(genericCompletionElement, text);
   });
 
   $( "#questionCompletion" ).focus(function() {
@@ -694,7 +694,7 @@ $(document).ready(function() {
     markdownType = C_QUESTION;
     markdownElement = questionCompletionElement;
     var text = markdownElement.value;
-    markdown(text); 
+    getMarkdown(genericCompletionElement, text);
   });
 
   $( "#questionNote" ).focus(function() {
@@ -703,7 +703,7 @@ $(document).ready(function() {
     markdownType = C_QUESTION;
     markdownElement = questionNoteElement;
     var text = markdownElement.value;
-    markdown(text); 
+    getMarkdown(genericCompletionElement, text);
   });
 
   /*
@@ -1652,25 +1652,6 @@ $(document).ready(function() {
     } else {
       return false;
     }
-  }
-  
-  // TODO: Replace with generic version in forms.js
-  function markdown() {
-    $.ajax({
-      url: "/forms/markdown",
-      data: {
-        "markdown": markdownElement.value
-      },
-      dataType: 'json',
-      error: function (xhr, status, error) {
-        var html = alertError("An error has occurred loading the markdown.");
-        displayAlerts(html);
-      },
-      success: function(result){
-        var html_text = $.parseJSON(JSON.stringify(result));
-        genericCompletionElement.innerHTML = html_text.result;
-      }
-    });
   }
 
 });

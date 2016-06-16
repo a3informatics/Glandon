@@ -1,7 +1,7 @@
 <tr>
   <td><%= item.version %></td>
-  <td><%= item.creationDate %></td>
-  <td><%= item.lastChangedDate %></td>
+  <td><%= Timestamp.new(item.creationDate).to_datetime %></td>
+  <td><%= Timestamp.new(item.lastChangedDate).to_datetime %></td>
   <td><%= raw MarkdownEngine::render(item.changeDescription) %></td>
   <td><%= raw MarkdownEngine::render(item.explanatoryComment) %></td>
   <td><%= raw MarkdownEngine::render(item.origin) %></td>

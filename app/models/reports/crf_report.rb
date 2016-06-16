@@ -13,7 +13,7 @@ class Reports::CrfReport
       html += "<table class=\"simple\">"
       html += "<thead><tr><th>Date</th><th>Change</th><th>Comment</th><th>References</th></tr></thead>"
       history.each do |item|
-        changed_date = MarkdownEngine::render(item[:last_changed_date])
+        changed_date = Timestamp.new(item[:last_changed_date]).to_date
         description = MarkdownEngine::render(item[:change_description])
         comment = MarkdownEngine::render(item[:comment])
         refs = MarkdownEngine::render(item[:references])

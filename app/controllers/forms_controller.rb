@@ -173,11 +173,6 @@ class FormsController < ApplicationController
     send_data pdf, filename: "#{form.owner}_#{form.identifier}_FullCRF.pdf", type: 'application/pdf', disposition: 'inline'
   end
 
-  def markdown
-    authorize Form, :view?
-    render :json => { :result => MarkdownEngine::render(params[:markdown])}, :status => 200
-  end
-
 private
   def the_params
     params.require(:form).permit(:formId, :namespace, :freeText, :identifier, :label, :children => {}, :bcs => [])

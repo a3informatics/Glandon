@@ -13,6 +13,7 @@ module SparqlUtility
     #ConsoleLogger::log(C_CLASS_NAME,"replace_special_chars", "new[2]=" + text)
     text.gsub!("<LINEFEED>", "\\r")
     text.gsub!("<CARRIAGERETURN>", "\\n")
+    text.gsub!("\"", "\\\"")
     #ConsoleLogger::log(C_CLASS_NAME,"replace_special_chars", "new[3]=" + text)
     return text
   end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get :form
     end
   end
-  
+  resources :markdown_engines, only: [:create]
   resources :dashboard do
     collection do
       get :view
