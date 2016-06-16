@@ -13,6 +13,7 @@ Rails.application.config.assets.version = '1.0'
   standards 
   domains domains/variables 
   dashboard dashboard_viewer dashboard_index 
+  markdown_editor
   sdtmigs 
   backgrounds background_index notepads users user_settings
 	biomedical_concept_templates biomedical_concepts biomedical_concepts_editor 

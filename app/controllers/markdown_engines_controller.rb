@@ -2,6 +2,10 @@ class MarkdownEnginesController < ApplicationController
 
   before_action :authenticate_user!
   
+  def index
+    authorize MarkdownEngine
+  end
+
   def create
   	authorize MarkdownEngine
     render :json => { :result => MarkdownEngine::render(the_params[:markdown])}, :status => 200

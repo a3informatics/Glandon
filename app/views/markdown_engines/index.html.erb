@@ -1,0 +1,18 @@
+<%= javascript_include_tag 'markdown_editor' %>
+<h3>Markdown</h3>
+<div class="row">
+	<div class="col-md-6" >
+        <form id="main_form">
+            <div class="form-group">
+                <label for="raw_markdown">Raw Markdown:</label>
+                <textarea class="form-control collapse in" id="raw_markdown" name="Raw Markdown" rows="30" style="font-family:monospace;"></textarea>
+            </div>
+            <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+            <button type="Submit" id="markdown_validate" class="btn btn-primary">Validate</button>
+        </form>
+	</div>
+	<div class="col-md-6" >
+        <label for="generic_markdown">Processed Markdown:</label>
+        <div id="generic_markdown"></div>
+    </div>
+</div>
