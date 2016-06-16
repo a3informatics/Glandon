@@ -52,7 +52,11 @@ $(document).ready(function() {
     node.enabled = true;
     node.save = node.children;
     node.parent = parent;
-    node.name = node.label;
+    if (node.type == C_CL) {
+      node.name = node.reference.local_label;
+    } else {
+      node.name = node.label;
+    }
     if (node.hasOwnProperty('children')) {
       for (i=0; i<node.children.length; i++) {
         child = node.children[i];
@@ -288,7 +292,8 @@ $(document).ready(function() {
 
   function displayCl(node) {
     document.getElementById("clIdentifier").innerHTML = node.identifier;
-    document.getElementById("clPreferredTerm").innerHTML = node.preferred_term;
+    document.getElementById("clLocalLabel").innerHTML = node.reference.local_label;
+    document.getElementById("clLabel").innerHTML = node.label;
     document.getElementById("clSubmission").innerHTML = node.notation;
     document.getElementById("clEnabled").innerHTML = node.reference.enabled;
     document.getElementById("clOptional").innerHTML = node.reference.optional;

@@ -1,6 +1,6 @@
 class OperationalReference < IsoConceptNew
 
-  attr_accessor :reference_type, :thesaurus_concept, :biomedical_concept, :bc_property, :bc_value, :enabled, :optional
+  attr_accessor :reference_type, :thesaurus_concept, :biomedical_concept, :bc_property, :bc_value, :enabled, :optional, :ordinal, :local_label
   #validates_presence_of :concept, :property, :value, :enabled
 
   # Constants
@@ -19,6 +19,8 @@ class OperationalReference < IsoConceptNew
     self.enabled = true
     self.optional = false
     self.reference_type = C_NONE
+    self.ordinal = 0
+    self.local_label = ""
     if triples.nil?
       super
     else

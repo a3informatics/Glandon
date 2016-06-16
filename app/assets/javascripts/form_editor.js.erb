@@ -30,7 +30,9 @@ $(document).ready(function() {
   var itemEnableElement = document.getElementById("itemEnable");
   var itemOptionalElement = document.getElementById("itemOptional");
   var clIdentifierElement = document.getElementById("clIdentifier");
+  var clLocalLabelElement = document.getElementById("clLocalLabel");
   var clLabelElement = document.getElementById("clLabel");
+  var clNotationElement = document.getElementById("clNotation");
   var clEnableElement = document.getElementById("clEnable");
   var clOptionalElement = document.getElementById("clOptional");
   var plTextElement = document.getElementById("placeholderText");
@@ -76,6 +78,8 @@ $(document).ready(function() {
         "Question Text": {required: true, question: true },
         questionNote: {required: false, markdown: true},
         questionCompletion: {required: false, markdown: true},
+        "Placeholder Text": {required: false, markdown: true},
+        "Code List Label": {required: true, label: true },
         commonLabel: {required: true, label: true }
     },
     submitHandler: function(form) {
@@ -201,6 +205,8 @@ $(document).ready(function() {
         savePlaceholder(currentNode)
       } else if (currentNode.type == C_QUESTION) {
         saveQuestion(currentNode)
+      } else if (currentNode.type == C_CL) {
+        saveCl(currentNode)
       }
     }
     displayNode(node)
@@ -223,16 +229,6 @@ $(document).ready(function() {
       node.expand = true;
       displayTree(node.key); 
     }
-    /*if (node.hasOwnProperty('children')) {
-      node.children = [];
-      node.expand = true;
-      displayTree(node.key);
-    } else if (node.hasOwnProperty('save')) {
-      node.children = [];
-      node.children = node.save;
-      node.expand = false;
-      displayTree(node.key);
-    }*/
   } 
 
   /* 
@@ -583,14 +579,57 @@ $(document).ready(function() {
   */
   $('#clUpdate').click(function() {
     if (currentNode == null) {
-      var html = alertWarning("You need to select a group node.");
+      var html = alertWarning("You need to select a code list node.");
       displayAlerts(html);
     } else {
       saveCl(currentNode)
-      //clIdentifierElement.innerHTML = node.data.identifier;
+      displayTree(currentNode.key);
+    }
+  });
+
+  $('#clDefault').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a code list node.");
+      displayAlerts(html);
+    } else {
+      clLocalLabelElement.value = currentNode.data.label;
     }
   });
   
+  $('#clUp').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a code list node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index != 0) {
+        moveNodeUp(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node up.");
+        displayAlerts(html);
+      }
+    }
+  }); 
+
+  $('#clDown').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a code list node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index < parentNode.save.length) {
+        moveNodeDown(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node down.");
+        displayAlerts(html);
+      }
+    }
+  }); 
+
   /*
    * Function to handle click on the BC selection table.
    */
@@ -706,6 +745,13 @@ $(document).ready(function() {
     getMarkdown(genericCompletionElement, text);
   });
 
+  $( "#placeholderText" ).focus(function() {
+    markdownType = C_PLACEHOLDER;
+    markdownElement = plTextElement;
+    var text = markdownElement.value;
+    getMarkdown(genericCompletionElement, text);
+  });
+
   /*
   *
   */
@@ -780,6 +826,7 @@ $(document).ready(function() {
   function selectPlaceholder() {
     clearSelect();
     $("#placeholderInfo").removeClass('hidden');
+    $("#markdown_panel").removeClass('hidden');
   }
 
   function selectCl() {
@@ -901,12 +948,16 @@ $(document).ready(function() {
 
   function displayCl(node) {
     clIdentifierElement.innerHTML = node.data.identifier;
+    clLocalLabelElement.value = node.data.reference.local_label;
     clLabelElement.innerHTML = node.data.label;
+    clNotationElement.innerHTML = node.data.notation;
     clEnableElement.checked = node.data.reference.enabled;
     clOptionalElement.checked = node.data.reference.optional;
     parentNode = node.parent;
     if (parentNode.type == C_QUESTION) {
       $("#clEnable").prop('disabled', true);
+    } else if (parentNode.type == C_BC_ITEM) {
+      $("#clLocalLabel").prop('disabled', true);
     } else {
       $("#clEnable").prop('disabled', false);
     }
@@ -980,6 +1031,8 @@ $(document).ready(function() {
   function saveCl(node) {
     node.data.reference.enabled = clEnableElement.checked;
     node.data.reference.optional = clOptionalElement.checked;
+    node.data.reference.local_label = clLocalLabelElement.value;
+    node.name = node.data.reference.local_label;
     node.enabled = clEnableElement.checked;
   }
 
@@ -1447,20 +1500,17 @@ $(document).ready(function() {
     if (node.hasOwnProperty('children')) {
       for (i=0; i<node.children.length; i++) {
         child = node.children[i];
-        child.ordinal = i+1;
+        if (child.hasOwnProperty('ordinal')) {
+          child.ordinal = i+1;
+        } else if (child.hasOwnProperty('reference')) {
+          ref = child.reference
+          if (ref.hasOwnProperty('ordinal')) {
+           ref.ordinal = i+1;
+          }
+        }
       }
     }
   }
-
-  /*function setSave(node) {
-    if (node.hasOwnProperty('children')) {
-      node.save = node.children;
-      for (i=0; i<node.children.length; i++) {
-        child = node.children[i];
-        setSave(child);
-      }
-    }
-  }*/
 
   function setD3(sourceNode, d3Node) {
     var newNode;
@@ -1477,7 +1527,7 @@ $(document).ready(function() {
     } else if (sourceNode.type === C_PLACEHOLDER ) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
     } else if (sourceNode.type === C_CL) {
-      newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
+      newNode = addD3Node(d3Node, sourceNode.reference.local_label, sourceNode.type, sourceNode, true);
       value_ref = sourceNode.reference;
       newNode.enabled = value_ref.enabled;
     }

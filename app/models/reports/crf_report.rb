@@ -316,7 +316,7 @@ private
       node[:children].each do |child|
         values_ref = child[:reference]
         if values_ref[:enabled]
-          values << "#{child[:preferred_term]}"
+          values << "#{values_ref[:local_label]}"
         end
       end
       html += cl_table(values)

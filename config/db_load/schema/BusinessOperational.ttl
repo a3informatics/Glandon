@@ -69,6 +69,9 @@
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Component ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :Component :TcReference )
+    ] ;
   rdfs:label "ordinal"^^xsd:string ;
   rdfs:range xsd:postiveInteger ;
 .
@@ -85,4 +88,11 @@
   rdfs:domain :Reference ;
   rdfs:label "optional"^^xsd:string ;
   rdfs:range xsd:boolean ;
+.
+:local_label
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :TcReference ;
+  rdfs:label "Repelacement label"^^xsd:string ;
+  rdfs:range xsd:string ;
 .

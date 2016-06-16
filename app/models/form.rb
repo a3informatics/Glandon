@@ -486,11 +486,9 @@ private
       html += input_field(node, annotations)
       html += '</tr>'
     elsif node[:type] == "CL"
-      #ConsoleLogger::log(C_CLASS_NAME,"crf_node","node=" + node.to_json.to_s)
       value_ref = node[:reference]
-      #.ConsoleLogger::log(C_CLASS_NAME,"crf_node","value_ref=" + value_ref.to_json.to_s)
       if value_ref[:enabled]
-        html += '<p><input type="radio" name="' + node[:identifier].to_s + '" value="' + node[:identifier].to_s + '"></input> ' + node[:label].to_s + '</p>'
+        html += '<p><input type="radio" name="' + node[:identifier].to_s + '" value="' + node[:identifier].to_s + '"></input> ' + value_ref[:local_label].to_s + '</p>'
       end
     else
       html += '<tr>'

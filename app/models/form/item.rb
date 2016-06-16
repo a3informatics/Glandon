@@ -133,14 +133,23 @@ class Form::Item < IsoConceptNew
       tc_refs.each do |tc_ref|
         cli = tc_ref.thesaurus_concept
         if !cli.nil? 
+          # Temporary, remove!!!
+          if tc_ref.ordinal == 0
+            tc_ref.ordinal = ordinal
+          end
+          if tc_ref.local_label.empty? 
+            tc_ref.local_label = cli.preferredTerm
+          end
           result[:children] << 
             { 
-              :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => tc_ref.enabled, :optional => tc_ref.optional }, 
-              :label => cli.label, :notation => cli.notation, :preferred_term => cli.preferredTerm, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal 
+              :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => tc_ref.enabled, 
+                :optional => tc_ref.optional, :local_label => tc_ref.local_label, :ordinal => tc_ref.ordinal }, 
+              :label => cli.label, :notation => cli.notation, :preferred_term => cli.preferredTerm, :identifier => cli.identifier, :type => "CL" 
             }
+          ordinal += 1  
         end
-        ordinal += 1  
       end
+      result[:children] = result[:children].sort_by {|item| item[:reference][:ordinal]}
     else
       if self.bcProperty != nil
         result[:property_reference] = 
@@ -160,10 +169,11 @@ class Form::Item < IsoConceptNew
         cli = cli_ref.bc_value
         result[:children] << 
           { 
-            :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => cli_ref.enabled, :optional => cli_ref.optional }, 
-            :label => cli.label, :notation => cli.notation, :preferred_term => cli.preferredTerm, :identifier => cli.identifier, :type => "CL", :ordinal => ordinal 
+            :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => cli_ref.enabled, 
+              :optional => cli_ref.optional, :local_label => cli.label, :ordinal => ordinal }, 
+            :label => cli.label, :notation => cli.notation, :preferred_term => cli.preferredTerm, :identifier => cli.identifier, :type => "CL"
           }
-        ordinal += 1
+        ordinal += 1  
       end
       items.each do |item|
         result[:otherCommon] << item.to_api_json
@@ -192,18 +202,18 @@ class Form::Item < IsoConceptNew
       sparql.triple_primitive_type("", id, schema_prefix, "qText", json[:qText].to_s, "string")
       sparql.triple_primitive_type("", id, schema_prefix, "mapping", json[:mapping].to_s, "string")
       if json.has_key?(:children)
-        value_ordinal = 1
+        #value_ordinal = 1
         json[:children].each do |key, child|
-          #value = child[:value_reference]
-          #sparql.triple_uri("", id, schema_prefix, "hasThesaurusConcept", value[:namespace], value[:id])
           value = child[:reference]
-          ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'TCR' + value_ordinal.to_s
+          ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'TCR' + value[:ordinal].to_s
           sparql.triple("", id, schema_prefix, "hasThesaurusConcept", "", ref_id.to_s)
           sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "TcReference")
           sparql.triple_uri("", ref_id, "bo", "hasThesaurusConcept", value[:namespace], value[:id])
           sparql.triple_primitive_type("", ref_id, "bo", "enabled", value[:enabled].to_s, "boolean")
           sparql.triple_primitive_type("", ref_id, "bo", "optional", value[:optional].to_s, "boolean")
-          value_ordinal += 1
+          sparql.triple_primitive_type("", ref_id, "bo", "ordinal", value[:ordinal].to_s, "positiveInteger")
+          sparql.triple_primitive_type("", ref_id, "bo", "local_label", value[:local_label].to_s, "string")
+          #value_ordinal += 1
         end
       end
     else
@@ -265,11 +275,7 @@ private
       links = object.get_links(C_SCHEMA_PREFIX, "hasThesaurusConcept")
       links.each do |link|
         id = ModelUtility.extractCid(link)
-        #op_ref = OperationalReference.find_from_triples(triples, id)
-        #object.q_values << op_ref
         object.q_values << OperationalReference.find_from_triples(triples, id)
-        #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","link=" + link.to_s)
-        #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","ref=" + op_ref.to_json.to_s)
       end
     end      
   end

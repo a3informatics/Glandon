@@ -39,8 +39,10 @@ class ApplicationController < ActionController::Base
           result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t<#{triple[:object]}> . \n"
         else
           object_text = triple[:object]
+          # TODO: Compare with SparqlUtility::replace_special_char 
           object_text.gsub!("\r", "\\r")
-          object_text.gsub!("\n", "\\n") 
+          object_text.gsub!("\n", "\\n")
+          object_text.gsub!("\"", "\\\"")
           result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t\"#{object_text}\" . \n"
         end
       end

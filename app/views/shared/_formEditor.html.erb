@@ -227,7 +227,7 @@
                 <div>
                     <div class="form-group">
                         <label for="placeholderText">Placeholder Text:</label>
-                        <input type="text" class="form-control" id="placeholderText">
+                        <textarea class="form-control" id="placeholderText" name="Placeholder Text" rows="5" style="font-family:monospace;"></textarea>
                     </div>
                 </div>
                 <button type="button" id="placeholderUpdate" class="btn btn-primary">Update</button>
@@ -281,11 +281,19 @@
                                 <td id="clIdentifier"></td>
                             </tr>
                             <tr>
-                                <td><strong>Label:</strong></td>
+                                <td><strong>Default Label:</strong></td>
                                 <td id="clLabel"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Submission Value:</strong></td>
+                                <td id="clNotation"></td>
                             </tr>
                         </tbody>
                     </table>
+                    <div class="form-group">
+                        <label for="clLocalLabel">Label:</label>
+                        <input type="text" class="form-control" id="clLocalLabel" name="Code List Label">
+                    </div>
                     <div class="form-group">
                         <div class="checkbox">
                             <label class="checkbox-inline">
@@ -301,6 +309,13 @@
                         </div>
                     </div>
                     <button type="button" id="clUpdate" class="btn btn-primary">Update</button>
+                    <button type="button" id="clDefault" class="btn btn-primary">Default</button>
+                    <button type="button" id="clUp" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
+                    </button>
+                    <button type="button" id="clDown" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
+                    </button> 
                 </div>
             </div>
         </div>
