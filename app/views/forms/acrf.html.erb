@@ -1,7 +1,7 @@
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Annotated CRF:", :item => @form} %>
 <div class="col-md-8">
     <%= @form.acrf.html_safe %>
-    <%= link_to "Report", acrf_report_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
-    <%= link_to "Full Report", full_crf_report_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+    <%= link_to "Report", acrf_report_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary", :target => "_blank" %>
+    <%= link_to "Full Report", full_crf_report_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary", :target => "_blank" %>
     <%= link_to "Close", view_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
 </div>

@@ -72,8 +72,8 @@ class BiomedicalConceptsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @bc = BiomedicalConcept.find(id, namespace)
-    @forms = Form.impact(params)
-    @domains = Domain.impact(params)
+    @forms = Form.bc_impact(params)
+    @domains = Domain.bc_impact(params)
   end
 
   def create

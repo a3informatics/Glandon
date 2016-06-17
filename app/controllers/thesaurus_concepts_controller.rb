@@ -20,7 +20,7 @@ class ThesaurusConceptsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @thesaurusConcept = ThesaurusConcept.find(id, namespace)
-    @bcs = BiomedicalConcept.impact(params)
+    @bcs = BiomedicalConcept.term_impact(params)
   end
 
   def destroy

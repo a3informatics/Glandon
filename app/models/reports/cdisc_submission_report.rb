@@ -33,8 +33,8 @@ class Reports::CdiscSubmissionReport < Reports::PdfReport
           row << "[#{counter}]"
           amendment = status.split('->')
           from = amendment[0]
-          to = amendment[1]
-          detail_data << ["[#{counter}]", "#{amendment[0]}", "#{amendment[1]}"]
+          to = amendment[1].blank? ? "[***DELETED***]" : amendment[1]
+          detail_data << ["[#{counter}]", "#{from}", "#{to}"]
         end
       end
       table_data << row

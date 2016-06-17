@@ -165,40 +165,51 @@ class CdiscTerm < Thesaurus
   def self.submission_diff(old_term, new_term)
     results = Array.new
     query = UriManagement.buildPrefix("", ["iso25964"]) +
-      "SELECT DISTINCT ?a1 ?b1 ?c1 ?d1 ?a2 ?c2 WHERE \n" +
+      "SELECT DISTINCT ?a1 ?b1 ?c1 ?d1 ?f1 ?a2 ?c2 WHERE \n" +
       "  {\n" +
-      "    ?a1 iso25964:identifier ?b1 . \n" +
-      "    ?a1 iso25964:notation ?c1 . \n" +
-      "    OPTIONAL \n" +
       "    {\n" +
+      "      ?a1 iso25964:identifier ?b1 . \n" +
+      "      ?a1 iso25964:notation ?c1 . \n" +
+      "      ?a1 rdfs:label ?f1 . \n" +
       "      ?e1 iso25964:hasChild ?a1 . \n" +
       "      ?e1 iso25964:identifier ?d1 . \n" +
-      "    }\n" +
-      "    FILTER(STRSTARTS(STR(?a1), \"" + old_term.namespace + "\")) \n" +
-      "    ?a2 iso25964:identifier ?b1 . \n" +
-      "    ?a2 iso25964:notation ?c2 . \n" +
-      "    OPTIONAL \n" +
-      "    {\n" +
+      "      FILTER(STRSTARTS(STR(?a1), \"" + old_term.namespace + "\")) \n" +
+      "      ?a2 iso25964:identifier ?b1 . \n" +
+      "      ?a2 iso25964:notation ?c2 . \n" +
       "      ?e2 iso25964:hasChild ?a2 . \n" +
       "      ?e2 iso25964:identifier ?d2 . \n" +
+      "      FILTER(STRSTARTS(STR(?a2), \"" + new_term.namespace + "\")) \n" +
+      "      FILTER(?c1 != ?c2 %26%26 $d1 = $d2) \n" +
       "    }\n" +
-      "    FILTER(STRSTARTS(STR(?a2), \"" + new_term.namespace + "\")) \n" +
-      "    FILTER(?c1 != ?c2 %26%26 $d1 = $d2) \n" +
+      "    UNION\n" +
+      "    {\n" +
+      "      ?a1 iso25964:identifier ?b1 . \n" +
+      "      ?a1 iso25964:notation ?c1 . \n" +
+      "      ?a1 rdfs:label ?f1 . \n" +
+      "      ?e1 iso25964:hasChild ?a1 . \n" +
+      "      ?e1 iso25964:identifier ?d1 . \n" +
+      "      FILTER(STRSTARTS(STR(?a1), \"" + old_term.namespace + "\")) \n" +
+      "      FILTER NOT EXISTS { \n" +
+      "        ?a2 iso25964:identifier ?b1 . \n" +
+      "        FILTER(STRSTARTS(STR(?a2), \"" + new_term.namespace + "\")) \n" +
+      "      }\n" +
+      "    } \n" +
       "  }"
     response = CRUD.query(query)
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      uri1Set = node.xpath("binding[@name='a1']/uri")
-      uri2Set = node.xpath("binding[@name='a2']/uri")
-      i1Set = node.xpath("binding[@name='b1']/literal")
-      n1Set = node.xpath("binding[@name='c1']/literal")
-      n2Set = node.xpath("binding[@name='c2']/literal")
-      p1Set = node.xpath("binding[@name='d1']/literal")
-      if uri1Set.length == 1 
+      uri1Set = ModelUtility.getValue('a1', true, node)
+      uri2Set = ModelUtility.getValue('a2', true, node)
+      i1Set = ModelUtility.getValue('b1', false, node)
+      n1Set = ModelUtility.getValue('c1', false, node)
+      n2Set = ModelUtility.getValue('c2', false, node)
+      p1Set = ModelUtility.getValue('d1', false, node)
+      label = ModelUtility.getValue('f1', false, node)
+      if !uri1Set.empty? 
         object = Hash.new 
-        object = {:old_uri => uri1Set[0].text, :new_uri => uri2Set[0].text, :identifier => i1Set[0].text, 
-          :old_notation => n1Set[0].text, :new_notation => n2Set[0].text, :parent_identifier => p1Set[0].text}
+        object = {:old_uri => uri1Set, :new_uri => uri2Set, :identifier => i1Set, :label => label, 
+          :old_notation => n1Set, :new_notation => n2Set, :parent_identifier => p1Set}
         results << object
       end
     end

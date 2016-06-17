@@ -130,7 +130,7 @@ class BiomedicalConcept < BiomedicalConceptCore
     return object
   end
 
-  def self.impact(params)
+  def self.term_impact(params)
     id = params[:id]
     namespace = params[:namespace]
     results = Hash.new

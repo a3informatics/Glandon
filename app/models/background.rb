@@ -110,7 +110,7 @@ class Background < ActiveRecord::Base
           else
             cli = CdiscCli.find(old_id, old_ns)
             entry = {:cli => {:id => old_id, :parent_identifier => diff[:parent_identifier], 
-              :identifier => diff[:identifier], :label => cli.preferredTerm}, :result => {}}
+              :identifier => diff[:identifier], :label => cli.preferredTerm, :original_notation => diff[:old_notation]}, :result => {}}
             result = entry[:result]
             missing.each do |ver|
               result[ver] = ""
@@ -138,7 +138,6 @@ class Background < ActiveRecord::Base
   handle_asynchronously :submission_changes_cdisc_term
 
   def submission_changes_impact(params)
-    results = Hash.new
     # Create the background job status
     self.update(
       description: "Detect CDISC Terminology submission value changes impact.", 
@@ -160,27 +159,70 @@ class Background < ActiveRecord::Base
       uri = diff[:old_uri]
       id = ModelUtility.extractCid(uri)
       ns = ModelUtility.extractNs(uri)
-      bcs = BiomedicalConcept.impact({:id => id, :namespace => ns})
+      bcs = BiomedicalConcept.term_impact({:id => id, :namespace => ns})
+      #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "BCs=#{bcs.to_json}")
       bc_results = Array.new  
       if bcs.length > 0
         bcs.each do |bc_id, bc|
           form_results = Array.new
-          forms = Form.impact({:id => bc.id, :namespace => bc.namespace})
+          forms = Form.bc_impact({:id => bc.id, :namespace => bc.namespace})
+          #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "Forms(BC)=#{forms.to_json}")
           forms.each do |form_id, form|
-            form_results << {:id => form.id, :ns => form.namespace, :identifier => form.identifier, :label => form.label}
+            form_results << 
+              {
+                :type => "Form", 
+                :id => form.id, 
+                :namespace => form.namespace, 
+                :identifier => form.identifier, 
+                :label => form.label, 
+                :via => "#{bc.label} (#{bc.identifier})", 
+                :children => []
+              }
           end
           domain_results = Array.new
-          domains = Domain.impact({:id => bc.id, :namespace => bc.namespace})
+          domains = Domain.bc_impact({:id => bc.id, :namespace => bc.namespace})
+          #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "Domains(BC)=#{domains.to_json}")
           domains.each do |domain_id, domain|
-            domain_results << {:id => domain.id, :ns => domain.namespace, :identifier => domain.identifier, :label => domain.label}
+            domain_results << 
+              {
+                :type => "Domain", 
+                :id => domain.id, 
+                :namespace => domain.namespace, 
+                :identifier => domain.identifier, 
+                :label => domain.label, 
+                :via => "#{bc.label} (#{bc.identifier})", 
+                :children => []
+              }
           end
-          bc_results << {:id => bc.id, :ns => bc.namespace, :identifier => bc.identifier, :label => bc.label, :forms => form_results, :domains => domain_results}
+          bc_results << 
+            {
+              :type => "Biomedical Concept", 
+              :id => bc.id, 
+              :namespace => bc.namespace, 
+              :identifier => bc.identifier, 
+              :label => bc.label, 
+              :via => "", 
+              :children => form_results + domain_results}
         end
-      else
-        op_results = Array.new
-        bc_results << {:forms => op_results, :domains => op_results}
       end
-      diff[:bcs] = bc_results
+      forms = Form.term_impact({:id => id, :namespace => ns})
+      #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "Forms(Term)=#{forms.to_json}")
+      form_results = Array.new
+      if forms.length > 0
+        forms.each do |form_id, form|
+          form_results << 
+            {
+              :type => "Form", 
+              :id => form.id, 
+              :namespace => form.namespace, 
+              :identifier => form.identifier, 
+              :label => form.label, 
+              :via => "", 
+              :children => []
+            }
+        end
+      end
+      diff[:children] = bc_results + form_results
       p = (index.to_f/count.to_f)*100.0
       self.update(status: "Checked " + diff[:identifier] + ".", percentage: p.to_i)
       index += 1

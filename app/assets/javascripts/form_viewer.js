@@ -52,11 +52,7 @@ $(document).ready(function() {
     node.enabled = true;
     node.save = node.children;
     node.parent = parent;
-    if (node.type == C_CL) {
-      node.name = node.reference.local_label;
-    } else {
-      node.name = node.label;
-    }
+    node.name = node.label;
     if (node.hasOwnProperty('children')) {
       for (i=0; i<node.children.length; i++) {
         child = node.children[i];
@@ -261,8 +257,8 @@ $(document).ready(function() {
 
   function displayBcItem(node) {
     document.getElementById("bcItemLabel").innerHTML = node.name;
-    document.getElementById("bcItemEnabled").innerHTML = node.property_reference.reference.enabled;
-    document.getElementById("bcItemOptional").innerHTML = node.property_reference.reference.optional;
+    document.getElementById("bcItemEnabled").innerHTML = node.property_reference.enabled;
+    document.getElementById("bcItemOptional").innerHTML = node.property_reference.optional;
     document.getElementById("bcItemQText").innerHTML = node.qText;
     document.getElementById("bcItemDatatype").innerHTML = node.datatype;
     document.getElementById("bcItemFormat").innerHTML = node.format;
@@ -292,11 +288,11 @@ $(document).ready(function() {
 
   function displayCl(node) {
     document.getElementById("clIdentifier").innerHTML = node.identifier;
-    document.getElementById("clLocalLabel").innerHTML = node.reference.local_label;
     document.getElementById("clLabel").innerHTML = node.label;
+    document.getElementById("clDefaultLabel").innerHTML = node.default_label;
     document.getElementById("clSubmission").innerHTML = node.notation;
-    document.getElementById("clEnabled").innerHTML = node.reference.enabled;
-    document.getElementById("clOptional").innerHTML = node.reference.optional;
+    document.getElementById("clEnabled").innerHTML = node.thesaurus_concept_reference.enabled;
+    document.getElementById("clOptional").innerHTML = node.thesaurus_concept_reference.optional;
   }
 
   function displayCommon(node) {

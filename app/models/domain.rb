@@ -153,7 +153,7 @@ class Domain < IsoManagedNew
 
   end
 
-  def self.impact(params)
+  def self.bc_impact(params)
     id = params[:id]
     namespace = params[:namespace]
     results = Hash.new
@@ -162,9 +162,6 @@ class Domain < IsoManagedNew
       "SELECT DISTINCT ?domain WHERE \n" +
       "{ \n " +
       "  ?domain rdf:type bd:Domain . \n " +
-      #"  ?domain bd:basedOn/^mms:context ?column . \n " +
-      #"  ?variable bd:basedOn ?column . \n " +
-      #"  ?variable bd:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +
       "  ?domain bd:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +
       "}\n"
     # Send the request, wait the resonse

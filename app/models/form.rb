@@ -253,7 +253,7 @@ class Form < IsoManagedNew
     pdf = Reports::CrfReport.create(form, options, annotations, doc_history, user)
   end
 
-  def self.impact(params)
+  def self.bc_impact(params)
     id = params[:id]
     namespace = params[:namespace]
     results = Hash.new
@@ -263,6 +263,34 @@ class Form < IsoManagedNew
       "{ \n " +
       "  ?form rdf:type bf:Form . \n " +
       "  ?form (bf:hasGroup|bf:hasSubGroup|bf:hasBiomedicalConcept|bo:hasBiomedicalConcept)%2B " + ModelUtility.buildUri(namespace, id) + " . \n " +"
+      "  "}\n"
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      #ConsoleLogger::log(C_CLASS_NAME,"create","Node=" + node.to_s)
+      form = ModelUtility.getValue('form', true, node)
+      if form != ""
+        id = ModelUtility.extractCid(form)
+        namespace = ModelUtility.extractNs(form)
+        results[id] = find(id, namespace, false)
+      end
+    end
+    return results
+  end
+
+  def self.term_impact(params)
+    id = params[:id]
+    namespace = params[:namespace]
+    results = Hash.new
+    # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
+    query = UriManagement.buildPrefix(C_INSTANCE_PREFIX, ["bf", "bo"])  +
+      "SELECT DISTINCT ?form WHERE \n" +
+      "{ \n " +
+      "  ?form rdf:type bf:Form . \n " +
+      "  ?form (bf:hasGroup|bf:hasSubGroup|bf:hasItem|bf:hasThesaurusConcept|bo:hasThesaurusConcept)%2B " + ModelUtility.buildUri(namespace, id) + " . \n " +"
       "  "}\n"
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -486,9 +514,9 @@ private
       html += input_field(node, annotations)
       html += '</tr>'
     elsif node[:type] == "CL"
-      value_ref = node[:reference]
+      value_ref = node[:thesaurus_concept_reference]
       if value_ref[:enabled]
-        html += '<p><input type="radio" name="' + node[:identifier].to_s + '" value="' + node[:identifier].to_s + '"></input> ' + value_ref[:local_label].to_s + '</p>'
+        html += '<p><input type="radio" name="' + node[:identifier].to_s + '" value="' + node[:identifier].to_s + '"></input> ' + node[:label].to_s + '</p>'
       end
     else
       html += '<tr>'

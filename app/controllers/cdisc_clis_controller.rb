@@ -16,7 +16,8 @@ class CdiscClisController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @cdiscCli = CdiscCli.find(id, namespace)
-    @bcs = BiomedicalConcept.impact(params)
+    @bcs = BiomedicalConcept.term_impact(params)
+    @forms = Form.term_impact(params)
   end
 
   def show

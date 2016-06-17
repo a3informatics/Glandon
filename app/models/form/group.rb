@@ -115,8 +115,14 @@ class Form::Group < IsoConceptNew
     if self.bc != nil
       result[:biomedical_concept_reference] = 
         { 
-          :reference => {:id => self.bc.id, :namespace => self.bc.namespace, :enabled => true, :optional => false }, 
-          :label => bc.label, :identifier => bc.identifier, :type => "", :ordinal => 1  
+          :id => self.bc.id, 
+          :namespace => self.bc.namespace, 
+          :enabled => true, 
+          :optional => false, 
+          :label => bc.label, 
+          :identifier => bc.identifier, 
+          :type => "", 
+          :ordinal => 1  
         }
     end  
     self.items.sort_by! {|u| u.ordinal}
@@ -142,12 +148,12 @@ class Form::Group < IsoConceptNew
     sparql.triple("", id, schema_prefix, "isGroupOf", "", parent_id.to_s)
     if json.has_key?(:biomedical_concept_reference)
       bc_ref = json[:biomedical_concept_reference]
-      reference = bc_ref[:reference]
+      #reference = bc_ref[:reference]
       ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'BCR'
       sparql.triple("", id, schema_prefix, "hasBiomedicalConcept", "", ref_id.to_s)
       sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
-      sparql.triple_uri("", ref_id, "bo", "hasBiomedicalConcept", reference[:namespace], reference[:id])
-      sparql.triple_primitive_type("", ref_id, "bo", "enabled", reference[:enabled].to_s, "boolean")
+      sparql.triple_uri("", ref_id, "bo", "hasBiomedicalConcept", bc_ref[:namespace], bc_ref[:id])
+      sparql.triple_primitive_type("", ref_id, "bo", "enabled", bc_ref[:enabled].to_s, "boolean")
     end
     if json.has_key?(:children)
       json[:children].each do |key, child|

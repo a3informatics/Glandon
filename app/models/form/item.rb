@@ -142,19 +142,24 @@ class Form::Item < IsoConceptNew
           end
           result[:children] << 
             { 
-              :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => tc_ref.enabled, 
-                :optional => tc_ref.optional, :local_label => tc_ref.local_label, :ordinal => tc_ref.ordinal }, 
-              :label => cli.label, :notation => cli.notation, :preferred_term => cli.preferredTerm, :identifier => cli.identifier, :type => "CL" 
+              :thesaurus_concept_reference => {:id => cli.id, :namespace => cli.namespace, :enabled => tc_ref.enabled, :optional => tc_ref.optional}, 
+              :label => tc_ref.local_label, 
+              :ordinal => tc_ref.ordinal, 
+              :default_label => cli.label, 
+              :notation => cli.notation, 
+              :preferred_term => cli.preferredTerm, 
+              :identifier => cli.identifier, 
+              :type => "CL" 
             }
           ordinal += 1  
         end
       end
-      result[:children] = result[:children].sort_by {|item| item[:reference][:ordinal]}
+      result[:children] = result[:children].sort_by {|item| item[:ordinal]}
     else
       if self.bcProperty != nil
         result[:property_reference] = 
           { 
-            :reference => {:id => self.bcProperty.id, :namespace => self.bcProperty.namespace, :enabled => true, :optional => false},
+            :id => self.bcProperty.id, :namespace => self.bcProperty.namespace, :enabled => true, :optional => false,
             :label => bcProperty.label, :identifier => "", :type => "", :ordinal => 1 
           }
       end
@@ -169,9 +174,14 @@ class Form::Item < IsoConceptNew
         cli = cli_ref.bc_value
         result[:children] << 
           { 
-            :reference => {:id => cli.id, :namespace => cli.namespace, :enabled => cli_ref.enabled, 
-              :optional => cli_ref.optional, :local_label => cli.label, :ordinal => ordinal }, 
-            :label => cli.label, :notation => cli.notation, :preferred_term => cli.preferredTerm, :identifier => cli.identifier, :type => "CL"
+            :thesaurus_concept_reference => {:id => cli.id, :namespace => cli.namespace, :enabled => cli_ref.enabled, :optional => cli_ref.optional}, 
+            :label => cli.label, 
+            :ordinal => ordinal, 
+            :default_label => cli.label, 
+            :notation => cli.notation, 
+            :preferred_term => cli.preferredTerm, 
+            :identifier => cli.identifier, 
+            :type => "CL"
           }
         ordinal += 1  
       end
@@ -202,33 +212,31 @@ class Form::Item < IsoConceptNew
       sparql.triple_primitive_type("", id, schema_prefix, "qText", json[:qText].to_s, "string")
       sparql.triple_primitive_type("", id, schema_prefix, "mapping", json[:mapping].to_s, "string")
       if json.has_key?(:children)
-        #value_ordinal = 1
         json[:children].each do |key, child|
-          value = child[:reference]
-          ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'TCR' + value[:ordinal].to_s
+          tc_ref = child[:thesaurus_concept_reference]
+          ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'TCR' + child[:ordinal].to_s
           sparql.triple("", id, schema_prefix, "hasThesaurusConcept", "", ref_id.to_s)
           sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "TcReference")
-          sparql.triple_uri("", ref_id, "bo", "hasThesaurusConcept", value[:namespace], value[:id])
-          sparql.triple_primitive_type("", ref_id, "bo", "enabled", value[:enabled].to_s, "boolean")
-          sparql.triple_primitive_type("", ref_id, "bo", "optional", value[:optional].to_s, "boolean")
-          sparql.triple_primitive_type("", ref_id, "bo", "ordinal", value[:ordinal].to_s, "positiveInteger")
-          sparql.triple_primitive_type("", ref_id, "bo", "local_label", value[:local_label].to_s, "string")
-          #value_ordinal += 1
+          sparql.triple_uri("", ref_id, "bo", "hasThesaurusConcept", tc_ref[:namespace], tc_ref[:id])
+          sparql.triple_primitive_type("", ref_id, "bo", "enabled", tc_ref[:enabled].to_s, "boolean")
+          sparql.triple_primitive_type("", ref_id, "bo", "optional", tc_ref[:optional].to_s, "boolean")
+          sparql.triple_primitive_type("", ref_id, "bo", "ordinal", child[:ordinal].to_s, "positiveInteger")
+          sparql.triple_primitive_type("", ref_id, "bo", "local_label", child[:local_label].to_s, "string")
         end
       end
     else
       # Handle the terminology children.
       if json.has_key?(:children)
-        value_ordinal = 1
+        ordinal = 1
         json[:children].each do |key, child|
-          value = child[:reference]
-          ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'VR' + value_ordinal.to_s
+          tc_ref = child[:thesaurus_concept_reference]
+          ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'VR' + ordinal.to_s
           sparql.triple("", id, schema_prefix, "hasValue", "", ref_id.to_s)
           sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
-          sparql.triple_uri("", ref_id, "bo", "hasValue", value[:namespace], value[:id])
-          sparql.triple_primitive_type("", ref_id, "bo", "enabled", value[:enabled].to_s, "boolean")
-          sparql.triple_primitive_type("", ref_id, "bo", "optional", value[:optional].to_s, "boolean")
-          value_ordinal += 1
+          sparql.triple_uri("", ref_id, "bo", "hasValue", tc_ref[:namespace], tc_ref[:id])
+          sparql.triple_primitive_type("", ref_id, "bo", "enabled", tc_ref[:enabled].to_s, "boolean")
+          sparql.triple_primitive_type("", ref_id, "bo", "optional", tc_ref[:optional].to_s, "boolean")
+          ordinal += 1
         end
       end
       # Handle the other common items.
@@ -240,11 +248,10 @@ class Form::Item < IsoConceptNew
       end
       # Handle the BC Property references.
       property = json[:property_reference]
-      reference = property[:reference]
       ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'PR'
       sparql.triple("", id, schema_prefix, "hasProperty", "", ref_id.to_s)
       sparql.triple("", ref_id, UriManagement::C_RDF, "type", "bo", "BcReference")
-      sparql.triple_uri("", ref_id, "bo", "hasProperty", reference[:namespace], reference[:id])
+      sparql.triple_uri("", ref_id, "bo", "hasProperty", property[:namespace], property[:id])
       sparql.triple_primitive_type("", ref_id, "bo", "enabled", property[:enabled].to_s, "boolean")
       sparql.triple_primitive_type("", ref_id, "bo", "optional", property[:optional].to_s, "boolean")
     end
@@ -271,11 +278,11 @@ private
       end
     end
     if object.link_exists?(C_SCHEMA_PREFIX, "hasThesaurusConcept")
-      #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","hasThesaurusConcept, object=" + object.to_json.to_s)
       links = object.get_links(C_SCHEMA_PREFIX, "hasThesaurusConcept")
       links.each do |link|
         id = ModelUtility.extractCid(link)
         object.q_values << OperationalReference.find_from_triples(triples, id)
+        ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","hasThesaurusConcept, qValues=#{object.q_values.to_json}")
       end
     end      
   end

@@ -5,78 +5,40 @@
 	  		<tr>
 				<th>Code List</th>
 				<th>Item</th>
+				<th>Label</th>
 				<th>Old Submission</th>
 				<th>New Submission</th>
-				<th>Biomedical Concept</th>
-				<th></th>
-				<th>Operational</th>
-				<th></th>
+				<th>Impact Item Type</th>
+				<th>Impact Item Label</th>
+				<th>Impact Item Identifier</th>
+        <th>Via</th>
+        <th></th>
 			</tr>
 		</thead>
-		<tbody>	
-			<% @results.each do |cli| %>
-				<% identifier = cli["identifier"] %>
-				<% parent_identifier = cli["parent_identifier"] %>
-				<% old_sub = cli["old_notation"] %>
-				<% new_sub = cli["new_notation"] %>
-				<% bcs = cli["bcs"] %>
-				<% bcs.each do |bc| %>
-					<% bc_identifier = bc["identifier"] %>
-					<% bc_label = bc["label"] %>
-					<% forms = bc["forms"] %>
-					<% if forms.length > 0 %>
-						<% forms.each do |form| %>
-							<% form_identifier = form["identifier"] %>
-							<% form_label = form["label"] %>
-							<tr>
-								<td><%= parent_identifier %></td>
-								<td><%= identifier %></td>
-								<td><%= old_sub %></td>
-								<td><%= new_sub %></td>
-								<td><%= bc_label + " (" + bc_identifier + ")" %></td>
-								<td><%=link_to "Show", biomedical_concept_path(:id => bc["id"], :namespace => bc["ns"]), :class => "btn btn-primary btn-xs" %></td>
-								<td><%= form_label + " (" + form_identifier + ")" %></td>
-								<td><%=link_to "View", view_forms_path(:id => form["id"], :namespace => form["ns"]), :class => "btn btn-primary btn-xs" %></td>
-							</tr>	
-						<% end %>
-					<% end %>
-					<% domains = bc["domains"] %>
-					<% if domains.length > 0 %>
-						<% domains.each do |domain| %>
-							<% domain_identifier = domain["identifier"] %>
-							<% domain_label = domain["label"] %>
-							<tr>
-								<td><%= parent_identifier %></td>
-								<td><%= identifier %></td>
-								<td><%= old_sub %></td>
-								<td><%= new_sub %></td>
-								<td><%= bc_label + " (" + bc_identifier + ")" %></td>
-								<td><%=link_to "Show", biomedical_concept_path(:id => bc["id"], :namespace => bc["ns"]), :class => "btn btn-primary btn-xs" %></td>
-								<td><%= domain_label + " (" + domain_identifier + ")" %></td>
-								<td><%=link_to "Show", domain_path(:id => domain["id"], :namespace => domain["ns"]), :class => "btn btn-primary btn-xs" %></td>
-							</tr>	
-						<% end %>
-					<% end %>
-					<% if forms.length == 0 && domains.length == 0 %>
-						<tr>
-							<td><%= parent_identifier %></td>
-							<td><%= identifier %></td>
-							<td><%= old_sub %></td>
-							<td><%= new_sub %></td>
-							<% if bc_identifier == nil %>
-								<td></td>
-								<td></td>
-							<% else %>
-								<td><%= bc_label + " (" + bc_identifier + ")" %></td>
-								<td><%=link_to "Show", biomedical_concept_path(:id => bc["id"], :namespace => bc["ns"]), :class => "btn btn-primary btn-xs" %></td>
-							<% end %>
-							<td></td>
-							<td></td>
-						</tr>	
-					<% end %>
-				<%end %>
-			<% end %>
-		</tbody>
+		<tbody> 
+      <% @results.each do |result| %>
+        <tr>
+          <td><%= result[:parent_identifier] %></td>
+          <td><%= result[:identifier] %></td>
+          <td><%= result[:label] %></td>
+          <td><%= result[:old_notation] %></td>
+          <td><%= result[:new_notation] %></td>
+          <td><%= result[:item_type] %></td>
+          <td><%= result[:item_label] %></td>
+          <td><%= result[:item_identifier] %></td>
+          <td><%= result[:item_via] %></td>
+          <% if result[:item_type] == "Biomedical Concept" %>
+          	<td><%=link_to "Show", biomedical_concept_path(:id => result[:item_id], :namespace => result[:namespace]), :class => "btn btn-primary btn-xs" %></td>
+					<% elsif result[:item_type] == "Form" %>
+          	<td><%=link_to "View", view_forms_path(:id => result[:item_id], :namespace => result[:namespace]), :class => "btn btn-primary btn-xs" %></td>
+          <% elsif result[:item_type] == "Domain" %>
+						<td><%=link_to "Show", domain_path(:id => result[:item_id], :namespace => result[:namespace]), :class => "btn btn-primary btn-xs" %></td>
+          <% else %>
+          	<td></td>
+          <% end %>
+        </tr> 
+      <% end %>
+    </tbody>
 	</table>
 	<%= link_to "Report", impact_report_cdisc_terms_path(:format => :pdf, :new_version => @new_version, :old_version => @old_version) , :class => "btn btn-primary", :target => "_blank" %>
 </div>

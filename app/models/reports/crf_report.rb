@@ -76,7 +76,7 @@ class Reports::CrfReport
         length = node[:children].length == 0 ? 1 : node[:children].length
         html += "<td rowspan=\"#{length}\">#{node[:label]}</td>"
         node[:children].each do |child|
-          values_ref = child[:reference]
+          values_ref = child[:thesaurus_concept_reference]
           if values_ref[:enabled]
             html += "<td>#{child[:identifier]}</td><td>#{child[:notation]}</td><td>#{child[:preferred_term]}</td>"
             if child != node[:children].last
@@ -314,9 +314,9 @@ private
       terminology << node
       values = Array.new
       node[:children].each do |child|
-        values_ref = child[:reference]
+        values_ref = child[:thesaurus_concept_reference]
         if values_ref[:enabled]
-          values << "#{values_ref[:local_label]}"
+          values << "#{child[:label]}"
         end
       end
       html += cl_table(values)

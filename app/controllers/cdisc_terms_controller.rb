@@ -76,7 +76,7 @@ class CdiscTermsController < ApplicationController
     limit = params[:limit].to_i
     #ConsoleLogger::log(C_CLASS_NAME,"next","Offset=" + offset.to_s + ", limit=" + limit.to_s)  
     items = CdiscTerm.next(offset, limit, namespace)
-    if items.count == 0
+    if items.count < limit
       more = false
     end
     results = {}
@@ -194,7 +194,9 @@ class CdiscTermsController < ApplicationController
     @old_cdisc_term = CdiscTerm.find_only(params[:old_id], params[:old_ns])
     @new_version = params[:new_version]
     @old_version = params[:old_version]
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+    @results = impact_flatten(results)
+    #ConsoleLogger.log(C_CLASS_NAME, "impact", "Results=#{@results.to_json}")
   end
 
   def impact_calc
@@ -217,7 +219,8 @@ class CdiscTermsController < ApplicationController
 
   def impact_report
     authorize CdiscTerm, :view?
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+    @results = impact_flatten(results)
     pdf = Reports::CdiscImpactReport.new(@results, current_user)
     send_data pdf.render, filename: 'cdisc_impact.pdf', type: 'application/pdf', disposition: 'inline'
   end
@@ -359,6 +362,65 @@ private
       end
     end  
 
+  end
+
+  def impact_flatten(tree_array)
+    results = Array.new
+    tree_array.each do |tree|
+      #ConsoleLogger::log(C_CLASS_NAME,"impact_flatten", "Tree=#{tree.to_json}")  
+      if tree["children"].length > 0
+        tree["children"].each do |child|
+          #ConsoleLogger::log(C_CLASS_NAME,"impact_flatten", "Child=#{child}")  
+          results += impact_node(tree, child)
+        end
+      else
+        result = Hash.new
+        result = 
+          {
+            :label => tree["label"], 
+            :identifier => tree["identifier"], 
+            :old_notation=> tree["old_notation"], 
+            :new_notation=> tree["new_notation"], 
+            :parent_identifier => tree["parent_identifier"],
+            :item_type => "", 
+            :item_id => "", 
+            :item_nampespace => "", 
+            :item_identifier => "", 
+            :item_label => "",
+            :item_via => ""
+          }
+        results << result
+      end
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"impact_flatten", "Results=#{results.to_json}")  
+    return results
+  end
+
+  def impact_node(root, node)
+    results = Array.new
+    result = Hash.new
+    result = 
+        {
+          :label => root["label"], 
+          :identifier => root["identifier"], 
+          :old_notation=> root["old_notation"], 
+          :new_notation=> root["new_notation"], 
+          :parent_identifier => root["parent_identifier"],
+          :item_type => node["type"], 
+          :item_id => node["id"], 
+          :item_nampespace => node["namespace"], 
+          :item_identifier => node["identifier"], 
+          :item_label => node["label"],
+          :item_via => node["via"]
+        }
+    results << result
+    if node["children"].length > 0
+      node["children"].each do |child|
+        results += impact_node(root, child)
+      end
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"impact_node", "Result=#{result.to_json}")  
+    return results
   end
 
   def set_local_params

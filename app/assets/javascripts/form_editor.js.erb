@@ -30,8 +30,8 @@ $(document).ready(function() {
   var itemEnableElement = document.getElementById("itemEnable");
   var itemOptionalElement = document.getElementById("itemOptional");
   var clIdentifierElement = document.getElementById("clIdentifier");
-  var clLocalLabelElement = document.getElementById("clLocalLabel");
-  var clLabelElement = document.getElementById("clLabel");
+  var clLabelElement = document.getElementById("clLocalLabel");
+  var clDefaultLabelElement = document.getElementById("clLabel");
   var clNotationElement = document.getElementById("clNotation");
   var clEnableElement = document.getElementById("clEnable");
   var clOptionalElement = document.getElementById("clOptional");
@@ -592,7 +592,7 @@ $(document).ready(function() {
       var html = alertWarning("You need to select a code list node.");
       displayAlerts(html);
     } else {
-      clLocalLabelElement.value = currentNode.data.label;
+      clLabelElement.value = currentNode.data.default_label;
     }
   });
   
@@ -914,8 +914,8 @@ $(document).ready(function() {
       $("#itemUpdate").prop('disabled', false);
       $("#itemCommon").prop('disabled', false);
       $("#itemRestore").prop('disabled', true);
-      itemEnableElement.checked = node.data.property_reference.reference.enabled;
-      itemOptionalElement.checked = node.data.property_reference.reference.optional;
+      itemEnableElement.checked = node.data.property_reference.enabled;
+      itemOptionalElement.checked = node.data.property_reference.optional;
     }
   }
 
@@ -934,8 +934,8 @@ $(document).ready(function() {
       for (j=0; j<node.children.length; j++) {
         var child = node.children[j];
         var data = child.data
-        var ref = data.reference;
-        var clRow = { identifier: data.identifier , uri_id: ref.id , uri_ns: ref.namespace , useful_1: data.label}; 
+        var ref = data.thesaurus_concept_reference;
+        var clRow = {identifier: data.identifier , uri_id: ref.id , uri_ns: ref.namespace , useful_1: data.label}; 
         questionClTable.row.add(clRow);
       }
     }
@@ -948,11 +948,11 @@ $(document).ready(function() {
 
   function displayCl(node) {
     clIdentifierElement.innerHTML = node.data.identifier;
-    clLocalLabelElement.value = node.data.reference.local_label;
-    clLabelElement.innerHTML = node.data.label;
+    clLabelElement.value = node.data.label;
+    clDefaultLabelElement.innerHTML = node.data.default_label;
     clNotationElement.innerHTML = node.data.notation;
-    clEnableElement.checked = node.data.reference.enabled;
-    clOptionalElement.checked = node.data.reference.optional;
+    clEnableElement.checked = node.data.thesaurus_concept_reference.enabled;
+    clOptionalElement.checked = node.data.thesaurus_concept_reference.optional;
     parentNode = node.parent;
     if (parentNode.type == C_QUESTION) {
       $("#clEnable").prop('disabled', true);
@@ -992,8 +992,8 @@ $(document).ready(function() {
   }
 
   function saveItem(node) {
-    node.data.property_reference.reference.enabled = itemEnableElement.checked;
-    node.data.property_reference.reference.optional = itemOptionalElement.checked;
+    node.data.property_reference.enabled = itemEnableElement.checked;
+    node.data.property_reference.optional = itemOptionalElement.checked;
     node.enabled = itemEnableElement.checked;
   }
 
@@ -1029,10 +1029,10 @@ $(document).ready(function() {
   }
 
   function saveCl(node) {
-    node.data.reference.enabled = clEnableElement.checked;
-    node.data.reference.optional = clOptionalElement.checked;
-    node.data.reference.local_label = clLocalLabelElement.value;
-    node.name = node.data.reference.local_label;
+    node.data.thesaurus_concept_reference.enabled = clEnableElement.checked;
+    node.data.thesaurus_concept_reference.optional = clOptionalElement.checked;
+    node.data.label = clLabelElement.value;
+    node.name = node.data.label;
     node.enabled = clEnableElement.checked;
   }
 
@@ -1223,6 +1223,7 @@ $(document).ready(function() {
   }
 
   function newBCGroup(bc) {
+    // TODO: Extra fields in the biomedical_concept_reference
     return {
       id: bc.id, namespace: bc.namespace, type: C_BC_GROUP, label: bc.label, ordinal: 0, 
       optional: bc.optional, repeating: bc.repeating, note: bc.note, 
@@ -1231,11 +1232,13 @@ $(document).ready(function() {
   }
 
   function newBCProperty(property) {
+    // TODO: Extra fields in the property_reference
     return {
       id: property.id, namespace: property.namespace, type: C_BC_ITEM, label: property.alias, ordinal: 0, 
       optional: property.optional, note: property.note, free_text: property.free_text, datatype: property.datatype,
       format: property.format, qText: property.qText, pText: property.pText, mapping: property.mapping,
-      bridgPath: property.bridgPath, property_reference: {id: property.id, namespace: property.namespace, enabled: true}, 
+      bridgPath: property.bridgPath, 
+      property_reference: {id: property.id, namespace: property.namespace, enabled: true, optional: false}, 
       children: [] 
     };
   }
@@ -1244,9 +1247,10 @@ $(document).ready(function() {
     return {
       type: C_CL, 
       label: cli.notation, 
-      ordinal: 0, 
+      default_label: cli.notation, 
       identifier: cli.property, 
-      reference: {id: cli.id, namespace: cli.namespace, enabled: true, optional: false}, 
+      ordinal: 0, 
+      thesaurus_concept_reference: {id: cli.id, namespace: cli.namespace, enabled: true, optional: false},
       children: [] 
     };
   }
@@ -1255,9 +1259,10 @@ $(document).ready(function() {
     return {
       type: C_CL, 
       label: cli.useful_1, 
-      ordinal: 0, 
+      default_label: cli.useful_1, 
       identifier: cli.identifier, 
-      reference: {id: cli.uri_id, namespace: cli.uri_ns, enabled: true, optional: false}, 
+      ordinal: 0, 
+      thesaurus_concept_reference: {id: cli.uri_id, namespace: cli.uri_ns, enabled: true, optional: false},
       children: [] 
     };
   }
@@ -1339,7 +1344,6 @@ $(document).ready(function() {
         bcNode = addD3Node(currentNode, bc.label, C_BC_GROUP, sourceBcNode, true);     
         addSourceNode(currentNode.data, sourceBcNode, true)
         for (i=0; i<bc.properties.length; i++) {
-          //var property = bc.properties[i][1];
           var property = bc.properties[i];
           if (property.enabled && property.collect) {
             sourcePropertyNode = newBCProperty(property);
@@ -1500,14 +1504,7 @@ $(document).ready(function() {
     if (node.hasOwnProperty('children')) {
       for (i=0; i<node.children.length; i++) {
         child = node.children[i];
-        if (child.hasOwnProperty('ordinal')) {
-          child.ordinal = i+1;
-        } else if (child.hasOwnProperty('reference')) {
-          ref = child.reference
-          if (ref.hasOwnProperty('ordinal')) {
-           ref.ordinal = i+1;
-          }
-        }
+        child.ordinal = i+1;
       }
     }
   }
@@ -1527,9 +1524,8 @@ $(document).ready(function() {
     } else if (sourceNode.type === C_PLACEHOLDER ) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
     } else if (sourceNode.type === C_CL) {
-      newNode = addD3Node(d3Node, sourceNode.reference.local_label, sourceNode.type, sourceNode, true);
-      value_ref = sourceNode.reference;
-      newNode.enabled = value_ref.enabled;
+      newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
+      newNode.enabled = sourceNode.thesaurus_concept_reference.enabled;
     }
   }
 
