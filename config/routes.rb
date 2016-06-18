@@ -91,6 +91,7 @@ Rails.application.routes.draw do
       get :impact
       get :impact_calc
       get :impact_report
+      get :impact_graph
       get :history
       get :search
       get :search2

@@ -17,11 +17,13 @@ Rails.application.config.assets.version = '1.0'
   sdtmigs 
   backgrounds background_index notepads users user_settings
 	biomedical_concept_templates biomedical_concepts biomedical_concepts_editor 
-	cdisc_cls cdisc_clis cdisc_terms 
+	cdisc_cls 
+  cdisc_clis 
+  cdisc_terms cdisc_search
   sponsor_terms 
-  thesauri thesaurus_concepts 
-	thesauri_editor thesauri_viewer thesauri_search
-  forms forms/groups forms/items form_placeholder_new form_editor form_editor_new form_viewer 
-  d3local).each do |controller|
+  thesauri thesauri_editor thesauri_viewer thesauri_search
+  thesaurus_concepts 
+	forms forms/groups forms/items form_placeholder_new form_editor form_editor_new form_viewer 
+  d3local d3graph ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end

@@ -196,7 +196,17 @@ class CdiscTermsController < ApplicationController
     @old_version = params[:old_version]
     results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
     @results = impact_flatten(results)
-    #ConsoleLogger.log(C_CLASS_NAME, "impact", "Results=#{@results.to_json}")
+  end
+
+  def impact_graph
+    authorize CdiscTerm, :view?
+    ConsoleLogger::log(C_CLASS_NAME,"impact_graph","Here!")  
+    @new_cdisc_term = CdiscTerm.find_only(params[:new_id], params[:new_ns])
+    @old_cdisc_term = CdiscTerm.find_only(params[:old_id], params[:old_ns])
+    @new_version = params[:new_version]
+    @old_version = params[:old_version]
+    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+    @graph = impact_graph_root(results) 
   end
 
   def impact_calc
@@ -421,6 +431,73 @@ private
     end
     #ConsoleLogger::log(C_CLASS_NAME,"impact_node", "Result=#{result.to_json}")  
     return results
+  end
+
+  def impact_graph_root(tree_array)
+    map = Hash.new
+    results = Hash.new
+    results[:nodes] = Array.new
+    results[:links] = Array.new
+    index = 0
+    tree_array.each do |tree|
+      if tree["children"].length > 0
+        key = "#{tree["id"]}##{tree["namespace"]}"
+        if map.has_key?(key)
+          result = map[key]
+        else
+          result = Hash.new
+          result = 
+            {
+              :name => "#{tree["identifier"]} (#{tree["old_notation"]})", 
+              :label => tree["label"], 
+              :identifier => tree["identifier"], 
+              :old_notation=> tree["old_notation"], 
+              :new_notation=> tree["new_notation"], 
+              :parent_identifier => tree["parent_identifier"],
+              :type => "Code List Item", 
+              :index => index
+            }
+          results[:nodes] << result
+          map[key] = result
+          index += 1
+        end
+        tree["children"].each do |child|
+          index = impact_graph_node(results, map, child, result[:index], index)
+        end
+      end
+    end
+    return results
+  end
+
+  def impact_graph_node(results, map, node, parent_index, index)
+    key = "#{node["id"]}##{node["namespace"]}"
+    if map.has_key?(key)
+      result = map[key]
+      results[:links] << {:source =>  parent_index, :target =>  result[:index]}
+    else
+      result = Hash.new
+      result = 
+          {
+            :name => "#{node["label"]} (#{node["identifier"]})", 
+            :label => node["label"],
+            :id => node["id"], 
+            :nampespace => node["namespace"], 
+            :identifier => node["identifier"], 
+            :type => node["type"], 
+            :index => index
+          }
+      results[:nodes] << result
+      results[:links] << {:source =>  parent_index, :target =>  index}
+      map[key] = result
+      index += 1
+    end
+    if node["children"].length > 0
+      node["children"].each do |child|
+        index = impact_graph_node(results, map, child, result[:index], index)
+      end
+    end
+    #ConsoleLogger::log(C_CLASS_NAME,"impact_node", "Result=#{result.to_json}")  
+    return index
   end
 
   def set_local_params

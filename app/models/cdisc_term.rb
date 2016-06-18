@@ -208,8 +208,8 @@ class CdiscTerm < Thesaurus
       label = ModelUtility.getValue('f1', false, node)
       if !uri1Set.empty? 
         object = Hash.new 
-        object = {:old_uri => uri1Set, :new_uri => uri2Set, :identifier => i1Set, :label => label, 
-          :old_notation => n1Set, :new_notation => n2Set, :parent_identifier => p1Set}
+        object = {:old_uri => uri1Set, :new_uri => uri2Set, :id => ModelUtility.extractCid(uri1Set), :namespace => ModelUtility.extractNs(uri1Set), 
+          :identifier => i1Set, :label => label, :old_notation => n1Set, :new_notation => n2Set, :parent_identifier => p1Set}
         results << object
       end
     end

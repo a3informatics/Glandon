@@ -40,5 +40,6 @@
       <% end %>
     </tbody>
 	</table>
-	<%= link_to "Report", impact_report_cdisc_terms_path(:format => :pdf, :new_version => @new_version, :old_version => @old_version) , :class => "btn btn-primary", :target => "_blank" %>
+  <%= link_to "Graph", impact_graph_cdisc_terms_path(:new_id => @new_cdisc_term.id, :new_ns => @new_cdisc_term.namespace, :new_version => @new_cdisc_term.version, :old_id => @old_cdisc_term.id, :old_ns => @old_cdisc_term.namespace, :old_version => @old_cdisc_term.version), :class => "btn btn-primary", :target => "_blank" %>
+	<%= link_to "Report", impact_report_cdisc_terms_path(:format => :pdf, :new_version => @new_version, :old_version => @old_version), :class => "btn btn-primary", :target => "_blank" %>
 </div>
