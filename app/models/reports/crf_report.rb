@@ -236,7 +236,7 @@ private
       html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
       html += '</tr>'
       node[:children].each do |child|
-        html += crf_node(child, options, annotations, ci_nodes, note_nodes)
+        html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
       end
     elsif node[:type] == "Placeholder"
       html += '<tr>'
