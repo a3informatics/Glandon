@@ -32,7 +32,7 @@ class ApiController < ApplicationController
     @form = Form.find(id, ns)
     respond_to do |format|
       format.json do
-        results = @form.d3
+        results = @form.to_api_json
         render json: results
       end
     end
