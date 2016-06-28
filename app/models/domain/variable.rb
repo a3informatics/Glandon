@@ -1,6 +1,6 @@
 require "uri"
 
-class Domain::Variable < IsoConceptNew
+class Domain::Variable < IsoConcept
   
   include ActiveModel::Naming
   include ActiveModel::Conversion

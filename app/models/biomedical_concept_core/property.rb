@@ -1,4 +1,4 @@
-class BiomedicalConceptCore::Property < IsoConceptNew
+class BiomedicalConceptCore::Property < IsoConcept
 
   attr_accessor :alias, :collect, :enabled, :qText, :pText, :simpleDatatype, :datatype, :format,  :bridgPath, :values, :childComplex, :datatypeComplex, :ordinal
   validates_presence_of :alias, :label, :collect, :enabled, :qText, :pText, :simpleDatatype, :datatype, :format, :bridgPath, :values, :childComplex, :datatypeComplex, :ordinal

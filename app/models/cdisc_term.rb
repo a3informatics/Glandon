@@ -29,7 +29,7 @@ class CdiscTerm < Thesaurus
   end
 
   def self.find_only(id, ns)
-    object = IsoManagedNew.find(id, ns, false)
+    object = IsoManaged.find(id, ns, false)
   end
 
   def self.all

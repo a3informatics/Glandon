@@ -135,7 +135,7 @@ class BiomedicalConceptsController < ApplicationController
     authorize BiomedicalConcept
     id = params[:id]
     namespace = params[:namespace]
-    @bc = IsoManagedNew::find(id, namespace)
+    @bc = IsoManaged::find(id, namespace)
     send_data to_turtle(@bc.triples), filename: "#{@bc.owner}_#{@bc.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   

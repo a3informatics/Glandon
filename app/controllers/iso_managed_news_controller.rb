@@ -1,18 +1,18 @@
-class IsoManagedNewsController < ApplicationController
+class IsoManagedController < ApplicationController
   
   before_action :authenticate_user!
   
   def update
-    authorize IsoManagedNew
-    managed_item = IsoManagedNew.find(params[:id], this_params[:namespace])
+    authorize IsoManaged
+    managed_item = IsoManaged.find(params[:id], this_params[:namespace])
     managed_item.update(this_params)
     redirect_to this_params[:referer]
   end
 
   def status
-    authorize IsoManagedNew
+    authorize IsoManaged
     @referer = request.referer
-    @managed_item = IsoManagedNew.find(params[:id], params[:namespace], false)
+    @managed_item = IsoManaged.find(params[:id], params[:namespace], false)
     @registration_state = @managed_item.registrationState
     @scoped_identifier = @managed_item.scopedIdentifier
     @current_id = params[:current_id]
@@ -20,8 +20,8 @@ class IsoManagedNewsController < ApplicationController
   end
 
   def edit
-    authorize IsoManagedNew
-    @managed_item = IsoManagedNew.find(params[:id], params[:namespace], false)
+    authorize IsoManaged
+    @managed_item = IsoManaged.find(params[:id], params[:namespace], false)
     @referer = request.referer
   end
 

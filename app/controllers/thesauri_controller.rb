@@ -105,7 +105,7 @@ class ThesauriController < ApplicationController
     authorize Thesaurus
     id = params[:id]
     namespace = params[:namespace]
-    item = IsoManagedNew::find(id, namespace)
+    item = IsoManaged::find(id, namespace)
     send_data to_turtle(item.triples), filename: "#{item.owner}_#{item.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   

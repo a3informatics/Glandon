@@ -1,4 +1,4 @@
-class BiomedicalConceptCore::Item < IsoConceptNew
+class BiomedicalConceptCore::Item < IsoConcept
 
   attr_accessor :datatypes, :alias, :ordinal
   validates_presence_of :datatypes, :alias, :ordinal

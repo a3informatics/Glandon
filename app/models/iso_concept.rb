@@ -1,4 +1,4 @@
-class IsoConceptNew
+class IsoConcept
 
   include CRUD
   include ModelUtility

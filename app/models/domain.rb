@@ -1,6 +1,6 @@
 require "uri"
 
-class Domain < IsoManagedNew
+class Domain < IsoManaged
   
   attr_accessor :variables, :bcs
   validates_presence_of :variables, :bcs

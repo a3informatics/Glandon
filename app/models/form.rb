@@ -1,4 +1,4 @@
-class Form < IsoManagedNew
+class Form < IsoManaged
   
   attr_accessor :groups, :formCompletion, :formNote
   #validates_presence_of :groups
@@ -146,7 +146,7 @@ class Form < IsoManagedNew
       if exists?(identifier, IsoRegistrationAuthority.owner()) 
         object.errors.add(:base, "The identifier is already in use.")
       else  
-        object = IsoManagedNew.create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
+        object = IsoManaged.create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
         group = Group.createPlaceholder(object.id, object.namespace, freeText)
         update = UriManagement.buildNs(object.namespace,["bf"]) +
           "INSERT DATA \n" +
@@ -237,7 +237,7 @@ class Form < IsoManagedNew
   def report(options, user)
     doc_history = Array.new
     if options[:full]
-      history = IsoManagedNew::history(C_RDF_TYPE, C_SCHEMA_NS, {:identifier => self.identifier, :scope_id => self.owner_id})
+      history = IsoManaged::history(C_RDF_TYPE, C_SCHEMA_NS, {:identifier => self.identifier, :scope_id => self.owner_id})
       history.each do |item|
         if self.same_version?(item.version) || self.later_version?(item.version)
           doc_history << item.to_api_json

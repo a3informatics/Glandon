@@ -1,7 +1,7 @@
 require "nokogiri"
 require "uri"
 
-class IsoManagedNew < IsoConceptNew
+class IsoManaged < IsoConcept
 
   include CRUD
   include ModelUtility

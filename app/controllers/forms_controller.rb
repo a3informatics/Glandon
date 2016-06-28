@@ -130,7 +130,7 @@ class FormsController < ApplicationController
     authorize Form
     id = params[:id]
     namespace = params[:namespace]
-    @form = IsoManagedNew::find(id, namespace)
+    @form = IsoManaged::find(id, namespace)
     send_data to_turtle(@form.triples), filename: "#{@form.owner}_#{@form.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   

@@ -1,4 +1,4 @@
-class OperationalReference < IsoConceptNew
+class OperationalReference < IsoConcept
 
   attr_accessor :reference_type, :thesaurus_concept, :biomedical_concept, :bc_property, :bc_value, :enabled, :optional, :ordinal, :local_label
   #validates_presence_of :concept, :property, :value, :enabled

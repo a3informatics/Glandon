@@ -1,6 +1,6 @@
 require "uri"
 
-class Form::Group < IsoConceptNew
+class Form::Group < IsoConcept
   
   attr_accessor :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating, :completion
   #validates_presence_of :items, :groups, :groupType, :bc, :ordinal, :note, :optional, :repeating

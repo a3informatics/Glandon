@@ -1,7 +1,7 @@
 require "nokogiri"
 require "uri"
 
-class Thesaurus <  IsoManagedNew
+class Thesaurus <  IsoManaged
 
   include CRUD
   include ModelUtility

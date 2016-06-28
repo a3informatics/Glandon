@@ -1,6 +1,6 @@
 require "uri"
 
-class BiomedicalConceptCore < IsoManagedNew
+class BiomedicalConceptCore < IsoManaged
   
   attr_accessor :items
   

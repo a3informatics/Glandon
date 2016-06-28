@@ -1,6 +1,6 @@
 require "uri"
 
-class Form::Item < IsoConceptNew
+class Form::Item < IsoConcept
 
   attr_accessor :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :completion, :optional, :freeText, :datatype, :format, :mapping, :qText, :q_values
   #validates_presence_of :items, :bcProperty, :bcValues, :itemType, :bcValueSet, :ordinal, :note, :optional, :freeText, :datatype, :format, :mapping, :qText, :q_values

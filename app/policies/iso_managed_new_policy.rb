@@ -1,4 +1,4 @@
-class IsoManagedNewPolicy < IsoPolicy
+class IsoManagedPolicy < IsoPolicy
 
   def status?
     @user.has_role? :content_admin

@@ -1,7 +1,7 @@
 require "nokogiri"
 require "uri"
 
-class ThesaurusConcept < IsoConceptNew
+class ThesaurusConcept < IsoConcept
 
   include CRUD
   include ModelUtility

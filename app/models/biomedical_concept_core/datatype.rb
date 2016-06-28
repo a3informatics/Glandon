@@ -1,4 +1,4 @@
-class BiomedicalConceptCore::Datatype < IsoConceptNew
+class BiomedicalConceptCore::Datatype < IsoConcept
 
   attr_accessor :datatype, :propertySet
   validates_presence_of :datatype, :propertySet

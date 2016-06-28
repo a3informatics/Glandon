@@ -1,4 +1,4 @@
-class BiomedicalConceptCore::PropertyValue < IsoConceptNew
+class BiomedicalConceptCore::PropertyValue < IsoConcept
 
   attr_accessor :cli, :ordinal
   validates_presence_of :cli, :ordinal
