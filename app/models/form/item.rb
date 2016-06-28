@@ -282,7 +282,7 @@ private
       links.each do |link|
         id = ModelUtility.extractCid(link)
         object.q_values << OperationalReference.find_from_triples(triples, id)
-        ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","hasThesaurusConcept, qValues=#{object.q_values.to_json}")
+        #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","hasThesaurusConcept, qValues=#{object.q_values.to_json}")
       end
     end      
   end

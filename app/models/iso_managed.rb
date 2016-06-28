@@ -577,11 +577,14 @@ class IsoManaged < IsoConcept
 
   # Build the SPARQL for the managed item creation.
   def self.create_sparql(prefix, params, rdfType, schemaNs, instanceNs, sparql)
-    version = params[:new_version]
-    new_state = params[:new_state]
-    previous_state = params[:state]
-    identifier = params[:identifier]
-    version_label = params[:versionLabel]
+    operation = params[:operation]
+    managed_item = params[:managed_item]
+    version = operation[:new_version]
+    new_state = operation[:new_state]
+    previous_state = managed_item[:state]
+    identifier = managed_item[:identifier]
+    version_label = managed_item[:version_label]
+    #ConsoleLogger::log(C_CLASS_NAME,"create_sparql","Version Label=" + managed_item.to_json.to_s)
     timestamp = Time.now.iso8601
     schema_prefix = UriManagement.getPrefix(schemaNs)
     # Set the registration authority to the owner
@@ -603,12 +606,12 @@ class IsoManaged < IsoConcept
     sparql.triple("", id, UriManagement::C_RDF, "type", schema_prefix, rdfType)
     sparql.triple("", id, UriManagement::C_ISO_I, "hasIdentifier", C_INSTANCE_PREFIX, dummy_SI.id)
     sparql.triple("", id, UriManagement::C_ISO_R, "hasState", C_INSTANCE_PREFIX, dummy_RS.id)
-    sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", params[:label], "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "creationDate", params[:creation_date], "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", managed_item[:label], "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "creationDate", managed_item[:creation_date], "string")
     sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "lastChangeDate", timestamp.to_s, "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "changeDescription", params[:change_description], "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "explanatoryComment", params[:comment], "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "origin", params[:references], "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "changeDescription", managed_item[:change_description], "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "explanatoryComment", managed_item[:comment], "string")
+    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "origin", managed_item[:references], "string")
     # Result URI
     uri = Uri.new
     uri.setNsCid(useNs, id)
@@ -676,7 +679,9 @@ class IsoManaged < IsoConcept
       :operation => {},
       :managed_item => {}
     }
+    managed_item = to_api_json
     if new_version?
+      managed_item[:creation_date] = Time.now.iso8601
       result[:operation] = { :action => "CREATE", :new_version => self.next_version, :new_state => self.state_on_edit, :identifier_edit => false }
       if self.next_version == self.first_version
         result[:operation][:identifier_edit] = true
@@ -684,8 +689,8 @@ class IsoManaged < IsoConcept
     else
       result[:operation] = { :action => "UPDATE", :new_version => self.version, :new_state => self.state_on_edit, :identifier_edit => false }
     end
-    result[:managed_item] = to_api_json
-    ConsoleLogger::log(C_CLASS_NAME,"to_edit","Result=" + result.to_s)
+    result[:managed_item] = managed_item
+    #ConsoleLogger::log(C_CLASS_NAME,"to_edit","Result=" + result.to_s)
     return result
   end
 

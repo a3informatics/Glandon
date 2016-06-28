@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :iso_namespaces
   resources :iso_scoped_identifiers
   resources :iso_registration_authorities
-  resources :iso_managed_news do
+  resources :iso_managed do
     collection do
       get :status
     end

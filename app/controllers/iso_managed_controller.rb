@@ -28,7 +28,7 @@ class IsoManagedController < ApplicationController
   private
 
     def this_params
-      params.require(:iso_managed_new).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer)
+      params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer)
     end
 
 end

@@ -10,17 +10,17 @@ $(document).ready( function() {
   /*
   * Completion and notes focus functions
   */
-  $( "#iso_managed_new_changeDescription" ).focus(function() {
+  $( "#iso_managed_changeDescription" ).focus(function() {
     markdownElement = this;
     getMarkdown(genericMarkdownElement, this.value); 
   });
 
-  $( "#iso_managed_new_explanatoryComment" ).focus(function() {
+  $( "#iso_managed_explanatoryComment" ).focus(function() {
     markdownElement = this;
     getMarkdown(genericMarkdownElement, this.value);  
   });
 
-  $( "#iso_managed_new_origin" ).focus(function() {
+  $( "#iso_managed_origin" ).focus(function() {
     markdownElement = this;
     getMarkdown(genericMarkdownElement, this.value);  
   });

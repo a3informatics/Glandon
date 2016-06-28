@@ -170,17 +170,19 @@ class Form < IsoManaged
     data = params[:data]
     operation = data[:operation]
     managed_item = data[:managed_item]
+    #ConsoleLogger::log(C_CLASS_NAME,"create", "managed_item=" + managed_item.to_json.to_s)
     if params_valid?(managed_item, object)
       if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object) 
         sparql = SparqlUpdate.new
-        managed_item[:versionLabel] = "0.1"
-        managed_item[:new_version] = operation[:new_version]
-        managed_item[:new_state] = operation[:new_state]
-        uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+        #managed_item[:versionLabel] = "0.1"
+        #managed_item[:new_version] = operation[:new_version]
+        #managed_item[:new_state] = operation[:new_state]
+        #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+        uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
         id = uri.getCid()
         ns = uri.getNs()
         Form.to_sparql(id, sparql, C_SCHEMA_PREFIX, managed_item)
-        ConsoleLogger::log(C_CLASS_NAME,"create", "SPARQL=" + sparql.to_s)
+        #ConsoleLogger::log(C_CLASS_NAME,"create", "SPARQL=" + sparql.to_s)
         response = CRUD.update(sparql.to_s)
         if response.success?
           object = Form.find(id, ns)
@@ -199,12 +201,14 @@ class Form < IsoManaged
     data = params[:data]
     operation = data[:operation]
     managed_item = data[:managed_item]
+    #ConsoleLogger::log(C_CLASS_NAME,"update", "managed_item=" + managed_item.to_json.to_s)
     form = Form.find(managed_item[:id], managed_item[:namespace])
     sparql = SparqlUpdate.new
-    managed_item[:versionLabel] = "0.1"
-    managed_item[:new_version] = operation[:new_version]
-    managed_item[:new_state] = operation[:new_state]
-    uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+    #managed_item[:versionLabel] = "0.1"
+    #managed_item[:new_version] = operation[:new_version]
+    #managed_item[:new_state] = operation[:new_state]
+    #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+    uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
     id = uri.getCid()
     ns = uri.getNs()
     Form.to_sparql(id, sparql, C_SCHEMA_PREFIX, managed_item)
