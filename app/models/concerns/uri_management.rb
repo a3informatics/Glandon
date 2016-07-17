@@ -10,11 +10,17 @@ module UriManagement
   C_ISO_C = "isoC"
   C_ISO_T = "isoT"
   C_CBC = "cbc"
+  C_BO = "bo"
+  C_BF = "bf"
+  C_BD = "bd"
   C_ISO_25964 = "iso25964"
   C_ISO_21090 = "iso21090"
   C_MDR_ITEMS = "mdrItems"
   C_MDR_BCTS = "mdrBcts"
   C_MDR_BCS = "mdrBcs"
+  C_MDR_F = "mdrForms"
+  C_MDR_M = "mdrModels"
+  C_MDR_D = "mdrDomains"
   C_MDR_BRIDG = "mdrBridg"
   C_MDR_ISO21090 = "mdrIso21090"
   
@@ -33,10 +39,10 @@ module UriManagement
       C_ISO_25964 => "http://www.assero.co.uk/ISO25964" , 
       C_ISO_21090 => "http://www.assero.co.uk/ISO21090" ,
       C_CBC => "http://www.assero.co.uk/CDISCBiomedicalConcept",
-      "bo" => "http://www.assero.co.uk/BusinessOperational" ,
-      "bf" => "http://www.assero.co.uk/BusinessForm" ,
-      "bd" => "http://www.assero.co.uk/BusinessDomain" ,
-      "bs" => "http://www.assero.co.uk/BusinessStandard" ,
+      C_BO => "http://www.assero.co.uk/BusinessOperational" ,
+      C_BF => "http://www.assero.co.uk/BusinessForm" ,
+      C_BD => "http://www.assero.co.uk/BusinessDomain" ,
+      #"bs" => "http://www.assero.co.uk/BusinessStandard" ,
       "mms" => "http://rdf.cdisc.org/mms" ,
       "cdisc" => "http://rdf.cdisc.org/std/schema" ,
       C_MDR_ITEMS => "http://www.assero.co.uk/MDRItems" ,
@@ -45,9 +51,10 @@ module UriManagement
       C_MDR_ISO21090 => "http://www.assero.co.uk/MDRISO21090" ,
       C_MDR_BCS => "http://www.assero.co.uk/MDRBCs" ,
       C_MDR_BCTS => "http://www.assero.co.uk/MDRBCTs" ,
-      "mdrForms" => "http://www.assero.co.uk/MDRForms" ,
+      C_MDR_F => "http://www.assero.co.uk/MDRForms" ,
       "mdrSch" => "http://www.assero.co.uk/MDRSchemes" ,
-      "mdrDomains" => "http://www.assero.co.uk/MDRDomains" ,
+      C_MDR_M => "http://www.assero.co.uk/MDRModels" ,
+      C_MDR_D => "http://www.assero.co.uk/MDRDomains" ,
       "mdrStds" => "http://www.assero.co.uk/MDRStandards" ,
       "mdrTh" => "http://www.assero.co.uk/MDRThesaurus"
      }

@@ -172,13 +172,14 @@ class Form < IsoManaged
     managed_item = data[:managed_item]
     #ConsoleLogger::log(C_CLASS_NAME,"create", "managed_item=" + managed_item.to_json.to_s)
     if params_valid?(managed_item, object)
-      if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object) 
+      ra = IsoRegistrationAuthority.owner
+      if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object, ra) 
         sparql = SparqlUpdate.new
         #managed_item[:versionLabel] = "0.1"
         #managed_item[:new_version] = operation[:new_version]
         #managed_item[:new_state] = operation[:new_state]
         #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
-        uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+        uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
         id = uri.getCid()
         ns = uri.getNs()
         Form.to_sparql(id, sparql, C_SCHEMA_PREFIX, managed_item)
@@ -208,7 +209,8 @@ class Form < IsoManaged
     #managed_item[:new_version] = operation[:new_version]
     #managed_item[:new_state] = operation[:new_state]
     #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
-    uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+    ra = IsoRegistrationAuthority.owner
+    uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
     id = uri.getCid()
     ns = uri.getNs()
     Form.to_sparql(id, sparql, C_SCHEMA_PREFIX, managed_item)
@@ -563,34 +565,31 @@ private
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
       "SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE \n" +
       "{ \n " +
-      "  ?node1 bd:basedOn ?node2 . \n " +
-      "  ?node1 rdf:type bd:Variable . \n " +
-      "  ?node2 mms:dataElementName ?sdtmTopicName . \n " +
-      "  ?node1 bd:hasProperty ?node4 . \n " +
-      "  ?node4 (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
-      "  ?node4 cbc:hasValue ?valueRef . \n " +
-      "  ?valueRef cbc:value ?sdtmTopicValueObj . \n " +
-      "  ?sdtmTopicValueObj iso25964:identifier ?sdtmTopicValue . \n " +
-      "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +
+      "  ?topic_var bd:hasProperty ?op_ref3 . \n " +
+      "  ?op_ref3 bo:hasProperty ?bc_topic_property . \n " +     
+      "  ?bc_topic_property (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n " +
+      "  ?bc_topic_property cbc:hasValue ?valueRef . \n " +
+      "  ?valueRef cbc:value ?sdtmTopicValueObj . \n " +     
+      "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +     
       "  {\n " +
-      "    SELECT ?form ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName WHERE \n " +
+      "    SELECT ?form ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName ?topic_var WHERE \n " +
       "    { \n " + 
-      "      ?var bd:basedOn ?col . \n " +     
-      "      ?col mms:dataElementName ?sdtmVarName . \n " +     
-      "      ?col mms:context ?dataset . \n " +     
-      "      ?dataset mms:contextName ?domain . \n " +     
-      "      ?node5 mms:context ?dataset . \n " +     
-      "      ?node5 cdisc:dataElementRole <http://rdf.cdisc.org/std/sdtm-1-2#Classifier.TopicVariable> . \n " +     
-      "      ?node5 mms:dataElementName ?sdtmTopicName . \n " +     
+      "      ?var bd:name ?sdtmVarName . \n " +              
+      "      ?dataset bd:includesColumn ?var . \n " +              
+      "      ?dataset rdfs:label ?domain . \n " +              
+      "      ?dataset bd:includesColumn ?topic_var . \n " +              
+      "      ?topic_var bd:classifiedAs <http://www.assero.co.uk/MDRModels/CDISC/V1#M-CDISC_SDTMMODEL_C_TOPIC> . \n " +              
+      "      ?topic_var bd:name ?sdtmTopicName . \n " +              
       "      { \n " +
       "        SELECT ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?dataset ?var ?gord ?pord WHERE \n " + 
       "        { \n " +    
       "          :" + self.id + " (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group . \n " +     
       "          ?group bf:ordinal ?gord . \n " +      
       "          ?group (bf:hasItem|bf:hasCommonItem)%2B ?item . \n " +        
-      "          ?item bf:hasProperty ?x . \n " +             
-      "          ?x bo:hasProperty ?bcProperty  . \n " +      
-      "          ?var bd:hasProperty ?bcProperty . \n " +     
+      "          ?item bf:hasProperty ?op_ref1 . \n " +
+      "          ?op_ref1 bo:hasProperty ?bcProperty  . \n " +             
+      "          ?op_ref2 bo:hasProperty ?bcProperty . \n " +
+      "          ?var bd:hasProperty ?op_ref2 . \n " +
       "          ?bcProperty (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
       "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
       "          ?bcProperty cbc:ordinal ?pord . \n " +     
@@ -627,7 +626,7 @@ private
         }
       end
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","results=" + results.to_json.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","results=" + results.to_json.to_s)
     return results
   end
 
@@ -637,9 +636,9 @@ private
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "bd", "cdisc", "isoI", "iso25964"])  +
       "SELECT ?var ?domain ?item WHERE \n" +       
       "{ \n" +         
-      "  ?col mms:dataElementName ?var .  \n" +        
-      "  ?col mms:context ?dataset . \n" +         
-      "  ?dataset mms:contextName ?domain . \n" +         
+      "  ?col bd:name ?var .  \n" +        
+      "  ?dataset bd:includesColumn ?col . \n" +         
+      "  ?dataset rdfs:label ?domain . \n" +         
       "  { \n" +           
       "    SELECT ?group ?item ?var ?gord ?pord WHERE \n" +           
       "    { \n" +             

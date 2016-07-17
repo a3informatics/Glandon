@@ -43,7 +43,7 @@ module ModelUtility
   def ModelUtility.buildUri(namespace, id)
     uri = Uri.new
     uri.setNsCid(namespace, id)
-    return "<" + uri.all + ">"
+    return uri.to_ref
   end
   
   def ModelUtility.buildCidIdentifier(prefix, identifier)  

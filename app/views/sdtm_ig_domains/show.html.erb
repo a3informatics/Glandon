@@ -1,0 +1,57 @@
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @sdtm_ig_domain} %>
+<div class="col-md-12">
+	<h4>Details</h4>
+	<table class="table table-striped table-bordered table-condensed">
+		<thead>
+	  		<tr>
+	    		<th>Identifer</th>
+	    		<th>Label</th>
+	    		<th>Owner</th>
+	    		<th>Internal Version</th>
+	    		<th>Version</th>
+	  		</tr>
+		</thead>
+		<tbody>
+	  		<tr>
+	    		<td><%= @sdtm_ig_domain.identifier %></td>
+			    <td><%= @sdtm_ig_domain.label %></td>
+			    <td><%= @sdtm_ig_domain.owner %></td>
+			    <td><%= @sdtm_ig_domain.version %></td>
+			    <td><%= @sdtm_ig_domain.versionLabel %></td>
+	  		</tr>
+		</tbody>
+	</table>
+	<h4>Variables</h4>
+	<table id="main" class="table table-striped table-bordered table-condensed">
+	  	<thead>
+			<tr>
+		  		<th>Ordinal</th>
+		  		<th>Name</th>
+		  		<th>Label</th>
+		  		<th>Datatype</th>
+		  		<th>CT or Format</th>
+		  		<th>Role</th>
+		  		<th>Sub Role</th>
+		  		<th>Notes</th>
+		  		<th>Core</th>
+		  	</tr>
+		</thead>
+		<tbody>
+			<% @sdtm_ig_domain.children.each_with_index do |item, index| %>
+		  	<tr>
+		    	<% variable = @variables[index] %></td>
+		    	<td><%= item.ordinal %></td>
+		    	<td><%= item.name %></td>
+		  		<td><%= item.label %></td>
+		  		<td><%= variable.datatype_label %></td>
+		  		<td><%= item.controlled_term_or_format %></td>
+		  		<td><%= variable.classification_label %></td>
+		  		<td><%= variable.sub_classification_label %></td>
+		  		<td><%= item.notes %></td>
+		  		<td><%= item.compliance_label %></td>		  		
+		  	</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= link_to "Clone", clone_sdtm_user_domains_path(:id => @sdtm_ig_domain.id, :namespace => @sdtm_ig_domain.namespace, :clone_type => "IG"), :class => "btn btn-primary" %>
+</div>

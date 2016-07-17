@@ -1,0 +1,108 @@
+<div class="col-md-5" >
+    <br/>
+    <form id="main_form">
+        <div id="domainInfo" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Domain Details</h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div class="form-group">
+                        <label for="domainPrefix">Domain Prefix:</label>
+                        <input type="text" class="form-control" id="domainPrefix" name="domainPrefix" value="--">
+                    </div>
+                    <div class="form-group">
+                        <label for="domainLabel">Label:</label>
+                        <input type="text" class="form-control" id="domainLabel" name="Domain Label" value="Domain">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#domainNotes">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </button>
+                        <label for="domainNotes">Notes:</label><br/>
+                        <textarea class="form-control collapse in" id="domainNotes" name="domainNotes" rows="5" style="font-family:monospace;"></textarea>
+                    </div>
+                </div>
+                <button type="button" id="domainUpdate" class="btn btn-primary">Update</button>
+                <button type="button" id="domainAddVariable" class="btn btn-primary">V+</button>
+                <button type="submit" id="domainSave" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+        <div id="variableInfo" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Variable Details</h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div class="form-group">
+                        <label for="variableName">Name:</label>
+                        <input type="text" class="form-control" id="variableName" name="variableName">
+                    </div>
+                    <div class="form-group">
+                        <label for="variableLabel">Label:</label>
+                        <input type="text" class="form-control" id="variableLabel" name="variableLabel" value="variable">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="variableUsed" name="variableUsed"><strong>Used</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="variableNonStandard" name="variableNonStandardd"><strong>Non standard</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="variableLabel">Format:</label>
+                        <input type="text" class="form-control" id="variableFormat" name="variableFormat" value="variable">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#variableNote">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </button>
+                        <label for="variableNote">Notes:</label>
+                        <textarea class="form-control collapse in" id="variableNote" name="variableNote" rows="5" style="font-family:monospace;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#variableComments">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </button>
+                        <label for="variableComments">Comments:</label>
+                        <textarea class="form-control collapse in" id="variableComments" name="variableComments" rows="5" style="font-family:monospace;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <%= label_tag :datatype, "Datetype:" %><br/>
+                        <%= select_tag("variableDatatype", options_for_select(@datatypes), class: "form-control", :multiple => false) %>
+                    </div>
+                </div>
+                <button type="button" id="variableUpdate" class="btn btn-primary">Update</button>
+                <button type="button" id="variableDelete" class="btn btn-danger">Delete</button>
+                <button type="button" id="variableUp" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
+                </button>
+                <button type="button" id="variableDown" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
+                </button> 
+            </div>    
+        </div>
+        <div id="markdown_panel" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Markdown Preview</h3>
+            </div>
+            <div class="panel-body">
+                <div id="genericMarkdown"></div>
+                <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+                <button type="button" id="markdown_hide" class="btn btn-primary">Hide</button>    
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+

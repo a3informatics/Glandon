@@ -6,6 +6,7 @@
 # imports: http://www.w3.org/2004/02/skos/core
 
 @prefix : <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -36,9 +37,9 @@
 .
 :raNamespace
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :ScopedIdentifier ;
+  rdfs:domain :RegistrationAuthority ;
   rdfs:label "Scope Relationship"^^xsd:string ;
-  rdfs:range :Namespace ;
+  rdfs:range isoI:Namespace ;
 .
 :isStateOf
   rdf:type owl:ObjectProperty ;

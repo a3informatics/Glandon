@@ -71,14 +71,15 @@ class BiomedicalConcept < BiomedicalConceptCore
     operation = data[:operation]
     ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + managed_item[:identifier] + ", new version=" + operation[:new_version].to_s)
     ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation.to_s)
-    if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object) 
+    ra = IsoRegistrationAuthority.owner
+    if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object, ra) 
       bc = BiomedicalConceptTemplate.find(managed_item[:id], managed_item[:namespace])
       sparql = SparqlUpdate.new
       #managed_item[:versionLabel] = "0.1"
       #managed_item[:new_version] = operation[:new_version]
       #managed_item[:new_state] = operation[:new_state]
       #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
-      uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+      uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
       id = uri.getCid()
       ns = uri.getNs()
       bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, data, sparql, C_SCHEMA_PREFIX)
@@ -113,7 +114,8 @@ class BiomedicalConcept < BiomedicalConceptCore
     #managed_item[:new_version] = operation[:new_version]
     #managed_item[:new_state] = operation[:new_state]
     #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
-    uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
+    ra = IsoRegistrationAuthority.owner
+    uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
     id = uri.getCid()
     ns = uri.getNs()
     #ConsoleLogger::log(C_CLASS_NAME,"create","URI=" + uri.to_json.to_s)

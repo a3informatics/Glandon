@@ -1,0 +1,27 @@
+<h3>Import CDISC SDTM Implementation Guide Version</h3>
+<div class="col-md-6">
+  <%= form_for @sdtm_ig, url: import_sdtm_igs_path do |f| %>
+      <div class="form-group">
+          <%= label_tag :version, "Version (internal system):" %><br/>
+          <%= text_field_tag "sdtm_ig[version]", "", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :version_label, "Version label:" %><br/>
+        <%= text_field_tag "sdtm_ig[version_label]", "", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :date, "Implementation Guide release date:" %><br/>
+        <%= date_field_tag "sdtm_ig[date]", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :model_uri, "SDTM Model:" %><br />
+        <%= select_tag("sdtm_ig[model_uri]", options_for_select(@sdtm_models.map{ |u| ["#{u.label} (#{u.versionLabel})", u.namespace + "#" + u.id]}), class: "form-control") %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :files, "File:" %><br/>
+        <%= select_tag("sdtm_ig[files][]", options_for_select(@files), class: "form-control", :multiple => true) %>
+      </div>
+      <br/>
+      <%= f.submit "Create", class: "btn btn-default btn-primary" %>
+  <% end %>
+</div>

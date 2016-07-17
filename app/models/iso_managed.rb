@@ -159,6 +159,11 @@ class IsoManaged < IsoConcept
     result = IsoScopedIdentifier.exists?(identifier, registrationAuthority.namespace.id)
   end
 
+  # Does the item exist. Cannot be used for child objects!
+  def exists?(registrationAuthority)
+    result = IsoScopedIdentifier.exists?(self.identifier, registrationAuthority.namespace.id)
+  end
+
   # Does the version exist. Cannot be used for child objects!
   def self.versionExists?(identifier, version, namespace)
     result = IsoScopedIdentifier.versionExists?(identifier, version, namespace.id)
@@ -202,7 +207,7 @@ class IsoManaged < IsoConcept
       predicate = ModelUtility.getValue('p', true, node)
       objectUri = ModelUtility.getValue('o', true, node)
       objectLiteral = ModelUtility.getValue('o', false, node)
-      #ConsoleLogger::log(C_CLASS_NAME,"find","p=" + predicate.to_s + ", o(uri)=" + objectUri.to_s + ", o(lit)=" + objectLiteral)
+      #ConsoleLogger::log(C_CLASS_NAME,"find","p=(#{subject},#{predicate},#{objectUri}#{objectLiteral})")
       if predicate != ""
         triple_object = objectUri
         if triple_object == ""
@@ -495,10 +500,9 @@ class IsoManaged < IsoConcept
     return object
   end
 
-  def self.create_permitted?(identifier, version, object)
+  def self.create_permitted?(identifier, version, object, ra)
     result = true
-    exists = exists?(identifier, IsoRegistrationAuthority.owner)
-    ra = IsoRegistrationAuthority.owner
+    exists = exists?(identifier, ra)
     org_name = ra.namespace.shortName
     scope = ra.namespace
     if version == IsoScopedIdentifier.first_version && exists
@@ -516,6 +520,32 @@ class IsoManaged < IsoConcept
     elsif version != IsoScopedIdentifier.first_version && !exists
       result = false
       object.errors.add(:base, "The item cannot be created. Identifier does not exist but not first version. Logic error.")
+      # TODO: Exception here.
+    end 
+    return result
+  end
+
+  def create_permitted?(ra)
+    result = true
+    exists = self.exists?(ra)
+    org_name = ra.namespace.shortName
+    scope = ra.namespace
+    ConsoleLogger::log(C_CLASS_NAME,"create_permitted?", "Version=#{self.version}, Exists?=#{exists}")
+    if self.version == IsoScopedIdentifier.first_version && exists
+      result = false
+      self.errors.add(:base, "The item cannot be created. The identifier is already in use.")
+    elsif self.version == IsoScopedIdentifier.first_version && !exists
+      result = true
+    elsif self.version != IsoScopedIdentifier.first_version && exists
+      if versionExists?(self.identifier, self.version, scope)
+        result = false
+        self.errors.add(:base, "The item cannot be created. The identifier and version is already in use.")
+      else
+        result = true
+      end
+    elsif self.version != IsoScopedIdentifier.first_version && !exists
+      result = false
+      self.errors.add(:base, "The item cannot be created. Identifier does not exist but not first version. Logic error.")
       # TODO: Exception here.
     end 
     return result
@@ -575,8 +605,67 @@ class IsoManaged < IsoConcept
     return object
   end 
 
+  def to_json
+    json = super
+    json[:origin] = self.origin
+    json[:change_description] = self.changeDescription = ""
+    json[:creation_date] = self.creationDate = Time.now
+    json[:last_changed_date] = self.lastChangedDate = Time.now
+    json[:explanatory_comment] = self.explanatoryComment = ""
+    json[:registration_state] = self.registrationState.to_json
+    json[:scoped_identifier] = self.scopedIdentifier.to_json
+    return json
+  end
+
+  def self.from_json(json)
+    # Get the json structures and the updated versionand state
+    operation = json[:operation]
+    managed_item = json[:managed_item]
+    # Create the object
+    object = super(managed_item)
+    object.origin = managed_item[:origin]
+    object.changeDescription = managed_item[:change_description]
+    object.creationDate = managed_item[:creation_date]
+    object.lastChangedDate = managed_item[:last_changed_date]
+    object.explanatoryComment = managed_item[:explanatory_comment]
+    object.registrationState = IsoRegistrationState.from_json(managed_item[:registration_state])
+    object.scopedIdentifier = IsoScopedIdentifier.from_json(managed_item[:scoped_identifier])
+    # Update the version and state based on the operation
+    object.scopedIdentifier.version = operation[:new_version].to_i
+    object.registrationState.previousState = object.registrationState.registrationStatus
+    object.registrationState.registrationStatus = operation[:new_state]
+    # Finish
+    return object
+  end
+
+  def to_sparql(sparql, ra, prefix, instance_namespace, schema_prefix)
+    # Get the timestamp
+    timestamp = Time.now.iso8601
+    # Set the organisation
+    org_name = ra.namespace.shortName
+    # Build the uri. Exted with version, save in the object and set as the default namespace.
+    uri = UriV2.new(:namespace => instance_namespace, :prefix => prefix, :org_name => org_name, :identifier => self.identifier)  
+    uri.extend_path("#{org_name}/V#{self.version}")
+    self.namespace = uri.namespace
+    self.id = uri.id
+    sparql.add_default_namespace(self.namespace)
+    # Build the sparql. The concept and then the registration state and scoped identifier
+    super(sparql, schema_prefix)
+    rs_id = self.registrationState.to_sparql(sparql, ra, self.identifier, self.version)
+    si_id = self.scopedIdentifier.to_sparql(sparql, ra)
+    # And the object.
+    sparql.triple("", self.id, UriManagement::C_ISO_I, "hasIdentifier", C_INSTANCE_PREFIX, si_id)
+    sparql.triple("", self.id, UriManagement::C_ISO_R, "hasState", C_INSTANCE_PREFIX, rs_id)
+    sparql.triple_primitive_type("", self.id, UriManagement::C_ISO_T, "creationDate", "#{self.creationDate}", "string")
+    sparql.triple_primitive_type("", self.id, UriManagement::C_ISO_T, "lastChangeDate", "#{timestamp}", "string")
+    sparql.triple_primitive_type("", self.id, UriManagement::C_ISO_T, "changeDescription", "#{self.changeDescription}", "string")
+    sparql.triple_primitive_type("", self.id, UriManagement::C_ISO_T, "explanatoryComment", "#{self.explanatoryComment}", "string")
+    sparql.triple_primitive_type("", self.id, UriManagement::C_ISO_T, "origin", "#{self.origin}", "string")
+    return uri
+  end
+
   # Build the SPARQL for the managed item creation.
-  def self.create_sparql(prefix, params, rdfType, schemaNs, instanceNs, sparql)
+  def self.create_sparql(prefix, params, rdfType, schemaNs, instanceNs, sparql, ra)
     operation = params[:operation]
     managed_item = params[:managed_item]
     version = operation[:new_version]
@@ -588,24 +677,23 @@ class IsoManaged < IsoConcept
     timestamp = Time.now.iso8601
     schema_prefix = UriManagement.getPrefix(schemaNs)
     # Set the registration authority to the owner
-    ra = IsoRegistrationAuthority.owner
     org_name = ra.namespace.shortName
     scopeId = ra.namespace.id
     # Create the required namespace. Use owner name to extend
     uri = ModelUtility::version_namespace(version, instanceNs, org_name)
     useNs = uri.getNs()
     # Dummy SI and RS to get the right identifiers.
-    dummy_SI = IsoScopedIdentifier.create_dummy(identifier, version, version_label, ra.namespace)
-    dummy_RS = IsoRegistrationState.create_dummy(identifier, version, ra.namespace)
+    #dummy_SI = IsoScopedIdentifier.create_dummy(identifier, version, version_label, ra.namespace)
+    #dummy_RS = IsoRegistrationState.create_dummy(identifier, version, ra.namespace)
     id = ModelUtility.build_full_cid(prefix, org_name, identifier)
     # SI and RS
-    IsoScopedIdentifier.create_sparql(identifier, version, version_label, ra.namespace, sparql)
-    IsoRegistrationState.create_sparql(identifier, version, new_state, previous_state, ra.namespace, sparql)
+    si_id = IsoScopedIdentifier.create_sparql(identifier, version, version_label, ra.namespace, sparql)
+    rs_id = IsoRegistrationState.create_sparql(identifier, version, new_state, previous_state, ra, sparql)
     # And the object.
     sparql.add_default_namespace(useNs)
     sparql.triple("", id, UriManagement::C_RDF, "type", schema_prefix, rdfType)
-    sparql.triple("", id, UriManagement::C_ISO_I, "hasIdentifier", C_INSTANCE_PREFIX, dummy_SI.id)
-    sparql.triple("", id, UriManagement::C_ISO_R, "hasState", C_INSTANCE_PREFIX, dummy_RS.id)
+    sparql.triple("", id, UriManagement::C_ISO_I, "hasIdentifier", C_INSTANCE_PREFIX, si_id)
+    sparql.triple("", id, UriManagement::C_ISO_R, "hasState", C_INSTANCE_PREFIX, rs_id)
     sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", managed_item[:label], "string")
     sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "creationDate", managed_item[:creation_date], "string")
     sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "lastChangeDate", timestamp.to_s, "string")
@@ -651,6 +739,35 @@ class IsoManaged < IsoConcept
     end
   end
   
+  def destroy(namespace)
+    # Create the query
+    update = UriManagement.buildNs(namespace, [C_SCHEMA_PREFIX, "isoI", "isoR"]) +
+      "DELETE \n" +
+      "{\n" +
+      "  ?s ?p ?o . \n" +
+      "}\n" +
+      "WHERE\n" + 
+      "{\n" +
+      "  {\n" +
+      "    :" + self.id + " (:|!:)* ?s . \n" +  
+      "    ?s ?p ?o . \n" +
+      "    FILTER(STRSTARTS(STR(?s), \"" + self.namespace + "\"))" +
+      "  } UNION {\n" + 
+      "    :" + self.id + " isoI:hasIdentifier ?s . \n" +
+      "    ?s ?p ?o . \n" +
+      "  } UNION {\n" + 
+      "    :" + self.id + " isoR:hasState ?s . \n" +
+      "    ?s ?p ?o . \n" +
+      "  }\n" + 
+      "}\n"
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
+    end
+  end
+
   def to_api_json
     #ConsoleLogger::log(C_CLASS_NAME,"to_api_json","*****Entry*****")
     result = 
@@ -673,13 +790,19 @@ class IsoManaged < IsoConcept
     return result
   end
 
-  def to_edit
+  def to_edit(v2=false)
     result = 
     {
       :operation => {},
       :managed_item => {}
     }
-    managed_item = to_api_json
+    # Get the managed item, new and old versions
+    if v2
+      managed_item = to_json
+    else
+      managed_item = to_api_json
+    end
+    # Set the operation
     if new_version?
       managed_item[:creation_date] = Time.now.iso8601
       result[:operation] = { :action => "CREATE", :new_version => self.next_version, :new_state => self.state_on_edit, :identifier_edit => false }
@@ -694,13 +817,42 @@ class IsoManaged < IsoConcept
     return result
   end
 
-  def to_clone
+  def self.create_json
+    result = 
+    {
+      :operation => { 
+        :action => "CREATE", 
+        :new_version => IsoScopedIdentifier.first_version, 
+        :new_state => IsoRegistrationState.releasedState, 
+        :identifier_edit => false 
+      },
+      :managed_item => { 
+        :type => "",
+        :id => "", 
+        :namespace => "", 
+        :identifier => "", 
+        :label => "", 
+        :version => IsoScopedIdentifier.first_version, 
+        :version_label => "",
+        :state => IsoRegistrationState.releasedState, 
+        :creation_date => Time.now.iso8601,
+        :last_changed_date => Time.now.iso8601,
+        :change_description => "",
+        :comment => "",
+        :references => "",
+        :children => [] 
+      }
+    }
+    return result
+  end
+
+  def to_clone(v2=false)
     # To clone, reset RS and SI (resets the version info etc). Then edit.
     # This leaves current content intact but resets version info.
     # Allow the identifier to be edited.
     self.scopedIdentifier = IsoScopedIdentifier.new
     self.registrationState = IsoRegistrationState.new
-    result = to_edit 
+    result = to_edit(v2)
     result[:operation][:identifier_edit] = true
     ConsoleLogger::log(C_CLASS_NAME,"to_clone","Result=" + result.to_s)
     return result

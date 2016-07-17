@@ -132,16 +132,13 @@ Rails.application.routes.draw do
       get :history
       get :view
       get :placeholder_new
-      get :bc_normal_new
       post :placeholder_create
-      post :bc_normal_create
       get :acrf
       get :crf
       get :markdown
       get :crf_report
       get :acrf_report
       get :full_crf_report
-      #get :test
       get :clone
       get :export_json
       get :export_ttl
@@ -151,18 +148,6 @@ Rails.application.routes.draw do
     resources :groups
     resources :items
   end
-  resources :domains do
-    collection do
-      get :history
-      get :add
-      get :remove
-      post :update_add
-      post :update_remove
-    end
-  end
-  namespace :domains do
-    resources :variables
-  end
   resources :backgrounds do
     collection do
       get :running
@@ -170,6 +155,64 @@ Rails.application.routes.draw do
       post :clear_completed
     end
   end
-  resources :standards
-  resources :sdtmigs
+  resources :sdtm_models do
+    collection do
+      get :history
+      get :import_file
+      post :import
+    end
+  end
+  namespace :sdtm_models do
+    resources :variables
+  end
+  resources :sdtm_model_domains do
+    collection do
+      get :history
+    end
+  end
+  namespace :sdtm_model_domains do
+    resources :variables
+  end
+  resources :sdtm_igs  do
+    collection do
+      get :history
+      get :import_file
+      post :import
+    end
+  end
+  resources :sdtm_ig_domains do
+    collection do
+      get :history
+    end
+  end
+  namespace :sdtm_ig_domains do
+    resources :variables
+  end
+  resources :sdtm_user_domains do
+    collection do
+      get :history
+      get :add
+      get :remove
+      post :update_add
+      post :update_remove
+      get :export_json
+      get :export_ttl
+      get :clone
+    end
+  end
+  namespace :sdtm_user_domains do
+    resources :variables
+  end
+  resources :domains do
+    collection do
+      get :history
+      get :add
+      get :remove
+      post :update_add
+      post :update_remove 
+    end
+  end
+  namespace :domains do
+    resources :variables
+  end
 end

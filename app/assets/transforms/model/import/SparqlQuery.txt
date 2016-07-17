@@ -1,0 +1,18 @@
+PREFIX mms: <http://rdf.cdisc.org/mms#>
+PREFIX cdisc: <http://rdf.cdisc.org/std/schema#>
+
+SELECT ?name ?subject ?context ?desc ?label ?ord ?role ?type_def ?p ?o ?type ?xsd_type
+WHERE {
+    ?subject rdf:type mms:DataElement .
+	?subject mms:context ?context .
+	?subject mms:dataElementName ?name .
+	?subject mms:dataElementDescription ?desc .
+	?subject mms:dataElementLabel ?label .
+	?subject mms:ordinal ?ord .
+	?subject cdisc:dataElementRole ?role_def .
+	?subject cdisc:dataElementType ?type_def .
+	?role_def rdfs:label ?role .
+	#?type_def ?p ?o .
+	?subject mms:dataElementType ?xsd_type .
+}
+ORDER BY ?domainName

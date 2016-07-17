@@ -1,0 +1,32 @@
+<h3>Add Biomedical Concepts</h3>
+<%= form_for @sdtm_user_domain, :url => update_add_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :method => :post do |f| %>
+	<div class="row">
+		<div class="col-md-12">
+		  	<table id="main" class="table table-striped table-bordered table-condensed">
+		  		<thead>
+		  			<tr>
+		    			<th>Identifer</th>
+							<th>Label</th>
+							<th>Owner</th>
+							<th>Internal Version</th>
+							<th>Version</th>
+							<th>Select</th>
+		  			</tr>
+		  		</thead>
+		  		<tbody>
+		  			<% @bcs.each do |bc| %>
+			  			<tr>
+			    			<td><%= bc.identifier %></td>
+								<td><%= bc.label %></td>
+								<td><%= bc.owner %></td>
+								<td><%= bc.version %></td>
+								<td><%= bc.versionLabel %></td>
+								<td><%= check_box_tag "sdtm_user_domain[bcs][]", [bc.id + "|" + bc.namespace] %></td>
+			  			</tr>
+			  		<% end %>
+			  	</tbody>
+			</table>
+		</div>
+	</div>
+	<%= f.submit "Add", class: "btn btn-default btn-primary" %>
+<% end %>

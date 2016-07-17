@@ -1,0 +1,2 @@
+class SdtmUserDomainPolicy < ApplicationPolicy
+end

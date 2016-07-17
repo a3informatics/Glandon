@@ -1,14 +1,13 @@
 # baseURI: http://www.assero.co.uk/BusinessDomain
-# imports: http://www.assero.co.uk/BusinessOperational
-# imports: http://www.assero.co.uk/CDISCBiomedicalConcept
 
 @prefix : <http://www.assero.co.uk/BusinessDomain#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
-@prefix mms: <http://rdf.cdisc.org/mms#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://www.assero.co.uk/BusinessDomain>
@@ -17,112 +16,370 @@
   owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
-:Domain
+:Item
   rdf:type owl:Class ;
-  rdfs:label "Domain"^^xsd:string ;
-  rdfs:subClassOf bo:Component ;
-  owl:equivalentClass mms:Dataset ;
+  rdfs:label "Item"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "Lowest level building block within the area."^^xsd:string ;
 .
-:DomainClass
+:Column
   rdf:type owl:Class ;
-  rdfs:label "Domain class"^^xsd:string ;
+  rdfs:label "Item"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  rdfs:subClassOf isoC:Concept ;
+  skos:definition "Column within a tabulation."^^xsd:string ;
+.
+:Tabulation
+  rdf:type owl:Class ;
+  rdfs:label "Tabulation"^^xsd:string ;
+  rdfs:subClassOf :Item ;
   rdfs:subClassOf bo:Component ;
+  skos:definition "A tabulation. A set of columns."^^xsd:string ;
+.
+:ModelVariable
+  rdf:type owl:Class ;
+  rdfs:label "Model variable"^^xsd:string ;
+  rdfs:subClassOf :Column ;
+  skos:definition "A CDISC model variable. Building block for a class variable (shared across classes)."^^xsd:string ;
+.
+:ClassDomain
+  rdf:type owl:Class ;
+  rdfs:label "Class Domain"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A CDISC domain class. Building block for a SDTM IG domain."^^xsd:string ;
+.
+:ClassVariable
+  rdf:type owl:Class ;
+  rdfs:label "Class variable"^^xsd:string ;
+  rdfs:subClassOf :Column ;
+  skos:definition "A CDISC domain class variable. Building block for a SDTM IG variable."^^xsd:string ;
+.
+:IGDomain
+  rdf:type owl:Class ;
+  rdfs:label "Implementation Guide Domain"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A domain as defined within an implementation guide."^^xsd:string ;
+.
+:IGVariable
+  rdf:type owl:Class ;
+  rdfs:label "Implementation Guide Variable"^^xsd:string ;
+  rdfs:subClassOf :Column ;
+  skos:definition "A variable as defined within an implementation guide."^^xsd:string ;
+.
+:UserDomain
+  rdf:type owl:Class ;
+  rdfs:label "User Domain"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A domain as deployed by a user."^^xsd:string ;
+.
+:UserVariable
+  rdf:type owl:Class ;
+  rdfs:label "Implementation Guide Variable"^^xsd:string ;
+  rdfs:subClassOf :Column ;
+  skos:definition "A variable as deployed by the user."^^xsd:string ;
+.
+:VariableClassification
+  rdf:type owl:Class ;
+  rdfs:label "Variable classification."^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The classification of a given variable."^^xsd:string ;
+.
+:VariableCompliance
+  rdf:type owl:Class ;
+  rdfs:label "Variable compliance."^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The compliance of a given variable."^^xsd:string ;
+.
+:VariableType
+  rdf:type owl:Class ;
+  rdfs:label "Variable type."^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The type of a given variable."^^xsd:string ;
+.
+:TabularStandard
+  rdf:type owl:Class ;
+  rdfs:label "Doucment grouping"^^xsd:string ;
+  rdfs:subClassOf bo:Component ;
+  skos:definition "A document published as a standard that groups."^^xsd:string ;
 .
 :Model
   rdf:type owl:Class ;
   rdfs:label "Model"^^xsd:string ;
-  rdfs:subClassOf bo:Component ;
+  rdfs:subClassOf :StandardDocument ;
+  skos:definition "A document published detailing a model."^^xsd:string ;
 .
-:SpecialDomain
+:ImplementationGuide
   rdf:type owl:Class ;
-  rdfs:label "Special domain"^^xsd:string ;
-  rdfs:subClassOf bo:Component ;
+  rdfs:label "Implementaiton Guide"^^xsd:string ;
+  rdfs:subClassOf :StandardDocument ;
+  skos:definition "A document published as a implementaiton guide."^^xsd:string ;
 .
-:Variable
+:TAGuide
   rdf:type owl:Class ;
-  rdfs:label "Variable"^^xsd:string ;
-  rdfs:subClassOf bo:Component ;
-  owl:equivalentClass mms:Column ;
+  rdfs:label "Therapuetic Area User Guide"^^xsd:string ;
+  rdfs:subClassOf :StandardDocument ;
+  skos:definition "A document published as a therapuetic area user guide."^^xsd:string ;
 .
-:core
+:includesTabulation
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Includes tabulation relationship"^^xsd:string ;
+  rdfs:domain :TabularStandard ;
+  rdfs:range :TReference ;
+  skos:definition "Relationship to relate tabulations with the containing document/standard."^^xsd:string ;
+.
+:includesVariable
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Includes tabulation relationship"^^xsd:string ;
+  rdfs:domain :Model ;
+  rdfs:range :ModelVariable ;
+  skos:definition "Relationship to relate tabulations with the containing document/standard."^^xsd:string ;
+.
+:includesColumn
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Includes column relationship"^^xsd:string ;
+  rdfs:domain :Tabulation ;
+  rdfs:range :Column ;
+  skos:definition "Relates columns to tabulations."^^xsd:string ;
+.
+:basedOnDomain
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Based on domain relationship"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UserDomain :IGDomain )
+    ] ;
+  rdfs:range :DomainClass ;
+  skos:definition "Notes which domain class a domain is based on."^^xsd:string ;
+.
+:basedOnVariable
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Based on variable relationship"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UserVariable :IGVariable :ClassVariable)
+    ] ;
+  rdfs:range :ClassVariable ;
+  skos:definition "Notes which domain class variable a variable is based on."^^xsd:string ;
+.
+:classifiedAs
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Classified as relationship"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UserVariable :ClassVariable)
+    ] ;
+  rdfs:range :VariableClassification ;
+  skos:definition "The variable classification."^^xsd:string ;
+.
+:childClassification
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Sub classified as relationship"^^xsd:string ;
+  rdfs:domain :VariableClassification ;
+  rdfs:range :VariableClassification ;
+  skos:definition "The sub classification."^^xsd:string ;
+.
+:parentClassification
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :VariableClassification ;
+  rdfs:range :VariableClassification ;
+  rdfs:label "Parent classification relationship"^^xsd:string ;
+  skos:definition "The parent classification."^^xsd:string ;
+.
+:typedAs
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Type as relationship"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UserVariable :ClassVariable)
+    ] ;
+  rdfs:range :VariableType ;
+  skos:definition "The variable datatype."^^xsd:string ;
+.
+:compliance
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Compliance relationship"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UserVariable :IGVariable)
+    ] ;
+  rdfs:range :VariableCompliance ;
+  skos:definition "The variable compliance."^^xsd:string ;
+.
+:hasBiomedicalConcept
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Implementation of variable relationship"^^xsd:string ;
+  rdfs:domain :UserDomain ;
+  rdfs:range bo:BcReference ;
+  skos:definition "Notes which domain class variable a variable is based on."^^xsd:string ;
+.
+:hasProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Implementation of variable relationship"^^xsd:string ;
+  rdfs:domain :Uservariable ;
+  rdfs:range bo:BcReference ;
+  skos:definition "Notes which domain class variable a variable is based on."^^xsd:string ;
+.
+:rule
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "core"^^xsd:string ;
+  rdfs:label "Rule"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Item ;
   rdfs:range xsd:string ;
+  skos:definition "A rule applying to the item in question."^^xsd:string ;
 .
-:datatype
+:ordinal
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "datatype"^^xsd:string ;
+  rdfs:label "Ordinal"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :Item ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "The position of the item within the set."^^xsd:string ;
+.
+:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Variable name"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf ( :ModelVariable :UserVariable :IGVariable)
+    ] ;
+  rdfs:range :VariableCompliance ;
   rdfs:range xsd:string ;
-  owl:equivalentProperty mms:dataElementType ;
+  skos:definition "The variable name."^^xsd:string ;
 .
-:defaultComment
+:prefixed
   rdf:type owl:DatatypeProperty ;
+  rdfs:label "Variable prefixed."^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
   rdfs:domain :Variable ;
-  rdfs:label "default comment"^^xsd:string ;
-  rdfs:range xsd:string ;
-.
-:defaultCommentSet
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "default comment set"^^xsd:string ;
   rdfs:range xsd:boolean ;
+  skos:definition "Boolean indicating if the variable is prefixed with the domain code."^^xsd:string ;
 .
-:format
+:description
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "format"^^xsd:string ;
+  rdfs:label "Variable description."^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UserVariable :ModelVariable)
+    ] ;
+  rdfs:range :VariableCompliance ;
   rdfs:range xsd:string ;
-.
-:label
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "Label"^^xsd:string ;
-  rdfs:range xsd:string ;
-  owl:equivalentProperty mms:dataElementLabel ;
-.
-:length
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "length"^^xsd:string ;
-  rdfs:range xsd:integer ;
+  skos:definition "Description of the variable."^^xsd:string ;
 .
 :notes
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "notes"^^xsd:string ;
+  rdfs:label "Notes"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UserVariable :IGVariable)
+    ] ;
+  rdfs:range :VariableCompliance ;
   rdfs:range xsd:string ;
+  skos:definition "Notes on the variable."^^xsd:string ;
 .
-:origin
+:controlled_term_or_format
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "origin"^^xsd:string ;
+  rdfs:label "Controlled Terms or Format"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :IGVariable ;
   rdfs:range xsd:string ;
+  skos:definition "Controlled terms or format for the variable."^^xsd:string ;
 .
-:role
+:format
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "role"^^xsd:string ;
+  rdfs:label "format"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :UserVariable ;
   rdfs:range xsd:string ;
+  skos:definition "Format of the variable."^^xsd:string ;
 .
-:supplementalQualifier
+:length
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "supplemental qualifier"^^xsd:string ;
+  rdfs:label "Variable length"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :UserVariable ;
+  rdfs:range xsd:integer ;
+  skos:definition "Variable length."^^xsd:string ;
+.
+:user_comments
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Sponsor comments."^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :UserVariable ;
+  rdfs:range xsd:string ;
+  skos:definition "User comments."^^xsd:string ;
+.
+:non_standard
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Non standard / supplemental qualifier."^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :UserVariable ;
   rdfs:range xsd:boolean ;
+  skos:definition "The variable is a non-standard variable."^^xsd:string ;
 .
 :used
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "used"^^xsd:string ;
-  rdfs:range xsd:boolean ;
-.
-:vName
-  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Variable used"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
-  rdf:type owl:InverseFunctionalProperty ;
-  rdfs:domain :Variable ;
-  rdfs:label "Variable name"^^xsd:string ;
-  rdfs:range xsd:string ;
-  owl:equivalentProperty mms:dataElementName ;
+  rdfs:domain :UserVariable ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Variable is used/not used."^^xsd:string ;
 .
+:key_ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Ordinal"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :UserVariable ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "The position of the item within the set."^^xsd:string ;
+.
+:prefix
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Domain prefix"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :IGDomain :UserDomain)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "Theprefix for the domain."^^xsd:string ;
+.
+:structure
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Domain structure"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :IGDomain :UserDomain)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The structure of the domain."^^xsd:string ;
+.
+:domain_class
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Domain class"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :ClassDomain ;
+  rdfs:range xsd:string ;
+  skos:definition "The structure of the domain."^^xsd:string ;
+.
+

@@ -23,14 +23,16 @@ class IsoRegistrationAuthority
   @@baseNs = UriManagement.getNs(C_NS_PREFIX)
   @@repositoryOwner = nil
   @@id_map = Hash.new
+  @@name_map = Hash.new
 
   def persisted?
     id.present?
   end
  
   def initialize()
-    @@repositoryOwner = nil
-    @@id_map = Hash.new
+    #@@repositoryOwner = nil
+    #@@id_map = Hash.new
+    #@@name_map = Hash.new
     @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
   end
 
@@ -73,15 +75,37 @@ class IsoRegistrationAuthority
           ra.scheme = sSet[0].text
           ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
           @@id_map[ra.id] = ra
+          @@name_map[ra.namespace.shortName] = ra
         end
       end
     end
     return ra
   end
 
+  # Find namespace by the short name.
+  #
+  # TODO: Better return for not found (will just be empty at the moment)
+  #
+  # * *Args*    :
+  #   - +short_name+ -> The short name of the authority to be found
+  # * *Returns* :
+  #   - Registration Authority object
+  def self.find_by_short_name(short_name)
+    # Do we have a stored result
+    object = self.new
+    if @@name_map.has_key?(short_name)
+      object = @@name_map[short_name]
+    else
+      results = self.all()
+      object = @@name_map[short_name]
+    end
+    return object
+  end
+
   def self.all  
     results = Hash.new
     @@id_map = Hash.new
+    @@name_map = Hash.new
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "SELECT ?a ?c ?d ?e WHERE \n" +
@@ -110,6 +134,7 @@ class IsoRegistrationAuthority
         ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
         results[ra.id] = ra
         @@id_map[ra.id] = ra
+        @@name_map[ra.namespace.shortName] = ra
       end
     end
     # Set owner. Assumed to be first authority.
@@ -181,6 +206,27 @@ class IsoRegistrationAuthority
       ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
       raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
     end
+  end
+
+  def to_json
+    json = 
+    { 
+      :id => self.id, 
+      :number => self.number,
+      :scheme => self.scheme,
+      :namespace => self.namespace.to_json
+    }
+    return json
+  end
+
+  def self.from_json(json)
+    object = self.new
+    ConsoleLogger::log(C_CLASS_NAME,"from_json", "Json=#{json}")
+    object.id = json[:id]
+    object.number = json[:number]
+    object.scheme = json[:scheme]
+    object.namespace = IsoNamespace.from_json(json[:namespace])
+    return object
   end
   
 end

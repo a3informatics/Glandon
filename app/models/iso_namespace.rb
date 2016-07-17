@@ -273,7 +273,27 @@ class IsoNamespace
     #  raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
     end
   end
-   
+
+  def to_json
+    json = 
+    { 
+      :namespace => self.namespace, 
+      :id => self.id, 
+      :name => self.name,
+      :shortName => self.shortName
+    }
+    return json
+  end
+  
+  def self.from_json(json)
+    object = self.new
+    object.id = json[:id]
+    object.name = json[:name]
+    object.shortName = json[:shortName]
+    object.namespace = json[:namespace]
+    return object
+  end
+
 private
 
   def self.params_valid?(params, object)

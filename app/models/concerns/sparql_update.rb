@@ -10,6 +10,7 @@ class SparqlUpdate
   end
 
   def add_default_namespace(ns)
+    ConsoleLogger::log(C_CLASS_NAME,"add_default_namespace","Default NS=#{ns}")
     @default_ns = ns
   end
 
@@ -35,6 +36,18 @@ class SparqlUpdate
     add_prefix (p_prefix)    
   end
 
+  def triple_uri_full(s_prefix, s_id, p_prefix, p_id, o_uri)
+    @triples += "#{s_prefix}:#{s_id} #{p_prefix}:#{p_id} #{o_uri} . \n"
+    add_prefix (s_prefix)
+    add_prefix (p_prefix)    
+  end
+
+  def triple_uri_full_v2(s_prefix, s_id, p_prefix, p_id, o_uri)
+    @triples += "#{s_prefix}:#{s_id} #{p_prefix}:#{p_id} #{o_uri.to_ref} . \n"
+    add_prefix (s_prefix)
+    add_prefix (p_prefix)    
+  end
+
   def triple_primitive_type(s_prefix, s_id, p_prefix, p_id, literal, primitive_type)
     if primitive_type == "string"
       literal = SparqlUtility::replace_special_chars(literal)
@@ -45,6 +58,7 @@ class SparqlUpdate
   end
 
   def to_s
+    ConsoleLogger::log(C_CLASS_NAME,"to_s","Default NS=#{@default_ns}")
     update = UriManagement.buildNs(@default_ns, @prefix_set) +
       "INSERT DATA \n" +
       "{ \n" +

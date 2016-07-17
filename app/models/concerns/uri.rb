@@ -15,6 +15,8 @@ class Uri
   C_FRAGMENT_SECTION_SEPARATOR = "-" 
   C_UID_SECTION_SEPARATOR = "_"
   C_FRAGMENT_SEPARATOR = "#"
+  C_IRIREF_START = "<"
+  C_IRIREF_END = ">"
   
   attr_accessor :scheme, :authority, :path, :prefix, :uid, :version
   
@@ -29,6 +31,10 @@ class Uri
   
   def to_s
     return all()  
+  end
+  
+  def to_ref
+    return C_IRIREF_START + self.to_s + C_IRIREF_END
   end
   
   # Note: no setPath as can use default path accessor

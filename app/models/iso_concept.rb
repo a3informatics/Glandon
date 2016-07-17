@@ -22,16 +22,16 @@ class IsoConcept
   def persisted?
     id.present?
   end
- 
+
   def initialize(triples=nil, id=nil)    
     # Make sure we have the attributes and link info set. 
     # Should only execute once as we use a simple cache mechanism.
     @@property_attributes ||= get_property_attributes
     @@link_attributes ||= get_link_attributes
     # Set default values
+    self.rdf_type = ""
     self.id = ""
     self.namespace = ""
-    self.rdf_type = ""
     self.label = ""
     self.properties = Array.new
     self.links = Array.new
@@ -61,6 +61,10 @@ class IsoConcept
         end
       end
     end
+  end
+
+  def uri
+    return UriV2.new({:namespace => self.namespace, :id => self.id})
   end
 
   # Does the item exist.
@@ -128,8 +132,6 @@ class IsoConcept
       results << object
     end
     return results
-    #sorted = results.sort_by{|item| item.id}
-    #return sorted
   end
   
   # Find all objects of a given type using the link set.
@@ -145,7 +147,7 @@ class IsoConcept
 
   # Find all concepts of a given type within specified namespace.
   def self.all(rdfType, ns)
-    results = Hash.new
+    results = Array.new
     query = UriManagement.buildNs(ns, []) +
       "SELECT ?a ?b WHERE \n" +
       "{ \n" +
@@ -164,13 +166,39 @@ class IsoConcept
         object.namespace = ModelUtility.extractNs(uri)
         object.rdfType = rdfType
         object.label = label
+        results << object
       end
     end
     return results
   end
 
+  def to_json
+    result = 
+    { 
+      :type => self.rdf_type,
+      :id => self.id, 
+      :namespace => self.namespace, 
+      :label => self.label
+    }
+    return result
+  end
+
+  def self.from_json(json)
+    object = self.new
+    object.rdf_type = json[:type]
+    object.namespace = json[:namespace]
+    object.id = json[:id]
+    object.label = json[:label]
+    return object
+  end
+
+  def to_sparql(sparql, schema_prefix)
+    sparql.triple_uri_full("", self.id, UriManagement::C_RDF, "type", "<#{self.rdf_type}>")
+    sparql.triple_primitive_type("", self.id, UriManagement::C_RDFS, "label", self.label, "string")
+  end
+
   # Build the sparql to create the concept triples.
-  def self.to_sparql(parent_id, sparql, schema_prefix, rdf_type, label)
+  def self.import_sparql(parent_id, sparql, schema_prefix, rdf_type, label)
     sparql.triple("", parent_id, UriManagement::C_RDF, "type", schema_prefix, rdf_type)
     sparql.triple_primitive_type("", parent_id, UriManagement::C_RDFS, "label", label, "string")
   end
@@ -196,6 +224,19 @@ class IsoConcept
     l = @links.select {|link| link[:rdf_type] == uri.all } 
     if l.length > 0
       results = l.map { |link| link[:value] }
+    end
+    return results
+  end
+
+  # Get the links of a certain type from the set of links. Returns array
+  # of URIs
+  def get_links_v2(prefix, rdf_type)
+    results = Array.new
+    ns = UriManagement.getNs1(prefix)
+    uri = UriV2.new({:id => rdf_type, :namespace => ns})
+    l = @links.select {|link| link[:rdf_type] == uri.to_s } 
+    if l.length > 0
+      results = l.map { |link| UriV2.new({:uri => link[:value]})}
     end
     return results
   end

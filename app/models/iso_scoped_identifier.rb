@@ -25,7 +25,7 @@ class IsoScopedIdentifier
     @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
     if triples.nil?
       self.id = ""
-      self.namespace = nil
+      self.namespace = IsoNamespace.new
       self.identifier = ""
       self.versionLabel = ""
       self.version = 0
@@ -114,12 +114,7 @@ class IsoScopedIdentifier
   end
 
   def self.versionExists?(identifier, version, scopeId)   
-    #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","*****Entry*****")
-    #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","Identifier=" + identifier.to_s )
-    #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","Version=" + version.to_s )
-    #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","ScopeId=" + scopeId.to_s )
     result = false
-    
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?a WHERE \n" +
@@ -129,10 +124,8 @@ class IsoScopedIdentifier
       "  ?a isoI:version " + version.to_s + " . \n" +
       "  ?a isoI:hasScope :" + scopeId + ". \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -346,6 +339,40 @@ class IsoScopedIdentifier
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoI", "version", version.to_s, "positiveInteger")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoI", "versionLabel", version_label.to_s, "string")
     sparql.triple(C_NS_PREFIX, id, "isoI", "hasScope", C_NS_PREFIX, scope_org.id.to_s)
+    return id
+  end
+
+  def to_json
+    json = 
+    { 
+      :id => self.id, 
+      :identifier => self.identifier,
+      :version_label => self.versionLabel,
+      :version => self.version,
+      :namespace => self.namespace.to_json
+    }
+    return json
+  end
+
+  def self.from_json(json)
+    object = self.new
+    object.namespace = IsoNamespace.from_json(json[:namespace])
+    object.id = json[:id]
+    object.identifier = json[:identifier]
+    object.versionLabel = json[:versionLabel]
+    object.version = json[:version]
+    return object
+  end
+
+  def to_sparql(sparql, ra)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX, ra.namespace.shortName, self.identifier, self.version)
+    sparql.add_prefix(UriManagement::C_ISO_I)
+    sparql.triple(C_NS_PREFIX, id, "rdf", "type", UriManagement::C_ISO_I, "ScopedIdentifier")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, UriManagement::C_ISO_I, "identifier", "#{self.identifier}", "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, UriManagement::C_ISO_I, "version", "#{self.version}", "positiveInteger")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, UriManagement::C_ISO_I, "versionLabel", "#{self.versionLabel}", "string")
+    sparql.triple(C_NS_PREFIX, id, UriManagement::C_ISO_I, "hasScope", C_NS_PREFIX, "#{ra.namespace.id}")
+    return id
   end
 
   def update(params)  

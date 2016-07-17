@@ -2,7 +2,96 @@ class Background < ActiveRecord::Base
 
   C_CLASS_NAME = "Background"
 
-	def importCdiscTerm(params)
+	def importCdiscSdtmModel(params, files)
+    sparql = SparqlUpdate.new
+    self.errors.clear
+    self.update(
+      description: "Import CDISC SDTM Model. Date: " + params[:date] + ", Internal Version: " + params[:version] + ".", 
+      status: "Reading file.",
+      started: Time.now())
+    # Create manifest file
+    results = SdtmExcel.read_model(params, self.errors)
+    if self.errors.count == 0
+      self.update(status: "File successfully read.", percentage: 50, complete: false, completed: Time.now())
+      map = nil
+      models = results.select { |hash| hash[:type]=="MODEL" }
+      if models.length == 1
+        # Add the model 
+        model = models[0]
+        model_result = SdtmModel.import_sparql({:data => model[:instance]}, sparql)
+        map = model_result[:map]
+        # Add the class domains
+        ordinal = 1
+        model_domains = results.select { |hash| hash[:type]=="MODEL_DOMAIN" }
+        model_domains.each do |domain|
+          class_result = SdtmModelDomain.import_sparql({:data => domain[:instance]}, sparql, map)
+          result = SdtmModel.add_class_sparql(model_result[:uri], class_result[:uri], ordinal, sparql)
+          ordinal += 1
+        end
+        ConsoleLogger::log(C_CLASS_NAME,"create", "SPARQL=" + sparql.to_s)
+        response = CRUD.update(sparql.to_s)
+        if response.success?
+          self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
+        else  
+          self.update(status: "Complete. Unsuccessful import.", percentage: 100, complete: true, completed: Time.now())
+        end
+      else
+        self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
+      end
+    else
+      self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
+    end
+  end
+  handle_asynchronously :importCdiscSdtmModel
+
+  def importCdiscSdtmIg(params, files)
+    compliance_map = Hash.new
+    sparql = SparqlUpdate.new
+    self.errors.clear
+    self.update(
+      description: "Import CDISC SDTM Implementation Guide. Date: " + params[:date] + ", Internal Version: " + params[:version] + ".", 
+      status: "Reading file.",
+      started: Time.now())
+    # Create manifest file
+    results = SdtmExcel.read_ig(params, self.errors)
+    ConsoleLogger::log(C_CLASS_NAME,"importCdiscSdtmIg", "results=#{results.to_json}")
+    if self.errors.count == 0
+      self.update(status: "File successfully read.", percentage: 50, complete: false, completed: Time.now())
+      # Get the model class map
+      uri = Uri.new
+      uri.setUri(params[:model_uri])
+      model = SdtmModel.find(uri.getCid, uri.getNs)
+      class_map = model.get_class_map
+      igs = results.select { |hash| hash[:type]=="IG" }
+      if igs.length == 1
+        ig_domains = results.select { |hash| hash[:type]=="IG_DOMAIN" }
+        # Add the model 
+        ig = igs[0]
+        ig_result = SdtmIg.import_sparql({:data => ig[:instance]}, sparql, ig_domains, compliance_map)
+        # Add the class domains
+        ordinal = 1
+        ig_domains.each do |domain|
+          domain_result = SdtmIgDomain.import_sparql({:data => domain[:instance]}, sparql, compliance_map, class_map)
+          result = SdtmIg.add_domain_sparql(ig_result[:uri], domain_result[:uri], ordinal, sparql)
+          ordinal += 1
+        end
+        ConsoleLogger::log(C_CLASS_NAME,"importCdiscSdtmIg", "SPARQL=" + sparql.to_s)
+        response = CRUD.update(sparql.to_s)
+        if response.success?
+          self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
+        else  
+          self.update(status: "Complete. Unsuccessful import.", percentage: 100, complete: true, completed: Time.now())
+        end
+      else
+        self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
+      end
+    else
+      self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
+    end
+  end
+  #handle_asynchronously :importCdiscTerm
+
+  def importCdiscTerm(params)
     # Create the background job status
     self.update(
     	description: "Import CDISC terminology file(s). Date: " + params[:date] + ", Internal Version: " + params[:version] + ".", 

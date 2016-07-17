@@ -1,0 +1,2 @@
+class SdtmModelDomainPolicy < ApplicationPolicy
+end

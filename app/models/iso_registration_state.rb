@@ -10,13 +10,14 @@ class IsoRegistrationState
   include ActiveModel::Validations
       
   attr_accessor :id, :registrationAuthority, :registrationStatus, :administrativeNote, :effective_date, :until_date, :current, :unresolvedIssue , :administrativeStatus, :previousState
-  validates_presence_of :registrationAuthority, :registrationStatus, :administrativeNote, :effective_date, :until_date, :unresolvedIssue, :current, :administrativeStatus, :previousState
+  #validates_presence_of :registrationAuthority, :registrationStatus, :administrativeNote, :effective_date, :until_date, :unresolvedIssue, :current, :administrativeStatus, :previousState
   
   # Constants
   C_NS_PREFIX = "mdrItems"
   C_CID_PREFIX = "RS"
   C_CLASS_NAME = "IsoRegistrationState"
-  
+  C_INSTANCE_NS = UriManagement.getNs(C_NS_PREFIX)
+
   C_NOTSET = ""
   C_INCOMPLETE = "Incomplete"
   C_CANDIDATE =  "Candidate"
@@ -382,12 +383,12 @@ class IsoRegistrationState
     return object
   end
 
-  def self.create_sparql(identifier, version, new_state, prev_state, scope_org, sparql)
-    id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
+  def self.create_sparql(identifier, version, new_state, prev_state, ra, sparql)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX , ra.namespace.shortName, identifier, version)
     sparql.add_prefix("isoR")
     sparql.add_prefix("isoI")
     sparql.triple(C_NS_PREFIX, id, "rdf", "type", "isoR", "RegistrationState")
-    sparql.triple(C_NS_PREFIX, id, "isoR", "byAuthority", C_NS_PREFIX, @@owner.id)
+    sparql.triple(C_NS_PREFIX, id, "isoR", "byAuthority", C_NS_PREFIX, ra.id)
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "registrationStatus", new_state, "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeNote", "", "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "effectiveDate", C_DEFAULT_DATETIME, "dateTime")
@@ -395,8 +396,58 @@ class IsoRegistrationState
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "unresolvedIssue", "", "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeStatus", "", "string")
     sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "previousState", prev_state, "string")
+    return id
   end
   
+  def to_json
+    result = 
+    { 
+      :namespace => C_INSTANCE_NS, 
+      :id => self.id, 
+      :registration_authority => self.registrationAuthority.to_json,
+      :registration_status => self.registrationStatus,
+      :administrative_note => self.administrativeNote,
+      :effective_date => self.effective_date,
+      :until_date => self.until_date,
+      :current => self.current,  
+      :unresolved_issue => self.unresolvedIssue,
+      :administrative_status => self.administrativeStatus,
+      :previous_state => self.previousState 
+    }
+    return result
+  end
+
+  def self.from_json(json)
+    object = self.new
+    object.id = json[:id]
+    object.registrationAuthority = IsoRegistrationAuthority.from_json(json[:registration_authority])
+    object.registrationStatus = json[:registration_status]
+    object.administrativeNote = json[:administrative_note]
+    object.effective_date = json[:effective_date]
+    object.until_date = json[:until_date]
+    object.current = json[:current]
+    object.unresolvedIssue = json[:unresolved_issue]
+    object.administrativeStatus = json[:administrative_status]
+    object.previousState = json[:previous_state]
+    return object
+  end
+
+  def to_sparql(sparql, ra, identifier, version)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX , ra.namespace.shortName, identifier, version)
+    sparql.add_prefix(UriManagement::C_ISO_R)
+    sparql.add_prefix(UriManagement::C_ISO_I)
+    sparql.triple(C_NS_PREFIX, id, UriManagement::C_RDF, "type", "isoR", "RegistrationState")
+    sparql.triple(C_NS_PREFIX, id, UriManagement::C_ISO_R, "byAuthority", C_NS_PREFIX, ra.id)
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "registrationStatus", self.registrationStatus, "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeNote", "", "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "effectiveDate", C_DEFAULT_DATETIME, "dateTime")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "untilDate", C_DEFAULT_DATETIME, "dateTime")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "unresolvedIssue", "", "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeStatus", "", "string")
+    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "previousState", self.previousState, "string")
+    return id
+  end
+
   def self.count
     results = Hash.new
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoR"]) +
