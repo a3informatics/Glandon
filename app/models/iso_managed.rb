@@ -643,7 +643,7 @@ class IsoManaged < IsoConcept
     timestamp = Time.now.iso8601
     # Set the organisation
     org_name = ra.namespace.shortName
-    # Build the uri. Exted with version, save in the object and set as the default namespace.
+    # Build the uri. Extend with version, save in the object and set as the default namespace.
     uri = UriV2.new(:namespace => instance_namespace, :prefix => prefix, :org_name => org_name, :identifier => self.identifier)  
     uri.extend_path("#{org_name}/V#{self.version}")
     self.namespace = uri.namespace

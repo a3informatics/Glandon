@@ -9,12 +9,17 @@ $(document).ready(function() {
 
   var domainPrefixElement = document.getElementById("domainPrefix");
   var domainLabelElement = document.getElementById("domainLabel");
-  var domainNoteElement = document.getElementById("domainNotes");
+  var domainNotesElement = document.getElementById("domainNotes");
+  var variableNameElement = document.getElementById("variableName");
   var variableLabelElement = document.getElementById("variableLabel");
-  var variableCompletionElement = document.getElementById("variableCompletion");
-  var variableNoteElement = document.getElementById("variableNote");
-  var variableRepeatingElement = document.getElementById("variableRepeating");
-  var variableOptionalElement = document.getElementById("variableOptional");
+  var variableUsedElement = document.getElementById("variableUsed");
+  var variableNonStandardElement = document.getElementById("variableNonStandard");
+  var variableFormatElement = document.getElementById("variableFormat");
+  var variableNotesElement = document.getElementById("variableNotes");
+  var variableCommentElement = document.getElementById("variableComment");
+  var variableDatatypeElement = document.getElementById("variableDatatype");
+  var variableComplianceElement = document.getElementById("variableCompliance");
+  var variableClassificationElement = document.getElementById("variableClassification");
   var genericMarkdownElement = document.getElementById("genericMarkdown");
 
   var nextKeyId;
@@ -24,6 +29,7 @@ $(document).ready(function() {
   var editIdentifierFlag;               
   var markdownElement;
   var markdownType;
+  var domainPrefix;
 
   // Set up the form validation
   validatorDefaults ();
@@ -61,12 +67,12 @@ $(document).ready(function() {
    */
   function click(node) {    
     if (currentGRef != null) {
-      clearNode(currentNode, currentGRef);
       if (currentNode.type == C_DOMAIN) {
         saveDomain(currentNode)
       } else if (currentNode.type == C_VARIABLE) {
         saveVariable(currentNode)
       }
+      clearNode(currentNode, currentGRef);
     }
     displayNode(node)
     markNode1(this);
@@ -149,12 +155,12 @@ $(document).ready(function() {
     }
   });
 
-  /*$('#domainAddGroup').click(function() {
+  $('#domainAddVariable').click(function() {
     if (currentGRef == null) {
       var html = alertWarning("You need to select the domain node.");
       displayAlerts(html);
     } else {
-      var node = addGroup();
+      var node = addVariable();
       displayNode(node);
       displayTree(node.key);  
     }
@@ -163,64 +169,22 @@ $(document).ready(function() {
   /*
   * Functions to handle the group actions
   */
-  /*$('#variableUpdate').click(function() {
+  $('#variableUpdate').click(function() {
     if (currentGRef == null) {
-      var html = alertWarning("You need to select a group node.");
+      var html = alertWarning("You need to select a variable node.");
       displayAlerts(html);
     } else {
       $('#main_form').valid();
-      saveGroup(currentNode)
+      saveVariable(currentNode)
       displayTree(currentNode.key);
-    }
-  });
-  
-  $('#variableAddGroup').click(function() {
-    if (currentGRef == null) {
-      var html = alertWarning("You need to select a group node.");
-      displayAlerts(html);
-    } else {
-      var node = addGroup();
-      displayNode(node);
-      displayTree(node.key);  
     }
   });
 
   $('#variableDelete').click(function() {
-    if (hasChildren(currentNode)) {
-      var html = alertWarning("You need to delete the child nodes.");
-      displayAlerts(html);
-    } else {
-      var node = deleteNode(currentNode);
-      displayNode(node);
-      displayTree(node.key);
-    }     
+    var node = deleteNode(currentNode);
+    displayNode(node);
+    displayTree(node.key);
   });
-
-  $('#variableAddCommon').click(function() {
-    if (currentNode == null) {
-      var html = alertWarning("You need to select a group node.");
-      displayAlerts(html);
-    } else if (hasCommon(currentNode)) {
-      var html = alertWarning("Group already has a common node.");
-      displayAlerts(html);
-    } else {
-      var node = addCommon();
-      displayNode(node);
-      displayTree(node.key);
-    }
-  }); 
-
-  $('#variableAddBc').click(function() {
-    if (currentNode == null) {
-      var html = alertWarning("You need to select a group node.");
-      displayAlerts(html);
-    } else if (bcCurrent ==  null) {
-      var html = alertWarning("You need to select a Biomedical Concept.");
-      displayAlerts(html);
-    } else {
-      addBc();
-    }
-  }); 
 
   $('#variableUp').click(function() {
     if (currentNode == null) {
@@ -291,20 +255,20 @@ $(document).ready(function() {
     getMarkdown(genericMarkdownElement, text);
   });
 
-  /*$( "#variableCompletion" ).focus(function() {
+  $( "#variableComment" ).focus(function() {
     hideBCSelection();
     showCi();
-    markdownType = C_DOMAIN;
-    markdownElement = groupCompletionElement;
+    markdownType = C_VARIABLE;
+    markdownElement = variableCommentElement;
     var text = markdownElement.value;
     getMarkdown(genericMarkdownElement, text);
   });
 
-  $( "#variableNote" ).focus(function() {
+  $( "#variableNotes" ).focus(function() {
     hideBCSelection();
     showCi();
-    markdownType = C_DOMAIN;
-    markdownElement = groupNoteElement;
+    markdownType = C_VARIABLE;
+    markdownElement = variableNotesElement;
     var text = markdownElement.value;
     getMarkdown(genericMarkdownElement, text);
   });
@@ -342,7 +306,7 @@ $(document).ready(function() {
   function displayDomain(node) {
     domainPrefixElement.value = node.data.prefix;
     domainLabelElement.value = node.data.label;
-    //domainNoteElement.value = node.data.note;
+    domainNotesElement.value = node.data.notes;
     if (editIdentifierFlag) {
       domainPrefixElement.disabled = false;
     } else {
@@ -351,11 +315,16 @@ $(document).ready(function() {
   }
 
   function displayVariable(node) {
+    variableNameElement.value = node.data.name;
     variableLabelElement.value = node.data.label;
-    variableCompletionElement.value = node.data.completion;
-    variableNoteElement.value = node.data.note;
-    //variableRepeatingElement.checked = node.data.repeating;
-    //variableOptionalElement.checked = node.data.optional;
+    variableUsedElement.checked = node.data.used;
+    variableNonStandardElement.checked = node.data.non_standard;
+    variableFormatElement.value = node.data.format;
+    variableNotesElement.value = node.data.notes;
+    variableCommentElement.value = node.data.comment;
+    variableDatatype.value = toUri(node.data.datatype.namespace, node.data.datatype.id);
+    variableCompliance.value = toUri(node.data.compliance.namespace, node.data.compliance.id);
+    variableClassification.value = toUri(node.data.classification.namespace, node.data.classification.id);
   }
 
   /**
@@ -366,16 +335,26 @@ $(document).ready(function() {
       node.data.prefix = domainPrefixElement.value;
     }
     node.data.label = domainLabelElement.value;
-    //node.data.note = domainNoteElement.value;
+    node.data.notes = domainNotesElement.value;
     node.name = node.data.label;
   }
 
   function saveVariable(node) {
+    node.data.name = variableNameElement.value;
     node.data.label = variableLabelElement.value;
-    node.data.note = variableNoteElement.value;
+    node.data.used = variableUsedElement.checked;
+    node.data.non_standard = variableNonStandardElement.checked;
+    node.data.format = variableFormatElement.value;
+    node.data.notes = variableNotesElement.value;
+    node.data.comment = variableCommentElement.value;
+    node.data.datatype.namespace = getNamespace(variableDatatypeElement.value);
+    node.data.datatype.id = getId(variableDatatypeElement.value);
+    node.data.compliance.namespace = getNamespace(variableComplianceElement.value);
+    node.data.compliance.id = getId(variableComplianceElement.value);
+    node.data.classification.namespace = getNamespace(variableClassificationElement.value);
+    node.data.classification.id = getId(variableClassificationElement.value);
     node.name = node.data.name;
-    //node.data.repeating = groupRepeatingElement.checked;
-    //node.data.optional = groupOptionalElement.checked;
+    node.enabled = node.data.used;
   }
 
   /*
@@ -385,17 +364,32 @@ $(document).ready(function() {
     var sourceNode;
     var d3Node;
     var label;
-    label = "Group";
-    sourceNode = newFormGroup(label)
-    d3Node = addD3Node(currentNode, label, C_DOMAIN, sourceNode, true);     
+    label = "Non Standard";
+    sourceNode = newVariable(label)
+    d3Node = addD3Node(currentNode, sourceNode.name, C_VARIABLE, sourceNode, true);     
     addSourceNode(currentNode.data, sourceNode, true)
     return d3Node;
   }
 
   function newVariable(label) {
-    return { 
-      id: "", namespace: "", type: C_DOMAIN, label: label, ordinal: 0, optional: false, repeating: false, 
-      note: "", completion: "", biomedical_concept_reference: {}, children: [] };
+    return {
+        type: C_VARIABLE,
+        id: "",
+        namespace: "",
+        label: label,
+        ordinal: "",
+        name: domainPrefix + "xxxxxx",
+        notes: "",
+        format: "",
+        non_standard: false,
+        comment: "",
+        length: 0,
+        used: true,
+        key_ordinal: 0,
+        datatype: { type: "", id: "", namespace: "", label: ""},
+        compliance: { type: "", id: "", namespace: "", label: ""},
+        classification: { type: "", id: "", namespace: "", label: ""},
+        variable_ref: {} };
   }
 
   function addSourceNode(parent, node, end) {
@@ -437,6 +431,7 @@ $(document).ready(function() {
     currentNode = null;
     currentGRef = null;
     var managedItem = domainDefinition.managed_item;
+    domainPrefix = managedItem.prefix
     rootNode = d3Root(managedItem.label, managedItem)
     nextKeyId = rootNode.key + 1;
     for (i=0; i<managedItem.children.length; i++) {
@@ -499,6 +494,7 @@ $(document).ready(function() {
     var temp;
     node.name = name;
     node.type = type;
+    node.enabled = data.used;
     node.key = nextKeyId;
     node.parent = parent;
     node.data = data;

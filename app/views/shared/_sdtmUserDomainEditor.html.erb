@@ -65,18 +65,26 @@
                             <span class="glyphicon glyphicon-resize-full"></span>
                         </button>
                         <label for="variableNote">Notes:</label>
-                        <textarea class="form-control collapse in" id="variableNote" name="variableNote" rows="5" style="font-family:monospace;"></textarea>
+                        <textarea class="form-control collapse in" id="variableNotes" name="variableNotes" rows="5" style="font-family:monospace;"></textarea>
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#variableComments">
                             <span class="glyphicon glyphicon-resize-full"></span>
                         </button>
-                        <label for="variableComments">Comments:</label>
-                        <textarea class="form-control collapse in" id="variableComments" name="variableComments" rows="5" style="font-family:monospace;"></textarea>
+                        <label for="variableComments">Comment:</label>
+                        <textarea class="form-control collapse in" id="variableComment" name="variableComment" rows="5" style="font-family:monospace;"></textarea>
                     </div>
                     <div class="form-group">
                         <%= label_tag :datatype, "Datetype:" %><br/>
-                        <%= select_tag("variableDatatype", options_for_select(@datatypes), class: "form-control", :multiple => false) %>
+                        <%= select_tag("variableDatatype", options_for_select(@datatypes.map{ |u| [u.label, u.namespace + "#" + u.id]}), class: "form-control", :multiple => false) %>
+                    </div>
+                    <div class="form-group">
+                        <%= label_tag :datatype, "Compliance:" %><br/>
+                        <%= select_tag("variableCompliance", options_for_select(@compliance.map{ |u| [u.label, u.namespace + "#" + u.id]}), class: "form-control", :multiple => false) %>
+                    </div>
+                    <div class="form-group">
+                        <%= label_tag :datatype, "Classification:" %><br/>
+                        <%= select_tag("variableClassification", options_for_select(@classifications.map{ |u| [u.label, u.namespace + "#" + u.id]}), class: "form-control", :multiple => false) %>
                     </div>
                 </div>
                 <button type="button" id="variableUpdate" class="btn btn-primary">Update</button>

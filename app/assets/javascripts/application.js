@@ -174,4 +174,28 @@ function getMarkdown(element, text) {
   }
 }
 
+/*
+* URI functions
+*/ 
+function getNamespace(uri) {
+  var parts = uri.split("#");
+  if (parts.length == 2) {
+    return parts[0];
+  } else {
+    return "";
+  }
+}
+
+function getId(uri) {
+  var parts = uri.split("#");
+  if (parts.length == 2) {
+    return parts[1];
+  } else {
+    return "";
+  }
+}
+
+function toUri(namespace, id) {
+  return namespace + "#" + id;
+}
 

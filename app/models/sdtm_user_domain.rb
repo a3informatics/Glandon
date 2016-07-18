@@ -4,7 +4,7 @@ class SdtmUserDomain < Tabular::Tabulation
   include ActiveModel::Conversion
   include ActiveModel::Validations
   
-  attr_accessor :prefix, :structure, :bc_refs, :model_ref, :ig_ref
+  attr_accessor :prefix, :structure, :notes, :bc_refs, :model_ref, :ig_ref
 
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD
@@ -124,15 +124,14 @@ class SdtmUserDomain < Tabular::Tabulation
     ra = IsoRegistrationAuthority.owner
     object = SdtmUserDomain.from_json(data)
     sparql = object.to_sparql(ra)
-    #form.destroy # Destroys the old entry before the creation of the new item
+    domain.destroy # Destroys the old entry before the creation of the new item
     ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
-    #response = CRUD.update(sparql.to_s)
-    #if response.success?
-    #  object = Form.find(id, ns)
-    #  object.errors.clear
-    #else
-    #  object.errors.add(:base, "The Form was not created in the database.")
-    #end
+    response = CRUD.update(sparql.to_s)
+    if response.success?
+      object.errors.clear
+    else
+      object.errors.add(:base, "The Domain was not created in the database.")
+    end
     return object
   end
 
@@ -144,6 +143,7 @@ class SdtmUserDomain < Tabular::Tabulation
     json = super
     json[:prefix] = self.prefix
     json[:structure] = self.structure
+    json[:notes] = self.notes
     json[:model_ref] = self.model_ref.to_json
     json[:ig_ref] = self.ig_ref.to_json
     json[:children] = Array.new
@@ -162,6 +162,7 @@ class SdtmUserDomain < Tabular::Tabulation
     managed_item = json[:managed_item]
     object.prefix = managed_item[:prefix]
     object.structure = managed_item[:structure]
+    object.notes = managed_item[:notes]
     object.model_ref = OperationalReferenceV2.from_json(managed_item[:model_ref])
     object.ig_ref = OperationalReferenceV2.from_json(managed_item[:ig_ref])
     if managed_item.has_key?(:children)
@@ -183,6 +184,7 @@ class SdtmUserDomain < Tabular::Tabulation
     # Set the properties
     sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "prefix", "#{self.prefix}", "string")
     sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "structure", "#{self.structure}", "string")
+    sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "notes", "#{self.notes}", "string")
     # References
     ig_id = self.ig_ref.to_sparql(uri.id, "basedOnDomain", C_IGD_REF_PREFIX, 1, sparql)
     model_id = self.model_ref.to_sparql(uri.id, "basedOnDomain", C_MD_REF_PREFIX, 1, sparql)

@@ -194,7 +194,6 @@ $(document).ready(function() {
    */
   function click(node) {    
     if (currentGRef != null) {
-      clearNode(currentNode, currentGRef);
       if (currentNode.type == C_FORM) {
         saveForm(currentNode)
       } else if (currentNode.type == C_GROUP) {
@@ -208,6 +207,7 @@ $(document).ready(function() {
       } else if (currentNode.type == C_CL) {
         saveCl(currentNode)
       }
+      clearNode(currentNode, currentGRef);
     }
     displayNode(node)
     markNode1(this);

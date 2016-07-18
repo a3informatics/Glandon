@@ -1,8 +1,9 @@
-class EnumeratedLabel < IsoConcept
+class SdtmModelClassification < EnumeratedLabel
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
+  C_LINK_TYPE = "classifiedAs"
+  C_SCHEMA_PREFIX = UriManagement::C_BD
+  C_RDF_TYPE = "VariableClassification"
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   
   def initialize(triples=nil, id=nil)
     if triples.nil?
@@ -10,16 +11,18 @@ class EnumeratedLabel < IsoConcept
     else
       super(triples, id)
     end
+    # Set the type. Overwrite default.
+    self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
   end
 
-  # TODO: Move this to IsoConcept?.
-  def self.all(rdf_type, schema_prefix, instance_namespace)
+  def self.all(instance_namespace)
     results = Array.new
-    query = UriManagement.buildPrefix(schema_prefix, []) +
+    query = UriManagement.buildPrefix(C_SCHEMA_PREFIX, [UriManagement::C_BD]) +
       "SELECT ?a ?b WHERE \n" +
       "{ \n" +
-      "  ?a rdf:type :" + rdf_type + " . \n" +
+      "  ?a rdf:type :" + C_RDF_TYPE + " . \n" +
       "  ?a rdfs:label ?b . \n" +
+      "  MINUS { ?a bd:childClassification ?c } \n" +
       "  FILTER(STRSTARTS(STR(?a), \"" + instance_namespace + "\")) \n" +
       "}"
     response = CRUD.query(query)
@@ -32,7 +35,7 @@ class EnumeratedLabel < IsoConcept
         object = self.new
         object.id = ModelUtility.extractCid(uri)
         object.namespace = ModelUtility.extractNs(uri)
-        object.rdf_type = rdf_type
+        object.rdf_type = C_RDF_TYPE
         object.label = label
         results << object
       end
@@ -40,9 +43,13 @@ class EnumeratedLabel < IsoConcept
     return results
   end
 
-  def self.find_from_triples(triples, id)
-    object = new(triples, id)
-    object.triples = ""
+  def to_json
+    json = super
+    return json
+  end
+
+  def self.from_json(json)
+    object  = super(json)
     return object
   end
 

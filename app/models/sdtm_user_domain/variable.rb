@@ -84,7 +84,11 @@ class SdtmUserDomain::Variable < Tabular::Column
     if !self.sub_classification.nil? 
       json[:sub_classification] = self.sub_classification.to_json
     end
-    json[:variable_ref] = self.variable_ref.to_json
+    if !self.variable_ref.nil? 
+      json[:variable_ref] = self.variable_ref.to_json
+    else
+      json[:variable_ref] = {}
+    end
     return json
   end
 
@@ -105,7 +109,11 @@ class SdtmUserDomain::Variable < Tabular::Column
     if json.has_key?(:sub_classification) 
       object.sub_classification = EnumeratedLabel.from_json(json[:sub_classification]) 
     end
-    object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
+    if !json.has_key?(:variable_ref)
+      object.variable_ref = nil
+    else
+      object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
+    end
     return object
   end
 
@@ -128,8 +136,10 @@ class SdtmUserDomain::Variable < Tabular::Column
     else
       sparql.triple_uri_full_v2("", self.id, C_SCHEMA_PREFIX, "classifiedAs", self.sub_classification.uri)   
     end
-    ref_id = self.variable_ref.to_sparql(id, "basedOnVariable", C_IGV_REF_PREFIX, 1, sparql)
-    sparql.triple("", self.id, UriManagement::C_BD, "basedOnVariable", "", "#{ref_id}")
+    if !self.variable_ref.nil? 
+      ref_id = self.variable_ref.to_sparql(id, "basedOnVariable", C_IGV_REF_PREFIX, 1, sparql)
+      sparql.triple("", self.id, UriManagement::C_BD, "basedOnVariable", "", "#{ref_id}")
+    end
     return self.id
   end
 

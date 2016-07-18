@@ -25,7 +25,11 @@ class SdtmUserDomainsController < ApplicationController
     @sdtm_user_domain = SdtmUserDomain.find(id, namespace)
     ConsoleLogger::log(C_CLASS_NAME,"show","Domain=#{@sdtm_user_domain.to_json}")
     @sdtm_user_domain.children.each do |child|
-      ig_variable = SdtmIgDomain::Variable.find(child.variable_ref.subject_ref.id, child.variable_ref.subject_ref.namespace)
+      if child.variable_ref.nil? 
+        ig_variable = SdtmIgDomain::Variable.new
+      else
+        ig_variable = SdtmIgDomain::Variable.find(child.variable_ref.subject_ref.id, child.variable_ref.subject_ref.namespace)
+      end
       #class_variable = SdtmModelDomain::Variable.find(ig_variable.variable_ref.subject_ref.id, ig_variable.variable_ref.subject_ref.namespace)
       #model_variable = SdtmModel::Variable.find(class_variable.variable_ref.subject_ref.id, class_variable.variable_ref.subject_ref.namespace)
       #@model_variables << model_variable
@@ -64,7 +68,11 @@ class SdtmUserDomainsController < ApplicationController
     @sdtm_user_domain = SdtmUserDomain.find(id, namespace)
     ConsoleLogger::log(C_CLASS_NAME,"edit","Domain=#{@sdtm_user_domain.to_json}")
     @datatypes = SdtmModelDatatype.all(@sdtm_user_domain.model_ref.subject_ref.namespace)
-    ConsoleLogger::log(C_CLASS_NAME,"edit","Domain=#{@datatypes.to_json}")
+    ConsoleLogger::log(C_CLASS_NAME,"edit","Datatypes=#{@datatypes.to_json}")
+    @compliance = SdtmModelCompliance.all(@sdtm_user_domain.ig_ref.subject_ref.namespace)
+    ConsoleLogger::log(C_CLASS_NAME,"edit","Compliance=#{@compliance.to_json}")
+    @classifications = SdtmModelClassification.all(@sdtm_user_domain.model_ref.subject_ref.namespace)
+    ConsoleLogger::log(C_CLASS_NAME,"edit","Classifications=#{@classifications.to_json}")
     ig_domain = IsoManaged.find(@sdtm_user_domain.ig_ref.subject_ref.id, @sdtm_user_domain.ig_ref.subject_ref.namespace, false)
   end
 

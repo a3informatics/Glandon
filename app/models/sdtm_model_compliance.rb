@@ -1,8 +1,8 @@
-class SdtmModelDatatype < EnumeratedLabel
+class SdtmModelCompliance < EnumeratedLabel
   
-  C_LINK_TYPE = "typedAs"
+  C_LINK_TYPE = "compliance"
   C_SCHEMA_PREFIX = UriManagement::C_BD
-  C_RDF_TYPE = "VariableType"
+  C_RDF_TYPE = "VariableCompliance"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   
   def initialize(triples=nil, id=nil)
