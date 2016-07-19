@@ -7,6 +7,17 @@ class SdtmUserDomainsController < ApplicationController
   def index
     authorize SdtmUserDomain
     @sdtm_user_domains = SdtmUserDomain.unique
+    respond_to do |format|
+      format.html 
+      format.json do
+        results = {}
+        results[:data] = []
+         @sdtm_user_domains.each do |item|
+          results[:data] << item
+        end
+        render json: results
+      end
+    end
   end
 
   def history
@@ -139,7 +150,7 @@ class SdtmUserDomainsController < ApplicationController
   end
   
   def export_ttl
-    authorize Form
+    authorize SdtmUserDomain
     id = params[:id]
     namespace = params[:namespace]
     @sdtm_user_domain = IsoManaged::find(id, namespace)
@@ -147,11 +158,18 @@ class SdtmUserDomainsController < ApplicationController
   end
   
   def export_json
-    authorize Form
+    authorize SdtmUserDomain
     id = params[:id]
     namespace = params[:namespace]
     @sdtm_user_domain = SdtmUserDomain.find(id, namespace)
     send_data @sdtm_user_domain.to_json, filename: "#{@sdtm_user_domain.owner}_#{@sdtm_user_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+  end
+
+  def full_report
+    authorize SdtmUserDomain, :view?
+    domain = SdtmUserDomain.find(params[:id], params[:namespace])
+    pdf = domain.report({:full => true}, current_user)
+    send_data pdf, filename: "#{domain.owner}_#{domain.identifier}_Domain.pdf", type: 'application/pdf', disposition: 'inline'
   end
 
   def the_params

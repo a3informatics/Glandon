@@ -21,6 +21,18 @@
 	  		</tr>
 		</tbody>
 	</table>
+	<table class="table table-striped table-bordered table-condensed">
+		<thead>
+	  		<tr>
+	    		<th>Notes</th>
+	  		</tr>
+		</thead>
+		<tbody>
+	  		<tr>
+	    		<td><%= raw MarkdownEngine::render(@sdtm_user_domain.notes) %></td>
+	  		</tr>
+		</tbody>
+	</table>
 	<h4>Used Variables</h4>
 	<table id="main" class="table table-striped table-bordered table-condensed">
 	  	<thead>
@@ -50,7 +62,7 @@
 			  		<td><%= item.classification_label %></td>
 			  		<td><%= item.sub_classification_label %></td>
 			  		<td><%= ig_variable.notes %></td>
-			  		<td><%= item.notes %></td>
+			  		<td><%= raw MarkdownEngine::render(item.notes) %></td>
 			  		<td><%= item.compliance_label %></td>		  		
 			  	</tr>
 				<% end %>
@@ -86,7 +98,7 @@
 			  		<td><%= item.classification_label %></td>
 			  		<td><%= item.sub_classification_label %></td>
 			  		<td><%= ig_variable.notes %></td>
-			  		<td><%= item.notes %></td>
+			  		<td><%= raw MarkdownEngine::render(item.notes) %></td>
 			  		<td><%= item.compliance_label %></td>		  		
 			  	</tr>
 				<% end %>
@@ -116,8 +128,10 @@
 			<% end %>
 		</tbody>
 	</table>
+	<%= link_to "Full Report", full_report_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-primary", :target => "_blank" %>
 	<%= link_to "BC+", add_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-primary" %>
 	<%= link_to "BC-", remove_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-danger" %>
 	<%= link_to "Export JSON", export_json_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-info" %>
 	<%= link_to "Export Turtle", export_ttl_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-info" %>
+	<br/><br/>
 </div>

@@ -198,21 +198,10 @@ Rails.application.routes.draw do
       get :export_json
       get :export_ttl
       get :clone
+      get :full_report
     end
   end
   namespace :sdtm_user_domains do
-    resources :variables
-  end
-  resources :domains do
-    collection do
-      get :history
-      get :add
-      get :remove
-      post :update_add
-      post :update_remove 
-    end
-  end
-  namespace :domains do
     resources :variables
   end
 end

@@ -4,7 +4,7 @@ class Timestamp
 
   # Method replace special characters in the query string.
   def initialize(text=nil)
-    if text.empty?
+    if "#{text}".empty?
       @time = Time.now
     else
       @time = text.to_time

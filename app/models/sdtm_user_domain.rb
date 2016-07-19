@@ -298,6 +298,20 @@ class SdtmUserDomain < Tabular::Tabulation
 
   end
 
+  def report(options, user)
+    doc_history = Array.new
+    if options[:full]
+      history = IsoManaged::history(C_RDF_TYPE, C_SCHEMA_NS, {:identifier => self.identifier, :scope_id => self.owner_id})
+      history.each do |item|
+        if self.same_version?(item.version) || self.later_version?(item.version)
+          doc_history << item.to_json
+        end
+      end
+    end
+    domain = self.to_json
+    pdf = Reports::DomainReport.create(domain, options, doc_history, user)
+  end
+
   def self.bc_impact(params)
     id = params[:id]
     namespace = params[:namespace]
