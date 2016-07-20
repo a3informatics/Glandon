@@ -181,6 +181,19 @@ class SdtmModel < Tabular
     return { :object => object }
   end
 
+  def to_json
+    json = super
+    json[:children] = Array.new
+    json[:class_refs] = Array.new
+    self.children.each do |child|
+      json[:children] << child.to_json
+    end
+    self.class_refs.each do |ref|
+      json[:class_refs] << ref.to_json
+    end
+    return json
+  end
+
 private
 
   def self.import_params_valid?(params, object)

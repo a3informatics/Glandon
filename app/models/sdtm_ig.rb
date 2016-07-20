@@ -115,6 +115,15 @@ class SdtmIg < Tabular
     return { :object => object }
   end
 
+  def to_json
+    json = super
+    json[:domain_refs] = Array.new
+    self.domain_refs.each do |ref|
+      json[:domain_refs] << ref.to_json
+    end
+    return json
+  end
+
 private
 
   def self.import_params_valid?(params, object)
@@ -124,12 +133,6 @@ private
     result4 = FieldValidation::valid_label?(:version_label, params[:version_label], object)
     return result1 && result2 && result3 && result4
   end
-
-  #def self.create_params_valid?(params, object)
-  #  result1 = FieldValidation::valid_identifier?(:version, params[:identifier], object)
-  #  result2 = FieldValidation::valid_label?(:label, params[:label], object)
-  #  return result1 && result2 
-  #end
 
   def self.children_from_triples(object, triples, id, bc=nil)
     object.domain_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "includesTabulation"))

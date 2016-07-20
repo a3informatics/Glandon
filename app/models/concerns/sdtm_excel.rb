@@ -69,8 +69,10 @@ module SdtmExcel
             "Associated Persons" => C_AP, 
         }
 
-    C_CHECK_KEY = "Seq. For Order"
-    
+    C_MAIN_CHECK_KEY = "Seq. For Order"
+    C_EXTRA_CHECK_KEY = "Domain Prefix"
+    C_DOMAIN_IGNORE = {"TX" => true, "POOLDEF" => true, "RELSUB" => true, "APRELSUB" => true}
+
     # Reads the excel file for SDTM Model.
     #
     # * *Args*    :
@@ -108,18 +110,21 @@ module SdtmExcel
             # All ok. Read the rows.
             ConsoleLogger::log(C_CLASS_NAME,"read_model","Read rows, First=#{workbook.first_row}, Last=#{workbook.last_row}.")
             ((workbook.first_row + 1) .. workbook.last_row).each do |row|
-                seq = workbook.cell(row, 1)
-                obs_class = workbook.cell(row, 2)            
                 domain_prefix = workbook.cell(row, 3)
-                name_minus = workbook.cell(row, 4)
-                name = workbook.cell(row, 5)
-                label = workbook.cell(row, 6)
-                var_type = workbook.cell(row, 7)
-                ct_or_format = workbook.cell(row, 8)
-                role = workbook.cell(row, 9)
-                notes = workbook.cell(row, 10)
-                core = workbook.cell(row, 11)
                 if domain_prefix.blank?
+                    seq = check_cell(workbook, row, 1, errors)
+                    obs_class = check_cell(workbook, row, 2, errors)            
+                    name_minus = check_cell(workbook, row, 4, errors)
+                    name = check_cell(workbook, row, 5, errors)
+                    label = check_cell(workbook, row, 6, errors)
+                    var_type = check_cell(workbook, row, 7, errors)
+                    ct_or_format = "" # We dont care.
+                    role = check_cell(workbook, row, 9, errors)
+                    notes = workbook.cell(row, 10)
+                    core = "" # We dont care.
+                    if errors.count > 0 
+                        return
+                    end
                     # SDTM Model Processing
                     if C_SDTM_MODEL_CLASS.has_key?(obs_class)
                         role_hash = set_role(role)
@@ -230,10 +235,13 @@ module SdtmExcel
             instance = create_instance(params, SdtmIg::C_IDENTIFIER, "SDTM Implementation Guide #{params[:date]}")
             results << { :type => "IG", :order=> 1, :instance => instance}
             # Setup the domains from the Extra sheet.
-            workbook.default_sheet = 'Extra'
-            if workbook.nil?
-                errors.add(:base, "Missing 'Extra' sheet in the excel file.")
+            select_extra(workbook, errors)
+            if errors.count > 0
                 return 
+            end
+            check_extra(workbook, errors)
+            if errors.count > 0 
+                return
             end
             ((workbook.first_row + 1) .. workbook.last_row).each do |row|
                 # obs_class = workbook.row(row)[headers['Observation Class']]
@@ -245,52 +253,64 @@ module SdtmExcel
             # Set the main worksheet and check it. Return if errors.
             workbook.default_sheet = workbook.sheets[0]
             check_main(workbook, errors)
-            if errors.count != 0 
+            if errors.count > 0 
                 return
             end
             # All ok, Read the rows.
             ((workbook.first_row + 1) .. workbook.last_row).each do |row|
-                # obs_class = workbook.row(row)[headers['Observation Class']]
-                seq = workbook.cell(row, 1)
-                obs_class = workbook.cell(row, 2)            
                 domain_prefix = workbook.cell(row, 3)
-                name_minus = workbook.cell(row, 4)
-                name = workbook.cell(row, 5)
-                label = workbook.cell(row, 6)
-                var_type = workbook.cell(row, 7)
-                ct_or_format = workbook.cell(row, 8)
-                role = workbook.cell(row, 9)
-                if role.blank?
-                    role = C_ROLE_NONE
-                end
-                notes = workbook.cell(row, 10)
-                core = workbook.cell(row, 11)
-                if !domain_prefix.nil?
-                    # SDTM IG Processing
-                    if C_SDTM_MODEL_CLASS.has_key?(obs_class)
-                        role_hash = set_role(role)
-                        if domains.has_key?(domain_prefix)
-                            domain = domains[domain_prefix]
-                            domain[:children] << 
-                                {
-                                    :ordinal => seq, 
-                                    :label => label, 
-                                    :variable_class => obs_class, 
-                                    :variable_domain_prefix => domain_prefix, 
-                                    :variable_name => name, 
-                                    :variable_name_minus => name_minus, 
-                                    :variable_type => var_type, 
-                                    :variable_ct_or_format => ct_or_format, 
-                                    :variable_classification => role_hash[:classification], 
-                                    :variable_sub_classification => role_hash[:sub_classification],
-                                    :variable_prefixed => SdtmUtility.prefixed?(name), 
-                                    :variable_notes => notes, 
-                                    :variable_core => C_CORE[core]
-                                }
+                if !domain_prefix.blank?
+                    if !C_DOMAIN_IGNORE.has_key?(domain_prefix)
+                        seq = check_cell(workbook, row, 1, errors)
+                        obs_class = check_cell(workbook, row, 2, errors)            
+                        name_minus = check_cell(workbook, row, 4, errors)
+                        name = check_cell(workbook, row, 5, errors)
+                        label = check_cell(workbook, row, 6, errors)
+                        var_type = check_cell(workbook, row, 7, errors)
+                        ct_or_format = workbook.cell(row, 8)
+                        if ct_or_format.blank?
+                            ct_or_format = ""
+                        end
+                        role = workbook.cell(row, 9)
+                        if role.blank?
+                            role = C_ROLE_NONE
+                        end
+                        notes = workbook.cell(row, 10)
+                        if notes.blank?
+                            notes = ""
+                        end
+                        core = check_cell(workbook, row, 11, errors)
+                        if errors.count > 0 
+                            return
+                        end
+                        # SDTM IG Processing
+                        if C_SDTM_MODEL_CLASS.has_key?(obs_class)
+                            role_hash = set_role(role)
+                            if domains.has_key?(domain_prefix)
+                                domain = domains[domain_prefix]
+                                domain[:children] << 
+                                    {
+                                        :ordinal => seq, 
+                                        :label => label, 
+                                        :variable_class => obs_class, 
+                                        :variable_domain_prefix => domain_prefix, 
+                                        :variable_name => name, 
+                                        :variable_name_minus => name_minus, 
+                                        :variable_type => var_type, 
+                                        :variable_ct_or_format => ct_or_format, 
+                                        :variable_classification => role_hash[:classification], 
+                                        :variable_sub_classification => role_hash[:sub_classification],
+                                        :variable_prefixed => SdtmUtility.prefixed?(name), 
+                                        :variable_notes => notes, 
+                                        :variable_core => C_CORE[core]
+                                    }
+                            end
+                        else
+                            errors.add(:base, "Invalid observation class detected #{obs_class} in row #{row}")
+                            return 
                         end
                     else
-                        errors.add(:base, "Invalid observation class detected #{obs_class} in row #{row}")
-                        return 
+                        ConsoleLogger::log(C_CLASS_NAME,"read_ig","Ignoring entry for domain #{domain_prefix}.")
                     end
                 end
             end
@@ -312,10 +332,24 @@ module SdtmExcel
     def self.open_workbook(filename)
         workbook = Roo::Spreadsheet.open(filename, extension: :xlsx) 
     rescue => e
-        ConsoleLogger::log(C_CLASS_NAME,"open_workbook","e=#{e.to_s}, filename=#{filename}")
+        ConsoleLogger::log(C_CLASS_NAME,"open_workbook","e=#{e.to_s}, filename=#{filename}.")
         workbook = nil
     end
 
+    def self.select_extra(workbook, errors)
+        workbook.default_sheet = 'Extra'
+    rescue => e
+        errors.add(:base, "Missing 'Extra' sheet in the excel file.")
+    end
+
+    def self.check_cell(workbook, row, col, errors)
+        value = workbook.cell(row, col)
+        if value.blank?
+            errors.add(:base, "Empty cell detected in row #{row}, column #{col}.")
+        end
+        return value
+    end
+                
     def self.check_main(workbook, errors)
         # 1. Seq. For Order  
         # 2. Observation Class 
@@ -329,7 +363,7 @@ module SdtmExcel
         # 10. CDISC Notes (for domains) Description (for General Classes) 
         # 11. Core
         if workbook.nil?
-            errors.add(:base, "Missing main sheet in the excel file.")
+            errors.add(:base, "Missing Main sheet in the excel file.")
             return 
         end
         headers = Hash.new
@@ -341,12 +375,37 @@ module SdtmExcel
             errors.add(:base, "Main sheet in the excel file, incorrect column count, indicates format error.")
             return 
         end
-        if !headers.has_key?(C_CHECK_KEY) 
+        if !headers.has_key?(C_MAIN_CHECK_KEY) 
             errors.add(:base, "Main sheet in the excel file, incorrect 1st column name, indicates format error.")
             return 
         end 
     rescue => e
-        errors.add(:base, "Unexpected exception. Possibly an empty sheet.")
+        errors.add(:base, "Unexpected exception. Possibly an empty Main sheet.")
+    end
+
+    def self.check_extra(workbook, errors)
+        # 1. Domain Prefix
+        # 2. Domain Name 
+        # 3. Structure 
+        if workbook.nil?
+            errors.add(:base, "Missing Extra sheet in the excel file.")
+            return 
+        end
+        headers = Hash.new
+        workbook.row(1).each_with_index do |header, i|
+            headers[header] = i
+        end
+        ConsoleLogger::log(C_CLASS_NAME,"check_extra","Headers=#{headers.to_json}")
+        if headers.length != 3
+            errors.add(:base, "Extra sheet in the excel file, incorrect column count, indicates format error.")
+            return 
+        end
+        if !headers.has_key?(C_EXTRA_CHECK_KEY) 
+            errors.add(:base, "Extra sheet in the excel file, incorrect 1st column name, indicates format error.")
+            return 
+        end 
+    rescue => e
+        errors.add(:base, "Unexpected exception. Possibly an empty Extra sheet.")
     end
 
     def self.create_instance(params, identifier, label)

@@ -85,6 +85,19 @@ class SdtmModel::Variable < Tabular::Column
     return id
   end
 
+  def to_json
+    json = super
+    json[:name] = self.name
+    json[:prefixed] = self.prefixed 
+    json[:description] = self.description
+    json[:datatype] = self.datatype.to_json
+    json[:classification] = self.classification.to_json
+    if !self.sub_classification.nil? 
+      json[:sub_classification] = self.sub_classification.to_json
+    end
+    return json
+  end
+
 private
 
   def self.children_from_triples(object, triples, id, bc=nil)

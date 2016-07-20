@@ -39,6 +39,22 @@ class SdtmModelsController < ApplicationController
     end
   end
 
+  def export_ttl
+    authorize SdtmModel
+    id = params[:id]
+    namespace = params[:namespace]
+    @sdtm_model = IsoManaged::find(id, namespace)
+    send_data to_turtle(@sdtm_model.triples), filename: "#{@sdtm_model.owner}_#{@sdtm_model.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+  end
+  
+  def export_json
+    authorize SdtmModel
+    id = params[:id]
+    namespace = params[:namespace]
+    @sdtm_model = SdtmModel.find(id, namespace)
+    send_data @sdtm_model.to_json, filename: "#{@sdtm_model.owner}_#{@sdtm_model.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+  end
+
 private
   
   def this_params

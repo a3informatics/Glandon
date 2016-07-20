@@ -160,6 +160,8 @@ Rails.application.routes.draw do
       get :history
       get :import_file
       post :import
+      get :export_json
+      get :export_ttl
     end
   end
   namespace :sdtm_models do
@@ -178,6 +180,8 @@ Rails.application.routes.draw do
       get :history
       get :import_file
       post :import
+      get :export_json
+      get :export_ttl
     end
   end
   resources :sdtm_ig_domains do

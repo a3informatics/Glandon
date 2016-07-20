@@ -89,7 +89,7 @@ class Background < ActiveRecord::Base
       self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
     end
   end
-  #handle_asynchronously :importCdiscTerm
+  handle_asynchronously :importCdiscSdtmIg
 
   def importCdiscTerm(params)
     # Create the background job status

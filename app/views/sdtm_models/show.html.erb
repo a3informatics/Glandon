@@ -73,4 +73,7 @@
 	  		<% end %>
 		</tbody>
 	</table>
+	<%= link_to "Export JSON", export_json_sdtm_models_path(:id => @sdtm_model.id, :namespace => @sdtm_model.namespace), :class => "btn btn-info" %>
+	<%= link_to "Export Turtle", export_ttl_sdtm_models_path(:id => @sdtm_model.id, :namespace => @sdtm_model.namespace), :class => "btn btn-info" %>
+	<br/><br/>
 </div>
