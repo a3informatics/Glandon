@@ -145,7 +145,7 @@ class SdtmModel < Tabular
     # Build the variable triples
     if managed_item.has_key?(:children)
       managed_item[:children].each do |key, item|
-        ref_id = SdtmModel::Variable.to_sparql(id, sparql, item, datatypes, classifications)
+        ref_id = SdtmModel::Variable.import_sparql(id, sparql, item, datatypes, classifications)
         sparql.triple("", id, C_SCHEMA_PREFIX, "includesVariable", "", ref_id)
         map[item[:variable_name]] = ModelUtility.buildUri(namespace, ref_id)
       end

@@ -51,7 +51,6 @@ module SdtmExcel
     C_TD = SdtmModelDomain::C_TRIAL_DESIGN_LABEL
     C_R = SdtmModelDomain::C_RELATIONSHIP_LABEL
     C_AP = SdtmModelDomain::C_ASSOCIATED_PERSON_LABEL
-    C_TD = SdtmModelDomain::C_TRIAL_DESIGN_LABEL
     C_SDTM_MODEL_CLASS = 
         { 
             "All Classes" => C_ALL, 
@@ -67,20 +66,12 @@ module SdtmExcel
             "Findings About-General" => C_FA,
             "Relationship" => C_R, 
             "Trial Design" => C_TD, 
+            "Associated Persons" => C_AP, 
         }
-    #C_SDTM_CLASS = 
-    #    {
-    #        "Events" => C_E, 
-    #        "Findings" => C_F, 
-    #        "Interventions" => C_I, 
-    #        "Special-Purpose" => C_SP, 
-    #        "Findings-About" => C_FA, 
-    #        "Trial Design" => C_TD, 
-    #        "Relationship" => C_R, 
-    #        "Associated Persons" => C_AP 
-    #    }
-  
-    # Reads the excel file.
+
+    C_CHECK_KEY = "Seq. For Order"
+    
+    # Reads the excel file for SDTM Model.
     #
     # * *Args*    :
     #   - +json+ -> The json structure that will be completed.
@@ -91,9 +82,9 @@ module SdtmExcel
         filename = params[:files][0]
         workbook = open_workbook(filename)
         if !workbook.nil?
-            # Get the worksheet, assume first sheet.
+            ConsoleLogger::log(C_CLASS_NAME,"read_model","Opened")
+            # Get the worksheets
             worksheets = workbook.sheets
-            workbook.default_sheet = workbook.sheets[0]
             # Set up structures needed
             identifiers = Array.new
             timing = Array.new
@@ -101,42 +92,22 @@ module SdtmExcel
             interventions = Array.new
             findings = Array.new
             findings_about = Array.new
+            associated_persons = Array.new
             variables = Array.new
             # Set up results structure
             results = Array.new
             # Create the instance for the model
-            instance = IsoManaged.create_json
-            results << { :type => "MODEL", :order=> 1, :instance => instance}
-            # Set up the header for the model
-            managed_item = instance[:managed_item]
-            operation = instance[:operation]
-            managed_item[:identifier] = SdtmModel::C_IDENTIFIER
-            managed_item[:version] = params[:version]
-            managed_item[:creation_date] = params[:date]
-            managed_item[:last_changed_date] = params[:date]
-            managed_item[:version_label] = params[:version_label]
-            managed_item[:label] = "SDTM Model #{params[:date]}"
-            managed_item[:children] = {} # Amend the children array to a hash. Simulates what client Javascript does.
-            operation[:new_version] = managed_item[:version] # Make sure this is set. Sets the right version.
-            # Read the sheet headers. Should be
-            # 1. Seq. For Order  
-            # 2. Observation Class 
-            # 3. Domain Prefix 
-            # 4. Variable Name (minus domain prefix) 
-            # 5. Variable Name 
-            # 6. Variable Label  
-            # 7. Type  
-            # 8. Controlled Terms or Format  
-            # 9. Role  
-            # 10. CDISC Notes (for domains) Description (for General Classes) 
-            # 11. Core
-            headers = Hash.new
-            workbook.row(1).each_with_index do |header, i|
-                headers[header] = i
+            instance = create_instance(params, SdtmModel::C_IDENTIFIER, "SDTM Model #{params[:date]}")
+            results << { :type => "MODEL", :order => 1, :instance => instance}
+            # Set the main workbook and check it. Return if errors.
+            workbook.default_sheet = workbook.sheets[0]
+            check_main(workbook, errors)
+            if errors.count != 0 
+                return
             end
-            # Read the rows
+            # All ok. Read the rows.
+            ConsoleLogger::log(C_CLASS_NAME,"read_model","Read rows, First=#{workbook.first_row}, Last=#{workbook.last_row}.")
             ((workbook.first_row + 1) .. workbook.last_row).each do |row|
-                # obs_class = workbook.row(row)[headers['Observation Class']]
                 seq = workbook.cell(row, 1)
                 obs_class = workbook.cell(row, 2)            
                 domain_prefix = workbook.cell(row, 3)
@@ -148,7 +119,7 @@ module SdtmExcel
                 role = workbook.cell(row, 9)
                 notes = workbook.cell(row, 10)
                 core = workbook.cell(row, 11)
-                if domain_prefix.nil?
+                if domain_prefix.blank?
                     # SDTM Model Processing
                     if C_SDTM_MODEL_CLASS.has_key?(obs_class)
                         role_hash = set_role(role)
@@ -163,7 +134,7 @@ module SdtmExcel
                                 elsif role_hash[:classification] == SdtmModel::Variable::C_ROLE_TIMING
                                     target = timing
                                 else
-                                    errors.add(:base, "Invalid role and class combination detected #{role} for #{obs_class} in row #{row}")
+                                    errors.add(:base, "Invalid role and class combination detected #{role} for #{obs_class} in row #{row}.")
                                     return
                                 end
                             elsif obs_class_key == C_E
@@ -172,8 +143,13 @@ module SdtmExcel
                                 target = findings 
                             elsif obs_class_key == C_I
                                 target = interventions
-                            else
+                            elsif obs_class_key == C_AP
+                                target = interventions
+                            elsif obs_class_key == C_FA
                                 target = findings_about
+                            else
+                                errors.add(:base, "Invalid observation class detected #{obs_class} in row #{row}. Inconsistent logic.")
+                                return 
                             end
                             variables << 
                                 {
@@ -195,7 +171,7 @@ module SdtmExcel
                                     :variable_name => name, 
                                     :label => label
                                 }
-                           #ConsoleLogger::log(C_CLASS_NAME,"read","Target=" + target.to_json.to_s)
+                           ConsoleLogger::log(C_CLASS_NAME,"read_model","Target=#{target.to_json}")
                         end
                     else
                         errors.add(:base, "Invalid observation class detected #{obs_class} in row #{row}")
@@ -218,6 +194,7 @@ module SdtmExcel
             child_instance = create_model_class([identifiers, findings, timing], SdtmModelDomain::C_FINDINGS_IDENTIFIER, SdtmModelDomain::C_FINDINGS_LABEL, instance) 
             results << { :type => "MODEL_DOMAIN", :order=> 2, :instance => child_instance}
             # Add the variables for the model
+            managed_item = instance[:managed_item]
             children = managed_item[:children]
             variables.each do |variable|
                 children[children.length] = variable
@@ -231,7 +208,7 @@ module SdtmExcel
         return results
     end
 
-    # Reads the excel file.
+    # Reads the excel file for SDTM IG.
     #
     # * *Args*    :
     #   - +json+ -> The json structure that will be completed.
@@ -250,20 +227,14 @@ module SdtmExcel
             # Set up results structure
             results = Array.new
             # Create the instance for the IG itself
-            instance = IsoManaged.create_json
-            managed_item = instance[:managed_item]
-            operation = instance[:operation]
-            managed_item[:identifier] = SdtmIg::C_IDENTIFIER
-            managed_item[:version] = params[:version]
-            managed_item[:creation_date] = params[:date]
-            managed_item[:last_changed_date] = params[:date]
-            managed_item[:version_label] = params[:version_label]
-            managed_item[:label] = "SDTM Implementation Guide #{params[:date]}"
-            managed_item[:children] = Hash.new # Amend the children array to a hash. Simulates what client Javascript does.
-            operation[:new_version] = managed_item[:version] # Make sure this is set. Sets the right version.
+            instance = create_instance(params, SdtmIg::C_IDENTIFIER, "SDTM Implementation Guide #{params[:date]}")
             results << { :type => "IG", :order=> 1, :instance => instance}
-            # Setup domains
-            workbook.default_sheet = workbook.sheets[1]
+            # Setup the domains from the Extra sheet.
+            workbook.default_sheet = 'Extra'
+            if workbook.nil?
+                errors.add(:base, "Missing 'Extra' sheet in the excel file.")
+                return 
+            end
             ((workbook.first_row + 1) .. workbook.last_row).each do |row|
                 # obs_class = workbook.row(row)[headers['Observation Class']]
                 domain_prefix = workbook.cell(row, 1)
@@ -271,25 +242,13 @@ module SdtmExcel
                 structure = workbook.cell(row, 3)
                 domains[domain_prefix] = {:prefix => domain_prefix, :label => label, :structure => structure, :children => Array.new}
             end
-            # Setup variables
+            # Set the main worksheet and check it. Return if errors.
             workbook.default_sheet = workbook.sheets[0]
-            # Read the sheet headers. Should be
-            # 1. Seq. For Order  
-            # 2. Observation Class 
-            # 3. Domain Prefix 
-            # 4. Variable Name (minus domain prefix) 
-            # 5. Variable Name 
-            # 6. Variable Label  
-            # 7. Type  
-            # 8. Controlled Terms or Format  
-            # 9. Role  
-            # 10. CDISC Notes (for domains) Description (for General Classes) 
-            # 11. Core
-            headers = Hash.new
-            workbook.row(1).each_with_index do |header, i|
-                headers[header] = i
+            check_main(workbook, errors)
+            if errors.count != 0 
+                return
             end
-            # Read the rows
+            # All ok, Read the rows.
             ((workbook.first_row + 1) .. workbook.last_row).each do |row|
                 # obs_class = workbook.row(row)[headers['Observation Class']]
                 seq = workbook.cell(row, 1)
@@ -301,7 +260,7 @@ module SdtmExcel
                 var_type = workbook.cell(row, 7)
                 ct_or_format = workbook.cell(row, 8)
                 role = workbook.cell(row, 9)
-                if role.nil?
+                if role.blank?
                     role = C_ROLE_NONE
                 end
                 notes = workbook.cell(row, 10)
@@ -346,7 +305,7 @@ module SdtmExcel
             end
         end
         results.sort{|k,v| v[:order]}
-        #ConsoleLogger::log(C_CLASS_NAME,"read_ig","Results=" + results.to_json.to_s)
+        ConsoleLogger::log(C_CLASS_NAME,"read_ig","Results=" + results.to_json.to_s)
         return results
     end
 
@@ -356,6 +315,56 @@ module SdtmExcel
         ConsoleLogger::log(C_CLASS_NAME,"open_workbook","e=#{e.to_s}, filename=#{filename}")
         workbook = nil
     end
+
+    def self.check_main(workbook, errors)
+        # 1. Seq. For Order  
+        # 2. Observation Class 
+        # 3. Domain Prefix 
+        # 4. Variable Name (minus domain prefix) 
+        # 5. Variable Name 
+        # 6. Variable Label  
+        # 7. Type  
+        # 8. Controlled Terms or Format  
+        # 9. Role  
+        # 10. CDISC Notes (for domains) Description (for General Classes) 
+        # 11. Core
+        if workbook.nil?
+            errors.add(:base, "Missing main sheet in the excel file.")
+            return 
+        end
+        headers = Hash.new
+        workbook.row(1).each_with_index do |header, i|
+            headers[header] = i
+        end
+        ConsoleLogger::log(C_CLASS_NAME,"check_main","Headers=#{headers.to_json}")
+        if headers.length != 11
+            errors.add(:base, "Main sheet in the excel file, incorrect column count, indicates format error.")
+            return 
+        end
+        if !headers.has_key?(C_CHECK_KEY) 
+            errors.add(:base, "Main sheet in the excel file, incorrect 1st column name, indicates format error.")
+            return 
+        end 
+    rescue => e
+        errors.add(:base, "Unexpected exception. Possibly an empty sheet.")
+    end
+
+    def self.create_instance(params, identifier, label)
+        # Create the instance for the model
+        instance = IsoManaged.create_json
+        # Set up the header 
+        managed_item = instance[:managed_item]
+        operation = instance[:operation]
+        managed_item[:identifier] = identifier
+        managed_item[:version] = params[:version]
+        managed_item[:creation_date] = params[:date]
+        managed_item[:last_changed_date] = params[:date]
+        managed_item[:version_label] = params[:version_label]
+        managed_item[:label] = label
+        managed_item[:children] = {} # Amend the children array to a hash. Simulates what client Javascript does.
+        operation[:new_version] = managed_item[:version] # Make sure this is set. Sets the right version.
+        return instance
+    end        
 
     def self.create_model_class (variable_set, identifier, label, model_instance)
         model_mi = model_instance[:managed_item]

@@ -33,7 +33,7 @@ class SdtmModelDomain::Variable < Tabular::Column
     return object
   end
 
-  def self.to_sparql(parent_id, sparql, json, map)
+  def self.import_sparql(parent_id, sparql, json, map)
     id = parent_id + Uri::C_UID_SECTION_SEPARATOR + SdtmUtility.replace_prefix(json[:variable_name])  
     super(id, sparql, UriManagement::C_BD, C_RDF_TYPE, json[:label])
     sparql.triple_primitive_type("", id, UriManagement::C_BD, "ordinal", "#{json[:ordinal]}", "positiveInteger")

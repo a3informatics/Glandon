@@ -60,7 +60,7 @@ class SdtmModelDomain < Tabular::Tabulation
     # Now deal with the children
     if managed_item.has_key?(:children)
       managed_item[:children].each do |key, item|
-        ref_id = SdtmModelDomain::Variable.to_sparql(id, sparql, item, model_map)
+        ref_id = SdtmModelDomain::Variable.import_sparql(id, sparql, item, model_map)
         sparql.triple("", id, C_SCHEMA_PREFIX, "includesColumn", "", ref_id)
         map[item[:variable_name]] = ModelUtility.buildUri(namespace, ref_id)
       end

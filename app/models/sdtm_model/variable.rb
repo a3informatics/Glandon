@@ -67,7 +67,7 @@ class SdtmModel::Variable < Tabular::Column
     return object
   end
 
-  def self.to_sparql(parent_id, sparql, json, datatypes, classifications)
+  def self.import_sparql(parent_id, sparql, json, datatypes, classifications)
     id = parent_id + Uri::C_UID_SECTION_SEPARATOR + SdtmUtility.replace_prefix(json[:variable_name])  
     super(id, sparql, C_SCHEMA_PREFIX, C_RDF_TYPE, json[:label])
     sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "ordinal", json[:ordinal].to_s, "positiveInteger")
