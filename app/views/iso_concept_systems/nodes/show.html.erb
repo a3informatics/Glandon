@@ -1,4 +1,4 @@
-<h3>Classification: <%= @conceptSystem.label %></h3>
+<h3>Tag: <%= @node.label %></h3>
 <div class="col-md-8">
 	<h4>Details</h4>
 	<table class="table table-striped table-bordered table-condensed">
@@ -7,11 +7,11 @@
 	    <th>Description</th>
 	  </tr>
 	  <tr>
-	    <td><%= @conceptSystem.label %></td>
-	    <td><%= @conceptSystem.description %></td>
+	    <td><%= @node.label %></td>
+	    <td><%= @node.description %></td>
 	  </tr>
 	</table>
-	<h4>Tags</h4>
+	<h4>Child Tags</h4>
 	<table id="main" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
@@ -22,15 +22,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @conceptSystem.children.each do |node| %>
+			<% @node.children.each do |node| %>
 				<tr>
 			  		<td><%= node.label %></td>
 			  		<td><%= node.description %></td>
 		    		<td><%= link_to "Show", iso_concept_systems_node_path(:id => node.id, :namespace => node.namespace), :class => "btn btn-primary btn-xs" %></td>
-				    <td><%= link_to "Delete", iso_concept_systems_node_path(:id => node.id, :namespace => node.namespace, :parent_id => @conceptSystem.id, :parent_namespace => @conceptSystem.namespace), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></td>
+				    <td><%= link_to "Delete", iso_concept_systems_node_path(:id => node.id, :namespace => node.namespace, :parent_id => @node.id, :parent_namespace => @node.namespace), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></td>
 		  		</tr>
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "New Tag", node_new_iso_concept_systems_path(:id => @conceptSystem.id, :namespace => @conceptSystem.namespace), :class => "btn btn-success" %>
+	<%= link_to "New Tag", node_new_iso_concept_systems_nodes_path(:id => @node.id, :namespace => @node.namespace), :class => "btn btn-success" %>
 </div>

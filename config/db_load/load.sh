@@ -35,7 +35,7 @@ if [ "$DB" = "$Fuseki" ]; then
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessOperational.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessForm.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessDomain.ttl" $FileEndPoint	
-	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessStandard.ttl" $FileEndPoint	
+	#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessStandard.ttl" $FileEndPoint	
 else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/ISO11179Types.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/ISO11179Basic.ttl $FileEndPoint
@@ -56,7 +56,7 @@ else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessOperational.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessForm.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessDomain.ttl $FileEndPoint
-	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessStandard.ttl $FileEndPoint
+	#curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T schema/BusinessStandard.ttl $FileEndPoint
 fi
 
 if [ "$DB" = "$Fuseki" ]; then

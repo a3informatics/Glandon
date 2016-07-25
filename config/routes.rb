@@ -124,8 +124,12 @@ Rails.application.routes.draw do
     end
   end
   namespace :iso_concept_systems do
-    resources :nodes
-    resources :classifications
+    resources :nodes do
+      collection do
+        get :node_new
+        post :node_add
+      end
+    end
   end
   resources :forms do
     collection do

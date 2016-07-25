@@ -23,6 +23,8 @@ module UriManagement
   C_MDR_D = "mdrDomains"
   C_MDR_BRIDG = "mdrBridg"
   C_MDR_ISO21090 = "mdrIso21090"
+  C_MDR_C = "mdrConcepts"
+  C_MDR_TH =  "mdrTh"
   
   # Standard semantic schema prefixes
   C_RDF = "rdf"
@@ -43,20 +45,18 @@ module UriManagement
       C_BF => "http://www.assero.co.uk/BusinessForm" ,
       C_BD => "http://www.assero.co.uk/BusinessDomain" ,
       #"bs" => "http://www.assero.co.uk/BusinessStandard" ,
-      "mms" => "http://rdf.cdisc.org/mms" ,
-      "cdisc" => "http://rdf.cdisc.org/std/schema" ,
+      #"mms" => "http://rdf.cdisc.org/mms" ,
+      #"cdisc" => "http://rdf.cdisc.org/std/schema" ,
       C_MDR_ITEMS => "http://www.assero.co.uk/MDRItems" ,
-      "mdrCons" => "http://www.assero.co.uk/MDRConcepts" ,
+      C_MDR_C => "http://www.assero.co.uk/MDRConcepts" ,
       C_MDR_BRIDG => "http://www.assero.co.uk/MDRBRIDG" ,
       C_MDR_ISO21090 => "http://www.assero.co.uk/MDRISO21090" ,
       C_MDR_BCS => "http://www.assero.co.uk/MDRBCs" ,
       C_MDR_BCTS => "http://www.assero.co.uk/MDRBCTs" ,
       C_MDR_F => "http://www.assero.co.uk/MDRForms" ,
-      "mdrSch" => "http://www.assero.co.uk/MDRSchemes" ,
       C_MDR_M => "http://www.assero.co.uk/MDRModels" ,
       C_MDR_D => "http://www.assero.co.uk/MDRDomains" ,
-      "mdrStds" => "http://www.assero.co.uk/MDRStandards" ,
-      "mdrTh" => "http://www.assero.co.uk/MDRThesaurus"
+      C_MDR_TH => "http://www.assero.co.uk/MDRThesaurus"
      }
 
   @@required = 

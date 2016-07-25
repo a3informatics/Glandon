@@ -23,67 +23,13 @@
   rdf:type owl:Class ;
   rdfs:label "Concept System"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
-  skos:definition "Set of concepts structured according to the relations among them"^^xsd:string ;
+  skos:definition "Set of concepts structured according to the relations among them."^^xsd:string ;
 .
-:Classification
+:ConceptSystemNode
   rdf:type owl:Class ;
-  rdfs:label "Classification"^^xsd:string ;
+  rdfs:label "Concept System Node"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
-  skos:definition "Set of concepts structured according to the relations among them"^^xsd:string ;
-.
-:ClassifiableItem
-  rdf:type owl:Class ;
-  rdfs:label "Classificable Item"^^xsd:string ;
-  rdfs:subClassOf :Concept ;
-  skos:definition "An item that is classifiable within the repository"^^xsd:string ;
-.
-:Property
-  rdf:type owl:Class ;
-  rdfs:label "Property"^^xsd:string ;
-  rdfs:subClassOf :Concept ;
-  skos:definition "Quality common to all members of an object class"^^xsd:string ;
-.
-:schemeContains
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :ConceptSystem ;
-  rdfs:label "hasClassification Relationship"^^xsd:string ;
-  rdfs:range :Classification ;
-  skos:definition "???"^^xsd:string ;
-.
-:inScheme
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Classification ;
-  rdfs:label "inScheme Relationship"^^xsd:string ;
-  rdfs:range :ConceptSystem ;
-  skos:definition "???"^^xsd:string ;
-.
-:classifiedAs
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Classification ;
-  rdfs:label "classifiedAs Relationship"^^xsd:string ;
-  rdfs:range :Concept ;
-  skos:definition "???"^^xsd:string ;
-.
-:isClassifying
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Concept ;
-  rdfs:label "ClassificationRelationship Relationship"^^xsd:string ;
-  rdfs:range :Classification ;
-  skos:definition "???"^^xsd:string ;
-.
-:isMemberOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Concept ;
-  rdfs:label "Member Concept Relationship"^^xsd:string ;
-  rdfs:range :ConceptSystem ;
-  skos:definition "???"^^xsd:string ;
-.
-:hasMember
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :ConceptSystem ;
-  rdfs:label "Sourced Concept Relationship"^^xsd:string ;
-  rdfs:range :Concept ;
-  skos:definition "???"^^xsd:string ;
+  skos:definition "A node in a concept system."^^xsd:string ;
 .
 :link
   rdf:type owl:ObjectProperty ;
@@ -92,25 +38,32 @@
   rdfs:range :Concept ;
   skos:definition "The relationship between Concepts"^^xsd:string ;
 .
-:hasRelation
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain isoT:ClassifiableItem ;
-  rdfs:label "ConceptSystemClassification Relationship"^^xsd:string ;
-  rdfs:range :Classification ;
-  skos:definition "???"^^xsd:string ;
-.
-:isRelatedBy
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :Classification ;
-  rdfs:label "ClassificationScheme Relationship"^^xsd:string ;
-  rdfs:range isoT:ClassifiableItem ;
-  skos:definition "???"^^xsd:string ;
-.
 :property
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :Concept ;
   rdfs:label "Concept property"^^xsd:string ;
   rdfs:range xsd:anySimpleType ;
   skos:definition "The property for a concept"^^xsd:string ;
-
 .
+:hasMember
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf :link ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :ConceptSystem :ConceptSystemNode )
+    ] ;
+  rdfs:label "Has member relationship."^^xsd:string ;
+  rdfs:range :ConceptSystemNode ;
+  skos:definition "Relationship tp relate the nodes within a concept system."^^xsd:string ;
+.
+:description
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf :property ;
+  rdfs:label "Concept system node description."^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :ConceptSystem :ConceptSystemNode )
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "Concept system node description."^^xsd:string ;
+.
+
+

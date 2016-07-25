@@ -1,17 +1,13 @@
 <h3>New Designation</h3>
 <div class="col-md-3">
-	<%= form_for @node, :url => node_add_iso_concept_systems_path(:id => @id) do |f| %>
-		<div class="form-group">
-	    	<%= f.label :identifier, "Identifier:" %><br />
-	    	<input type="text" class="form-control" name="iso_concept_system[identifier]">
-	  	</div>
-	  	<div class="form-group">
+	<%= form_for @node, :url => node_add_iso_concept_systems_path(:id => @id, :namespace => @namespace) do |f| %>
+			<div class="form-group">
 	    	<%= f.label :label, "Label:" %><br />
 	    	<input type="text" class="form-control" name="iso_concept_system[label]">
 	  	</div>
 	  	<div class="form-group">
-	    	<%= f.label :definition, "Definition:" %><br />
-	    	<input type="text" class="form-control" name="iso_concept_system[definition]">
+	    	<%= f.label :description, "Description:" %><br />
+	    	<input type="text" class="form-control" name="iso_concept_system[description]">
 	  	</div>
 	  	<%= f.submit "Create", class: "btn btn-default btn-primary" %>
 	<% end %>

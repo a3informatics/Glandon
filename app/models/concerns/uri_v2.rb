@@ -42,7 +42,7 @@ class UriV2
       @uid = get_uid(fragment)
       @version = get_version(fragment)
     elsif args.has_key?(:prefix) && args.has_key?(:org_name) && args.has_key?(:identifier) && args.has_key?(:namespace)
-      uid = args[:org_name] + C_UID_SECTION_SEPARATOR + args[:identifier]
+      uid = "#{args[:org_name]}#{C_UID_SECTION_SEPARATOR}#{args[:identifier]}"
       uid = uid.gsub(/[^0-9A-Za-z_]/, '')
       namespace = args[:namespace]
       #ConsoleLogger::log(C_CLASS_NAME,"initialize","namespace=#{namespace}")

@@ -2,17 +2,13 @@
 <div class="col-md-3">
 	<%= form_for @conceptSystem, :url => iso_concept_systems_path, :method => :post do |f| %>
 		<div class="form-group">
-	    	<%= f.label :identifier, "Identifier:" %><br />
-			<%= f.text_field :identifier, class: "form-control" %>
-	  	</div>
-	  	<div class="form-group">
-	    	<%= label_tag :label, "Label:" %><br />
+	    <%= label_tag :label, "Label:" %><br />
 			<%= f.text_field :label, class: "form-control" %>
-	  	</div>
+	  </div>
 		<div class="form-group">
-			<%= f.label :notation, "Notation"%><br />
-			<%= f.text_field :notation, class: "form-control" %>
-    	</div>
-		<%= f.submit "Create", class: "btn btn-default btn-primary" %>
+	    <%= f.label :description, "Description:" %><br />
+			<%= f.text_field :description, class: "form-control" %>
+	  </div>
+	  <%= f.submit "Create", class: "btn btn-default btn-primary" %>
 	<% end %>
 </div>

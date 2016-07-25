@@ -1,115 +1,74 @@
-class IsoConceptSystem::Node < IsoDesignatableItem
-  
-  attr_accessor :nodes
-  validates_presence_of :nodes
-  
+class IsoConceptSystem::Node < IsoConceptSystemGeneric
+
   # Constants
-  C_SCHEMA_PREFIX = "isoC"
-  C_INSTANCE_PREFIX = "mdrSch"
   C_CLASS_NAME = "IsoConceptSystem::Node"
   C_CID_PREFIX = "CSN"
-  C_RDF_TYPE = "Concept"
-
-  # Base namespace 
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_RDF_TYPE = "ConceptSystemNode"
   
-  def self.find(id, ns)
-    
-    ConsoleLogger::log(C_CLASS_NAME,"find","*****ENTRY******")
-    
-    # Get the main node
-    object = super(id, ns)
-
-    # Get any links
-    query = UriManagement.buildNs(C_INSTANCE_NS, ["isoC"]) +
-      "SELECT ?a WHERE \n" +
-      "{ \n" +
-      "  :" + id.to_s + " isoC:hasMember ?a . \n" +
-      "}"
-    
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node.to_s)
-      member = ModelUtility.getValue('a', true, node)
-      if member != ""
-        ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node.to_s)
-        node = find(ModelUtility.extractCid(member), @@baseNs)
-        object.nodes[node.id] = node
-      end
-    
-    end
-    return object  
-    
-  end
-
-  def self.all
-    super(C_RDF_TYPE, C_SCHEMA_NS)
-  end
-
   def self.create(params)
-    ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
-    object = super(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
+    # Create blank object for the errors
+    object = self.new
+    object.errors.clear
+    # Set owner ship
+    if params_valid?(params, object) then
+      # Build a full object. Special case, fill in the identifier, base on domain prefix.
+      object = IsoConceptSystem::Node.from_json(params)
+      sparql = object.to_sparql
+      sparql.add_default_namespace(object.namespace)
+      # Send to database
+      ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
+      response = CRUD.update(sparql.to_s)
+      if !response.success?
+        object.errors.add(:base, "The Concept System Node was not created in the database.")
+      end
+    end
     return object
-
   end
 
-  def update(conceptSystem, classification)
-    
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoC"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      "	 :" + self.id + " isoC:ConceptClassifiedItemRelationship :" + classification.id.to_s + " . \n" +
-      "	 :" + self.id + " isoC:ConceptIncludingConceptSystemRelationship :" + conceptSystem.id.to_s + " . \n" +
-      "}"
-    
+  def add(params)
+    object = IsoConceptSystem::Node.from_json(params)
+    sparql = object.to_sparql
+    sparql.triple("", self.id, UriManagement::C_ISO_C, "hasMember", "", "#{object.id}")
     # Send the request, wait the resonse
-    response = CRUD.update(update)
-    
+    sparql.add_default_namespace(object.namespace)
+    response = CRUD.update(sparql.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"add","Object=#{sparql}")
     # Response
-    if response.success?
-      self.conceptSystem_id = conceptSystem.id
-      self.classification_id = classification.id
-      ConsoleLogger::log(C_CLASS_NAME,"create","Success")
-    else
-      object.assign_errors(data) if response.response_code == 422
-      ConsoleLogger::log(C_CLASS_NAME,"create","Failed")
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"add","Success")
     end
-    
   end
 
   def destroy
-    
-    ConsoleLogger::log(C_CLASS_NAME,"destroy","Id=" + self.id)
-    
     # Create the query
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoC"]) +
+    update = UriManagement.buildNs(self.namespace, [C_SCHEMA_PREFIX]) +
       "DELETE \n" +
       "{\n" +
-      "	 :" + self.id + " ?a ?b . \n" +
-      "	 ?c isoC:ConceptSystemMemberConceptRelationship :" + self.id.to_s + " . \n" +
+      "  :#{self.id} ?p ?o . \n" +  
+      "  ?s #{C_SCHEMA_PREFIX}:hasMember :#{self.id} . \n" +  
       "}\n" +
       "WHERE\n" + 
       "{\n" +
-      "	 :" + self.id + " ?a ?b . \n" +
-      "	 :" + self.id + " isoC:ConceptIncludingConceptSystemRelationship ?c . \n" +
+      "  :" + self.id + " ?p ?o . \n" +  
+      "  ?s #{C_SCHEMA_PREFIX}:hasMember :#{self.id} . \n" +  
       "}\n"
-
     # Send the request, wait the resonse
+    ConsoleLogger::log(C_CLASS_NAME,"destroy","Update=#{update}")
     response = CRUD.update(update)
-    
-    # Process response
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"destroy","Deleted")
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"destroy","Error!")
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
     end
-    
   end
-  
+
+  def self.from_json(json)
+    object = super(json, C_RDF_TYPE)
+    return object
+  end
+
+  def to_sparql
+    sparql = super(C_CID_PREFIX)
+    return sparql
+  end
+
 end

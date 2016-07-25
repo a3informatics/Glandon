@@ -146,12 +146,12 @@ class IsoConcept
   end
 
   # Find all concepts of a given type within specified namespace.
-  def self.all(rdfType, ns)
+  def self.all(rdf_type, ns)
     results = Array.new
     query = UriManagement.buildNs(ns, []) +
       "SELECT ?a ?b WHERE \n" +
       "{ \n" +
-      "  ?a rdf:type :" + rdfType + " . \n" +
+      "  ?a rdf:type :" + rdf_type + " . \n" +
       "  ?a rdfs:label ?b . \n" +
       "}"
     response = CRUD.query(query)
@@ -164,7 +164,7 @@ class IsoConcept
         object = self.new
         object.id = ModelUtility.extractCid(uri)
         object.namespace = ModelUtility.extractNs(uri)
-        object.rdfType = rdfType
+        object.rdf_type = rdf_type
         object.label = label
         results << object
       end
@@ -254,6 +254,27 @@ class IsoConcept
     end
     #ConsoleLogger::log(C_CLASS_NAME,"get_extension","result=" + result.to_s)
     return result
+  end
+
+  def destroy
+    # Create the query
+    update = UriManagement.buildNs(self.namespace, []) +
+      "DELETE \n" +
+      "{\n" +
+      "  ?s ?p ?o . \n" +
+      "}\n" +
+      "WHERE\n" + 
+      "{\n" +
+      "  :" + self.id + " (:|!:)* ?s . \n" +  
+      "  ?s ?p ?o . \n" +
+      "  FILTER(STRSTARTS(STR(?s), \"" + self.namespace + "\"))" +
+      "}\n"
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
+    end
   end
 
 private
