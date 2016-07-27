@@ -25,6 +25,74 @@ class IsoManagedController < ApplicationController
     @referer = request.referer
   end
 
+  def edit_tags
+    authorize IsoManaged, :edit?
+    @iso_managed = IsoManaged.find(params[:id], params[:namespace], false)
+    @concept_systems = Hash.new
+    @concept_systems[:label] = "Root"
+    @concept_systems[:children] = Array.new
+    cs_set = IsoConceptSystem.all
+    cs_set.each do |cs|
+      concept_system = IsoConceptSystem.find(cs.id, cs.namespace)
+      @concept_systems[:children] << concept_system.to_json
+    end
+    @referer = request.referer
+  end
+
+  def find_by_tag
+    authorize IsoManaged, :show?
+    items = IsoManaged.find_by_tag(params[:id], params[:namespace])
+    respond_to do |format|
+      format.json do
+        results = Hash.new
+        results[:data] = Array.new
+        items.each do |item|
+          results[:data] << item.to_json
+        end
+        render json: results
+      end
+    end
+  end
+
+  def add_tag
+    authorize IsoManaged, :edit?
+    item = IsoManaged.find(params[:id], params[:namespace])
+    item.add_tag(params[:tag_id], params[:tag_namespace])
+    if item.errors.empty?
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => item.errors.full_messages}, :status => 422
+    end
+  end
+
+  def delete_tag
+    authorize IsoManaged, :edit?
+    item = IsoManaged.find(params[:id], params[:namespace])
+    item.delete_tag(params[:tag_id], params[:tag_namespace])
+    if item.errors.empty?
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => item.errors.full_messages}, :status => 422
+    end
+  end
+
+  def tags
+    authorize IsoManaged, :edit?
+    item = IsoManaged.find(params[:id], params[:namespace])
+    respond_to do |format|
+      format.json do
+        results = Hash.new
+        results[:data] = Array.new
+        item.tag_refs.each do |ref|
+          uri = UriV2.new({:uri => ref})
+          tag = IsoConceptSystem::Node.find(uri.id, uri.namespace)
+          results[:data] << tag.to_json
+        end
+        render json: results
+      end
+    end
+  end
+
   private
 
     def this_params

@@ -36,3 +36,11 @@
 		</table>
 	</div>
 </div>
+<div class="row">
+	<div class="col-md-12">
+		<h4>Tags</h4>
+		<% @form.each do |item| %>
+    	<%= link_to "Tag Editor", edit_tags_iso_managed_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary btn-xs" %><br/>
+    <% end %>
+	</div>
+</div>

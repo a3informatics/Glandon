@@ -48,6 +48,18 @@ class IsoConceptSystemsController < ApplicationController
     @conceptSystem = IsoConceptSystem.find(params[:id], params[:namespace])
   end
   
+  def view
+    authorize IsoConceptSystem
+    @concept_systems = Hash.new
+    @concept_systems[:label] = "Root"
+    @concept_systems[:children] = Array.new
+    cs_set = IsoConceptSystem.all
+    cs_set.each do |cs|
+      concept_system = IsoConceptSystem.find(cs.id, cs.namespace)
+      @concept_systems[:children] << concept_system.to_json
+    end
+  end
+  
 private
 
     def the_params

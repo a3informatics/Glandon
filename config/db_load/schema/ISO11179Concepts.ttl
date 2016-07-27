@@ -53,7 +53,7 @@
     ] ;
   rdfs:label "Has member relationship."^^xsd:string ;
   rdfs:range :ConceptSystemNode ;
-  skos:definition "Relationship tp relate the nodes within a concept system."^^xsd:string ;
+  skos:definition "Relationship to relate the nodes within a concept system."^^xsd:string ;
 .
 :description
   rdf:type owl:DatatypeProperty ;

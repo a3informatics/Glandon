@@ -9,8 +9,12 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-%w( iso_concept_systems iso_concept_systems/nodes iso_concept_system_editor 
-  iso_registration_authorities iso_registration_states iso_namespaces iso_managed iso_scoped_identifiers 
+%w( iso_concept_systems iso_concept_systems/nodes iso_concept_system_viewer 
+  iso_registration_authorities 
+  iso_registration_states 
+  iso_namespaces 
+  iso_managed iso_managed_list iso_managed_tag_edit iso_managed_tag_list
+  iso_scoped_identifiers 
   sdtm_models sdtm_model_domains sdtm_igs sdtm_ig_domains sdtm_user_domains sdtm_user_domain_editor
   domains domains/variables 
   dashboard dashboard_viewer dashboard_index 
@@ -25,6 +29,6 @@ Rails.application.config.assets.version = '1.0'
   thesauri thesauri_editor thesauri_viewer thesauri_search
   thesaurus_concepts 
 	forms forms/groups forms/items form_placeholder_new form_editor form_editor_new form_viewer 
-  d3local d3graph ).each do |controller|
+  d3local d3graph d3_editor).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end

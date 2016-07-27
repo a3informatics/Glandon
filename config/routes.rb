@@ -20,16 +20,36 @@ Rails.application.routes.draw do
     end
   end
   resources :iso_namespaces
-  resources :iso_scoped_identifiers
   resources :iso_registration_authorities
-  resources :iso_managed do
+  resources :iso_concept_systems do
     collection do
-      get :status
+      get :node_new
+      post :node_add
+      get :view
     end
   end
+  namespace :iso_concept_systems do
+    resources :nodes do
+      collection do
+        get :node_new
+        post :node_add
+      end
+    end
+  end
+  resources :iso_scoped_identifiers
   resources :iso_registration_states do
     collection do
       get :current
+    end
+  end
+  resources :iso_managed do
+    collection do
+      get :status
+      get :edit_tags
+      get :find_by_tag
+      post :add_tag
+      post :delete_tag
+      get :tags
     end
   end
   resources :thesauri do
@@ -53,29 +73,6 @@ Rails.application.routes.draw do
       get :index_term
       post :create_term
       delete :destroy_term
-    end
-  end
-  resources :biomedical_concept_templates do
-    collection do
-      get :history
-    end
-  end
-  namespace :biomedical_concepts do
-    resources :items
-    resources :datatypes
-    resources :properties
-    resources :property_values
-  end
-  resources :biomedical_concepts do
-    collection do
-      get :list
-      get :history
-      get :impact
-      post :new_template
-      get :clone
-      get :export_json
-      get :export_ttl
-      get :upgrade
     end
   end
   resources :cdisc_terms do
@@ -117,18 +114,27 @@ Rails.application.routes.draw do
       get :changes
     end
   end
-  resources :iso_concept_systems do
+  resources :biomedical_concept_templates do
     collection do
-      get :node_new
-      post :node_add
+      get :history
     end
   end
-  namespace :iso_concept_systems do
-    resources :nodes do
-      collection do
-        get :node_new
-        post :node_add
-      end
+  namespace :biomedical_concepts do
+    resources :items
+    resources :datatypes
+    resources :properties
+    resources :property_values
+  end
+  resources :biomedical_concepts do
+    collection do
+      get :list
+      get :history
+      get :impact
+      post :new_template
+      get :clone
+      get :export_json
+      get :export_ttl
+      get :upgrade
     end
   end
   resources :forms do

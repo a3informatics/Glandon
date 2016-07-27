@@ -1,0 +1,57 @@
+var isoManagedTableReload;
+var isoManagedTable;
+var tagId;
+var tagNamespace;
+
+function imlRefresh(id, namespace) {
+  tagId = id;
+  tagNamespace = namespace
+  if (!isoManagedTableReload) {
+    imlLoad();
+  } else {
+    isoManagedTable.ajax.reload();
+  }
+}
+
+function imlLoad () {
+  isoManagedTable = $('#iso_managed_table').DataTable( {
+    "ajax": {
+      "url": "/iso_managed/find_by_tag",
+      "data": function( d ) {
+        d.id = tagId,
+        d.namespace = tagNamespace
+      },
+      "dataSrc": "data"
+    },
+    "bProcessing": true,
+    "bInfo" : false,
+    "searching": false,
+    "pageLength": 5,
+    "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
+    "language": {
+           "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      },
+    "columns": [
+      {"data" : "scoped_identifier.identifier", "width" : "30%"},
+      {"data" : "label", "width" : "50%"},
+      {"data" : "scoped_identifier.version", "width" : "10%"},
+      {"data" : "scoped_identifier.version_label", "width" : "10%"},
+      {"defaultContent": '<button type="button" class="btn btn-primary btn-xs">Go</button>'}
+    ]
+  });
+  isoManagedTableReload = true;    
+}
+
+$(document).ready(function() {
+
+  /*
+   * Function to handle click on the table button.
+   */
+  $('#iso_managed_table tbody').on( 'click', 'button', function () {
+    var data = isoManagedTable.row( $(this).parents('tr') ).data();
+    path = getPath(data.type);
+    //alert("Data=" + JSON.stringify(data) + "...Path=" + path);
+    window.location.href = path + "?id=" + data.id + "&namespace=" + data.namespace;
+  });
+
+});

@@ -73,6 +73,11 @@ function displayAlerts(html) {
       5000);
 }
 
+function notImplementedYet() {
+  var html = alertWarning("Function not implemented yet.");
+  displayAlerts(html);
+}
+
 function handleAjaxError (xhr, status, error) {
     var json;
     var errors;
@@ -91,12 +96,6 @@ function handleAjaxError (xhr, status, error) {
         html = html + alertError(errors[i]);
     }
     displayAlerts(html);
-}
-
-function pad(n, width, z) {
-  z = z || '0';
-  n = n + '';
-  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
 /*
@@ -197,5 +196,29 @@ function getId(uri) {
 
 function toUri(namespace, id) {
   return namespace + "#" + id;
+}
+
+/*
+* Utility functions
+*/
+function pad(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+/*
+* Path function
+*/
+function getPath(rdfType) {
+  if (rdfType == "http://www.assero.co.uk/BusinessForm#Form") {
+    return "/forms/view/";    
+  } else if (rdfType == "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance") {
+    return "/biomedical_concepts/";
+  } else if (rdfType == "http://www.assero.co.uk/BusinessDomain#SdtmUserDomain") {
+    return "/sdtm_user_domains/"
+  } else {
+    return ""
+  }
 }
 

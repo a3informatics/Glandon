@@ -6,7 +6,7 @@ class IsoManaged < IsoConcept
   include CRUD
   include ModelUtility
   
-  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanatoryComment, :triples
+  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanatoryComment, :tag_refs, :triples
 
   # Constants
   C_CID_PREFIX = "ISOM"
@@ -27,6 +27,7 @@ class IsoManaged < IsoConcept
       self.triples = ""
       self.registrationState = IsoRegistrationState.new
       self.scopedIdentifier = IsoScopedIdentifier.new
+      self.tag_refs = Array.new
     else
       super(triples, id)
       self.triples = triples
@@ -40,6 +41,7 @@ class IsoManaged < IsoConcept
           self.registrationState= IsoRegistrationState.new(triples[cid])
         end
       end
+      self.tag_refs = self.get_links(UriManagement::C_ISO_C, "hasMember")  
     end    
   end  
 
@@ -295,6 +297,42 @@ class IsoManaged < IsoConcept
     return results
   end
 
+  # Find all managed items based on tag settings.
+  def self.find_by_tag(id, namespace)
+    results = Array.new
+    # Create the query
+    uri = UriV2.new({:id => id, :namespace => namespace})
+    query = UriManagement.buildNs(namespace, ["isoI", "isoC"]) +
+      "SELECT ?a ?b ?c ?d ?e WHERE \n" +
+      "{ \n" +
+      "  ?a rdfs:label ?b . \n" +
+      "  ?a isoC:hasMember #{uri.to_ref} . \n" +
+      "  ?a isoI:hasIdentifier ?d . \n" +
+      "  ?a rdf:type ?e . \n" +
+      "}"
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('a', true, node)
+      si = ModelUtility.getValue('d', true, node)
+      label = ModelUtility.getValue('b', false, node)
+      rdf_type = ModelUtility.getValue('e', true, node)
+      if uri != "" 
+        object = self.new
+        object.id = ModelUtility.extractCid(uri)
+        object.namespace = ModelUtility.extractNs(uri)
+        object.rdf_type = rdf_type
+        object.label = label
+        object.scopedIdentifier = IsoScopedIdentifier.find(ModelUtility.extractCid(si))
+        results << object
+      end
+    end
+    return results
+  end
+
   # Find history for a given identifier
   def self.history(rdfType, ns, params)    
     identifier = params[:identifier]
@@ -476,6 +514,44 @@ class IsoManaged < IsoConcept
       object = nil
     end
     return object
+  end
+
+  def add_tag(id, namespace)    
+    # Create the query
+    uri = UriV2.new({:id => id, :namespace => namespace})
+    update = UriManagement.buildNs(self.namespace, ["isoC"]) +
+      "INSERT DATA \n" +
+      "{ \n" +
+      "  :" + self.id + " isoC:hasMember #{uri.to_ref} . \n" +
+      "}"
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    # Response
+    if response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"create","Success, id=" + self.id)
+    else
+      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
+      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+    end
+  end
+
+  def delete_tag(id, namespace)  
+    uri = UriV2.new({:id => id, :namespace => namespace})
+    update = UriManagement.buildNs(self.namespace, ["isoC"]) +
+      "DELETE \n" +
+      "{ \n" +
+      " :" + self.id + " isoC:hasMember #{uri.to_ref} . \n" +
+      "} \n" +
+      "WHERE \n" +
+      "{ \n" +
+      " :" + self.id + " isoC:hasMember #{uri.to_ref} . \n" +
+      "}"
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    # Response
+    if !response.success?
+      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    end
   end
 
   # Rewritten to return an object with the desired settings for the import.
