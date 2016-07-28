@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.6'
 
 # Use PG as the database for Active Record
 gem 'pg'
@@ -44,7 +44,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # D3 gem
-gem "d3-rails"
+gem "d3-rails", "3.4.11"
 
 # Datatables
 gem 'jquery-datatables-rails', '~> 3.3.0'
