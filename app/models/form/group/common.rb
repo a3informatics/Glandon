@@ -39,7 +39,7 @@ class Form::Group::Common < Form::Group
   end
 
   def to_sparql(parent_id, sparql)
-    super(sparql, C_SCHEMA_PREFIX)
+    super(parent_id, sparql)
     return self.id
   end
 

@@ -63,6 +63,7 @@ class Form::Item::BcProperty < Form::Item
     item_refs.each do |ref|
       json[:otherCommon] << ref.to_json
     end
+    ConsoleLogger::log(C_CLASS_NAME,"to_json","JSON=#{json}" )
     return json
   end
   
@@ -76,7 +77,7 @@ class Form::Item::BcProperty < Form::Item
     end
     if !json[:otherCommon].blank?
       json[:otherCommon].each do |child|
-        object.item_refs << OperationalReferenceV2.from_json(child)
+        object.item_refs << Form::Item::BcProperty.from_json(child)
       end
     end
     return object
@@ -91,7 +92,7 @@ class Form::Item::BcProperty < Form::Item
       sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasCommonItem", "", "#{ref_id}")
     end
     self.value_refs.each do |value_ref|
-      ref_id = value_ref.to_sparql(id, "hasValue", 'VR', tc_ref.ordinal, sparql)
+      ref_id = value_ref.to_sparql(id, "hasValue", 'VR', value_ref.ordinal, sparql)
       sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasValue", "", "#{ref_id}")
     end
     return self.id
@@ -103,8 +104,11 @@ private
     #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****Entry*****")
     object.item_refs = Form::Item::BcProperty.find_for_parent(triples, object.get_links("bf", "hasCommonItem"))
     links = object.get_links_v2(C_SCHEMA_PREFIX, "hasProperty")
+    ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","links=#{links.to_json}")
     if links.length > 0
+      ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","property_ref, triples=#{triples[links[0].id]}")
       object.property_ref = OperationalReferenceV2.find_from_triples(triples, links[0].id)
+      ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","property_ref=#{object.property_ref.to_json}")
     end      
     links = object.get_links_v2("bf", "hasValue")
     links.each do |link|

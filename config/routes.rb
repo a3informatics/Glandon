@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :api do
     collection do
       get :form
+      get :thesaurus_concept
+      get :bc_property
     end
   end
   resources :markdown_engines, only: [:create, :index]

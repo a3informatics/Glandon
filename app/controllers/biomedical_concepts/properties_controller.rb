@@ -5,9 +5,7 @@ class BiomedicalConcepts::PropertiesController < ApplicationController
   C_CLASS_NAME = self.class.name
 
   def show 
-    # TODO: Sub policy notloading, cannot see why. Use parent policy which works
-    #authorize BiomedicalConcept::Property
-    authorize BiomedicalConcept
+    authorize BiomedicalConceptCore::Property
     property = BiomedicalConceptCore::Property.find(params[:id], params[:namespace])
     respond_to do |format|
       format.html 

@@ -66,7 +66,7 @@ class Form::Group::Normal < Form::Group
         if child[:type] == Form::Group::Normal::C_RDF_TYPE_URI.to_s
           object.groups << Form::Group::Normal.from_json(child)
         elsif child[:type] == Form::Group::Common::C_RDF_TYPE_URI.to_s
-          object.groups << Form::CommonGroup.from_json(child)
+          object.groups << Form::Group::Common.from_json(child)
         end   
       end
     end
@@ -75,14 +75,10 @@ class Form::Group::Normal < Form::Group
 
   def to_sparql(parent_id, sparql)
     super(parent_id, sparql)
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "ordinal", "#{self.ordinal}", "positiveInteger")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "optional", "#{self.optional}", "boolean")
     sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "repeating", "#{self.repeating}", "boolean")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "note", "#{self.note}", "string")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "completion", "#{self.completion}", "string")
     sparql.triple("", id, C_SCHEMA_PREFIX, "isGroupOf", "", "#{parent_id}")
     if !self.bc_ref.nil? 
-      ref_id = self.bc_ref.to_sparql(id, "basedOnVariable", C_IGV_REF_PREFIX, 1, sparql)
+      ref_id = self.bc_ref.to_sparql(id, "hasBiomedicalConcept", 'BCR', 1, sparql)
       sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasBiomedicalConcept", "", "#{ref_id}")
     end
     self.groups.each do |child|

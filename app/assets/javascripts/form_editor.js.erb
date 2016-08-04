@@ -1197,19 +1197,19 @@ $(document).ready(function() {
 
   function newFormGroup(label) {
     return { 
-      id: "", namespace: "", type: C_NORMAL_GROUP, label: label, ordinal: 0, optional: false, repeating: false, 
+      type: C_NORMAL_GROUP, label: label, id: "", namespace: "", ordinal: 0, optional: false, repeating: false, 
       note: "", completion: "", biomedical_concept_reference: {}, children: [] };
   }
 
   function newCommonGroup(label) {
     return {
-      id: "", namespace: "", type: C_COMMON_GROUP, label: label, ordinal: 0, 
-      optional: false, repeating: false, completion: "", note: "", biomedical_concept_reference: {}, children: [] };
+      type: C_COMMON_GROUP, label: label, id: "", namespace: "", ordinal: 0, 
+      optional: false, repeating: false, completion: "", note: "", bc_ref: {}, children: [] };
   }
 
   function newQuestion(label) {
     return {
-      id: "", namespace: "", type: C_QUESTION, label: label, ordinal: 0, 
+      type: C_QUESTION, label: label, id: "", namespace: "", ordinal: 0, 
       optional: false, completion: "", note: "", free_text: "", datatype: "I",
       format: "3", question_text: "", pText: "", mapping: "",
       children: [] 
@@ -1218,7 +1218,7 @@ $(document).ready(function() {
 
   function newPlaceholder(label) {
     return {
-      id: "", namespace: "", type: C_PLACEHOLDER, label: label, ordinal: 0, 
+      type: C_PLACEHOLDER, label: label, id: "", namespace: "", ordinal: 0, 
       optional: false, completion: "", note: "", free_text: "", datatype: "",
       format: "", question_text: "", pText: "", mapping: "",
       children: [] 
@@ -1228,22 +1228,34 @@ $(document).ready(function() {
   function newBCGroup(bc) {
     // TODO: Extra fields in the biomedical_concept_reference
     return {
-      id: bc.id, namespace: bc.namespace, type: C_NORMAL_GROUP, label: bc.label, ordinal: 0, 
-      optional: bc.optional, repeating: bc.repeating, note: bc.note, 
-      biomedical_concept_reference: {id: bc.id, namespace: bc.namespace, enabled: true, optional: false}, 
+      type: C_NORMAL_GROUP, label: bc.label, id: bc.id, namespace: bc.namespace, ordinal: 0, 
+      optional: bc.optional, repeating: false, note: bc.note, 
+      bc_ref: 
+        { 
+          enabled: true, 
+          optional: false,
+          ordinal: 0, 
+          local_label: "",
+          subject_ref: {id: bc.id, namespace: bc.namespace}
+        },
       children: [] };
   }
 
   function newBCProperty(property) {
     // TODO: Extra fields in the property_reference
     return {
-      id: property.id, namespace: property.namespace, type: C_BC_ITEM, label: property.alias, ordinal: 0, 
+      type: C_BC_ITEM, label: property.alias, id: property.id, namespace: property.namespace, ordinal: 0, 
       optional: property.optional, note: property.note, free_text: property.free_text, datatype: property.datatype,
       format: property.format, question_text: property.question_text, pText: property.pText, mapping: property.mapping,
       bridgPath: property.bridgPath, 
-      enabled: true, 
-      optional: false, 
-      subject_ref: {id: property.id, namespace: property.namespace},
+      property_ref: 
+        { 
+          enabled: true, 
+          optional: false,
+          ordinal: 0, 
+          local_label: "",
+          subject_ref: {id: property.id, namespace: property.namespace}
+        },
       children: [] 
     };
   }
@@ -1252,11 +1264,13 @@ $(document).ready(function() {
     return {
       type: C_BC_CL, 
       label: cli.label, 
+      id: "", 
+      namespace: "",
       local_label: cli.label, 
       ordinal: 0, 
       enabled: true, 
       optional: false,
-      subject_ref: {id: cli.uri_id, namespace: cli.uri_ns}
+      subject_ref: {id: cli.id, namespace: cli.namespace}
     };
   }
 
@@ -1264,6 +1278,8 @@ $(document).ready(function() {
     return {
       type: C_Q_CL, 
       label: cli.useful_2, 
+      id: "", 
+      namespace: "",
       local_label: cli.useful_2, 
       enabled: true,
       optional: false, 

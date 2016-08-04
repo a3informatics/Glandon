@@ -8,10 +8,11 @@ class Form < IsoManaged
   C_INSTANCE_PREFIX = "mdrForms"
   C_CLASS_NAME = "Form"
   C_CID_PREFIX = "F"
-  C_RDF_TYPE = "Form"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  
+  C_RDF_TYPE = "Form"
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
+
   #TODO: This should be a query from the domains
   @@domain_map = {
     "AD" => "Analysis Dataset",
@@ -308,13 +309,13 @@ class Form < IsoManaged
   end
 
   def crf
-    form = self.to_api_json
+    form = self.to_json
     html = crf_node(form)
     return html
   end
 
   def acrf
-    form = self.to_api_json
+    form = self.to_json
     annotations = Array.new
     annotations += bc_annotations
     annotations += question_annotations
@@ -332,7 +333,7 @@ class Form < IsoManaged
         end
       end
     end
-    form = self.to_api_json
+    form = self.to_json
     annotations = Array.new
     if options[:annotate]
       annotations += bc_annotations
@@ -367,7 +368,7 @@ private
   def crf_node(node, annotations=nil)
     html = ""
     #ConsoleLogger.log("Mdr", "crfNode", "Node=" + node.to_s)
-    if node[:type] == "Form"
+    if node[:type] == C_RDF_TYPE_URI.to_s
       html += '<table class="table table-striped table-bordered table-condensed">'
       html += '<tr>'
       html += '<td colspan="2"><h4>' + node[:label].to_s + '</h4></td>'
@@ -375,7 +376,7 @@ private
         html += '<td><font color="red"><h4>' 
         domains = annotations.uniq {|entry| entry[:domain_prefix] }
         domains.each do |domain|
-          ConsoleLogger::log(C_CLASS_NAME,"crf_node","domain=" + domain.to_json.to_s)
+          #ConsoleLogger::log(C_CLASS_NAME,"crf_node","domain=" + domain.to_json.to_s)
           suffix = ""
           prefix = domain[:domain_prefix]
           if domain[:domain_long_name] != ""
@@ -392,7 +393,7 @@ private
         html += crf_node(child, annotations)
       end
       html += '</table>'
-    elsif node[:type] == "CommonGroup"
+    elsif node[:type] == Form::Group::Common::C_RDF_TYPE_URI.to_s
       #ConsoleLogger::log(C_CLASS_NAME,"crf_node","node=" + node.to_json.to_s)
       html += '<tr>'
       html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
@@ -400,7 +401,7 @@ private
       node[:children].each do |child|
         html += crf_node(child, annotations)
       end
-    elsif node[:type] == "Group"
+    elsif node[:type] == Form::Group::Normal::C_RDF_TYPE_URI.to_s
       html += '<tr>'
       html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
       html += '</tr>'
@@ -409,7 +410,7 @@ private
         html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
         html += '<tr>'
         node[:children].each do |child|
-          html += '<th>' + child[:qText] + '</th>'
+          html += '<th>' + child[:question_text] + '</th>'
         end 
         html += '</tr>'
         if annotations != nil
@@ -431,28 +432,27 @@ private
           html += crf_node(child, annotations)
         end
       end
-    elsif node[:type] == "BCGroup"
-      html += '<tr>'
-      html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
-      html += '</tr>'
-      node[:children].each do |child|
-        html += crf_node(child, annotations)
-      end
-    elsif node[:type] == "Placeholder"
+    #elsif node[:type] == "BCGroup"
+    #  html += '<tr>'
+    #  html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
+    #  html += '</tr>'
+    #  node[:children].each do |child|
+    #    html += crf_node(child, annotations)
+    #  end
+    elsif node[:type] == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
       html += '<tr>'
       html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:free_text])}</p></td>"
       html += '</tr>'
       node[:children].each do |child|
         html += crf_node(child, annotations)
       end
-    elsif node[:type] == "Question"
-      ConsoleLogger::log(C_CLASS_NAME,"crf_node", "node=" + node.to_json.to_s)
+    elsif node[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
       if node[:optional]
         html += '<tr class="warning">'
       else
         html += '<tr>'
       end
-      html += '<td>' + node[:qText].to_s + '</td>'
+      html += '<td>' + node[:question_text].to_s + '</td>'
       if annotations != nil
         html += '<td><font color="red">' + node[:mapping].to_s + '</font></td>'
       else
@@ -460,13 +460,16 @@ private
       end
       html += input_field(node, annotations)
       html += '</tr>'
-    elsif node[:type] == "BCItem"
+    elsif node[:type] == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
+      property_ref = node[:property_ref][:subject_ref]
+      property = BiomedicalConceptCore::Property.find(property_ref[:id], property_ref[:namespace])
+      node[:datatype] = property.datatype
       if node[:optional]
         html += '<tr class="warning">'
       else
         html += '<tr>'
       end
-      html += '<td>' + node[:qText].to_s + '</td>'
+      html += "<td>#{property.qText}</td>"
       html += '<td>'
       first = true
       if annotations != nil
@@ -492,10 +495,11 @@ private
       html += '</td>'
       html += input_field(node, annotations)
       html += '</tr>'
-    elsif node[:type] == "CL"
-      value_ref = node[:thesaurus_concept_reference]
-      if value_ref[:enabled]
-        html += '<p><input type="radio" name="' + node[:identifier].to_s + '" value="' + node[:identifier].to_s + '"></input> ' + node[:label].to_s + '</p>'
+    elsif node[:type] == OperationalReferenceV2::C_TC_RDF_TYPE_URI.to_s || node[:type] == OperationalReferenceV2::C_V_RDF_TYPE_URI.to_s
+      tc_ref = node[:subject_ref]
+      tc = ThesaurusConcept.find(tc_ref[:id], tc_ref[:namespace])
+      if node[:enabled]
+        html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
       end
     else
       html += '<tr>'
@@ -526,7 +530,7 @@ private
     elsif node[:datatype] == "S"
       html += "<input type=\"text\" value=\"S#{node[:format]}\">" 
     else
-      html += "Not implemented yet."
+      html += "Not implemented yet. Datatype=#{node[:datatype]}"
     end
     html += '</td>'
     return html

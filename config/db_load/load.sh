@@ -77,14 +77,13 @@ if [ "$DB" = "$Fuseki" ]; then
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRBRIDG.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCs.ttl" $FileEndPoint
 	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCTs.ttl" $FileEndPoint
-	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRFormsVSBaselineNew.ttl" $FileEndPoint
-	#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRFormsVSWeekly.ttl" $FileEndPoint
-	#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRFormsDemo1.ttl" $FileEndPoint
-	#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRFormsDemo2.ttl" $FileEndPoint
-	#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_DM1 01.ttl" $FileEndPoint
-	#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_MH1 01.ttl" $FileEndPoint
-	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_AEPI1 03 New.ttl" $FileEndPoint
-	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_PLACEHOLDER TEST NEW.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_VS BASELINE.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_VS WEEKLY.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_CDASH DEMO.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_DM1 01.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_MH1 01.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_AEPI1 03.ttl" $FileEndPoint
+	curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_PLACEHOLDER TEST.ttl" $FileEndPoint
 else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRIdentification.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/CT_V34.ttl $FileEndPoint
@@ -103,14 +102,13 @@ else
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRBRIDG.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRCDISCBCs.ttl $FileEndPoint
 	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRCDISCBCTs.ttl $FileEndPoint
-	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRFormsVSBaselineNew.ttl $FileEndPoint
-	#curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRFormsVSWeekly.ttl $FileEndPoint
-	#curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRFormsDemo1.ttl $FileEndPoint
-	#curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/MDRFormsDemo2.ttl $FileEndPoint
-	#curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_DM1 01.ttl $FileEndPoint
-	#curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_MH1 01.ttl $FileEndPoint
-	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_AEPI1 03 New.ttl $FileEndPoint
-	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_PLACEHOLDER TEST NEW.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_VS BASELINE.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_VS WEEKLY.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_CDASH DEMO.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_DM1 01.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_MH1 01.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_AEPI1 03.ttl $FileEndPoint
+	curl -v -X POST -H "Content-Type:application/x-turtle;charset=UTF-8" -T data/ACME_PLACEHOLDER TEST.ttl $FileEndPoint
 fi
 
 set +x

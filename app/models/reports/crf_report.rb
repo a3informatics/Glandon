@@ -27,7 +27,7 @@ class Reports::CrfReport
     ci_nodes = Array.new
     note_nodes = Array.new
     terminology = Array.new
-    html += "<h3>Form: #{node[:label]} <small>#{node[:identifier]} (#{node[:version_label]}, V#{node[:version]}, #{node[:state]})</small></h3>"
+    html += "<h3>Form: #{node[:label]} <small>#{node[:scoped_identifier][:identifier]} (#{node[:scoped_identifier][:version_label]}, V#{node[:scoped_identifier][:version]}, #{node[:registration_state][:registration_status]})</small></h3>"
     html += crf_node(node, options, annotations, ci_nodes, note_nodes, terminology)
     # Completion instructions
     if ci_nodes.length > 0 && options[:full] 
@@ -76,9 +76,10 @@ class Reports::CrfReport
         length = node[:children].length == 0 ? 1 : node[:children].length
         html += "<td rowspan=\"#{length}\">#{node[:label]}</td>"
         node[:children].each do |child|
-          values_ref = child[:thesaurus_concept_reference]
-          if values_ref[:enabled]
-            html += "<td>#{child[:identifier]}</td><td>#{child[:notation]}</td><td>#{child[:preferred_term]}</td>"
+          if child[:enabled]
+            tc_ref = child[:subject_ref]
+            tc = ThesaurusConcept.find(tc_ref[:id], tc_ref[:namespace])
+            html += "<td>#{tc.identifier}</td><td>#{tc.notation}</td><td>#{tc.preferredTerm}</td>"
             if child != node[:children].last
               html += "</tr><tr>"
             end
@@ -161,7 +162,7 @@ private
   def self.crf_node(node, options, annotations, ci_nodes, note_nodes, terminology)
     html = ""
     #ConsoleLogger.log("Mdr", "crfNode", "Node=" + node.to_s)
-    if node[:type] == "Form"
+    if node[:type] == Form::C_RDF_TYPE_URI.to_s
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
       html += '<table class="form_table">'
@@ -188,7 +189,7 @@ private
         html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
       end
       html += '</table>'
-    elsif node[:type] == "CommonGroup"
+    elsif node[:type] == Form::Group::Common::C_RDF_TYPE_URI.to_s
       #ConsoleLogger::log(C_CLASS_NAME,"crf_node","node=" + node.to_json.to_s)
       html += '<tr>'
       html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
@@ -196,7 +197,7 @@ private
       node[:children].each do |child|
         html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
       end
-    elsif node[:type] == "Group"
+    elsif node[:type] == Form::Group::Normal::C_RDF_TYPE_URI.to_s
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
       html += '<tr>'
@@ -207,7 +208,7 @@ private
         html += '<td colspan="3"><table class="form_repeat">'
         html += '<tr>'
         node[:children].each do |child|
-          html += '<th>' + child[:qText] + '</th>'
+          html += '<th>' + child[:question_text] + '</th>'
         end 
         html += '</tr>'
         if options[:annotate] 
@@ -229,32 +230,32 @@ private
           html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
         end
       end
-    elsif node[:type] == "BCGroup"
-      add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
-      add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
-      html += '<tr>'
-      html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
-      html += '</tr>'
-      node[:children].each do |child|
-        html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
-      end
-    elsif node[:type] == "Placeholder"
+    #elsif node[:type] == "BCGroup"
+    #  add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
+    #  add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
+    #  html += '<tr>'
+    #  html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
+    #  html += '</tr>'
+    #  node[:children].each do |child|
+    #    html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
+    #  end
+    elsif node[:type] == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
       html += '<tr>'
       html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:free_text])}</p></td>"
       html += '</tr>'
       node[:children].each do |child|
         html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
       end
-    elsif node[:type] == "Question"
-      add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
-      add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
+    elsif node[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
+      add_nodes(node, ci_nodes, {:form => :completion, :default => :completion})
+      add_nodes(node, note_nodes, {:form => :note, :default => :note})
       ConsoleLogger::log(C_CLASS_NAME,"crf_node", "node=" + node.to_json.to_s)
       if node[:optional]
         html += '<tr class="warning">'
       else
         html += '<tr>'
       end
-      html += '<td>' + node[:qText].to_s + '</td>'
+      html += '<td>' + node[:question_text].to_s + '</td>'
       if options[:annotate] 
         html += '<td><font color="red">' + node[:mapping].to_s + '</font></td>'
       else
@@ -262,15 +263,21 @@ private
       end
       html += input_field(node, terminology)
       html += '</tr>'
-    elsif node[:type] == "BCItem"
+    elsif node[:type] == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
       add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
+      property_ref = node[:property_ref][:subject_ref]
+      property = BiomedicalConceptCore::Property.find(property_ref[:id], property_ref[:namespace])
+      node[:datatype] = property.datatype
+      node[:format] = property.format
+      node[:question_text] = property.qText
+      node[:enabled] = property.enabled
       if node[:optional]
         html += '<tr class="warning">'
       else
         html += '<tr>'
       end
-      html += '<td>' + node[:qText].to_s + '</td>'
+      html += '<td>' + node[:question_text].to_s + '</td>'
       html += '<td>'
       first = true
       if options[:annotate] 
@@ -296,7 +303,7 @@ private
       html += '</td>'
       html += input_field(node, terminology)
       html += '</tr>'
-    elsif node[:type] == "CL"
+    elsif node[:type] == OperationalReferenceV2::C_TC_RDF_TYPE_URI.to_s
       # Ignore, processed.
     else
       html += '<tr>'
@@ -314,9 +321,10 @@ private
       terminology << node
       values = Array.new
       node[:children].each do |child|
-        values_ref = child[:thesaurus_concept_reference]
-        if values_ref[:enabled]
-          values << "#{child[:label]}"
+        if node[:enabled]
+          tc_ref = child[:subject_ref]
+          tc = ThesaurusConcept.find(tc_ref[:id], tc_ref[:namespace])
+          values << "#{tc.label}"
         end
       end
       html += cl_table(values)

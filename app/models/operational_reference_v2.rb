@@ -33,6 +33,12 @@ class OperationalReferenceV2 < IsoConcept
   C_CLASS_NAME = "OperationalReferenceV2"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_RDF_TYPE = "Reference"
+  C_BC_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_BC_TYPE})
+  C_P_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_P_TYPE})
+  C_V_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_V_TYPE})
+  C_TC_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_TC_TYPE})
+  C_T_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_T_TYPE})
+  C_C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_C_TYPE})
 
   C_TO_TYPE_MAP = 
     {
@@ -121,7 +127,6 @@ class OperationalReferenceV2 < IsoConcept
     self.rdf_type = "#{UriV2.new({ :namespace => C_SCHEMA_NS, :id => C_TO_TYPE_MAP[ref_type]})}"
     self.label = C_TO_LABEL_MAP[ref_type]
     super(sparql, C_SCHEMA_PREFIX)
-    #sparql.triple("", ref_id, UriManagement::C_RDF, "type", UriManagement::C_BO, "#{C_TO_TYPE_MAP[ref_type]}")
     sparql.triple_uri_full_v2("", self.id, UriManagement::C_BO, "#{C_TO_LINK_MAP[ref_type]}", self.subject_ref)
     sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "enabled", "true", "boolean")
     sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "optional", "false", "boolean")
@@ -132,11 +137,14 @@ class OperationalReferenceV2 < IsoConcept
 
   def self.find_from_triples(triples, id)
     object = new(triples, id)
+    ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","Type=#{object.rdf_type}")
+    ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","Mapped Type=#{C_FROM_TYPE_MAP[object.rdf_type]}")
     links = object.get_links(C_SCHEMA_PREFIX, C_FROM_TYPE_MAP[object.rdf_type])
+    ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","Setting subject ref, link=#{links[0]}")
     if links.length > 0
+      ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","Setting subject ref, link=#{links[0]}")
       object.subject_ref = UriV2.new({:uri => links[0]})
     end
-    object.triples = ""
     return object
   end
 
