@@ -15,13 +15,13 @@
 		</thead>
 		<tbody>
 			<tr>
-		  	<td><%= @formGroup.ordinal%></td>
-				<td><%= @formGroup.label%></td>
-				<td><%= @formGroup.groupType%></td>
-				<td><%= @formGroup.optional%></td>
-				<td><%= @formGroup.repeating%></td>
-				<td><%= raw @completion%></td>
-				<td><%= raw @note%></td>
+		  	<td><%= @formGroup.ordinal %></td>
+				<td><%= @formGroup.label %></td>
+				<td><%= @formGroup.rdf_type_fragment %></td>
+				<td><%= @formGroup.optional %></td>
+				<td><%= @formGroup.repeating %></td>
+				<td><%= raw MarkdownEngine::render(@formGroup.completion) %></td>
+				<td><%= raw MarkdownEngine::render(@formGroup.note) %></td>
 			</tr>
 		</tbody>
 	</table>
@@ -42,39 +42,35 @@
 			<% @formGroup.groups.each do |group| %>
 				<tr>
 					<td><%= group.ordinal%></td>
-				  <td><%= group.label%></td>
-				  <td><%= group.groupType%></td>
-				  <td><%= group.optional%></td>
-				  <td><%= group.repeating%></td>
-				  <td><%= group.note%></td>
+				  	<td><%= group.label%></td>
+				  	<td><%= group.rdf_type_fragment%></td>
+				  	<td><%= group.optional%></td>
+				  	<td><%= group.repeating%></td>
+				  	<td><%= group.note%></td>
 					<td><%= link_to "Show", forms_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
 	<h4>Items</h4>
-	<% if @formGroup.items.length > 0 %>
-		<table id="main" class="table table-striped table-bordered table-condensed">
-			<thead>
+	<table id="main" class="table table-striped table-bordered table-condensed">
+		<thead>
+			<tr>
+				<th>Ordinal</th>
+				<th>Label</th>
+				<th>Item Type</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @formGroup.items.each do |item| %>
 				<tr>
-					<th>Ordinal</th>
-					<th>Label</th>
-					<th>Item Type</th>
-					<th></th>
+					<td><%= item.ordinal %></td>
+					<td><%= item.label %></td>
+					<td><%= item.rdf_type_fragment %></td>
+					<td><%= link_to "Show", forms_item_path(:id => item.id, :groupId => @formGroup.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
 				</tr>
-			</thead>
-			<tbody>
-				<% @formGroup.items.each do |item| %>
-					<tr>
-						<td><%= item.ordinal %></td>
-						<td><%= item.label %></td>
-						<td><%= item.itemType %></td>
-						<td><%= link_to "Show", forms_item_path(:id => item.id, :groupId => @formGroup.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	<% else %>
-		<p>No items present</p>
-	<% end %>
+			<% end %>
+		</tbody>
+	</table>
 </div>

@@ -35,28 +35,6 @@ class ThesaurusConcept < IsoConcept
     end
   end
 
-  #def self.find(id, ns, children=true)   
-  #  #ConsoleLogger::log(C_CLASS_NAME,"find","*****Entry*****")
-  #  object = super(id, ns)
-  #  if object != nil
-  #    object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")[:value]
-  #    object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")[:value]
-  #    object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
-  #    object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
-  #    object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
-  #    if object.links.exists?(C_SCHEMA_PREFIX,"inScheme")
-  #      object.topLevel = true
-  #    else
-  #      object.topLevel = false
-  #    end
-  #    object.parentIdentifier = ""
-  #    if children
-  #      object.children = allChildren(id, ns) 
-  #    end 
-  #  end
-  #  return object    
-  #end
-
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -83,218 +61,6 @@ class ThesaurusConcept < IsoConcept
     schemaNs = UriManagement.getNs(C_SCHEMA_PREFIX)
     return super("identifier", identifier, "ThesaurusConcept", schemaNs, ns)
   end
-
-  #def self.allTopLevel(id, ns)
-  #  #ConsoleLogger::log(C_CLASS_NAME,"allTopLevel","*****Entry*****")
-  #  results = findWithCondition("?a iso25964:inScheme :" + id, ns, ["iso25964"], false)
-  #  results.each do |key, object|
-  #    object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")[:value]
-  #    object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")[:value]
-  #    object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
-  #    object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
-  #    object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
-  #    object.parentIdentifier = ""
-  #    object.children = nil
-  #    object.topLevel = true
-  #  end
-  #  #TODO - Fix this in the query, will be quicker.
-  #  sorted = {}
-  #  results.keys.sort.each do |k|
-  #    sorted[k] = results[k]
-  #  end
-  #  return sorted
-  #  #return results
-  #end
-  
-  # Find all children of a given concept (identified by the CID)
-  #def self.allChildren(id, ns)
-  #  #ConsoleLogger::log(C_CLASS_NAME,"allChildren","*****Entry*****")
-  #  results = findWithCondition(":" + id + " iso25964:narrower ?a", ns, ["iso25964"])
-  #  results.each do |key, object|
-  #    object.identifier = object.properties.getOnly(C_SCHEMA_PREFIX, "identifier")[:value]
-  #    object.notation = object.properties.getOnly(C_SCHEMA_PREFIX, "notation")[:value]
-  #    object.preferredTerm = object.properties.getOnly(C_SCHEMA_PREFIX, "preferredTerm")[:value]
-  #    object.synonym = object.properties.getOnly(C_SCHEMA_PREFIX, "synonym")[:value]
-  #    object.definition = object.properties.getOnly(C_SCHEMA_PREFIX, "definition")[:value]
-  #    object.parentIdentifier = ""
-  #    object.children = nil
-  #    object.topLevel = false
-  #  end
-  #  #TODO - Fix this in the query, will be quicker.
-  #  sorted = {}
-  #  results.keys.sort.each do |k|
-  #    sorted[k] = results[k]
-  #  end
-  #  return sorted
-  #  #return results
-  #end
-  
-  #def self.searchTextWithNs(termId, ns, term)
-  #  
-  #  #ConsoleLogger::log(C_CLASS_NAME,"searchTextWithNs","Id=" + termId.to_s + ", ns=" + ns.to_s + ", term=" + term)
-  #  results = Array.new
-  #  
-  #  # Create the query
-  #  query = UriManagement.buildNs(ns, ["iso25964"]) +
-  #    "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
-  #    "  {\n" +
-  #    "    ?a iso25964:identifier ?b . \n" +
-  #    "    ?a iso25964:notation ?c . \n" +
-  #    "    ?a iso25964:preferredTerm ?d . \n" +
-  #    "    ?a iso25964:synonym ?e . \n" +
-  #    "    ?a iso25964:definition ?g . \n" +
-  #    "    OPTIONAL\n" +
-  #    "    {\n" +
-  #    "      ?a iso25964:inScheme ?h . \n" +
-  #    "    }\n" +
-  #    "    ?a ( iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?i . FILTER regex(?i, \"" + term + "\") . \n" +
-  #    "    {\n" +
-  #    "      SELECT ?a WHERE\n" +
-  #    "      {\n" +
-  #    "        ?a rdf:type iso25964:ThesaurusConcept . \n" +
-  #    "        { ?a iso25964:inScheme :" + termId + " } UNION { ?j iso25964:inScheme :" + termId + " . ?j iso25964:narrower ?a } . \n" +
-  #    "      }\n" +
-  #    "    }\n" +
-  #    "  } ORDER BY ?b"
-#
-  #  # Send the request, wait the resonse
-  #  response = CRUD.query(query)
-  #  
-  #  # Process the response
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  xmlDoc.xpath("//result").each do |node|
-  #    ConsoleLogger::log(C_CLASS_NAME,"searchTextWithNs","Node=" + node.to_s)
-  #    uriSet = node.xpath("binding[@name='a']/uri")
-  #    idSet = node.xpath("binding[@name='b']/literal")
-  #    nSet = node.xpath("binding[@name='c']/literal")
-  #    ptSet = node.xpath("binding[@name='d']/literal")
-  #    sSet = node.xpath("binding[@name='e']/literal")
-  #    dSet = node.xpath("binding[@name='g']/literal")
-  #    tlSet = node.xpath("binding[@name='h']/uri")
-  #    if uriSet.length == 1 
-  #      object = self.new 
-  #      object.id = ModelUtility.extractCid(uriSet[0].text)
-  #      object.namespace = ModelUtility.extractNs(uriSet[0].text)
-  #      object.identifier = idSet[0].text
-  #      object.notation = nSet[0].text
-  #      object.preferredTerm = ptSet[0].text
-  #      object.synonym = sSet[0].text
-  #      object.parentIdentifier = ""
-  #      object.children = nil
-  #      object.topLevel = false
-  #      if tlSet.length == 1 
-  #        object.topLevel = true
-  #      end
-  #      object.definition = dSet[0].text
-  #      results.push (object)
-  #    end
-  #  end
-  #  return results
-  #  
-  #end
-
-  #def self.searchIdentifierWithNs(termId, ns, term)
-  #  
-  #  # Quick and dirty implementation
-  #  ConsoleLogger::log(C_CLASS_NAME,"searchIdentifierWithNs","Entry")
-  #  ConsoleLogger::log(C_CLASS_NAME,"searchIdentifierWithNs","Id=" + termId.to_s + ", ns=" + ns.to_s + ", term=" + term)
-  #  results = Array.new
-  #  
-  #  # Create the query
-  #  query = UriManagement.buildNs(ns, ["iso25964"]) +
-  #    "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
-  #    "  {\n" +
-  #    "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
-  #    "    ?a iso25964:inScheme :" + termId + " . \n" +
-  #    "    ?a iso25964:notation ?b . \n" +
-  #    "    ?a iso25964:identifier \"" + term + "\" . \n" +
-  #    "    ?a iso25964:preferredTerm ?c . \n" +
-  #    "    ?a iso25964:synonym ?d . \n" +
-  #    "    ?a iso25964:definition ?e . \n" +
-  #    "    ?a iso25964:identifier ?f . \n" +
-  #    "  }\n"
-#
-  #  # Send the request, wait the resonse
-  #  response = CRUD.query(query)
-  #  
-  #  # Process the response
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  xmlDoc.xpath("//result").each do |node|
-  #    uriSet = node.xpath("binding[@name='a']/uri")
-  #    nSet = node.xpath("binding[@name='b']/literal")
-  #    ptSet = node.xpath("binding[@name='c']/literal")
-  #    sSet = node.xpath("binding[@name='d']/literal")
-  #    dSet = node.xpath("binding[@name='e']/literal")
-  #    eSet = node.xpath("binding[@name='g']/literal")
-  #    idSet = node.xpath("binding[@name='f']/literal")
-  #    tlSet = node.xpath("binding[@name='g']/literal")
-  #    if uriSet.length == 1 
-  #      object = self.new 
-  #      object.id = ModelUtility.extractCid(uriSet[0].text)
-  #      object.namespace = ModelUtility.extractNs(uriSet[0].text)
-  #      object.identifier = idSet[0].text
-  #      object.notation = nSet[0].text
-  #      object.preferredTerm = ptSet[0].text
-  #      object.synonym = sSet[0].text
-  #      object.definition = dSet[0].text
-  #      object.parentIdentifier = ""
-  #      object.children = nil
-  #      object.topLevel = true
-  #      results.push (object)
-  #    end
-  #  end
-    
-  # Create the query
-  #  query = UriManagement.buildNs(ns, ["iso25964"]) +
-  #    "SELECT DISTINCT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
-  #    "  {\n" +
-  #    "    ?a rdf:type iso25964:ThesaurusConcept . \n" +
-  #    "    ?a iso25964:inScheme :" + termId + " . \n" +
-  #    "    ?a iso25964:identifier \"" + term + "\" . \n" +
-  #    "    ?a iso25964:narrower ?h . \n" +
-  #    "    ?h iso25964:notation ?b . \n" +
-  #    "    ?h iso25964:preferredTerm ?c . \n" +
-  #    "    ?h iso25964:synonym ?d . \n" +
-  #    "    ?h iso25964:definition ?e . \n" +
-  #    "    ?h iso25964:identifier ?f . \n" +
-  #    "  }\n"#
-#
- #   # Send the request, wait the resonse
-  #  response = CRUD.query(query)
-  #  
-  #  # Process the response
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  xmlDoc.xpath("//result").each do |node|
-  #    uriSet = node.xpath("binding[@name='h']/uri")
-  #    nSet = node.xpath("binding[@name='b']/literal")
-  #    ptSet = node.xpath("binding[@name='c']/literal")
-  #    sSet = node.xpath("binding[@name='d']/literal")
-  #    dSet = node.xpath("binding[@name='e']/literal")
-  #    eSet = node.xpath("binding[@name='g']/literal")
-  #    idSet = node.xpath("binding[@name='f']/literal")
-  #    tlSet = node.xpath("binding[@name='g']/literal")
-  #    if uriSet.length == 1 
-  #      object = self.new 
-  #      object.id = ModelUtility.extractCid(uriSet[0].text)
-  #      object.namespace = ModelUtility.extractNs(uriSet[0].text)
-  #      object.identifier = idSet[0].text
-  #      object.notation = nSet[0].text
-  #      object.preferredTerm = ptSet[0].text
-  #      object.synonym = sSet[0].text
-  #      object.definition = dSet[0].text
-  #      object.parentIdentifier = ""
-  #      object.children = nil
-  #      object.topLevel = false
-  #      results.push (object)
-  #    end
-  #  end
-  # 
-  #  return results
-  #  
-  #end
 
   def self.create(params, ns)
     # Create the object
@@ -476,6 +242,22 @@ class ThesaurusConcept < IsoConcept
       result = true
     end
     return result
+  end
+
+  def to_json
+    json = super
+    json[:identifier] = self.identifier
+    json[:notation] = self.notation
+    json[:synonym] = self.synonym
+    json[:definition] = self.definition
+    json[:preferredTerm] = self.preferredTerm
+    json[:topLevel] = self.topLevel
+    json[:parentIdentifier] = self.parentIdentifier
+    json[:children] = Array.new
+    self.children.each do |child|
+      json[:children] << child.to_json
+    end
+    return json
   end
 
   def d3

@@ -90,6 +90,10 @@ class BiomedicalConceptCore::Property < IsoConcept
 		return results
 	end
 	
+  def to_json
+    return to_minimum
+  end
+  
   def to_sparql(parent, ordinal, params, sparql, prefix)
     id = parent + Uri::C_UID_SECTION_SEPARATOR + 'P' + ordinal.to_s
     sparql.triple("", id, "rdf", "type", prefix, "Property")

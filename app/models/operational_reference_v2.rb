@@ -46,6 +46,18 @@ class OperationalReferenceV2 < IsoConcept
       C_PARENT_LINK_VC => C_C_TYPE
     }
     
+  C_TO_LABEL_MAP = 
+    {
+      C_PARENT_LINK_BC => "BC Reference",
+      C_PARENT_LINK_P => "BC Property Reference",
+      C_PARENT_LINK_V => "BC Property Value Reference",
+      C_PARENT_LINK_TC => "Thesaurus Concept Reference",
+      C_PARENT_LINK_T => "Tabulation Reference",
+      C_PARENT_LINK_DT => "Based on Domain Reference",
+      C_PARENT_LINK_C => "Column Reference",
+      C_PARENT_LINK_VC => "Based on Variable Reference"
+    }
+    
   C_TO_LINK_MAP = 
     {
       C_PARENT_LINK_BC => C_BC_LINK,
@@ -105,13 +117,17 @@ class OperationalReferenceV2 < IsoConcept
 
   def to_sparql(parent_id, ref_type, suffix, ordinal, sparql)
     ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Op ref=#{self.to_json}")
-    ref_id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{suffix}#{ordinal}"
-    sparql.triple("", ref_id, UriManagement::C_RDF, "type", UriManagement::C_BO, "#{C_TO_TYPE_MAP[ref_type]}")
-    sparql.triple_uri_full_v2("", ref_id, UriManagement::C_BO, "#{C_TO_LINK_MAP[ref_type]}", self.subject_ref)
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "enabled", "true", "boolean")
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "optional", "false", "boolean")
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "ordinal", "#{ordinal}", "positiveInteger")
-    return ref_id
+    self.id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{suffix}#{ordinal}"
+    self.rdf_type = "#{UriV2.new({ :namespace => C_SCHEMA_NS, :id => C_TO_TYPE_MAP[ref_type]})}"
+    self.label = C_TO_LABEL_MAP[ref_type]
+    super(sparql, C_SCHEMA_PREFIX)
+    #sparql.triple("", ref_id, UriManagement::C_RDF, "type", UriManagement::C_BO, "#{C_TO_TYPE_MAP[ref_type]}")
+    sparql.triple_uri_full_v2("", self.id, UriManagement::C_BO, "#{C_TO_LINK_MAP[ref_type]}", self.subject_ref)
+    sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "enabled", "true", "boolean")
+    sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "optional", "false", "boolean")
+    sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "ordinal", "#{ordinal}", "positiveInteger")
+    sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "local_label", "#{local_label}", "string")
+    return self.id
   end
 
   def self.find_from_triples(triples, id)

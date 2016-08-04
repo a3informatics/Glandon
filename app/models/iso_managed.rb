@@ -6,7 +6,7 @@ class IsoManaged < IsoConcept
   include CRUD
   include ModelUtility
   
-  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanatoryComment, :tag_refs, :triples
+  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanatoryComment, :tag_refs
 
   # Constants
   C_CID_PREFIX = "ISOM"
@@ -30,7 +30,6 @@ class IsoManaged < IsoConcept
       self.tag_refs = Array.new
     else
       super(triples, id)
-      self.triples = triples
       if self.link_exists?(UriManagement::C_ISO_I, "hasIdentifier")
         links = self.get_links(UriManagement::C_ISO_I, "hasIdentifier")
         cid = ModelUtility.extractCid(links[0])
@@ -627,59 +626,59 @@ class IsoManaged < IsoConcept
     return result
   end
 
-  def self.create(prefix, params, rdfType, schemaNs, instanceNs)
-    identifier = params[:identifier]
-    version = params[:version]
-    version_label = params[:versionLabel]
-    # Set the registration authority to teh owner
-    ra = IsoRegistrationAuthority.owner
-    orgName = ra.namespace.shortName
-    scopeId = ra.namespace.id
-    # Create the required namespace. Use owner name to extend
-    uri = ModelUtility::version_namespace(version, instanceNs, orgName)
-    useNs = uri.getNs()
-    # Set the timestamp
-    timestamp = Time.now.iso8601
-    # Create the object
-    object = self.new
-    object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
-    object.namespace = useNs
-    object.scopedIdentifier = IsoScopedIdentifier.create(identifier, version, version_label, ra.namespace)
-    object.registrationState = IsoRegistrationState.create(identifier, version, ra.namespace)
-    object.origin = ""
-    object.changeDescription = "Creation"
-    object.creationDate = timestamp
-    object.lastChangedDate = timestamp
-    object.explanatoryComment = ""
-    object.label = params[:label]
-    object.rdf_type = rdfType
-    prefixSet = ["mdrItems", "isoT", "isoI", "isoR"]
-    schemaPrefix = UriManagement.getPrefix(schemaNs)
-    prefixSet << schemaPrefix
-    update = UriManagement.buildNs(useNs, prefixSet) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      "  :" + object.id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
-      "  :" + object.id + " isoR:hasState mdrItems:" + object.registrationState.id + " . \n" +
-      "  :" + object.id + " isoT:origin \"\"^^xsd:string . \n" +
-      "  :" + object.id + " isoT:changeDescription \"Creation\"^^xsd:string . \n" +
-      "  :" + object.id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +
-      "  :" + object.id + " isoT:lastChangeDate \"\"^^xsd:string . \n" +
-      "  :" + object.id + " isoT:explanatoryComment \"\"^^xsd:string . \n" +
-      "  :" + object.id + " rdf:type " + schemaPrefix + ":" + rdfType + " . \n" +
-      "  :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
-    "}"
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    # Response
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"create","Success, id=" + object.id)
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
-      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
-    end
-    return object
-  end 
+  #def self.create(prefix, params, rdfType, schemaNs, instanceNs)
+  #  identifier = params[:identifier]
+  #  version = params[:version]
+  #  version_label = params[:versionLabel]
+  #  # Set the registration authority to teh owner
+  #  ra = IsoRegistrationAuthority.owner
+  #  orgName = ra.namespace.shortName
+  #  scopeId = ra.namespace.id
+  #  # Create the required namespace. Use owner name to extend
+  #  uri = ModelUtility::version_namespace(version, instanceNs, orgName)
+  #  useNs = uri.getNs()
+  #  # Set the timestamp
+  #  timestamp = Time.now.iso8601
+  #  # Create the object
+  #  object = self.new
+  #  object.id = ModelUtility.buildCidIdentifier(prefix, identifier)
+  #  object.namespace = useNs
+  #  object.scopedIdentifier = IsoScopedIdentifier.create(identifier, version, version_label, ra.namespace)
+  #  object.registrationState = IsoRegistrationState.create(identifier, version, ra.namespace)
+  #  object.origin = ""
+  #  object.changeDescription = "Creation"
+  #  object.creationDate = timestamp
+  #  object.lastChangedDate = timestamp
+  #  object.explanatoryComment = ""
+  #  object.label = params[:label]
+  #  object.rdf_type = rdfType
+  #  prefixSet = ["mdrItems", "isoT", "isoI", "isoR"]
+  #  schemaPrefix = UriManagement.getPrefix(schemaNs)
+  #  prefixSet << schemaPrefix
+  #  update = UriManagement.buildNs(useNs, prefixSet) +
+  #    "INSERT DATA \n" +
+  #    "{ \n" +
+  #    "  :" + object.id + " isoI:hasIdentifier mdrItems:" + object.scopedIdentifier.id + " . \n" +
+  #    "  :" + object.id + " isoR:hasState mdrItems:" + object.registrationState.id + " . \n" +
+  #    "  :" + object.id + " isoT:origin \"\"^^xsd:string . \n" +
+  #    "  :" + object.id + " isoT:changeDescription \"Creation\"^^xsd:string . \n" +
+  #    "  :" + object.id + " isoT:creationDate \"" + timestamp.to_s + "\"^^xsd:string . \n" +
+  #    "  :" + object.id + " isoT:lastChangeDate \"\"^^xsd:string . \n" +
+  #    "  :" + object.id + " isoT:explanatoryComment \"\"^^xsd:string . \n" +
+  #    "  :" + object.id + " rdf:type " + schemaPrefix + ":" + rdfType + " . \n" +
+  #    "  :" + object.id + " rdfs:label \"" + object.label + "\"^^xsd:string . \n" +
+  #  "}"
+  #  # Send the request, wait the resonse
+  #  response = CRUD.update(update)
+  #  # Response
+  #  if response.success?
+  #    ConsoleLogger::log(C_CLASS_NAME,"create","Success, id=" + object.id)
+  #  else
+  #    ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
+  #    raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+  #  end
+  #  return object
+  #end 
 
   def to_json
     json = super

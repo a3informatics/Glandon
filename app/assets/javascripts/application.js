@@ -222,3 +222,34 @@ function getPath(rdfType) {
   }
 }
 
+/*
+* Get All Thesaurus Concept References for entire JSON tree
+*/
+function allTcReference(node) {
+  var i;
+  var child;
+  if (node.type == C_CL) {
+    $.ajax({
+      url: "/thesaurus_concepts/" + node.data.subject_ref.id,
+      type: "GET",
+      data: { "namespace": node.data.subject_ref.namespace },
+      dataType: 'json',
+      error: function (xhr, status, error) {
+        var html = alertError("An error has occurred loading a terminology reference.");
+        displayAlerts(html);
+      },
+      success: function(result){
+        node.subject_data = result;
+        node.name = result.label;
+        displayTree(1);
+      }
+    });
+  }
+  if (node.hasOwnProperty('children')) {
+    for (i=0; i<node.children.length; i++) {
+      child = node.children[i];
+      tcReference(child);
+    }
+  } 
+}
+

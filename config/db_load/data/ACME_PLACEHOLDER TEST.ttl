@@ -8,9 +8,9 @@
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_PLACEHOLDERTEST-1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_PLACEHOLDERTEST-1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST> 			<http://www.assero.co.uk/BusinessForm#hasGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST> 			<http://www.assero.co.uk/BusinessForm#formCompletion> 			"" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST> 			<http://www.assero.co.uk/BusinessForm#formNote> 			"" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Group> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Placeholder" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1> 			<http://www.assero.co.uk/BusinessForm#isGroupOf> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1> . 
@@ -24,7 +24,7 @@
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1> 			<http://www.assero.co.uk/BusinessForm#isItemOf> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1> 			<http://www.assero.co.uk/BusinessForm#freeText> 			"This is a placeholder test form. It should have:\r\n\r\n* Medical history of all relatives\r\n\r\nNothing much! :)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1> 			<http://www.assero.co.uk/BusinessForm#free_text> 			"This is a placeholder test form. It should have:\r\n\r\n* Medical history of all relatives\r\n\r\nNothing much! :)" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_PLACEHOLDERTEST-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 

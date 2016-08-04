@@ -1,13 +1,13 @@
 $(document).ready(function() {
   
-  var C_FORM = "Form";
-  var C_GROUP ="Group";
-  var C_COMMON_GROUP = "CommonGroup";
-  var C_PLACEHOLDER = "Placeholder";
-  var C_BC_GROUP = "BCGroup";
-  var C_BC_ITEM = "BCItem";
-  var C_QUESTION = "Question";
-  var C_CL = "CL";
+  var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
+  var C_NORMAL_GROUP ="http://www.assero.co.uk/BusinessForm#NormalGroup";
+  var C_COMMON_GROUP = "http://www.assero.co.uk/BusinessForm#CommonGroup";
+  var C_PLACEHOLDER = "http://www.assero.co.uk/BusinessForm#Placeholder";
+  var C_BC_ITEM = "http://www.assero.co.uk/BusinessForm#BcProperty";
+  var C_QUESTION = "http://www.assero.co.uk/BusinessForm#Question";
+  var C_Q_CL = "http://www.assero.co.uk/BusinessOperational#TcReference";
+  var C_BC_CL = "http://www.assero.co.uk/BusinessOperational#VReference";
 
   var formDefinition ;
   var html;
@@ -187,6 +187,7 @@ $(document).ready(function() {
   // Draw the initial tree and select the form.
   initialNotepadLoad();
   setRoot();
+  allTcReference(rootNode);
 
   /**
    * Function to handle click on the D3 tree.
@@ -196,7 +197,7 @@ $(document).ready(function() {
     if (currentGRef != null) {
       if (currentNode.type == C_FORM) {
         saveForm(currentNode)
-      } else if (currentNode.type == C_GROUP) {
+      } else if (currentNode.type == C_NORMAL_GROUP) {
         saveGroup(currentNode)
       } else if (currentNode.type == C_COMMON_GROUP) {
         saveCommon(currentNode)
@@ -204,7 +205,9 @@ $(document).ready(function() {
         savePlaceholder(currentNode)
       } else if (currentNode.type == C_QUESTION) {
         saveQuestion(currentNode)
-      } else if (currentNode.type == C_CL) {
+      } else if (currentNode.type == C_Q_CL) {
+        saveCl(currentNode)
+      } else if (currentNode.type == C_BC_CL) {
         saveCl(currentNode)
       }
       clearNode(currentNode, currentGRef);
@@ -255,7 +258,9 @@ $(document).ready(function() {
     $.ajax({
       url: url,
       type: method,
-      data: data,
+      data: JSON.stringify(data),
+      dataType: 'json',
+      contentType: 'application/json',
       success: function(result){
         var html = alertSuccess("Form has been saved.");
         displayAlerts(html);
@@ -592,7 +597,7 @@ $(document).ready(function() {
       var html = alertWarning("You need to select a code list node.");
       displayAlerts(html);
     } else {
-      clLabelElement.value = currentNode.data.default_label;
+      clLabelElement.value = currentNode.data.subject_data.label;
     }
   });
   
@@ -681,7 +686,7 @@ $(document).ready(function() {
 
   $('#markdown_hide').click(function() {
     hideCi();
-    if (markdownType == C_GROUP) {
+    if (markdownType == C_NORMAL_GROUP) {
       showBCSelection();
     } else if (markdownType == C_QUESTION) {
       showNotepad();    
@@ -712,7 +717,7 @@ $(document).ready(function() {
   $( "#groupCompletion" ).focus(function() {
     hideBCSelection();
     showCi();
-    markdownType = C_GROUP;
+    markdownType = C_NORMAL_GROUP;
     markdownElement = groupCompletionElement;
     var text = markdownElement.value;
     getMarkdown(genericCompletionElement, text);
@@ -721,7 +726,7 @@ $(document).ready(function() {
   $( "#groupNote" ).focus(function() {
     hideBCSelection();
     showCi();
-    markdownType = C_GROUP;
+    markdownType = C_NORMAL_GROUP;
     markdownElement = groupNoteElement;
     var text = markdownElement.value;
     getMarkdown(genericCompletionElement, text);
@@ -868,10 +873,10 @@ $(document).ready(function() {
    * Functions to display the various panels. 
    */
   function displayForm(node) {
-    formIdentifierElement.value = node.data.identifier;
+    formIdentifierElement.value = node.data.scoped_identifier.identifier;
     formLabelElement.value = node.data.label;
-    formCompletionElement.value = node.data.formCompletion;
-    formNoteElement.value = node.data.formNote;
+    formCompletionElement.value = node.data.completion;
+    formNoteElement.value = node.data.note;
     if (editIdentifierFlag) {
       formIdentifierElement.disabled = false;
     } else {
@@ -914,14 +919,14 @@ $(document).ready(function() {
       $("#itemUpdate").prop('disabled', false);
       $("#itemCommon").prop('disabled', false);
       $("#itemRestore").prop('disabled', true);
-      itemEnableElement.checked = node.data.property_reference.enabled;
-      itemOptionalElement.checked = node.data.property_reference.optional;
+      itemEnableElement.checked = node.data.enabled;
+      itemOptionalElement.checked = node.data.optional;
     }
   }
 
   function displayQuestion(node) {
     questionLabelElement.value = node.data.label;
-    questionTextElement.value = node.data.qText;
+    questionTextElement.value = node.data.question_text;
     questionOptionalElement.checked = node.data.optional;
     questionMappingElement.value= node.data.mapping;
     var $radios = $('input:radio[name=dtRadio]');
@@ -934,8 +939,8 @@ $(document).ready(function() {
       for (j=0; j<node.children.length; j++) {
         var child = node.children[j];
         var data = child.data
-        var ref = data.thesaurus_concept_reference;
-        var clRow = {identifier: data.identifier , uri_id: ref.id , uri_ns: ref.namespace , useful_1: data.label}; 
+        var ref = data.subject_data;
+        var clRow = {identifier: ref.identifier, uri_id: ref.id, uri_ns: ref.namespace, useful_1: ref.notation, useful_2: ref.label}; 
         questionClTable.row.add(clRow);
       }
     }
@@ -947,18 +952,17 @@ $(document).ready(function() {
   }
 
   function displayCl(node) {
-    clIdentifierElement.innerHTML = node.data.identifier;
-    clLabelElement.value = node.data.label;
-    clDefaultLabelElement.innerHTML = node.data.default_label;
-    clNotationElement.innerHTML = node.data.notation;
-    clEnableElement.checked = node.data.thesaurus_concept_reference.enabled;
-    clOptionalElement.checked = node.data.thesaurus_concept_reference.optional;
+    clIdentifierElement.innerHTML = node.data.subject_data.identifier;
+    clLabelElement.value = node.data.local_label;
+    clDefaultLabelElement.innerHTML = node.data.subject_data.label;
+    clNotationElement.innerHTML = node.data.subject_data.notation;
+    clEnableElement.checked = node.data.enabled;
+    clOptionalElement.checked = node.data.optional;
     parentNode = node.parent;
     if (parentNode.type == C_QUESTION) {
       $("#clEnable").prop('disabled', true);
-    } else if (parentNode.type == C_BC_ITEM) {
-      $("#clLocalLabel").prop('disabled', true);
     } else {
+      $("#clLocalLabel").prop('disabled', true);
       $("#clEnable").prop('disabled', false);
     }
   }
@@ -968,11 +972,11 @@ $(document).ready(function() {
    */
   function saveForm(node) {
     if (editIdentifierFlag) {
-      node.data.identifier = formIdentifierElement.value;
+      node.data.scoped_identifier.identifier = formIdentifierElement.value;
     }
     node.data.label = formLabelElement.value;
-    node.data.formCompletion = formCompletionElement.value;
-    node.data.formNote = formNoteElement.value;
+    node.data.completion = formCompletionElement.value;
+    node.data.note = formNoteElement.value;
     node.name = node.data.label;
   }
 
@@ -992,8 +996,8 @@ $(document).ready(function() {
   }
 
   function saveItem(node) {
-    node.data.property_reference.enabled = itemEnableElement.checked;
-    node.data.property_reference.optional = itemOptionalElement.checked;
+    node.data.enabled = itemEnableElement.checked;
+    node.data.optional = itemOptionalElement.checked;
     node.enabled = itemEnableElement.checked;
   }
 
@@ -1005,7 +1009,7 @@ $(document).ready(function() {
     var cliNode;
     node.data.label = questionLabelElement.value;
     node.name = node.data.label;
-    node.data.qText = questionTextElement.value;
+    node.data.question_text = questionTextElement.value;
     node.data.optional = questionOptionalElement.checked;
     node.data.mapping = questionMappingElement.value;
     node.data.datatype = $('input:radio[name=dtRadio]:checked').val();
@@ -1019,8 +1023,9 @@ $(document).ready(function() {
     for (i=0; i<rowData.length; i++) {
       row = rowData.row(i).data();
       sourceCliNode = newQuestionCli(row);
-      cliNode = addD3Node(node, row.useful_1, C_CL, sourceCliNode, true); 
+      cliNode = addD3Node(node, row.useful_2, C_Q_CL, sourceCliNode, true); 
       addSourceNode(node.data, sourceCliNode, true);
+      tcReference(cliNode);
     }
   }
 
@@ -1029,10 +1034,10 @@ $(document).ready(function() {
   }
 
   function saveCl(node) {
-    node.data.thesaurus_concept_reference.enabled = clEnableElement.checked;
-    node.data.thesaurus_concept_reference.optional = clOptionalElement.checked;
-    node.data.label = clLabelElement.value;
-    node.name = node.data.label;
+    node.data.enabled = clEnableElement.checked;
+    node.data.optional = clOptionalElement.checked;
+    node.data.local_label = clLabelElement.value;
+    node.name = node.data.local_label;
     node.enabled = clEnableElement.checked;
   }
 
@@ -1050,7 +1055,7 @@ $(document).ready(function() {
         child = groupParent.save[i];
         if (child.type == C_COMMON_GROUP) {
           commonGroup = child;
-        } else if (child.type == C_BC_GROUP) {
+        } else {
           for (var j=0; j<child.save.length; j++) {
             item = child.save[j];
             if ('bridgPath' in item.data) {
@@ -1174,7 +1179,7 @@ $(document).ready(function() {
     var label;
     label = "Group";
     sourceNode = newFormGroup(label)
-    d3Node = addD3Node(currentNode, label, C_GROUP, sourceNode, true);     
+    d3Node = addD3Node(currentNode, label, C_NORMAL_GROUP, sourceNode, true);     
     addSourceNode(currentNode.data, sourceNode, true)
     return d3Node;
   }
@@ -1192,7 +1197,7 @@ $(document).ready(function() {
 
   function newFormGroup(label) {
     return { 
-      id: "", namespace: "", type: C_GROUP, label: label, ordinal: 0, optional: false, repeating: false, 
+      id: "", namespace: "", type: C_NORMAL_GROUP, label: label, ordinal: 0, optional: false, repeating: false, 
       note: "", completion: "", biomedical_concept_reference: {}, children: [] };
   }
 
@@ -1206,8 +1211,7 @@ $(document).ready(function() {
     return {
       id: "", namespace: "", type: C_QUESTION, label: label, ordinal: 0, 
       optional: false, completion: "", note: "", free_text: "", datatype: "I",
-      format: "3", qText: "", pText: "", mapping: "",
-      //property_reference: {id: "", namespace: "", enabled: true, optional: false}, 
+      format: "3", question_text: "", pText: "", mapping: "",
       children: [] 
     };
   }
@@ -1216,8 +1220,7 @@ $(document).ready(function() {
     return {
       id: "", namespace: "", type: C_PLACEHOLDER, label: label, ordinal: 0, 
       optional: false, completion: "", note: "", free_text: "", datatype: "",
-      format: "", qText: "", pText: "", mapping: "",
-      //property_reference: {id: "", namespace: "", enabled: true, optional: false}, 
+      format: "", question_text: "", pText: "", mapping: "",
       children: [] 
     };
   }
@@ -1225,7 +1228,7 @@ $(document).ready(function() {
   function newBCGroup(bc) {
     // TODO: Extra fields in the biomedical_concept_reference
     return {
-      id: bc.id, namespace: bc.namespace, type: C_BC_GROUP, label: bc.label, ordinal: 0, 
+      id: bc.id, namespace: bc.namespace, type: C_NORMAL_GROUP, label: bc.label, ordinal: 0, 
       optional: bc.optional, repeating: bc.repeating, note: bc.note, 
       biomedical_concept_reference: {id: bc.id, namespace: bc.namespace, enabled: true, optional: false}, 
       children: [] };
@@ -1236,34 +1239,36 @@ $(document).ready(function() {
     return {
       id: property.id, namespace: property.namespace, type: C_BC_ITEM, label: property.alias, ordinal: 0, 
       optional: property.optional, note: property.note, free_text: property.free_text, datatype: property.datatype,
-      format: property.format, qText: property.qText, pText: property.pText, mapping: property.mapping,
+      format: property.format, question_text: property.question_text, pText: property.pText, mapping: property.mapping,
       bridgPath: property.bridgPath, 
-      property_reference: {id: property.id, namespace: property.namespace, enabled: true, optional: false}, 
+      enabled: true, 
+      optional: false, 
+      subject_ref: {id: property.id, namespace: property.namespace},
       children: [] 
     };
   }
 
   function newBCPropertyCli(cli) {
     return {
-      type: C_CL, 
-      label: cli.notation, 
-      default_label: cli.notation, 
-      identifier: cli.property, 
+      type: C_BC_CL, 
+      label: cli.label, 
+      local_label: cli.label, 
       ordinal: 0, 
-      thesaurus_concept_reference: {id: cli.id, namespace: cli.namespace, enabled: true, optional: false},
-      children: [] 
+      enabled: true, 
+      optional: false,
+      subject_ref: {id: cli.uri_id, namespace: cli.uri_ns}
     };
   }
 
   function newQuestionCli(cli) {
     return {
-      type: C_CL, 
-      label: cli.useful_1, 
-      default_label: cli.useful_1, 
-      identifier: cli.identifier, 
+      type: C_Q_CL, 
+      label: cli.useful_2, 
+      local_label: cli.useful_2, 
+      enabled: true,
+      optional: false, 
       ordinal: 0, 
-      thesaurus_concept_reference: {id: cli.uri_id, namespace: cli.uri_ns, enabled: true, optional: false},
-      children: [] 
+      subject_ref: {id: cli.uri_id, namespace: cli.uri_ns}
     };
   }
 
@@ -1341,7 +1346,7 @@ $(document).ready(function() {
         var i;
         var j;
         sourceBcNode = newBCGroup(bc);
-        bcNode = addD3Node(currentNode, bc.label, C_BC_GROUP, sourceBcNode, true);     
+        bcNode = addD3Node(currentNode, bc.label, C_NORMAL_GROUP, sourceBcNode, true);     
         addSourceNode(currentNode.data, sourceBcNode, true)
         for (i=0; i<bc.properties.length; i++) {
           var property = bc.properties[i];
@@ -1354,7 +1359,7 @@ $(document).ready(function() {
               var value = values[j];
               var cli = value.cli;
               sourceCliNode = newBCPropertyCli(cli);
-              cliNode = addD3Node(propertyNode, cli.notation, C_CL, sourceCliNode, true); 
+              cliNode = addD3Node(propertyNode, cli.notation, C_BC_CL, sourceCliNode, true); 
               cliNode.enabled = true    
               addSourceNode(sourcePropertyNode, sourceCliNode, true);
             }
@@ -1513,7 +1518,7 @@ $(document).ready(function() {
     var newNode;
     var i;
     var child;
-    if (sourceNode.type === C_GROUP || sourceNode.type === C_COMMON_GROUP || sourceNode.type === C_BC_GROUP || sourceNode.type === C_BC_ITEM || sourceNode.type === C_QUESTION) {
+    if (sourceNode.type === C_NORMAL_GROUP || sourceNode.type === C_COMMON_GROUP || sourceNode.type === C_BC_ITEM || sourceNode.type === C_QUESTION) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
       if (sourceNode.hasOwnProperty('children')) {
         for (i=0; i<sourceNode.children.length; i++) {
@@ -1523,9 +1528,9 @@ $(document).ready(function() {
       }
     } else if (sourceNode.type === C_PLACEHOLDER ) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
-    } else if (sourceNode.type === C_CL) {
+    } else if (sourceNode.type === C_Q_CL || sourceNode.type === C_BC_CL) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
-      newNode.enabled = sourceNode.thesaurus_concept_reference.enabled;
+      newNode.enabled = sourceNode.enabled;
     }
   }
 
@@ -1650,10 +1655,10 @@ $(document).ready(function() {
     if (node.type ==  C_FORM ) {
       selectForm();
       displayForm(node);
-    } else if (node.type == C_GROUP) {
+    } else if (node.type == C_NORMAL_GROUP) {
       selectGroup();
       displayGroup(node);
-    } else if (node.type == C_BC_GROUP) {
+    } else if (node.type == C_NORMAL_GROUP) {
       selectBC();
       displayBC(node);
     } else if (node.type == C_COMMON_GROUP) {
@@ -1670,7 +1675,10 @@ $(document).ready(function() {
     } else if (node.type == C_PLACEHOLDER) {
       selectPlaceholder();
       displayPlaceholder(node);
-    } else if (node.type == C_CL) {
+    } else if (node.type == C_Q_CL) {
+      selectCl();
+      displayCl(node);
+    } else if (node.type == C_BC_CL) {
       selectCl();
       displayCl(node);
     }
@@ -1698,6 +1706,55 @@ $(document).ready(function() {
     } else {
       return false;
     }
+  }
+
+  /*
+  * Get All Thesaurus Concept References for entire JSON tree
+  */
+  function allTcReference(node) {
+    var i;
+    var child;
+    if (node.type == C_Q_CL || node.type == C_BC_CL) {
+      $.ajax({
+        url: "/thesaurus_concepts/" + node.data.subject_ref.id,
+        type: "GET",
+        data: { "namespace": node.data.subject_ref.namespace },
+        dataType: 'json',
+        error: function (xhr, status, error) {
+          var html = alertError("An error has occurred loading a terminology reference.");
+          displayAlerts(html);
+        },
+        success: function(result){
+          node.data.subject_data = result;
+          node.name = result.label;
+          displayTree(1);
+        }
+      });
+    }
+    if (node.hasOwnProperty('children')) {
+      for (i=0; i<node.children.length; i++) {
+        child = node.children[i];
+        allTcReference(child);
+      }
+    } 
+  }
+
+  function tcReference(node) {
+    $.ajax({
+      url: "/thesaurus_concepts/" + node.data.subject_ref.id,
+      type: "GET",
+      data: { "namespace": node.data.subject_ref.namespace },
+      dataType: 'json',
+      error: function (xhr, status, error) {
+        var html = alertError("An error has occurred loading a terminology reference.");
+        displayAlerts(html);
+      },
+      success: function(result){
+        node.data.subject_data = result;
+        node.data.local_label = result.label;
+        node.name = result.label;
+      }
+    }); 
   }
 
 });

@@ -11,8 +11,8 @@ class Forms::ItemsController < ApplicationController
     authorize Form::Item
     @form = Form.find(params[:formId], params[:namespace], false)
     @formItem = Form::Item.find(params[:id], params[:namespace])
-    @completion = MarkdownEngine::render(@formItem.completion)
-    @note = MarkdownEngine::render(@formItem.note)
+    @property = @formItem.bc_property
+    @tcs = @formItem.thesaurus_concepts
   end
   
 private

@@ -1,6 +1,6 @@
 class Form < IsoManaged
   
-  attr_accessor :groups, :formCompletion, :formNote
+  attr_accessor :groups, :completion, :note
   #validates_presence_of :groups
   
   # Constants
@@ -102,10 +102,12 @@ class Form < IsoManaged
   def initialize(triples=nil, id=nil)
     self.groups = Array.new
     self.label = "New Form"
-    self.formCompletion = ""
-    self.formNote = ""
+    self.completion = ""
+    self.note = ""
     if triples.nil?
       super
+      # Set the type. Overwrite default.
+      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
@@ -114,9 +116,9 @@ class Form < IsoManaged
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
-      object.groups = Form::Group.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
+      object.groups = Form::Group::Normal.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
     end
-    #object.triples = ""
+    object.triples = ""
     return object     
   end
 
@@ -137,66 +139,54 @@ class Form < IsoManaged
   def self.createPlaceholder(params)
     object = self.new 
     object.errors.clear
-    if params_valid?(params, object)
-      identifier = params[:identifier]
-      freeText = params[:freeText]
-      label = params[:label]
-      params[:versionLabel] = "0.1"
-      params[:version] = "1"
-      if exists?(identifier, IsoRegistrationAuthority.owner()) 
+    if params_valid_placeholder?(params, object)
+      object.scopedIdentifier.identifier = params[:identifier]
+      object.label = params[:label]
+      group = Form::Group::Normal.new
+      group.label = "Placeholder Group"
+      item = Form::Item::Placeholder.new
+      item.label = "Placeholder"
+      item.free_text = params[:freeText]
+      object.groups << group
+      group.items << item
+      if exists?(object.identifier, IsoRegistrationAuthority.owner()) 
         object.errors.add(:base, "The identifier is already in use.")
       else  
-        object = IsoManaged.create(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
-        group = Group.createPlaceholder(object.id, object.namespace, freeText)
-        update = UriManagement.buildNs(object.namespace,["bf"]) +
-          "INSERT DATA \n" +
-          "{ \n" +
-          "  :" + object.id + " bf:hasGroup :" + group.id + " . \n" +
-          "  :" + object.id + " bf:formCompletion \"\"^^xsd:string . \n" +
-          "  :" + object.id + " bf:formNote \"\"^^xsd:string . \n" +
-          "}"
-        response = CRUD.update(update)
-        if !response.success?
-          object.errors.add(:base, "The group was not created in the database.")
-        end
+        object = Form.create({:data => object.to_edit(true)})
       end
     end
     return object
   end
   
   def self.create(params)
-    object = self.new 
-    object.errors.clear
+    # Get the parameters
     data = params[:data]
     operation = data[:operation]
     managed_item = data[:managed_item]
-    #ConsoleLogger::log(C_CLASS_NAME,"create", "managed_item=" + managed_item.to_json.to_s)
-    if params_valid?(managed_item, object)
-      ra = IsoRegistrationAuthority.owner
-      if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object, ra) 
-        sparql = SparqlUpdate.new
-        #managed_item[:versionLabel] = "0.1"
-        #managed_item[:new_version] = operation[:new_version]
-        #managed_item[:new_state] = operation[:new_state]
-        #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
-        uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-        id = uri.getCid()
-        ns = uri.getNs()
-        Form.to_sparql(id, sparql, C_SCHEMA_PREFIX, managed_item)
-        #ConsoleLogger::log(C_CLASS_NAME,"create", "SPARQL=" + sparql.to_s)
+    # Create blank object for the errors
+    object = self.new
+    object.errors.clear
+    # Set owner ship
+    ra = IsoRegistrationAuthority.owner
+    if params_valid?(managed_item, object) then
+      # Build a full object. 
+      object = Form.from_json(data)
+      # Can we create?
+      if object.create_permitted?(ra)
+        # Build sparql
+        sparql = object.to_sparql(ra)
+        # Send to database
+        ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
         response = CRUD.update(sparql.to_s)
-        if response.success?
-          object = Form.find(id, ns)
-          object.errors.clear
-        else
-          object.errors.add(:base, "The Form was not created in the database.")
+        if !response.success?
+          object.errors.add(:base, "The Domain was not created in the database.")
         end
       end
     end
     return object
   end
 
-   def self.update(params)
+  def self.update(params)
     object = self.new 
     object.errors.clear
     data = params[:data]
@@ -204,20 +194,13 @@ class Form < IsoManaged
     managed_item = data[:managed_item]
     #ConsoleLogger::log(C_CLASS_NAME,"update", "managed_item=" + managed_item.to_json.to_s)
     form = Form.find(managed_item[:id], managed_item[:namespace])
-    sparql = SparqlUpdate.new
-    #managed_item[:versionLabel] = "0.1"
-    #managed_item[:new_version] = operation[:new_version]
-    #managed_item[:new_state] = operation[:new_state]
-    #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
     ra = IsoRegistrationAuthority.owner
-    uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-    id = uri.getCid()
-    ns = uri.getNs()
-    Form.to_sparql(id, sparql, C_SCHEMA_PREFIX, managed_item)
+    object = Form.from_json(data)
+    sparql = object.to_sparql(ra)
     form.destroy # Destroys the old entry before the creation of the new item
+    ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
     response = CRUD.update(sparql.to_s)
     if response.success?
-      object = Form.find(id, ns)
       object.errors.clear
     else
       object.errors.add(:base, "The Form was not created in the database.")
@@ -225,38 +208,47 @@ class Form < IsoManaged
     return object
   end
 
-  def crf
-    form = self.to_api_json
-    html = crf_node(form)
-    return html
+  def destroy
+    super(self.namespace)
   end
 
-  def acrf
-    form = self.to_api_json
-    annotations = Array.new
-    annotations += bc_annotations
-    annotations += question_annotations
-    html = crf_node(form, annotations)
-    return html
+  def to_json
+    json = super
+    json[:completion] = self.completion
+    json[:note] = self.note
+    json[:children] = Array.new
+    self.groups.each do |child|
+      json[:children] << child.to_json
+    end
+    return json
   end
 
-  def report(options, user)
-    doc_history = Array.new
-    if options[:full]
-      history = IsoManaged::history(C_RDF_TYPE, C_SCHEMA_NS, {:identifier => self.identifier, :scope_id => self.owner_id})
-      history.each do |item|
-        if self.same_version?(item.version) || self.later_version?(item.version)
-          doc_history << item.to_api_json
-        end
+  def self.from_json(json)
+    object = super(json)
+    managed_item = json[:managed_item]
+    object.completion = managed_item[:completion]
+    object.note = managed_item[:note]
+    if managed_item.has_key?(:children)
+      managed_item[:children].each do |child|
+        object.groups << Form::Group::Normal.from_json(child)
       end
     end
-    form = self.to_api_json
-    annotations = Array.new
-    if options[:annotate]
-      annotations += bc_annotations
-      annotations += question_annotations
+    return object
+  end
+
+  def to_sparql(ra)
+    sparql = SparqlUpdate.new
+    uri = super(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, C_SCHEMA_PREFIX)
+    # Set the properties
+    sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "completion", "#{self.completion}", "string")
+    sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "note", "#{self.note}", "string")
+    # Now deal with the children
+    self.groups.each do |group|
+      ref_id = group.to_sparql(uri.id, sparql)
+      sparql.triple("", uri.id, C_SCHEMA_PREFIX, "hasGroup", "", ref_id)
     end
-    pdf = Reports::CrfReport.create(form, options, annotations, doc_history, user)
+    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","SPARQL=#{sparql}")
+    return sparql
   end
 
   def self.bc_impact(params)
@@ -315,68 +307,49 @@ class Form < IsoManaged
     return results
   end
 
-  def to_api_json
-    result = super
-    result[:type] = "Form"
-    result[:formCompletion] = self.formCompletion
-    result[:formNote] = self.formNote
-    self.groups.each do |group|
-      result[:children][group.ordinal - 1] = group.to_api_json
-    end
-    return result
+  def crf
+    form = self.to_api_json
+    html = crf_node(form)
+    return html
   end
 
-  def self.to_sparql(parent_id, sparql, schema_prefix, json)
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "JSON=" + json.to_s)
-    id = parent_id 
-    #super(id, sparql, schema_prefix, "form", json[:label]) #Inconsistent at the moment. Handled within the SI & RS creation
-    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "formCompletion=" + json[:formCompletion])
-    sparql.triple_primitive_type("", id, schema_prefix, "formCompletion", json[:formCompletion], "string")
-    sparql.triple_primitive_type("", id, schema_prefix, "formNote", json[:formNote], "string")
-    if json.has_key?(:children)
-      json[:children].each do |key, group|
-        sparql.triple("", id, schema_prefix, "hasGroup", "", id + Uri::C_UID_SECTION_SEPARATOR + 'G' + group[:ordinal].to_s  )
-      end
-    end
-    if json.has_key?(:children)
-      json[:children].each do |key, item|
-        Form::Group.to_sparql(id, sparql, schema_prefix, item)
-      end
-    end
+  def acrf
+    form = self.to_api_json
+    annotations = Array.new
+    annotations += bc_annotations
+    annotations += question_annotations
+    html = crf_node(form, annotations)
+    return html
   end
 
-  def destroy
-    # Create the query
-    update = UriManagement.buildNs(self.namespace, [C_SCHEMA_PREFIX, "isoI", "isoR"]) +
-      "DELETE \n" +
-      "{\n" +
-      "  ?s ?p ?o . \n" +
-      "}\n" +
-      "WHERE\n" + 
-      "{\n" +
-      "  {\n" +
-      "    :" + self.id + " (:|!:)* ?s . \n" +  
-      "    ?s ?p ?o . \n" +
-      "    FILTER(STRSTARTS(STR(?s), \"" + self.namespace + "\"))" +
-      "  } UNION {\n" + 
-      "    :" + self.id + " isoI:hasIdentifier ?s . \n" +
-      "    ?s ?p ?o . \n" +
-      "  } UNION {\n" + 
-      "    :" + self.id + " isoR:hasState ?s . \n" +
-      "    ?s ?p ?o . \n" +
-      "  }\n" + 
-      "}\n"
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    if !response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
-      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
+  def report(options, user)
+    doc_history = Array.new
+    if options[:full]
+      history = IsoManaged::history(C_RDF_TYPE, C_SCHEMA_NS, {:identifier => self.identifier, :scope_id => self.owner_id})
+      history.each do |item|
+        if self.same_version?(item.version) || self.later_version?(item.version)
+          doc_history << item.to_api_json
+        end
+      end
     end
+    form = self.to_api_json
+    annotations = Array.new
+    if options[:annotate]
+      annotations += bc_annotations
+      annotations += question_annotations
+    end
+    pdf = Reports::CrfReport.create(form, options, annotations, doc_history, user)
   end
 
 private
 
   def self.params_valid?(params, object)
+    result1 = ModelUtility::validIdentifier?(params[:scoped_identifier][:identifier], object)
+    result2 = ModelUtility::validLabel?(params[:label], object)
+    return result1 && result2 # && result3 && result4
+  end
+
+  def self.params_valid_placeholder?(params, object)
     result1 = ModelUtility::validIdentifier?(params[:identifier], object)
     result2 = ModelUtility::validLabel?(params[:label], object)
     return result1 && result2 # && result3 && result4

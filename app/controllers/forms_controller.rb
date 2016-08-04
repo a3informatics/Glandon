@@ -117,8 +117,6 @@ class FormsController < ApplicationController
   def show 
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
-    @completion = MarkdownEngine::render(@form.formCompletion)
-    @note = MarkdownEngine::render(@form.formNote)
   end
   
   def view 

@@ -37,11 +37,9 @@ class IsoScopedIdentifier
         cid = ModelUtility.extractCid(links[0])
         self.namespace = IsoNamespace.find(cid)
       end
-      triples.each do |triple|
-        self.identifier = Triples::get_property_value(triples, UriManagement::C_ISO_I, "identifier")
-        self.version = Triples::get_property_value(triples, UriManagement::C_ISO_I, "version").to_i
-        self.versionLabel = Triples::get_property_value(triples, UriManagement::C_ISO_I, "versionLabel")
-      end
+      self.identifier = Triples::get_property_value(triples, UriManagement::C_ISO_I, "identifier")
+      self.version = Triples::get_property_value(triples, UriManagement::C_ISO_I, "version").to_i
+      self.versionLabel = Triples::get_property_value(triples, UriManagement::C_ISO_I, "versionLabel")
     end
   end
 

@@ -6,7 +6,7 @@ class IsoConcept
   include ActiveModel::Conversion
   include ActiveModel::Validations
     
-  attr_accessor :id, :namespace, :rdf_type, :label, :links, :extension_properties, :triples, :properties
+  attr_accessor :id, :namespace, :rdf_type, :label, :links, :properties, :extension_properties, :triples
   
   # Constants
   C_CID_PREFIX = "ISOC"
@@ -21,6 +21,15 @@ class IsoConcept
   
   def persisted?
     id.present?
+  end
+
+  def uri
+    return UriV2.new({:namespace => self.namespace, :id => self.id})
+  end
+
+  def rdf_type_fragment
+    type = UriV2.new({:uri => self.rdf_type})
+    return type.id
   end
 
   def initialize(triples=nil, id=nil)    
@@ -61,10 +70,6 @@ class IsoConcept
         end
       end
     end
-  end
-
-  def uri
-    return UriV2.new({:namespace => self.namespace, :id => self.id})
   end
 
   # Does the item exist.
@@ -239,6 +244,22 @@ class IsoConcept
       results = l.map { |link| UriV2.new({:uri => link[:value]})}
     end
     return results
+  end
+
+  # Get the type of the object at the end of a link (uri) 
+  def get_link_object_type_v2(link)    
+    if !self.triples.nil?
+      id = link.id
+      class_triples = self.triples[id]
+      if class_triples.length > 0
+        class_triples.each do |triple|
+          if triple[:predicate] == C_RDF_TYPE
+            return triple[:object]
+          end
+        end
+      end
+    end
+    return ""
   end
 
   # Get the links of a certain type from the set of links.

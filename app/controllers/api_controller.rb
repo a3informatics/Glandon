@@ -32,8 +32,9 @@ class ApiController < ApplicationController
     @form = Form.find(id, ns)
     respond_to do |format|
       format.json do
-        results = @form.to_api_json
+        results = @form.to_json
         render json: results
+        ConsoleLogger::log(C_CLASS_NAME,"form", "JSON=#{results}")
       end
     end
   end

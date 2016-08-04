@@ -25,8 +25,8 @@
 	    <th>Notes</th>
 	  </tr>
 	  <tr>
-	    <td><%= raw @completion %></td>
-	    <td><%= raw @note %></td>
+	    <td><%= raw MarkdownEngine::render(@form.completion) %></td>
+	    <td><%= raw MarkdownEngine::render(@form.note) %></td>
 	  </tr>
 	</table>
 	<h4>Groups</h4>
@@ -46,7 +46,7 @@
 			<% @form.groups.each do |group| %>
 				<tr>
 			  	<td><%= group.ordinal%></td>
-			  	<td><%= group.groupType%></td>
+			  	<td><%= group.rdf_type_fragment%></td>
 			  	<td><%= group.optional%></td>
 			  	<td><%= group.repeating%></td>
 			  	<td><%= raw group.completion%></td>

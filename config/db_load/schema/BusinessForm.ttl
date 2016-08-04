@@ -30,7 +30,19 @@
   rdf:type owl:Class ;
   rdfs:label "Group"^^xsd:string ;
   rdfs:subClassOf :Node ;
-  skos:definition ""^^xsd:string
+  skos:definition "Generic group."^^xsd:string
+.
+:NormalGroup
+  rdf:type owl:Class ;
+  rdfs:label "Group"^^xsd:string ;
+  rdfs:subClassOf :Group ;
+  skos:definition "Normal group."^^xsd:string
+.
+:CommonGroup
+  rdf:type owl:Class ;
+  rdfs:label "Group"^^xsd:string ;
+  rdfs:subClassOf :Group ;
+  skos:definition "A common group."^^xsd:string
 .
 :Item
   rdf:type owl:Class ;
@@ -85,23 +97,23 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Group ;
   rdfs:label "Has common group relationship"^^xsd:string ;
-  rdfs:range :Group ;
+  rdfs:range :CommonGroup ;
   skos:definition ""^^xsd:string
 .
 :hasCommonItem
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Group ;
+  rdfs:domain :BcProperty ;
   rdfs:label "Has common item relationship"^^xsd:string ;
-  rdfs:range :Item ;
+  rdfs:range :BcProperty ;
   skos:definition ""^^xsd:string
 .
 :hasSubGroup
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Group ;
+  rdfs:domain :NormalGroup ;
   rdfs:label "Has sub group relationship"^^xsd:string ;
-  rdfs:range :Group ;
+  rdfs:range :NormalGroup ;
   skos:definition ""^^xsd:string
 .
 :isItemOf
@@ -144,21 +156,33 @@
   rdfs:range bo:TcReference ;
   skos:definition ""^^xsd:string
 .
+:completion
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :Node :Form)
+    ] ;
+  rdfs:label "Completion instructions"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The completion instructions for the item."^^xsd:string
+.
 :note
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Note"^^xsd:string ;
-  rdfs:domain :Node ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Node :Form)
+    ] ;
   rdfs:range xsd:string ;
-  skos:definition ""^^xsd:string
+  skos:definition "The note for the item."^^xsd:string
 .
 :repeating
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :Group ;
+  rdfs:domain :NormalGroup ;
   rdfs:label "Repeating group"^^xsd:string ;
   rdfs:range xsd:boolean ;
-  skos:definition ""^^xsd:string
+  skos:definition "The group is a repeating group."^^xsd:string
 .
 :optional
   rdf:type owl:DatatypeProperty ;
@@ -166,15 +190,15 @@
   rdfs:domain :Node ;
   rdfs:label "Optional group"^^xsd:string ;
   rdfs:range xsd:boolean ;
-  skos:definition ""^^xsd:string
+  skos:definition "Item optional flag."^^xsd:string
 .
-:freeText
+:free_text
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Placeholder ;
   rdfs:label "text"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition ""^^xsd:string
+  skos:definition "Placeholder free text."^^xsd:string
 .
 :ordinal
   rdf:type owl:DatatypeProperty ; 
@@ -182,7 +206,7 @@
   rdfs:domain :Node ;
   rdfs:label "Node ordinal"^^xsd:string ;
   rdfs:range xsd:integer ;
-  skos:definition ""^^xsd:string
+  skos:definition "The rodinal within the set."^^xsd:string
 .
 :datatype
   rdf:type owl:DatatypeProperty ;
@@ -190,7 +214,7 @@
   rdfs:domain :Question ;
   rdfs:label "Datatype"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition ""^^xsd:string
+  skos:definition "The datatype of the response."^^xsd:string
 .
 :format
   rdf:type owl:DatatypeProperty ;
@@ -198,7 +222,7 @@
   rdfs:domain :Question ;
   rdfs:label "Format"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition ""^^xsd:string
+  skos:definition "The format of the response."^^xsd:string
 .
 :mapping
   rdf:type owl:DatatypeProperty ;
@@ -206,38 +230,15 @@
   rdfs:domain :Question ;
   rdfs:label "Mapping"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition ""^^xsd:string
+  skos:definition "The annotation/mapping."^^xsd:string
 .
-:qText
+:question_text
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Question ;
   rdfs:label "Question text"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition ""^^xsd:string
+  skos:definition "The question text."^^xsd:string
 .
-:formCompletion
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :Form ;
-  rdfs:label "Completion instructions"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition ""^^xsd:string
-.
-:formNote
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:label "Note"^^xsd:string ;
-  rdfs:domain :Form ;
-  rdfs:range xsd:string ;
-  skos:definition ""^^xsd:string
-.
-:completion
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :Node ;
-  rdfs:label "Completion instructions"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition ""^^xsd:string
-.
+
 
