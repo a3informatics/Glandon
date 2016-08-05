@@ -36,7 +36,7 @@ class IsoConceptSystem < IsoConceptSystemGeneric
     sparql.add_default_namespace(object.namespace)
     # Send the request, wait the resonse
     ConsoleLogger::log(C_CLASS_NAME,"add","Object=#{sparql}")
-      response = CRUD.update(sparql.to_s)
+    response = CRUD.update(sparql.to_s)
     # Response
     if !response.success?
       ConsoleLogger::log(C_CLASS_NAME,"add","Success")
