@@ -166,12 +166,12 @@ class SdtmUserDomain < Tabular::Tabulation
     object.model_ref = OperationalReferenceV2.from_json(managed_item[:model_ref])
     object.ig_ref = OperationalReferenceV2.from_json(managed_item[:ig_ref])
     if managed_item.has_key?(:children)
-      managed_item[:children].each do |key, child|
+      managed_item[:children].each do |child|
         object.children << SdtmUserDomain::Variable.from_json(child)
       end
     end
     if managed_item.has_key?(:bc_refs)
-      managed_item[:bc_refs].each do |key, child|
+      managed_item[:bc_refs].each do |child|
         object.bc_refs << OperationalReferenceV2.from_json(child)
       end
     end

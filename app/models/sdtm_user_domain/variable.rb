@@ -106,13 +106,13 @@ class SdtmUserDomain::Variable < Tabular::Column
     object.datatype = SdtmModelDatatype.from_json(json[:datatype])
     object.compliance = EnumeratedLabel.from_json(json[:compliance])
     object.classification = EnumeratedLabel.from_json(json[:classification]) 
-    if json.has_key?(:sub_classification) 
+    if !json[:sub_classification].blank? 
       object.sub_classification = EnumeratedLabel.from_json(json[:sub_classification]) 
     end
-    if !json.has_key?(:variable_ref)
-      object.variable_ref = nil
-    else
+    if !json[:variable_ref].blank?
       object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
+    else
+      object.variable_ref = nil      
     end
     return object
   end

@@ -119,7 +119,9 @@ $(document).ready(function() {
     $.ajax({
       url: url,
       type: method,
-      data: data,
+      data: JSON.stringify(data),
+      dataType: 'json',
+      contentType: 'application/json',
       success: function(result){
         var html = alertSuccess("Domain has been saved.");
         displayAlerts(html);
