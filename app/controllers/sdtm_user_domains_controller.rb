@@ -30,7 +30,6 @@ class SdtmUserDomainsController < ApplicationController
     authorize SdtmUserDomain
     id = params[:id]
     namespace = params[:namespace]
-    #@model_variables = Array.new
     @ig_variables = Array.new
     @bcs = Array.new
     @sdtm_user_domain = SdtmUserDomain.find(id, namespace)
@@ -41,9 +40,6 @@ class SdtmUserDomainsController < ApplicationController
       else
         ig_variable = SdtmIgDomain::Variable.find(child.variable_ref.subject_ref.id, child.variable_ref.subject_ref.namespace)
       end
-      #class_variable = SdtmModelDomain::Variable.find(ig_variable.variable_ref.subject_ref.id, ig_variable.variable_ref.subject_ref.namespace)
-      #model_variable = SdtmModel::Variable.find(class_variable.variable_ref.subject_ref.id, class_variable.variable_ref.subject_ref.namespace)
-      #@model_variables << model_variable
       @ig_variables << ig_variable
     end
     @sdtm_user_domain.bc_refs.each do |child|
@@ -78,13 +74,16 @@ class SdtmUserDomainsController < ApplicationController
     namespace = params[:namespace]
     @sdtm_user_domain = SdtmUserDomain.find(id, namespace)
     ConsoleLogger::log(C_CLASS_NAME,"edit","Domain=#{@sdtm_user_domain.to_json}")
-    @datatypes = SdtmModelDatatype.all(@sdtm_user_domain.model_ref.subject_ref.namespace)
-    ConsoleLogger::log(C_CLASS_NAME,"edit","Datatypes=#{@datatypes.to_json}")
-    @compliance = SdtmModelCompliance.all(@sdtm_user_domain.ig_ref.subject_ref.namespace)
-    ConsoleLogger::log(C_CLASS_NAME,"edit","Compliance=#{@compliance.to_json}")
-    @classifications = SdtmModelClassification.all(@sdtm_user_domain.model_ref.subject_ref.namespace)
-    ConsoleLogger::log(C_CLASS_NAME,"edit","Classifications=#{@classifications.to_json}")
-    ig_domain = IsoManaged.find(@sdtm_user_domain.ig_ref.subject_ref.id, @sdtm_user_domain.ig_ref.subject_ref.namespace, false)
+    if @sdtm_user_domain.children.length > 0
+      variable = @sdtm_user_domain.children[0]   
+      @datatypes = SdtmModelDatatype.all(variable.datatype.namespace)
+      @classifications = SdtmModelClassification.all(variable.classification.namespace)
+      @compliance = SdtmModelCompliance.all(variable.compliance.namespace)
+    else
+      @datatypes = Array.new
+      @classifications = Array.new
+      @compliance = Array.new
+    end
   end
 
   def update_add
@@ -142,10 +141,21 @@ class SdtmUserDomainsController < ApplicationController
     if clone_type == "IG"
       sdtm_ig_domain = SdtmIgDomain.find(id, namespace)
       @sdtm_user_domain = SdtmUserDomain.upgrade(sdtm_ig_domain)
-      @datatypes = SdtmModelDatatype.all(sdtm_ig_domain.model_ref.subject_ref.namespace)
+      if @sdtm_user_domain.children.length > 0
+        variable = @sdtm_user_domain.children[0]   
+        @datatypes = SdtmModelDatatype.all(variable.datatype.namespace)
+        @classifications = SdtmModelClassification.all(variable.classification.namespace)
+        @compliance = SdtmModelCompliance.all(variable.compliance.namespace)
+      else
+        @datatypes = Array.new
+        @classifications = Array.new
+        @compliance = Array.new
+      end
+      ConsoleLogger::log(C_CLASS_NAME,"clone","Datatypes=#{@datatypes.to_json}")
+      ConsoleLogger::log(C_CLASS_NAME,"clone","Compliance=#{@compliance.to_json}")
+      ConsoleLogger::log(C_CLASS_NAME,"clone","Classifications=#{@classifications.to_json}")    
     else
-      #@sdtm_user_domain = SdtmUserDomain.find(id, namespace)
-      #@datatypes = SdtmModelDatatype.all(sdtm_ig_domain.namespace)
+      # Do nothing at the present time. Can only clone from IG.
     end
   end
   

@@ -45,7 +45,7 @@ class Background < ActiveRecord::Base
   #handle_asynchronously :importCdiscSdtmModel
 
   def importCdiscSdtmIg(params, files)
-    compliance_map = Hash.new
+    compliance_set = Hash.new
     sparql = SparqlUpdateV2.new
     self.errors.clear
     self.update(
@@ -67,11 +67,11 @@ class Background < ActiveRecord::Base
         ig_domains = results.select { |hash| hash[:type]=="IG_DOMAIN" }
         # Add the model 
         ig = igs[0]
-        ig_result = SdtmIg.import_sparql({:data => ig[:instance]}, sparql, ig_domains, compliance_map)
+        ig_result = SdtmIg.import_sparql({:data => ig[:instance]}, sparql, ig_domains, compliance_set)
         # Add the class domains
         ordinal = 1
         ig_domains.each do |domain|
-          domain_result = SdtmIgDomain.import_sparql({:data => domain[:instance]}, sparql, compliance_map, class_map)
+          domain_result = SdtmIgDomain.import_sparql({:data => domain[:instance]}, sparql, compliance_set, class_map)
           result = SdtmIg.add_domain_sparql(ig_result[:uri], domain_result[:uri], ordinal, sparql)
           ordinal += 1
         end

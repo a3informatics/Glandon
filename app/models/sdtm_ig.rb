@@ -71,11 +71,10 @@ class SdtmIg < Tabular
     return { :object => object, :job => job }
   end
 
-  def self.import_sparql(params, sparql, ig_domains, map)
+  def self.import_sparql(params, sparql, ig_domains, compliance_set)
     # Init data
     object = self.new 
     object.errors.clear
-    compliance = Hash.new
     # Get the Json structure
     data = params[:data]
     operation = data[:operation]
@@ -84,20 +83,15 @@ class SdtmIg < Tabular
     uri = IsoManaged.create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
     id = uri.id
     namespace = uri.namespace
-    # Build the compliance (core) triples
+    # Build the compliance (core) set
     ig_domains.each do |result|
       result[:instance][:managed_item][:children].each do |variable|
         core = variable[:variable_core]
-        if !compliance.has_key?(core)
-          ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'C' + Uri::C_UID_SECTION_SEPARATOR + core.upcase.gsub(/\s+/, "")
-          compliance[core] = { :id => ref_id, :label => core }
-          map[core] = UriV2.new({:namespace => namespace, :id => ref_id})
+        if !compliance_set.has_key?(core)
+          compliance_set[core] = core
         end
       end
     end    
-    compliance.each do |key, item|
-      IsoConcept.import_sparql(namespace, item[:id], sparql, C_SCHEMA_PREFIX, "VariableCompliance", item[:label])
-    end
     return { :uri => uri, :object => object }
   end
 

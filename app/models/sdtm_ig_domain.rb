@@ -34,7 +34,7 @@ class SdtmIgDomain < Tabular::Tabulation
     return object
   end
 
-  def self.import_sparql(params, sparql, compliance_map, class_map)
+  def self.import_sparql(params, sparql, compliance_set, class_map)
     # Init data
     object = self.new 
     object.errors.clear
@@ -63,6 +63,16 @@ class SdtmIgDomain < Tabular::Tabulation
       sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
       sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
       sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "1", :primitive_type => "positiveInteger"})
+    end
+    # Build the compliance (core) triples
+    compliance_map = Hash.new
+    compliance_set.each do |key, core|
+      ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'C' + Uri::C_UID_SECTION_SEPARATOR + core.upcase.gsub(/\s+/, "")
+      compliance_map[core] = UriV2.new({:namespace => namespace, :id => ref_id})
+    end
+    compliance_map.each do |core, uri|
+      label = compliance_set[core] # Slightly odd but needed. TODO, something to do with frozen strings.
+      IsoConcept.import_sparql(uri.namespace, uri.id, sparql, C_SCHEMA_PREFIX, "VariableCompliance", label)
     end
     # Now deal with the children
     if managed_item.has_key?(:children)
