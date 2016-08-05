@@ -8,8 +8,8 @@ class SdtmModelDomain::Variable < Tabular::Column
   attr_accessor :variable_ref
 
   # Constants
-  C_SCHEMA_PREFIX = UriManagement::C_BD
-  C_INSTANCE_PREFIX = UriManagement::C_MDR_M
+  C_SCHEMA_PREFIX = SdtmModelDomain::C_SCHEMA_PREFIX
+  C_INSTANCE_PREFIX = SdtmModelDomain::C_INSTANCE_PREFIX
   C_CLASS_NAME = "SDTMModelDomain::Variable"
   C_CID_PREFIX = SdtmModel::C_CID_PREFIX
   C_RDF_TYPE = "ClassVariable"
@@ -33,18 +33,20 @@ class SdtmModelDomain::Variable < Tabular::Column
     return object
   end
 
-  def self.import_sparql(parent_id, sparql, json, map)
+  def self.import_sparql(namespace, parent_id, sparql, json, map)
     id = parent_id + Uri::C_UID_SECTION_SEPARATOR + SdtmUtility.replace_prefix(json[:variable_name])  
-    super(id, sparql, UriManagement::C_BD, C_RDF_TYPE, json[:label])
-    sparql.triple_primitive_type("", id, UriManagement::C_BD, "ordinal", "#{json[:ordinal]}", "positiveInteger")
+    subject = {:namespace => namespace, :id => id}
+    super(namespace, id, sparql, UriManagement::C_BD, C_RDF_TYPE, json[:label])
+    sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "ordinal"}, {:literal => "#{json[:ordinal]}", :primitive_type => "positiveInteger"})
     uri = map[json[:variable_name]]
     ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'CR'
-    sparql.triple("", id, UriManagement::C_BD, "basedOnVariable", "", ref_id.to_s)
-    sparql.triple("", ref_id, UriManagement::C_RDF, "type", UriManagement::C_BO, "CReference")
-    sparql.triple_uri_full("", ref_id, UriManagement::C_BO, "hasColumn", uri)
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "enabled", "true", "boolean")
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "optional", "false", "boolean")
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "ordinal", "#{json[:ordinal]}", "positiveInteger")
+    ref_subject = {:namespace => namespace, :id => ref_id}
+    sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "basedOnVariable"}, {:namespace => namespace, :id => ref_id.to_s})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id => "CReference"})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "hasColumn"}, {:uri => uri})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "#{json[:ordinal]}", :primitive_type => "positiveInteger"})
     return id
   end
 
@@ -60,7 +62,9 @@ private
 
   def self.children_from_triples(object, triples, id)
     variable_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "basedOnVariable"))
-    object.variable_ref = variable_refs[0]
+    if variable_refs.length > 0 
+      object.variable_ref = variable_refs[0]
+    end
   end
 
 end

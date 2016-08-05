@@ -3,7 +3,7 @@ class Background < ActiveRecord::Base
   C_CLASS_NAME = "Background"
 
 	def importCdiscSdtmModel(params, files)
-    sparql = SparqlUpdate.new
+    sparql = SparqlUpdateV2.new
     self.errors.clear
     self.update(
       description: "Import CDISC SDTM Model. Date: " + params[:date] + ", Internal Version: " + params[:version] + ".", 
@@ -42,11 +42,11 @@ class Background < ActiveRecord::Base
       self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
     end
   end
-  handle_asynchronously :importCdiscSdtmModel
+  #handle_asynchronously :importCdiscSdtmModel
 
   def importCdiscSdtmIg(params, files)
     compliance_map = Hash.new
-    sparql = SparqlUpdate.new
+    sparql = SparqlUpdateV2.new
     self.errors.clear
     self.update(
       description: "Import CDISC SDTM Implementation Guide. Date: " + params[:date] + ", Internal Version: " + params[:version] + ".", 
@@ -89,7 +89,7 @@ class Background < ActiveRecord::Base
       self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
     end
   end
-  handle_asynchronously :importCdiscSdtmIg
+  #handle_asynchronously :importCdiscSdtmIg
 
   def importCdiscTerm(params)
     # Create the background job status

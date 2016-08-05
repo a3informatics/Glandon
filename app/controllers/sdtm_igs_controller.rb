@@ -11,7 +11,7 @@ class SdtmIgsController < ApplicationController
     authorize SdtmIg
     @files = Dir.glob(Rails.root.join("public","upload") + "*")
     @sdtm_ig = SdtmIg.new
-    @sdtm_igs = SdtmIg.all
+    @sdtm_models = SdtmModel.all
   end
   
   def import

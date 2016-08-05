@@ -10,7 +10,7 @@ class SparqlUpdate
   end
 
   def add_default_namespace(ns)
-    ConsoleLogger::log(C_CLASS_NAME,"add_default_namespace","Default NS=#{ns}")
+    #ConsoleLogger::log(C_CLASS_NAME,"add_default_namespace","Default NS=#{ns}")
     @default_ns = ns
   end
 
@@ -58,7 +58,7 @@ class SparqlUpdate
   end
 
   def to_s
-    ConsoleLogger::log(C_CLASS_NAME,"to_s","Default NS=#{@default_ns}")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_s","Default NS=#{@default_ns}")
     update = UriManagement.buildNs(@default_ns, @prefix_set) +
       "INSERT DATA \n" +
       "{ \n" +

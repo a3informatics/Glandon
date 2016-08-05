@@ -331,12 +331,13 @@ class IsoScopedIdentifier
 
   def self.create_sparql(identifier, version, version_label, scope_org, sparql)
     id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
-    sparql.add_prefix("isoI")
-    sparql.triple(C_NS_PREFIX, id, "rdf", "type", "isoI", "ScopedIdentifier")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoI", "identifier", identifier.to_s, "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoI", "version", version.to_s, "positiveInteger")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoI", "versionLabel", version_label.to_s, "string")
-    sparql.triple(C_NS_PREFIX, id, "isoI", "hasScope", C_NS_PREFIX, scope_org.id.to_s)
+    #sparql.add_prefix("isoI")
+    subject = {:prefix => C_NS_PREFIX, :id => id}
+    sparql.triple(subject, {:prefix => "rdf", :id => "type"}, {:prefix => "isoI", :id => "ScopedIdentifier"})
+    sparql.triple(subject, {:prefix => "isoI", :id => "identifier"}, {:literal => identifier.to_s, :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => "isoI", :id => "version"}, {:literal => version.to_s, :primitive_type => "positiveInteger"})
+    sparql.triple(subject, {:prefix => "isoI", :id => "versionLabel"}, {:literal => version_label.to_s, :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => "isoI", :id => "hasScope"}, {:prefix => C_NS_PREFIX, :id => scope_org.id.to_s})
     return id
   end
 

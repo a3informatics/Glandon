@@ -19,8 +19,11 @@ module UriManagement
   C_MDR_BCTS = "mdrBcts"
   C_MDR_BCS = "mdrBcs"
   C_MDR_F = "mdrForms"
-  C_MDR_M = "mdrModels"
-  C_MDR_D = "mdrDomains"
+  C_MDR_M = "mdrSDTMM"
+  C_MDR_MD = "mdrSDTMMD"
+  C_MDR_IG = "mdrSDTMIg"
+  C_MDR_IGD = "mdrSDTMIgD"
+  C_MDR_UD = "mdrSDTMUD"
   C_MDR_BRIDG = "mdrBridg"
   C_MDR_ISO21090 = "mdrIso21090"
   C_MDR_C = "mdrConcepts"
@@ -44,9 +47,6 @@ module UriManagement
       C_BO => "http://www.assero.co.uk/BusinessOperational" ,
       C_BF => "http://www.assero.co.uk/BusinessForm" ,
       C_BD => "http://www.assero.co.uk/BusinessDomain" ,
-      #"bs" => "http://www.assero.co.uk/BusinessStandard" ,
-      #"mms" => "http://rdf.cdisc.org/mms" ,
-      #"cdisc" => "http://rdf.cdisc.org/std/schema" ,
       C_MDR_ITEMS => "http://www.assero.co.uk/MDRItems" ,
       C_MDR_C => "http://www.assero.co.uk/MDRConcepts" ,
       C_MDR_BRIDG => "http://www.assero.co.uk/MDRBRIDG" ,
@@ -54,8 +54,11 @@ module UriManagement
       C_MDR_BCS => "http://www.assero.co.uk/MDRBCs" ,
       C_MDR_BCTS => "http://www.assero.co.uk/MDRBCTs" ,
       C_MDR_F => "http://www.assero.co.uk/MDRForms" ,
-      C_MDR_M => "http://www.assero.co.uk/MDRModels" ,
-      C_MDR_D => "http://www.assero.co.uk/MDRDomains" ,
+      C_MDR_M => "http://www.assero.co.uk/MDRSdtmM" ,
+      C_MDR_MD => "http://www.assero.co.uk/MDRSdtmMd" ,
+      C_MDR_IG => "http://www.assero.co.uk/MDRSdtmIg" ,
+      C_MDR_IGD => "http://www.assero.co.uk/MDRSdtmIgD" ,
+      C_MDR_UD => "http://www.assero.co.uk/MDRSdtmUD" ,
       C_MDR_TH => "http://www.assero.co.uk/MDRThesaurus"
      }
 

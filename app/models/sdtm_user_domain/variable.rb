@@ -9,8 +9,8 @@ class SdtmUserDomain::Variable < Tabular::Column
     :classification, :sub_classification, :variable_ref
 
   # Constants
-  C_SCHEMA_PREFIX = UriManagement::C_BD
-  C_INSTANCE_PREFIX = UriManagement::C_MDR_D
+  C_SCHEMA_PREFIX = SdtmUserDomain::C_SCHEMA_PREFIX
+  C_INSTANCE_PREFIX = SdtmUserDomain::C_INSTANCE_PREFIX
   C_CLASS_NAME = "SdtmUserDomain::Variable"
   C_CID_PREFIX = SdtmUserDomain::C_CID_PREFIX
   C_RDF_TYPE = "UserVariable"

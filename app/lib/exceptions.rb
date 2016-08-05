@@ -33,4 +33,12 @@ module Exceptions
   	
 	end
 
+  class TripleError < StandardError  
+    attr_reader :message
+    def initialize(message)
+      super
+      @message = message
+    end
+  end
+
 end

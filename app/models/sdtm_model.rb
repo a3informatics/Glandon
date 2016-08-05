@@ -11,7 +11,7 @@ class SdtmModel < Tabular
   C_SCHEMA_PREFIX = UriManagement::C_BD
   C_INSTANCE_PREFIX = UriManagement::C_MDR_M
   C_CLASS_NAME = "SdtmModel"
-  C_RDF_TYPE = "ClassModel"
+  C_RDF_TYPE = "Model"
   C_CID_PREFIX = "M"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
@@ -106,8 +106,9 @@ class SdtmModel < Tabular
     managed_item = data[:managed_item]
     ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
     uri = IsoManaged.create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-    id = uri.getCid()
-    namespace = uri.getNs()
+    id = uri.id
+    namespace = uri.namespace
+    ConsoleLogger::log(C_CLASS_NAME,"import_sparql", "URI=#{uri}")
     # Build the data type and classification info. Fill in the blank classification first. Explicitly set the label to "".
     classification = SdtmModel::Variable::C_ROLE_NONE
     sub_classification = SdtmModel::Variable::C_ROLE_Q_NA
@@ -145,21 +146,22 @@ class SdtmModel < Tabular
     # Build the variable triples
     if managed_item.has_key?(:children)
       managed_item[:children].each do |item|
-        ref_id = SdtmModel::Variable.import_sparql(id, sparql, item, datatypes, classifications)
-        sparql.triple("", id, C_SCHEMA_PREFIX, "includesVariable", "", ref_id)
-        map[item[:variable_name]] = ModelUtility.buildUri(namespace, ref_id)
+        ref_id = SdtmModel::Variable.import_sparql(namespace, id, sparql, item, datatypes, classifications)
+        ref_uri = UriV2.new({:namespace=> namespace, :id => ref_id})
+        sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "includesVariable"}, {:uri => ref_uri})
+        map[item[:variable_name]] = ref_uri
       end
     end
     # Build the datatype and classifier references triples
     datatypes.each do |key, datatype|
-      IsoConcept.import_sparql(datatype[:id], sparql, C_SCHEMA_PREFIX, "VariableType", datatype[:label])
+      IsoConcept.import_sparql(namespace, datatype[:id], sparql, C_SCHEMA_PREFIX, "VariableType", datatype[:label])
     end
     classification_classes.each do |key, parent|
-      IsoConcept.import_sparql(parent[:id], sparql, C_SCHEMA_PREFIX, "VariableClassification", parent[:label])
+      IsoConcept.import_sparql(namespace, parent[:id], sparql, C_SCHEMA_PREFIX, "VariableClassification", parent[:label])
       parent[:children].each do |child|
-        sparql.triple("", parent[:id], C_SCHEMA_PREFIX, "childClassification", "", child[:id])
-        sparql.triple("", child[:id], C_SCHEMA_PREFIX, "parentClassification", "", parent[:id])
-        IsoConcept.import_sparql(child[:id], sparql, C_SCHEMA_PREFIX, "VariableClassification", child[:label])  
+        sparql.triple({:namespace => namespace, :id => parent[:id]}, {:prefix => C_SCHEMA_PREFIX, :id => "childClassification"}, {:prefix => "", :id => child[:id]})
+        sparql.triple({:namespace => namespace, :id => child[:id]}, {:prefix => C_SCHEMA_PREFIX, :id => "parentClassification"}, {:prefix => "", :id => parent[:id]})
+        IsoConcept.import_sparql(namespace, child[:id], sparql, C_SCHEMA_PREFIX, "VariableClassification", child[:label])  
       end
     end
     #ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "classification_classes=" + classification_classes.to_json.to_s)
@@ -170,14 +172,14 @@ class SdtmModel < Tabular
   def self.add_class_sparql(uri, ref_uri, ordinal, sparql)
     object = self.new 
     object.errors.clear
-    id = uri.getCid
-    ref_id = "#{uri.getCid}#{Uri::C_UID_SECTION_SEPARATOR}TR#{ordinal}" 
-    sparql.triple("", id, C_SCHEMA_PREFIX, "includesTabulation", "", "#{ref_id}")
-    sparql.triple("", ref_id, UriManagement::C_RDF, "type", UriManagement::C_BO, "TReference")
-    sparql.triple_uri_full("", ref_id, UriManagement::C_BO, "hasTabulation", ref_uri.to_ref)
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "enabled", "true", "boolean")
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "optional", "false", "boolean")
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "ordinal", "#{ordinal}", "positiveInteger")
+    ref_id = "#{uri.id}#{Uri::C_UID_SECTION_SEPARATOR}TR#{ordinal}" 
+    ref_subject ={:namespace => uri.namespace, :id => ref_id}
+    sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, ref_subject)
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id => "TReference"})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "hasTabulation"}, {:uri => ref_uri})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "#{ordinal}", :primitive_type => "positiveInteger"})
     return { :object => object }
   end
 

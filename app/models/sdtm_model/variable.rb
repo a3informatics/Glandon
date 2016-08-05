@@ -8,8 +8,8 @@ class SdtmModel::Variable < Tabular::Column
   attr_accessor :name, :prefixed, :description, :datatype, :classification, :sub_classification
   
   # Constants
-  C_SCHEMA_PREFIX = UriManagement::C_BD
-  C_INSTANCE_PREFIX = UriManagement::C_MDR_M
+  C_SCHEMA_PREFIX = SdtmModel::C_SCHEMA_PREFIX
+  C_INSTANCE_PREFIX = SdtmModel::C_INSTANCE_PREFIX
   C_CLASS_NAME = "SdtmModel::Variable"
   C_CID_PREFIX = SdtmModel::C_CID_PREFIX
   C_RDF_TYPE = "ModelVariable"
@@ -67,20 +67,21 @@ class SdtmModel::Variable < Tabular::Column
     return object
   end
 
-  def self.import_sparql(parent_id, sparql, json, datatypes, classifications)
+  def self.import_sparql(namespace, parent_id, sparql, json, datatypes, classifications)
     id = parent_id + Uri::C_UID_SECTION_SEPARATOR + SdtmUtility.replace_prefix(json[:variable_name])  
-    super(id, sparql, C_SCHEMA_PREFIX, C_RDF_TYPE, json[:label])
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "ordinal", json[:ordinal].to_s, "positiveInteger")
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "name", json[:variable_name], "string")
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "prefixed", json[:variable_prefixed].to_s, "boolean")
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "description", json[:variable_notes], "string")
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "rule", "", "string")
+    super(namespace, id, sparql, C_SCHEMA_PREFIX, C_RDF_TYPE, json[:label])
+    subject = {:namespace => namespace, :id => id}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ordinal"}, {:literal => json[:ordinal].to_s, :primitive_type => "positiveInteger"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => json[:variable_name], :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefixed"}, {:literal => json[:variable_prefixed].to_s, :primitive_type => "boolean"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "description"}, {:literal => json[:variable_notes], :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "rule"}, {:literal => "", :primitive_type => "string"})
     if datatypes.has_key?(json[:variable_type])
-      sparql.triple("", id, C_SCHEMA_PREFIX, "typedAs", "", datatypes[json[:variable_type]][:id])  
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "typedAs"}, {:namespace => namespace, :id => datatypes[json[:variable_type]][:id]})  
     end
     key = "#{json[:variable_classification]}.#{json[:variable_sub_classification]}"
     if classifications.has_key?(key)
-      sparql.triple("", id, C_SCHEMA_PREFIX, "classifiedAs", "", classifications[key][:id])   
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:namespace => namespace, :id => classifications[key][:id]})   
     end
     return id
   end

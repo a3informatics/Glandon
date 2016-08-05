@@ -137,12 +137,8 @@ class OperationalReferenceV2 < IsoConcept
 
   def self.find_from_triples(triples, id)
     object = new(triples, id)
-    ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","Type=#{object.rdf_type}")
-    ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","Mapped Type=#{C_FROM_TYPE_MAP[object.rdf_type]}")
     links = object.get_links(C_SCHEMA_PREFIX, C_FROM_TYPE_MAP[object.rdf_type])
-    ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","Setting subject ref, link=#{links[0]}")
     if links.length > 0
-      ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","Setting subject ref, link=#{links[0]}")
       object.subject_ref = UriV2.new({:uri => links[0]})
     end
     return object

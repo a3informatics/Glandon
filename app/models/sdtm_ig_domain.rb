@@ -8,7 +8,7 @@ class SdtmIgDomain < Tabular::Tabulation
 
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD
-  C_INSTANCE_PREFIX = UriManagement::C_MDR_M
+  C_INSTANCE_PREFIX = UriManagement::C_MDR_IGD
   C_CLASS_NAME = "SdtmIgDomain"
   C_CID_PREFIX = SdtmIg::C_CID_PREFIX
   C_RDF_TYPE = "IGDomain"
@@ -44,36 +44,50 @@ class SdtmIgDomain < Tabular::Tabulation
     managed_item = data[:managed_item]
     ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
     uri = IsoManaged.create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-    id = uri.getCid()
-    namespace = uri.getNs()
+    id = uri.id
+    namespace = uri.namespace
     # Set the map
     map = class_map[managed_item[:domain_class]]
     # Set the properties
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "prefix", "#{managed_item[:domain_prefix]}", "string")
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "structure", "#{managed_item[:domain_structure]}", "string")
+    subject = {:uri => uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefix"}, {:literal => "#{managed_item[:prefix]}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "structure"}, {:literal => "#{managed_item[:structure]}", :primitive_type => "string"})
     # Build the class reference
     if !map.nil? 
       ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'CLR'
-      sparql.triple("", id, UriManagement::C_BD, "basedOnDomain", "", ref_id.to_s)
-      sparql.triple("", ref_id, UriManagement::C_RDF, "type", UriManagement::C_BO, "TReference")
+      subject_ref = {:namespace => namespace, :id => ref_id}
       ref_uri = class_map[managed_item[:domain_class]][:uri]
-      sparql.triple_uri_full_v2("", ref_id, UriManagement::C_BO, "hasTabulation", ref_uri)
-      sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "enabled", "true", "boolean")
-      sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "optional", "false", "boolean")
-      sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "ordinal", "1", "positiveInteger")
+      sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "basedOnDomain"}, subject_ref)
+      sparql.triple(subject_ref, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id => "TReference"})
+      sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "hasTabulation"}, {:uri => ref_uri})
+      sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
+      sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
+      sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "1", :primitive_type => "positiveInteger"})
     end
     # Now deal with the children
     if managed_item.has_key?(:children)
-      managed_item[:children].each do |key, item|
+      managed_item[:children].each do |item|
         if !map.nil?
-          ref_id = SdtmIgDomain::Variable.import_sparql(id, sparql, item, compliance_map, map[:children])
+          ref_id = SdtmIgDomain::Variable.import_sparql(namespace, id, sparql, item, compliance_map, map[:children])
         else
-          ref_id = SdtmIgDomain::Variable.import_sparql(id, sparql, item, compliance_map, nil)
+          ref_id = SdtmIgDomain::Variable.import_sparql(namespace, id, sparql, item, compliance_map, nil)
         end
-        sparql.triple("", id, C_SCHEMA_PREFIX, "includesColumn", "", ref_id)
+        sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:namespace => namespace, :id => ref_id})
       end
     end
     return { :uri => uri, :map => map, :object => object }
+  end
+
+  def to_json
+    json = super
+    json[:prefix] = self.prefix
+    json[:structure] = self.structure
+    json[:model_ref] = self.model_ref.to_json
+    json[:children] = Array.new
+    self.children.each do |child|
+      json[:children] << child.to_json
+    end
+    return json
   end
 
 private

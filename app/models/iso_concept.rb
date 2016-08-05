@@ -203,9 +203,10 @@ class IsoConcept
   end
 
   # Build the sparql to create the concept triples.
-  def self.import_sparql(parent_id, sparql, schema_prefix, rdf_type, label)
-    sparql.triple("", parent_id, UriManagement::C_RDF, "type", schema_prefix, rdf_type)
-    sparql.triple_primitive_type("", parent_id, UriManagement::C_RDFS, "label", label, "string")
+  def self.import_sparql(namespace, parent_id, sparql, schema_prefix, rdf_type, label)
+    subject = {:namespace => namespace, :id => parent_id}
+    sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => schema_prefix, :id => rdf_type})
+    sparql.triple(subject, {:prefix => UriManagement::C_RDFS, :id => "label"}, {:literal => label, :primitive_type => "string"})
   end
 
   def link_exists?(prefix, type)

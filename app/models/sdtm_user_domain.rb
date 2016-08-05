@@ -8,7 +8,7 @@ class SdtmUserDomain < Tabular::Tabulation
 
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD
-  C_INSTANCE_PREFIX = UriManagement::C_MDR_D
+  C_INSTANCE_PREFIX = UriManagement::C_MDR_UD
   C_CLASS_NAME = "SdtmUserDomain"
   C_CID_PREFIX = "D"
   C_RDF_TYPE = "UserDomain"
@@ -17,8 +17,8 @@ class SdtmUserDomain < Tabular::Tabulation
   
   C_MD_REF_PREFIX = "MD"
   C_IGD_REF_PREFIX = "IGD"
-  C_BC_REF_PREFIX = "BC"
-  C_BCP_REF_PREFIX = "BCP"
+  C_BC_REF_PREFIX = "BCR"
+  C_BCP_REF_PREFIX = "PR"
   
   def initialize(triples=nil, id=nil)
     self.prefix = SdtmUtility::C_PREFIX

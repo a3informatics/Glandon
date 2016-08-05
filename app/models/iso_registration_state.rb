@@ -385,17 +385,16 @@ class IsoRegistrationState
 
   def self.create_sparql(identifier, version, new_state, prev_state, ra, sparql)
     id = ModelUtility.build_full_cid(C_CID_PREFIX , ra.namespace.shortName, identifier, version)
-    sparql.add_prefix("isoR")
-    sparql.add_prefix("isoI")
-    sparql.triple(C_NS_PREFIX, id, "rdf", "type", "isoR", "RegistrationState")
-    sparql.triple(C_NS_PREFIX, id, "isoR", "byAuthority", C_NS_PREFIX, ra.id)
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "registrationStatus", new_state, "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeNote", "", "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "effectiveDate", C_DEFAULT_DATETIME, "dateTime")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "untilDate", C_DEFAULT_DATETIME, "dateTime")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "unresolvedIssue", "", "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeStatus", "", "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "previousState", prev_state, "string")
+    subject = {:prefix => C_NS_PREFIX, :id => id}
+    sparql.triple(subject, {:prefix => "rdf", :id => "type"}, {:prefix => "isoR", :id => "RegistrationState"})
+    sparql.triple(subject, {:prefix => "isoR", :id => "byAuthority"}, {:prefix => C_NS_PREFIX, :id => ra.id})
+    sparql.triple(subject, {:prefix => "isoR", :id => "registrationStatus"}, {:literal => new_state, :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => "isoR", :id => "administrativeNote"}, {:literal => "", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => "isoR", :id => "effectiveDate"}, {:literal => C_DEFAULT_DATETIME, :primitive_type => "dateTime"})
+    sparql.triple(subject, {:prefix => "isoR", :id => "untilDate"}, {:literal => C_DEFAULT_DATETIME, :primitive_type => "dateTime"})
+    sparql.triple(subject, {:prefix => "isoR", :id => "unresolvedIssue"}, {:literal => "", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => "isoR", :id => "administrativeStatus"}, {:literal => "", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => "isoR", :id => "previousState"}, {:literal => prev_state, :primitive_type => "string"})
     return id
   end
   

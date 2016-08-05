@@ -9,7 +9,7 @@ class SdtmIg < Tabular
   
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD
-  C_INSTANCE_PREFIX = UriManagement::C_MDR_M
+  C_INSTANCE_PREFIX = UriManagement::C_MDR_IG
   C_CLASS_NAME = "SdtmIg"
   C_RDF_TYPE = "ImplementationGuide"
   C_CID_PREFIX = "IG"
@@ -38,7 +38,7 @@ class SdtmIg < Tabular
     return object
   end
 
-  def self.all(schema_type, schema_namespace)
+  def self.all()
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
@@ -82,21 +82,21 @@ class SdtmIg < Tabular
     managed_item = data[:managed_item]
     ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
     uri = IsoManaged.create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-    id = uri.getCid()
-    namespace = uri.getNs()
+    id = uri.id
+    namespace = uri.namespace
     # Build the compliance (core) triples
     ig_domains.each do |result|
-      result[:instance][:managed_item][:children].each do |key, variable|
+      result[:instance][:managed_item][:children].each do |variable|
         core = variable[:variable_core]
         if !compliance.has_key?(core)
           ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'C' + Uri::C_UID_SECTION_SEPARATOR + core.upcase.gsub(/\s+/, "")
           compliance[core] = { :id => ref_id, :label => core }
-          map[core] = ModelUtility.buildUri(namespace, ref_id)
+          map[core] = UriV2.new({:namespace => namespace, :id => ref_id})
         end
       end
     end    
     compliance.each do |key, item|
-      IsoConcept.import_sparql(item[:id], sparql, C_SCHEMA_PREFIX, "VariableCompliance", item[:label])
+      IsoConcept.import_sparql(namespace, item[:id], sparql, C_SCHEMA_PREFIX, "VariableCompliance", item[:label])
     end
     return { :uri => uri, :object => object }
   end
@@ -104,14 +104,15 @@ class SdtmIg < Tabular
   def self.add_domain_sparql(uri, ref_uri, ordinal, sparql)
     object = self.new 
     object.errors.clear
-    id = uri.getCid
-    ref_id = "#{uri.getCid}#{Uri::C_UID_SECTION_SEPARATOR}TR#{ordinal}" 
-    sparql.triple("", id, C_SCHEMA_PREFIX, "includesTabulation", "", "#{ref_id}")
-    sparql.triple("", ref_id, UriManagement::C_RDF, "type", UriManagement::C_BO, "TReference")
-    sparql.triple_uri_full("", ref_id, UriManagement::C_BO, "hasTabulation", ref_uri.to_ref)
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "enabled", "true", "boolean")
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "optional", "false", "boolean")
-    sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "ordinal", "#{ordinal}", "positiveInteger")
+    subject = {:uri => uri}
+    ref_id = "#{uri.id}#{Uri::C_UID_SECTION_SEPARATOR}TR#{ordinal}" 
+    ref_subject ={:namespace => uri.namespace, :id => ref_id}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, ref_subject)
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id => "TReference"})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "hasTabulation"}, {:uri => ref_uri})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
+    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "#{ordinal}", :primitive_type => "positiveInteger"})
     return { :object => object }
   end
 

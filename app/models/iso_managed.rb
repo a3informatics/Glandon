@@ -686,7 +686,7 @@ class IsoManaged < IsoConcept
   end
 
   # Build the SPARQL for the managed item creation.
-  def self.create_sparql(prefix, params, rdfType, schemaNs, instanceNs, sparql, ra)
+  def self.create_sparql(prefix, params, rdf_type, schemaNs, instance_namespace, sparql, ra)
     operation = params[:operation]
     managed_item = params[:managed_item]
     version = operation[:new_version]
@@ -701,26 +701,27 @@ class IsoManaged < IsoConcept
     org_name = ra.namespace.shortName
     scopeId = ra.namespace.id
     # Create the required namespace. Use owner name to extend
-    uri = ModelUtility::version_namespace(version, instanceNs, org_name)
-    useNs = uri.getNs()
-    id = ModelUtility.build_full_cid(prefix, org_name, identifier)
+    uri = UriV2.new(:namespace => instance_namespace, :prefix => prefix, :org_name => org_name, :identifier => identifier)  
+    uri.extend_path("#{org_name}/V#{version}")
+    sparql.default_namespace(uri.namespace)
+    #uri = ModelUtility::version_namespace(version, instanceNs, org_name)
+    #useNs = uri.getNs()
+    #id = ModelUtility.build_full_cid(prefix, org_name, identifier)
     # SI and RS
     si_id = IsoScopedIdentifier.create_sparql(identifier, version, version_label, ra.namespace, sparql)
     rs_id = IsoRegistrationState.create_sparql(identifier, version, new_state, previous_state, ra, sparql)
     # And the object.
-    sparql.add_default_namespace(useNs)
-    sparql.triple("", id, UriManagement::C_RDF, "type", schema_prefix, rdfType)
-    sparql.triple("", id, UriManagement::C_ISO_I, "hasIdentifier", C_INSTANCE_PREFIX, si_id)
-    sparql.triple("", id, UriManagement::C_ISO_R, "hasState", C_INSTANCE_PREFIX, rs_id)
-    sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", managed_item[:label], "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "creationDate", managed_item[:creation_date], "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "lastChangeDate", timestamp.to_s, "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "changeDescription", managed_item[:change_description], "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "explanatoryComment", managed_item[:comment], "string")
-    sparql.triple_primitive_type("", id, UriManagement::C_ISO_T, "origin", managed_item[:references], "string")
+    subject = {:uri => uri}
+    sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => schema_prefix, :id => rdf_type})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "hasIdentifier"}, {:prefix => C_INSTANCE_PREFIX, :id => si_id})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "hasState"}, {:prefix => C_INSTANCE_PREFIX, :id => rs_id})
+    sparql.triple(subject, {:prefix => UriManagement::C_RDFS, :id => "label"}, {:literal => managed_item[:label], :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "creationDate"}, {:literal => managed_item[:creation_date], :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "lastChangeDate"}, {:literal => timestamp.to_s, :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "changeDescription"}, {:literal => managed_item[:change_description], :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "explanatoryComment"}, {:literal => managed_item[:comment], :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "origin"}, {:literal => managed_item[:references], :primitive_type => "string"})
     # Result URI
-    uri = Uri.new
-    uri.setNsCid(useNs, id)
     return uri
   end
 

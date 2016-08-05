@@ -8,8 +8,8 @@ class SdtmIgDomain::Variable < Tabular::Column
   attr_accessor :name, :notes, :controlled_term_or_format, :compliance, :variable_ref
 
   # Constants
-  C_SCHEMA_PREFIX = UriManagement::C_BD
-  C_INSTANCE_PREFIX = UriManagement::C_MDR_M
+  C_SCHEMA_PREFIX = SdtmIgDomain::C_SCHEMA_PREFIX
+  C_INSTANCE_PREFIX = SdtmIgDomain::C_INSTANCE_PREFIX
   C_CLASS_NAME = "SdtmIgDomain::Variable"
   C_CID_PREFIX = SdtmIg::C_CID_PREFIX
   C_RDF_TYPE = "IgVariable"
@@ -45,13 +45,14 @@ class SdtmIgDomain::Variable < Tabular::Column
     return object
   end
 
-  def self.import_sparql(parent_id, sparql, json, compliance_map, class_map)
+  def self.import_sparql(namespace, parent_id, sparql, json, compliance_map, class_map)
     id = parent_id + Uri::C_UID_SECTION_SEPARATOR + SdtmUtility.replace_prefix(json[:variable_name])  
-    super(id, sparql, C_SCHEMA_PREFIX, C_RDF_TYPE, json[:label])
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "ordinal", "#{json[:ordinal]}", "positiveInteger")
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "controlled_term_or_format", "#{json[:variable_ct_or_format]}", "string")
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "notes", "#{json[:variable_notes]}", "string")
-    sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "name", "#{json[:variable_name]}", "string")
+    super(namespace, id, sparql, C_SCHEMA_PREFIX, C_RDF_TYPE, json[:label])
+    subject = {:namespace => namespace, :id => id}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ordinal"}, {:literal => "#{json[:ordinal]}", :primitive_type => "positiveInteger"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "controlled_term_or_format"}, {:literal => "#{json[:variable_ct_or_format]}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "notes"}, {:literal => "#{json[:variable_notes]}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{json[:variable_name]}", :primitive_type => "string"})
     # Build the reference
     if !class_map.nil?
       var_name = generic_variable_name(json)
@@ -59,25 +60,40 @@ class SdtmIgDomain::Variable < Tabular::Column
         variable = class_map[var_name]
         uri = UriV2.new({:namespace => variable.namespace, :id => variable.id})
         ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'VR'
-        sparql.triple("", id, UriManagement::C_BD, "basedOnVariable", "", ref_id.to_s)
-        sparql.triple("", ref_id, UriManagement::C_RDF, "type", UriManagement::C_BO, "CReference")
-        sparql.triple_uri_full_v2("", ref_id, UriManagement::C_BO, "hasColumn", uri)
-        sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "enabled", "true", "boolean")
-        sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "optional", "false", "boolean")
-        sparql.triple_primitive_type("", ref_id, UriManagement::C_BO, "ordinal", "1", "positiveInteger")
+        ref_subject = {:namespace => namespace, :id => ref_id}
+        sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "basedOnVariable"}, ref_subject)
+        sparql.triple(ref_subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id =>"CReference"})
+        sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "hasColumn"}, {:uri => uri})
+        sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
+        sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
+        sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "1", :primitive_type => "positiveInteger"})
       end
     end
     if compliance_map.has_key?(json[:variable_core])
-      sparql.triple_uri_full("", id, C_SCHEMA_PREFIX, "compliance", compliance_map[json[:variable_core]])  
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "compliance"}, {:uri => compliance_map[json[:variable_core]]})  
     end
     return id
+  end
+
+  def to_json
+    json = super
+    json[:name] = self.name
+    json[:notes] = self.notes
+    json[:controlled_term_or_format] = self.controlled_term_or_format
+    json[:compliance] = self.compliance.to_json
+    if !self.variable_ref.nil? 
+      json[:variable_ref] = self.variable_ref.to_json
+    end
+    return json
   end
 
 private
 
   def self.children_from_triples(object, triples, id)
     variable_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "basedOnVariable"))
-    object.variable_ref = variable_refs[0]
+    if variable_refs.length > 0
+      object.variable_ref = variable_refs[0]
+    end
     compliance = EnumeratedLabel.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "compliance"))
     if compliance.length > 0
       object.compliance = compliance[0]

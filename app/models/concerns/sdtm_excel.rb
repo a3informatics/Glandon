@@ -78,7 +78,7 @@ module SdtmExcel
         filename = params[:files][0]
         workbook = open_workbook(filename)
         if !workbook.nil?
-            ConsoleLogger::log(C_CLASS_NAME,"read_model","Opened")
+            #ConsoleLogger::log(C_CLASS_NAME,"read_model","Opened")
             # Get the worksheets
             worksheets = workbook.sheets
             # Set up structures needed
@@ -102,7 +102,7 @@ module SdtmExcel
                 return
             end
             # All ok. Read the rows.
-            ConsoleLogger::log(C_CLASS_NAME,"read_model","Read rows, First=#{workbook.first_row}, Last=#{workbook.last_row}.")
+            #ConsoleLogger::log(C_CLASS_NAME,"read_model","Read rows, First=#{workbook.first_row}, Last=#{workbook.last_row}.")
             ((workbook.first_row + 1) .. workbook.last_row).each do |row|
                 domain_prefix = workbook.cell(row, 3)
                 if domain_prefix.blank?
@@ -170,7 +170,7 @@ module SdtmExcel
                                     :variable_name => name, 
                                     :label => label
                                 }
-                           ConsoleLogger::log(C_CLASS_NAME,"read_model","Target=#{target.to_json}")
+                           #ConsoleLogger::log(C_CLASS_NAME,"read_model","Target=#{target.to_json}")
                         end
                     else
                         errors.add(:base, "Invalid observation class detected #{obs_class} in row #{row}")
@@ -203,14 +203,14 @@ module SdtmExcel
             return 
         end
         results.sort{|k,v| v[:order]}
-        ConsoleLogger::log(C_CLASS_NAME,"read_model","Results=" + results.to_json.to_s)
+        #ConsoleLogger::log(C_CLASS_NAME,"read_model","Results=" + results.to_json.to_s)
         return results
     end
 
     # Reads the excel file for SDTM IG.
     def SdtmExcel.read_ig (params, errors)
         filename = params[:files][0]
-        ConsoleLogger::log(C_CLASS_NAME,"read_ig", "filename=#{filename}")
+        #ConsoleLogger::log(C_CLASS_NAME,"read_ig", "filename=#{filename}")
         workbook = open_workbook(filename)
         if !workbook.nil?
             # Get the worksheet, assume first sheet.
@@ -298,7 +298,7 @@ module SdtmExcel
                             return 
                         end
                     else
-                        ConsoleLogger::log(C_CLASS_NAME,"read_ig","Ignoring entry for domain #{domain_prefix}.")
+                        #ConsoleLogger::log(C_CLASS_NAME,"read_ig","Ignoring entry for domain #{domain_prefix}.")
                     end
                 end
             end
@@ -313,14 +313,14 @@ module SdtmExcel
             end
         end
         results.sort{|k,v| v[:order]}
-        ConsoleLogger::log(C_CLASS_NAME,"read_ig","Results=" + results.to_json.to_s)
+        #ConsoleLogger::log(C_CLASS_NAME,"read_ig","Results=" + results.to_json.to_s)
         return results
     end
 
     def self.open_workbook(filename)
         workbook = Roo::Spreadsheet.open(filename, extension: :xlsx) 
     rescue => e
-        ConsoleLogger::log(C_CLASS_NAME,"open_workbook","e=#{e.to_s}, filename=#{filename}.")
+        #ConsoleLogger::log(C_CLASS_NAME,"open_workbook","e=#{e.to_s}, filename=#{filename}.")
         workbook = nil
     end
 
@@ -358,7 +358,7 @@ module SdtmExcel
         workbook.row(1).each_with_index do |header, i|
             headers[header] = i
         end
-        ConsoleLogger::log(C_CLASS_NAME,"check_main","Headers=#{headers.to_json}")
+        #ConsoleLogger::log(C_CLASS_NAME,"check_main","Headers=#{headers.to_json}")
         if headers.length != 11
             errors.add(:base, "Main sheet in the excel file, incorrect column count, indicates format error.")
             return 
@@ -383,7 +383,7 @@ module SdtmExcel
         workbook.row(1).each_with_index do |header, i|
             headers[header] = i
         end
-        ConsoleLogger::log(C_CLASS_NAME,"check_extra","Headers=#{headers.to_json}")
+        #ConsoleLogger::log(C_CLASS_NAME,"check_extra","Headers=#{headers.to_json}")
         if headers.length != 3
             errors.add(:base, "Extra sheet in the excel file, incorrect column count, indicates format error.")
             return 
@@ -461,7 +461,8 @@ module SdtmExcel
         domain_mi[:prefix] = domain[:prefix]
         domain_mi[:structure] = domain[:structure]
         domain_mi[:domain_class] = domain[:children][0][:variable_class]
-        domain_mi[:children] = {} # Make sure array changed to hash
+        # Remove the change to a hash in next line. 
+        # domain_mi[:children] = {} # Make sure array changed to hash
         domain_op[:new_version] = domain_mi[:version] # Make sure this is set. Sets the right version.
         children = domain_mi[:children]
         # Add the children for each group of variables within the set
