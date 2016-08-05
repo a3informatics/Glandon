@@ -59,13 +59,22 @@ class SdtmModelDomain < Tabular::Tabulation
     sparql.triple_primitive_type("", id, C_SCHEMA_PREFIX, "domain_class", "#{managed_item[:domain_class]}", "string")
     # Now deal with the children
     if managed_item.has_key?(:children)
-      managed_item[:children].each do |key, item|
+      managed_item[:children].each do |item|
         ref_id = SdtmModelDomain::Variable.import_sparql(id, sparql, item, model_map)
         sparql.triple("", id, C_SCHEMA_PREFIX, "includesColumn", "", ref_id)
         map[item[:variable_name]] = ModelUtility.buildUri(namespace, ref_id)
       end
     end
     return { :uri => uri, :map => map, :object => object }
+  end
+
+  def to_json
+    json = super
+    json[:children] = Array.new
+    self.children.each do |child|
+      json[:children] << child.to_json
+    end
+    return json
   end
 
 private

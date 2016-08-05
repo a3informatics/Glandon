@@ -74,12 +74,6 @@ module SdtmExcel
     C_DOMAIN_IGNORE = {"TX" => true, "POOLDEF" => true, "RELSUB" => true, "APRELSUB" => true}
 
     # Reads the excel file for SDTM Model.
-    #
-    # * *Args*    :
-    #   - +json+ -> The json structure that will be completed.
-    #   - +filename+ -> The filename (full path). File is assumed to reside on Public/Upload.
-    # * *Returns* :
-    #   - Results hash containing the various Managed Item instances (Json structures)
     def SdtmExcel.read_model (params, errors)
         filename = params[:files][0]
         workbook = open_workbook(filename)
@@ -214,12 +208,6 @@ module SdtmExcel
     end
 
     # Reads the excel file for SDTM IG.
-    #
-    # * *Args*    :
-    #   - +json+ -> The json structure that will be completed.
-    #   - +filename+ -> The filename (full path). File is assumed to reside on Public/Upload.
-    # * *Returns* :
-    #   - Results hash containing the various Managed Item instances (Json structures)
     def SdtmExcel.read_ig (params, errors)
         filename = params[:files][0]
         ConsoleLogger::log(C_CLASS_NAME,"read_ig", "filename=#{filename}")
@@ -420,7 +408,8 @@ module SdtmExcel
         managed_item[:last_changed_date] = params[:date]
         managed_item[:version_label] = params[:version_label]
         managed_item[:label] = label
-        managed_item[:children] = {} # Amend the children array to a hash. Simulates what client Javascript does.
+        # Remove the change to a hash in next line. 
+        #managed_item[:children] = {} # Amend the children array to a hash. Simulates what client Javascript does.
         operation[:new_version] = managed_item[:version] # Make sure this is set. Sets the right version.
         return instance
     end        
@@ -437,7 +426,8 @@ module SdtmExcel
         domain_mi[:version_label] = model_mi[:version_label]
         domain_mi[:label] = label  
         domain_mi[:domain_class] = label  
-        domain_mi[:children] = {} # Make sure array changed to hash
+        # Remove the change to a hash in next line. 
+        #domain_mi[:children] = {} # Make sure array changed to hash
         class_op[:new_version] = domain_mi[:version] # Make sure this is set. Sets the right version.
         children = domain_mi[:children]
         # Add the children for each group of variables within the set
@@ -445,7 +435,7 @@ module SdtmExcel
         variable_set.each do |set|
             set.each do |variable|
                 role = variable[:role]
-                children[ordinal] = 
+                children <<
                     {
                         :ordinal => ordinal, 
                         :label => variable[:label], 
@@ -478,7 +468,7 @@ module SdtmExcel
         ordinal = 1
         domain[:children].sort_by { |k, v| k[:seq] }
         domain[:children].each do |variable|
-            children[ordinal] = variable
+            children << variable
             ordinal += 1
         end
         return instance

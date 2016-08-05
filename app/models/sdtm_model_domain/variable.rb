@@ -48,6 +48,14 @@ class SdtmModelDomain::Variable < Tabular::Column
     return id
   end
 
+  def to_json
+    json = super
+    if !self.variable_ref.nil? 
+      json[:variable_ref] = self.variable_ref.to_json
+    end
+    return json
+  end
+
 private
 
   def self.children_from_triples(object, triples, id)

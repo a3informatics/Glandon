@@ -182,6 +182,8 @@ Rails.application.routes.draw do
   resources :sdtm_model_domains do
     collection do
       get :history
+      get :export_json
+      get :export_ttl
     end
   end
   namespace :sdtm_model_domains do
