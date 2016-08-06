@@ -555,7 +555,9 @@ private
       "      ?dataset bd:includesColumn ?var . \n " +              
       "      ?dataset rdfs:label ?domain . \n " +              
       "      ?dataset bd:includesColumn ?topic_var . \n " +              
-      "      ?topic_var bd:classifiedAs <http://www.assero.co.uk/MDRModels/CDISC/V1#M-CDISC_SDTMMODEL_C_TOPIC> . \n " +              
+      #"      ?topic_var bd:classifiedAs <http://www.assero.co.uk/MDRModels/CDISC/V1#M-CDISC_SDTMMODEL_C_TOPIC> . \n " +              
+      "      ?topic_var bd:classifiedAs ?classification . \n " +              
+      "      ?classification rdfs:label \"Topic\"^^xsd:string . \n " +              
       "      ?topic_var bd:name ?sdtmTopicName . \n " +              
       "      { \n " +
       "        SELECT ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?dataset ?var ?gord ?pord WHERE \n " + 
