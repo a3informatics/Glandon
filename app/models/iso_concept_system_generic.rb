@@ -47,7 +47,7 @@ class IsoConceptSystemGeneric < IsoConcept
     object = super(json)
     object.description = json[:description]
     object.rdf_type = UriV2.new({:namespace => C_SCHEMA_NS, :id => rdf_type})
-    if json.has_key?(:children)
+    if !json[:children].blank?
       json[:children].each do |child|
         object.children << IsoConceptSystem::Node.from_json(child)
       end

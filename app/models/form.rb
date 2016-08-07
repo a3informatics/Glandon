@@ -229,7 +229,7 @@ class Form < IsoManaged
     managed_item = json[:managed_item]
     object.completion = managed_item[:completion]
     object.note = managed_item[:note]
-    if managed_item.has_key?(:children)
+    if !managed_item[:children].blank?
       managed_item[:children].each do |child|
         object.groups << Form::Group::Normal.from_json(child)
       end
@@ -539,7 +539,7 @@ private
   def bc_annotations()
     ConsoleLogger::log(C_CLASS_NAME,"bc_annotations", "*****Entry*****")
     results = Array.new
-    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "cbc", "bd", "cdisc", "isoI", "iso25964"])  +
+    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoI", "iso25964"])  +
       "SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE \n" +
       "{ \n " +
       "  ?topic_var bd:hasProperty ?op_ref3 . \n " +
@@ -612,7 +612,7 @@ private
   def question_annotations()
     ConsoleLogger::log(C_CLASS_NAME,"question_annotations", "*****Entry*****")
     results = Array.new
-    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "mms", "bd", "cdisc", "isoI", "iso25964"])  +
+    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "bd", "isoI", "iso25964"])  +
       "SELECT ?var ?domain ?item WHERE \n" +       
       "{ \n" +         
       "  ?col bd:name ?var .  \n" +        

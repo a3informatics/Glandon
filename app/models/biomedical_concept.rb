@@ -139,7 +139,7 @@ class BiomedicalConcept < BiomedicalConceptCore
     namespace = params[:namespace]
     results = Hash.new
     # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["cbc"])  +
+    query = UriManagement.buildPrefix("", ["cbc"])  +
       "SELECT DISTINCT ?bc WHERE \n" +
       "{ \n " +
       "  ?bc rdf:type cbc:BiomedicalConceptInstance . \n " +

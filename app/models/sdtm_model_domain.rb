@@ -59,7 +59,7 @@ class SdtmModelDomain < Tabular::Tabulation
     # Set the properties
     sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "domain_class"}, {:literal => "#{managed_item[:domain_class]}", :primitive_type => "string"})
     # Now deal with the children
-    if managed_item.has_key?(:children)
+    if !managed_item[:children].blank?
       managed_item[:children].each do |item|
         ref_id = SdtmModelDomain::Variable.import_sparql(namespace, id, sparql, item, model_map)
         sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:namespace => namespace, :id => ref_id})

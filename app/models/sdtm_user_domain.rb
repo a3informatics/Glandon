@@ -165,12 +165,12 @@ class SdtmUserDomain < Tabular::Tabulation
     object.notes = managed_item[:notes]
     object.model_ref = OperationalReferenceV2.from_json(managed_item[:model_ref])
     object.ig_ref = OperationalReferenceV2.from_json(managed_item[:ig_ref])
-    if managed_item.has_key?(:children)
+    if !managed_item[:children].blank?
       managed_item[:children].each do |child|
         object.children << SdtmUserDomain::Variable.from_json(child)
       end
     end
-    if managed_item.has_key?(:bc_refs)
+    if !managed_item[:bc_refs].blank?
       managed_item[:bc_refs].each do |child|
         object.bc_refs << OperationalReferenceV2.from_json(child)
       end
@@ -317,11 +317,12 @@ class SdtmUserDomain < Tabular::Tabulation
     namespace = params[:namespace]
     results = Hash.new
     # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
-    query = UriManagement.buildPrefix(C_NS_PREFIX, ["bd", "bo", "mms"])  +
+    query = UriManagement.buildPrefix("", ["bd", "bo"])  +
       "SELECT DISTINCT ?domain WHERE \n" +
       "{ \n " +
-      "  ?domain rdf:type bd:Domain . \n " +
-      "  ?domain bd:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +
+      "  ?domain rdf:type bd:UserDomain . \n " +
+      "  ?domain bd:hasBiomedicalConcept ?ref . \n" +
+      "  ?ref bo:hasBiomedicalConcept " + ModelUtility.buildUri(namespace, id) + " . \n " +
       "}\n"
     # Send the request, wait the resonse
     response = CRUD.query(query)

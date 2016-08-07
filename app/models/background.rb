@@ -41,6 +41,8 @@ class Background < ActiveRecord::Base
     else
       self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
     end
+  rescue => e
+    self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
   handle_asynchronously :importCdiscSdtmModel
 
@@ -88,6 +90,8 @@ class Background < ActiveRecord::Base
     else
       self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
     end
+  rescue => e
+    self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
   handle_asynchronously :importCdiscSdtmIg
 
@@ -118,6 +122,8 @@ class Background < ActiveRecord::Base
     else
       self.update(status: "Complete. Unsuccessful import.", percentage: 100, complete: true, completed: Time.now())
     end
+  rescue => e
+    self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
   handle_asynchronously :importCdiscTerm
 
@@ -143,7 +149,9 @@ class Background < ActiveRecord::Base
     version_hash = {:new_version => new_term.version.to_s, :old_version => old_term.version.to_s} 
     CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT, results, version_hash)
     # Finish
-    self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
+    self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
+  rescue => e
+    self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
   handle_asynchronously :compareCdiscTerm
 
@@ -168,7 +176,9 @@ class Background < ActiveRecord::Base
     # Save the results
     CdiscCtChanges.save(CdiscCtChanges::C_ALL_CT, results)
     # Report Status
-    self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
+    self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
+  rescue => e
+    self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
   handle_asynchronously :changesCdiscTerm
 
@@ -222,7 +232,9 @@ class Background < ActiveRecord::Base
     # Save the results
     CdiscCtChanges.save(CdiscCtChanges::C_ALL_SUB, results)
     # Report Status
-    self.update(status: "Comparison complete.", percentage: 100, complete: true, completed: Time.now())
+    self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
+  rescue => e
+    self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
   handle_asynchronously :submission_changes_cdisc_term
 
@@ -248,6 +260,7 @@ class Background < ActiveRecord::Base
       uri = diff[:old_uri]
       id = ModelUtility.extractCid(uri)
       ns = ModelUtility.extractNs(uri)
+      #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "BCs=#{uri.to_json}")
       bcs = BiomedicalConcept.term_impact({:id => id, :namespace => ns})
       #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "BCs=#{bcs.to_json}")
       bc_results = Array.new  
@@ -269,7 +282,7 @@ class Background < ActiveRecord::Base
               }
           end
           domain_results = Array.new
-          domains = Domain.bc_impact({:id => bc.id, :namespace => bc.namespace})
+          domains = SdtmUserDomain.bc_impact({:id => bc.id, :namespace => bc.namespace})
           #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "Domains(BC)=#{domains.to_json}")
           domains.each do |domain_id, domain|
             domain_results << 
@@ -319,7 +332,9 @@ class Background < ActiveRecord::Base
     # Save the results
     CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT_IMPACT, diffs, params)
     # Report Status
-    self.update(status: "Impact assessment complete.", percentage: 100, complete: true, completed: Time.now())
+    self.update(status: "Complete. Successful impact assessment.", percentage: 100, complete: true, completed: Time.now())
+  rescue => e
+    self.update(status: "Complete. Unsuccessful impact assessment. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
   handle_asynchronously :submission_changes_impact
 

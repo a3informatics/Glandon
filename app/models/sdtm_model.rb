@@ -115,7 +115,7 @@ class SdtmModel < Tabular
     classification_id = id + Uri::C_UID_SECTION_SEPARATOR + 'C' + Uri::C_UID_SECTION_SEPARATOR + classification.upcase.gsub(/\s+/, "")
     classification_classes[classification] = { :id => classification_id, :label => "", :children => Array.new }
     # Now from the data
-    if managed_item.has_key?(:children)
+    if !managed_item[:children].blank?
       managed_item[:children].each do |item|
         classification = item[:variable_classification]
         sub_classification = item[:variable_sub_classification]
@@ -144,7 +144,7 @@ class SdtmModel < Tabular
       end
     end
     # Build the variable triples
-    if managed_item.has_key?(:children)
+    if !managed_item[:children].blank?
       managed_item[:children].each do |item|
         ref_id = SdtmModel::Variable.import_sparql(namespace, id, sparql, item, datatypes, classifications)
         ref_uri = UriV2.new({:namespace=> namespace, :id => ref_id})

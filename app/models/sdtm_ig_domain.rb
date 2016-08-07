@@ -75,7 +75,7 @@ class SdtmIgDomain < Tabular::Tabulation
       IsoConcept.import_sparql(uri.namespace, uri.id, sparql, C_SCHEMA_PREFIX, "VariableCompliance", label)
     end
     # Now deal with the children
-    if managed_item.has_key?(:children)
+    if !managed_item[:children].blank?
       managed_item[:children].each do |item|
         if !map.nil?
           ref_id = SdtmIgDomain::Variable.import_sparql(namespace, id, sparql, item, compliance_map, map[:children])

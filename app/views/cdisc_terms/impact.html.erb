@@ -32,7 +32,7 @@
 					<% elsif result[:item_type] == "Form" %>
           	<td><%=link_to "View", view_forms_path(:id => result[:item_id], :namespace => result[:namespace]), :class => "btn btn-primary btn-xs" %></td>
           <% elsif result[:item_type] == "Domain" %>
-						<td><%=link_to "Show", domain_path(:id => result[:item_id], :namespace => result[:namespace]), :class => "btn btn-primary btn-xs" %></td>
+						<td><%=link_to "Show", sdtm_user_domain_path(:id => result[:item_id], :namespace => result[:namespace]), :class => "btn btn-primary btn-xs" %></td>
           <% else %>
           	<td></td>
           <% end %>
