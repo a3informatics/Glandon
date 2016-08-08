@@ -1,5 +1,7 @@
 module BridgSdtm
 
+	C_CLASS_NAME = "BridgSdtm"
+
 	@@map = { 
 		"DefinedObservation.nameCode.CD.code" => "--TESTCD",
 		"DefinedObservation.nameCode.CD.originalText.ED.value" => "--TEST",
@@ -44,12 +46,14 @@ module BridgSdtm
 		"DefinedActivity.nameCode.CD" => "--TPTREF" ,
 		"PerformedActivity.dateRange.IVL(TS.DATETIME)" => "--RFTDTC" }
 
-	def BridgSdtm.get(bridg)
-		if @@map.has_key?(bridg) 
-			return @@map[bridg]
-		else
-			return ""
+	def self.get(bridg)
+		result = ""
+		if @@map.has_key?(bridg)
+			result = "#{@@map[bridg]}"
 		end
+		#ConsoleLogger::log(C_CLASS_NAME,"get","return=#{result}")
+		#ConsoleLogger::log(C_CLASS_NAME,"get","return=#{result.to_json}")
+		return result
 	end
 	
 end

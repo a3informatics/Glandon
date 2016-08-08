@@ -63,7 +63,6 @@ class Form::Item::BcProperty < Form::Item
     item_refs.each do |ref|
       json[:otherCommon] << ref.to_json
     end
-    ConsoleLogger::log(C_CLASS_NAME,"to_json","JSON=#{json}" )
     return json
   end
   
@@ -104,11 +103,8 @@ private
     #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****Entry*****")
     object.item_refs = Form::Item::BcProperty.find_for_parent(triples, object.get_links("bf", "hasCommonItem"))
     links = object.get_links_v2(C_SCHEMA_PREFIX, "hasProperty")
-    ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","links=#{links.to_json}")
     if links.length > 0
-      ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","property_ref, triples=#{triples[links[0].id]}")
       object.property_ref = OperationalReferenceV2.find_from_triples(triples, links[0].id)
-      ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","property_ref=#{object.property_ref.to_json}")
     end      
     links = object.get_links_v2("bf", "hasValue")
     links.each do |link|

@@ -213,7 +213,7 @@ class SdtmUserDomain < Tabular::Tabulation
     sparql = SparqlUpdate.new
     bc_ordinal = self.bc_refs.length + 1
     bcs.each do |key|
-      #ConsoleLogger::log(C_CLASS_NAME,"add","Add BC=" + key.to_s )
+      #ConsoleLogger::log(C_CLASS_NAME,"add","ordinal=#{bc_ordinal}")
       parts = key.split("|")
       bc_id = parts[0]
       bc_namespace = parts[1]
@@ -223,8 +223,8 @@ class SdtmUserDomain < Tabular::Tabulation
         bc.flatten.each do |property|
           if property.enabled
             bridg = property.bridgPath
-            sdtm = BridgSdtm::get(bridg)
-            ConsoleLogger::log(C_CLASS_NAME,"add","bridg=" + bridg.to_s + " , sdtm=" + sdtm.to_s )
+            sdtm = BridgSdtm.get(bridg)
+            ConsoleLogger::log(C_CLASS_NAME,"add","bridg=#{bridg}, sdtm=#{sdtm}")
             if sdtm != ""
               variable = find_variable_by_name(self.prefix, sdtm)
               if variable != nil

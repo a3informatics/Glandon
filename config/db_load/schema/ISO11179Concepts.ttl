@@ -17,6 +17,7 @@
 :Concept
   rdf:type owl:Class ;
   rdfs:label "Concept"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
   skos:definition "A unit of knowledge created by a unique combination of characteristics."^^xsd:string ;
 .
 :ConceptSystem
