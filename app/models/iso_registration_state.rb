@@ -10,7 +10,6 @@ class IsoRegistrationState
   include ActiveModel::Validations
       
   attr_accessor :id, :registrationAuthority, :registrationStatus, :administrativeNote, :effective_date, :until_date, :current, :unresolvedIssue , :administrativeStatus, :previousState
-  #validates_presence_of :registrationAuthority, :registrationStatus, :administrativeNote, :effective_date, :until_date, :unresolvedIssue, :current, :administrativeStatus, :previousState
   
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -147,6 +146,7 @@ class IsoRegistrationState
       self.unresolvedIssue = ""
       self.administrativeStatus = ""
       self.previousState  = C_NOTSET
+      self.current = false
     else
       self.id = ModelUtility.extractCid(triples[0][:subject])
       self.registrationAuthority = nil
