@@ -25,6 +25,7 @@ $(document).ready(function() {
   var C_IDENTIFIER_COL = 1;
   var C_DEFINITION_COL = 6;
   var C_RDF_TYPE = "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
+  var C_ERROR_TEXT = '<span class="help-block">Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,_-/\\() special characters only.</span>'
   
   // Get the flag (Thesaurus:T or Concept:TC)
   thesaurusFlagElement = document.getElementById("thesaurus_flag");
@@ -169,11 +170,13 @@ $(document).ready(function() {
         if (tcEditRow == null) {
           editCell ();   
         } else if (tcEditRow != tcTableRow) {
-          saveCell ();
-          editCell ();   
+          if (saveCell ()) {
+            editCell ();   
+          }
         } else if (tcEditCol != tcTableCol) {
-          saveCell ();
-          editCell ();   
+          if (saveCell ()) {
+            editCell ();   
+          }
         } else {
           // Do nothing
         }   
@@ -237,10 +240,9 @@ $(document).ready(function() {
   function editCell () {
     var rowData = tcTable.row(tcTableDataIdx).data();
     var cell = getCell(tcTableRow, tcTableCol);
-    cell.html('<input type="text" id="tcInput" value="' + rowData[columnMap[tcTableCol]] + '" size="' + lengthMap[tcTableCol] + '" class="form-control"/>');
+    cell.html('<div class="form-group"><input type="text" id="tcInput" value="' + rowData[columnMap[tcTableCol]] + '" size="' + lengthMap[tcTableCol] + '" class="form-control"/></div>');
     $("#tcInput").keydown(function(e){
         var keyCode = e.keyCode || e.which;
-        console.log('Keydown code=' + keyCode);
         var col = tcEditCol;
         var row = tcEditRow;
         if (keyCode==13) {
@@ -271,13 +273,38 @@ $(document).ready(function() {
   function saveCell () {
     var rowData = tcTable.row(tcEditDataIdx).data();
     var cell = getCell(tcEditRow, tcEditCol);
-    rowData[columnMap[tcEditCol]] = $('#tcInput').val();
-    cell.html(rowData[columnMap[tcEditCol]])
-      .keydown(function(e){
-      });
-    tcEditCol = null;
-    tcEditRow = null;
-    tcEditDataIdx = null;
+    var value = $('#tcInput').val();
+    if (validateLabel(value)) {
+      rowData[columnMap[tcEditCol]] = $('#tcInput').val();
+      cell.html(rowData[columnMap[tcEditCol]])
+        .keydown(function(e){
+        });
+      tcEditCol = null;
+      tcEditRow = null;
+      tcEditDataIdx = null;
+      unhighlight($('#tcInput'))
+      return true;
+    } else {
+      //alert("ERROR!!!!");
+      highlight($('#tcInput'))
+      errorText($(C_ERROR_TEXT), $('#tcInput'));
+      return false;
+    }
+  }
+
+  /**
+  * Error functions
+  */
+  function highlight(element) {
+    $(element).closest('.form-group').addClass('has-error');
+  }
+
+  function unhighlight(element) {
+    $(element).closest('.form-group').removeClass('has-error');
+  }
+
+  function errorText(error, element) {
+    error.insertAfter(element);
   }
 
   /*
@@ -293,18 +320,25 @@ $(document).ready(function() {
   * Cell down and right functions
   */
   function cellDown(row, col) {
-    console.log('Cell down [' + row + ',' + col + ']');
     var $tr = $('#tc_table tbody').find('tr:nth-child(' + (row + 2) + ')');
     $tr.find('td:nth-child(' + (col + 1) + ')').click();
   }  
           
   function cellRight(row, col) {
-    console.log('Cell Right [' + row + ',' + col + ']');
     if (col<C_DEFINITION_COL) {
       var $tr = $('#tc_table tbody').find('tr:nth-child(' + (row + 1) + ')');
       $tr.find('td:nth-child(' + (col + 2) + ')').click();
     }
   }  
+
+  /**
+  * Validation
+  */
+  function validateLabel(value) {
+    var result = /^[A-Za-z0-9 .!?,_\-\/\\()]*$/.test( value );
+    return result
+  }
+
           
   /**
   *  Send to the server functions. Create and Update.
