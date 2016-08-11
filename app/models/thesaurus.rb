@@ -1,32 +1,26 @@
-require "nokogiri"
-require "uri"
-
 class Thesaurus <  IsoManaged
 
-  include CRUD
-  include ModelUtility
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
   attr_accessor :children
-  validates_presence_of :children
  
   # Constants
+  C_SCHEMA_PREFIX = UriManagement::C_ISO_25964
+  C_INSTANCE_PREFIX = UriManagement::C_MDR_TH
   C_CLASS_NAME = "Thesaurus"
   C_CID_PREFIX = "TH"
-  C_SCHEMA_PREFIX = "iso25964"
-  C_INSTANCE_PREFIX = "mdrTh"
   C_RDF_TYPE = "Thesaurus"
-
-  # Base namespace 
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  
+    
   def initialize(triples=nil, id=nil)
     self.children = Array.new
     if triples.nil?
       super
+      # Set the type. Overwrite default.
+      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
@@ -81,6 +75,9 @@ class Thesaurus <  IsoManaged
     #ConsoleLogger::log(C_CLASS_NAME,"find","object=" + object.to_json.to_s)
     if children
       object.children = ThesaurusConcept.find_for_parent(object.triples, object.get_links(UriManagement::C_ISO_25964, "hasConcept"))
+      object.children.each do |child|
+        child.parentIdentifier = child.identifier
+      end
     end
     #object.triples = ""
     return object    
@@ -120,13 +117,91 @@ class Thesaurus <  IsoManaged
   end
 
   def self.create(params)
-    object = super(C_CID_PREFIX, params, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
+    # Get the parameters
+    data = params[:data]
+    operation = data[:operation]
+    managed_item = data[:managed_item]
+    # Create blank object for the errors
+    object = self.new
+    object.errors.clear
+    # Set owner ship
+    ra = IsoRegistrationAuthority.owner
+    if params_valid?(managed_item, object) then
+      # Build a full object. Special case, fill in the identifier, base on domain prefix.
+      object = Thesaurus.from_json(data)
+      # Can we create?
+      if object.create_permitted?(ra)
+        # Build sparql
+        sparql = object.to_sparql(ra)
+        # Send to database
+        ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
+        response = CRUD.update(sparql.to_s)
+        if !response.success?
+          object.errors.add(:base, "The Thesaurus was not created in the database.")
+        end
+      end
+    end
     return object
   end
 
+  def add_child(params)
+    ConsoleLogger::log(C_CLASS_NAME,"add_child","params=#{params}")
+    sparql = SparqlUpdateV2.new
+    # Create the object
+    object = ThesaurusConcept.create_sparql(params, sparql)
+    if object.errors.empty?
+      # Add the reference
+      sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasConcept"}, {:uri => object.uri})
+      # Send the request, wait the resonse
+      ConsoleLogger::log(C_CLASS_NAME,"add_child","sparql=#{sparql.to_s}")
+      response = CRUD.update(sparql.to_s)
+      # Response
+      if !response.success?
+        object.errors.add(:base, "The Thesaurus Concept, identifier #{self.identifier}, was not created in the database.")
+      else
+        cl = Thesaurus.find(self.id, self.namespace)
+        self.children = cl.children
+      end
+    end
+    return object
+  end
+
+  # TODO: This needs looking at. used by CdiscTerm
   def self.import(params, ownerNamespace)
     object = super(C_CID_PREFIX, params, ownerNamespace, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
     return object
+  end
+
+  def to_json
+    json = super
+    json[:children] = Array.new
+    self.children.each do |child|
+      json[:children] << child.to_json
+    end
+    return json
+  end
+
+  def self.from_json(json)
+    object = super(json)
+    managed_item = json[:managed_item]
+    if !managed_item[:children].blank?
+      managed_item[:children].each do |child|
+        object.children << ThesaurusConcept.from_json(child)
+      end
+    end
+    return object
+  end
+
+  def to_sparql_v2(ra)
+    sparql = SparqlUpdateV2.new
+    uri = super(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, C_SCHEMA_PREFIX)
+    # Now deal with the children
+    self.children.each do |child|
+      ref_id = child.to_sparql(uri.id, sparql)
+      sparql.triple("", uri.id, C_SCHEMA_PREFIX, "hasConcept", "", ref_id)
+    end
+    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","SPARQL=#{sparql}")
+    return sparql
   end
 
   def self.count(searchTerm, ns)
@@ -237,57 +312,13 @@ class Thesaurus <  IsoManaged
     end
   end
   
-  def d3
-
-    result = Hash.new
-    result[:name] = self.identifier
-    result[:namespace] = self.namespace
-    result[:id] = self.id
-    result[:label] = "";
-    result[:identifier] = "";
-    result[:notation] = "";
-    result[:definition] = "";
-    result[:synonym] = "";
-    result[:preferredTerm] = "";
-    result[:children] = Array.new
-        
-    count = 0
-    index = 0
-    baseChildId = ""
-    if self.children.length <= 10
-      self.children.each do |child|
-        result[:children][index] = ThesaurusNode.new(child)
-        index += 1
-      end
-    else      
-      self.children.each do |child|
-        if count == 0
-          baseChildId = child.identifier;
-          result[:children][index] = Hash.new
-          result[:children][index][:name] = child.label
-          result[:children][index][:id] = child.id
-          result[:children][index][:expand] = true
-          result[:children][index][:expansion] = Array.new        
-          result[:children][index][:expansion][count] = ThesaurusNode.new(child)
-          count += 1
-        elsif count == 9
-          result[:children][index][:name] = baseChildId + ' - ' + child.identifier
-          result[:children][index][:expansion][count] = ThesaurusNode.new(child)
-          count = 0
-          index += 1        
-        else
-          result[:children][index][:name] = baseChildId + ' - ' + child.identifier;
-          result[:children][index][:expansion][count] = ThesaurusNode.new(child)
-          count += 1
-        end
-      end
-    end
-    #ConsoleLogger::log(C_CLASS_NAME,"d3","D3=" + result.to_s)
-    return result
-
-  end
-
 private
+
+  def self.params_valid?(params, object)
+    result1 = ModelUtility::validIdentifier?(params[:scoped_identifier][:identifier], object)
+    result2 = ModelUtility::validLabel?(params[:label], object)
+    return result1 && result2 # && result3 && result4
+  end
 
   def self.processNode(node, results)
     object = nil

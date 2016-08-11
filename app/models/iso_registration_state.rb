@@ -447,6 +447,21 @@ class IsoRegistrationState
     return id
   end
 
+  def to_sparql_v2(sparql, ra, identifier, version)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX , ra.namespace.shortName, identifier, version)
+    subject = {:prefix => C_NS_PREFIX, :id => id}
+    sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_ISO_R, :id => "RegistrationState"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "byAuthority"}, {:prefix => C_NS_PREFIX, :id => ra.id})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "registrationStatus"}, {:literal => "#{self.registrationStatus}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeNote"}, {:literal => "", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "effectiveDate"}, {:literal => C_DEFAULT_DATETIME, :primitive_type => "dateTime"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "untilDate"}, {:literal => C_DEFAULT_DATETIME, :primitive_type => "dateTime"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "unresolvedIssue"}, {:literal => "", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeStatus"}, {:literal => "", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "previousState"}, {:literal => "#{self.previousState}", :primitive_type => "string"})
+    return id
+  end
+
   def self.count
     results = Hash.new
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoR"]) +

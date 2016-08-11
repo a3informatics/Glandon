@@ -9,12 +9,27 @@ class ThesaurusConceptsController < ApplicationController
     @thesaurusConcept = ThesaurusConcept.new
   end
   
-  def create
+  def edit
+    authorize Thesaurus
+    @thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace])
+  end
+
+  def update
     authorize ThesaurusConcept
-    if !ThesaurusConcept.exists?(param[:identifier])
-      @thesaurusConcept = ThesaurusConcept.create(the_params)
+    thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace])
+    thesaurus_concept.update(params[:children][0])
+    render :json => {}, :status => 200
+  end
+  
+  def add_child
+    authorize ThesaurusConcept, :create?
+    thesaurus = ThesaurusConcept.find(params[:id], params[:namespace], false)
+    thesaurus_concept = thesaurus.add_child(params[:children][0])
+    if thesaurus_concept.errors.empty?
+      render :json => thesaurus_concept.to_json, :status => 200
+    else
+      render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
     end
-    redirect_to thesaurus_concepts_path
   end
 
   def impact
@@ -27,9 +42,13 @@ class ThesaurusConceptsController < ApplicationController
 
   def destroy
     authorize ThesaurusConcept
-    @thesaurusConcept = ThesaurusConcept.find(params[:id])
-    @thesaurusConcept.destroy
-    redirect_to thesaurus_concepts_path
+    thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace])
+    thesaurus_concept.destroy
+    if thesaurus_concept.errors.empty?
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+    end
   end
 
   def show
@@ -39,23 +58,14 @@ class ThesaurusConceptsController < ApplicationController
       format.html
       format.json do
         render json: @thesaurusConcept.to_json
-        ConsoleLogger::log(C_CLASS_NAME, "Thesaurus Concept=", "JSON=#{@thesaurusConcept.to_json}")
       end
     end
   end
   
-  def showD3
-    authorize ThesaurusConcept, :view?
-    id = params[:id]
-    namespace = params[:namespace]
-    thesaurusConcept = ThesaurusConcept.find(id, namespace)
-    @thesaurusConcept = thesaurusConcept.d3
-    render json: @thesaurusConcept
-  end
+private
 
-  private
-    def the_params
-      params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace)
-    end
+  def the_params
+    params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace)
+  end
     
 end

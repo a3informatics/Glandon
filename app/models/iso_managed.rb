@@ -685,6 +685,33 @@ class IsoManaged < IsoConcept
     return uri
   end
 
+  def to_sparql_v2(sparql, ra, prefix, instance_namespace, schema_prefix)
+    # Get the timestamp
+    timestamp = Time.now.iso8601
+    # Set the organisation
+    org_name = ra.namespace.shortName
+    # Build the uri. Extend with version, save in the object and set as the default namespace.
+    uri = UriV2.new(:namespace => instance_namespace, :prefix => prefix, :org_name => org_name, :identifier => self.identifier)  
+    uri.extend_path("#{org_name}/V#{self.version}")
+    self.namespace = uri.namespace
+    self.id = uri.id
+    sparql.default_namespace(self.namespace)
+    # Build the sparql. The concept and then the registration state and scoped identifier
+    super(sparql, schema_prefix)
+    rs_id = self.registrationState.to_sparql(sparql, ra, self.identifier, self.version)
+    si_id = self.scopedIdentifier.to_sparql(sparql, ra)
+    # And the object.
+    subject = {:namespace => self.namespace, :id => self.id}
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "hasIdentifier"}, {:prefix => C_INSTANCE_PREFIX, :id => si_id})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "hasState"}, {:prefix => C_INSTANCE_PREFIX, :id => rs_id})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "creationDate"}, {:literal => "#{self.creationDate}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "lastChangeDate"}, {:literal => "#{timestamp}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "changeDescription"}, {:literal => "#{self.changeDescription}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "explanatoryComment"}, {:literal => "#{self.explanatoryComment}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "origin"}, {:literal => "#{self.origin}", :primitive_type => "string"})
+    return uri
+  end
+
   # Build the SPARQL for the managed item creation.
   def self.create_sparql(prefix, params, rdf_type, schemaNs, instance_namespace, sparql, ra)
     operation = params[:operation]

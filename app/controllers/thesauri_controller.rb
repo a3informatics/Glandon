@@ -27,40 +27,40 @@ class ThesauriController < ApplicationController
     redirect_to thesauri_index_path
   end
 
-  def update
-    authorize Thesaurus
-    id = params[:id]
-    namespace = params[:namespace]
-    data = params[:data]
-    @thesaurus = Thesaurus.find(id,namespace)
-    @thesaurus.update(params)
-    if @thesaurus.errors.empty?
-      @thesaurus = Thesaurus.find(id,namespace)
-      render json: @thesaurus.d3
-    else
-      render :json => { :errors => @thesaurus.errors.full_messages}, :status => 422
-    end
-  end
-
   def edit
     authorize Thesaurus
-    id = params[:id]
-    namespace = params[:namespace]
-    @thesaurus = Thesaurus.find(id,namespace)
+    @thesaurus = Thesaurus.find(params[:id], params[:namespace])
+  end
+
+  def add_child
+    authorize Thesaurus, :create?
+    thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
+    thesaurus_concept = thesaurus.add_child(params[:children][0])
+    if thesaurus_concept.errors.empty?
+      render :json => thesaurus_concept.to_json, :status => 200
+    else
+      render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+    end
   end
 
   def destroy
     authorize Thesaurus
-    @thesaurus = Thesaurus.find(params[:id])
+    @thesaurus = Thesaurus.find(params[:id], params[:namespace])
     @thesaurus.destroy()
     redirect_to thesauri_index_path
   end
 
   def show
     authorize Thesaurus
-    id = params[:id]
-    namespace = params[:namespace]
-    @thesaurus = Thesaurus.find(id, namespace)
+    @thesaurus = Thesaurus.find(params[:id], params[:namespace])
+    respond_to do |format|
+      format.html
+      format.json do
+        results = @thesaurus.to_json
+        ConsoleLogger::log(C_CLASS_NAME,"form", "JSON=#{results.to_json}")
+        render json: results
+      end
+    end
   end
   
   def view

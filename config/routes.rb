@@ -60,13 +60,14 @@ Rails.application.routes.draw do
       get :view
       get :search
       get :next
+      post :add_child
       get :export_ttl
     end
   end
   resources :thesaurus_concepts do
     collection do
       get :impact
-      get :showD3
+      post :add_child
     end
   end
   resources :uploads

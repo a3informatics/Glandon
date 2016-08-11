@@ -1,0 +1,367 @@
+$(document).ready(function() {
+  
+  var sourceJson;
+  var parentItem;
+  var html;
+  var parentId;
+  var parentNamespace;
+  var showUri;
+  var createUri;
+  var updateUri;
+  var tcTable;
+  var tcTableReload;
+  var tcTableRow;
+  var tcTableCol;
+  var tcTableDataIdx;
+  var tcEditRow;
+  var tcEditCol;
+  var tcEditDataIdx;
+  var columnMap;
+  var enableMap;
+  var emptyTc;
+  var thesaurusFlagElement;
+  var thesaurusFlag;
+  
+  var C_IDENTIFIER_COL = 1;
+  var C_DEFINITION_COL = 6;
+  var C_RDF_TYPE = "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
+  
+  // Get the flag (Thesaurus:T or Concept:TC)
+  thesaurusFlagElement = document.getElementById("thesaurus_flag");
+  thesaurusFlag = true;
+  if (thesaurusFlagElement.value == "TC") {
+    thesaurusFlag = false;  
+  }
+
+  // Initialise the simple variabled
+  tcEditRow = null;
+  tcEditCol = null;
+  tcEditDataIdx = null;
+  tcTableRow = null;
+  tcTableCol = null;
+  tcTableDataIdx = null;
+  tcTableReload = false;
+  
+  // Set the maps
+  columnMap = ["parentIdentifier", "identifier", "label", "notation", "preferredTerm", "synonym", "definition", "", "", ""];
+  enableMap = [false, false, true, true, true, true, true, false, false, false];
+  lengthMap = [0, 0, 15, 15, 25, 25, 60, false, false, false];
+
+  // Create an empty TC value.
+  emptyTc = 
+    {
+      "type": C_RDF_TYPE, 
+      "id": "", 
+      "namespace": "", 
+      "parentIdentifier": "", 
+      "identifier": "", 
+      "label": "", 
+      "notation": "", 
+      "preferredTerm": "", 
+      "synonym": "", 
+      "definition": ""
+    };
+          
+  // Get the JSON structure.
+  html  = $("#jsonData").html();
+  sourceJson = $.parseJSON(html);
+  
+  // Process the json depending on T or TC JSON structure
+  if (thesaurusFlag) {
+    parentItem = sourceJson.managed_item;
+    showUri = "/thesauri/";
+    updateUri = "/thesaurus_concepts/";
+    createUri = "/thesauri/add_child";
+    deleteUri = "/thesaurus_concepts/";
+  } else {
+    parentItem = sourceJson;
+    showUri = "/thesaurus_concepts/";
+    updateUri = "/thesaurus_concepts/";
+    createUri = "/thesaurus_concepts/add_child";
+    deleteUri = "/thesaurus_concepts/";
+  }
+  parentId = parentItem.id;
+  parentNamespace = parentItem.namespace;
+
+  // Load the table
+  loadTcTable();
+  
+  /*
+  * Initial load function
+  */
+  function loadTcTable() {
+    if (!tcTableReload) {
+      tcTable = $('#tc_table').DataTable( {
+        "ajax": {
+          "url": showUri + parentId,
+          "data": {"namespace": parentNamespace},
+          "dataSrc": "children"  
+        },
+        "bProcessing": true,
+        "pageLength": 10,
+        "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
+        "language": {
+            "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+          },
+        "columns": [
+          {"data" : "parentIdentifier", "width" : "10%"},
+          {"data" : "identifier", "width" : "10%"},
+          {"data" : "label", "width" : "10%"},
+          {"data" : "notation", "width" : "10%" },
+          {"data" : "preferredTerm", "width" : "15%" },
+          {"data" : "synonym", "width" : "15%" },
+          {"data" : "definition", "width" : "30%" },
+          {"defaultContent": '<button type="button" class="btn btn-primary btn-xs">Save</button>'},
+          {"render": 
+            function(data, type, row, meta) { 
+              if (row.id != "") { 
+                return '<button type="button" class="btn btn-primary btn-xs">Edit</button>' 
+              } else { 
+                return ""
+              }
+            }
+          },
+          {"render": 
+            function(data, type, row, meta) { 
+              if (row.id != "") { 
+                return '<button type="button" class="btn btn-danger btn-xs">Delete</button>' 
+              } else { 
+                return ""
+              }
+            }
+          }
+        ]
+      });
+      tcTableReload = true; 
+    } else {
+      tcTable.ajax.reload();
+    }
+  };
+
+  /*
+  * Table body click handler
+  */
+  $('#tc_table tbody').on('click', 'td', function (e) {
+    e.preventDefault();
+    tcTableCol = parseInt($(this).index());
+    var tr = $(this).closest('tr');
+    tcTableRow = tr.index();
+    tcTableDataIdx = tcTable.row(tr).index();
+    if (enableMap[tcTableCol]) {
+      cell = getCell(tcTableRow, tcTableCol);
+      if(cell.html().substr(0,6) != '<input') {
+        if (tcEditRow == null) {
+          editCell ();   
+        } else if (tcEditRow != tcTableRow) {
+          saveCell ();
+          editCell ();   
+        } else if (tcEditCol != tcTableCol) {
+          saveCell ();
+          editCell ();   
+        } else {
+          // Do nothing
+        }   
+      }
+    } else {
+      var saved = false;
+      if (tcEditRow != null) {
+        saveCell();
+        saved = true;
+      }
+      if (tcTableCol == 7) {
+        var rowData = tcTable.row(tcTableDataIdx).data();
+        if (rowData.id == "") {
+          createRest(tcTableDataIdx);
+        } else {
+          updateRest(tcTableDataIdx);
+        } 
+      } else if (tcTableCol == 8) {
+        editRest(tcTableDataIdx)
+      } else if (tcTableCol == 9) {  
+        deleteRest(tcTableDataIdx);
+      } else {
+        if (!saved) {
+          var html = alertWarning("This column cannot be amended.");
+          displayAlerts(html);
+        }
+      }
+    } 
+    return false;    
+  });
+    
+  /*
+  * New TC button click
+  */
+  $('#tc_new').click(function() {
+    // Save any current editing
+    if(tcEditRow != null) {
+      saveCell ();
+    }
+    // Add the new data, refresh the table
+    var localTc = emptyTc;
+    localTc[columnMap[C_IDENTIFIER_COL]] = $("#tcIdentifier").val();
+    tcTable.row.add(localTc);
+    tcTable.draw(false);
+  });
+
+  
+  // Utility functions
+  // =================
+
+  /*
+  * Edit cell. Set the cell for editing 
+  */
+  function editCell () {
+    var rowData = tcTable.row(tcTableDataIdx).data();
+    var cell = getCell(tcTableRow, tcTableCol);
+    cell.html('<input type="text" id="tcInput" value="' + rowData[columnMap[tcTableCol]] + '" size="' + lengthMap[tcTableCol] + '" class="form-control"/>');
+    $("#tcInput").keydown(function(e){
+        var keyCode = e.keyCode || e.which;
+        console.log('Keydown code=' + keyCode);
+        var col = tcEditCol;
+        var row = tcEditRow;
+        if (keyCode==13) {
+          e.preventDefault();
+          if(tcEditRow != null) {
+            saveCell ();
+          }
+          cellDown(row, col);
+          return false;
+        } else if (keyCode==9) {
+          e.preventDefault();
+          if(tcEditRow != null) {
+            saveCell ();
+          }
+          cellRight(row, col);
+          return false;
+        }
+      });
+    $("#tcInput").focus();
+    tcEditCol = tcTableCol;
+    tcEditRow = tcTableRow;
+    tcEditDataIdx = tcTableDataIdx;
+  }
+
+  /*
+  * Save the cell value and close editing
+  */
+  function saveCell () {
+    var rowData = tcTable.row(tcEditDataIdx).data();
+    var cell = getCell(tcEditRow, tcEditCol);
+    rowData[columnMap[tcEditCol]] = $('#tcInput').val();
+    cell.html(rowData[columnMap[tcEditCol]])
+      .keydown(function(e){
+      });
+    tcEditCol = null;
+    tcEditRow = null;
+    tcEditDataIdx = null;
+  }
+
+  /*
+  * Get cell reference
+  */
+  function getCell(row, col) {
+    var $tr = $('#tc_table tbody').find('tr:nth-child(' + (row + 1) + ')');
+    var $td = $tr.find('td:nth-child(' + (col + 1) + ')');
+    return $td
+  }
+
+  /*
+  * Cell down and right functions
+  */
+  function cellDown(row, col) {
+    console.log('Cell down [' + row + ',' + col + ']');
+    var $tr = $('#tc_table tbody').find('tr:nth-child(' + (row + 2) + ')');
+    $tr.find('td:nth-child(' + (col + 1) + ')').click();
+  }  
+          
+  function cellRight(row, col) {
+    console.log('Cell Right [' + row + ',' + col + ']');
+    if (col<C_DEFINITION_COL) {
+      var $tr = $('#tc_table tbody').find('tr:nth-child(' + (row + 1) + ')');
+      $tr.find('td:nth-child(' + (col + 2) + ')').click();
+    }
+  }  
+          
+  /**
+  *  Send to the server functions. Create and Update.
+  */
+  function createRest(index) {
+    var tc = tcTable.row(index).data();
+    var data = {};
+    data.id = parentId;
+    data.namespace = parentNamespace;
+    data.children = [];
+    data.children.push(tc);
+    $.ajax({
+      url: createUri,
+      type: 'POST',
+      data: JSON.stringify(data),
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(result){
+        var html = alertSuccess("The concept has been saved.");
+        displayAlerts(html);
+        //var rowData = tcTable.row(index).data();
+        //rowData['id'] =result.id;
+        //rowData['namespace'] = result.namespace;
+        loadTcTable();
+      },
+      error: function(xhr,status,error){
+        handleAjaxError (xhr, status, error);
+      }
+    }); 
+  }
+  
+  function updateRest(index) {
+    var tc = tcTable.row(index).data();
+    var data = {};
+    data.id = parentId;
+    data.namespace = parentNamespace;
+    data.children = [];
+    data.children.push(tc);
+    $.ajax({
+      url: updateUri + tc.id,
+      type: 'PUT',
+      data: JSON.stringify(data),
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(result){
+        var html = alertSuccess("The concept has been saved.");
+        displayAlerts(html);
+      },
+      error: function(xhr,status,error){
+        handleAjaxError (xhr, status, error);
+      }
+    }); 
+  }
+
+  function editRest(index) {
+    var tc = tcTable.row(index).data(); 
+    window.location.href = "/thesaurus_concepts/" + tc.id + "/edit?namespace=" + tc.namespace
+  }
+   
+  function deleteRest(index) {
+    var tc = tcTable.row(index).data();
+    var data = {};
+    data.id = tc.id;
+    data.namespace = tc.namespace;
+    $.ajax({
+      url: deleteUri + tc.id,
+      type: 'DELETE',
+      data: JSON.stringify(data),
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(result){
+        var html = alertSuccess("The concept has been deleted.");
+        displayAlerts(html);
+        //tcTable.row(index).remove();
+        loadTcTable();
+      },
+      error: function(xhr,status,error){
+        handleAjaxError (xhr, status, error);
+      }
+    }); 
+  }
+
+});

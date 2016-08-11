@@ -1,16 +1,16 @@
-<%= stylesheet_link_tag    'd3local' %>
-<%= javascript_include_tag 'd3local' %>
+<%= stylesheet_link_tag    'd3_local_v2' %>
+<%= javascript_include_tag 'd3_local_v2' %>
 <script id="jsonData" type="text/json">
-    <%= raw @thesaurus.d3.to_json %>
+    <%= raw @thesaurus.to_edit(true).to_json %>
 </script>
 <%= javascript_include_tag 'thesauri_viewer' %>
-<div class="col-md-9" style="padding-right:20px; border-right: 1px solid #ccc;">
+<div class="col-md-8">
     <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "View:", :item => @thesaurus} %>
-    <div style="height: 800px;" id="d3">
+    <div id="d3">
         <!-- D3 Area -->
     </div>
 </div>
-<div class="col-md-3">
+<div class="col-md-4">
     <div>
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -20,16 +20,16 @@
                 <table class="table table-striped table-condensed">
                     <tbody>
                         <tr>
-                            <td><strong>Label:</strong> <%= @thesaurus.label %></td>
+                            <td><strong>Label:</strong></td><td><%= @thesaurus.label %></td>
                         </tr>
                         <tr>
-                            <td><strong>Identifier:</strong> <%= @thesaurus.identifier %></td>
+                            <td><strong>Identifier:</strong></td><td><%= @thesaurus.identifier %></td>
                         </tr>
                         <tr>
-                            <td><strong>Version Label:</strong> <%= @thesaurus.versionLabel %></td>
+                            <td><strong>Version Label:</strong></td><td><%= @thesaurus.versionLabel %></td>
                         </tr>
                         <tr>
-                            <td><strong>Version:</strong> <%= @thesaurus.version %></td>
+                            <td><strong>Version:</strong></td><td><%= @thesaurus.version %></td>
                         </tr>
                     </tbody>
                 </table>

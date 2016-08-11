@@ -202,6 +202,13 @@ class IsoConcept
     sparql.triple_primitive_type("", self.id, UriManagement::C_RDFS, "label", self.label, "string")
   end
 
+  def to_sparql_v2(sparql, schema_prefix)
+    subject = {:namespace => self.namespace, :id => self.id}
+    uri = UriV2.new({:uri => self.rdf_type})
+    sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:uri => uri})
+    sparql.triple(subject, {:prefix => UriManagement::C_RDFS, :id => "label"}, {:literal => "#{self.label}", :primitive_type => "string"})
+  end
+
   # Build the sparql to create the concept triples.
   def self.import_sparql(namespace, parent_id, sparql, schema_prefix, rdf_type, label)
     subject = {:namespace => namespace, :id => parent_id}

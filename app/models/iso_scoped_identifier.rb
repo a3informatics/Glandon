@@ -374,6 +374,17 @@ class IsoScopedIdentifier
     return id
   end
 
+  def to_sparql_v2(sparql, ra)
+    id = ModelUtility.build_full_cid(C_CID_PREFIX, ra.namespace.shortName, self.identifier, self.version)
+    subject = {:prefix => C_NS_PREFIX, :id => id}
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "identifier"}, {:literal => "#{self.identifier}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_ISO_I, :id => "ScopedIdentifier"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "version"}, {:literal => "#{self.version}", :primitive_type => "positiveInteger"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "versionLabel"}, {:literal => "#{self.versionLabel}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "hasScope"}, {:prefix => C_NS_PREFIX, :id => "#{ra.namespace.id}"})
+    return id
+  end
+
   def update(params)  
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI"]) +
       "DELETE \n" +
