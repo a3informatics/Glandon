@@ -71,7 +71,7 @@ class ThesaurusConcept < IsoConcept
       response = CRUD.update(sparql.to_s)
       # Response
       if !response.success?
-        object.errors.add(:base, "The Thesaurus Concept, identifier #{self.identifier}, was not created in the database.")
+        object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, was not created in the database.")
         raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
       else
         cl = ThesaurusConcept.find(self.id, self.namespace)

@@ -62,6 +62,22 @@ $(document).ready(function() {
       "definition": ""
     };
           
+  // Set up the form validation
+  validatorDefaults ();
+  $('#main_form').validate({
+    rules: {
+      "Code List Identifier": {required: true, identifier: true }
+    },
+    submitHandler: function(form) {
+      tcNew();
+      return false;
+    },
+    invalidHandler: function(event, validator) {
+      var html = alertWarning("The form is not valid. Please correct the errors.");
+      displayAlerts(html);
+    }
+  });
+
   // Get the JSON structure.
   html  = $("#jsonData").html();
   sourceJson = $.parseJSON(html);
@@ -169,12 +185,7 @@ $(document).ready(function() {
         saved = true;
       }
       if (tcTableCol == 7) {
-        var rowData = tcTable.row(tcTableDataIdx).data();
-        if (rowData.id == "") {
-          createRest(tcTableDataIdx);
-        } else {
-          updateRest(tcTableDataIdx);
-        } 
+        tcSave();
       } else if (tcTableCol == 8) {
         editRest(tcTableDataIdx)
       } else if (tcTableCol == 9) {  
@@ -188,11 +199,24 @@ $(document).ready(function() {
     } 
     return false;    
   });
-    
+  
+  function tcSave() {
+    var rowData = tcTable.row(tcTableDataIdx).data();
+    if (rowData.id == "") {
+      createRest(tcTableDataIdx);
+    } else {
+      updateRest(tcTableDataIdx);
+    } 
+  } 
+
   /*
   * New TC button click
   */
-  $('#tc_new').click(function() {
+  /*$('#tc_new').click(function() {
+    tcNew();
+  });*/
+
+  function tcNew() {
     // Save any current editing
     if(tcEditRow != null) {
       saveCell ();
@@ -202,8 +226,7 @@ $(document).ready(function() {
     localTc[columnMap[C_IDENTIFIER_COL]] = $("#tcIdentifier").val();
     tcTable.row.add(localTc);
     tcTable.draw(false);
-  });
-
+  }
   
   // Utility functions
   // =================

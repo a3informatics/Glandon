@@ -148,7 +148,7 @@ class Thesaurus <  IsoManaged
     ConsoleLogger::log(C_CLASS_NAME,"add_child","params=#{params}")
     sparql = SparqlUpdateV2.new
     # Create the object
-    object = ThesaurusConcept.create_sparql(params, sparql)
+    object = self.create_sparql(params, sparql)
     if object.errors.empty?
       # Add the reference
       sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasConcept"}, {:uri => object.uri})
@@ -157,11 +157,26 @@ class Thesaurus <  IsoManaged
       response = CRUD.update(sparql.to_s)
       # Response
       if !response.success?
-        object.errors.add(:base, "The Thesaurus Concept, identifier #{self.identifier}, was not created in the database.")
+        object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, was not created in the database.")
+        raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
       else
         cl = Thesaurus.find(self.id, self.namespace)
         self.children = cl.children
       end
+    end
+    return object
+  end
+
+  def create_sparql(params, sparql)
+    object = ThesaurusConcept.from_json(params)
+    # Make sure namespace set correctly
+    object.namespace = self.namespace
+    object.errors.clear
+    if !ThesaurusConcept.exists?(object.identifier, self.namespace)
+      # Create the sparql. Add the ref to the child.
+      object.to_sparql_v2(self.id, sparql)
+    else
+      object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists in the database.")
     end
     return object
   end
