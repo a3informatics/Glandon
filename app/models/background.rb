@@ -102,7 +102,7 @@ class Background < ActiveRecord::Base
     	status: "Building manifest file.",
     	started: Time.now())
     # Create manifest file
-    manifest = Xml::buildCdiscTermImportManifest(params[:date], params[:version], params[:files])
+    manifest = CdiscCtManifest::buildCdiscTermImportManifest(params[:date], params[:version], params[:files])
     # Create the thesaurus (does not actually create the database entries).
     # Entries in DB created as part of the XSLT and load
     self.update(status: "Transforming terminology file.", percentage: 10)
