@@ -13,7 +13,7 @@ Rails.application.config.assets.version = '1.0'
   iso_registration_authorities 
   iso_registration_states 
   iso_namespaces 
-  iso_managed iso_managed_list iso_managed_tag_edit iso_managed_tag_list
+  iso_managed iso_managed_list iso_managed_tag_edit iso_managed_tag_list iso_managed_graph
   iso_scoped_identifiers 
   sdtm_models sdtm_model_domains sdtm_igs sdtm_ig_domains sdtm_user_domains sdtm_user_domain_editor
   domains domains/variables 
@@ -29,6 +29,6 @@ Rails.application.config.assets.version = '1.0'
   thesauri thesauri_editor thesauri_viewer thesauri_search
   thesaurus_concepts 
 	forms forms/groups forms/items form_placeholder_new form_editor form_editor_new form_viewer 
-  d3local d3_local_v2 d3graph d3_editor).each do |controller|
+  d3local d3_local_v2 d3graph d3_graph d3_editor).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end

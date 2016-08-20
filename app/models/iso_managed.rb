@@ -16,6 +16,9 @@ class IsoManaged < IsoConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
 
+  C_BCPV = "http://www.assero.co.uk/CDISCBiomedicalConcept#PropertyValue"
+  C_COMPONENT = "http://www.assero.co.uk/BusinessOperational/Component"
+
   def initialize(triples=nil, id=nil)
     if triples.nil?
       super
@@ -515,6 +518,128 @@ class IsoManaged < IsoConcept
     return object
   end
 
+  def self.graph_to(id, namespace)
+    # Initialise.
+    results = Hash.new
+    children = Array.new
+    object = nil
+    # Create the query and action.
+    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_I, UriManagement::C_ISO_R, UriManagement::C_ISO_C, UriManagement::C_ISO_25964, UriManagement::C_BO, UriManagement::C_CBC]) +
+      "SELECT ?s ?p ?o WHERE \n" +
+      "{ \n" +
+      "  { \n" +
+      "    :" + id + " isoI:hasIdentifier ?x . \n" +      
+      "    :" + id + " ?p ?o .\n" +
+      "    BIND ( :" + id + " as ?s ) .\n" +
+      "    ?p rdfs:subPropertyOf ?p_type .\n" +
+      "    FILTER(?p_type != isoC:link) \n" +
+      "  } UNION {\n" +
+      "    :" + id + " rdf:type ?o .\n" +  
+      "    BIND ( :" + id + " as ?s ) .\n" +
+      "    ?s ?p ?o . \n" +
+      "  } UNION {\n" +
+      "    :" + id + " rdfs:label ?o .\n" +  
+      "    BIND ( :" + id + " as ?s ) .\n" +
+      "    ?s ?p ?o . \n" +
+      "  } UNION {\n" +
+      "    :" + id + " (isoI:hasIdentifier|isoR:hasState) ?o .\n" +  
+      "    :" + id + " rdf:type ?o1 .\n" +  
+      "    :" + id + " rdfs:label ?o2 .\n" +  
+      "    BIND ( :" + id + " as ?s ) .\n" +
+      "    ?s ?p ?o . \n" +
+      "  } UNION {\n" +
+      "    :" + id + " isoI:hasIdentifier ?x . \n" +      
+      "    :" + id + " (:|!:)* ?s .\n" +
+      "    ?s rdf:type ?ref_type .\n" +
+      "    ?ref_type rdfs:subClassOf bo:Reference .\n" +
+      "    ?s (bo:hasBiomedicalConcept|bo:hasThesaurusConcept|bo:hasTabulation|bo:hasColumn) ?y . \n" +      
+      "    ?s ?p ?o . \n" +
+      "    FILTER(STRSTARTS(STR(?s), \"" + namespace + "\")) \n" +
+      "  } UNION {\n" +
+      "    :" + id + " isoI:hasIdentifier ?s . \n" +
+      "    ?s ?p ?o . \n" +
+      "  } UNION {\n" +
+      "    :" + id + " isoR:hasState ?s . \n" +
+      "    ?s ?p ?o . \n" +
+      "  } UNION {\n" +   
+      "    :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +      
+      "    :" + id + " ?p ?o . \n" +     
+      "    BIND ( :" + id + " as ?s ) .\n" +
+      "    ?s ?p ?o . \n" +    
+      "  } UNION {\n" +   
+      "    :" + id + " isoI:hasIdentifier ?x . \n" +      
+      "    :" + id + " cbc:basedOn ?o . \n" +     
+      "    BIND ( :" + id + " as ?s ) .\n" +
+      "    ?s ?p ?o . \n" +    
+      "  } UNION {\n" +     
+      "    :" + id + " isoI:hasIdentifier ?x . \n" +      
+      "    :" + id + " (:|!:)* ?s . \n" +
+      "    ?s rdf:type cbc:PropertyValue . \n" +
+      "    FILTER(STRSTARTS(STR(?s), \"" + namespace + "\")) \n" +
+      "    ?s ?p ?o . \n" +    
+      "  }\n" +     
+      "}"
+    # Get triples
+    triples = query_and_response(query)
+    # Create the object based on the triples.
+    object = new(triples, id)
+    triples.each do |key, item_triples|
+      if key == object.id
+        # Special until BCs get upgraded to full inter-managedItem references
+        bct_refs = object.get_links_v2(UriManagement::C_CBC, "basedOn")
+        bct_refs.each do |ref|
+          op_ref = OperationalReferenceV2.new
+          op_ref.subject_ref = ref
+          children << op_ref
+        end
+      elsif key == object.scopedIdentifier.id || key == object.registrationState.id
+        # Do nothing
+      else
+        # Special until BCs get upgraded to full inter-managedItem references
+        concept = IsoConcept.new(triples, key)
+        if concept.rdf_type == C_BCPV 
+          tc_refs = concept.get_links_v2(UriManagement::C_CBC, "value")
+          tc_refs.each do |ref|
+            op_ref = OperationalReferenceV2.new
+            op_ref.subject_ref = ref
+            children << op_ref
+          end
+        else
+          children << OperationalReferenceV2.find_from_triples(object.triples, key)
+        end
+      end
+    end
+    results = {:parent => object, :children => children}
+    return results
+  end
+
+  def self.graph_from(id, namespace)
+    # Initialise.
+    results = Array.new
+    # Create the query and action.
+    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_I, UriManagement::C_ISO_R, UriManagement::C_BO, UriManagement::C_BD, UriManagement::C_BF]) +
+      "SELECT DISTINCT ?s WHERE \n" +
+      "{ \n" +
+      "  ?a ?b :" + id + " . \n" +      
+      "  ?a rdf:type ?ref_type . \n" +
+      "  ?ref_type rdfs:subClassOf bo:Reference .\n" +
+      "  ?s (bd:hasBiomedicalConcept|bf:hasGroup|bf:hasSubGroup|bf:hasBiomedicalConcept)* ?a . \n" +      
+      "  ?s ?p ?o . \n" +    
+      "  ?s isoI:hasIdentifier ?x . \n" +      
+      "}"
+    response = CRUD.query(query)
+    # Process the response.
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      subject = ModelUtility.getValue('s', true, node)
+      op_ref = OperationalReferenceV2.new
+      op_ref.subject_ref = UriV2.new({:uri => subject})
+      results << op_ref
+    end
+    return results
+  end
+
   def add_tag(id, namespace)    
     # Create the query
     uri = UriV2.new({:id => id, :namespace => namespace})
@@ -904,14 +1029,40 @@ class IsoManaged < IsoConcept
     return result
   end
 
-  def get_property(type)
-    results = get(prefix, type)
-    if results.length == 1
-      return results[0]
-    else
-      result = {}
-      return result
+private
+
+  def self.query_and_response(query)
+    # Query
+    response = CRUD.query(query) 
+    # Process the response.
+    triples = Hash.new { |h,k| h[k] = [] }
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      subject = ModelUtility.getValue('s', true, node)
+      predicate = ModelUtility.getValue('p', true, node)
+      objectUri = ModelUtility.getValue('o', true, node)
+      objectLiteral = ModelUtility.getValue('o', false, node)
+      if predicate != ""
+        triple_object = objectUri
+        if triple_object == ""
+          triple_object = objectLiteral
+        end
+        key = ModelUtility.extractCid(subject)
+        triples[key] << {:subject => subject, :predicate => predicate, :object => triple_object}
+      end
     end
+    return triples
   end
+    
+  #def get_property(type)
+  #  results = get(prefix, type)
+  #  if results.length == 1
+  #    return results[0]
+  #  else
+  #    result = {}
+  #    return result
+  #  end
+  #end
 
 end

@@ -54,13 +54,13 @@
   rdfs:subClassOf :Column ;
   skos:definition "A CDISC domain class variable. Building block for a SDTM IG variable."^^xsd:string ;
 .
-:IGDomain
+:IgDomain
   rdf:type owl:Class ;
   rdfs:label "Implementation Guide Domain"^^xsd:string ;
   rdfs:subClassOf :Tabulation ;
   skos:definition "A domain as defined within an implementation guide."^^xsd:string ;
 .
-:IGVariable
+:IgVariable
   rdf:type owl:Class ;
   rdfs:label "Implementation Guide Variable"^^xsd:string ;
   rdfs:subClassOf :Column ;

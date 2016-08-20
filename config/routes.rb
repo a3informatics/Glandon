@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       post :add_tag
       post :delete_tag
       get :tags
+      get :graph
     end
   end
   resources :thesauri do

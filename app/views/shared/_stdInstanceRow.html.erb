@@ -44,5 +44,10 @@
 	<% else %>
 		<td></td>
 	<% end %>
-	<td><%= link_to "Triples", view_dashboard_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-warning btn-xs" %></td>
+	<td>
+		<%= link_to "T", view_dashboard_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-warning btn-xs" %>
+		<%= link_to "G", graph_iso_managed_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-warning btn-xs" %>
+	</td>
 </tr>
+
+

@@ -93,10 +93,32 @@ class IsoManagedController < ApplicationController
     end
   end
 
-  private
-
-    def this_params
-      params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer)
+  def graph
+    authorize IsoManaged, :show?
+    @item = IsoManaged.find(params[:id], params[:namespace])
+    managed_item = IsoManaged.graph_to(params[:id], params[:namespace])
+    other_managed_item = IsoManaged.graph_from(params[:id], params[:namespace])
+    @result = managed_item[:parent].to_json
+    @result[:children] = Array.new
+    @result[:parent] = Array.new
+    managed_item[:children].each do |child|
+      @result[:children] << child.to_json
     end
+    other_managed_item.each do |parent|
+      @result[:parent] << parent.to_json
+    end
+    respond_to do |format|
+      format.html
+      format.json do
+        render :json => @result, :status => 200
+      end
+    end
+  end
+
+private
+
+  def this_params
+    params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer)
+  end
 
 end

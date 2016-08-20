@@ -11,7 +11,7 @@ class SdtmIgDomain < Tabular::Tabulation
   C_INSTANCE_PREFIX = UriManagement::C_MDR_IGD
   C_CLASS_NAME = "SdtmIgDomain"
   C_CID_PREFIX = SdtmIg::C_CID_PREFIX
-  C_RDF_TYPE = "IGDomain"
+  C_RDF_TYPE = "IgDomain"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
