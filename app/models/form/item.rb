@@ -9,6 +9,17 @@ class Form::Item < IsoConcept
   C_RDF_TYPE = "Item"
   C_CID_SUFFIX = "I"
 
+  @@datatype_map = 
+    {
+      "S" => "text",
+      "I" => "integer",
+      "F" => "float",
+      "D" => "date",
+      "T" => "time",
+      "D+T" => "datetime",
+      "B" => "boolean",
+    }
+  
   def thesaurus_concepts(refs)
     return Array.new
   end
@@ -55,6 +66,44 @@ class Form::Item < IsoConcept
     sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "completion", "#{self.completion}", "string")
     sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "optional", "#{self.optional}", "boolean")
     return self.id
+  end
+
+  def to_xml(metadata_version, form_def, item_group_def)
+    item_group_def.add_item_ref("#{self.id}", "#{self.ordinal}", "No", "", "", "", "", "")
+  end
+
+private
+
+  def to_xml_datatype(datatype)
+    if @@datatype_map.has_key?(datatype)
+      return @@datatype_map[datatype]
+    else
+      return "text"
+    end
+  end
+
+  def to_xml_length(datatype, format)
+    if datatype == "S"
+      return format
+    elsif datatype == "I"
+      return format
+    elsif datatype == "F"
+      parts = format.split('.')
+      length = (parts[0].to_i) - 1
+      return length
+    else
+      return ""
+    end
+  end
+
+  def to_xml_significant_digits(datatype, format)
+    if datatype == "F"
+      parts = format.split('.')
+      digits = (parts[1].to_i)
+      return digits
+    else
+      return ""
+    end
   end
 
  end

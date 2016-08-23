@@ -156,6 +156,7 @@ Rails.application.routes.draw do
       get :clone
       get :export_json
       get :export_ttl
+      get :export_odm
     end
   end
   namespace :forms do

@@ -49,5 +49,10 @@ class Form::Item::Placeholder < Form::Item
     sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "free_text", "#{self.free_text}", "string")
     return self.id
   end
-    
+  
+  def to_xml(metadata_version, form_def, item_group_def)
+    super(metadata_version, form_def, item_group_def)
+    item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
+  end
+
  end

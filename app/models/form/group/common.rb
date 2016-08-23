@@ -43,6 +43,10 @@ class Form::Group::Common < Form::Group
     return self.id
   end
 
+  def to_xml(metadata_version, form_def)
+    super(metadata_version, form_def)
+  end
+
 private
 
   def self.children_from_triples(object, triples, id)

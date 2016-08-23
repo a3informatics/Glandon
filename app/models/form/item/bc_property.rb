@@ -97,6 +97,27 @@ class Form::Item::BcProperty < Form::Item
     return self.id
   end
 
+  def to_xml(metadata_version, form_def, item_group_def)
+    super(metadata_version, form_def, item_group_def)
+    bc_property = BiomedicalConceptCore::Property.find(property_ref.subject_ref.id, property_ref.subject_ref.namespace)
+    xml_datatype = to_xml_datatype(bc_property.datatype)
+    xml_length = to_xml_length(bc_property.datatype, bc_property.format)
+    xml_digits = to_xml_significant_digits(bc_property.datatype, bc_property.format)
+    item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "#{xml_datatype}", "#{xml_length}", "#{xml_digits}", "", "", "", "")
+    question = item_def.add_question()
+    question.add_translated_text("#{bc_property.qText}")
+    if bc_property.values.length > 0
+      code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
+      code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
+      bc_property.values.each do |value|
+        cli = value.cli
+        code_list_item = code_list.add_code_list_item(cli.notation, "", "#{value.ordinal}")
+        decode = code_list_item.add_decode()
+        decode.add_translated_text(cli.label)
+      end
+    end
+  end
+
 private
 
   def self.children_from_triples(object, triples, id)

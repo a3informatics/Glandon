@@ -1,3 +1,5 @@
+require 'odm'
+
 class Form < IsoManaged
   
   attr_accessor :groups, :completion, :note
@@ -252,6 +254,26 @@ class Form < IsoManaged
     return sparql
   end
 
+  def to_xml
+    odm_document = Odm.new("ODM-#{self.id}", "Assero", "Glandon", "Version::VERSION")
+    odm = odm_document.root
+    study = odm.add_study("S-#{self.id}")
+    global_variables = study.add_global_variables()
+    global_variables.add_study_name("Form Export #{self.label} (#{self.identifier})")
+    global_variables.add_study_description("Not applicable. Single form export.")
+    global_variables.add_protocol_name("Not applicable. Single form export.")
+    metadata_version = study.add_metadata_version("MDV-#{self.id}", "Metadata for #{self.label}", "Not applicable. Single form export.")
+    protocol = metadata_version.add_protocol()
+    protocol.add_study_event_ref("SE-#{self.id}", "1", "Yes", "")
+    study_event_def = metadata_version.add_study_event_def("SE-#{self.id}", "Not applicable. Single form export.", "No", "Scheduled", "")    
+    study_event_def.add_form_ref("#{self.id}", "1", "Yes", "")
+    form_def = metadata_version.add_form_def("#{self.id}", "#{self.label}", "No")
+    self.groups.each do |group|
+      group.to_xml(metadata_version, form_def)
+    end
+    return odm.ref.to_xml
+  end
+
   def self.bc_impact(params)
     id = params[:id]
     namespace = params[:namespace]
@@ -329,7 +351,7 @@ class Form < IsoManaged
       history = IsoManaged::history(C_RDF_TYPE, C_SCHEMA_NS, {:identifier => self.identifier, :scope_id => self.owner_id})
       history.each do |item|
         if self.same_version?(item.version) || self.later_version?(item.version)
-          doc_history << item.to_api_json
+          doc_history << item.to_json
         end
       end
     end

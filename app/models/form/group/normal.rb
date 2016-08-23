@@ -93,6 +93,18 @@ class Form::Group::Normal < Form::Group
     return self.id
   end
 
+  def to_xml(metadata_version, form_def)
+    ConsoleLogger::log(C_CLASS_NAME,"to_xml","Entry")
+    if self.groups.length > 0
+      self.groups.each do |group|
+        ConsoleLogger::log(C_CLASS_NAME,"to_xml","Group=#{group.to_json}")
+        group.to_xml(metadata_version, form_def)
+      end
+    else      
+      super(metadata_version, form_def)
+    end
+  end
+
 private
 
   def self.children_from_triples(object, triples, id)

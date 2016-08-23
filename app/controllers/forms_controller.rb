@@ -137,7 +137,15 @@ class FormsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @form = Form.find(id, namespace)
-    send_data @form.to_api_json, filename: "#{@form.owner}_#{@form.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+    send_data @form.to_json, filename: "#{@form.owner}_#{@form.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+  end
+
+  def export_odm
+    authorize Form, :export_json?
+    id = params[:id]
+    namespace = params[:namespace]
+    @form = Form.find(id, namespace)
+    send_data @form.to_xml, filename: "#{@form.owner}_#{@form.identifier}_ODM.xml", :type => 'application/xhtml+xml; header=present', disposition: "attachment"
   end
 
   def acrf
