@@ -45,20 +45,21 @@ $(document).ready(function() {
   }
 
   /*
-   * Function to handle click on the view button.
+   * Function to handle button clicks
    */
   $('#viewButton').click(function() {
-    
     // Get the triples
     if (!triplesReload) {
       initialSearch();
     } else {
       triplesTable.ajax.reload();
     }
-
     // Add the history
-    addHistory(subjectId.value, subjectNs.value);
-      
+    addHistory(subjectId.value, subjectNs.value); 
+  });
+
+  $('#graph_button').click(function() {
+    linkTo("/iso_concept/graph", subjectNs.value, subjectId.value) 
   });
 
   /*

@@ -1,11 +1,11 @@
 <%= stylesheet_link_tag    'd3_graph' %>
-<%= javascript_include_tag 'd3_graph', 'iso_managed_graph' %>
+<%= javascript_include_tag 'd3_graph', 'iso_concept_graph' %>
 <script id="jsonData" type="text/json">
     <%= raw @result.to_json %>
 </script>
 <div class="row">
 	<div class="col-md-9">
-    <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Metadata Graph:", :item => @item} %>
+    <h3>Detailed Metadata Graph:</h3>
     <div style="height: 1000px;" id="d3">
         <!-- D3 Area -->
     </div>

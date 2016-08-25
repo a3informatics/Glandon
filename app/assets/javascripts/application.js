@@ -28,6 +28,56 @@
 //  });
 //});
 
+// Managed Item Types
+var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
+var C_USERDOMAIN = "http://www.assero.co.uk/BusinessDomain#UserDomain";
+var C_IGDOMAIN = "http://www.assero.co.uk/BusinessDomain#IgDomain";
+var C_CLASSDOMAIN = "http://www.assero.co.uk/BusinessDomain#ClassDomain";
+var C_MODEL = "http://www.assero.co.uk/BusinessDomain#Model";
+var C_BC = "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance";
+var C_BCT = "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptTemplate";
+var C_TH = "http://www.assero.co.uk/ISO25964#Thesaurus";
+
+var C_SI = "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier";
+var C_RS = "http://www.assero.co.uk/ISO11179Registration#RegistrationState";
+
+// References
+var C_TC_REF = "http://www.assero.co.uk/BusinessOperational#TcReference";
+var C_V_REF = "http://www.assero.co.uk/BusinessOperational#VReference";
+var C_P_REF = "http://www.assero.co.uk/BusinessOperational#PReference";
+var C_BC_REF = "http://www.assero.co.uk/BusinessOperational#BcReference";
+var C_T_REF = "http://www.assero.co.uk/BusinessOperational#TReference";
+var C_C_REF = "http://www.assero.co.uk/BusinessOperational#CReference";
+
+// Thesaurus Concept Types
+var C_THC = "http://www.assero.co.uk/ISO25964#ThesaurusConcept";
+
+// Form Types
+var C_NORMAL_GROUP ="http://www.assero.co.uk/BusinessForm#NormalGroup";
+var C_COMMON_GROUP = "http://www.assero.co.uk/BusinessForm#CommonGroup";
+var C_PLACEHOLDER = "http://www.assero.co.uk/BusinessForm#Placeholder";
+var C_BC_QUESTION = "http://www.assero.co.uk/BusinessForm#BcProperty";
+var C_QUESTION = "http://www.assero.co.uk/BusinessForm#Question";
+var C_Q_CL = C_TC_REF;
+var C_BC_CL = C_V_REF;
+
+// BC Types
+var C_BC_DATATYPE ="http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype";
+var C_BC_ITEM ="http://www.assero.co.uk/CDISCBiomedicalConcept#Item";
+var C_BC_PROP ="http://www.assero.co.uk/CDISCBiomedicalConcept#Property";
+var C_BC_PROP_VALUE ="http://www.assero.co.uk/CDISCBiomedicalConcept#PropertyValue";
+
+// SDTM
+var C_USERVARIABLE = "http://www.assero.co.uk/BusinessDomain#UserVariable";
+var C_IGVARIABLE = "http://www.assero.co.uk/BusinessDomain#IgVariable";
+var C_CLASSVARIABLE = "http://www.assero.co.uk/BusinessDomain#ClassVariable";
+var C_MODELVARIABLE = "http://www.assero.co.uk/BusinessDomain#ModelVariable";
+var C_SDTM_IG = "http://www.assero.co.uk/BusinessDomain#ImplementationGuide";
+      
+var C_SDTM_CLASSIFICATION = "http://www.assero.co.uk/BusinessDomain#VariableClassification"
+var C_SDTM_TYPE = "http://www.assero.co.uk/BusinessDomain#VariableType"
+var C_SDTM_COMPLIANCE = "http://www.assero.co.uk/BusinessDomain#VariableCompliance"
+
 /*
 * General Alert handling functions
 */
@@ -223,9 +273,16 @@ function getPath(rdfType) {
 }
 
 /*
+* Link to
+*/
+function linkTo(path, namespace, id) {
+  window.location.href = path + "?id=" + id + "&namespace=" + namespace
+}
+
+/*
 * Get All Thesaurus Concept References for entire JSON tree
 */
-function allTcReference(node) {
+/*function allTcReference(node) {
   var i;
   var child;
   if (node.type == C_CL) {
@@ -251,5 +308,5 @@ function allTcReference(node) {
       tcReference(child);
     }
   } 
-}
+}*/
 

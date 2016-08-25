@@ -1,8 +1,5 @@
 $(document).ready(function() {
   
-  var C_FORM = "http://www.assero.co.uk/ISO25964#Thesaurus";
-  var C_GROUP ="http://www.assero.co.uk/ISO25964#ThesaurusConcept";
-  
   var sourceJson;
   var managedItem;
   var d3Div = document.getElementById("d3");

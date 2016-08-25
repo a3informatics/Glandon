@@ -175,14 +175,12 @@ private
       object.childComplex = BiomedicalConceptCore::Datatype.find_for_child(triples, links)
       object.datatypeComplex = nil
     else
-      #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","Simple")
       object.childComplex = nil
       links = object.get_links(C_SCHEMA_PREFIX, "hasValue")
       values = BiomedicalConceptCore::PropertyValue.find_for_parent(triples, links)
       values.sort! {|item| item.ordinal }
       object.values = values
       count = object.values.length
-
       if object.link_exists?(C_SCHEMA_PREFIX, "isPropertyOf")
         links = object.get_links(C_SCHEMA_PREFIX, "isPropertyOf")
         object.datatypeComplex = BiomedicalConceptCore::Datatype.find_parent(triples, ModelUtility.extractCid(links[0]))

@@ -44,6 +44,11 @@ Rails.application.routes.draw do
       get :current
     end
   end
+  resources :iso_concept do
+    collection do
+      get :graph
+    end
+  end
   resources :iso_managed do
     collection do
       get :status

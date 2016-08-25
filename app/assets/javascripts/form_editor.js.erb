@@ -1,14 +1,5 @@
 $(document).ready(function() {
   
-  var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
-  var C_NORMAL_GROUP ="http://www.assero.co.uk/BusinessForm#NormalGroup";
-  var C_COMMON_GROUP = "http://www.assero.co.uk/BusinessForm#CommonGroup";
-  var C_PLACEHOLDER = "http://www.assero.co.uk/BusinessForm#Placeholder";
-  var C_BC_ITEM = "http://www.assero.co.uk/BusinessForm#BcProperty";
-  var C_QUESTION = "http://www.assero.co.uk/BusinessForm#Question";
-  var C_Q_CL = "http://www.assero.co.uk/BusinessOperational#TcReference";
-  var C_BC_CL = "http://www.assero.co.uk/BusinessOperational#VReference";
-
   var formDefinition ;
   var html;
   var d3Div;
@@ -1244,7 +1235,7 @@ $(document).ready(function() {
   function newBCProperty(property) {
     // TODO: Extra fields in the property_reference
     return {
-      type: C_BC_ITEM, label: property.alias, id: property.id, namespace: property.namespace, ordinal: 0, 
+      type: C_BC_QUESTION, label: property.alias, id: property.id, namespace: property.namespace, ordinal: 0, 
       optional: property.optional, note: property.note, free_text: property.free_text, datatype: property.datatype,
       format: property.format, question_text: property.question_text, pText: property.pText, mapping: property.mapping,
       bridgPath: property.bridgPath, 
@@ -1368,7 +1359,7 @@ $(document).ready(function() {
           var property = bc.properties[i];
           if (property.enabled && property.collect) {
             sourcePropertyNode = newBCProperty(property);
-            propertyNode = addD3Node(bcNode, property.alias, C_BC_ITEM, sourcePropertyNode, true);     
+            propertyNode = addD3Node(bcNode, property.alias, C_BC_QUESTION, sourcePropertyNode, true);     
             addSourceNode(sourceBcNode, sourcePropertyNode, true)
             var values = property.values
             for (j=0; j<values.length; j++) {
@@ -1534,7 +1525,7 @@ $(document).ready(function() {
     var newNode;
     var i;
     var child;
-    if (sourceNode.type === C_NORMAL_GROUP || sourceNode.type === C_COMMON_GROUP || sourceNode.type === C_BC_ITEM || sourceNode.type === C_QUESTION) {
+    if (sourceNode.type === C_NORMAL_GROUP || sourceNode.type === C_COMMON_GROUP || sourceNode.type === C_BC_QUESTION || sourceNode.type === C_QUESTION) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
       if (sourceNode.hasOwnProperty('children')) {
         for (i=0; i<sourceNode.children.length; i++) {
@@ -1680,7 +1671,7 @@ $(document).ready(function() {
     } else if (node.type == C_COMMON_GROUP) {
       selectCommon();
       displayCommon(node);
-    } else if (node.type == C_BC_ITEM) {
+    } else if (node.type == C_BC_QUESTION) {
       selectItem();
       displayItem(node);
     } else if (node.type == C_QUESTION) {

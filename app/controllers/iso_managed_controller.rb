@@ -93,6 +93,17 @@ class IsoManagedController < ApplicationController
     end
   end
 
+  def show 
+    authorize IsoManaged
+    @concept = IsoManaged.find(params[:id], params[:namespace])
+    respond_to do |format|
+      format.html
+      format.json do
+        render :json => @concept.to_json, :status => 200
+      end
+    end
+  end
+
   def graph
     authorize IsoManaged, :show?
     @item = IsoManaged.find(params[:id], params[:namespace])

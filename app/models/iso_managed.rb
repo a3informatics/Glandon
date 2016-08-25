@@ -531,28 +531,28 @@ class IsoManaged < IsoConcept
       "    :" + id + " isoI:hasIdentifier ?x . \n" +      
       "    :" + id + " ?p ?o .\n" +
       "    BIND ( :" + id + " as ?s ) .\n" +
-      "    ?p rdfs:subPropertyOf ?p_type .\n" +
-      "    FILTER(?p_type != isoC:link) \n" +
-      "  } UNION {\n" +
-      "    :" + id + " rdf:type ?o .\n" +  
-      "    BIND ( :" + id + " as ?s ) .\n" +
-      "    ?s ?p ?o . \n" +
-      "  } UNION {\n" +
-      "    :" + id + " rdfs:label ?o .\n" +  
-      "    BIND ( :" + id + " as ?s ) .\n" +
-      "    ?s ?p ?o . \n" +
-      "  } UNION {\n" +
-      "    :" + id + " (isoI:hasIdentifier|isoR:hasState) ?o .\n" +  
-      "    :" + id + " rdf:type ?o1 .\n" +  
-      "    :" + id + " rdfs:label ?o2 .\n" +  
-      "    BIND ( :" + id + " as ?s ) .\n" +
-      "    ?s ?p ?o . \n" +
+      #"    ?p rdfs:subPropertyOf ?p_type .\n" +
+      #"    FILTER(?p_type != isoC:link) \n" +
+      #"  } UNION {\n" +
+      #"    :" + id + " rdf:type ?o .\n" +  
+      #"    BIND ( :" + id + " as ?s ) .\n" +
+      #"    ?s ?p ?o . \n" +
+      #"  } UNION {\n" +
+      #"    :" + id + " rdfs:label ?o .\n" +  
+      #"    BIND ( :" + id + " as ?s ) .\n" +
+      #"    ?s ?p ?o . \n" +
+      #"  } UNION {\n" +
+      #"    :" + id + " (isoI:hasIdentifier|isoR:hasState) ?o .\n" +  
+      #"    :" + id + " rdf:type ?o1 .\n" +  
+      #"    :" + id + " rdfs:label ?o2 .\n" +  
+      #"    BIND ( :" + id + " as ?s ) .\n" +
+      #"    ?s ?p ?o . \n" +
       "  } UNION {\n" +
       "    :" + id + " isoI:hasIdentifier ?x . \n" +      
       "    :" + id + " (:|!:)* ?s .\n" +
       "    ?s rdf:type ?ref_type .\n" +
       "    ?ref_type rdfs:subClassOf bo:Reference .\n" +
-      "    ?s (bo:hasBiomedicalConcept|bo:hasThesaurusConcept|bo:hasTabulation|bo:hasColumn) ?y . \n" +      
+      "    ?s (bo:hasBiomedicalConcept|bo:hasTabulation) ?y . \n" +      
       "    ?s ?p ?o . \n" +
       "    FILTER(STRSTARTS(STR(?s), \"" + namespace + "\")) \n" +
       "  } UNION {\n" +
@@ -562,21 +562,16 @@ class IsoManaged < IsoConcept
       "    :" + id + " isoR:hasState ?s . \n" +
       "    ?s ?p ?o . \n" +
       "  } UNION {\n" +   
-      "    :" + id + " rdf:type iso25964:ThesaurusConcept . \n" +      
-      "    :" + id + " ?p ?o . \n" +     
-      "    BIND ( :" + id + " as ?s ) .\n" +
-      "    ?s ?p ?o . \n" +    
-      "  } UNION {\n" +   
       "    :" + id + " isoI:hasIdentifier ?x . \n" +      
       "    :" + id + " cbc:basedOn ?o . \n" +     
       "    BIND ( :" + id + " as ?s ) .\n" +
       "    ?s ?p ?o . \n" +    
-      "  } UNION {\n" +     
-      "    :" + id + " isoI:hasIdentifier ?x . \n" +      
-      "    :" + id + " (:|!:)* ?s . \n" +
-      "    ?s rdf:type cbc:PropertyValue . \n" +
-      "    FILTER(STRSTARTS(STR(?s), \"" + namespace + "\")) \n" +
-      "    ?s ?p ?o . \n" +    
+      #"  } UNION {\n" +     
+      #"    :" + id + " isoI:hasIdentifier ?x . \n" +      
+      #"    :" + id + " (:|!:)* ?s . \n" +
+      #"    ?s rdf:type cbc:PropertyValue . \n" +
+      #"    FILTER(STRSTARTS(STR(?s), \"" + namespace + "\")) \n" +
+      #"    ?s ?p ?o . \n" +    
       "  }\n" +     
       "}"
     # Get triples
@@ -595,18 +590,7 @@ class IsoManaged < IsoConcept
       elsif key == object.scopedIdentifier.id || key == object.registrationState.id
         # Do nothing
       else
-        # Special until BCs get upgraded to full inter-managedItem references
-        concept = IsoConcept.new(triples, key)
-        if concept.rdf_type == C_BCPV 
-          tc_refs = concept.get_links_v2(UriManagement::C_CBC, "value")
-          tc_refs.each do |ref|
-            op_ref = OperationalReferenceV2.new
-            op_ref.subject_ref = ref
-            children << op_ref
-          end
-        else
-          children << OperationalReferenceV2.find_from_triples(object.triples, key)
-        end
+        children << OperationalReferenceV2.find_from_triples(object.triples, key)
       end
     end
     results = {:parent => object, :children => children}

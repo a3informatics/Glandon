@@ -93,15 +93,24 @@ class IsoConcept
     return result
   end
 
-  def self.find(id, ns)    
+  def self.find(id, ns, children=true)    
     # Create the query and action.
-    query = UriManagement.buildNs(ns, ["isoC"]) +
-      "SELECT ?s ?p ?o WHERE \n" +
-      "{ \n" +
-      "  :" + id + " (:|!:)* ?s .\n" +
-      "  ?s ?p ?o .\n" + 
-      "  FILTER(STRSTARTS(STR(?s), \"" + ns + "\")) \n" +
-      "}"
+    if children
+      query = UriManagement.buildNs(ns, []) +
+        "SELECT ?s ?p ?o WHERE \n" +
+        "{ \n" +
+        "  :" + id + " (:|!:)* ?s .\n" +
+        "  ?s ?p ?o .\n" + 
+        "  FILTER(STRSTARTS(STR(?s), \"" + ns + "\")) \n" +
+        "}"
+    else
+      query = UriManagement.buildNs(ns, []) +
+        "SELECT ?s ?p ?o WHERE \n" +
+        "{ \n" +
+        "  :" + id + " ?p ?o .\n" +
+        "  BIND ( :" + id + " as ?s ) .\n" +
+        "}"
+    end
     response = CRUD.query(query)
     uri = Uri.new
     uri.setNsCid(ns, id)
@@ -214,6 +223,73 @@ class IsoConcept
     subject = {:namespace => namespace, :id => parent_id}
     sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => schema_prefix, :id => rdf_type})
     sparql.triple(subject, {:prefix => UriManagement::C_RDFS, :id => "label"}, {:literal => label, :primitive_type => "string"})
+  end
+
+  # A specialised form of the find.
+  def self.graph_to(id, namespace)
+    # Initialise.
+    results = Hash.new
+    children = Array.new
+    object = nil
+    isoC_link = UriV2.new({:namespace => UriManagement.getNs1(UriManagement::C_ISO_C), :id => "link"})
+    # Create the query and action.
+    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C]) +
+      "SELECT ?s ?p ?o ?p_type WHERE \n" +
+      "{ \n" +
+      "  :" + id + " ?p ?o .\n" +
+      "  BIND ( :" + id + " as ?s ) .\n" +
+      "  OPTIONAL { ?p rdfs:subPropertyOf ?p_type . } \n" +
+      "}"
+    # Get triples
+    response = CRUD.query(query) 
+    # Process the response.
+    triples = Hash.new { |h,k| h[k] = [] }
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      subject = ModelUtility.getValue('s', true, node)
+      predicate = ModelUtility.getValue('p', true, node)
+      object_uri = ModelUtility.getValue('o', true, node)
+      object_literal = ModelUtility.getValue('o', false, node)
+      predicate_type = ModelUtility.getValue('p_type', true, node)
+      if predicate != ""
+        triple_object = object_uri
+        if triple_object == ""
+          triple_object = object_literal
+        end
+        key = ModelUtility.extractCid(subject)
+        triples[key] << {:subject => subject, :predicate => predicate, :object => triple_object}
+        if predicate_type == isoC_link.to_s
+          uri = UriV2.new({:uri => object_uri})
+          children << {:id => uri.id, :namespace => uri.namespace}
+        end
+      end
+    end
+    object = new(triples, id)
+    results = {:parent => object, :children => children}
+    return results
+  end
+
+  def self.graph_from(id, namespace)
+    # Initialise.
+    results = Array.new
+    # Create the query and action.
+    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C]) +
+      "SELECT DISTINCT ?s WHERE \n" +
+      "{ \n" +
+      "  ?s ?p :" + id + " . \n" +      
+      "  ?p rdfs:subPropertyOf ?p_type .\n" +
+      "  FILTER(?p_type = isoC:link) \n" +
+      "}"
+    response = CRUD.query(query)
+    # Process the response.
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = UriV2.new({:uri => ModelUtility.getValue('s', true, node)})
+      results << {:id => uri.id, :namespace => uri.namespace}
+    end
+    return results
   end
 
   def link_exists?(prefix, type)

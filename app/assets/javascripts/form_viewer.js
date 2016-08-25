@@ -1,14 +1,5 @@
 $(document).ready(function() {
   
-  var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
-  var C_GROUP ="http://www.assero.co.uk/BusinessForm#NormalGroup";
-  var C_COMMON_GROUP = "http://www.assero.co.uk/BusinessForm#CommonGroup";
-  var C_PLACEHOLDER = "http://www.assero.co.uk/BusinessForm#Placeholder";
-  var C_BC_ITEM = "http://www.assero.co.uk/BusinessForm#BcProperty";
-  var C_QUESTION = "http://www.assero.co.uk/BusinessForm#Question";
-  var C_Q_CL = "http://www.assero.co.uk/BusinessOperational#TcReference";
-  var C_BC_CL = "http://www.assero.co.uk/BusinessOperational#VReference";
-
   var sourceJson ;
   var d3Div = document.getElementById("d3");
   var html  = $("#jsonData").html();
@@ -113,13 +104,10 @@ $(document).ready(function() {
     if (currentNode.type == C_FORM) {
       selectForm();
       displayForm(currentNode);
-    } else if (currentNode.type == C_GROUP) {
+    } else if (currentNode.type == C_NORMAL_GROUP) {
       selectGroup();
       displayGroup(currentNode);
-    /*} else if (currentNode.type == C_BC_GROUP) {
-      selectBc();
-      displayBc(currentNode);*/
-    } else if (currentNode.type == C_BC_ITEM) {
+    } else if (currentNode.type == C_BC_QUESTION) {
       selectBcItem();
       displayBcItem(currentNode);
     } else if (currentNode.type == C_QUESTION) {
@@ -172,17 +160,6 @@ $(document).ready(function() {
     $("#placeholderTable").addClass('hidden');
     $("#clTable").addClass('hidden');
   }
-  
-  /*function selectBc() {
-    $("#formTable").addClass('hidden');
-    $("#groupTable").addClass('hidden');
-    $("#commonTable").addClass('hidden');
-    $("#bcTable").removeClass('hidden');
-    $("#bcItemTable").addClass('hidden');
-    $("#questionTable").addClass('hidden');
-    $("#placeholderTable").addClass('hidden');
-    $("#clTable").addClass('hidden');
-  }*/
   
   function selectBcItem() {
     $("#formTable").addClass('hidden');
@@ -254,14 +231,6 @@ $(document).ready(function() {
     getMarkdown(document.getElementById("groupNote"), node.note);
   }
 
-  /*function displayBc(node) {
-    document.getElementById("bcLabel").innerHTML = node.name;
-    document.getElementById("bcRepeating").innerHTML = node.repeating;
-    document.getElementById("bcOptional").innerHTML = node.optional;
-    getMarkdown(document.getElementById("bcCompletion"), node.completion);
-    getMarkdown(document.getElementById("bcNote"), node.note);
-  }*/
-
   function displayBcItem(node) {
     document.getElementById("bcItemLabel").innerHTML = node.name;
     document.getElementById("bcItemEnabled").innerHTML = node.enabled;
@@ -325,7 +294,7 @@ $(document).ready(function() {
           displayTree(1);
         }
       });
-    } else if (node.type == C_BC_ITEM) {
+    } else if (node.type == C_BC_QUESTION) {
       $.ajax({
         url: "/biomedical_concepts/properties/" + node.property_ref.subject_ref.id,
         type: "GET",
