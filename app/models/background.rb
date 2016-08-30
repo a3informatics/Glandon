@@ -28,7 +28,7 @@ class Background < ActiveRecord::Base
           result = SdtmModel.add_class_sparql(model_result[:uri], class_result[:uri], ordinal, sparql)
           ordinal += 1
         end
-        ConsoleLogger::log(C_CLASS_NAME,"create", "SPARQL=" + sparql.to_s)
+        PublicFile::save("upload", "SDTM_Model_#{params[:version_label].gsub('.', '-')}.txt", sparql.to_s)
         response = CRUD.update(sparql.to_s)
         if response.success?
           self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
@@ -77,7 +77,7 @@ class Background < ActiveRecord::Base
           result = SdtmIg.add_domain_sparql(ig_result[:uri], domain_result[:uri], ordinal, sparql)
           ordinal += 1
         end
-        ConsoleLogger::log(C_CLASS_NAME,"importCdiscSdtmIg", "SPARQL=" + sparql.to_s)
+        PublicFile::save("upload", "SDTM_IG_#{params[:version_label].gsub('.', '-')}.txt", sparql.to_s)
         response = CRUD.update(sparql.to_s)
         if response.success?
           self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
