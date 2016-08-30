@@ -61,6 +61,14 @@ function d3gDraw(graph, click, dblclick) {
 
 }
 
+function d3gMarkNode (ref) {
+  d3.select(ref).style("fill", "gray");
+}
+
+function d3gClearNode (node, ref) {
+  d3.select(ref).style("fill", nodeColour(node));
+}
+
 function nodeColour (node) {
   if (node.type in nodeColours) {
     return nodeColours[node.type]

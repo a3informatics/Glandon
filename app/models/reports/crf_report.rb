@@ -15,8 +15,8 @@ class Reports::CrfReport
       history.each do |item|
         changed_date = Timestamp.new(item[:last_changed_date]).to_date
         description = MarkdownEngine::render(item[:change_description])
-        comment = MarkdownEngine::render(item[:comment])
-        refs = MarkdownEngine::render(item[:references])
+        comment = MarkdownEngine::render(item[:explanatory_comment])
+        refs = MarkdownEngine::render(item[:origin])
         html += "<td>#{changed_date}</td><td>#{description}</td><td>#{comment}</td><td>#{refs}</td></tr>"
       end 
       html += "</table>"
@@ -243,9 +243,9 @@ private
       html += '<tr>'
       html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:free_text])}</p></td>"
       html += '</tr>'
-      node[:children].each do |child|
-        html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
-      end
+      #node[:children].each do |child|
+      #  html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
+      #end
     elsif node[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
       add_nodes(node, ci_nodes, {:form => :completion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :note, :default => :note})
@@ -303,8 +303,6 @@ private
       html += '</td>'
       html += input_field(node, terminology)
       html += '</tr>'
-    elsif node[:type] == OperationalReferenceV2::C_TC_RDF_TYPE_URI.to_s
-      # Ignore, processed.
     else
       html += '<tr>'
       html += '<td>Not Recognized: ' + node[:type].to_s + '</td>'
@@ -322,8 +320,7 @@ private
       values = Array.new
       node[:children].each do |child|
         if node[:enabled]
-          tc_ref = child[:subject_ref]
-          tc = ThesaurusConcept.find(tc_ref[:id], tc_ref[:namespace])
+          tc = child[:subject_data]
           values << "#{tc.label}"
         end
       end

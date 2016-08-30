@@ -61,7 +61,8 @@ $(document).ready(function() {
   var refreshLimit;
   var run;
   var currentNode;
-
+  var currentThis;
+  
   // Get initial / root item.
   html = $("#jsonData").html();
   json = $.parseJSON(html);
@@ -80,7 +81,8 @@ $(document).ready(function() {
   refreshLimit = C_REFRESH_START;
   run = true;
   currentNode = null;
-
+  currentThis = null;
+  
   // Init D3
   d3gInit(colours, 35);
   
@@ -95,9 +97,14 @@ $(document).ready(function() {
   }
 
   function nodeClick (node) {
+    if (currentNode != null) {
+      d3gClearNode(node, currentThis);
+    }
     $('#node_details tbody').empty();
     info(node);
+    d3gMarkNode(this);
     currentNode = node;
+    currentThis = this;
   }
 
   function emptyClick () {
@@ -110,25 +117,17 @@ $(document).ready(function() {
     $(this).find('span').toggleClass('glyphicon glyphicon-pause').toggleClass('glyphicon glyphicon-play');
     run = !run;
     if (run) {
-      next(queue[0]);
-      queue.splice(0, 1);
-    } else {
-      refreshCount = refreshLimit;
+      clearCurrent();
       processQueue();
+    } else {
+      drawGraphForce();
     }
   });
 
   $('#graph_focus').click(function() {
     if (currentNode != null) {
-      queue = [];
-      asked = {};
-      refreshLimit = C_REFRESH_START;
-      var queueNode = {};
-      queueNode.index = currentNode.index;
-      queueNode.data = {};
-      queueNode.data.id = currentNode.id;
-      queueNode.data.namespace = currentNode.namespace;
-      queue.push(queueNode);
+      clearQueue();
+      addCurrentToQueue();
     } else {
       var html = alertWarning("You need to select a node.")
       displayAlerts(html);
@@ -199,7 +198,7 @@ $(document).ready(function() {
       index = graph.nodes.length - 1;
       nodeMap[uri] = index;
       node.index = index;
-      //console.log("Result=" + JSON.stringify(sourceNode));
+      refreshCount += 1;
     }
     return index;
   }
@@ -216,9 +215,9 @@ $(document).ready(function() {
       link = {};
       link["source"] = source;
       link["target"] = target;
-      //console.log("Add link [" + source + " -> " + target + "]");
       graph.links.push(link);
       linkMap[key] = true;  
+      refreshCount += 1;
       return true;
     }  
   }
@@ -272,9 +271,9 @@ $(document).ready(function() {
       if (refreshLimit > C_REFRESH_UPPER) {
         refreshLimit = C_REFRESH_UPPER;
       }
-    } else {
-      refreshCount += 1;
-    }
+    } //else {
+      //refreshCount += 1;
+    //}
   }
 
   function drawGraphForce() {
@@ -284,11 +283,33 @@ $(document).ready(function() {
 
   function processQueue () {
     if (queue.length > 0 && run) {
-      next(queue[0]);
+      var item;
+      item = queue[0];
       queue.splice(0, 1);
+      next(item);
     } else {
       drawGraphForce();
     }
   }
+
+  function clearQueue() {
+    queue = [];
+    asked = {};
+  }
+
+  function addCurrentToQueue() {
+    var queueNode = {};
+    queueNode.index = currentNode.index;
+    queueNode.data = {};
+    queueNode.data.id = currentNode.id;
+    queueNode.data.namespace = currentNode.namespace;
+    queue.push(queueNode);
+  }
+
+  function clearCurrent() {
+    currentNode = null;
+    currentThis = null;
+    refreshLimit = C_REFRESH_START; 
+  }  
 
 });

@@ -134,6 +134,11 @@ class Form < IsoManaged
     return results
   end
 
+  def self.list
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
+  end
+
   def self.history(params)
     results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
     return results
@@ -345,6 +350,14 @@ class Form < IsoManaged
     return html
   end
 
+  def annotations
+    form = self.to_json
+    annotations = Array.new
+    annotations += bc_annotations
+    annotations += question_annotations
+    return annotations
+  end
+
   def report(options, user)
     doc_history = Array.new
     if options[:full]
@@ -465,9 +478,9 @@ private
       html += '<tr>'
       html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:free_text])}</p></td>"
       html += '</tr>'
-      node[:children].each do |child|
-        html += crf_node(child, annotations)
-      end
+      #node[:children].each do |child|
+      #  html += crf_node(child, annotations)
+      #end
     elsif node[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
       if node[:optional]
         html += '<tr class="warning">'
@@ -575,7 +588,7 @@ private
       "    { \n " + 
       "      ?var bd:name ?sdtmVarName . \n " +              
       "      ?dataset bd:includesColumn ?var . \n " +              
-      "      ?dataset rdfs:label ?domain . \n " +              
+      "      ?dataset bd:prefix ?domain . \n " +              
       "      ?dataset bd:includesColumn ?topic_var . \n " +              
       #"      ?topic_var bd:classifiedAs <http://www.assero.co.uk/MDRModels/CDISC/V1#M-CDISC_SDTMMODEL_C_TOPIC> . \n " +              
       "      ?topic_var bd:classifiedAs ?classification . \n " +              
@@ -607,7 +620,7 @@ private
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"bc_annotations", "node=" + node.to_json.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"bc_annotations", "node=" + node.to_json.to_s)
       item = ModelUtility.getValue('item', true, node)
       domain = ModelUtility.getValue('domain', false, node)
       sdtm_var = ModelUtility.getValue('sdtmVarName', false, node)
@@ -615,10 +628,10 @@ private
       sdtm_topic_value = ModelUtility.getValue('sdtmTopicSub', false, node)
       domain_long_name = ""
       if item != ""
-        #ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","domain=" + domain.to_s)
+        #ConsoleLogger::log(C_CLASS_NAME,"bc_annotations","domain=" + domain.to_s)
         if @@domain_map.has_key?(domain)
           domain_long_name = @@domain_map[domain]
-          #ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","domain long name(1)=" + domain_long_name.to_s)
+          #ConsoleLogger::log(C_CLASS_NAME,"bc_annotations","domain long name(1)=" + domain_long_name.to_s)
         end
         #ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","domain long name(2)=" + domain_long_name.to_s)
         results << {
@@ -627,7 +640,7 @@ private
         }
       end
     end
-    ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","results=" + results.to_json.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"bc_annotations","results=" + results.to_json.to_s)
     return results
   end
 

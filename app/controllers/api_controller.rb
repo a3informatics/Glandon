@@ -10,16 +10,45 @@ class ApiController < ApplicationController
   end
 
   def index
-    authorize Form, :view?
-    @forms = Form.all
+    authorize ManagedItem, :view?
+    @items = Array.new
+    case params[:type]
+      when "Form"
+        @items = Form.all
+      when "Domain"
+        @items = SdtmUserDomain.all?
+      else
+    end
+    results = Array.new
     respond_to do |format|
       format.json do
-        results = {}
-        results[:aaData] = []
-        @forms.each do |form|
-          item = {:id => form.id, :namespace => form.namespace, :identifier => form.identifier, :label => form.label}
-          results[:aaData] << item
+        @items.each do |item|
+          results << item.to_json
         end
+        ConsoleLogger::log(C_CLASS_NAME,"index", "JSON for #{params[:type]}=#{results}")
+        render json: results
+      end
+    end
+  end
+
+  def list
+    authorize IsoManaged, :view?
+    @items = Array.new
+    case params[:type]
+      when "form"
+        @items = Form.list
+      when "domain"
+        @items = SdtmUserDomain.list?
+      else
+        ConsoleLogger::log(C_CLASS_NAME,"list", "Type=#{params[:type]}")
+    end
+    results = Array.new
+    respond_to do |format|
+      format.json do
+        @items.each do |item|
+          results << item.to_json
+        end
+        ConsoleLogger::log(C_CLASS_NAME,"list", "JSON for #{params[:type]}=#{results}")
         render json: results
       end
     end
@@ -35,6 +64,34 @@ class ApiController < ApplicationController
         results = @form.to_json
         render json: results
         ConsoleLogger::log(C_CLASS_NAME,"form", "JSON=#{results}")
+      end
+    end
+  end
+
+  def form_annotations
+    authorize Form, :view?
+    id = params[:id]
+    ns = params[:namespace]
+    @form = Form.find(id, ns)
+    respond_to do |format|
+      format.json do
+        results = @form.annotations.to_json
+        render json: results
+        ConsoleLogger::log(C_CLASS_NAME,"form_annotations", "JSON=#{results}")
+      end
+    end
+  end
+
+  def domain
+    authorize SdtmUserDomain, :view?
+    id = params[:id]
+    ns = params[:namespace]
+    @domain = SdtmUserDomain.find(id, ns)
+    respond_to do |format|
+      format.json do
+        results = @domain.to_json
+        render json: results
+        ConsoleLogger::log(C_CLASS_NAME,"Domain", "JSON=#{results}")
       end
     end
   end

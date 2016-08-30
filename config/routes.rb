@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   match 'api(/:id)' => 'api#options', via: [:options]
   resources :api do
     collection do
+      get :list
       get :form
+      get :form_annotations
+      get :domain
       get :thesaurus_concept
       get :bc_property
     end

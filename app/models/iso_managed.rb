@@ -339,6 +339,7 @@ class IsoManaged < IsoConcept
   def self.history(rdfType, ns, params)    
     identifier = params[:identifier]
     namespace_id = params[:scope_id]
+    type_uri = UriV2.new({:id => rdfType, :namespace => ns})
     results = Array.new
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR", "mdrItems"]) +
@@ -379,7 +380,7 @@ class IsoManaged < IsoConcept
         object = self.new
         object.id = ModelUtility.extractCid(uri)
         object.namespace = ModelUtility.extractNs(uri)
-        object.rdf_type = rdfType
+        object.rdf_type = type_uri.to_s
         object.label = label
         object.origin = oSet[0].text
         object.changeDescription = descSet[0].text
@@ -400,37 +401,32 @@ class IsoManaged < IsoConcept
     return results  
   end
 
-  # Find latest item for all identifiers of a given type.
-  # TODO: Needs to be updated with current mechanism
-  def self.list(rdfType, ns)    
+  # Find all released item for all identifiers of a given type.
+  def self.list(rdf_type, ns)    
     #ConsoleLogger::log(C_CLASS_NAME,"list","*****Entry*****")    
-    check = Hash.new
     results = Array.new
-
+    type_uri = UriV2.new({:id => rdf_type, :namespace => ns})
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
-      "SELECT ?a ?b ?c ?d ?e ?f ?g ?h WHERE \n" +
+      "SELECT ?a ?si ?rs ?d ?e ?f ?g ?h WHERE \n" +
       "{ \n" +
-      "  ?a rdf:type :" + rdfType + " . \n" +
+      "  ?a rdf:type :" + rdf_type + " . \n" +
       "  ?a rdfs:label ?d . \n" +
-      "  ?a isoI:hasIdentifier ?b . \n" +
-      "  ?b isoI:identifier ?e . \n" +
-      "  ?b isoI:hasScope ?h . \n" +
-      "  ?b isoI:version ?f . \n" +
-      "  OPTIONAL { \n" +
-      "    ?a isoR:hasState ?c . \n" +
-      "    ?c isoR:registrationStatus ?g . \n" +
-      "  } \n" +
+      "  ?a isoI:hasIdentifier ?si . \n" +
+      "  ?a isoR:hasState ?rs . \n" +
+      "  ?si isoI:identifier ?e . \n" +
+      "  ?si isoI:version ?f . \n" +
+      "  ?rs isoR:registrationStatus ?g . \n" +
       "} ORDER BY DESC(?f)"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       uri = ModelUtility.getValue('a', true, node)
+      si = ModelUtility.getValue('si', true, node)
+      rs = ModelUtility.getValue('rs', true, node)
       label = ModelUtility.getValue('d', false, node)
       identifier = ModelUtility.getValue('e', false, node)
       version = ModelUtility.getValue('f', false, node)
@@ -438,44 +434,20 @@ class IsoManaged < IsoConcept
       scope = ModelUtility.getValue('h', true, node)
       #ConsoleLogger::log(C_CLASS_NAME,"list","node=" + node.to_s)
       if uri != "" 
-        scope_namespace = IsoNamespace.find(ModelUtility.extractCid(scope))
-        key = scope_namespace.shortName + "_" + identifier
-        if check.has_key?(key)
-          object = check[key]
-          if (object.registrationState != nil) && (status != "")
-            if (object.registrationState.registrationStatus != IsoRegistrationState.releasedState) &&
-              (status == IsoRegistrationState.releasedState)
-              object = self.new
-              object.id = ModelUtility.extractCid(uri)
-              object.namespace = ModelUtility.extractNs(uri)
-              object.rdf_type = rdfType
-              object.label = label
-              object.scopedIdentifier = IsoScopedIdentifier.new
-              object.scopedIdentifier.identifier = identifier
-              object.registrationState = IsoRegistrationState.new
-              object.registrationState.registrationStatus = status
-              check[key] = object
-            end
-          end
-        else
+        if status == IsoRegistrationState.releasedState
           object = self.new
           object.id = ModelUtility.extractCid(uri)
           object.namespace = ModelUtility.extractNs(uri)
-          object.rdf_type = rdfType
+          object.rdf_type = type_uri.to_s
           object.label = label
-          object.scopedIdentifier = IsoScopedIdentifier.new
-          object.scopedIdentifier.identifier = identifier
-          if status == ""
-            object.registrationState = nil
-          else
-            object.registrationState = IsoRegistrationState.new
-            object.registrationState.registrationStatus = status
-          end
-          check[key] = object
+          si_uri = UriV2.new({:uri => si})
+          rs_uri = UriV2.new({:uri => rs})
+          object.scopedIdentifier = IsoScopedIdentifier.find(si_uri.id)
+          object.registrationState = IsoRegistrationState.find(rs_uri.id)
+          results << object
         end
       end
     end
-    results = check.values
     return results  
   end
 
@@ -738,10 +710,10 @@ class IsoManaged < IsoConcept
   def to_json
     json = super
     json[:origin] = self.origin
-    json[:change_description] = self.changeDescription = ""
+    json[:change_description] = self.changeDescription
     json[:creation_date] = self.creationDate = Time.now
     json[:last_changed_date] = self.lastChangedDate = Time.now
-    json[:explanatory_comment] = self.explanatoryComment = ""
+    json[:explanatory_comment] = self.explanatoryComment
     json[:registration_state] = self.registrationState.to_json
     json[:scoped_identifier] = self.scopedIdentifier.to_json
     return json
@@ -855,8 +827,8 @@ class IsoManaged < IsoConcept
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "creationDate"}, {:literal => managed_item[:creation_date], :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "lastChangeDate"}, {:literal => timestamp.to_s, :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "changeDescription"}, {:literal => managed_item[:change_description], :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "explanatoryComment"}, {:literal => managed_item[:comment], :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "origin"}, {:literal => managed_item[:references], :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "explanatoryComment"}, {:literal => managed_item[:explanatory_comment], :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "origin"}, {:literal => managed_item[:origin], :primitive_type => "string"})
     # Result URI
     return uri
   end
@@ -938,8 +910,8 @@ class IsoManaged < IsoConcept
       :creation_date => self.creationDate,
       :last_changed_date => self.lastChangedDate,
       :change_description => self.changeDescription,
-      :comment => self.explanatoryComment,
-      :references => self.origin,
+      :explanatory_comment => self.explanatoryComment,
+      :origin => self.origin,
       :children => [] 
     }
     return result
@@ -993,8 +965,8 @@ class IsoManaged < IsoConcept
         :creation_date => Time.now.iso8601,
         :last_changed_date => Time.now.iso8601,
         :change_description => "",
-        :comment => "",
-        :references => "",
+        :explanatory_comment => "",
+        :origin => "",
         :children => [] 
       }
     }
