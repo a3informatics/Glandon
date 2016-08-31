@@ -27,6 +27,7 @@ $(document).ready(function() {
   var clEnableElement = document.getElementById("clEnable");
   var clOptionalElement = document.getElementById("clOptional");
   var plTextElement = document.getElementById("placeholderText");
+  var labelTextElement = document.getElementById("labelTextText");
   var questionLabelElement = document.getElementById("questionLabel");
   var questionTextElement = document.getElementById("questionText");
   var questionMappingElement = document.getElementById("questionMapping");
@@ -70,6 +71,7 @@ $(document).ready(function() {
         questionNote: {required: false, markdown: true},
         questionCompletion: {required: false, markdown: true},
         "Placeholder Text": {required: false, markdown: true},
+        "Label Text": {required: false, markdown: true},
         "Code List Label": {required: true, label: true },
         commonLabel: {required: true, label: true }
     },
@@ -194,6 +196,8 @@ $(document).ready(function() {
         saveCommon(currentNode)
       } else if (currentNode.type == C_PLACEHOLDER) {
         savePlaceholder(currentNode)
+      } else if (currentNode.type == C_TEXTLABEL) {
+        saveLabelText(currentNode)
       } else if (currentNode.type == C_QUESTION) {
         saveQuestion(currentNode)
       } else if (currentNode.type == C_Q_CL) {
@@ -392,6 +396,17 @@ $(document).ready(function() {
     }
   }); 
 
+  $('#groupAddLabelText').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a group node.");
+      displayAlerts(html);
+    } else {
+      node = addLabelText();
+      displayNode(node);
+      displayTree(node.key);
+    }
+  }); 
+
   $('#groupUp').click(function() {
     if (currentNode == null) {
       var html = alertWarning("You need to select a group node.");
@@ -530,6 +545,94 @@ $(document).ready(function() {
     displayNode(node);
     displayTree(node.key);
   });
+
+  $('#placeholderUp').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a placeholder node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index != 0) {
+        moveNodeUp(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node up.");
+        displayAlerts(html);
+      }
+    }
+  }); 
+
+  $('#placeholderDown').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a placeholder node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index < parentNode.save.length) {
+        moveNodeDown(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node down.");
+        displayAlerts(html);
+      }
+    }
+  }); 
+
+  /*
+  * Functions to handle the label text actions
+  */
+  $('#labelTextUpdate').click(function() {
+    if (currentGRef == null) {
+      var html = alertWarning("You need to select a label text node.");
+      displayAlerts(html);
+    } else {
+      $('#main_form').valid();
+      saveLabelText(currentNode)
+      displayTree(currentNode.key);
+    }
+  });
+  
+  $('#labelTextDelete').click(function() {
+    var node = deleteNode(currentNode);
+    displayNode(node);
+    displayTree(node.key);
+  });
+
+  $('#labelTextUp').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a label text node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index != 0) {
+        moveNodeUp(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node up.");
+        displayAlerts(html);
+      }
+    }
+  }); 
+
+  $('#labelTextDown').click(function() {
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a label text node.");
+      displayAlerts(html);
+    } else {
+      var parentNode = currentNode.parent;
+      if (currentNode.index < parentNode.save.length) {
+        moveNodeDown(currentNode);
+        displayNode(currentNode);
+        displayTree(currentNode.key);
+      } else {
+        var html = alertWarning("You cannot move the node down.");
+        displayAlerts(html);
+      }
+    }
+  }); 
 
   /*
   * Functions to handle the BC actions
@@ -748,6 +851,13 @@ $(document).ready(function() {
     getMarkdown(genericCompletionElement, text);
   });
 
+  $( "#labelTextText" ).focus(function() {
+    markdownType = C_TEXTLABEL;
+    markdownElement = labelTextElement;
+    var text = markdownElement.value;
+    getMarkdown(genericCompletionElement, text);
+  });
+
   /*
   *
   */
@@ -825,6 +935,12 @@ $(document).ready(function() {
     $("#markdown_panel").removeClass('hidden');
   }
 
+  function selectLabelText() {
+    clearSelect();
+    $("#labelTextInfo").removeClass('hidden');
+    $("#markdown_panel").removeClass('hidden');
+  }
+
   function selectCl() {
     clearSelect();
     $("#clInfo").removeClass('hidden');
@@ -853,6 +969,7 @@ $(document).ready(function() {
     $("#commonInfo").addClass('hidden');
     $("#questionInfo").addClass('hidden');
     $("#placeholderInfo").addClass('hidden');
+    $("#labelTextInfo").addClass('hidden');
     $("#itemInfo").addClass('hidden');
     $("#clInfo").addClass('hidden');
     $("#bcSelection").addClass('hidden');
@@ -942,6 +1059,10 @@ $(document).ready(function() {
     plTextElement.value = node.data.free_text;
   }
 
+  function displayLabelText(node) {
+    labelTextElement.value = node.data.label_text;
+  }
+
   function displayCl(node) {
     clIdentifierElement.innerHTML = node.data.subject_data.identifier;
     clLabelElement.value = node.data.local_label;
@@ -1022,6 +1143,10 @@ $(document).ready(function() {
 
   function savePlaceholder(node) {
     node.data.free_text = plTextElement.value;
+  }
+
+  function saveLabelText(node) {
+    node.data.label_text = labelTextElement.value;
   }
 
   function saveCl(node) {
@@ -1201,7 +1326,7 @@ $(document).ready(function() {
   function newQuestion(label) {
     return {
       type: C_QUESTION, label: label, id: "", namespace: "", ordinal: 0, 
-      optional: false, completion: "", note: "", free_text: "", datatype: "I",
+      optional: false, completion: "", note: "", free_text: "", label_text: "", datatype: "I",
       format: "3", question_text: "", pText: "", mapping: "",
       children: [] 
     };
@@ -1210,7 +1335,16 @@ $(document).ready(function() {
   function newPlaceholder(label) {
     return {
       type: C_PLACEHOLDER, label: label, id: "", namespace: "", ordinal: 0, 
-      optional: false, completion: "", note: "", free_text: "", datatype: "",
+      optional: false, completion: "", note: "", free_text: "", label_text: "",datatype: "",
+      format: "", question_text: "", pText: "", mapping: "",
+      children: [] 
+    };
+  }
+
+  function newLabelText(label) {
+    return {
+      type: C_TEXTLABEL, label: label, id: "", namespace: "", ordinal: 0, 
+      optional: false, completion: "", note: "", free_text: "", label_text: "",datatype: "",
       format: "", question_text: "", pText: "", mapping: "",
       children: [] 
     };
@@ -1322,6 +1456,23 @@ $(document).ready(function() {
     label = "Placeholder" + count;
     sourceNode = newPlaceholder(label);
     d3Node = addD3Node(currentNode, label, C_PLACEHOLDER, sourceNode, true);     
+    addSourceNode(currentNode.data, sourceNode, true)
+    return d3Node;
+  }
+
+  function addLabelText() {
+    var sourceNode;
+    var d3Node;
+    var count;
+    var label
+    if (hasChildren(currentNode)) {
+      count = currentNode.save.length + 1;
+    } else {
+      count = 1;
+    }
+    label = "Label Text" + count;
+    sourceNode = newLabelText(label);
+    d3Node = addD3Node(currentNode, label, C_TEXTLABEL, sourceNode, true);     
     addSourceNode(currentNode.data, sourceNode, true)
     return d3Node;
   }
@@ -1533,7 +1684,7 @@ $(document).ready(function() {
           setD3(child, newNode);
         }
       }
-    } else if (sourceNode.type === C_PLACEHOLDER ) {
+    } else if (sourceNode.type === C_PLACEHOLDER  || sourceNode.type === C_TEXTLABEL) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
     } else if (sourceNode.type === C_Q_CL || sourceNode.type === C_BC_CL) {
       newNode = addD3Node(d3Node, sourceNode.label, sourceNode.type, sourceNode, true);
@@ -1682,6 +1833,9 @@ $(document).ready(function() {
     } else if (node.type == C_PLACEHOLDER) {
       selectPlaceholder();
       displayPlaceholder(node);
+    } else if (node.type == C_TEXTLABEL) {
+      selectLabelText();
+      displayLabelText(node);
     } else if (node.type == C_Q_CL) {
       selectCl();
       displayCl(node);

@@ -54,19 +54,25 @@
   rdf:type owl:Class ;
   rdfs:label "Placeholder Item"^^xsd:string ;
   rdfs:subClassOf :Item ;
-  skos:definition ""^^xsd:string
+  skos:definition "Placeholder item."^^xsd:string
+.
+:TextLabel
+  rdf:type owl:Class ;
+  rdfs:label "Text label"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "A passive text label item."^^xsd:string
 .
 :BcProperty
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept based Item"^^xsd:string ;
   rdfs:subClassOf :Item ;
-  skos:definition ""^^xsd:string
+  skos:definition "A form question based upon a Biomedical Concept property"^^xsd:string
 .
 :Question
   rdf:type owl:Class ;
   rdfs:label "Variable Item"^^xsd:string ;
   rdfs:subClassOf :Item ;
-  skos:definition ""^^xsd:string
+  skos:definition "A form question."^^xsd:string
 .
 :hasGroup
   rdf:type owl:ObjectProperty ;
@@ -196,9 +202,17 @@
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Placeholder ;
-  rdfs:label "text"^^xsd:string ;
+  rdfs:label "Placeholder text"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "Placeholder free text."^^xsd:string
+.
+:label_text
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :TextLabel ;
+  rdfs:label "Label text"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "Label text."^^xsd:string
 .
 :ordinal
   rdf:type owl:DatatypeProperty ; 

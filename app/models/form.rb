@@ -467,20 +467,14 @@ private
           html += crf_node(child, annotations)
         end
       end
-    #elsif node[:type] == "BCGroup"
-    #  html += '<tr>'
-    #  html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
-    #  html += '</tr>'
-    #  node[:children].each do |child|
-    #    html += crf_node(child, annotations)
-    #  end
     elsif node[:type] == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
       html += '<tr>'
       html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:free_text])}</p></td>"
       html += '</tr>'
-      #node[:children].each do |child|
-      #  html += crf_node(child, annotations)
-      #end
+    elsif node[:type] == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
+      html += '<tr>'
+      html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:label_text])}</p></td>"
+      html += '</tr>'
     elsif node[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
       if node[:optional]
         html += '<tr class="warning">'

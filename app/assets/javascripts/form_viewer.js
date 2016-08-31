@@ -116,6 +116,9 @@ $(document).ready(function() {
     } else if (currentNode.type == C_PLACEHOLDER) {
       selectPlaceholder();
       displayPlaceholder(currentNode);
+    } else if (currentNode.type == C_TEXTLABEL) {
+      selectLabelText();
+      displayLabelText(currentNode);
     } else if (currentNode.type == C_Q_CL) {
       selectCl();
       displayCl(currentNode);
@@ -136,6 +139,7 @@ $(document).ready(function() {
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
     $("#placeholderTable").addClass('hidden');
+    $("#labelTextTable").addClass('hidden');
     $("#clTable").addClass('hidden');
   }
 
@@ -146,6 +150,7 @@ $(document).ready(function() {
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
+    $("#labelTextTable").addClass('hidden');
     $("#placeholderTable").addClass('hidden');
     $("#clTable").addClass('hidden');
   }
@@ -157,6 +162,7 @@ $(document).ready(function() {
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
+    $("#labelTextTable").addClass('hidden');
     $("#placeholderTable").addClass('hidden');
     $("#clTable").addClass('hidden');
   }
@@ -168,6 +174,7 @@ $(document).ready(function() {
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").removeClass('hidden');
     $("#questionTable").addClass('hidden');
+    $("#labelTextTable").addClass('hidden');
     $("#placeholderTable").addClass('hidden');
     $("#clTable").addClass('hidden');
   }
@@ -179,6 +186,7 @@ $(document).ready(function() {
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").removeClass('hidden');
+    $("#labelTextTable").addClass('hidden');
     $("#placeholderTable").addClass('hidden');
     $("#clTable").addClass('hidden');
   }
@@ -190,7 +198,20 @@ $(document).ready(function() {
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
+    $("#labelTextTable").addClass('hidden');
     $("#placeholderTable").removeClass('hidden');
+    $("#clTable").addClass('hidden');
+  }
+  
+  function selectLabelText() {
+    $("#formTable").addClass('hidden');
+    $("#groupTable").addClass('hidden');
+    $("#commonTable").addClass('hidden');
+    $("#bcTable").addClass('hidden');
+    $("#bcItemTable").addClass('hidden');
+    $("#questionTable").addClass('hidden');
+    $("#labelTextTable").removeClass('hidden');
+    $("#placeholderTable").addClass('hidden');
     $("#clTable").addClass('hidden');
   }
   
@@ -201,6 +222,7 @@ $(document).ready(function() {
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
+    $("#labelTextTable").addClass('hidden');
     $("#placeholderTable").addClass('hidden');
     $("#clTable").removeClass('hidden');
   }
@@ -212,6 +234,7 @@ $(document).ready(function() {
     $("#bcTable").addClass('hidden');
     $("#bcItemTable").addClass('hidden');
     $("#questionTable").addClass('hidden');
+    $("#labelTextTable").addClass('hidden');
     $("#placeholderTable").addClass('hidden');
     $("#clTable").addClass('hidden');
   }
@@ -259,6 +282,14 @@ $(document).ready(function() {
     getMarkdown(document.getElementById("placeholderFreeText"), node.free_text)
     getMarkdown(document.getElementById("placeholderCompletion"), node.completion);
     getMarkdown(document.getElementById("placeholderNote"), node.note);
+  }
+
+  function displayLabelText(node) {
+    document.getElementById("labelTextLabel").innerHTML = node.name;
+    document.getElementById("labelTextOptional").innerHTML = node.optional;
+    getMarkdown(document.getElementById("labelTextLabelText"), node.label_text)
+    getMarkdown(document.getElementById("labelTextCompletion"), node.completion);
+    getMarkdown(document.getElementById("labelTextNote"), node.note);
   }
 
   function displayCl(node) {

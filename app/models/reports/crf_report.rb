@@ -230,22 +230,14 @@ private
           html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
         end
       end
-    #elsif node[:type] == "BCGroup"
-    #  add_nodes(node, ci_nodes, {:form => :formCompletion, :default => :completion})
-    #  add_nodes(node, note_nodes, {:form => :formNote, :default => :note})
-    #  html += '<tr>'
-    #  html += '<td colspan="3"><h5>' + node[:label].to_s + '</h5></td>'
-    #  html += '</tr>'
-    #  node[:children].each do |child|
-    #    html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
-    #  end
     elsif node[:type] == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
       html += '<tr>'
       html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:free_text])}</p></td>"
       html += '</tr>'
-      #node[:children].each do |child|
-      #  html += crf_node(child, options, annotations, ci_nodes, note_nodes, terminology)
-      #end
+    elsif node[:type] == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
+      html += '<tr>'
+      html += "<td colspan=\"3\"><p>#{MarkdownEngine::render(node[:label_text])}</p></td>"
+      html += '</tr>'
     elsif node[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
       add_nodes(node, ci_nodes, {:form => :completion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :note, :default => :note})

@@ -48,6 +48,8 @@ class Form::Group < IsoConcept
       json[:children].each do |child|
         if child[:type] == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
           object.items << Form::Item::Placeholder.from_json(child)
+        elsif child[:type] == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
+          object.items << Form::Item::TextLabel.from_json(child)
         elsif child[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
           object.items << Form::Item::Question.from_json(child)
         elsif child[:type] == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
@@ -89,6 +91,8 @@ private
       rdf_type = object.get_link_object_type_v2(link)
       if rdf_type == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
         object.items += Form::Item::Placeholder.find_for_parent(triples, [link.to_s])
+      elsif rdf_type == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
+        object.items += Form::Item::TextLabel.find_for_parent(triples, [link.to_s])
       elsif rdf_type == Form::Item::Question::C_RDF_TYPE_URI.to_s
         object.items += Form::Item::Question.find_for_parent(triples, [link.to_s])
       elsif rdf_type == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s

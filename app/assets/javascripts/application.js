@@ -56,6 +56,7 @@ var C_THC = "http://www.assero.co.uk/ISO25964#ThesaurusConcept";
 var C_NORMAL_GROUP ="http://www.assero.co.uk/BusinessForm#NormalGroup";
 var C_COMMON_GROUP = "http://www.assero.co.uk/BusinessForm#CommonGroup";
 var C_PLACEHOLDER = "http://www.assero.co.uk/BusinessForm#Placeholder";
+var C_TEXTLABEL = "http://www.assero.co.uk/BusinessForm#TextLabel";
 var C_BC_QUESTION = "http://www.assero.co.uk/BusinessForm#BcProperty";
 var C_QUESTION = "http://www.assero.co.uk/BusinessForm#Question";
 var C_Q_CL = C_TC_REF;

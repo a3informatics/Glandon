@@ -1,16 +1,16 @@
-class Form::Item::Placeholder < Form::Item
+class Form::Item::TextLabel < Form::Item
 
-  attr_accessor :free_text
+  attr_accessor :label_text
   
   # Constants
   C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
-  C_CLASS_NAME = "Form::Item::Placeholder"
+  C_CLASS_NAME = "Form::Item::Label"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_RDF_TYPE = "Placeholder"
+  C_RDF_TYPE = "TextLabel"
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
   
   def initialize(triples=nil, id=nil)
-    self.free_text = ""
+    self.label_text = ""
     if triples.nil?
       super
       # Set the type. Overwrite default.
@@ -34,19 +34,19 @@ class Form::Item::Placeholder < Form::Item
   
   def to_json
     json = super
-    json[:free_text] = self.free_text
+    json[:label_text] = self.label_text
     return json
   end
 
   def self.from_json(json)
     object = super(json)
-    object.free_text = json[:free_text]
+    object.label_text = json[:label_text]
     return object
   end
 
   def to_sparql(parent_id, sparql)
     super(parent_id, sparql)
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "free_text", "#{self.free_text}", "string")
+    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "label_text", "#{self.label_text}", "string")
     return self.id
   end
   
@@ -54,7 +54,7 @@ class Form::Item::Placeholder < Form::Item
     super(metadata_version, form_def, item_group_def)
     item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "", "", "", "", "", "", "")
     question = item_def.add_question()
-    question.add_translated_text("#{self.free_text}")
+    question.add_translated_text("#{self.label_text}")
   end
 
  end
