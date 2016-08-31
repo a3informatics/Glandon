@@ -9,18 +9,18 @@
 			    <th>Scheme</th>
 			    <th>Name</th>
 			    <th>Short Name</th>
-			    <th>CID</th>
+			    <th>Owner</th>
 			    <th></th>
 		  	</tr>
 		</thead>
 	  	<tbody>
-			<% @registrationAuthorities.each do |key, registrationAuthority| %>
+			<% @registrationAuthorities.each do |registrationAuthority| %>
 		  		<tr>
 				    <td><%= registrationAuthority.number %></td>
 				    <td><%= registrationAuthority.scheme %></td>
 				    <td><%= registrationAuthority.name %></td>
 				    <td><%= registrationAuthority.shortName %></td>
-				    <td><%= registrationAuthority.id %></td>
+				    <td><%= registrationAuthority.owner %></td>
 				    <td><%= link_to "Delete", iso_registration_authority_path(registrationAuthority), :class => "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure?" } %></td>
 				</tr>
 			<% end %>

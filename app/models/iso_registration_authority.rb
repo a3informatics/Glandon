@@ -9,8 +9,7 @@ class IsoRegistrationAuthority
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :number, :scheme, :namespace
-  validates_presence_of :number, :scheme, :namespace
+  attr_accessor :id, :number, :scheme, :namespace, :owner
   
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -30,9 +29,11 @@ class IsoRegistrationAuthority
   end
  
   def initialize()
-    #@@repositoryOwner = nil
-    #@@id_map = Hash.new
-    #@@name_map = Hash.new
+    self.id = ""
+    self.number = "<Not Set>"
+    self.scheme = C_DUNS
+    self.namespace = IsoNamespace.new
+    self.owner = false
     @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
   end
 
@@ -45,17 +46,18 @@ class IsoRegistrationAuthority
   end
 
   def self.find(id)
-    ra = nil
+    ra = self.new
     if @@id_map.has_key?(id)
       ra = @@id_map[id]
     else
       # Create the query
       query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-        "SELECT ?c ?d ?e WHERE \n" +
+        "SELECT ?c ?d ?e ?f WHERE \n" +
         "{ \n" +
         "	 :" + id + " rdf:type isoR:RegistrationAuthority . \n" +
         "  :" + id + " isoR:hasAuthorityIdentifier ?b . \n" +
         "  :" + id + " isoR:raNamespace ?e . \n" +
+        "  :" + id + " isoR:owner ?f . \n" +
         "	 ?b isoB:organizationIdentifier ?c . \n" +
         "	 ?b isoB:internationalCodeDesignator ?d . \n" +
         "}"
@@ -68,11 +70,13 @@ class IsoRegistrationAuthority
         oSet = node.xpath("binding[@name='c']/literal")
         sSet = node.xpath("binding[@name='d']/literal")
         siSet = node.xpath("binding[@name='e']/uri")
-        if oSet.length == 1 && sSet.length == 1 && siSet.length == 1
+        owner = ModelUtility.getValue('f', false, node).to_bool
+        if oSet.length == 1 
           ra = self.new 
           ra.id = id
           ra.number = oSet[0].text
           ra.scheme = sSet[0].text
+          ra.owner = owner
           ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
           @@id_map[ra.id] = ra
           @@name_map[ra.namespace.shortName] = ra
@@ -83,8 +87,6 @@ class IsoRegistrationAuthority
   end
 
   # Find namespace by the short name.
-  #
-  # TODO: Better return for not found (will just be empty at the moment)
   #
   # * *Args*    :
   #   - +short_name+ -> The short name of the authority to be found
@@ -103,16 +105,18 @@ class IsoRegistrationAuthority
   end
 
   def self.all  
-    results = Hash.new
+    results = Array.new
     @@id_map = Hash.new
     @@name_map = Hash.new
+    @@repositoryOwner = nil
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "SELECT ?a ?c ?d ?e WHERE \n" +
+      "SELECT ?a ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "	 ?a rdf:type isoR:RegistrationAuthority . \n" +
       "	 ?a isoR:hasAuthorityIdentifier ?b . \n" +
       "  ?a isoR:raNamespace ?e . \n" +
+      "  ?a isoR:owner ?f . \n" +
       "	 ?b isoB:organizationIdentifier ?c . \n" +
       "	 ?b isoB:internationalCodeDesignator ?d . \n" +
       "}"
@@ -126,22 +130,27 @@ class IsoRegistrationAuthority
       oSet = node.xpath("binding[@name='c']/literal")
       sSet = node.xpath("binding[@name='d']/literal")
       siSet = node.xpath("binding[@name='e']/uri")
-      if uriSet.length == 1 && oSet.length == 1 && sSet.length == 1 && siSet.length == 1
+      owner = ModelUtility.getValue('f', false, node).to_bool
+      if uriSet.length == 1
         ra = self.new 
         ra.id = ModelUtility.extractCid(uriSet[0].text)
         ra.number = oSet[0].text
         ra.scheme = sSet[0].text
+        ra.owner = owner
+        # Set owner. Only single allowed.
+        if owner
+          if @@repositoryOwner == nil
+            @@repositoryOwner = ra
+          else
+            raise Exceptions::MultipleOwnerError.new(message: "Multiple Registration Authority owners detected.")
+          end
+        end
         ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
-        results[ra.id] = ra
+        results << ra
         @@id_map[ra.id] = ra
         @@name_map[ra.namespace.shortName] = ra
       end
     end
-    # Set owner. Assumed to be first authority.
-    if @@repositoryOwner == nil
-      @@repositoryOwner = results.values[0]
-    end
-    # Return
     return results
   end
 
@@ -150,6 +159,7 @@ class IsoRegistrationAuthority
     # The owner is assumed to be the first entry.
     if @@repositoryOwner == nil
       results = self.all
+      @@repositoryOwner = self.new if @@repositoryOwner == nil
     end
     return @@repositoryOwner
   end
@@ -169,9 +179,11 @@ class IsoRegistrationAuthority
       "	:" + raiId + " isoB:internationalCodeDesignator \"" + C_DUNS + "\"^^xsd:string . \n" +
       "	:" + id + " rdf:type isoR:RegistrationAuthority . \n" +
       " :" + id + " isoR:raNamespace :" + namespaceId + " . \n" +
-      "	:" + id + " isoR:hasAuthorityIdentifier :" + raiId + " ; \n" +
+      "	:" + id + " isoR:hasAuthorityIdentifier :" + raiId + " . \n" +
+      " :" + id + " isoR:owner \"false\"^^xsd:boolean . \n" +
       "}"
     # Send the request, wait the resonse
+    ConsoleLogger::log(C_CLASS_NAME,"create", "Update=#{update}.")
     response = CRUD.update(update)
     # Response
     if response.success?
@@ -179,6 +191,7 @@ class IsoRegistrationAuthority
       ra.id = id
       ra.number = number
       ra.scheme = C_DUNS
+      ra.owner = false
     else
       ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
       raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
@@ -197,7 +210,8 @@ class IsoRegistrationAuthority
       "	:" + raiId + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
       "	:" + self.id + " rdf:type isoR:RegistrationAuthority . \n" +
       " :" + self.id + " isoR:raNamespace :" + self.namespace.id + " . \n" +
-      "	:" + self.id + " isoR:hasAuthorityIdentifier :" + raiId + " ; \n" +
+      "	:" + self.id + " isoR:hasAuthorityIdentifier :" + raiId + " . \n" +
+      " :" + self.id + " isoR:owner \"#{self.owner}\"^^xsd:boolean . \n" +
       "}"
     # Send the request, wait the resonse
     response = CRUD.update(update)
@@ -214,6 +228,7 @@ class IsoRegistrationAuthority
       :id => self.id, 
       :number => self.number,
       :scheme => self.scheme,
+      :owner => self.owner,
       :namespace => self.namespace.to_json
     }
     return json
@@ -225,6 +240,7 @@ class IsoRegistrationAuthority
     object.id = json[:id]
     object.number = json[:number]
     object.scheme = json[:scheme]
+    object.owner = json[:owner]
     object.namespace = IsoNamespace.from_json(json[:namespace])
     return object
   end

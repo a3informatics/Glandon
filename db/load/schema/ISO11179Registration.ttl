@@ -6,6 +6,7 @@
 # imports: http://www.w3.org/2004/02/skos/core
 
 @prefix : <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoB: <http://www.assero.co.uk/ISO11179Basic#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
@@ -40,6 +41,19 @@
   rdfs:domain :RegistrationAuthority ;
   rdfs:label "Scope Relationship"^^xsd:string ;
   rdfs:range isoI:Namespace ;
+.
+:hasAuthorityIdentifier
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Authority Identifier Relationship"^^xsd:string ;
+  rdfs:domain :RegistrationAuthority ;
+  rdfs:range isoB:RegistrationAuthorityIdentifier ;
+.
+:owner
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Repository owner."^^xsd:string ;
+  rdfs:domain :RegistrationAuthority ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Defines the RA that is owner of the repository."^^xsd:string ;
 .
 :isStateOf
   rdf:type owl:ObjectProperty ;
