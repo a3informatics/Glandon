@@ -35,6 +35,13 @@ class ThesauriController < ApplicationController
   def edit
     authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id], params[:namespace])
+    if @thesaurus.new_version?
+      th = Thesaurus.find_all(params[:id], params[:namespace])
+      json = th.to_edit(true)
+      ConsoleLogger::log(C_CLASS_NAME, "edit", "JSON=#{json}")
+      new_th = Thesaurus.create({:data =>json})
+      @thesaurus = Thesaurus.find(new_th.id, new_th.namespace)
+    end
   end
 
   def add_child
