@@ -1,7 +1,7 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Form> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Demographics" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2016-08-31T10:35:42 01:00" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2016-08-31T10:35:50 01:00" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2016-09-01T10:49:28 01:00" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2016-09-01T10:49:55 01:00" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"Created from MS Word document" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"Incorporates all changes up to and including 2015-07-28" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"See the MS Word Document for Demographics dated 2015-07-28" . 
@@ -47,7 +47,8 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I2> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Date of Birth:" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Sex" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR2> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* Indicate the appropriate sex." . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -56,17 +57,28 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"SEX" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Sex:" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66731_C16576> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66731_C20197> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66731_C20197> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66731_C16576> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Race" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR2> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR3> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR4> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR5> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR6> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* **Race must be self-reported by the subject (not judged by the site).** \nThe race definitions below, which have been adapted from the FDA Race & Ethnicity Guideline, can be used to help match subject-reported races with the options in the CRF. \n\nSelect the race most closely associated with the subject s reported race.  \n* American Indian or Alaska Native: A person having origins in any of the original peoples of North and South America (including Central America)\n    - Asian: A person having origins in any of the original peoples of the Far East, Southeast Asia or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand and Vietnam.\n    - Black: A person having origins in any of the black racial groups of Africa.\n    - Native Hawaiian or Other Pacific Islander: A person having origins in any of the original peoples of Hawaii, Guam, Samoa or other Pacific Island.\n    - White: A person having origins in any of the original peoples of Europe, the Middle East or North Africa.\n* If multiple races have been reported, select Other / Mixed and enter the reported races in the space provided.\n" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -75,18 +87,48 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"RACE" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Race:" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C41260> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C41261> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C41259> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C41219> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C16352> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00021> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C41259> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C41260> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR3> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C16352> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR3> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR3> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR3> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR3> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR4> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C41219> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR4> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR4> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR4> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR4> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR5> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR5> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR5> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C41261> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR5> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"5" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR5> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR5> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR5> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR6> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR6> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR6> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00021> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR6> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"6" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR6> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR6> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I4_TCR6> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I5> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I5> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Race Other" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I5> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
@@ -99,7 +141,8 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I5> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Race Other Mixed Specify:" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Ethnicity" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR2> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* Tick the box most closely associated with the subject s ethnicity.\n* The definition below has been adapted from the FDA Race & Ethnicity Guideline:\n    - Hispanic or Latino: A person of Cuban, Mexican, Puerto Rican, South or Central American or other Spanish culture or origin, regardless of race.\n" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -108,17 +151,23 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"ETHNIC" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Ethnicity:" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66790_C17459> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66790_C41222> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66790_C17459> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66790_C41222> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Ethnic Subgroup" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR1> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* Tick the appropriate box to indicate the subject s ethnic subgroup.  If the appropriate subgroup is not listed, tick Other" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.assero.co.uk/BusinessForm#optional> 			"true" . 
@@ -127,24 +176,24 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"SUPPDM.QVAL when QNAM=RACESG" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Ethnic Subgroup:" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00011> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00011> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_DM101_G1_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRItems#SI-UCB_DM101-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
 <http://www.assero.co.uk/MDRItems#SI-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/MDRItems#NS-UCB> . 
 <http://www.assero.co.uk/MDRItems#SI-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 			"DM1 01" . 
 <http://www.assero.co.uk/MDRItems#SI-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Identification#version> 			"1" . 
-<http://www.assero.co.uk/MDRItems#SI-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"" . 
+<http://www.assero.co.uk/MDRItems#SI-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"0.1" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/MDRItems#RA-177901274> . 
-<http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Incomplete" . 
+<http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Recorded" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 			"2016-01-01T00:00:00Z" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 			"2016-01-01T00:00:00Z" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeNote> 			"" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> 			"" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeStatus> 			"" . 
-<http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-UCB_DM101-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"Candidate" . 

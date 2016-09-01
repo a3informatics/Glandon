@@ -16,8 +16,13 @@ class SdtmIgDomainsController < ApplicationController
     @variables = Array.new
     @sdtm_ig_domain = SdtmIgDomain.find(id, namespace)
     @sdtm_ig_domain.children.each do |child|
-      class_variable = SdtmModelDomain::Variable.find(child.variable_ref.subject_ref.id, child.variable_ref.subject_ref.namespace)
-      model_variable = SdtmModel::Variable.find(class_variable.variable_ref.subject_ref.id, class_variable.variable_ref.subject_ref.namespace)
+      # TODO Not every IG domain is linked yet. Check if references present
+      if !child.variable_ref.nil?
+        class_variable = SdtmModelDomain::Variable.find(child.variable_ref.subject_ref.id, child.variable_ref.subject_ref.namespace)
+        model_variable = SdtmModel::Variable.find(class_variable.variable_ref.subject_ref.id, class_variable.variable_ref.subject_ref.namespace)
+      else
+        model_variable = SdtmModel::Variable.new
+      end
       @variables << model_variable
     end
   end

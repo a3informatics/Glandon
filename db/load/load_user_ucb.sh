@@ -10,7 +10,9 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRBRID
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCTs.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCs.ttl" $FileEndPoint
 # Load Forms
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/UCB_DM1 01.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/UCB_MH1 01.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/UCB_AEPI1 03.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/UCB_DM1 01_0-1.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/UCB_DM1 01_1-0.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/UCB_DM1 01_1-1.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/UCB_MH1 01_0-1.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/UCB_AEPI1 03_0-1.ttl" $FileEndPoint
 set +x

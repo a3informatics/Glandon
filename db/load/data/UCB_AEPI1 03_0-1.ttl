@@ -1,7 +1,7 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Form> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Adverse Events, Phase 1" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2016-08-31T10:38:26 01:00" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2016-08-31T10:38:30 01:00" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2016-09-01T10:50:37 01:00" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2016-09-01T10:50:50 01:00" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"Based on the AE Specification document dated 2015-12-15." . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"Two questions do not have terminology associated as yet:\r\n\r\n* Relationship to Study Medication\r\n* Other Action\r\n\r\nMay not be CDISC terms for these, need to check.\r\n\r\n" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"AE Specification document dated 2015-12-15." . 
@@ -22,7 +22,8 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Any?" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR2> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"Indicate if the subject experienced any adverse events. If yes, include the appropriate details where indicated on the screen." . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -31,14 +32,20 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"[NOT SUBMITTED]" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Has the subject experienced any adverse events?" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49487> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49488> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49488> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49487> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G1_I1_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Group" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2> 			<http://www.assero.co.uk/BusinessForm#isGroupOf> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103> . 
@@ -103,7 +110,8 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I4> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Time of Onset:" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Pattern" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR2> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.assero.co.uk/BusinessForm#completion> 			"Enter whether the AE was intermittent or continuous.\n\n* __Intermittent__: The AE recurs various intervals throughout the entire period specified. There were intervals of abatement within the specified time period.\n* __Continuous__: The AE is present for the entire time period specified. There was no time at which the event abated or was not present during the time period specified.\n" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -112,17 +120,24 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"AEPATT" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Pattern of Event:" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C71113_C53279> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C71113_C71325> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C71113_C71325> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C71113_C53279> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I5_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Serious" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR2> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.assero.co.uk/BusinessForm#completion> 			"Assess if an adverse event should be classified as serious based on the serious criteria defined in the protocol. __If the event is serious, complete the Serious Adverse Event (SAE) forms and fax as instructed per the protocol.__" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -131,17 +146,25 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"AESER" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Serious Adverse Event?" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49487> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49488> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49488> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49487> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I6_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Intensity" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR2> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR3> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* An increase in intensity should be reported as a new AE.\n* Mild: The subject is aware of the sign or symptom (syndrome), but it does not interfere with his/her usual activities and/or it is of no clinical consequence.\n* Moderate: The AE interferes with the usual activities of the subject or it is of some clinical consequence.\n* Severe: The subject is unable to work normally or to carry out his/her usual activities, or the AE is of definite clinical consequence.\n" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -150,15 +173,27 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"AESEV" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Intensity" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66769_C41340> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66769_C41339> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66769_C41338> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66769_C41338> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66769_C41339> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR3> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66769_C41340> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR3> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR3> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR3> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I7_TCR3> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I8> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I8> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Relationship" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I8> 			<http://www.assero.co.uk/BusinessForm#completion> 			"* Indicate if the cause of the adverse event is related to the study treatment and cannot be reasonably explained by other factors (e.g., subject's clinical state, concomitant therapy, and/or other interventions).\n* Where there is uncertainty about the relationship, take the conservative approach and classify the event as related.\n* **Related:** There is a strong relationship. For example, the AE:\n    * follows a reasonable temporal sequence from administration of the study medication or in which the study medication has been established in body fluids or tissues;\n    * follows a known or expected response pattern to the study medication;\n    * is confirmed by improvement on stopping or reducing the dosage of the study medication (dechallenge), and reappearance on repeated exposure (rechallenge).\n* **Not related:** No study medication was taken or when the subject is taking single-blind placebo, or when the AE can be ascribed with reasonable certainty to another cause. For example:\n    * the AE is a known adverse drug reaction of a concomitant medication;\n    * the same AE does not appear after re-administration of the study medication (rechallenge);\n    * other factors such as underlying disease, concomitant disease(s) or concomitant medication(s) are plausible to have contributed to the event.\n" . 
@@ -171,7 +206,12 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I8> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Relationship to Study Medication" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Action" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR2> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR3> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR4> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR5> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR6> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#completion> 			"Enter changes made to the study treatment resulting from the adverse event.\n\n* Dose not changed: Study medication dosing remained the same in spite of the AE being present.\n* Dose reduced: Study medication dose was decreased because of this AE (dechallenge).\n* Dose increased: Study medication dose was increased because of this AE.\n* Drug temporarily interrupted: Study medication was temporarily discontinued because of this AE, either because the subject chose to discontinue the study medication or the physician felt it was in the subject's best interest to temporarily discontinue the study medication (dechallenge).\n* Drug permanently withdrawn: Study medication was permanently discontinued because of this AE, either because the subject chose to discontinue the study medication or the physician felt it was in the subject's best interest to discontinue the study medication (dechallenge). \n* Enter changes made to the study treatment resulting from the adverse event.\n* Dose not changed: Study medication dosing remained the same in spite of the AE being present.\n* Dose reduced: Study medication dose was decreased because of this AE (dechallenge).\n* Dose increased: Study medication dose was increased because of this AE.\n* Drug temporarily interrupted: Study medication was temporarily discontinued because of this AE, either because the subject chose to discontinue the study medication or the physician felt it was in the subject's best interest to temporarily discontinue the study medication (dechallenge).\n* Drug permanently withdrawn: Study medication was permanently discontinued because of this AE, either because the subject chose to discontinue the study medication or the physician felt it was in the subject's best interest to discontinue the study medication (dechallenge). \n* Not applicable: For AEs occurring during the study medication free period (pre and post-treatment periods and for single dose studies).\n* Not applicable: For AEs occurring during the study medication free period (pre and post-treatment periods and for single dose studies).\n" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -180,18 +220,48 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"AEACN" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Action Taken with Study Medication:" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C48660> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49501> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49504> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49505> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49502> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49503> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49504> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49505> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR3> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49503> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR3> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR3> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR3> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR3> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR4> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49501> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR4> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR4> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR4> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR4> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR5> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR5> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR5> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C49502> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR5> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"5" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR5> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR5> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR5> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR6> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR6> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR6> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66767_C48660> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR6> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"6" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR6> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR6> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I9_TCR6> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I10> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I10> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Other Action" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I10> 			<http://www.assero.co.uk/BusinessForm#completion> 			"If appropriate, enter any other actions taken resulting from the adverse event that are unrelated to study treatment dose changes.  Tick all that apply.\n\n* None: No other action was taken for this AE.\n* Hospitalization or prolongation of hospitalization: Subject was hospitalized for this AE or subject's stay in hospital was prolonged because of this AE (complete an SAE form).\n* Concomitant medication: The subject took a medication (either prescription or non-prescription) specifically for this AE or existing medication dosage was modified.\n* Therapeutic or diagnostic procedure: Subject used other therapeutic measures (eg, ice, heating pad, brace, cast, etc.) or subject underwent a diagnostic procedure (eg, additional lab test, x-ray, etc.) for this AE.\n" . 
@@ -204,7 +274,11 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I10> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Other Action taken:" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Outcome" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR2> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR3> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR4> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR5> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#completion> 			"Enter the appropriate outcome of the event in relation to the subject's status.\n\n* __Resolving__: The AE is still present but less intense as of last contact with the subject.\n* **Not resolved**: The AE is still present as of last contact with the subject.\n* **Resolved**: The AE is no longer present at any intensity - completely abated.  \n* **Resolved with sequelae**: The AE is resolved but residual effects are still present.\n* **Worsened**: The AE is still present but at a heightened intensity. (Complete a new AE screen with event term of worsened event).\n* **Fatal**: This AE caused or directly contributed to the subject's death.\n* **Unknown**: No information about the latest outcome of this AE, due to the subject being lost to follow up.\n" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#note> 			"Note: **Date and Time of Outcome questions are conditional**" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -213,17 +287,41 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"AEOUT" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Outcome" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C49498> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C49496> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C49494> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C49495> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C48275> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C49496> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C49494> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR3> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C49498> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR3> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR3> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR3> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR3> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR4> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C49495> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR4> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR4> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR4> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR4> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR5> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR5> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR5> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66768_C48275> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR5> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"5" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR5> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR5> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I11_TCR5> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I12> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I12> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date of Outcome" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I12> 			<http://www.assero.co.uk/BusinessForm#completion> 			"Enter the date that the AE resolved using the format DD MMM YYYY\n\nExample:\n\n| DD | MMM | YYYY |\n|----|-----|------|\n| 08 | Jan | 2013 |\n\n\n\n\n" . 
@@ -246,7 +344,8 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I13> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Time of Outcome" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Dropout" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR0> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR1> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR2> . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.assero.co.uk/BusinessForm#completion> 			"If the subject dropped out due to AE, tick Yes and ensure that the reason for early termination is recorded as Adverse Event on the Study Termination page." . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
@@ -255,25 +354,31 @@
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.assero.co.uk/BusinessForm#format> 			"" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"SUPPAE.QVAL where QNAM=AEDROP" . 
 <http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Did Adverse Event Lead to Dropout?" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49487> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR0> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49488> . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
-<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49488> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66742_C49487> . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/UCB/V1#F-UCB_AEPI103_G2_I14_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRItems#SI-UCB_AEPI103-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
 <http://www.assero.co.uk/MDRItems#SI-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/MDRItems#NS-UCB> . 
 <http://www.assero.co.uk/MDRItems#SI-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 			"AEPI1 03" . 
 <http://www.assero.co.uk/MDRItems#SI-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Identification#version> 			"1" . 
-<http://www.assero.co.uk/MDRItems#SI-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"" . 
+<http://www.assero.co.uk/MDRItems#SI-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"0.1" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/MDRItems#RA-177901274> . 
-<http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Incomplete" . 
+<http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Recorded" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 			"2016-01-01T00:00:00Z" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 			"2016-01-01T00:00:00Z" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeNote> 			"" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> 			"" . 
 <http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeStatus> 			"" . 
-<http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-UCB_AEPI103-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"Candidate" . 
