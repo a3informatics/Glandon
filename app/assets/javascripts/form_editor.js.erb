@@ -1436,7 +1436,7 @@ $(document).ready(function() {
     } else {
       count = 1;
     }
-    label = "Question" + count;
+    label = "Question " + count;
     sourceNode = newQuestion(label);
     d3Node = addD3Node(currentNode, label, C_QUESTION, sourceNode, true);     
     addSourceNode(currentNode.data, sourceNode, true)
@@ -1453,7 +1453,7 @@ $(document).ready(function() {
     } else {
       count = 1;
     }
-    label = "Placeholder" + count;
+    label = "Placeholder " + count;
     sourceNode = newPlaceholder(label);
     d3Node = addD3Node(currentNode, label, C_PLACEHOLDER, sourceNode, true);     
     addSourceNode(currentNode.data, sourceNode, true)
@@ -1470,7 +1470,7 @@ $(document).ready(function() {
     } else {
       count = 1;
     }
-    label = "Label Text" + count;
+    label = "Label Text " + count;
     sourceNode = newLabelText(label);
     d3Node = addD3Node(currentNode, label, C_TEXTLABEL, sourceNode, true);     
     addSourceNode(currentNode.data, sourceNode, true)
