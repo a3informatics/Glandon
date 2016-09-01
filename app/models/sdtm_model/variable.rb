@@ -36,9 +36,9 @@ class SdtmModel::Variable < Tabular::Column
     self.name = ""
     self.prefixed = false
     self.description = ""
-    self.datatype = ""
-    self.classification = ""
-    self.sub_classification = ""
+    self.datatype = SdtmModelDatatype.new
+    self.classification = EnumeratedLabel.new
+    self.sub_classification = EnumeratedLabel.new
     if triples.nil?
       super
     else

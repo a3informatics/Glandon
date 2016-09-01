@@ -62,8 +62,12 @@ class SdtmUserDomain < Tabular::Tabulation
     object.model_ref = ig_domain.model_ref
     ig_domain.children.each do |child|
       variable = SdtmUserDomain::Variable.new
-      class_variable = SdtmModelDomain::Variable.find(child.variable_ref.subject_ref.id, child.variable_ref.subject_ref.namespace)
-      model_variable = SdtmModel::Variable.find(class_variable.variable_ref.subject_ref.id, class_variable.variable_ref.subject_ref.namespace)
+      if !child.variable_ref.nil?
+        class_variable = SdtmModelDomain::Variable.find(child.variable_ref.subject_ref.id, child.variable_ref.subject_ref.namespace)
+        model_variable = SdtmModel::Variable.find(class_variable.variable_ref.subject_ref.id, class_variable.variable_ref.subject_ref.namespace)
+      else
+        model_variable = SdtmModel::Variable.new
+      end
       variable.name = model_variable.name
       variable.ordinal = child.ordinal
       variable.label = child.label
