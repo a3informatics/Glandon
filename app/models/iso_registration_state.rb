@@ -138,7 +138,7 @@ class IsoRegistrationState
     date_time = Time.now
     if triples.nil?
       self.id = ""
-      self.registrationAuthority = nil
+      self.registrationAuthority = IsoRegistrationAuthority.new
       self.registrationStatus = C_NOTSET
       self.administrativeNote = ""
       self.effective_date = Time.parse(C_DEFAULT_DATETIME)
