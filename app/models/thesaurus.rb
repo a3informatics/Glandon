@@ -72,7 +72,6 @@ class Thesaurus <  IsoManaged
     end
     # Create the object based on the triples.
     object = new(triples, id)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","object=" + object.to_json.to_s)
     if children
       object.children = ThesaurusConcept.find_for_parent(object.triples, object.get_links(UriManagement::C_ISO_25964, "hasConcept"))
       object.children.each do |child|
@@ -81,6 +80,16 @@ class Thesaurus <  IsoManaged
     end
     #object.triples = ""
     return object    
+  end
+  
+  def self.find_all(id, ns)
+    new_children = Array.new
+    object = self.find(id, ns)
+    object.children.each do |child|
+      new_children << ThesaurusConcept.find(child.id, child.namespace)
+    end
+    object.children = new_children
+    return object     
   end
   
   def self.find_from_concept(id, ns)
@@ -231,8 +240,8 @@ class Thesaurus <  IsoManaged
     uri = super(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, C_SCHEMA_PREFIX)
     # Now deal with the children
     self.children.each do |child|
-      ref_id = child.to_sparql(uri.id, sparql)
-      sparql.triple("", uri.id, C_SCHEMA_PREFIX, "hasConcept", "", ref_id)
+      ref_id = child.to_sparql_v2(uri, sparql)
+      sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasConcept"}, {:uri => ref_id})
     end
     ConsoleLogger::log(C_CLASS_NAME,"to_sparql","SPARQL=#{sparql}")
     return sparql

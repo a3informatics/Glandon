@@ -89,7 +89,7 @@ class ThesaurusConcept < IsoConcept
     object.errors.clear
     if !ThesaurusConcept.exists?(object.identifier, self.namespace)
       # Create the sparql. Add the ref to the child.
-      object.to_sparql_v2(self.id, sparql)
+      object.to_sparql_v2(self.uri, sparql)
     else
       object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists in the database.")
     end
@@ -197,22 +197,32 @@ class ThesaurusConcept < IsoConcept
     object.preferredTerm = "#{json[:preferredTerm]}"
     object.synonym = "#{json[:synonym]}"
     object.definition = "#{json[:definition]}"
+    if !json[:children].blank?
+      json[:children].each do |child|
+        object.children << ThesaurusConcept.from_json(child)
+      end
+    end
     return object
   end
 
-  def to_sparql_v2(parent_id, sparql)
+  def to_sparql_v2(parent_uri, sparql)
     ConsoleLogger::log(C_CLASS_NAME, "to_sparql_v2", "object=#{self.to_json}")
     cid_extension = self.identifier
     # TODO Quick fix, this needs to be centralised better.
-    self.id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{cid_extension.gsub(/[^0-9A-Za-z_]/, '')}"
+    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{cid_extension.gsub(/[^0-9A-Za-z_]/, '')}"
+    self.namespace = parent_uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
-    subject = {:namespace => self.namespace, :id => self.id}
+    subject = {:uri => self.uri}
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "identifier"}, {:literal => "#{self.identifier}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "notation"}, {:literal => "#{self.notation}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "preferredTerm"}, {:literal => "#{self.preferredTerm}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "synonym"}, {:literal => "#{self.synonym}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "definition"}, {:literal => "#{self.definition}", :primitive_type => "string"})
-    return id
+    self.children.each do |child|
+      ref_uri = child.to_sparql_v2(self.uri, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasChild"}, {:uri => ref_uri})
+    end
+    return self.uri
   end
 
 private
