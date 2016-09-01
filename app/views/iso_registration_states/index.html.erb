@@ -5,10 +5,11 @@
 		  	<tr>
 		    	<th>CID</th>
 			    <th>Status</th>
-			    <th>Note</th>
 			    <th>Effective Date</th>
+			    <th>Until Date</th>
 			    <th>Issues</th>
 			    <th>Status</th>
+			    <th>Note</th>
 			    <th>Previous Status</th>
 		  	</tr>
 		</thead>
@@ -17,10 +18,11 @@
 				<tr>
 				    <td><%= registrationState.id %></td>
 				    <td><%= registrationState.registrationStatus %></td>
-				    <td><%= registrationState.administrativeNote %></td>
-				    <td><%= registrationState.effectiveDate %></td>
+				    <td><%= registrationState.effective_date %></td>
+				    <td><%= registrationState.until_date %></td>
 				    <td><%= registrationState.unresolvedIssue %></td>
 				    <td><%= registrationState.administrativeStatus%></td>
+				    <td><%= registrationState.administrativeNote %></td>
 				    <td><%= registrationState.previousState%></td>
 				</tr>
 			<% end %>
