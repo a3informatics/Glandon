@@ -113,8 +113,16 @@ class Form::Item::Question < Form::Item
 private
 
   def self.children_from_triples(object, triples, id, bc=nil)
+    #ordinal = 1;
     links = object.get_links_v2(C_SCHEMA_PREFIX, "hasThesaurusConcept")
     links.each do |link|
+      # TODO: Remove this in the future, add in ordinal if missing. Protect against
+      # some early forms. Now commented out
+      #tc_ref = OperationalReferenceV2.find_from_triples(triples, link.id)
+      #tc_ref.ordinal = ordinal
+      #object.tc_refs << tc_ref
+      #ordinal += 1
+      # OR
       object.tc_refs << OperationalReferenceV2.find_from_triples(triples, link.id)
     end      
   end
