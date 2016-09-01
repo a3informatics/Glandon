@@ -39,7 +39,8 @@
 :RA-123456789
   rdf:type isoR:RegistrationAuthority ;
   isoR:raNamespace :NS-ACME ;
-  isoR:hasAuthorityIdentifier :RAI-123456789 ; 
+  isoR:hasAuthorityIdentifier :RAI-123456789 ;
+  isoR:owner "true"^^xsd:boolean ;   
 .
 :RAI-084433759 
   rdf:type isoB:RegistrationAuthorityIdentifier ; 
@@ -50,4 +51,5 @@
   rdf:type isoR:RegistrationAuthority ;
   isoR:raNamespace :NS-CDISC ;
   isoR:hasAuthorityIdentifier :RAI-084433759 ; 
+  isoR:owner "false"^^xsd:boolean ;  
 .
