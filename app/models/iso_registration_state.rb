@@ -155,7 +155,7 @@ class IsoRegistrationState
         cid = ModelUtility.extractCid(links[0])
         self.registrationAuthority  = IsoRegistrationAuthority.find(cid)
       end
-      triples.each do |triple|
+      #triples.each do |triple|
         self.registrationStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
         self.administrativeNote = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
         effective_date = Triples::get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
@@ -164,16 +164,16 @@ class IsoRegistrationState
         self.unresolvedIssue = Triples::get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
         self.administrativeStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeStatus")
         self.previousState  = Triples::get_property_value(triples, UriManagement::C_ISO_R, "previousState")
-      end
+      #end
     end
     if date_time >= self.effective_date && date_time <= self.until_date
       self.current = true
     end
   end
 
-  def registrationAuthority
-    return @@owner
-  end
+  #def registrationAuthority
+  #  return @@owner
+  #end
   
   def registered?()
     return self.registrationStatus != C_NOTSET
@@ -186,7 +186,7 @@ class IsoRegistrationState
   def self.nextState(state)
     info = @@stateInfo[state]
     nextState = info[:next_state]
-    ConsoleLogger::log(C_CLASS_NAME,"nextState","Old=" + state.to_s + ", New=" + nextState)
+    #ConsoleLogger::log(C_CLASS_NAME,"nextState","Old=" + state.to_s + ", New=" + nextState)
     return nextState
   end
 
