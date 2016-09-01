@@ -90,7 +90,7 @@ class Reports::CrfReport
       html += "</table>"
     end
     html += page_footer()
-    ConsoleLogger.log(C_CLASS_NAME, "create", "HTML=" + html.to_s)
+    #ConsoleLogger.log(C_CLASS_NAME, "create", "HTML=" + html.to_s)
     pdf = WickedPdf.new.pdf_from_string(html, :page_size => paper_size, :footer => {:font_size => "10", :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", :left => "", :center => "", :right => "[page] of [topage]"} )
     return pdf
   end
@@ -172,7 +172,7 @@ private
         html += '<td><font color="red"><h4>' 
         domains = annotations.uniq {|entry| entry[:domain_prefix] }
         domains.each do |domain|
-          ConsoleLogger::log(C_CLASS_NAME,"crf_node","domain=" + domain.to_json.to_s)
+          #ConsoleLogger::log(C_CLASS_NAME,"crf_node","domain=" + domain.to_json.to_s)
           suffix = ""
           prefix = domain[:domain_prefix]
           if domain[:domain_long_name] != ""
@@ -241,7 +241,7 @@ private
     elsif node[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
       add_nodes(node, ci_nodes, {:form => :completion, :default => :completion})
       add_nodes(node, note_nodes, {:form => :note, :default => :note})
-      ConsoleLogger::log(C_CLASS_NAME,"crf_node", "node=" + node.to_json.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"crf_node", "node=" + node.to_json.to_s)
       if node[:optional]
         html += '<tr class="warning">'
       else
@@ -311,8 +311,9 @@ private
       terminology << node
       values = Array.new
       node[:children].each do |child|
-        if node[:enabled]
-          tc = child[:subject_data]
+        if child[:enabled]
+          tc_ref = child[:subject_ref]
+          tc = ThesaurusConcept.find(tc_ref[:id], tc_ref[:namespace])
           values << "#{tc.label}"
         end
       end
@@ -349,7 +350,7 @@ private
       html += "<td>#{cell}</td>"
     end
     html += "</tr></table>"
-    ConsoleLogger::log(C_CLASS_NAME,"field_table", "HTML=" + html.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"field_table", "HTML=" + html.to_s)
     return html
   end
 
@@ -367,7 +368,7 @@ private
     symbol = symbols[:default]
     symbol = symbols[:form] if node[:type] == "Form"
     text = node[symbol]
-    ConsoleLogger::log(C_CLASS_NAME,"add_nodes", "Text=" + text.to_s)
+    #ConsoleLogger::log(C_CLASS_NAME,"add_nodes", "Text=" + text.to_s)
     nodes << {:node => node, :html => MarkdownEngine::render(text)} unless text.empty?
   end
 
