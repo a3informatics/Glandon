@@ -84,6 +84,11 @@ class IsoManaged < IsoConcept
     return self.scopedIdentifier.owner_id
   end
 
+  def owned?
+    owner = IsoRegistrationAuthority.owner
+    return self.owner_id == owner.namespace.id
+  end
+
   def registrationStatus
     if self.registrationState == nil
       #ConsoleLogger::log(C_CLASS_NAME,"registrationStatus","rs=na")
@@ -106,7 +111,7 @@ class IsoManaged < IsoConcept
     if self.registrationState == nil
       return false
     else
-      return self.registrationState.edit?
+      return self.registrationState.edit? && self.owned?
     end
   end
 
@@ -693,7 +698,7 @@ class IsoManaged < IsoConcept
     elsif self.version == IsoScopedIdentifier.first_version && !exists
       result = true
     elsif self.version != IsoScopedIdentifier.first_version && exists
-      if versionExists?(self.identifier, self.version, scope)
+      if IsoScopedIdentifier.versionExists?(self.identifier, self.version, scope.id)
         result = false
         self.errors.add(:base, "The item cannot be created. The identifier and version is already in use.")
       else
