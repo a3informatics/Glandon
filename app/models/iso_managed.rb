@@ -784,8 +784,8 @@ class IsoManaged < IsoConcept
     sparql.default_namespace(self.namespace)
     # Build the sparql. The concept and then the registration state and scoped identifier
     super(sparql, schema_prefix)
-    rs_id = self.registrationState.to_sparql(sparql, ra, self.identifier, self.version)
-    si_id = self.scopedIdentifier.to_sparql(sparql, ra)
+    rs_id = self.registrationState.to_sparql_v2(sparql, ra, self.identifier, self.version)
+    si_id = self.scopedIdentifier.to_sparql_v2(sparql, ra)
     # And the object.
     subject = {:namespace => self.namespace, :id => self.id}
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "hasIdentifier"}, {:prefix => C_INSTANCE_PREFIX, :id => si_id})

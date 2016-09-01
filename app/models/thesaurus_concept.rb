@@ -68,6 +68,7 @@ class ThesaurusConcept < IsoConcept
       # Add the reference
       sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasChild"}, {:uri => object.uri})
       # Send the request, wait the resonse
+      ConsoleLogger::log(C_CLASS_NAME,"add_child","Sparql=#{sparql}")
       response = CRUD.update(sparql.to_s)
       # Response
       if !response.success?
@@ -201,7 +202,9 @@ class ThesaurusConcept < IsoConcept
 
   def to_sparql_v2(parent_id, sparql)
     ConsoleLogger::log(C_CLASS_NAME, "to_sparql_v2", "object=#{self.to_json}")
-    self.id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{self.identifier}"
+    cid_extension = self.identifier
+    # TODO Quick fix, this needs to be centralised better.
+    self.id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{cid_extension.gsub(/[^0-9A-Za-z_]/, '')}"
     super(sparql, C_SCHEMA_PREFIX)
     subject = {:namespace => self.namespace, :id => self.id}
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "identifier"}, {:literal => "#{self.identifier}", :primitive_type => "string"})

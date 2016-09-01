@@ -3,20 +3,12 @@
 	<%= form_for @thesaurus, :url => thesauri_index_path do |f| %>
 	  	<div class="form-group">
 	    	<%= label_tag :identifier, "Identifier:" %><br />
-	    	<%= text_field_tag "thesaurus[identifier]", 'SPONSOR_CT', class: "form-control" %>
+	    	<%= text_field_tag "thesaurus[identifier]", "" ,class: "form-control" %>
 	  	</div>
 	  	<div class="form-group">
 	    	<%= label_tag :label, "Label:" %><br />
-	    	<%= text_field_tag "thesaurus[label]", 'Sponsor Terminology', class: "form-control" %>
+	    	<%= text_field_tag "thesaurus[label]", "" , class: "form-control" %>
 	  	</div>
-		<div class="form-group">
-		    <%= label_tag :versionLabel, "Version Label:" %><br/>
-		    <%= text_field_tag "thesaurus[versionLabel]", '0.1', class: "form-control" %>
-		</div>
-		<div class="form-group">
-		    <%= label_tag :version, "Internal Version:" %><br/>
-		    <%= text_field_tag "thesaurus[version]", '1', class: "form-control" %>
-		</div>
 		<%= f.submit "Create", class: "btn btn-default btn-primary" %>
 	<% end %>
 </div>

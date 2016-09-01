@@ -11,7 +11,7 @@
 	  				:searchPath => search_thesauri_index_path(:id => item.id, :namespace => item.namespace), 
 	  				:viewPath => view_thesauri_index_path(:id => item.id, :namespace => item.namespace),
 	  				:editPath => edit_thesauri_path(:id => item.id, :namespace => item.namespace),
-	  				:deletePath => "" } %>
+	  				:deletePath => thesauri_path(:id => item.id, :namespace => item.namespace) } %>
 			<% end %>				
 		</tbody>
 	</table>

@@ -23,8 +23,13 @@ class ThesauriController < ApplicationController
   def create
     authorize Thesaurus
     identifier = params[:identifier]
-    @thesaurus = Thesaurus.create(the_params)
-    redirect_to thesauri_index_path
+    @thesaurus = Thesaurus.create_simple(the_params)
+    if @thesaurus.errors.empty?
+      redirect_to thesauri_index_path
+    else
+      flash[:error] = @thesaurus.errors.full_messages.to_sentence
+      redirect_to new_thesauri_path
+    end
   end
 
   def edit
@@ -46,7 +51,7 @@ class ThesauriController < ApplicationController
   def destroy
     authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id], params[:namespace])
-    @thesaurus.destroy()
+    @thesaurus.destroy
     redirect_to thesauri_index_path
   end
 

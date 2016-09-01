@@ -116,6 +116,21 @@ class Thesaurus <  IsoManaged
     return results
   end
 
+  def self.create_simple(params)
+    object = self.new 
+    object.errors.clear
+    if params_valid_simple?(params, object)
+      object.scopedIdentifier.identifier = params[:identifier]
+      object.label = params[:label]
+      if exists?(object.identifier, IsoRegistrationAuthority.owner()) 
+        object.errors.add(:base, "The identifier is already in use.")
+      else  
+        object = Thesaurus.create({:data => object.to_edit(true)})
+      end
+    end
+    return object
+  end
+  
   def self.create(params)
     # Get the parameters
     data = params[:data]
@@ -132,7 +147,7 @@ class Thesaurus <  IsoManaged
       # Can we create?
       if object.create_permitted?(ra)
         # Build sparql
-        sparql = object.to_sparql(ra)
+        sparql = object.to_sparql_v2(ra)
         # Send to database
         ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
         response = CRUD.update(sparql.to_s)
@@ -185,6 +200,10 @@ class Thesaurus <  IsoManaged
   def self.import(params, ownerNamespace)
     object = super(C_CID_PREFIX, params, ownerNamespace, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
     return object
+  end
+
+  def destroy
+    super(self.namespace)
   end
 
   def to_json
@@ -278,59 +297,65 @@ class Thesaurus <  IsoManaged
     return results
   end
 
-  def update(params)
-    ConsoleLogger::log(C_CLASS_NAME,"update","*****Entry*****")
-    ConsoleLogger::log(C_CLASS_NAME,"update","Params=" + params.to_s)
-    self.errors.clear
-    # Access the data
-    data = params[:data]
-    if data != nil
-      ConsoleLogger::log(C_CLASS_NAME,"update","Delete, data=" + data.to_s)
-      deleteItem = data[:deleteItem]
-      updateItem = data[:updateItem]
-      addItem = data[:addItem]
-      # Delete items
-      if (deleteItem != nil)
-        ConsoleLogger::log(C_CLASS_NAME,"update","Delete, item=" + deleteItem.to_s)
-        concept = ThesaurusConcept.find(deleteItem[:id], self.namespace)
-        if !concept.destroy(self.namespace, self.id)
-          self.errors.add(:base, "The concept deletion failed.")          
-        end
-      end
-      # Add items
-      if (addItem != nil)
-        ConsoleLogger::log(C_CLASS_NAME,"update","Insert, item=" + addItem.to_s)
-        if (addItem[:parent] == self.id) 
-          if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
-            ThesaurusConcept.create_top_level(addItem, self.namespace, self.id)
-          else
-            self.errors.add(:base, "The concept identifier already exisits.")
-          end
-        else
-          if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
-            parentConcept = ThesaurusConcept.find(addItem[:parent], self.namespace)
-            newConcept = ThesaurusConcept.create(addItem, self.namespace)
-            parentConcept.add_child(newConcept, self.namespace)
-          else
-            self.errors.add(:base, "The concept identifier already exisits.")
-          end
-        end
-      end
-      # Update items
-      if (updateItem != nil)
-        ConsoleLogger::log(C_CLASS_NAME,"update","Update, item=" + updateItem.to_s)
-        concept = ThesaurusConcept.find(updateItem[:id], self.namespace)
-        if !concept.update(updateItem, self.namespace)
-          self.errors.add(:base, "The concept update failed.")        
-        end
-      end
-    end
-  end
+  #def update(params)
+  #  ConsoleLogger::log(C_CLASS_NAME,"update","*****Entry*****")
+  #  ConsoleLogger::log(C_CLASS_NAME,"update","Params=" + params.to_s)
+  #  self.errors.clear
+  #  # Access the data
+  #  data = params[:data]
+  #  if data != nil
+  #    ConsoleLogger::log(C_CLASS_NAME,"update","Delete, data=" + data.to_s)
+  #    deleteItem = data[:deleteItem]
+  #    updateItem = data[:updateItem]
+  #    addItem = data[:addItem]
+  #    # Delete items
+  #    if (deleteItem != nil)
+  #      ConsoleLogger::log(C_CLASS_NAME,"update","Delete, item=" + deleteItem.to_s)
+  #      concept = ThesaurusConcept.find(deleteItem[:id], self.namespace)
+  #      if !concept.destroy(self.namespace, self.id)
+  #        self.errors.add(:base, "The concept deletion failed.")          
+  #      end
+  #    end
+  #    # Add items
+  #    if (addItem != nil)
+  #      ConsoleLogger::log(C_CLASS_NAME,"update","Insert, item=" + addItem.to_s)
+  #      if (addItem[:parent] == self.id) 
+  #        if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
+  #          ThesaurusConcept.create_top_level(addItem, self.namespace, self.id)
+  #        else
+  #          self.errors.add(:base, "The concept identifier already exisits.")
+  #        end
+  #      else
+  #        if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
+  #          parentConcept = ThesaurusConcept.find(addItem[:parent], self.namespace)
+  #          newConcept = ThesaurusConcept.create(addItem, self.namespace)
+  #          parentConcept.add_child(newConcept, self.namespace)
+  #        else
+  #          self.errors.add(:base, "The concept identifier already exisits.")
+  #        end
+  #      end
+  #    end
+  #    # Update items
+  #    if (updateItem != nil)
+  #      ConsoleLogger::log(C_CLASS_NAME,"update","Update, item=" + updateItem.to_s)
+  #      concept = ThesaurusConcept.find(updateItem[:id], self.namespace)
+  #      if !concept.update(updateItem, self.namespace)
+  #        self.errors.add(:base, "The concept update failed.")        
+  #      end
+  #    end
+  #  end
+  #end
   
 private
 
   def self.params_valid?(params, object)
     result1 = ModelUtility::validIdentifier?(params[:scoped_identifier][:identifier], object)
+    result2 = ModelUtility::validLabel?(params[:label], object)
+    return result1 && result2 # && result3 && result4
+  end
+
+  def self.params_valid_simple?(params, object)
+    result1 = ModelUtility::validIdentifier?(params[:identifier], object)
     result2 = ModelUtility::validLabel?(params[:label], object)
     return result1 && result2 # && result3 && result4
   end
