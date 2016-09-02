@@ -456,33 +456,34 @@ class IsoManaged < IsoConcept
     return results  
   end
 
-  def self.current(rdfType, ns, params)    
+  def self.current(rdf_type, namespace, params)    
     #ConsoleLogger::log(C_CLASS_NAME,"latest","*****Entry*****")    
     identifier = params[:identifier]
     namespace_id = params[:scope_id]
-    date_time = Time.now
+    date_time = Time.now.iso8601.gsub('+',"%2B")
     results = Array.new
     # Create the query
-    query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR", "mdrItems"]) +
-      "SELECT ?a ?b ?c ?d ?e WHERE \n" +
+    query = UriManagement.buildNs(namespace, ["isoI", "isoT", "isoR", "mdrItems"]) +
+      "SELECT ?a WHERE \n" +
       "{ \n" +
-      "  ?a rdf:type :" + rdfType.to_s + " . \n" +
+      "  ?a rdf:type :" + rdf_type.to_s + " . \n" +
       "  ?a isoI:hasIdentifier ?b . \n" +
       "  ?a isoR:hasState ?c . \n" +
       "  ?b isoI:identifier \"" + identifier.to_s + "\" . \n" +
       "  ?b isoI:hasScope mdrItems:" + namespace_id.to_s + " . \n" +
       "  ?c isoR:effectiveDate ?d . \n" +
       "  ?c isoR:untilDate ?e . \n" +
-      "  FILTER ( ?d <= \"" + date_time + "\"^^xsd:dateTime ) . \n" +
-      "  FILTER ( ?e >= \"" + date_time + "\"^^xsd:dateTime ) . \n" +
-      "  } \n" +
-      "} ORDER BY DESC(?e)"
+      "  FILTER ( ?d <= \"#{date_time}\"^^xsd:dateTime ) . \n" +
+      "  FILTER ( ?e >= \"#{date_time}\"^^xsd:dateTime ) . \n" +
+      "}"
     # Send the request, wait the resonse
     response = CRUD.query(query)
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
-    if xmlDoc.xpath("//result").length > 0
+    nodes = xmlDoc.xpath("//result")
+    if nodes.length == 1
+      node = nodes[0]    
       uri = ModelUtility.getValue('a', true, node)
       if uri != "" 
         object = find(ModelUtility.extractCid(uri), ModelUtility.extractNs(uri))

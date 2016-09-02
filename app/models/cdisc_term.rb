@@ -8,16 +8,17 @@ class CdiscTerm < Thesaurus
   C_CLASS_NAME = "CdiscTerm"
   C_IDENTIFIER = "CDISC Terminology"
     
-  # Class-wide variables
-  @@cdiscNamespace = nil # CDISC Organization identifier
-  @@currentVersion = nil # The namespace for the current term version
-    
   def initialize(triples=nil, id=nil)
     if triples.nil?
       super
     else
       super(triples, id)
     end
+  end
+
+  def self.current
+    object = super
+    return object
   end
 
   def self.find(id, ns, children=true)
@@ -32,14 +33,33 @@ class CdiscTerm < Thesaurus
     object = IsoManaged.find(id, ns, false)
   end
 
+  def find_submission(value)
+    uri = nil
+    query = UriManagement.buildNs(self.namespace, ["iso25964"]) +
+      "SELECT DISTINCT ?s WHERE \n" +
+      "{ \n" +
+      "  :#{self.id} iso25964:hasConcept ?s . \n" +
+      "  ?s iso25964:notation \"#{value}\"^^xsd:string . \n" +
+      "  FILTER(CONTAINS(STR(?s), \"#{self.namespace}\")) \n" +
+      "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      s = ModelUtility.getValue('s', true, node)
+      if !s.empty? 
+        uri = UriV2.new({:uri => s})
+      end
+    end
+    return uri
+  end
+
   def self.all
     results = Array.new
-    if @@cdiscNamespace == nil 
-      @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
-    end
+    namespace = IsoNamespace.findByShortName("CDISC")
     tSet = Thesaurus.all
     tSet.each do |thesaurus|
-      if thesaurus.scopedIdentifier.namespace.shortName == @@cdiscNamespace.shortName
+      if thesaurus.scopedIdentifier.namespace.shortName == namespace.shortName
         results << thesaurus
       end
     end
@@ -47,10 +67,8 @@ class CdiscTerm < Thesaurus
   end
 
   def self.history
-    if @@cdiscNamespace == nil 
-      @@cdiscNamespace = IsoNamespace.findByShortName("CDISC")
-    end
-    results = Thesaurus.history({ :identifier => C_IDENTIFIER, :scope_id => @@cdiscNamespace.id })
+    namespace = IsoNamespace.findByShortName("CDISC")
+    results = Thesaurus.history({ :identifier => C_IDENTIFIER, :scope_id => namespace.id })
   end
 
   def self.allExcept(version)
@@ -75,21 +93,9 @@ class CdiscTerm < Thesaurus
     return newResults  
   end
   
-  def self.current 
-    object = nil
-    if @@currentVersion == nil
-      latest = nil
-      results = self.all
-      results.each do |thesaurus|
-        if latest == nil
-          latest = thesaurus
-        elsif thesaurus.version > latest.version
-          latest = thesaurus
-        end
-      end
-      @@currentVersion = latest
-    end
-    object = @@currentVersion
+  def self.current
+    namespace = IsoNamespace.findByShortName("CDISC")
+    object = super({ :identifier => C_IDENTIFIER, :scope_id => namespace.id })
     return object
   end
   

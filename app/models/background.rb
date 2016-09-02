@@ -33,7 +33,7 @@ class Background < ActiveRecord::Base
         if response.success?
           self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
         else  
-          self.update(status: "Complete. Unsuccessful import.", percentage: 100, complete: true, completed: Time.now())
+          self.update(status: "Complete. Unsuccessful import, SPARQL error.", percentage: 100, complete: true, completed: Time.now())
         end
       else
         self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
@@ -56,7 +56,7 @@ class Background < ActiveRecord::Base
       started: Time.now())
     # Create manifest file
     results = SdtmExcel.read_ig(params, self.errors)
-    ConsoleLogger::log(C_CLASS_NAME,"importCdiscSdtmIg", "results=#{results.to_json}")
+    #ConsoleLogger::log(C_CLASS_NAME,"importCdiscSdtmIg", "results=#{results.to_json}")
     if self.errors.count == 0
       self.update(status: "File successfully read.", percentage: 50, complete: false, completed: Time.now())
       # Get the model class map
@@ -82,7 +82,7 @@ class Background < ActiveRecord::Base
         if response.success?
           self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
         else  
-          self.update(status: "Complete. Unsuccessful import.", percentage: 100, complete: true, completed: Time.now())
+          self.update(status: "Complete. Unsuccessful import, SPARQL error.", percentage: 100, complete: true, completed: Time.now())
         end
       else
         self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())

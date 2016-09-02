@@ -13,7 +13,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  self_registration: true
+  self_registration: false
 
 production: 
   <<: *defaults

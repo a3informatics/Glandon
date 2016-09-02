@@ -44,7 +44,12 @@
 		    	<td><%= item.name %></td>
 		  		<td><%= item.label %></td>
 		  		<td><%= variable.datatype_label %></td>
-		  		<td><%= item.controlled_term_or_format %></td>
+		  		<td>
+			  		<% if item.ct? %>
+			  			<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn btn-primary btn-xs" %><br/>
+			  		<% end %>
+			  		<%= item.format %>
+		  		</td>
 		  		<td><%= variable.classification_label %></td>
 		  		<td><%= variable.sub_classification_label %></td>
 		  		<td><%= item.notes %></td>

@@ -38,7 +38,7 @@ class ApiController < ApplicationController
       when "form"
         @items = Form.list
       when "domain"
-        @items = SdtmUserDomain.list?
+        @items = SdtmUserDomain.list
       else
         ConsoleLogger::log(C_CLASS_NAME,"list", "Type=#{params[:type]}")
     end

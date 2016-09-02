@@ -37,6 +37,24 @@ class SdtmIgDomain::Variable < Tabular::Column
     return compliance.nil? ? "" : compliance.label
   end
 
+  def format
+    temp = self.controlled_term_or_format
+    return temp.sub /\s*\(.+\)$/, ''
+  end
+
+  def ct
+    temp = self.controlled_term_or_format
+    temp = temp.scan(/\(([^\)]+)\)/).last.first
+    temp = temp.gsub(/[()]/, "")
+    return temp
+  rescue => e 
+    return ""
+  end
+
+  def ct?
+    return !self.ct.empty?
+  end
+
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -67,7 +85,11 @@ class SdtmIgDomain::Variable < Tabular::Column
         sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
         sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
         sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "1", :primitive_type => "positiveInteger"})
+      else
+        ConsoleLogger::log(C_CLASS_NAME,"import_sparql","No map for variable: #{var_name}")
       end
+    else
+      ConsoleLogger::log(C_CLASS_NAME,"import_sparql","No map. Name=#{json[:variable_name]}")
     end
     if compliance_map.has_key?(json[:variable_core])
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "compliance"}, {:uri => compliance_map[json[:variable_core]]})  

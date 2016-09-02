@@ -89,6 +89,7 @@ Rails.application.routes.draw do
   end
   resources :cdisc_terms do
     collection do
+      get :find_submission
       get :changes
       get :changesCalc
       get :changes_report

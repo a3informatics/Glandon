@@ -4,6 +4,24 @@ class CdiscTermsController < ApplicationController
   
   C_CLASS_NAME = "CdiscTermsController"
   
+  def find_submission
+    authorize CdiscTerm, :view?
+    ct = CdiscTerm.current
+    if !ct.nil?
+      uri = ct.find_submission(params[:notation])
+      if !uri.nil?
+        @cdiscCl = CdiscCl.find(uri.id, uri.namespace)
+        render :template => "cdisc_cls/show"
+      else
+        flash[:error] = "Could not find the Code List."
+        redirect_to request.referer
+      end
+    else
+      flash[:error] = "Not current version of the terminology."
+      redirect_to request.referer
+    end
+  end
+
   def history
     authorize CdiscTerm
     @cdiscTerms = CdiscTerm.history()

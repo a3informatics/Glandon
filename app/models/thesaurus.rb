@@ -125,6 +125,11 @@ class Thesaurus <  IsoManaged
     return results
   end
 
+  def self.current(params)
+    results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
+    return results
+  end
+
   def self.create_simple(params)
     object = self.new 
     object.errors.clear

@@ -89,6 +89,9 @@ module SdtmExcel
             findings = Array.new
             findings_about = Array.new
             associated_persons = Array.new
+            special_purpose = Array.new
+            trial_design = Array.new
+            relationship = Array.new
             variables = Array.new
             # Set up results structure
             results = Array.new
@@ -114,7 +117,7 @@ module SdtmExcel
                     var_type = check_cell(workbook, row, 7, errors)
                     ct_or_format = "" # We dont care.
                     role = check_cell(workbook, row, 9, errors)
-                    notes = workbook.cell(row, 10)
+                    notes = check_cell(workbook, row, 10, errors, true)
                     core = "" # We dont care.
                     if errors.count > 0 
                         return
@@ -146,6 +149,12 @@ module SdtmExcel
                                 target = interventions
                             elsif obs_class_key == C_FA
                                 target = findings_about
+                            elsif obs_class_key == C_SP
+                                target = special_purpose
+                            elsif obs_class_key == C_TD
+                                target = trial_design
+                            elsif obs_class_key == C_R
+                                target = relationship
                             else
                                 errors.add(:base, "Invalid observation class detected #{obs_class} in row #{row}. Inconsistent logic.")
                                 return 
@@ -154,7 +163,7 @@ module SdtmExcel
                                 {
                                     :ordinal => seq, 
                                     :label => label, 
-                                    :variable_class => obs_class, 
+                                    :variable_class => obs_class_key, #obs_class
                                     :variable_domain_prefix => domain_prefix, 
                                     :variable_name => name, 
                                     :variable_type => var_type, 
@@ -191,6 +200,12 @@ module SdtmExcel
             child_instance = create_model_class([identifiers, interventions, timing], SdtmModelDomain::C_INTERVENTIONS_IDENTIFIER, SdtmModelDomain::C_INTERVENTIONS_LABEL, instance)    
             results << { :type => "MODEL_DOMAIN", :order => 2, :instance => child_instance}
             child_instance = create_model_class([identifiers, findings, timing], SdtmModelDomain::C_FINDINGS_IDENTIFIER, SdtmModelDomain::C_FINDINGS_LABEL, instance) 
+            results << { :type => "MODEL_DOMAIN", :order=> 2, :instance => child_instance}
+            child_instance = create_model_class([identifiers, special_purpose, timing], SdtmModelDomain::C_SPECIAL_PURPOSE_IDENTIFIER, SdtmModelDomain::C_SPECIAL_PURPOSE_LABEL, instance) 
+            results << { :type => "MODEL_DOMAIN", :order=> 2, :instance => child_instance}
+            child_instance = create_model_class([identifiers, trial_design, timing], SdtmModelDomain::C_TRIAL_DESIGN_IDENTIFIER, SdtmModelDomain::C_TRIAL_DESIGN_LABEL, instance) 
+            results << { :type => "MODEL_DOMAIN", :order=> 2, :instance => child_instance}
+            child_instance = create_model_class([identifiers, relationship], SdtmModelDomain::C_RELATIONSHIP_IDENTIFIER, SdtmModelDomain::C_RELATIONSHIP_LABEL, instance) 
             results << { :type => "MODEL_DOMAIN", :order=> 2, :instance => child_instance}
             # Add the variables for the model
             managed_item = instance[:managed_item]
@@ -255,22 +270,17 @@ module SdtmExcel
                         name = check_cell(workbook, row, 5, errors)
                         label = check_cell(workbook, row, 6, errors)
                         var_type = check_cell(workbook, row, 7, errors)
-                        ct_or_format = workbook.cell(row, 8)
-                        if ct_or_format.blank?
-                            ct_or_format = ""
-                        end
-                        role = workbook.cell(row, 9)
-                        if role.blank?
+                        ct_or_format = check_cell(workbook, row, 8, errors, true)
+                        #ct_or_format = ct_or_format_read.gsub(/[^A-Za-z0-9 ]/, '')
+                        #if ct_or_format_read != ct_or_format
+                        #    ConsoleLogger::log(C_CLASS_NAME,"read_ig","CT modified: #{ct_or_format_read} -> #{ct_or_format}.")
+                        #end
+                        role = check_cell(workbook, row, 9, errors, true)
+                        if role.empty?
                             role = C_ROLE_NONE
                         end
-                        notes = workbook.cell(row, 10)
-                        if notes.blank?
-                            notes = ""
-                        end
-                        core = check_cell(workbook, row, 11, errors)
-                        if errors.count > 0 
-                            return
-                        end
+                        notes = check_cell(workbook, row, 10, errors, true)
+                        core = check_cell(workbook, row, 11, errors, true)
                         # SDTM IG Processing
                         if C_SDTM_MODEL_CLASS.has_key?(obs_class)
                             role_hash = set_role(role)
@@ -280,7 +290,7 @@ module SdtmExcel
                                     {
                                         :ordinal => seq, 
                                         :label => label, 
-                                        :variable_class => obs_class, 
+                                        :variable_class => C_SDTM_MODEL_CLASS[obs_class], #obs_class, 
                                         :variable_domain_prefix => domain_prefix, 
                                         :variable_name => name, 
                                         :variable_name_minus => name_minus, 
@@ -330,12 +340,15 @@ module SdtmExcel
         errors.add(:base, "Missing 'Extra' sheet in the excel file.")
     end
 
-    def self.check_cell(workbook, row, col, errors)
+    def self.check_cell(workbook, row, col, errors, allow_blank=false)
         value = workbook.cell(row, col)
-        if value.blank?
+        if value.blank? and allow_blank
+            value = ""
+        elsif value.blank?
             errors.add(:base, "Empty cell detected in row #{row}, column #{col}.")
         end
-        return value
+        # Return value as string, strip leading and trailing spaces.
+        return "#{value}".strip
     end
                 
     def self.check_main(workbook, errors)
