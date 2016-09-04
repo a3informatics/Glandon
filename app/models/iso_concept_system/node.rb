@@ -26,17 +26,21 @@ class IsoConceptSystem::Node < IsoConceptSystemGeneric
   end
 
   def add(params)
-    object = IsoConceptSystem::Node.from_json(params)
-    sparql = object.to_sparql
-    sparql.triple("", self.id, UriManagement::C_ISO_C, "hasMember", "", "#{object.id}")
-    # Send the request, wait the resonse
-    sparql.add_default_namespace(object.namespace)
-    response = CRUD.update(sparql.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"add","Object=#{sparql}")
-    # Response
-    if !response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"add","Success")
+    object = IsoConceptSystem::Node.new
+    object.errors.clear
+    if IsoConceptSystem::Node.params_valid?(params, object) then
+      object = IsoConceptSystem::Node.from_json(params)
+      sparql = object.to_sparql
+      sparql.triple("", self.id, UriManagement::C_ISO_C, "hasMember", "", "#{object.id}")
+      # Send the request, wait the resonse
+      sparql.add_default_namespace(object.namespace)
+      response = CRUD.update(sparql.to_s)
+      # Response
+      if !response.success?
+        object.errors.add(:base, "The Concept System Node was not created in the database.")
+      end
     end
+    return object
   end
 
   def destroy

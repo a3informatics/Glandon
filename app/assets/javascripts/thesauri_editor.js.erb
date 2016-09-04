@@ -287,24 +287,9 @@ $(document).ready(function() {
     } else {
       //alert("ERROR!!!!");
       highlight($('#tcInput'))
-      errorText($(C_ERROR_TEXT), $('#tcInput'));
+      addErrorText($(C_ERROR_TEXT), $('#tcInput'));
       return false;
     }
-  }
-
-  /**
-  * Error functions
-  */
-  function highlight(element) {
-    $(element).closest('.form-group').addClass('has-error');
-  }
-
-  function unhighlight(element) {
-    $(element).closest('.form-group').removeClass('has-error');
-  }
-
-  function errorText(error, element) {
-    error.insertAfter(element);
   }
 
   /*
@@ -330,16 +315,7 @@ $(document).ready(function() {
       $tr.find('td:nth-child(' + (col + 2) + ')').click();
     }
   }  
-
-  /**
-  * Validation
-  */
-  function validateLabel(value) {
-    var result = /^[A-Za-z0-9 .!?,_\-\/\\()]*$/.test( value );
-    return result
-  }
-
-          
+        
   /**
   *  Send to the server functions. Create and Update.
   */

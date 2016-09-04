@@ -15,6 +15,11 @@ class IsoConceptSystemsController < ApplicationController
   def create
     authorize IsoConceptSystem
     @conceptSystem = IsoConceptSystem.create(the_params)
+    if @conceptSystem.errors.blank?
+      flash[:success] = 'Concept system was successfully created.'
+    else
+      flash[:error] = "Concept system was not created. #{@conceptSystem.errors.full_messages.to_sentence}."
+    end
     redirect_to iso_concept_systems_path
   end
 
@@ -28,7 +33,12 @@ class IsoConceptSystemsController < ApplicationController
   def node_add
     authorize IsoConceptSystem, :create?
     conceptSystem = IsoConceptSystem.find(params[:id], params[:namespace])
-    conceptSystem.add(the_params)
+    node = conceptSystem.add(the_params)
+    if node.errors.blank?
+      flash[:success] = 'Concept system node was successfully created.'
+    else
+      flash[:error] = "Concept system node was not created. #{node.errors.full_messages.to_sentence}."
+    end
     redirect_to iso_concept_system_path(:id => conceptSystem.id, :namespace => conceptSystem.namespace)
   end
 

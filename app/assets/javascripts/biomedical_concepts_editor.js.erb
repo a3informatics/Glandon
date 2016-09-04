@@ -217,7 +217,7 @@ $(document).ready(function() {
         success: function(result){
           var html = alertSuccess("Biomedical Concept has been saved.");
           displayAlerts(html);
-          newItem = false;
+          //newItem = false;
           var instance = parseInt(result['instance']);
           addBC(result['data'], instance, false);
         },
@@ -225,7 +225,7 @@ $(document).ready(function() {
           handleAjaxError (xhr, status, error);
         }
       });
-      bcInstances[i] = {};
+      //bcInstances[i] = {};
     }
   });
 
@@ -287,27 +287,82 @@ $(document).ready(function() {
     clRow = this
   });
 
+  function bcText() {
+    var update;
+    var value;
+    var text;
+    update = true;
+    errorText = "";
+    value = bcTextInput.value;
+    if (bcColAttributeMap[bcTableCI] == 'identifier') {
+      if (!validateIdentifier(value)) {
+        text = identifierErrorText();
+        update = false;
+      }
+    } else {
+      if (!validateIdentifier(value)) {
+        text = labelErrorText();
+        update = false;
+      }
+    } 
+    if (update) {
+      bcTableCell.html(value);
+      setBcAttribute(bcTableRI, bcColAttributeMap[bcTableCI], value);
+      unhighlight($('#bcText'));
+      removeErrorText($('#bcText'));
+    } else {
+      highlight($('#bcText'))
+      addErrorText($(text), $('#bcText'));
+    }
+  }
+
+  function propertyText() {
+    var update;
+    var value;
+    var text;
+    update = true;
+    errorText = "";
+    value = propertyTextInput.value;
+    if (propertyColAttributeMap[propertyTableCI] == 'pText' || propertyColAttributeMap[propertyTableCI] == 'qText') {
+      if (!validateQuestion(value)) {
+        text = questionErrorText();
+        update = false;
+      }
+    } else {
+      if (!validateFormat(value)) {
+        text = formatErrorText();
+        update = false;
+      }
+    } 
+    if (update) {
+      propertyTableCell.html(propertyTextInput.value);
+      var data = propertyTable.row(propertyTableRI).data();
+      var attribute = propertyColAttributeMap[propertyTableCI];
+      setPropertyAttribute(data.bcId-1, data.key, attribute, propertyTextInput.value);
+      unhighlight($('#pText'));
+      removeErrorText($('#pText'));
+    } else {
+      highlight($('#pText'))
+      addErrorText($(text), $('#pText'));
+    }
+  }
+
   $('#bc_update_text').click(function() {
     if (bcTableCell != null) {
-      bcTableCell.html(bcTextInput.value);
-      setBcAttribute(bcTableRI, bcColAttributeMap[bcTableCI], bcTextInput.value);
+      bcText();
     }
   });
 
   $('#property_update_text').click(function() {
     if (propertyTableCell != null) {
-      propertyTableCell.html(propertyTextInput.value);
-      var data = propertyTable.row(propertyTableRI).data();
-      var attribute = propertyColAttributeMap[propertyTableCI];
-      setPropertyAttribute(data.bcId-1, data.key, attribute, propertyTextInput.value);
+      propertyText();
     }
   });
 
   $('#bcText').keyup(function (e) {
     if (e.keyCode == 13) {
       if (bcTableCell != null) {
-        bcTableCell.html(bcTextInput.value);
-        setBcAttribute(bcTableRI, bcColAttributeMap[bcTableCI], bcTextInput.value);
+        bcText();
       }
     }
   });
@@ -315,10 +370,7 @@ $(document).ready(function() {
   $('#pText').keyup(function (e) {
     if (e.keyCode == 13) {
       if (propertyTableCell != null) {
-        propertyTableCell.html(propertyTextInput.value);
-        var data = propertyTable.row(propertyTableRI).data();
-        attribute = propertyColAttributeMap[propertyTableCI];
-        setPropertyAttribute(data.bcId-1, data.key, attribute, propertyTextInput.value);
+        propertyText();
       }
     }
   });

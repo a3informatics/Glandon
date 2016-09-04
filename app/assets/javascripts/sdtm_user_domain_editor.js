@@ -35,12 +35,14 @@ $(document).ready(function() {
   validatorDefaults ();
   $('#main_form').validate({
     rules: {
-        "Domain Prefix": {required: true, identifier: true },
+        "Domain Prefix": {required: true, domainPrefix: true },
         "Domain Label": {required: true, label: true },
         "Domain Note": {required: false, markdown: true},
-        "Domain Comment": {required: false, markdown: true},
+        "Variable Name": {required: true, variableName: true },
         "Variable Label": {required: true, label: true },
-        "Variable Note": {required: false, markdown: true}
+        "Variable Format": {required: true, label: true },
+        "Variable Note": {required: false, markdown: true},
+        "Variable Comment": {required: false, markdown: true}
     },
     submitHandler: function(form) {
       domainSave();
@@ -327,6 +329,7 @@ $(document).ready(function() {
     variableDatatype.value = toUri(node.data.datatype.namespace, node.data.datatype.id);
     variableCompliance.value = toUri(node.data.compliance.namespace, node.data.compliance.id);
     variableClassification.value = toUri(node.data.classification.namespace, node.data.classification.id);
+    variableNonStandardElement.disabled = true;
   }
 
   /**
@@ -380,10 +383,10 @@ $(document).ready(function() {
         namespace: "",
         label: label,
         ordinal: "",
-        name: domainPrefix + "xxxxxx",
+        name: "--XXXXXX",
         notes: "",
         format: "",
-        non_standard: false,
+        non_standard: true,
         comment: "",
         length: 0,
         used: true,

@@ -12,7 +12,12 @@ class IsoConceptSystems::NodesController < ApplicationController
   def node_add
     authorize IsoConceptSystem::Node, :create?
     node = IsoConceptSystem::Node.find(params[:id], params[:namespace])
-    node.add(the_params)
+    new_node = node.add(the_params)
+    if new_node.errors.blank?
+      flash[:success] = 'Concept system node was successfully created.'
+    else
+      flash[:error] = "Concept system node was not created. #{new_node.errors.full_messages.to_sentence}."
+    end
     redirect_to iso_concept_systems_node_path(:id => node.id, :namespace => node.namespace)
   end
 
