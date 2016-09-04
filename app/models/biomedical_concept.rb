@@ -6,14 +6,12 @@ class BiomedicalConcept < BiomedicalConceptCore
   validates_presence_of :bct
 
   # Constants
-  C_SCHEMA_PREFIX = "cbc"
-  C_INSTANCE_PREFIX = "mdrBcs"
   C_CLASS_NAME = "BiomedicalConcept"
+  C_INSTANCE_PREFIX = "mdrBcs"
   C_CID_PREFIX = "BC"
   C_RDF_TYPE = "BiomedicalConceptInstance"
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
- 
+  
   def self.find(id, ns, children=true)
     object = super(id, ns, children)
     if children
@@ -69,36 +67,33 @@ class BiomedicalConcept < BiomedicalConceptCore
     data = params[:data]
     managed_item = data[:managed_item]
     operation = data[:operation]
-    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + managed_item[:identifier] + ", new version=" + operation[:new_version].to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation.to_s)
-    ra = IsoRegistrationAuthority.owner
-    if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object, ra) 
-      bc = BiomedicalConceptTemplate.find(managed_item[:id], managed_item[:namespace])
-      sparql = SparqlUpdate.new
-      #managed_item[:versionLabel] = "0.1"
-      #managed_item[:new_version] = operation[:new_version]
-      #managed_item[:new_state] = operation[:new_state]
-      #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
-      uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-      id = uri.getCid()
-      ns = uri.getNs()
-      bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, data, sparql, C_SCHEMA_PREFIX)
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Sparql=" + sparql.to_s)
-      response = CRUD.update(sparql.to_s)
-      if response.success?
-        object = BiomedicalConceptTemplate.find(id, ns)
-        object.errors.clear
-        #ConsoleLogger::log(C_CLASS_NAME,"create","Object created")
-      else
-        object.errors.add(:base, "The Biomedical Concept was not created in the database.")
-        #ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
+    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=#{managed_item[:identifier]}, new version=#{operation[:new_version]}")
+    ConsoleLogger::log(C_CLASS_NAME,"create","operation=#{operation}")
+    if params_valid?(managed_item, object) then
+      ra = IsoRegistrationAuthority.owner
+      if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object, ra) 
+        bc = BiomedicalConceptTemplate.find(managed_item[:id], managed_item[:namespace])
+        sparql = SparqlUpdate.new
+        bc.scopedIdentifier.identifier = managed_item[:identifier]
+        bc.scopedIdentifier.version = operation[:new_version].to_i
+        bc.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
+        bc.registrationState.previousState = managed_item[:state]
+        bc.registrationState.registrationStatus = operation[:new_state]
+        uri = bc.to_sparql(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, data)
+        ConsoleLogger::log(C_CLASS_NAME,"create","SPARQL=#{sparql}")
+        response = CRUD.update(sparql.to_s)
+        if response.success?
+          object = BiomedicalConceptTemplate.find(uri.id, uri.namespace)
+          object.errors.clear
+        else
+          object.errors.add(:base, "The Biomedical Concept was not created in the database.")
+        end
       end
     end
     return object
   end
 
    def self.update(params)
-    #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
     object = self.new 
     object.errors.clear
     id = params[:id]
@@ -110,26 +105,21 @@ class BiomedicalConcept < BiomedicalConceptCore
     ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation.to_s)
     bc = BiomedicalConcept.find(id, namespace)
     sparql = SparqlUpdate.new
-    #managed_item[:versionLabel] = "0.1"
-    #managed_item[:new_version] = operation[:new_version]
-    #managed_item[:new_state] = operation[:new_state]
-    #uri = create_sparql(C_CID_PREFIX, managed_item, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql)
     ra = IsoRegistrationAuthority.owner
-    uri = create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-    id = uri.getCid()
-    ns = uri.getNs()
-    #ConsoleLogger::log(C_CLASS_NAME,"create","URI=" + uri.to_json.to_s)
-    bc.to_sparql(id, C_RDF_TYPE, C_SCHEMA_NS, data, sparql, C_SCHEMA_PREFIX)
-    #ConsoleLogger::log(C_CLASS_NAME,"create","Sparql=" + sparql.to_s)
+    bc.scopedIdentifier.identifier = managed_item[:identifier]
+    bc.scopedIdentifier.version = operation[:new_version].to_i
+    bc.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
+    bc.registrationState.previousState = managed_item[:state]
+    bc.registrationState.registrationStatus = operation[:new_state]
+    uri = bc.to_sparql(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, data)
+    ConsoleLogger::log(C_CLASS_NAME,"create","SPARQL=#{sparql}")
     bc.destroy # Destroys the old entry before the creation of the new item
     response = CRUD.update(sparql.to_s)
     if response.success?
-      object = BiomedicalConcept.find(id, ns)
+      object = BiomedicalConceptTemplate.find(uri.id, uri.namespace)
       object.errors.clear
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Object created")
     else
       object.errors.add(:base, "The Biomedical Concept was not created in the database.")
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Object not created!")
     end
     return object
   end

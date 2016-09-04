@@ -5,6 +5,7 @@ class BiomedicalConceptCore < IsoManaged
   attr_accessor :items
   
   C_SCHEMA_PREFIX = "cbc"
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   
   def initialize(triples=nil, id=nil)
     if triples.nil?
@@ -58,23 +59,24 @@ class BiomedicalConceptCore < IsoManaged
     return result
   end
   
-  def to_sparql(id, rdfType, schemaNs, params, sparql, prefix)
+  def to_sparql(sparql, ra, cid_prefix, instance_namespace, params)
     bc = params[:managed_item]
     template = bc[:template]
     properties = bc[:children]
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + params.to_s)
-    sparql.triple_uri("", id, prefix, "basedOn", template[:namespace], template[:id])
-    sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", bc[:label], "string")
+    uri = super(sparql, ra, cid_prefix, instance_namespace, C_SCHEMA_PREFIX)
+    sparql.triple_uri("", id, C_SCHEMA_PREFIX, "basedOn", template[:namespace], template[:id])
+    sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", self.label, "string")
     ordinal = 1
     self.items.each do |item|
-      sparql.triple("", id, prefix, "hasItem", "", id + Uri::C_UID_SECTION_SEPARATOR + 'I' + ordinal.to_s)
+      sparql.triple("", id, C_SCHEMA_PREFIX, "hasItem", "", id + Uri::C_UID_SECTION_SEPARATOR + 'I' + ordinal.to_s)
       ordinal += 1
     end 
     ordinal = 1
     self.items.each do |item|
-      item.to_sparql(id, ordinal, properties, sparql, prefix)
+      item.to_sparql(id, ordinal, properties, sparql, C_SCHEMA_PREFIX)
       ordinal += 1
     end
+    return uri
   end
 
   def self.all(type, ns)
@@ -127,6 +129,14 @@ class BiomedicalConceptCore < IsoManaged
     else
       ConsoleLogger::log(C_CLASS_NAME,"destroy","Error!")
     end
+  end
+
+private
+
+  def self.params_valid?(params, object)
+    result1 = FieldValidation::valid_identifier?(:identifier, params[:identifier], object)
+    result2 = FieldValidation::valid_label?(:label, params[:label], object)
+    return result1 && result2 
   end
 
 end

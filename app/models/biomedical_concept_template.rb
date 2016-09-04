@@ -3,12 +3,10 @@ require "uri"
 class BiomedicalConceptTemplate < BiomedicalConceptCore
   
   # Constants
-  C_SCHEMA_PREFIX = "cbc"
   C_INSTANCE_PREFIX = "mdrBcts"
   C_CLASS_NAME = "BiomedicalConceptTemplate"
   C_CID_PREFIX = "BCT"
   C_RDF_TYPE = "BiomedicalConceptTemplate"
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
 
   def self.find(id, ns, children=true)
