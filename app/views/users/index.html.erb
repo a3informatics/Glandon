@@ -6,16 +6,23 @@
 				<tr>
 		    	<th>User</th>
 		    	<th></th>
+		    	<th></th>
 		  	</tr>
 			</thead>
 			<tbody>
 				<% @users.each do |user| %>
 					<tr>
 				    	<td><%= "#{user.email}" %></td>
-				    	<td><%= link_to "edit", edit_user_path(user), :class => "btn btn-primary btn-xs" %></td>
+				    	<td><%= link_to "Edit", edit_user_path(user), :class => "btn btn-primary btn-xs" %></td>
+				    	<td>
+				    		<% if @current_user.id != user.id %>
+				    			<%= link_to "Delete", user_path(user), :class => "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure?" } %>
+				    		<% end %>
+				    	</td>
 				  	</tr>
 				<% end %>
 			</tbody>
 		</table>
+		<%= link_to "New", new_user_path, :class => "btn btn-success" %>
 	</div>
 </div>

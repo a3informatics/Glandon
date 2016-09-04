@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   # Include the user settings
   include UserSettings
-
+ 
 	# Constants
   C_CLASS_NAME = "User"
 

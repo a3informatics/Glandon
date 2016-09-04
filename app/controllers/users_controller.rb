@@ -5,8 +5,26 @@ class UsersController < ApplicationController
 
   C_CLASS_NAME = "UsersController"
   
+  def new
+    authorize User
+  end
+
+  def create
+    authorize User
+    ConsoleLogger.log(C_CLASS_NAME, "Create", "Create, Email=#{user_params[:email]}, Password=#{user_params[:password]}, Confirm Password=#{user_params[:password_confirmation]}")
+    new_user = User.create(user_params)
+    if new_user.errors.blank?
+      flash[:success] = 'User was successfully created.'
+      redirect_to users_path
+    else
+      flash[:error] = "User was not created. #{new_user.errors.full_messages.to_sentence}."
+      redirect_to users_path
+    end
+  end  
+
   def index
     authorize User
+    @current_user = current_user
     @users = User.all
   end
 
@@ -22,9 +40,27 @@ class UsersController < ApplicationController
     authorize User
     if @user.update(user_params)
       # TODO: Move hardcode flash message into language file
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, success: 'User was successfully updated.'
     else
-      render :edit
+      flash[:error] = "Failed to update settings for #{@user.email}."
+      redirect_to users_path
+    end
+  end
+
+  def destroy
+    authorize User
+    delete_user = User.find(params[:id])
+    if current_user.id != delete_user.id 
+      if delete_user.destroy
+        flash[:success] = 'User was successfully deleted.'
+        redirect_to users_path
+      else
+        flash[:error] = "Failed to delete user #{delete_user.email}."
+        redirect_to users_path
+      end
+    else
+      flash[:error] = "Cannot delete your own user!"
+      redirect_to users_path
     end
   end
 
@@ -35,7 +71,7 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, {role_ids: []})
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, {role_ids: []})
   end
 
 end

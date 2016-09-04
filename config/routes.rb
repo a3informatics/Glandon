@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   
   devise_for :users
-  resources :users
+  resources :users, except: :create
+  post 'create_user' => 'users#create', as: :create_user
   resources :user_settings
   
   match 'api(/:id)' => 'api#options', via: [:options]
