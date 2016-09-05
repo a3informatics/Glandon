@@ -203,7 +203,7 @@ class Thesaurus <  IsoManaged
     object.errors.clear
     if !ThesaurusConcept.exists?(object.identifier, self.namespace)
       # Create the sparql. Add the ref to the child.
-      object.to_sparql_v2(self.id, sparql)
+      object.to_sparql_v2(self.uri, sparql)
     else
       object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists in the database.")
     end

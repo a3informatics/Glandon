@@ -274,7 +274,12 @@ $(document).ready(function() {
     var rowData = tcTable.row(tcEditDataIdx).data();
     var cell = getCell(tcEditRow, tcEditCol);
     var value = $('#tcInput').val();
+    // Clear any previous error
+    unhighlight($('#tcInput'));
+    removeErrorText($('#tcInput'));
+    // Check
     if (validateLabel(value)) {
+      // Good data, save
       rowData[columnMap[tcEditCol]] = $('#tcInput').val();
       cell.html(rowData[columnMap[tcEditCol]])
         .keydown(function(e){
@@ -282,11 +287,10 @@ $(document).ready(function() {
       tcEditCol = null;
       tcEditRow = null;
       tcEditDataIdx = null;
-      unhighlight($('#tcInput'))
       return true;
     } else {
-      //alert("ERROR!!!!");
-      highlight($('#tcInput'))
+      // Error messages
+      highlight($('#tcInput'));
       addErrorText($(C_ERROR_TEXT), $('#tcInput'));
       return false;
     }
