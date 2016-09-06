@@ -178,6 +178,11 @@ class IsoManaged < IsoConcept
     result = IsoScopedIdentifier.versionExists?(identifier, version, namespace.id)
   end
 
+  # Find the type
+  def self.get_type(id, namespace)
+    return super(id, namespace)
+  end
+
   # Note: The id is the identifier for the enclosing managed object. 
   def self.find(id, ns, full=true)  
     # Initialise.

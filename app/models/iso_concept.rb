@@ -72,6 +72,23 @@ class IsoConcept
     end
   end
 
+  # Get RDF type of the concept. Return nil if not found.
+  def self.get_type(id, namespace)
+    uri = nil
+    query = UriManagement.buildNs(namespace, []) +
+      "SELECT ?o WHERE \n" +
+        "{ \n" +
+        "  :" + id + " rdf:type ?o .\n" + 
+        "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = UriV2.new({:uri => ModelUtility.getValue('o', true, node)})
+    end
+    return uri
+  end
+
   # Does the item exist.
   def self.exists?(property, propertyValue, rdfType, schemaNs, instanceNs)
     result = false

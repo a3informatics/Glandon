@@ -43,6 +43,15 @@ class SdtmUserDomain < Tabular::Tabulation
     return object
   end
 
+  def self.all
+    super(C_RDF_TYPE, C_SCHEMA_NS)
+  end
+
+  def self.list
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
+  end
+
   def self.history(params)
     results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
     return results

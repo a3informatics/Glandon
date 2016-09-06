@@ -44,6 +44,11 @@ class SdtmModel < Tabular
     return results
   end
 
+  def self.list
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
+  end
+
   def self.history()
     @@cdiscNamespace ||= IsoNamespace.findByShortName("CDISC")
     results = super(C_RDF_TYPE, C_SCHEMA_NS, { :identifier => C_IDENTIFIER, :scope_id => @@cdiscNamespace.id })

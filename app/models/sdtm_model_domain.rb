@@ -45,6 +45,15 @@ class SdtmModelDomain < Tabular::Tabulation
     return object
   end
 
+  def self.all
+    super(C_RDF_TYPE, C_SCHEMA_NS)
+  end
+
+  def self.list
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
+  end
+
   def self.import_sparql(params, sparql, model_map)
     # Init data
     object = self.new 

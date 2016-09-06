@@ -115,6 +115,11 @@ class Thesaurus <  IsoManaged
     return results
   end
 
+  def self.list
+    results = super(C_RDF_TYPE, C_SCHEMA_NS)
+    return results
+  end
+
   def self.unique
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
