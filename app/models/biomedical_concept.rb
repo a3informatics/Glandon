@@ -84,7 +84,7 @@ class BiomedicalConcept < BiomedicalConceptCore
         ConsoleLogger::log(C_CLASS_NAME,"create","SPARQL=#{sparql}")
         response = CRUD.update(sparql.to_s)
         if response.success?
-          object = BiomedicalConceptTemplate.find(uri.id, uri.namespace)
+          object = BiomedicalConcept.find(uri.id, uri.namespace)
           object.errors.clear
         else
           object.errors.add(:base, "The Biomedical Concept was not created in the database.")
@@ -119,7 +119,7 @@ class BiomedicalConcept < BiomedicalConceptCore
     bc.destroy # Destroys the old entry before the creation of the new item
     response = CRUD.update(sparql.to_s)
     if response.success?
-      object = BiomedicalConceptTemplate.find(uri.id, uri.namespace)
+      object = BiomedicalConcept.find(uri.id, uri.namespace)
       object.errors.clear
     else
       object.errors.add(:base, "The Biomedical Concept was not created in the database.")
