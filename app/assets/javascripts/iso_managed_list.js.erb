@@ -51,7 +51,7 @@ $(document).ready(function() {
     var data = isoManagedTable.row( $(this).parents('tr') ).data();
     path = getPath(data.type);
     //alert("Data=" + JSON.stringify(data) + "...Path=" + path);
-    window.location.href = path + "?id=" + data.id + "&namespace=" + data.namespace;
+    window.location.href = path + data.id + "?namespace=" + data.namespace;
   });
 
 });

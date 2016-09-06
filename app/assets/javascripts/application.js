@@ -332,11 +332,13 @@ function pad(n, width, z) {
 */
 function getPath(rdfType) {
   if (rdfType == "http://www.assero.co.uk/BusinessForm#Form") {
-    return "/forms/view/";    
+    return "/forms/";    
   } else if (rdfType == "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance") {
     return "/biomedical_concepts/";
   } else if (rdfType == "http://www.assero.co.uk/BusinessDomain#SdtmUserDomain") {
     return "/sdtm_user_domains/"
+  } else if (rdfType == "http://www.assero.co.uk/ISO25964#Thesaurus") {
+    return "/thesauri/"
   } else {
     return ""
   }
