@@ -113,13 +113,13 @@ class BiomedicalConceptCore::Property < IsoConcept
         ordinal += 1
       end
     else
-      ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + params.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + params.to_s)
       # TODO: This needs to be made better. Array versus hash handling. Currently an array.
       # Amended original code as a result of the funny JSON hash versus array processing with AJAX
       properties = params.select {|item| item[:id] == self.id}
-      ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + properties.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + properties.to_s)
       property = properties[0]
-      ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Property=" + property.to_s)
+      #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Property=" + property.to_s)
       sparql.triple_primitive_type("", id, prefix, "alias", property[:alias], "string")
       sparql.triple_primitive_type("", id, prefix, "ordinal", ordinal.to_s, "positiveInteger")
       sparql.triple_primitive_type("", id, prefix, "qText", property[:qText], "string")
@@ -139,9 +139,9 @@ class BiomedicalConceptCore::Property < IsoConcept
           end
           ordinal = 1
           values = property[:values]
-          ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Values=" + values.to_s)
+          #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Values=" + values.to_s)
           values.each do |value|
-            ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Value=" + value.to_s)
+            #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Value=" + value.to_s)
             BiomedicalConceptCore::PropertyValue.to_sparql(id, ordinal, value, sparql, prefix)
             ordinal += 1
           end

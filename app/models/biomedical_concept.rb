@@ -75,6 +75,7 @@ class BiomedicalConcept < BiomedicalConceptCore
         bc = BiomedicalConceptTemplate.find(managed_item[:id], managed_item[:namespace])
         sparql = SparqlUpdate.new
         bc.scopedIdentifier.identifier = managed_item[:identifier]
+        bc.label = managed_item[:label]
         bc.scopedIdentifier.version = operation[:new_version].to_i
         bc.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
         bc.registrationState.previousState = managed_item[:state]
@@ -103,12 +104,14 @@ class BiomedicalConcept < BiomedicalConceptCore
     operation = data[:operation]
     ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + managed_item[:identifier] + ", new version=" + operation[:new_version].to_s)
     ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"create","label=" + managed_item[:label])
     bc = BiomedicalConcept.find(id, namespace)
     sparql = SparqlUpdate.new
     ra = IsoRegistrationAuthority.owner
-    bc.scopedIdentifier.identifier = managed_item[:identifier]
+    #bc.scopedIdentifier.identifier = managed_item[:identifier]
+    bc.label = managed_item[:label]
     bc.scopedIdentifier.version = operation[:new_version].to_i
-    bc.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
+    #bc.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     bc.registrationState.previousState = managed_item[:state]
     bc.registrationState.registrationStatus = operation[:new_state]
     uri = bc.to_sparql(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, data)

@@ -65,7 +65,7 @@ class BiomedicalConceptCore < IsoManaged
     properties = bc[:children]
     uri = super(sparql, ra, cid_prefix, instance_namespace, C_SCHEMA_PREFIX)
     sparql.triple_uri("", id, C_SCHEMA_PREFIX, "basedOn", template[:namespace], template[:id])
-    sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", self.label, "string")
+    #sparql.triple_primitive_type("", id, UriManagement::C_RDFS, "label", bc[:label], "string")
     ordinal = 1
     self.items.each do |item|
       sparql.triple("", id, C_SCHEMA_PREFIX, "hasItem", "", id + Uri::C_UID_SECTION_SEPARATOR + 'I' + ordinal.to_s)
