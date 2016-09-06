@@ -38,7 +38,7 @@ class ThesauriController < ApplicationController
     if @thesaurus.new_version?
       th = Thesaurus.find_all(params[:id], params[:namespace])
       json = th.to_edit(true)
-      ConsoleLogger::log(C_CLASS_NAME, "edit", "JSON=#{json}")
+      #ConsoleLogger::log(C_CLASS_NAME, "edit", "JSON=#{json}")
       new_th = Thesaurus.create({:data =>json})
       @thesaurus = Thesaurus.find(new_th.id, new_th.namespace)
     end
