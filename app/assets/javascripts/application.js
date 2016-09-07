@@ -224,27 +224,32 @@ jQuery.validator.addMethod("label", function(value, element) {
 jQuery.validator.addMethod("question", function(value, element) {
   var result = /^[A-Za-z0-9 .?:]+$/.test( value );
   return result
-}, "Please enter valid question text. Upper and lower case case alphanumerics, space and .?: special characters only.");
+}, "Please enter a valid question text. Upper and lower case case alphanumerics, space and .?: special characters only.");
 
 jQuery.validator.addMethod("freeText", function(value, element) {
   var result = /^[A-Za-z0-9 .!?,_\-\/\\()\r\n]+$/.test( value );
   return result
-}, "Please enter valid free text. Upper and lower case case alphanumerics, space, .!?,_-/\\() special characters and return only.");
+}, "Please enter a valid free text. Upper and lower case case alphanumerics, space, .!?,_-/\\() special characters and return only.");
 
 jQuery.validator.addMethod("markdown", function(value, element) {
   var result = /^[A-Za-z0-9 .!?,'"_\-\/\\()[\]~#*=:;&|\r\n]*$/.test( value );
   return result;
-}, "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&| special characters and return only.");
+}, "Please enter a valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&| special characters and return only.");
 
 jQuery.validator.addMethod("variableName", function(value, element) {
-  var result = /^[A-Z]{1,8}$/.test( value );
+  var result = /^[A-Z][A-Z0-9]{1,7}$/.test( value );
   return result;
-}, "Please enter valid variable name. Upper case alpha characters, 1 to 8 characters long.");
+}, "Please enter a valid variable name. Upper case alpha characters, 1 to 8 characters long.");
+
+jQuery.validator.addMethod("variableLabel", function(value, element) {
+  var result = /^[A-Za-z0-9 .!?,'"_\-()#*:;&]{1,40}$/.test( value );
+  return result;
+}, "Please enter a valid variable name. Upper and lower case alphanumeric, space, .!?,'\"_-()#*:;& special characters, 1 to 40 characters long.");
 
 jQuery.validator.addMethod("domainPrefix", function(value, element) {
   var result = /^[A-Z]{2}$/.test( value );
   return result;
-}, "Please enter valid domain prefix. Upper case alpha characters, 2 characters long.");
+}, "Please enter a valid domain prefix. Upper case alpha characters, 2 characters long.");
 
 // Set validator plugin defaults.
 // TODO: Think about the span bit, not sure it is needed.

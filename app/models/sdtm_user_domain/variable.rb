@@ -98,7 +98,7 @@ class SdtmUserDomain::Variable < Tabular::Column
     object.name = json[:name]
     object.notes = json[:notes]
     object.format = json[:format]
-    object.non_standard = false
+    object.non_standard = json[:non_standard]
     object.comment = json[:comment]
     object.length = json[:length]
     object.used = json[:used]
@@ -118,7 +118,7 @@ class SdtmUserDomain::Variable < Tabular::Column
   end
 
   def to_sparql(parent_id, sparql)
-    self.id = parent_id + Uri::C_UID_SECTION_SEPARATOR + SdtmUtility.replace_prefix(self.name)
+    self.id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{self.ordinal}"
     super(sparql, C_SCHEMA_PREFIX)
     sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "ordinal", "#{self.ordinal}", "positiveInteger")
     sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "name", "#{self.name}", "string")

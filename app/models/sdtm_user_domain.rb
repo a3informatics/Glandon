@@ -116,7 +116,7 @@ class SdtmUserDomain < Tabular::Tabulation
         # Build sparql
         sparql = object.to_sparql(ra)
         # Send to database
-        ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
+        #ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
         response = CRUD.update(sparql.to_s)
         if !response.success?
           object.errors.add(:base, "The Domain was not created in the database.")
@@ -138,7 +138,7 @@ class SdtmUserDomain < Tabular::Tabulation
     object = SdtmUserDomain.from_json(data)
     sparql = object.to_sparql(ra)
     domain.destroy # Destroys the old entry before the creation of the new item
-    ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
+    #ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
     response = CRUD.update(sparql.to_s)
     if response.success?
       object.errors.clear
@@ -216,7 +216,7 @@ class SdtmUserDomain < Tabular::Tabulation
       sparql.triple("", uri.id, C_SCHEMA_PREFIX, "hasBiomedicalConcept", "", ref_id)
       ordinal += 1
     end
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","SPARQL=#{sparql}")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","SPARQL=#{sparql}")
     return sparql
   end
 
@@ -348,6 +348,35 @@ class SdtmUserDomain < Tabular::Tabulation
         id = ModelUtility.extractCid(domain)
         namespace = ModelUtility.extractNs(domain)
         results[id] = find(id, namespace, false)
+      end
+    end
+    return results
+  end
+
+  def compliance()
+    results = Array.new
+    # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
+    query = UriManagement.buildNs(self.namespace, ["bd", "bo"])  +
+      "SELECT DISTINCT ?b ?c WHERE \n" +
+      "{ \n " +
+      "  :#{self.id} bd:includesColumn ?a . \n " +
+      "  ?a bd:compliance ?b . \n" +
+      "  ?b rdfs:label ?c . \n" +
+      "}\n"
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('b', true, node)
+      label = ModelUtility.getValue('c', false, node)
+      if uri != "" && label != ""
+        object = SdtmModelCompliance.new
+        object.id = ModelUtility.extractCid(uri)
+        object.namespace = ModelUtility.extractNs(uri)
+        object.label = label
+        results << object
       end
     end
     return results

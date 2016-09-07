@@ -122,7 +122,7 @@ class OperationalReferenceV2 < IsoConcept
   end
 
   def to_sparql(parent_id, ref_type, suffix, ordinal, sparql)
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Op ref=#{self.to_json}")
+    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Op ref=#{self.to_json}")
     self.id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{suffix}#{ordinal}"
     self.rdf_type = "#{UriV2.new({ :namespace => C_SCHEMA_NS, :id => C_TO_TYPE_MAP[ref_type]})}"
     self.label = C_TO_LABEL_MAP[ref_type]

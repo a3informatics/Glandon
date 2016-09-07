@@ -109,6 +109,35 @@ class SdtmIgDomain < Tabular::Tabulation
     return json
   end
 
+  def compliance()
+    results = Array.new
+    # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
+    query = UriManagement.buildNs(self.namespace, ["bd", "bo"])  +
+      "SELECT DISTINCT ?b ?c WHERE \n" +
+      "{ \n " +
+      "  :#{self.id} bd:includesColumn ?a . \n " +
+      "  ?a bd:compliance ?b . \n" +
+      "  ?b rdfs:label ?c . \n" +
+      "}\n"
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('b', true, node)
+      label = ModelUtility.getValue('c', false, node)
+      if uri != "" && label != ""
+        object = SdtmModelCompliance.new
+        object.id = ModelUtility.extractCid(uri)
+        object.namespace = ModelUtility.extractNs(uri)
+        object.label = label
+        results << object
+      end
+    end
+    return results
+  end
+
 private
 
   def self.children_from_triples(object, triples, id)

@@ -236,7 +236,7 @@ class IsoRegistrationAuthority
 
   def self.from_json(json)
     object = self.new
-    ConsoleLogger::log(C_CLASS_NAME,"from_json", "Json=#{json}")
+    #ConsoleLogger::log(C_CLASS_NAME,"from_json", "Json=#{json}")
     object.id = json[:id]
     object.number = json[:number]
     object.scheme = json[:scheme]

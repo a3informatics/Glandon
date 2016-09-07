@@ -21,6 +21,7 @@ $(document).ready(function() {
   var variableComplianceElement = document.getElementById("variableCompliance");
   var variableClassificationElement = document.getElementById("variableClassification");
   var genericMarkdownElement = document.getElementById("genericMarkdown");
+  var variableDeleteButton = document.getElementById("variableDelete");
 
   var nextKeyId;
   var currentNode;
@@ -30,6 +31,7 @@ $(document).ready(function() {
   var markdownElement;
   var markdownType;
   var domainPrefix;
+  var newCount;
 
   // Set up the form validation
   validatorDefaults ();
@@ -39,7 +41,7 @@ $(document).ready(function() {
         "Domain Label": {required: true, label: true },
         "Domain Note": {required: false, markdown: true},
         "Variable Name": {required: true, variableName: true },
-        "Variable Label": {required: true, label: true },
+        "Variable Label": {required: true, variableLabel: true },
         "Variable Format": {required: true, label: true },
         "Variable Note": {required: false, markdown: true},
         "Variable Comment": {required: false, markdown: true}
@@ -330,6 +332,11 @@ $(document).ready(function() {
     variableCompliance.value = toUri(node.data.compliance.namespace, node.data.compliance.id);
     variableClassification.value = toUri(node.data.classification.namespace, node.data.classification.id);
     variableNonStandardElement.disabled = true;
+    if (node.data.non_standard) {
+      variableDeleteButton.disabled = false;
+    } else {
+      variableDeleteButton.disabled = true;
+    }
   }
 
   /**
@@ -383,7 +390,7 @@ $(document).ready(function() {
         namespace: "",
         label: label,
         ordinal: "",
-        name: "--XXXXXX",
+        name: domainPrefix + pad(newCount, 6, '0'),
         notes: "",
         format: "",
         non_standard: true,
@@ -395,6 +402,7 @@ $(document).ready(function() {
         compliance: { type: "", id: "", namespace: "", label: ""},
         classification: { type: "", id: "", namespace: "", label: ""},
         variable_ref: {} };
+        newCount += 1;
   }
 
   function addSourceNode(parent, node, end) {
@@ -445,6 +453,7 @@ $(document).ready(function() {
     }
     var operation = domainDefinition.operation;
     editIdentifierFlag = operation.identifier_edit == true;
+    newCount = managedItem.children.length + 1;
   }
 
   function setRoot() {

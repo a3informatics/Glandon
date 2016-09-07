@@ -78,7 +78,7 @@ class SdtmUserDomainsController < ApplicationController
       variable = @sdtm_user_domain.children[0]   
       @datatypes = SdtmModelDatatype.all(variable.datatype.namespace)
       @classifications = SdtmModelClassification.all(variable.classification.namespace)
-      @compliance = SdtmModelCompliance.all(variable.compliance.namespace)
+      @compliance = @sdtm_user_domain.compliance
     else
       @datatypes = Array.new
       @classifications = Array.new
@@ -145,7 +145,7 @@ class SdtmUserDomainsController < ApplicationController
         variable = @sdtm_user_domain.children[0]   
         @datatypes = SdtmModelDatatype.all(variable.datatype.namespace)
         @classifications = SdtmModelClassification.all(variable.classification.namespace)
-        @compliance = SdtmModelCompliance.all(variable.compliance.namespace)
+        @compliance = sdtm_ig_domain.compliance
       else
         @datatypes = Array.new
         @classifications = Array.new
