@@ -119,6 +119,7 @@ class Form < IsoManaged
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
+      # TODO: This looks wrong, find_from_triples instead?
       object.groups = Form::Group::Normal.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
     end
     object.triples = ""
@@ -260,7 +261,7 @@ class Form < IsoManaged
   end
 
   def to_xml
-    odm_document = Odm.new("ODM-#{self.id}", "Assero", "Glandon", "Version::VERSION")
+    odm_document = Odm.new("ODM-#{self.id}", "Assero", "Glandon", Version::VERSION)
     odm = odm_document.root
     study = odm.add_study("S-#{self.id}")
     global_variables = study.add_global_variables()
@@ -276,7 +277,7 @@ class Form < IsoManaged
     self.groups.each do |group|
       group.to_xml(metadata_version, form_def)
     end
-    return odm.ref.to_xml
+    return odm_document.to_xml
   end
 
   def self.bc_impact(params)

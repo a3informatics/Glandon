@@ -20,7 +20,7 @@ class Form::Item < IsoConcept
       "B" => "boolean",
     }
   
-  def thesaurus_concepts(refs)
+  def thesaurus_concepts
     return Array.new
   end
 

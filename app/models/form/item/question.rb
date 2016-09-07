@@ -9,9 +9,9 @@ class Form::Item::Question < Form::Item
   C_RDF_TYPE = "Question"
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
   
-  def thesaurus_concepts(refs)
+  def thesaurus_concepts
     results = Array.new
-    refs.each do |ref|
+    self.tc_refs.each do |ref|
       results << ThesaurusConcept.find(ref.subject_ref.id, ref.subject_ref.namespace, false)
     end
     return results

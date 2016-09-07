@@ -1,6 +1,6 @@
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Item:", :item => @form} %>
 <div class="col-md-12">
-	<% if @formItem.rdf_type == "#{Form::Item::C_BC_TYPE}" %>
+	<% if @formItem.rdf_type == "#{Form::Item::BcProperty::C_RDF_TYPE_URI}" %>
 		<h4>Details</h4>
 		<table class="table table-striped table-bordered table-condensed">
 			<thead>
@@ -45,7 +45,7 @@
 				<% end %>
 			</tbody>
 		</table>
-	<% elsif @formItem.rdf_type == "#{Form::Item::C_Q_TYPE}" %>
+	<% elsif @formItem.rdf_type == "#{Form::Item::Question::C_RDF_TYPE_URI}" %>
 		<h4>Details</h4>
 		<table class="table table-striped table-bordered table-condensed">
 			<thead>
@@ -65,7 +65,7 @@
 			  <tr>
 			    <td><%= @formItem.ordinal %></td>
 			    <td><%= @formItem.label %></td>
-			    <td><%= @formItem.qText %></td>
+			    <td><%= @formItem.question_text %></td>
 			    <td><%= @formItem.datatype %></td>
 			    <td><%= @formItem.format %></td>
 			    <td><%= @formItem.mapping %></td>
@@ -92,7 +92,7 @@
 				<% end %>
 			</tbody>
 		</table>
-	<% else %>
+	<% elsif @formItem.rdf_type == "#{Form::Item::Placeholder::C_RDF_TYPE_URI}" %>
 		<h4>Details</h4>
 		<table class="table table-striped table-bordered table-condensed">
 			<thead>
@@ -108,6 +108,28 @@
 			  <tr>
 			    <td><%= @formItem.ordinal %></td>
 			    <td><%= @formItem.freeText %></td>
+			    <td><%= @formItem.optional %></td>
+			    <td><%= raw MarkdownEngine::render(@formItem.completion) %></td>
+			    <td><%= raw MarkdownEngine::render(@formItem.note) %></td>
+			  </tr>
+			</tbody>
+		</table>
+	<% else %>
+		<h4>Details</h4>
+		<table class="table table-striped table-bordered table-condensed">
+			<thead>
+			  <tr>
+			    <th>Ordinal</th>
+			    <th>Label Text</th>
+			    <th>Optional</th>
+			    <th>Completion Instructions</th>
+			    <th>Note</th>
+				</tr>
+			</thead>
+			<tbody>
+			  <tr>
+			    <td><%= @formItem.ordinal %></td>
+			    <td><%= @formItem.label_text %></td>
 			    <td><%= @formItem.optional %></td>
 			    <td><%= raw MarkdownEngine::render(@formItem.completion) %></td>
 			    <td><%= raw MarkdownEngine::render(@formItem.note) %></td>

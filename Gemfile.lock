@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/daveih/odm.git
-  revision: b10f7ae76395744cbae10a1c307268f4df9166bd
+  revision: 884b16895da9190e1883b4da407e31cc89756b55
   specs:
-    odm (1.0.0)
+    odm (1.0.3)
       nokogiri (~> 1.6.6.2)
 
 GEM
@@ -311,7 +311,7 @@ DEPENDENCIES
   jquery-validation-rails
   launchy
   nokogiri (~> 1.6.6.2)
-  odm (~> 1.0.0)!
+  odm (~> 1.0.3)!
   pg
   prawn
   prawn-table
