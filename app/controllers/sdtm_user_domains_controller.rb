@@ -33,7 +33,7 @@ class SdtmUserDomainsController < ApplicationController
     @ig_variables = Array.new
     @bcs = Array.new
     @sdtm_user_domain = SdtmUserDomain.find(id, namespace)
-    ConsoleLogger::log(C_CLASS_NAME,"show","Domain=#{@sdtm_user_domain.to_json}")
+    #ConsoleLogger::log(C_CLASS_NAME,"show","Domain=#{@sdtm_user_domain.to_json}")
     @sdtm_user_domain.children.each do |child|
       if child.variable_ref.nil? 
         ig_variable = SdtmIgDomain::Variable.new
@@ -73,7 +73,7 @@ class SdtmUserDomainsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @sdtm_user_domain = SdtmUserDomain.find(id, namespace)
-    ConsoleLogger::log(C_CLASS_NAME,"edit","Domain=#{@sdtm_user_domain.to_json}")
+    #ConsoleLogger::log(C_CLASS_NAME,"edit","Domain=#{@sdtm_user_domain.to_json}")
     if @sdtm_user_domain.children.length > 0
       variable = @sdtm_user_domain.children[0]   
       @datatypes = SdtmModelDatatype.all(variable.datatype.namespace)
@@ -151,9 +151,9 @@ class SdtmUserDomainsController < ApplicationController
         @classifications = Array.new
         @compliance = Array.new
       end
-      ConsoleLogger::log(C_CLASS_NAME,"clone","Datatypes=#{@datatypes.to_json}")
-      ConsoleLogger::log(C_CLASS_NAME,"clone","Compliance=#{@compliance.to_json}")
-      ConsoleLogger::log(C_CLASS_NAME,"clone","Classifications=#{@classifications.to_json}")    
+      #ConsoleLogger::log(C_CLASS_NAME,"clone","Datatypes=#{@datatypes.to_json}")
+      #ConsoleLogger::log(C_CLASS_NAME,"clone","Compliance=#{@compliance.to_json}")
+      #ConsoleLogger::log(C_CLASS_NAME,"clone","Classifications=#{@classifications.to_json}")    
     else
       # Do nothing at the present time. Can only clone from IG.
     end
