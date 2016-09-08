@@ -30,7 +30,8 @@ class Reports::PdfReport < Prawn::Document
     super({:page_size => paper_size, :layout => :portrait, :info => info})
     font_size 9
     # Generate the document front sheet.  
-    image file, height: 75,  position: :center, position: :center
+    image file, height: 75,  position: :center, vposition: :top
+    move_down 10
     text name, size: 18, style: :bold, align: :center
     move_down 200
     if doc_type
