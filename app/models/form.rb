@@ -188,7 +188,7 @@ class Form < IsoManaged
         ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
         response = CRUD.update(sparql.to_s)
         if !response.success?
-          object.errors.add(:base, "The Domain was not created in the database.")
+          object.errors.add(:base, "The Form was not created in the database.")
         end
       end
     end
@@ -212,7 +212,7 @@ class Form < IsoManaged
     if response.success?
       object.errors.clear
     else
-      object.errors.add(:base, "The Form was not created in the database.")
+      object.errors.add(:base, "The Form was not updated in the database.")
     end
     return object
   end
