@@ -451,18 +451,28 @@ $(document).ready(function() {
         propertyTableCell = null;   
       }
     } else if (propertyTableCI === PT_TERM_COL) {
-      propertyClShow ();
-      propertyNotepadShow ();
-      propertyTextHide ();
-      propertyTableCell = propertyGetCell();
-      propertyTableCell.toggleClass('success');
-      clTable.clear();
-      var values = getPropertyValues(bcIndex, bcPropertyKey)
-      for (var i=0; i<values.length; i++) {
-        var item = values[i]
-        clTable.row.add(item); 
+      var bc = bcInstances[bcIndex];
+      var properties = bc['children'];
+      var property = properties[bcPropertyKey]
+      if (property['datatype'] === "CL") {
+        propertyClShow ();
+        propertyNotepadShow ();
+        propertyTextHide ();
+        propertyTableCell = propertyGetCell();
+        propertyTableCell.toggleClass('success');
+        clTable.clear();
+        var values = getPropertyValues(bcIndex, bcPropertyKey)
+        for (var i=0; i<values.length; i++) {
+          var item = values[i]
+          clTable.row.add(item); 
+        }
+        clTable.draw(false);
+      } else {
+        propertyTextHide ();
+        propertyClHide ();
+        propertyNotepadHide ();
+        propertyTableCell = null;   
       }
-      clTable.draw(false);
     } else {
       propertyTextShow ();
       propertyClHide ();
