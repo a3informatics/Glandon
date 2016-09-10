@@ -191,7 +191,9 @@ $(document).ready(function() {
       if (currentNode.type == C_FORM) {
         saveForm(currentNode)
       } else if (currentNode.type == C_NORMAL_GROUP) {
-        saveGroup(currentNode)
+        if (!isBC(currentNode)) {
+          saveGroup(currentNode)
+        }
       } else if (currentNode.type == C_COMMON_GROUP) {
         saveCommon(currentNode)
       } else if (currentNode.type == C_PLACEHOLDER) {
@@ -638,7 +640,14 @@ $(document).ready(function() {
   * Functions to handle the BC actions
   */
   $('#bcDelete').click(function() {
-    notImplementedYet();     
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a biomedical concept node.");
+      displayAlerts(html);
+    } else {
+      var node = deleteNode(currentNode);
+      displayNode(node);
+      displayTree(node.key); 
+    }
   });
 
   /*
@@ -1001,7 +1010,7 @@ $(document).ready(function() {
   }
 
   function displayBC(node) {
-    bcIdentifierElement.innerHTML = node.data.biomedical_concept_reference.identifier;
+    bcIdentifierElement.innerHTML = node.data.label;
     bcLabelElement.innerHTML = node.data.label;
   }
 
@@ -1072,8 +1081,11 @@ $(document).ready(function() {
     clOptionalElement.checked = node.data.optional;
     parentNode = node.parent;
     if (parentNode.type == C_QUESTION) {
+      // Question CL
+      $("#clLocalLabel").prop('disabled', false);
       $("#clEnable").prop('disabled', true);
     } else {
+      // BC CL
       $("#clLocalLabel").prop('disabled', true);
       $("#clEnable").prop('disabled', false);
     }
@@ -1520,6 +1532,7 @@ $(document).ready(function() {
               cliNode = addD3Node(propertyNode, cli.notation, C_BC_CL, sourceCliNode, true); 
               cliNode.enabled = true    
               addSourceNode(sourcePropertyNode, sourceCliNode, true);
+              tcReference(cliNode);
             }
           }
         }
@@ -1814,11 +1827,13 @@ $(document).ready(function() {
       selectForm();
       displayForm(node);
     } else if (node.type == C_NORMAL_GROUP) {
-      selectGroup();
-      displayGroup(node);
-    } else if (node.type == C_NORMAL_GROUP) {
-      selectBC();
-      displayBC(node);
+      if (!isBC(node)) {
+        selectGroup();
+        displayGroup(node);
+      } else {
+        selectBC();
+        displayBC(node);
+      }
     } else if (node.type == C_COMMON_GROUP) {
       selectCommon();
       displayCommon(node);
@@ -1867,6 +1882,19 @@ $(document).ready(function() {
     } else {
       return false;
     }
+  }
+
+  function isBC(node) {
+    var bc_ref;
+    if (node.type == C_NORMAL_GROUP) {
+      if (node.data.hasOwnProperty('bc_ref')) {
+        bc_ref = node.data.bc_ref;
+        if (bc_ref.hasOwnProperty('subject_ref')) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   /*
