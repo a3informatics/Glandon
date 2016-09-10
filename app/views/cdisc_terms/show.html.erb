@@ -32,7 +32,6 @@
 		    <th>Extensible</th>
 		    <th>Definition</th>
 		    <th></th>
-		    <th></th>
 		  </tr>
 		</thead>
 		<tbody>
@@ -45,7 +44,6 @@
 			    <td><%= cl.extensible %></td>
 			    <td><%= cl.definition %></td>
 			    <td><%= link_to "Show", cdisc_cl_path(:id => cl.id, :namespace => cl.namespace), :class => "btn btn-primary btn-xs" %></td>
-			    <td><%= link_to "Triples", view_dashboard_index_path(:id => cl.id, :namespace => cl.namespace), :class => "btn btn-warning btn-xs" %></td>
 		  	</tr>
 			<% end %>
 		</tbody>
