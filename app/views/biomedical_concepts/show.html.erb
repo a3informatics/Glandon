@@ -59,7 +59,9 @@
 		</tbody>
 	</table>
 	<%= link_to "Clone", clone_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-primary" %>
-	<%= link_to "Upgrade", upgrade_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-primary" %>
+	<% if @bc.edit? and @bc.latest? %>
+		<%= link_to "Upgrade", upgrade_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-primary" %>
+	<% end %>
 	<%= link_to "Export JSON", export_json_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-info" %>
 	<%= link_to "Export Turtle", export_ttl_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-info" %>
 	<h4>Terminology References</h4>
