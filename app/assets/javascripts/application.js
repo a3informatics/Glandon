@@ -336,13 +336,13 @@ function pad(n, width, z) {
 * Path function
 */
 function getPath(rdfType) {
-  if (rdfType == "http://www.assero.co.uk/BusinessForm#Form") {
+  if (rdfType == C_FORM) {
     return "/forms/";    
-  } else if (rdfType == "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance") {
+  } else if (rdfType == C_BC) {
     return "/biomedical_concepts/";
-  } else if (rdfType == "http://www.assero.co.uk/BusinessDomain#SdtmUserDomain") {
+  } else if (rdfType == C_USERDOMAIN) {
     return "/sdtm_user_domains/"
-  } else if (rdfType == "http://www.assero.co.uk/ISO25964#Thesaurus") {
+  } else if (rdfType == C_TH) {
     return "/thesauri/"
   } else {
     return ""

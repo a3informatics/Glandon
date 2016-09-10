@@ -36,22 +36,11 @@ function imlLoad () {
       {"data" : "label", "width" : "50%"},
       {"data" : "scoped_identifier.version", "width" : "10%"},
       {"data" : "scoped_identifier.version_label", "width" : "10%"},
-      {"defaultContent": '<button type="button" class="btn btn-primary btn-xs">Go</button>'}
+      // Following replaces the old way of putting in a button. Use link styled as a button.
+      {"render" : function (data, type, row, meta) {
+        return '<a href="' + getPath(row.type) + row.id + '?namespace=' + row.namespace + '" class="btn btn-primary btn-xs">Show</a>';
+      }}
     ]
   });
   isoManagedTableReload = true;    
 }
-
-$(document).ready(function() {
-
-  /*
-   * Function to handle click on the table button.
-   */
-  $('#iso_managed_table tbody').on( 'click', 'button', function () {
-    var data = isoManagedTable.row( $(this).parents('tr') ).data();
-    path = getPath(data.type);
-    //alert("Data=" + JSON.stringify(data) + "...Path=" + path);
-    window.location.href = path + data.id + "?namespace=" + data.namespace;
-  });
-
-});

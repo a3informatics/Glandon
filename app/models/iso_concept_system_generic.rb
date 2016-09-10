@@ -68,6 +68,7 @@ class IsoConceptSystemGeneric < IsoConcept
 
   def self.find_from_triples(triples, id)
     object = new(triples, id)
+    children_from_triples(object, triples, id)
     object.triples = ""
     return object
   end
