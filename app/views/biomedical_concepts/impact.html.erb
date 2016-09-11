@@ -47,7 +47,7 @@
 			    	<td><%= item.owner %></td>
 			    	<td><%= item.version %></td>
 			    	<td><%= item.versionLabel %></td>
-			    	<td><%= link_to "Show", domain_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary btn-xs" %></td>
+			    	<td><%= link_to "Show", sdtm_user_domain_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary btn-xs" %></td>
 				</tr>
 			<% end %>
 		</tbody>
