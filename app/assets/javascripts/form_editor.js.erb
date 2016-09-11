@@ -463,15 +463,19 @@ $(document).ready(function() {
   });
   
   $('#commonDelete').click(function() {
-    notImplementedYet();    
-    /*if (currentNode.hasOwnProperty('save')) {
-      var html = alertWarning("You need to remove the child nodes.");
+    if (currentNode == null) {
+      var html = alertWarning("You need to select a common node.");
       displayAlerts(html);
     } else {
-      var node = deleteNode(currentNode);
-      displayNode(node);
-      displayTree(node.key);
-    } */    
+      if (hasChildren(currentNode)) {
+        var html = alertWarning("You need to remove the child nodes.");
+        displayAlerts(html);
+      } else {
+        var node = deleteNode(currentNode);
+        displayNode(node);
+        displayTree(node.key);
+      }
+    }    
   });
 
   /*
