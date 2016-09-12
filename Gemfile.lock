@@ -163,6 +163,9 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    passenger (5.0.30)
+      rack
+      rake (>= 0.8.1)
     pdf-core (0.6.1)
     pg (0.18.4)
     prawn (2.1.0)
@@ -307,6 +310,7 @@ DEPENDENCIES
   launchy
   nokogiri (~> 1.6.6.2)
   odm (~> 1.0.3)!
+  passenger (>= 5.0.25)
   pg
   prawn
   prawn-table
