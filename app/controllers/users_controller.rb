@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     authorize User
     if @user.update(user_params)
       # TODO: Move hardcode flash message into language file
-      redirect_to @user, success: 'User was successfully updated.'
+      redirect_to users_path, success: 'User was successfully updated.'
     else
       flash[:error] = "Failed to update settings for #{@user.email}."
       redirect_to users_path
