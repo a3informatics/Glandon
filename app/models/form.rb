@@ -651,7 +651,7 @@ private
       "  { \n" +           
       "    SELECT ?group ?item ?var ?gord ?pord WHERE \n" +           
       "    { \n" +             
-      "      :" + self.id + " (bf:hasGroup|bf:hasSubGroup)+ ?group . \n" +
+      "      :" + self.id + " (bf:hasGroup|bf:hasSubGroup)%2B ?group . \n" +
       "      ?group bf:ordinal ?gord . \n" +   
       "      ?group (bf:hasItem)+ ?item . \n" +             
       "      ?item bf:mapping ?var . \n" +  
