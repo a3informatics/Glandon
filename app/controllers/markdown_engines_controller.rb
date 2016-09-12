@@ -7,7 +7,8 @@ class MarkdownEnginesController < ApplicationController
   end
 
   def create
-  	authorize MarkdownEngine
+    # TODO: This should really be a view operation not a create?
+  	authorize MarkdownEngine, :view?
     render :json => { :result => MarkdownEngine::render(the_params[:markdown])}, :status => 200
   end
 
