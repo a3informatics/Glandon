@@ -44,6 +44,10 @@
 				<% end %>
 			</div>
 		</div>
+		<% path = TypePathManagement.history_path(@managed_item.rdf_type) %>
+		<% if path != "" %>
+			<%= link_to "Close", "#{path}/?identifier=#{@managed_item.identifier}&scope_id=#{@scoped_identifier.namespace.id}", :class => "btn btn-primary" %>
+		<% end %>
 	</div>
 	<div class="col-md-4">
 		<div class="panel panel-default">
