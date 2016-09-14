@@ -1,7 +1,18 @@
 class IsoRegistrationStatePolicy < IsoPolicy
 
 	def current?
-    	@user.has_role? :sys_admin
-  	end
+    curator?
+  end
+
+  def update?
+    curator?
+  end
+
+private
+
+	# TODO: Create common set in ApplicationPolicy
+  def curator?
+    @user.has_role? :curator or @user.has_role? :content_admin
+  end
 
 end
