@@ -98,7 +98,7 @@ $(document).ready(function() {
 
   function nodeClick (node) {
     if (currentNode != null) {
-      d3gClearNode(node, currentThis);
+      d3gClearNode(currentNode, currentThis);
     }
     $('#node_details tbody').empty();
     info(node);
