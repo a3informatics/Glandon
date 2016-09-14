@@ -16,6 +16,7 @@ class SdtmIg < Tabular
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   C_IDENTIFIER = "SDTM IG"
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
 
   # Class-wide variables
   @@cdiscNamespace = nil # CDISC Organization identifier

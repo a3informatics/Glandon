@@ -10,8 +10,10 @@ class BiomedicalConcept < BiomedicalConceptCore
   C_INSTANCE_PREFIX = "mdrBcs"
   C_CID_PREFIX = "BC"
   C_RDF_TYPE = "BiomedicalConceptInstance"
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
+
   def self.find(id, ns, children=true)
     object = super(id, ns, children)
     if children

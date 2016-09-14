@@ -14,7 +14,8 @@ class SdtmUserDomain < Tabular::Tabulation
   C_RDF_TYPE = "UserDomain"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
+
   C_MD_REF_PREFIX = "MD"
   C_IGD_REF_PREFIX = "IGD"
   C_BC_REF_PREFIX = "BCR"

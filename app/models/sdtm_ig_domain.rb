@@ -14,7 +14,8 @@ class SdtmIgDomain < Tabular::Tabulation
   C_RDF_TYPE = "IgDomain"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
+
   def initialize(triples=nil, id=nil)
     self.prefix = SdtmUtility::C_PREFIX
     self.structure = ""
