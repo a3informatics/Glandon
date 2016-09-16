@@ -80,6 +80,7 @@ gem 'odm', '~> 1.0.3', :git => 'https://github.com/daveih/odm.git'
 # gem 'capistrano-rails', group: :development
 
 group :development do
+  gem 'web-console', '~> 2.0'
   gem 'better_errors'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
@@ -88,7 +89,6 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
