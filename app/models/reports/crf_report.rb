@@ -68,29 +68,28 @@ class Reports::CrfReport
       html += "<table class=\"simple\">"
       html += "<thead><tr><th>Question</th><th>Identifier</th><th>Submission Value</th><th>Preferred Term</th></tr></thead>"
       terminology.each do |node|
+        class_text = ""
         if node[:optional]
-          html += "<tr class=\"warning\">"
-        else
-          html += "<tr>"
+          class_text = " class=\"warning\"" 
         end
         length = node[:children].length == 0 ? 1 : node[:children].length
-        html += "<td rowspan=\"#{length}\">#{node[:label]}</td>"
         node[:children].each do |child|
           if child[:enabled]
+            html += "<tr#{class_text}>"
+            if child == node[:children].first
+              html += "<td rowspan=\"#{length}\">#{node[:label]}</td>"
+            end
             tc_ref = child[:subject_ref]
             tc = ThesaurusConcept.find(tc_ref[:id], tc_ref[:namespace])
             html += "<td>#{tc.identifier}</td><td>#{tc.notation}</td><td>#{tc.preferredTerm}</td>"
-            if child != node[:children].last
-              html += "</tr><tr>"
-            end
+            html += "</tr>"
           end
         end
-        html += "</tr>"
       end 
       html += "</table>"
     end
     html += page_footer()
-    #ConsoleLogger.log(C_CLASS_NAME, "create", "HTML=" + html.to_s)
+    ConsoleLogger.log(C_CLASS_NAME, "create", "HTML=" + html.to_s)
     pdf = WickedPdf.new.pdf_from_string(html, :page_size => paper_size, :footer => {:font_size => "10", :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", :left => "", :center => "", :right => "[page] of [topage]"} )
     return pdf
   end
