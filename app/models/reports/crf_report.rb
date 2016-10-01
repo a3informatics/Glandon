@@ -89,7 +89,7 @@ class Reports::CrfReport
       html += "</table>"
     end
     html += page_footer()
-    ConsoleLogger.log(C_CLASS_NAME, "create", "HTML=" + html.to_s)
+    #ConsoleLogger.log(C_CLASS_NAME, "create", "HTML=" + html.to_s)
     pdf = WickedPdf.new.pdf_from_string(html, :page_size => paper_size, :footer => {:font_size => "10", :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", :left => "", :center => "", :right => "[page] of [topage]"} )
     return pdf
   end
