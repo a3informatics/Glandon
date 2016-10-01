@@ -100,6 +100,7 @@ class SdtmIgDomain::Variable < Tabular::Column
   def to_json
     json = super
     json[:name] = self.name
+    json[:ordinal] = self.ordinal
     json[:notes] = self.notes
     json[:controlled_term_or_format] = self.controlled_term_or_format
     json[:compliance] = self.compliance.to_json

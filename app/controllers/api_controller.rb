@@ -9,6 +9,7 @@ class ApiController < ApplicationController
   C_SDTM_IGD = "SDTM IG Domain"
   C_SDTM_MD = "SDTM Model Domain" 
   C_SDTM_MODEL = "SDTM Model"
+  C_SDTM_IG = "SDTM Implementation Guide"
   C_BC = "Biomedical Concept"
   C_BCT = "Biomedical Concept Template"
   C_TH = "Thesaurus"
@@ -18,6 +19,7 @@ class ApiController < ApplicationController
   C_SDTM_IGD_TYPE = UriV2.new({:namespace => SdtmIgDomain::C_SCHEMA_NS, :id => SdtmIgDomain::C_RDF_TYPE})
   C_SDTM_MD_TYPE =  UriV2.new({:namespace => SdtmModelDomain::C_SCHEMA_NS, :id => SdtmModelDomain::C_RDF_TYPE}) 
   C_SDTM_MODEL_TYPE = UriV2.new({:namespace => SdtmModel::C_SCHEMA_NS, :id => SdtmModel::C_RDF_TYPE})
+  C_SDTM_IG_TYPE = UriV2.new({:namespace => SdtmIg::C_SCHEMA_NS, :id => SdtmIg::C_RDF_TYPE})
   C_BC_TYPE = UriV2.new({:namespace => BiomedicalConcept::C_SCHEMA_NS, :id => BiomedicalConcept::C_RDF_TYPE}) 
   C_BCT_TYPE = UriV2.new({:namespace => BiomedicalConceptTemplate::C_SCHEMA_NS, :id => BiomedicalConceptTemplate::C_RDF_TYPE}) 
   C_TH_TYPE = UriV2.new({:namespace => Thesaurus::C_SCHEMA_NS, :id => Thesaurus::C_RDF_TYPE})
@@ -48,9 +50,13 @@ class ApiController < ApplicationController
         :label => C_SDTM_MD, 
         :class => "SdtmModelDomain"
       },
-       C_SDTM_MODEL => { 
+      C_SDTM_MODEL => { 
         :label => C_SDTM_MODEL, 
         :class => "SdtmModel"
+      },
+      C_SDTM_IG => { 
+        :label => C_SDTM_IG, 
+        :class => "SdtmIg"
       },
       C_BC => { 
         :label => C_BC, 
@@ -84,9 +90,13 @@ class ApiController < ApplicationController
         :rdf_type => C_SDTM_MD_TYPE, 
         :class => "SdtmModelDomain"
       },
-       C_SDTM_MODEL_TYPE.to_s => { 
+      C_SDTM_MODEL_TYPE.to_s => { 
         :rdf_type => C_SDTM_MODEL_TYPE, 
         :class => "SdtmModel"
+      },
+      C_SDTM_IG_TYPE.to_s => { 
+        :rdf_type => C_SDTM_IG_TYPE, 
+        :class => "SdtmIg"
       },
       C_BC_TYPE.to_s => { 
         :rdf_type => C_BC_TYPE, 
