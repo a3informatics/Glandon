@@ -58,7 +58,9 @@
               <li><a href="/iso_scoped_identifiers">Scoped Identifiers</a></li>
               <li><a href="/iso_registration_states">Registration States</a></li>
   					</ul>
-  					<ul class="well">
+  				<% end %>
+          <% if current_user.has_role? :content_admin %>
+          	<ul class="well">
               <li><a href="/uploads">Upload</a></li>
               <li><a href="/backgrounds">Background Jobs</a></li>
             </ul>
