@@ -233,6 +233,11 @@ class IsoRegistrationState
     return info[:can_be_current]
   end
 
+  def can_be_changed?()
+    info = @@stateInfo[self.registrationStatus]
+    return info[:next_state] != self.registrationStatus
+  end
+
   def self.find(id)
     object = nil
     date_time = Time.now

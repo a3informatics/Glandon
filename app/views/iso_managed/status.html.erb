@@ -59,27 +59,28 @@
 					<div class="panel-heading"><strong>Current Status: <%= IsoRegistrationState.stateLabel(state) %></strong></div>
 					<div class="panel-body"><%= IsoRegistrationState.stateDefinition(state) %></div>
 				</div>
-				<div class="glyph">
-					<span class="glyphicon glyphicon-arrow-down glyphicon-large" aria-hidden="true"></span>
-				</div>
-				<div class="panel panel-success">
-					<div class="panel-heading"><strong>New Status: <%= IsoRegistrationState.stateLabel(nextState) %></strong></div>
-					<div class="panel-body"><%= IsoRegistrationState.stateDefinition(nextState) %></div>
-				</div>
-				<%= form_for @registration_state do |f| %>
-					<div class="form-group">
-					    <%= f.label :administrativeNote, "Administrative Note:" %><br />
-					    <%= f.text_area :administrativeNote, autofocus: true, class: "form-control", rows:5 %>
+				<% if @registration_state.can_be_changed? %>
+					<div class="glyph">
+						<span class="glyphicon glyphicon-arrow-down glyphicon-large" aria-hidden="true"></span>
 					</div>
-					<div class="form-group">
-					    <%= f.label :unresolvedIssue, "Unresolved Issue:" %><br />
-					    <%= f.text_area :unresolvedIssue, class: "form-control", rows:5 %>
+					<div class="panel panel-success">
+						<div class="panel-heading"><strong>New Status: <%= IsoRegistrationState.stateLabel(nextState) %></strong></div>
+						<div class="panel-body"><%= IsoRegistrationState.stateDefinition(nextState) %></div>
 					</div>
-					<%= f.hidden_field :previousState, :value => state %>  
-					<%= f.hidden_field :registrationStatus, :value => nextState %>  
-					<%= f.hidden_field :referer, :value => @referer %>  
-					<%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
-					<!-- :registrationStatus, , , , :administrativeStatus, :previousState -->
+					<%= form_for @registration_state do |f| %>
+						<div class="form-group">
+						    <%= f.label :administrativeNote, "Administrative Note:" %><br />
+						    <%= f.text_area :administrativeNote, autofocus: true, class: "form-control", rows:5 %>
+						</div>
+						<div class="form-group">
+						    <%= f.label :unresolvedIssue, "Unresolved Issue:" %><br />
+						    <%= f.text_area :unresolvedIssue, class: "form-control", rows:5 %>
+						</div>
+						<%= f.hidden_field :previousState, :value => state %>  
+						<%= f.hidden_field :registrationStatus, :value => nextState %>  
+						<%= f.hidden_field :referer, :value => @referer %>  
+						<%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
+					<% end %>
 				<% end %>
 			</div>
 		</div>
