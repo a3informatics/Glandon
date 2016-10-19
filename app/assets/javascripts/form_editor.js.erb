@@ -242,9 +242,12 @@ $(document).ready(function() {
     var data;
     var action;
     var form;
+    // Save the form details in case they have not been saved
+    saveForm(rootNode);
+    // Get the action and head of form JSON
     action = formDefinition.operation.action;
     form = formDefinition.managed_item;
-    
+    // Set URL and method. Setup data structure
     if (action === "CREATE") {
       url = "/forms";
       method = 'POST';
@@ -254,6 +257,7 @@ $(document).ready(function() {
       method = 'PUT';
       data = { "namespace": form['namespace'], "data": formDefinition };  
     }
+    // And send ...
     $.ajax({
       url: url,
       type: method,
@@ -305,6 +309,7 @@ $(document).ready(function() {
       var html = alertWarning("You need to select the form node.");
       displayAlerts(html);
     } else {
+      saveForm(currentNode);
       var node = addGroup();
       displayNode(node);
       displayTree(node.key);  
@@ -1208,7 +1213,7 @@ $(document).ready(function() {
         }
       }
 
-      // Node refers to the selected note, otherNodes all the nodes of
+      // Node refers to the selected node, otherNodes all the nodes of
       // the same type within the BCs at the same level within parent group
       if (commonGroup != null) {
         sourceNode = node.data;
@@ -1549,7 +1554,7 @@ $(document).ready(function() {
         /* Now check for a common group and, if present, see if anything needs
         * moving.
         */
-        /*if (hasCommon(currentNode)) {
+        if (hasCommon(currentNode)) {
           var item;
           var commonItem;
           var commonNode = currentNode.save[0];
@@ -1558,22 +1563,17 @@ $(document).ready(function() {
               commonItem = commonNode.save[i];
               for (j=0; j<bcNode.save.length; j++) {
                 item = bcNode.save[j];
-                if (item.bridgPath == commonItem.bridgPath) {
-                  // Delete the item from its current position
-                  item.realParent = item.parent;
-                  bcNode.save.splice(item.index, 1);
-                  //bcNode.children.splice(item.index, 1);
-                  setParent(bcNode);
-                  // And add to the common other nodes  
-                  if (!commonNode.hasOwnProperty('otherCommon')) {
-                    commonNode.otherCommon = [];
-                  }
-                  commonNode.otherCommon.push(item);
+                if (item.data.bridgPath == commonItem.data.bridgPath) {
+                  // We have a match. Detach the item and add to the common item
+                  detachForCommon(item);
+                  commonItem.otherCommon.push(item);
+                  commonItem.data.otherCommon.push(item.data);
+                  setOrdinal(commonItem.otherCommon);
                 }
               }
             }
           }
-        }*/
+        }
 
         // And display everything.
         displayNode(currentNode);
