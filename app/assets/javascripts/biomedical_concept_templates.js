@@ -4,4 +4,8 @@ $(document).ready(function() {
         columnDefs: [ ]
   } );
 
+	$('#secondary').DataTable({
+        columnDefs: [ ]
+  } );
+
 });

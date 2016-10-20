@@ -76,8 +76,12 @@ class BiomedicalConcept < BiomedicalConceptCore
       if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object, ra) 
         bc = BiomedicalConceptTemplate.find(managed_item[:id], managed_item[:namespace])
         sparql = SparqlUpdate.new
+        # Given we copy the template we need to fix a few fields to set them to the 
+        # correct values
         bc.scopedIdentifier.identifier = managed_item[:identifier]
         bc.label = managed_item[:label]
+        bc.creationDate = managed_item[:creation_date]
+        bc.lastChangeDate = managed_item[:creation_date]
         bc.scopedIdentifier.version = operation[:new_version].to_i
         bc.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
         bc.registrationState.previousState = managed_item[:state]

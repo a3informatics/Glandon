@@ -4,7 +4,7 @@ $(document).ready(function() {
         columnDefs: [ ]
   } );
 
-  $('#sec').DataTable({
+  $('#secondary').DataTable({
         columnDefs: [ ]
   } );
 

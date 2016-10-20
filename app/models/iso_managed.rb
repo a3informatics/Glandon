@@ -6,7 +6,7 @@ class IsoManaged < IsoConcept
   include CRUD
   include ModelUtility
   
-  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangedDate, :explanatoryComment, :tag_refs
+  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangeDate, :explanatoryComment, :tag_refs
 
   # Constants
   C_CID_PREFIX = "ISOM"
@@ -25,7 +25,7 @@ class IsoManaged < IsoConcept
       self.origin = ""
       self.changeDescription = ""
       self.creationDate = Time.now
-      self.lastChangedDate = Time.now
+      self.lastChangeDate = Time.now
       self.explanatoryComment = ""
       self.triples = ""
       self.registrationState = IsoRegistrationState.new
@@ -290,14 +290,14 @@ class IsoManaged < IsoConcept
             object.origin = oSet[0].text
             object.changeDescription = descSet[0].text
             object.creationDate = dateSet[0].text
-            object.lastChangedDate = lastSet[0].text
+            object.lastChangeDate = lastSet[0].text
             object.explanatoryComment = commentSet[0].text
           else
             object.registrationState = nil
             object.origin = ""
             object.changeDescription = ""
             object.creationDate = ""
-            object.lastChangedDate = ""
+            object.lastChangeDate = ""
             object.explanatoryComment = ""
           end
         else
@@ -395,7 +395,7 @@ class IsoManaged < IsoConcept
         object.origin = oSet[0].text
         object.changeDescription = descSet[0].text
         object.creationDate = dateSet[0].text
-        object.lastChangedDate = lastSet[0].text
+        object.lastChangeDate = lastSet[0].text
         object.explanatoryComment = commentSet[0].text
         if iiSet.length == 1
           # Set scoped identifier
@@ -722,8 +722,8 @@ class IsoManaged < IsoConcept
     json = super
     json[:origin] = self.origin
     json[:change_description] = self.changeDescription
-    json[:creation_date] = self.creationDate = Time.now
-    json[:last_changed_date] = self.lastChangedDate = Time.now
+    json[:creation_date] = self.creationDate
+    json[:last_changed_date] = self.lastChangeDate
     json[:explanatory_comment] = self.explanatoryComment
     json[:registration_state] = self.registrationState.to_json
     json[:scoped_identifier] = self.scopedIdentifier.to_json
@@ -739,7 +739,7 @@ class IsoManaged < IsoConcept
     object.origin = managed_item[:origin]
     object.changeDescription = managed_item[:change_description]
     object.creationDate = managed_item[:creation_date]
-    object.lastChangedDate = managed_item[:last_changed_date]
+    object.lastChangeDate = managed_item[:last_changed_date]
     object.explanatoryComment = managed_item[:explanatory_comment]
     object.registrationState = IsoRegistrationState.from_json(managed_item[:registration_state])
     object.scopedIdentifier = IsoScopedIdentifier.from_json(managed_item[:scoped_identifier])
@@ -919,7 +919,7 @@ class IsoManaged < IsoConcept
       :version_label => self.versionLabel,
       :state => self.registrationStatus,
       :creation_date => self.creationDate,
-      :last_changed_date => self.lastChangedDate,
+      :last_changed_date => self.lastChangeDate,
       :change_description => self.changeDescription,
       :explanatory_comment => self.explanatoryComment,
       :origin => self.origin,
@@ -942,6 +942,7 @@ class IsoManaged < IsoConcept
     end
     # Set the operation
     if new_version?
+      ConsoleLogger::log(C_CLASS_NAME,"to_edit","New Version")
       managed_item[:creation_date] = Time.now.iso8601
       result[:operation] = { :action => "CREATE", :new_version => self.next_version, :new_state => self.state_on_edit, :identifier_edit => false }
       if self.next_version == self.first_version
@@ -951,7 +952,7 @@ class IsoManaged < IsoConcept
       result[:operation] = { :action => "UPDATE", :new_version => self.version, :new_state => self.state_on_edit, :identifier_edit => false }
     end
     result[:managed_item] = managed_item
-    #ConsoleLogger::log(C_CLASS_NAME,"to_edit","Result=" + result.to_s)
+    ConsoleLogger::log(C_CLASS_NAME,"to_edit","Result=" + result.to_s)
     return result
   end
 
