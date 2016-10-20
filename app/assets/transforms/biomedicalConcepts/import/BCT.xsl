@@ -108,7 +108,7 @@
         <!-- Scoped Identifier -->
         <xsl:call-template name="ScopedIdentifier">
             <xsl:with-param name="pCID" select="$SIName"/>
-            <xsl:with-param name="pIdentifier" select="'PQR BC Template'"/>
+            <xsl:with-param name="pIdentifier" select="@Id"/>
             <xsl:with-param name="pVersionLabel" select="'0.1'"/>
             <xsl:with-param name="pVersion" select="'1'"/>
             <xsl:with-param name="pScope" select="'NS-CDISC'"/>
