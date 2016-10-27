@@ -1,0 +1,2 @@
+class AuditTrailPolicy < ApplicationPolicy
+end
