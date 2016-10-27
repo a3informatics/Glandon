@@ -182,6 +182,10 @@ class Form < IsoManaged
       object = Form.from_json(data)
       # Can we create?
       if object.create_permitted?(ra)
+        # Setting the RA
+        # TODO: RA does no need to be passed to SPARQL setup
+        object.registrationState.registrationAuthority = ra
+        object.scopedIdentifier.namespace = ra.namespace
         # Build sparql
         sparql = object.to_sparql(ra)
         # Send to database

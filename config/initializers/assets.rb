@@ -16,6 +16,7 @@ Rails.application.config.assets.version = '1.0'
   iso_concept iso_concept_graph
   iso_managed iso_managed_list iso_managed_tag_edit iso_managed_tag_list iso_managed_graph
   iso_scoped_identifiers 
+  audit_trail
   sdtm_models sdtm_model_domains sdtm_igs sdtm_ig_domains sdtm_user_domains sdtm_user_domain_editor
   domains domains/variables 
   dashboard dashboard_viewer dashboard_index 

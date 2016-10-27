@@ -161,7 +161,7 @@ class IsoNamespace
   #   - Hash of namespace objects
   def self.all
     # Build query and submit.
-    results = Hash.new
+    results = Array.new
     query = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
       "SELECT ?a ?c ?d WHERE \n" +
       "{\n" +
@@ -186,7 +186,7 @@ class IsoNamespace
         object.shortName = snSet[0].text
         @@nameMap[object.shortName] = object
         @@idMap[object.id] = object
-        results[object.id] = object
+        results << object
       end
     end
     return results

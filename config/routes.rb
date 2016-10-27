@@ -65,6 +65,11 @@ Rails.application.routes.draw do
       get :graph
     end
   end
+  resources :audit_trail do
+    collection do
+      post :search
+    end
+  end
   resources :thesauri do
     collection do
       get :history

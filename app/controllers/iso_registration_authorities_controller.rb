@@ -10,7 +10,7 @@ class IsoRegistrationAuthoritiesController < ApplicationController
   
   def new
     authorize IsoRegistrationAuthority
-    @namespaces = IsoNamespace.all.map{|key,u|[u.name,u.id]}
+    @namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}
     @registrationAuthority = IsoRegistrationAuthority.new
   end
   

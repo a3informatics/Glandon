@@ -53,6 +53,7 @@ class FormsController < ApplicationController
     authorize Form, :create?
     @form = Form.createPlaceholder(the_params)
     if @form.errors.empty?
+      AuditTrail.add(current_user, @form, AuditTrail.event_types[:create_action], "Form created.")
       redirect_to forms_path
     else
       flash[:error] = @form.errors.full_messages.to_sentence
@@ -60,16 +61,16 @@ class FormsController < ApplicationController
     end
   end
   
-  def bc_normal_create
-    authorize Form, :create?
-    @form = Form.createBcNormal(the_params)
-    if @form.errors.empty?
-      redirect_to forms_path
-    else
-      flash[:error] = @form.errors.full_messages.to_sentence
-      redirect_to bc_normal_new_forms_path
-    end
-  end
+  #def bc_normal_create
+  #  authorize Form, :create?
+  #  @form = Form.createBcNormal(the_params)
+  #  if @form.errors.empty?
+  #    redirect_to forms_path
+  #  else
+  #    flash[:error] = @form.errors.full_messages.to_sentence
+  #    redirect_to bc_normal_new_forms_path
+  #  end
+  #end
   
   def edit
     authorize Form
@@ -89,6 +90,7 @@ class FormsController < ApplicationController
     authorize Form
     @form = Form.create(params)
     if @form.errors.empty?
+      AuditTrail.add(current_user, @form, AuditTrail.event_types[:create_action], "Form created.")
       render :json => { :data => @form.to_edit}, :status => 200
     else
       render :json => { :errors => @form.errors.full_messages}, :status => 422
@@ -99,6 +101,7 @@ class FormsController < ApplicationController
     authorize Form
     @form = Form.update(params)
     if @form.errors.empty?
+      AuditTrail.add(current_user, @form, AuditTrail.event_types[:update_action], "Form updated.")
       render :json => { :data => @form.to_edit}, :status => 200
     else
       render :json => { :errors => @form.errors.full_messages}, :status => 422
@@ -111,6 +114,7 @@ class FormsController < ApplicationController
     namespace = params[:namespace]
     form = Form.find(id, namespace, false)
     form.destroy
+    AuditTrail.add(current_user, form, AuditTrail.event_types[:delete_action], "Form deleted.")
     redirect_to forms_path
   end
 

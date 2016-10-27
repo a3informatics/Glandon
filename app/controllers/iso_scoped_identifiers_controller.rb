@@ -9,7 +9,7 @@ class IsoScopedIdentifiersController < ApplicationController
   
   def new
     authorize IsoScopedIdentifier
-    @namespaces = IsoNamespace.all.map{|key,u|[u.name,u.id]}
+    @namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}
     @scopedIdentifier = IsoScopedIdentifier.new
   end
   
