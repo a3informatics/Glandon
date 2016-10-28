@@ -43,7 +43,7 @@ module CRUD
     # Method sends the file to the configured triple store endpoint.
     #
     # * *Args*    :
-    #   - +file+ -> The file
+    #   - +file+ -> The file. Full path.
     # * *Returns* :
     #   - The HTTP response object
     def CRUD.file (file)
