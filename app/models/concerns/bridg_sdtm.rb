@@ -46,13 +46,17 @@ module BridgSdtm
 		"DefinedActivity.nameCode.CD" => "--TPTREF" ,
 		"PerformedActivity.dateRange.IVL(TS.DATETIME)" => "--RFTDTC" }
 
-	def self.get(bridg)
+	# Method to get SDTM map given BRIDG reference
+  #
+  # * *Args*    :
+  #   - +bridg+ -> The BRIDG reference
+  # * *Returns* :
+  #   - The SDTM variable (generic -- prefixed), Returns "" if not found.
+  def self.get(bridg)
 		result = ""
 		if @@map.has_key?(bridg)
 			result = "#{@@map[bridg]}"
 		end
-		#ConsoleLogger::log(C_CLASS_NAME,"get","return=#{result}")
-		#ConsoleLogger::log(C_CLASS_NAME,"get","return=#{result.to_json}")
 		return result
 	end
 	
