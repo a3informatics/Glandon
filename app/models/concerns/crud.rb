@@ -43,7 +43,7 @@ module CRUD
     # Method sends the file to the configured triple store endpoint.
     #
     # * *Args*    :
-    #   - +sparql+ -> The sparql query
+    #   - +file+ -> The file
     # * *Returns* :
     #   - The HTTP response object
     def CRUD.file (file)
