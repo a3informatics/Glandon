@@ -2,7 +2,13 @@ require 'rails_helper'
 
 describe CRUD do
 	
-	it "sends a query" do
+	include DataHelpers
+
+  it "clears triple store" do
+    clear_triple_store
+  end
+
+  it "sends a query" do
 		sparql_query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
