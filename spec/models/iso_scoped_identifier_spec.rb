@@ -2,249 +2,166 @@ require 'rails_helper'
 
 describe IsoScopedIdentifier do
   
-  it "returns a list of all identifiers" do
-    sparql_query = "query=PREFIX : <http://www.assero.co.uk/ns#>\n" +
-      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
-      "PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "SELECT DISTINCT ?d ?e ?f ?g WHERE \n" +
-      "{\n" +
-      "  ?a rdf:type :AAA . \n" +
-      "  ?a isoI:hasIdentifier ?c . \n" +
-      "  ?a rdfs:label ?e . \n" +
-      "  ?c isoI:identifier ?d . \n" +
-      "  ?c isoI:version ?g . \n" +
-      "  ?c isoI:hasScope ?f . \n" +
-      "} ORDER BY DESC(?g)"
-    sparql_result = '<?xml version="1.0"?>
-      <sparql xmlns="http://www.w3.org/2005/sparql-results#">
-        <head>
-          <variable name="d"/>
-          <variable name="e"/>
-          <variable name="f"/>
-          <variable name="g"/>
-        </head>
-        <results>
-          <result>
-            <binding name="d">
-              <literal>CDISC_CT</literal>
-            </binding>
-            <binding name="e">
-              <literal>Label for V3</literal>
-            </binding>
-            <binding name="f">
-              <uri>http://www.assero.co.uk/MDRItems#NS-CDISC</uri>
-            </binding>
-            <binding name="g">
-              <literal datatype="http://www.w3.org/2001/XMLSchema#integer">3</literal>
-            </binding>
-          </result>
-          <result>
-            <binding name="d">
-              <literal>CDISC_CT</literal>
-            </binding>
-            <binding name="e">
-              <literal>Label for V2</literal>
-            </binding>
-            <binding name="f">
-              <uri>http://www.assero.co.uk/MDRItems#NS-CDISC</uri>
-            </binding>
-            <binding name="g">
-              <literal datatype="http://www.w3.org/2001/XMLSchema#integer">2</literal>
-            </binding>
-          </result>
-          <result>
-            <binding name="d">
-              <literal>CDISC_CT</literal>
-            </binding>
-            <binding name="e">
-              <literal>label for V1</literal>
-            </binding>
-            <binding name="f">
-              <uri>http://www.assero.co.uk/MDRItems#NS-CDISC</uri>
-            </binding>
-            <binding name="g">
-              <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
-            </binding>
-          </result>
-          <result>
-            <binding name="d">
-              <literal>CDISC_EXT</literal>
-            </binding>
-            <binding name="e">
-              <literal>Label for V1</literal>
-            </binding>
-            <binding name="f">
-              <uri>http://www.assero.co.uk/MDRItems#NS-ACME</uri>
-            </binding>
-            <binding name="g">
-              <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
-            </binding>
-          </result>
-        </results>
-      </sparql>'
-    #rest = double(Rest)
-    response = Typhoeus::Response.new(code: 200, body: sparql_result)
-    namespace1 = IsoNamespace.new
-    namespace1.shortName = "SHORT1"
-    namespace1.id = "111"
-    namespace2 = IsoNamespace.new
-    namespace2.shortName = "SHORT2"
-    namespace2.id = "222"
-    results = Array.new
-    results << {:identifier => "CDISC_CT", :label => "Label for V3", :owner_id => "111", :owner => "SHORT1"}
-    results << {:identifier => "CDISC_EXT", :label => "Label for V1", :owner_id => "222", :owner => "SHORT2"}
-    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/query', 
-      :post, 
-      '', 
-      '', 
-      sparql_query, 
-      {"Accept" => "application/sparql-results+xml", "Content-type"=> "application/x-www-form-urlencoded"}).and_return(response)
-    expect(IsoNamespace).to receive(:find).with('NS-CDISC').and_return(namespace1)
-    expect(IsoNamespace).to receive(:find).with('NS-CDISC').and_return(namespace1)
-    expect(IsoNamespace).to receive(:find).with('NS-CDISC').and_return(namespace1)
-    expect(IsoNamespace).to receive(:find).with('NS-ACME').and_return(namespace2)
-    expect(IsoScopedIdentifier.allIdentifier("AAA", "http://www.assero.co.uk/ns")).to eq(results)
+  include DataHelpers
+
+  it "clears triple store and loads test data" do
+    clear_triple_store
+    load_triple_store("IsoNamespace.ttl")
+    load_triple_store("IsoScopedIdentifier.ttl")
   end
 
-  it "returns a list of all identifiers, ignoring blank identifiers" do
-    sparql_query = "query=PREFIX : <http://www.assero.co.uk/ns#>\n" +
-      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
-      "PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "SELECT DISTINCT ?d ?e ?f ?g WHERE \n" +
-      "{\n" +
-      "  ?a rdf:type :AAA . \n" +
-      "  ?a isoI:hasIdentifier ?c . \n" +
-      "  ?a rdfs:label ?e . \n" +
-      "  ?c isoI:identifier ?d . \n" +
-      "  ?c isoI:version ?g . \n" +
-      "  ?c isoI:hasScope ?f . \n" +
-      "} ORDER BY DESC(?g)"
-    sparql_result = '<?xml version="1.0"?>
-      <sparql xmlns="http://www.w3.org/2005/sparql-results#">
-        <head>
-          <variable name="d"/>
-          <variable name="e"/>
-          <variable name="f"/>
-          <variable name="g"/>
-        </head>
-        <results>
-          <result>
-            <binding name="d">
-              <literal></literal>
-            </binding>
-            <binding name="e">
-              <literal>Label for V3</literal>
-            </binding>
-            <binding name="f">
-              <uri>http://www.assero.co.uk/MDRItems#NS-CDISC</uri>
-            </binding>
-            <binding name="g">
-              <literal datatype="http://www.w3.org/2001/XMLSchema#integer">3</literal>
-            </binding>
-          </result>
-          <result>
-            <binding name="d">
-              <literal>CDISC_CT</literal>
-            </binding>
-            <binding name="e">
-              <literal>Label for V2</literal>
-            </binding>
-            <binding name="f">
-              <uri>http://www.assero.co.uk/MDRItems#NS-CDISC</uri>
-            </binding>
-            <binding name="g">
-              <literal datatype="http://www.w3.org/2001/XMLSchema#integer">2</literal>
-            </binding>
-          </result>
-          <result>
-            <binding name="d">
-              <literal>CDISC_CT</literal>
-            </binding>
-            <binding name="e">
-              <literal>label for V1</literal>
-            </binding>
-            <binding name="f">
-              <uri>http://www.assero.co.uk/MDRItems#NS-CDISC</uri>
-            </binding>
-            <binding name="g">
-              <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
-            </binding>
-          </result>
-          <result>
-            <binding name="d">
-              <literal>CDISC_EXT</literal>
-            </binding>
-            <binding name="e">
-              <literal>Label for V1</literal>
-            </binding>
-            <binding name="f">
-              <uri>http://www.assero.co.uk/MDRItems#NS-ACME</uri>
-            </binding>
-            <binding name="g">
-              <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
-            </binding>
-          </result>
-        </results>
-      </sparql>'
-    #rest = double(Rest)
-    response = Typhoeus::Response.new(code: 200, body: sparql_result)
-    namespace1 = IsoNamespace.new
-    namespace1.shortName = "SHORT1"
-    namespace1.id = "111"
-    namespace2 = IsoNamespace.new
-    namespace2.shortName = "SHORT2"
-    namespace2.id = "222"
+  it "shows an identifier exist" do
+    expect(IsoScopedIdentifier.exists?("TEST1", "NS-BBB")).to eq(true)
+  end
+
+  it "shows an identifier does not exist" do
+    expect(IsoScopedIdentifier.exists?("TEST11", "NS-BBB")).to eq(false)
+  end
+
+  it "returns a list of all identifiers" do
     results = Array.new
-    results << {:identifier => "CDISC_CT", :label => "Label for V2", :owner_id => "111", :owner => "SHORT1"}
-    results << {:identifier => "CDISC_EXT", :label => "Label for V1", :owner_id => "222", :owner => "SHORT2"}
-    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/query', 
-      :post, 
-      '', 
-      '', 
-      sparql_query, 
-      {"Accept" => "application/sparql-results+xml", "Content-type"=> "application/x-www-form-urlencoded"}).and_return(response)
-    expect(IsoNamespace).to receive(:find).with('NS-CDISC').and_return(namespace1)
-    expect(IsoNamespace).to receive(:find).with('NS-CDISC').and_return(namespace1)
-    expect(IsoNamespace).to receive(:find).with('NS-ACME').and_return(namespace2)
-    expect(IsoScopedIdentifier.allIdentifier("AAA", "http://www.assero.co.uk/ns")).to eq(results)
+    results << {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
+    results << {:identifier => "TEST2", :label => "Test Item 2", :owner_id => "NS-BBB", :owner => "BBB"}
+    results << {:identifier => "TEST1", :label => "Test Item 1", :owner_id => "NS-BBB", :owner => "BBB"}
+    expect(IsoScopedIdentifier.allIdentifier("TestItem", "http://www.assero.co.uk/MDRItems")).to eq(results)
+  end
+
+  it "finds an item" do
+    iso_namespace = IsoNamespace.from_json({id: "NS-XXX", namespace: "http://www.assero.co.uk/MDRItems", name: "XXX Long", shortName: "XXX"})
+    result = {:identifier => "TEST1", :label => "Test Item 1", :owner_id => "NS-BBB", :owner => "BBB", :namespace => iso_namespace}
+    expect(IsoScopedIdentifier.find("SI-TEST_1-1")).eql?(result)
+  end
+
+  it "allows the owner to be retrieved" do
+    result = IsoScopedIdentifier.find("SI-TEST_1-1")
+    expect(result.owner).to eq("BBB")
+  end
+
+  it "allows the owner id to be retrieved" do
+    result = IsoScopedIdentifier.find("SI-TEST_1-1")
+    expect(result.owner_id).to eq("NS-BBB")
+  end
+
+  it "allows the next version to be retrieved" do
+    result = IsoScopedIdentifier.find("SI-TEST_1-1")
+    expect(result.next_version).to eq(2)
+  end
+
+  it "allows a check against a later version" do
+    result = IsoScopedIdentifier.find("SI-TEST_3-3")
+    expect(result.later_version?(2)).to eq(true)
+  end
+
+  it "allows a check against a later version" do
+    result = IsoScopedIdentifier.find("SI-TEST_3-3")
+    expect(result.later_version?(3)).to eq(false)
+  end
+
+  it "allows a check against a earlier version" do
+    result = IsoScopedIdentifier.find("SI-TEST_3-3")
+    expect(result.earlier_version?(4)).to eq(true)
+  end
+
+  it "allows a check against a earlier version" do
+    result = IsoScopedIdentifier.find("SI-TEST_3-3")
+    expect(result.earlier_version?(3)).to eq(false)
+  end
+
+  it "allows a check against a same version" do
+    result = IsoScopedIdentifier.find("SI-TEST_1-1")
+    expect(result.same_version?(2)).to eq(false)
+  end
+
+  it "allows a check against a same version" do
+    result = IsoScopedIdentifier.find("SI-TEST_1-1")
+    expect(result.same_version?(1)).to eq(true)
+  end
+
+  it "allows the first version to be found" do
+    expect(IsoScopedIdentifier.first_version).to eq(1)
+  end
+
+  it "detects if a version exists" do
+    expect(IsoScopedIdentifier.versionExists?("TEST3", 3, "NS-BBB")).to eq(true)
+  end
+
+  it "detects if a version exists" do
+    expect(IsoScopedIdentifier.versionExists?("TEST3", 2, "NS-BBB")).to eq(false)
+  end
+
+  it "detects if a version exists" do
+    expect(IsoScopedIdentifier.versionExists?("TEST3x", 1, "NS-BBB")).to eq(false)
+  end
+
+  it "detects if a version exists" do
+    expect(IsoScopedIdentifier.versionExists?("TEST3", 1, "NS-BBBx")).to eq(false)
+  end
+
+  it "detects a given version" do
+    org = IsoNamespace.find("NS-BBB")
+    expect(IsoScopedIdentifier.versionExists?("TEST3", 3, org.id)).eql?(true)
+  end
+
+  it "finds a given id" do
+    result = {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
+    expect(IsoScopedIdentifier.find("BC-TEST_3B")).eql?(result)
+  end
+
+  it "allows all records to be returned" do
+    result = {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
+    expect(IsoScopedIdentifier.all).eql?(result)
+  end
+
+  it "allows an object to be created in the triple store" do
+    result = {:identifier => "NEW_1", :owner_id => "NS-BBB", :owner => "BBB"}
+    org = IsoNamespace.find("NS-BBB")
+    expect(IsoScopedIdentifier.create("NEW_1", 1, "0.1", org)).eql?(result)
+  end
+
+  it "allows an object to be created from data" do
+    result = {:identifier => "NEW_1", :owner_id => "NS-BBB", :owner => "BBB"}
+    org = IsoNamespace.find("NS-BBB")
+    expect(IsoScopedIdentifier.from_data("NEW_1", 1, "0.1", org)).eql?(result)
+  end
+  
+  it "allows an object to be created from JSON" do
+    result = {:identifier => "NEW_1", :owner_id => "NS-BBB", :owner => "BBB"}
+    org = IsoNamespace.find("NS-BBB")
+    json = { :id => "SI-NEW_1-1", :identifier => "NEW_1", :version_label => "0.1", :version => 1, :namespace => org.to_json }
+    expect(IsoScopedIdentifier.from_data("NEW_1", 1, "0.1", org)).eql?(result)
+  end
+  
+  it "allows an object to be exported as JSON" do
+    result = {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
+    expect(IsoScopedIdentifier.find("BC-TEST_3B").to_json).eql?(result)
+  end
+
+  it "allows an object to be exported as SPARQL" do
+    sparql = SparqlUpdateV2.new
+    result = {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
+    IsoScopedIdentifier.find("SI-TEST_3-4").to_sparql_v2(sparql)
+    puts sparql.to_s
+    expect(sparql.to_s).eql?(result)
+  end
+  
+  it "allows for an object to be updated" do
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    object.update({versionLabel: "0.10"})
+    # Something here    
+  end
+  
+  it "allows for an object to be destroyed" do
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    object.destroy
+  end
+
+  it "clears triple store" do
+    clear_triple_store
   end
 
   it "allIdentifier handles empty response" do
-    sparql_query = "query=PREFIX : <http://www.assero.co.uk/ns#>\n" +
-      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
-      "PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "SELECT DISTINCT ?d ?e ?f ?g WHERE \n" +
-      "{\n" +
-      "  ?a rdf:type :AAA . \n" +
-      "  ?a isoI:hasIdentifier ?c . \n" +
-      "  ?a rdfs:label ?e . \n" +
-      "  ?c isoI:identifier ?d . \n" +
-      "  ?c isoI:version ?g . \n" +
-      "  ?c isoI:hasScope ?f . \n" +
-      "} ORDER BY DESC(?g)"
-    sparql_result = ""
-    #rest = double(Rest)
-    response = Typhoeus::Response.new(code: 200, body: sparql_result)
     results = Array.new
-    expect(Rest).to receive(:sendRequest).with('http://localhost:3030/mdr/query', 
-      :post, 
-      '', 
-      '', 
-      sparql_query, 
-      {"Accept" => "application/sparql-results+xml", "Content-type"=> "application/x-www-form-urlencoded"}).and_return(response)
-    expect(IsoScopedIdentifier.allIdentifier("AAA", "http://www.assero.co.uk/ns")).to eq(results)
+    expect(IsoScopedIdentifier.allIdentifier("BBB", "http://www.assero.co.uk/MDRItems")).to eq(results)
   end
 
 end

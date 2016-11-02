@@ -1,0 +1,160 @@
+@prefix : <http://www.assero.co.uk/MDRItems#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix mdrBridg: <http://www.assero.co.uk/MDRBRIDG#> .
+@prefix mdrIso21090: <http://www.assero.co.uk/MDRISO21090#> .
+@prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
+@prefix mdrBcts: <http://www.assero.co.uk/MDRBCTs/V1#> .
+@prefix cCt: <http://www.assero.co.uk/MDRThesaurus/CDISC/V42#> .
+@prefix aCt: <http://www.assero.co.uk/MDRThesaurus/BBB/V1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:BC-TEST_1
+	rdf:type :TestItem ;
+	rdfs:label "Test Item 1"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-TEST_1-1 ;
+	isoR:hasState mdrItems:RS-TEST_1-1 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
+.
+mdrItems:SI-TEST_1-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TEST1"^^xsd:string ;
+	isoI:versionLabel "0.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-BBB ;
+.
+mdrItems:RS-TEST_1-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+.
+:BC-TEST_2
+	rdf:type :TestItem ;
+	rdfs:label "Test Item 2"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-TEST_2-2 ;
+	isoR:hasState mdrItems:RS-TEST_2-2 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
+.
+mdrItems:SI-TEST_2-2
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TEST2"^^xsd:string ;
+	isoI:versionLabel "0.2"^^xsd:string ;
+	isoI:version "2"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-BBB ;
+.
+mdrItems:RS-TEST_2-2
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+.
+:BC-TEST_3
+	rdf:type :TestItem ;
+	rdfs:label "Test Item 3"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-TEST_3-3 ;
+	isoR:hasState mdrItems:RS-TEST_3-3 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
+.
+mdrItems:SI-TEST_3-3
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TEST3"^^xsd:string ;
+	isoI:versionLabel "0.3"^^xsd:string ;
+	isoI:version "3"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-BBB ;
+.
+mdrItems:RS-TEST_3-3
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+.
+:BC-TEST_3B
+	rdf:type :TestItem ;
+	rdfs:label "Test Item 3"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-TEST_3-4 ;
+	isoR:hasState mdrItems:RS-TEST_3-4 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
+.
+mdrItems:SI-TEST_3-4
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TEST3"^^xsd:string ;
+	isoI:versionLabel "0.4"^^xsd:string ;
+	isoI:version "4"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-BBB ;
+.
+mdrItems:RS-TEST_3-4
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+.
+:BC-TEST_3C
+	rdf:type :TestItem ;
+	rdfs:label "Test Item 3"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-TEST_3-5 ;
+	isoR:hasState mdrItems:RS-TEST_3-5 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
+.
+mdrItems:SI-TEST_3-5
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TEST3"^^xsd:string ;
+	isoI:versionLabel "0.5"^^xsd:string ;
+	isoI:version "5"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-BBB ;
+.
+mdrItems:RS-TEST_3-5
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+.
