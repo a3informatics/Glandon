@@ -28,6 +28,9 @@ class IsoNamespace
     id.present?
   end
 
+  # Initialize
+  #
+  # @return null
   def initialize()
     @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
     self.id = ""
@@ -38,10 +41,8 @@ class IsoNamespace
 
   # Does the namespace exist?
   #
-  # * *Args*    :
-  #   - +shortName+ -> The short name of the namespace to be found
-  # * *Returns* :
-  #   - Boolean
+  # @param shortName [string] The short name of the namespace to be found.
+  # @return [boolean] True if the namespace exists, false otherwise.
   def self.exists?(shortName)
     # Do we have the result stored.
     if @@nameMap.has_key?(shortName)
@@ -71,12 +72,10 @@ class IsoNamespace
 
   # Find namespace by the short name.
   #
-  # TODO: Better return for not found (will just be empty at the moment)
+  # @todo: Better return for not found (will just be empty at the moment)
   #
-  # * *Args*    :
-  #   - +shortName+ -> The short name of the namespace to be found
-  # * *Returns* :
-  #   - Namesapce object
+  # @param shortName [string] The short name of the namespace to be found
+  # @return [object] Iso Namespace object
   def self.findByShortName(shortName)
     # Do we have a stored result
     object = self.new
@@ -114,10 +113,8 @@ class IsoNamespace
   
   # Find based on identifier
   #
-  # * *Args*    :
-  #   - +id+ -> The id of the object
-  # * *Returns* :
-  #   - Namespce object
+  # @param id [string] The id of the object
+  # @returns [object] Namespace object
   def self.find(id)
     # Do we have a stored result?
     object = self.new 
@@ -154,11 +151,7 @@ class IsoNamespace
 
   # Find all namespace objects
   #
-  # TODO: CHange hash results to array
-  #
-  # * *Args*    :
-  # * *Returns* :
-  #   - Hash of namespace objects
+  # @return [hash] Hash of namespace objects
   def self.all
     # Build query and submit.
     results = Array.new
@@ -194,12 +187,9 @@ class IsoNamespace
 
   # Create a namespace object
   #
-  # * *Args*    :
-  #   - +params+ -> {name, shortName}
-  # * *Returns* :
-  #   - Namespace object. Errors set if duplicate
-  # * *Exceptions* :
-  #   - CreateError if object not created
+  # @param params [hash] {name, shortName}
+  # @return [object] Namespace object. Errors set if duplicate
+  # @raise [ExceptionClass] CreateError if object not created
   def self.create(params)
     object = self.new
     object.errors.clear
@@ -242,11 +232,8 @@ class IsoNamespace
 
   # Destroy a namespace object
   #
-  # * *Args*    :
-  # * *Returns* :
-  #   - No return
-  # * *Exceptions* :
-  #   - DestroyError if object not destroyed
+  # @return null
+  # @raise [ExceptionClass] DestroyError if object not destroyed
   def destroy
     # Destroy the exisitng maps
     @@idMap = Hash.new
@@ -274,6 +261,9 @@ class IsoNamespace
     end
   end
 
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     json = 
     { 
@@ -285,6 +275,10 @@ class IsoNamespace
     return json
   end
   
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = self.new
     object.id = json[:id]

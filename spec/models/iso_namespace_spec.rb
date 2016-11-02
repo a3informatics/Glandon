@@ -14,7 +14,26 @@ describe IsoNamespace do
 		expect(namespace).to be_valid
 	end
 	
-	it "determines namespace exists" do
+  it "can be filled from JSON" do
+    result = IsoNamespace.new
+    result.id = "NS-XXX"
+    result.namespace = "http://www.assero.co.uk/MDRItems"
+    result.name = "XXX Long"
+    result.shortName = "XXX"
+    expect(IsoNamespace.from_json({id: "NS-XXX", namespace: "http://www.assero.co.uk/MDRItems", name: "XXX Long", shortName: "XXX"})).eql?(result)
+  end
+
+	it "can be returned as JSON" do
+    result = IsoNamespace.new
+    result.id = "NS-XXX"
+    result.namespace = "http://www.assero.co.uk/MDRItems"
+    result.name = "XXX Long"
+    result.shortName = "XXX"
+    json = result.to_json
+    json.eql?({id: "NS-XXX", namespace: "http://www.assero.co.uk/MDRItems", name: "XXX Long", shortName: "XXX"})
+  end
+
+  it "determines namespace exists" do
 		expect(IsoNamespace.exists?("AAA")).to eq(true)   
 	end
 
