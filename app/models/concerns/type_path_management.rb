@@ -14,6 +14,10 @@ module TypePathManagement
       SdtmUserDomain::C_RDF_TYPE_URI.to_s => Rails.application.routes.url_helpers.history_sdtm_user_domains_path
     }
 
+  # Method returns the history path for a given rdf type
+  #
+  # @param text [string] The RDF type
+  # @return [string] The path
   def self.history_path(rdf_type)
     if @@mi_history_path.has_key?(rdf_type) 
       return @@mi_history_path[rdf_type]

@@ -128,12 +128,18 @@ class IsoRegistrationState
         :next_state => C_SUPERSEDED
       }
   }
+  @@base_namespace
 
   def persisted?
     id.present?
   end
  
+  # Initialize the object (new)
+  # 
+  # @param triples [hash] Hash of triples
+  # @return [string] The owner's short name
   def initialize(triples=nil)
+    @@base_namespace ||= UriManagement.getNs(C_NS_PREFIX)
     @@owner ||= IsoRegistrationAuthority.owner()
     date_time = Time.now
     if triples.nil?
@@ -155,34 +161,38 @@ class IsoRegistrationState
         cid = ModelUtility.extractCid(links[0])
         self.registrationAuthority  = IsoRegistrationAuthority.find(cid)
       end
-      #triples.each do |triple|
-        self.registrationStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
-        self.administrativeNote = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
-        effective_date = Triples::get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
-        until_date = Triples::get_property_value(triples, UriManagement::C_ISO_R, "untilDate")
-        self.set_current_datetimes(effective_date, until_date)
-        self.unresolvedIssue = Triples::get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
-        self.administrativeStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeStatus")
-        self.previousState  = Triples::get_property_value(triples, UriManagement::C_ISO_R, "previousState")
-      #end
+      self.registrationStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
+      self.administrativeNote = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
+      effective_date = Triples::get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
+      until_date = Triples::get_property_value(triples, UriManagement::C_ISO_R, "untilDate")
+      self.set_current_datetimes(effective_date, until_date)
+      self.unresolvedIssue = Triples::get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
+      self.administrativeStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeStatus")
+      self.previousState  = Triples::get_property_value(triples, UriManagement::C_ISO_R, "previousState")
     end
     if date_time >= self.effective_date && date_time <= self.until_date
       self.current = true
     end
   end
 
-  #def registrationAuthority
-  #  return @@owner
-  #end
-  
+  # Test if registered
+  # 
+  # @return [boolean] True if a registration state present
   def registered?()
     return self.registrationStatus != C_NOTSET
   end
 
+  # Get the No State status
+  # 
+  # @return [string] The no state string
   def self.no_state()
     return C_NOTSET
   end
 
+  # Get the next state
+  # 
+  # @param state [string] The current state
+  # @return [string] The next state
   def self.nextState(state)
     info = @@stateInfo[state]
     nextState = info[:next_state]
@@ -238,6 +248,10 @@ class IsoRegistrationState
     return info[:next_state] != self.registrationStatus
   end
 
+  # Find the item gievn the id
+  #
+  # @id [string] The id to be found
+  # @return [object] The Scoped Identifier if found, nil otherwise
   def self.find(id)
     object = nil
     date_time = Time.now
@@ -289,6 +303,9 @@ class IsoRegistrationState
     return object
   end
 
+  # Find all items
+  #
+  # @return [Array] An array of Scoped Identifier objects.
   def self.all
     results = Array.new
     date_time = Time.now
@@ -338,135 +355,39 @@ class IsoRegistrationState
     return results
   end
 
-  def self.create(identifier, version, scope_org)   
-    # Create the query
-    id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
+  # Create the object in the triple store.
+  #
+  # @param identifier [string] The identifer being checked.
+  # @param version [integer] The version.
+  # @param ra [object] The registration authority
+  # @return [object] The created object.
+  def self.create(identifier, version, ra)   
+    object = IsoRegistrationState.from_data(identifier, version, ra)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      "	:" + id + " rdf:type isoR:RegistrationState . \n" +
-      "	:" + id + " isoR:byAuthority :" + @@owner.id + " . \n" +
-      "	:" + id + " isoR:registrationStatus \"" + C_INCOMPLETE + "\"^^xsd:string . \n" +
-      "	:" + id + " isoR:administrativeNote \"\"^^xsd:string . \n" +
-      "	:" + id + " isoR:effectiveDate \"" + C_DEFAULT_DATETIME + "\"^^xsd:string . \n" +
-      " :" + id + " isoR:untilDate \"" + C_DEFAULT_DATETIME + "\"^^xsd:string . \n" +
-      "	:" + id + " isoR:unresolvedIssue \"\"^^xsd:string . \n" +
-      "	:" + id + " isoR:administrativeStatus \"\"^^xsd:string . \n" +
-      "	:" + id + " isoR:previousState \"" + C_INCOMPLETE + "\"^^xsd:string . \n" +
+      "	:#{object.id} rdf:type isoR:RegistrationState . \n" +
+      "	:#{object.id} isoR:byAuthority :#{object.registrationAuthority.id} . \n" +
+      "	:#{object.id} isoR:registrationStatus \"#{object.registrationStatus}\"^^xsd:string . \n" +
+      "	:#{object.id} isoR:administrativeNote \"#{object.administrativeNote}\"^^xsd:string . \n" +
+      "	:#{object.id} isoR:effectiveDate \"#{object.effective_date}\"^^xsd:string . \n" +
+      " :#{object.id} isoR:untilDate \"#{object.until_date}\"^^xsd:string . \n" +
+      "	:#{object.id} isoR:unresolvedIssue \"#{object.unresolvedIssue}\"^^xsd:string . \n" +
+      "	:#{object.id} isoR:administrativeStatus \"#{object.administrativeStatus}\"^^xsd:string . \n" +
+      "	:#{object.id} isoR:previousState \"#{object.previousState}\"^^xsd:string . \n" +
       "}"
     # Send the request, wait the resonse
     response = CRUD.update(update)
     # Response
-    if response.success?
-      object = self.new
-      object.id = id
-      object.registrationStatus = C_INCOMPLETE
-      object.administrativeNote = ""
-      object.effective_date = Time.parse(C_DEFAULT_DATETIME)
-      object.until_date = Time.parse(C_DEFAULT_DATETIME)
-      object.unresolvedIssue = ""
-      object.administrativeStatus = ""
-      object.previousState  = C_INCOMPLETE 
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Created Id=" + id.to_s)
-    else
+    if !response.success?
       ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
       raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
     end
     return object    
   end
 
-  def self.create_dummy(identifier, version, scope_org)
-    object = self.new
-    object.id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
-    object.registrationStatus = C_INCOMPLETE
-    object.administrativeNote = ""
-    object.effective_date = Time.parse(C_DEFAULT_DATETIME)
-    object.until_date = Time.parse(C_DEFAULT_DATETIME)
-    object.unresolvedIssue = ""
-    object.administrativeStatus = ""
-    object.previousState  = C_INCOMPLETE 
-    return object
-  end
-
-  def self.create_sparql(identifier, version, new_state, prev_state, ra, sparql)
-    id = ModelUtility.build_full_cid(C_CID_PREFIX , ra.namespace.shortName, identifier, version)
-    subject = {:prefix => C_NS_PREFIX, :id => id}
-    sparql.triple(subject, {:prefix => "rdf", :id => "type"}, {:prefix => "isoR", :id => "RegistrationState"})
-    sparql.triple(subject, {:prefix => "isoR", :id => "byAuthority"}, {:prefix => C_NS_PREFIX, :id => ra.id})
-    sparql.triple(subject, {:prefix => "isoR", :id => "registrationStatus"}, {:literal => new_state, :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => "isoR", :id => "administrativeNote"}, {:literal => "", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => "isoR", :id => "effectiveDate"}, {:literal => C_DEFAULT_DATETIME, :primitive_type => "dateTime"})
-    sparql.triple(subject, {:prefix => "isoR", :id => "untilDate"}, {:literal => C_DEFAULT_DATETIME, :primitive_type => "dateTime"})
-    sparql.triple(subject, {:prefix => "isoR", :id => "unresolvedIssue"}, {:literal => "", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => "isoR", :id => "administrativeStatus"}, {:literal => "", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => "isoR", :id => "previousState"}, {:literal => prev_state, :primitive_type => "string"})
-    return id
-  end
-  
-  def to_json
-    result = 
-    { 
-      :namespace => C_INSTANCE_NS, 
-      :id => self.id, 
-      :registration_authority => self.registrationAuthority.to_json,
-      :registration_status => self.registrationStatus,
-      :administrative_note => self.administrativeNote,
-      :effective_date => self.effective_date,
-      :until_date => self.until_date,
-      :current => self.current,  
-      :unresolved_issue => self.unresolvedIssue,
-      :administrative_status => self.administrativeStatus,
-      :previous_state => self.previousState 
-    }
-    return result
-  end
-
-  def self.from_json(json)
-    object = self.new
-    object.id = json[:id]
-    object.registrationAuthority = IsoRegistrationAuthority.from_json(json[:registration_authority])
-    object.registrationStatus = json[:registration_status]
-    object.administrativeNote = json[:administrative_note]
-    object.effective_date = json[:effective_date]
-    object.until_date = json[:until_date]
-    object.current = json[:current]
-    object.unresolvedIssue = json[:unresolved_issue]
-    object.administrativeStatus = json[:administrative_status]
-    object.previousState = json[:previous_state]
-    return object
-  end
-
-  def to_sparql(sparql, ra, identifier, version)
-    id = ModelUtility.build_full_cid(C_CID_PREFIX , ra.namespace.shortName, identifier, version)
-    sparql.add_prefix(UriManagement::C_ISO_R)
-    sparql.add_prefix(UriManagement::C_ISO_I)
-    sparql.triple(C_NS_PREFIX, id, UriManagement::C_RDF, "type", "isoR", "RegistrationState")
-    sparql.triple(C_NS_PREFIX, id, UriManagement::C_ISO_R, "byAuthority", C_NS_PREFIX, ra.id)
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "registrationStatus", self.registrationStatus, "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeNote", "", "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "effectiveDate", C_DEFAULT_DATETIME, "dateTime")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "untilDate", C_DEFAULT_DATETIME, "dateTime")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "unresolvedIssue", "", "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "administrativeStatus", "", "string")
-    sparql.triple_primitive_type(C_NS_PREFIX, id, "isoR", "previousState", self.previousState, "string")
-    return id
-  end
-
-  def to_sparql_v2(sparql, ra, identifier, version)
-    id = ModelUtility.build_full_cid(C_CID_PREFIX , ra.namespace.shortName, identifier, version)
-    subject = {:prefix => C_NS_PREFIX, :id => id}
-    sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_ISO_R, :id => "RegistrationState"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "byAuthority"}, {:prefix => C_NS_PREFIX, :id => ra.id})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "registrationStatus"}, {:literal => "#{self.registrationStatus}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeNote"}, {:literal => "", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "effectiveDate"}, {:literal => C_DEFAULT_DATETIME, :primitive_type => "dateTime"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "untilDate"}, {:literal => C_DEFAULT_DATETIME, :primitive_type => "dateTime"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "unresolvedIssue"}, {:literal => "", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeStatus"}, {:literal => "", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "previousState"}, {:literal => "#{self.previousState}", :primitive_type => "string"})
-    return id
-  end
-
+  # Create the object in the triple store.
+  #
   def self.count
     results = Hash.new
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoR"]) +
@@ -487,8 +408,10 @@ class IsoRegistrationState
     return results
   end
 
+  # Create the object in the triple store.
+  #
   # TODO: Should not need id param, fix
-  def update(id, params)  
+  def update(params)  
     registrationStatus = params[:registrationStatus]
     previousState  = params[:previousState]
     note = params[:administrativeNote]
@@ -527,6 +450,8 @@ class IsoRegistrationState
     end
   end
   
+  # Create the object in the triple store.
+  #
   def self.make_current(id)  
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "DELETE \n" +
@@ -552,6 +477,8 @@ class IsoRegistrationState
     end
   end
 
+  # Create the object in the triple store.
+  #
   def self.make_not_current(id)  
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "DELETE \n" +
@@ -572,6 +499,85 @@ class IsoRegistrationState
     if !response.success?
       raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
+  end
+
+  # Create the object from data. Will build the id for the object.
+  #
+  # @param identifier [string] The identifer of the item.
+  # @param version [integer] The version of the item.
+  # @param ra [object] The registration authority
+  # @return [object] The created object.
+  def self.from_data(identifier, version, ra)
+    object = self.new
+    object.id = ModelUtility.build_full_cid(C_CID_PREFIX, ra.namespace.shortName, identifier, version)
+    object.registrationStatus = C_INCOMPLETE
+    object.administrativeNote = ""
+    object.effective_date = Time.parse(C_DEFAULT_DATETIME)
+    object.until_date = Time.parse(C_DEFAULT_DATETIME)
+    object.unresolvedIssue = ""
+    object.administrativeStatus = ""
+    object.previousState  = C_INCOMPLETE 
+    object.registrationAuthority = ra
+    return object
+  end
+
+  # Create the object from JSON
+  #
+  # @param [hash] The JSON hash object
+  # @return [object] The scoped identifier object
+  def self.from_json(json)
+    object = self.new
+    object.id = json[:id]
+    object.registrationAuthority = IsoRegistrationAuthority.from_json(json[:registration_authority])
+    object.registrationStatus = json[:registration_status]
+    object.administrativeNote = json[:administrative_note]
+    object.effective_date = json[:effective_date]
+    object.until_date = json[:until_date]
+    object.current = json[:current]
+    object.unresolvedIssue = json[:unresolved_issue]
+    object.administrativeStatus = json[:administrative_status]
+    object.previousState = json[:previous_state]
+    return object
+  end
+
+  # Return the object as JSON
+  #
+  # @return [hash] The JSON hash.
+  def to_json
+    result = 
+    { 
+      :namespace => C_INSTANCE_NS, 
+      :id => self.id, 
+      :registration_authority => self.registrationAuthority.to_json,
+      :registration_status => self.registrationStatus,
+      :administrative_note => self.administrativeNote,
+      :effective_date => self.effective_date,
+      :until_date => self.until_date,
+      :current => self.current,  
+      :unresolved_issue => self.unresolvedIssue,
+      :administrative_status => self.administrativeStatus,
+      :previous_state => self.previousState 
+    }
+    return result
+  end
+
+  # Return the object as SPARQL
+  #
+  # @param sparql [object] The sparql object being built (to be added to)
+  # @return [object] The URI of the object
+  def to_sparql_v2(sparql)
+    subject_uri = UriV2.new({id: self.id, namespace: @@base_namespace})
+    subject = {uri: subject_uri}
+    sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_ISO_R, :id => "RegistrationState"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "byAuthority"}, {:prefix => C_NS_PREFIX, :id => self.registrationAuthority.id})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "registrationStatus"}, {:literal => "#{self.registrationStatus}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeNote"}, {:literal => "#{self.administrativeNote}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "effectiveDate"}, {:literal => "#{self.effective_date}", :primitive_type => "dateTime"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "untilDate"}, {:literal => "#{self.until_date}", :primitive_type => "dateTime"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "unresolvedIssue"}, {:literal => "#{self.unresolvedIssue}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeStatus"}, {:literal => "#{self.administrativeStatus}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "previousState"}, {:literal => "#{self.previousState}", :primitive_type => "string"})
+    return subject_uri
   end
 
   def set_current_datetimes (effective_dt, until_dt)

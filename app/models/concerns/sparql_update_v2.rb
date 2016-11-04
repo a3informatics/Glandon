@@ -9,9 +9,9 @@ class SparqlUpdateV2
     @triples = ""
   end
 
-  def default_namespace(ns)
+  def default_namespace(namespace)
     #ConsoleLogger::log(C_CLASS_NAME,"add_default_namespace","Default NS=#{ns}")
-    @default_namespace = ns
+    @default_namespace = namespace
   end
 
   # subject, predicate, object all <Inner Hash>
@@ -80,7 +80,7 @@ private
       end
       part = "\"#{literal}\"^^xsd:#{args[:primitive_type]}"
     else
-      raise "Invalid triple part detected.  Args: #{args.to_s}"
+      raise "Invalid triple part detected. Args: #{args.to_s}"
     end
     return part
   end

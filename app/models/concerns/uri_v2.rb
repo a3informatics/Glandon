@@ -7,7 +7,7 @@ class UriV2
   # <path>     ::= <path_element>/<path>
   #
   # CID = Class Identifier, used as the id for Rails classes and based on the URI
-  # CID and fragment are the same thing
+  # CID and fragment are the same thing, CID is a specalist form of.
 
   C_CLASS_NAME = "Uri"  
   C_SCHEME_SEPARATOR = "://"
@@ -18,6 +18,16 @@ class UriV2
   C_IRIREF_START = "<"
   C_IRIREF_END = ">"
   
+  # Initialize
+  #
+  # Four ways to initialize
+  # 1. {:uri}
+  # 2. {:namespace, :id}
+  # 3. {:namespace, :prefix, :org_name, :identifier, [:version]}
+  # 4. {}
+  #
+  # @param args [hash] The arguments hash
+  # @return [object] The URI object
   def initialize(args)
     @scheme = "http"
     @authority = "www.assero.co.uk" 
@@ -26,7 +36,7 @@ class UriV2
     @uid = ""
     @version = ""
     if args.has_key?(:uri)
-      uri = args[:uri]
+      uri = args[:uri] # @todo - Check this, regex to check?
       @authority = get_authority(uri)
       @path = get_path(uri)
       fragment = get_fragment(uri)
@@ -34,8 +44,8 @@ class UriV2
       @uid = get_uid(fragment)
       @version = get_version(fragment)
     elsif args.has_key?(:id) && args.has_key?(:namespace)
-      fragment = args[:id]
-      namespace = args[:namespace]
+      fragment = args[:id].gsub(/[^0-9A-Za-z_\-]/, '')
+      namespace = args[:namespace] # @todo - Check this, regex to check?
       @authority = get_authority(namespace)
       @path = get_path(namespace)
       @prefix = get_prefix(fragment)
@@ -48,7 +58,7 @@ class UriV2
       #ConsoleLogger::log(C_CLASS_NAME,"initialize","namespace=#{namespace}")
       @authority = get_authority(namespace)
       @path = get_path(namespace)
-      @prefix = args[:prefix]
+      @prefix = args[:prefix] # @todo - Check this, restrict to upper case only?
       @uid = uid
       if args.has_key?(:version)
         @version = "#{args[:version]}"
@@ -56,22 +66,49 @@ class UriV2
     end
   end
 
+  # To String
+  #
+  # @return [string] The uri as a string namesapce#id form
   def to_s
-    return "#{self.namespace}#{C_FRAGMENT_SEPARATOR}#{self.id}"
+    result = ""
+    if self.id == ""
+      result = "#{self.namespace}"
+    else
+      result = "#{self.namespace}#{C_FRAGMENT_SEPARATOR}#{self.id}"
+    end
+    return result      
   end
   
+  # To Reference
+  #
+  # @return [string] The uri as a reference "<" + namesapce#id + ">" form
   def to_ref
-    return "#{C_IRIREF_START}#{self.namespace}#{C_FRAGMENT_SEPARATOR}#{self.id}#{C_IRIREF_END}"
+    result = ""
+    if self.id == ""
+      result = "#{C_IRIREF_START}#{self.namespace}#{C_IRIREF_END}"
+    else
+      result = "#{C_IRIREF_START}#{self.namespace}#{C_FRAGMENT_SEPARATOR}#{self.id}#{C_IRIREF_END}"
+    end
+    return result      
   end
   
+  # To JSON
+  #
+  # @return [hash] The uri as JSON, namesapce and id
   def to_json
     return {:namespace => self.namespace, :id => self.id}
   end
 
+  # Namespace
+  #
+  # @return [string] The namespace part only 
   def namespace()
     return @scheme + C_SCHEME_SEPARATOR + @authority + C_PATH_SEPARATOR + @path
   end
 
+  # Id
+  #
+  # @return [string] The id part only 
   def id()
     result = ""
     if @prefix != ""
@@ -104,7 +141,6 @@ private
     else
       result = ""
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"getAuthority","Authority=" + result)
     return result  
   end
 

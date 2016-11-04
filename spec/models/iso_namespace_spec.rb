@@ -6,7 +6,7 @@ describe IsoNamespace do
 
   it "clears triple store and loads test data" do
     clear_triple_store
-    load_triple_store("IsoNamespace.ttl")
+    load_test_file_into_triple_store("IsoNamespace.ttl")
   end
 
 	it "is valid with a id, namespace, name and shortName" do
@@ -20,7 +20,7 @@ describe IsoNamespace do
     result.namespace = "http://www.assero.co.uk/MDRItems"
     result.name = "XXX Long"
     result.shortName = "XXX"
-    expect(IsoNamespace.from_json({id: "NS-XXX", namespace: "http://www.assero.co.uk/MDRItems", name: "XXX Long", shortName: "XXX"})).eql?(result)
+    expect(IsoNamespace.from_json({id: "NS-XXX", namespace: "http://www.assero.co.uk/MDRItems", name: "XXX Long", shortName: "XXX"}).to_json).to eq(result.to_json)
   end
 
 	it "can be returned as JSON" do
@@ -29,8 +29,7 @@ describe IsoNamespace do
     result.namespace = "http://www.assero.co.uk/MDRItems"
     result.name = "XXX Long"
     result.shortName = "XXX"
-    json = result.to_json
-    json.eql?({id: "NS-XXX", namespace: "http://www.assero.co.uk/MDRItems", name: "XXX Long", shortName: "XXX"})
+    expect(result.to_json).to eq({id: "NS-XXX", namespace: "http://www.assero.co.uk/MDRItems", name: "XXX Long", shortName: "XXX"})
   end
 
   it "determines namespace exists" do
@@ -47,7 +46,7 @@ describe IsoNamespace do
     result.namespace = "http://www.assero.co.uk/MDRItems"
     result.name = "AAA Long"
     result.shortName = "AAA"
-    expect(IsoNamespace.findByShortName("AAA")).eql?(result)   
+    expect(IsoNamespace.findByShortName("AAA").to_json).to eq(result.to_json)   
   end
 
 	it "determines namespace exists without query" do
@@ -60,16 +59,16 @@ describe IsoNamespace do
     result.namespace = "http://www.assero.co.uk/MDRItems"
     result.name = "AAA Long"
     result.shortName = "AAA"
-    expect(IsoNamespace.findByShortName("AAA")).eql?(result)  
+    expect(IsoNamespace.findByShortName("AAA").to_json).to eq(result.to_json)  
   end
 
 	it "finds namespace" do
     result = IsoNamespace.new
     result.id = "NS-BBB"
     result.namespace = "http://www.assero.co.uk/MDRItems"
-    result.name = "BBB Long"
+    result.name = "BBB Pharma"
     result.shortName = "BBB"
-    expect(IsoNamespace.find("NS-BBB")).eql?(result)   
+    expect(IsoNamespace.find("NS-BBB").to_json).to eq(result.to_json)   
   end
 
 	it "finds namespace without query" do
@@ -78,24 +77,24 @@ describe IsoNamespace do
     result.namespace = "http://www.assero.co.uk/MDRItems"
     result.name = "AAA Long"
     result.shortName = "AAA"
-    expect(IsoNamespace.find("NS-AAA")).eql?(result)  
+    expect(IsoNamespace.find("NS-AAA").to_json).to eq(result.to_json)  
   end
 
 	it "all namespace" do
-    results = Hash.new
+    results = Array.new
+    result = IsoNamespace.new
+    result.id = "NS-BBB"
+    result.namespace = "http://www.assero.co.uk/MDRItems"
+    result.name = "BBB Pharma"
+    result.shortName = "BBB"
+    results << result
     result = IsoNamespace.new
     result.id = "NS-AAA"
     result.namespace = "http://www.assero.co.uk/MDRItems"
     result.name = "AAA Long"
     result.shortName = "AAA"
-    results["NS-AAA"] = result
-    result = IsoNamespace.new
-    result.id = "NS-BBB"
-    result.namespace = "http://www.assero.co.uk/MDRItems"
-    result.name = "BBB Long"
-    result.shortName = "BBB"
-    results["NS-BBB"] = result
-    expect(IsoNamespace.all).eql?(results)   
+    results << result
+    expect(IsoNamespace.all.to_json).to eq(results.to_json)   
   end
 
 	it "create a namespace" do
@@ -104,13 +103,13 @@ describe IsoNamespace do
     result.namespace = "http://www.assero.co.uk/MDRItems"
     result.name = "CCC Long"
     result.shortName = "CCC"
-    expect(IsoNamespace.create({shortName: "CCC", name: "CCC Long"})).eql?(result)  
+    expect(IsoNamespace.create({shortName: "CCC", name: "CCC Long"}).to_json).to eq(result.to_json)  
 	end
 
   it "does not create a namespace with an invalid shortname" do
     predicted_result = IsoNamespace.new
     actual_result = IsoNamespace.create({shortName: "CCC%$£@", name: "CCC Long"})
-    expect(actual_result).eql?(predicted_result)
+    expect(actual_result.to_json).to eq(predicted_result.to_json)
     expect(actual_result.errors.messages[:short_name]).to include("contains invalid characters") 
   end
 
@@ -118,14 +117,14 @@ describe IsoNamespace do
   #it "does not create a namespace with an invalid name" do
   #  predicted_result = IsoNamespace.new
   #  actual_result = IsoNamespace.create({shortName: "CCC", name: "CCC%$£@ Long"})
-  #  expect(actual_result).eql?(predicted_result)
+  #  expect(actual_result).to eq(predicted_result)
   #  expect(actual_result.errors.messages[:name]).to include("contains invalid characters or is empty") 
   #end
 
   it "does not create a namespace that already exists" do
     predicted_result = IsoNamespace.new
     actual_result = IsoNamespace.create({shortName: "CCC", name: "CCC Long"})
-    expect(actual_result).eql?(predicted_result)
+    expect(actual_result.to_json).to eq(predicted_result.to_json)
     expect(actual_result.errors.messages[:base]).to include("The short name entered is already in use.")
   end
     
@@ -143,17 +142,17 @@ describe IsoNamespace do
   end
 
   it "exists handles empty response" do
-    expect(IsoNamespace.exists?("AAA")).eql?(false)   
+    expect(IsoNamespace.exists?("AAA")).to eq(false)   
   end
 
   it "findByShortName handles empty response" do
     result = IsoNamespace.new
-    expect(IsoNamespace.findByShortName("XXX")).eql?(result)
+    expect(IsoNamespace.findByShortName("XXX").to_json).to eq(result.to_json)
   end
 
   it "find handles empty response" do
     result = IsoNamespace.new
-    expect(IsoNamespace.find("NS-XXX")).eql?(result)  
+    expect(IsoNamespace.find("NS-XXX").to_json).to eq(result.to_json)  
   end
 
   it "create a namespace, error response" do
@@ -214,8 +213,8 @@ describe IsoNamespace do
   end
 
   it "all handles empty response" do
-    results = Hash.new
-    expect(IsoNamespace.all).eql?(results)  
+    results = Array.new
+    expect(IsoNamespace.all.to_json).to eq(results.to_json)  
   end
 
   it "destroy a namespace, error response" do

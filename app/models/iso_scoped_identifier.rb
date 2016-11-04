@@ -18,14 +18,14 @@ class IsoScopedIdentifier
   C_FIRST_VERSION = 1
 
   # Class variables
-  @@baseNs
+  @@base_namespace
 
   # Initialize the object (new)
   # 
   # @param triples [hash] Hash of triples
   # @return [string] The owner's short name
   def initialize(triples=nil)
-    @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
+    @@base_namespace ||= UriManagement.getNs(C_NS_PREFIX)
     if triples.nil?
       self.id = ""
       self.namespace = IsoNamespace.new
@@ -244,7 +244,6 @@ class IsoScopedIdentifier
   # @return [Array] An array of Scoped Identifier objects.
   def self.all    
     results = Array.new
-    
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?a ?b ?c ?d ?e WHERE \n" +
@@ -255,10 +254,8 @@ class IsoScopedIdentifier
         "  ?a isoI:version ?d . \n" +
         "  ?a isoI:hasScope ?e . \n" +
       "}"
-    
     # Send the request, wait the resonse
     response = CRUD.query(query)
-    
     # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -281,7 +278,6 @@ class IsoScopedIdentifier
       end
     end    
     return results
-    
   end
 
   # Find the set of unique identifiers for a given RDF Type
@@ -429,7 +425,7 @@ class IsoScopedIdentifier
     object.namespace = IsoNamespace.from_json(json[:namespace])
     object.id = json[:id]
     object.identifier = json[:identifier]
-    object.versionLabel = json[:versionLabel]
+    object.versionLabel = json[:version_label]
     object.version = json[:version]
     return object
   end
@@ -452,14 +448,16 @@ class IsoScopedIdentifier
   # Return the object as SPARQL
   #
   # @param sparql [object] The sparql object being built (to be added to)
-  # @return null
+  # @return [object] The URI of the object
   def to_sparql_v2(sparql)
-    subject = {:prefix => C_NS_PREFIX, :id => self.id}
+    subject_uri = UriV2.new({id: self.id, namespace: @@base_namespace})
+    subject = {uri: subject_uri}
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "identifier"}, {:literal => "#{self.identifier}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_ISO_I, :id => "ScopedIdentifier"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "version"}, {:literal => "#{self.version}", :primitive_type => "positiveInteger"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "versionLabel"}, {:literal => "#{self.versionLabel}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "hasScope"}, {:prefix => C_NS_PREFIX, :id => "#{self.namespace.id}"})
+    return subject_uri
   end
 
 end

@@ -6,8 +6,8 @@ describe IsoScopedIdentifier do
 
   it "clears triple store and loads test data" do
     clear_triple_store
-    load_triple_store("IsoNamespace.ttl")
-    load_triple_store("IsoScopedIdentifier.ttl")
+    load_test_file_into_triple_store("IsoNamespace.ttl")
+    load_test_file_into_triple_store("IsoScopedIdentifier.ttl")
   end
 
   it "shows an identifier exist" do
@@ -24,12 +24,6 @@ describe IsoScopedIdentifier do
     results << {:identifier => "TEST2", :label => "Test Item 2", :owner_id => "NS-BBB", :owner => "BBB"}
     results << {:identifier => "TEST1", :label => "Test Item 1", :owner_id => "NS-BBB", :owner => "BBB"}
     expect(IsoScopedIdentifier.allIdentifier("TestItem", "http://www.assero.co.uk/MDRItems")).to eq(results)
-  end
-
-  it "finds an item" do
-    iso_namespace = IsoNamespace.from_json({id: "NS-XXX", namespace: "http://www.assero.co.uk/MDRItems", name: "XXX Long", shortName: "XXX"})
-    result = {:identifier => "TEST1", :label => "Test Item 1", :owner_id => "NS-BBB", :owner => "BBB", :namespace => iso_namespace}
-    expect(IsoScopedIdentifier.find("SI-TEST_1-1")).eql?(result)
   end
 
   it "allows the owner to be retrieved" do
@@ -99,49 +93,75 @@ describe IsoScopedIdentifier do
 
   it "detects a given version" do
     org = IsoNamespace.find("NS-BBB")
-    expect(IsoScopedIdentifier.versionExists?("TEST3", 3, org.id)).eql?(true)
+    expect(IsoScopedIdentifier.versionExists?("TEST3", 3, org.id)).to eq(true)
   end
 
   it "finds a given id" do
-    result = {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
-    expect(IsoScopedIdentifier.find("BC-TEST_3B")).eql?(result)
+    iso_namespace = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    result = {:id=>"SI-TEST_1-1", :identifier => "TEST1", :version => 1, :version_label => "0.1", :namespace => iso_namespace.to_json}
+    expect(IsoScopedIdentifier.find("SI-TEST_1-1").to_json).to eq(result)
+  end
+
+  it "does not find an unknown id" do
+    result = nil
+    expect(IsoScopedIdentifier.find("SI-TEST_1-1x")).to eq(result)
   end
 
   it "allows all records to be returned" do
-    result = {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
-    expect(IsoScopedIdentifier.all).eql?(result)
+    results = Array.new
+    iso_namespace = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    results << IsoScopedIdentifier.from_json({:id=>"SI-TEST_1-1", :identifier => "TEST1", :version => 1, :version_label => "0.1", :namespace => iso_namespace.to_json})
+    results << IsoScopedIdentifier.from_json({:id=>"SI-TEST_3-3", :identifier => "TEST3", :version => 3, :version_label => "0.3", :namespace => iso_namespace.to_json})
+    results << IsoScopedIdentifier.from_json({:id=>"SI-TEST_2-2", :identifier => "TEST2", :version => 2, :version_label => "0.2", :namespace => iso_namespace.to_json})
+    results << IsoScopedIdentifier.from_json({:id=>"SI-TEST_3-4", :identifier => "TEST3", :version => 4, :version_label => "0.4", :namespace => iso_namespace.to_json})
+    results << IsoScopedIdentifier.from_json({:id=>"SI-TEST_3-5", :identifier => "TEST3", :version => 5, :version_label => "0.5", :namespace => iso_namespace.to_json})
+    expect(IsoScopedIdentifier.all.to_json).to eq(results.to_json)
   end
 
   it "allows an object to be created in the triple store" do
-    result = {:identifier => "NEW_1", :owner_id => "NS-BBB", :owner => "BBB"}
     org = IsoNamespace.find("NS-BBB")
-    expect(IsoScopedIdentifier.create("NEW_1", 1, "0.1", org)).eql?(result)
+    result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW_1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
+    expect(IsoScopedIdentifier.create("NEW_1", 1, "0.1", org).to_json).to eq(result)
   end
 
   it "allows an object to be created from data" do
-    result = {:identifier => "NEW_1", :owner_id => "NS-BBB", :owner => "BBB"}
     org = IsoNamespace.find("NS-BBB")
-    expect(IsoScopedIdentifier.from_data("NEW_1", 1, "0.1", org)).eql?(result)
+    result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW_1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
+    expect(IsoScopedIdentifier.from_data("NEW_1", 1, "0.1", org).to_json).to eq(result)
   end
   
   it "allows an object to be created from JSON" do
-    result = {:identifier => "NEW_1", :owner_id => "NS-BBB", :owner => "BBB"}
     org = IsoNamespace.find("NS-BBB")
+    result = {:id=>"SI-NEW_1-1", :identifier => "NEW_1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
     json = { :id => "SI-NEW_1-1", :identifier => "NEW_1", :version_label => "0.1", :version => 1, :namespace => org.to_json }
-    expect(IsoScopedIdentifier.from_data("NEW_1", 1, "0.1", org)).eql?(result)
+    expect(IsoScopedIdentifier.from_json(json).to_json).to eq(result)
   end
   
   it "allows an object to be exported as JSON" do
-    result = {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
-    expect(IsoScopedIdentifier.find("BC-TEST_3B").to_json).eql?(result)
+    org = IsoNamespace.find("NS-BBB")
+    result = {:id=>"SI-TEST_3-4", :identifier => "TEST3", :version => 4, :version_label => "0.4", :namespace => org.to_json}
+    expect(IsoScopedIdentifier.find("SI-TEST_3-4").to_json).to eq(result)
   end
 
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new
-    result = {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
+    result = 
+      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
+      "PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "INSERT DATA \n" +
+      "{ \n" + 
+      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:identifier \"TEST3\"^^xsd:string . \n" +
+      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> rdf:type isoI:ScopedIdentifier . \n" +
+      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:version \"4\"^^xsd:positiveInteger . \n" + 
+      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:versionLabel \"0.4\"^^xsd:string . \n" +
+      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:hasScope mdrItems:NS-BBB . \n" +
+      "}"
     IsoScopedIdentifier.find("SI-TEST_3-4").to_sparql_v2(sparql)
-    puts sparql.to_s
-    expect(sparql.to_s).eql?(result)
+    expect(sparql.to_s).to eq(result)
   end
   
   it "allows for an object to be updated" do
