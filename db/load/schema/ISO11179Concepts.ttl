@@ -46,6 +46,13 @@
   rdfs:range xsd:anySimpleType ;
   skos:definition "The property for a concept"^^xsd:string ;
 .
+:extensionProperty
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Concept ;
+  rdfs:label "Concept extension property"^^xsd:string ;
+  rdfs:range xsd:anySimpleType ;
+  skos:definition "A user-defined extension property for a concept"^^xsd:string ;
+.
 :hasMember
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf :link ;

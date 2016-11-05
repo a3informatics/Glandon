@@ -1,0 +1,18 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+<http://www.assero.co.uk/BusinessForm#Extension1> rdf:type 							owl:DatatypeProperty .
+<http://www.assero.co.uk/BusinessForm#Extension1> rdfs:subPropertyOf 		isoC:extensionProperty .
+<http://www.assero.co.uk/BusinessForm#Extension1> rdfs:domain 					<http://www.assero.co.uk/BusinessForm#Question> .
+<http://www.assero.co.uk/BusinessForm#Extension1> rdfs:label 						"Extension 1"^^xsd:string .
+<http://www.assero.co.uk/BusinessForm#Extension1> rdfs:range 						xsd:integer .
+<http://www.assero.co.uk/BusinessForm#Extension2> skos:definition 			"A value to decided how many stars you get"^^xsd:string .
+<http://www.assero.co.uk/BusinessForm#Extension2> rdf:type 							owl:DatatypeProperty .
+<http://www.assero.co.uk/BusinessForm#Extension2> rdfs:subPropertyOf 		isoC:extensionProperty .
+<http://www.assero.co.uk/BusinessForm#Extension2> rdfs:domain 					<http://www.assero.co.uk/BusinessForm#Question> .
+<http://www.assero.co.uk/BusinessForm#Extension2> rdfs:label 						"Extension 2"^^xsd:string .
+<http://www.assero.co.uk/BusinessForm#Extension2> rdfs:range 						xsd:boolean .
+<http://www.assero.co.uk/BusinessForm#Extension2> skos:definition 			"A value to decided if you get stars"^^xsd:string .
