@@ -11,8 +11,7 @@ class IsoNamespace
   include ActiveModel::Validations
 
   attr_accessor :id, :namespace, :name, :shortName
-  #validates_presence_of :id, :namespace, :name, :shortName
-
+  
   # Constants
   C_NS_PREFIX = "mdrItems"
   C_ORG_CID_PREFIX = "O"
@@ -201,21 +200,21 @@ class IsoNamespace
       # Does the namespace exist?
       if !exists?(shortName)
         # Create the query and submit.
-        id = ModelUtility.buildCidIdentifier(C_NS_CID_PREFIX, shortName)
-        orgId = ModelUtility.cidSwapPrefix(id, C_ORG_CID_PREFIX)
+        uri = UriV2.new({:namespace => @@baseNs, :prefix => C_NS_CID_PREFIX, :org_name => shortName, :identifier => C_NS_CID_PREFIX})  
+        org_uri = UriV2.new({:namespace => @@baseNs, :prefix => C_ORG_CID_PREFIX, :org_name => shortName, :identifier => C_NS_CID_PREFIX})  
         update = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
           "INSERT DATA \n" +
           "{\n" +
-          "  :" + orgId + " rdf:type isoB:Organization . \n" +
-          "  :" + orgId + " isoB:name \"" + name + "\"^^xsd:string . \n" +
-          "  :" + orgId + " isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
-          "  :" + id + " rdf:type isoI:Namespace . \n" +
-          "  :" + id + " isoI:ofOrganization :" + orgId + " . \n" +
+          "  :" + org_uri.id + " rdf:type isoB:Organization . \n" +
+          "  :" + org_uri.id + " isoB:name \"" + name + "\"^^xsd:string . \n" +
+          "  :" + org_uri.id + " isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
+          "  :" + uri.id + " rdf:type isoI:Namespace . \n" +
+          "  :" + uri.id + " isoI:ofOrganization :" + org_uri.id + " . \n" +
           "}"
         response = CRUD.update(update)
         # Process the response
         if response.success?
-          object.id = id
+          object.id = uri.id
           object.namespace = @@baseNs 
           object.name = name
           object.shortName = shortName
@@ -239,15 +238,17 @@ class IsoNamespace
     @@idMap = Hash.new
     @@nameMap = Hash.new
     # Create the query and submit.
-    orgId = ModelUtility.cidSwapPrefix(self.id, C_ORG_CID_PREFIX)
+    # orgId = ModelUtility.cidSwapPrefix(self.id, C_ORG_CID_PREFIX)
+    org_uri = IsoUtility.uri(self.namespace, self.id)
+    org_uri.update_prefix(C_ORG_CID_PREFIX)
     update = UriManagement.buildNs(self.namespace, ["isoI", "isoB"]) +
       "DELETE DATA \n" +
       "{ \n" +
-      "  :" + orgId + " rdf:type isoB:Organization . \n" +
-      "  :" + orgId + " isoB:name \"" + self.name + "\"^^xsd:string . \n" +
-      "  :" + orgId + " isoB:shortName \"" + self.shortName + "\"^^xsd:string . \n" +
+      "  :" + org_uri.id + " rdf:type isoB:Organization . \n" +
+      "  :" + org_uri.id + " isoB:name \"" + self.name + "\"^^xsd:string . \n" +
+      "  :" + org_uri.id + " isoB:shortName \"" + self.shortName + "\"^^xsd:string . \n" +
       "  :" + self.id + " rdf:type isoI:Namespace . \n" +
-      "  :" + self.id + " isoI:ofOrganization :" + orgId + " . \n" +
+      "  :" + self.id + " isoI:ofOrganization :" + org_uri.id + " . \n" +
       "}"
     response = CRUD.update(update)
     # Process the response

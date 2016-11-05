@@ -99,7 +99,7 @@ describe IsoNamespace do
 
 	it "create a namespace" do
     result = IsoNamespace.new
-    result.id = "NS-CCC"
+    result.id = "NS-CCC_NS"
     result.namespace = "http://www.assero.co.uk/MDRItems"
     result.name = "CCC Long"
     result.shortName = "CCC"
@@ -192,11 +192,11 @@ describe IsoNamespace do
       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
       "INSERT DATA \n" +
       "{\n" +
-      "  :O-CCC rdf:type isoB:Organization . \n" +
-      "  :O-CCC isoB:name \"CCC Long\"^^xsd:string . \n" +
-      "  :O-CCC isoB:shortName \"CCC\"^^xsd:string . \n" +
-      "  :NS-CCC rdf:type isoI:Namespace . \n" +
-      "  :NS-CCC isoI:ofOrganization :O-CCC . \n" +
+      "  :O-CCC_NS rdf:type isoB:Organization . \n" +
+      "  :O-CCC_NS isoB:name \"CCC Long\"^^xsd:string . \n" +
+      "  :O-CCC_NS isoB:shortName \"CCC\"^^xsd:string . \n" +
+      "  :NS-CCC_NS rdf:type isoI:Namespace . \n" +
+      "  :NS-CCC_NS isoI:ofOrganization :O-CCC_NS . \n" +
       "}"
     sparql_result2 = ""
     response2 = Typhoeus::Response.new(code: 200, body: sparql_result2)

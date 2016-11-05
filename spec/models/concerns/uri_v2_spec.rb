@@ -68,4 +68,9 @@ describe UriV2 do
     expect(uri.to_ref).to eq("<http://www.example.com/path1/path2#AA-ORG_XXX_XXX-1>")
   end
 
+  it "allows the prefix to be updated" do
+    uri = UriV2.new({namespace: "http://www.example.com/path1/path2", prefix: "AA", org_name: "ORG", identifier: "XXX@£$-_XXX", :version => 1})
+    uri.update_prefix("BBB")
+    expect(uri.to_ref).to eq("<http://www.example.com/path1/path2#BBB-ORG_XXX_XXX-1>")
+  end
 end

@@ -28,6 +28,9 @@ class IsoRegistrationAuthority
     id.present?
   end
  
+  # Initialize
+  #
+  # @return [object] The initialized object
   def initialize()
     self.id = ""
     self.number = "<Not Set>"
@@ -37,14 +40,24 @@ class IsoRegistrationAuthority
     @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
   end
 
+  # Get the name
+  #
+  # @return [string] The authority name
   def name
     return namespace.name
   end
 
+  # Get the short name
+  #
+  # @return [string] The authority short name
   def shortName
     return namespace.shortName
   end
 
+  # Find an authroity
+  #
+  # @param id [string] the id required.
+  # @return [object] The authority
   def self.find(id)
     ra = self.new
     if @@id_map.has_key?(id)
@@ -86,12 +99,10 @@ class IsoRegistrationAuthority
     return ra
   end
 
-  # Find namespace by the short name.
+  # Find an authroity by the short name
   #
-  # * *Args*    :
-  #   - +short_name+ -> The short name of the authority to be found
-  # * *Returns* :
-  #   - Registration Authority object
+  # @param short_name [string] The short name required.
+  # @return [object] The authority
   def self.find_by_short_name(short_name)
     # Do we have a stored result
     object = self.new
@@ -104,6 +115,9 @@ class IsoRegistrationAuthority
     return object
   end
 
+  # Find all the authorities
+  #
+  # @return [array] Array holding all the authority objects
   def self.all  
     results = Array.new
     @@id_map = Hash.new
@@ -154,7 +168,9 @@ class IsoRegistrationAuthority
     return results
   end
 
-  # Get the repository owner.
+  # Find the owner of the repository
+  #
+  # @return [object] The object holding the authority that owns the repository
   def self.owner
     # The owner is assumed to be the first entry.
     if @@repositoryOwner == nil
@@ -164,23 +180,27 @@ class IsoRegistrationAuthority
     return @@repositoryOwner
   end
 
+  # Create an authority
+  #
+  # @param params [hash] Hash holding {:number the authority DUNS number, :namespaceId the id of the namespace object}
+  # @return [object] The object holding the authority that owns the repository
   def self.create(params)
     number = params[:number]
     namespaceId = params[:namespaceId]
     uid = number
     # Create the query
-    raiId = ModelUtility.buildCidIdentifier(C_CLASS_RAI_PREFIX, uid)
-    id = ModelUtility.buildCidIdentifier(C_CLASS_RA_PREFIX, uid)
+    uri = UriV2.new({:namespace => @@baseNs, :prefix => C_CLASS_RA_PREFIX, :org_name => C_DUNS, :identifier => uid})  
+    rai_uri = UriV2.new({:namespace => @@baseNs, :prefix => C_CLASS_RAI_PREFIX, :org_name => C_DUNS, :identifier => uid})  
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "INSERT DATA \n" +
       "{ \n" +
-      "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
-      "	:" + raiId + " isoB:organizationIdentifier \"" + number.to_s + "\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:internationalCodeDesignator \"" + C_DUNS + "\"^^xsd:string . \n" +
-      "	:" + id + " rdf:type isoR:RegistrationAuthority . \n" +
-      " :" + id + " isoR:raNamespace :" + namespaceId + " . \n" +
-      "	:" + id + " isoR:hasAuthorityIdentifier :" + raiId + " . \n" +
-      " :" + id + " isoR:owner \"false\"^^xsd:boolean . \n" +
+      "	:" + rai_uri.id + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
+      "	:" + rai_uri.id + " isoB:organizationIdentifier \"" + number.to_s + "\"^^xsd:string . \n" +
+      "	:" + rai_uri.id + " isoB:internationalCodeDesignator \"" + C_DUNS + "\"^^xsd:string . \n" +
+      "	:" + uri.id + " rdf:type isoR:RegistrationAuthority . \n" +
+      " :" + uri.id + " isoR:raNamespace :" + namespaceId + " . \n" +
+      "	:" + uri.id + " isoR:hasAuthorityIdentifier :" + rai_uri.id + " . \n" +
+      " :" + uri.id + " isoR:owner \"false\"^^xsd:boolean . \n" +
       "}"
     # Send the request, wait the resonse
     ConsoleLogger::log(C_CLASS_NAME,"create", "Update=#{update}.")
@@ -188,7 +208,7 @@ class IsoRegistrationAuthority
     # Response
     if response.success?
       ra = self.new
-      ra.id = id
+      ra.id = uri.id
       ra.number = number
       ra.scheme = C_DUNS
       ra.owner = false
@@ -199,18 +219,23 @@ class IsoRegistrationAuthority
     return ra
   end
 
+  # Destroy an authority
+  #
+  # @return [null]
+  # @raise [ExceptionClass] DestroyError if object not destroyed
   def destroy
     # Create the query
-    raiId = ModelUtility.cidSwapPrefix(self.id,C_CLASS_RAI_PREFIX)
+    rai_uri = IsoUtility.uri(@@baseNs, self.id)
+    rai_uri.update_prefix(C_CLASS_RAI_PREFIX)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "DELETE DATA \n" +
       "{ \n" +
-      "	:" + raiId + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
-      "	:" + raiId + " isoB:organizationIdentifier \"" + self.number.to_s + "\"^^xsd:string . \n" +
-      "	:" + raiId + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
+      "	:" + rai_uri.id + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
+      "	:" + rai_uri.id + " isoB:organizationIdentifier \"" + self.number.to_s + "\"^^xsd:string . \n" +
+      "	:" + rai_uri.id + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
       "	:" + self.id + " rdf:type isoR:RegistrationAuthority . \n" +
       " :" + self.id + " isoR:raNamespace :" + self.namespace.id + " . \n" +
-      "	:" + self.id + " isoR:hasAuthorityIdentifier :" + raiId + " . \n" +
+      "	:" + self.id + " isoR:hasAuthorityIdentifier :" + rai_uri.id + " . \n" +
       " :" + self.id + " isoR:owner \"#{self.owner}\"^^xsd:boolean . \n" +
       "}"
     # Send the request, wait the resonse
@@ -222,6 +247,9 @@ class IsoRegistrationAuthority
     end
   end
 
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     json = 
     { 
@@ -234,6 +262,10 @@ class IsoRegistrationAuthority
     return json
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = self.new
     #ConsoleLogger::log(C_CLASS_NAME,"from_json", "Json=#{json}")

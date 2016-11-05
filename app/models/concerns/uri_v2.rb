@@ -122,8 +122,20 @@ class UriV2
     return result  
   end
 
+  # Extend the path
+  #
+  # @param extension [string] The extension to the path
+  # @return [null]
   def extend_path(extension)
     @path = @path + C_PATH_SEPARATOR + extension
+  end
+
+  # Update the prefix
+  #
+  # @param prefix [string] The new prefix
+  # @return [null]
+  def update_prefix(prefix)
+    @prefix = prefix
   end
 
 private
