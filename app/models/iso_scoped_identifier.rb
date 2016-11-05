@@ -407,8 +407,9 @@ class IsoScopedIdentifier
   # @param scope_org [object] The owner organisation (IsoNamespace object)
   # @return [object] The created object.
   def self.from_data(identifier, version, version_label, scope_org)
+    uri = UriV2.new({:namespace => @@base_namespace, :prefix => C_CID_PREFIX, :org_name => scope_org.shortName, :identifier => identifier, :version => version})
     object = self.new
-    object.id = ModelUtility.build_full_cid(C_CID_PREFIX , scope_org.shortName, identifier, version)
+    object.id = uri.id
     object.version = version
     object.versionLabel = version_label
     object.identifier = identifier

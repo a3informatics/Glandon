@@ -508,8 +508,9 @@ class IsoRegistrationState
   # @param ra [object] The registration authority
   # @return [object] The created object.
   def self.from_data(identifier, version, ra)
+    uri = UriV2.new({:namespace => @@base_namespace, :prefix => C_CID_PREFIX, :org_name => ra.namespace.shortName, :identifier => identifier, :version => version})
     object = self.new
-    object.id = ModelUtility.build_full_cid(C_CID_PREFIX, ra.namespace.shortName, identifier, version)
+    object.id = uri.id
     object.registrationStatus = C_INCOMPLETE
     object.administrativeNote = ""
     object.effective_date = Time.parse(C_DEFAULT_DATETIME)
