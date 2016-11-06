@@ -22,7 +22,7 @@ class IsoScopedIdentifier
 
   # Initialize the object (new)
   # 
-  # @param triples [hash] Hash of triples
+  # @param triples [array] Arrays of triples
   # @return [string] The owner's short name
   def initialize(triples=nil)
     @@base_namespace ||= UriManagement.getNs(C_NS_PREFIX)
@@ -33,16 +33,17 @@ class IsoScopedIdentifier
       self.versionLabel = ""
       self.version = 0
     else
+      ConsoleLogger::log(C_CLASS_NAME,"initialize", "Triples=#{triples.to_json}")
       self.id = ModelUtility.extractCid(triples[0][:subject])
       self.namespace = nil
-      if Triples::link_exists?(triples, UriManagement::C_ISO_I, "hasScope")
-        links = Triples::get_links(triples, UriManagement::C_ISO_I, "hasScope")
+      if Triples.link_exists?(triples, UriManagement::C_ISO_I, "hasScope")
+        links = Triples.get_links(triples, UriManagement::C_ISO_I, "hasScope")
         cid = ModelUtility.extractCid(links[0])
         self.namespace = IsoNamespace.find(cid)
       end
-      self.identifier = Triples::get_property_value(triples, UriManagement::C_ISO_I, "identifier")
-      self.version = Triples::get_property_value(triples, UriManagement::C_ISO_I, "version").to_i
-      self.versionLabel = Triples::get_property_value(triples, UriManagement::C_ISO_I, "versionLabel")
+      self.identifier = Triples.get_property_value(triples, UriManagement::C_ISO_I, "identifier")
+      self.version = Triples.get_property_value(triples, UriManagement::C_ISO_I, "version").to_i
+      self.versionLabel = Triples.get_property_value(triples, UriManagement::C_ISO_I, "versionLabel")
     end
   end
 

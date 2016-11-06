@@ -10,6 +10,31 @@ describe IsoScopedIdentifier do
     load_test_file_into_triple_store("IsoScopedIdentifier.ttl")
   end
 
+  it "allows object to be initialized from triples" do
+    result = 
+      {
+        :id=>"SI-ACME_TEST-1", 
+        :identifier => "TEST", 
+        :version => 1, 
+        :version_label => "0.1", 
+        :namespace => 
+          {
+            :namespace => "http://www.assero.co.uk/MDRItems",
+            :id => "NS-AAA",
+            :name => "AAA Long",
+            :shortName => "AAA"
+          }
+      }
+    triples = [ 
+      { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier" },
+      { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#hasScope", object: "http://www.assero.co.uk/MDRItems#NS-AAA" },
+      { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#identifier", object: "TEST" },
+      { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#version", object: "1" },
+      { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#versionLabel", object: "0.1" }
+    ]
+    expect(IsoScopedIdentifier.new(triples).to_json).to eq(result)    
+  end
+
   it "shows an identifier exist" do
     expect(IsoScopedIdentifier.exists?("TEST1", "NS-BBB")).to eq(true)
   end
