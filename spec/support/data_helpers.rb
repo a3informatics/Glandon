@@ -5,6 +5,7 @@ module DataHelpers
       "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
       "DELETE { ?a ?b ?c } WHERE { ?a ?b ?c }"
   	CRUD.update(sparql_query)
+    #sleep 1.5
   end
 
   def load_test_file_into_triple_store(filename)

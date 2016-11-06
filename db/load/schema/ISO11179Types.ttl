@@ -52,7 +52,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :AdministeredItem ;
   rdfs:label "Creation Date"^^xsd:string ;
-  rdfs:range xsd:date ;
+  rdfs:range xsd:dateTime ;
   skos:definition "The date the Administered_item was created"^^xsd:string ;
 .
 :lastChangeDate
@@ -60,7 +60,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :AdministeredItem ;
   rdfs:label "Last Change Date"^^xsd:string ;
-  rdfs:range xsd:date ;
+  rdfs:range xsd:dateTime ;
   skos:definition "The date the Administered_item was last changed"^^xsd:string ;
 .
 :changeDescription
@@ -68,7 +68,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :AdministeredItem ;
   rdfs:label "Change Description"^^xsd:string ;
-  rdfs:range xsd:date ;
+  rdfs:range xsd:string ;
   skos:definition "A description of what has changed since the last version of the Administered_Item"^^xsd:string ;
 .
 :explanatoryComment

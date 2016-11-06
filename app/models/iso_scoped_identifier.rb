@@ -33,7 +33,6 @@ class IsoScopedIdentifier
       self.versionLabel = ""
       self.version = 0
     else
-      ConsoleLogger::log(C_CLASS_NAME,"initialize", "Triples=#{triples.to_json}")
       self.id = ModelUtility.extractCid(triples[0][:subject])
       self.namespace = nil
       if Triples.link_exists?(triples, UriManagement::C_ISO_I, "hasScope")

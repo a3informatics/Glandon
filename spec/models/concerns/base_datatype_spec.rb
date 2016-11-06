@@ -6,6 +6,10 @@ describe BaseDatatype do
 		expect(BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)).to eq("integer")
 	end
 
+  it "obtain xsd datatype" do
+    expect(BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)).to eq("dateTime")
+  end
+
   it "handles missing xsd datatype" do
     expect(BaseDatatype.to_xsd("x")).to eq("")
   end

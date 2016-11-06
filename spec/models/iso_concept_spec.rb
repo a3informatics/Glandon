@@ -66,7 +66,7 @@ describe IsoConcept do
 	it "allows the type of a concept to be found" do
 		expect(IsoConcept.get_type("F-AE_G1_I2", "http://www.assero.co.uk/X/V1").to_s).to eq("http://www.assero.co.uk/BusinessForm#Question")   
 	end
-	
+
 =begin
 	it "allows the child links to be determined" do
 		triples = {}
@@ -290,7 +290,7 @@ describe IsoConcept do
 		expect(sparql.to_s).to eq(result)
 	end
 	
-	it "allows a concept of to be deleted" do
+	it "allows a concept to be deleted" do
 		result =     
 			{ 
       	:type => "",

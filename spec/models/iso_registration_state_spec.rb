@@ -10,6 +10,48 @@ describe IsoRegistrationState do
     load_test_file_into_triple_store("IsoScopedIdentifier.ttl")
   end
 
+  it "allows object to be initialized from triples" do
+    result = 
+      {
+        :id=>"RS-ACME_TEST-1", 
+        :namespace => "http://www.assero.co.uk/MDRItems",
+        :administrative_note => "",
+        :administrative_status => "",
+        :previous_state => "Incomplete",
+        :registration_status => "Incomplete",
+        :unresolved_issue => "",
+        :effective_date => "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
+        :current => false,
+        :registration_authority => 
+          {
+            :id=>"RA-123456789", 
+            :number=>"123456789", 
+            :scheme=>"DUNS", 
+            :owner=>true, 
+            :namespace=>
+              {
+                :namespace=>"http://www.assero.co.uk/MDRItems", 
+                :id=>"NS-BBB", 
+                :name=>"BBB Pharma", 
+                :shortName=>"BBB"
+              }
+          }
+      }
+    triples =[
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/ISO11179Registration#RegistrationState"},
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#byAuthority", object: "http://www.assero.co.uk/MDRItems#RA-123456789"},
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#registrationStatus", object: "Incomplete" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate", object:"2016-01-01T00:00:00+00:00" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#untilDate", object:"2016-01-01T00:00:00+00:00" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#administrativeNote", object:"" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#unresolvedIssue", object:"" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#administrativeStatus", object:"" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#previousState", object:"Incomplete" }
+    ]
+    expect(IsoRegistrationState.new(triples).to_json).to eq(result)    
+  end
+
   it "detects registered state" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
     expect(result.registered?).to eq(true)
@@ -104,8 +146,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Standard",
         :administrative_note => "", 
-        :effective_date=> Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
-        :until_date => Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -131,8 +173,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Standard",
         :administrative_note => "", 
-        :effective_date=> Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
-        :until_date =>  Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -144,8 +186,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Standard",
         :administrative_note => "", 
-        :effective_date=> Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
-        :until_date =>  Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
+        :effective_date=> "2016-01-01T00:00:00+00:00", 
+        :until_date => "2016-01-01T00:00:00+00:00", 
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -157,8 +199,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Standard",
         :administrative_note => "", 
-        :effective_date=> Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
-        :until_date =>  Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -170,8 +212,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Standard",
         :administrative_note => "", 
-        :effective_date=> Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
-        :until_date =>  Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -183,8 +225,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Standard",
         :administrative_note => "", 
-        :effective_date=> Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
-        :until_date =>  Time.parse(IsoRegistrationState::C_DEFAULT_DATETIME),
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -202,8 +244,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
-        :effective_date=> Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
-        :until_date => Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -254,8 +296,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
-        :effective_date=> Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
-        :until_date => Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -274,8 +316,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
-        :effective_date=> Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
-        :until_date => Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -287,8 +329,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
-        :effective_date=> Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
-        :until_date => Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
         :current => false, 
         :unresolved_issue => "", 
         :administrative_status => "", 
@@ -307,8 +349,8 @@ describe IsoRegistrationState do
         :registration_authority => ra.to_json, 
         :registration_status => "Retired",
         :administrative_note => "X1", 
-        :effective_date=> Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
-        :until_date => Time.parse("2016-01-01 00:00:00.000000000 +0000"), 
+        :effective_date => "2016-01-01T00:00:00+00:00", 
+        :until_date => "2016-01-01T00:00:00+00:00", 
         :current => false, 
         :unresolved_issue => "X2", 
         :administrative_status => "", 
@@ -333,8 +375,8 @@ describe IsoRegistrationState do
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:byAuthority mdrItems:RA-123456789 . \n" + 
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:registrationStatus \"Retired\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeNote \"X1\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate \"2016-01-01 00:00:00 UTC\"^^xsd:dateTime . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate \"2016-01-01 00:00:00 UTC\"^^xsd:dateTime . \n" +
+      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate \"2016-01-01T00:00:00+00:00\"^^xsd:dateTime . \n" +
+      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate \"2016-01-01T00:00:00+00:00\"^^xsd:dateTime . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:unresolvedIssue \"X2\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeStatus \"\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:previousState \"Standard\"^^xsd:string . \n" +

@@ -26,8 +26,8 @@ class IsoRegistrationState
   C_RETIRED = "Retired"
   C_SUPERSEDED = "Superseded"
 
-  C_DEFAULT_DATETIME = "2016-01-01T00:00:00Z"
-  C_UNTIL_DATETIME = "2100-01-01T00:00:00Z"
+  C_DEFAULT_DATETIME = "2016-01-01T00:00:00+00:00"
+  C_UNTIL_DATETIME = "2100-01-01T00:00:00+00:00"
 
   # Class variables
   @@stateInfo = {
@@ -156,19 +156,20 @@ class IsoRegistrationState
     else
       self.id = ModelUtility.extractCid(triples[0][:subject])
       self.registrationAuthority = nil
-      if Triples::link_exists?(triples, UriManagement::C_ISO_R, "byAuthority")
-        links = Triples::get_links(triples, UriManagement::C_ISO_R, "byAuthority")
+      if Triples.link_exists?(triples, UriManagement::C_ISO_R, "byAuthority")
+        links = Triples.get_links(triples, UriManagement::C_ISO_R, "byAuthority")
         cid = ModelUtility.extractCid(links[0])
         self.registrationAuthority  = IsoRegistrationAuthority.find(cid)
       end
-      self.registrationStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
-      self.administrativeNote = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
-      effective_date = Triples::get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
-      until_date = Triples::get_property_value(triples, UriManagement::C_ISO_R, "untilDate")
-      self.set_current_datetimes(effective_date, until_date)
-      self.unresolvedIssue = Triples::get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
-      self.administrativeStatus = Triples::get_property_value(triples, UriManagement::C_ISO_R, "administrativeStatus")
-      self.previousState  = Triples::get_property_value(triples, UriManagement::C_ISO_R, "previousState")
+      self.registrationStatus = Triples.get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
+      self.administrativeNote = Triples.get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
+      temp_effective_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
+      temp_until_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "untilDate")
+      self.set_current_datetimes(temp_effective_date, temp_until_date)
+      self.unresolvedIssue = Triples.get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
+      self.administrativeStatus = Triples.get_property_value(triples, UriManagement::C_ISO_R, "administrativeStatus")
+      self.previousState  = Triples.get_property_value(triples, UriManagement::C_ISO_R, "previousState")
+      self.current = false
     end
     if date_time >= self.effective_date && date_time <= self.until_date
       self.current = true
@@ -532,8 +533,8 @@ class IsoRegistrationState
     object.registrationAuthority = IsoRegistrationAuthority.from_json(json[:registration_authority])
     object.registrationStatus = json[:registration_status]
     object.administrativeNote = json[:administrative_note]
-    object.effective_date = json[:effective_date]
-    object.until_date = json[:until_date]
+    object.effective_date = Time.parse(json[:effective_date])
+    object.until_date = Time.parse(json[:until_date])
     object.current = json[:current]
     object.unresolvedIssue = json[:unresolved_issue]
     object.administrativeStatus = json[:administrative_status]
@@ -552,8 +553,8 @@ class IsoRegistrationState
       :registration_authority => self.registrationAuthority.to_json,
       :registration_status => self.registrationStatus,
       :administrative_note => self.administrativeNote,
-      :effective_date => self.effective_date,
-      :until_date => self.until_date,
+      :effective_date => "#{self.effective_date.iso8601}",
+      :until_date => "#{self.until_date.iso8601}",
       :current => self.current,  
       :unresolved_issue => self.unresolvedIssue,
       :administrative_status => self.administrativeStatus,
@@ -573,8 +574,8 @@ class IsoRegistrationState
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "byAuthority"}, {:prefix => C_NS_PREFIX, :id => self.registrationAuthority.id})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "registrationStatus"}, {:literal => "#{self.registrationStatus}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeNote"}, {:literal => "#{self.administrativeNote}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "effectiveDate"}, {:literal => "#{self.effective_date}", :primitive_type => "dateTime"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "untilDate"}, {:literal => "#{self.until_date}", :primitive_type => "dateTime"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "effectiveDate"}, {:literal => "#{self.effective_date.iso8601}", :primitive_type => "dateTime"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "untilDate"}, {:literal => "#{self.until_date.iso8601}", :primitive_type => "dateTime"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "unresolvedIssue"}, {:literal => "#{self.unresolvedIssue}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeStatus"}, {:literal => "#{self.administrativeStatus}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "previousState"}, {:literal => "#{self.previousState}", :primitive_type => "string"})

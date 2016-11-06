@@ -1,3 +1,6 @@
+require "nokogiri"
+require "uri"
+
 class IsoConcept
 
   include CRUD
@@ -95,7 +98,6 @@ class IsoConcept
       items = self.extension_properties.select {|property| property[:rdf_type] == key}
       if items.length == 0 && self.rdf_type == attribute[:domain]
         self.extension_properties << {:rdf_type => key, :value => "", :label => attribute[:label]}
-        ConsoleLogger::log(C_CLASS_NAME,"initialize", "Extension Properties=#{self.extension_properties.to_json}")
       end
     end
   end
@@ -126,7 +128,8 @@ class IsoConcept
   # @param [uri] The link
   # @return [string] The type (uri) if found, "" otherwise
   def get_link_object_type_v2(link) 
-    uri = UriV2({ :uri => link[:value] })   
+    #uri = UriV2({ :uri => link[:value] })   
+    uri = link
     rdf_type = IsoConcept.get_type(uri.id, uri.namespace)
     rdf_type.nil? ? result = "" : result = rdf_type.to_s 
     return result
@@ -213,7 +216,8 @@ class IsoConcept
   def self.find_for_parent(triples, links)
     results = Array.new
     links.each do |link|
-      object = find_from_triples(triples, ModelUtility.extractCid(link))
+      #object = find_from_triples(triples, ModelUtility.extractCid(link))
+      object = find_from_triples(triples, link.id)
       results << object
     end
     return results
@@ -383,7 +387,7 @@ class IsoConcept
   # @param parent_id [string] The parent id.
   # @param schema_prefix [string] The schema prefix
   # @param rdf_type [string] The RDF type
-  # @param 
+  # @param label [string] The label
   # @return [object] 
   def self.from_data(namespace, parent_id, schema_prefix, rdf_type, label)
     object = self.new
@@ -529,6 +533,10 @@ class IsoConcept
   #
   # @param prefix [string] The schema prefix
   # @param rdf_type [string] The RDF type
+  def get_links(prefix, rdf_type)
+    return get_links_v2(prefix, rdf_type)
+  end
+  
   def get_links_v2(prefix, rdf_type)
     results = Array.new
     namespace = UriManagement.getNs(prefix)
@@ -564,6 +572,8 @@ private
       value = "#{literal}"
     elsif internal_type == BaseDatatype::C_BOOLEAN
       value = literal.to_bool
+    elsif internal_type == BaseDatatype::C_DATETIME
+      value = Time.parse(literal)
     elsif internal_type == BaseDatatype::C_INTEGER || internal_type == BaseDatatype::C_POSITIVE_INTEGER
       value = literal.to_i
     else
@@ -603,7 +613,6 @@ private
       "  ?a rdfs:range ?c .\n" +
       "  ?a rdfs:domain ?d .\n" +
       "}"
-    ConsoleLogger::log(C_CLASS_NAME,"get_attributes","Query=#{query}")
     response = CRUD.query(query)
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -614,7 +623,6 @@ private
       domain = ModelUtility.getValue('d', true, node)
       result[uri] = {:uri => uri, :label => label, :domain => domain, :xsd_type => xsd_type}
     end
-    ConsoleLogger::log(C_CLASS_NAME,"get_attributes","Result=#{result.to_json}")
     return result
   end
 

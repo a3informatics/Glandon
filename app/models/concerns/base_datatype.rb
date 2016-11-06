@@ -6,28 +6,33 @@ module BaseDatatype
 	C_INTEGER = "integer"
 	C_POSITIVE_INTEGER = "positiveInteger"
 	C_BOOLEAN = "boolean"
+	C_DATETIME = "dateTime"
 	
-	@@map = 
+	@@generic_to_xsd_fragment = 
 		{ 
 			C_STRING => "string",
 			C_INTEGER => "integer",
 			C_POSITIVE_INTEGER => "positiveInteger",
-			C_BOOLEAN => "boolean"
+			C_BOOLEAN => "boolean",
+			C_DATETIME => "dateTime"
 		}
 
-	@@full = 
+	@@full_xsd_to_generic = 
 		{ 
 			"http://www.w3.org/2001/XMLSchema#string" => C_STRING,
 			"http://www.w3.org/2001/XMLSchema#boolean" => C_BOOLEAN,
 			"http://www.w3.org/2001/XMLSchema#integer" => C_INTEGER,
-			"http://www.w3.org/2001/XMLSchema#positiveInteger" => C_POSITIVE_INTEGER
+			"http://www.w3.org/2001/XMLSchema#positiveInteger" => C_POSITIVE_INTEGER,
+			"http://www.w3.org/2001/XMLSchema#dateTime" => C_DATETIME
 		}	
 
 	@@label =
 		{
 			C_STRING => "String",
 			C_INTEGER => "Integer",
-			C_BOOLEAN => "Boolean"			
+			C_POSITIVE_INTEGER => "Integer",
+			C_BOOLEAN => "Boolean",
+			C_DATETIME => "dateTime"
 		}
 
 	# Method to get the xsd type given the generic type
@@ -36,8 +41,8 @@ module BaseDatatype
   # @return [string] The xsd datatype
   def self.to_xsd(datatype)
 		result = ""
-		if @@map.has_key?(datatype)
-			result = "#{@@map[datatype]}"
+		if @@generic_to_xsd_fragment.has_key?(datatype)
+			result = "#{@@generic_to_xsd_fragment[datatype]}"
 		end
 		return result
 	end
@@ -48,8 +53,8 @@ module BaseDatatype
   # @return [string] The generic datatype
   def self.from_xsd(uri)
   	result = ""
-  	if @@full.has_key?(uri)
-			result = @@full[uri]
+  	if @@full_xsd_to_generic.has_key?(uri)
+			result = @@full_xsd_to_generic[uri]
 		end
 		return result
 	end
@@ -60,7 +65,7 @@ module BaseDatatype
   # @return [string] The xsd datatype
   def self.to_label(datatype)
 		result = ""
-		if @@map.has_key?(datatype)
+		if @@generic_to_xsd_fragment.has_key?(datatype)
 			result = "#{@@label[datatype]}"
 		end
 		return result
