@@ -9,8 +9,23 @@ class AuditTrail < ActiveRecord::Base
 	end
 
 	def self.event_to_s(index)
-		return @@event_string_map[index]
+		@@event_string_map[index].nil? ? result = "" : result = @@event_string_map[index]
+		return result
 	end
+
+	def self.create_event(user, item, description)
+		add(user, item, event_types[:create_action], description)
+	end
+
+	def self.update_event(user, item, description)
+		add(user, item, event_types[:update_action], description)
+	end
+
+	def self.delete_event(user, item, description)
+		add(user, item, event_types[:delete_action], description)
+	end
+
+private
 
 	def self.add(user, item, event, description)
 		self.create(date_time: Time.now, user: user.email, owner: item.owner, identifier: item.identifier, version: item.version, event: event, description: description)

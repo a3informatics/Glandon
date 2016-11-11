@@ -2,10 +2,20 @@ require 'rails_helper'
 
 describe IsoNamespacesController do
 
+  include DataHelpers
+
   describe "GET #index" do
   	
-  	results = Hash.new
-    before do
+    login_user
+    puts "XXXXXX"
+    
+  	it "clears triple store and loads test data" do
+      clear_triple_store
+      load_test_file_into_triple_store("IsoNamespace.ttl")
+    end
+    
+    it "assigns all namespaces" do
+      results = Hash.new
       result = IsoNamespace.new
       result.id = "NS-AAA"
       result.namespace = "http://www.assero.co.uk/MDRItems"
@@ -18,19 +28,14 @@ describe IsoNamespacesController do
       result.name = "BBB Long"
       result.shortName = "BBB"
       results["NS-BBB"] = result
-      #IsoNamespace.stub(:all).and_return(results)
-      expect(IsoNamespace).to receive(:all).and_return(results)
-    end
-
-    login_user
-    puts "XXXXXX"
-    it "assigns all namespaces" do
   		controller.stub(:authenticate_user!)
-      puts "XXXXXX22222"
-      #controller.stub(:authorize)
+      puts "2"
+      controller.stub(:authorize)
+      puts "3"
       get :index
-      #expect(IsoNamespace).to receive(:all).and_return(results)
-      expect(assigns(:namespaces)).to eq results
+      puts "3"
+      expect(assigns(@namespaces)).to eq(results)
+      #controller.stub(:verify_authorized)
   	end
 
   end

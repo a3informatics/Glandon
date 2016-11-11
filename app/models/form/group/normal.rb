@@ -10,19 +10,28 @@ class Form::Group::Normal < Form::Group
   C_RDF_TYPE = "NormalGroup"
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
 
+  # Initialize
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The identifier for the concept being built from the triples
+  # @return [object] The new object
   def initialize(triples=nil, id=nil)
     self.groups = Array.new
     self.bc_ref = nil
     self.repeating = false
     if triples.nil?
       super
-      # Set the type. Overwrite default.
       self.rdf_type = C_RDF_TYPE_URI.to_s
     else
       super(triples, id)    
     end
   end
 
+  # Find the object
+  #
+  # @param id [string] The id of the item to be found
+  # @param ns [string] The namespace of the item to be found
+  # @return [object] The new object
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -31,20 +40,24 @@ class Form::Group::Normal < Form::Group
     return object
   end
 
+  # Find an object from triples
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The id of the item to be found
+  # @return [object] The new object
   def self.find_from_triples(triples, id)
     object = new(triples, id)
     children_from_triples(object, triples, id)
     return object
   end
 
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     json = super
     json[:repeating] = self.repeating
-    if self.bc_ref != nil
-      json[:bc_ref] = self.bc_ref.to_json
-    else
-      json[:bc_ref] = {}
-    end
+    self.bc_ref = self.bc_ref.nil? ? {} :  self.bc_ref.to_json
     self.groups.sort_by! {|u| u.ordinal}
     self.groups.each do |group|
       json[:children] << group.to_json
@@ -52,6 +65,10 @@ class Form::Group::Normal < Form::Group
     return json
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = super(json)
     object.repeating = json[:repeating]
@@ -73,26 +90,37 @@ class Form::Group::Normal < Form::Group
     return object
   end
 
-  def to_sparql(parent_id, sparql)
-    super(parent_id, sparql)
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "repeating", "#{self.repeating}", "boolean")
-    sparql.triple("", id, C_SCHEMA_PREFIX, "isGroupOf", "", "#{parent_id}")
+  # To SPARQL
+  #
+  # @param parent_uri [object] URI object
+  # @param sparql [object] The SPARQL object
+  # @return [object] The URI
+  def to_sparql_v2(parent_uri, sparql)
+    uri = super(parent_uri, sparql)
+    subject = {:uri => uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "repeating"}, {:literal => "#{self.repeating}", :primitive_type => "boolean"})
     if !self.bc_ref.nil? 
       ref_id = self.bc_ref.to_sparql(id, "hasBiomedicalConcept", 'BCR', 1, sparql)
-      sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasBiomedicalConcept", "", "#{ref_id}")
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasBiomedicalConcept"}, {:namespace => "#{self.namespace}", :id => "#{ref_id}"})
     end
     self.groups.each do |child|
       if child.rdf_type == Form::Group::Common::C_RDF_TYPE_URI.to_s
         ref_id = child.to_sparql(self.id, sparql)
-        sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasCommon", "", ref_id)
+        sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id =>  "hasCommon"}, {:namespace => "#{self.namespace}", :id => "#{ref_id}"})
       else
         ref_id = child.to_sparql(self.id, sparql)
-        sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasSubGroup", "", ref_id)
+        sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id =>  "hasSubGroup"}, {:namespace => "#{self.namespace}", :id => "#{ref_id}"})
       end    
     end
-    return self.id
+    ConsoleLogger::log(C_CLASS_NAME, "to_sparql_v2", "URI=#{self.uri}.")
+    return uri
   end
 
+  # To XML
+  #
+  # @param metadata_version [object] 
+  # @param form_def [object] 
+  # @param item_group_def [object]
   def to_xml(metadata_version, form_def)
     ConsoleLogger::log(C_CLASS_NAME,"to_xml","Entry")
     if self.groups.length > 0
@@ -103,6 +131,14 @@ class Form::Group::Normal < Form::Group
     else      
       super(metadata_version, form_def)
     end
+  end
+
+  # Check Valid
+  #
+  # @return [boolean] Returns true if valid, false otherwise.
+  def valid?
+    result = super
+    return result
   end
 
 private

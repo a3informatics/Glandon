@@ -276,5 +276,41 @@ class IsoRegistrationAuthority
     object.namespace = IsoNamespace.from_json(json[:namespace])
     return object
   end
+
+  # Object Valid
+  #
+  # @return [boolean] True if valid, false otherwise.
+  def valid?
+    namespace_valid = self.namespace.valid?
+    if !namespace_valid
+      self.namespace.errors.full_messages.each do |msg|
+        self.errors[:base] << "Namespace error: #{msg}"
+      end
+    end
+    return valid_duns? && valid_scheme? && namespace_valid
+  end
+
+private
+
+  def valid_duns?
+    if self.number.nil?
+      self.errors.add(:number, "is empty.")
+      return false
+    else
+      result = self.number.match /\A[0-9]{9}\z/ 
+      return true if result != nil
+      self.errors.add(:number, "does not contains 9 digits")
+      return false
+    end
+  end
+
+  def valid_scheme?
+    if self.scheme == C_DUNS
+      return true
+    else
+      self.errors.add(:scheme, "contains an invalid value")
+      return false
+    end
+  end
   
 end

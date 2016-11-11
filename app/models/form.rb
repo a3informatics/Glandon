@@ -102,6 +102,11 @@ class Form < IsoManaged
     "VR" => "Viral Resistance Findings",
     "VS" => "Vital Signs" }
 
+  # Initialize the object
+  #
+  # @param triples [hash] The raw triples keyed by id
+  # @param id [string] The id of the form
+  # @return [object] The form object
   def initialize(triples=nil, id=nil)
     self.groups = Array.new
     self.label = "New Form"
@@ -109,87 +114,92 @@ class Form < IsoManaged
     self.note = ""
     if triples.nil?
       super
-      # Set the type. Overwrite default.
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
   end
 
-  def self.find(id, ns, children=true)
-    object = super(id, ns)
+  # Find a given form
+  #
+  # @param id [string] The id of the form.
+  # @param namespace [hash] The raw triples keyed by id.
+  # @param children [boolean] Find all child objects. Defaults to true.
+  # @return [object] The form object.
+  def self.find(id, namespace, children=true)
+    object = super(id, namespace)
     if children
-      # TODO: This looks wrong, find_from_triples instead?
       object.groups = Form::Group::Normal.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
     end
     object.triples = ""
     return object     
   end
 
+  # Find all managed items based on their type.
+  #
+  # @return [array] Array of objects found.
   def self.all
     super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
+  # Find list of managed items of a given type.
+  #
+  # @return [array] Array of objects found.
   def self.unique
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
 
+  # Find all released item for all identifiers of a given type.
+  #
+  # @return [array] An array of objects.
   def self.list
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
 
+  # Find history for a given identifier
+  # Return the object as JSON
+  #
+  # @params [hash] {:identifier, :scope_id}
+  # @return [array] An array of objects.
   def self.history(params)
     results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
     return results
   end
 
-  def self.createPlaceholder(params)
+  # Create a placeholder form
+  #
+  # @param params [hash] {identifier:, :label, :freeText} The operational hash
+  # @return [oject] The form object. Valid if no errors set.
+  def self.create_placeholder(params)
     object = self.new 
-    object.errors.clear
-    if params_valid_placeholder?(params, object)
-      object.scopedIdentifier.identifier = params[:identifier]
-      object.label = params[:label]
-      group = Form::Group::Normal.new
-      group.label = "Placeholder Group"
-      item = Form::Item::Placeholder.new
-      item.label = "Placeholder"
-      item.free_text = params[:freeText]
-      object.groups << group
-      group.items << item
-      if exists?(object.identifier, IsoRegistrationAuthority.owner()) 
-        object.errors.add(:base, "The identifier is already in use.")
-      else  
-        object = Form.create({:data => object.to_edit(true)})
-      end
-    end
+    object.scopedIdentifier.identifier = params[:identifier]
+    object.label = params[:label]
+    group = Form::Group::Normal.new
+    group.label = "Placeholder Group"
+    item = Form::Item::Placeholder.new
+    item.label = "Placeholder"
+    item.free_text = params[:freeText]
+    object.groups << group
+    group.items << item
+    object = Form.create(object.to_operation)
     return object
   end
   
+  # Create a form
+  #
+  # @param params [hash] {data:} The operational hash
+  # @return [oject] The form object. Valid if no errors set.
   def self.create(params)
-    # Get the parameters
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    # Create blank object for the errors
-    object = self.new
-    object.errors.clear
-    # Set owner ship
-    ra = IsoRegistrationAuthority.owner
-    if params_valid?(managed_item, object) then
-      # Build a full object. 
-      object = Form.from_json(data)
-      # Can we create?
-      if object.create_permitted?(ra)
-        # Setting the RA
-        # TODO: RA does no need to be passed to SPARQL setup
-        object.registrationState.registrationAuthority = ra
-        object.scopedIdentifier.namespace = ra.namespace
-        # Build sparql
-        sparql = object.to_sparql(ra)
-        # Send to database
-        ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
+    ConsoleLogger::log(C_CLASS_NAME, "create", "params=#{params}")
+    operation = params[:operation]
+    managed_item = params[:managed_item]
+    object = Form.from_json(managed_item)
+    object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
+    if object.valid? then
+      if object.create_permitted?
+        sparql = object.to_sparql_v2
         response = CRUD.update(sparql.to_s)
         if !response.success?
           object.errors.add(:base, "The Form was not created in the database.")
@@ -225,6 +235,9 @@ class Form < IsoManaged
     super(self.namespace)
   end
 
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     json = super
     json[:completion] = self.completion
@@ -236,34 +249,26 @@ class Form < IsoManaged
     return json
   end
 
-  def self.from_json(json)
-    object = super(json)
-    managed_item = json[:managed_item]
-    object.completion = managed_item[:completion]
-    object.note = managed_item[:note]
-    if !managed_item[:children].blank?
-      managed_item[:children].each do |child|
-        object.groups << Form::Group::Normal.from_json(child)
-      end
-    end
-    return object
-  end
-
-  def to_sparql(ra)
-    sparql = SparqlUpdate.new
-    uri = super(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, C_SCHEMA_PREFIX)
-    # Set the properties
-    sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "completion", "#{self.completion}", "string")
-    sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "note", "#{self.note}", "string")
-    # Now deal with the children
+  # To SPARQL
+  #
+  # @return [object] The SPARQL object created.
+  def to_sparql_v2
+    sparql = SparqlUpdateV2.new
+    uri = super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "completion"}, {:literal => "#{self.completion}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "note"}, {:literal => "#{self.note}", :primitive_type => "string"})
     self.groups.each do |group|
-      ref_id = group.to_sparql(uri.id, sparql)
-      sparql.triple("", uri.id, C_SCHEMA_PREFIX, "hasGroup", "", ref_id)
+      ref_uri = group.to_sparql_v2(uri, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasGroup"}, {:uri => ref_uri})
     end
     ConsoleLogger::log(C_CLASS_NAME,"to_sparql","SPARQL=#{sparql}")
     return sparql
   end
 
+  # To XML (ODM)
+  #
+  # @return [object] The ODM XML object created.
   def to_xml
     odm_document = Odm.new("ODM-#{self.id}", "Assero", "Glandon", Version::VERSION)
     odm = odm_document.root
@@ -282,6 +287,34 @@ class Form < IsoManaged
       group.to_xml(metadata_version, form_def)
     end
     return odm_document.to_xml
+  end
+
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
+  def self.from_json(json)
+    object = super(json)
+    object.completion = json[:completion]
+    object.note = json[:note]
+    if !json[:children].blank?
+      json[:children].each do |child|
+        object.groups << Form::Group::Normal.from_json(child)
+      end
+    end
+    return object
+  end
+
+  # Check Valid
+  #
+  # @return [boolean] Returns true if valid, false otherwise.
+  def valid?
+    self.errors.clear
+    result = super
+    result = result &&
+      FieldValidation::valid_markdown?(:completion, self.completion, self) &&
+      FieldValidation::valid_markdown?(:note, self.note, self)
+    return result
   end
 
   def self.bc_impact(params)
@@ -383,18 +416,6 @@ class Form < IsoManaged
   end
 
 private
-
-  def self.params_valid?(params, object)
-    result1 = ModelUtility::validIdentifier?(params[:scoped_identifier][:identifier], object)
-    result2 = ModelUtility::validLabel?(params[:label], object)
-    return result1 && result2 # && result3 && result4
-  end
-
-  def self.params_valid_placeholder?(params, object)
-    result1 = ModelUtility::validIdentifier?(params[:identifier], object)
-    result2 = ModelUtility::validLabel?(params[:label], object)
-    return result1 && result2 # && result3 && result4
-  end
 
   def self.validBcs?(value, object)
     if value != nil

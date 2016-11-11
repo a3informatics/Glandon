@@ -9,24 +9,51 @@ describe IsoRegistrationAuthority do
     load_test_file_into_triple_store("IsoNamespace.ttl")
   end
 
-	it "can be filled from JSON" do
+  it "validates a valid object" do
+    result = IsoRegistrationAuthority.new
+    result.number = "123456789"
+    result.scheme = "DUNS"
+    result.namespace = IsoNamespace.find("NS-BBB")
+    result.owner = false
+    expect(result.valid?).to eq(true)
+  end
+
+  it "does not validate an invalid object" do
+    result = IsoRegistrationAuthority.new
+    result.number = "12345678"
+    result.scheme = "DUNS"
+    result.namespace = IsoNamespace.find("NS-BBB")
+    result.owner = false
+    expect(result.valid?).to eq(false)
+  end
+
+  it "does not validate an invalid object" do
+    result = IsoRegistrationAuthority.new
+    result.number = "123456789"
+    result.scheme = "DUS"
+    result.namespace = IsoNamespace.find("NS-BBB")
+    result.owner = false
+    expect(result.valid?).to eq(false)
+  end
+
+  it "can be filled from JSON" do
     result = IsoRegistrationAuthority.new
     result.id = "NS-XXX"
-    result.number = "12345678"
+    result.number = "123456789"
     result.scheme = "DUNS"
     result.namespace = IsoNamespace.new
     result.owner = false
-    expect(IsoRegistrationAuthority.from_json({id: "NS-XXX", number: "12345678", scheme: "DUNS", owner: false, namespace: IsoNamespace.new.to_json }).to_json).to eq(result.to_json)
+    expect(IsoRegistrationAuthority.from_json({id: "NS-XXX", number: "123456789", scheme: "DUNS", owner: false, namespace: IsoNamespace.new.to_json }).to_json).to eq(result.to_json)
   end
 
 	it "can be returned as JSON" do
     result = IsoRegistrationAuthority.new
     result.id = "NS-XXX"
-    result.number = "12345678"
+    result.number = "123456789"
     result.scheme = "DUNS"
     result.namespace = IsoNamespace.new
     result.owner = false
-    expect(result.to_json).to eq({id: "NS-XXX", number: "12345678", scheme: "DUNS", owner: false, namespace: IsoNamespace.new.to_json })
+    expect(result.to_json).to eq({id: "NS-XXX", number: "123456789", scheme: "DUNS", owner: false, namespace: IsoNamespace.new.to_json })
   end
 
   it "finds authority" do

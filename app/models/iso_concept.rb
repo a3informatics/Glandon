@@ -1,15 +1,15 @@
-require "nokogiri"
-require "uri"
+#require "nokogiri"
+#require "uri"
 
 class IsoConcept
 
-  include CRUD
-  include ModelUtility
+  #include CRUD
+  #include ModelUtility
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
     
-  attr_accessor :id, :namespace, :rdf_type, :label, :links, :properties, :extension_properties
+  attr_accessor :id, :namespace, :rdf_type, :label, :links, :properties, :extension_properties, :triples
   
   # Constants
   C_CID_PREFIX = "ISOC"
@@ -68,9 +68,11 @@ class IsoConcept
     self.properties = Array.new
     self.links = Array.new
     self.extension_properties = Array.new
+    self.triples = Hash.new
     # If we have triples, process. 
     if !triples.nil?
       class_triples = triples[id]
+      self.triples = triples
       if class_triples.length > 0
         self.id = ModelUtility.extractCid(class_triples[0][:subject])
         self.namespace = ModelUtility.extractNs(class_triples[0][:subject])
@@ -427,13 +429,11 @@ class IsoConcept
     uri = UriV2.new({:uri => self.rdf_type})
     sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:uri => uri})
     sparql.triple(subject, {:prefix => UriManagement::C_RDFS, :id => "label"}, {:literal => "#{self.label}", :primitive_type => "string"})
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql_v2", "Extension Attributes=#{@@extension_attributes.to_json}.")
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql_v2", "Extension Properties=#{self.extension_properties.to_json}.")
     self.extension_properties.each do |item|
-      ConsoleLogger::log(C_CLASS_NAME,"to_sparql_v2", "Item=#{item.to_json}.")
       predicate = UriV2.new({ :uri => item[:rdf_type] })
       sparql.triple(subject, {:uri => predicate}, {:literal => "#{item[:value]}", :primitive_type => IsoUtility.extract_cid(@@extension_attributes[item[:rdf_type]][:xsd_type])})
     end
+    ConsoleLogger::log(C_CLASS_NAME, "to_sparql_v2", "URI=#{self.uri}.")
     return self.uri
   end
 
@@ -541,6 +541,8 @@ class IsoConcept
     results = Array.new
     namespace = UriManagement.getNs(prefix)
     uri = UriV2.new({:id => rdf_type, :namespace => namespace})
+    ConsoleLogger::log(C_CLASS_NAME, "get_links_v2", "uri=#{uri}")
+    ConsoleLogger::log(C_CLASS_NAME, "get_links_v2", "links=#{@links.to_json}")
     l = @links.select {|link| link[:rdf_type] == uri.to_s } 
     if l.length > 0
       results = l.map { |link| UriV2.new({:uri => link[:value]})}
@@ -559,6 +561,13 @@ class IsoConcept
   #  end
   #  return result
   #end
+
+  # Object Valid
+  #
+  # @return [boolean] True if valid, false otherwise.
+  def valid?
+    return FieldValidation.valid_label?(:label, self.label, self)
+  end
 
 private
 

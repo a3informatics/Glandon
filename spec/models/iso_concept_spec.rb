@@ -17,7 +17,19 @@ describe IsoConcept do
     load_test_file_into_triple_store("iso_concept_data.ttl")
   end
 
-	it "allows a blank concept to be created" do
+	it "validates a valid object" do
+    result = IsoConcept.new
+    result.label = "123456789"
+    expect(result.valid?).to eq(true)
+  end
+
+  it "does not validate an invalid object" do
+    result = IsoConcept.new
+    result.label = "123456789@£$%"
+    expect(result.valid?).to eq(false)
+  end
+
+  it "allows a blank concept to be created" do
 		result =     
 			{ 
       	:type => "",

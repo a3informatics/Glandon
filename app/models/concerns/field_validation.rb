@@ -4,7 +4,7 @@ module FieldValidation
 
   # Valid Identifier
   #
-  # @param symbol [string] The item being cehcked
+  # @param symbol [string] The item being checked
   # @param value [string] The value being checked
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
@@ -22,7 +22,7 @@ module FieldValidation
 
   # Valid Domain Prefix
   #
-  # @param symbol [string] The item being cehcked
+  # @param symbol [string] The item being checked
   # @param value [string] The value being checked
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
@@ -40,7 +40,7 @@ module FieldValidation
 
   # Valid Version
   #
-  # @param symbol [string] The item being cehcked
+  # @param symbol [string] The item being checked
   # @param value [string] The value being checked
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
@@ -49,7 +49,7 @@ module FieldValidation
       object.errors.add(symbol, "is empty.")
       return false
     else
-      result = value.match /\A[0-9]+\z/ 
+      result = "#{value}".match /\A[0-9]+\z/ 
       return true if result != nil
       object.errors.add(symbol, "contains invalid characters, must be an integer")
       return false
@@ -58,7 +58,7 @@ module FieldValidation
 
   # Valid Short Name
   #
-  # @param symbol [string] The item being cehcked
+  # @param symbol [string] The item being checked
   # @param value [string] The value being checked
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
@@ -76,7 +76,7 @@ module FieldValidation
 
   # Valid Free Text
   #
-  # @param symbol [string] The item being cehcked
+  # @param symbol [string] The item being checked
   # @param value [string] The value being checked
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
@@ -89,7 +89,7 @@ module FieldValidation
 
   # Valid Label
   #
-  # @param symbol [string] The item being cehcked
+  # @param symbol [string] The item being checked
   # @param value [string] The value being checked
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
@@ -100,9 +100,58 @@ module FieldValidation
     return false
   end
 
+  # Valid Question
+  #
+  # @param symbol [string] The item being checked
+  # @param value [string] The value being checked
+  # @param object [object] The object to which the value/item belongs
+  # @return [boolean] True if value valid, false otherwise
+  def self.valid_question?(symbol, value, object)
+    result = value.match /^\A[A-Za-z0-9 .?,\-:;]*\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters")
+    return false
+  end
+
+  # Valid Mapping
+  #
+  # @param symbol [string] The item being checked
+  # @param value [string] The value being checked
+  # @param object [object] The object to which the value/item belongs
+  # @return [boolean] True if value valid, false otherwise
+  def self.valid_mapping?(symbol, value, object)
+    result = value.match /^\A[A-Za-z0-9 .=]*\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters")
+    return false
+  end
+
+  # Valid Format
+  #
+  # @param symbol [string] The item being checked
+  # @param value [string] The value being checked
+  # @param object [object] The object to which the value/item belongs
+  # @return [boolean] True if value valid, false otherwise
+  def self.valid_format?(symbol, value, object)
+    result = value.match /^\A\d+(\.\d+)?\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters")
+    return false
+  end
+
+  # Valid Generic Datatype
+  #
+  # @param symbol [string] The item being checked
+  # @param value [string] The value being checked
+  # @param object [object] The object to which the value/item belongs
+  # @return [boolean] True if value valid, false otherwise
+  def self.valid_datatype?(symbol, value, object)
+    return BaseDatatype.valid?(value)
+  end
+
   # Valid Date
   #
-  # @param symbol [string] The item being cehcked
+  # @param symbol [string] The item being checked
   # @param value [string] The value being checked
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
@@ -120,9 +169,42 @@ module FieldValidation
     return false
   end
 
+  # Valid Date Time
+  #
+  # @param symbol [string] The item being checked
+  # @param value [string] The value being checked
+  # @param object [object] The object to which the value/item belongs
+  # @return [boolean] True if value valid, false otherwise
+  def self.valid_date_time?(symbol, value, object)
+    if value.nil?
+      object.errors.add(symbol, "is empty.")
+      return false
+    else
+      #DateTime.parse(value)
+      DateTime.strptime(value, '%Y-%m-%dT%H:%M:%S%z')
+      return true
+    end
+  rescue ArgumentError => e 
+    object.errors.add(symbol, "contains invalid format date time")
+    return false
+  end
+
+  # Valid Markdown
+  #
+  # @param symbol [string] The item being checked
+  # @param value [string] The value being checked
+  # @param object [object] The object to which the value/item belongs
+  # @return [boolean] True if value valid, false otherwise
+  def self.valid_markdown?(symbol, value, object)
+    result = value.match /^\A[A-Za-z0-9 .!?,'"_\-\/\\()\[\]~#*=:;&|\r\n]*\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid markdown")
+    return false
+  end
+
   # Valid Files
   #
-  # @param symbol [string] The item being cehcked
+  # @param symbol [string] The item being checked
   # @param value [string] The value being checked
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise

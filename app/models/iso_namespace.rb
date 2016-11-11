@@ -191,33 +191,25 @@ class IsoNamespace
   # @raise [ExceptionClass] CreateError if object not created
   def self.create(params)
     object = self.new
-    object.errors.clear
-    # Check parameters
-    if params_valid?(params, object)
-      # Get the parameters
-      name = params[:name]
-      shortName = params[:shortName]
-      # Does the namespace exist?
-      if !exists?(shortName)
-        # Create the query and submit.
-        uri = UriV2.new({:namespace => @@baseNs, :prefix => C_NS_CID_PREFIX, :org_name => shortName, :identifier => C_NS_CID_PREFIX})  
-        org_uri = UriV2.new({:namespace => @@baseNs, :prefix => C_ORG_CID_PREFIX, :org_name => shortName, :identifier => C_NS_CID_PREFIX})  
+    object.name = params[:name]
+    object.shortName = params[:shortName]
+    if object.valid?
+      if !exists?(object.shortName)
+        uri = UriV2.new({:namespace => @@baseNs, :prefix => C_NS_CID_PREFIX, :org_name => object.shortName, :identifier => C_NS_CID_PREFIX})  
+        org_uri = UriV2.new({:namespace => @@baseNs, :prefix => C_ORG_CID_PREFIX, :org_name => object.shortName, :identifier => C_NS_CID_PREFIX})  
         update = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
           "INSERT DATA \n" +
           "{\n" +
           "  :" + org_uri.id + " rdf:type isoB:Organization . \n" +
-          "  :" + org_uri.id + " isoB:name \"" + name + "\"^^xsd:string . \n" +
-          "  :" + org_uri.id + " isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
+          "  :" + org_uri.id + " isoB:name \"#{object.name}\"^^xsd:string . \n" +
+          "  :" + org_uri.id + " isoB:shortName \"#{object.shortName}\"^^xsd:string . \n" +
           "  :" + uri.id + " rdf:type isoI:Namespace . \n" +
-          "  :" + uri.id + " isoI:ofOrganization :" + org_uri.id + " . \n" +
+          "  :" + uri.id + " isoI:ofOrganization :#{org_uri.id} . \n" +
           "}"
         response = CRUD.update(update)
-        # Process the response
         if response.success?
           object.id = uri.id
           object.namespace = @@baseNs 
-          object.name = name
-          object.shortName = shortName
         else
           ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
           raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
@@ -289,12 +281,11 @@ class IsoNamespace
     return object
   end
 
-private
-
-  def self.params_valid?(params, object)
-    result1 = FieldValidation::valid_short_name?(:short_name, params[:shortName], object)
-    result2 = FieldValidation::valid_free_text?(:name, params[:name], object)
-    return result1 && result2
+  # Object Valid
+  #
+  # @return [boolean] True if valid, false otherwise.
+  def valid?
+    return FieldValidation.valid_short_name?(:short_name, self.shortName, self) && FieldValidation.valid_free_text?(:name, self.name, self)
   end
 
 end

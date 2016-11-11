@@ -106,20 +106,18 @@ class IsoScopedIdentifier
     return C_FIRST_VERSION
   end
   
-  # Find if the identifier exists within the specified scope (namespace).
+  # Find if the object with identifier exists within the specified scope (namespace).
   #
-  # @param identifier [string] The identifer being checked.
-  # @param scopeId [string] The id of the scope namespace (IsoNamespace object).
   # @return [boolean] True if the item exists, False otherwise.
-  def self.exists?(identifier, scopeId)   
+  def exists?
     result = false
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?a WHERE \n" +
       "{\n" +
       "  ?a rdf:type isoI:ScopedIdentifier . \n" +
-      "  ?a isoI:identifier \"" + identifier + "\" . \n" +
-      "  ?a isoI:hasScope :" + scopeId + ". \n" +
+      "  ?a isoI:identifier \"#{self.identifier}\" . \n" +
+      "  ?a isoI:hasScope :#{self.namespace.id} . \n" +
       "}"
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -129,29 +127,25 @@ class IsoScopedIdentifier
     xmlDoc.xpath("//result").each do |node|
       uri = ModelUtility.getValue('a', true, node)
       if uri != "" 
-        #ConsoleLogger::log(C_CLASS_NAME,"exists?","exisits")
         result = true
       end
     end
     return result
   end
 
-  # Find if the identifier with a specified version exists within the specified scope (namespace).
+  # Find if the object with the identifier with a specified version exists within the specified scope (namespace).
   #
-  # @param identifier [string] The identifer being checked.
-  # @param version [integer] The version being checked.
-  # @param scopeId [string] The id of the scope namespace (IsoNamespace object).
   # @return [boolean] True if the item exists, False otherwise.
-  def self.versionExists?(identifier, version, scopeId)   
+  def version_exists?
     result = false
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?a WHERE \n" +
       "{\n" +
       "  ?a rdf:type isoI:ScopedIdentifier . \n" +
-      "  ?a isoI:identifier \"" + identifier + "\" . \n" +
-      "  ?a isoI:version " + version.to_s + " . \n" +
-      "  ?a isoI:hasScope :" + scopeId + ". \n" +
+      "  ?a isoI:identifier \"#{self.identifier}\" . \n" +
+      "  ?a isoI:version #{self.version} . \n" +
+      "  ?a isoI:hasScope :#{self.namespace.id} . \n" +
       "}"
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -161,7 +155,6 @@ class IsoScopedIdentifier
     xmlDoc.xpath("//result").each do |node|
       uri = ModelUtility.getValue('a', true, node)
       if uri != "" 
-        #ConsoleLogger::log(C_CLASS_NAME,"versionExists?","exisits")
         result = true
       end
     end
@@ -171,18 +164,18 @@ class IsoScopedIdentifier
   # Find the latest version for a given identifier within the specified scope (namespace).
   #
   # @param identifier [string] The identifer being checked.
-  # @param scopeId [string] The id of the scope namespace (IsoNamespace object).
+  # @param scope_id [string] The id of the scope namespace (IsoNamespace object).
   # @return [boolean] True if the item exists, False otherwise.
-  def self.latest(identifier, scopeId)   
+  def self.latest(identifier, scope_id)   
     result = false
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
       "SELECT ?b WHERE \n" +
       "{\n" +
       "  ?a rdf:type isoI:ScopedIdentifier . \n" +
-      "  ?a isoI:identifier \"" + identifier + "\" . \n" +
+      "  ?a isoI:identifier \"#{identifier}\" . \n" +
       "  ?a isoI:version ?b . \n" +
-      "  ?a isoI:hasScope :" + scopeId + ". \n" +
+      "  ?a isoI:hasScope :#{scope_id} . \n" +
       "} ORDER BY DESC(?b)"
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -459,6 +452,13 @@ class IsoScopedIdentifier
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "versionLabel"}, {:literal => "#{self.versionLabel}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "hasScope"}, {:prefix => C_NS_PREFIX, :id => "#{self.namespace.id}"})
     return subject_uri
+  end
+
+  # Object Valid
+  #
+  # @return [boolean] True if valid, false otherwise.
+  def valid?
+    return FieldValidation.valid_version?(:version, self.version, self) && FieldValidation.valid_label?(:versionLabel, self.versionLabel, self)
   end
 
 end

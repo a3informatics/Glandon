@@ -9,6 +9,11 @@ class Form::Group < IsoConcept
   C_RDF_TYPE = "Group"
   C_CID_SUFFIX = "G"
   
+  # Initialize
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The identifier for the concept being built from the triples
+  # @return [object] The new object
   def initialize(triples=nil, id=nil)
     self.ordinal = 1
     self.note = ""
@@ -17,13 +22,15 @@ class Form::Group < IsoConcept
     self.items = Array.new
     if triples.nil?
       super
-      # Set the type. Overwrite default.
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)    
     end
   end
 
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     json = super
     json[:ordinal] = self.ordinal
@@ -38,6 +45,10 @@ class Form::Group < IsoConcept
     return json
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = super(json)
     object.ordinal = json[:ordinal]
@@ -60,27 +71,51 @@ class Form::Group < IsoConcept
     return object
   end
 
-  def to_sparql(parent_id, sparql)
-    self.id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{C_CID_SUFFIX}#{self.ordinal}"
-    super(sparql, C_SCHEMA_PREFIX)
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "ordinal", "#{self.ordinal}", "positiveInteger")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "optional", "#{self.optional}", "boolean")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "note", "#{self.note}", "string")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "completion", "#{self.completion}", "string")
-    sparql.triple("", id, C_SCHEMA_PREFIX, "isGroupOf", "", "#{parent_id}")
+  # To SPARQL
+  #
+  # @param parent_uri [object] URI object
+  # @param sparql [object] The SPARQL object
+  # @return [object] The URI
+  def to_sparql_v2(parent_uri, sparql)
+    self.namespace = parent_uri.namespace
+    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{C_CID_SUFFIX}#{self.ordinal}"
+    uri = super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ordinal"}, {:literal => "#{self.ordinal}", :primitive_type => "positiveInteger"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "optional"}, {:literal => "#{self.optional}", :primitive_type => "boolean"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "note"}, {:literal => "#{self.note}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "completion"}, {:literal => "#{self.completion}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "isGroupOf"}, {:uri => parent_uri})
     self.items.each do |item|
-      ref_id = item.to_sparql(id, sparql)
-      sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasItem", "", "#{ref_id}")
+      ref_uri = item.to_sparql_v2(uri, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, {:uri => ref_uri})
     end
-    return self.id
+    ConsoleLogger::log(C_CLASS_NAME, "to_sparql_v2", "URI=#{self.uri}.")
+    return uri
   end
 
+  # To XML
+  #
+  # @param metadata_version [object] 
+  # @param form_def [object] 
+  # @param item_group_def [object]
   def to_xml(metadata_version, form_def)
     form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
     item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
     self.items.each do |item|
       item.to_xml(metadata_version, form_def, item_group_def)
     end
+  end
+
+  # Check Valid
+  #
+  # @return [boolean] Returns true if valid, false otherwise.
+  def valid?
+    result = super
+    result = result &&
+      FieldValidation::valid_markdown?(:completion, self.completion, self) &&
+      FieldValidation::valid_markdown?(:note, self.note, self)
+    return result
   end
 
 private
@@ -90,13 +125,13 @@ private
     links.each do |link|
       rdf_type = object.get_link_object_type_v2(link)
       if rdf_type == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
-        object.items += Form::Item::Placeholder.find_for_parent(triples, [link.to_s])
+        object.items += Form::Item::Placeholder.find_for_parent(triples, [link])
       elsif rdf_type == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
-        object.items += Form::Item::TextLabel.find_for_parent(triples, [link.to_s])
+        object.items += Form::Item::TextLabel.find_for_parent(triples, [link])
       elsif rdf_type == Form::Item::Question::C_RDF_TYPE_URI.to_s
-        object.items += Form::Item::Question.find_for_parent(triples, [link.to_s])
+        object.items += Form::Item::Question.find_for_parent(triples, [link])
       elsif rdf_type == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
-        object.items += Form::Item::BcProperty.find_for_parent(triples, [link.to_s])
+        object.items += Form::Item::BcProperty.find_for_parent(triples, [link])
       end  
     end
   end

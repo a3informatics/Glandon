@@ -10,6 +10,59 @@ describe IsoRegistrationState do
     load_test_file_into_triple_store("IsoScopedIdentifier.ttl")
   end
 
+  it "validates a valid object" do
+    object = IsoRegistrationState.new
+    object.registrationAuthority = IsoRegistrationAuthority.find_by_short_name("AAA")
+    object.registrationStatus = "Incomplete"
+    object.administrativeNote = "Note"
+    object.effective_date = Time.now
+    object.until_date = Time.now
+    object.unresolvedIssue = "Unresolved issue"
+    object.administrativeStatus = "Administrative status"
+    object.previousState  = "Standard"
+    expect(object.valid?).to eq(true)
+  end
+
+  it "does not validate an invalid object, Registration Status" do
+    object = IsoRegistrationState.new
+    object.registrationAuthority = IsoRegistrationAuthority.find_by_short_name("AAA")
+    object.registrationStatus = "IncompleteXXX"
+    object.administrativeNote = "Note"
+    object.effective_date = Time.now
+    object.until_date = Time.now
+    object.unresolvedIssue = "Unresolved issue"
+    object.administrativeStatus = "Administrative status"
+    object.previousState  = "Standard"
+    expect(object.valid?).to eq(false)
+  end
+
+  it "does not validate an invalid object, RA" do
+    object = IsoRegistrationState.new
+    object.registrationAuthority = IsoRegistrationAuthority.find_by_short_name("AAA")
+    object.registrationAuthority.scheme = "DUS"
+    object.registrationStatus = "Incomplete"
+    object.administrativeNote = "Note"
+    object.effective_date = "XXX"
+    object.until_date = Time.now
+    object.unresolvedIssue = "Unresolved issue"
+    object.administrativeStatus = "Administrative status"
+    object.previousState  = "Standard"
+    expect(object.valid?).to eq(false)
+  end
+
+  it "does not validate an invalid object, previous state" do
+    object = IsoRegistrationState.new
+    object.registrationAuthority = IsoRegistrationAuthority.find_by_short_name("AAA")
+    object.registrationStatus = "Incomplete"
+    object.administrativeNote = "Note"
+    object.effective_date = Time.now
+    object.until_date = Time.now
+    object.unresolvedIssue = "Unresolved issue"
+    object.administrativeStatus = "Administrative status"
+    object.previousState  = "StandardXXX"
+    expect(object.valid?).to eq(false)
+  end
+
   it "allows object to be initialized from triples" do
     result = 
       {

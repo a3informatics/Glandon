@@ -9,6 +9,9 @@ class Form::Item::BcProperty < Form::Item
   C_RDF_TYPE = "BcProperty"
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
   
+  # Thesaurus Concepts
+  #
+  # @return [object] Array of concepts
   def thesaurus_concepts
     results = Array.new
     refs.each do |ref|
@@ -17,24 +20,36 @@ class Form::Item::BcProperty < Form::Item
     return results
   end
 
+  # BC Property
+  #
+  # @return [object] The associated BC property
   def bc_property
     result = BiomedicalConceptCore::Property.find(self.property_ref.subject_ref.id, self.property_ref.subject_ref.namespace)
     return result
   end
 
+  # Initialize
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The identifier for the concept being built from the triples
+  # @return [object] The new object
   def initialize(triples=nil, id=nil)
     self.item_refs = Array.new
     self.property_ref = nil
     self.value_refs = Array.new
     if triples.nil?
       super
-      # Set the type. Overwrite default.
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end        
   end
 
+  # Find the object
+  #
+  # @param id [string] The id of the item to be found
+  # @param ns [string] The namespace of the item to be found
+  # @return [object] The new object
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -44,14 +59,21 @@ class Form::Item::BcProperty < Form::Item
     return object
   end
 
+  # Find an object from triples
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The id of the item to be found
+  # @return [object] The new object
   def self.find_from_triples(triples, id)
     object = new(triples, id)
     children_from_triples(object, triples, id)
-    #ConsoleLogger::log(C_CLASS_NAME,"find","find=" + object.to_json.to_s)
     object.triples = ""
     return object
   end
   
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     json = super
     json[:property_ref] = self.property_ref.to_json
@@ -66,6 +88,10 @@ class Form::Item::BcProperty < Form::Item
     return json
   end
   
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = super(json)
     object.property_ref = OperationalReferenceV2.from_json(json[:property_ref])
@@ -82,21 +108,33 @@ class Form::Item::BcProperty < Form::Item
     return object
   end
 
-  def to_sparql(parent_id, sparql)
-    super(parent_id, sparql)
-    ref_id = property_ref.to_sparql(id, "hasProperty", 'PR', property_ref.ordinal, sparql)
-    sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasProperty", "", "#{ref_id}")
+  # To SPARQL
+  #
+  # @param parent_uri [object] URI object
+  # @param sparql [object] The SPARQL object
+  # @return [object] The URI
+  def to_sparql_v2(parent_uri, sparql)
+    uri = super(parent_uri, sparql)
+    subject = {:uri => uri}
+    ref_uri = property_ref.to_sparql_v2(uri, "hasProperty", 'PR', property_ref.ordinal, sparql)
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasProperty"}, {:uri => ref_uri})
     self.item_refs.each do |item_ref|
-      ref_id = item_ref.to_sparql(id, sparql)
-      sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasCommonItem", "", "#{ref_id}")
+      ref_uri = item_ref.to_sparql_v2(uri, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasCommonItem"}, {:uri => ref_uri})
     end
     self.value_refs.each do |value_ref|
-      ref_id = value_ref.to_sparql(id, "hasValue", 'VR', value_ref.ordinal, sparql)
-      sparql.triple("", self.id, C_SCHEMA_PREFIX, "hasValue", "", "#{ref_id}")
+      ref_uri = value_ref.to_sparql_v2(uri, "hasValue", 'VR', value_ref.ordinal, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasValue"}, {:uri => ref_uri})
     end
-    return self.id
+    return uri
   end
 
+  # To XML
+  #
+  # @param metadata_version [object] 
+  # @param form_def [object] 
+  # @param item_group_def [object]
+  # @return null
   def to_xml(metadata_version, form_def, item_group_def)
     super(metadata_version, form_def, item_group_def)
     bc_property = BiomedicalConceptCore::Property.find(property_ref.subject_ref.id, property_ref.subject_ref.namespace)
@@ -118,10 +156,16 @@ class Form::Item::BcProperty < Form::Item
     end
   end
 
+  # Check Valid
+  #
+  # @return [boolean] Returns true if valid, false otherwise.
+  def valid?
+    super
+  end
+
 private
 
   def self.children_from_triples(object, triples, id)
-    #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****Entry*****")
     object.item_refs = Form::Item::BcProperty.find_for_parent(triples, object.get_links("bf", "hasCommonItem"))
     links = object.get_links_v2(C_SCHEMA_PREFIX, "hasProperty")
     if links.length > 0

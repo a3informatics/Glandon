@@ -165,7 +165,7 @@ class IsoRegistrationState
       self.administrativeNote = Triples.get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
       temp_effective_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
       temp_until_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "untilDate")
-      self.set_current_datetimes(temp_effective_date, temp_until_date)
+      set_current_datetimes(temp_effective_date, temp_until_date)
       self.unresolvedIssue = Triples.get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
       self.administrativeStatus = Triples.get_property_value(triples, UriManagement::C_ISO_R, "administrativeStatus")
       self.previousState  = Triples.get_property_value(triples, UriManagement::C_ISO_R, "previousState")
@@ -582,6 +582,24 @@ class IsoRegistrationState
     return subject_uri
   end
 
+  # Object Valid
+  #
+  # @return [boolean] True if valid, false otherwise.
+  def valid?
+    ra_valid = self.registrationAuthority.valid?
+    if !ra_valid
+      self.registrationAuthority.errors.full_messages.each do |msg|
+        self.errors[:base] << "Registration authority error: #{msg}"
+      end
+    end
+    return ra_valid &&
+      valid_registration_state?(self.registrationStatus) && 
+      valid_registration_state?(self.previousState) && 
+      FieldValidation.valid_label?(:administrativeNote, self.administrativeNote, self) &&
+      FieldValidation.valid_label?(:unresolvedIssue, self.unresolvedIssue, self) &&
+      FieldValidation.valid_label?(:administrativeStatus, self.administrativeStatus, self) 
+  end
+
   def set_current_datetimes (effective_dt, until_dt)
     begin
       self.effective_date = Time.parse(effective_dt)
@@ -590,6 +608,12 @@ class IsoRegistrationState
       self.effective_date = Time.parse(C_DEFAULT_DATETIME)
       self.until_date = Time.parse(C_DEFAULT_DATETIME)  
     end
+  end
+
+private
+
+  def valid_registration_state?(field)
+    return @@stateInfo.has_key?(field)
   end
 
 end

@@ -10,6 +10,27 @@ describe IsoScopedIdentifier do
     load_test_file_into_triple_store("IsoScopedIdentifier.ttl")
   end
 
+  it "validates a valid object" do
+    result = IsoScopedIdentifier.new
+    result.version = 123
+    result.versionLabel = "Draft 123"
+    expect(result.valid?).to eq(true)
+  end
+
+  it "does not validate an invalid version object" do
+    result = IsoScopedIdentifier.new
+    result.version = "123s"
+    result.versionLabel = "Draft 123s"
+    expect(result.valid?).to eq(false)
+  end
+
+  it "does not validate an invalid version label object" do
+    result = IsoScopedIdentifier.new
+    result.version = 123
+    result.versionLabel = "Draft 123£"
+    expect(result.valid?).to eq(false)
+  end
+
   it "allows object to be initialized from triples" do
     result = 
       {
@@ -33,14 +54,6 @@ describe IsoScopedIdentifier do
       { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#versionLabel", object: "0.1" }
     ]
     expect(IsoScopedIdentifier.new(triples).to_json).to eq(result)    
-  end
-
-  it "shows an identifier exist" do
-    expect(IsoScopedIdentifier.exists?("TEST1", "NS-BBB")).to eq(true)
-  end
-
-  it "shows an identifier does not exist" do
-    expect(IsoScopedIdentifier.exists?("TEST11", "NS-BBB")).to eq(false)
   end
 
   it "returns a list of all identifiers" do
@@ -100,25 +113,43 @@ describe IsoScopedIdentifier do
     expect(IsoScopedIdentifier.first_version).to eq(1)
   end
 
-  it "detects if a version exists" do
-    expect(IsoScopedIdentifier.versionExists?("TEST3", 3, "NS-BBB")).to eq(true)
+  it "detects if a identifier exists" do
+    result = IsoScopedIdentifier.find("SI-TEST_3-3")
+    expect(result.exists?).to eq(true)
   end
 
-  it "detects if a version exists" do
-    expect(IsoScopedIdentifier.versionExists?("TEST3", 2, "NS-BBB")).to eq(false)
-  end
-
-  it "detects if a version exists" do
-    expect(IsoScopedIdentifier.versionExists?("TEST3x", 1, "NS-BBB")).to eq(false)
-  end
-
-  it "detects if a version exists" do
-    expect(IsoScopedIdentifier.versionExists?("TEST3", 1, "NS-BBBx")).to eq(false)
-  end
-
-  it "detects a given version" do
+  it "detects if a identifier with version exists" do
     org = IsoNamespace.find("NS-BBB")
-    expect(IsoScopedIdentifier.versionExists?("TEST3", 3, org.id)).to eq(true)
+    si = IsoScopedIdentifier.new
+    si.identifier = "TEST3"
+    si.version = 3
+    si.namespace = org
+    expect(si.version_exists?).to eq(true)
+  end
+
+  it "detects if a identifier with version does not exist" do
+    org = IsoNamespace.find("NS-BBB")
+    si = IsoScopedIdentifier.new
+    si.identifier = "TEST3"
+    si.version = 2
+    si.namespace = org
+    expect(si.version_exists?).to eq(false)
+  end
+
+  it "detects if a identifier exists" do
+    org = IsoNamespace.find("NS-BBB")
+    si = IsoScopedIdentifier.new
+    si.identifier = "TEST3"
+    si.namespace = org
+    expect(si.exists?).to eq(true)
+  end
+
+  it "detects if a identifier does not exist" do
+    org = IsoNamespace.find("NS-BBB")
+    si = IsoScopedIdentifier.new
+    si.identifier = "TEST3x"
+    si.namespace = org
+    expect(si.exists?).to eq(false)
   end
 
   it "finds a given id" do

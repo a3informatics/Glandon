@@ -1,8 +1,7 @@
 class OperationalReferenceV2 < IsoConcept
 
   attr_accessor :subject_ref, :enabled, :optional, :ordinal, :local_label
-  #validates_presence_of :concept, :property, :value, :enabled
-
+  
   # Constants
   C_NONE = "None"
   
@@ -14,6 +13,7 @@ class OperationalReferenceV2 < IsoConcept
   C_PARENT_LINK_DT = "basedOnDomain"
   C_PARENT_LINK_C = "includesColumn"
   C_PARENT_LINK_VC = "basedOnVariable"
+  C_PARENT_LINK_TP = "basedOnTemplate"
   
   C_BC_TYPE = "BcReference"
   C_P_TYPE = "PReference"
@@ -21,6 +21,7 @@ class OperationalReferenceV2 < IsoConcept
   C_TC_TYPE = "TcReference"
   C_T_TYPE = "TReference"
   C_C_TYPE = "CReference"
+  C_TP_TYPE = "TpReference"
   
   C_BC_LINK = "hasBiomedicalConcept"
   C_P_LINK = "hasProperty"
@@ -28,6 +29,7 @@ class OperationalReferenceV2 < IsoConcept
   C_TC_LINK = "hasThesaurusConcept"
   C_T_LINK = "hasTabulation"
   C_C_LINK = "hasColumn"
+  C_TP_LINK = "basedOnTemplate"
   
   C_SCHEMA_PREFIX = "bo"
   C_CLASS_NAME = "OperationalReferenceV2"
@@ -39,7 +41,8 @@ class OperationalReferenceV2 < IsoConcept
   C_TC_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_TC_TYPE})
   C_T_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_T_TYPE})
   C_C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_C_TYPE})
-
+  C_TP_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_TP_TYPE})
+  
   C_TO_TYPE_MAP = 
     {
       C_PARENT_LINK_BC => C_BC_TYPE,
@@ -49,7 +52,8 @@ class OperationalReferenceV2 < IsoConcept
       C_PARENT_LINK_T => C_T_TYPE,
       C_PARENT_LINK_DT => C_T_TYPE,
       C_PARENT_LINK_C => C_C_TYPE,
-      C_PARENT_LINK_VC => C_C_TYPE
+      C_PARENT_LINK_VC => C_C_TYPE,
+      C_PARENT_LINK_TP => C_TP_TYPE
     }
     
   C_TO_LABEL_MAP = 
@@ -61,7 +65,8 @@ class OperationalReferenceV2 < IsoConcept
       C_PARENT_LINK_T => "Tabulation Reference",
       C_PARENT_LINK_DT => "Based on Domain Reference",
       C_PARENT_LINK_C => "Column Reference",
-      C_PARENT_LINK_VC => "Based on Variable Reference"
+      C_PARENT_LINK_VC => "Based on Variable Reference",
+      C_PARENT_LINK_TP => "Based on Template Reference"
     }
     
   C_TO_LINK_MAP = 
@@ -73,19 +78,26 @@ class OperationalReferenceV2 < IsoConcept
       C_PARENT_LINK_T => C_T_LINK,
       C_PARENT_LINK_DT => C_T_LINK,
       C_PARENT_LINK_C => C_C_LINK,
-      C_PARENT_LINK_VC => C_C_LINK
+      C_PARENT_LINK_VC => C_C_LINK,
+      C_PARENT_LINK_TP => C_TP_LINK
     }
     
   C_FROM_TYPE_MAP = 
     {
-      "#{C_SCHEMA_NS}##{C_BC_TYPE}" => C_BC_LINK,
-      "#{C_SCHEMA_NS}##{C_P_TYPE}" => C_P_LINK,
-      "#{C_SCHEMA_NS}##{C_V_TYPE}" => C_V_LINK,
-      "#{C_SCHEMA_NS}##{C_TC_TYPE}" => C_TC_LINK,
-      "#{C_SCHEMA_NS}##{C_T_TYPE}" => C_T_LINK,
-      "#{C_SCHEMA_NS}##{C_C_TYPE}" => C_C_LINK
+      C_BC_RDF_TYPE_URI.to_s => C_BC_LINK,
+      C_P_RDF_TYPE_URI => C_P_LINK,
+      C_V_RDF_TYPE_URI => C_V_LINK,
+      C_TC_RDF_TYPE_URI => C_TC_LINK,
+      C_T_RDF_TYPE_URI => C_T_LINK,
+      C_C_RDF_TYPE_URI => C_C_LINK,
+      C_TP_RDF_TYPE_URI => C_TP_LINK
     }
     
+  # Initialize
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The identifier for the concept being built from the triples
+  # @return [object] The new object
   def initialize(triples=nil, id=nil)
     self.enabled = true
     self.optional = false
@@ -94,13 +106,15 @@ class OperationalReferenceV2 < IsoConcept
     self.subject_ref = nil
     if triples.nil?
       super
-      # Set the type. Overwrite default.
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"    
     else
       super(triples, id)
     end
   end
 
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     json = super
     json[:enabled] = self.enabled
@@ -111,6 +125,10 @@ class OperationalReferenceV2 < IsoConcept
     return json
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = super(json)
     object.enabled = json[:enabled]
@@ -121,27 +139,46 @@ class OperationalReferenceV2 < IsoConcept
     return object
   end
 
-  def to_sparql(parent_id, ref_type, suffix, ordinal, sparql)
-    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Op ref=#{self.to_json}")
-    self.id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{suffix}#{ordinal}"
+  # To SPARQL
+  #
+  # @param parent_uri [object] URI object
+  # @param sparql [object] The SPARQL object
+  # @return [object] The URI
+  def to_sparql_v2(parent_uri, ref_type, suffix, ordinal, sparql)
+    self.namespace = parent_uri.namespace
+    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{suffix}#{ordinal}"
     self.rdf_type = "#{UriV2.new({ :namespace => C_SCHEMA_NS, :id => C_TO_TYPE_MAP[ref_type]})}"
     self.label = C_TO_LABEL_MAP[ref_type]
-    super(sparql, C_SCHEMA_PREFIX)
-    sparql.triple_uri_full_v2("", self.id, UriManagement::C_BO, "#{C_TO_LINK_MAP[ref_type]}", self.subject_ref)
-    sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "enabled", "true", "boolean")
-    sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "optional", "false", "boolean")
-    sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "ordinal", "#{ordinal}", "positiveInteger")
-    sparql.triple_primitive_type("", self.id, UriManagement::C_BO, "local_label", "#{local_label}", "string")
-    return self.id
+    uri = super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => uri}
+    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "#{C_TO_LINK_MAP[ref_type]}"}, {:uri => self.subject_ref })
+    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
+    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
+    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "#{ordinal}", :primitive_type => "positiveInteger"})
+    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "local_label"}, {:literal => "#{local_label}", :primitive_type => "string"})
+    return uri
   end
 
+  # Find an object from triples
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The id of the item to be found
+  # @return [object] The new object
   def self.find_from_triples(triples, id)
     object = new(triples, id)
     links = object.get_links(C_SCHEMA_PREFIX, C_FROM_TYPE_MAP[object.rdf_type])
     if links.length > 0
-      object.subject_ref = UriV2.new({:uri => links[0]})
+      object.subject_ref = links[0]
     end
     return object
+  end
+
+  # Check Valid
+  #
+  # @return [boolean] Returns true if valid, false otherwise.
+  def valid?
+    result = FieldValidation::valid_markdown?(:label_text, self.local_label, self)
+    return result
   end
 
 end

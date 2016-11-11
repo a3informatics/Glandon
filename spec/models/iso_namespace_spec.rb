@@ -9,12 +9,7 @@ describe IsoNamespace do
     load_test_file_into_triple_store("IsoNamespace.ttl")
   end
 
-	it "is valid with a id, namespace, name and shortName" do
-		namespace = IsoNamespace.new()
-		expect(namespace).to be_valid
-	end
-	
-  it "can be filled from JSON" do
+	it "can be filled from JSON" do
     result = IsoNamespace.new
     result.id = "NS-XXX"
     result.namespace = "http://www.assero.co.uk/MDRItems"
@@ -103,26 +98,32 @@ describe IsoNamespace do
     result.namespace = "http://www.assero.co.uk/MDRItems"
     result.name = "CCC Long"
     result.shortName = "CCC"
-    expect(IsoNamespace.create({shortName: "CCC", name: "CCC Long"}).to_json).to eq(result.to_json)  
+    ns = IsoNamespace.create({shortName: "CCC", name: "CCC Long"})
+    expect(ns.to_json).to eq(result.to_json)  
 	end
 
   it "does not create a namespace with an invalid shortname" do
     predicted_result = IsoNamespace.new
+    predicted_result.name = "CCC Long"
+    predicted_result.shortName = "CCC%$£@"
     actual_result = IsoNamespace.create({shortName: "CCC%$£@", name: "CCC Long"})
     expect(actual_result.to_json).to eq(predicted_result.to_json)
     expect(actual_result.errors.messages[:short_name]).to include("contains invalid characters") 
   end
 
-  # TODO: Long name not checked.
-  #it "does not create a namespace with an invalid name" do
-  #  predicted_result = IsoNamespace.new
-  #  actual_result = IsoNamespace.create({shortName: "CCC", name: "CCC%$£@ Long"})
-  #  expect(actual_result).to eq(predicted_result)
-  #  expect(actual_result.errors.messages[:name]).to include("contains invalid characters or is empty") 
-  #end
+  it "does not create a namespace with an invalid name" do
+    predicted_result = IsoNamespace.new
+    predicted_result.name = "CCC%$£@ Long"
+    predicted_result.shortName = "CCC"
+    actual_result = IsoNamespace.create({shortName: "CCC", name: "CCC%$£@ Long"})
+    expect(actual_result.to_json).to eq(predicted_result.to_json)
+    expect(actual_result.errors.messages[:name]).to include("contains invalid characters or is empty") 
+  end
 
   it "does not create a namespace that already exists" do
     predicted_result = IsoNamespace.new
+    predicted_result.name = "CCC Long"
+    predicted_result.shortName = "CCC"
     actual_result = IsoNamespace.create({shortName: "CCC", name: "CCC Long"})
     expect(actual_result.to_json).to eq(predicted_result.to_json)
     expect(actual_result.errors.messages[:base]).to include("The short name entered is already in use.")
@@ -135,6 +136,33 @@ describe IsoNamespace do
     object.name = "CCC Long"
     object.shortName = "CCC"
     object.destroy
+  end
+
+  it "determines if the namespace is valid" do
+    result = IsoNamespace.new
+    result.id = "NS-AAA"
+    result.namespace = "http://www.assero.co.uk/MDRItems"
+    result.name = "AAA Long"
+    result.shortName = "AAA"
+    expect(result.valid?).to eq(true)   
+  end
+
+  it "determines the namespace is invalid with a invalid short name" do
+    result = IsoNamespace.new
+    result.id = "NS-AAA"
+    result.namespace = "http://www.assero.co.uk/MDRItems"
+    result.name = "AAA Long"
+    result.shortName = "AAAaaa123^"
+    expect(result.valid?).to eq(false)   
+  end
+
+  it "determines the namespace is invalid with a invalid name" do
+    result = IsoNamespace.new
+    result.id = "NS-AAA"
+    result.namespace = "http://www.assero.co.uk/MDRItems"
+    result.name = "AAA Long£"
+    result.shortName = "AAAaaa123XX"
+    expect(result.valid?).to eq(false)   
   end
 
   it "clears triple store" do
