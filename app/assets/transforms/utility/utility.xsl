@@ -129,6 +129,51 @@
         </xsl:call-template>
         <xsl:call-template name="SubjectEnd"/>
     </xsl:template>
+ 
+    <!-- Create Operational Reference -->
+    <xsl:template name="OperationalReference">
+        <xsl:param name="pCID"/>
+        <xsl:param name="pType"/>
+        <xsl:param name="pLabel"/>
+        <xsl:param name="pRefType"/>
+        <xsl:param name="pRef"/>
+        <xsl:param name="pOrdinal"/>
+        <xsl:param name="pEnabled"/>
+        <xsl:param name="pOptional"/>
+        <xsl:param name="pLocalLabel"/>
+        <xsl:call-template name="Subject">
+            <xsl:with-param name="pName" select="$pCID"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'rdf:type'"/>
+            <xsl:with-param name="pObjectName" select="concat('bo:',$pType)"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'rdfs:label'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pLabel,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="concat('bo:',$pRefType)"/>
+            <xsl:with-param name="pObjectName" select="$pRef"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'bo:ordinal'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pOrdinal,$quote,'^^xsd:positiveInteger')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'bo:enabled'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pEnabled,$quote,'^^xsd:boolean')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'bo:optional'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pOptional,$quote,'^^xsd:boolean')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'bo:local_label'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pLocalLabel,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="SubjectEnd"/>
+    </xsl:template>
     
     <xsl:template name="extractBRIDGDatatype">
         <xsl:param name="pType"/>

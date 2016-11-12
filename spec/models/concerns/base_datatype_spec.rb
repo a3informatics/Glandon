@@ -30,6 +30,10 @@ describe BaseDatatype do
     expect(BaseDatatype.from_xsd("http://www.w3.org/2001/XMLSchema#string")).to eq("string")
   end
 
+  it "obtain generic from xsd datatype - positive integer" do
+    expect(BaseDatatype.from_xsd("http://www.w3.org/2001/XMLSchema#positiveInteger")).to eq("BaseDatatype::C_POSITIVE_INTEGER")
+  end
+
   it "handles generic from xsd datatype - error" do
     expect(BaseDatatype.from_xsd("http://www.w3.org/2001/XMLSchema#worm")).to eq("string")
   end

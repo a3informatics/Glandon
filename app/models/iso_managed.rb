@@ -969,14 +969,16 @@ class IsoManaged < IsoConcept
   def valid?
     rs_valid = self.registrationState.valid?
     if !rs_valid
+      ConsoleLogger::log(C_CLASS_NAME,"valid?","RS")
       self.registrationState.errors.full_messages.each do |msg|
         self.errors[:base] << "Registration State error: #{msg}"
       end
     end
     si_valid = self.scopedIdentifier.valid?
     if !si_valid
+      ConsoleLogger::log(C_CLASS_NAME,"valid?","SI")
       self.scopedIdentifier.errors.full_messages.each do |msg|
-        self.errors[:base] << "Registration State error: #{msg}"
+        self.errors[:base] << "Scoped Identifier error: #{msg}"
       end
     end
     result = rs_valid &&

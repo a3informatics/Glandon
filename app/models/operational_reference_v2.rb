@@ -85,12 +85,12 @@ class OperationalReferenceV2 < IsoConcept
   C_FROM_TYPE_MAP = 
     {
       C_BC_RDF_TYPE_URI.to_s => C_BC_LINK,
-      C_P_RDF_TYPE_URI => C_P_LINK,
-      C_V_RDF_TYPE_URI => C_V_LINK,
-      C_TC_RDF_TYPE_URI => C_TC_LINK,
-      C_T_RDF_TYPE_URI => C_T_LINK,
-      C_C_RDF_TYPE_URI => C_C_LINK,
-      C_TP_RDF_TYPE_URI => C_TP_LINK
+      C_P_RDF_TYPE_URI.to_s => C_P_LINK,
+      C_V_RDF_TYPE_URI.to_s => C_V_LINK,
+      C_TC_RDF_TYPE_URI.to_s => C_TC_LINK,
+      C_T_RDF_TYPE_URI.to_s => C_T_LINK,
+      C_C_RDF_TYPE_URI.to_s => C_C_LINK,
+      C_TP_RDF_TYPE_URI.to_s => C_TP_LINK
     }
     
   # Initialize

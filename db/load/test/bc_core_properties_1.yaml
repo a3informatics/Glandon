@@ -1,0 +1,475 @@
+---
+:type: http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance
+:id: BC-ACME_BC_C25206
+:namespace: http://www.assero.co.uk/MDRBCs/V1
+:label: Temperature (BC_C25206)
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_changed_date: '2016-01-01T00:00:00+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-ACME_BC_C25206-1
+  :registration_authority:
+    :id: RA-123456789
+    :number: '123456789'
+    :scheme: DUNS
+    :owner: true
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-ACME
+      :name: ACME Pharma
+      :shortName: ACME
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00Z'
+  :until_date: '2016-01-01T00:00:00Z'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Qualified
+:scoped_identifier:
+  :id: SI-ACME_BC_C25206-1
+  :identifier: BC_C25206
+  :version_label: '0.1'
+  :version: 1
+  :namespace:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: NS-ACME
+    :name: ACME Pharma
+    :shortName: ACME
+:children:
+- :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
+  :id: BC-ACME_BC_C25206_DefinedObservation_nameCode
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: ''
+  :extension_properties: []
+  :ordinal: 1
+  :alias: Test
+  :bridg_class: DefinedObservation
+  :bridg_attribute: nameCode
+  :children: []
+  :datatype:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+    :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: ''
+    :extension_properties: []
+    :ordinal: 1
+    :alias: ''
+    :iso21090_datatype: CD
+    :children:
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Name
+      :complex_datatype:
+        :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+        :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :label: ''
+        :extension_properties: []
+        :ordinal: 1
+        :alias: ''
+        :iso21090_datatype: ED
+        :children:
+        - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+          :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :label: ''
+          :extension_properties: []
+          :ordinal: 1
+          :alias: Test Name (--TEST)
+          :collect: false
+          :enabled: true
+          :question_text: Question text
+          :prompt_text: Prompt text
+          :simple_datatype: string
+          :format: ''
+          :children:
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
+            :namespace: http://www.assero.co.uk/MDRBCs/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: true
+            :ordinal: 1
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C67153_C25206
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Test Code (--TESTCD)
+      :collect: false
+      :enabled: true
+      :question_text: Question text
+      :prompt_text: Prompt text
+      :simple_datatype: string
+      :format: ''
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code_TR_1
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66741_C25206
+- :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
+  :id: BC-ACME_BC_C25206_DefinedObservation_targetAnatomicSiteCode
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: ''
+  :extension_properties: []
+  :ordinal: 2
+  :alias: SiteOfAdministration
+  :bridg_class: DefinedObservation
+  :bridg_attribute: targetAnatomicSiteCode
+  :children: []
+  :datatype:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+    :id: BC-ACME_BC_C25206_DefinedObservation_targetAnatomicSiteCode_CD
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: ''
+    :extension_properties: []
+    :ordinal: 1
+    :alias: ''
+    :iso21090_datatype: CD
+    :children:
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_DefinedObservation_targetAnatomicSiteCode_CD_code
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Location (--LOC)
+      :collect: true
+      :enabled: false
+      :question_text: Location of test
+      :prompt_text: Location
+      :simple_datatype: string
+      :format: ''
+      :children: []
+- :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
+  :id: BC-ACME_BC_C25206_DefinedObservation_methodCode
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: ''
+  :extension_properties: []
+  :ordinal: 3
+  :alias: Method
+  :bridg_class: DefinedObservation
+  :bridg_attribute: methodCode
+  :children: []
+  :datatype:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+    :id: BC-ACME_BC_C25206_DefinedObservation_methodCode_CD
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: ''
+    :extension_properties: []
+    :ordinal: 1
+    :alias: ''
+    :iso21090_datatype: CD
+    :children:
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_DefinedObservation_methodCode_CD_code
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Method Code (--METHOD)
+      :collect: true
+      :enabled: false
+      :question_text: Question text
+      :prompt_text: Prompt text
+      :simple_datatype: string
+      :format: ''
+      :children: []
+- :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
+  :id: BC-ACME_BC_C25206_PerformedObservation_dateRange
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: ''
+  :extension_properties: []
+  :ordinal: 4
+  :alias: DateTime
+  :bridg_class: PerformedObservation
+  :bridg_attribute: dateRange
+  :children: []
+  :datatype:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+    :id: BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: ''
+    :extension_properties: []
+    :ordinal: 1
+    :alias: ''
+    :iso21090_datatype: IVL_TS_DATETIME
+    :children:
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME_low
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Date
+      :complex_datatype:
+        :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+        :id: BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :label: ''
+        :extension_properties: []
+        :ordinal: 1
+        :alias: ''
+        :iso21090_datatype: TS_DATETIME
+        :children:
+        - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+          :id: BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :label: ''
+          :extension_properties: []
+          :ordinal: 1
+          :alias: Date and Time (--DTC)
+          :collect: true
+          :enabled: true
+          :question_text: Question text
+          :prompt_text: Prompt text
+          :simple_datatype: dateTime
+          :format: ''
+          :children: []
+- :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
+  :id: BC-ACME_BC_C25206_PerformedObservation_negationReason
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: ''
+  :extension_properties: []
+  :ordinal: 5
+  :alias: ReasonNotDone
+  :bridg_class: PerformedObservation
+  :bridg_attribute: negationReason
+  :children: []
+  :datatype:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+    :id: BC-ACME_BC_C25206_PerformedObservation_negationReason_SC
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: ''
+    :extension_properties: []
+    :ordinal: 1
+    :alias: ''
+    :iso21090_datatype: SC
+    :children:
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_PerformedObservation_negationReason_SC_code
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Code
+      :complex_datatype:
+        :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+        :id: BC-ACME_BC_C25206_PerformedObservation_negationReason_SC_code_CD
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :label: ''
+        :extension_properties: []
+        :ordinal: 1
+        :alias: ''
+        :iso21090_datatype: CD
+        :children: []
+- :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
+  :id: BC-ACME_BC_C25206_PerformedObservation_bodyPositionCode
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: ''
+  :extension_properties: []
+  :ordinal: 6
+  :alias: Position
+  :bridg_class: PerformedObservation
+  :bridg_attribute: bodyPositionCode
+  :children: []
+  :datatype:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+    :id: BC-ACME_BC_C25206_PerformedObservation_bodyPositionCode_CD
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: ''
+    :extension_properties: []
+    :ordinal: 1
+    :alias: ''
+    :iso21090_datatype: CD
+    :children:
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_PerformedObservation_bodyPositionCode_CD_code
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Body Position (--POS)
+      :collect: true
+      :enabled: false
+      :question_text: Question text
+      :prompt_text: Prompt text
+      :simple_datatype: string
+      :format: ''
+      :children: []
+- :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
+  :id: BC-ACME_BC_C25206_PerformedObservation_targetAnatomicSiteLateralityCode
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: ''
+  :extension_properties: []
+  :ordinal: 7
+  :alias: Laterality
+  :bridg_class: PerformedObservation
+  :bridg_attribute: targetAnatomicSiteLateralityCode
+  :children: []
+  :datatype:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+    :id: BC-ACME_BC_C25206_PerformedObservation_targetAnatomicSiteLateralityCode_CD
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: ''
+    :extension_properties: []
+    :ordinal: 1
+    :alias: ''
+    :iso21090_datatype: CD
+    :children:
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Laterality (--LAT)
+      :collect: true
+      :enabled: false
+      :question_text: Question text
+      :prompt_text: Prompt text
+      :simple_datatype: string
+      :format: ''
+      :children: []
+- :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
+  :id: BC-ACME_BC_C25206_PerformedClinicalResult_value
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: ''
+  :extension_properties: []
+  :ordinal: 8
+  :alias: Result
+  :bridg_class: PerformedClinicalResult
+  :bridg_attribute: value
+  :children: []
+  :datatype:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+    :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: ''
+    :extension_properties: []
+    :ordinal: 1
+    :alias: ''
+    :iso21090_datatype: PQR
+    :children:
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 2
+      :alias: Result Units (--ORRESU)
+      :collect: true
+      :enabled: true
+      :question_text: Question text
+      :prompt_text: Prompt text
+      :simple_datatype: string
+      :format: ''
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C42559
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Result Value (--ORRES)
+      :collect: true
+      :enabled: true
+      :question_text: Question text
+      :prompt_text: Prompt text
+      :simple_datatype: float
+      :format: ''
+      :children: []
+- :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
+  :id: BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: ''
+  :extension_properties: []
+  :ordinal: 9
+  :alias: Baseline
+  :bridg_class: PerformedClinicalResult
+  :bridg_attribute: baselineIndicator
+  :children: []
+  :datatype:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
+    :id: BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: ''
+    :extension_properties: []
+    :ordinal: 1
+    :alias: ''
+    :iso21090_datatype: BL
+    :children:
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Baseline (--BLFL)
+      :collect: true
+      :enabled: false
+      :question_text: Question text
+      :prompt_text: Prompt text
+      :simple_datatype: boolean
+      :format: ''
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66742_C49487
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: true
+        :ordinal: 2
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66742_C49488
+:template_ref: 'null'

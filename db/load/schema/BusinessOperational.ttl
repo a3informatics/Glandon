@@ -51,6 +51,12 @@
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Tabulation Column."^^xsd:string
 .
+:TpReference
+  rdf:type owl:Class ;
+  rdfs:label "Biomedical Concept Template Reference"^^xsd:string ;
+  rdfs:subClassOf :Reference ;
+  skos:definition "Holds the reference to a Biomedical Concept Template."^^xsd:string
+.
 :hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -109,7 +115,7 @@
     owl:unionOf  ( :Component :Reference )
     ] ;
   rdfs:label "ordinal"^^xsd:string ;
-  rdfs:range xsd:postiveInteger ;
+  rdfs:range xsd:positiveInteger ;
 .
 :enabled
   rdf:type owl:DatatypeProperty ;

@@ -2,9 +2,8 @@ require "uri"
 
 class BiomedicalConcept < BiomedicalConceptCore
   
-  attr_accessor :bct
-  validates_presence_of :bct
-
+  attr_accessor :template_ref
+  
   # Constants
   C_CLASS_NAME = "BiomedicalConcept"
   C_INSTANCE_PREFIX = "mdrBcs"
@@ -14,85 +13,66 @@ class BiomedicalConcept < BiomedicalConceptCore
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
 
+  # Initialize
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The identifier for the concept being built from the triples
+  # @return [object] The new object
+  def initialize(triples=nil, id=nil)
+    self.template_ref = OperationalReferenceV2.new
+    if triples.nil?
+      super
+    else
+      super(triples, id)
+    end
+  end
+
+  # Find the object
+  #
+  # @param id [string] The id of the item to be found
+  # @param ns [string] The namespace of the item to be found
+  # @param children [boolean] Find children object, defaults to true.
+  # @return [object] The new object
   def self.find(id, ns, children=true)
     object = super(id, ns, children)
     if children
-      if object.link_exists?(C_SCHEMA_PREFIX, "basedOn")
-        bct_uri = object.get_links(C_SCHEMA_PREFIX, "basedOn")[0]
-        # TODO: Don't get the template, not used as yet. Think about this this, save a query or two.
-        # TODO: Amended to put back in. Used when editing the BC. 
-        object.bct = BiomedicalConceptTemplate.find(ModelUtility.extractCid(bct_uri), ModelUtility.extractNs(bct_uri), false)
-        #object.bct = nil 
+      if object.link_exists?(C_SCHEMA_PREFIX, "basedOnTeplate")
+        links = object.get_links_v2(C_SCHEMA_PREFIX, "basedOnTeplate")
+        object.template_ref = OperationalReferenceV2.find(links[0])
       else
-        object.bct = nil 
+        object.template_ref = nil 
       end 
     end
     return object 
   end
 
-  def flatten
-    results = super
-  end
-
-  def to_api_json
-    result = super
-    result[:type] = "Biomedical Concept"
-    result[:template] = { :id => self.bct.id, :namespace => self.bct.namespace, :identifier => self.bct.identifier, :label => self.bct.label  }
-    return result
-  end
-
   def self.all
-    super(C_RDF_TYPE, C_SCHEMA_NS)
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   def self.unique
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
+    return  super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   def self.list
-    ConsoleLogger::log(C_CLASS_NAME,"list","ns=" + C_SCHEMA_NS)
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   def self.history(params)
-    results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS, params)
   end
 
   def self.create(params)
-    #ConsoleLogger::log(C_CLASS_NAME,"create","*****Entry*****")
-    object = self.new 
-    object.errors.clear
-    ConsoleLogger::log(C_CLASS_NAME,"create","data=" + params[:data].to_s)
-    data = params[:data]
-    managed_item = data[:managed_item]
-    operation = data[:operation]
-    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=#{managed_item[:identifier]}, new version=#{operation[:new_version]}")
-    ConsoleLogger::log(C_CLASS_NAME,"create","operation=#{operation}")
-    if params_valid?(managed_item, object) then
-      ra = IsoRegistrationAuthority.owner
-      if create_permitted?(managed_item[:identifier], operation[:new_version].to_i, object, ra) 
-        bc = BiomedicalConceptTemplate.find(managed_item[:id], managed_item[:namespace])
-        sparql = SparqlUpdate.new
-        # Given we copy the template we need to fix a few fields to set them to the 
-        # correct values
-        bc.scopedIdentifier.identifier = managed_item[:identifier]
-        bc.label = managed_item[:label]
-        bc.creationDate = managed_item[:creation_date]
-        bc.lastChangeDate = managed_item[:creation_date]
-        bc.scopedIdentifier.version = operation[:new_version].to_i
-        bc.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
-        bc.registrationState.previousState = managed_item[:state]
-        bc.registrationState.registrationStatus = operation[:new_state]
-        uri = bc.to_sparql(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, data)
-        ConsoleLogger::log(C_CLASS_NAME,"create","SPARQL=#{sparql}")
+    ConsoleLogger::log(C_CLASS_NAME, "create", "params=#{params}")
+    operation = params[:operation]
+    managed_item = params[:managed_item]
+    object = BiomedicalConcept.from_json(managed_item)
+    object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
+    if object.valid? then
+      if object.create_permitted?
+        sparql = object.to_sparql_v2
         response = CRUD.update(sparql.to_s)
-        if response.success?
-          object = BiomedicalConcept.find(uri.id, uri.namespace)
-          object.errors.clear
-        else
+        if !response.success?
           object.errors.add(:base, "The Biomedical Concept was not created in the database.")
         end
       end
@@ -100,35 +80,24 @@ class BiomedicalConcept < BiomedicalConceptCore
     return object
   end
 
-   def self.update(params)
+  def self.update(params)
     object = self.new 
     object.errors.clear
-    id = params[:id]
-    namespace = params[:namespace]
     data = params[:data]
-    managed_item = data[:managed_item]
     operation = data[:operation]
-    ConsoleLogger::log(C_CLASS_NAME,"create","identifier=" + managed_item[:identifier] + ", new version=" + operation[:new_version].to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"create","operation=" + operation.to_s)
-    ConsoleLogger::log(C_CLASS_NAME,"create","label=" + managed_item[:label])
-    bc = BiomedicalConcept.find(id, namespace)
-    sparql = SparqlUpdate.new
+    managed_item = data[:managed_item]
+    #ConsoleLogger::log(C_CLASS_NAME,"update", "managed_item=" + managed_item.to_json.to_s)
+    bc = BiomedicalConcept.find(managed_item[:id], managed_item[:namespace])
     ra = IsoRegistrationAuthority.owner
-    #bc.scopedIdentifier.identifier = managed_item[:identifier]
-    bc.label = managed_item[:label]
-    bc.scopedIdentifier.version = operation[:new_version].to_i
-    #bc.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
-    bc.registrationState.previousState = managed_item[:state]
-    bc.registrationState.registrationStatus = operation[:new_state]
-    uri = bc.to_sparql(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, data)
-    ConsoleLogger::log(C_CLASS_NAME,"create","SPARQL=#{sparql}")
+    object = BiomedicalConcept.from_json(data)
+    sparql = object.to_sparql(ra)
     bc.destroy # Destroys the old entry before the creation of the new item
+    ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
     response = CRUD.update(sparql.to_s)
     if response.success?
-      object = BiomedicalConcept.find(uri.id, uri.namespace)
       object.errors.clear
     else
-      object.errors.add(:base, "The Biomedical Concept was not created in the database.")
+      object.errors.add(:base, "The Biomedical Concept was not updated in the database.")
     end
     return object
   end
@@ -228,6 +197,63 @@ class BiomedicalConcept < BiomedicalConceptCore
         ConsoleLogger::log(C_CLASS_NAME,"upgrade","Update BC")
       end
     end
+  end
+
+  # Get Properties
+  #
+  # @return [array] Array of leaf (property) JSON structures
+  def get_properties
+    json = self.to_json
+    json[:children] = super
+    return json
+  end
+
+  # Set Properties
+  #
+  # param json [hash] The properties
+  def set_properties(json)
+    results = super
+  end
+
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
+  def self.from_json(json)
+    object = super(json)
+    object.template_ref = OperationalReferenceV2.from_json(json[:template_ref])
+    if !json[:children].blank?
+      json[:children].each do |child|
+        object.items << BiomedicalConceptCore::Item.from_json(child)
+      end
+    end
+    return object
+  end
+  
+  # To JSON
+  #
+  # @return [hash] The object hash 
+  def to_json
+    json = super
+    json[:template_ref] = template_ref.to_json
+    json[:children] = Array.new
+    self.items.each do |item|
+      json[:children] << item.to_json
+    end 
+    json[:children] = json[:children].sort_by {|item| item[:ordinal]}
+    return json
+  end
+  
+  # To SPARQL
+  #
+  # @param sparql [object] The SPARQL object
+  # @return [object] The URI
+  def to_sparql_v2
+    sparql = SparqlUpdateV2.new
+    uri = super(sparql)
+    self.template_ref.to_sparql_v2(sparql)
+    sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "basedOnTemplate"}, { :uri => self.bct })
+    return sparql
   end
 
   def references

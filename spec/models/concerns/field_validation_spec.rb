@@ -212,6 +212,11 @@ describe FieldValidation do
     expect(FieldValidation.valid_mapping?(:test, "WT!!!", object)).to eq(false)
   end
   
+  it "checks valid format - empty \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_format?(:test, "2", object)).to eq(true)
+  end
+
   it "checks valid format - d" do
     object = IsoConcept.new
     expect(FieldValidation.valid_format?(:test, "2", object)).to eq(true)

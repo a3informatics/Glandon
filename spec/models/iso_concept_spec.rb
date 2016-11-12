@@ -79,57 +79,7 @@ describe IsoConcept do
 		expect(IsoConcept.get_type("F-AE_G1_I2", "http://www.assero.co.uk/X/V1").to_s).to eq("http://www.assero.co.uk/BusinessForm#Question")   
 	end
 
-=begin
-	it "allows the child links to be determined" do
-		triples = {}
-		triples["F-AE_G1"] = []
-		triples["F-AE_G1_I2"] = []
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", :object => "http://www.assero.co.uk/BusinessForm#NormalGroup" }
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.w3.org/2000/01/rdf-schema#label", :object => "Question Group" }
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#isGroupOf", :object => "http://www.assero.co.uk/X/V1#F-AE" }
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#hasItem", :object => "http://www.assero.co.uk/X/V1#F-AE_G1_I1" }
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#hasItem", :object => "http://www.assero.co.uk/X/V1#F-AE_G1_I2" } 
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#hasItem", :object => "http://www.assero.co.uk/X/V1#F-AE_G1_I3" } 
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#hasItem", :object => "http://www.assero.co.uk/X/V1#F-AE_G1_I4" } 
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#hasItem", :object => "http://www.assero.co.uk/X/V1#F-AE_G1_I5" } 
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#hasItem", :object => "http://www.assero.co.uk/X/V1#F-AE_G1_I6" } 
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#hasItem", :object => "http://www.assero.co.uk/X/V1#F-AE_G1_I7" } 
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#completion", :object => "" }
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#note", :object => "" }
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#repeating", :object => "false" } 
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#optional", :object => "false" }
-		triples["F-AE_G1"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1", :predicate => "http://www.assero.co.uk/BusinessForm#ordinal", :object => "1" }
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", :object => "http://www.assero.co.uk/BusinessForm#Question" }
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.w3.org/2000/01/rdf-schema#label", :object => "Adverse Event" }
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#completion", :object => "Completion" } 
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#note", :object => "" }
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#optional", :object => "false" } 
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#ordinal", :object => "2" }
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#datatype", :object => "S" } 
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#format", :object => "50" }
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#mapping", :object => "AETERM" } 
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#question_text", :object => "Adverse Event:" } 
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#Extension1", :object => "14" }
-		triples["F-AE_G1_I2"] << { :subject => "http://www.assero.co.uk/X/V1#F-AE_G1_I2", :predicate => "http://www.assero.co.uk/BusinessForm#Extension2", :object => "true" } 
-		links = []
-		#links << { :rdf_type => "http://www.assero.co.uk/BusinessForm#isGroupOf", :value => "http://www.assero.co.uk/X/V1#F-AE" }
-		#links << { :rdf_type => "http://www.assero.co.uk/BusinessForm#hasItem", :value => "http://www.assero.co.uk/X/V1#F-AE_G1_I1" }
-		#links << { :rdf_type => "http://www.assero.co.uk/BusinessForm#hasItem", :value => "http://www.assero.co.uk/X/V1#F-AE_G1_I2" } 
-		#links << { :rdf_type => "http://www.assero.co.uk/BusinessForm#hasItem", :value => "http://www.assero.co.uk/X/V1#F-AE_G1_I3" } 
-		#links << { :rdf_type => "http://www.assero.co.uk/BusinessForm#hasItem", :value => "http://www.assero.co.uk/X/V1#F-AE_G1_I4" } 
-		#links << { :rdf_type => "http://www.assero.co.uk/BusinessForm#hasItem", :value => "http://www.assero.co.uk/X/V1#F-AE_G1_I5" } 
-		#links << { :rdf_type => "http://www.assero.co.uk/BusinessForm#hasItem", :value => "http://www.assero.co.uk/X/V1#F-AE_G1_I6" } 
-		#links << { :rdf_type => "http://www.assero.co.uk/BusinessForm#hasItem", :value => "http://www.assero.co.uk/X/V1#F-AE_G1_I7" } 
-		links << "http://www.assero.co.uk/X/V1#F-AE_G1_I1"
-		links << "http://www.assero.co.uk/X/V1#F-AE_G1_I2" 
-		links << "http://www.assero.co.uk/X/V1#F-AE_G1_I3" 
-		links << "http://www.assero.co.uk/X/V1#F-AE_G1_I4"
-		links << "http://www.assero.co.uk/X/V1#F-AE_G1_I5"
-		links << "http://www.assero.co.uk/X/V1#F-AE_G1_I6"
-		links << "http://www.assero.co.uk/X/V1#F-AE_G1_I7"
-		expect(IsoConcept.find_for_parent(triples, links)).to eq()   
-	end
-=end
+	it "allows the child links to be determined"
 
 	it "allows an extension property to be added" do
 		result = {}
@@ -389,6 +339,15 @@ describe IsoConcept do
     end
 	end
 
+	it "allows other errors to be copied" do
+		object_1 = IsoConcept.new
+		object_1.label = "!@£$%^&**"
+		object_1.valid?
+		object_2 = IsoConcept.new
+		object_2.copy_errors(object_1, "Child errors:")
+		expect(object_2.errors.full_messages[0]).to eq("Child errors: Label contains invalid characters")
+	end
+	
 	it "clears triple store" do
     clear_triple_store
   end

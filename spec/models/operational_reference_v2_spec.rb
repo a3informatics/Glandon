@@ -61,20 +61,77 @@ describe OperationalReferenceV2 do
       {
         :id => "F-ACME_OR_G1_I1", 
         :namespace => "http://www.assero.co.uk/X/V1", 
-        :local_label => "XXXXX",
         :extension_properties => [],
         :label => "BC Property Reference",
         :subject_ref => UriV2.new({:id => "fragement", :namespace => "http://www.example.com/path"}).to_json,
         :optional => false,
         :ordinal => 1,
         :enabled => true,
+        :local_label => "hello",
         :type => "http://www.assero.co.uk/BusinessForm#PReference"
       }
     item = OperationalReferenceV2.from_json(result)
     expect(item.to_json).to eq(result)
   end
 
-  it "allows an object to be found from triples"
+  it "allows an object to be found from triples" do
+    id = "BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1"
+    triples = {}
+    triples [id] = []
+    triples [id] = 
+      [
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1",
+          :predicate => "http://www.w3.org/2000/01/rdf-schema#label",
+          :object => "Thesaurus Concept Reference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1",
+          :predicate => "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+          :object => "http://www.assero.co.uk/BusinessOperational#TcReference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept",
+          :object => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66770_C49668"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#ordinal",
+          :object => "1"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#enabled",
+          :object => "true"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#optional",
+          :object => "true"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#local_label",
+          :object => ""
+        }
+      ]
+    result = 
+      {
+        :id => "BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1", 
+        :namespace => "http://www.assero.co.uk/MDRBCs/V1", 
+        :label => "Thesaurus Concept Reference",
+        :extension_properties => [],
+        :subject_ref => UriV2.new({:id => "CLI-C66770_C49668", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}).to_json,
+        :optional => true,
+        :ordinal => 1,
+        :local_label => "",
+        :enabled => true,
+        :type => "http://www.assero.co.uk/BusinessOperational#TcReference"
+      }
+    object = OperationalReferenceV2.find_from_triples(triples, id)
+    expect(object.to_json).to eq(result)
+  end
 
   it "allows an object to be exported as SPARQL, TcReference" do
     sparql = SparqlUpdateV2.new

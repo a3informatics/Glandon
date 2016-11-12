@@ -1,8 +1,7 @@
-class BiomedicalConceptCore::Property < IsoConcept
+class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
 
-  attr_accessor :alias, :collect, :enabled, :qText, :pText, :simpleDatatype, :datatype, :format,  :bridgPath, :values, :childComplex, :datatypeComplex, :ordinal
-  validates_presence_of :alias, :label, :collect, :enabled, :qText, :pText, :simpleDatatype, :datatype, :format, :bridgPath, :values, :childComplex, :datatypeComplex, :ordinal
-
+  attr_accessor :collect, :enabled, :question_text, :prompt_text, :simple_datatype, :datatype, :format, :bridg_path, :tc_refs, :complex_datatype
+  
   # Constants
   C_SCHEMA_PREFIX = "cbc"
   C_INSTANCE_PREFIX = "mdrBcs"
@@ -11,203 +10,209 @@ class BiomedicalConceptCore::Property < IsoConcept
   C_RDF_TYPE = "Property"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
   
+  # Initialize
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The identifier for the concept being built from the triples
+  # @return [object] The new object
   def initialize(triples=nil, id=nil)
-    self.values = Array.new
-    self.childComplex = nil
-    self.datatypeComplex = nil
+    self.collect = false
+    self.enabled = false
+    self.question_text = ""
+    self.prompt_text = ""
+    self.datatype = ""
+    self.format = ""
+    self.bridg_path = ""
+    self.tc_refs = Array.new
+    self.simple_datatype = BaseDatatype::C_STRING
+    self.complex_datatype = nil
     if triples.nil?
       super
-      self.alias = ""
-      self.collect = false
-      self.enabled = false
-      self.qText = ""
-      self.pText = ""
-      self.datatype = ""
-      self.format = ""
-      self.bridgPath = ""
-      self.ordinal = 0
+      self.rdf_type = C_RDF_TYPE_URI.to_s
     else
-      self.alias = ""
-      self.collect = false
-      self.enabled = false
-      self.qText = ""
-      self.pText = ""
-      self.datatype = ""
-      self.format = ""
-      self.bridgPath = ""
-      self.ordinal = 0
       super(triples, id)    
     end
   end
 
+  # Find the object
+  #
+  # @param id [string] The id of the item to be found
+  # @param ns [string] The namespace of the item to be found
+  # @param children [boolean] Find children object, defaults to true.
+  # @return [object] The new object
   def self.find(id, ns, children=true)
-    object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
-    object.triples = ""
-    return object  
+    return super(id, ns, children)
   end
 
+  # Find an object from triples
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The id of the item to be found
+  # @return [object] The new object
   def self.find_from_triples(triples, id)
-    #ConsoleLogger::log(C_CLASS_NAME,"find_from_triples","*****ENTRY*****")
-    object = new(triples, id)
-    children_from_triples(object, triples, id)
-    object.triples = ""
-    return object
+    return super(triples, id)
   end
 
-  def isComplex?
-    return self.childComplex != nil
+  def is_complex?
+    return self.complex_datatype != nil
   end
 
-	def flatten
-		#ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
+	# Get Properties
+  #
+  # @return [array] Array of leaf (property) JSON structures
+  def get_properties
 		results = Array.new
-		if self.isComplex? 
-			self.childComplex.each do |item|
-				more = item.flatten
-				more.each do |datatype|
-					results << datatype
-				end
-			end
-		end
-		return results
-	end
-
-	def to_api_json
-		#ConsoleLogger::log(C_CLASS_NAME,"flatten","*****ENTRY*****")
-		results = Array.new
-		if self.isComplex? 
-			self.childComplex.each do |item|
-				more = item.to_api_json
-				more.each do |datatype|
-					results << datatype
-				end
-			end
-		end
-		return results
-	end
-	
-  def to_json
-    return to_minimum
-  end
-  
-  def to_sparql(parent, ordinal, params, sparql, prefix)
-    id = parent + Uri::C_UID_SECTION_SEPARATOR + 'P' + ordinal.to_s
-    sparql.triple("", id, "rdf", "type", prefix, "Property")
-    sparql.triple("", id, prefix, "isPropertyOf", "", parent.to_s)
-    
-    if self.isComplex? 
-      sparql.triple_primitive_type("", id, prefix, "alias", "*****Something Here*****", "string")
-      sparql.triple_primitive_type("", id, prefix, "name", "*****Something Here*****", "string")
-      ordinal = 1
-      self.childComplex.each do |key, datatype|
-        sparql.triple("", id, prefix, "hasComplexDatatype", "", id + Uri::C_UID_SECTION_SEPARATOR + 'DT' + ordinal.to_s)
-        ordinal += 1
-      end
-      ordinal = 1
-      self.childComplex.each do |datatype|
-        datatype.to_sparql(id, ordinal, params, sparql, prefix)
-        ordinal += 1
-      end
+		if self.is_complex? 
+			results += self.complex_datatype.get_properties
     else
-      #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + params.to_s)
-      # TODO: This needs to be made better. Array versus hash handling. Currently an array.
-      # Amended original code as a result of the funny JSON hash versus array processing with AJAX
-      properties = params.select {|item| item[:id] == self.id}
-      #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","params=" + properties.to_s)
-      property = properties[0]
-      #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Property=" + property.to_s)
-      sparql.triple_primitive_type("", id, prefix, "alias", property[:alias], "string")
-      sparql.triple_primitive_type("", id, prefix, "ordinal", ordinal.to_s, "positiveInteger")
-      sparql.triple_primitive_type("", id, prefix, "qText", property[:qText], "string")
-      sparql.triple_primitive_type("", id, prefix, "pText", property[:pText], "string")
-      sparql.triple_primitive_type("", id, prefix, "enabled", property[:enabled], "boolean")
-      sparql.triple_primitive_type("", id, prefix, "collect", property[:collect], "boolean")
-      sparql.triple_primitive_type("", id, prefix, "bridgPath", self.bridgPath.to_s, "string")
-      sparql.triple_primitive_type("", id, prefix, "simpleDatatype", self.simpleDatatype.to_s, "string")
-      #ConsoleLogger::log(C_CLASS_NAME,"to_bc","Property=" + property.to_s)
-      if property.has_key?(:values)
-        if property[:values] != nil
-          ordinal = 1
-          values = property[:values]
-          values.each do |value|
-            sparql.triple("", id, prefix, "hasValue", "", id + Uri::C_UID_SECTION_SEPARATOR + 'PV' + ordinal.to_s)
-            ordinal += 1
-          end
-          ordinal = 1
-          values = property[:values]
-          #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Values=" + values.to_s)
-          values.each do |value|
-            #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","Value=" + value.to_s)
-            BiomedicalConceptCore::PropertyValue.to_sparql(id, ordinal, value, sparql, prefix)
-            ordinal += 1
+      results << self.to_json
+    end
+		return results
+	end
+
+	# Set Properties
+  #
+  # param json [hash] The properties
+  def set_properties(json)
+    if self.is_complex? 
+      self.complex_datatype.set_properties(json) 
+    else
+      ConsoleLogger::log(C_CLASS_NAME,"set_properties","json=#{json}")
+      json.each do |property|
+        if property[:id] == self.id 
+          self.collect = property[:collect]
+          self.enabled = property[:enabled]
+          self.question_text = property[:question_text]
+          self.prompt_text = property[:prompt_text]
+          self.simple_datatype = property[:simple_datatype]
+          self.format = property[:format]
+          self.tc_refs = []
+          if !property[:children].blank?
+            property[:children].each do |child|
+              self.tc_refs << OperationalReferenceV2.from_json(child)
+            end
           end
         end
       end
+    end
+  end
+
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
+  def self.from_json(json)
+		object = super(json)
+		if json.has_key?([:complex_datatype])
+      object.complex_datatype = BiomedicalConceptCore::Datatype.from(json(json[:complex_datatype]))
+    else
+      object.collect = json[:collect]
+      object.enabled = json[:enabled]
+      object.question_text = json[:question_text]
+      object.prompt_text = json[:prompt_text]
+      object.simple_datatype = json[:simple_datatype]
+      object.format = json[:format]
+			if !json[:children].blank?
+        json[:children].each do |child|
+          object.children << OperationalReferenceV2.from_json(child)
+        end
+      end
+		end
+		return object
+	end
+	
+  # To JSON
+  #
+  # @return [hash] The object hash 
+  def to_json
+    json = super
+    if self.is_complex?
+      json[:complex_datatype] = self.complex_datatype.to_json
+    else
+      json[:collect] = self.collect
+      json[:enabled] = self.enabled
+      json[:question_text] = self.question_text
+      json[:prompt_text] = self.prompt_text
+      json[:simple_datatype] = self.simple_datatype
+      json[:format] = self.format
+      json[:children] = Array.new
+      self.tc_refs.each do |tc_ref|
+        json[:children] << tc_ref.to_json
+      end 
+      json[:children] = json[:children].sort_by {|item| item[:ordinal]}
+    end
+    return json
+  end
+  
+  # To SPARQL
+  #
+  # @param sparql [object] The SPARQL object
+  # @return [object] The URI
+  def to_sparql_v2(parent_uri, sparql)
+    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}P#{ordinal}"
+    self.namespace = parent_uri.namespace
+    uri = super(sparql)
+    subject = {:uri => uri}
+    if self.is_complex? 
+      uri = complex_datatype.to_sparql_v2(sparql)
+      sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasComplexDatatype"}, { :namespace => uri })
+    else
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "question_text"}, {:literal => "#{self.question_text}", :primitive_type => "string"})
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prompt_text"}, {:literal => "#{self.prompt_text}", :primitive_type => "string"})
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "format"}, {:literal => "#{self.format}", :primitive_type => "string"})
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "enabled"}, {:literal => "#{self.enabled}", :primitive_type => "boolean"})
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "collect"}, {:literal => "#{self.collect}", :primitive_type => "boolean"})
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "bridg_path"}, {:literal => "#{self.bridg_path}", :primitive_type => "string"})
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "simple_datatype"}, {:literal => "#{self.simple_datatype}", :primitive_type => "string"})
     end  
   end
 
-	def to_minimum
-    values = []
-    if self.values != nil
-      self.values.each do |property_value|
-        cli = property_value.cli
-        values << {:uri_id => cli.id, :uri_ns => cli.namespace, :identifier => cli.identifier, :useful_1 => cli.notation, :useful_2 => "", :note_type => 0 }
+  # Check Valid
+  #
+  # @return [boolean] Returns true if valid, false otherwise.
+  def valid?
+    result = super
+    if self.is_complex?
+      if !self.complex_datatype.valid?
+        self.errors.add(:complex_datatype, "is invalid")
+        result = false
       end
-		end
-    return {
-			:id => self.id, :alias => self.alias, :collect => self.collect.to_s, :enabled => self.enabled.to_s, :qText => self.qText, 
-			:pText => self.pText, :datatype => self.datatype, :format => self.format, :values => values 
-			}
-	end
+    else
+      if !BaseDatatype::valid?(self.simple_datatype) 
+        self.errors.add(:simple_datatype, "is invalid")
+        result = false
+      end
+      result = result &&
+        FieldValidation::valid_question?(:question_text, self.question_text, self) &&
+        FieldValidation::valid_question?(:prompt_text, self.prompt_text, self) &&
+        FieldValidation::valid_format?(:format, self.format, self)
+    end
+    return result
+  end
 	
 private
   
   def self.children_from_triples(object, triples, id)
-    #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","*****ENTRY*****")
     if object.link_exists?(C_SCHEMA_PREFIX, "hasComplexDatatype")
-      #ConsoleLogger::log(C_CLASS_NAME,"children_from_triples","Complex")
-      object.values = nil
+      object.tc_refs = Array.new
       links = object.get_links(C_SCHEMA_PREFIX, "hasComplexDatatype")
-      object.childComplex = BiomedicalConceptCore::Datatype.find_for_child(triples, links)
-      object.datatypeComplex = nil
-    else
-      object.childComplex = nil
-      links = object.get_links(C_SCHEMA_PREFIX, "hasValue")
-      values = BiomedicalConceptCore::PropertyValue.find_for_parent(triples, links)
-      values.sort! {|item| item.ordinal }
-      object.values = values
-      count = object.values.length
-      if object.link_exists?(C_SCHEMA_PREFIX, "isPropertyOf")
-        links = object.get_links(C_SCHEMA_PREFIX, "isPropertyOf")
-        object.datatypeComplex = BiomedicalConceptCore::Datatype.find_parent(triples, ModelUtility.extractCid(links[0]))
-        object.datatype = getDatatype(object.datatypeComplex.datatype, count, object.bridgPath)  
-        object.format = getFormat(object.datatype)  
+      datatypes = BiomedicalConceptCore::Datatype.find_for_parent(triples, links)
+      if datatypes.length > 0
+        object.complex_datatype = datatypes[0]
       end
+    else
+      object.complex_datatype = nil
+      links = object.get_links_v2(C_SCHEMA_PREFIX, "hasThesaurusConcept")
+      links.each do |link|
+        object.tc_refs << OperationalReferenceV2.find_from_triples(triples, link.id)
+      end 
     end
     return object  
   end
 
-  def get_ref(predicate)
-    result = ""
-    ref = self.links.get(C_SCHEMA_PREFIX, predicate)
-    if ref.length >= 1
-      result = ModelUtility::extractCid(ref[0])
-    end
-    return result
-  end
-
-  def self.getFormat(datatype)
-    if datatype == "F"
-      return "5.1"
-    else
-      return ""
-    end
-  end
-
+=begin
   def self.getDatatype (parentDatatype, count, bridg_path)
     result = ""
     if count > 0 then
@@ -238,5 +243,6 @@ private
     #ConsoleLogger::log(C_CLASS_NAME,"getDatatype","Parent=" + parentDatatype + ", Result=" + result + ", Count=" + count.to_s)
     return result 
   end
+=end
 
 end

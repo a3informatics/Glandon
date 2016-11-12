@@ -7,8 +7,9 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_ACME
 # Load BCs
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRISO21090.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRBRIDG.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCT_PQR.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCT_CD.ttl" $FileEndPoint
+#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCT_PQR.ttl" $FileEndPoint
+#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCT_CD.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCTs.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRCDISCBCs.ttl" $FileEndPoint
 # Load Forms
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_DM1 01.ttl" $FileEndPoint

@@ -133,7 +133,8 @@ module FieldValidation
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
   def self.valid_format?(symbol, value, object)
-    result = value.match /^\A\d+(\.\d+)?\z/ 
+    return true if value.empty?
+    result = value.match /^\A^\d+(\.\d+)?\z/ 
     return true if result != nil
     object.errors.add(symbol, "contains invalid characters")
     return false

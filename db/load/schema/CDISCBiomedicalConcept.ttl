@@ -1,13 +1,13 @@
 @prefix : <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
-@prefix bridg: <http://www.assero.co.uk/BRIDG#> .
-@prefix iso21090: <http://www.assero.co.uk/ISO21090#> .
 @prefix iso25964: <http://www.assero.co.uk/ISO25964#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> . 
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 <http://www.assero.co.uk/CDISCBiomedicalConcept>
   rdf:type owl:Ontology ;
@@ -76,26 +76,21 @@
   rdfs:label "Order of the node withing the collection"^^xsd:string ;
   rdfs:range xsd:positiveInteger ;
 .
-:hasAttributeRef
+:basedOnTemplate
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Item ;
-  rdfs:label "Reference to the BRIDG attribute"^^xsd:string ;
-  rdfs:range bridg:Attribute ;
-.
-:basedOn
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Based on Biomedical Concept Template relationship"^^xsd:string ;
   rdfs:domain :BiomedicalConceptInstance ;
-  rdfs:label "Reference to the template"^^xsd:string ;
-  rdfs:range :BiomedicalConceptTemplate ;
+  rdfs:range :TpReference ;
+  skos:definition "Relationship to relate Biomedical Concepts with the defining Template."^^xsd:string ;
 .
-:hasClassRef
+:hasThesaurusConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Item ;
-  rdfs:label "Reference to the BRIDG class"^^xsd:string ;
-  rdfs:range bridg:Class ;
+  rdfs:domain :Property ;
+  rdfs:label "Reference to Thesaurus Concept."^^xsd:string ;
+  rdfs:range bo:TcReference ;
+  skos:definition ""^^xsd:string
 .
 :hasComplexDatatype
   rdf:type owl:ObjectProperty ;
@@ -111,13 +106,6 @@
   rdfs:domain :Item ;
   rdfs:label "Object property 1"^^xsd:string ;
   rdfs:range :Datatype ;
-.
-:hasDatatypeRef
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Datatype ;
-  rdfs:label "datatype ref"^^xsd:string ;
-  rdfs:range iso21090:Datatype ;
 .
 :hasItem
   rdf:type owl:ObjectProperty ;
@@ -142,42 +130,46 @@
   rdfs:range :PropertyValue ;
   owl:propertyDisjointWith :hasComplexDatatype ;
 .
-:isDatatypeOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:label ""^^xsd:string ;
-  rdfs:domain :Datatype ;
-  rdfs:range :Item ;
-  owl:inverseOf :hasDataType ;
-.
-:isItemOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:label ""^^xsd:string ;
+:bridg_class
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Item ;
-  rdfs:range :BiomedicalConcept ;
-  owl:inverseOf :hasItem ;
+  rdfs:label "The BRIDG class."^^xsd:string ;
+  rdfs:range xsd:string ;
 .
-:isPropertyOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Property of complex datatype"^^xsd:string ;
-  rdfs:domain :Property ;
-  rdfs:range :Datatype ;
-  owl:inverseOf :hasProperty ;
+:bridg_attribute
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Item ;
+  rdfs:label "The BRIDG attribute."^^xsd:string ;
+  rdfs:range xsd:string ;
 .
-:qText
+:iso21090_datatype
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Item ;
+  rdfs:label "The ISO21090 datatype."^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:question_text
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Property ;
   rdfs:label "The question text"^^xsd:string ;
   rdfs:range xsd:string ;
 .
-:pText
+:prompt_text
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Property ;
   rdfs:label "The prompt text"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:format
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Property ;
+  rdfs:label "The format for the reponse"^^xsd:string ;
   rdfs:range xsd:string ;
 .
 :enabled
@@ -194,31 +186,18 @@
   rdfs:label "The property can be collected (rather than a fixed value)"^^xsd:string ;
   rdfs:range xsd:boolean ;
 .
-:simpleDatatype
+:simple_datatype
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Property ;
   rdfs:label "The simple datatype for the property. Derived from the ISO21090 datatype"^^xsd:string ;
   rdfs:range xsd:string ;
 .
-:bridgPath
+:bridg_path
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Property ;
   rdfs:label "The BRIDG path for the property."^^xsd:string ;
   rdfs:range xsd:string ;
 .
-:nextItem
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :Item ;
-  rdfs:label "next item"^^xsd:string ;
-  rdfs:range :Item ;
-.
-:value
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :PropertyValue ;
-  rdfs:label "The value in the datatype property"^^xsd:string ;
-  rdfs:range iso25964:ThesaurusConcept ;
-.
+

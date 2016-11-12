@@ -225,17 +225,6 @@ class IsoConcept
     return results
   end
   
-  # Find all objects of a given type using the link set.
-  # TODO: Why different from the above, code is the same?
-  #def self.find_for_child(triples, links)    
-  #  results = Array.new
-  #  links.each do |link|
-  #    object = find_from_triples(triples, ModelUtility.extractCid(link))
-  #    results << object
-  #  end
-  #  return results
-  #end
-
   # Find all concepts of a given type within specified namespace.
   #
   # @param rdf_type [string] The RDF type
@@ -541,8 +530,6 @@ class IsoConcept
     results = Array.new
     namespace = UriManagement.getNs(prefix)
     uri = UriV2.new({:id => rdf_type, :namespace => namespace})
-    ConsoleLogger::log(C_CLASS_NAME, "get_links_v2", "uri=#{uri}")
-    ConsoleLogger::log(C_CLASS_NAME, "get_links_v2", "links=#{@links.to_json}")
     l = @links.select {|link| link[:rdf_type] == uri.to_s } 
     if l.length > 0
       results = l.map { |link| UriV2.new({:uri => link[:value]})}
@@ -567,6 +554,17 @@ class IsoConcept
   # @return [boolean] True if valid, false otherwise.
   def valid?
     return FieldValidation.valid_label?(:label, self.label, self)
+  end
+
+  # Copy Errors from another object
+  #
+  # @param object [object] The other object containing errors
+  # @param text [string] Text to prefix the errors with
+  # @return null
+  def copy_errors(object, text)
+    object.errors.full_messages.each do |msg|
+      self.errors[:base] << "#{text} #{msg}"
+    end
   end
 
 private
