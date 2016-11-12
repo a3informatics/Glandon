@@ -41,7 +41,26 @@ describe IsoConcept do
 		expect(IsoConcept.new.to_json).to match(result)   
 	end
 
-	it "allows an concept to be found" do
+	it "allows a blank concept to be created, missing extension_properties" do
+    input =     
+      { 
+        :type => "http://www.assero.co.uk/BusinessForm#Question",
+        :id => "F-AE_G1_I22", 
+        :namespace => "http://www.assero.co.uk/X/V1", 
+        :label => "Adverse Event"
+      }
+    result =     
+      { 
+        :type => "http://www.assero.co.uk/BusinessForm#Question",
+        :id => "F-AE_G1_I22", 
+        :namespace => "http://www.assero.co.uk/X/V1", 
+        :label => "Adverse Event",
+        :extension_properties => []
+      }
+    expect(IsoConcept.from_json(input).to_json).to eq(result)   
+  end
+
+  it "allows an concept to be found" do
 		result =     
 			{ 
       	:type => "http://www.assero.co.uk/BusinessForm#Question",
@@ -79,7 +98,56 @@ describe IsoConcept do
 		expect(IsoConcept.get_type("F-AE_G1_I2", "http://www.assero.co.uk/X/V1").to_s).to eq("http://www.assero.co.uk/BusinessForm#Question")   
 	end
 
-	it "allows the child links to be determined"
+  it "permits existance of an object to be determined" do
+    form = Form.find("F-AE_G1", "http://www.assero.co.uk/X/V1")
+    result = IsoManaged.exists?("completion", "IDENT", "NormalGroup", "http://www.assero.co.uk/BusinessForm", form.namespace)
+    expect(result).to eq(true)  
+  end
+
+	it "permits existance of an object to be determined - fail" do
+    form = Form.find("F-AE_G1", "http://www.assero.co.uk/X/V1")
+    result = IsoManaged.exists?("completion", "IDENTx", "NormalGroup", "http://www.assero.co.uk/BusinessForm", form.namespace)
+    expect(result).to eq(false)  
+  end
+
+  it "allows the child links to be determined" do
+    result = 
+      [ 
+        UriV2.new({:id => "F-AE_G1_I2", :namespace => "http://www.assero.co.uk/X/V1"}),
+        UriV2.new({:id => "F-AE_G1_I3", :namespace => "http://www.assero.co.uk/X/V1"}),
+        UriV2.new({:id => "F-AE_G1_I4", :namespace => "http://www.assero.co.uk/X/V1"}),
+        UriV2.new({:id => "F-AE_G1_I1", :namespace => "http://www.assero.co.uk/X/V1"})
+      ]
+    concept = IsoConcept.find("F-AE_G1", "http://www.assero.co.uk/X/V1")
+    links = concept.get_links_v2("bf", "hasItem")
+    links.each_with_index do |link, index|
+      expect(link.to_json).to eq(result[index].to_json)
+    end
+  end
+
+  it "allows the child links to be determined when none present" do
+    concept = IsoConcept.find("F-AE_G1", "http://www.assero.co.uk/X/V1")
+    links = concept.get_links_v2("bf", "hasGroup")
+    expect(links).to eq([])
+  end
+
+  it "allows the children to be found for a parent object" do
+    concept = IsoConcept.find("F-AE_G1", "http://www.assero.co.uk/X/V1")
+    form = Form.find("F-AE_G1", "http://www.assero.co.uk/X/V1")
+    links = form.get_links_v2("bf", "hasItem")
+    children = Form::Group.find_for_parent(concept.triples, links)
+    expect(children.length).to eq(4)
+    result = 
+      [ 
+        UriV2.new({:id => "F-AE_G1_I2", :namespace => "http://www.assero.co.uk/X/V1"}),
+        UriV2.new({:id => "F-AE_G1_I3", :namespace => "http://www.assero.co.uk/X/V1"}),
+        UriV2.new({:id => "F-AE_G1_I4", :namespace => "http://www.assero.co.uk/X/V1"}),
+        UriV2.new({:id => "F-AE_G1_I1", :namespace => "http://www.assero.co.uk/X/V1"})
+      ]
+    children.each_with_index do |child, index|
+      expect(child.uri.to_json).to eq(result[index].to_json)
+    end
+  end
 
 	it "allows an extension property to be added" do
 		result = {}

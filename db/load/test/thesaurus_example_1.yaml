@@ -1,0 +1,82 @@
+---
+:type: http://www.assero.co.uk/ISO25964#Thesaurus
+:id: TH-SPONSOR_CT-1
+:namespace: http://www.assero.co.uk/MDRThesaurus/ACME/V1
+:label: CDISC Extensions
+:extension_properties: []
+:origin: ''
+:change_description: Creation
+:creation_date: '2015-11-22T00:00:00+00:00'
+:last_changed_date: '2016-01-01T00:00:00+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-SPONSOR_CT
+  :registration_authority:
+    :id: RA-123456789
+    :number: '123456789'
+    :scheme: DUNS
+    :owner: true
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-ACME
+      :name: ACME Pharma
+      :shortName: ACME
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00Z'
+  :until_date: '2100-01-01T00:00:00Z'
+  :current: true
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Qualified
+:scoped_identifier:
+  :id: SI-SPONSOR_CT-1
+  :identifier: CDISC EXT
+  :version_label: '0.1'
+  :version: 1
+  :namespace:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: NS-ACME
+    :name: ACME Pharma
+    :shortName: ACME
+:children:
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: THC-A00001
+  :namespace: http://www.assero.co.uk/MDRThesaurus/ACME/V1
+  :label: Vital Sign Test Codes Extension
+  :extension_properties: []
+  :identifier: A00001
+  :notation: VSTEST
+  :synonym: ''
+  :definition: A set of additional Vital Sign Test Codes to extend the CDISC set.
+  :preferredTerm: ''
+  :topLevel: false
+  :parentIdentifier: A00001
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: THC-A00010
+  :namespace: http://www.assero.co.uk/MDRThesaurus/ACME/V1
+  :label: Placeholder for Ethnic Subgroup
+  :extension_properties: []
+  :identifier: A00010
+  :notation: ETHNIC SUBGROUP
+  :synonym: n/a
+  :definition: Ethnic Subgroup
+  :preferredTerm: Ethnic Subgroup
+  :topLevel: false
+  :parentIdentifier: A00010
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: THC-A00020
+  :namespace: http://www.assero.co.uk/MDRThesaurus/ACME/V1
+  :label: Race Extension
+  :extension_properties: []
+  :identifier: A00020
+  :notation: RACE OTHER
+  :synonym: ''
+  :definition: Extension to Race Code List
+  :preferredTerm: Race Extension
+  :topLevel: false
+  :parentIdentifier: A00020
+  :children: []

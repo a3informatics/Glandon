@@ -35,6 +35,22 @@ module DataHelpers
     end
   end
 
+  def read_text_file_to_hash(filename)
+    text = ""
+    full_path = Rails.root.join "db/load/test/#{filename}"
+    File.open(full_path, "r") do |f|
+      text = f.read
+    end
+    return text
+  end
+
+  def write_text_file_to_hash(item, filename)
+    full_path = Rails.root.join "db/load/test/#{filename}"
+    File.open(full_path, "w+") do |f|
+      f.write(item)
+    end
+  end
+
   def date_check_now(item)
     expect(item).to be_within(1.second).of Time.now
     return item

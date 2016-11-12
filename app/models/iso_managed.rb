@@ -364,8 +364,8 @@ class IsoManaged < IsoConcept
             object.registrationState = IsoRegistrationState.find(ModelUtility.extractCid(rsSet[0].text))
             object.origin = oSet[0].text
             object.changeDescription = descSet[0].text
-            object.creationDate = Time.parse(dateSet[0].text)
-            object.lastChangeDate = Time.parse(lastSet[0].text)
+            object.creationDate = dateSet[0].text.to_time_with_default
+            object.lastChangeDate = lastSet[0].text.to_time_with_default
             object.explanatoryComment = commentSet[0].text
           else
             object.registrationState = nil
@@ -478,8 +478,8 @@ class IsoManaged < IsoConcept
         object.label = label
         object.origin = oSet[0].text
         object.changeDescription = descSet[0].text
-        object.creationDate = Time.parse(dateSet[0].text)
-        object.lastChangeDate = Time.parse(lastSet[0].text)
+        object.creationDate = dateSet[0].text.to_time_with_default
+        object.lastChangeDate = lastSet[0].text.to_time_with_default
         object.explanatoryComment = commentSet[0].text
         if iiSet.length == 1
           # Set scoped identifier
@@ -836,8 +836,8 @@ class IsoManaged < IsoConcept
     object = super(json)
     object.origin = json[:origin]
     object.changeDescription = json[:change_description]
-    object.creationDate = Time.parse(json[:creation_date])
-    object.lastChangeDate = Time.parse(json[:last_changed_date])
+    object.creationDate = json[:creation_date].to_time_with_default
+    object.lastChangeDate = json[:last_changed_date].to_time_with_default
     object.explanatoryComment = json[:explanatory_comment]
     object.registrationState = IsoRegistrationState.from_json(json[:registration_state])
     object.scopedIdentifier = IsoScopedIdentifier.from_json(json[:scoped_identifier])

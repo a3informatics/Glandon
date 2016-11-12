@@ -130,7 +130,6 @@ class IsoConcept
   # @param [uri] The link
   # @return [string] The type (uri) if found, "" otherwise
   def get_link_object_type_v2(link) 
-    #uri = UriV2({ :uri => link[:value] })   
     uri = link
     rdf_type = IsoConcept.get_type(uri.id, uri.namespace)
     rdf_type.nil? ? result = "" : result = rdf_type.to_s 
@@ -145,25 +144,25 @@ class IsoConcept
   # @param schema_namespace [string] The schema namespace
   # @param instance_namespace [string] The instance namespace
   # @return [boolean] True is property exists, false otherwise
-  #def self.exists?(property, property_value, rdf_type, schema_namespace, instance_namespace)
-  #  result = false
-  #  prefix = UriManagement.getPrefix(schema_namespace)
-  #  prefix_set = []
-  #  prefix_set << prefix
-  #  query = UriManagement.buildNs(instance_namespace, prefix_set) +
-  #    "SELECT ?a ?b WHERE \n" +
-  #    "{ \n" +
-  #    "  ?a rdf:type " + prefix + ":" + rdfType + " . \n" +
-  #    "  ?a " + prefix + ":" + property + " \"" + property_value + "\" . \n" +
-  #    "}"
-  #  response = CRUD.query(quer)
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  if xmlDoc.xpath("//result").length >= 1
-  #    result = true
-  #  end
-  #  return result
-  #end
+  def self.exists?(property, property_value, rdf_type, schema_namespace, instance_namespace)
+    result = false
+    prefix = UriManagement.getPrefix(schema_namespace)
+    prefix_set = []
+    prefix_set << prefix
+    query = UriManagement.buildNs(instance_namespace, prefix_set) +
+      "SELECT ?a ?b WHERE \n" +
+      "{ \n" +
+      "  ?a rdf:type " + prefix + ":" + rdf_type + " . \n" +
+      "  ?a " + prefix + ":" + property + " \"" + property_value + "\" . \n" +
+      "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    if xmlDoc.xpath("//result").length >= 1
+      result = true
+    end
+    return result
+  end
 
   # Find a given item given the id and namespace
   #
@@ -218,13 +217,23 @@ class IsoConcept
   def self.find_for_parent(triples, links)
     results = Array.new
     links.each do |link|
-      #object = find_from_triples(triples, ModelUtility.extractCid(link))
       object = find_from_triples(triples, link.id)
       results << object
     end
     return results
   end
   
+  # Find an object from triples
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The id of the item to be found
+  # @return [object] The new object
+  def self.find_from_triples(triples, id)
+    object = new(triples, id)
+    children_from_triples(object, object.triples, id)
+    return object
+  end
+
   # Find all concepts of a given type within specified namespace.
   #
   # @param rdf_type [string] The RDF type
@@ -368,7 +377,9 @@ class IsoConcept
     object.namespace = json[:namespace]
     object.id = json[:id]
     object.label = json[:label]
-    object.extension_properties = json[:extension_properties]
+    if !json[:extension_properties].blank?
+      object.extension_properties = json[:extension_properties]
+    end
     return object
   end
 
@@ -580,7 +591,10 @@ private
     elsif internal_type == BaseDatatype::C_BOOLEAN
       value = literal.to_bool
     elsif internal_type == BaseDatatype::C_DATETIME
-      value = Time.parse(literal)
+      # @todo May be consider a better way to do this. String.to_time type function?
+      begin
+        value = literal.to_time_with_default
+      end
     elsif internal_type == BaseDatatype::C_INTEGER || internal_type == BaseDatatype::C_POSITIVE_INTEGER
       value = literal.to_i
     else

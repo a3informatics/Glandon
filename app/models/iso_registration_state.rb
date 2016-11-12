@@ -163,9 +163,11 @@ class IsoRegistrationState
       end
       self.registrationStatus = Triples.get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
       self.administrativeNote = Triples.get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
-      temp_effective_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
-      temp_until_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "untilDate")
-      set_current_datetimes(temp_effective_date, temp_until_date)
+      #temp_effective_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
+      #temp_until_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "untilDate")
+      #set_current_datetimes(temp_effective_date, temp_until_date)
+      self.effective_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate").to_time_with_default
+      self.until_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "untilDate").to_time_with_default
       self.unresolvedIssue = Triples.get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
       self.administrativeStatus = Triples.get_property_value(triples, UriManagement::C_ISO_R, "administrativeStatus")
       self.previousState  = Triples.get_property_value(triples, UriManagement::C_ISO_R, "previousState")
@@ -291,7 +293,9 @@ class IsoRegistrationState
         object.registrationAuthority = IsoRegistrationAuthority.find(ModelUtility.extractCid(raSet[0].text))
         object.registrationStatus = rsSet[0].text
         object.administrativeNote = anSet[0].text
-        object.set_current_datetimes(edSet[0].text, unSet[0].text)
+        #object.set_current_datetimes(edSet[0].text, unSet[0].text)
+        object.effective_date = edSet[0].text.to_time_with_default
+        object.until_date = unSet[0].text.to_time_with_default
         object.unresolvedIssue = uiSet[0].text
         object.administrativeStatus = asSet[0].text
         object.previousState  = psSet[0].text
@@ -342,7 +346,9 @@ class IsoRegistrationState
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.registrationStatus = rsSet[0].text
         object.administrativeNote = rnSet[0].text
-        object.set_current_datetimes(edSet[0].text, unSet[0].text)
+        #object.set_current_datetimes(edSet[0].text, unSet[0].text)
+        object.effective_date = edSet[0].text.to_time_with_default
+        object.until_date = unSet[0].text.to_time_with_default
         object.unresolvedIssue = uiSet[0].text
         object.administrativeStatus = asSet[0].text
         object.previousState  = psSet[0].text
@@ -514,8 +520,8 @@ class IsoRegistrationState
     object.id = uri.id
     object.registrationStatus = C_INCOMPLETE
     object.administrativeNote = ""
-    object.effective_date = Time.parse(C_DEFAULT_DATETIME)
-    object.until_date = Time.parse(C_DEFAULT_DATETIME)
+    #object.effective_date = Time.parse(C_DEFAULT_DATETIME)
+    #object.until_date = Time.parse(C_DEFAULT_DATETIME)
     object.unresolvedIssue = ""
     object.administrativeStatus = ""
     object.previousState  = C_INCOMPLETE 
@@ -533,8 +539,8 @@ class IsoRegistrationState
     object.registrationAuthority = IsoRegistrationAuthority.from_json(json[:registration_authority])
     object.registrationStatus = json[:registration_status]
     object.administrativeNote = json[:administrative_note]
-    object.effective_date = Time.parse(json[:effective_date])
-    object.until_date = Time.parse(json[:until_date])
+    object.effective_date = json[:effective_date].to_time_with_default
+    object.until_date = json[:until_date].to_time_with_default
     object.current = json[:current]
     object.unresolvedIssue = json[:unresolved_issue]
     object.administrativeStatus = json[:administrative_status]
@@ -600,15 +606,15 @@ class IsoRegistrationState
       FieldValidation.valid_label?(:administrativeStatus, self.administrativeStatus, self) 
   end
 
-  def set_current_datetimes (effective_dt, until_dt)
-    begin
-      self.effective_date = Time.parse(effective_dt)
-      self.until_date = Time.parse(until_dt)
-    rescue
-      self.effective_date = Time.parse(C_DEFAULT_DATETIME)
-      self.until_date = Time.parse(C_DEFAULT_DATETIME)  
-    end
-  end
+  #def set_current_datetimes (effective_dt, until_dt)
+  #  begin
+  #    self.effective_date = Time.parse(effective_dt)
+  #    self.until_date = Time.parse(until_dt)
+  #  rescue
+  #    self.effective_date = Time.parse(C_DEFAULT_DATETIME)
+  #    self.until_date = Time.parse(C_DEFAULT_DATETIME)  
+  #  end
+  #end
 
 private
 

@@ -16,22 +16,29 @@ class Thesaurus <  IsoManaged
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
     
+  # Initialize the object
+  #
+  # @param triples [hash] The raw triples keyed by id
+  # @param id [string] The id of the form
+  # @return [object] The form object
   def initialize(triples=nil, id=nil)
     self.children = Array.new
     if triples.nil?
       super
-      # Set the type. Overwrite default.
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
   end
 
+  # Find 
+  #
+  # @param id [string] The id of the form.
+  # @param namespace [hash] The raw triples keyed by id.
+  # @param children [boolean] Find all child objects. Defaults to true.
+  # @return [object] The form object.
   def self.find(id, ns, children=true)   
-    # Initialise.
     object = nil
-    # Create the query and action. Not using the base class query as returns the whole terminology tree. This query is slightly
-    # constrained and gets the first level only.
     query = UriManagement.buildNs(ns, [UriManagement::C_ISO_I, UriManagement::C_ISO_R, UriManagement::C_ISO_25964]) +
       "SELECT ?s ?p ?o WHERE \n" +
       "{ \n" +
@@ -52,7 +59,6 @@ class Thesaurus <  IsoManaged
       "  }\n" +
       "} ORDER BY (?s)"
     response = CRUD.query(query)
-    # Process the response.
     triples = Hash.new { |h,k| h[k] = [] }
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -61,7 +67,6 @@ class Thesaurus <  IsoManaged
       predicate = ModelUtility.getValue('p', true, node)
       objectUri = ModelUtility.getValue('o', true, node)
       objectLiteral = ModelUtility.getValue('o', false, node)
-      #ConsoleLogger::log(C_CLASS_NAME,"find","p=" + predicate.to_s + ", o(uri)=" + objectUri.to_s + ", o(lit)=" + objectLiteral)
       if predicate != ""
         triple_object = objectUri
         if triple_object == ""
@@ -71,7 +76,6 @@ class Thesaurus <  IsoManaged
         triples[key] << {:subject => subject, :predicate => predicate, :object => triple_object}
       end
     end
-    # Create the object based on the triples.
     object = new(triples, id)
     if children
       object.children = ThesaurusConcept.find_for_parent(object.triples, object.get_links(UriManagement::C_ISO_25964, "hasConcept"))
@@ -79,13 +83,18 @@ class Thesaurus <  IsoManaged
         child.parentIdentifier = child.identifier
       end
     end
-    #object.triples = ""
     return object    
   end
   
-  def self.find_all(id, ns)
+  # Find Complete thesaurus
+  #
+  # @param id [string] The id of the form.
+  # @param namespace [hash] The raw triples keyed by id.
+  # @return [object] The thesaurus object.
+  def self.find_complete(id, ns)
     new_children = Array.new
-    object = self.find(id, ns)
+    object = Thesaurus.find(id, ns)
+    ConsoleLogger::log(C_CLASS_NAME, "find_complete", "Th=#{object.to_json}")
     object.children.each do |child|
       new_children << ThesaurusConcept.find(child.id, child.namespace)
     end
@@ -93,6 +102,11 @@ class Thesaurus <  IsoManaged
     return object     
   end
   
+  # Find From Concept. Finds the Thesaurus form a child irrespective of depth in the tree.
+  #
+  # @param id [string] The id of the form.
+  # @param namespace [hash] The raw triples keyed by id.
+  # @return [object] The thesaurus object.
   def self.find_from_concept(id, ns)
     result = self.new
     query = UriManagement.buildNs(ns, ["iso25964"]) +
@@ -112,64 +126,49 @@ class Thesaurus <  IsoManaged
   end
 
   def self.all
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   def self.list
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   def self.unique
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   def self.history(params)
-    results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS, params)
   end
 
   def self.current(params)
-    results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS, params)
   end
 
+  # Create Simple
+  #
+  # @param params
   def self.create_simple(params)
     object = self.new 
-    object.errors.clear
-    if params_valid_simple?(params, object)
-      object.scopedIdentifier.identifier = params[:identifier]
-      object.label = params[:label]
-      if exists?(object.identifier, IsoRegistrationAuthority.owner()) 
-        object.errors.add(:base, "The identifier is already in use.")
-      else  
-        object = Thesaurus.create({:data => object.to_edit(true)})
-      end
-    end
+    object.scopedIdentifier.identifier = params[:identifier]
+    object.label = params[:label]
+    object = Thesaurus.create(object.to_operation)
     return object
   end
   
+  # Create 
+  #
+  # @param params [hash] {data:} The operational hash
+  # @return [oject] The form object. Valid if no errors set.
   def self.create(params)
-    # Get the parameters
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    # Create blank object for the errors
-    object = self.new
-    object.errors.clear
-    # Set owner ship
-    ra = IsoRegistrationAuthority.owner
-    if params_valid?(managed_item, object) then
-      # Build a full object. Special case, fill in the identifier, base on domain prefix.
-      object = Thesaurus.from_json(data)
-      # Can we create?
-      if object.create_permitted?(ra)
-        # Build sparql
-        sparql = object.to_sparql_v2(ra)
-        # Send to database
-        ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
+    ConsoleLogger::log(C_CLASS_NAME, "create", "params=#{params}")
+    operation = params[:operation]
+    managed_item = params[:managed_item]
+    object = Thesaurus.from_json(managed_item)
+    object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
+    if object.valid? then
+      if object.create_permitted?
+        sparql = object.to_sparql_v2
         response = CRUD.update(sparql.to_s)
         if !response.success?
           object.errors.add(:base, "The Thesaurus was not created in the database.")
@@ -179,37 +178,24 @@ class Thesaurus <  IsoManaged
     return object
   end
 
+  # Add a child concept
+  #
+  # @todo This should probably be in ThesaurusConcept?
+  # @params params [hash] The params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
+  # @return [object] The object created. Errors set if create failed.
   def add_child(params)
-    ConsoleLogger::log(C_CLASS_NAME,"add_child","params=#{params}")
-    sparql = SparqlUpdateV2.new
-    # Create the object
-    object = self.create_sparql(params, sparql)
-    if object.errors.empty?
-      # Add the reference
-      sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasConcept"}, {:uri => object.uri})
-      # Send the request, wait the resonse
-      ConsoleLogger::log(C_CLASS_NAME,"add_child","sparql=#{sparql.to_s}")
-      response = CRUD.update(sparql.to_s)
-      # Response
-      if !response.success?
-        object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, was not created in the database.")
-        raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
-      else
-        cl = Thesaurus.find(self.id, self.namespace)
-        self.children = cl.children
-      end
-    end
-    return object
-  end
-
-  def create_sparql(params, sparql)
     object = ThesaurusConcept.from_json(params)
-    # Make sure namespace set correctly
-    object.namespace = self.namespace
-    object.errors.clear
-    if !ThesaurusConcept.exists?(object.identifier, self.namespace)
-      # Create the sparql. Add the ref to the child.
-      object.to_sparql_v2(self.uri, sparql)
+    if !object.exists?
+      if object.valid?
+        sparql = SparqlUpdateV2.new
+        object.to_sparql_v2(self.uri, sparql)
+        sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasChild"}, {:uri => object.uri})
+        response = CRUD.update(sparql.to_s)
+        if !response.success?
+          object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, was not created in the database.")
+          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+        end
+      end
     else
       object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists in the database.")
     end
@@ -222,10 +208,16 @@ class Thesaurus <  IsoManaged
     return object
   end
 
+  # Destroy
+  #
+  # @return null
   def destroy
-    super(self.namespace)
+    super
   end
 
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     json = super
     json[:children] = Array.new
@@ -235,29 +227,35 @@ class Thesaurus <  IsoManaged
     return json
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = super(json)
-    managed_item = json[:managed_item]
-    if !managed_item[:children].blank?
-      managed_item[:children].each do |child|
+    if !json[:children].blank?
+      json[:children].each do |child|
         object.children << ThesaurusConcept.from_json(child)
       end
     end
     return object
   end
 
-  def to_sparql_v2(ra)
+  # To SPARQL
+  #
+  # @return [object] The SPARQL object created.
+  def to_sparql_v2
     sparql = SparqlUpdateV2.new
-    uri = super(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, C_SCHEMA_PREFIX)
-    # Now deal with the children
+    uri = super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => uri}
     self.children.each do |child|
-      ref_id = child.to_sparql_v2(uri, sparql)
-      sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasConcept"}, {:uri => ref_id})
+      ref_uri = child.to_sparql_v2(uri, sparql)
+      sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasConcept"}, {:uri => ref_uri})
     end
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","SPARQL=#{sparql}")
     return sparql
   end
 
+=begin
   def self.count(searchTerm, ns)
     count = 0
     if searchTerm == ""
@@ -299,6 +297,7 @@ class Thesaurus <  IsoManaged
     end
     return results
   end
+=end
   
   def self.next(offset, limit, ns)
     results = Array.new
@@ -317,68 +316,14 @@ class Thesaurus <  IsoManaged
     return results
   end
 
-  #def update(params)
-  #  ConsoleLogger::log(C_CLASS_NAME,"update","*****Entry*****")
-  #  ConsoleLogger::log(C_CLASS_NAME,"update","Params=" + params.to_s)
-  #  self.errors.clear
-  #  # Access the data
-  #  data = params[:data]
-  #  if data != nil
-  #    ConsoleLogger::log(C_CLASS_NAME,"update","Delete, data=" + data.to_s)
-  #    deleteItem = data[:deleteItem]
-  #    updateItem = data[:updateItem]
-  #    addItem = data[:addItem]
-  #    # Delete items
-  #    if (deleteItem != nil)
-  #      ConsoleLogger::log(C_CLASS_NAME,"update","Delete, item=" + deleteItem.to_s)
-  #      concept = ThesaurusConcept.find(deleteItem[:id], self.namespace)
-  #      if !concept.destroy(self.namespace, self.id)
-  #        self.errors.add(:base, "The concept deletion failed.")          
-  #      end
-  #    end
-  #    # Add items
-  #    if (addItem != nil)
-  #      ConsoleLogger::log(C_CLASS_NAME,"update","Insert, item=" + addItem.to_s)
-  #      if (addItem[:parent] == self.id) 
-  #        if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
-  #          ThesaurusConcept.create_top_level(addItem, self.namespace, self.id)
-  #        else
-  #          self.errors.add(:base, "The concept identifier already exisits.")
-  #        end
-  #      else
-  #        if !ThesaurusConcept.exists?(addItem[:identifier], self.namespace)
-  #          parentConcept = ThesaurusConcept.find(addItem[:parent], self.namespace)
-  #          newConcept = ThesaurusConcept.create(addItem, self.namespace)
-  #          parentConcept.add_child(newConcept, self.namespace)
-  #        else
-  #          self.errors.add(:base, "The concept identifier already exisits.")
-  #        end
-  #      end
-  #    end
-  #    # Update items
-  #    if (updateItem != nil)
-  #      ConsoleLogger::log(C_CLASS_NAME,"update","Update, item=" + updateItem.to_s)
-  #      concept = ThesaurusConcept.find(updateItem[:id], self.namespace)
-  #      if !concept.update(updateItem, self.namespace)
-  #        self.errors.add(:base, "The concept update failed.")        
-  #      end
-  #    end
-  #  end
-  #end
+  # Check Valid
+  #
+  # @return [boolean] Returns true if valid, false otherwise.
+  def valid?
+    return super
+  end
   
 private
-
-  def self.params_valid?(params, object)
-    result1 = ModelUtility::validIdentifier?(params[:scoped_identifier][:identifier], object)
-    result2 = ModelUtility::validLabel?(params[:label], object)
-    return result1 && result2 # && result3 && result4
-  end
-
-  def self.params_valid_simple?(params, object)
-    result1 = ModelUtility::validIdentifier?(params[:identifier], object)
-    result2 = ModelUtility::validLabel?(params[:label], object)
-    return result1 && result2 # && result3 && result4
-  end
 
   def self.processNode(node, results)
     object = nil

@@ -105,6 +105,48 @@ describe IsoRegistrationState do
     expect(IsoRegistrationState.new(triples).to_json).to eq(result)    
   end
 
+  it "allows object to be initialized from triples - error effective date" do
+    result = 
+      {
+        :id=>"RS-ACME_TEST-1", 
+        :namespace => "http://www.assero.co.uk/MDRItems",
+        :administrative_note => "",
+        :administrative_status => "",
+        :previous_state => "Incomplete",
+        :registration_status => "Incomplete",
+        :unresolved_issue => "",
+        :effective_date => "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
+        :current => false,
+        :registration_authority => 
+          {
+            :id=>"RA-123456789", 
+            :number=>"123456789", 
+            :scheme=>"DUNS", 
+            :owner=>true, 
+            :namespace=>
+              {
+                :namespace=>"http://www.assero.co.uk/MDRItems", 
+                :id=>"NS-BBB", 
+                :name=>"BBB Pharma", 
+                :shortName=>"BBB"
+              }
+          }
+      }
+    triples =[
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/ISO11179Registration#RegistrationState"},
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#byAuthority", object: "http://www.assero.co.uk/MDRItems#RA-123456789"},
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#registrationStatus", object: "Incomplete" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate", object:"" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#untilDate", object:"2016-01-01T00:00:00+00:00" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#administrativeNote", object:"" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#unresolvedIssue", object:"" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#administrativeStatus", object:"" },
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#previousState", object:"Incomplete" }
+    ]
+    expect(IsoRegistrationState.new(triples).to_json).to eq(result)    
+  end
+
   it "detects registered state" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
     expect(result.registered?).to eq(true)

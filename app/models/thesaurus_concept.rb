@@ -13,7 +13,13 @@ class ThesaurusConcept < IsoConcept
   C_RDF_TYPE = "ThesaurusConcept"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-    
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
+
+  # Initialize the object
+  #
+  # @param triples [hash] The raw triples keyed by id
+  # @param id [string] The id of the form
+  # @return [object] The form object
   def initialize(triples=nil, id=nil)
     self.identifier = ""
     self.notation = ""
@@ -25,13 +31,18 @@ class ThesaurusConcept < IsoConcept
     self.children = Array.new
     if triples.nil?
       super
-      # Set the type. Overwrite default.
-      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
+      self.rdf_type = C_RDF_TYPE_URI.to_s
     else
       super(triples, id)    
     end
   end
 
+  # Find
+  #
+  # @param id [string] The id of the form.
+  # @param namespace [hash] The raw triples keyed by id.
+  # @param children [boolean] Find all child objects. Defaults to true.
+  # @return [object] The form object.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -41,96 +52,84 @@ class ThesaurusConcept < IsoConcept
     return object
   end
 
-  def self.find_from_triples(triples, id)
-    object = new(triples, id)
-    children_from_triples(object, triples, id)
-    object.triples = ""
-    return object
+  #def self.unique
+  #  return super(C_RDF_TYPE, C_SCHEMA_NS)
+  #end
+
+  # Exists. Checks if the identifier exists.
+  #
+  # @return [boolean] True of the identifier exists, false otherwise
+  def exists?
+    return IsoConcept.exists?("identifier", self.identifier, C_RDF_TYPE, C_SCHEMA_NS, self.namespace)
   end
 
-  def self.unique
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
-  end
-
-  def self.exists?(identifier, namespace)
-    result = super("identifier", identifier, C_RDF_TYPE, C_SCHEMA_NS, namespace)
-    ConsoleLogger::log(C_CLASS_NAME,"exists?","result=#{result}")
-    return result
-  end
-
+  # Add a child concept
+  #
+  # @params params [hash] The params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
+  # @return [object] The object created. Errors set if create failed.
   def add_child(params)
-    #ConsoleLogger::log(C_CLASS_NAME,"add_child","params=#{params}")
-    sparql = SparqlUpdateV2.new
-    # Create the object
-    object = self.create_sparql(params, sparql)
-    if object.errors.empty?
-      # Add the reference
-      sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasChild"}, {:uri => object.uri})
-      # Send the request, wait the resonse
-      ConsoleLogger::log(C_CLASS_NAME,"add_child","Sparql=#{sparql}")
-      response = CRUD.update(sparql.to_s)
-      # Response
-      if !response.success?
-        object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, was not created in the database.")
-        raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
-      else
-        cl = ThesaurusConcept.find(self.id, self.namespace)
-        self.children = cl.children
-      end
-    end
-    return object
-  end
-
-  def create_sparql(params, sparql)
     object = ThesaurusConcept.from_json(params)
-    # Make sure namespace set correctly
-    object.namespace = self.namespace
-    object.errors.clear
-    if !ThesaurusConcept.exists?(object.identifier, self.namespace)
-      # Create the sparql. Add the ref to the child.
-      object.to_sparql_v2(self.uri, sparql)
+    if !object.exists?
+      if object.valid?
+        sparql = SparqlUpdateV2.new
+        object.to_sparql_v2(self.uri, sparql)
+        sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasChild"}, {:uri => object.uri})
+        response = CRUD.update(sparql.to_s)
+        if !response.success?
+          object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, was not created in the database.")
+          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+        end
+      end
     else
       object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists in the database.")
     end
     return object
   end
 
+  # Add a child concept
+  #
+  # @params params [hash] The params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
+  # @return [boolean] True if the update is successful, false otherwise.
   def update(params)
-    # Build object
+    result = true
+    self.errors.clear
     self.label = "#{params[:label]}"
     self.notation = "#{params[:notation]}"
     self.preferredTerm = "#{params[:preferredTerm]}"
     self.synonym = "#{params[:synonym]}"
     self.definition = "#{params[:definition]}"
-    # Create the query
-    update = UriManagement.buildNs(self.namespace, ["iso25964"]) +
-      "DELETE { :" + self.id + " ?p ?o } \n" +
-      "INSERT \n" +
-      "{ \n" +
-      "  :" + self.id + " rdfs:label \"#{self.label}\"^^xsd:string . \n" +
-      # Dont allow identifier to be updated.
-      #"  :" + self.id + " iso25964:identifier \"#{self.identifier}\"^^xsd:string . \n" +
-      "  :" + self.id + " iso25964:notation \"#{self.notation}\"^^xsd:string . \n" +
-      "  :" + self.id + " iso25964:preferredTerm \"#{self.preferredTerm}\"^^xsd:string . \n" +
-      "  :" + self.id + " iso25964:synonym \"#{self.synonym}\"^^xsd:string . \n" +
-      "  :" + self.id + " iso25964:definition \"#{self.definition}\"^^xsd:string . \n" +
-      "} \n" +
-      "WHERE \n" +
-      "{\n" +
-      "  :" + self.id + " (iso25964:identifier|iso25964:notation|iso25964:preferredTerm|iso25964:synonym|iso25964:definition) ?o .\n" +
-      "}\n"
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    # Response
-    if !response.success?
-      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    if self.valid?
+      update = UriManagement.buildNs(self.namespace, ["iso25964"]) +
+        "DELETE { :" + self.id + " ?p ?o } \n" +
+        "INSERT \n" +
+        "{ \n" +
+        "  :" + self.id + " rdfs:label \"#{self.label}\"^^xsd:string . \n" +
+        # Dont allow identifier to be updated.
+        #"  :" + self.id + " iso25964:identifier \"#{self.identifier}\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:notation \"#{self.notation}\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:preferredTerm \"#{self.preferredTerm}\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:synonym \"#{self.synonym}\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:definition \"#{self.definition}\"^^xsd:string . \n" +
+        "} \n" +
+        "WHERE \n" +
+        "{\n" +
+        "  :" + self.id + " (iso25964:identifier|iso25964:notation|iso25964:preferredTerm|iso25964:synonym|iso25964:definition) ?o .\n" +
+        "}\n"
+      response = CRUD.update(update)
+      if !response.success?
+        raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      end
+    else
+      result = false
     end
+    return result
   end
 
+  # Destroy the object
+  #
+  # @return [boolean] True if object destroyed, otherwise false. If false object will contain the errors.
   def destroy()
     self.errors.clear
-    # Create the query
     if self.children.length == 0
       update = UriManagement.buildNs(self.namespace, ["iso25964"]) +
         "DELETE \n" +
@@ -145,9 +144,7 @@ class ThesaurusConcept < IsoConcept
         "  OPTIONAL { ?d iso25964:hasConcept :" + self.id + " } \n" +
         "  OPTIONAL { ?c iso25964:hasChild :" + self.id + " } \n" +
         "}\n"
-      # Send the request, wait the resonse
       response = CRUD.update(update)
-      # Response
       if !response.success?
         ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
         raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
@@ -159,6 +156,9 @@ class ThesaurusConcept < IsoConcept
     end
   end
   
+  # Thesaurus Concepts Different
+  #
+  # @return [boolean] True if objects different, false otherwise.
   def self.diff? (thcA, thcB)
     result = false
     if ((thcA.id == thcB.id) &&
@@ -174,6 +174,9 @@ class ThesaurusConcept < IsoConcept
     return result
   end
 
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     json = super
     json[:identifier] = self.identifier
@@ -190,6 +193,10 @@ class ThesaurusConcept < IsoConcept
     return json
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = super(json)
     object.identifier = "#{json[:identifier]}"
@@ -205,10 +212,11 @@ class ThesaurusConcept < IsoConcept
     return object
   end
 
+  # To SPARQL
+  #
+  # @return [object] The SPARQL object created.
   def to_sparql_v2(parent_uri, sparql)
-    ConsoleLogger::log(C_CLASS_NAME, "to_sparql_v2", "object=#{self.to_json}")
     cid_extension = self.identifier
-    # TODO Quick fix, this needs to be centralised better.
     self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{cid_extension.gsub(/[^0-9A-Za-z_]/, '')}"
     self.namespace = parent_uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
@@ -223,6 +231,20 @@ class ThesaurusConcept < IsoConcept
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasChild"}, {:uri => ref_uri})
     end
     return self.uri
+  end
+
+  # Check Valid
+  #
+  # @return [boolean] Returns true if valid, false otherwise.
+  def valid?
+    result = super
+    result = result &&
+      FieldValidation::valid_identifier?(:identifier, self.identifier, self) &&
+      FieldValidation::valid_label?(:notation, self.notation, self) &&
+      FieldValidation::valid_label?(:preferredTerm, self.preferredTerm, self) &&
+      FieldValidation::valid_label?(:synonym, self.synonym, self) &&
+      FieldValidation::valid_label?(:definition, self.definition, self)
+    return result
   end
 
 private
