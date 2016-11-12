@@ -15,8 +15,10 @@
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
 :extensible
-  rdf:type rdf:Property ;
-  rdfs:domain :ThesaurusConcept ;
+  rdf:type owl:DatatypeProperty ;
   rdfs:label "Extensible"^^xsd:string ;
+  rdfs:domain :ThesaurusConcept ;
   rdfs:range xsd:boolean ;
+  rdfs:subPropertyOf isoC:extensionProperty ;
+  skos:definition "Determines if the concept (code list) can be extended"^^xsd:string ;
 .

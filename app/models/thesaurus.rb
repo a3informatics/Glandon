@@ -312,7 +312,6 @@ class Thesaurus <  IsoManaged
     xmlDoc.xpath("//result").each do |node|
       processNode(node, results)
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"next","Results=" + results.to_json.to_s)
     return results
   end
 
