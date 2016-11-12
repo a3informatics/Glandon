@@ -71,18 +71,70 @@ describe IsoConcept do
       		[
       			{
       				:rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension1",
-           		:value=>"14",
+           		:value => 14,
            		:label=>"Extension 1"
            	},
           	{
           		:rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension2",
-           		:value=>"true",
+           		:value => true,
            		:label=>"Extension 2"
            	}
           ]
     	}
 		expect(IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1").to_json).to eq(result)   
 	end
+
+  it "allows an concept to be found, get extension value" do
+    result =     
+      { 
+        :type => "http://www.assero.co.uk/BusinessForm#Question",
+        :id => "F-AE_G1_I2", 
+        :namespace => "http://www.assero.co.uk/X/V1", 
+        :label => "Adverse Event",
+        :extension_properties => 
+          [
+            {
+              :rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension1",
+              :value => 14,
+              :label=>"Extension 1"
+            },
+            {
+              :rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension2",
+              :value => true,
+              :label=>"Extension 2"
+            }
+          ]
+      }
+    concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
+    value = concept.get_extension("http://www.assero.co.uk/BusinessForm#Extension1") 
+    expect(value).to eq(14)
+  end
+
+  it "allows an concept to be found, get extension value, no extension" do
+    result =     
+      { 
+        :type => "http://www.assero.co.uk/BusinessForm#Question",
+        :id => "F-AE_G1_I2", 
+        :namespace => "http://www.assero.co.uk/X/V1", 
+        :label => "Adverse Event",
+        :extension_properties => 
+          [
+            {
+              :rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension1",
+              :value=>"14",
+              :label=>"Extension 1"
+            },
+            {
+              :rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension2",
+              :value=>"true",
+              :label=>"Extension 2"
+            }
+          ]
+      }
+    concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
+    value = concept.get_extension("http://www.assero.co.uk/BusinessForm#Extension11") 
+    expect(value).to eq("")
+  end
 
 	it "allows for the uri to be returned" do
 		concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
@@ -237,12 +289,12 @@ describe IsoConcept do
       		[
       			{
       				:rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension1",
-           		:value=>"14",
+           		:value => 14,
            		:label=>"Extension 1"
            	},
           	{
           		:rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension2",
-           		:value=>"true",
+           		:value => true,
            		:label=>"Extension 2"
            	},
            	{

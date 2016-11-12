@@ -82,11 +82,11 @@ class IsoConcept
           elsif triple[:predicate] == C_RDFS_LABEL
             self.label = triple[:object]
           elsif @@property_attributes.has_key?(triple[:predicate])
-            set_class_instance(triple)
-            self.properties << {:rdf_type => triple[:predicate], :value => triple[:object], :label => @@property_attributes[triple[:predicate]][:label]}
+            value = set_class_instance(triple)
+            self.properties << {:rdf_type => triple[:predicate], :value => value, :label => @@property_attributes[triple[:predicate]][:label]}
           elsif @@extension_attributes.has_key?(triple[:predicate])
-            set_class_instance(triple, true)
-            self.extension_properties << {:rdf_type => triple[:predicate], :value => triple[:object], :label => @@extension_attributes[triple[:predicate]][:label]}
+            value = set_class_instance(triple, true)
+            self.extension_properties << {:rdf_type => triple[:predicate], :value => value, :label => @@extension_attributes[triple[:predicate]][:label]}
           elsif @@link_attributes.has_key?(triple[:predicate])
             self.links << {:rdf_type => triple[:predicate], :value => triple[:object]}
           else
@@ -433,7 +433,6 @@ class IsoConcept
       predicate = UriV2.new({ :uri => item[:rdf_type] })
       sparql.triple(subject, {:uri => predicate}, {:literal => "#{item[:value]}", :primitive_type => IsoUtility.extract_cid(@@extension_attributes[item[:rdf_type]][:xsd_type])})
     end
-    ConsoleLogger::log(C_CLASS_NAME, "to_sparql_v2", "URI=#{self.uri}.")
     return self.uri
   end
 
@@ -549,16 +548,18 @@ class IsoConcept
   end
 
   # Get the links of a certain type from the set of links.
-  #def get_extension(prefix, rdf_type)
-  #  result = ""
-  #  ns = UriManagement.getNs(prefix)
-  #  uri = UriV2.new({:namespace => ns, :id => rdf_type})
-  #  l = @extension_properties.select {|property| property[:rdf_type] == uri.to_s } 
-  #  if l.length == 1
-  #    result = l[0][:value]
-  #  end
-  #  return result
-  #end
+  #
+  # @param rdf_type [uri] The type URI
+  # @ return [string] The property value
+  def get_extension(rdf_type)
+    result = ""
+    l = @extension_properties.select {|property| property[:rdf_type] == rdf_type.to_s } 
+    if l.length == 1
+      ConsoleLogger::log(C_CLASS_NAME, "get_extension", "L=#{l.to_json}.")
+      result = l[0][:value]
+    end
+    return result
+  end
 
   # Object Valid
   #
@@ -584,7 +585,9 @@ private
     name = ModelUtility.extractCid(triple[:predicate])
     predicate = triple[:predicate]
     extension ? xsd_type = @@extension_attributes[predicate][:xsd_type] : xsd_type = @@property_attributes[predicate][:xsd_type]
+    ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "xsd type=#{xsd_type.to_json}.")
     internal_type = BaseDatatype.from_xsd(xsd_type)
+    ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "internal type=#{internal_type}.")
     literal = triple[:object]
     if internal_type == BaseDatatype::C_STRING
       value = "#{literal}"
@@ -600,9 +603,11 @@ private
     else
       value = "#{literal}"
     end
+    ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "value=#{value}.")
     if !extension 
       self.instance_variable_set("@#{name}", value)
     end
+    return value
   end
 
   # Find the list of properties from the DB schema.
