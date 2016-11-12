@@ -28,25 +28,6 @@ class BiomedicalConceptCore::Datatype  < BiomedicalConceptCore::Node
     end
   end
 
-  # Find the object
-  #
-  # @param id [string] The id of the item to be found
-  # @param ns [string] The namespace of the item to be found
-  # @param children [boolean] Find children object, defaults to true.
-  # @return [object] The new object
-  def self.find(id, ns, children=true)
-    return super(id, ns, children)
-  end
-
-  # Find an object from triples
-  #
-  # @param triples [hash] The raw triples keyed by subject
-  # @param id [string] The id of the item to be found
-  # @return [object] The new object
-  def self.find_from_triples(triples, id)
-    return super(triples, id)
-  end
-
   # Get Properties
   #
   # @return [array] Array of leaf (property) JSON structures

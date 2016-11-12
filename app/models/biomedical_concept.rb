@@ -51,7 +51,7 @@ class BiomedicalConcept < BiomedicalConceptCore
   end
 
   def self.unique
-    return  super(C_RDF_TYPE, C_SCHEMA_NS)
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   def self.list
@@ -197,22 +197,6 @@ class BiomedicalConcept < BiomedicalConceptCore
         ConsoleLogger::log(C_CLASS_NAME,"upgrade","Update BC")
       end
     end
-  end
-
-  # Get Properties
-  #
-  # @return [array] Array of leaf (property) JSON structures
-  def get_properties
-    json = self.to_json
-    json[:children] = super
-    return json
-  end
-
-  # Set Properties
-  #
-  # param json [hash] The properties
-  def set_properties(json)
-    results = super
   end
 
   # From JSON

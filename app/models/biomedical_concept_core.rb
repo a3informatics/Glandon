@@ -36,32 +36,6 @@ class BiomedicalConceptCore < IsoManaged
     return object 
   end
 
-  # Find all BCTs.
-  #
-  # @return [array] Array of objects found.
-  def self.all(type, ns)
-    super(type, ns)
-  end
-
-  def self.unique(type, ns)
-    results = super(type, ns)
-    return results
-  end
-
-  def self.list(type, ns)
-    results = super(type, ns)
-    return results
-  end
-
-  def self.history(type, ns, params)
-    results = super(type, ns, params)
-    return results
-  end
-
-  def destroy
-    super(self.namespace)
-  end
-
   # Get Properties
   #
   # @return [array] Array of leaf (property) JSON structures

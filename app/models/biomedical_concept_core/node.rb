@@ -46,12 +46,12 @@ class BiomedicalConceptCore::Node < IsoConcept
   # @param triples [hash] The raw triples keyed by subject
   # @param id [string] The id of the item to be found
   # @return [object] The new object
-  def self.find_from_triples(triples, id)
-    object = new(triples, id)
-    children_from_triples(object, object.triples, id)
-    object.triples = ""
-    return object
-  end
+  #def self.find_from_triples(triples, id)
+  #  object = new(triples, id)
+  #  children_from_triples(object, object.triples, id)
+  #  object.triples = ""
+  #  return object
+  #end
 
   # To JSON
   #
