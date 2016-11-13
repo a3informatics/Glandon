@@ -4,11 +4,19 @@ require "uri"
 class CdiscTerm < Thesaurus
   
   # Constants
-  C_NS_PREFIX = "thC"
   C_CLASS_NAME = "CdiscTerm"
   C_IDENTIFIER = "CDISC Terminology"
-    
+  
+  # class variables
+  @@cdisc_namespace
+
+  # Initialize the object
+  #
+  # @param triples [hash] The raw triples keyed by id
+  # @param id [string] The id of the form
+  # @return [object] The form object
   def initialize(triples=nil, id=nil)
+    @@cdisc_namespace ||= IsoNamespace.findByShortName("CDISC")
     if triples.nil?
       super
     else
@@ -16,11 +24,12 @@ class CdiscTerm < Thesaurus
     end
   end
 
-  def self.current
-    object = super
-    return object
-  end
-
+  # Find
+  #
+  # @param id [string] The id of the form.
+  # @param namespace [hash] The raw triples keyed by id.
+  # @param children [boolean] Find all child objects. Defaults to true.
+  # @return [object] The form object.
   def self.find(id, ns, children=true)
     object = super(id, ns, false)
     if children
@@ -29,10 +38,19 @@ class CdiscTerm < Thesaurus
     return object
   end
 
+  # Find Only the root object
+  #
+  # @param id [string] The id of the form.
+  # @param namespace [hash] The raw triples keyed by id.
+  # @return [object] The form object.
   def self.find_only(id, ns)
     object = IsoManaged.find(id, ns, false)
   end
 
+  # Find Submission. Find child that has the specified submission value.
+  #
+  # @param value [string] The submission value
+  # @return [uri] The uri of the object found, otherwise nil.
   def find_submission(value)
     uri = nil
     query = UriManagement.buildNs(self.namespace, ["iso25964"]) +
@@ -56,10 +74,9 @@ class CdiscTerm < Thesaurus
 
   def self.all
     results = Array.new
-    namespace = IsoNamespace.findByShortName("CDISC")
-    tSet = Thesaurus.all
+    tSet = super
     tSet.each do |thesaurus|
-      if thesaurus.scopedIdentifier.namespace.shortName == namespace.shortName
+      if thesaurus.scopedIdentifier.namespace.shortName == @@cdisc_namespace.shortName
         results << thesaurus
       end
     end
@@ -67,42 +84,28 @@ class CdiscTerm < Thesaurus
   end
 
   def self.history
-    namespace = IsoNamespace.findByShortName("CDISC")
-    results = Thesaurus.history({ :identifier => C_IDENTIFIER, :scope_id => namespace.id })
+    return super({ :identifier => C_IDENTIFIER, :scope_id => @@cdisc_namespace.id })
   end
 
-  def self.allExcept(version)
+  def self.all_except(version)
     results = self.all
-    results.each do |thesaurus|
-      if (version == thesaurus.version)
-        results.delete(theasurus.id)
-        break
-      end
-    end
+    results.delete_if { |h| h.scopedIdentifier.version == version }
     return results  
   end
   
-  def self.allPrevious(version)
+  def self.all_previous(version)
     results = self.all
-    newResults = Array.new
-    results.each do |thesaurus|
-      if (version > thesaurus.version)
-        newResults << thesaurus
-      end
-    end
-    return newResults  
+    results.delete_if { |h| h.scopedIdentifier.version >= version }
+    return results
   end
   
   def self.current
-    namespace = IsoNamespace.findByShortName("CDISC")
-    object = super({ :identifier => C_IDENTIFIER, :scope_id => namespace.id })
-    return object
+    return super({ :identifier => C_IDENTIFIER, :scope_id => @@cdisc_namespace.id })
   end
   
   def self.create(params)
     object = self.new
     object.errors.clear
-    namespace = IsoNamespace.findByShortName("CDISC")
     identifier = C_IDENTIFIER
     version = params[:version]
     date = params[:date]
@@ -110,26 +113,20 @@ class CdiscTerm < Thesaurus
     params[:identifier] = identifier
     params[:versionLabel] = date.to_s
     params[:label] = identifier + " " + date.to_s
-    
     # Check to ensure version does not exist
-    if !versionExists?(identifier, version, namespace)
-      ConsoleLogger::log(C_CLASS_NAME,"create","Proceding")
-
+    if !versionExists?(identifier, version, @@cdisc_namespace)
       # Clean any empty entries
       files.reject!(&:blank?)
-
       # Determine the SI, namespace and CID
       thesaurus = Thesaurus.import(params, namespace)
       params[:si] = thesaurus.scopedIdentifier.id
       params[:rs] = thesaurus.registrationState.id
       params[:ns] = thesaurus.namespace
       params[:cid] = thesaurus.id
-
       # Create the background job status
       job = Background.create
       job.importCdiscTerm(params)
     else
-      ConsoleLogger::log(C_CLASS_NAME,"create","Duplicate")
       object.errors.add(:base, "The version has already been created.")
       job = nil
     end
@@ -222,47 +219,47 @@ class CdiscTerm < Thesaurus
     return results
   end
 
-  def self.count(searchTerm, ns)
-    count = 0
-    if searchTerm == ""
-      query = UriManagement.buildNs(ns, ["iso25964"]) +
-        "SELECT DISTINCT (COUNT(?b) as ?total) WHERE \n" +
-        "  {\n" +
-        "    ?a iso25964:identifier ?b . \n" +
-        "    FILTER(STRSTARTS(STR(?a), \"" + ns + "\"))" +
-        "  }"
-      response = CRUD.query(query)
-      xmlDoc = Nokogiri::XML(response.body)
-      xmlDoc.remove_namespaces!
-      xmlDoc.xpath("//result").each do |node|
-        countSet = node.xpath("binding[@name='total']/literal")
-        count = countSet[0].text.to_i
-      end
-    else
-      query = UriManagement.buildNs(ns, ["iso25964"]) + queryString(searchTerm, ns) 
-      response = CRUD.query(query)
-      xmlDoc = Nokogiri::XML(response.body)
-      xmlDoc.remove_namespaces!
-      count = xmlDoc.xpath("//result").length
-    end
-    return count
-  end
+  #def self.count(searchTerm, ns)
+  #  count = 0
+  #  if searchTerm == ""
+  #    query = UriManagement.buildNs(ns, ["iso25964"]) +
+  #      "SELECT DISTINCT (COUNT(?b) as ?total) WHERE \n" +
+  #      "  {\n" +
+  #      "    ?a iso25964:identifier ?b . \n" +
+  #      "    FILTER(STRSTARTS(STR(?a), \"" + ns + "\"))" +
+  #     "  }"
+  #    response = CRUD.query(query)
+  #    xmlDoc = Nokogiri::XML(response.body)
+  #    xmlDoc.remove_namespaces!
+  #    xmlDoc.xpath("//result").each do |node|
+  #      countSet = node.xpath("binding[@name='total']/literal")
+  #      count = countSet[0].text.to_i
+  #    end
+  #  else
+  #    query = UriManagement.buildNs(ns, ["iso25964"]) + queryString(searchTerm, ns) 
+  #    response = CRUD.query(query)
+  #    xmlDoc = Nokogiri::XML(response.body)
+  #    xmlDoc.remove_namespaces!
+  #    count = xmlDoc.xpath("//result").length
+  #  end
+  #  return count
+  #end
 
-  def self.search(offset, limit, col, dir, searchTerm, ns)
-    results = Array.new
-    variable = getOrderVariable(col)
-    order = getOrdering(dir)
-    query = UriManagement.buildNs(ns, ["iso25964"]) + 
-      queryString(searchTerm, ns) + 
-      " ORDER BY " + order + "(" + variable + ") OFFSET " + offset.to_s + " LIMIT " + limit.to_s
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      processNode(node, results)
-    end
-    return results
-  end
+  #def self.search(offset, limit, col, dir, searchTerm, ns)
+  #  results = Array.new
+  #  variable = getOrderVariable(col)
+  #  order = getOrdering(dir)
+  #  query = UriManagement.buildNs(ns, ["iso25964"]) + 
+  #    queryString(searchTerm, ns) + 
+  #    " ORDER BY " + order + "(" + variable + ") OFFSET " + offset.to_s + " LIMIT " + limit.to_s
+  #  response = CRUD.query(query)
+  #  xmlDoc = Nokogiri::XML(response.body)
+  #  xmlDoc.remove_namespaces!
+  #  xmlDoc.xpath("//result").each do |node|
+  #    processNode(node, results)
+  #  end
+  #  return results
+  #end
 
   def self.next(offset, limit, ns)
     results = Array.new
@@ -277,7 +274,6 @@ class CdiscTerm < Thesaurus
     xmlDoc.xpath("//result").each do |node|
       processNode(node, results)
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"next","Results=" + results.to_json.to_s)
     return results
   end
 

@@ -1,0 +1,4486 @@
+---
+:type: http://www.assero.co.uk/ISO25964#Thesaurus
+:id: TH-CDISC_CDISCTerminology
+:namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+:label: CDISC Terminology 2013-12-20
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2013-12-20T00:00:00+00:00'
+:last_changed_date: '2013-12-20T00:00:00+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-CDISC_CDISCTerminology-34
+  :registration_authority:
+    :id: RA-084433759
+    :number: 084433759
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :shortName: CDISC
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2013-12-20T00:00:00Z'
+  :until_date: '2013-12-20T00:00:00Z'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Qualified
+:scoped_identifier:
+  :id: SI-CDISC_CDISCTerminology-34
+  :identifier: CDISC Terminology
+  :version_label: '2013-12-20'
+  :version: 34
+  :namespace:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: NS-CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :shortName: CDISC
+:children:
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100129
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Questionnaire Category
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C100129
+  :notation: QSCAT
+  :synonym: Questionnaire Category
+  :definition: A grouping of observations within the Questionnaire domain.
+  :preferredTerm: CDISC Questionnaire Category Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100130
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Relationship to Subject
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C100130
+  :notation: RELSUB
+  :synonym: Relationship to Subject
+  :definition: The relationship of a person to a study subject.
+  :preferredTerm: CDISC SDTM Relationship to Subject Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100131
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100131
+  :notation: ADAS-Cog CDISC Version TEST
+  :synonym: Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Name
+  :definition: ADAS-Cog CDISC Version test name.
+  :preferredTerm: CDISC Questionnaire ADAS-Cog CDISC Version Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100132
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100132
+  :notation: ADAS-Cog CDISC Version TESTCD
+  :synonym: Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Code
+  :definition: ADAS-Cog CDISC Version test code.
+  :preferredTerm: CDISC Questionnaire ADAS-Cog CDISC Version Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100133
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Brief Psychiatric Rating Scale-A Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100133
+  :notation: BPRS-A TEST
+  :synonym: Brief Psychiatric Rating Scale-A Test Name
+  :definition: The Brief Psychiatric Rating Scale-A test name.
+  :preferredTerm: CDISC Questionnaire BPRS-A Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100134
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Brief Psychiatric Rating Scale-A Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100134
+  :notation: BPRS-A TESTCD
+  :synonym: Brief Psychiatric Rating Scale-A Test Code
+  :definition: The Brief Psychiatric Rating Scale-A test code.
+  :preferredTerm: CDISC Questionnaire BPRS-A Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100137
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Hamilton Depression Rating Scale - 17 Item Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100137
+  :notation: HAMD 17 TEST
+  :synonym: Hamilton Depression Rating Scale - 17 Item Test Name
+  :definition: The Hamilton Depression Rating Scale - 17 Item test name.
+  :preferredTerm: CDISC Questionnaire HAMD 17 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100138
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Hamilton Depression Rating Scale - 17 Item Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100138
+  :notation: HAMD 17 TESTCD
+  :synonym: Hamilton Depression Rating Scale - 17 Item Test Code
+  :definition: The Hamilton Depression Rating Scale - 17 Item test code.
+  :preferredTerm: CDISC Questionnaire HAMD 17 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100139
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Movement Disorder Society UPDRS Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100139
+  :notation: MDS-UPDRS TEST
+  :synonym: Movement Disorder Society UPDRS Test Name
+  :definition: The Movement Disorder Society version of the Unified Parkinson's Disease
+    Rating Scale test name.
+  :preferredTerm: CDISC Questionnaire MDS-UPDRS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100140
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Movement Disorder Society UPDRS Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100140
+  :notation: MDS-UPDRS TESTCD
+  :synonym: Movement Disorder Society UPDRS Test Code
+  :definition: The Movement Disorder Society version of the Unified Parkinson's Disease
+    Rating Scale test code.
+  :preferredTerm: CDISC Questionnaire MDS-UPDRS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100143
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Neuropsychiatric Inventory Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100143
+  :notation: NPI TEST
+  :synonym: Neuropsychiatric Inventory Test Name
+  :definition: The Neuropsychiatric Inventory test name.
+  :preferredTerm: CDISC Questionnaire NPI Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100144
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Neuropsychiatric Inventory Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100144
+  :notation: NPI TESTCD
+  :synonym: Neuropsychiatric Inventory Test Code
+  :definition: The Neuropsychiatric Inventory test code.
+  :preferredTerm: CDISC Questionnaire NPI Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100145
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Parkinson's Disease Quality of Life Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100145
+  :notation: PDQUALIF TEST
+  :synonym: Parkinson's Disease Quality of Life Test Name
+  :definition: The Parkinson's Disease Quality of Life Scale test name.
+  :preferredTerm: CDISC Questionnaire PDQUALIF Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100146
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Parkinson's Disease Quality of Life Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100146
+  :notation: PDQUALIF TESTCD
+  :synonym: Parkinson's Disease Quality of Life Test Code
+  :definition: The Parkinson's Disease Quality of Life Scale test code.
+  :preferredTerm: CDISC Questionnaire PDQUALIF Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100149
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Clinical Global Impression Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100149
+  :notation: CGI TEST
+  :synonym: Clinical Global Impression Test Name
+  :definition: Clinical Global Impression test name.
+  :preferredTerm: CDISC Questionnaire CGI Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100150
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Clinical Global Impression Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100150
+  :notation: CGI TESTCD
+  :synonym: Clinical Global Impression Test Code
+  :definition: Clinical Global Impression test code.
+  :preferredTerm: CDISC Questionnaire CGI Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100151
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Michigan Neuropathy Screening Instrument Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100151
+  :notation: MNSI TEST
+  :synonym: Michigan Neuropathy Screening Instrument Test Name
+  :definition: Michigan Neuropathy Screening Instrument test name.
+  :preferredTerm: CDISC Questionnaire MNSI Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100152
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Michigan Neuropathy Screening Instrument Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100152
+  :notation: MNSI TESTCD
+  :synonym: Michigan Neuropathy Screening Instrument Test Code
+  :definition: Michigan Neuropathy Screening Instrument test code.
+  :preferredTerm: CDISC Questionnaire MNSI Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100153
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Faces Pain Scale - Revised Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100153
+  :notation: FPSR TEST
+  :synonym: Faces Pain Scale - Revised Test Name
+  :definition: Faces Pain Scale - Revised test name.
+  :preferredTerm: CDISC Questionnaire FPSR Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100154
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Faces Pain Scale - Revised Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100154
+  :notation: FPSR TESTCD
+  :synonym: Faces Pain Scale - Revised Test Code
+  :definition: Faces Pain Scale - Revised test code.
+  :preferredTerm: CDISC Questionnaire FPSR Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100157
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Current Opioid Misuse Measure Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100157
+  :notation: COMM TEST
+  :synonym: Current Opioid Misuse Measure Test Name
+  :definition: Current Opioid Misuse Measure test name.
+  :preferredTerm: CDISC Questionnaire COMM Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100158
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Current Opioid Misuse Measure Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100158
+  :notation: COMM TESTCD
+  :synonym: Current Opioid Misuse Measure Test Code
+  :definition: Current Opioid Misuse Measure test code.
+  :preferredTerm: CDISC Questionnaire COMM Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100161
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Brief Pain Inventory Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100161
+  :notation: BPI TEST
+  :synonym: Brief Pain Inventory Test Name
+  :definition: Brief Pain Inventory test name.
+  :preferredTerm: CDISC Questionnaire BPI Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100162
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Brief Pain Inventory Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100162
+  :notation: BPI TESTCD
+  :synonym: Brief Pain Inventory Test Code
+  :definition: Brief Pain Inventory test code.
+  :preferredTerm: CDISC Questionnaire BPI Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100163
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Brief Pain Inventory Short Form Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100163
+  :notation: BPI Short Form TEST
+  :synonym: Brief Pain Inventory Short Form Test Name
+  :definition: Brief Pain Inventory Short Form test name.
+  :preferredTerm: CDISC Questionnaire BPI Short Form Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100164
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Brief Pain Inventory Short Form Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100164
+  :notation: BPI Short Form TESTCD
+  :synonym: Brief Pain Inventory Short Form Test Code
+  :definition: Brief Pain Inventory Short Form test code.
+  :preferredTerm: CDISC Questionnaire BPI Short Form Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100167
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicidality Severity Rating Scale Baseline Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100167
+  :notation: C-SSRS Baseline TEST
+  :synonym: Columbia-Suicidality Severity Rating Scale Baseline Test Name
+  :definition: Columbia-Suicidality Severity Rating Scale Baseline test name.
+  :preferredTerm: CDISC Questionnaire C-SSRS Baseline Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100168
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicidality Severity Rating Scale Baseline Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100168
+  :notation: C-SSRS Baseline TESTCD
+  :synonym: Columbia-Suicidality Severity Rating Scale Baseline Test Code
+  :definition: Columbia-Suicidality Severity Rating Scale Baseline test code.
+  :preferredTerm: CDISC Questionnaire C-SSRS Baseline Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100169
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Karnofsky Performance Status Scale Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100169
+  :notation: KPS Scale TEST
+  :synonym: Karnofsky Performance Status Scale Test Name
+  :definition: Karnofsky Performance Status Scale test name.
+  :preferredTerm: CDISC Questionnaire KPS Scale Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C100170
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Karnofsky Performance Status Scale Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C100170
+  :notation: KPS Scale TESTCD
+  :synonym: Karnofsky Performance Status Scale Test Code
+  :definition: Karnofsky Performance Status Scale test code.
+  :preferredTerm: CDISC Questionnaire KPS Scale Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101805
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Abnormal Involuntary Movement Scale Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101805
+  :notation: AIMS TESTCD
+  :synonym: Abnormal Involuntary Movement Scale Test Code
+  :definition: Abnormal Involuntary Movement Scale test code.
+  :preferredTerm: CDISC Questionnaire AIMS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101806
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Abnormal Involuntary Movement Scale Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101806
+  :notation: AIMS TEST
+  :synonym: Abnormal Involuntary Movement Scale Test Name
+  :definition: Abnormal Involuntary Movement Scale test name.
+  :preferredTerm: CDISC Questionnaire AIMS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101807
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: ADNI AVLT Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101807
+  :notation: AVLT TESTCD
+  :synonym: ADNI AVLT Test Code
+  :definition: ADNI AVLT test code.
+  :preferredTerm: CDISC Questionnaire ADNI AVLT Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101808
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: ADNI AVLT Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101808
+  :notation: AVLT TEST
+  :synonym: ADNI AVLT Test Name
+  :definition: ADNI AVLT test name.
+  :preferredTerm: CDISC Questionnaire ADNI AVLT Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101809
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Barnes Akathisia Rating Scale Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101809
+  :notation: BARS TESTCD
+  :synonym: Barnes Akathisia Rating Scale Test Code
+  :definition: Barnes Akathisia Rating Scale test code.
+  :preferredTerm: CDISC Questionnaire BARS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101810
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Barnes Akathisia Rating Scale Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101810
+  :notation: BARS TEST
+  :synonym: Barnes Akathisia Rating Scale Test Name
+  :definition: Barnes Akathisia Rating Scale test name.
+  :preferredTerm: CDISC Questionnaire BARS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101811
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Clinical Dementia Rating Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101811
+  :notation: CDR TESTCD
+  :synonym: Clinical Dementia Rating Test Code
+  :definition: Clinical Dementia Rating test code.
+  :preferredTerm: CDISC Questionnaire CDR Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101812
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Clinical Dementia Rating Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101812
+  :notation: CDR TEST
+  :synonym: Clinical Dementia Rating Test Name
+  :definition: Clinical Dementia Rating test name.
+  :preferredTerm: CDISC Questionnaire CDR Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101813
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Clinical Opiate Withdrawal Scale Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101813
+  :notation: COWS TESTCD
+  :synonym: Clinical Opiate Withdrawal Scale Test Code
+  :definition: Clinical Opiate Withdrawal Scale test code.
+  :preferredTerm: CDISC Questionnaire COWS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101814
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Clinical Opiate Withdrawal Scale Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101814
+  :notation: COWS TEST
+  :synonym: Clinical Opiate Withdrawal Scale Test Name
+  :definition: Clinical Opiate Withdrawal Scale test name.
+  :preferredTerm: CDISC Questionnaire COWS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101815
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Eastern Cooperative Oncology Group Performance Status Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101815
+  :notation: ECOG TESTCD
+  :synonym: Eastern Cooperative Oncology Group Performance Status Test Code
+  :definition: Eastern Cooperative Oncology Group Performance Status test code.
+  :preferredTerm: CDISC Questionnaire ECOG Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101816
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Eastern Cooperative Oncology Group Performance Status Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101816
+  :notation: ECOG TEST
+  :synonym: Eastern Cooperative Oncology Group Performance Status Test Name
+  :definition: Eastern Cooperative Oncology Group Performance Status test name.
+  :preferredTerm: CDISC Questionnaire ECOG Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101819
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Hamilton Anxiety Rating Scale Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101819
+  :notation: HAMA TESTCD
+  :synonym: Hamilton Anxiety Rating Scale Test Code
+  :definition: Hamilton Anxiety Rating Scale test code.
+  :preferredTerm: CDISC Questionnaire HAMA Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101820
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Hamilton Anxiety Rating Scale Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101820
+  :notation: HAMA TEST
+  :synonym: Hamilton Anxiety Rating Scale Test Name
+  :definition: Hamilton Anxiety Rating Scale test name.
+  :preferredTerm: CDISC Questionnaire HAMA Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101821
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Hamilton Depression Rating Scale 21-Item Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101821
+  :notation: HAMD 21 TESTCD
+  :synonym: Hamilton Depression Rating Scale 21-Item Test Code
+  :definition: Hamilton Depression Rating Scale 21-Item test code.
+  :preferredTerm: CDISC Questionnaire HAMD 21 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101822
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Hamilton Depression Rating Scale 21-Item Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101822
+  :notation: HAMD 21 TEST
+  :synonym: Hamilton Depression Rating Scale 21-Item Test Name
+  :definition: Hamilton Depression Rating Scale 21-Item test name.
+  :preferredTerm: CDISC Questionnaire HAMD 21 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101832
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Findings About Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101832
+  :notation: FATESTCD
+  :synonym: Findings About Test Code
+  :definition: Terminology relevant to the test codes that describe findings about
+    an event or intervention.
+  :preferredTerm: CDISC SDTM Findings About Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101833
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Findings About Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101833
+  :notation: FATEST
+  :synonym: Findings About Test Name
+  :definition: Terminology relevant to the test names that describe findings about
+    an event or intervention.
+  :preferredTerm: CDISC SDTM Findings About Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101837
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Consensus Cardiac Classification System Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101837
+  :notation: CCRCLS
+  :synonym: Consensus Cardiac Classification System Test Name
+  :definition: Classification system test name for cardiac parameters that are authored
+    or endorsed by organizations.
+  :preferredTerm: CDISC SDTM Consensus Cardiac Classification Systems Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101838
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Consensus Cardiac Classification System Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101838
+  :notation: CCRCLSCD
+  :synonym: Consensus Cardiac Classification System Test Code
+  :definition: Classification system test code for cardiac parameters that are authored
+    or endorsed by organizations.
+  :preferredTerm: CDISC SDTM Consensus Cardiac Classification Systems Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101840
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Killip Class Responses
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101840
+  :notation: KILLIPC
+  :synonym: Killip Class Responses
+  :definition: A terminology codelist based on the classification developed by Killip
+    and Kimball, which classifies patients with myocardial infarction based on routine
+    physical examination parameters, such as the presence or absence of rales, or
+    a decreased systolic blood pressure.
+  :preferredTerm: CDISC SDTM Killip Class Responses Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101841
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: TIMI Flow Responses
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101841
+  :notation: TIMIFLOW
+  :synonym: TIMI Flow Responses
+  :definition: Acceptable values to describe TIMI Flow.
+  :preferredTerm: CDISC SDTM Thrombolysis in Myocardial Infarction Flow Responses
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101842
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Canadian Cardiovascular Society Classification
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101842
+  :notation: CACRDSC
+  :synonym: Canadian Cardiovascular Society Classification
+  :definition: The anginal classifications as measured by the Canadian Cardiovascular
+    Society grading scale.
+  :preferredTerm: CDISC SDTM Canadian Cardiovascular Society Classification Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101843
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Coronary Artery Disease Presentation
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101843
+  :notation: CADPRSN
+  :synonym: Coronary Artery Disease Presentation
+  :definition: A terminology codelist associated with coronary artery disease presentation.
+  :preferredTerm: CDISC SDTM Coronary Artery Disease Presentation Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101844
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Coronary Artery Disease Symptoms
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101844
+  :notation: CADSYMP
+  :synonym: Coronary Artery Disease Symptoms
+  :definition: A terminology codelist that contains symptoms associated with coronary
+    artery disease.
+  :preferredTerm: CDISC SDTM Coronary Artery Disease Symptoms Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101845
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Mechanical Circulatory Support Placement Timing
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101845
+  :notation: MCRCSPTM
+  :synonym: Mechanical Circulatory Support Placement Timing
+  :definition: A terminology codelist to describe the timing of mechanical circulatory
+    support placement.
+  :preferredTerm: CDISC SDTM Mechanical Circulatory Support Placement Timing Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101846
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Cardiovascular Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101846
+  :notation: CVEXAM
+  :synonym: Cardiovascular Test Name
+  :definition: A terminology codelist to describe the findings test name from a cardiac
+    examination.
+  :preferredTerm: CDISC SDTM Cardiovascular Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101847
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Cardiovascular Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101847
+  :notation: CVEXAMCD
+  :synonym: Cardiovascular Test Code
+  :definition: A terminology codelist to describe the findings test code from a cardiac
+    examination.
+  :preferredTerm: CDISC SDTM Cardiovascular Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101848
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Risk Assessment
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101848
+  :notation: RSKASMT
+  :synonym: Risk Assessment
+  :definition: A terminology codelist to describe the risk of a disease, disorder
+    or abnormal condition.
+  :preferredTerm: CDISC SDTM Risk Assessment Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101849
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Coronary Artery Disease Risk
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101849
+  :notation: CADRISK
+  :synonym: Coronary Artery Disease Risk
+  :definition: A terminology codelist to describe the relative risk of coronary artery
+    disease.
+  :preferredTerm: CDISC SDTM Coronary Artery Disease Risk Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101850
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Coronary Vessel Disease Extent
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101850
+  :notation: CVSLDEXT
+  :synonym: Coronary Vessel Disease Extent
+  :definition: A terminology codelist to describe the extent of coronary artery disease.
+  :preferredTerm: CDISC SDTM Coronary Vessel Disease Extent Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101851
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Location of Most Severe Stenosis Within a Graft
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101851
+  :notation: GRSTNLOC
+  :synonym: Location of Most Severe Stenosis Within a Graft
+  :definition: Terminology used to describe the part of the graft that is most severely
+    stenotic.
+  :preferredTerm: CDISC SDTM Location of Most Severe Stenosis Within a Graft Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101852
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Sudden Death Syndrome Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101852
+  :notation: SDTHSDTP
+  :synonym: Sudden Death Syndrome Type
+  :definition: A terminology codelist that describes syndromes or conditions that
+    put a subject at risk for sudden death.
+  :preferredTerm: CDISC SDTM Sudden Death Syndrome Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101853
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Cardiac Valvular Regurgitation Severity
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101853
+  :notation: CVLVRSEV
+  :synonym: Cardiac Valvular Regurgitation Severity
+  :definition: A terminology codelist to describe the severity of cardiac valvular
+    regurgitation.
+  :preferredTerm: CDISC SDTM Cardiac Valvular Regurgitation Severity Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101854
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Cardiac Valvular Stenosis Severity
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101854
+  :notation: CVLSTSEV
+  :synonym: Cardiac Valvular Stenosis Severity
+  :definition: A terminology codelist to describe the severity of cardiac valvular
+    stenosis.
+  :preferredTerm: CDISC SDTM Cardiac Valvular Stenosis Severity Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101856
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Procedure Urgency Status
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101856
+  :notation: PRURGNCY
+  :synonym: Procedure Urgency Status
+  :definition: A terminology codelist that describes the degree of urgency for a procedure.
+  :preferredTerm: CDISC SDTM Procedure Urgency Status Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101857
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Diabetes Therapy
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101857
+  :notation: DIABTHPY
+  :synonym: Diabetes Therapy
+  :definition: A terminology codelist that describes the treatment method for diabetes.
+  :preferredTerm: CDISC SDTM Diabetes Therapy Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101858
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Procedure
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101858
+  :notation: PROCEDUR
+  :synonym: Procedure
+  :definition: A terminology codelist to describe any activity considered to be a
+    therapeutic or diagnostic procedure.
+  :preferredTerm: CDISC SDTM Procedure Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101859
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Cardiac Procedure Indication
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101859
+  :notation: CVPRCIND
+  :synonym: Cardiac Procedure Indication
+  :definition: The reason that a subject had a cardiac procedure.
+  :preferredTerm: CDISC SDTM Cardiac Procedure Indication Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101860
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Coronary Artery Dominance
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101860
+  :notation: CARTDOM
+  :synonym: Coronary Artery Dominance
+  :definition: A codelist to describe whether the posterior descending artery comes
+    from the right or left vessel system.
+  :preferredTerm: CDISC SDTM Coronary Artery Dominance Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101861
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Lesion Complexity
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101861
+  :notation: LSNCMPX
+  :synonym: Lesion Complexity
+  :definition: Terminology related to the risk of percutaneous coronary intervention
+    for a particular lesion.
+  :preferredTerm: CDISC SDTM Lesion Complexity Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101862
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Lead Abnormality
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101862
+  :notation: LEADABN
+  :synonym: Lead Abnormality
+  :definition: Terminology related to the complications of cardiac lead systems.
+  :preferredTerm: CDISC SDTM Lead Abnormality Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101863
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Discharge Disposition
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101863
+  :notation: DISCHDX
+  :synonym: Discharge Disposition
+  :definition: The destination or circumstance at the time of discharge.
+  :preferredTerm: CDISC SDTM Discharge Disposition Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101864
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Reason CS/LV Lead Not Implanted
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101864
+  :notation: CSLVLNIM
+  :synonym: Reason CS/LV Lead Not Implanted
+  :definition: The reason that a Coronary Sinus Access or Left Ventricular (CS/LV)
+    lead was not implanted.
+  :preferredTerm: CDISC SDTM Reason Coronary Sinus Access or Left Ventricular Lead
+    Not Implanted Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101865
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Acute Coronary Syndrome Presentation Category
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C101865
+  :notation: ACSPCAT
+  :synonym: Acute Coronary Syndrome Presentation Category
+  :definition: A classification of the presentation of acute coronary syndrome.
+  :preferredTerm: CDISC SDTM Acute Coronary Syndrome Presentation Category Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101866
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Cardiac Rhythm Device Failure Manifestation
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101866
+  :notation: CRYDFMAN
+  :synonym: Cardiac Rhythm Device Failure Manifestation
+  :definition: The effect that a cardiac rhythm device malfunction had on the ability
+    to stimulate the heart.
+  :preferredTerm: CDISC SDTM Cardiac Rhythm Device Failure Manifestation Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101867
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Lead Status
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101867
+  :notation: LEADSTAT
+  :synonym: Lead Status
+  :definition: The status of the lead.
+  :preferredTerm: CDISC SDTM Lead Status Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C101868
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Left Ventricular Ejection Fraction Measurement Result
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C101868
+  :notation: LVEFMRE
+  :synonym: Left Ventricular Ejection Fraction Measurement Result
+  :definition: Terminology for results of left ventricular ejection fraction assessments.
+  :preferredTerm: CDISC SDTM Left Ventricular Ejection Fraction Measurement Result
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102575
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Contact Case Investigation Contact Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102575
+  :notation: CCINVTYP
+  :synonym: Contact Case Investigation Contact Type
+  :definition: Terminology relevant to the identification and clinical investigation
+    of disease contacts.
+  :preferredTerm: CDISC SDTM Contact Case Investigation Contact Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102576
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Directly Observed Therapy Location
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C102576
+  :notation: DOBSTLOC
+  :synonym: Directly Observed Therapy Location
+  :definition: Terminology relevant to the physical location at which the medication
+    or therapy was observed, by the healthcare provider, as being taken by the subject.
+  :preferredTerm: CDISC SDTM Directly Observed Therapy Location Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102577
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Drug Resistance Status
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102577
+  :notation: DRSTAT
+  :synonym: Drug Resistance Status
+  :definition: Terminology relevant to the state or condition of the microbe or lesion
+    to indicate whether it is resistant to drugs normally used in treatment.
+  :preferredTerm: CDISC SDTM Drug Resistance Status Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102578
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Disease Outcome
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102578
+  :notation: DSSOUT
+  :synonym: Disease Outcome
+  :definition: Terminology relevant to the measurable result or effect of treatment
+    on a disease.
+  :preferredTerm: CDISC SDTM Disease Outcome Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102579
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Supporting Evidence for Re-Treatment
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102579
+  :notation: EVDRETRT
+  :synonym: Supporting Evidence for Re-Treatment
+  :definition: Terminology relevant to the clinical evidence to support reason for
+    re-treatment of disease.
+  :preferredTerm: CDISC SDTM Supporting Evidence for Re-Treatment Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102580
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Laboratory Test Standard Character Result
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102580
+  :notation: LBSTRESC
+  :synonym: Laboratory Test Standard Character Result
+  :definition: Terminology relevant to the standardized results, in character format,
+    for laboratory tests.
+  :preferredTerm: CDISC SDTM Laboratory Test Standard Character Result Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102581
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Microbial Identification Certainty
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C102581
+  :notation: MCIDCERT
+  :synonym: Microbial Identification Certainty
+  :definition: Terminology relevant to the degree of certainty of the correctness
+    of a microbial identification test result.
+  :preferredTerm: CDISC SDTM Microbial Identification Certainty Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102582
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Priority of Tuberculosis Contact
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102582
+  :notation: PRITBCON
+  :synonym: Priority of Tuberculosis Contact
+  :definition: Terminology relevant to the prioritization of tuberculosis contacts.
+  :preferredTerm: CDISC SDTM Priority of Tuberculosis Contact Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102583
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Reason for Treatment Interruption
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102583
+  :notation: REASTINT
+  :synonym: Reason for Treatment Interruption
+  :definition: Terminology relevant to the reason the drug or therapy was temporarily
+    ceased.
+  :preferredTerm: CDISC SDTM Reason for Treatment Interruption Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102584
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Reason For Treatment
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102584
+  :notation: REASTRT
+  :synonym: Reason For Treatment
+  :definition: Terminology relevant to the reason the treatment was administered.
+  :preferredTerm: CDISC SDTM Reason For Treatment Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102585
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Treatment Failure Reason
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102585
+  :notation: REASTRTF
+  :synonym: Treatment Failure Reason
+  :definition: Terminology relevant to the reason the drug or therapy was unsuccessful
+    in treating the condition.
+  :preferredTerm: CDISC SDTM Treatment Failure Reason Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102586
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Reason Treatment Not Administered
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102586
+  :notation: RSTRTNA
+  :synonym: Reason Treatment Not Administered
+  :definition: Terminology relevant to the reason the treatment was not administered.
+  :preferredTerm: CDISC SDTM Reason Treatment Not Administered Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102587
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Social Risk Factor
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102587
+  :notation: RISKSOC
+  :synonym: Social Risk Factor
+  :definition: Terminology relevant to the social factors such as personal behavior,
+    lifestyle, or environment belonging to the subject which are known to increase
+    the likelihood of infection and disease.
+  :preferredTerm: CDISC SDTM Social Risk Factor Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102588
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Contact Setting
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102588
+  :notation: SETCON
+  :synonym: Contact Setting
+  :definition: Terminology relevant to the environment within which the subject may
+    have come into contact with a disease carrier, or played the role of a disease
+    carrier.
+  :preferredTerm: CDISC SDTM Contact Setting Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102589
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Treatment Episode
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C102589
+  :notation: TRTEPSD
+  :synonym: Treatment Episode
+  :definition: Terminology relevant to whether an individual is being treated for
+    a disease for the first time.
+  :preferredTerm: CDISC SDTM Treatment Episode Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C102590
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Vaccination Evidence Source
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C102590
+  :notation: VCNEVD
+  :synonym: Vaccination Evidence Source
+  :definition: Terminology relevant to the source of information regarding the subject's
+    vaccination status.
+  :preferredTerm: CDISC SDTM Vaccination Evidence Source Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103329
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: General Observation Class
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103329
+  :notation: GNRLOBSC
+  :synonym: General Observation Class
+  :definition: Terminology related to the classification of a CDISC domain.
+  :preferredTerm: CDISC SDTM General Observation Class Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103330
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Subject Characteristic Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C103330
+  :notation: SCTEST
+  :synonym: Subject Characteristic Test Name
+  :definition: The test name representing each subject characteristic.
+  :preferredTerm: CDISC SDTM Subject Characteristic Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103458
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change
+    Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103458
+  :notation: ADCS-CGIC TEST
+  :synonym: Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change
+    Questionnaire Test Name
+  :definition: Alzheimer's Disease Cooperative Study-Clinical Global Impression of
+    Change test name.
+  :preferredTerm: CDISC Questionnaire ADCS-CGIC Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103459
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change
+    Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103459
+  :notation: ADCS-CGIC TESTCD
+  :synonym: Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change
+    Questionnaire Test Code
+  :definition: Alzheimer's Disease Cooperative Study-Clinical Global Impression of
+    Change test code.
+  :preferredTerm: CDISC Questionnaire ADCS-CGIC Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103460
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicidality Severity Rating Scale Since Last Visit Questionnaire
+    Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103460
+  :notation: C-SSRS Since Last Visit TEST
+  :synonym: Columbia-Suicidality Severity Rating Scale Since Last Visit Questionnaire
+    Test Name
+  :definition: Columbia-Suicidality Severity Rating Scale Since Last Visit test name.
+  :preferredTerm: CDISC Questionnaire C-SSRS Since Last Visit Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103461
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicidality Severity Rating Scale Since Last Visit Questionnaire
+    Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103461
+  :notation: C-SSRS Since Last Visit TESTCD
+  :synonym: Columbia-Suicidality Severity Rating Scale Since Last Visit Questionnaire
+    Test Code
+  :definition: Columbia-Suicidality Severity Rating Scale Since Last Visit test code.
+  :preferredTerm: CDISC Questionnaire C-SSRS Since Last Visit Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103462
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Epworth Sleepiness Scale Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103462
+  :notation: ESS TEST
+  :synonym: Epworth Sleepiness Scale Questionnaire Test Name
+  :definition: Epworth Sleepiness Scale test name.
+  :preferredTerm: CDISC Questionnaire ESS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103463
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Epworth Sleepiness Scale Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103463
+  :notation: ESS TESTCD
+  :synonym: Epworth Sleepiness Scale Questionnaire Test Code
+  :definition: Epworth Sleepiness Scale test code.
+  :preferredTerm: CDISC Questionnaire ESS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103466
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Generalized Anxiety Disorder - 7 Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103466
+  :notation: GAD-7 TEST
+  :synonym: Generalized Anxiety Disorder - 7 Questionnaire Test Name
+  :definition: Generalized Anxiety Disorder - 7 test name.
+  :preferredTerm: CDISC Questionnaire GAD-7 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103467
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Generalized Anxiety Disorder - 7 Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103467
+  :notation: GAD-7 TESTCD
+  :synonym: Generalized Anxiety Disorder - 7 Questionnaire Test Code
+  :definition: Generalized Anxiety Disorder - 7 test code.
+  :preferredTerm: CDISC Questionnaire GAD-7 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103468
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Hospital Anxiety and Depression Scale Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103468
+  :notation: HADS TEST
+  :synonym: Hospital Anxiety and Depression Scale Questionnaire Test Name
+  :definition: Hospital Anxiety and Depression Scale test name.
+  :preferredTerm: CDISC Questionnaire HADS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103469
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Hospital Anxiety and Depression Scale Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103469
+  :notation: HADS TESTCD
+  :synonym: Hospital Anxiety and Depression Scale Questionnaire Test Code
+  :definition: Hospital Anxiety and Depression Scale test code.
+  :preferredTerm: CDISC Questionnaire HADS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103470
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: International Index of Erectile Function Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103470
+  :notation: IIEF TEST
+  :synonym: International Index of Erectile Function Questionnaire Test Name
+  :definition: International Index of Erectile Function test name.
+  :preferredTerm: CDISC Questionnaire IIEF Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103471
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: International Index of Erectile Function Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103471
+  :notation: IIEF TESTCD
+  :synonym: International Index of Erectile Function Questionnaire Test Code
+  :definition: International Index of Erectile Function test code.
+  :preferredTerm: CDISC Questionnaire IIEF Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103472
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Neuropathic Pain Scale Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103472
+  :notation: NPS TEST
+  :synonym: Neuropathic Pain Scale Questionnaire Test Name
+  :definition: Neuropathic Pain Scale test name.
+  :preferredTerm: CDISC Questionnaire NPS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103473
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Neuropathic Pain Scale Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103473
+  :notation: NPS TESTCD
+  :synonym: Neuropathic Pain Scale Questionnaire Test Code
+  :definition: Neuropathic Pain Scale test code.
+  :preferredTerm: CDISC Questionnaire NPS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103480
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Patient Health Questionnaire - 9 Item Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103480
+  :notation: PHQ-9 TEST
+  :synonym: Patient Health Questionnaire - 9 Item Test Name
+  :definition: Patient Health Questionnaire - 9 test name.
+  :preferredTerm: CDISC Questionnaire PHQ-9 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103481
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Patient Health Questionnaire - 9 Item Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103481
+  :notation: PHQ-9 TESTCD
+  :synonym: Patient Health Questionnaire - 9 Item Test Code
+  :definition: Patient Health Questionnaire - 9 test code.
+  :preferredTerm: CDISC Questionnaire PHQ-9 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103482
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Patient Health Questionnaire - 15 Item Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103482
+  :notation: PHQ-15 TEST
+  :synonym: Patient Health Questionnaire - 15 Item Test Name
+  :definition: Patient Health Questionnaire - 15 test name.
+  :preferredTerm: CDISC Questionnaire PHQ-15 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C103483
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Patient Health Questionnaire - 15 Item Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C103483
+  :notation: PHQ-15 TESTCD
+  :synonym: Patient Health Questionnaire - 15 Item Test Code
+  :definition: Patient Health Questionnaire - 15 test code.
+  :preferredTerm: CDISC Questionnaire PHQ-15 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105129
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Disability Assessment for Dementia Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105129
+  :notation: DAD TEST
+  :synonym: Disability Assessment for Dementia Questionnaire Test Name
+  :definition: Disability Assessment for Dementia test name.
+  :preferredTerm: CDISC Questionnaire DAD Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105130
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Disability Assessment for Dementia Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105130
+  :notation: DAD TESTCD
+  :synonym: Disability Assessment for Dementia Questionnaire Test Code
+  :definition: Disability Assessment for Dementia test code.
+  :preferredTerm: CDISC Questionnaire DAD Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105131
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicidality Severity Rating Scale Baseline/Screening Version Phase
+    1 Study Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105131
+  :notation: C-SSRS Baseline/Screening Version Phase 1 Study TEST
+  :synonym: Columbia-Suicidality Severity Rating Scale Baseline/Screening Version
+    Phase 1 Study Questionnaire Test Name
+  :definition: Columbia-Suicidality Severity Rating Scale Baseline/Screening Version
+    Phase 1 Study Version 1/14/2009 test name.
+  :preferredTerm: CDISC Questionnaire C-SSRS Baseline/Screening Version Phase 1 Study
+    Version 1/14/09 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105132
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicidality Severity Rating Scale Baseline/Screening Version Phase
+    1 Study Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105132
+  :notation: C-SSRS Baseline/Screening Version Phase 1 Study TESTCD
+  :synonym: Columbia-Suicidality Severity Rating Scale Baseline/Screening Version
+    Phase 1 Study Questionnaire Test Code
+  :definition: Columbia-Suicidality Severity Rating Scale Baseline/Screening Version
+    Phase 1 Study Version 1/14/2009 Questionnaire test code.
+  :preferredTerm: CDISC Questionnaire C-SSRS Baseline/Screening Version Phase 1 Study
+    Version 1/14/09 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105133
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Pain Intensity Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105133
+  :notation: PI TEST
+  :synonym: Pain Intensity Questionnaire Test Name
+  :definition: Pain Intensity test name.
+  :preferredTerm: CDISC Questionnaire PI v1 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105134
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Pain Intensity Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105134
+  :notation: PI TESTCD
+  :synonym: Pain Intensity Questionnaire Test Code
+  :definition: Pain Intensity test code.
+  :preferredTerm: CDISC Questionnaire PI v1 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105135
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Pain Relief Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105135
+  :notation: PR TEST
+  :synonym: Pain Relief Questionnaire Test Name
+  :definition: Pain Relief test name.
+  :preferredTerm: CDISC Questionnaire PR v1 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105136
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Pain Relief Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105136
+  :notation: PR TESTCD
+  :synonym: Pain Relief Questionnaire Test Code
+  :definition: Pain Relief test code.
+  :preferredTerm: CDISC Questionnaire PR v1 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105137
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: General Clinical Global Impressions Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105137
+  :notation: GCGI TEST
+  :synonym: General Clinical Global Impressions Questionnaire Test Name
+  :definition: General Clinical Global Impressions test name.
+  :preferredTerm: CDISC Questionnaire GCGI v1 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105138
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: General Clinical Global Impressions Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105138
+  :notation: GCGI TESTCD
+  :synonym: General Clinical Global Impressions Questionnaire Test Code
+  :definition: General Clinical Global Impressions test code.
+  :preferredTerm: CDISC Questionnaire GCGI v1 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105139
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105139
+  :notation: ADCS-ADL TEST
+  :synonym: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Questionnaire Test Name
+  :definition: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    test name.
+  :preferredTerm: CDISC Questionnaire ADCS-ADL Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C105140
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C105140
+  :notation: ADCS-ADL TESTCD
+  :synonym: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Questionnaire Test Code
+  :definition: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    test code.
+  :preferredTerm: CDISC Questionnaire ADCS-ADL Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106478
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Reproductive System Findings Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C106478
+  :notation: RPTEST
+  :synonym: Reproductive System Findings Test Name
+  :definition: A terminology codelist for the physiological test names related to
+    the male and female reproductive systems.
+  :preferredTerm: CDISC SDTM Reproductive System Findings Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106479
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Reproductive System Findings Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C106479
+  :notation: RPTESTCD
+  :synonym: Reproductive System Findings Test Code
+  :definition: A terminology codelist for the physiological test codes related to
+    the male and female reproductive systems.
+  :preferredTerm: CDISC SDTM Reproductive System Findings Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106480
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Device Identifier Long Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C106480
+  :notation: DIPARM
+  :synonym: Device Identifier Long Name
+  :definition: A terminology codelist for the long name of the identifier characteristic
+    of the device.
+  :preferredTerm: CDISC SDTM Device Identifier Long Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106481
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Device Identifier Short Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C106481
+  :notation: DIPARMCD
+  :synonym: Device Identifier Short Name
+  :definition: A terminology codelist for the short name of the identifier characteristic
+    of the device.
+  :preferredTerm: CDISC SDTM Device Identifier Short Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106482
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Device-In-Use Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C106482
+  :notation: DUTEST
+  :synonym: Device-In-Use Test Name
+  :definition: A terminology codelist for the test name of the test or examination
+    used to obtain the measurement or finding of the device in use.
+  :preferredTerm: CDISC SDTM Device-In-Use Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106483
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Device-In-Use Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C106483
+  :notation: DUTESTCD
+  :synonym: Device-In-Use Test Code
+  :definition: A terminology codelist for the test code of the test or examination
+    used to obtain the measurement or finding of the device in use.
+  :preferredTerm: CDISC SDTM Device-In-Use Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106650
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    MCI Version Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106650
+  :notation: ADCS-ADL MCI TEST
+  :synonym: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    MCI Version Questionnaire Test Name
+  :definition: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    MCI Version test name.
+  :preferredTerm: CDISC Questionnaire ADCS-ADL MCI Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106651
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    MCI Version Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106651
+  :notation: ADCS-ADL MCI TESTCD
+  :synonym: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    MCI Version Questionnaire Test Code
+  :definition: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    MCI Version test code.
+  :preferredTerm: CDISC Questionnaire ADCS-ADL MCI Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106652
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Severe Dementia Version Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106652
+  :notation: ADCS-ADL Severe Dementia TEST
+  :synonym: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Severe Dementia Version Questionnaire Test Name
+  :definition: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Severe Dementia Version test name.
+  :preferredTerm: CDISC Questionnaire ADCS-ADL Severe Dementia Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106653
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Severe Dementia Version Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106653
+  :notation: ADCS-ADL Severe Dementia TESTCD
+  :synonym: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Severe Dementia Version Questionnaire Test Code
+  :definition: Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory
+    Severe Dementia Version test code.
+  :preferredTerm: CDISC Questionnaire ADCS-ADL Severe Dementia Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106654
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Baseline Dyspnea Index Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106654
+  :notation: BDI TEST
+  :synonym: Baseline Dyspnea Index Questionnaire Test Name
+  :definition: Baseline Dyspnea Index test name.
+  :preferredTerm: CDISC Questionnaire BDI Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106655
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Baseline Dyspnea Index Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106655
+  :notation: BDI TESTCD
+  :synonym: Baseline Dyspnea Index Questionnaire Test Code
+  :definition: Baseline Dyspnea Index test code.
+  :preferredTerm: CDISC Questionnaire BDI Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106658
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Already Enrolled Subjects Questionnaire
+    Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106658
+  :notation: C-SSRS Already Enrolled Subjects TEST
+  :synonym: Columbia-Suicide Severity Rating Scale Already Enrolled Subjects Questionnaire
+    Test Name
+  :definition: Columbia-Suicide Severity Rating Scale Already Enrolled Subject test
+    name.
+  :preferredTerm: CDISC Questionnaire C-SSRS Already Enrolled Subjects Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106659
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Already Enrolled Subjects Questionnaire
+    Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106659
+  :notation: C-SSRS Already Enrolled Subjects TESTCD
+  :synonym: Columbia-Suicide Severity Rating Scale Already Enrolled Subjects Questionnaire
+    Test Code
+  :definition: Columbia-Suicide Severity Rating Scale Already Enrolled Subject test
+    code.
+  :preferredTerm: CDISC Questionnaire C-SSRS Already Enrolled Subjects Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106660
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Baseline/Screening Version Questionnaire
+    Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106660
+  :notation: C-SSRS Baseline/Screening Version TEST
+  :synonym: Columbia-Suicide Severity Rating Scale Baseline/Screening Version Questionnaire
+    Test Name
+  :definition: Columbia-Suicide Severity Rating Scale Baseline/Screening Version test
+    name.
+  :preferredTerm: CDISC Questionnaire C-SSRS Baseline/Screening Version Test Name
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106661
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Baseline/Screening Version Questionnaire
+    Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106661
+  :notation: C-SSRS Baseline/Screening Version TESTCD
+  :synonym: Columbia-Suicide Severity Rating Scale Baseline/Screening Version Questionnaire
+    Test Code
+  :definition: Columbia-Suicide Severity Rating Scale Baseline/Screening Version test
+    code.
+  :preferredTerm: CDISC Questionnaire C-SSRS Baseline/Screening Version Test Code
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106662
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Geriatric Depression Scale Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106662
+  :notation: GDS TEST
+  :synonym: Geriatric Depression Scale Questionnaire Test Name
+  :definition: Geriatric Depression Scale test name.
+  :preferredTerm: CDISC Questionnaire GDS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106663
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Geriatric Depression Scale Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106663
+  :notation: GDS TESTCD
+  :synonym: Geriatric Depression Scale Questionnaire Test Code
+  :definition: Geriatric Depression Scale test code.
+  :preferredTerm: CDISC Questionnaire GDS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106664
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Geriatric Depression Scale Short Form Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106664
+  :notation: GDS SHORT FORM TEST
+  :synonym: Geriatric Depression Scale Short Form Questionnaire Test Name
+  :definition: Geriatric Depression Scale Short Form test name.
+  :preferredTerm: CDISC Questionnaire GDS-SF Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106665
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Geriatric Depression Scale Short Form Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106665
+  :notation: GDS SHORT FORM TESTCD
+  :synonym: Geriatric Depression Scale Short Form Questionnaire Test Code
+  :definition: Geriatric Depression Scale Short Form test code.
+  :preferredTerm: CDISC Questionnaire GDS-SF Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106666
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Health Assessment Questionnaire Disability Index Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106666
+  :notation: HAQ-DI TEST
+  :synonym: Health Assessment Questionnaire Disability Index Test Name
+  :definition: Health Assessment Questionnaire Disability Index test name.
+  :preferredTerm: CDISC Questionnaire HAQ-DI Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106667
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Health Assessment Questionnaire Disability Index Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106667
+  :notation: HAQ-DI TESTCD
+  :synonym: Health Assessment Questionnaire Disability Index Test Code
+  :definition: Health Assessment Questionnaire Disability Index test code.
+  :preferredTerm: CDISC Questionnaire HAQ-DI Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106668
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Modified Medical Research Council Dyspnea Scale Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106668
+  :notation: MMRC TEST
+  :synonym: Modified Medical Research Council Dyspnea Scale Questionnaire Test Name
+  :definition: Modified Medical Research Council Dyspnea Scale test name.
+  :preferredTerm: CDISC Questionnaire MMRC Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C106669
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Modified Medical Research Council Dyspnea Scale Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C106669
+  :notation: MMRC TESTCD
+  :synonym: Modified Medical Research Council Dyspnea Scale Questionnaire Test Code
+  :definition: Modified Medical Research Council Dyspnea Scale test code.
+  :preferredTerm: CDISC Questionnaire MMRC Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111106
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Respiratory Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C111106
+  :notation: RETESTCD
+  :synonym: Respiratory Test Code
+  :definition: A terminology codelist based on the test codes for physiological findings
+    related to the respiratory system, including the organs that are involved in breathing
+    such as the nose, throat, larynx, trachea, bronchi and lungs.
+  :preferredTerm: CDISC SDTM Respiratory Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111107
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Respiratory Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C111107
+  :notation: RETEST
+  :synonym: Respiratory Test Name
+  :definition: A terminology codelist based on the test names for physiological findings
+    related to the respiratory system, including the organs that are involved in breathing
+    such as the nose, throat, larynx, trachea, bronchi and lungs.
+  :preferredTerm: CDISC SDTM Respiratory Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111108
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Employment Status
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C111108
+  :notation: EMPSTAT
+  :synonym: Employment Status
+  :definition: Terminology relevant to the state of being engaged in an activity or
+    service for wages or salary.
+  :preferredTerm: CDISC SDTM Employment Status Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111109
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Device Events Category
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C111109
+  :notation: DECAT
+  :synonym: Device Events Category
+  :definition: A terminology codelist based on the category of related records for
+    the device event.
+  :preferredTerm: CDISC SDTM Device Events Category Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111110
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Device Events Action Taken with Device
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C111110
+  :notation: DEACNDEV
+  :synonym: Device Events Action Taken with Device
+  :definition: A terminology codelist based on the action taken with respect to the
+    device.
+  :preferredTerm: CDISC SDTM Device Events Action Taken with Device Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111111
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Device Properties Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C111111
+  :notation: DOTESTCD
+  :synonym: Device Properties Test Code
+  :definition: A terminology codelist based on the test code used to obtain the device
+    property.
+  :preferredTerm: CDISC SDTM Device Properties Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111112
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Device Properties Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C111112
+  :notation: DOTEST
+  :synonym: Device Properties Test Name
+  :definition: A terminology codelist based on the test name used to obtain the device
+    property.
+  :preferredTerm: CDISC SDTM Device Properties Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111114
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Genetic Sample Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C111114
+  :notation: GENSMP
+  :synonym: Genetic Sample Type
+  :definition: Terminology relevant to the type of nucleic acid which was derived
+    from the collected sample.
+  :preferredTerm: CDISC Genetic Sample Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111335
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Children's Baseline Questionnaire
+    Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111335
+  :notation: C-SSRS Children's Baseline TEST
+  :synonym: Columbia-Suicide Severity Rating Scale Children's Baseline Questionnaire
+    Test Name
+  :definition: Columbia-Suicide Severity Rating Scale Children's Baseline test name.
+  :preferredTerm: CDISC Questionnaire C-SSRS Children's Baseline Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111336
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Children's Baseline Questionnaire
+    Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111336
+  :notation: C-SSRS Children's Baseline TESTCD
+  :synonym: Columbia-Suicide Severity Rating Scale Children's Baseline Questionnaire
+    Test Code
+  :definition: Columbia-Suicide Severity Rating Scale Children's Baseline test code.
+  :preferredTerm: CDISC Questionnaire C-SSRS Children's Baseline Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111337
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Children's Baseline/Screening Questionnaire
+    Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111337
+  :notation: C-SSRS Children's Baseline/Screening TEST
+  :synonym: Columbia-Suicide Severity Rating Scale Children's Baseline/Screening Questionnaire
+    Test Name
+  :definition: Columbia-Suicide Severity Rating Scale Children's Baseline/Screening
+    test name.
+  :preferredTerm: CDISC Questionnaire C-SSRS Children's Baseline/Screening Test Name
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111338
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Children's Baseline/Screening Questionnaire
+    Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111338
+  :notation: C-SSRS Children's Baseline/Screening TESTCD
+  :synonym: Columbia-Suicide Severity Rating Scale Children's Baseline/Screening Questionnaire
+    Test Code
+  :definition: Columbia-Suicide Severity Rating Scale Children's Baseline/Screening
+    test code.
+  :preferredTerm: CDISC Questionnaire C-SSRS Children's Baseline/Screening Test Code
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111339
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Children's Since Last Visit Questionnaire
+    Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111339
+  :notation: C-SSRS Children's Since Last Visit TEST
+  :synonym: Columbia-Suicide Severity Rating Scale Children's Since Last Visit Questionnaire
+    Test Name
+  :definition: Columbia-Suicide Severity Rating Scale Children's Since Last Visit
+    test name.
+  :preferredTerm: CDISC Questionnaire C-SSRS Children's Since Last Visit Test Name
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111340
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Children's Since Last Visit Questionnaire
+    Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111340
+  :notation: C-SSRS Children's Since Last Visit TESTCD
+  :synonym: Columbia-Suicide Severity Rating Scale Children's Since Last Visit Questionnaire
+    Test Code
+  :definition: Columbia-Suicide Severity Rating Scale Children's Since Last Visit
+    test code.
+  :preferredTerm: CDISC Questionnaire C-SSRS Children's Since Last Visit Test Code
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111341
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Screening Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111341
+  :notation: C-SSRS Screening TEST
+  :synonym: Columbia-Suicide Severity Rating Scale Screening Questionnaire Test Name
+  :definition: Columbia-Suicide Severity Rating Scale Screening test name.
+  :preferredTerm: CDISC Questionnaire C-SSRS Screening Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111342
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Columbia-Suicide Severity Rating Scale Screening Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111342
+  :notation: C-SSRS Screening TESTCD
+  :synonym: Columbia-Suicide Severity Rating Scale Screening Questionnaire Test Code
+  :definition: Columbia-Suicide Severity Rating Scale Screening test code.
+  :preferredTerm: CDISC Questionnaire C-SSRS Screening Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111343
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Functional Activities Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111343
+  :notation: FAQ TEST
+  :synonym: Functional Activities Questionnaire Test Name
+  :definition: Functional Activities Questionnaire test name.
+  :preferredTerm: CDISC Questionnaire FAQ Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111344
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Functional Activities Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111344
+  :notation: FAQ TESTCD
+  :synonym: Functional Activities Questionnaire Test Code
+  :definition: Functional Activities Questionnaire test code.
+  :preferredTerm: CDISC Questionnaire FAQ Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111345
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Functional Activities Questionnaire-NACC Version Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111345
+  :notation: FAQ-NACC Version TEST
+  :synonym: Functional Activities Questionnaire-NACC Version Test Name
+  :definition: Functional Activities Questionnaire-NACC Version test name.
+  :preferredTerm: CDISC Questionnaire FAQ-NACC Version Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111346
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Functional Activities Questionnaire-NACC Version Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111346
+  :notation: FAQ-NACC Version TESTCD
+  :synonym: Functional Activities Questionnaire-NACC Version Test Code
+  :definition: Functional Activities Questionnaire-NACC Version test code.
+  :preferredTerm: CDISC Questionnaire FAQ-NACC Version Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111347
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Modified Rankin Scale Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111347
+  :notation: MRS TEST
+  :synonym: Modified Rankin Scale Questionnaire Test Name
+  :definition: Modified Rankin Scale test name.
+  :preferredTerm: CDISC Questionnaire MRS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C111348
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Modified Rankin Scale Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C111348
+  :notation: MRS TESTCD
+  :synonym: Modified Rankin Scale Questionnaire Test Code
+  :definition: Modified Rankin Scale test code.
+  :preferredTerm: CDISC Questionnaire MRS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112023
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Skin Response Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C112023
+  :notation: SRTEST
+  :synonym: Skin Response Test Name
+  :definition: A terminology codelist based on the test names for dermal responses
+    to antigens.
+  :preferredTerm: CDISC SDTM Skin Response Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112024
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Skin Response Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C112024
+  :notation: SRTESTCD
+  :synonym: Skin Response Test Code
+  :definition: A terminology codelist based on the test codes for dermal responses
+    to antigens.
+  :preferredTerm: CDISC SDTM Skin Response Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112037
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Device Tracking and Disposition Event Dictionary Derived Term
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C112037
+  :notation: DTDECOD
+  :synonym: Device Tracking and Disposition Event Dictionary Derived Term
+  :definition: A terminology codelist based on the verbatim or preprinted term for
+    the device tracking and disposition event that occurs.
+  :preferredTerm: CDISC SDTM Device Tracking and Disposition Event Dictionary Derived
+    Term Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112434
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Airway Questionnaire 20 Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112434
+  :notation: AQ20 TEST
+  :synonym: Airway Questionnaire 20 Test Name
+  :definition: Airway Questionnaire 20 test name.
+  :preferredTerm: CDISC Questionnaire AQ20 Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112435
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Airway Questionnaire 20 Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112435
+  :notation: AQ20 TESTCD
+  :synonym: Airway Questionnaire 20 Test Code
+  :definition: Airway Questionnaire 20 test code.
+  :preferredTerm: CDISC Questionnaire AQ20 Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112436
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Disease Steps Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112436
+  :notation: Disease Steps TEST
+  :synonym: Disease Steps Questionnaire Test Name
+  :definition: Disease Steps test name.
+  :preferredTerm: CDISC Questionnaire DS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112437
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Disease Steps Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112437
+  :notation: Disease Steps TESTCD
+  :synonym: Disease Steps Questionnaire Test Code
+  :definition: Disease Steps test code.
+  :preferredTerm: CDISC Questionnaire DS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112438
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Kurtzke Expanded Disability Status Scale Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112438
+  :notation: EDSS TEST
+  :synonym: Kurtzke Expanded Disability Status Scale Questionnaire Test Name
+  :definition: Kurtzke Expanded Disability Status Scale test name.
+  :preferredTerm: CDISC Questionnaire EDSS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112439
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Kurtzke Expanded Disability Status Scale Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112439
+  :notation: EDSS TESTCD
+  :synonym: Kurtzke Expanded Disability Status Scale Questionnaire Test Code
+  :definition: Kurtzke Expanded Disability Status Scale test code.
+  :preferredTerm: CDISC Questionnaire EDSS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112440
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Functional Assessment of Multiple Sclerosis Version 4 Questionnaire Test
+    Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112440
+  :notation: FAMS TEST
+  :synonym: Functional Assessment of Multiple Sclerosis Version 4 Questionnaire Test
+    Name
+  :definition: Functional Assessment of Multiple Sclerosis Version 4 test name.
+  :preferredTerm: CDISC Questionnaire FAMS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112441
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Functional Assessment of Multiple Sclerosis Version 4 Questionnaire Test
+    Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112441
+  :notation: FAMS TESTCD
+  :synonym: Functional Assessment of Multiple Sclerosis Version 4 Questionnaire Test
+    Code
+  :definition: Functional Assessment of Multiple Sclerosis Version 4 test code.
+  :preferredTerm: CDISC Questionnaire FAMS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112442
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Kurtzke Functional Systems Scores Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112442
+  :notation: KFSS TEST
+  :synonym: Kurtzke Functional Systems Scores Questionnaire Test Name
+  :definition: Kurtzke Functional Systems Scores test name.
+  :preferredTerm: CDISC Questionnaire KFSS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112443
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Kurtzke Functional Systems Scores Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112443
+  :notation: KFSS TESTCD
+  :synonym: Kurtzke Functional Systems Scores Questionnaire Test Code
+  :definition: Kurtzke Functional Systems Scores test code.
+  :preferredTerm: CDISC Questionnaire KFSS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112444
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Modified Hachinski Ischemic Scale-NACC Version Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112444
+  :notation: MHIS-NACC TEST
+  :synonym: Modified Hachinski Ischemic Scale-NACC Version Questionnaire Test Name
+  :definition: Modified Hachinski Ischemic Scale-NACC Version test name.
+  :preferredTerm: CDISC Questionnaire MHIS-NACC Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112445
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Modified Hachinski Ischemic Scale-NACC Version Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112445
+  :notation: MHIS-NACC TESTCD
+  :synonym: Modified Hachinski Ischemic Scale-NACC Version Questionnaire Test Code
+  :definition: Modified Hachinski Ischemic Scale-NACC Version test code.
+  :preferredTerm: CDISC Questionnaire MHIS-NACC Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112446
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Patient Determined Disease Steps Questionnaire Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112446
+  :notation: PDDS TEST
+  :synonym: Patient Determined Disease Steps Questionnaire Test Name
+  :definition: Patient Determined Disease Steps test name.
+  :preferredTerm: CDISC Questionnaire PDDS Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112447
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Patient Determined Disease Steps Questionnaire Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112447
+  :notation: PDDS TESTCD
+  :synonym: Patient Determined Disease Steps Questionnaire Test Code
+  :definition: Patient Determined Disease Steps test code.
+  :preferredTerm: CDISC Questionnaire PDDS Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112452
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: National Eye Institute Visual Functioning Questionnaire - 25 Version 2000
+    Interviewer-Administered Format Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112452
+  :notation: VFQ25-Interviewer Administered TEST
+  :synonym: National Eye Institute Visual Functioning Questionnaire - 25 Version 2000
+    Interviewer-Administered Format Test Name
+  :definition: National Eye Institute Visual Functioning Questionnaire - 25 Version
+    2000 Interviewer-Administered Format test name.
+  :preferredTerm: CDISC Questionnaire VFQ25-Interviewer Administered Format Test Name
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112453
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: National Eye Institute Visual Functioning Questionnaire - 25 Version 2000
+    Interviewer-Administered Format Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112453
+  :notation: VFQ25-Interviewer Administered TESTCD
+  :synonym: National Eye Institute Visual Functioning Questionnaire - 25 Version 2000
+    Interviewer-Administered Format Test Code
+  :definition: National Eye Institute Visual Functioning Questionnaire - 25 Version
+    2000 Interviewer-Administered Format test code.
+  :preferredTerm: CDISC Questionnaire VFQ25-Interviewer Administered Format Test Code
+    Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112454
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: National Eye Institute Visual Functioning Questionnaire - 25 Version 2000
+    Self-Administered Format Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112454
+  :notation: VFQ25-Self Administered TEST
+  :synonym: National Eye Institute Visual Functioning Questionnaire - 25 Version 2000
+    Self-Administered Format Test Name
+  :definition: National Eye Institute Visual Functioning Questionnaire - 25 Version
+    2000 Self-Administered Format test name.
+  :preferredTerm: CDISC Questionnaire VFQ25-Self Administered Format Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C112455
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: National Eye Institute Visual Functioning Questionnaire - 25 Version 2000
+    Self-Administered Format Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C112455
+  :notation: VFQ25-Self Administered TESTCD
+  :synonym: National Eye Institute Visual Functioning Questionnaire - 25 Version 2000
+    Self-Administered Format Test Code
+  :definition: National Eye Institute Visual Functioning Questionnaire - 25 Version
+    2000 Self-Administered Format test code.
+  :preferredTerm: CDISC Questionnaire VFQ25-Self Administered Format Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C65047
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Laboratory Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C65047
+  :notation: LBTESTCD
+  :synonym: Laboratory Test Code
+  :definition: Terminology used for laboratory test codes of the CDISC Standard Data
+    Tabulation Model.
+  :preferredTerm: CDISC SDTM Laboratory Test Terminology by Code
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66727
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Completion/Reason for Non-Completion
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66727
+  :notation: NCOMPLT
+  :synonym: Completion/Reason for Non-Completion
+  :definition: The status of the subject's completion of the study or a segment of
+    the study, or the reason the subject discontinued the study or segment of the
+    study.
+  :preferredTerm: CDISC SDTM Reason for Non-Completion Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66728
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Relation to Reference Period
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66728
+  :notation: STENRF
+  :synonym: Relation to Reference Period
+  :definition: The relative relationship of a timepoint to a reference timepoint.
+  :preferredTerm: CDISC SDTM Relation to Reference Period Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66729
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Route of Administration
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66729
+  :notation: ROUTE
+  :synonym: Route of Administration
+  :definition: The course by which a substance was administered in order to reach
+    the site of action in the body.
+  :preferredTerm: CDISC SDTM Route of Administration Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66731
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Sex
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66731
+  :notation: SEX
+  :synonym: Sex
+  :definition: The assemblage of physical properties or qualities by which male is
+    distinguished from female; the physical difference between male and female; the
+    distinguishing peculiarity of male or female. (NCI)
+  :preferredTerm: CDISC SDTM Sex of Individual Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66732
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Sex of Participants
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66732
+  :notation: SEXPOP
+  :synonym: Sex of Participants
+  :definition: The specific sex, either male, female, or mixed of the subject group
+    being studied. (NCI)
+  :preferredTerm: CDISC SDTM Sex of Study Group Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66733
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Size
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66733
+  :notation: SIZE
+  :synonym: Size
+  :definition: The physical magnitude of something. (NCI)
+  :preferredTerm: CDISC SDTM Size Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66734
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: SDTM Domain Abbreviation
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66734
+  :notation: DOMAIN
+  :synonym: SDTM Domain Abbreviation
+  :definition: A unique, 2-character domain code used in the regulatory submission
+    process. The domain abbreviation is used consistently throughout the submission,
+    i.e. in the dataset name, as the value of the domain variable within the dataset,
+    and as a prefix for most variable names in the dataset. (CDISC Glossary)
+  :preferredTerm: CDISC SDTM Submission Domain Abbreviation Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66735
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Trial Blinding Schema
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66735
+  :notation: TBLIND
+  :synonym: Trial Blinding Schema
+  :definition: The name of a code list that contains terms to define the type of blinding
+    for the trial. (NCI)
+  :preferredTerm: CDISC SDTM Trial Blinding Schema Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66736
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Trial Indication Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66736
+  :notation: TINDTP
+  :synonym: Trial Indication Type
+  :definition: The name of a code list that contains terms to define the type of trial,
+    e.g. cure or prevention. (NCI)
+  :preferredTerm: CDISC SDTM Trial Indication Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66737
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Trial Phase
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66737
+  :notation: TPHASE
+  :synonym: Trial Phase
+  :definition: 'Clinical trials are broken into three or four phases: Phase I tests
+    a new drug or treatment for safety in a small group; Phase II expands the study
+    to a larger group of people; Phase III expands the study to an even larger group
+    of people to measure whether the treatment actually benefits patients, and whether
+    its benefits exceed its risks; and Phase IV takes place after the drug or treatment
+    has been licensed and marketed. (NCI)'
+  :preferredTerm: CDISC SDTM Trial Phase Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66738
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Trial Summary Parameter Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66738
+  :notation: TSPARMCD
+  :synonym: Trial Summary Parameter Test Code
+  :definition: The test code for an individual characteristic of a clinical trial,
+    e.g. description of trial design, trial blinding schema, and primary objective
+    of trial.
+  :preferredTerm: CDISC SDTM Trial Summary Parameter Terminology by Code
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66739
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Trial Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66739
+  :notation: TTYPE
+  :synonym: Trial Type
+  :definition: The type of clinical trial performed e.g. efficacy, safety. (NCI)
+  :preferredTerm: CDISC SDTM Trial Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66741
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Vital Signs Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66741
+  :notation: VSTESTCD
+  :synonym: Vital Signs Test Code
+  :definition: The test code given to the test that analyzes a particular set of vital
+    signs including temperature, respiratory rate, heart rate, and blood pressure.
+  :preferredTerm: CDISC SDTM Vital Sign Terminology by Code
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66767
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Action Taken with Study Treatment
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66767
+  :notation: ACN
+  :synonym: Action Taken with Study Treatment
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :preferredTerm: CDISC SDTM Action Taken with Study Treatment Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66769
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Severity/Intensity Scale for Adverse Events
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66769
+  :notation: AESEV
+  :synonym: Severity/Intensity Scale for Adverse Events
+  :definition: A scale that defines the degree or state of disease existing in a patient
+    as a result of the occurrence of an adverse event. (NCI)
+  :preferredTerm: CDISC SDTM Severity Intensity Scale for Adverse Event Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66770
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Units for Vital Signs Results
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66770
+  :notation: VSRESU
+  :synonym: Units for Vital Signs Results
+  :definition: The unit used to record and describe the result of a test investigating
+    a vital sign. (NCI)
+  :preferredTerm: CDISC SDTM Unit for Vital Sign Result Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66781
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Age Unit
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66781
+  :notation: AGEU
+  :synonym: Age Unit
+  :definition: Those units of time that are routinely used to express the age of a
+    subject.
+  :preferredTerm: CDISC SDTM Age Unit Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66784
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Common Terminology Criteria for Adverse Events V3.0
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66784
+  :notation: TOXGRV3
+  :synonym: Common Terminology Criteria for Adverse Events V3.0
+  :definition: A standard terminology developed to report adverse events occurring
+    in cancer clinical trials. Common terminology criteria for adverse events (CTCAE)
+    are used in study adverse event summaries and Investigational New Drug reports
+    to the Food and Drug Administration. The CTCAE contain a grading scale for each
+    adverse event term representing the severity of the event. (NCI)
+  :preferredTerm: CDISC SDTM Common Terminology Criteria for Adverse Event Grade Terminology
+    V3.0
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66785
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Control Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66785
+  :notation: TCNTRL
+  :synonym: Control Type
+  :definition: Comparator against which the study treatment is evaluated (e.g., concurrent
+    (placebo, no treatment, dose-response, active), external (historical, published
+    literature).
+  :preferredTerm: CDISC SDTM Control Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66786
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Country
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66786
+  :notation: COUNTRY
+  :synonym: Country
+  :definition: A collective generic term that refers here to a wide variety of dependencies,
+    areas of special sovereignty, uninhabited islands, and other entities in addition
+    to the traditional countries or independent states. (NCI)
+  :preferredTerm: CDISC SDTM Country Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66787
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Diagnosis Group
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66787
+  :notation: TDIGRP
+  :synonym: Diagnosis Group
+  :definition: A grouping of individuals on the basis of a shared procedure or disease,
+    or lack thereof (e.g. healthy volunteers, type 2 diabetic subjects, subjects with
+    renal cell cancer). Standardized naming systems are available that define the
+    groups within which a subject should be placed. (NCI)
+  :preferredTerm: CDISC SDTM Diagnosis Group Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66788
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Dictionary Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C66788
+  :notation: DICTNAM
+  :synonym: Dictionary Name
+  :definition: A name given to a reference source that lists words and gives their
+    meaning. (NCI)
+  :preferredTerm: CDISC SDTM Dictionary Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66790
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Ethnic Group
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66790
+  :notation: ETHNIC
+  :synonym: Ethnic Group
+  :definition: A social group characterized by a distinctive social and cultural tradition
+    maintained from generation to generation, a common history and origin and a sense
+    of identification with the group; members of the group have distinctive features
+    in their way of life, shared experiences and often a common genetic heritage;
+    these features may be reflected in their experience of health and disease. (NCI)
+  :preferredTerm: CDISC SDTM Ethnic Group Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C66797
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Category for Inclusion/Exclusion
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C66797
+  :notation: IECAT
+  :synonym: Category for Inclusion/Exclusion
+  :definition: A collection of criteria on which subjects are evaluated and that must
+    be met by all study subjects. (NCI)
+  :preferredTerm: CDISC SDTM Category for Inclusion And Or Exclusion Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C67152
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Trial Summary Parameter Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C67152
+  :notation: TSPARM
+  :synonym: Trial Summary Parameter Test Name
+  :definition: The test name for an individual characteristic of a clinical trial,
+    e.g. description of trial design, trial blinding schema, and primary objective
+    of trial.
+  :preferredTerm: CDISC SDTM Trial Summary Parameter Terminology by Name
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C67153
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Vital Signs Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C67153
+  :notation: VSTEST
+  :synonym: Vital Signs Test Name
+  :definition: The test name given to the test that analyzes a particular set of vital
+    signs including temperature, respiratory rate, heart rate, and blood pressure.
+  :preferredTerm: CDISC SDTM Vital Sign Terminology by Name
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C67154
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Laboratory Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C67154
+  :notation: LBTEST
+  :synonym: Laboratory Test Name
+  :definition: Terminology used for laboratory test names of the CDISC Standard Data
+    Tabulation Model.
+  :preferredTerm: CDISC SDTM Laboratory Test Terminology by Name
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C71113
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Frequency
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C71113
+  :notation: FREQ
+  :synonym: Frequency
+  :definition: The terminology that includes terms pertaining to frequency within
+    CDISC.
+  :preferredTerm: CDISC SDTM Frequency Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C71148
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Position
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C71148
+  :notation: POSITION
+  :synonym: Position
+  :definition: Terminology codelist used with Body Position within CDISC.
+  :preferredTerm: CDISC SDTM Body Position Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C71150
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: ECG Result
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C71150
+  :notation: EGSTRESC
+  :synonym: ECG Result
+  :definition: Terminology codelist used with ECG Findings and Abnormalities within
+    CDISC.
+  :preferredTerm: CDISC SDTM ECG Finding Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C71151
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: ECG Test Method
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C71151
+  :notation: EGMETHOD
+  :synonym: ECG Test Method
+  :definition: Terminology codelist used with ECG Test Methods within CDISC.
+  :preferredTerm: CDISC SDTM ECG Test Method Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C71152
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: ECG Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C71152
+  :notation: EGTEST
+  :synonym: ECG Test Name
+  :definition: Terminology codelist used with ECG Test Names within CDISC.
+  :preferredTerm: CDISC SDTM ECG Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C71153
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: ECG Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C71153
+  :notation: EGTESTCD
+  :synonym: ECG Test Code
+  :definition: Terminology codelist used with ECG Tests within CDISC.
+  :preferredTerm: CDISC SDTM ECG Test Terminology by Code
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C71620
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Unit
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C71620
+  :notation: UNIT
+  :synonym: Unit
+  :definition: Terminology codelist used for units within CDISC.
+  :preferredTerm: CDISC SDTM Unit of Measure Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C74456
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Anatomical Location
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C74456
+  :notation: LOC
+  :synonym: Anatomical Location
+  :definition: Terminology codelist used for anatomical location within CDISC.
+  :preferredTerm: CDISC SDTM Anatomical Location Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C74457
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Race
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C74457
+  :notation: RACE
+  :synonym: Race
+  :definition: Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  :preferredTerm: CDISC SDTM Race Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C74558
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Category for Disposition Event
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C74558
+  :notation: DSCAT
+  :synonym: Category for Disposition Event
+  :definition: Classifications that describe and group pertinent events that occur
+    throughout the conduct of a clinical trial.
+  :preferredTerm: CDISC SDTM Category For Disposition Event Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C74559
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Subject Characteristic Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C74559
+  :notation: SCTESTCD
+  :synonym: Subject Characteristic Test Code
+  :definition: The test code representing each subject characteristic.
+  :preferredTerm: CDISC SDTM Subject Characteristic Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C74561
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Skin Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C74561
+  :notation: SKINTYP
+  :synonym: Skin Type
+  :definition: A distinctive characteristic of the skin marked by the amount of sebum
+    secreted by sebaceous glands.
+  :preferredTerm: CDISC SDTM Skin Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C76348
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Marital Status
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C76348
+  :notation: MARISTAT
+  :synonym: Marital Status
+  :definition: A demographic parameter indicating a person's current conjugal status.
+  :preferredTerm: CDISC SDTM Marital Status Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C76351
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Skin Classification
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C76351
+  :notation: SKINCLAS
+  :synonym: Skin Classification
+  :definition: A classification system used to categorize the sensitivity of a subject's
+    skin to sunlight.
+  :preferredTerm: CDISC Skin Classification Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C78731
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Drug Accountability Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C78731
+  :notation: DATEST
+  :synonym: Drug Accountability Test Name
+  :definition: The name of the test for the drug accountability assessment.
+  :preferredTerm: CDISC SDTM Drug Accountability Test Terminology by Name
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C78732
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Drug Accountability Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C78732
+  :notation: DATESTCD
+  :synonym: Drug Accountability Test Code
+  :definition: The short name, or code, of the test for the drug accountability assessment.
+  :preferredTerm: CDISC SDTM Drug Accountability Test Terminology by Code
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C78733
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Specimen Condition
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C78733
+  :notation: SPECCOND
+  :synonym: Specimen Condition
+  :definition: The physical state or quality of a biological specimen.
+  :preferredTerm: CDISC SDTM Specimen Condition Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C78734
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Specimen Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C78734
+  :notation: SPECTYPE
+  :synonym: Specimen Type
+  :definition: The name and description of a biological specimen.
+  :preferredTerm: CDISC SDTM Specimen Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C78735
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Evaluator
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C78735
+  :notation: EVAL
+  :synonym: Evaluator
+  :definition: The role that the individual or entity plays with respect to a specific
+    situation or person.
+  :preferredTerm: CDISC SDTM Evaluator Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C78736
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Reference Range Indicator
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C78736
+  :notation: NRIND
+  :synonym: Reference Range Indicator
+  :definition: A description of the results relative to the normal or expected range
+    of values.
+  :preferredTerm: CDISC SDTM Reference Range Indicator
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C78737
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Relationship Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C78737
+  :notation: RELTYPE
+  :synonym: Relationship Type
+  :definition: The description of relationship types between a record or set of records.
+  :preferredTerm: CDISC SDTM Relationship Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C85491
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Microorganism
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C85491
+  :notation: MICROORG
+  :synonym: Microorganism
+  :definition: Microorganisms, bacteria, fungi and other organisms.
+  :preferredTerm: CDISC SDTM Microorganism Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C85492
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Method
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C85492
+  :notation: METHOD
+  :synonym: Method
+  :definition: Method is any technique or procedure (an action) that determines how
+    an observation or clinical finding was made.
+  :preferredTerm: CDISC SDTM Method Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C85493
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: PK Parameters
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C85493
+  :notation: PKPARM
+  :synonym: PK Parameters
+  :definition: Parameters used to describe the time-concentration curve.
+  :preferredTerm: CDISC SDTM Pharmacokinetic Parameter Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C85494
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: PK Parameter Units of Measure
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C85494
+  :notation: PKUNIT
+  :synonym: PK Parameter Units of Measure
+  :definition: Units of measure needed for pharmacokinetic parameters.
+  :preferredTerm: CDISC SDTM Pharmacokinetic Parameter Unit of Measure Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C85495
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Microbiology Susceptibility Testing Result Category
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C85495
+  :notation: MSRESCAT
+  :synonym: Microbiology Susceptibility Testing Result Category
+  :definition: Used to categorize the result of a finding in a standard format.
+  :preferredTerm: CDISC SDTM Microbiology Susceptibility Testing Result Category Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C85839
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: PK Parameters Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C85839
+  :notation: PKPARMCD
+  :synonym: PK Parameters Code
+  :definition: Parameter codes used to describe the time-concentration curve.
+  :preferredTerm: CDISC SDTM Pharmacokinetic Parameter Terminology by Code
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C87162
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Common Terminology Criteria for Adverse Events V4.0
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C87162
+  :notation: TOXGRV4
+  :synonym: Common Terminology Criteria for Adverse Events V4.0
+  :definition: The version 4.0 standard terminology developed to report adverse events
+    occurring in cancer clinical trials. Common terminology criteria for adverse events
+    (CTCAE) are used to study adverse event summaries and Investigational New Drug
+    reports to the Food and Drug Administration. The CTCAE contain a grading scale
+    for each adverse event term representing the severity of the event. (NCI)
+  :preferredTerm: CDISC SDTM Common Terminology Criteria for Adverse Event Grade Terminology
+    Version 4.0
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C90013
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: ECG Lead
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C90013
+  :notation: EGLEAD
+  :synonym: ECG Lead
+  :definition: Terminology related to electrocardiogram lead names.
+  :preferredTerm: CDISC SDTM Electrocardiogram Lead Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C96777
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Medical Evaluator
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C96777
+  :notation: MEDEVAL
+  :synonym: Medical Evaluator
+  :definition: The individual responsible for the medical assessment.
+  :preferredTerm: CDISC SDTM Medical Evaluator Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C96780
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Tumor Identification Results
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C96780
+  :notation: TUMIDENT
+  :synonym: Tumor Identification Results
+  :definition: Terminology relevant to tumor identification results.
+  :preferredTerm: CDISC SDTM Tumor Identification Result Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C96781
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Tumor Response Assessment Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C96781
+  :notation: RSTEST
+  :synonym: Tumor Response Assessment Test Name
+  :definition: Terminology relevant to the test names that describe an assessment
+    of tumor response to treatment or therapy.
+  :preferredTerm: CDISC SDTM Tumor Response Assessment Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C96782
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Tumor Response Assessment Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C96782
+  :notation: RSTESTCD
+  :synonym: Tumor Response Assessment Test Code
+  :definition: Terminology relevant to the test codes that describe an assessment
+    of tumor response to treatment or therapy.
+  :preferredTerm: CDISC SDTM Tumor Response Assessment Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C96783
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Tumor Identification Test Name
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C96783
+  :notation: TUTEST
+  :synonym: Tumor Identification Test Name
+  :definition: Terminology relevant to the test names that describe tumor assessments
+    for identification purposes.
+  :preferredTerm: CDISC SDTM Tumor Identification Test Name Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C96784
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Tumor Identification Test Code
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C96784
+  :notation: TUTESTCD
+  :synonym: Tumor Identification Test Code
+  :definition: Terminology relevant to the test codes that describe tumor assessments
+    for identification purposes.
+  :preferredTerm: CDISC SDTM Tumor Identification Test Code Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C96785
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Tumor Response Result
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C96785
+  :notation: RSSTRESC
+  :synonym: Tumor Response Result
+  :definition: The result of an assessment of tumor response to treatment or therapy.
+  :preferredTerm: CDISC SDTM Tumor Response Result Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C99073
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Laterality
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C99073
+  :notation: LAT
+  :synonym: Laterality
+  :definition: CDISC terminology for anatomical location or specimen further detailing
+    the side(s) of interest.
+  :preferredTerm: CDISC SDTM Laterality Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C99074
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Directionality
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C99074
+  :notation: DIR
+  :synonym: Directionality
+  :definition: CDISC terminology for anatomical location or specimen further detailing
+    directionality.
+  :preferredTerm: CDISC SDTM Directionality Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C99075
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Portion/Totality
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C99075
+  :notation: PORTOT
+  :synonym: Portion/Totality
+  :definition: Qualifier for anatomical location or specimen further detailing the
+    portion or totality, which means arrangement of, or apportioning of an entity.
+  :preferredTerm: CDISC SDTM Portion/Totality Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C99076
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Intervention Model
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C99076
+  :notation: INTMODEL
+  :synonym: Intervention Model
+  :definition: The trial design developed to compare treatment groups.
+  :preferredTerm: CDISC SDTM Intervention Model Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C99077
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Study Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C99077
+  :notation: STYPE
+  :synonym: Study Type
+  :definition: Describes the role the study plays in determining the interventions
+    a subject receives.
+  :preferredTerm: CDISC SDTM Study Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C99078
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Intervention Type
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: false
+    :label: Extensible
+  :identifier: C99078
+  :notation: INTTYPE
+  :synonym: Intervention Type
+  :definition: The kind of product or procedure studied in a trial.
+  :preferredTerm: CDISC SDTM Intervention Type Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CL-C99079
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :label: Epoch
+  :extension_properties:
+  - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+    :value: true
+    :label: Extensible
+  :identifier: C99079
+  :notation: EPOCH
+  :synonym: Epoch
+  :definition: The name of the EPOCH.
+  :preferredTerm: CDISC SDTM Epoch Terminology
+  :topLevel: false
+  :parentIdentifier: ''
+  :children: []
