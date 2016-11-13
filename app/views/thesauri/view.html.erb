@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag    'd3_local_v2' %>
 <%= javascript_include_tag 'd3_local_v2' %>
 <script id="jsonData" type="text/json">
-    <%= raw @thesaurus.to_edit(true).to_json %>
+    <%= raw @thesaurus.to_operation.to_json %>
 </script>
 <%= javascript_include_tag 'thesauri_viewer' %>
 <div class="col-md-8">

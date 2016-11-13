@@ -1,6 +1,6 @@
 <%= javascript_include_tag 'thesauri_editor' %>
 <script id="jsonData" type="text/json">
-    <%= raw @thesaurus.to_edit(true).to_json %>
+    <%= raw @thesaurus.to_operation.to_json %>
 </script>
 <div class="row">
     <div class="col-md-12">

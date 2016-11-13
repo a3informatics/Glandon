@@ -58,17 +58,12 @@ class Dashboard
 private 
   
   def self.setPrefix(uri, defaultNs)
-    #ConsoleLogger::log(C_CLASS_NAME,"setPrefix","Uri=" + uri)
     ns = ModelUtility.extractNs(uri)
     cid = ModelUtility.extractCid(uri)
-    #ConsoleLogger::log(C_CLASS_NAME,"setPrefix","ns=" + ns)
-    #ConsoleLogger::log(C_CLASS_NAME,"setPrefix","cid=" + cid)
     if ns == defaultNs 
       prefix = ""
     else
-      #ConsoleLogger::log(C_CLASS_NAME,"setPrefix","Ns=" + ns)
-      prefix = UriManagement.getPrefix1(ns)
-      #ConsoleLogger::log(C_CLASS_NAME,"setPrefix","Prefix=" + prefix.to_s)
+      prefix = UriManagement.getPrefix(ns)
       if prefix == nil
         prefix = ns
       end

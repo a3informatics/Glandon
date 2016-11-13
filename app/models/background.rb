@@ -102,7 +102,7 @@ class Background < ActiveRecord::Base
     	status: "Building manifest file.",
     	started: Time.now())
     # Create manifest file
-    manifest = CdiscCtManifest::buildCdiscTermImportManifest(params[:date], params[:version], params[:files])
+    manifest = buildCdiscTermImportManifest(params[:date], params[:version], params[:files])
     # Create the thesaurus (does not actually create the database entries).
     # Entries in DB created as part of the XSLT and load
     self.update(status: "Transforming terminology file.", percentage: 10)
@@ -339,6 +339,25 @@ class Background < ActiveRecord::Base
   handle_asynchronously :submission_changes_impact
 
 private
+
+  def buildCdiscTermImportManifest(date, version, files)
+    builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
+      xml.CDISCTerminology() {
+        xml.Update(:date => date, :version => version) {
+          files.each do |file|
+            xml.File(:filename => file) 
+          end
+        }
+      }
+    end
+    #TODO: Replace with public file utility
+    directory = Rails.root.join("public","upload")
+    path = File.join(directory, "cdiscImportManifest.xml")
+    File.open(path, "wb") do |f|
+       f.write(builder.to_xml)
+    end
+    return path
+  end
 
   def load_cls(data, ct, counts, total_ct_count)
     # Get the Cls

@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag    'biomedical_concepts_editor'%>
 <%= javascript_include_tag 'biomedical_concepts_editor'%>
 <script id="bcJson" type="text/json">
-    <%= raw @bc.to_edit.to_json %>
+    <%= raw @bc.to_operation.to_json %>
 </script>
 <div class="row">
     <div class="col-md-9">

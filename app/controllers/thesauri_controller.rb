@@ -69,7 +69,7 @@ class ThesauriController < ApplicationController
       format.html
       format.json do
         results = @thesaurus.to_json
-        ConsoleLogger::log(C_CLASS_NAME,"form", "JSON=#{results.to_json}")
+        ConsoleLogger::log(C_CLASS_NAME,"show", "JSON=#{results.to_json}")
         render json: results
       end
     end
