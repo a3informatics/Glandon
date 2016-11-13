@@ -71,6 +71,10 @@ describe IsoManaged do
     load_test_file_into_triple_store("iso_managed_data.ttl")
     load_test_file_into_triple_store("iso_managed_data_2.ttl")
     load_test_file_into_triple_store("iso_managed_data_3.ttl")
+    clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
   end
  
 	it "validates a valid object" do

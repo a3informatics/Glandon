@@ -9,6 +9,7 @@ require 'rspec/rails'
 require 'devise'
 require 'factory_girl_rails'
 require "pundit/rspec"
+require 'capybara/rspec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -62,5 +63,6 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
+  config.include(Capybara::DSL)
 
 end

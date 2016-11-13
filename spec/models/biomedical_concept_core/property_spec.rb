@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'biomedical_concept_core/property'
 
 describe BiomedicalConceptCore::Property do
   
@@ -16,6 +17,7 @@ describe BiomedicalConceptCore::Property do
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
     load_test_file_into_triple_store("BCT.ttl")
     load_test_file_into_triple_store("BC.ttl")
+    clear_iso_concept_object
   end
 
   it "validates a valid object" do

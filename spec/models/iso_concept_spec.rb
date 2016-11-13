@@ -15,6 +15,7 @@ describe IsoConcept do
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_test_file_into_triple_store("iso_concept_extension.ttl")
     load_test_file_into_triple_store("iso_concept_data.ttl")
+    clear_iso_concept_object
   end
 
 	it "validates a valid object" do

@@ -14,6 +14,7 @@ describe ThesaurusConcept do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_test_file_into_triple_store("thesaurus_concept.ttl")
+    clear_iso_concept_object
   end
 
   it "allows an object to be initialised" do

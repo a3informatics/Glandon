@@ -4,7 +4,7 @@ describe AuditTrail do
 
 	include DataHelpers
 
-	it "clears triple store and loads test data" do
+	before :all do
     clear_triple_store
     AuditTrail.delete_all
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -18,6 +18,7 @@ describe AuditTrail do
     load_test_file_into_triple_store("iso_managed_data.ttl")
     load_test_file_into_triple_store("iso_managed_data_2.ttl")
     load_test_file_into_triple_store("iso_managed_data_3.ttl")
+    clear_iso_concept_object
   end
 
   it "returns a human readable label for an instance" do

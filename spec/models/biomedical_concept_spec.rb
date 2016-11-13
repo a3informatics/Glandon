@@ -17,16 +17,32 @@ describe BiomedicalConcept do
     load_test_file_into_triple_store("MDRIdentificationACME.ttl")
     load_test_file_into_triple_store("BCT.ttl")
     load_test_file_into_triple_store("BC.ttl")
+    clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
   end
 
-  it "validates a valid object" do
+  it "allows validity of the object to be checked - error" do
     result = BiomedicalConcept.new
     result.valid?
-    expect(result.errors.full_messages[0]).to eq("")
-    expect(result.valid?).to eq(true)
+    expect(result.errors.count).to eq(2)
+    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name contains invalid characters")
+    expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
+    expect(result.valid?).to eq(false)
   end
 
-  it "allows a BC to be found" do
+    it "allows validity of the object to be checked" do
+    result = BiomedicalConcept.new
+    result.registrationState.registrationAuthority.namespace.shortName = "AAA"
+    result.registrationState.registrationAuthority.namespace.name = "USER AAA"
+    result.registrationState.registrationAuthority.number = "123456789"
+    valid = result.valid?
+    expect(result.errors.count).to eq(0)
+    expect(valid).to eq(true)
+  end 
+
+it "allows a BC to be found" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     expect(item.identifier).to eq("BC_C25206")
   end

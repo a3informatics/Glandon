@@ -16,6 +16,7 @@ describe CdiscCl do
     load_schema_file_into_triple_store("CDISCTerm.ttl")
     load_data_file_into_triple_store("MDRIdentificationACME.ttl")
     load_test_file_into_triple_store("CT_V34.ttl")
+    clear_iso_concept_object
   end
 
   it "allows an object to be initialised" do

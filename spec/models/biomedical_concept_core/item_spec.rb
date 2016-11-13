@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'biomedical_concept_core/item'
 
 describe BiomedicalConceptCore::Item do
   
@@ -14,6 +15,7 @@ describe BiomedicalConceptCore::Item do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    clear_iso_concept_object
   end
 
   it "validates a valid object" do
@@ -151,7 +153,7 @@ describe BiomedicalConceptCore::Item do
       "<http://www.example.com/path#XXX_I1_DT1> cbc:ordinal \"1\"^^xsd:positiveInteger . \n" + 
       "<http://www.example.com/path#XXX_I1_DT1> cbc:alias \"\"^^xsd:string . \n" + 
       "<http://www.example.com/path#XXX_I1_DT1> cbc:iso21090_datatype \"\"^^xsd:string . \n" + 
-      "<http://www.example.com/path#XXX_I1> cbc:hasComplexDatatype <http://www.example.com/path#XXX_I1> . \n" +
+      "<http://www.example.com/path#XXX_I1> cbc:hasDatatype <http://www.example.com/path#XXX_I1> . \n" +
       "}"
     item = BiomedicalConceptCore::Item.new
     item.id = "123"

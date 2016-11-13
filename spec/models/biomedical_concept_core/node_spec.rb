@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'biomedical_concept_core/node'
 
 describe BiomedicalConceptCore::Node do
   
@@ -14,6 +15,7 @@ describe BiomedicalConceptCore::Node do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    clear_iso_concept_object
   end
 
   it "validates a valid object" do

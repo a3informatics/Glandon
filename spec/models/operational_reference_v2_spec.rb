@@ -16,6 +16,7 @@ describe OperationalReferenceV2 do
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_data_file_into_triple_store("MDRIdentificationACME.ttl")
     load_data_file_into_triple_store("ACME_DM1 01.ttl")
+    clear_iso_concept_object
   end
  
   it "validates a valid object" do

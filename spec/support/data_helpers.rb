@@ -56,4 +56,25 @@ module DataHelpers
     return item
 	end
 
+  def clear_iso_concept_object
+    IsoConcept.class_variable_set(:@@property_attributes, nil)
+    IsoConcept.class_variable_set(:@@extension_attributes, nil) 
+    IsoConcept.class_variable_set(:@@link_attributes, nil)
+  end
+
+  def clear_iso_namespace_object
+    IsoNamespace.class_variable_set(:@@idMap, Hash.new)
+    IsoNamespace.class_variable_set(:@@nameMap, Hash.new) 
+  end
+
+  def clear_iso_registration_authority_object
+    IsoRegistrationAuthority.class_variable_set(:@@idMap, Hash.new)
+    IsoRegistrationAuthority.class_variable_set(:@@nameMap, Hash.new) 
+    IsoRegistrationAuthority.class_variable_set(:@@repositoryOwner, nil) 
+  end
+
+  def clear_iso_registration_state_object
+    IsoRegistrationState.class_variable_set(:@@owner, nil)
+  end
+
 end
