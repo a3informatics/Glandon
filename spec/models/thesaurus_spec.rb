@@ -118,7 +118,7 @@ describe Thesaurus do
   it "allows the Th to be exported as SPARQL" do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     sparql = th.to_sparql_v2
-    write_text_file_to_hash(sparql.to_s, "thesaurus_example_7.txt")
+    #write_text_file_to_hash(sparql.to_s, "thesaurus_example_7.txt")
     result_sparql = read_text_file_to_hash("thesaurus_example_7.txt")
     expect(sparql.to_s).to eq(result_sparql)
   end

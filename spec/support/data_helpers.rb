@@ -52,7 +52,7 @@ module DataHelpers
   end
 
   def date_check_now(item)
-    expect(item).to be_within(1.second).of Time.now
+    expect(item).to be_within(2.second).of Time.now
     return item
   end
 
