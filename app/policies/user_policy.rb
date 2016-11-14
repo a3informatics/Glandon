@@ -16,6 +16,10 @@ class UserPolicy < ApplicationPolicy
     @user.has_role? :sys_admin
   end
 
+  def create?
+    @user.has_role? :sys_admin
+  end
+
   def edit?
     @user.has_role? :sys_admin
   end

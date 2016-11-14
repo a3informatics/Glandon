@@ -11,7 +11,6 @@ class UsersController < ApplicationController
 
   def create
     authorize User
-    #ConsoleLogger.log(C_CLASS_NAME, "Create", "Create, Email=#{user_params[:email]}, Password=#{user_params[:password]}, Confirm Password=#{user_params[:password_confirmation]}")
     new_user = User.create(user_params)
     if new_user.errors.blank?
       flash[:success] = 'User was successfully created.'
@@ -39,7 +38,6 @@ class UsersController < ApplicationController
   def update
     authorize User
     if @user.update(user_params)
-      # TODO: Move hardcode flash message into language file
       redirect_to users_path, success: 'User was successfully updated.'
     else
       flash[:error] = "Failed to update settings for #{@user.email}."

@@ -98,6 +98,7 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'selenium-webdriver'
 end
 
 group :production do

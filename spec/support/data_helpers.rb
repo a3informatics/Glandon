@@ -76,5 +76,5 @@ module DataHelpers
   def clear_iso_registration_state_object
     IsoRegistrationState.class_variable_set(:@@owner, nil)
   end
-
+  
 end
