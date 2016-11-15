@@ -80,7 +80,7 @@ Rails.application.routes.draw do
       get :export_ttl
     end
   end
-  resources :thesaurus_concepts do
+  resources :thesaurus_concepts, :only => [:update, :show, :destroy, :edit] do
     collection do
       get :impact
       post :add_child

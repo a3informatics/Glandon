@@ -64,7 +64,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
   config.include(Capybara::DSL)
-
+  config.include PauseHelpers, type: :feature
+  
 end
 
 Capybara.register_driver :chrome do |app|

@@ -186,10 +186,12 @@ class Thesaurus <  IsoManaged
   def add_child(params)
     object = ThesaurusConcept.from_json(params)
     if !object.exists?
+      ConsoleLogger::log(C_CLASS_NAME, "add_child", "Does not exist")
       if object.valid?
+        ConsoleLogger::log(C_CLASS_NAME, "add_child", "Valid")
         sparql = SparqlUpdateV2.new
         object.to_sparql_v2(self.uri, sparql)
-        sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasChild"}, {:uri => object.uri})
+        sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasConcept"}, {:uri => object.uri})
         response = CRUD.update(sparql.to_s)
         if !response.success?
           object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, was not created in the database.")
@@ -199,6 +201,7 @@ class Thesaurus <  IsoManaged
     else
       object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists in the database.")
     end
+    ConsoleLogger::log(C_CLASS_NAME, "add_child", "Object=#{object.to_json}")
     return object
   end
 

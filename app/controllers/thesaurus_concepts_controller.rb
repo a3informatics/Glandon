@@ -4,21 +4,25 @@ class ThesaurusConceptsController < ApplicationController
   
   C_CLASS_NAME = "ThesaurusConceptsController"
   
-  def new
-    authorize ThesaurusConcept
-    @thesaurusConcept = ThesaurusConcept.new
-  end
+  #def new
+  #  authorize ThesaurusConcept
+  #  @thesaurusConcept = ThesaurusConcept.new
+  #end
   
   def edit
-    authorize Thesaurus
+    authorize ThesaurusConcept
     @thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace])
   end
 
   def update
     authorize ThesaurusConcept
-    thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace])
+    thesaurus_concept = ThesaurusConcept.find(params[:children][0][:id], params[:children][0][:namespace])
     thesaurus_concept.update(params[:children][0])
-    render :json => {}, :status => 200
+    if thesaurus_concept.errors.empty?
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+    end
   end
   
   def add_child
@@ -65,7 +69,7 @@ class ThesaurusConceptsController < ApplicationController
 private
 
   def the_params
-    params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :extensible, :definition, :preferredTerm, :namespace)
+    params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :definition, :preferredTerm, :namespace)
   end
     
 end

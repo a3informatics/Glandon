@@ -22,9 +22,13 @@ class ThesauriController < ApplicationController
   
   def create
     authorize Thesaurus
-    identifier = params[:identifier]
+    #identifier = params[:identifier]
     @thesaurus = Thesaurus.create_simple(the_params)
+    #ConsoleLogger::log(C_CLASS_NAME, "create","TH=(#{@thesaurus.to_json})")
+    #ConsoleLogger::log(C_CLASS_NAME, "create","TH=(#{@thesaurus.errors.to_json})")
     if @thesaurus.errors.empty?
+      AuditTrail.create_event(current_user, @thesaurus, "Terminology created.")
+      flash[:success] = 'Terminology was successfully created.'
       redirect_to thesauri_index_path
     else
       flash[:error] = @thesaurus.errors.full_messages.to_sentence
@@ -36,10 +40,9 @@ class ThesauriController < ApplicationController
     authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id], params[:namespace])
     if @thesaurus.new_version?
-      th = Thesaurus.find_all(params[:id], params[:namespace])
-      json = th.to_edit(true)
-      #ConsoleLogger::log(C_CLASS_NAME, "edit", "JSON=#{json}")
-      new_th = Thesaurus.create({:data =>json})
+      th = Thesaurus.find_complete(params[:id], params[:namespace])
+      json = th.to_operation
+      new_th = Thesaurus.create(json)
       @thesaurus = Thesaurus.find(new_th.id, new_th.namespace)
     end
   end
@@ -48,6 +51,7 @@ class ThesauriController < ApplicationController
     authorize Thesaurus, :create?
     thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
     thesaurus_concept = thesaurus.add_child(params[:children][0])
+    ConsoleLogger::log(C_CLASS_NAME, "add_child", "THC=(#{@thesaurus_concept.to_json})")
     if thesaurus_concept.errors.empty?
       render :json => thesaurus_concept.to_json, :status => 200
     else
@@ -77,16 +81,12 @@ class ThesauriController < ApplicationController
   
   def view
     authorize Thesaurus
-    id = params[:id]
-    namespace = params[:namespace]
-    @thesaurus = Thesaurus.find(id, namespace)
+    @thesaurus = Thesaurus.find(params[:id], params[:namespace])
   end
 
   def search
     authorize Thesaurus, :view?
-    id = params[:id]
-    namespace = params[:namespace]
-    @thesaurus = Thesaurus.find(id, namespace, false)
+    @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
     @items = Notepad.where(user_id: current_user).find_each
   end
   
@@ -115,9 +115,7 @@ class ThesauriController < ApplicationController
 
    def export_ttl
     authorize Thesaurus
-    id = params[:id]
-    namespace = params[:namespace]
-    item = IsoManaged::find(id, namespace)
+    item = IsoManaged::find(params[:id], params[:namespace])
     send_data to_turtle(item.triples), filename: "#{item.owner}_#{item.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   
