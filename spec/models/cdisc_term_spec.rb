@@ -47,9 +47,10 @@ describe CdiscTerm do
     th = CdiscTerm.new
     valid = th.valid?
     expect(valid).to eq(false)
-    expect(th.errors.count).to eq(2)
+    expect(th.errors.count).to eq(3)
     expect(th.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name contains invalid characters")
     expect(th.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
+    expect(th.errors.full_messages[2]).to eq("Scoped Identifier error: Identifier contains invalid characters")
   end 
 
   it "allows validity of the object to be checked" do
@@ -57,6 +58,7 @@ describe CdiscTerm do
     th.registrationState.registrationAuthority.namespace.shortName = "AAA"
     th.registrationState.registrationAuthority.namespace.name = "USER AAA"
     th.registrationState.registrationAuthority.number = "123456789"
+    th.scopedIdentifier.identifier = "hello"
     valid = th.valid?
     expect(th.errors.count).to eq(0)
     expect(valid).to eq(true)

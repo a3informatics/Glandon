@@ -12,22 +12,33 @@ describe IsoScopedIdentifier do
 
   it "validates a valid object" do
     result = IsoScopedIdentifier.new
+    result.identifier = "ABC"
     result.version = 123
     result.versionLabel = "Draft 123"
     expect(result.valid?).to eq(true)
   end
 
-  it "does not validate an invalid version object" do
+  it "does not validate an invalid version" do
     result = IsoScopedIdentifier.new
+    result.identifier = "ABC"
     result.version = "123s"
     result.versionLabel = "Draft 123s"
     expect(result.valid?).to eq(false)
   end
 
-  it "does not validate an invalid version label object" do
+  it "does not validate an invalid version label" do
     result = IsoScopedIdentifier.new
+    result.identifier = "ABC"
     result.version = 123
     result.versionLabel = "Draft 123£"
+    expect(result.valid?).to eq(false)
+  end
+
+  it "does not validate an invalid identifier" do
+    result = IsoScopedIdentifier.new
+    result.identifier = "ABC@"
+    result.version = 123
+    result.versionLabel = "Draft 123"
     expect(result.valid?).to eq(false)
   end
 

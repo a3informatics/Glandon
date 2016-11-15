@@ -174,6 +174,8 @@ describe Form do
     load_data_file_into_triple_store("ACME_DM1 01.ttl")
   end
  
+  it "checks validity"
+  
   it "allows a form to be created from operation JSON" do
     operation = read_yaml_file_to_hash("form_operation.yaml")
     item = Form.create(operation)

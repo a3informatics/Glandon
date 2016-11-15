@@ -458,7 +458,10 @@ class IsoScopedIdentifier
   #
   # @return [boolean] True if valid, false otherwise.
   def valid?
-    return FieldValidation.valid_version?(:version, self.version, self) && FieldValidation.valid_label?(:versionLabel, self.versionLabel, self)
+    result = FieldValidation.valid_identifier?(:identifier, self.identifier, self) && 
+      FieldValidation.valid_version?(:version, self.version, self) && 
+      FieldValidation.valid_label?(:versionLabel, self.versionLabel, self)
+    return result
   end
 
 end
