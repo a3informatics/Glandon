@@ -10,21 +10,11 @@ class UserSettingsController < ApplicationController
     @settings_metadata = @user.settings_metadata
   end
 
-  #def edit
-  #  authorize User
-  #end
-
   def update
     authorize UserSetting
-    name = params[:id]
-    value = params[:value]
+    name = user_params[:name]
+    value = user_params[:value]
     @user.write_setting(name, value)
-  #  if @user.update(user_params)
-  #    # TODO: Move hardcode flash message into language file
-  #    redirect_to @user, notice: 'User was successfully updated.'
-  #  else
-  #    render :edit
-  #  end
     redirect_to user_settings_path
   end
 
@@ -36,7 +26,7 @@ private
   end
 
   def user_params
-    params.require(:user_settings).permit(:id, :value)
+    params.require(:user_settings).permit(:name, :value)
   end
 
 end

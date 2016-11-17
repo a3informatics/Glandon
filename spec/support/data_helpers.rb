@@ -35,7 +35,7 @@ module DataHelpers
     end
   end
 
-  def read_text_file_to_hash(filename)
+  def read_text_file(filename)
     text = ""
     full_path = Rails.root.join "db/load/test/#{filename}"
     File.open(full_path, "r") do |f|
@@ -44,7 +44,7 @@ module DataHelpers
     return text
   end
 
-  def write_text_file_to_hash(item, filename)
+  def write_text_file(item, filename)
     full_path = Rails.root.join "db/load/test/#{filename}"
     File.open(full_path, "w+") do |f|
       f.write(item)

@@ -1,10 +1,15 @@
 module UserSettings
   
+  # Simple Setting Moduel
+
   extend ActiveSupport::Concern
 
   # Constants
   C_CLASS_NAME = "UserSettings"
 
+  # Include for the user class. Sets up the properties. Defined within a configuration file.
+  # This could be made better such that config parameters do not need to be 'known' but it 
+  # will do for now
   included do
     has_many :user_settings
     # User settings
@@ -15,8 +20,10 @@ module UserSettings
     @@settings = {:paper_size => hash['value']}
   end
 
+  # Add class methods
   module ClassMethods
-    
+  
+    # Allows a setting to have the default value set  
     def setting(name, default)
       settings = self.class_variable_get(:'@@settings')
       settings[name] = default
@@ -25,6 +32,9 @@ module UserSettings
   
   end
 
+  # Return the settings
+  #
+  # @return [hash] Hash of the setting values
   def settings
     results = Hash.new
     @@settings_metadata.each do |key, setting|
@@ -34,10 +44,17 @@ module UserSettings
     return results
   end
 
+  # Return the settings metadata
+  #
+  # @return [hash] Hash of the setting metadata
   def settings_metadata
     return @@settings_metadata
   end
 
+  # Read a setting
+  #
+  # @param [string] 
+  # @return [hash] The setting value or nil
   def read_setting(name)
     if p = self.user_settings.where(:name => name).first
       return p
@@ -46,11 +63,16 @@ module UserSettings
     nil
   end
 
+  # Write a setting
+  #
+  # @param name [string] The setting's name
+  # @param value [string] the setting's value
   def write_setting(name, value)
     p = self.user_settings.where(name: name).first_or_create
     p.update(value: value)
   end
 
+  # Handle missing method. Attempt to read or write the setting, otherwise will fail
   def method_missing(method, *args)
     if @@settings.keys.any?{|k| method =~ /#{k}/}
       if method =~ /=/

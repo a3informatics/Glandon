@@ -22,7 +22,7 @@ Rails.application.config.assets.version = '1.0'
   dashboard dashboard_viewer dashboard_index 
   markdown_editor
   sdtmigs 
-  backgrounds background_index notepads users user_settings
+  backgrounds background_index notepads 
 	biomedical_concept_templates biomedical_concepts biomedical_concepts_editor 
 	cdisc_cls 
   cdisc_clis 
@@ -31,6 +31,7 @@ Rails.application.config.assets.version = '1.0'
   thesauri thesauri_editor thesauri_viewer thesauri_search
   thesaurus_concepts 
 	forms forms/groups forms/items form_placeholder_new form_editor form_editor_new form_viewer 
-  d3local d3_local_v2 d3graph d3_graph d3_editor).each do |controller|
+  d3local d3_local_v2 d3graph d3_graph d3_editor 
+  standard_datatable ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end

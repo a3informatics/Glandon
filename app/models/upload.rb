@@ -10,13 +10,15 @@ class Upload
     id.present?
   end
   
-  def self.save(upload)
-    
+  # Upload a file
+  #
+  # @param upload [hash] Parameters containing the full filename (incl path) in the datafile key
+  # @return null
+  def self.save(upload)  
     name =  upload['datafile']
     directory = Rails.root.join("public","upload")
     path = File.join(directory, name.original_filename)
     File.open(path, "wb") { |f| f.write(name.read) }
-  
   end
 
 end
