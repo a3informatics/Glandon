@@ -4,15 +4,20 @@ class EnumeratedLabel < IsoConcept
   include ActiveModel::Conversion
   include ActiveModel::Validations
   
-  def initialize(triples=nil, id=nil)
-    if triples.nil?
-      super
-    else
-      super(triples, id)
-    end
-  end
+  #def initialize(triples=nil, id=nil)
+  #  if triples.nil?
+  #    super
+  #  else
+  #    super(triples, id)
+  #  end
+  #end
 
-  # TODO: Move this to IsoConcept?.
+  # Find All entries for a given type within a given schema within a given instance namespace
+  #
+  # @param rdf_type [string] The rdf_type (fragment)
+  # @param schema_prefix [string] The schema prefix
+  # @param instance_namesapce [string] The instance namespace
+  # @result [array] Array of objects.
   def self.all(rdf_type, schema_prefix, instance_namespace)
     results = Array.new
     query = UriManagement.buildPrefix(schema_prefix, []) +
@@ -40,10 +45,10 @@ class EnumeratedLabel < IsoConcept
     return results
   end
 
-  def self.find_from_triples(triples, id)
-    object = new(triples, id)
-    object.triples = ""
-    return object
-  end
+  #def self.find_from_triples(triples, id)
+  #  object = new(triples, id)
+  #  object.triples = ""
+  #  return object
+  #end
 
 end

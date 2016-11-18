@@ -3,15 +3,15 @@ class MarkdownEngine
   # Constants
   C_CLASS_NAME = "MarkdownEngine" 
   
+  # Convert markdown into html.
+  #
+  # @param markdown [string] The markdown text
+  # @result [string] The resulted translated html
   def self.render(markdown)
-    return "&nbsp;" if markdown.empty?
-    #return "" if markdown == ""
-    #ConsoleLogger::log(C_CLASS_NAME,"render", "markdown=" + markdown)
+    return "&nbsp;" if markdown.blank?
     @@renderer ||= Redcarpet::Render::HTML.new(hard_wrap: true, no_images: true, no_links: true, no_styles: true)
     @@markdown ||= Redcarpet::Markdown.new(@@renderer, space_after_headers: true, fenced_code_blocks: true, tables: true) 
-    html = @@markdown.render(markdown).html_safe
-    #ConsoleLogger::log(C_CLASS_NAME,"render", "html=" + html.to_s)
-    return html
+    return @@markdown.render(markdown).html_safe
   end
 
 end

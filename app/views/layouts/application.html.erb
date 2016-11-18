@@ -10,9 +10,14 @@
     <%= favicon_link_tag %>
 
   	<title>Glandon</title>
-  	<%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
-  	<%= javascript_include_tag 'application', params[:controller] %>
-  	<%= csrf_meta_tags %>
+  	<% if !Rails.application.config.assets.precompile.include? params[:controller] %>
+      <%= stylesheet_link_tag    'application', media: 'all' %>
+      <%= javascript_include_tag 'application' %>
+  	<% else %>
+      <%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
+      <%= javascript_include_tag 'application', params[:controller] %>
+  	<% end %>
+    <%= csrf_meta_tags %>
 
     <style>
       body {
