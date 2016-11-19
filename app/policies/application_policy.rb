@@ -97,15 +97,19 @@ class ApplicationPolicy
 private
 
   def reader?
-    @user.has_role? :reader or @user.has_role? :curator or @user.has_role? :content_admin 
+    @user.has_role? Role::C_READER or @user.has_role? Role::C_CURATOR or @user.has_role? Role::C_CONTENT_ADMIN
   end
 
   def curator?
-    @user.has_role? :curator or @user.has_role? :content_admin
+    @user.has_role? Role::C_CURATOR or @user.has_role? Role::C_CONTENT_ADMIN
   end
 
   def content_admin?
-    @user.has_role? :content_admin
+    @user.has_role? @user.has_role? Role::C_CONTENT_ADMIN
+  end
+
+  def system_admin?
+    @user.has_role? Role::C_SYS_ADMIN
   end
 
 end

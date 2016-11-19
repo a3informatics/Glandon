@@ -10,31 +10,31 @@ class IsoPolicy
   end
 
   def index?
-    sys_admin?
+    system_admin?
   end
 
   def show?
-    sys_admin?
+    system_admin?
   end
 
   def create?
-    sys_admin?
+    system_admin?
   end
 
   def new?
-    sys_admin?
+    system_admin?
   end
 
   def update?
-    sys_admin?
+    system_admin?
   end
 
   def edit?
-    sys_admin?
+    system_admin?
   end
 
   def destroy?
-    sys_admin?
+    system_admin?
   end
 
   def scope
@@ -56,8 +56,20 @@ class IsoPolicy
 
 private
 
-  def sys_admin?
-    @user.has_role? :sys_admin
+  def reader?
+    @user.has_role? Role::C_READER or @user.has_role? Role::C_CURATOR or @user.has_role? Role::C_CONTENT_ADMIN
+  end
+
+  def curator?
+    @user.has_role? Role::C_CURATOR or @user.has_role? Role::C_CONTENT_ADMIN
+  end
+
+  def content_admin?
+    @user.has_role? @user.has_role? Role::C_CONTENT_ADMIN
+  end
+
+  def system_admin?
+    @user.has_role? Role::C_SYS_ADMIN
   end
 
 end

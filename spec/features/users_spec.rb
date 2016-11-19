@@ -8,20 +8,35 @@ describe "Users", :type => :feature do
 
   describe "Login and Logout", :type => :feature do
   
-    it "allows valid credentials" do
+    it "allows valid credentials and logs" do
+      audit_count = AuditTrail.count
       visit '/users/sign_in'
       fill_in 'Email', with: 'user@example.com'
       fill_in 'Password', with: 'example1234'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
+      expect(AuditTrail.count).to eq(audit_count + 1)
     end
 
     it "rejects invalid credentials" do
+      audit_count = AuditTrail.count
       visit '/users/sign_in'
       fill_in 'Email', with: 'user@example.com'
       fill_in 'Password', with: 'example1234x'
       click_button 'Log in'
       expect(page).to have_content 'Log in'
+      expect(AuditTrail.count).to eq(audit_count)
+    end
+
+    it "allows logout and logs" do
+      audit_count = AuditTrail.count
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'user@example.com'
+      fill_in 'Password', with: 'example1234'
+      click_button 'Log in'
+      expect(page).to have_content 'Signed in successfully'
+      click_link 'Sign Out'
+      expect(AuditTrail.count).to eq(audit_count + 2)
     end
 
   end
@@ -71,6 +86,7 @@ describe "Users", :type => :feature do
     end
 
     it "allows new user to be created" do
+      audit_count = AuditTrail.count
       visit '/users/sign_in'
       fill_in 'Email', with: 'sys_admin@example.com'
       fill_in 'Password', with: 'changeme'
@@ -85,6 +101,7 @@ describe "Users", :type => :feature do
       click_button 'Create'
       expect(page).to have_content 'User was successfully created.'
       expect(page).to have_content 'new_user@example.com'
+      expect(AuditTrail.count).to eq(audit_count + 3)
     end
 
     it "prevents a new user with short password being created" do
@@ -103,7 +120,8 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'User was not created.'
     end    
 
-    it "allows a user's details to edited" do
+    it "allows a user's details to be edited" do
+      audit_count = AuditTrail.count
       user = User.create :email => "edit@example.com", :password => "changeme" 
       user.add_role :reader
       visit '/users/sign_in'
@@ -114,9 +132,12 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'Index: User'
       find(:xpath, "//tr[contains(.,'edit@example.com')]/td/a", :text => 'Edit').click
       expect(page).to have_content 'Edit: edit@example.com'
+      expect(AuditTrail.count).to eq(audit_count + 2)
+      # Needs more here to confirm the deletion. Cannot do it without Javascript
     end
 
     it "allows a user to be deleted" do
+      audit_count = AuditTrail.count
       user = User.create :email => "delete@example.com", :password => "changeme" 
       user.add_role :reader
       visit '/users/sign_in'
@@ -126,14 +147,12 @@ describe "Users", :type => :feature do
       click_link 'Users'
       expect(page).to have_content 'Index: User'
       find(:xpath, "//tr[contains(.,'delete@example.com')]/td/a", :text => 'Delete').click
+      expect(AuditTrail.count).to eq(audit_count + 3)
+      # Needs more here to confirm the deletion. Cannot do it without Javascript
+    end
       
-      #find(:xpath, "//tr[contains(.,'edit@example.com')]/td/a", :text => 'Delete').click
-      #page.accept_confirm { click_button "OK" }
-      #expect(page).to have_content 'Index: Users'
-      #expect(page).to not_have_content 'edit@example.com'
-    end
-
     it "allows a user to change their password" do
+      audit_count = AuditTrail.count
       user = User.create :email => "edit@example.com", :password => "changeme" 
       user.add_role :reader
       visit '/users/sign_in'
@@ -148,26 +167,11 @@ describe "Users", :type => :feature do
       fill_in 'Current Password', with: 'changeme'
       click_button 'Update'
       expect(page).to have_content 'Your account has been updated successfully.'
+      expect(AuditTrail.count).to eq(audit_count + 3)
     end
 
-    it "allows a user to change their password" do
-      user = User.create :email => "edit@example.com", :password => "changeme" 
-      user.add_role :reader
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'edit@example.com'
-      fill_in 'Password', with: 'changeme'
-      click_button 'Log in'
-      click_link 'Settings'
-      click_link 'Password'
-      expect(page).to have_content 'Edit: edit@example.com'
-      fill_in 'user_password', with: 'newpassword'
-      fill_in 'user_password_confirmation', with: 'newpassword'
-      fill_in 'Current Password', with: 'changeme'
-      click_button 'Update'
-      expect(page).to have_content 'Your account has been updated successfully.'
-    end
-
-    it "allows a user to change their password" do
+    it "allows a user to change their password - incorrect current password" do
+      audit_count = AuditTrail.count
       user = User.create :email => "edit@example.com", :password => "changeme" 
       user.add_role :reader
       visit '/users/sign_in'
@@ -182,6 +186,7 @@ describe "Users", :type => :feature do
       fill_in 'Current Password', with: 'newpassword'
       click_button 'Update'
       expect(page).to have_content 'Edit: edit@example.com'
+      expect(AuditTrail.count).to eq(audit_count + 2)
     end
 
   end

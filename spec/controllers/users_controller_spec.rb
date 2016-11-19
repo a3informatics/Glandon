@@ -3,6 +3,7 @@ require 'rails_helper'
 describe UsersController do
 
   include DataHelpers
+  include PauseHelpers
   
   describe "Authorized User" do
   	

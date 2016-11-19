@@ -13,7 +13,7 @@
 		  		<tbody>
 						<% Role.all.each do |role| %>
   		  			<tr>
-    						<td><%= role.name %></td>
+    						<td><%= Role.role_to_s(role.name) %></td>
 			    			<td><%= check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id) %></td>
   		  			</tr>
 						<% end %>

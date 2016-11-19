@@ -4,7 +4,7 @@
 
 # Common Setup
 # 1. Create roles for Rolify
-[:sys_admin, :content_admin, :curator, :reader].each do |role|
+Role::C_ROLES.each do |role|
   Role.create( name: role )
 end
 

@@ -1,2 +1,2 @@
-class DashboardPolicy < ApplicationPolicy
+class ApiPolicy < ApplicationPolicy
 end

@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   root 'dashboard#index'
   
-  devise_for :users
+  #devise_for :users
+  devise_for :users, controllers: {sessions: "users/sessions"}#, :path_names => { :sign_in => "login", :sign_out => "logout" }
   resources :users, except: :create
   post 'create_user' => 'users#create', as: :create_user
   resources :user_settings

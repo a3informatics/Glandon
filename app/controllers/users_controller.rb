@@ -13,7 +13,8 @@ class UsersController < ApplicationController
     authorize User
     new_user = User.create(user_params)
     if new_user.errors.blank?
-      flash[:success] = 'User was successfully created.'
+      AuditTrail.create_event(current_user, "User #{user_params[:email]} created.")
+      flash[:success] = "User was successfully created."
       redirect_to users_path
     else
       flash[:error] = "User was not created. #{new_user.errors.full_messages.to_sentence}."
@@ -37,10 +38,12 @@ class UsersController < ApplicationController
 
   def update
     authorize User
+    current_roles = @user.role_list
     if @user.update(user_params)
-      redirect_to users_path, success: 'User was successfully updated.'
+      AuditTrail.update_event(current_user, "User #{@user.email} roles updated from #{current_roles} to #{@user.role_list}")
+      redirect_to users_path, success: "User roles for #{@user.email} successfully updated."
     else
-      flash[:error] = "Failed to update settings for #{@user.email}."
+      flash[:error] = "Failed to update roles for #{@user.email}."
       redirect_to users_path
     end
   end
@@ -48,12 +51,14 @@ class UsersController < ApplicationController
   def destroy
     authorize User
     delete_user = User.find(params[:id])
+    delete_email = delete_user.email
     if current_user.id != delete_user.id 
       if delete_user.destroy
-        flash[:success] = 'User was successfully deleted.'
+        AuditTrail.delete_event(current_user, "User #{delete_email} deleted.")
+        flash[:success] = "User #{delete_email} was successfully deleted."
         redirect_to users_path
       else
-        flash[:error] = "Failed to delete user #{delete_user.email}."
+        flash[:error] = "Failed to delete user #{delete_email}."
         redirect_to users_path
       end
     else
