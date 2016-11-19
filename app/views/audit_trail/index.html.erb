@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <h3>Index: Audit Trail</h3>
 	<div class="row">
 		<div class="col-md-9">
@@ -21,7 +22,7 @@
 						    <td><%= item.user %></td>
 						    <td><%= item.owner %></td>
 						    <td><%= item.identifier %></td>
-						    <td><%= item.version.to_i %></td>
+						    <td><%= item.version %></td>
 						    <td><%= item.event_to_s %></td>
 						    <td><%= item.description %></td>
 				  		</tr>

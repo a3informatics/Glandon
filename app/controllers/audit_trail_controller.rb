@@ -1,5 +1,7 @@
 class AuditTrailController < ApplicationController
 
+  before_action :authenticate_user!
+
   C_CLASS_NAME = "AuditTrailsController"
 
   def index
@@ -11,13 +13,11 @@ class AuditTrailController < ApplicationController
 
   def search
     authorize AuditTrail, :view?
-    ConsoleLogger::log(C_CLASS_NAME, "search", "params1=#{the_params}")
     param_set = the_params
     remove_key(param_set, :user, "")
     remove_key(param_set, :identifier, "")
     remove_key(param_set, :owner, "")
     remove_key(param_set, :event, AuditTrail.event_types[:empty_action].to_s)
-    ConsoleLogger::log(C_CLASS_NAME, "search", "params2=#{param_set}")
     @items = AuditTrail.where(param_set).all
     @defaults = the_params
     users_owners_events
@@ -39,9 +39,6 @@ private
     end
 
     def remove_key(params, key, value)
-      ConsoleLogger::log(C_CLASS_NAME, "remove_key", "param=#{params[key]}")
-      ConsoleLogger::log(C_CLASS_NAME, "remove_key", "key=#{key}")
-      ConsoleLogger::log(C_CLASS_NAME, "remove_key", "value=#{value}")
       if params[key] == value
         params.delete key
       end
