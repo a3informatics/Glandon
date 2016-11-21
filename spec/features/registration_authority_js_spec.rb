@@ -28,14 +28,13 @@ describe "Namespace JS", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
-      click_link 'Namespace'
-      expect(page).to have_content 'Namespaces'
-      find(:xpath, "//tr[contains(.,'AAA')]/td/a", :text => 'Delete').click
+      click_link 'Registration Authorities'
+      expect(page).to have_content 'Registration Authorities'
+      find(:xpath, "//tr[contains(.,'111111111')]/td/a", :text => 'Delete').click
       page.accept_alert
       sleep(1)
-      expect(page).to have_content 'BBB Pharma'
-      expect(page).to have_no_content 'AAA Long'
-      #pause
+      expect(page).to have_content '123456789'
+      expect(page).to have_no_content '111111111'
     end
 
   end

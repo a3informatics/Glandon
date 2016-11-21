@@ -17,7 +17,12 @@ class IsoRegistrationAuthoritiesController < ApplicationController
   def create
     authorize IsoRegistrationAuthority
     @registrationAuthority = IsoRegistrationAuthority.create(ra_params)
-    redirect_to iso_registration_authorities_path
+    if @registrationAuthority.errors.empty?
+      redirect_to iso_registration_authorities_path
+    else
+      flash[:error] = @registrationAuthority.errors.full_messages.to_sentence
+      redirect_to new_registration_authority_path
+    end
   end
 
   def destroy
