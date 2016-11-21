@@ -22,7 +22,7 @@ Rails.application.config.assets.version = '1.0'
   dashboard dashboard_viewer dashboard_index 
   markdown_editor
   sdtmigs 
-  backgrounds background_index notepads 
+  backgrounds background_index 
 	biomedical_concept_templates biomedical_concepts biomedical_concepts_editor 
 	cdisc_cls 
   cdisc_clis 

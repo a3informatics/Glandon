@@ -7,52 +7,43 @@ module ControllerMacros
     #end
   end
 
-  def login_user
-    before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user)
-      #user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
-      sign_in user
-    end
-  end
-
   def login_sys_admin
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user)
-      user.add_role :sys_admin
+      @user = FactoryGirl.create(:user)
+      @user.add_role :sys_admin
       #user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
-      sign_in user
+      sign_in @user
     end
   end
 
   def login_reader
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user)
-      user.add_role :reader
+      @user = FactoryGirl.create(:user)
+      @user.add_role :reader
       #user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
-      sign_in user
+      sign_in @user
     end
   end
 
   def login_curator
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user)
-      user.add_role :curator
+      @user = FactoryGirl.create(:user)
+      @user.add_role :curator
       #user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
-      sign_in user
+      sign_in @user
     end
   end
 
   def login_content_admin
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user)
-      user.add_role :content_admin
+      @user = FactoryGirl.create(:user)
+      @user.add_role :content_admin
       #user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
-      sign_in user
+      sign_in @user
     end
   end
 

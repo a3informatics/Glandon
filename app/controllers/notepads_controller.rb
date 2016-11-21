@@ -21,17 +21,21 @@ class NotepadsController < ApplicationController
         @items.each do |item|
             results[:data] << item
         end
-        respond_to do |format|
-            format.html
-            format.json { render :json => results, :status => 200 }
-        end
+        # HTML response not used.
+        #respond_to do |format|
+        #    format.html
+        #    format.json { render :json => results, :status => 200 }
+        #end
+        render :json => results, :status => 200        
     end
 
 	def create_term
         authorize Notepad, :edit?
         user_id = current_user.id
         @cli = CdiscCli.find(the_params[:item_id], the_params[:item_ns])
-        if (@cli != nil)
+        ConsoleLogger::log(C_CLASS_NAME,"create_term", "CLI=#{@cli.to_json}")
+        ConsoleLogger::log(C_CLASS_NAME,"create_term", "CLI=#{@cli.errors.count}")
+        if !@cli.id.empty?
             Notepad.create :uri_id => @cli.id, :uri_ns => @cli.namespace, :identifier => @cli.identifier, 
                 :useful_1 => @cli.notation, :useful_2 => @cli.label, :user_id => user_id, :note_type => 0
             # TODO: There must be a better way og handling note_type parameter (should be :term not 0)
