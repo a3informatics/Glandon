@@ -185,10 +185,44 @@ describe IsoScopedIdentifier do
     expect(IsoScopedIdentifier.all.to_json).to eq(results.to_json)
   end
 
-  it "allows an object to be created in the triple store" do
+  it "allows an object to be created" do
+    org = IsoNamespace.find("NS-BBB")
+    result = {:id=>"SI-BBB_NEW1-1", :identifier => "NEW 1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
+    si = IsoScopedIdentifier.create("NEW 1", 1, "0.1", org)
+    expect(si.to_json).to eq(result)
+    expect(si.errors.count).to eq(0)
+  end
+
+  it "does not allow a duplicate object to be created" do
+    org = IsoNamespace.find("NS-BBB")
+    result = {:id=>"SI-BBB_NEW1-1", :identifier => "NEW 1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
+    si = IsoScopedIdentifier.create("NEW 1", 1, "0.1", org)
+    expect(si.errors.count).to eq(1)
+    expect(si.errors.full_messages.to_sentence).to eq("The scoped identifier is already in use.")
+  end
+
+  it "does not allow an invalid object to be created" do
+    org = IsoNamespace.find("NS-BBB")
+    result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW@@@@ 1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
+    si = IsoScopedIdentifier.create("NEW@@@@ 1", 1, "0.1", org)
+    expect(si.errors.count).to eq(1)
+    expect(si.errors.full_messages.to_sentence).to eq("Identifier contains invalid characters")
+  end
+
+  it "does not allow an invalid object to be created" do
     org = IsoNamespace.find("NS-BBB")
     result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW_1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
-    expect(IsoScopedIdentifier.create("NEW_1", 1, "0.1", org).to_json).to eq(result)
+    si = IsoScopedIdentifier.create("NEW_1", 1, "0.1", org)
+    expect(si.errors.count).to eq(1)
+    expect(si.errors.full_messages.to_sentence).to eq("Identifier contains invalid characters")
+  end
+
+  it "does not allow an invalid object to be created" do
+    org = IsoNamespace.find("NS-BBB")
+    result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW-1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
+    si = IsoScopedIdentifier.create("NEW-1", 1, "0.1", org)
+    expect(si.errors.count).to eq(1)
+    expect(si.errors.full_messages.to_sentence).to eq("Identifier contains invalid characters")
   end
 
   it "allows an object to be created from data" do

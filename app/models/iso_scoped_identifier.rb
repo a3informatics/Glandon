@@ -320,25 +320,30 @@ class IsoScopedIdentifier
   # @param version [integer] The version.
   # @param version_label [string] The version label.
   # @param scope_org [object] The owner organisation (IsoNamespace object)
-  # @return [object] The created object.
+  # @return [object] The created object. Error count set if failed.
   def self.create(identifier, version, version_label, scope_org)
     object = IsoScopedIdentifier.from_data(identifier, version, version_label, scope_org)
-    # Create the query and submit.
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      "	 :#{object.id} rdf:type isoI:ScopedIdentifier . \n" +
-      "	 :#{object.id} isoI:identifier \"#{object.identifier}\"^^xsd:string . \n" +
-      "	 :#{object.id} isoI:version \"#{object.version}\"^^xsd:positiveInteger . \n" +
-      "  :#{object.id} isoI:versionLabel \"#{object.versionLabel}\"^^xsd:string . \n" +
-      "	 :#{object.id} isoI:hasScope :#{object.namespace.id} . \n" +
-      "}"
-    response = CRUD.update(update)
-    # Process the response
-    if !response.success?
-      object = nil
-      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
-      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+    if object.valid?
+      if !object.exists?
+        update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+          "INSERT DATA \n" +
+          "{ \n" +
+          "	 :#{object.id} rdf:type isoI:ScopedIdentifier . \n" +
+          "	 :#{object.id} isoI:identifier \"#{object.identifier}\"^^xsd:string . \n" +
+          "	 :#{object.id} isoI:version \"#{object.version}\"^^xsd:positiveInteger . \n" +
+          "  :#{object.id} isoI:versionLabel \"#{object.versionLabel}\"^^xsd:string . \n" +
+          "	 :#{object.id} isoI:hasScope :#{object.namespace.id} . \n" +
+          "}"
+        response = CRUD.update(update)
+        # Process the response
+        if !response.success?
+          object = nil
+          ConsoleLogger::log(C_CLASS_NAME, "create", "Failed to create object.")
+          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+        end
+      else
+        object.errors.add(:base, "The scoped identifier is already in use.")
+      end
     end
     return object
   end

@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <h3>Scoped Identifiers</h3>
 <div class="col-md-12ß">
 	<table id="main" class="table table-striped table-bordered table-condensed">
@@ -11,13 +12,13 @@
 		  	</tr>
 		</thead>
 		<tbody>
-			<% @scopedIdentifiers.each do |scopedIdentifier| %>
+			<% @scoped_identifiers.each do |scoped_identifier| %>
 				<tr>
-					<td><%= scopedIdentifier.identifier %></td>
-				    <td><%= scopedIdentifier.versionLabel %></td>
-				    <td><%= scopedIdentifier.version %></td>
-				    <td><%= scopedIdentifier.id %></td>
-				    <td><%= link_to "Delete", iso_scoped_identifier_path(scopedIdentifier), :class => "btn btn-danger btn-xs" , method: :delete, data: { confirm: "Are you sure?" } %></td>
+					<td><%= scoped_identifier.identifier %></td>
+			    <td><%= scoped_identifier.versionLabel %></td>
+			    <td><%= scoped_identifier.version %></td>
+			    <td><%= scoped_identifier.id %></td>
+			    <td><%= link_to "Delete", iso_scoped_identifier_path(scoped_identifier), :class => "btn btn-danger btn-xs" , method: :delete, data: { confirm: "Are you sure?" } %></td>
 				</tr>
 			<% end %>
 		</tbody>
