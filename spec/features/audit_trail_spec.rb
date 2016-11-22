@@ -2,6 +2,14 @@ require 'rails_helper'
 
 describe "Audit Trail", :type => :feature do
   
+  include PauseHelpers
+  include DataHelpers
+
+  before :all do
+    clear_triple_store
+    load_test_file_into_triple_store("MDRIdentificationACME.ttl")
+  end 
+
   before :each do
     user = FactoryGirl.create(:user)
     user.add_role :sys_admin
