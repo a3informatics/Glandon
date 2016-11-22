@@ -28,11 +28,15 @@ describe IsoNamespace do
   end
 
   it "determines namespace exists" do
-		expect(IsoNamespace.exists?("AAA")).to eq(true)   
+    namespace = IsoNamespace.new
+    namespace.shortName = "AAA"
+		expect(namespace.exists?).to eq(true)   
 	end
 
 	it "determines namespace does not exists" do
-    expect(IsoNamespace.exists?("AAA1")).to eq(false)   
+    namespace = IsoNamespace.new
+    namespace.shortName = "AAA1"
+    expect(namespace.exists?).to eq(false)   
   end
 
   it "finds namespace by short name" do
@@ -45,7 +49,9 @@ describe IsoNamespace do
   end
 
 	it "determines namespace exists without query" do
-    expect(IsoNamespace.exists?("AAA")).to eq(true)
+    namespace = IsoNamespace.new
+    namespace.shortName = "AAA"
+    expect(namespace.exists?).to eq(true) 
   end
 
   it "finds namespace by short name without query" do
@@ -170,7 +176,9 @@ describe IsoNamespace do
   end
 
   it "exists handles empty response" do
-    expect(IsoNamespace.exists?("AAA")).to eq(false)   
+    namespace = IsoNamespace.new
+    namespace.shortName = "AAA"
+    expect(namespace.exists?).to eq(false)   
   end
 
   it "findByShortName handles empty response" do

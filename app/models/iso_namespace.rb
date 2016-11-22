@@ -40,9 +40,8 @@ class IsoNamespace
 
   # Does the namespace exist?
   #
-  # @param shortName [string] The short name of the namespace to be found.
   # @return [boolean] True if the namespace exists, false otherwise.
-  def self.exists?(shortName)
+  def exists?
     # Do we have the result stored.
     if @@nameMap.has_key?(shortName)
       result = true
@@ -53,7 +52,7 @@ class IsoNamespace
         "SELECT ?a WHERE \n" +
         "{\n" +
         "  ?a isoI:ofOrganization ?b . \n" +
-        "  ?b isoB:shortName \"" + shortName + "\"^^xsd:string . \n" +
+        "  ?b isoB:shortName \"#{self.shortName}\"^^xsd:string . \n" +
         "}"
       response = CRUD.query(query)
       # Process the response
@@ -194,7 +193,7 @@ class IsoNamespace
     object.name = params[:name]
     object.shortName = params[:shortName]
     if object.valid?
-      if !exists?(object.shortName)
+      if !object.exists?
         uri = UriV2.new({:namespace => @@baseNs, :prefix => C_NS_CID_PREFIX, :org_name => object.shortName, :identifier => C_NS_CID_PREFIX})  
         org_uri = UriV2.new({:namespace => @@baseNs, :prefix => C_ORG_CID_PREFIX, :org_name => object.shortName, :identifier => C_NS_CID_PREFIX})  
         update = UriManagement.buildNs(@@baseNs, ["isoI", "isoB"]) +
@@ -211,7 +210,7 @@ class IsoNamespace
           object.id = uri.id
           object.namespace = @@baseNs 
         else
-          ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
+          ConsoleLogger.info(C_CLASS_NAME,"create", "Failed to create object.")
           raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
         end
       else
@@ -245,7 +244,7 @@ class IsoNamespace
     response = CRUD.update(update)
     # Process the response
     if !response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      ConsoleLogger.info(C_CLASS_NAME,"destroy", "Failed to destroy object.")
       raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
     # Leave the following block in here. Used to test Console Logger & Exception raised were working. Just useful.
     #else
