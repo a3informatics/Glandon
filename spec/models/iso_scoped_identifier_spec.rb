@@ -170,8 +170,7 @@ describe IsoScopedIdentifier do
   end
 
   it "does not find an unknown id" do
-    result = nil
-    expect(IsoScopedIdentifier.find("SI-TEST_1-1x")).to eq(result)
+    expect(IsoScopedIdentifier.find("SI-TEST_1-1x").id).to eq("")
   end
 
   it "allows all records to be returned" do
@@ -274,6 +273,31 @@ describe IsoScopedIdentifier do
   it "allows for an object to be destroyed" do
     object = IsoScopedIdentifier.find("SI-TEST_3-4")
     object.destroy
+  end
+
+  it "handles a bad response error - update" do
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{object.update({versionLabel: "0.10"})}.to raise_error(Exceptions::UpdateError)
+  end
+
+  it "handles a bad response error - create" do
+    org = IsoNamespace.find("NS-BBB")
+    allow_any_instance_of(IsoScopedIdentifier).to receive(:exists?).and_return(false)
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{IsoScopedIdentifier.create("NEW1", 1, "0.1", org)}.to raise_error(Exceptions::CreateError)
+  end
+
+  it "handles a bad response error - destroy" do
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{object.destroy}.to raise_error(Exceptions::DestroyError)
   end
 
   it "clears triple store" do

@@ -4,22 +4,16 @@ class IsoRegistrationStatesController < ApplicationController
   
   def index
     authorize IsoRegistrationState
-    @registrationStates = IsoRegistrationState.all
+    @registration_states = IsoRegistrationState.all
   end
   
   def update
     authorize IsoRegistrationState
     referer = request.referer
-    registrationState = IsoRegistrationState.find(params[:id])
-    registrationState.update(params[:id], this_params)
+    registration_state = IsoRegistrationState.find(params[:id])
+    registration_state.update(this_params)
     redirect_to referer
   end
-
-  #def edit
-  #  authorize IsoRegistrationState
-  #  @referer = request.referer
-  #  @registrationState = IsoRegistrationState.find(params[:id])
-  #end
 
   def current
     authorize IsoRegistrationState
@@ -33,9 +27,10 @@ class IsoRegistrationStatesController < ApplicationController
     redirect_to referer
   end
 
-  private
-    def this_params
-      params.require(:iso_registration_state).permit(:registrationAuthority, :registrationStatus, :administrativeNote, :unresolvedIssue, :administrativeStatus, :previousState, :referer)
-    end
+private
+
+  def this_params
+    params.require(:iso_registration_state).permit(:registrationAuthority, :registrationStatus, :administrativeNote, :unresolvedIssue, :administrativeStatus, :previousState, :referer)
+  end
 
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Namespace JS", :type => :feature do
+describe "ISO Namespace JS", :type => :feature do
   
   include PauseHelpers
   include DataHelpers

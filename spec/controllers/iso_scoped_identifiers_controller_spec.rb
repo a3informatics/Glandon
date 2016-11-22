@@ -43,10 +43,32 @@ describe IsoScopedIdentifiersController do
       expect(response).to redirect_to("/iso_scoped_identifiers/new")
     end
 
+    it 'updates a scoped identifier' do
+      scoped_identifier = IsoScopedIdentifier.all.first
+      patch :update, { id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label" }}
+      expect(response).to redirect_to("/")
+    end
+
     it 'deletes scoped_identifier' do
       scoped_identifiers = IsoScopedIdentifier.all
       delete :destroy, :id => scoped_identifiers[0].id
       expect(IsoScopedIdentifier.all.count).to eq(5)
+    end
+
+  end
+
+  describe "Curator" do
+    
+    login_curator
+
+    it 'updates a scoped identifier' do
+      @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
+      scoped_identifier = IsoScopedIdentifier.all.first
+      patch :update, { id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label" }}
+      updated_scoped_identifier = IsoScopedIdentifier.find(scoped_identifier.id)
+      expect(IsoScopedIdentifier.all.count).to eq(5)
+      expect(updated_scoped_identifier.versionLabel).to eq("update to label")
+      expect(response).to redirect_to("/iso_scoped_identifiers")
     end
 
   end

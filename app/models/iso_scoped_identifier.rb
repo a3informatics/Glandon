@@ -197,7 +197,7 @@ class IsoScopedIdentifier
   # @id [string] The id to be found
   # @return [object] The Scoped Identifier if found, nil otherwise
   def self.find(id)    
-    object = nil
+    object = self.new
     #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
@@ -220,13 +220,11 @@ class IsoScopedIdentifier
       vSet = node.xpath("binding[@name='d']/literal")
       sSet = node.xpath("binding[@name='e']/uri")
       if iSet.length == 1 and vlSet.length == 1 and vSet.length == 1
-        object = self.new 
         object.id = id
         object.identifier = iSet[0].text
         object.version = (vSet[0].text).to_i
         object.versionLabel = vlSet[0].text
         object.namespace = IsoNamespace.find(ModelUtility.extractCid(sSet[0].text))
-        #ConsoleLogger::log(C_CLASS_NAME,"find","Object=" + id)
       end
     end
     return object    
@@ -335,10 +333,8 @@ class IsoScopedIdentifier
           "	 :#{object.id} isoI:hasScope :#{object.namespace.id} . \n" +
           "}"
         response = CRUD.update(update)
-        # Process the response
         if !response.success?
-          object = nil
-          ConsoleLogger::log(C_CLASS_NAME, "create", "Failed to create object.")
+          ConsoleLogger.info(C_CLASS_NAME, "create", "Failed to create object.")
           raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
         end
       else
@@ -367,11 +363,12 @@ class IsoScopedIdentifier
       " :" + self.id + " isoI:versionLabel ?a . \n" +
       "}"
     # Send the request, wait the resonse
-    #ConsoleLogger::log(C_CLASS_NAME,"update", "Update=" + update.to_s)
+    #ConsoleLogger.log(C_CLASS_NAME,"update", "Update=" + update.to_s)
     response = CRUD.update(update)
     # Response
     if !response.success?
-      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
   end
 

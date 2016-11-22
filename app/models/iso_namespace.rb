@@ -96,7 +96,6 @@ class IsoNamespace
         uriSet = node.xpath("binding[@name='a']/uri")
         nSet = node.xpath("binding[@name='c']/literal")
         if nSet.length == 1 and uriSet.length == 1
-          object = self.new 
           object.id = ModelUtility::extractCid(uriSet[0].text)
           object.namespace = @@baseNs 
           object.name = nSet[0].text

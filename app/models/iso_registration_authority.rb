@@ -54,10 +54,28 @@ class IsoRegistrationAuthority
     return namespace.shortName
   end
 
+  # Find if the authority with identifier number exists.
+  #
+  # @return [boolean] True if the item exists, False otherwise.
+  def exists?
+    result = false
+    # Create the query
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+      "SELECT ?a WHERE \n" +
+      "{\n" +
+      "  ?b isoB:organizationIdentifier \"#{self.number}\" . \n" +
+      "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    return true if xmlDoc.xpath("//result").count > 0
+    return false
+  end
+
   # Find an authroity
   #
   # @param id [string] the id required.
-  # @return [object] The authority
+  # @return [IsoRegistrationAuthority, nil] The authority if found, otherwise nil.
   def self.find(id)
     ra = self.new
     if @@id_map.has_key?(id)
@@ -85,7 +103,6 @@ class IsoRegistrationAuthority
         siSet = node.xpath("binding[@name='e']/uri")
         owner = ModelUtility.getValue('f', false, node).to_bool
         if oSet.length == 1 
-          ra = self.new 
           ra.id = id
           ra.number = oSet[0].text
           ra.scheme = sSet[0].text
@@ -156,6 +173,7 @@ class IsoRegistrationAuthority
           if @@repositoryOwner == nil
             @@repositoryOwner = ra
           else
+            ConsoleLogger.info(C_CLASS_NAME, "all", "Multiple Registration Authority owners detected.")
             raise Exceptions::MultipleOwnerError.new(message: "Multiple Registration Authority owners detected.")
           end
         end
@@ -185,36 +203,35 @@ class IsoRegistrationAuthority
   # @param params [hash] Hash holding {:number the authority DUNS number, :namespaceId the id of the namespace object}
   # @return [object] The object holding the authority that owns the repository
   def self.create(params)
-    number = params[:number]
-    namespaceId = params[:namespaceId]
-    uid = number
-    # Create the query
-    uri = UriV2.new({:namespace => @@baseNs, :prefix => C_CLASS_RA_PREFIX, :org_name => C_DUNS, :identifier => uid})  
-    rai_uri = UriV2.new({:namespace => @@baseNs, :prefix => C_CLASS_RAI_PREFIX, :org_name => C_DUNS, :identifier => uid})  
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      "	:" + rai_uri.id + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
-      "	:" + rai_uri.id + " isoB:organizationIdentifier \"" + number.to_s + "\"^^xsd:string . \n" +
-      "	:" + rai_uri.id + " isoB:internationalCodeDesignator \"" + C_DUNS + "\"^^xsd:string . \n" +
-      "	:" + uri.id + " rdf:type isoR:RegistrationAuthority . \n" +
-      " :" + uri.id + " isoR:raNamespace :" + namespaceId + " . \n" +
-      "	:" + uri.id + " isoR:hasAuthorityIdentifier :" + rai_uri.id + " . \n" +
-      " :" + uri.id + " isoR:owner \"false\"^^xsd:boolean . \n" +
-      "}"
-    # Send the request, wait the resonse
-    ConsoleLogger::log(C_CLASS_NAME,"create", "Update=#{update}.")
-    response = CRUD.update(update)
-    # Response
-    if response.success?
-      ra = self.new
-      ra.id = uri.id
-      ra.number = number
-      ra.scheme = C_DUNS
-      ra.owner = false
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
-      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+    ra = self.new
+    ra.namespace = IsoNamespace.find(params[:namespaceId])
+    ra.number = params[:number]
+    uid = ra.number
+    if ra.valid?
+      if !ra.exists?
+        uri = UriV2.new({:namespace => @@baseNs, :prefix => C_CLASS_RA_PREFIX, :org_name => C_DUNS, :identifier => uid})  
+        rai_uri = UriV2.new({:namespace => @@baseNs, :prefix => C_CLASS_RAI_PREFIX, :org_name => C_DUNS, :identifier => uid}) 
+        ra.id = uri.id
+        ConsoleLogger.debug(C_CLASS_NAME, "create", "RA=#{ra.to_json}")
+        update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+          "INSERT DATA \n" +
+          "{ \n" +
+          "	:" + rai_uri.id + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
+          "	:" + rai_uri.id + " isoB:organizationIdentifier \"#{ra.number}\"^^xsd:string . \n" +
+          "	:" + rai_uri.id + " isoB:internationalCodeDesignator \"#{ra.scheme}\"^^xsd:string . \n" +
+          "	:" + uri.id + " rdf:type isoR:RegistrationAuthority . \n" +
+          " :" + uri.id + " isoR:raNamespace :#{ra.namespace.id} . \n" +
+          "	:" + uri.id + " isoR:hasAuthorityIdentifier :#{rai_uri.id} . \n" +
+          " :" + uri.id + " isoR:owner \"#{ra.owner}\"^^xsd:boolean . \n" +
+          "}"
+        response = CRUD.update(update)
+        if !response.success?
+          ConsoleLogger.info(C_CLASS_NAME,"create", "Failed to create object.")
+          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+        end
+      else
+        ra.errors.add(:base, "The registration authority already exists.")
+      end
     end
     return ra
   end
@@ -242,7 +259,7 @@ class IsoRegistrationAuthority
     response = CRUD.update(update)
     # Process the response
     if !response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      ConsoleLogger.info(C_CLASS_NAME,"destroy", "Failed to destroy object.")
       raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
     end
   end

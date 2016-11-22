@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Registration Authority", :type => :feature do
+describe "ISO Registration Authority", :type => :feature do
   
   include PauseHelpers
   include DataHelpers

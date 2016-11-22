@@ -40,6 +40,12 @@ describe IsoRegistrationAuthoritiesController do
       expect(IsoRegistrationAuthority.all.count).to eq(2)
     end
 
+    it "deletes registration authority, doesn't exist" do
+      delete :destroy, :id => "RA-111111111xxx"
+      expect(IsoRegistrationAuthority.all.count).to eq(2)
+      expect(flash[:error]).to be_present
+    end
+
   end
 
   describe "Unauthorized User" do

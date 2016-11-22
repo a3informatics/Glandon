@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Namespace", :type => :feature do
+describe "ISO Namespace", :type => :feature do
   
   include PauseHelpers
   include DataHelpers

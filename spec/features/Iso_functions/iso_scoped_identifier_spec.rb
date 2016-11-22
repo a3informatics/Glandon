@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Namespace", :type => :feature do
+describe "ISO Scoped Identifier", :type => :feature do
   
   include PauseHelpers
   include DataHelpers

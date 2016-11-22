@@ -2,6 +2,8 @@ class IsoScopedIdentifiersController < ApplicationController
   
   before_action :authenticate_user!
   
+  C_CLASS_NAME = "IsoScopedIdentifiersController"
+
   def index
     authorize IsoScopedIdentifier
     @scoped_identifiers = IsoScopedIdentifier.all
@@ -28,7 +30,7 @@ class IsoScopedIdentifiersController < ApplicationController
   def update
     authorize IsoScopedIdentifier
     @referer = request.referer
-    @scoped_dentifier = IsoScopedIdentifier.find(params[:id])
+    @scoped_identifier = IsoScopedIdentifier.find(params[:id])
     @scoped_identifier.update(this_params)
     redirect_to @referer
   end

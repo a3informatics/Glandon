@@ -10,10 +10,8 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 %w( iso_concept_systems iso_concept_systems/nodes iso_concept_system_viewer 
-  iso_registration_states 
   iso_concept iso_concept_graph
   iso_managed iso_managed_list iso_managed_tag_edit iso_managed_tag_list iso_managed_graph
-  audit_trail
   sdtm_models sdtm_model_domains sdtm_igs sdtm_ig_domains sdtm_user_domains sdtm_user_domain_editor
   domains domains/variables 
   dashboard dashboard_viewer dashboard_index 

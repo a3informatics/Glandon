@@ -27,8 +27,12 @@ class IsoRegistrationAuthoritiesController < ApplicationController
 
   def destroy
     authorize IsoRegistrationAuthority
-    @registrationAuthority = IsoRegistrationAuthority.find(params[:id])
-    @registrationAuthority.destroy
+    @registration_authority = IsoRegistrationAuthority.find(params[:id])
+    if !@registration_authority.id.empty?
+      @registration_authority.destroy
+    else
+      flash[:error] = "Unable to delete Registration Authority."
+    end
     redirect_to iso_registration_authorities_path
   end
 

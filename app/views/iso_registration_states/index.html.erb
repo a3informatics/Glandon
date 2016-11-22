@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <h3>Registration States</h3>
 <div class="col-md-12">
 	<table id="main" class="table table-striped table-bordered table-condensed">
@@ -14,16 +15,16 @@
 		  	</tr>
 		</thead>
 		<tbody>
-			<% @registrationStates.each do |registrationState| %>
+			<% @registration_states.each do |registration_state| %>
 				<tr>
-				    <td><%= registrationState.id %></td>
-				    <td><%= registrationState.registrationStatus %></td>
-				    <td><%= registrationState.effective_date %></td>
-				    <td><%= registrationState.until_date %></td>
-				    <td><%= registrationState.unresolvedIssue %></td>
-				    <td><%= registrationState.administrativeStatus%></td>
-				    <td><%= registrationState.administrativeNote %></td>
-				    <td><%= registrationState.previousState%></td>
+				    <td><%= registration_state.id %></td>
+				    <td><%= registration_state.registrationStatus %></td>
+				    <td><%= registration_state.effective_date %></td>
+				    <td><%= registration_state.until_date %></td>
+				    <td><%= registration_state.unresolvedIssue %></td>
+				    <td><%= registration_state.administrativeStatus%></td>
+				    <td><%= registration_state.administrativeNote %></td>
+				    <td><%= registration_state.previousState%></td>
 				</tr>
 			<% end %>
 		</tbody>

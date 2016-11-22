@@ -231,7 +231,30 @@ describe IsoRegistrationState do
     expect(result.can_be_changed?).to eq(true)
   end
 
-  # self.find(id)
+  it "checks if an item exists" do
+    rs = IsoRegistrationState.find("RS-TEST_1-1")
+    expect(rs.exists?).to eq(true)
+  end
+
+  it "checks if an item does not exist" do
+    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    rs = IsoRegistrationState.from_json(
+      {
+        :id=>"RS-TEST_1-1x", 
+        :registration_authority => ra.to_json, 
+        :registration_status => "Standard",
+        :administrative_note => "", 
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
+        :current => false, 
+        :unresolved_issue => "", 
+        :administrative_status => "", 
+        :previous_state => "Qualified"
+      })
+    expect(rs.exists?).to eq(false)
+  end
+
   it "finds a given id" do
     org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
     ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
@@ -252,8 +275,7 @@ describe IsoRegistrationState do
   end
 
   it "does not find an unknown id" do
-    result = nil
-    expect(IsoRegistrationState.find("RS-TEST_1-1x")).to eq(result)
+    expect(IsoRegistrationState.find("RS-TEST_1-1x").id).to eq("")
   end
 
   # self.all
@@ -330,7 +352,7 @@ describe IsoRegistrationState do
     expect(IsoRegistrationState.all.to_json).to eq(results.to_json)
   end
 
-  it "allows an object to be created in the triple store" do
+  it "allows an object to be created" do
     org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
     ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
     result = IsoRegistrationState.from_json(
@@ -347,6 +369,49 @@ describe IsoRegistrationState do
         :previous_state => "Incomplete"
       })
     expect(IsoRegistrationState.create("NEW_1", 1, ra).to_json).to eq(result.to_json)
+  end
+
+  it "prevents a duplicate object being created" do
+    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    result = IsoRegistrationState.from_json(
+      {
+        :id =>"RS-BBB_NEW_1-1", 
+        :registration_authority => ra.to_json, 
+        :registration_status => "Incomplete",
+        :administrative_note => "", 
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
+        :current => false, 
+        :unresolved_issue => "", 
+        :administrative_status => "", 
+        :previous_state => "Incomplete"
+      })
+    rs = IsoRegistrationState.create("NEW_1", 1, ra)
+    expect(rs.errors.count).to eq(1)
+    expect(rs.errors.full_messages.to_sentence).to eq("The registration state is already in use.")
+  end
+
+  it "prevents an invalid object being created" do
+    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    ra.number = "1234567890"
+    result = IsoRegistrationState.from_json(
+      {
+        :id =>"RS-BBB_NEW2-1", 
+        :registration_authority => ra.to_json, 
+        :registration_status => "Incomplete",
+        :administrative_note => "", 
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
+        :current => false, 
+        :unresolved_issue => "", 
+        :administrative_status => "", 
+        :previous_state => "Incomplete"
+      })
+     rs = IsoRegistrationState.create("NEW2", 1, ra)
+    expect(rs.errors.count).to eq(1)
+    expect(rs.errors.full_messages.to_sentence).to eq("Registration authority error: Number does not contains 9 digits")
   end
 
   it "provides a count of registration status" do
@@ -480,6 +545,37 @@ describe IsoRegistrationState do
     expect(sparql.to_s).to eq(result)
   end
   
+  it "handles a bad response error - update" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{object.update( 
+      {
+        registrationStatus: IsoRegistrationState::C_RETIRED, 
+        previousState: IsoRegistrationState::C_STANDARD, 
+        administrativeNote: "X1", 
+        unresolvedIssue: "X2", 
+        effectiveDate: "Wont Change" 
+      })}.to raise_error(Exceptions::UpdateError)
+  end
+
+  it "handles a bad response error - make_current" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{IsoRegistrationState.make_current(object.id)}.to raise_error(Exceptions::UpdateError)
+  end
+
+  it "handles a bad response error - make_not_current" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{IsoRegistrationState.make_not_current(object.id)}.to raise_error(Exceptions::UpdateError)
+  end
+
   it "clears triple store" do
     clear_triple_store
   end

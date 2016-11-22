@@ -203,60 +203,108 @@ class IsoRegistrationState
     return nextState
   end
 
+  # Get the human readable label for a state
+  #
+  # @return [string] The label
   def self.stateLabel(state)
     info = @@stateInfo[state]
     return info[:label]
   end
 
+  # Get the definition for a state
+  #
+  # @return [string] The definition
   def self.stateDefinition(state)
     info = @@stateInfo[state]
     return info[:definition]
   end
 
+  # Get the released state
+  #
+  # @return [string] The released state
   def self.releasedState
     return C_STANDARD
   end
   
+  # Is the item at the released state
+  #
+  # @return [boolean] True if in the released state, false otherwise
   def released_state?
     self.registrationStatus == C_STANDARD
   end
   
-  def edit?()
+  # Can the item be edited
+  #
+  # @return [string] The next state
+  def edit?
     info = @@stateInfo[self.registrationStatus]
     return info[:edit_enabled]
   end
 
-  def delete?()
+  # Can the item be deleted
+  #
+  # @return [string] The next state
+  def delete?
     info = @@stateInfo[self.registrationStatus]
     return info[:delete_enabled]
   end
 
-  def state_on_edit()
+  # Returns the new state after the item has been edited
+  #
+  # @return [string] The next state
+  def state_on_edit
     info = @@stateInfo[self.registrationStatus]
     return info[:state_on_edit]
   end
 
-  def new_version?()
+  # Returns true if the version needs to be updated after an edit
+  #
+  # @return [string] The next state
+  def new_version?
     info = @@stateInfo[self.registrationStatus]
     return info[:edit_up_version]
   end
 
-  def can_be_current?()
+  # Returns true if the item can be the current item
+  #
+  # @return [string] The next state
+  def can_be_current?
     info = @@stateInfo[self.registrationStatus]
     return info[:can_be_current]
   end
 
-  def can_be_changed?()
+  # Returns true if the state can be changed
+  #
+  # @return [string] The next state
+  def can_be_changed?
     info = @@stateInfo[self.registrationStatus]
     return info[:next_state] != self.registrationStatus
   end
 
+  # Find if the object with id exists.
+  #
+  # @return [boolean] True if the item exists, False otherwise.
+  def exists?
+    result = false
+    # Create the query
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+      "SELECT ?a WHERE \n" +
+      "{\n" +
+      "  :#{self.id} rdf:type ?a . \n" +
+      "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    return true if xmlDoc.xpath("//result").count > 0
+    return false
+  end
+
   # Find the item gievn the id
   #
-  # @id [string] The id to be found
-  # @return [object] The Scoped Identifier if found, nil otherwise
+  # @param id [String] The id to be found
+  # @return [Object, nil] The object if found, nil otherwise
   def self.find(id)
-    object = nil
+    object = self.new
     date_time = Time.now
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
@@ -288,7 +336,6 @@ class IsoRegistrationState
       asSet = node.xpath("binding[@name='g']/literal")
       psSet = node.xpath("binding[@name='h']/literal")
       if raSet.length == 1 # && rsSet.length == 1 && anSet.length == 1 && edSet.length == 1 && uiSet.length == 1 && asSet.length == 1 && psSet.length == 1
-        object = self.new 
         object.id = id
         object.registrationAuthority = IsoRegistrationAuthority.find(ModelUtility.extractCid(raSet[0].text))
         object.registrationStatus = rsSet[0].text
@@ -310,7 +357,7 @@ class IsoRegistrationState
 
   # Find all items
   #
-  # @return [Array] An array of Scoped Identifier objects.
+  # @return [Array] An array of objects.
   def self.all
     results = Array.new
     date_time = Time.now
@@ -370,31 +417,36 @@ class IsoRegistrationState
   # @return [object] The created object.
   def self.create(identifier, version, ra)   
     object = IsoRegistrationState.from_data(identifier, version, ra)
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "INSERT DATA \n" +
-      "{ \n" +
-      "	:#{object.id} rdf:type isoR:RegistrationState . \n" +
-      "	:#{object.id} isoR:byAuthority :#{object.registrationAuthority.id} . \n" +
-      "	:#{object.id} isoR:registrationStatus \"#{object.registrationStatus}\"^^xsd:string . \n" +
-      "	:#{object.id} isoR:administrativeNote \"#{object.administrativeNote}\"^^xsd:string . \n" +
-      "	:#{object.id} isoR:effectiveDate \"#{object.effective_date}\"^^xsd:string . \n" +
-      " :#{object.id} isoR:untilDate \"#{object.until_date}\"^^xsd:string . \n" +
-      "	:#{object.id} isoR:unresolvedIssue \"#{object.unresolvedIssue}\"^^xsd:string . \n" +
-      "	:#{object.id} isoR:administrativeStatus \"#{object.administrativeStatus}\"^^xsd:string . \n" +
-      "	:#{object.id} isoR:previousState \"#{object.previousState}\"^^xsd:string . \n" +
-      "}"
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    # Response
-    if !response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
-      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+    if object.valid?
+      if !object.exists?  
+        update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+          "INSERT DATA \n" +
+          "{ \n" +
+          "	:#{object.id} rdf:type isoR:RegistrationState . \n" +
+          "	:#{object.id} isoR:byAuthority :#{object.registrationAuthority.id} . \n" +
+          "	:#{object.id} isoR:registrationStatus \"#{object.registrationStatus}\"^^xsd:string . \n" +
+          "	:#{object.id} isoR:administrativeNote \"#{object.administrativeNote}\"^^xsd:string . \n" +
+          "	:#{object.id} isoR:effectiveDate \"#{object.effective_date}\"^^xsd:string . \n" +
+          " :#{object.id} isoR:untilDate \"#{object.until_date}\"^^xsd:string . \n" +
+          "	:#{object.id} isoR:unresolvedIssue \"#{object.unresolvedIssue}\"^^xsd:string . \n" +
+          "	:#{object.id} isoR:administrativeStatus \"#{object.administrativeStatus}\"^^xsd:string . \n" +
+          "	:#{object.id} isoR:previousState \"#{object.previousState}\"^^xsd:string . \n" +
+          "}"
+        response = CRUD.update(update)
+        if !response.success?
+          ConsoleLogger.info(C_CLASS_NAME,"create", "Failed to create object.")
+          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+        end
+      else
+        object.errors.add(:base, "The registration state is already in use.")
+      end
     end
     return object    
   end
 
-  # Create the object in the triple store.
+  # Get a set of counts for each registration state
   #
+  # @return [Hash] Hash keyed by state containing the count
   def self.count
     results = Hash.new
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoR"]) +
@@ -415,9 +467,15 @@ class IsoRegistrationState
     return results
   end
 
-  # Create the object in the triple store.
+  # Update the object in the triple store.
   #
-  # TODO: Should not need id param, fix
+  # @param [Hash] params the required parameters
+  # @option param [String] :registrationStatus The registration status
+  # @option param [String] :previousState The previousState
+  # @option param [String] :administrativeNote An admin note
+  # @option param [String] :unresolvedIssue Any unresolved issues
+  # @option param [String] :effectiveDate The effective date
+  # @return [void]
   def update(params)  
     registrationStatus = params[:registrationStatus]
     previousState  = params[:previousState]
@@ -453,7 +511,8 @@ class IsoRegistrationState
     response = CRUD.update(update)
     # Response
     if !response.success?
-      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
   end
   
@@ -480,7 +539,8 @@ class IsoRegistrationState
     response = CRUD.update(update)
     # Response
     if !response.success?
-      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      ConsoleLogger.info(C_CLASS_NAME, "make_current", "Failed to update object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
   end
 
@@ -504,7 +564,8 @@ class IsoRegistrationState
     response = CRUD.update(update)
     # Response
     if !response.success?
-      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      ConsoleLogger.info(C_CLASS_NAME, "make_not_current", "Failed to update object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
   end
 
@@ -605,16 +666,6 @@ class IsoRegistrationState
       FieldValidation.valid_label?(:unresolvedIssue, self.unresolvedIssue, self) &&
       FieldValidation.valid_label?(:administrativeStatus, self.administrativeStatus, self) 
   end
-
-  #def set_current_datetimes (effective_dt, until_dt)
-  #  begin
-  #    self.effective_date = Time.parse(effective_dt)
-  #    self.until_date = Time.parse(until_dt)
-  #  rescue
-  #    self.effective_date = Time.parse(C_DEFAULT_DATETIME)
-  #    self.until_date = Time.parse(C_DEFAULT_DATETIME)  
-  #  end
-  #end
 
 private
 

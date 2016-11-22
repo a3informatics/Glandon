@@ -31,7 +31,7 @@ describe "ISO Scoped identifier JS", :type => :feature do
       expect(page).to have_content 'Signed in successfully'
       click_link 'Scoped Identifiers'
       expect(page).to have_content 'Scoped Identifiers'
-      pause
+      #pause
       find(:xpath, "//tr[contains(.,'SI-TEST_3-3')]/td/a", :text => 'Delete').click
       page.accept_alert
       sleep(1)
@@ -40,7 +40,7 @@ describe "ISO Scoped identifier JS", :type => :feature do
       expect(page).to have_content 'SI-TEST_3-4'
       expect(page).to have_content 'SI-TEST_3-5'
       expect(page).to have_no_content 'SI-TEST_3-3'
-      pause
+      #pause
     end
 
   end

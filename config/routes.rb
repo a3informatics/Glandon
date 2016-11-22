@@ -21,31 +21,10 @@ Rails.application.routes.draw do
     end
   end
   resources :markdown_engines, only: [:create, :index]
-  resources :dashboard do
-    collection do
-      get :view
-      get :database
-    end
-  end
   resources :iso_namespaces
   resources :iso_registration_authorities
-  resources :iso_concept_systems do
-    collection do
-      get :node_new
-      post :node_add
-      get :view
-    end
-  end
-  namespace :iso_concept_systems do
-    resources :nodes do
-      collection do
-        get :node_new
-        post :node_add
-      end
-    end
-  end
   resources :iso_scoped_identifiers
-  resources :iso_registration_states do
+  resources :iso_registration_states, only: [:index, :update] do
     collection do
       get :current
     end
@@ -66,7 +45,28 @@ Rails.application.routes.draw do
       get :graph
     end
   end
-  resources :audit_trail do
+  resources :dashboard do
+    collection do
+      get :view
+      get :database
+    end
+  end
+  resources :iso_concept_systems do
+    collection do
+      get :node_new
+      post :node_add
+      get :view
+    end
+  end
+  namespace :iso_concept_systems do
+    resources :nodes do
+      collection do
+        get :node_new
+        post :node_add
+      end
+    end
+  end
+  resources :audit_trail, only: [:index] do
     collection do
       post :search
     end
