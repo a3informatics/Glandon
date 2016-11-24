@@ -19,6 +19,7 @@ class ThesaurusConceptsController < ApplicationController
     thesaurus_concept = ThesaurusConcept.find(params[:children][0][:id], params[:children][0][:namespace])
     thesaurus_concept.update(params[:children][0])
     if thesaurus_concept.errors.empty?
+      #AuditTrail.update_item_event(current_user, thesaurus_concept, "Terminology updated.")
       render :json => {}, :status => 200
     else
       render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
@@ -27,8 +28,8 @@ class ThesaurusConceptsController < ApplicationController
   
   def add_child
     authorize ThesaurusConcept, :create?
-    thesaurus = ThesaurusConcept.find(params[:id], params[:namespace], false)
-    thesaurus_concept = thesaurus.add_child(params[:children][0])
+    parent_thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
+    thesaurus_concept = parent_thesaurus_concept.add_child(params[:children][0])
     if thesaurus_concept.errors.empty?
       render :json => thesaurus_concept.to_json, :status => 200
     else

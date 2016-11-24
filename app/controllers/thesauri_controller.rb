@@ -22,12 +22,11 @@ class ThesauriController < ApplicationController
   
   def create
     authorize Thesaurus
-    #identifier = params[:identifier]
     @thesaurus = Thesaurus.create_simple(the_params)
     #ConsoleLogger::log(C_CLASS_NAME, "create","TH=(#{@thesaurus.to_json})")
     #ConsoleLogger::log(C_CLASS_NAME, "create","TH=(#{@thesaurus.errors.to_json})")
     if @thesaurus.errors.empty?
-      AuditTrail.create_event(current_user, @thesaurus, "Terminology created.")
+      AuditTrail.create_item_event(current_user, @thesaurus, "Terminology created.")
       flash[:success] = 'Terminology was successfully created.'
       redirect_to thesauri_index_path
     else
@@ -51,8 +50,8 @@ class ThesauriController < ApplicationController
     authorize Thesaurus, :create?
     thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
     thesaurus_concept = thesaurus.add_child(params[:children][0])
-    ConsoleLogger::log(C_CLASS_NAME, "add_child", "THC=(#{@thesaurus_concept.to_json})")
     if thesaurus_concept.errors.empty?
+      AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated. Item #{thesaurus_concept.identifier} added.")
       render :json => thesaurus_concept.to_json, :status => 200
     else
       render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
@@ -61,8 +60,9 @@ class ThesauriController < ApplicationController
 
   def destroy
     authorize Thesaurus
-    @thesaurus = Thesaurus.find(params[:id], params[:namespace])
-    @thesaurus.destroy
+    thesaurus = Thesaurus.find(params[:id], params[:namespace])
+    thesaurus.destroy
+    AuditTrail.delete_item_event(current_user, thesaurus, "Terminology deleted.")
     redirect_to thesauri_index_path
   end
 
@@ -73,7 +73,6 @@ class ThesauriController < ApplicationController
       format.html
       format.json do
         results = @thesaurus.to_json
-        ConsoleLogger::log(C_CLASS_NAME,"show", "JSON=#{results.to_json}")
         render json: results
       end
     end

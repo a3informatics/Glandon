@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag    'd3local', 'sdtm_user_domain_editor'%>
 <%= javascript_include_tag 'd3local', 'sdtm_user_domain_editor'%>
 <script id="domainJson" type="text/json">
-    <%= raw @sdtm_user_domain.to_clone(true).to_json %>
+    <%= raw @sdtm_user_domain.to_clone.to_json %>
 </script>
 <div class="row">
     <div class="col-md-7">

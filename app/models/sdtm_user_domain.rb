@@ -106,16 +106,18 @@ class SdtmUserDomain < Tabular::Tabulation
     if params_valid?(managed_item, object) then
       # Build a full object. Special case, fill in the identifier, base on domain prefix.
       object = SdtmUserDomain.from_json(data)
-      object.scopedIdentifier.identifier = "SDTM USER " + managed_item[:prefix]
+      object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
+    
+      #object.scopedIdentifier.identifier = "SDTM USER " + managed_item[:prefix]
       #ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{object.to_json}")
       # Can we create?
-      if object.create_permitted?(ra)
+      if object.create_permitted?
         # Amend the prefix
         object.children.each do |item|
           item.name = SdtmUtility.overwrite_prefix(item.name, object.prefix) if SdtmUtility.prefixed?(item.name)
         end
         # Build sparql
-        sparql = object.to_sparql(ra)
+        sparql = object.to_sparql_v2(ra)
         # Send to database
         #ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
         response = CRUD.update(sparql.to_s)
@@ -172,8 +174,8 @@ class SdtmUserDomain < Tabular::Tabulation
   end
 
   def self.from_json(json)
-    object = super(json)
     managed_item = json[:managed_item]
+    object = super(managed_item)
     object.prefix = managed_item[:prefix]
     object.structure = managed_item[:structure]
     object.notes = managed_item[:notes]
@@ -192,9 +194,9 @@ class SdtmUserDomain < Tabular::Tabulation
     return object
   end
 
-  def to_sparql(ra)
-    sparql = SparqlUpdate.new
-    uri = super(sparql, ra, C_CID_PREFIX, C_INSTANCE_NS, C_SCHEMA_PREFIX)
+  def to_sparql_v2(ra)
+    sparql = SparqlUpdateV2.new
+    uri = super(sparql, C_SCHEMA_PREFIX)
     # Set the properties
     sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "prefix", "#{self.prefix}", "string")
     sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "structure", "#{self.structure}", "string")

@@ -53,7 +53,7 @@ class FormsController < ApplicationController
     authorize Form, :create?
     @form = Form.createPlaceholder(the_params)
     if @form.errors.empty?
-      AuditTrail.create_event(current_user, @form, "Form created.")
+      AuditTrail.create_item_event(current_user, @form, "Form created.")
       redirect_to forms_path
     else
       flash[:error] = @form.errors.full_messages.to_sentence
@@ -90,7 +90,7 @@ class FormsController < ApplicationController
     authorize Form
     @form = Form.create(params)
     if @form.errors.empty?
-      AuditTrail.create_event(current_user, @form, "Form created.")
+      AuditTrail.create_item_event(current_user, @form, "Form created.")
       render :json => { :data => @form.to_edit}, :status => 200
     else
       render :json => { :errors => @form.errors.full_messages}, :status => 422
@@ -101,7 +101,7 @@ class FormsController < ApplicationController
     authorize Form
     @form = Form.update(params)
     if @form.errors.empty?
-      AuditTrail.update_event(current_user, @form, "Form created.")
+      AuditTrail.update_item_event(current_user, @form, "Form updated.")
       render :json => { :data => @form.to_edit}, :status => 200
     else
       render :json => { :errors => @form.errors.full_messages}, :status => 422
@@ -114,7 +114,7 @@ class FormsController < ApplicationController
     namespace = params[:namespace]
     form = Form.find(id, namespace, false)
     form.destroy
-    AuditTrail.delete_event(current_user, @form, "Form created.")
+    AuditTrail.delete_item_event(current_user, @form, "Form deleted.")
     redirect_to forms_path
   end
 
