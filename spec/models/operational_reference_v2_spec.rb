@@ -4,7 +4,7 @@ describe OperationalReferenceV2 do
 
 	include DataHelpers
     
-	it "clears triple store and loads test data" do
+	before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -15,7 +15,7 @@ describe OperationalReferenceV2 do
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_data_file_into_triple_store("ACME_DM1 01.ttl")
+    load_test_file_into_triple_store("form_example_dm1.ttl")
     clear_iso_concept_object
   end
  
@@ -75,7 +75,7 @@ describe OperationalReferenceV2 do
     expect(item.to_json).to eq(result)
   end
 
-  it "allows an object to be found from triples" do
+  it "allows an object to be found from triples - Tc Reference" do
     id = "BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1"
     triples = {}
     triples [id] = []
@@ -134,6 +134,178 @@ describe OperationalReferenceV2 do
     expect(object.to_json).to eq(result)
   end
 
+  it "allows an object to be found from triples - Bct Reference" do
+    id = "BC-ACME_BC_C25347_TPR"
+    triples = {}
+    triples [id] = []
+    triples [id] = 
+      [
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_TPR",
+          :predicate => "http://www.w3.org/2000/01/rdf-schema#label",
+          :object => "BCT Reference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_TPR",
+          :predicate => "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+          :object => "http://www.assero.co.uk/BusinessOperational#BctReference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_TPR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#basedOnTemplate",
+          :object => "http://www.assero.co.uk/MDRBCTs/V1#BCT-Obs_PQR"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_TPR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#ordinal",
+          :object => "1"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_TPR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#enabled",
+          :object => "true"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_TPR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#optional",
+          :object => "true"
+        }
+      ]
+    result = 
+      {
+        :id => "BC-ACME_BC_C25347_TPR", 
+        :namespace => "http://www.assero.co.uk/MDRBCs/V1", 
+        :label => "BCT Reference",
+        :extension_properties => [],
+        :subject_ref => UriV2.new({:id => "BCT-Obs_PQR", :namespace => "http://www.assero.co.uk/MDRBCTs/V1"}).to_json,
+        :optional => true,
+        :ordinal => 1,
+        :enabled => true,
+        :local_label => "",
+        :type => "http://www.assero.co.uk/BusinessOperational#BctReference"
+      }
+    object = OperationalReferenceV2.find_from_triples(triples, id)
+    expect(object.to_json).to eq(result)
+  end
+
+  it "allows an object to be found from triples - Old V Reference" do
+    id = "F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1"
+    triples = {}
+    triples [id] = []
+    triples [id] = 
+      [
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+          :object => "http://www.assero.co.uk/BusinessOperational#VReference" 
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.w3.org/2000/01/rdf-schema#label",
+          :object => "BC Property Value Reference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#hasValue",
+          :object => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#ordinal",
+          :object => "3"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#enabled",
+          :object => "true"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#optional",
+          :object => "false" 
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#local_label",
+          :object => "Supine Position"
+        }
+      ]
+    result = 
+      {
+        :id => "F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1", 
+        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
+        :label => "BC Property Value Reference",
+        :extension_properties => [],
+        :subject_ref => "null",
+        :optional => false,
+        :ordinal => 3,
+        :local_label => "Supine Position",
+        :enabled => true,
+        :type => "http://www.assero.co.uk/BusinessOperational#VReference"
+      }
+    object = OperationalReferenceV2.find_from_triples(triples, id)
+    expect(object.to_json).to eq(result)
+  end
+
+  it "allows an object to be found from triples - Invalid" do
+    id = "F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1"
+    triples = {}
+    triples [id] = []
+    triples [id] = 
+      [
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+          :object => "http://www.assero.co.uk/BusinessOperational#VxxxReference" 
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.w3.org/2000/01/rdf-schema#label",
+          :object => "BC Property Value Reference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#hasValue",
+          :object => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#ordinal",
+          :object => "4"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#enabled",
+          :object => "true"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#optional",
+          :object => "false" 
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#local_label",
+          :object => "Supine Position"
+        }
+      ]
+    result = 
+      {
+        :id => "F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1", 
+        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
+        :label => "BC Property Value Reference",
+        :extension_properties => [],
+        :subject_ref => "null",
+        :optional => false,
+        :ordinal => 4,
+        :local_label => "Supine Position",
+        :enabled => true,
+        :type => "http://www.assero.co.uk/BusinessOperational#VxxxReference"
+      }
+    object = OperationalReferenceV2.find_from_triples(triples, id)
+    expect(object.to_json).to eq(result)
+  end
+
   it "allows an object to be exported as SPARQL, TcReference" do
     sparql = SparqlUpdateV2.new
     result = 
@@ -161,7 +333,7 @@ describe OperationalReferenceV2 do
     expect(sparql.to_s).to eq(result)
   end
 
-  it "allows an object to be exported as SPARQL, TpReference" do
+  it "allows an object to be exported as SPARQL, BctReference" do
     sparql = SparqlUpdateV2.new
     result = 
       "PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>\n" +
@@ -171,7 +343,7 @@ describe OperationalReferenceV2 do
       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
       "INSERT DATA \n" +
       "{ \n" + 
-      "<http://www.example.com/path#parent_XXX1> rdf:type <http://www.assero.co.uk/BusinessOperational#TpReference> . \n" +
+      "<http://www.example.com/path#parent_XXX1> rdf:type <http://www.assero.co.uk/BusinessOperational#BctReference> . \n" +
       "<http://www.example.com/path#parent_XXX1> rdfs:label \"Based on Template Reference\"^^xsd:string . \n" +
       "<http://www.example.com/path#parent_XXX1> bo:basedOnTemplate <http://www.example.com/path#fragement> . \n" +
       "<http://www.example.com/path#parent_XXX1> bo:enabled \"true\"^^xsd:boolean . \n" +

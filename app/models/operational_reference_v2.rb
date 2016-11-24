@@ -6,91 +6,83 @@ class OperationalReferenceV2 < IsoConcept
   C_NONE = "None"
   
   C_PARENT_LINK_BC = "hasBiomedicalConcept"
+  C_PARENT_LINK_BCT = "basedOnTemplate"
   C_PARENT_LINK_P = "hasProperty"
-  C_PARENT_LINK_V = "hasValue"
   C_PARENT_LINK_TC = "hasThesaurusConcept"
   C_PARENT_LINK_T = "includesTabulation"
   C_PARENT_LINK_DT = "basedOnDomain"
   C_PARENT_LINK_C = "includesColumn"
   C_PARENT_LINK_VC = "basedOnVariable"
-  C_PARENT_LINK_TP = "basedOnTemplate"
   
   C_BC_TYPE = "BcReference"
+  C_BCT_TYPE = "BctReference"
   C_P_TYPE = "PReference"
-  C_V_TYPE = "VReference"
   C_TC_TYPE = "TcReference"
   C_T_TYPE = "TReference"
   C_C_TYPE = "CReference"
-  C_TP_TYPE = "TpReference"
   
   C_BC_LINK = "hasBiomedicalConcept"
+  C_BCT_LINK = "basedOnTemplate"
   C_P_LINK = "hasProperty"
-  C_V_LINK = "hasValue"
   C_TC_LINK = "hasThesaurusConcept"
   C_T_LINK = "hasTabulation"
   C_C_LINK = "hasColumn"
-  C_TP_LINK = "basedOnTemplate"
   
   C_SCHEMA_PREFIX = "bo"
   C_CLASS_NAME = "OperationalReferenceV2"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_RDF_TYPE = "Reference"
   C_BC_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_BC_TYPE})
+  C_BCT_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_BCT_TYPE})
   C_P_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_P_TYPE})
-  C_V_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_V_TYPE})
   C_TC_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_TC_TYPE})
   C_T_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_T_TYPE})
   C_C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_C_TYPE})
-  C_TP_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_TP_TYPE})
   
   C_TO_TYPE_MAP = 
     {
       C_PARENT_LINK_BC => C_BC_TYPE,
       C_PARENT_LINK_P => C_P_TYPE,
-      C_PARENT_LINK_V => C_V_TYPE,
       C_PARENT_LINK_TC => C_TC_TYPE,
       C_PARENT_LINK_T => C_T_TYPE,
       C_PARENT_LINK_DT => C_T_TYPE,
       C_PARENT_LINK_C => C_C_TYPE,
       C_PARENT_LINK_VC => C_C_TYPE,
-      C_PARENT_LINK_TP => C_TP_TYPE
+      C_PARENT_LINK_BCT => C_BCT_TYPE
     }
     
   C_TO_LABEL_MAP = 
     {
       C_PARENT_LINK_BC => "BC Reference",
       C_PARENT_LINK_P => "BC Property Reference",
-      C_PARENT_LINK_V => "BC Property Value Reference",
       C_PARENT_LINK_TC => "Thesaurus Concept Reference",
       C_PARENT_LINK_T => "Tabulation Reference",
       C_PARENT_LINK_DT => "Based on Domain Reference",
       C_PARENT_LINK_C => "Column Reference",
       C_PARENT_LINK_VC => "Based on Variable Reference",
-      C_PARENT_LINK_TP => "Based on Template Reference"
+      C_PARENT_LINK_BCT => "Based on Template Reference"
     }
     
   C_TO_LINK_MAP = 
     {
       C_PARENT_LINK_BC => C_BC_LINK,
       C_PARENT_LINK_P => C_P_LINK,
-      C_PARENT_LINK_V => C_V_LINK,
       C_PARENT_LINK_TC => C_TC_LINK,
       C_PARENT_LINK_T => C_T_LINK,
       C_PARENT_LINK_DT => C_T_LINK,
       C_PARENT_LINK_C => C_C_LINK,
       C_PARENT_LINK_VC => C_C_LINK,
-      C_PARENT_LINK_TP => C_TP_LINK
+      C_PARENT_LINK_BCT => C_BCT_LINK
     }
     
   C_FROM_TYPE_MAP = 
     {
       C_BC_RDF_TYPE_URI.to_s => C_BC_LINK,
       C_P_RDF_TYPE_URI.to_s => C_P_LINK,
-      C_V_RDF_TYPE_URI.to_s => C_V_LINK,
       C_TC_RDF_TYPE_URI.to_s => C_TC_LINK,
       C_T_RDF_TYPE_URI.to_s => C_T_LINK,
       C_C_RDF_TYPE_URI.to_s => C_C_LINK,
-      C_TP_RDF_TYPE_URI.to_s => C_TP_LINK
+      C_BCT_RDF_TYPE_URI.to_s => C_BCT_LINK
     }
     
   # Initialize
@@ -166,9 +158,14 @@ class OperationalReferenceV2 < IsoConcept
   # @return [object] The new object
   def self.find_from_triples(triples, id)
     object = new(triples, id)
-    links = object.get_links(C_SCHEMA_PREFIX, C_FROM_TYPE_MAP[object.rdf_type])
-    if links.length > 0
-      object.subject_ref = links[0]
+    if C_FROM_TYPE_MAP.has_key?(object.rdf_type)
+      links = object.get_links(C_SCHEMA_PREFIX, C_FROM_TYPE_MAP[object.rdf_type])
+      if links.length > 0
+        object.subject_ref = links[0]
+      end
+    #else
+    #  ConsoleLogger.info(C_CLASS_NAME, "find_from_triples", "object=#{object.to_json}.")
+    #  ConsoleLogger.info(C_CLASS_NAME, "find_from_triples", "C_FROM_TYPE_MAP=#{C_FROM_TYPE_MAP.to_json}.")
     end
     return object
   end

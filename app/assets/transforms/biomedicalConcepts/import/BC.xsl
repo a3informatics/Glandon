@@ -134,7 +134,7 @@
                 <!-- BCT Reference -->
                 <xsl:call-template name="OperationalReference"> 
                     <xsl:with-param name="pCID" select="concat(':',$Prefix,$MinorSeparator,'TPR')"/>
-                    <xsl:with-param name="pType" select="'TpReference'"/>
+                    <xsl:with-param name="pType" select="'BctReference'"/>
                     <xsl:with-param name="pLabel" select="'Biomedical Concept Template Reference'"/>
                     <xsl:with-param name="pRefType" select="'basedOnTemplate'"/>
                     <xsl:with-param name="pRef" select="concat('mdrBcts:',@Template)"/>
@@ -180,7 +180,7 @@
                 <!-- BCT Reference -->
                 <xsl:call-template name="OperationalReference"> 
                     <xsl:with-param name="pCID" select="concat(':',$Prefix,$MinorSeparator,'TPR')"/>
-                    <xsl:with-param name="pType" select="'TpReference'"/>
+                    <xsl:with-param name="pType" select="'BctReference'"/>
                     <xsl:with-param name="pLabel" select="'Biomedical Concept Template Reference'"/>
                     <xsl:with-param name="pRefType" select="'basedOnTemplate'"/>
                     <xsl:with-param name="pRef" select="concat('mdrBcts:',@Template)"/>

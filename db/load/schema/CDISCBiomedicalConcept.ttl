@@ -81,7 +81,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Based on Biomedical Concept Template relationship"^^xsd:string ;
   rdfs:domain :BiomedicalConceptInstance ;
-  rdfs:range :TpReference ;
+  rdfs:range :BctReference ;
   skos:definition "Relationship to relate Biomedical Concepts with the defining Template."^^xsd:string ;
 .
 :hasThesaurusConcept

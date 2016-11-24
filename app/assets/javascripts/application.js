@@ -43,9 +43,9 @@ var C_RS = "http://www.assero.co.uk/ISO11179Registration#RegistrationState";
 
 // References
 var C_TC_REF = "http://www.assero.co.uk/BusinessOperational#TcReference";
-var C_V_REF = "http://www.assero.co.uk/BusinessOperational#VReference";
 var C_P_REF = "http://www.assero.co.uk/BusinessOperational#PReference";
 var C_BC_REF = "http://www.assero.co.uk/BusinessOperational#BcReference";
+var C_BCT_REF = "http://www.assero.co.uk/BusinessOperational#BctReference";
 var C_T_REF = "http://www.assero.co.uk/BusinessOperational#TReference";
 var C_C_REF = "http://www.assero.co.uk/BusinessOperational#CReference";
 
