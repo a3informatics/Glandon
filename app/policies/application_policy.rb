@@ -105,7 +105,7 @@ private
   end
 
   def content_admin?
-    @user.has_role? @user.has_role? Role::C_CONTENT_ADMIN
+    @user.has_role? Role::C_CONTENT_ADMIN
   end
 
   def system_admin?

@@ -6,7 +6,7 @@ describe IsoNamespace do
 
   it "clears triple store and loads test data" do
     clear_triple_store
-    load_test_file_into_triple_store("IsoNamespace.ttl")
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")
   end
 
 	it "can be filled from JSON" do

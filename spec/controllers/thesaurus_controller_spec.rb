@@ -17,7 +17,7 @@ describe ThesauriController do
       load_schema_file_into_triple_store("ISO11179Data.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
-      load_data_file_into_triple_store("MDRIdentificationACME.ttl")
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("thesaurus_concept.ttl")
       clear_iso_concept_object
     end
@@ -86,6 +86,7 @@ describe ThesauriController do
           }
         ]
       }
+      audit_count = AuditTrail.count
       post :add_child, params
       th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
       tc = ThesaurusConcept.find("TH-SPONSOR_CT-1_A99999", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
@@ -97,6 +98,7 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(th.children.count).to eq(4)
+      expect(AuditTrail.count).to eq(audit_count + 1)
     end
 
     it 'adds a child thesaurus concept - error definition' do
@@ -119,10 +121,12 @@ describe ThesauriController do
           }
         ]
       }
+      audit_count = AuditTrail.count
       post :add_child, params
       th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
       expect(response.code).to eq("422")
       expect(th.children.count).to eq(4)
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
     it 'deletes thesaurus' do
@@ -131,8 +135,10 @@ describe ThesauriController do
           :id => "TH-ACME_NEWTH", 
           :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
         }
+      audit_count = AuditTrail.count
       delete :destroy, params
-      expect(Thesaurus.all.count).to eq(1) 
+      expect(Thesaurus.all.count).to eq(1)
+      expect(AuditTrail.count).to eq(audit_count + 1)
     end
     
     it "returns a thesaurus as JSON" do

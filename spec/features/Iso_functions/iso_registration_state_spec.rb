@@ -7,8 +7,8 @@ describe "ISO Registration State", :type => :feature do
 
   before :all do
     clear_triple_store
-    load_test_file_into_triple_store("IsoNamespace.ttl")
-    load_test_file_into_triple_store("IsoScopedIdentifier.ttl")
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_test_file_into_triple_store("iso_scoped_identifier.ttl")
   end 
 
   before :each do

@@ -6,7 +6,7 @@ describe IsoRegistrationAuthority do
 
   it "clears triple store and loads test data" do
     clear_triple_store
-    load_test_file_into_triple_store("IsoNamespace.ttl")
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")
   end
 
   it "validates a valid object" do
@@ -171,7 +171,7 @@ describe IsoRegistrationAuthority do
 
   it "clears triple store and loads test data" do
     clear_triple_store
-    load_test_file_into_triple_store("IsoNamespace_duplicate.ttl")
+    load_test_file_into_triple_store("iso_namespace_duplicate.ttl")
   end
 
   it "finds all authorities - duplicate error" do

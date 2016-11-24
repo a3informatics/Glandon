@@ -13,7 +13,7 @@ describe Thesaurus do
     load_schema_file_into_triple_store("ISO11179Data.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("ISO25964.ttl")
-    load_data_file_into_triple_store("MDRIdentificationACME.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("thesaurus.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object

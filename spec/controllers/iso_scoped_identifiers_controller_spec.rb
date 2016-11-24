@@ -10,8 +10,8 @@ describe IsoScopedIdentifiersController do
 
     it "sets database" do
       clear_triple_store
-      load_test_file_into_triple_store("IsoNamespace.ttl")
-      load_test_file_into_triple_store("IsoScopedIdentifier.ttl")
+      load_test_file_into_triple_store("iso_namespace_fake.ttl")
+      load_test_file_into_triple_store("iso_scoped_identifier.ttl")
     end
 
     it "index scoped_identifiers" do

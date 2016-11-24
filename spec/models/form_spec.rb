@@ -170,7 +170,7 @@ describe Form do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_data_file_into_triple_store("MDRIdentificationACME.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_data_file_into_triple_store("ACME_DM1 01.ttl")
   end
  
@@ -267,7 +267,7 @@ describe Form do
 
   #it "Export" do
   #  item = Form.find("F-ACME_DM101", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #  write_yaml_file_to_hash(item.to_json, "form_example_DM1.yaml")
+  #  write_yaml_file_to_hash(item.to_json, "form_example_dm1.yaml")
     #item = Form.find("F-ACME_MH101", "http://www.assero.co.uk/MDRForms/ACME/V1")
     #write_yaml_file_to_hash(item.to_json, "form_example2.yaml")
     #item = Form.find("F-ACME_AEPI103", "http://www.assero.co.uk/MDRForms/ACME/V1")

@@ -174,7 +174,6 @@ describe ThesaurusConceptsController do
       expect(response.body).to eq("{\"errors\":[\"The Thesaurus Concept, identifier A0000999, already exists in the database.\"]}")
     end
 
-
     it "returns a concept as JSON" do
       params = { :id => "THC-A00001", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1", :children => [] }
       request.env['HTTP_ACCEPT'] = "application/json"
@@ -189,8 +188,6 @@ describe ThesaurusConceptsController do
       expect(response.content_type).to eq("text/html")
       expect(response.code).to eq("200")    
     end
-
-
 
   end
 

@@ -7,7 +7,7 @@ describe "ISO Registration Authority JS", :type => :feature do
 
   before :all do
     clear_triple_store
-    load_test_file_into_triple_store("IsoNamespace.ttl")
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")
   end 
 
   before :all do

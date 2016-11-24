@@ -10,6 +10,8 @@ describe AuditTrailController do
     login_curator
    
     before :all do
+      clear_triple_store
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       AuditTrail.delete_all
       ar = AuditTrail.create(date_time: Time.now, user: "user1@example.com", owner: "CDISC", identifier: "I1", version: "1", event: 1, description: "description")
       ar = AuditTrail.create(date_time: Time.now, user: "user1@example.com", owner: "CDISC", identifier: "I2", version: "1", event: 1, description: "description")

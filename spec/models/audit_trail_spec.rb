@@ -14,7 +14,7 @@ describe AuditTrail do
     load_schema_file_into_triple_store("ISO11179Data.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_test_file_into_triple_store("IsoNamespace.ttl")
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")
     load_test_file_into_triple_store("iso_managed_data.ttl")
     load_test_file_into_triple_store("iso_managed_data_2.ttl")
     load_test_file_into_triple_store("iso_managed_data_3.ttl")
