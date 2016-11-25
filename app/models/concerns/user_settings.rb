@@ -11,7 +11,7 @@ module UserSettings
   # This could be made better such that config parameters do not need to be 'known' but it 
   # will do for now
   included do
-    has_many :user_settings
+    has_many :user_settings, :dependent => :destroy
     # User settings
     hash = APP_CONFIG['paper_size'][0]
     values = hash['enum_values']

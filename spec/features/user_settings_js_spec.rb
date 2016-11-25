@@ -25,16 +25,18 @@ describe "User Settings", :type => :feature do
       click_link 'Settings'
       expect(page).to have_content 'User Settings:'
       tr = page.find('#main tbody tr')
+      sleep 1
+      #pause
       expect(tr).to have_css("a", text: "Letter")
-      expect(tr).to have_css("a", text: "A4")
-      expect(tr).to have_css("button", text: "A3")
-      click_link 'A4'
-      pause
-      tr = page.find('#main tbody tr')
+      expect(tr).to have_css("a", text: "A3")
       expect(tr).to have_css("button", text: "A4")
       click_link 'A3'
+      #pause
       tr = page.find('#main tbody tr')
       expect(tr).to have_css("button", text: "A3")
+      click_link 'A4'
+      tr = page.find('#main tbody tr')
+      expect(tr).to have_css("button", text: "A4")
       click_link 'Letter'
       tr = page.find('#main tbody tr')
       expect(tr).to have_css("button", text: "Letter")

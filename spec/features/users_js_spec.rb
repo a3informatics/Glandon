@@ -19,10 +19,10 @@ describe "Users", :type => :feature do
       click_button 'Log in'
       #pause
       click_link 'Users'
-      #pause
       expect(page).to have_content 'Index: User'
       find(:xpath, "//tr[contains(.,'delete@example.com')]/td/a", :text => 'Delete').click
       page.accept_alert
+      click_link 'Audit Trail'
       expect(AuditTrail.count).to eq(audit_count + 2)
     end
 
