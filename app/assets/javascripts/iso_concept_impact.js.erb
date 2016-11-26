@@ -1,0 +1,122 @@
+$(document).ready(function() {
+
+  var html;
+  var json;
+  var graph;
+  var results;
+  var newIndex;
+  
+  jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
+    return this.iterator( 'table', function ( ctx ) {
+        ctx.oApi._fnProcessingDisplay( ctx, show );
+    } );
+  });
+
+  var miTable = $('#managed_item_table').DataTable( {
+    "columns": [
+      {"data" : "scoped_identifier.identifier", "width" : "30%"},
+      {"data" : "label", "width" : "40%"},
+      {"data" : "scoped_identifier.version", "width" : "10%"},
+      {"data" : "scoped_identifier.version_label", "width" : "40%"},
+      {"render" : function (data, type, row, meta) {
+        return '<a href="' + getPath(row.type) + row.id + '?namespace=' + row.namespace + '" class="btn btn-primary btn-xs">Show</a>';
+      }}
+    ],
+    "pageLength": 5,
+    "lengthMenu": [[5, 10, 25, 50, 75, 100], [5, 10, 25, 50, 75, 100]],
+    "processing": true,
+    "language": {
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    }
+  });
+
+  // Get initial / root item.
+  html = $("#jsonData").html();
+  json = $.parseJSON(html);
+  results = json;
+  
+  // Create empty graph
+  graph = {};
+  graph.nodes = [];
+  graph.links = [];
+  currentNode = null;
+  currentThis = null;
+  
+  // Init D3
+  d3gInit(colours, 25);
+  
+  // Create the new node and add children
+  miTable.processing(true);
+  for (i=0; i<results.children.length; i++) {
+    info(results.children[i]);
+  }
+  miTable.processing(false);
+
+  results.item.rdf_type = results.item.type; // @todo Need to fix this in the main code.
+  rootIndex = addNode(results.item);
+  for (i=0; i<results.children.length; i++) {
+    newIndex = addNode(results.children[i]);
+    addLink(rootIndex, newIndex);
+  }
+  
+  // Process the queue
+  drawGraph();
+  
+  function nodeClick (node) {
+    if (currentNode != null) {
+      d3gClearNode(currentNode, currentThis);
+    }
+    d3gMarkNode(this);
+    currentNode = node;
+    currentThis = this;
+  }
+
+  function empty () {
+  }
+
+  function info(node) {
+    $.ajax({
+      url: "/iso_managed/" + getId(node.uri),
+      data: { "namespace": getNamespace(node.uri) },
+      type: 'GET',
+      dataType: 'json',
+      success: function(result) {
+        miTable.row.add(result);
+        miTable.draw();
+      },
+      error: function(xhr,status,error){
+        handleAjaxError(xhr, status, error);
+      }
+    });
+  }
+
+  function addNode(sourceNode) {
+    var index;
+    var node;
+    var uri;
+    uri = sourceNode.uri;    
+    node = sourceNode;
+    node.name = "";
+    node.type = sourceNode.rdf_type;
+    graph.nodes.push(node);
+    index = graph.nodes.length - 1;
+    node.index = index;
+    return index;
+  }
+
+  function addLink(source, target) {
+    var link;
+    link = {};
+    link["source"] = source;
+    link["target"] = target;
+    graph.links.push(link);
+    return true;
+  }
+
+  function drawGraph() {
+    var json;
+    json = JSON.parse(JSON.stringify(graph));
+    d3gDraw(json, nodeClick, empty);
+  }
+
+});

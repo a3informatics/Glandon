@@ -1,35 +1,21 @@
-<%= stylesheet_link_tag    'd3_graph' %>
-<%= javascript_include_tag 'd3_graph', 'iso_concept_graph' %>
+<%= stylesheet_link_tag    'd3_graph', 'iso_concept_graph' %>
+<%= javascript_include_tag 'colour', 'd3_graph', 'iso_concept_graph' %>
 <script id="jsonData" type="text/json">
     <%= raw @result.to_json %>
 </script>
 <div class="row">
-	<div class="col-md-9">
-    <h3>Detailed Metadata Graph:</h3>
-    <div style="height: 800px;" id="d3">
-        <!-- D3 Area -->
-    </div>
-   </div>
-	<div class="col-md-3">
-		<br/>
-    <div id="node_info" class="panel panel-default">
-      <div class="panel-heading">
-          <h3 class="panel-title">Details</h3>
-      </div>
-      <div class="panel-body">
-          <div>
-            <table id="node_details" class="table table-striped table-condensed">
-              <tbody>               
-              </tbody>
-            </table>
-          </div>
-          <button id="graph_stop" type="button" class="btn btn-default btn-primary">
-            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-          </button>
-          <button id="graph_focus" type="button" class="btn btn-default btn-primary">
-            <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
-          </button>
-      </div>
-    </div>
-	</div>
+	<div class="col-md-2">
+		<h3>Metadata View:</h3>
+  </div>
 </div>
+<div class="row">
+  <%= render partial: "shared/graph" %>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div id="d3">
+      <!-- D3 Area -->
+    </div>
+  </div>
+</div>
+<input type="hidden" id="graph_type" value="concept">

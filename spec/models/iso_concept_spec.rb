@@ -3,8 +3,9 @@ require 'rails_helper'
 describe IsoConcept do
 
 	include DataHelpers
+  include PauseHelpers
 
-	it "clears triple store and loads test data" do
+	before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -12,9 +13,15 @@ describe IsoConcept do
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
     load_schema_file_into_triple_store("ISO11179Data.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    load_schema_file_into_triple_store("ISO25964.ttl")
+    load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
+    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
     load_test_file_into_triple_store("iso_concept_extension.ttl")
     load_test_file_into_triple_store("iso_concept_data.ttl")
+    load_test_file_into_triple_store("CT_V42.ttl")
+    load_test_file_into_triple_store("BC.ttl")
+    load_test_file_into_triple_store("form_example_vs_baseline.ttl")
     clear_iso_concept_object
   end
 
@@ -71,12 +78,12 @@ describe IsoConcept do
       	:extension_properties => 
       		[
       			{
-      				:rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension1",
+      				rdf_type: "http://www.assero.co.uk/BusinessForm#Extension1",
            		:value => 14,
            		:label=>"Extension 1"
            	},
           	{
-          		:rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension2",
+          		rdf_type: "http://www.assero.co.uk/BusinessForm#Extension2",
            		:value => true,
            		:label=>"Extension 2"
            	}
@@ -95,12 +102,12 @@ describe IsoConcept do
         :extension_properties => 
           [
             {
-              :rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension1",
+              rdf_type: "http://www.assero.co.uk/BusinessForm#Extension1",
               :value => 14,
               :label=>"Extension 1"
             },
             {
-              :rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension2",
+              rdf_type: "http://www.assero.co.uk/BusinessForm#Extension2",
               :value => true,
               :label=>"Extension 2"
             }
@@ -121,12 +128,12 @@ describe IsoConcept do
         :extension_properties => 
           [
             {
-              :rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension1",
+              rdf_type: "http://www.assero.co.uk/BusinessForm#Extension1",
               :value=>"14",
               :label=>"Extension 1"
             },
             {
-              :rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension2",
+              rdf_type: "http://www.assero.co.uk/BusinessForm#Extension2",
               :value=>"true",
               :label=>"Extension 2"
             }
@@ -289,17 +296,17 @@ describe IsoConcept do
       	:extension_properties => 
       		[
       			{
-      				:rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension1",
+      				rdf_type: "http://www.assero.co.uk/BusinessForm#Extension1",
            		:value => 14,
            		:label=>"Extension 1"
            	},
           	{
-          		:rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension2",
+          		rdf_type: "http://www.assero.co.uk/BusinessForm#Extension2",
            		:value => true,
            		:label=>"Extension 2"
            	},
            	{
-          		:rdf_type=>"http://www.assero.co.uk/BusinessForm#XXX",
+          		rdf_type: "http://www.assero.co.uk/BusinessForm#XXX",
            		:value=>"",
            		:label=>"A new extended property"
            	}
@@ -372,8 +379,177 @@ describe IsoConcept do
 		concept.to_sparql_v2(sparql, "bf")
 		expect(sparql.to_s).to eq(result)
 	end
-	
-	it "allows a concept to be deleted" do
+
+  it "allows the links from a concept to be determined, BC Property Ref" do
+    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G1_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
+    expected = 
+    [ 
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"}), 
+        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+        local: false 
+      },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I1_I1"}), 
+        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+        local: true
+      }
+    ]
+    expect(results.to_json).to eq(expected.to_json)
+  end
+
+  it "allows the links to a concept to be determined, BC Property Ref" do
+    results = IsoConcept.links_to("BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value","http://www.assero.co.uk/MDRBCs/V1")
+    expected = 
+    [ 
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I1"}), 
+        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+        local: false  
+      },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME"}), 
+        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+        local: true
+      }
+    ]
+    expect(results.to_json).to eq(expected.to_json)
+  end
+
+  it "allows the links from a concept to be determined, Internal" do
+    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
+    expected = 
+    [ 
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1"}), 
+        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
+        local: true  
+      },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2"}), 
+        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+        local: true
+      },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I1"}), 
+        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+        local: true 
+      }
+    ]
+    expect(results.to_json).to eq(expected.to_json)
+  end
+
+  it "allows the links to a concept to be determined, BC Property Ref" do
+    results = IsoConcept.links_to("F-ACME_VSBASELINE1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
+    expected = 
+    [
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}),
+        rdf_type: "http://www.assero.co.uk/BusinessForm#Form",
+        local: true
+      },
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2"}),
+        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
+        local: true
+      },
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1"}),
+        rdf_type: "http://www.assero.co.uk/BusinessForm#CommonGroup",
+        local: true
+      },
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G5"}),
+        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
+        local: true
+      },
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G3"}),
+        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
+        local: true 
+      },
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G4"}),
+        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
+        local: true
+      }
+    ]
+
+    expect(results.to_json).to eq(expected.to_json)
+  end
+
+  it "allows the links from a concept to be determined, TC Ref" do
+    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G1_I2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
+    expected = 
+    [ 
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62122"}), 
+        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+        local: false  
+      },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"}), 
+        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+        local: false  
+      },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62166"}), 
+        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+        local: false 
+      },
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code"}),
+        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+        local: false 
+      }
+    ]
+    expect(results.to_json).to eq(expected.to_json)
+  end
+
+	it "allows the links to a concept to be determined, BC Property Ref" do
+    results = IsoConcept.links_to("CLI-C71148_C62122","http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    expected = 
+    [ 
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677_PerformedObservation_bodyPositionCode_CD_code"}),
+        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+        local: false 
+      },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_A00003_PerformedObservation_bodyPositionCode_CD_code"}),
+        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+        local: false 
+      },
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code"}),
+        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+        local: false 
+      },
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}),
+        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+        local: false 
+      },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2"}), 
+        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+        local: false  
+      },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1"}), 
+        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+        local: false  
+      },
+      {
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CL-C71148"}),
+        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+        local: true
+      }
+    ]
+    expect(results.to_json).to eq(expected.to_json)
+  end
+
+  it "allows a concept to be deleted" do
 		result =     
 			{ 
       	:type => "",
@@ -468,9 +644,6 @@ describe IsoConcept do
 		object_2.copy_errors(object_1, "Child errors:")
 		expect(object_2.errors.full_messages[0]).to eq("Child errors: Label contains invalid characters")
 	end
-	
-	it "clears triple store" do
-    clear_triple_store
-  end
+
 
 end

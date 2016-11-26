@@ -60,7 +60,7 @@ var C_TEXTLABEL = "http://www.assero.co.uk/BusinessForm#TextLabel";
 var C_BC_QUESTION = "http://www.assero.co.uk/BusinessForm#BcProperty";
 var C_QUESTION = "http://www.assero.co.uk/BusinessForm#Question";
 var C_Q_CL = C_TC_REF;
-var C_BC_CL = C_V_REF;
+var C_BC_CL = C_TC_REF;
 
 // BC Types
 var C_BC_DATATYPE ="http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype";

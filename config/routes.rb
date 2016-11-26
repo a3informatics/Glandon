@@ -29,9 +29,11 @@ Rails.application.routes.draw do
       get :current
     end
   end
-  resources :iso_concept do
+  resources :iso_concept, only: [:show] do
     collection do
       get :graph
+      get :graph_links
+      get :impact
     end
   end
   resources :iso_managed do
@@ -43,6 +45,8 @@ Rails.application.routes.draw do
       post :delete_tag
       get :tags
       get :graph
+      get :graph_links
+      get :impact
     end
   end
   resources :dashboard do

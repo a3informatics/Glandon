@@ -1,6 +1,8 @@
 class IsoManagedController < ApplicationController
   
   before_action :authenticate_user!
+
+  C_CLASS_NAME = "IsoManagedController"
   
   def update
     authorize IsoManaged
@@ -95,38 +97,68 @@ class IsoManagedController < ApplicationController
 
   def show 
     authorize IsoManaged
-    @concept = IsoManaged.find(params[:id], params[:namespace])
-    respond_to do |format|
-      format.html
-      format.json do
-        render :json => @concept.to_json, :status => 200
-      end
-    end
+    @item = IsoManaged.find(params[:id], params[:namespace], false)
+    render :json => @item.to_json, :status => 200
   end
 
   def graph
     authorize IsoManaged, :show?
     @item = IsoManaged.find(params[:id], params[:namespace])
-    managed_item = IsoManaged.graph_to(params[:id], params[:namespace])
-    other_managed_item = IsoManaged.graph_from(params[:id], params[:namespace])
-    @result = managed_item[:parent].to_json
-    @result[:children] = Array.new
-    @result[:parent] = Array.new
-    managed_item[:children].each do |child|
-      @result[:children] << child.to_json
+    @result = { uri: @item.uri.to_s, rdf_type: @item.rdf_type }
+  end
+
+  def graph_links
+    authorize IsoManaged, :show?
+    map = {}
+    results = merge(params[:id], params[:namespace], map)
+    results.each do |result|
+      result[:uri] = result[:uri].to_s
     end
-    other_managed_item.each do |parent|
-      @result[:parent] << parent.to_json
-    end
-    respond_to do |format|
-      format.html
-      format.json do
-        render :json => @result, :status => 200
-      end
-    end
+    render :json => results, :status => 200
+  end
+
+  def impact
+    authorize IsoManaged, :show?
+    map = {}
+    @item = IsoManaged.find(params[:id], params[:namespace], false)
+    @results = merge(params[:id], params[:namespace], map, :from => false)
   end
 
 private
+
+  def merge(id, namespace, map, from = true, to = true)
+    results = []
+    concepts = []
+    item = IsoManaged.find(id, namespace, false)
+    if item.rdf_type != Thesaurus::C_RDF_TYPE_URI.to_s
+      uri = UriV2.new({id: id, namespace: namespace})
+      map[uri.to_s] = true
+      concepts += IsoConcept.links_from(id, namespace) if from
+      concepts += IsoConcept.links_to(id, namespace) if to
+      concepts.each do |concept|
+        concept_uri = concept[:uri]
+        if !map.has_key?(concept_uri.to_s)
+          if concept[:local]
+            results += merge(concept_uri.id, concept_uri.namespace, map, from, to)
+          else
+            mi = IsoManaged.find_managed(concept_uri.id, concept_uri.namespace)
+            mi_uri = mi[:uri]
+            if !mi_uri.nil? 
+              if !map.has_key?(mi_uri.to_s)
+                managed_item = IsoManaged.find(mi_uri.id, mi_uri.namespace, false)
+                results << { uri: mi_uri, rdf_type: managed_item.rdf_type }
+                map[mi_uri.to_s] = true
+              end
+            else
+              ConsoleLogger::log(C_CLASS_NAME, "merge", "****** FAILED to FIND ***** #{uri}")
+            end
+          end
+        end
+        map[concept_uri.to_s] = true
+      end
+    end
+    return results
+  end
 
   def this_params
     params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer)

@@ -90,7 +90,7 @@ class IsoConcept
           elsif @@link_attributes.has_key?(triple[:predicate])
             self.links << {:rdf_type => triple[:predicate], :value => triple[:object]}
           else
-            # Do nothing. Shoudl we do something else?
+            # @todo Should we do something else?
           end
         end
       end
@@ -436,82 +436,91 @@ class IsoConcept
     return self.uri
   end
 
-  # Find links to the concept
+  # Links From the concept. Find the links from the concept to other concepts or concepts pointed
+  # at by references.
   #
   # @param id [string] The id of the concept
   # @param namespace [string] The namespace of the concept
-  # @return [array] Array o fhash values of link end {id and namespace}
-  def self.graph_to(id, namespace)
-    # Initialise.
-    results = Hash.new
-    children = Array.new
-    object = nil
-    isoC_link = UriV2.new({:namespace => UriManagement.getNs(UriManagement::C_ISO_C), :id => "link"})
-    # Create the query and action.
-    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C]) +
-      "SELECT ?s ?p ?o ?p_type WHERE \n" +
-      "{ \n" +
-      "  :" + id + " ?p ?o .\n" +
-      "  BIND ( :" + id + " as ?s ) .\n" +
-      "  OPTIONAL { ?p rdfs:subPropertyOf ?p_type . } \n" +
+  # @return [Array] Array of hash, each hash containing the URI and the RDF type of the item found
+  def self.links_from(id, namespace)
+    results = Array.new
+    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C, UriManagement::C_BO]) +
+      "SELECT DISTINCT ?o ?o_type ?ref_o ?ref_o_type WHERE \n" +
+      "{ \n" + 
+      "  :#{id} ?p ?o . \n" +
+      "  ?p rdfs:subPropertyOf isoC:link . \n" +
+      "  ?o rdf:type ?o_type . \n" +
+      "  OPTIONAL \n" + 
+      "  { \n" +  
+      "    ?o_type rdfs:subClassOf bo:Reference . \n" + 
+      "    ?o ?ref_p ?ref_o . \n" +
+      "    ?ref_p rdfs:subPropertyOf isoC:link . \n" + 
+      "    ?ref_o rdf:type ?ref_o_type . \n" +
+      "  } \n" +
       "}"
-    # Get triples
+    #ConsoleLogger::log(C_CLASS_NAME, "links_from", "Query=#{query}")
     response = CRUD.query(query) 
-    # Process the response.
     triples = Hash.new { |h,k| h[k] = [] }
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      subject = ModelUtility.getValue('s', true, node)
-      predicate = ModelUtility.getValue('p', true, node)
-      object_uri = ModelUtility.getValue('o', true, node)
-      object_literal = ModelUtility.getValue('o', false, node)
-      predicate_type = ModelUtility.getValue('p_type', true, node)
-      if predicate != ""
-        triple_object = object_uri
-        if triple_object == ""
-          triple_object = object_literal
-        end
-        key = ModelUtility.extractCid(subject)
-        triples[key] << {:subject => subject, :predicate => predicate, :object => triple_object}
-        if predicate_type == isoC_link.to_s
-          uri = UriV2.new({:uri => object_uri})
-          children << {:id => uri.id, :namespace => uri.namespace}
-        end
+      i_object = ModelUtility.getValue('o', true, node)
+      i_type = ModelUtility.getValue('o_type', true, node)
+      ref_object = ModelUtility.getValue('ref_o', true, node)
+      ref_type = ModelUtility.getValue('ref_o_type', true, node)
+      #ConsoleLogger::log(C_CLASS_NAME, "links_from", "Query={#{i_object}, #{i_type}, #{ref_object}, #{ref_type}}")
+      if ref_object.empty?
+        results << { uri: UriV2.new({uri: i_object}), rdf_type: i_type, local: true}
+      else
+        results << { uri: UriV2.new({uri: ref_object}), rdf_type: ref_type, local: false}
       end
     end
-    object = new(triples, id)
-    results = {:parent => object, :children => children}
+    #ConsoleLogger::log(C_CLASS_NAME, "links_from", "Results={#{results.to_json}}.")
     return results
   end
 
-  # Find links from the concept
+  # Links To the concept. Find the links to the concept from other concepts or concepts pointed
+  # to via references.
   #
   # @param id [string] The id of the concept
   # @param namespace [string] The namespace of the concept
-  # @return [array] Array o fhash values of link end {id and namespace}
-  def self.graph_from(id, namespace)
-    # Initialise.
+  # @return [Array] Array of hash, each hash containing the URI and the RDF type of the item found
+  def self.links_to(id, namespace)
     results = Array.new
-    # Create the query and action.
-    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C]) +
-      "SELECT DISTINCT ?s WHERE \n" +
-      "{ \n" +
-      "  ?s ?p :" + id + " . \n" +      
-      "  ?p rdfs:subPropertyOf ?p_type .\n" +
-      "  FILTER(?p_type = isoC:link) \n" +
+    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C, UriManagement::C_BO]) +
+      "SELECT DISTINCT ?s ?s_type ?ref_s ?ref_s_type WHERE \n" +
+      "{\n" +
+      "  ?s ?p :#{id} .\n" + 
+      "  ?s rdf:type ?s_type .\n" +
+      "  ?p rdfs:subPropertyOf isoC:link .\n" +
+      "  OPTIONAL\n" + 
+      "  {\n" +
+      "    ?s rdf:type ?c .\n" +
+      "    ?c rdfs:subClassOf bo:Reference .\n" + 
+      "    ?ref_s ?ref_p ?s .\n" +
+      "    ?ref_s rdf:type ?ref_s_type .\n" +
+      "  }\n" +
       "}"
-    response = CRUD.query(query)
-    # Process the response.
+    response = CRUD.query(query) 
+    triples = Hash.new { |h,k| h[k] = [] }
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      uri = UriV2.new({:uri => ModelUtility.getValue('s', true, node)})
-      results << {:id => uri.id, :namespace => uri.namespace}
+      s_object = ModelUtility.getValue('s', true, node)
+      s_type = ModelUtility.getValue('s_type', true, node)
+      ref_object = ModelUtility.getValue('ref_s', true, node)
+      ref_type = ModelUtility.getValue('ref_s_type', true, node)
+      #ConsoleLogger::log(C_CLASS_NAME, "links_to", "Query={#{s_object}, #{s_type}, #{ref_object}, #{ref_type}}")
+      if ref_object.empty?
+        results << { uri: UriV2.new({uri: s_object}), rdf_type: s_type, local: true}
+      else
+        results << { uri: UriV2.new({uri: ref_object}), rdf_type: ref_type, local: false}
+      end
     end
+    #ConsoleLogger::log(C_CLASS_NAME, "links_to", "Results={#{results.to_json}}.")
     return results
   end
-
+  
   # Does a link exist
   #
   # @param prefix [string] The schema prefix
@@ -555,7 +564,7 @@ class IsoConcept
     result = ""
     l = @extension_properties.select {|property| property[:rdf_type] == rdf_type.to_s } 
     if l.length == 1
-      ConsoleLogger::log(C_CLASS_NAME, "get_extension", "L=#{l.to_json}.")
+      #ConsoleLogger::log(C_CLASS_NAME, "get_extension", "L=#{l.to_json}.")
       result = l[0][:value]
     end
     return result
@@ -585,9 +594,9 @@ private
     name = ModelUtility.extractCid(triple[:predicate])
     predicate = triple[:predicate]
     extension ? xsd_type = @@extension_attributes[predicate][:xsd_type] : xsd_type = @@property_attributes[predicate][:xsd_type]
-    ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "xsd type=#{xsd_type.to_json}.")
+    #ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "xsd type=#{xsd_type.to_json}.")
     internal_type = BaseDatatype.from_xsd(xsd_type)
-    ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "internal type=#{internal_type}.")
+    #ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "internal type=#{internal_type}.")
     literal = triple[:object]
     if internal_type == BaseDatatype::C_STRING
       value = "#{literal}"
@@ -603,7 +612,7 @@ private
     else
       value = "#{literal}"
     end
-    ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "value=#{value}.")
+    #ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "value=#{value}.")
     if !extension 
       self.instance_variable_set("@#{name}", value)
     end

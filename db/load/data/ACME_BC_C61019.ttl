@@ -33,7 +33,7 @@
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#alias> 			"Test Code (--TESTCD)" . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#ordinal> 			"1" . 
-<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasValue> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1_PV1> . 
+<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1_PV1> . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#isPropertyOf> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1> . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#qText> 			"" . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#pText> 			"" . 
@@ -57,7 +57,7 @@
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#alias> 			"Test Name (--TEST)" . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#ordinal> 			"1" . 
-<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasValue> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1_PV1> . 
+<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1_PV1> . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#isPropertyOf> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1> . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#qText> 			"" . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I1_DT1_P2_DT1_P1> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#pText> 			"" . 
@@ -246,8 +246,8 @@
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#alias> 			"Result Units (--ORRESU)" . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#ordinal> 			"2" . 
-<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasValue> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2_PV1> . 
-<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasValue> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2_PV2> . 
+<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2_PV1> . 
+<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2_PV2> . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#isPropertyOf> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1> . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#qText> 			"BUN Units" . 
 <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC_C61019_I8_DT1_P2> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#pText> 			"Units" . 

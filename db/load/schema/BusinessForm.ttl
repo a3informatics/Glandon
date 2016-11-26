@@ -146,21 +146,13 @@
   rdfs:range bo:BcReference;
   skos:definition ""^^xsd:string
 .
-:hasValue
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :BcProperty ;
-  rdfs:label "Reference to Biomedical Concept value."^^xsd:string ;
-  rdfs:range bo:BcReference ;
-  skos:definition ""^^xsd:string
-.
 :hasThesaurusConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Question ;
   rdfs:label "Reference to Thesaurus Concept."^^xsd:string ;
   rdfs:range bo:TcReference ;
-  skos:definition ""^^xsd:string
+  skos:definition "Reference to a Thesaurus Concept"^^xsd:string
 .
 :completion
   rdf:type owl:DatatypeProperty ;

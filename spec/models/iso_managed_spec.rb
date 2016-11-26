@@ -58,7 +58,7 @@ describe IsoManaged do
       return result
     end
     
-	it "clears triple store and loads test data" do
+	before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -66,8 +66,11 @@ describe IsoManaged do
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
     load_schema_file_into_triple_store("ISO11179Data.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    load_schema_file_into_triple_store("ISO25964.ttl")
+    load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_test_file_into_triple_store("IsoNamespace.ttl")
+    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")
     load_test_file_into_triple_store("iso_managed_data.ttl")
     load_test_file_into_triple_store("iso_managed_data_2.ttl")
     load_test_file_into_triple_store("iso_managed_data_3.ttl")
@@ -76,7 +79,7 @@ describe IsoManaged do
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
   end
- 
+
 	it "validates a valid object" do
     result = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(result.valid?).to eq(true)
@@ -425,8 +428,27 @@ describe IsoManaged do
     item.destroy
   end
 
-	it "clears triple store" do
-    clear_triple_store
+  it "finds the parent managed item" do
+    load_test_file_into_triple_store("CT_V42.ttl")
+    load_test_file_into_triple_store("BC.ttl")
+    load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+    mi = IsoManaged.find_managed("CLI-C100144_C103608", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology"}), rdf_type: "http://www.assero.co.uk/ISO25964#Thesaurus" }
+    expect(mi.to_json).to eq(result.to_json)
+    mi = IsoManaged.find_managed("BC-ACME_BC_C25347_DefinedObservation_targetAnatomicSiteCode_CD", "http://www.assero.co.uk/MDRBCs/V1")
+    result = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347"}), rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" }
+    expect(mi.to_json).to eq(result.to_json)
+    mi = IsoManaged.find_managed("F-ACME_VSBASELINE1_G1_G2", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    result = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}), rdf_type: "http://www.assero.co.uk/BusinessForm#Form" }
+    expect(mi.to_json).to eq(result.to_json)
+    mi = IsoManaged.find_managed( "F-ACME_VSBASELINE1_G1_G1_I2", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    result = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}), rdf_type: "http://www.assero.co.uk/BusinessForm#Form" }
+    expect(mi.to_json).to eq(result.to_json)
+    mi = IsoManaged.find_managed( "F-ACME_VSBASELINE1_G1_G1_I2_I1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    result = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}), rdf_type: "http://www.assero.co.uk/BusinessForm#Form" }
+    mi = IsoManaged.find_managed( "F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    result = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}), rdf_type: "http://www.assero.co.uk/BusinessForm#Form" }
+    expect(mi.to_json).to eq(result.to_json)
   end
 
 end

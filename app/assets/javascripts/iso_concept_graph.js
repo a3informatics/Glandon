@@ -3,53 +3,8 @@ $(document).ready(function() {
   var C_REFRESH_START = 10;
   var C_REFRESH_UPPER = 75;
   
-  var colours = {};
-  colours[C_SI] = "sandybrown";
-  colours[C_RS] = "sandybrown";
-  
-  // Form
-  colours[C_FORM] = "gold";
-  colours[C_NORMAL_GROUP] = "gold";
-  colours[C_COMMON_GROUP] = "gold";
-  colours[C_PLACEHOLDER] = "gold";
-  colours[C_BC_QUESTION] = "gold";
-  colours[C_QUESTION] = "gold";
-
-  // BCs  
-  colours[C_BC] = "crimson";
-  colours[C_BC_DATATYPE] = "crimson";
-  colours[C_BC_ITEM] = "crimson";
-  colours[C_BC_PROP] = "crimson";
-  colours[C_BC_PROP_VALUE] = "crimson";
-  colours[C_BCT] = "salmon";
-
-  // SDTM
-  colours[C_USERDOMAIN] = "royalblue";
-  colours[C_USERVARIABLE] = "royalblue";
-  colours[C_SDTM_IG] = "dodgerblue";
-  colours[C_IGDOMAIN] = "dodgerblue";
-  colours[C_IGVARIABLE] = "dodgerblue";
-  colours[C_CLASSDOMAIN] = "deepskyblue";
-  colours[C_CLASSVARIABLE] = "deepskyblue";
-  colours[C_MODELVARIABLE] = "powderblue";
-  colours[C_MODEL] = "powderblue";
-  colours[C_SDTM_CLASSIFICATION] = "orchid";
-  colours[C_SDTM_TYPE] = "blueviolet";
-  colours[C_SDTM_COMPLIANCE] = "fuchsia";
-
-  // Thesaurus
-  colours[C_TH] = "green";
-  colours[C_THC] = "green";
-
-  // Refs
-  colours[C_TC_REF] = "whitesmoke";
-  colours[C_V_REF] = "whitesmoke";
-  colours[C_P_REF] = "whitesmoke";
-  colours[C_BC_REF] = "whitesmoke";
-  colours[C_T_REF] = "whitesmoke";
-  colours[C_C_REF] = "whitesmoke";
-
   var html;
+  var json;
   var graph;
   var node;
   var queue;
@@ -62,13 +17,30 @@ $(document).ready(function() {
   var run;
   var currentNode;
   var currentThis;
-  
+  var conceptGraph;
+  var graphTypeInput;
+  var urlRoot;
+  var graphDistance;
+
+  // Disable the focus button
+  $("#graph_focus").prop("disabled", true);
+  $("#graph_running").prop("disabled", true);
+  $("#concept_label").prop("disabled", true);
+  $("#concept_type").prop("disabled", true);
+
   // Get initial / root item.
   html = $("#jsonData").html();
   json = $.parseJSON(html);
-  var managedItem = json;
-  //console.log("ManagedItem=" + JSON.stringify(managedItem));
-        
+  var concept = json;
+  
+  // Set the flags
+  graphTypeInput = document.getElementById("graph_type");
+  conceptGraph = (graphTypeInput.value === 'concept');
+  urlRoot = "/iso_concept/"
+  if (!conceptGraph) {
+    urlRoot = "/iso_managed/"
+  } 
+
   // Create empty graph
   graph = {};
   graph.nodes = [];
@@ -77,18 +49,25 @@ $(document).ready(function() {
   nodeMap = {};
   linkMap = {};
   asked = {};
-  refreshCount = C_REFRESH_START;
-  refreshLimit = C_REFRESH_START;
+  if (conceptGraph) {
+    refreshCount = C_REFRESH_START;
+    refreshLimit = C_REFRESH_START;
+    graphDistance = 25;
+  } else {
+    refreshCount = 1;
+    refreshLimit = 1;  
+    graphDistance = 75;  
+  }
   run = true;
   currentNode = null;
   currentThis = null;
   
   // Init D3
-  d3gInit(colours, 35);
+  d3gInit(colours, graphDistance);
   
   // Create the new node and add children to queue
-  rootIndex = addNode(managedItem);
-  processLinkedNodes(managedItem, rootIndex);
+  rootIndex = addNode(concept);
+  addToQueue(concept, rootIndex);
 
   // Process the queue
   drawGraphForce();
@@ -107,10 +86,7 @@ $(document).ready(function() {
     currentThis = this;
   }
 
-  function emptyClick () {
-  }
-
-  function emptyDblClick () {
+  function empty () {
   }
 
   $('#graph_stop').click(function() {
@@ -119,8 +95,12 @@ $(document).ready(function() {
     if (run) {
       clearCurrent();
       processQueue();
+      $("#graph_focus").prop("disabled", true);
+      addSpinner();
     } else {
       drawGraphForce();
+      $("#graph_focus").prop("disabled", false);
+      removeSpinner();
     }
   });
 
@@ -136,26 +116,26 @@ $(document).ready(function() {
 
   // Get the next block of data for the table
   function next(queueNode) {
-    var id = queueNode.data.id;
-    var ns = queueNode.data.namespace;
+    var uri = queueNode.data.uri
     //console.log("Request URI=<" + ns + "#" + id + ">");
     $.ajax({
-      url: "/iso_concept/graph",
-      data: { "id": id, "namespace": ns },
+      url: urlRoot + "graph_links",
+      data: { "id": getId(uri), "namespace": getNamespace(uri) },
       type: 'GET',
       dataType: 'json',
       success: function(result) {
         var node;
-        var uri = toUri(result.namespace, result.id);
+        var uri = result.uri;
         var newIndex;
-        // Add node and link
-        newIndex = addNode(result);
-        addLink(queueNode.index, newIndex);
-        // Add the parents and children to the processing queue
-        processLinkedNodes(result, newIndex, queueNode.index);
-        // Process the queue.
+        var i;
+        for (i=0; i<result.length; i++) {
+          newIndex = addNode(result[i]);
+          addLink(queueNode.index, newIndex);
+          if (!asked.hasOwnProperty(result[i].uri)) {
+            addToQueue(result[i], newIndex)
+          }
+        }
         processQueue();
-        // Draw any changes
         drawGraph();
       },
       error: function(xhr,status,error){
@@ -166,17 +146,15 @@ $(document).ready(function() {
 
   function info(node) {
     $.ajax({
-      url: "/iso_concept/" + node.id,
-      data: { "namespace": node.namespace },
+      url: urlRoot + getId(node.uri),
+      data: { "namespace": getNamespace(node.uri) },
       type: 'GET',
       dataType: 'json',
       success: function(result) {
-        $('#node_details tbody').empty();
-        $('#node_details tbody').append(
-          '<tr><td><strong>Id:</strong></td><td>' + result.id + '</td></tr>' +
-          '<tr><td><strong>Type:</strong></td><td>' + getId(result.type) + '</td></tr>' +
-          '<tr><td><strong>Label:</strong></td><td>' + result.label + '</td></tr>'
-        );
+        //$("#concept_type").show();
+        $("#concept_label").show();
+        $("#concept_type").val(getId(result.type));
+        $("#concept_label").val(result.label);
       },
       error: function(xhr,status,error){
         handleAjaxError(xhr, status, error);
@@ -188,12 +166,13 @@ $(document).ready(function() {
     var index;
     var node;
     var uri;
-    uri = toUri(sourceNode.namespace, sourceNode.id);    
+    uri = sourceNode.uri;    
     if (nodeMap.hasOwnProperty(uri)) {
       index = nodeMap[uri];
     } else {
       node = sourceNode;
       node.name = "";
+      node.type = sourceNode.rdf_type;
       graph.nodes.push(node);
       index = graph.nodes.length - 1;
       nodeMap[uri] = index;
@@ -206,74 +185,44 @@ $(document).ready(function() {
   function addLink(source, target) {
     var link;
     var key;
-    key = source + "." + target;
-    if (linkMap.hasOwnProperty(key)) {
+    key1 = source + "." + target;
+    key2 = target + "." + source;
+    if (linkMap.hasOwnProperty(key1)) {
       return false;
-    } else if (source == -1 || target == -1) {
+    } else if (linkMap.hasOwnProperty(key2)) {
       return false;
     } else {
       link = {};
       link["source"] = source;
       link["target"] = target;
       graph.links.push(link);
-      linkMap[key] = true;  
+      linkMap[key1] = true;  
+      linkMap[key2] = true;  
       refreshCount += 1;
       return true;
     }  
   }
 
-  function processLinkedNodes(sourceNode, newIndex, parentIndex) {
-    for (i=0; i<sourceNode.children.length; i++) {
-      var child = sourceNode.children[i];
-      var queueNode = {};
-      var uri = toUri(child.namespace, child.id);
-      if (nodeMap.hasOwnProperty(uri)) {
-        addLink(newIndex, nodeMap[uri]);
-      } else {
-        if (asked.hasOwnProperty(uri)) {
-          // We have already queued a request. Do nothing
-          //console.log("Already asked URI=<" + uri + ">");
-        } else {
-          queueNode.index = newIndex;
-          queueNode.data = child;
-          queue.push(queueNode);
-          asked[uri] = true;
-        }
-      }
-    }
-    for (i=0; i<sourceNode.parent.length; i++) {
-      var parent = sourceNode.parent[i];
-      var queueNode = {};
-      var uri = toUri(parent.namespace, parent.id);
-      if (nodeMap.hasOwnProperty(uri)) {
-        addLink(nodeMap[uri], newIndex);          
-      } else {
-        if (asked.hasOwnProperty(uri)) {
-          // We have already queued a request. Do nothing
-          //console.log("Already asked URI=<" + uri + ">");
-        } else {
-          queueNode.index = -1;
-          queueNode.data = parent;
-          queue.push(queueNode);
-          asked[uri] = true;
-        }
-      }
-    }
+  function addToQueue(sourceNode, newIndex) {
+    var queueNode;
+    queueNode = {};
+    queueNode.index = newIndex;
+    queueNode.data = sourceNode;
+    queue.push(queueNode);
+    asked[sourceNode.uri] = true;
   }
 
   function drawGraph() {
     var json;
     json = JSON.parse(JSON.stringify(graph));
     if (refreshCount >= refreshLimit) {
-      d3gDraw(json, nodeClick, emptyDblClick);
+      d3gDraw(json, nodeClick, empty);
       refreshCount = 0;
       refreshLimit = refreshLimit * 2;
       if (refreshLimit > C_REFRESH_UPPER) {
         refreshLimit = C_REFRESH_UPPER;
       }
-    } //else {
-      //refreshCount += 1;
-    //}
+    }
   }
 
   function drawGraphForce() {
@@ -289,20 +238,21 @@ $(document).ready(function() {
       next(item);
     } else {
       drawGraphForce();
+      removeSpinner();
     }
   }
 
   function clearQueue() {
     queue = [];
     asked = {};
+    removeSpinner();
   }
 
   function addCurrentToQueue() {
     var queueNode = {};
     queueNode.index = currentNode.index;
     queueNode.data = {};
-    queueNode.data.id = currentNode.id;
-    queueNode.data.namespace = currentNode.namespace;
+    queueNode.data.uri = currentNode.uri;
     queue.push(queueNode);
   }
 
@@ -310,6 +260,14 @@ $(document).ready(function() {
     currentNode = null;
     currentThis = null;
     refreshLimit = C_REFRESH_START; 
-  }  
+  }
+
+  function removeSpinner() {
+    $("#graph_running > span").removeClass('glyphicon-spin');
+  }
+
+  function addSpinner() {
+    $("#graph_running > span").addClass('glyphicon-spin');
+  }
 
 });

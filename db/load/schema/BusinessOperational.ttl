@@ -22,42 +22,43 @@
   rdf:type owl:Class ;
   rdfs:label "Reference"^^xsd:string ;
   rdfs:subClassOf isoC:Concept ;
+  skos:definition "Generic reference type."^^xsd:string ;
 .
 :BcReference
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
-  skos:definition "Holds the reference to a Biomedical Concept."^^xsd:string
+  skos:definition "Holds the reference to a Biomedical Concept."^^xsd:string ;
 .
 :BctReference
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept Template Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
-  skos:definition "Holds the reference to a Biomedical Concept Template."^^xsd:string
+  skos:definition "Holds the reference to a Biomedical Concept Template."^^xsd:string ;
 .
 :PReference
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept Property Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
-  skos:definition "Holds the reference to a Biomedical Concept property."^^xsd:string
+  skos:definition "Holds the reference to a Biomedical Concept property."^^xsd:string ;
 .
 :TcReference
   rdf:type owl:Class ;
   rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
-  skos:definition "Holds the reference to a Thesaurus Concept."^^xsd:string
+  skos:definition "Holds the reference to a Thesaurus Concept."^^xsd:string ;
 .
 :TReference
   rdf:type owl:Class ;
   rdfs:label "Tabulation Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
-  skos:definition "Holds the reference to a Tabulation."^^xsd:string
+  skos:definition "Holds the reference to a Tabulation."^^xsd:string ;
 .
 :CReference
   rdf:type owl:Class ;
   rdfs:label "Tabulation Column Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
-  skos:definition "Holds the reference to a Tabulation Column."^^xsd:string
+  skos:definition "Holds the reference to a Tabulation Column."^^xsd:string ;
 .
 :hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
@@ -65,7 +66,7 @@
   rdfs:domain :BcReference ;
   rdfs:label "Biomedical Concept relationship."^^xsd:string ;
   rdfs:range cbc:BiomedicalConceptInstance ;
-  skos:definition "Biomedical Concept instance relationship."^^xsd:string
+  skos:definition "Biomedical Concept instance relationship."^^xsd:string ;
 .
 :basedOnTemplate
   rdf:type owl:ObjectProperty ;
@@ -73,7 +74,7 @@
   rdfs:domain :BcReference ;
   rdfs:label "Biomedical Concept Templaterelationship."^^xsd:string ;
   rdfs:range cbc:BiomedicalConceptTemplate ;
-  skos:definition "Biomedical Concept Template relationship."^^xsd:string
+  skos:definition "Biomedical Concept Template relationship."^^xsd:string ;
 .
 :hasProperty
   rdf:type owl:ObjectProperty ;
@@ -84,15 +85,7 @@
     ] ;
   rdfs:label "Biomedical Concept property relationship."^^xsd:string ;
   rdfs:range cbc:Property ;
-  skos:definition "Biomedical Concept property relationship."^^xsd:string
-.
-:hasValue
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :BcReference ;
-  rdfs:label "Biomedical Concept value relationship."^^xsd:string ;
-  rdfs:range cbc:Value ;
-  skos:definition "Biomedical Concept value relationship."^^xsd:string
+  skos:definition "Biomedical Concept property relationship."^^xsd:string ;
 .
 :hasThesaurusConcept
   rdf:type owl:ObjectProperty ;
@@ -100,7 +93,7 @@
   rdfs:domain :TcReference ;
   rdfs:label "Thesaurus Concept relationship."^^xsd:string ;
   rdfs:range iso25964:ThesaurusConcept ;
-  skos:definition "Thesaurus Concept relationship."^^xsd:string
+  skos:definition "Thesaurus Concept relationship."^^xsd:string ;
 .
 :hasTabulation
   rdf:type owl:ObjectProperty ;
@@ -108,7 +101,7 @@
   rdfs:domain :TReference ;
   rdfs:label "Tabulation relationship."^^xsd:string ;
   rdfs:range iso25964:ThesaurusConcept ;
-  skos:definition "Tabulation relationship."^^xsd:string
+  skos:definition "Tabulation relationship."^^xsd:string ;
 .
 :hasColumn
   rdf:type owl:ObjectProperty ;
@@ -116,7 +109,7 @@
   rdfs:domain :CReference ;
   rdfs:label "Tabulation Column relationship."^^xsd:string ;
   rdfs:range iso25964:ThesaurusConcept ;
-  skos:definition "Tabulation Column relationship."^^xsd:string
+  skos:definition "Tabulation Column relationship."^^xsd:string ;
 .
 :ordinal
   rdf:type owl:DatatypeProperty ;

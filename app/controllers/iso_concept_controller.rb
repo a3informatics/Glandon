@@ -3,58 +3,42 @@ class IsoConceptController < ApplicationController
   before_action :authenticate_user!
   
   C_CLASS_NAME = "IsoConceptController"
-  C_REFS = 
-    [
-      OperationalReferenceV2::C_BC_RDF_TYPE_URI.to_s,
-      OperationalReferenceV2::C_P_RDF_TYPE_URI.to_s,
-      OperationalReferenceV2::C_V_RDF_TYPE_URI.to_s,
-      OperationalReferenceV2::C_TC_RDF_TYPE_URI.to_s,
-      OperationalReferenceV2::C_T_RDF_TYPE_URI.to_s, 
-      OperationalReferenceV2::C_C_RDF_TYPE_URI.to_s
-    ]
-
+  
   def show 
     authorize IsoConcept
     @concept = IsoConcept.find(params[:id], params[:namespace], false)
-    respond_to do |format|
-      format.html
-      format.json do
-        render :json => @concept.to_json, :status => 200
-      end
-    end
+    render :json => @concept.to_json, :status => 200
   end
   
   def graph
     authorize IsoConcept, :show?
-    other_concept = Array.new
-    debug = false
-    concept = IsoConcept.graph_to(params[:id], params[:namespace])
-    if C_REFS.include?(concept[:parent].rdf_type)
-      child = concept[:children][0]
-      concept = IsoConcept.graph_to(child[:id], child[:namespace])
-      other_concept1 = IsoConcept.graph_from(child[:id], child[:namespace])
-      other_concept2 = IsoConcept.graph_from(params[:id], params[:namespace])
-      other_concept = other_concept1 + other_concept2
-      #debug = true
-    else
-      other_concept = IsoConcept.graph_from(params[:id], params[:namespace])
+    concept = IsoConcept.find(params[:id], params[:namespace])
+    @result = { uri: concept.uri.to_s, rdf_type: concept.rdf_type }
+  end
+
+  def graph_links
+    authorize IsoConcept, :show?
+    results = IsoConcept.links_from(params[:id], params[:namespace])
+    results += IsoConcept.links_to(params[:id], params[:namespace])
+    results.each do |result|
+      result[:uri] = result[:uri].to_s
     end
-    @result = concept[:parent].to_json
-    @result[:children] = Array.new
-    @result[:parent] = Array.new
-    concept[:children].each do |child|
-      @result[:children] << child
+    render :json => results, :status => 200
+  end
+
+  def impact
+    authorize IsoConcept, :show?
+    managed_items = []
+    map = {}
+    @item = IsoConcept.find(params[:id], params[:namespace], false)
+    concepts = IsoConcept.links_to(params[:id], params[:namespace])
+    concepts.each do |concept|
+      managed_item = IsoManaged.find_managed(concept[:uri].id, concept[:uri].namespace)
+      uri_s = managed_item[:uri].to_s
+      managed_items << { uri: uri_s, rdf_type: managed_item[:rdf_type]} if !map.has_key?(uri_s)
+      map[uri_s] = true
     end
-    other_concept.each do |parent|
-      @result[:parent] << parent
-    end
-    #ConsoleLogger::log(C_CLASS_NAME,"graph","Results=#{@result.to_json}") if debug
-    respond_to do |format|
-      format.html
-      format.json do
-        render :json => @result, :status => 200
-      end
-    end
+    @results = {item: @item.to_json, children: managed_items}
   end
 
 private

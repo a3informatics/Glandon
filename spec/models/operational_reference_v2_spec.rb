@@ -206,7 +206,7 @@ describe OperationalReferenceV2 do
         },
         {
           :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
-          :predicate => "http://www.assero.co.uk/BusinessOperational#hasValue",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept",
           :object => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"
         },
         {
@@ -265,7 +265,7 @@ describe OperationalReferenceV2 do
         },
         {
           :subject => "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1",
-          :predicate => "http://www.assero.co.uk/BusinessOperational#hasValue",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept",
           :object => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"
         },
         {

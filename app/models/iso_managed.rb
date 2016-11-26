@@ -387,6 +387,8 @@ class IsoManaged < IsoConcept
   # Find all managed items based on tag settings.
   # Return the object as JSON
   #
+  # @param id [string] the id of the item 
+  # @param namespace [string] the namespace of the item
   # @return [hash] The JSON hash.
   def self.find_by_tag(id, namespace)
     results = Array.new
@@ -594,94 +596,45 @@ class IsoManaged < IsoConcept
     return object
   end
 
-  # 
+  # Find Managed that is the ultimate parent of given an object.
   #
-  # @return
-  def self.graph_to(id, namespace)
-    # Initialise.
-    results = Hash.new
-    children = Array.new
-    object = nil
-    # Create the query and action.
-    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_I, UriManagement::C_ISO_R, UriManagement::C_ISO_C, UriManagement::C_ISO_25964, UriManagement::C_BO, UriManagement::C_CBC]) +
-      "SELECT ?s ?p ?o WHERE \n" +
+  # @param id [string] the id of the item 
+  # @param namespace [string] the namespace of the item
+  # @return [URI] The URI of the managed item
+  def self.find_managed(id, namespace)
+    result = {}
+    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_I, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]) +
+      "SELECT DISTINCT ?s ?o WHERE \n" +
       "{ \n" +
       "  { \n" +
-      "    :" + id + " isoI:hasIdentifier ?x . \n" +      
-      "    :" + id + " ?p ?o .\n" +
-      "    BIND ( :" + id + " as ?s ) .\n" +
+      "    ?s (iso25964:hasConcept|iso25964:hasChild)* :#{id} . \n" +      
+      "    ?s isoI:hasIdentifier ?si . \n" +      
+      "    ?s rdf:type ?o . \n" +      
       "  } UNION {\n" +
-      "    :" + id + " isoI:hasIdentifier ?x . \n" +      
-      "    :" + id + " (:|!:)* ?s .\n" +
-      "    ?s rdf:type ?ref_type .\n" +
-      "    ?ref_type rdfs:subClassOf bo:Reference .\n" +
-      "    ?s (bo:hasBiomedicalConcept|bo:hasTabulation) ?y . \n" +      
-      "    ?s ?p ?o . \n" +
-      "    FILTER(STRSTARTS(STR(?s), \"" + namespace + "\")) \n" +
+      "    ?s (bf:hasGroup|bf:hasSubGroup|bf:hasItem|bf:hasCommon|bf:hasCommonItem)* :#{id} . \n" +      
+      "    ?s isoI:hasIdentifier ?si . \n" +      
+      "    ?s rdf:type ?o . \n" +      
       "  } UNION {\n" +
-      "    :" + id + " isoI:hasIdentifier ?s . \n" +
-      "    ?s ?p ?o . \n" +
+      "    ?s (cbc:hasItem|cbc:hasDatatype|cbc:hasProperty)* :#{id} . \n" +      
+      "    ?s isoI:hasIdentifier ?si . \n" +      
+      "    ?s rdf:type ?o . \n" +      
       "  } UNION {\n" +
-      "    :" + id + " isoR:hasState ?s . \n" +
-      "    ?s ?p ?o . \n" +
-      "  } UNION {\n" +   
-      "    :" + id + " isoI:hasIdentifier ?x . \n" +      
-      "    :" + id + " cbc:basedOn ?o . \n" +     
-      "    BIND ( :" + id + " as ?s ) .\n" +
-      "    ?s ?p ?o . \n" +    
-      "  }\n" +     
-      "}"
-    # Get triples
-    triples = query_and_response(query)
-    # Create the object based on the triples.
-    object = new(triples, id)
-    triples.each do |key, item_triples|
-      if key == object.id
-        # Special until BCs get upgraded to full inter-managedItem references
-        bct_refs = object.get_links_v2(UriManagement::C_CBC, "basedOn")
-        bct_refs.each do |ref|
-          op_ref = OperationalReferenceV2.new
-          op_ref.subject_ref = ref
-          children << op_ref
-        end
-      elsif key == object.scopedIdentifier.id || key == object.registrationState.id
-        # Do nothing
-      else
-        children << OperationalReferenceV2.find_from_triples(object.triples, key)
-      end
-    end
-    results = {:parent => object, :children => children}
-    return results
-  end
-
-  # 
-  #
-  # @return
-  def self.graph_from(id, namespace)
-    # Initialise.
-    results = Array.new
-    # Create the query and action.
-    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_I, UriManagement::C_ISO_R, UriManagement::C_BO, UriManagement::C_BD, UriManagement::C_BF]) +
-      "SELECT DISTINCT ?s WHERE \n" +
-      "{ \n" +
-      "  ?a ?b :" + id + " . \n" +      
-      "  ?a rdf:type ?ref_type . \n" +
-      "  ?ref_type rdfs:subClassOf bo:Reference .\n" +
-      "  ?s (bd:hasBiomedicalConcept|bf:hasGroup|bf:hasSubGroup|bf:hasBiomedicalConcept)* ?a . \n" +      
-      "  ?s ?p ?o . \n" +    
-      "  ?s isoI:hasIdentifier ?x . \n" +      
+      "    ?s (bd:includesColumn)* :#{id} . \n" +      
+      "    ?s isoI:hasIdentifier ?si . \n" +      
+      "    ?s rdf:type ?o . \n" +      
+      "  }\n" +   
       "}"
     response = CRUD.query(query)
-    # Process the response.
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      subject = ModelUtility.getValue('s', true, node)
-      op_ref = OperationalReferenceV2.new
-      op_ref.subject_ref = UriV2.new({:uri => subject})
-      results << op_ref
+    nodes = xmlDoc.xpath("//result")
+    if nodes.length == 1
+      node = nodes[0]    
+      uri = UriV2.new({uri: ModelUtility.getValue('s', true, node)})
+      rdf_type = ModelUtility.getValue('o', true, node)
+      result = { uri: uri, rdf_type: rdf_type }
     end
-    return results
+    return result
   end
 
   # Add a tag
@@ -724,9 +677,7 @@ class IsoManaged < IsoConcept
       "{ \n" +
       " :" + self.id + " isoC:hasMember #{uri.to_ref} . \n" +
       "}"
-    # Send the request, wait the resonse
     response = CRUD.update(update)
-    # Response
     if !response.success?
       raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
@@ -824,7 +775,7 @@ class IsoManaged < IsoConcept
     # Send the request, wait the resonse
     response = CRUD.update(update)
     if !response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      ConsoleLogger.info(C_CLASS_NAME,"destroy", "Failed to destroy object.")
       raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
     end
   end

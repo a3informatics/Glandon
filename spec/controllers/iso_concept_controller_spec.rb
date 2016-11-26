@@ -1,0 +1,120 @@
+require 'rails_helper'
+
+describe IsoConceptController do
+
+  include DataHelpers
+  
+  describe "Authrorized User" do
+  	
+    login_reader
+
+    before :all do
+      clear_triple_store
+      load_schema_file_into_triple_store("ISO11179Types.ttl")
+      load_schema_file_into_triple_store("ISO11179Basic.ttl")
+      load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      load_schema_file_into_triple_store("ISO11179Data.ttl")
+      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      load_schema_file_into_triple_store("BusinessOperational.ttl")
+      load_schema_file_into_triple_store("BusinessForm.ttl")
+      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
+      load_test_file_into_triple_store("iso_concept_extension.ttl")
+      load_test_file_into_triple_store("iso_concept_data.ttl")
+      load_test_file_into_triple_store("CT_V42.ttl")
+      load_test_file_into_triple_store("BC.ttl")
+      load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+      clear_iso_concept_object
+    end
+
+    #it "show a concept" do
+    #  concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
+    #  get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+    #  expect(assigns(:concept).to_json).to eq(concept.to_json)
+    #  expect(response).to render_template("show")
+    #end
+
+    it "show concept as JSON" do
+      concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")  
+      expect(response.body).to eq(concept.to_json.to_json)
+    end
+
+    it "displays a graph" do
+      result = 
+      { 
+        uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2",
+        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup"
+      }
+      get :graph, {id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
+      expect(assigns(:result)).to eq(result)
+    end
+
+    it "returns the graph links for a concept" do
+      results = 
+      [
+        {
+          uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1",
+          rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
+          local: true
+        },
+        {
+          uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1",
+          rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+          local: true
+          },
+        {
+          uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I2",
+          rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+          local: true
+          },
+        {
+          uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347",
+          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance",
+          local: false
+        },
+        {
+          uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1",
+          rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
+          local: true
+        }
+      ]
+      get :graph_links, {id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(response.body).to eq(results.to_json.to_s)
+    end
+
+    it "allows impact to be assessed" do
+      item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
+      results =
+      { 
+        item: item.to_json,
+        children: 
+        [ 
+          { uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677", rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" },
+          { uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_A00003", rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" },
+          { uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299", rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" },
+          { uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298", rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" },
+          { uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1", rdf_type: "http://www.assero.co.uk/BusinessForm#Form" }
+        ]
+      }
+      get :impact, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
+      expect(assigns(:results).to_json).to eq(results.to_json)
+    end
+
+  end
+
+  describe "Unauthorized User" do
+    
+    it "show a concept" do
+      get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+  end
+
+end
