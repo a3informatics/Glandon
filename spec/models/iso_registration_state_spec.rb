@@ -4,7 +4,7 @@ describe IsoRegistrationState do
   
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  before :all do
     clear_triple_store
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
     load_test_file_into_triple_store("iso_scoped_identifier.ttl")
@@ -433,7 +433,78 @@ describe IsoRegistrationState do
         unresolvedIssue: "X2", 
         effectiveDate: "Wont Change" 
       })
-    # Something here    
+    expect(object.errors.count).to eq(0)
+  end
+  
+  it "allows for an object to be updated, effective date unchanged" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    result = IsoRegistrationState.find("RS-TEST_3-4")
+    object.update( 
+      {
+        registrationStatus: IsoRegistrationState::C_RETIRED, 
+        previousState: IsoRegistrationState::C_STANDARD, 
+        administrativeNote: "X1", 
+        unresolvedIssue: "X2", 
+        effectiveDate: "Wont Change" 
+      })
+    result.registrationStatus = IsoRegistrationState::C_RETIRED
+    result.previousState = IsoRegistrationState::C_STANDARD
+    result.administrativeNote = "X1"
+    result.unresolvedIssue = "X2"
+    expect(object.to_json).to eq(result.to_json)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "prevents an object to be updated if invalid admin note" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    object.update( 
+      {
+        registrationStatus: IsoRegistrationState::C_RETIRED, 
+        previousState: IsoRegistrationState::C_STANDARD, 
+        administrativeNote: "@@@@@@", 
+        unresolvedIssue: "ok", 
+        effectiveDate: "Wont Change" 
+      })
+    expect(object.errors.count).to eq(1)
+  end
+  
+  it "prevents an object to be updated if invalid unresolved issue" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    object.update( 
+      {
+        registrationStatus: IsoRegistrationState::C_RETIRED, 
+        previousState: IsoRegistrationState::C_STANDARD, 
+        administrativeNote: "ok", 
+        unresolvedIssue: "@@@@@@", 
+        effectiveDate: "Wont Change" 
+      })
+    expect(object.errors.count).to eq(1)
+  end
+  
+  it "prevents an object to be updated if invalid state" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    object.update( 
+      {
+        registrationStatus: "X", 
+        previousState: IsoRegistrationState::C_STANDARD, 
+        administrativeNote: "ok", 
+        unresolvedIssue: "@@@@@@", 
+        effectiveDate: "Wont Change" 
+      })
+    expect(object.errors.count).to eq(1)
+  end
+  
+  it "prevents an object to be updated if previous state" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    object.update( 
+      {
+        registrationStatus: IsoRegistrationState::C_STANDARD, 
+        previousState: "D", 
+        administrativeNote: "ok", 
+        unresolvedIssue: "@@@@@@", 
+        effectiveDate: "Wont Change" 
+      })
+    expect(object.errors.count).to eq(1)
   end
   
   it "allows for an object to be made current" do

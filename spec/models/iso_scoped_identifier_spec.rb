@@ -267,7 +267,15 @@ describe IsoScopedIdentifier do
   it "allows for an object to be updated" do
     object = IsoScopedIdentifier.find("SI-TEST_3-4")
     object.update({versionLabel: "0.10"})
-    # Something here    
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    expect(object.versionLabel).to eq("0.10")
+    expect(object.errors.count).to eq(0)
+  end
+  
+  it "prevents an object to be updated if invalid version label" do
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    object.update({versionLabel: "0.10@"})
+    expect(object.errors.count).to eq(1)
   end
   
   it "allows for an object to be destroyed" do
@@ -276,7 +284,7 @@ describe IsoScopedIdentifier do
   end
 
   it "handles a bad response error - update" do
-    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    object = IsoScopedIdentifier.find("SI-TEST_3-5") # Note different object to previous test as it needs to exist.
     response = Typhoeus::Response.new(code: 200, body: "")
     expect(Rest).to receive(:sendRequest).and_return(response)
     expect(response).to receive(:success?).and_return(false)

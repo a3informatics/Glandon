@@ -12,6 +12,9 @@ class IsoRegistrationStatesController < ApplicationController
     referer = request.referer
     registration_state = IsoRegistrationState.find(params[:id])
     registration_state.update(this_params)
+    if !registration_state.errors.empty?
+      flash[:error] = registration_state.errors.full_messages.to_sentence
+    end
     redirect_to referer
   end
 

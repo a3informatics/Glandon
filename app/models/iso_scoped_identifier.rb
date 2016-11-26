@@ -349,26 +349,26 @@ class IsoScopedIdentifier
   # @param params [hash] Contains the versionLabel 
   # @return null
   def update(params)  
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI"]) +
-      "DELETE \n" +
-      "{ \n" +
-      " :" + self.id + " isoI:versionLabel ?a . \n" +
-      "} \n" +
-      "INSERT \n" +
-      "{ \n" +
-      " :" + self.id + " isoI:versionLabel \"" + params[:versionLabel].to_s + "\"^^xsd:string . \n" +
-      "} \n" +
-      "WHERE \n" +
-      "{ \n" +
-      " :" + self.id + " isoI:versionLabel ?a . \n" +
-      "}"
-    # Send the request, wait the resonse
-    #ConsoleLogger.log(C_CLASS_NAME,"update", "Update=" + update.to_s)
-    response = CRUD.update(update)
-    # Response
-    if !response.success?
-      ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
-      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    self.versionLabel = params[:versionLabel]
+    if valid?
+      update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI"]) +
+        "DELETE \n" +
+        "{ \n" +
+        " :" + self.id + " isoI:versionLabel ?a . \n" +
+        "} \n" +
+        "INSERT \n" +
+        "{ \n" +
+        " :" + self.id + " isoI:versionLabel \"#{self.versionLabel}\"^^xsd:string . \n" +
+        "} \n" +
+        "WHERE \n" +
+        "{ \n" +
+        " :" + self.id + " isoI:versionLabel ?a . \n" +
+        "}"
+      response = CRUD.update(update)
+      if !response.success?
+        ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+        raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      end
     end
   end
 

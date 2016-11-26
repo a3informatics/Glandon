@@ -33,6 +33,30 @@ describe IsoRegistrationStatesController do
     
     login_curator
 
+    it 'updates an item' do
+      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
+      rs = IsoRegistrationState.all.first
+      rs = IsoRegistrationState.find(rs.id)
+      post :update, { id: "#{rs.id}", iso_registration_state: {registrationStatus: IsoRegistrationState::C_RETIRED, previousState: IsoRegistrationState::C_STANDARD, administrativeNote: "X1", unresolvedIssue: "X2"  }}
+      updated_rs = IsoRegistrationState.find(rs.id)
+      rs.registrationStatus = IsoRegistrationState::C_RETIRED 
+      rs.previousState = IsoRegistrationState::C_STANDARD 
+      rs.administrativeNote = "X1" 
+      rs.unresolvedIssue = "X2" 
+      expect(updated_rs.to_json).to eq(rs.to_json)
+      expect(response).to redirect_to("/registration_states")
+    end
+
+    it 'prevents updates with invalid data' do
+      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
+      rs = IsoRegistrationState.all.first
+      rs = IsoRegistrationState.find(rs.id)
+      post :update, { id: "#{rs.id}", iso_registration_state: {registrationStatus: "X", previousState: IsoRegistrationState::C_STANDARD, administrativeNote: "X1", unresolvedIssue: "X2"  }}
+      updated_rs = IsoRegistrationState.find(rs.id)
+      expect(updated_rs.to_json).to eq(rs.to_json)
+      expect(response).to redirect_to("/registration_states")
+    end
+
     it 'makes an item current' do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       rs = IsoRegistrationState.all.first

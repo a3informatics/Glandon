@@ -4,6 +4,7 @@ describe "ISO Managed JS", :type => :feature do
   
   include DataHelpers
   include PauseHelpers
+  include FeatureHelpers
   
   before :all do
     user = User.create :email => "curator@example.com", :password => "12345678" 
@@ -40,7 +41,7 @@ describe "ISO Managed JS", :type => :feature do
       click_button 'Log in'
       #pause
       click_link 'Biomedical Concepts'
-      pause
+      #pause
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC_A00003')]/td/a", :text => 'History').click
       #pause
@@ -56,6 +57,86 @@ describe "ISO Managed JS", :type => :feature do
     end
 
     it "allows a impact page to be displayed"
+
+    it "allows the comments to be updated", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      expect(page).to have_content 'Signed in successfully'
+      click_link 'Forms'
+      expect(page).to have_content 'Index: Forms'
+      #pause
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
+      #pause
+      find(:xpath, "//table[@id='secondary']/tbody/tr/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Comments:'
+      #pause
+      fill_in "iso_managed_changeDescription", with: "Hello world. This is a change description"
+      click_button "Preview"
+      div = page.find("#generic_markdown")
+      expect(div.text(:all)).to eq("Hello world. This is a change description")
+      fill_in "iso_managed_explanatoryComment", with: "I am a comment"
+      click_button "Preview"
+      #pause
+      div = page.find("#generic_markdown")
+      expect(div.text(:all)).to eq("I am a comment")
+      fill_in "iso_managed_origin", with: "I am the origin"
+      click_button "Preview"
+      div = page.find("#generic_markdown")
+      expect(div.text(:all)).to eq("I am the origin")
+      fill_in "iso_managed_origin", with: "@@@@@"
+      expect(page).to have_content 'Please enter valid markdown.'
+      #pause
+      set_focus("iso_managed_explanatoryComment")
+      div = page.find("#generic_markdown")
+      expect(div.text(:all)).to eq("I am a comment")
+      set_focus("iso_managed_changeDescription")
+      div = page.find("#generic_markdown")
+      expect(div.text(:all)).to eq("Hello world. This is a change description")
+      fill_in "iso_managed_origin", with: "Origin"
+      click_button 'Submit'
+      expect(page).to have_content 'Hello world. This is a change description'   
+      expect(page).to have_content 'I am a comment'   
+      expect(page).to have_content 'Origin'   
+    end
+
+    it "allows the status to be updated", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      expect(page).to have_content 'Signed in successfully'
+      click_link 'Forms'
+      expect(page).to have_content 'Index: Forms'
+      #pause
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
+      #pause
+      find(:xpath, "//table[@id='main']/tbody/tr/td/a", :text => 'Status').click
+      expect(page).to have_content 'Status:'
+      #pause
+      fill_in "iso_scoped_identifier_versionLabel", with: "@@@@@"
+      click_button "version_submit"
+      expect(page).to have_content "Versionlabel contains invalid characters"
+      fill_in "iso_scoped_identifier_versionLabel", with: "Draft 1"
+      click_button "version_submit"
+      expect(page).to have_content "Draft 1"
+      #pause      
+      fill_in "iso_registration_state_administrativeNote", with: "£££££££££"
+      fill_in "iso_registration_state_unresolvedIssue", with: "Draft 1"
+      click_button "state_submit"
+      expect(page).to have_content "Administrativenote contains invalid characters"
+      fill_in "iso_registration_state_administrativeNote", with: "Good text"
+      fill_in "iso_registration_state_unresolvedIssue", with: "&&&&"
+      click_button "state_submit"
+      expect(page).to have_content "Unresolvedissue contains invalid characters"
+      fill_in "iso_registration_state_administrativeNote", with: "Good text"
+      fill_in "iso_registration_state_unresolvedIssue", with: "Very good text"
+      click_button "state_submit"
+      #pause
+      expect(page).to have_content "Current Status: Superseded"
+      #pause
+    end
 
   end
 

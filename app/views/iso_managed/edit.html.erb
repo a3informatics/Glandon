@@ -1,7 +1,8 @@
+<%= javascript_include_tag 'iso_managed_comment_edit' %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Comments:", :item => @managed_item} %>
 <div class="row">
 	<div class="col-md-7">
-		<%= form_for @managed_item do |f| %>
+		<%= form_for @managed_item, :html=> {:id => 'main_form'} do |f| %>
 			<div class="form-group">
 			    <%= f.label :changeDescription, "Change Description:" %><br />
 			    <%= f.text_area :changeDescription, autofocus: true, class: "form-control", rows:5 %>

@@ -234,7 +234,7 @@ jQuery.validator.addMethod("freeText", function(value, element) {
 jQuery.validator.addMethod("markdown", function(value, element) {
   var result = /^[A-Za-z0-9 .!?,'"_\-\/\\()[\]~#*=:;&|\r\n]*$/.test( value );
   return result;
-}, "Please enter a valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&| special characters and return only.");
+}, "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&| special characters and return only.");
 
 jQuery.validator.addMethod("variableName", function(value, element) {
   var result = /^[A-Z][A-Z0-9]{1,7}$/.test( value );

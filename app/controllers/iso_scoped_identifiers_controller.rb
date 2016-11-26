@@ -32,6 +32,10 @@ class IsoScopedIdentifiersController < ApplicationController
     @referer = request.referer
     @scoped_identifier = IsoScopedIdentifier.find(params[:id])
     @scoped_identifier.update(this_params)
+    ConsoleLogger::log(C_CLASS_NAME, "update", "Latest: #{@scoped_identifier.to_json}")
+    if !@scoped_identifier.errors.empty?
+      flash[:error] = @scoped_identifier.errors.full_messages.to_sentence
+    end
     redirect_to @referer
   end
 

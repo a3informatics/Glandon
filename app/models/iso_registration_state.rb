@@ -477,42 +477,40 @@ class IsoRegistrationState
   # @option param [String] :effectiveDate The effective date
   # @return [void]
   def update(params)  
-    registrationStatus = params[:registrationStatus]
-    previousState  = params[:previousState]
-    note = params[:administrativeNote]
-    issue = params[:unresolvedIssue]
-    date = params[:effectiveDate]
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "DELETE \n" +
-      "{ \n" +
-      " :" + id + " isoR:registrationStatus ?a . \n" +
-      " :" + id + " isoR:administrativeNote ?b . \n" +
-      #" :" + id + " isoR:effectiveDate ?c . \n" +
-      " :" + id + " isoR:unresolvedIssue ?d . \n" +
-      " :" + id + " isoR:previousState ?e . \n" +
-      "} \n" +
-      "INSERT \n" +
-      "{ \n" +
-      " :" + id + " isoR:registrationStatus \"" + registrationStatus + "\"^^xsd:string . \n" +
-      " :" + id + " isoR:administrativeNote \"" + note + "\"^^xsd:string . \n" +
-      #" :" + id + " isoR:effectiveDate \"" + date + "\"^^xsd:date . \n" +
-      " :" + id + " isoR:unresolvedIssue \"" + issue + "\"^^xsd:string . \n" +
-      " :" + id + " isoR:previousState \"" + previousState + "\"^^xsd:string . \n" +
-      "} \n" +
-      "WHERE \n" +
-      "{ \n" +
-      " :" + id + " isoR:registrationStatus ?a . \n" +
-      " :" + id + " isoR:administrativeNote ?b . \n" +
-      #" :" + id + " isoR:effectiveDate ?c . \n" +
-      " :" + id + " isoR:unresolvedIssue ?d . \n" +
-      " :" + id + " isoR:previousState ?e . \n" +
-      "}"
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    # Response
-    if !response.success?
-      ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
-      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    self.registrationStatus = params[:registrationStatus]
+    self.previousState  = params[:previousState]
+    self.administrativeNote = params[:administrativeNote]
+    self.unresolvedIssue = params[:unresolvedIssue]
+    if valid?
+      update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
+        "DELETE \n" +
+        "{ \n" +
+        " :" + id + " isoR:registrationStatus ?a . \n" +
+        " :" + id + " isoR:administrativeNote ?b . \n" +
+        " :" + id + " isoR:unresolvedIssue ?d . \n" +
+        " :" + id + " isoR:previousState ?e . \n" +
+        "} \n" +
+        "INSERT \n" +
+        "{ \n" +
+        " :" + id + " isoR:registrationStatus \"#{self.registrationStatus}\"^^xsd:string . \n" +
+        " :" + id + " isoR:administrativeNote \"#{self.administrativeNote}\"^^xsd:string . \n" +
+        " :" + id + " isoR:unresolvedIssue \"#{self.unresolvedIssue}\"^^xsd:string . \n" +
+        " :" + id + " isoR:previousState \"#{self.previousState}\"^^xsd:string . \n" +
+        "} \n" +
+        "WHERE \n" +
+        "{ \n" +
+        " :" + id + " isoR:registrationStatus ?a . \n" +
+        " :" + id + " isoR:administrativeNote ?b . \n" +
+        " :" + id + " isoR:unresolvedIssue ?d . \n" +
+        " :" + id + " isoR:previousState ?e . \n" +
+        "}"
+      # Send the request, wait the resonse
+      response = CRUD.update(update)
+      # Response
+      if !response.success?
+        ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+        raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      end
     end
   end
   
@@ -659,18 +657,21 @@ class IsoRegistrationState
         self.errors[:base] << "Registration authority error: #{msg}"
       end
     end
-    return ra_valid &&
-      valid_registration_state?(self.registrationStatus) && 
-      valid_registration_state?(self.previousState) && 
+    result = ra_valid &&
+      valid_registration_state?(:registrationStatus, self.registrationStatus) && 
+      valid_registration_state?(:previousState, self.previousState) && 
       FieldValidation.valid_label?(:administrativeNote, self.administrativeNote, self) &&
       FieldValidation.valid_label?(:unresolvedIssue, self.unresolvedIssue, self) &&
       FieldValidation.valid_label?(:administrativeStatus, self.administrativeStatus, self) 
+    return result
   end
 
 private
 
-  def valid_registration_state?(field)
-    return @@stateInfo.has_key?(field)
+  def valid_registration_state?(field, value)
+    return true if @@stateInfo.has_key?(value)
+    self.errors.add(field, "is invalid")
+    return false  
   end
 
 end

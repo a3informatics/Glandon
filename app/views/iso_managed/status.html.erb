@@ -40,7 +40,7 @@
 					    <%= f.label :versionLabel, "Version Label:" %><br />
 					    <%= f.text_field :versionLabel, autofocus: true, class: "form-control" %>
 					</div>
-					<%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
+					<%= f.submit "Submit", class: "btn btn-default btn-primary", id: 'version_submit' %>  
 				<% end %>
 			</div>
 		</div>
@@ -79,7 +79,7 @@
 						<%= f.hidden_field :previousState, :value => state %>  
 						<%= f.hidden_field :registrationStatus, :value => nextState %>  
 						<%= f.hidden_field :referer, :value => @referer %>  
-						<%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
+						<%= f.submit "Submit", class: "btn btn-default btn-primary", id: 'state_submit' %>  
 					<% end %>
 				<% end %>
 			</div>

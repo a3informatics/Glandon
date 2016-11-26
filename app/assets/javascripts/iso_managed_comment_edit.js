@@ -1,8 +1,15 @@
 $(document).ready( function() {
 
-  $('#main').DataTable({
-      columnDefs: [ ]
-  } );	
+  validatorDefaults ();
+  $('#main_form').validate({
+    rules: {  "iso_managed[changeDescription]": { required: false, markdown: true },
+              "iso_managed[explanatoryComment]": { required: false, markdown: true },
+              "iso_managed[origin]": { required: false, markdown: true }
+    },
+    submitHandler: function(form) {
+      return true;
+    }
+  });
 
   var markdownElement = null;
   var genericMarkdownElement = document.getElementById("generic_markdown");
