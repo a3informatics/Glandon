@@ -11,14 +11,14 @@ class CdiscClisController < ApplicationController
     @cdiscClis = CdiscCli.all
   end
   
-  def impact
-    authorize CdiscCli
-    id = params[:id]
-    namespace = params[:namespace]
-    @cdiscCli = CdiscCli.find(id, namespace)
-    @bcs = BiomedicalConcept.term_impact(params)
-    @forms = Form.term_impact(params)
-  end
+  #def impact
+  #  authorize CdiscCli
+  #  id = params[:id]
+  #  namespace = params[:namespace]
+  #  @cdiscCli = CdiscCli.find(id, namespace)
+  #  @bcs = BiomedicalConcept.term_impact(params)
+  #  @forms = Form.term_impact(params)
+  #end
 
   def show
     authorize CdiscCli
