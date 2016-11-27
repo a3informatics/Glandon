@@ -37,13 +37,13 @@ class ThesaurusConceptsController < ApplicationController
     end
   end
 
-  def impact
-    authorize ThesaurusConcept
-    id = params[:id]
-    namespace = params[:namespace]
-    @thesaurusConcept = ThesaurusConcept.find(id, namespace)
-    @bcs = BiomedicalConcept.term_impact(params)
-  end
+  #def impact
+  #  authorize ThesaurusConcept
+  #  id = params[:id]
+  #  namespace = params[:namespace]
+  #  @thesaurusConcept = ThesaurusConcept.find(id, namespace)
+  #  @bcs = BiomedicalConcept.term_impact(params)
+  #end
 
   def destroy
     authorize ThesaurusConcept

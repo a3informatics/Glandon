@@ -87,7 +87,7 @@ Rails.application.routes.draw do
   end
   resources :thesaurus_concepts, :only => [:update, :show, :destroy, :edit] do
     collection do
-      get :impact
+      #get :impact
       post :add_child
     end
   end
@@ -135,7 +135,7 @@ Rails.application.routes.draw do
     collection do
       get :compare
       get :history
-      get :impact
+      #get :impact
       get :changes
     end
   end

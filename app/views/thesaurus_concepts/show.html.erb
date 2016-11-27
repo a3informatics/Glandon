@@ -48,8 +48,8 @@
 				    <td><%= item.synonym %></td>
 				    <td><%= item.definition %></td>
 				    <td><%= link_to "Show", thesaurus_concept_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary btn-xs" %></td>
-				    <td><%= link_to "Impact", impact_thesaurus_concepts_path(:id => item.id,  :namespace => item.namespace), :class => "btn btn-info btn-xs" %></td>
-			        <td><%= link_to "Triples", view_dashboard_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-warning btn-xs" %></td>
+				    <td><%= link_to "Impact", impact_iso_concept_index_path(:id => item.id,  :namespace => item.namespace), :class => "btn btn-info btn-xs" %></td>
+			       <td><%= link_to "Triples", view_dashboard_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-warning btn-xs" %></td>
 				</tr>
 			<% end %>
 		</tbody>
