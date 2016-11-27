@@ -8,7 +8,7 @@ class CdiscTerm < Thesaurus
   C_IDENTIFIER = "CDISC Terminology"
   
   # class variables
-  @@cdisc_namespace
+  @@cdisc_namespace ||= IsoNamespace.findByShortName("CDISC")
 
   # Initialize the object
   #
@@ -16,7 +16,7 @@ class CdiscTerm < Thesaurus
   # @param id [string] The id of the form
   # @return [object] The form object
   def initialize(triples=nil, id=nil)
-    @@cdisc_namespace ||= IsoNamespace.findByShortName("CDISC")
+    #@@cdisc_namespace ||= IsoNamespace.findByShortName("CDISC")
     if triples.nil?
       super
     else

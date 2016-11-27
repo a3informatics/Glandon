@@ -65,7 +65,7 @@ class CdiscTermsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @cdiscTerm = CdiscTerm.find(id, namespace)
-    @cdiscTerms = CdiscTerm.allPrevious(@cdiscTerm.version)
+    @cdiscTerms = CdiscTerm.all_previous(@cdiscTerm.version)
   end
   
   def search
