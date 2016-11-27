@@ -102,34 +102,34 @@ class BiomedicalConcept < BiomedicalConceptCore
     return object
   end
 
-  def self.term_impact(params)
-    id = params[:id]
-    namespace = params[:namespace]
-    results = Hash.new
-    # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
-    query = UriManagement.buildPrefix("", ["cbc"])  +
-      "SELECT DISTINCT ?bc WHERE \n" +
-      "{ \n " +
-      "  ?bc rdf:type cbc:BiomedicalConceptInstance . \n " +
-      "  ?bc (cbc:hasItem|cbc:hasDatatype|cbc:hasProperty|cbc:hasComplexDatatype|cbc:hasValue|cbc:nextValue)%2B ?o . \n " +
-      "  ?o cbc:value " + ModelUtility.buildUri(namespace, id) + " . \n " +
-      "}\n"
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      bc = ModelUtility.getValue('bc', true, node)
-      if bc != ""
-        id = ModelUtility.extractCid(bc)
-        namespace = ModelUtility.extractNs(bc)
-        results[id] = find(id, namespace, false)
-        ConsoleLogger::log(C_CLASS_NAME,"impact","Object found, id=" + id)        
-      end
-    end
-    return results
-  end
+  #def self.term_impact(params)
+  #  id = params[:id]
+  #  namespace = params[:namespace]
+  #  results = Hash.new
+  #  # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
+  #  query = UriManagement.buildPrefix("", ["cbc"])  +
+  #    "SELECT DISTINCT ?bc WHERE \n" +
+  #    "{ \n " +
+  #    "  ?bc rdf:type cbc:BiomedicalConceptInstance . \n " +
+  #    "  ?bc (cbc:hasItem|cbc:hasDatatype|cbc:hasProperty|cbc:hasComplexDatatype|cbc:hasValue|cbc:nextValue)%2B ?o . \n " +
+  #    "  ?o cbc:value " + ModelUtility.buildUri(namespace, id) + " . \n " +
+  #    "}\n"
+  #  # Send the request, wait the resonse
+  #  response = CRUD.query(query)
+  #  # Process the response
+  #  xmlDoc = Nokogiri::XML(response.body)
+  #  xmlDoc.remove_namespaces!
+  #  xmlDoc.xpath("//result").each do |node|
+  #    bc = ModelUtility.getValue('bc', true, node)
+  #    if bc != ""
+  #      id = ModelUtility.extractCid(bc)
+  #      namespace = ModelUtility.extractNs(bc)
+  #      results[id] = find(id, namespace, false)
+  #      ConsoleLogger::log(C_CLASS_NAME,"impact","Object found, id=" + id)        
+  #    end
+  #  end
+  #  return results
+  #end
 
   def upgrade
     term_map = Hash.new
@@ -214,6 +214,49 @@ class BiomedicalConcept < BiomedicalConceptCore
     return object
   end
   
+  # Get Properties
+  #
+  # @param references [Boolean] True to fill in terminology references, ignore otherwise.
+  # @return [Hash] Full managed item has including array of child properties.
+  def get_properties(references=false)
+    managed_item = super()
+    if references
+      managed_item[:children].each do |child|
+        child[:children].each do |ref|
+          tc = ThesaurusConcept.find(ref[:subject_ref][:id], ref[:subject_ref][:namespace])
+          ref[:subject_data] = tc.to_json if !tc.nil?
+        end
+      end
+    end
+    return managed_item
+  end
+
+  # Get Unique References
+  #
+  # @param managed_item [Hash] The full propeties hash with references
+  # @return [Array] Array of unique terminology references (each is a hash)
+  def self.get_unique_references(managed_item)
+    map = {}
+    results = []
+    managed_item[:children].each do |child|
+      child[:children].each do |ref|
+        uri = UriV2.new({id: ref[:subject_ref][:id], namespace: ref[:subject_ref][:namespace]})
+        if !map.has_key?(uri.to_s)
+          if !ref[:subject_data].blank?
+            parent = IsoManaged.find_managed(ref[:subject_ref][:id], ref[:subject_ref][:namespace])
+            if !parent[:uri].blank?
+              th = IsoManaged.find(parent[:uri].id, parent[:uri].namespace, false)
+            end
+            ref[:subject_data][:parent] = th.to_json
+            results << ref[:subject_data] 
+          end
+          map[uri.to_s] = true
+        end
+      end
+    end
+    return results
+  end
+
   # To JSON
   #
   # @return [hash] The object hash 
@@ -238,33 +281,6 @@ class BiomedicalConcept < BiomedicalConceptCore
     self.template_ref.to_sparql_v2(sparql)
     sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "basedOnTemplate"}, { :uri => self.bct })
     return sparql
-  end
-
-  def references
-    results = Array.new
-    term_map = Hash.new
-    bc_edit = self.to_edit
-    mi = bc_edit[:managed_item]
-    op = bc_edit[:operation]
-    children = mi[:children]
-    children.each do |child|
-      if child[:enabled].to_bool
-        term_refs = child[:values]
-        term_refs.each do |term_ref|
-          id = term_ref[:uri_id]
-          ns = term_ref[:uri_ns]
-          if !term_map.has_key?(ns)
-            thesaurus = Thesaurus.find_from_concept(id, ns)
-            term_map[ns] = thesaurus
-          else  
-            thesaurus = term_map[ns]
-          end
-          results << {cli_identifier: term_ref[:identifier], cli_notation: term_ref[:useful_1], 
-            term_owner: thesaurus.owner, term_identifier: thesaurus.identifier, term_version_label: thesaurus.versionLabel, term_version: thesaurus.version}
-        end
-      end
-    end
-    return results
   end
 
 end

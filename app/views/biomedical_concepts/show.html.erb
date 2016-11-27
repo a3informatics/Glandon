@@ -6,6 +6,7 @@
 	    <th>Identifer</th>
 	    <th>Label</th>
 	    <th>Owner</th>
+	    <th>Status</th>
 	    <th>Version</th>
 	    <th>Version Label</th>
 	    <th></th>
@@ -14,9 +15,10 @@
 	    <td><%= @bc.identifier %></td>
 	    <td><%= @bc.label %></td>
 	    <td><%= @bc.owner %></td>
+	    <td><%= @bc.registrationState.registrationStatus %></td>
 	    <td><%= @bc.version %></td>
 	    <td><%= @bc.versionLabel %></td>
-	    <td><%= link_to "Impact", impact_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-info btn-xs" %></td>
+	    <td><%= link_to "Impact", impact_iso_managed_index_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-info btn-xs" %></td>
 	  </tr>
 	</table>
 	<h4>Items</h4>
@@ -34,24 +36,23 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @items.each do |item| %>
-				<% if item.enabled %>
+			<% @items[:children].each do |item| %>
+				<% if item[:enabled] %>
 					<tr class="success">
 				<% else %>
 					<tr>
 				<% end %>		
-					<td><%= item.alias %></td>
-					<td><%= item.qText %></td>
-					<td><%= item.pText %></td>
-					<td><%= item.enabled %></td>
-					<td><%= item.collect %></td>
-					<td><%= item.datatype %></td>
-					<td><%= item.format %></td>
+					<td><%= item[:alias] %></td>
+					<td><%= item[:question_text] %></td>
+					<td><%= item[:prompt_text] %></td>
+					<td><%= item[:enabled] %></td>
+					<td><%= item[:collect] %></td>
+					<td><%= item[:datatype] %></td>
+					<td><%= item[:format] %></td>
 					<td>
-						<% values = item.values %>
-						<% values.each do |value| %>
-							<% cli = value.cli %>
-							<%= cli.notation %> (<%= cli.identifier %>)<br/>
+						<% item[:children].each do |child| %>
+							<% cli = child[:subject_data] %>
+							<%= cli[:notation] %> (<%= cli[:identifier] %>)<br/>
 						<% end %>
 					</td>
 			  	</tr>
@@ -65,7 +66,7 @@
 	<%= link_to "Export JSON", export_json_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-info" %>
 	<%= link_to "Export Turtle", export_ttl_biomedical_concepts_path(:id => @bc.id, :namespace => @bc.namespace), :class => "btn btn-info" %>
 	<h4>Terminology References</h4>
-	<table id="sec" class="table table-striped table-bordered table-condensed">
+	<table id="secondary" class="table table-striped table-bordered table-condensed">
 	  <thead>
 	  	<tr>
 				<th>Identifier</th>
@@ -79,12 +80,12 @@
 		<tbody>
 			<% @references.each do |item| %>
 				<tr>
-					<td><%= item[:cli_identifier] %></td>
-					<td><%= item[:cli_notation] %></td>
-					<td><%= item[:term_owner] %></td>
-					<td><%= item[:term_identifier] %></td>
-					<td><%= item[:term_version_label] %></td>
-					<td><%= item[:term_version] %></td>
+					<td><%= item[:identifier] %></td>
+					<td><%= item[:notation] %></td>
+					<td><%= item[:parent][:registration_state][:registration_authority][:namespace][:shortName] %></td>
+					<td><%= item[:parent][:scoped_identifier][:identifier] %></td>
+					<td><%= item[:parent][:scoped_identifier][:version_label] %></td>
+					<td><%= item[:parent][:scoped_identifier][:version] %></td>
 			  </tr>
 			<% end %>
 		</tbody>

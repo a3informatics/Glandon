@@ -67,14 +67,14 @@ class BiomedicalConceptsController < ApplicationController
     @bc = BiomedicalConcept.find(id, ns)
   end
 
-  def impact
-    authorize BiomedicalConcept, :view?
-    id = params[:id]
-    namespace = params[:namespace]
-    @bc = BiomedicalConcept.find(id, namespace)
-    @forms = Form.bc_impact(params)
-    @domains = SdtmUserDomain.bc_impact(params)
-  end
+  #def impact
+  #  authorize BiomedicalConcept, :view?
+  #  id = params[:id]
+  #  namespace = params[:namespace]
+  #  @bc = BiomedicalConcept.find(id, namespace)
+  #  @forms = Form.bc_impact(params)
+  #  @domains = SdtmUserDomain.bc_impact(params)
+  #end
 
   def create
     authorize BiomedicalConcept
@@ -112,8 +112,8 @@ class BiomedicalConceptsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @bc = BiomedicalConcept.find(id, namespace)
-    @items = @bc.flatten
-    @references = @bc.references
+    @items = @bc.get_properties(true)
+    @references = BiomedicalConcept.get_unique_references(@items)
     respond_to do |format|
       format.html 
       format.json do

@@ -131,6 +131,10 @@ it "allows a BC to be found" do
 
   it "allows an object to be exported as SPARQL"
 
+  it "get the properties"
+
+  it "get the unique references"
+
 =begin
     sparql = SparqlUpdateV2.new
     result = 
