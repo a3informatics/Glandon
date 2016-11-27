@@ -340,6 +340,8 @@ function getPath(rdfType) {
     return "/forms/";    
   } else if (rdfType == C_BC) {
     return "/biomedical_concepts/";
+  } else if (rdfType == C_BCT) {
+    return "/biomedical_concept_templates/";
   } else if (rdfType == C_USERDOMAIN) {
     return "/sdtm_user_domains/"
   } else if (rdfType == C_TH) {

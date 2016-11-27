@@ -121,7 +121,11 @@ class IsoManagedController < ApplicationController
     authorize IsoManaged, :show?
     map = {}
     @item = IsoManaged.find(params[:id], params[:namespace], false)
-    @results = merge(params[:id], params[:namespace], map, :from => false)
+    managed_items = merge(params[:id], params[:namespace], map, from = false)
+    managed_items.each do |result|
+      result[:uri] = result[:uri].to_s
+    end
+    @results = {item: @item.to_json, children: managed_items}
   end
 
 private
@@ -150,7 +154,7 @@ private
                 map[mi_uri.to_s] = true
               end
             else
-              ConsoleLogger::log(C_CLASS_NAME, "merge", "****** FAILED to FIND ***** #{uri}")
+              ConsoleLogger.info(C_CLASS_NAME, "merge", "Failed to find managed item, URI=#{uri}")
             end
           end
         end
