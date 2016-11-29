@@ -12,13 +12,6 @@
             </tr>
         </thead>
         <tbody>
-          <% @thesauri.each do |item| %>
-            <tr>
-                <td><%= item[:owner] %></td>
-                <td><%= item[:label] %></td>
-                <td><%= link_to "History", history_thesauri_index_path(:identifier => item[:identifier], :scope_id => item[:owner_id]), :class => "btn btn-primary btn-xs" %></td>
-              </tr>
-          <% end %>
         </tbody>
       </table>
     </div>
@@ -33,13 +26,6 @@
             </tr>
         </thead>
         <tbody>
-          <% @bcts.each do |item| %>
-            <tr>
-                <td><%= item[:owner] %></td>
-                <td><%= item[:label]%></td>
-                <td><%= link_to "History", history_biomedical_concept_templates_path(:identifier => item[:identifier], :scope_id => item[:owner_id]), :class => "btn btn-primary btn-xs" %></td>
-              </tr>
-          <% end %>
         </tbody>
       </table>
     </div>
@@ -54,13 +40,6 @@
             </tr>
           </thead>
           <tbody>
-            <% @bcs.each do |item| %>
-              <tr>
-                <td><%= item[:owner] %></td>
-                <td><%= item[:label] %></td>
-                <td><%= link_to "History", history_biomedical_concepts_path(:identifier => item[:identifier], :scope_id => item[:owner_id]), :class => "btn btn-primary btn-xs" %></td>
-              </tr>
-            <% end %>
           </tbody>
         </table>
     </div>

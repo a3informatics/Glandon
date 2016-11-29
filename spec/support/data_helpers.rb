@@ -28,7 +28,7 @@ module DataHelpers
     return YAML.load_file(full_path)
   end
 
-  def write_yaml_file_to_hash(item, filename)
+  def write_hash_to_yaml_file(item, filename)
     full_path = Rails.root.join "db/load/test/#{filename}"
     File.open(full_path, "w+") do |f|
       f.write(item.to_yaml)

@@ -67,7 +67,7 @@ describe Thesaurus do
 
   it "allows a Thesaurus to be found" do
     th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #write_yaml_file_to_hash(th.to_json, "thesaurus_example_1.yaml")
+    #write_hash_to_yaml_file(th.to_json, "thesaurus_example_1.yaml")
     result_th = read_yaml_file_to_hash("thesaurus_example_1.yaml")
     expect(th.to_json).to eq(result_th)
   end

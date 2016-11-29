@@ -12,6 +12,17 @@ class ThesauriController < ApplicationController
   def index
     authorize Thesaurus
     @thesauri = Thesaurus.unique
+    respond_to do |format|
+      format.html 
+      format.json do
+        results = {}
+        results[:data] = []
+        @thesauri.each do |item|
+          results[:data] << item
+        end
+        render json: results
+      end
+    end
   end
   
   def history

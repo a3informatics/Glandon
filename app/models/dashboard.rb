@@ -6,61 +6,62 @@ class Dashboard
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :namespace, :subject, :predicate, :object, :link, :linkId, :linkNamespace 
+  attr_accessor :id, :namespace, :subject, :predicate, :object, :link, :link_id, :link_namespace 
   
   # Constants
   C_CLASS_NAME = "Dashboard" 
   
+  # Find all triples for the specified id and namespace
+  #
+  # @param id [String] The id
+  # @param ns [String] The namespace
+  # @return [Array] Array of objects contining the subject predicate and object plus the URI of the object if not a literal.
   def self.find(id, ns)
-    
-    # Set the results
     results = Array.new
-    
-    # Build query
     query = UriManagement.buildNs(ns, []) +
       "SELECT ?p ?o WHERE\n" + 
       "{ \n" + 
       " :" + id + " ?p ?o . \n" +
       "} \n"
-    
-    # Send the request, wait the resonse
     response = CRUD.query(query)
-    
-    # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       predicate = ModelUtility.getValue('p', true, node)
-      objectUri = ModelUtility.getValue('o', true, node)
-      objectLit = ModelUtility.getValue('o', false, node)
+      object_uri = ModelUtility.getValue('o', true, node)
+      object_literal = ModelUtility.getValue('o', false, node)
       if predicate != ""
         result = self.new
+        subject = UriV2.new({id: id, namespace: ns})
         result.id = id
         result.namespace = ns
-        result.subject = chunk(":" + id)
-        result.predicate = chunk(setPrefix(predicate, ns))
-        if objectUri == ""
-          result.object = chunk(objectLit)
+        result.subject = setPrefix(subject.to_s, ns)
+        result.predicate = setPrefix(predicate, ns)
+        if object_uri == ""
+          result.object = object_literal
+          result.link_id = ""
+          result.link_namespace = ""
           result.link = false
         else
-          result.object = chunk(setPrefix(objectUri, ns))
-          result.linkId = ModelUtility.extractCid(objectUri)
-          result.linkNamespace = ModelUtility.extractNs(objectUri)
+          result.object = setPrefix(object_uri, ns)
+          result.link_id = ModelUtility.extractCid(object_uri)
+          result.link_namespace = ModelUtility.extractNs(object_uri)
           result.link = true
         end
         results << result
       end
     end
     return results
-  
   end
 
 private 
   
-  def self.setPrefix(uri, defaultNs)
+  # Find the prefix for the namespace it it exists. Replace default namespace with
+  # empty string.
+  def self.setPrefix(uri, default_namespace)
     ns = ModelUtility.extractNs(uri)
     cid = ModelUtility.extractCid(uri)
-    if ns == defaultNs 
+    if ns == default_namespace
       prefix = ""
     else
       prefix = UriManagement.getPrefix(ns)
@@ -69,16 +70,6 @@ private
       end
     end
     return prefix + ":" + cid
-  end
-
-  def self.chunk(text)
-    if text.length > 40 
-      textArray = text.scan(/.{1,40}/)
-      result = textArray.join(" ")
-    else
-      result = text
-    end
-    return result
   end
 
 end

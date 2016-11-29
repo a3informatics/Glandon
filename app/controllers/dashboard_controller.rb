@@ -4,13 +4,9 @@ class DashboardController < ApplicationController
   
   def index
   	authorize Dashboard
-    #@forms = Form.all()
-    @thesauri = Thesaurus.unique
-    @bcs = BiomedicalConcept.unique
-    @bcts = BiomedicalConceptTemplate.unique
-    @results = IsoRegistrationState.count()
+    results = IsoRegistrationState.count()
     @statusCounts = []
-    @results.each do |key, value|
+    results.each do |key, value|
       @statusCounts << {:y => key, :a => value}
     end
   end
@@ -18,7 +14,6 @@ class DashboardController < ApplicationController
   def view
   	authorize Dashboard
     @dashboard = Dashboard.new
-  	@namespaces = UriManagement.get()
   	@id = params[:id]
     @namespace = params[:namespace]
   end

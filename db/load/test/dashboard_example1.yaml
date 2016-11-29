@@ -1,0 +1,100 @@
+---
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: rdfs:label
+  object: Height (BC_C25347)
+  link_id: ''
+  link_namespace: ''
+  link: false
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: rdf:type
+  object: bf:NormalGroup
+  link_id: NormalGroup
+  link_namespace: http://www.assero.co.uk/BusinessForm
+  link: true
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: bf:completion
+  object: ''
+  link_id: ''
+  link_namespace: ''
+  link: false
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: bf:note
+  object: ''
+  link_id: ''
+  link_namespace: ''
+  link: false
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: bf:isGroupOf
+  object: ":F-ACME_VSBASELINE1_G1"
+  link_id: F-ACME_VSBASELINE1_G1
+  link_namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  link: true
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: bf:hasItem
+  object: ":F-ACME_VSBASELINE1_G1_G2_I1"
+  link_id: F-ACME_VSBASELINE1_G1_G2_I1
+  link_namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  link: true
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: bf:hasItem
+  object: ":F-ACME_VSBASELINE1_G1_G2_I2"
+  link_id: F-ACME_VSBASELINE1_G1_G2_I2
+  link_namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  link: true
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: bf:repeating
+  object: 'false'
+  link_id: ''
+  link_namespace: ''
+  link: false
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: bf:optional
+  object: ''
+  link_id: ''
+  link_namespace: ''
+  link: false
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: bf:ordinal
+  object: '2'
+  link_id: ''
+  link_namespace: ''
+  link: false
+- !ruby/object:Dashboard
+  id: F-ACME_VSBASELINE1_G1_G2
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  subject: ":F-ACME_VSBASELINE1_G1_G2"
+  predicate: bf:hasBiomedicalConcept
+  object: ":F-ACME_VSBASELINE1_G1_G2_BCR1"
+  link_id: F-ACME_VSBASELINE1_G1_G2_BCR1
+  link_namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  link: true

@@ -267,11 +267,11 @@ describe Form do
 
   #it "Export" do
   #  item = Form.find("F-ACME_DM101", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #  write_yaml_file_to_hash(item.to_json, "form_example_dm1.yaml")
+  #  write_hash_to_yaml_file(item.to_json, "form_example_dm1.yaml")
     #item = Form.find("F-ACME_MH101", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_yaml_file_to_hash(item.to_json, "form_example2.yaml")
+    #write_hash_to_yaml_file(item.to_json, "form_example2.yaml")
     #item = Form.find("F-ACME_AEPI103", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_yaml_file_to_hash(item.to_json, "form_example3.yaml")
+    #write_hash_to_yaml_file(item.to_json, "form_example3.yaml")
   #end
 
 =begin

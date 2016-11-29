@@ -1,105 +1,43 @@
 $(document).ready(function () {
 
-    $('#main1').DataTable({
+  panel ("main1", "forms");
+  panel ("main2", "thesauri");
+  panel ("main3", "biomedical_concepts");
+  panel ("main4", "biomedical_concept_templates");
+  panel ("main5", "sdtm_user_domains");
+
+  var x  = $("#barGraph").html();
+  var barData = $.parseJSON(x);
+  Morris.Bar({
+    element: 'bar-example',
+    data: barData,
+    xkey: 'y',
+    ykeys: ['a'],
+    labels: ['Items']
+  });
+
+  function panel(control, url) {
+    $("#" + control).DataTable({
       "pagingType": "full",
-    	"ajax": {
-		    "url": "forms",
-		    "dataSrc": "data"  
-      	},
-    	"language": {
-           "infoFiltered": "",
-           "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      "ajax": {
+        "url": url,
+        "dataSrc": "data"  
+      },
+      "language": {
+        "infoFiltered": "",
+        "processing": "<img src='<%= asset_path('processing.gif') %>'>"
       },
       "bProcessing": true,
       "pageLength": 5,
       "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
       "columns": [ 
-      	{"data" : "owner", "width" : "10%"},
+        {"data" : "owner", "width" : "10%"},
         {"data" : "label", "width" : "70%"},
-        {"data" : "identifier", "render": function(data,type,full,meta) 
-          { 
-            return '<a href="forms/history?identifier='+ data +'&scope_id=' + full.owner_id +'"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
-          }
-        }
-  		]
-    } );
-
-    $('#main2').DataTable({
-        "pagingType": "full",
-    	"pageLength": 5,
-        "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-        "columns": [ 
-        	{ "width": "10%" },
-          { "width": "70%" },
-        	{ "width": "20%" }
-  		]
-    } );
-
-    $('#main3').DataTable({
-        "pagingType": "full",
-    	"pageLength": 5,
-        "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-        "columns": [ 
-        	{ "width": "10%" },
-          { "width": "70%" },
-          { "width": "20%" }
-  		]
-    } );
-
-    $('#main5').DataTable({
-        "pagingType": "full",
-    	"ajax": {
-		    "url": "sdtm_user_domains",
-		    "dataSrc": "data"  
-      	},
-      	"language": {
-             "infoFiltered": "",
-             "processing": "<img src='<%= asset_path('processing.gif') %>'>"
-        },
-        "bProcessing": true,
-        "pageLength": 5,
-        "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-        "columns": [ 
-        	{"data" : "owner", "width" : "10%"},
-          {"data" : "label", "width" : "70%"},
-          {"data" : "identifier", "render": function(data,type,full,meta) 
-            { 
-              return '<a href="sdtm_user_domains/history?identifier='+ data +'&scope_id=' + full.owner_id +'"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
-            }
-          }
-  		]
-    } );
-
-    $('#main4').DataTable({
-        "pagingType": "full",
-    	"pageLength": 5,
-        "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-        "columns": [ 
-        	{ "width": "10%" },
-          { "width": "70%" },
-          { "width": "20%" }
-  		]
-    } );
-
-    $('#main6').DataTable({
-        "pagingType": "full",
-    	"pageLength": 5,
-        "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-        "columns": [ 
-        	{ "width": "10%" },
-          { "width": "70%" },
-          { "width": "20%" }
-  		]
-    } );
-
-    var x  = $("#barGraph").html();
-	var barData = $.parseJSON(x);
-	Morris.Bar({
-      element: 'bar-example',
-      data: barData,
-      xkey: 'y',
-      ykeys: ['a'],
-      labels: ['Items']
+        {"data" : "identifier", "render": function(data,type,full,meta) { 
+          return '<a href="' + url + '/history?identifier='+ data +'&scope_id=' + full.owner_id +'"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
+        }}
+      ]
     });
+  }
 
 });

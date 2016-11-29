@@ -36,8 +36,8 @@ $(document).ready(function() {
       "bProcessing": true,
       "columns": [
         {"data" : "subject", "width" : "40%"},
-        {"data" : "predicate", "width" : "30%"},
-        {"data" : "object", "width" : "30%" },
+        {"data" : "predicate", "width" : "20%"},
+        {"data" : "object", "width" : "40%" },
         {"defaultContent": '<button type="button" class="btn btn-primary btn-xs">Show</button>'}
       ]
     });
@@ -69,12 +69,12 @@ $(document).ready(function() {
     var data = triplesTable.row( $(this).parents('tr') ).data();
     if (data.link) {
       // Get the triples
-      subjectId.value = data.linkId;
-      subjectNs.value = data.linkNamespace;
+      subjectId.value = data.link_id;
+      subjectNs.value = data.link_namespace;
       triplesTable.ajax.reload();
 
       // Add the history
-      addHistory(data.linkId, data.linkNamespace);      
+      addHistory(data.link_id, data.link_namespace);      
     }
   });
 
@@ -83,9 +83,7 @@ $(document).ready(function() {
    */
   function addHistory (id, namespace) {
     historyCount += 1;
-    var idChunked = chunk(id);
-    var namespaceChunked = chunk(namespace);
-    mainTable.row.add([historyCount, idChunked, namespaceChunked, id, namespace]).draw( false );
+    mainTable.row.add([historyCount, namespace, id]).draw(false);
     mainTable.order( [ 0, 'desc' ] );
     mainTable.draw();
   }
@@ -106,21 +104,9 @@ $(document).ready(function() {
     historyCurrentRow = row;
 
     // Get the triples
-    subjectId.value = data[3];
-    subjectNs.value = data[4];
+    subjectNs.value = data[1];
+    subjectId.value = data[2];
 
   });
-  
-  /*
-   * Function to handle click on the history table.
-   */
-  function chunk(text) {
-    var textArray = text.match(/.{1,35}/g);
-    var result = ""
-    for (var i=0; i<textArray.length; i++) {
-      result = result + textArray[i] + " ";
-    }
-    return result;
-  }
 
 });
