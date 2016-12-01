@@ -1,0 +1,23 @@
+<http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystem> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.w3.org/2000/01/rdf-schema#label> 							"Tags" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tags for all" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C1> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C2> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C3> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C1> 		<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C1> 		<http://www.w3.org/2000/01/rdf-schema#label> 							"Node 1" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C1> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Description 1" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C2> 		<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C2> 		<http://www.w3.org/2000/01/rdf-schema#label> 							"Node 2" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C2> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Description 2" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3> 		<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3> 		<http://www.w3.org/2000/01/rdf-schema#label> 							"Node 3" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Description 3" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C3_1> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C3_2> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3_1> 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3_1> 	<http://www.w3.org/2000/01/rdf-schema#label> 							"Node 3_1" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3_1> 	<http://www.assero.co.uk/ISO11179Concepts#description> 		"Description 3_1" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3_2> 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3_2> 	<http://www.w3.org/2000/01/rdf-schema#label> 							"Node 3_2" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3_2> 	<http://www.assero.co.uk/ISO11179Concepts#description> 		"Description 3_2" . 

@@ -25,7 +25,8 @@ class IsoConceptSystems::NodesController < ApplicationController
     authorize IsoConceptSystem::Node
     node = IsoConceptSystem::Node.find(params[:id], params[:namespace])
     if node.children.length == 0
-      node.destroy()
+      node.destroy
+      flash[:success] = 'Concept system node was successfully deleted.'
     else
       flash[:error] = "Child tags exist, this cannot be deleted."
     end

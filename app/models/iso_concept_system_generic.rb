@@ -11,6 +11,11 @@ class IsoConceptSystemGeneric < IsoConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
+  # Initialize
+  #
+  # @param triples [hash] The raw triples keyed by subject
+  # @param id [string] The identifier for the concept being built from the triples
+  # @return [object] The new object
   def initialize(triples=nil, id=nil)
     self.description = ""
     self.children = Array.new
@@ -21,6 +26,12 @@ class IsoConceptSystemGeneric < IsoConcept
     end
   end
 
+  # Find a given item given the id and namespace
+  #
+  # @param id [string] The id
+  # @param namespace [string] The instance schema namespace
+  # @param children [boolean] include all children concepts in the find
+  # @return [object] The concept
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -29,10 +40,17 @@ class IsoConceptSystemGeneric < IsoConcept
     return object
   end
 
+  # Find all concepts of a given type within specified namespace.
+  #
+  # @param rdf_type [string] The RDF type
+  # @return [array] Array of objects
   def self.all(rdf_type)
     results = super(rdf_type, C_SCHEMA_NS)
   end
 
+  # To JSON
+  #
+  # @return [hash] The object hash 
   def to_json
     result = super
     result[:description] = self.description
@@ -43,10 +61,14 @@ class IsoConceptSystemGeneric < IsoConcept
     return result
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json, rdf_type)
     object = super(json)
     object.description = json[:description]
-    object.rdf_type = UriV2.new({:namespace => C_SCHEMA_NS, :id => rdf_type})
+    object.rdf_type = UriV2.new({:namespace => C_SCHEMA_NS, :id => rdf_type}).to_s
     if !json[:children].blank?
       json[:children].each do |child|
         object.children << IsoConceptSystem::Node.from_json(child)
@@ -55,31 +77,32 @@ class IsoConceptSystemGeneric < IsoConcept
     return object
   end
 
-  def to_sparql(cid_prefix)
-    sparql = SparqlUpdate.new
+  # Return the object as SPARQL
+  #
+  # @param sparql [object] The sparql object being built (to be added to)
+  # @param schema_prefix [string] The schema prefix
+  # @return [object] The URI of the object
+  def to_sparql_v2(cid_prefix)
+    sparql = SparqlUpdateV2.new
     ra = IsoRegistrationAuthority.owner
     uri = UriV2.new({:prefix => cid_prefix, :org_name => ra.namespace.shortName, :identifier => Time.now.to_i, :namespace => C_INSTANCE_NS})
     self.id = uri.id
     self.namespace = uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "description", "#{self.description}", "string")
+    sparql.triple({:uri => self.uri}, {:prefix => C_SCHEMA_PREFIX, :id => "description"}, {:literal => "#{self.description}", :primitive_type => "string"})
     return sparql
   end
 
-  def self.find_from_triples(triples, id)
-    object = new(triples, id)
-    children_from_triples(object, triples, id)
-    object.triples = ""
-    return object
+  # Object Valid
+  #
+  # @return [boolean] True if valid, false otherwise.
+  def valid?
+    result1 = super
+    result2 = FieldValidation::valid_free_text?(:description, self.description, self)
+    return result1 && result2
   end
 
 private
-
-  def self.params_valid?(params, object)
-    result1 = FieldValidation::valid_free_text?(:label, params[:label], object)
-    result2 = FieldValidation::valid_free_text?(:description, params[:description], object)
-    return result1 && result2
-  end
 
   def self.children_from_triples(object, triples, id)
     object.children = IsoConceptSystem::Node.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "hasMember"))

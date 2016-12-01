@@ -1,2 +1,2 @@
-class IsoConceptSystem::NodePolicy < IsoPolicy
+class IsoConceptSystem::NodePolicy < IsoConceptPolicy
 end

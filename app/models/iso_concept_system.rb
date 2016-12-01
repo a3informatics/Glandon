@@ -10,17 +10,10 @@ class IsoConceptSystem < IsoConceptSystemGeneric
   end
 
   def self.create(params)
-    # Create blank object for the errors
-    object = self.new
-    object.errors.clear
-    # Set owner ship
-    if params_valid?(params, object) then
-      # Build a full object. Special case, fill in the identifier, base on domain prefix.
-      object = IsoConceptSystem.from_json(params)
-      sparql = object.to_sparql
-      sparql.add_default_namespace(object.namespace)
-      # Send to database
-      ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
+    object = IsoConceptSystem.from_json(params)
+    if object.valid?
+      sparql = object.to_sparql_v2
+      sparql.default_namespace(object.namespace)
       response = CRUD.update(sparql.to_s)
       if !response.success?
         object.errors.add(:base, "The Concept System was not created in the database.")
@@ -30,17 +23,13 @@ class IsoConceptSystem < IsoConceptSystemGeneric
   end
 
   def add(params)
-    object = IsoConceptSystem::Node.new
-    object.errors.clear
-    if IsoConceptSystem.params_valid?(params, object) then
-      object = IsoConceptSystem::Node.from_json(params)
-      sparql = object.to_sparql
-      sparql.triple("", self.id, UriManagement::C_ISO_C, "hasMember", "", "#{object.id}")
-      sparql.add_default_namespace(object.namespace)
-      # Send the request, wait the resonse
-      ConsoleLogger::log(C_CLASS_NAME,"add","Object=#{sparql}")
+    object = IsoConceptSystem::Node.from_json(params)
+    if object.valid?
+      sparql = object.to_sparql_v2
+      sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_C, :id => "hasMember"}, {:uri => object.uri})
+      sparql.default_namespace(object.namespace)
       response = CRUD.update(sparql.to_s)
-      # Response
+      ConsoleLogger.info(C_CLASS_NAME, "add", "SPARQl=#{sparql.to_s}")
       if !response.success?
         object.errors.add(:base, "The Concept System Node was not created in the database.")
       end
@@ -49,7 +38,6 @@ class IsoConceptSystem < IsoConceptSystemGeneric
   end
 
   def destroy
-    # Create the query
     update = UriManagement.buildNs(self.namespace, [C_SCHEMA_PREFIX]) +
       "DELETE \n" +
       "{\n" +
@@ -59,11 +47,9 @@ class IsoConceptSystem < IsoConceptSystemGeneric
       "{\n" +
       "  :" + self.id + " ?p ?o . \n" +  
       "}\n"
-    # Send the request, wait the resonse
-    ConsoleLogger::log(C_CLASS_NAME,"destroy","Update=#{update}")
     response = CRUD.update(update)
     if !response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      ConsoleLogger.info(C_CLASS_NAME,"destroy", "Failed to destroy object.")
       raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
     end
   end
@@ -73,7 +59,7 @@ class IsoConceptSystem < IsoConceptSystemGeneric
     return object
   end
 
-  def to_sparql
+  def to_sparql_v2
     sparql = super(C_CID_PREFIX)
     return sparql
   end
