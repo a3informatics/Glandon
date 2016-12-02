@@ -1,6 +1,7 @@
 defaults: &defaults
-  # System config
-  self_registration: false
+  # Default Configuration
+  self_registration: false # Self registration enabled
+  token_timeout: 300 # Timeout in seconds
   #organization_title: UCB Biosciences, Inc
   #organization_image_file: ucb.jpg
   organization_title: ACME Pharma
@@ -24,3 +25,4 @@ production:
 test: 
   <<: *defaults
   cdisc_ct_files: public/test
+  token_timeout: 5 

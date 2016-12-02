@@ -75,6 +75,11 @@ Rails.application.routes.draw do
       post :search
     end
   end
+  resources :tokens, only: [:index] do
+    member do
+      post :release
+    end
+  end
   resources :thesauri do
     collection do
       get :history
