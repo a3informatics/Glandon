@@ -1,5 +1,7 @@
 class BackgroundsController < ApplicationController
 
+	before_action :authenticate_user!
+
 	def index
 		authorize Background
   	end
@@ -32,4 +34,5 @@ class BackgroundsController < ApplicationController
 		end
 		redirect_to backgrounds_path
 	end
+
 end
