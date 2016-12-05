@@ -84,8 +84,7 @@ describe IsoConceptSystem do
   it "allows an object to be destroyed" do
     concept = IsoConceptSystem.find("GSC-C2", "http://www.assero.co.uk/MDRConcepts", false)
     concept.destroy
-    concept = IsoConceptSystem.find("GSC-C2", "http://www.assero.co.uk/MDRConcepts", false)
-    expect(concept.id).to eq("")
+    expect{IsoConceptSystem::Node.find("GSC-C2", "http://www.assero.co.uk/MDRConcepts", false)}.to raise_error(Exceptions::NotFoundError)
   end
 
   it "allows the object to be created from json" do

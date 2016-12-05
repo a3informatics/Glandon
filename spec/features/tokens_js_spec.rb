@@ -28,7 +28,7 @@ describe "Tokens", :type => :feature do
     Token.set_timeout(60)
     @user1 = User.create :email => "token@example.com", :password => "12345678" 
     @user1.add_role :reader
-    @user2 = User.create :email => "sys_admin@example.com", :password => "12345678" 
+    @user2 = User.create :email => "admin_user@example.com", :password => "12345678" 
     @user2.add_role :sys_admin
     item1 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item1.id = "1"
@@ -47,7 +47,7 @@ describe "Tokens", :type => :feature do
   after :all do
     user = User.where(:email => "token@example.com").first
     user.destroy
-    user = User.where(:email => "sys_admin@example.com").first
+    user = User.where(:email => "admin_user@example.com").first
     user.destroy
   end
 
@@ -55,7 +55,7 @@ describe "Tokens", :type => :feature do
   
     it "allows the tokens to be viewed", js: true do
       visit '/users/sign_in'
-      fill_in 'Email', with: 'sys_admin@example.com'
+      fill_in 'Email', with: 'admin_user@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  
@@ -65,7 +65,7 @@ describe "Tokens", :type => :feature do
 
     it "allows a lock to be released", js: true do
       visit '/users/sign_in'
-      fill_in 'Email', with: 'sys_admin@example.com'
+      fill_in 'Email', with: 'admin_user@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  
@@ -83,7 +83,7 @@ describe "Tokens", :type => :feature do
 
     it "allows a lock to be released, rejection", js: true do
       visit '/users/sign_in'
-      fill_in 'Email', with: 'sys_admin@example.com'
+      fill_in 'Email', with: 'admin_user@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  

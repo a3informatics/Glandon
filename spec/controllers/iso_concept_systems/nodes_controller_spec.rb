@@ -47,7 +47,7 @@ describe IsoConceptSystems::NodesController do
     end
 
     it "prevents a node being destroyed if it has children" do
-      parent_node = IsoConceptSystem.find("GSC", "http://www.assero.co.uk/MDRConcepts")
+      parent_node = IsoConceptSystem.find("GSC-C", "http://www.assero.co.uk/MDRConcepts")
       node = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts")
       delete :destroy, {:id => node.id, :namespace => node.namespace, :parent_id => parent_node.id, :parent_namespace => parent_node.namespace}
       expect(flash[:error]).to be_present      

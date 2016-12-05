@@ -23,11 +23,14 @@ RSpec.describe Token, type: :model do
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
+    clear_token_object
+    @user = User.create :email => "token_user@example.com", :password => "changeme" 
+    @user.add_role :reader
   end
 
-  before :each do
-    @user = User.create :email => "example@example.com", :password => "changeme" 
-    @user.add_role :reader
+  after :all do
+    user = User.where(:email => "token_user@example.com").first
+    user.destroy
   end
 
 	it "allows a token to be obtained" do
@@ -64,17 +67,22 @@ RSpec.describe Token, type: :model do
     expect(token.locked_at).to be_within(1.second).of Time.now
   end
 
-  it "determines if user owns lock" do
+  it "finds token" do
     item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     token = Token.obtain(item, @user)
-    expect(Token.locked_by_user?(item, @user)).to eq(true)
+    expect(Token.find_token(item, @user).to_json).to eq(token.to_json)
   end
 
-  it "determines if user does not own lock" do
+  it "determines if user does not own lock, released" do
     item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     token = Token.obtain(item, @user)
-    token.release
-    expect(Token.locked_by_user?(item, @user)).to eq(false)
+    sleep 6
+    expect(Token.find_token(item, @user)).to eq(nil)
+  end
+
+  it "determines if user does not own lock, never locked" do
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    expect(Token.find_token(item, @user)).to eq(nil)
   end
 
   it "allows tokens to be expired" do
@@ -92,10 +100,10 @@ RSpec.describe Token, type: :model do
     token3 = Token.obtain(item3, @user)
     token4 = Token.obtain(item4, @user)
     sleep 3
-    expect(Token.locked_by_user?(item1, @user)).to eq(false)
-    expect(Token.locked_by_user?(item2, @user)).to eq(false)
-    expect(Token.locked_by_user?(item3, @user)).to eq(true)
-    expect(Token.locked_by_user?(item4, @user)).to eq(true)
+    expect(Token.find_token(item1, @user)).to eq(nil)
+    expect(Token.find_token(item2, @user)).to eq(nil)
+    expect(Token.find_token(item3, @user).to_json).to eq(token3.to_json)
+    expect(Token.find_token(item4, @user).to_json).to eq(token4.to_json)
   end
 
   it "allows the timeout to be modified" do
@@ -105,11 +113,11 @@ RSpec.describe Token, type: :model do
     item1.id = "1"
     token1 = Token.obtain(item1, @user)
     sleep 3
-    expect(Token.locked_by_user?(item1, @user)).to eq(true)
+    expect(Token.find_token(item1, @user).to_json).to eq(token1.to_json)
     sleep 3
-    expect(Token.locked_by_user?(item1, @user)).to eq(true)
+    expect(Token.find_token(item1, @user).to_json).to eq(token1.to_json)
     sleep 6
-    expect(Token.locked_by_user?(item1, @user)).to eq(false)
+    expect(Token.find_token(item1, @user)).to eq(nil)
     Token.set_timeout(5)
   end
 

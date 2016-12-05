@@ -549,7 +549,7 @@ describe IsoConcept do
     expect(results.to_json).to eq(expected.to_json)
   end
 
-  it "allows a concept to be deleted" do
+  it "detects trying to find a missing object" do
 		result =     
 			{ 
       	:type => "",
@@ -560,7 +560,7 @@ describe IsoConcept do
     	}
 		concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
 		concept.destroy
-		expect(IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1").to_json).to match(result)
+		expect{IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")}.to raise_error(Exceptions::NotFoundError)
 	end
 
 	it "allows all concepts of a given type to be found" do

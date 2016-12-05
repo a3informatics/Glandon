@@ -2,8 +2,6 @@ class Token < ActiveRecord::Base
 
 	C_CLASS_NAME = "Token"
 
-	@@token_timeout ||= APP_CONFIG['token_timeout']
-	
 	# Obtain a token for the item. Will timeout the lock if necessary.
 	#
 	# @param managed_item [Object] The managed item being locked
@@ -45,14 +43,14 @@ class Token < ActiveRecord::Base
 	#
 	# @param managed_item [Object] The managed item being locked
 	# @param user [Object] the user locking the managed item
-	# @return [Boolean] True if lockedby the user, false otherwise
-	def self.locked_by_user?(managed_item, user)
+	# @return [Object] The token if found, nil otherwise
+	def self.find_token(managed_item, user)
 		tokens = self.where(item_uri: managed_item.uri.to_s)
 		if tokens.length == 1
-			return false if timed_out?(tokens[0])
-			return tokens[0].user_id == user.id
+			return nil if timed_out?(tokens[0])
+			return tokens[0] if tokens[0].user_id == user.id
 		end
-		return false
+		return nil
 	end
 
 	# Expire all tokens that have passed the time limit
@@ -70,6 +68,7 @@ class Token < ActiveRecord::Base
 	# @param timeout [Integer] Update timeout in seconds
 	# @return Null
 	def self.set_timeout(timeout)
+		initialize_timeout
 		@@token_timeout = timeout
 	end
 
@@ -77,15 +76,21 @@ class Token < ActiveRecord::Base
 	#
 	# @return [Integer] The current timeout value
 	def self.get_timeout
+		initialize_timeout
 		return @@token_timeout
 	end
 
 private
 
 	def self.timed_out?(token)
+		initialize_timeout
 		#ConsoleLogger.debug(C_CLASS_NAME, "timed_out", "Token=#{token.to_json}")
 		#ConsoleLogger.debug(C_CLASS_NAME, "timed_out", "Timeout set=#{@@token_timeout}, Time=#{Time.now}")
 		return Time.now > token.locked_at + @@token_timeout
+	end
+
+	def self.initialize_timeout
+		@@token_timeout ||= APP_CONFIG['token_timeout']
 	end
 
 end

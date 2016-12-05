@@ -27,6 +27,7 @@ describe TokensController do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
+      clear_token_object
       Token.delete_all
       @user1 = User.create :email => "token@example.com", :password => "changeme" 
       @user1.add_role :reader

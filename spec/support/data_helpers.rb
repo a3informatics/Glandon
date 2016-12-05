@@ -77,4 +77,8 @@ module DataHelpers
     IsoRegistrationState.class_variable_set(:@@owner, nil)
   end
   
+  def clear_token_object
+    Token.class_variable_set(:@@token_timeout, nil)
+  end
+
 end
