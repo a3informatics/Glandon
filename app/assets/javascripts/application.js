@@ -18,6 +18,12 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require morris.min
 //= require raphael
+//= require dataTables.buttons
+//= require buttons.bootstrap
+//= require dataTables.select
+//= require dataTables.keyTable.min
+//= require dataTables.editor.min
+//= require editor.bootstrap.min
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 

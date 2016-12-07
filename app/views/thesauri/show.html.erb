@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @thesaurus} %>
 <div class="col-md-12">
   <h4>Details</h4>
@@ -34,12 +35,11 @@
             <th>Synonym(s)</th>
             <th>Definition</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
             <% @thesaurus.children.each do |cl| %>
-            <tr>
+              <tr>
                 <td><%= cl.label %></td>
                 <td><%= cl.identifier %></td>
                 <td><%= cl.notation %></td>
@@ -47,8 +47,7 @@
                 <td><%= cl.synonym %></td>
                 <td><%= cl.definition %></td>
                 <td><%= link_to "Show", thesaurus_concept_path(:id => cl.id, :namespace => cl.namespace), :class => "btn btn-primary btn-xs" %></td>
-                <td><%= link_to "Triples", view_dashboard_index_path(:id => cl.id, :namespace => cl.namespace), :class => "btn btn-warning btn-xs" %></td>
-            </tr>
+              </tr>
             <% end %>
         </tbody>
     </table>

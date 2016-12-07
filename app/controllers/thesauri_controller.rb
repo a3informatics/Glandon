@@ -34,8 +34,6 @@ class ThesauriController < ApplicationController
   def create
     authorize Thesaurus
     @thesaurus = Thesaurus.create_simple(the_params)
-    #ConsoleLogger::log(C_CLASS_NAME, "create","TH=(#{@thesaurus.to_json})")
-    #ConsoleLogger::log(C_CLASS_NAME, "create","TH=(#{@thesaurus.errors.to_json})")
     if @thesaurus.errors.empty?
       AuditTrail.create_item_event(current_user, @thesaurus, "Terminology created.")
       flash[:success] = 'Terminology was successfully created.'
@@ -48,33 +46,60 @@ class ThesauriController < ApplicationController
 
   def edit
     authorize Thesaurus
-    @thesaurus = Thesaurus.find(params[:id], params[:namespace])
+    @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
     if @thesaurus.new_version?
       th = Thesaurus.find_complete(params[:id], params[:namespace])
       json = th.to_operation
       new_th = Thesaurus.create(json)
-      @thesaurus = Thesaurus.find(new_th.id, new_th.namespace)
+      @thesaurus = Thesaurus.find(new_th.id, new_th.namespace, false)
     end
+    @token = Token.obtain(@thesaurus, current_user)
+    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
+    if @token.nil?
+      flash[:error] = "The item is locked for editing by another user."
+      redirect_to request.referer
+    end
+  end
+
+  def children
+    authorize Thesaurus, :edit?
+    results = []
+    thesaurus = Thesaurus.find(params[:id], params[:namespace])
+    thesaurus.children.each do |child|
+      results << child.to_json
+    end
+    render :json => { data: results }, :status => 200
   end
 
   def add_child
     authorize Thesaurus, :create?
     thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
-    thesaurus_concept = thesaurus.add_child(params[:children][0])
-    if thesaurus_concept.errors.empty?
-      AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated. Item #{thesaurus_concept.identifier} added.")
-      render :json => thesaurus_concept.to_json, :status => 200
+    token = Token.find_token(thesaurus, current_user)
+    if !token.nil?
+      thesaurus_concept = thesaurus.add_child(the_params)
+      if thesaurus_concept.errors.empty?
+        AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
+        render :json => thesaurus_concept.to_json, :status => 200
+      else
+        render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+      end
     else
-      render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+      render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
     end
   end
 
   def destroy
     authorize Thesaurus
     thesaurus = Thesaurus.find(params[:id], params[:namespace])
-    thesaurus.destroy
-    AuditTrail.delete_item_event(current_user, thesaurus, "Terminology deleted.")
-    redirect_to thesauri_index_path
+    token = Token.obtain(thesaurus, current_user)
+    if !token.nil?
+      thesaurus.destroy
+      AuditTrail.delete_item_event(current_user, thesaurus, "Terminology deleted.")
+      token.release
+    else
+      flash[:error] = "The item is locked for editing by another user."
+    end
+    redirect_to request.referer
   end
 
   def show
@@ -92,12 +117,14 @@ class ThesauriController < ApplicationController
   def view
     authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id], params[:namespace])
+    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
   end
 
   def search
     authorize Thesaurus, :view?
     @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
     @items = Notepad.where(user_id: current_user).find_each
+    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
   end
   
   def next
@@ -109,7 +136,6 @@ class ThesauriController < ApplicationController
     more = true
     offset = params[:offset].to_i
     limit = params[:limit].to_i
-    #ConsoleLogger::log(C_CLASS_NAME,"next","Offset=" + offset.to_s + ", limit=" + limit.to_s)  
     items = Thesaurus.next(offset, limit, namespace)
     if items.count < limit
       more = false
@@ -119,7 +145,6 @@ class ThesauriController < ApplicationController
     results[:limit] = limit
     results[:more] = more
     results[:data] = items
-    ConsoleLogger::log(C_CLASS_NAME,"next","Offset=" + results[:offset].to_s + ", limit=" + results[:limit].to_s + ", count=" + items.count.to_s)  
     render :json => results, :status => 200
   end
 
@@ -132,7 +157,7 @@ class ThesauriController < ApplicationController
 private
 
   def the_params
-    params.require(:thesaurus).permit(:identifier, :version, :versionLabel, :label, :namespace_id, :namespace, :data)
+    params.require(:thesauri).permit(:id, :namespace, :label, :identifier, :notation, :synonym, :definition, :preferredTerm, :type)
   end
     
 end

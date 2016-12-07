@@ -47,7 +47,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "d3-rails", "3.4.11"
 
 # Datatables
-gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'jquery-datatables-rails'
 
 # Delayed job
 gem 'delayed_job_active_record'

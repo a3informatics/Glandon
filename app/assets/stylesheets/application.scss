@@ -1,4 +1,7 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "datatables.min"
+@import "datatables.min";
+@import "buttons.bootstrap.min";
+@import "select.bootstrap.min";
+@import "editor.bootstrap.min";

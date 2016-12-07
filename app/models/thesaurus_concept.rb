@@ -92,6 +92,8 @@ class ThesaurusConcept < IsoConcept
   # @return [boolean] True if the update is successful, false otherwise.
   def update(params)
     result = true
+    ConsoleLogger::log(C_CLASS_NAME, "update", "Object1=#{self.to_json}")
+    ConsoleLogger::log(C_CLASS_NAME, "update", "Params=#{params}")
     self.errors.clear
     self.label = "#{params[:label]}"
     self.notation = "#{params[:notation]}"
@@ -100,29 +102,39 @@ class ThesaurusConcept < IsoConcept
     self.definition = "#{params[:definition]}"
     if self.valid?
       update = UriManagement.buildNs(self.namespace, ["iso25964"]) +
-        "DELETE { :" + self.id + " ?p ?o } \n" +
+        # Note: Dont allow identifier or any links to be updated.
+        "DELETE \n" +
+        "{\n" +
+        "  :" + self.id + " rdfs:label ?a .\n" +
+        "  :" + self.id + " iso25964:notation ?b .\n" +
+        "  :" + self.id + " iso25964:preferredTerm ?c .\n" +
+        "  :" + self.id + " iso25964:synonym ?d .\n" +
+        "  :" + self.id + " iso25964:definition ?e .\n" +
+        "}\n" +
         "INSERT \n" +
         "{ \n" +
         "  :" + self.id + " rdfs:label \"#{self.label}\"^^xsd:string . \n" +
-        # Dont allow identifier to be updated.
-        #"  :" + self.id + " iso25964:identifier \"#{self.identifier}\"^^xsd:string . \n" +
         "  :" + self.id + " iso25964:notation \"#{self.notation}\"^^xsd:string . \n" +
-        "  :" + self.id + " iso25964:preferredTerm \"#{self.preferredTerm}\"^^xsd:string . \n" +
-        "  :" + self.id + " iso25964:synonym \"#{self.synonym}\"^^xsd:string . \n" +
-        "  :" + self.id + " iso25964:definition \"#{self.definition}\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:preferredTerm \"" + SparqlUtility::replace_special_chars("#{self.preferredTerm}") + "\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:synonym \"" + SparqlUtility::replace_special_chars("#{self.synonym}") + "\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:definition \"" + SparqlUtility::replace_special_chars("#{self.definition}") + "\"^^xsd:string . \n" +
         "} \n" +
         "WHERE \n" +
         "{\n" +
-        "  :" + self.id + " (iso25964:identifier|iso25964:notation|iso25964:preferredTerm|iso25964:synonym|iso25964:definition) ?o .\n" +
+        "  :" + self.id + " rdfs:label ?a .\n" +
+        "  :" + self.id + " iso25964:notation ?b .\n" +
+        "  :" + self.id + " iso25964:preferredTerm ?c .\n" +
+        "  :" + self.id + " iso25964:synonym ?d .\n" +
+        "  :" + self.id + " iso25964:definition ?e .\n" +
         "}\n"
+      ConsoleLogger::log(C_CLASS_NAME, "update", "SPARQL=#{update}")
       response = CRUD.update(update)
       if !response.success?
         raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
       end
-    else
-      result = false
     end
-    return result
+    ConsoleLogger::log(C_CLASS_NAME, "update", "Errors=#{self.errors.full_messages.to_sentence}") if self.errors.count > 0
+    ConsoleLogger::log(C_CLASS_NAME, "update", "Object2=#{self.to_json}")
   end
 
   # Destroy the object
@@ -240,10 +252,10 @@ class ThesaurusConcept < IsoConcept
     result = super
     result = result &&
       FieldValidation::valid_identifier?(:identifier, self.identifier, self) &&
-      FieldValidation::valid_label?(:notation, self.notation, self) &&
-      FieldValidation::valid_label?(:preferredTerm, self.preferredTerm, self) &&
-      FieldValidation::valid_label?(:synonym, self.synonym, self) &&
-      FieldValidation::valid_label?(:definition, self.definition, self)
+      FieldValidation::valid_submission_value?(:notation, self.notation, self) &&
+      FieldValidation::valid_terminology_property?(:preferredTerm, self.preferredTerm, self) &&
+      FieldValidation::valid_terminology_property?(:synonym, self.synonym, self) &&
+      FieldValidation::valid_terminology_property?(:definition, self.definition, self)
     return result
   end
 

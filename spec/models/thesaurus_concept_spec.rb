@@ -49,6 +49,7 @@ describe ThesaurusConcept do
   it "allows validity of the object to be checked" do
     tc = ThesaurusConcept.new
     tc.identifier = "AAA"
+    tc.notation = "A"
     valid = tc.valid?
     expect(valid).to eq(true)
   end 
@@ -59,8 +60,7 @@ describe ThesaurusConcept do
   end
 
   it "allows a TC to be found - error" do
-    tc = ThesaurusConcept.find("THC-A00001x", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(tc.identifier).to eq("")    
+    expect{ThesaurusConcept.find("THC-A00001x", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")}.to raise_error(Exceptions::NotFoundError)  
   end
 
   it "allows the existance of a TC to be determined" do
@@ -189,6 +189,7 @@ describe ThesaurusConcept do
     new_tc = 
       {
         :identifier => "A00004",
+        :label => "New",
         :notation => "NEWNEW AND",
         :synonym => "And",
         :definition => "Other or mixed race new",
@@ -216,6 +217,72 @@ describe ThesaurusConcept do
     tc = ThesaurusConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     expect(tc.to_json).to eq(result)
   end
+
+  it "allows a TC to be updated, quotes test" do
+    new_tc = 
+      {
+        :identifier => "A00004",
+        :label => "New",
+        :notation => "NEWNEW AND",
+        :synonym => "\"Quote\"",
+        :definition => "Other or 'mixed' race new",
+        :preferredTerm => "New Stuff \"and\" new stuff"
+      }
+    result =
+      {
+        :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+        :id => "THC-A00001_A00004",
+        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
+        :label => "New",
+        :extension_properties => [],
+        :identifier => "A00004",
+        :notation => "NEWNEW AND",
+        :synonym => "\"Quote\"",
+        :definition => "Other or 'mixed' race new",
+        :preferredTerm => "New Stuff \"and\" new stuff",
+        :topLevel => false,
+        :parentIdentifier=>"",
+        :children => []
+      }
+    tc = ThesaurusConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    updated = tc.update(new_tc)
+    expect(updated).to eq(true)
+    tc = ThesaurusConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expect(tc.to_json).to eq(result)
+  end
+  
+  it "allows a TC to be updated, character test" do
+    new_tc = 
+      {
+        :identifier => "A00004",
+        :label => "New",
+        :notation => "NEWNEW AND",
+        :synonym => "THE BROWN FOX JUMPS OVER THE LAZY DOG. the brown fox jumps over the lazy dog. 0123456789 .!?,'\"_-/\\()[]~#*=:;&|",
+        :definition => "Other or 'mixed' race new",
+        :preferredTerm => "New Stuff \"and\" new stuff"
+      }
+    result =
+      {
+        :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+        :id => "THC-A00001_A00004",
+        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
+        :label => "New",
+        :extension_properties => [],
+        :identifier => "A00004",
+        :notation => "NEWNEW AND",
+        :synonym => "THE BROWN FOX JUMPS OVER THE LAZY DOG. the brown fox jumps over the lazy dog. 0123456789 .!?,'\"_-/\\()[]~#*=:;&|",
+        :definition => "Other or 'mixed' race new",
+        :preferredTerm => "New Stuff \"and\" new stuff",
+        :topLevel => false,
+        :parentIdentifier=>"",
+        :children => []
+      }
+    tc = ThesaurusConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    updated = tc.update(new_tc)
+    expect(updated).to eq(true)
+    tc = ThesaurusConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expect(tc.to_json).to eq(result)
+  end
   
   it "prevents a TC being updated with invalid data" do
     new_tc = 
@@ -231,7 +298,7 @@ describe ThesaurusConcept do
         :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
         :id => "THC-A00001_A00004",
         :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :label => "New",
+        :label => "",
         :extension_properties => [],
         :identifier => "A00004",
         :notation => "NEWNEW AND",
@@ -244,7 +311,7 @@ describe ThesaurusConcept do
       }
     tc = ThesaurusConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     updated = tc.update(new_tc)
-    expect(updated).to eq(false)
+    expect(tc.errors.count).to eq(1)
     expect(tc.errors.full_messages[0]).to eq("Notation contains invalid characters")
   end
 

@@ -86,13 +86,14 @@ Rails.application.routes.draw do
       get :view
       get :search
       get :next
+      get :children
       post :add_child
       get :export_ttl
     end
   end
   resources :thesaurus_concepts, :only => [:update, :show, :destroy, :edit] do
     collection do
-      #get :impact
+      get :children
       post :add_child
     end
   end

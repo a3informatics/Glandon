@@ -34,6 +34,7 @@
       </tr>
   	</tfoot>
 	</table>
+	<%= link_to "Close", @close_path, :class => "btn btn-primary" %>
 </div>
 <input type="hidden" id="termId" value="<%= @thesaurus.id %>">
 <input type="hidden" id="namespace" value="<%= @thesaurus.namespace %>" %>	

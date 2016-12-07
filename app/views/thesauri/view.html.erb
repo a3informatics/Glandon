@@ -71,7 +71,6 @@
             </div>
         </div>
     </div>
-    <%= link_to "Close", thesauri_index_path, :class => "btn btn-primary" %>
-    <button id="toggleButton" type="button" class="btn btn-primary">Toggle</button>
+    <%= link_to "Close", @close_path, :class => "btn btn-primary" %>
     <%= link_to "Edit", edit_thesauri_path(:id => @thesaurus.id, :namespace => @thesaurus.namespace), :class => "btn btn-primary" %>
 </div>

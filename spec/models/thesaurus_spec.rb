@@ -4,7 +4,7 @@ describe Thesaurus do
 
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -15,6 +15,9 @@ describe Thesaurus do
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("thesaurus.ttl")
+    load_test_file_into_triple_store("CT_V34.ttl")
+    load_test_file_into_triple_store("CT_V35.ttl")
+    load_test_file_into_triple_store("CT_V36.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -89,11 +92,63 @@ describe Thesaurus do
     expect(th.to_json).to eq(result_th)
   end
 
-  it "def self.all"
-  it "def self.list"
-  it "def self.unique"
-  it "def self.history(params)"
-  it "def self.current(params)"
+  it "allows all records to be retrieved" do
+    result = Thesaurus.all
+    expect(result.count).to eq(4)
+    expect(result[0].identifier).to eq("CDISC EXT")
+    expect(result[0].id).to eq("TH-SPONSOR_CT-1")
+    expect(result[0].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expect(result[1].identifier).to eq("CDISC Terminology")
+    expect(result[1].id).to eq("TH-CDISC_CDISCTerminology")
+    expect(result[1].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    expect(result[2].identifier).to eq("CDISC Terminology")
+    expect(result[2].id).to eq("TH-CDISC_CDISCTerminology")
+    expect(result[2].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    expect(result[3].identifier).to eq("CDISC Terminology")
+    expect(result[3].id).to eq("TH-CDISC_CDISCTerminology")
+    expect(result[3].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+  end
+
+  it "allows the list to be retrieved" do
+    result = Thesaurus.list
+    expect(result.count).to eq(4)
+    #expect(result).to eq("")
+    expect(result[3].identifier).to eq("CDISC EXT")
+    expect(result[3].id).to eq("TH-SPONSOR_CT-1")
+    expect(result[3].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expect(result[2].identifier).to eq("CDISC Terminology")
+    expect(result[2].id).to eq("TH-CDISC_CDISCTerminology")
+    expect(result[2].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    expect(result[1].identifier).to eq("CDISC Terminology")
+    expect(result[1].id).to eq("TH-CDISC_CDISCTerminology")
+    expect(result[1].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    expect(result[0].identifier).to eq("CDISC Terminology")
+    expect(result[0].id).to eq("TH-CDISC_CDISCTerminology")
+    expect(result[0].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+  end
+
+  it "allows the unique item to be retrived" do
+    result = Thesaurus.unique
+    expect(result.count).to eq(2)
+    expect(result[1][:identifier]).to eq("CDISC EXT")
+    expect(result[0][:identifier]).to eq("CDISC Terminology")
+    expect(result[1][:owner]).to eq("ACME")
+    expect(result[0][:owner]).to eq("CDISC")
+  end
+
+  it "allows the history to be retrived" do
+    owner = IsoRegistrationAuthority.owner
+    result = Thesaurus.history({:identifier => "CDISC EXT", :scope_id => owner.namespace.id})
+    expect(result.count).to eq(1)
+  end
+
+  it "allows the current item to be retrived" do
+    owner = IsoRegistrationAuthority.owner
+    result = Thesaurus.current({:identifier => "CDISC EXT", :scope_id => owner.namespace.id})
+    expect(result.identifier).to eq("CDISC EXT")
+    expect(result.id).to eq("TH-SPONSOR_CT-1")
+    expect(result.namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  end
   
   it "allows a simple creation of a thesaurus" do
     result_th = read_yaml_file_to_hash("thesaurus_example_4.yaml")
@@ -124,8 +179,7 @@ describe Thesaurus do
   it "allows the Th to be exported as SPARQL" do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     sparql = th.to_sparql_v2
-    #write_text_file_to_hash(sparql.to_s, "thesaurus_example_7.txt")
-    result_sparql = read_text_file_to_hash("thesaurus_example_7.txt")
+    result_sparql = read_text_file("thesaurus_example_7.txt")
     expect(sparql.to_s).to eq(result_sparql)
   end
 
