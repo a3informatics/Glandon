@@ -18,7 +18,7 @@ describe "Users", :type => :feature do
       fill_in 'Password', with: 'changeme'
       click_button 'Log in'
       #pause
-      click_link 'Users'
+      click_link 'users_button'
       expect(page).to have_content 'Index: User'
       find(:xpath, "//tr[contains(.,'delete@example.com')]/td/a", :text => 'Delete').click
       page.accept_alert

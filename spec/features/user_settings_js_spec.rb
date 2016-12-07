@@ -22,7 +22,7 @@ describe "User Settings", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
-      click_link 'Settings'
+      click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       tr = page.find('#main tbody tr')
       sleep 1

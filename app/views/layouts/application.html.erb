@@ -47,17 +47,17 @@
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                   <% if current_user.has_role? :sys_admin %>
-                    <li><a href="/users"><span class="glyphicon glyphicon-user"></span>&nbsp;</a></li>
+                    <li><a id="users_button" href="/users"><span class="glyphicon glyphicon-user"></span>&nbsp;</a></li>
                   <% end %>
                   <li>
-                    <%= link_to "", id: 'print_button'  do %>
+                    <%= link_to "", id: 'print_button' do %>
                       <span class="glyphicon glyphicon-print"></span>
                     <% end %>
                   </li>
-                  <li><a href="<%= user_settings_path %>"><span class="glyphicon glyphicon-cog"></span>&nbsp;</a></li>
-                  <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;</a></li>
+                  <li><a id="settings_button" href="<%= user_settings_path %>"><span class="glyphicon glyphicon-cog"></span>&nbsp;</a></li>
+                  <li><a id="home_button" href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;</a></li>
                   <li>
-                    <%= link_to destroy_user_session_path, :method => :delete do %>
+                    <%= link_to destroy_user_session_path, :method => :delete, id: 'logoff_button' do %>
                       <span class="glyphicon glyphicon-off"></span>
                     <% end %>
                   </li>
