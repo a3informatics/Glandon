@@ -94,9 +94,9 @@ module FieldValidation
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
   def self.valid_submission_value?(symbol, value, object)
-    result = value.match /^\A[A-Za-z0-9 ]+\z/ 
+    result = value.match /^\A[A-Za-z0-9 ]*\z/ 
     return true if result != nil
-    object.errors.add(symbol, "contains invalid characters or is empty")
+    object.errors.add(symbol, "contains invalid characters")
     return false
   end
 

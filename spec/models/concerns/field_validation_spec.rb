@@ -112,29 +112,29 @@ describe FieldValidation do
     expect(FieldValidation.valid_long_name?(:test, "ALongName|", object)).to eq(false)
   end
 
-  it "checks a valid submission value" do
+  it "checks a valid submission value - \" \"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_submission_value?(:test, " ", object)).to eq(true)
   end
 
-  it "checks a valid submission value" do
+  it "checks a valid submission value - A VALUE" do
     object = IsoConcept.new
     expect(FieldValidation.valid_submission_value?(:test, "A VALUE", object)).to eq(true)
   end
 
-  it "checks a valid submission value" do
+  it "checks a valid submission value - a" do
     object = IsoConcept.new
     expect(FieldValidation.valid_submission_value?(:test, "a", object)).to eq(true)
   end
 
-  it "checks a valid submission value" do
+  it "checks a valid submission value - aaaAAA123" do
     object = IsoConcept.new
     expect(FieldValidation.valid_submission_value?(:test, "aaaAAA123 ", object)).to eq(true)
   end
 
-  it "checks an invalid submission value - \"\"" do
+  it "checks a valid submission value - \"\"" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_submission_value?(:test, "", object)).to eq(false)
+    expect(FieldValidation.valid_submission_value?(:test, "", object)).to eq(true)
   end
 
   it "checks an invalid submission value - !!" do

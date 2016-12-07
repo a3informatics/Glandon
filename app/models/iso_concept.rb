@@ -522,6 +522,41 @@ class IsoConcept
     return results
   end
   
+  # Parent. Get the parent object depending on the specififed link type.
+  #
+  # @param uri [Object] URI of the child concept.
+  # @return [Object] The URI of the parent. Nil if not found
+  def self.find_parent(uri)
+    result = nil
+    query = UriManagement.buildNs(uri.namespace, [UriManagement::C_ISO_I, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]) +
+      "SELECT DISTINCT ?s ?o WHERE \n" +
+      "{ \n" +
+      "  { \n" +
+      "    ?s (iso25964:hasConcept|iso25964:hasChild) :#{uri.id} . \n" +      
+      "    ?s rdf:type ?o . \n" +      
+      "  } UNION {\n" +
+      "    ?s (bf:hasGroup|bf:hasSubGroup|bf:hasItem|bf:hasCommon|bf:hasCommonItem) :#{uri.id} . \n" +      
+      "    ?s rdf:type ?o . \n" +      
+      "  } UNION {\n" +
+      "    ?s (cbc:hasItem|cbc:hasDatatype|cbc:hasProperty) :#{uri.id} . \n" +      
+      "    ?s rdf:type ?o . \n" +      
+      "  } UNION {\n" +
+      "    ?s (bd:includesColumn) :#{uri.id} . \n" +      
+      "    ?s rdf:type ?o . \n" +      
+      "  }\n" +   
+      "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    nodes = xmlDoc.xpath("//result")
+    if nodes.length == 1
+      uri = UriV2.new({uri: ModelUtility.getValue('s', true, nodes[0] )})
+      rdf_type = ModelUtility.getValue('o', true, nodes[0])
+      result = { uri: uri, rdf_type: rdf_type }
+    end
+    return result
+  end
+
   # Does a link exist
   #
   # @param prefix [string] The schema prefix

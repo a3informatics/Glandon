@@ -549,6 +549,27 @@ describe IsoConcept do
     expect(results.to_json).to eq(expected.to_json)
   end
 
+  it "allows the parent object to be determined, concept -> concept" do
+    uri1 = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1"})
+    uri2 = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1"})
+    result = IsoConcept.find_parent(uri1)
+    expect(result[:uri].to_s).to eq(uri2.to_s)
+    expect(result[:rdf_type]).to eq("http://www.assero.co.uk/BusinessForm#NormalGroup")
+  end
+
+  it "allows the parent object to be determined, managed_item -> concept " do
+    uri1 = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1"})
+    uri2 = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"})
+    result = IsoConcept.find_parent(uri1)
+    expect(result[:uri].to_s).to eq(uri2.to_s)
+    expect(result[:rdf_type]).to eq("http://www.assero.co.uk/BusinessForm#Form")
+  end
+
+  it "allows the parent object to be determined, no parent" do
+    uri1 = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"})
+    expect(IsoConcept.find_parent(uri1)).to eq(nil)
+  end
+
   it "detects trying to find a missing object" do
 		result =     
 			{ 
