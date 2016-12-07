@@ -17,6 +17,7 @@
       <%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
       <%= javascript_include_tag 'application', params[:controller] %>
   	<% end %>
+    <%= stylesheet_link_tag 'print', :media => 'print'%>
     <%= csrf_meta_tags %>
 
     <style>
@@ -38,16 +39,28 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
+                <a class="navbar-brand" href="/">
+                  <img alt="Brand" src="<%= asset_path('glandon1.png') %>" height="25">
+                </a>
                 <a class="navbar-brand" href="/">Glandon (v<%= Version::VERSION %>)</a>
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="/">Dashboard</a></li>
                   <% if current_user.has_role? :sys_admin %>
-                    <li><%= link_to "Users", users_path %></li>
-                  <% end %>  
-                  <li><%= link_to "Settings", user_settings_path %></li>
-                  <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+                    <li><a href="/users"><span class="glyphicon glyphicon-user"></span>&nbsp;</a></li>
+                  <% end %>
+                  <li>
+                    <%= link_to "", id: 'print_button'  do %>
+                      <span class="glyphicon glyphicon-print"></span>
+                    <% end %>
+                  </li>
+                  <li><a href="<%= user_settings_path %>"><span class="glyphicon glyphicon-cog"></span>&nbsp;</a></li>
+                  <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;</a></li>
+                  <li>
+                    <%= link_to destroy_user_session_path, :method => :delete do %>
+                      <span class="glyphicon glyphicon-off"></span>
+                    <% end %>
+                  </li>
                 </ul>
               </div>
             </div>

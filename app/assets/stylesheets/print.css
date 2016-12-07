@@ -1,0 +1,9 @@
+@media print {
+  div.info, div#page_nav_menu {
+    display: none;
+  }
+
+  a[href]:after {
+    content: none;
+  }
+}
