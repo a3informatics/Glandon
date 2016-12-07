@@ -26,10 +26,14 @@ RSpec.describe Token, type: :model do
     clear_token_object
     @user = User.create :email => "token_user@example.com", :password => "changeme" 
     @user.add_role :reader
+    @user2 = User.create :email => "token_user2@example.com", :password => "changeme" 
+    @user2.add_role :reader
   end
 
   after :all do
     user = User.where(:email => "token_user@example.com").first
+    user.destroy
+    user = User.where(:email => "token_user2@example.com").first
     user.destroy
   end
 
@@ -42,11 +46,18 @@ RSpec.describe Token, type: :model do
     expect(token.locked_at).to be_within(1.second).of Time.now
   end
 
-  it "prevents a token being obtained when already allocated" do
+  it "allows the same user to obtain a token when already allocated" do
   	item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    token = Token.obtain(item, @user)
-    token = Token.obtain(item, @user)
-    expect(token).to eq(nil)
+    token1 = Token.obtain(item, @user)
+    token2 = Token.obtain(item, @user)
+    expect(token1.id).to eq(token2.id)
+  end
+
+  it "prevents another user obtaining a token when already allocated" do
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    token1 = Token.obtain(item, @user)
+    token2 = Token.obtain(item, @user2)
+    expect(token2).to eq(nil)
   end
 
   it "allows a token to be released" do
