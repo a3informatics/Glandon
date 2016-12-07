@@ -80,10 +80,36 @@ module FieldValidation
   # @param value [string] The value being checked
   # @param object [object] The object to which the value/item belongs
   # @return [boolean] True if value valid, false otherwise
-  def self.valid_free_text?(symbol, value, object)
+  def self.valid_long_name?(symbol, value, object)
     result = value.match /^\A[A-Za-z0-9.!?,_ \-()]+\z/ 
     return true if result != nil
     object.errors.add(symbol, "contains invalid characters or is empty")
+    return false
+  end
+
+  # Valid Submission Value
+  #
+  # @param symbol [string] The item being checked
+  # @param value [string] The value being checked
+  # @param object [object] The object to which the value/item belongs
+  # @return [boolean] True if value valid, false otherwise
+  def self.valid_submission_value?(symbol, value, object)
+    result = value.match /^\A[A-Za-z0-9 ]+\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters or is empty")
+    return false
+  end
+
+  # Valid Terminology Property
+  #
+  # @param symbol [string] The item being checked
+  # @param value [string] The value being checked
+  # @param object [object] The object to which the value/item belongs
+  # @return [boolean] True if value valid, false otherwise
+  def self.valid_terminology_property?(symbol, value, object)
+    result = value.match /^\A[A-Za-z0-9 .!?,'"_\-\/\\()\[\]~#*=:;&|]*\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters")
     return false
   end
 

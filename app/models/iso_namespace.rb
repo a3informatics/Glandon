@@ -283,7 +283,7 @@ class IsoNamespace
   #
   # @return [boolean] True if valid, false otherwise.
   def valid?
-    return FieldValidation.valid_short_name?(:short_name, self.shortName, self) && FieldValidation.valid_free_text?(:name, self.name, self)
+    return FieldValidation.valid_short_name?(:short_name, self.shortName, self) && FieldValidation.valid_long_name?(:name, self.name, self)
   end
 
 end

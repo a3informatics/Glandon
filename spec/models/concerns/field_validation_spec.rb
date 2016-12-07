@@ -92,6 +92,76 @@ describe FieldValidation do
     expect(FieldValidation.valid_short_name?(:test, "AShortName!", object)).to eq(false)
   end
 
+  it "checks a valid long name - ALongName" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_long_name?(:test, "ALongName", object)).to eq(true)
+  end
+
+  it "checks a valid long name - ALongName1234567890.!?,_ -()" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_long_name?(:test, "ALongName1234567890.!?,_ -()", object)).to eq(true)
+  end
+
+  it "checks an invalid long name - \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_long_name?(:test, "", object)).to eq(false)
+  end
+
+  it "checks an invalid long name - ALongName|" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_long_name?(:test, "ALongName|", object)).to eq(false)
+  end
+
+  it "checks a valid submission value" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, " ", object)).to eq(true)
+  end
+
+  it "checks a valid submission value" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, "A VALUE", object)).to eq(true)
+  end
+
+  it "checks a valid submission value" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, "a", object)).to eq(true)
+  end
+
+  it "checks a valid submission value" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, "aaaAAA123 ", object)).to eq(true)
+  end
+
+  it "checks an invalid submission value - \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, "", object)).to eq(false)
+  end
+
+  it "checks an invalid submission value - !!" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, "!!", object)).to eq(false)
+  end
+
+  it "checks an invalid submission value - \"@ \"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, "@ ", object)).to eq(false)
+  end
+
+  it "checks a valid terminology property value - \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_terminology_property?(:test, "", object)).to eq(true)
+  end
+
+  it "checks a valid terminology property value" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_terminology_property?(:test, "the dirty brown fox jumps over the lazy dog. THE DIRTY BROWN FOX JUMPS OVER THE LAZY DOG. 0123456789. !?,'\"_-/\\()[]~#*=:;&|", object)).to eq(true)
+  end
+
+  it "checks an invalid terminology property value - <>" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_terminology_property?(:test, "<>", object)).to eq(false)
+  end
+
   it "checks a valid label" do
     object = IsoConcept.new
     expect(FieldValidation.valid_label?(:test, "A Label", object)).to eq(true)
@@ -182,14 +252,24 @@ describe FieldValidation do
     expect(FieldValidation.valid_date_time?(:test, "1960-11-01T12:01:£££", object)).to eq(false)
   end
 
-  it "checks valid markup" do
+  it "checks a valid markdown" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_date_time?(:test, "This is some\r\n * markup", object)).to eq(true)
+    expect(FieldValidation.valid_markdown?(:test, "the dirty brown fox jumps over the lazy dog. THE DIRTY BROWN FOX JUMPS OVER THE LAZY DOG. 0123456789. !?,'\"_-/\\()[]~#*=:;&|", object)).to eq(true)
   end
 
-  it "checks invalid markup" do
+  it "checks valid markdown" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_date_time?(:test, "This is some invalid < markup", object)).to eq(false)
+    expect(FieldValidation.valid_markdown?(:test, "This is some\r\n * markup", object)).to eq(true)
+  end
+
+  it "checks invalid markdown - contains <" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_markdown?(:test, "This is some invalid < markup", object)).to eq(false)
+  end
+
+  it "checks invalid markdown - contains >" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_markdown?(:test, "This is some invalid > markup", object)).to eq(false)
   end
 
   it "checks valid datatype" do
