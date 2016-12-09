@@ -4,7 +4,7 @@ describe CdiscCl do
 
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -16,6 +16,7 @@ describe CdiscCl do
     load_schema_file_into_triple_store("CDISCTerm.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("CT_V34.ttl")
+    load_test_file_into_triple_store("CT_V35.ttl")
     clear_iso_concept_object
   end
 
@@ -62,7 +63,7 @@ describe CdiscCl do
 
   it "allows a TC to be found - error" do
     tc = CdiscCl.find("CL-C85491x", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    expect(tc.identifier).to eq("")    
+    expect(tc).to eq(nil)    
   end
 
   it "allows a TC to be found, check extensible" do
@@ -98,10 +99,27 @@ describe CdiscCl do
 
   it "allows two CLs to be compared, different" do
     tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    tc2.extensible = true
+    tc2 = CdiscCl.find("CL-C103329", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
     result = CdiscCl.diff?(tc1, tc2)
     expect(result).to eq(true)    
+  end
+
+  it "allows the difference between two CLs to be found, same" do
+    tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    result = CdiscCl.difference(tc1, tc2)
+    #write_hash_to_yaml_file(result, "cdisc_cl_differences_1.yaml")
+    expected = read_yaml_file_to_hash("cdisc_cl_differences_1.yaml")
+    expect(result).to eq(expected) 
+  end
+
+  it "allows the difference between two CLs to be found, different" do
+    tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc2 = CdiscCl.find("CL-C103329", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    result = CdiscCl.difference(tc1, tc2)
+    #write_hash_to_yaml_file(result, "cdisc_cl_differences_2.yaml")
+    expected = read_yaml_file_to_hash("cdisc_cl_differences_2.yaml")
+    expect(result).to eq(expected) 
   end
 
 end

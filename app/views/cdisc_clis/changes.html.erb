@@ -17,15 +17,36 @@
 		  </tr>	
 		<thead>
 		<tbody>
-			<% @Results.each do |r| %>
+			<% @results.each do |result| %>
 				<tr>
-			    <td><%= raw r["version"] %></td>
-			    <td><%= raw r["date"] %></td>
-			    <td><%= raw r["identifier"] %></td>
-		      <td><%= raw r["notation"] %></td>
-		      <td><%= raw r["preferredTerm"] %></td>
-		      <td><%= raw r["synonym"] %></td>
-		      <td><%= raw r["definition"] %></td>
+					<% r = result[:results] %>
+			    <td><%= result[:version] %></td>
+			    <td><%= result[:date] %></td>
+			    <% if result[:status] == :created || result[:status] == :updated %>
+				    <%= diff_glyphicon(r[:Identifier]) %>
+				    <%= diff_glyphicon(r[:Notation]) %>
+				    <%= diff_glyphicon(r[:"Preferred Term"]) %>
+				    <%= diff_glyphicon(r[:Synonym]) %>
+			      <%= diff_glyphicon(r[:Definition]) %>
+			    <% elsif result[:status] == :deleted %>
+				    <td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>
+			    <% elsif result[:status] == :no_change %>
+				    <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			    <% else %>
+			      <td></td>
+			      <td></td>
+			      <td></td>
+			      <td></td>
+			      <td></td>
+			    <% end %>
 			  </tr>
 			<% end %>
 		</tbody>

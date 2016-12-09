@@ -24,4 +24,12 @@ module ApplicationHelper
 	  end
 	end
 
+	def diff_glyphicon(data)
+		if data[:status] == :no_change
+			return raw("<td class=\"text-center\"><span class=\"glyphicon glyphicon-arrow-down text-success\"/></td>")
+		else
+			return raw("<td>#{data[:difference]}</td>")
+		end
+	end
+
 end

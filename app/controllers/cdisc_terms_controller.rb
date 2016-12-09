@@ -366,32 +366,6 @@ private
     
   end
 
-  def filterResults (results, type)
-
-    # Run through the entire set of results and check for missing entries.
-    # If any found then mark as deleted
-    results.each do |clId, clEntry|
-      result = clEntry[:result]
-      keep = false
-      result.each do |mKey, value|
-        if type == "UPDATE" && value == "M"
-          keep = true
-          break
-        elsif type == "DELETE" && value == "X"
-          keep = true
-          break
-        elsif type == "NEW" && value == ""
-          keep = true
-          break
-        end
-      end 
-      if !keep
-        results.delete(clId)
-      end
-    end  
-
-  end
-
   def impact_flatten(tree_array)
     results = Array.new
     tree_array.each do |tree|

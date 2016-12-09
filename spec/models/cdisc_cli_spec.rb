@@ -1,0 +1,82 @@
+require 'rails_helper'
+
+describe CdiscCli do
+
+  include DataHelpers
+
+  before :all do
+    clear_triple_store
+    load_schema_file_into_triple_store("ISO11179Types.ttl")
+    load_schema_file_into_triple_store("ISO11179Basic.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    load_schema_file_into_triple_store("ISO11179Data.ttl")
+    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    load_schema_file_into_triple_store("ISO25964.ttl")
+    load_schema_file_into_triple_store("CDISCTerm.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+    load_test_file_into_triple_store("CT_V34.ttl")
+    clear_iso_concept_object
+  end
+
+  it "allows an object to be initialised" do
+    tc = CdiscCli.new
+    result = 
+      {
+        :children => [],
+        :definition => "",
+        :extension_properties => [],
+        :id => "",
+        :identifier => "",
+        :label => "",
+        :namespace => "",
+        :notation => "",
+        :parentIdentifier => "",
+        :preferredTerm => "",
+        :synonym => "",
+        :topLevel => false,
+        :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
+      }
+    expect(tc.to_json).to eq(result)
+  end
+
+  it "allows validity of the object to be checked - error" do
+    tc = CdiscCli.new
+    valid = tc.valid?
+    expect(valid).to eq(false)
+    expect(tc.errors.count).to eq(1)
+    expect(tc.errors.full_messages[0]).to eq("Identifier contains invalid characters")
+  end 
+
+  it "allows validity of the object to be checked" do
+    tc = CdiscCli.new
+    tc.identifier = "AAA"
+    valid = tc.valid?
+    expect(valid).to eq(true)
+  end 
+
+  it "allows a TC to be found" do
+    tc = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    expect(tc.identifier).to eq("C105274")    
+  end
+
+  it "allows a TC to be found - error" do
+    tc = CdiscCli.find("CLI-C105135_C105274x", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    expect(tc).to eq(nil)    
+  end
+
+  it "allows two CLs to be compared, same" do
+    tc1 = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc2 = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    result = CdiscCli.diff?(tc1, tc2)
+    expect(result).to eq(false)    
+  end
+
+  it "allows two CLs to be compared, different" do
+    tc1 = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc2 = CdiscCli.find("CLI-C105135_C105275", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    result = CdiscCli.diff?(tc1, tc2)
+    expect(result).to eq(true)    
+  end
+
+end

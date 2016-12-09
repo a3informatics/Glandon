@@ -18,16 +18,40 @@
   	  </tr>	
 		<thead>
 		<tbody>
-			<% @ClResults.each do |r| %>
+			<% @results.each do |result| %>
 				<tr>
-			    <td><%= raw r["version"] %></td>
-			    <td><%= raw r["date"] %></td>
-			    <td><%= raw r["identifier"] %></td>
-		      <td><%= raw r["notation"] %></td>
-		      <td><%= raw r["preferredTerm"] %></td>
-		      <td><%= raw r["synonym"] %></td>
-		      <td><%= raw r["extensible"] %></td>
-		      <td><%= raw r["definition"] %></td>
+					<% r = result[:results] %>
+			    <td><%= result[:version] %></td>
+			    <td><%= result[:date] %></td>
+			    <% if result[:status] == :created || result[:status] == :updated %>
+				    <%= diff_glyphicon(r[:Identifier]) %>
+				    <%= diff_glyphicon(r[:Notation]) %>
+				    <%= diff_glyphicon(r[:"Preferred Term"]) %>
+				    <%= diff_glyphicon(r[:Synonym]) %>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+				    <%= diff_glyphicon(r[:Definition]) %>
+			    <% elsif result[:status] == :no_change %>
+				    <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			    <% elsif result[:status] == :no_change %>
+				    <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			    <% else %>
+			      <td></td>
+			      <td></td>
+			      <td></td>
+			      <td></td>
+			      <td></td>
+			      <td></td>
+			    <% end %>
 			  </tr>
 			<% end %>
 		</tbody>
@@ -39,38 +63,36 @@
 				<th>Identifier</th>
 				<th>Label</th>
 				<th>Submission Value</th>
-				<% cliEntry = @CliResults.values[0] %>
-				<% value = cliEntry[:result]%>
-				<% value.each do |vKey, value| %>
-			    <th class="text-center"><%= vKey %></th>
+				<% @results.each do |result| %>
+			  	<% r = result[:results] %>
+			    <th class="text-center"><%= result[:date] %></th>
 			  <% end %>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>	
-			<% @CliResults.each do |cliKey, cliEntry| %>
-				<% value = cliEntry[:result]%>
-				<% cli = cliEntry[:cli]%>
-				<tr>
-					<td><%= cli.identifier %></td>
-					<td><%= cli.preferredTerm %></td>
-					<td><%= cli.notation %></td>
-					<% value.each do |vKey, status| %>
-						<% if status == "." %>
-							<td class="text-center"><span class="glyphicon glyphicon-ok-circle"/></td>
-						<% elsif status == "M"  %>
-							<td class="text-center bg-warning">
-								<span class="text-center glyphicon glyphicon-pencil"/>
-							</td>
-						<% elsif status == "X"  %>
-							<td class="text-center bg-danger">	
-								<span class="glyphicon glyphicon-remove-circle"/>
-							</td>
-						<% else %>
+			<% @clis.each do |key, cli| %>
+			  <% s = cli[:status] %>
+			  <tr>
+					<td><%= key %></td>
+					<td><%= cli[:preferred_term] %></td>
+					<td><%= cli[:notation] %></td>
+					<% s.each do |status| %>
+						<% if status == :created %>
+							<td class="text-center"><span class="glyphicon glyphicon-ok text-success"/></td>
+						<% elsif status == :no_change %>
+							<td class="text-center"><span class="glyphicon glyphicon-minus text-success"/></td>
+						<% elsif status == :updated %>
+							<td class="text-center"><span class="text-center glyphicon glyphicon-edit text-warning"/></td>
+						<% elsif status == :deleted %>
+							<td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>
+						<% elsif status == :not_present %>
 							<td class="text-center">&nbsp;</td>
+						<% else %>
+							<td class="text-center"><%=[status]%></td>
 						<% end %>
 					<% end %>
-					<td><%=link_to "Changes", changes_cdisc_clis_path(:id => cli.id), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "Changes", changes_cdisc_clis_path(:id => cli[:id]), :class => "btn btn-primary btn-xs" %></td>
 				</tr>	
 			<% end %>
 		</tbody>

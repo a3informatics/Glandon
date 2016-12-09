@@ -130,17 +130,17 @@ Rails.application.routes.draw do
       delete :file_delete
     end
   end
-  resources :cdisc_cls do
+  resources :cdisc_cls, :only => [:show] do
     collection do
-      get :compare
-      get :history
+      #get :compare
+      #get :history
       get :changes
     end
   end
-  resources :cdisc_clis do
+  resources :cdisc_clis, :only => [:show] do
     collection do
-      get :compare
-      get :history
+      #get :compare
+      #get :history
       #get :impact
       get :changes
     end

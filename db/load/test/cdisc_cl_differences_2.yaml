@@ -1,0 +1,143 @@
+---
+:status: :updated
+:results:
+  :Definition:
+    :status: :updated
+    :previous: A terminology codelist associated with coronary artery disease presentation.
+    :current: Terminology related to the classification of a CDISC domain.
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del><strong>A t</strong>erminology <strong>codelist associ</strong>ated <strong>with coronary artery disease present</strong>ation.</del></li>
+          <li class="ins"><ins><strong>T</strong>erminology <strong>rel</strong>ated <strong>to the classific</strong>ation<strong> of a CDISC domain</strong>.</ins></li>
+        </ul>
+      </div>
+  :Preferred Term:
+    :status: :updated
+    :previous: CDISC SDTM Coronary Artery Disease Presentation Terminology
+    :current: CDISC SDTM General Observation Class Terminology
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del>CDISC SDTM <strong>Coronary Artery Disease Present</strong>ation Terminology</del></li>
+          <li class="ins"><ins>CDISC SDTM <strong>General Observ</strong>ation <strong>Class </strong>Terminology</ins></li>
+        </ul>
+      </div>
+  :Notation:
+    :status: :updated
+    :previous: CADPRSN
+    :current: GNRLOBSC
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del><strong>CADPRSN</strong></del></li>
+          <li class="ins"><ins><strong>GNRLOBSC</strong></ins></li>
+        </ul>
+      </div>
+  :Identifier:
+    :status: :updated
+    :previous: C101843
+    :current: C103329
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del>C10<strong>1843</strong></del></li>
+          <li class="ins"><ins>C10<strong>3329</strong></ins></li>
+        </ul>
+      </div>
+  :Synonym:
+    :status: :updated
+    :previous: Coronary Artery Disease Presentation
+    :current: General Observation Class
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del><strong>Coronary Artery Disease Present</strong>ation</del></li>
+          <li class="ins"><ins><strong>General Observ</strong>ation<strong> Class</strong></ins></li>
+        </ul>
+      </div>
+:children:
+  :C103371:
+    :status: :created
+    :preferred_term: CDISC Basic Data Structure Dataset
+    :notation: BASIC DATA STRUCTURE
+    :id: CLI-C103329_C103371
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C103372:
+    :status: :created
+    :preferred_term: CDISC Events Class
+    :notation: EVENTS
+    :id: CLI-C103329_C103372
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C103373:
+    :status: :created
+    :preferred_term: CDISC Findings Class
+    :notation: FINDINGS
+    :id: CLI-C103329_C103373
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C103374:
+    :status: :created
+    :preferred_term: CDISC Interventions Class
+    :notation: INTERVENTIONS
+    :id: CLI-C103329_C103374
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C103375:
+    :status: :created
+    :preferred_term: CDISC Other ADaM Dataset
+    :notation: ADAM OTHER
+    :id: CLI-C103329_C103375
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C103376:
+    :status: :created
+    :preferred_term: CDISC Relationship Class
+    :notation: RELATIONSHIP
+    :id: CLI-C103329_C103376
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C103377:
+    :status: :created
+    :preferred_term: CDISC Special Purpose Class
+    :notation: SPECIAL PURPOSE
+    :id: CLI-C103329_C103377
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C103379:
+    :status: :created
+    :preferred_term: CDISC Trial Design Class
+    :notation: TRIAL DESIGN
+    :id: CLI-C103329_C103379
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C103378:
+    :status: :created
+    :preferred_term: CDISC Subject Level Analysis Dataset
+    :notation: SUBJECT LEVEL ANALYSIS DATASET
+    :id: CLI-C103329_C103378
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C66914:
+    :status: :deleted
+    :preferred_term: Stable Angina
+    :notation: STABLE ANGINA
+    :id: CLI-C101843_C66914
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C66915:
+    :status: :deleted
+    :preferred_term: Variant Angina
+    :notation: VARIANT ANGINA
+    :id: CLI-C101843_C66915
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C101888:
+    :status: :deleted
+    :preferred_term: ST Elevation Myocardial Infarction by ECG Finding
+    :notation: ST ELEVATION MYOCARDIAL INFARCTION
+    :id: CLI-C101843_C101888
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C66911:
+    :status: :deleted
+    :preferred_term: Unstable Angina
+    :notation: UNSTABLE ANGINA
+    :id: CLI-C101843_C66911
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  :C80383:
+    :status: :deleted
+    :preferred_term: Non-ST Elevation Myocardial Infarction by ECG Finding
+    :notation: NON-ST ELEVATION MYOCARDIAL INFARCTION
+    :id: CLI-C101843_C80383
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
