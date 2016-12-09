@@ -1,10 +1,5 @@
-#require "nokogiri"
-#require "uri"
-
 class IsoConcept
 
-  #include CRUD
-  #include ModelUtility
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
@@ -82,11 +77,9 @@ class IsoConcept
           elsif triple[:predicate] == C_RDFS_LABEL
             self.label = triple[:object]
           elsif @@property_attributes.has_key?(triple[:predicate])
-            value = set_class_instance(triple)
-            self.properties << {:rdf_type => triple[:predicate], :value => value, :label => @@property_attributes[triple[:predicate]][:label]}
+            set_class_property(triple)
           elsif @@extension_attributes.has_key?(triple[:predicate])
-            value = set_class_instance(triple, true)
-            self.extension_properties << {:rdf_type => triple[:predicate], :value => value, :label => @@extension_attributes[triple[:predicate]][:label]}
+            set_class_property(triple, true)
           elsif @@link_attributes.has_key?(triple[:predicate])
             self.links << {:rdf_type => triple[:predicate], :value => triple[:object]}
           else
@@ -99,7 +92,9 @@ class IsoConcept
     @@extension_attributes.each do |key, attribute|
       items = self.extension_properties.select {|property| property[:rdf_type] == key}
       if items.length == 0 && self.rdf_type == attribute[:domain]
-        self.extension_properties << {:rdf_type => key, :value => "", :label => attribute[:label]}
+        name = ModelUtility.extractCid(key)
+        self.extension_properties << {:rdf_type => key, :instance_variable => name, :label => attribute[:label]}
+        self.instance_variable_set("@#{name}", "")
       end
     end
   end
@@ -336,7 +331,7 @@ class IsoConcept
         self.errors.add(:base, "The extension property was not created in the database.")
       else
         @@extension_attributes = get_extension_attributes
-        ConsoleLogger::log(C_CLASS_NAME,"add_extension_property", "Extension=#{@@extension_attributes.to_json}.")
+        #ConsoleLogger::log(C_CLASS_NAME,"add_extension_property", "Extension=#{@@extension_attributes.to_json}.")
       end
     end
   end
@@ -432,7 +427,8 @@ class IsoConcept
     sparql.triple(subject, {:prefix => UriManagement::C_RDFS, :id => "label"}, {:literal => "#{self.label}", :primitive_type => "string"})
     self.extension_properties.each do |item|
       predicate = UriV2.new({ :uri => item[:rdf_type] })
-      sparql.triple(subject, {:uri => predicate}, {:literal => "#{item[:value]}", :primitive_type => IsoUtility.extract_cid(@@extension_attributes[item[:rdf_type]][:xsd_type])})
+      value = get_extension_value(item[:instance_variable])
+      sparql.triple(subject, {:uri => predicate}, {:literal => "#{value}", :primitive_type => IsoUtility.extract_cid(@@extension_attributes[item[:rdf_type]][:xsd_type])})
     end
     return self.uri
   end
@@ -592,19 +588,92 @@ class IsoConcept
     return results
   end
 
-  # Get the links of a certain type from the set of links.
+  # Get the value of an extension property
   #
-  # @param rdf_type [uri] The type URI
-  # @ return [string] The property value
-  def get_extension(rdf_type)
-    result = ""
-    l = @extension_properties.select {|property| property[:rdf_type] == rdf_type.to_s } 
-    if l.length == 1
-      #ConsoleLogger::log(C_CLASS_NAME, "get_extension", "L=#{l.to_json}.")
-      result = l[0][:value]
-    end
+  # @param name [string] The name of the extension proeprty
+  # @ return [various] The extension property value
+  def get_extension_value(name)
+    value = self.instance_variable_get("@#{name}")
+    return "" if value.nil?
+    return value
+  end
+
+  # Get the value of an extension property
+  #
+  # @param name [string] The name of the extension proeprty
+  # @ return null
+  def set_extension_value(name, value)
+    self.instance_variable_set("@#{name}", value)
+  end
+
+  # Different?
+  #
+  # @previous [Object] The previous object being compared
+  # @current [Object] The current object being compared
+  # @return [boolean] True if different, false otherwise.
+  def self.diff?(previous, current)
+    return true if previous.nil?
+    return true if current.nil?
+    result = diff_properties?(previous, previous.properties, current, current.properties)
+    result = diff_properties?(previous, previous.extension_properties, current, current.extension_properties ) if !result 
     return result
   end
+
+  # Difference between this and another object.
+  #
+  # @previous [Object] The previous object being compared
+  # @current [Object] The current object being compared
+  # @return [Hash] The differenc hash
+  def self.difference(previous, current)
+    results = {}
+    status = :no_change
+    if previous.nil? && current.nil?
+      status = :not_present
+    elsif previous.nil?
+      difference_properties(nil, [], current, current.properties, results)
+      difference_properties(nil, [], current, current.extension_properties, results)
+      status = :created
+    elsif current.nil?
+      difference_properties(previous, previous.properties, nil, [], results)
+      difference_properties(previous, previous.extension_properties, nil, [], results)
+      status = :deleted
+    else
+      changes1 = difference_properties(previous, previous.properties, current, current.properties, results)
+      changes2 = difference_properties(previous, previous.properties, current, current.properties, results)
+      status = :updated if changes1 || changes2
+    end
+    return {status: status, results: results}
+  end
+
+  # Child Match, do the list of child objects match. The list are compared using
+  # a single, specified, property. 
+  #
+  # @previous [Object] The previous object being compared against
+  # @child_name [String] The child array name within the object
+  # @variable_name [String] The property name within the object used to uniquely identify the instance.
+  # @return [Hash] The differenc hash
+  def child_match?(previous, child_name, variable_name)
+    current_array = self.instance_variable_get("@#{child_name}")
+    previous_array = previous.instance_variable_get("@#{child_name}")
+    current_identifiers = current_array.map {|x| x.instance_variable_get("@#{variable_name}")}
+    previous_identifiers = previous_array.map {|x| x.instance_variable_get("@#{variable_name}")}
+    return false if current_identifiers - previous_identifiers != [] || previous_identifiers - current_identifiers != []
+    return true
+  end    
+
+  # Deleted Set. Returns a list of deleted items from the previous object.
+  #
+  # @previous [Object] The previous object being compared against
+  # @child_name [String] The child array name within the object
+  # @variable_name [String] The property name within the object used to uniquely identify the instance.
+  # @return [Hash] The differenc hash
+  def deleted_set(previous, child_name, variable_name)
+    current_array = self.instance_variable_get("@#{child_name}")
+    previous_array = previous.instance_variable_get("@#{child_name}")
+    current_identifiers = current_array.map {|x| x.instance_variable_get("@#{variable_name}")}
+    previous_identifiers = previous_array.map {|x| x.instance_variable_get("@#{variable_name}")}
+    return previous_identifiers - current_identifiers
+  end    
 
   # Object Valid
   #
@@ -626,13 +695,52 @@ class IsoConcept
 
 private
 
-  def set_class_instance(triple, extension=false)
+   def self.diff_properties?(previous, previous_properties, current, current_properties)
+    previous_labels = previous_properties.map{|x| x[:label]}
+    current_labels = current_properties.map{|x| x[:label]}
+    return true if current_labels - previous_labels != []
+    previous_values = Hash[previous_properties.map{|x| [x[:label], previous.instance_variable_get("@#{x[:instance_variable]}") ]}]
+    current_values = Hash[current_properties.map{|x| [x[:label],  current.instance_variable_get("@#{x[:instance_variable]}") ]}]
+    return true if current_values != previous_values
+    return false
+  end
+
+  def self.difference_properties(previous, previous_properties, current, current_properties, results)
+    check = {}
+    changes = false
+    current_properties.each do |current_prop|
+      current_value = current.instance_variable_get("@#{current_prop[:instance_variable]}")
+      l = previous_properties.select {|previous_prop| previous_prop[:instance_variable] == current_prop[:instance_variable] }
+      if l.length == 0
+        changes = true
+        results[current_prop[:label].to_sym] = {status: :created, previous: "", current: current_value, difference: Diffy::Diff.new("", current_value).to_s(:html) }
+      elsif l.length == 1
+        previous_value = previous.instance_variable_get("@#{current_prop[:instance_variable]}")
+        if previous_value == current_value
+          results[current_prop[:label].to_sym] = {status: :no_change, previous: previous_value, current: current_value, difference: "" }
+        else
+          changes = true
+          results[current_prop[:label].to_sym] = {status: :updated, previous: previous_value, current: current_value, difference: Diffy::Diff.new(previous_value, current_value).to_s(:html) }
+        end
+      end
+      check[current_prop[:instance_variable]] = true
+    end
+    previous_properties.each do |previous_prop|
+      if !check.has_key?(previous_prop[:instance_variable])
+        changes = true
+        previous_value = previous.instance_variable_get("@#{previous_prop[:instance_variable]}")
+        results[previous_prop[:label].to_sym] = {status: :deleted, previous: previous_value, current: "", difference: Diffy::Diff.new(previous_value, "").to_s(:html) }
+      end
+    end
+    return changes
+  end
+
+  # Set a class property depending on the content of the triple. Save the definition
+  def set_class_property(triple, extension=false)
     name = ModelUtility.extractCid(triple[:predicate])
     predicate = triple[:predicate]
     extension ? xsd_type = @@extension_attributes[predicate][:xsd_type] : xsd_type = @@property_attributes[predicate][:xsd_type]
-    #ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "xsd type=#{xsd_type.to_json}.")
     internal_type = BaseDatatype.from_xsd(xsd_type)
-    #ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "internal type=#{internal_type}.")
     literal = triple[:object]
     if internal_type == BaseDatatype::C_STRING
       value = "#{literal}"
@@ -648,11 +756,12 @@ private
     else
       value = "#{literal}"
     end
-    #ConsoleLogger::log(C_CLASS_NAME, "set_class_instance", "value=#{value}.")
-    if !extension 
-      self.instance_variable_set("@#{name}", value)
+    self.instance_variable_set("@#{name}", value)
+    if !extension
+      self.properties << {:rdf_type => triple[:predicate], :instance_variable => name, :label => @@property_attributes[triple[:predicate]][:label]}
+    else
+      self.extension_properties << {:rdf_type => triple[:predicate], :instance_variable => name, :label => @@extension_attributes[triple[:predicate]][:label]}
     end
-    return value
   end
 
   # Find the list of properties from the DB schema.

@@ -79,13 +79,13 @@ describe IsoConcept do
       		[
       			{
       				rdf_type: "http://www.assero.co.uk/BusinessForm#Extension1",
-           		:value => 14,
+              :instance_variable => "Extension1",
            		:label=>"Extension 1"
            	},
           	{
           		rdf_type: "http://www.assero.co.uk/BusinessForm#Extension2",
-           		:value => true,
-           		:label=>"Extension 2"
+           		:instance_variable => "Extension2",
+              :label=>"Extension 2"
            	}
           ]
     	}
@@ -103,19 +103,23 @@ describe IsoConcept do
           [
             {
               rdf_type: "http://www.assero.co.uk/BusinessForm#Extension1",
-              :value => 14,
+              :instance_variable => "Extension1",
               :label=>"Extension 1"
             },
             {
               rdf_type: "http://www.assero.co.uk/BusinessForm#Extension2",
-              :value => true,
+              :instance_variable => "Extension2",
               :label=>"Extension 2"
             }
           ]
       }
     concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
-    value = concept.get_extension("http://www.assero.co.uk/BusinessForm#Extension1") 
+    value = concept.get_extension_value("Extension1") 
     expect(value).to eq(14)
+    #expect(concept.Extension1).to eq(14)
+    value = concept.get_extension_value("Extension2") 
+    expect(value).to eq(true)
+    #expect(concept.Extension2).to eq(true)
   end
 
   it "allows an concept to be found, get extension value, no extension" do
@@ -129,18 +133,18 @@ describe IsoConcept do
           [
             {
               rdf_type: "http://www.assero.co.uk/BusinessForm#Extension1",
-              :value=>"14",
+              :instance_variable => "Extension1",
               :label=>"Extension 1"
             },
             {
               rdf_type: "http://www.assero.co.uk/BusinessForm#Extension2",
-              :value=>"true",
+              :instance_variable => "Extension2",
               :label=>"Extension 2"
             }
           ]
       }
     concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
-    value = concept.get_extension("http://www.assero.co.uk/BusinessForm#Extension11") 
+    value = concept.get_extension_value("Extension11") 
     expect(value).to eq("")
   end
 
@@ -297,17 +301,17 @@ describe IsoConcept do
       		[
       			{
       				rdf_type: "http://www.assero.co.uk/BusinessForm#Extension1",
-           		:value => 14,
+              :instance_variable => "Extension1",
            		:label=>"Extension 1"
            	},
           	{
           		rdf_type: "http://www.assero.co.uk/BusinessForm#Extension2",
-           		:value => true,
+              :instance_variable => "Extension2",
            		:label=>"Extension 2"
            	},
            	{
           		rdf_type: "http://www.assero.co.uk/BusinessForm#XXX",
-           		:value=>"",
+              :instance_variable => "XXX",
            		:label=>"A new extended property"
            	}
           ]
@@ -330,13 +334,11 @@ describe IsoConcept do
        "<http://www.assero.co.uk/X/V1#F-AE_G1_I2> <http://www.assero.co.uk/BusinessForm#XXX> \"Hello World!\"^^xsd:string . \n" +
        "}"
 		concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
-		json = concept.to_json
-		json[:extension_properties][0][:value] = "21"
-		json[:extension_properties][1][:value] = "false"
-		json[:extension_properties][2][:value] = "Hello World!"
-		new_concept = IsoConcept.from_json(json)
-		sparql = SparqlUpdateV2.new
-		new_concept.to_sparql_v2(sparql, "bf")
+		concept.set_extension_value("Extension1", 21)
+		concept.set_extension_value("Extension2", false)
+    concept.set_extension_value("XXX", "Hello World!")
+    sparql = SparqlUpdateV2.new
+		concept.to_sparql_v2(sparql, "bf")
 		expect(sparql.to_s).to eq(result)
 	end
 
@@ -584,6 +586,93 @@ describe IsoConcept do
 		expect{IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")}.to raise_error(Exceptions::NotFoundError)
 	end
 
+  it "detects two different objects" do
+    previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = IsoConcept.diff?(previous, current)
+    expect(result).to eq(true)
+  end
+
+  it "detects if two objects are the same" do
+    previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    current = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = IsoConcept.diff?(previous, current)
+    expect(result).to eq(false)
+  end
+
+  it "shows differences between two different objects" do
+    previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = IsoConcept.difference(previous, current)
+    #write_hash_to_yaml_file(result, "iso_concept_differences_1.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_differences_1.yaml")
+    expect(result).to eq(expected)
+  end
+
+  it "shows differences between two different objects, no previous" do
+    previous = nil
+    current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = IsoConcept.difference(previous, current)
+    #write_hash_to_yaml_file(result, "iso_concept_differences_2.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_differences_2.yaml")
+    expect(result).to eq(expected)
+  end
+  
+  it "shows differences between two different objects, no current" do
+    current = nil
+    previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = IsoConcept.difference(previous, current)
+    #write_hash_to_yaml_file(result, "iso_concept_differences_3.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_differences_3.yaml")
+    expect(result).to eq(expected)
+  end
+  
+  it "shows differences between same objects" do
+    previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = IsoConcept.difference(previous, current)
+    #write_hash_to_yaml_file(result, "iso_concept_differences_4.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_differences_4.yaml")
+    expect(result).to eq(expected)
+  end
+ 
+  it "shows differences between two different objects, no previous or current" do
+    current = nil
+    previous = nil
+    result = IsoConcept.difference(previous, current)
+    #write_hash_to_yaml_file(result, "iso_concept_differences_5.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_differences_5.yaml")
+    expect(result).to eq(expected)
+  end
+  
+  it "checks if the children are the same for two objects" do
+    current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = current.child_match?(previous, "children", "identifier")
+    expect(result).to eq(true)
+  end
+
+  it "checks if the children are different for two objects" do
+    current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = current.child_match?(previous, "children", "identifier")
+    expect(result).to eq(false)
+  end
+
+  it "determines the items deleted from the previous objects, same" do
+    current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = current.deleted_set(previous, "children", "identifier")
+    expect(result).to eq([])
+  end
+
+  it "determines the items deleted from the previous objects, different" do
+    current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = current.deleted_set(previous, "children", "identifier")
+    expect(result).to eq(["C85563", "C102633", "C17745"])
+  end
+
 	it "allows all concepts of a given type to be found" do
 		results = []
 		results <<     
@@ -665,6 +754,5 @@ describe IsoConcept do
 		object_2.copy_errors(object_1, "Child errors:")
 		expect(object_2.errors.full_messages[0]).to eq("Child errors: Label contains invalid characters")
 	end
-
 
 end

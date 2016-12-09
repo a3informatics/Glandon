@@ -168,24 +168,6 @@ class ThesaurusConcept < IsoConcept
     end
   end
   
-  # Thesaurus Concepts Different
-  #
-  # @return [boolean] True if objects different, false otherwise.
-  def self.diff? (thcA, thcB)
-    result = false
-    if ((thcA.id == thcB.id) &&
-      (thcA.identifier == thcB.identifier) &&
-      (thcA.notation == thcB.notation) &&
-      (thcA.preferredTerm == thcB.preferredTerm) &&
-      (thcA.synonym == thcB.synonym) &&
-      (thcA.definition == thcB.definition))
-      result = false
-    else
-      result = true
-    end
-    return result
-  end
-
   # To JSON
   #
   # @return [hash] The object hash 

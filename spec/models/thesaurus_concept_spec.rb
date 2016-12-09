@@ -16,7 +16,7 @@ describe ThesaurusConcept do
     load_test_file_into_triple_store("thesaurus_concept.ttl")
     clear_iso_concept_object
   end
-
+=begin
   it "allows an object to be initialised" do
     tc = ThesaurusConcept.new
     result = 
@@ -321,6 +321,7 @@ describe ThesaurusConcept do
     results = ThesaurusConcept.diff?(tc1, tc2)
     expect(results).to eq(true)
   end
+=end
 
   it "allows to determine if TCs same" do
     tc1 = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
@@ -336,7 +337,7 @@ describe ThesaurusConcept do
     results = ThesaurusConcept.diff?(tc1, tc2)
     expect(results).to eq(true)
   end
-
+=begin
   it "allows the object to be exported as JSON" do
     tc = ThesaurusConcept.find("THC-A00021", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     result = 
@@ -421,5 +422,6 @@ describe ThesaurusConcept do
     expect(tc.errors.count).to eq(1)
     expect(tc.errors.full_messages[0]).to eq("The Thesaurus Concept, identifier A00001, has children. It cannot be deleted.")
   end
+=end
 
 end
