@@ -1,44 +1,45 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <h3>Changes: <%= @identifier %> <small><%= @identifier %></small></h3>
+<style>
+	<%= Diffy::CSS %>
+</style>
 <div class="col-md-12">
 	<table id="main" class="table table-striped table-bordered table-condensed">
-	  	<thead>
-	  		<tr>
-				<th>Code List</th>
+	  <thead>
+			<tr>
+				<th>Identifier</th>
 				<th>Label</th>
-				<% clEntry = @results.values[0] %>
-				<% result = clEntry["result"]%>
-				<% result.each do |vKey, status| %>
-		    		<th class="text-center"><%= vKey %></th>
-		  		<% end %>
+				<th>Submission Value</th>
+				<% @results.each do |result| %>
+			  	<% r = result[:results] %>
+			    <th class="text-center"><%= result[:date] %></th>
+			  <% end %>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>	
-			<% @results.each do |clKey, clEntry| %>
-				<% result = clEntry["result"]%>
-				<% cl = clEntry["cl"]%>
-				<% id = cl["id"]%>
-				<% identifier = cl["identifier"]%>
-				<% label = cl["label"]%>
-				<tr>
-					<td><%= identifier %></td>
-					<td><%= label %></td>
-					<% result.each do |vKey, status| %>
-						<% if status == "." %>
-							<td class="text-center"><span class="glyphicon glyphicon-ok-circle"/></td>
-						<% elsif status == "M"  %>
-							<td class="text-center bg-warning">
-								<span class="text-center glyphicon glyphicon-pencil"/>
-							</td>
-						<% elsif status == "X"  %>
-							<td class="text-center bg-danger">	
-								<span class="glyphicon glyphicon-remove-circle"/>
-							</td>
-						<% else %>
+			<% @cls.each do |key, cl| %>
+			  <% s = cl[:status] %>
+			  <tr>
+					<td><%= key %></td>
+					<td><%= cl[:preferred_term] %></td>
+					<td><%= cl[:notation] %></td>
+					<% s.each do |status| %>
+						<% if status == :created %>
+							<td class="text-center"><span class="glyphicon glyphicon-ok text-success"/></td>
+						<% elsif status == :no_change %>
+							<td class="text-center"><span class="glyphicon glyphicon-minus text-success"/></td>
+						<% elsif status == :updated %>
+							<td class="text-center"><span class="text-center glyphicon glyphicon-edit text-warning"/></td>
+						<% elsif status == :deleted %>
+							<td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>
+						<% elsif status == :not_present %>
 							<td class="text-center">&nbsp;</td>
+						<% else %>
+							<td class="text-center"><%=[status]%></td>
 						<% end %>
 					<% end %>
-					<td><%=link_to "Changes", changes_cdisc_cls_path(:id => id), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "Changes", changes_cdisc_cls_path(:id => cl[:id]), :class => "btn btn-primary btn-xs" %></td>
 				</tr>	
 			<% end %>
 		</tbody>

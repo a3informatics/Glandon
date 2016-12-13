@@ -4,7 +4,7 @@ describe CdiscTerm do
 
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -97,7 +97,7 @@ describe CdiscTerm do
     expect(cl).to eq(nil)
   end
 
-  it "def self.all" do
+  it "finds all items" do
     results = CdiscTerm.all
     results_json = results.map { |result| result = result.to_json }
     #write_hash_to_yaml_file(results_json, "cdisc_term_example_4.yaml")
@@ -105,10 +105,19 @@ describe CdiscTerm do
     expect(results_json).to eq(results_ct)
   end
 
-  it "def self.history(params)"
-  it "def self.current(params)"
+  it "finds history of an item entries" do
+    results = []
+    results [0] = {id: "TH-CDISC_CDISCTerminology", scoped_identifier_version: 36}
+    results [1] = {id: "TH-CDISC_CDISCTerminology", scoped_identifier_version: 35}
+    results [2] = {id: "TH-CDISC_CDISCTerminology", scoped_identifier_version: 34}
+    items = CdiscTerm.history
+    items.each_with_index do |item, index|
+      expect(results[index][:id]).to eq(items[index].id)
+      expect(results[index][:scoped_identifier_version]).to eq(items[index].scopedIdentifier.version)
+    end
+  end
   
-  it "def all_except" do
+  it "finds all except" do
     results = CdiscTerm.all_except(34)
     results_json = results.map { |result| result = result.to_json }
     #write_hash_to_yaml_file(results_json, "cdisc_term_example_5.yaml")
@@ -116,7 +125,7 @@ describe CdiscTerm do
     expect(results_json).to eq(results_ct)
   end
 
-  it "def all_previous" do
+  it "find all previous" do
     results = CdiscTerm.all_previous(36)
     results_json = results.map { |result| result = result.to_json }
     #write_hash_to_yaml_file(results_json, "cdisc_term_example_6.yaml")
@@ -124,6 +133,56 @@ describe CdiscTerm do
     expect(results_json).to eq(results_ct)
   end
 
-  it "allows for the creation of a CdiscTerm"
+  it "allows the current version to be found" do
+    th = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    expect(th.current?).to eq(false)   
+    expect(th.can_be_current?).to eq(true)
+    IsoRegistrationState.make_current(th.registrationState.id)
+    current_th = CdiscTerm.current
+    expect(current_th.version).to eq(th.version)
+  end
+
+  it "allows a new version to be created (imported)"
+
+  it "initiates the CDISC Terminology changes background job" do
+    result = CdiscTerm.changes
+    expect(result[:object].errors.count).to eq(0)
+  end
+
+  it "initiates the CDISC Terminology compare background job" do
+    old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+    result = CdiscTerm.compare(old_ct, new_ct)
+    expect(result[:object].errors.count).to eq(0)
+  end
+
+  it "determines changes in submission values" do
+    old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+    results = CdiscTerm.submission_difference(old_ct, new_ct)
+    write_hash_to_yaml_file(results, "cdisc_term_submission_difference.yaml")
+    expected = read_yaml_file_to_hash("cdisc_term_submission_difference.yaml")
+    expect(results.to_json).to eq(expected.to_json)
+  end
+
+  it "determines impact of changes in submission values" do
+    old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+    results = CdiscTerm.submission_difference(old_ct, new_ct)
+    write_hash_to_yaml_file(results, "cdisc_term_submission_impact.yaml")
+    expected = read_yaml_file_to_hash("cdisc_term_submission_impact.yaml")
+    expect(results.to_json).to eq(expected.to_json)
+  end
+  
+  it "determines the difference between two items" do
+    term1 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    term2 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+    results = CdiscTerm.difference(term1, term2)
+    #write_hash_to_yaml_file(results, "cdisc_term_example_difference.yaml")
+    expected = read_yaml_file_to_hash("cdisc_term_example_difference.yaml")
+    expect(results).to eq(expected)
+  end
+
+  it "self.next(offset, limit, ns)"
 
 end

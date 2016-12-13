@@ -1,0 +1,519 @@
+---
+:versions:
+- '2013-12-20'
+- '2014-03-28'
+- '2014-06-27'
+:children:
+  C48660:
+    :parent_identifier: C66737
+    :label: Not Applicable
+    :preferred_term: Not Applicable
+    :notation: NA
+    :result:
+    - &1
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: NA
+      :current: NOT APPLICABLE
+      :status: :updated
+    - *1
+    :identifier: C48660
+    :id: CLI-C66737_C48660
+  C17998:
+    :parent_identifier: C66728
+    :label: Unknown
+    :preferred_term: Unknown
+    :notation: U
+    :result:
+    - :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: U
+      :current: UNKNOWN
+      :status: :updated
+    - :previous: Unknown
+      :current: UNKNOWN
+      :status: :updated
+    :identifier: C17998
+    :id: CLI-C66728_C17998
+  C112615:
+    :parent_identifier: C112442
+    :label: KFSS - Visual Function
+    :preferred_term: KFSS - Visual Function
+    :notation: KFSS1-Visual Function
+    :result:
+    - &2
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: KFSS1-Visual Function
+      :current: KFSS1-Visual or Optic Functions
+      :status: :updated
+    - *2
+    :identifier: C112615
+    :id: CLI-C112442_C112615
+  C112612:
+    :parent_identifier: C112442
+    :label: KFSS - Brainstem Functions
+    :preferred_term: KFSS - Brainstem Functions
+    :notation: KFSS1-Brainstem Functions
+    :result:
+    - &3
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: KFSS1-Brainstem Functions
+      :current: KFSS1-Brain Stem Functions
+      :status: :updated
+    - *3
+    :identifier: C112612
+    :id: CLI-C112442_C112612
+  C45908:
+    :parent_identifier: C66731
+    :label: Intersex
+    :preferred_term: Intersex
+    :notation: UN
+    :result:
+    - &4
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: UN
+      :current: UNDIFFERENTIATED
+      :status: :updated
+    - *4
+    :identifier: C45908
+    :id: CLI-C66731_C45908
+  C86176:
+    :parent_identifier: C85491
+    :label: Bacteroides splanchnicus
+    :preferred_term: Bacteroides splanchnicus
+    :notation: BACTEROIDES SPLANCHNICUS
+    :result:
+    - &5
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: BACTEROIDES SPLANCHNICUS
+      :current: ODORIBACTER SPLANCHNICUS
+      :status: :updated
+    - *5
+    :identifier: C86176
+    :id: CLI-C85491_C86176
+  C112613:
+    :parent_identifier: C112442
+    :label: KFSS - Sensory Function
+    :preferred_term: KFSS - Sensory Function
+    :notation: KFSS1-Sensory Function
+    :result:
+    - &6
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: KFSS1-Sensory Function
+      :current: KFSS1-Sensory Functions
+      :status: :updated
+    - *6
+    :identifier: C112613
+    :id: CLI-C112442_C112613
+  C112614:
+    :parent_identifier: C112442
+    :label: KFSS - Bowel and Bladder Function
+    :preferred_term: KFSS - Bowel and Bladder Function
+    :notation: KFSS1-Bowel and Bladder Function
+    :result:
+    - &7
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: KFSS1-Bowel and Bladder Function
+      :current: KFSS1-Bowel and Bladder Functions
+      :status: :updated
+    - *7
+    :identifier: C112614
+    :id: CLI-C112442_C112614
+  C48251:
+    :parent_identifier: C66727
+    :label: Protocol Violation
+    :preferred_term: Protocol Violation
+    :notation: PROTOCOL VIOLATION
+    :result:
+    - &8
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PROTOCOL VIOLATION
+      :current: PROTOCOL DEVIATION
+      :status: :updated
+    - *8
+    :identifier: C48251
+    :id: CLI-C66727_C48251
+  C102404:
+    :parent_identifier: C71620
+    :label: Application Dosing Unit
+    :preferred_term: Application Dosing Unit
+    :notation: APPLICATION
+    :result:
+    - &9
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: APPLICATION
+      :current: ''
+      :status: :updated
+    - *9
+    :identifier: C102404
+    :id: CLI-C71620_C102404
+  C2271:
+    :parent_identifier: C101857
+    :label: Insulin
+    :preferred_term: Insulin
+    :notation: INSULIN
+    :result:
+    - &10
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: INSULIN
+      :current: ''
+      :status: :updated
+    - *10
+    :identifier: C2271
+    :id: CLI-C101857_C2271
+  C111000:
+    :parent_identifier: C71150
+    :label: Supraventricular Tachycardia by ECG Finding
+    :preferred_term: Supraventricular Tachycardia by ECG Finding
+    :notation: SUPRAVENTRICULAR TACHYCARDIA
+    :result:
+    - &11
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SUPRAVENTRICULAR TACHYCARDIA
+      :current: ''
+      :status: :updated
+    - *11
+    :identifier: C111000
+    :id: CLI-C71150_C111000
+  C98869:
+    :parent_identifier: C65047
+    :label: Plasma Cell to Total Cell Ratio Measurement
+    :preferred_term: Plasma Cell to Total Cell Ratio Measurement
+    :notation: PLSMCECE
+    :result:
+    - &12
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *12
+    - :previous: PLSMCECE
+      :current: PLSCECE
+      :status: :updated
+    :identifier: C98869
+    :id: CLI-C65047_C98869
+  C112361:
+    :parent_identifier: C111109
+    :label: Non-Study Device Issue
+    :preferred_term: Non-Study Device Issue
+    :notation: Non-Study Equipment Issue
+    :result:
+    - &13
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *13
+    - :previous: Non-Study Equipment Issue
+      :current: NON-STUDY EQUIPMENT ISSUE
+      :status: :updated
+    :identifier: C112361
+    :id: CLI-C111109_C112361
+  C111238:
+    :parent_identifier: C71152
+    :label: Intraventricular and Intraatrial Conduction ECG Assessment
+    :preferred_term: Intraventricular and Intraatrial Conduction ECG Assessment
+    :notation: Intraventricular and Intraatrial Conduction
+    :result:
+    - &14
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *14
+    - :previous: Intraventricular and Intraatrial Conduction
+      :current: Intraventricular-Intraatrial Conduction
+      :status: :updated
+    :identifier: C111238
+    :id: CLI-C71152_C111238
+  C100040:
+    :parent_identifier: C101841
+    :label: Thrombolysis in Myocardial Infarction Flow-0
+    :preferred_term: Thrombolysis in Myocardial Infarction Flow-0
+    :notation: TIMI-0
+    :result:
+    - &15
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *15
+    - :previous: TIMI-0
+      :current: GRADE 0
+      :status: :updated
+    :identifier: C100040
+    :id: CLI-C101841_C100040
+  C100041:
+    :parent_identifier: C101841
+    :label: Thrombolysis in Myocardial Infarction Flow-1
+    :preferred_term: Thrombolysis in Myocardial Infarction Flow-1
+    :notation: TIMI-1
+    :result:
+    - &16
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *16
+    - :previous: TIMI-1
+      :current: GRADE 1
+      :status: :updated
+    :identifier: C100041
+    :id: CLI-C101841_C100041
+  C100042:
+    :parent_identifier: C101841
+    :label: Thrombolysis in Myocardial Infarction Flow-2
+    :preferred_term: Thrombolysis in Myocardial Infarction Flow-2
+    :notation: TIMI-2
+    :result:
+    - &17
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *17
+    - :previous: TIMI-2
+      :current: GRADE 2
+      :status: :updated
+    :identifier: C100042
+    :id: CLI-C101841_C100042
+  C62954:
+    :parent_identifier: C111109
+    :label: Medical Device Operational Issue
+    :preferred_term: Medical Device Operational Issue
+    :notation: Device Operational Issue
+    :result:
+    - &18
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *18
+    - :previous: Device Operational Issue
+      :current: DEVICE OPERATIONAL ISSUE
+      :status: :updated
+    :identifier: C62954
+    :id: CLI-C111109_C62954
+  C100043:
+    :parent_identifier: C101841
+    :label: Thrombolysis in Myocardial Infarction Flow-3
+    :preferred_term: Thrombolysis in Myocardial Infarction Flow-3
+    :notation: TIMI-3
+    :result:
+    - &19
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *19
+    - :previous: TIMI-3
+      :current: GRADE 3
+      :status: :updated
+    :identifier: C100043
+    :id: CLI-C101841_C100043
+  C95942:
+    :parent_identifier: C111114
+    :label: Transposon
+    :preferred_term: Transposon
+    :notation: Transposon
+    :result:
+    - &20
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *20
+    - :previous: Transposon
+      :current: TRANSPOSON
+      :status: :updated
+    :identifier: C95942
+    :id: CLI-C111114_C95942
+  C98800:
+    :parent_identifier: C88025
+    :label: Zymbal's Gland Adenoma
+    :preferred_term: Zymbal's Gland Adenoma
+    :notation: ADENOMA, ZYMBAL'S GLAND
+    :result:
+    - &21
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *21
+    - :previous: ADENOMA, ZYMBAL'S GLAND
+      :current: ADENOMA, ZYMBAL'S GLAND, BENIGN
+      :status: :updated
+    :identifier: C98800
+    :id: CLI-C88025_C98800
+  C85710:
+    :parent_identifier: C85494
+    :label: Milligram per Liter per Milligram
+    :preferred_term: Milligram per Liter per Milligram
+    :notation: mg/L/mg
+    :result:
+    - &22
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *22
+    - :previous: mg/L/mg
+      :current: ug/mL/mg
+      :status: :updated
+    :identifier: C85710
+    :id: CLI-C85494_C85710
+  C6878:
+    :parent_identifier: C88025
+    :label: Mixed Acinar-Neuroendocrine Carcinoma of the Pancreas
+    :preferred_term: Mixed Acinar-Neuroendocrine Carcinoma of the Pancreas
+    :notation: CARCINOMA, MIXED, ACINAR-ISLET CELL, MALIGNANT
+    :result:
+    - &23
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *23
+    - :previous: CARCINOMA, MIXED, ACINAR-ISLET CELL, MALIGNANT
+      :current: ACINAR-ISLET CELL TUMOR, MALIGNANT
+      :status: :updated
+    :identifier: C6878
+    :id: CLI-C88025_C6878
+  C16805:
+    :parent_identifier: C85492
+    :label: Lymphangiogram
+    :preferred_term: Lymphangiogram
+    :notation: ANGIOGRAM
+    :result:
+    - &24
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *24
+    - :previous: ANGIOGRAM
+      :current: ''
+      :status: :updated
+    :identifier: C16805
+    :id: CLI-C85492_C16805
+  C91404:
+    :parent_identifier: C74456
+    :label: Proximal Muscle
+    :preferred_term: Proximal Muscle
+    :notation: MUSCLE, PROXIMAL
+    :result:
+    - &25
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *25
+    - :previous: MUSCLE, PROXIMAL
+      :current: ''
+      :status: :updated
+    :identifier: C91404
+    :id: CLI-C74456_C91404
+  C91405:
+    :parent_identifier: C74456
+    :label: Distal Muscle
+    :preferred_term: Distal Muscle
+    :notation: MUSCLE, DISTAL
+    :result:
+    - &26
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *26
+    - :previous: MUSCLE, DISTAL
+      :current: ''
+      :status: :updated
+    :identifier: C91405
+    :id: CLI-C74456_C91405
+  C26431:
+    :parent_identifier: C85491
+    :label: Coronavirus
+    :preferred_term: Coronavirus
+    :notation: CORONAVIRUS
+    :result:
+    - &27
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *27
+    - :previous: CORONAVIRUS
+      :current: ''
+      :status: :updated
+    :identifier: C26431
+    :id: CLI-C85491_C26431
+  C13307:
+    :parent_identifier: C74456
+    :label: Gastric
+    :preferred_term: Gastric
+    :notation: GASTRIC
+    :result:
+    - &28
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *28
+    - :previous: GASTRIC
+      :current: ''
+      :status: :updated
+    :identifier: C13307
+    :id: CLI-C74456_C13307
+  C85620:
+    :parent_identifier: C85494
+    :label: Hour Times Milligram per Liter per Milligram
+    :preferred_term: Hour Times Milligram per Liter per Milligram
+    :notation: h*mg/L/mg
+    :result:
+    - &29
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *29
+    - :previous: h*mg/L/mg
+      :current: ''
+      :status: :updated
+    :identifier: C85620
+    :id: CLI-C85494_C85620
+  C85641:
+    :parent_identifier: C85494
+    :label: Hour Times Picomole per Milliliter per Milligram
+    :preferred_term: Hour Times Picomole per Milliliter per Milligram
+    :notation: h*nmol/L/g
+    :result:
+    - &30
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *30
+    - :previous: h*nmol/L/g
+      :current: ''
+      :status: :updated
+    :identifier: C85641
+    :id: CLI-C85494_C85641
+  C85634:
+    :parent_identifier: C85494
+    :label: Hour Times Nanomole per Milliliter per Milligram
+    :preferred_term: Hour Times Nanomole per Milliliter per Milligram
+    :notation: h*umol/L/g
+    :result:
+    - &31
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *31
+    - :previous: h*umol/L/g
+      :current: ''
+      :status: :updated
+    :identifier: C85634
+    :id: CLI-C85494_C85634

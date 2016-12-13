@@ -47,8 +47,7 @@ module CdiscTermHelpers
     cdisc_terms = CdiscTerm.all()
     cdisc_terms.each do |ct|
       cl = CdiscCl.find(id, ct.namespace)
-      cl.nil? ? clis_hash = {} : clis_hash = cl.children.id_hash
-      data << {:term => ct, :cl => cl, :cli => clis_hash}
+      data << {:term => ct, :cl => cl}
     end
     set = false
     prev_cl = nil
@@ -68,7 +67,7 @@ module CdiscTermHelpers
     return results
   end
 
-  def cli_results(results)
+  def transpose_results(results)
     list = []
     new_results = {}
     results.each do |result|

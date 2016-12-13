@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @cdiscTerm} %>
 <div class="col-md-12">
 	<h4>Details</h4>
@@ -59,7 +60,6 @@
 			    <th>Version Label</th>
 			    <th></th>
 			    <th></th>
-			    <th></th>
 			</tr>
 		<thead>
 		<tbody>
@@ -69,7 +69,7 @@
 					<td><%= ct.version %></td>
 					<td><%= ct.versionLabel %></td>
 					<td><%= link_to "Show", cdisc_term_path(:id => ct.id, :namespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
-					<td><%= link_to "Compare", compareCalc_cdisc_terms_path(:newId => @cdiscTerm.id, :newNamespace => @cdiscTerm.namespace, :oldId => ct.id, :oldNamespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "Compare", compare_calc_cdisc_terms_path(:newId => @cdiscTerm.id, :newNamespace => @cdiscTerm.namespace, :oldId => ct.id, :oldNamespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
 					<td><%= link_to "Impact", impact_calc_cdisc_terms_path(:new_id => @cdiscTerm.id, :new_ns => @cdiscTerm.namespace, :new_version => @cdiscTerm.version, :old_id => ct.id, :old_ns => ct.namespace, :old_version => ct.version), :class => "btn btn-info btn-xs" %></td>
 			  	</tr>
 			<% end %>

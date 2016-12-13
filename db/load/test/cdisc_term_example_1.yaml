@@ -47,7 +47,7 @@
   :label: Questionnaire Category
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100129
   :notation: QSCAT
@@ -63,7 +63,7 @@
   :label: Relationship to Subject
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100130
   :notation: RELSUB
@@ -79,7 +79,7 @@
   :label: Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100131
   :notation: ADAS-Cog CDISC Version TEST
@@ -95,7 +95,7 @@
   :label: Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100132
   :notation: ADAS-Cog CDISC Version TESTCD
@@ -111,7 +111,7 @@
   :label: Brief Psychiatric Rating Scale-A Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100133
   :notation: BPRS-A TEST
@@ -127,7 +127,7 @@
   :label: Brief Psychiatric Rating Scale-A Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100134
   :notation: BPRS-A TESTCD
@@ -143,7 +143,7 @@
   :label: Hamilton Depression Rating Scale - 17 Item Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100137
   :notation: HAMD 17 TEST
@@ -159,7 +159,7 @@
   :label: Hamilton Depression Rating Scale - 17 Item Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100138
   :notation: HAMD 17 TESTCD
@@ -175,7 +175,7 @@
   :label: Movement Disorder Society UPDRS Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100139
   :notation: MDS-UPDRS TEST
@@ -192,7 +192,7 @@
   :label: Movement Disorder Society UPDRS Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100140
   :notation: MDS-UPDRS TESTCD
@@ -209,7 +209,7 @@
   :label: Neuropsychiatric Inventory Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100143
   :notation: NPI TEST
@@ -225,7 +225,7 @@
   :label: Neuropsychiatric Inventory Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100144
   :notation: NPI TESTCD
@@ -241,7 +241,7 @@
   :label: Parkinson's Disease Quality of Life Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100145
   :notation: PDQUALIF TEST
@@ -257,7 +257,7 @@
   :label: Parkinson's Disease Quality of Life Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100146
   :notation: PDQUALIF TESTCD
@@ -273,7 +273,7 @@
   :label: Clinical Global Impression Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100149
   :notation: CGI TEST
@@ -289,7 +289,7 @@
   :label: Clinical Global Impression Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100150
   :notation: CGI TESTCD
@@ -305,7 +305,7 @@
   :label: Michigan Neuropathy Screening Instrument Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100151
   :notation: MNSI TEST
@@ -321,7 +321,7 @@
   :label: Michigan Neuropathy Screening Instrument Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100152
   :notation: MNSI TESTCD
@@ -337,7 +337,7 @@
   :label: Faces Pain Scale - Revised Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100153
   :notation: FPSR TEST
@@ -353,7 +353,7 @@
   :label: Faces Pain Scale - Revised Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100154
   :notation: FPSR TESTCD
@@ -369,7 +369,7 @@
   :label: Current Opioid Misuse Measure Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100157
   :notation: COMM TEST
@@ -385,7 +385,7 @@
   :label: Current Opioid Misuse Measure Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100158
   :notation: COMM TESTCD
@@ -401,7 +401,7 @@
   :label: Brief Pain Inventory Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100161
   :notation: BPI TEST
@@ -417,7 +417,7 @@
   :label: Brief Pain Inventory Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100162
   :notation: BPI TESTCD
@@ -433,7 +433,7 @@
   :label: Brief Pain Inventory Short Form Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100163
   :notation: BPI Short Form TEST
@@ -449,7 +449,7 @@
   :label: Brief Pain Inventory Short Form Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100164
   :notation: BPI Short Form TESTCD
@@ -465,7 +465,7 @@
   :label: Columbia-Suicidality Severity Rating Scale Baseline Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100167
   :notation: C-SSRS Baseline TEST
@@ -481,7 +481,7 @@
   :label: Columbia-Suicidality Severity Rating Scale Baseline Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100168
   :notation: C-SSRS Baseline TESTCD
@@ -497,7 +497,7 @@
   :label: Karnofsky Performance Status Scale Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100169
   :notation: KPS Scale TEST
@@ -513,7 +513,7 @@
   :label: Karnofsky Performance Status Scale Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C100170
   :notation: KPS Scale TESTCD
@@ -529,7 +529,7 @@
   :label: Abnormal Involuntary Movement Scale Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101805
   :notation: AIMS TESTCD
@@ -545,7 +545,7 @@
   :label: Abnormal Involuntary Movement Scale Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101806
   :notation: AIMS TEST
@@ -561,7 +561,7 @@
   :label: ADNI AVLT Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101807
   :notation: AVLT TESTCD
@@ -577,7 +577,7 @@
   :label: ADNI AVLT Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101808
   :notation: AVLT TEST
@@ -593,7 +593,7 @@
   :label: Barnes Akathisia Rating Scale Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101809
   :notation: BARS TESTCD
@@ -609,7 +609,7 @@
   :label: Barnes Akathisia Rating Scale Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101810
   :notation: BARS TEST
@@ -625,7 +625,7 @@
   :label: Clinical Dementia Rating Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101811
   :notation: CDR TESTCD
@@ -641,7 +641,7 @@
   :label: Clinical Dementia Rating Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101812
   :notation: CDR TEST
@@ -657,7 +657,7 @@
   :label: Clinical Opiate Withdrawal Scale Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101813
   :notation: COWS TESTCD
@@ -673,7 +673,7 @@
   :label: Clinical Opiate Withdrawal Scale Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101814
   :notation: COWS TEST
@@ -689,7 +689,7 @@
   :label: Eastern Cooperative Oncology Group Performance Status Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101815
   :notation: ECOG TESTCD
@@ -705,7 +705,7 @@
   :label: Eastern Cooperative Oncology Group Performance Status Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101816
   :notation: ECOG TEST
@@ -721,7 +721,7 @@
   :label: Hamilton Anxiety Rating Scale Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101819
   :notation: HAMA TESTCD
@@ -737,7 +737,7 @@
   :label: Hamilton Anxiety Rating Scale Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101820
   :notation: HAMA TEST
@@ -753,7 +753,7 @@
   :label: Hamilton Depression Rating Scale 21-Item Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101821
   :notation: HAMD 21 TESTCD
@@ -769,7 +769,7 @@
   :label: Hamilton Depression Rating Scale 21-Item Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101822
   :notation: HAMD 21 TEST
@@ -785,7 +785,7 @@
   :label: Findings About Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101832
   :notation: FATESTCD
@@ -802,7 +802,7 @@
   :label: Findings About Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101833
   :notation: FATEST
@@ -819,7 +819,7 @@
   :label: Consensus Cardiac Classification System Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101837
   :notation: CCRCLS
@@ -836,7 +836,7 @@
   :label: Consensus Cardiac Classification System Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101838
   :notation: CCRCLSCD
@@ -853,7 +853,7 @@
   :label: Killip Class Responses
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101840
   :notation: KILLIPC
@@ -872,7 +872,7 @@
   :label: TIMI Flow Responses
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101841
   :notation: TIMIFLOW
@@ -889,7 +889,7 @@
   :label: Canadian Cardiovascular Society Classification
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101842
   :notation: CACRDSC
@@ -906,7 +906,7 @@
   :label: Coronary Artery Disease Presentation
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101843
   :notation: CADPRSN
@@ -922,7 +922,7 @@
   :label: Coronary Artery Disease Symptoms
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101844
   :notation: CADSYMP
@@ -939,7 +939,7 @@
   :label: Mechanical Circulatory Support Placement Timing
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101845
   :notation: MCRCSPTM
@@ -956,7 +956,7 @@
   :label: Cardiovascular Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101846
   :notation: CVEXAM
@@ -973,7 +973,7 @@
   :label: Cardiovascular Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101847
   :notation: CVEXAMCD
@@ -990,7 +990,7 @@
   :label: Risk Assessment
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101848
   :notation: RSKASMT
@@ -1007,7 +1007,7 @@
   :label: Coronary Artery Disease Risk
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101849
   :notation: CADRISK
@@ -1024,7 +1024,7 @@
   :label: Coronary Vessel Disease Extent
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101850
   :notation: CVSLDEXT
@@ -1040,7 +1040,7 @@
   :label: Location of Most Severe Stenosis Within a Graft
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101851
   :notation: GRSTNLOC
@@ -1057,7 +1057,7 @@
   :label: Sudden Death Syndrome Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101852
   :notation: SDTHSDTP
@@ -1074,7 +1074,7 @@
   :label: Cardiac Valvular Regurgitation Severity
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101853
   :notation: CVLVRSEV
@@ -1091,7 +1091,7 @@
   :label: Cardiac Valvular Stenosis Severity
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101854
   :notation: CVLSTSEV
@@ -1108,7 +1108,7 @@
   :label: Procedure Urgency Status
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101856
   :notation: PRURGNCY
@@ -1124,7 +1124,7 @@
   :label: Diabetes Therapy
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101857
   :notation: DIABTHPY
@@ -1140,7 +1140,7 @@
   :label: Procedure
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101858
   :notation: PROCEDUR
@@ -1157,7 +1157,7 @@
   :label: Cardiac Procedure Indication
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101859
   :notation: CVPRCIND
@@ -1173,7 +1173,7 @@
   :label: Coronary Artery Dominance
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101860
   :notation: CARTDOM
@@ -1190,7 +1190,7 @@
   :label: Lesion Complexity
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101861
   :notation: LSNCMPX
@@ -1207,7 +1207,7 @@
   :label: Lead Abnormality
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101862
   :notation: LEADABN
@@ -1223,7 +1223,7 @@
   :label: Discharge Disposition
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101863
   :notation: DISCHDX
@@ -1239,7 +1239,7 @@
   :label: Reason CS/LV Lead Not Implanted
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101864
   :notation: CSLVLNIM
@@ -1257,7 +1257,7 @@
   :label: Acute Coronary Syndrome Presentation Category
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101865
   :notation: ACSPCAT
@@ -1273,7 +1273,7 @@
   :label: Cardiac Rhythm Device Failure Manifestation
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101866
   :notation: CRYDFMAN
@@ -1290,7 +1290,7 @@
   :label: Lead Status
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101867
   :notation: LEADSTAT
@@ -1306,7 +1306,7 @@
   :label: Left Ventricular Ejection Fraction Measurement Result
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C101868
   :notation: LVEFMRE
@@ -1323,7 +1323,7 @@
   :label: Contact Case Investigation Contact Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102575
   :notation: CCINVTYP
@@ -1340,7 +1340,7 @@
   :label: Directly Observed Therapy Location
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102576
   :notation: DOBSTLOC
@@ -1357,7 +1357,7 @@
   :label: Drug Resistance Status
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102577
   :notation: DRSTAT
@@ -1374,7 +1374,7 @@
   :label: Disease Outcome
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102578
   :notation: DSSOUT
@@ -1391,7 +1391,7 @@
   :label: Supporting Evidence for Re-Treatment
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102579
   :notation: EVDRETRT
@@ -1408,7 +1408,7 @@
   :label: Laboratory Test Standard Character Result
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102580
   :notation: LBSTRESC
@@ -1425,7 +1425,7 @@
   :label: Microbial Identification Certainty
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102581
   :notation: MCIDCERT
@@ -1442,7 +1442,7 @@
   :label: Priority of Tuberculosis Contact
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102582
   :notation: PRITBCON
@@ -1458,7 +1458,7 @@
   :label: Reason for Treatment Interruption
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102583
   :notation: REASTINT
@@ -1475,7 +1475,7 @@
   :label: Reason For Treatment
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102584
   :notation: REASTRT
@@ -1491,7 +1491,7 @@
   :label: Treatment Failure Reason
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102585
   :notation: REASTRTF
@@ -1508,7 +1508,7 @@
   :label: Reason Treatment Not Administered
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102586
   :notation: RSTRTNA
@@ -1524,7 +1524,7 @@
   :label: Social Risk Factor
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102587
   :notation: RISKSOC
@@ -1542,7 +1542,7 @@
   :label: Contact Setting
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102588
   :notation: SETCON
@@ -1560,7 +1560,7 @@
   :label: Treatment Episode
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102589
   :notation: TRTEPSD
@@ -1577,7 +1577,7 @@
   :label: Vaccination Evidence Source
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C102590
   :notation: VCNEVD
@@ -1594,7 +1594,7 @@
   :label: General Observation Class
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103329
   :notation: GNRLOBSC
@@ -1610,7 +1610,7 @@
   :label: Subject Characteristic Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103330
   :notation: SCTEST
@@ -1627,7 +1627,7 @@
     Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103458
   :notation: ADCS-CGIC TEST
@@ -1646,7 +1646,7 @@
     Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103459
   :notation: ADCS-CGIC TESTCD
@@ -1665,7 +1665,7 @@
     Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103460
   :notation: C-SSRS Since Last Visit TEST
@@ -1683,7 +1683,7 @@
     Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103461
   :notation: C-SSRS Since Last Visit TESTCD
@@ -1700,7 +1700,7 @@
   :label: Epworth Sleepiness Scale Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103462
   :notation: ESS TEST
@@ -1716,7 +1716,7 @@
   :label: Epworth Sleepiness Scale Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103463
   :notation: ESS TESTCD
@@ -1732,7 +1732,7 @@
   :label: Generalized Anxiety Disorder - 7 Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103466
   :notation: GAD-7 TEST
@@ -1748,7 +1748,7 @@
   :label: Generalized Anxiety Disorder - 7 Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103467
   :notation: GAD-7 TESTCD
@@ -1764,7 +1764,7 @@
   :label: Hospital Anxiety and Depression Scale Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103468
   :notation: HADS TEST
@@ -1780,7 +1780,7 @@
   :label: Hospital Anxiety and Depression Scale Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103469
   :notation: HADS TESTCD
@@ -1796,7 +1796,7 @@
   :label: International Index of Erectile Function Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103470
   :notation: IIEF TEST
@@ -1812,7 +1812,7 @@
   :label: International Index of Erectile Function Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103471
   :notation: IIEF TESTCD
@@ -1828,7 +1828,7 @@
   :label: Neuropathic Pain Scale Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103472
   :notation: NPS TEST
@@ -1844,7 +1844,7 @@
   :label: Neuropathic Pain Scale Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103473
   :notation: NPS TESTCD
@@ -1860,7 +1860,7 @@
   :label: Patient Health Questionnaire - 9 Item Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103480
   :notation: PHQ-9 TEST
@@ -1876,7 +1876,7 @@
   :label: Patient Health Questionnaire - 9 Item Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103481
   :notation: PHQ-9 TESTCD
@@ -1892,7 +1892,7 @@
   :label: Patient Health Questionnaire - 15 Item Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103482
   :notation: PHQ-15 TEST
@@ -1908,7 +1908,7 @@
   :label: Patient Health Questionnaire - 15 Item Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C103483
   :notation: PHQ-15 TESTCD
@@ -1924,7 +1924,7 @@
   :label: Disability Assessment for Dementia Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105129
   :notation: DAD TEST
@@ -1940,7 +1940,7 @@
   :label: Disability Assessment for Dementia Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105130
   :notation: DAD TESTCD
@@ -1957,7 +1957,7 @@
     1 Study Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105131
   :notation: C-SSRS Baseline/Screening Version Phase 1 Study TEST
@@ -1977,7 +1977,7 @@
     1 Study Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105132
   :notation: C-SSRS Baseline/Screening Version Phase 1 Study TESTCD
@@ -1996,7 +1996,7 @@
   :label: Pain Intensity Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105133
   :notation: PI TEST
@@ -2012,7 +2012,7 @@
   :label: Pain Intensity Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105134
   :notation: PI TESTCD
@@ -2028,7 +2028,7 @@
   :label: Pain Relief Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105135
   :notation: PR TEST
@@ -2044,7 +2044,7 @@
   :label: Pain Relief Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105136
   :notation: PR TESTCD
@@ -2060,7 +2060,7 @@
   :label: General Clinical Global Impressions Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105137
   :notation: GCGI TEST
@@ -2076,7 +2076,7 @@
   :label: General Clinical Global Impressions Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105138
   :notation: GCGI TESTCD
@@ -2093,7 +2093,7 @@
     Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105139
   :notation: ADCS-ADL TEST
@@ -2112,7 +2112,7 @@
     Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C105140
   :notation: ADCS-ADL TESTCD
@@ -2130,7 +2130,7 @@
   :label: Reproductive System Findings Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106478
   :notation: RPTEST
@@ -2147,7 +2147,7 @@
   :label: Reproductive System Findings Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106479
   :notation: RPTESTCD
@@ -2164,7 +2164,7 @@
   :label: Device Identifier Long Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106480
   :notation: DIPARM
@@ -2181,7 +2181,7 @@
   :label: Device Identifier Short Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106481
   :notation: DIPARMCD
@@ -2198,7 +2198,7 @@
   :label: Device-In-Use Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106482
   :notation: DUTEST
@@ -2215,7 +2215,7 @@
   :label: Device-In-Use Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106483
   :notation: DUTESTCD
@@ -2233,7 +2233,7 @@
     MCI Version Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106650
   :notation: ADCS-ADL MCI TEST
@@ -2252,7 +2252,7 @@
     MCI Version Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106651
   :notation: ADCS-ADL MCI TESTCD
@@ -2271,7 +2271,7 @@
     Severe Dementia Version Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106652
   :notation: ADCS-ADL Severe Dementia TEST
@@ -2290,7 +2290,7 @@
     Severe Dementia Version Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106653
   :notation: ADCS-ADL Severe Dementia TESTCD
@@ -2308,7 +2308,7 @@
   :label: Baseline Dyspnea Index Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106654
   :notation: BDI TEST
@@ -2324,7 +2324,7 @@
   :label: Baseline Dyspnea Index Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106655
   :notation: BDI TESTCD
@@ -2341,7 +2341,7 @@
     Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106658
   :notation: C-SSRS Already Enrolled Subjects TEST
@@ -2360,7 +2360,7 @@
     Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106659
   :notation: C-SSRS Already Enrolled Subjects TESTCD
@@ -2379,7 +2379,7 @@
     Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106660
   :notation: C-SSRS Baseline/Screening Version TEST
@@ -2399,7 +2399,7 @@
     Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106661
   :notation: C-SSRS Baseline/Screening Version TESTCD
@@ -2418,7 +2418,7 @@
   :label: Geriatric Depression Scale Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106662
   :notation: GDS TEST
@@ -2434,7 +2434,7 @@
   :label: Geriatric Depression Scale Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106663
   :notation: GDS TESTCD
@@ -2450,7 +2450,7 @@
   :label: Geriatric Depression Scale Short Form Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106664
   :notation: GDS SHORT FORM TEST
@@ -2466,7 +2466,7 @@
   :label: Geriatric Depression Scale Short Form Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106665
   :notation: GDS SHORT FORM TESTCD
@@ -2482,7 +2482,7 @@
   :label: Health Assessment Questionnaire Disability Index Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106666
   :notation: HAQ-DI TEST
@@ -2498,7 +2498,7 @@
   :label: Health Assessment Questionnaire Disability Index Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106667
   :notation: HAQ-DI TESTCD
@@ -2514,7 +2514,7 @@
   :label: Modified Medical Research Council Dyspnea Scale Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106668
   :notation: MMRC TEST
@@ -2530,7 +2530,7 @@
   :label: Modified Medical Research Council Dyspnea Scale Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C106669
   :notation: MMRC TESTCD
@@ -2546,7 +2546,7 @@
   :label: Respiratory Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111106
   :notation: RETESTCD
@@ -2564,7 +2564,7 @@
   :label: Respiratory Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111107
   :notation: RETEST
@@ -2582,7 +2582,7 @@
   :label: Employment Status
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111108
   :notation: EMPSTAT
@@ -2599,7 +2599,7 @@
   :label: Device Events Category
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111109
   :notation: DECAT
@@ -2616,7 +2616,7 @@
   :label: Device Events Action Taken with Device
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111110
   :notation: DEACNDEV
@@ -2633,7 +2633,7 @@
   :label: Device Properties Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111111
   :notation: DOTESTCD
@@ -2650,7 +2650,7 @@
   :label: Device Properties Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111112
   :notation: DOTEST
@@ -2667,7 +2667,7 @@
   :label: Genetic Sample Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111114
   :notation: GENSMP
@@ -2685,7 +2685,7 @@
     Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111335
   :notation: C-SSRS Children's Baseline TEST
@@ -2703,7 +2703,7 @@
     Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111336
   :notation: C-SSRS Children's Baseline TESTCD
@@ -2721,7 +2721,7 @@
     Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111337
   :notation: C-SSRS Children's Baseline/Screening TEST
@@ -2741,7 +2741,7 @@
     Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111338
   :notation: C-SSRS Children's Baseline/Screening TESTCD
@@ -2761,7 +2761,7 @@
     Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111339
   :notation: C-SSRS Children's Since Last Visit TEST
@@ -2781,7 +2781,7 @@
     Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111340
   :notation: C-SSRS Children's Since Last Visit TESTCD
@@ -2800,7 +2800,7 @@
   :label: Columbia-Suicide Severity Rating Scale Screening Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111341
   :notation: C-SSRS Screening TEST
@@ -2816,7 +2816,7 @@
   :label: Columbia-Suicide Severity Rating Scale Screening Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111342
   :notation: C-SSRS Screening TESTCD
@@ -2832,7 +2832,7 @@
   :label: Functional Activities Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111343
   :notation: FAQ TEST
@@ -2848,7 +2848,7 @@
   :label: Functional Activities Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111344
   :notation: FAQ TESTCD
@@ -2864,7 +2864,7 @@
   :label: Functional Activities Questionnaire-NACC Version Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111345
   :notation: FAQ-NACC Version TEST
@@ -2880,7 +2880,7 @@
   :label: Functional Activities Questionnaire-NACC Version Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111346
   :notation: FAQ-NACC Version TESTCD
@@ -2896,7 +2896,7 @@
   :label: Modified Rankin Scale Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111347
   :notation: MRS TEST
@@ -2912,7 +2912,7 @@
   :label: Modified Rankin Scale Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C111348
   :notation: MRS TESTCD
@@ -2928,7 +2928,7 @@
   :label: Skin Response Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112023
   :notation: SRTEST
@@ -2945,7 +2945,7 @@
   :label: Skin Response Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112024
   :notation: SRTESTCD
@@ -2962,7 +2962,7 @@
   :label: Device Tracking and Disposition Event Dictionary Derived Term
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112037
   :notation: DTDECOD
@@ -2980,7 +2980,7 @@
   :label: Airway Questionnaire 20 Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112434
   :notation: AQ20 TEST
@@ -2996,7 +2996,7 @@
   :label: Airway Questionnaire 20 Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112435
   :notation: AQ20 TESTCD
@@ -3012,7 +3012,7 @@
   :label: Disease Steps Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112436
   :notation: Disease Steps TEST
@@ -3028,7 +3028,7 @@
   :label: Disease Steps Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112437
   :notation: Disease Steps TESTCD
@@ -3044,7 +3044,7 @@
   :label: Kurtzke Expanded Disability Status Scale Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112438
   :notation: EDSS TEST
@@ -3060,7 +3060,7 @@
   :label: Kurtzke Expanded Disability Status Scale Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112439
   :notation: EDSS TESTCD
@@ -3077,7 +3077,7 @@
     Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112440
   :notation: FAMS TEST
@@ -3095,7 +3095,7 @@
     Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112441
   :notation: FAMS TESTCD
@@ -3112,7 +3112,7 @@
   :label: Kurtzke Functional Systems Scores Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112442
   :notation: KFSS TEST
@@ -3128,7 +3128,7 @@
   :label: Kurtzke Functional Systems Scores Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112443
   :notation: KFSS TESTCD
@@ -3144,7 +3144,7 @@
   :label: Modified Hachinski Ischemic Scale-NACC Version Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112444
   :notation: MHIS-NACC TEST
@@ -3160,7 +3160,7 @@
   :label: Modified Hachinski Ischemic Scale-NACC Version Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112445
   :notation: MHIS-NACC TESTCD
@@ -3176,7 +3176,7 @@
   :label: Patient Determined Disease Steps Questionnaire Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112446
   :notation: PDDS TEST
@@ -3192,7 +3192,7 @@
   :label: Patient Determined Disease Steps Questionnaire Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112447
   :notation: PDDS TESTCD
@@ -3209,7 +3209,7 @@
     Interviewer-Administered Format Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112452
   :notation: VFQ25-Interviewer Administered TEST
@@ -3229,7 +3229,7 @@
     Interviewer-Administered Format Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112453
   :notation: VFQ25-Interviewer Administered TESTCD
@@ -3249,7 +3249,7 @@
     Self-Administered Format Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112454
   :notation: VFQ25-Self Administered TEST
@@ -3268,7 +3268,7 @@
     Self-Administered Format Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C112455
   :notation: VFQ25-Self Administered TESTCD
@@ -3286,7 +3286,7 @@
   :label: Laboratory Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C65047
   :notation: LBTESTCD
@@ -3303,7 +3303,7 @@
   :label: Completion/Reason for Non-Completion
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66727
   :notation: NCOMPLT
@@ -3321,7 +3321,7 @@
   :label: Relation to Reference Period
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66728
   :notation: STENRF
@@ -3337,7 +3337,7 @@
   :label: Route of Administration
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66729
   :notation: ROUTE
@@ -3354,7 +3354,7 @@
   :label: Sex
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66731
   :notation: SEX
@@ -3372,7 +3372,7 @@
   :label: Sex of Participants
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66732
   :notation: SEXPOP
@@ -3389,7 +3389,7 @@
   :label: Size
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66733
   :notation: SIZE
@@ -3405,7 +3405,7 @@
   :label: SDTM Domain Abbreviation
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66734
   :notation: DOMAIN
@@ -3424,7 +3424,7 @@
   :label: Trial Blinding Schema
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66735
   :notation: TBLIND
@@ -3441,7 +3441,7 @@
   :label: Trial Indication Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66736
   :notation: TINDTP
@@ -3458,7 +3458,7 @@
   :label: Trial Phase
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66737
   :notation: TPHASE
@@ -3479,7 +3479,7 @@
   :label: Trial Summary Parameter Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66738
   :notation: TSPARMCD
@@ -3497,7 +3497,7 @@
   :label: Trial Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66739
   :notation: TTYPE
@@ -3513,7 +3513,7 @@
   :label: Vital Signs Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66741
   :notation: VSTESTCD
@@ -3530,7 +3530,7 @@
   :label: Action Taken with Study Treatment
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66767
   :notation: ACN
@@ -3547,7 +3547,7 @@
   :label: Severity/Intensity Scale for Adverse Events
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66769
   :notation: AESEV
@@ -3564,7 +3564,7 @@
   :label: Units for Vital Signs Results
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66770
   :notation: VSRESU
@@ -3581,7 +3581,7 @@
   :label: Age Unit
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66781
   :notation: AGEU
@@ -3598,7 +3598,7 @@
   :label: Common Terminology Criteria for Adverse Events V3.0
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66784
   :notation: TOXGRV3
@@ -3619,7 +3619,7 @@
   :label: Control Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66785
   :notation: TCNTRL
@@ -3637,7 +3637,7 @@
   :label: Country
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66786
   :notation: COUNTRY
@@ -3655,7 +3655,7 @@
   :label: Diagnosis Group
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66787
   :notation: TDIGRP
@@ -3674,7 +3674,7 @@
   :label: Dictionary Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66788
   :notation: DICTNAM
@@ -3691,7 +3691,7 @@
   :label: Ethnic Group
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66790
   :notation: ETHNIC
@@ -3711,7 +3711,7 @@
   :label: Category for Inclusion/Exclusion
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C66797
   :notation: IECAT
@@ -3728,7 +3728,7 @@
   :label: Trial Summary Parameter Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C67152
   :notation: TSPARM
@@ -3746,7 +3746,7 @@
   :label: Vital Signs Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C67153
   :notation: VSTEST
@@ -3763,7 +3763,7 @@
   :label: Laboratory Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C67154
   :notation: LBTEST
@@ -3780,7 +3780,7 @@
   :label: Frequency
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C71113
   :notation: FREQ
@@ -3797,7 +3797,7 @@
   :label: Position
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C71148
   :notation: POSITION
@@ -3813,7 +3813,7 @@
   :label: ECG Result
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C71150
   :notation: EGSTRESC
@@ -3830,7 +3830,7 @@
   :label: ECG Test Method
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C71151
   :notation: EGMETHOD
@@ -3846,7 +3846,7 @@
   :label: ECG Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C71152
   :notation: EGTEST
@@ -3862,7 +3862,7 @@
   :label: ECG Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C71153
   :notation: EGTESTCD
@@ -3878,7 +3878,7 @@
   :label: Unit
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C71620
   :notation: UNIT
@@ -3894,7 +3894,7 @@
   :label: Anatomical Location
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C74456
   :notation: LOC
@@ -3910,7 +3910,7 @@
   :label: Race
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C74457
   :notation: RACE
@@ -3927,7 +3927,7 @@
   :label: Category for Disposition Event
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C74558
   :notation: DSCAT
@@ -3944,7 +3944,7 @@
   :label: Subject Characteristic Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C74559
   :notation: SCTESTCD
@@ -3960,7 +3960,7 @@
   :label: Skin Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C74561
   :notation: SKINTYP
@@ -3977,7 +3977,7 @@
   :label: Marital Status
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C76348
   :notation: MARISTAT
@@ -3993,7 +3993,7 @@
   :label: Skin Classification
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C76351
   :notation: SKINCLAS
@@ -4010,7 +4010,7 @@
   :label: Drug Accountability Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C78731
   :notation: DATEST
@@ -4026,7 +4026,7 @@
   :label: Drug Accountability Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C78732
   :notation: DATESTCD
@@ -4042,7 +4042,7 @@
   :label: Specimen Condition
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C78733
   :notation: SPECCOND
@@ -4058,7 +4058,7 @@
   :label: Specimen Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C78734
   :notation: SPECTYPE
@@ -4074,7 +4074,7 @@
   :label: Evaluator
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C78735
   :notation: EVAL
@@ -4091,7 +4091,7 @@
   :label: Reference Range Indicator
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C78736
   :notation: NRIND
@@ -4108,7 +4108,7 @@
   :label: Relationship Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C78737
   :notation: RELTYPE
@@ -4124,7 +4124,7 @@
   :label: Microorganism
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C85491
   :notation: MICROORG
@@ -4140,7 +4140,7 @@
   :label: Method
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C85492
   :notation: METHOD
@@ -4157,7 +4157,7 @@
   :label: PK Parameters
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C85493
   :notation: PKPARM
@@ -4173,7 +4173,7 @@
   :label: PK Parameter Units of Measure
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C85494
   :notation: PKUNIT
@@ -4189,7 +4189,7 @@
   :label: Microbiology Susceptibility Testing Result Category
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C85495
   :notation: MSRESCAT
@@ -4205,7 +4205,7 @@
   :label: PK Parameters Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C85839
   :notation: PKPARMCD
@@ -4221,7 +4221,7 @@
   :label: Common Terminology Criteria for Adverse Events V4.0
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C87162
   :notation: TOXGRV4
@@ -4242,7 +4242,7 @@
   :label: ECG Lead
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C90013
   :notation: EGLEAD
@@ -4258,7 +4258,7 @@
   :label: Medical Evaluator
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C96777
   :notation: MEDEVAL
@@ -4274,7 +4274,7 @@
   :label: Tumor Identification Results
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C96780
   :notation: TUMIDENT
@@ -4290,7 +4290,7 @@
   :label: Tumor Response Assessment Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C96781
   :notation: RSTEST
@@ -4307,7 +4307,7 @@
   :label: Tumor Response Assessment Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C96782
   :notation: RSTESTCD
@@ -4324,7 +4324,7 @@
   :label: Tumor Identification Test Name
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C96783
   :notation: TUTEST
@@ -4341,7 +4341,7 @@
   :label: Tumor Identification Test Code
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C96784
   :notation: TUTESTCD
@@ -4358,7 +4358,7 @@
   :label: Tumor Response Result
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C96785
   :notation: RSSTRESC
@@ -4374,7 +4374,7 @@
   :label: Laterality
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C99073
   :notation: LAT
@@ -4391,7 +4391,7 @@
   :label: Directionality
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C99074
   :notation: DIR
@@ -4408,7 +4408,7 @@
   :label: Portion/Totality
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C99075
   :notation: PORTOT
@@ -4425,7 +4425,7 @@
   :label: Intervention Model
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C99076
   :notation: INTMODEL
@@ -4441,7 +4441,7 @@
   :label: Study Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C99077
   :notation: STYPE
@@ -4458,7 +4458,7 @@
   :label: Intervention Type
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: false
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C99078
   :notation: INTTYPE
@@ -4474,7 +4474,7 @@
   :label: Epoch
   :extension_properties:
   - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
-    :value: true
+    :instance_variable: extensible
     :label: Extensible
   :identifier: C99079
   :notation: EPOCH

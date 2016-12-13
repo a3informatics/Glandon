@@ -109,12 +109,12 @@ Rails.application.routes.draw do
     collection do
       get :find_submission
       get :changes
-      get :changesCalc
+      get :changes_calc
       get :changes_report
       get :compare
-      get :compareCalc
+      get :compare_calc
       get :submission
-      get :submissionCalc
+      get :submission_calc
       get :submission_report
       get :impact
       get :impact_calc
@@ -122,7 +122,6 @@ Rails.application.routes.draw do
       get :impact_graph
       get :history
       get :search
-      get :search2
       get :next
       get :import
       get :load

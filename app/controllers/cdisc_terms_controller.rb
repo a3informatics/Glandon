@@ -1,5 +1,7 @@
 class CdiscTermsController < ApplicationController
   
+  include CdiscTermHelpers
+
   before_action :authenticate_user!
   
   C_CLASS_NAME = "CdiscTermsController"
@@ -24,7 +26,7 @@ class CdiscTermsController < ApplicationController
 
   def history
     authorize CdiscTerm
-    @cdiscTerms = CdiscTerm.history()
+    @cdiscTerms = CdiscTerm.history
   end
   
   def import
@@ -33,20 +35,6 @@ class CdiscTermsController < ApplicationController
     @cdiscTerm = CdiscTerm.new
   end
   
-  #def load
-  #  authorize CdiscTerm
-  #  local_params = set_local_params
-  #  local_params.each do |param|
-  #    hash = CdiscTerm.create({:version=>param["version"], :date=>param["date"], :files=>param["files"]})
-  #    @cdiscTerm = hash[:object]
-  #    @job = hash[:job]
-  #    if !@cdiscTerm.errors.empty?
-  #      ConsoleLogger::log(C_CLASS_NAME,"load","Load errors=" + @cdiscTerm.errors.full_messages.to_sentence + ", Params=" + param.to_s)
-  #    end
-  #  end
-  #  redirect_to backgrounds_path
-  #end
-
   def create
     authorize CdiscTerm
     hash = CdiscTerm.create(this_params)
@@ -62,38 +50,24 @@ class CdiscTermsController < ApplicationController
   
   def show
     authorize CdiscTerm
-    id = params[:id]
-    namespace = params[:namespace]
-    @cdiscTerm = CdiscTerm.find(id, namespace)
+    @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace])
     @cdiscTerms = CdiscTerm.all_previous(@cdiscTerm.version)
   end
   
   def search
     authorize CdiscTerm, :view?
-    id = params[:id]
-    namespace = params[:namespace]
-    @cdiscTerm = CdiscTerm.find(id, namespace, false)
-  end
-  
-  def search2
-    authorize CdiscTerm, :view?
-    id = params[:id]
-    namespace = params[:namespace]
-    @cdiscTerm = CdiscTerm.find(id, namespace, false)
+    @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)
     @items = Notepad.where(user_id: current_user).find_each
   end
   
   def next
     authorize CdiscTerm, :view?
-    id = params[:id]
-    namespace = params[:namespace]
-    @cdiscTerm = CdiscTerm.find(id, namespace, false)
     items = []
     more = true
-    offset = params[:offset].to_i
+    @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)
     limit = params[:limit].to_i
-    #ConsoleLogger::log(C_CLASS_NAME,"next","Offset=" + offset.to_s + ", limit=" + limit.to_s)  
-    items = CdiscTerm.next(offset, limit, namespace)
+    offset = params[:offset].to_i
+    items = CdiscTerm.next(offset, limit, params[:namespace])
     if items.count < limit
       more = false
     end
@@ -102,39 +76,19 @@ class CdiscTermsController < ApplicationController
     results[:limit] = limit
     results[:more] = more
     results[:data] = items
-    ConsoleLogger::log(C_CLASS_NAME,"next","Offset=" + results[:offset].to_s + ", limit=" + results[:limit].to_s + ", count=" + items.count.to_s)  
     render :json => results, :status => 200
   end
 
-  def compare
+  def compare_calc
     authorize CdiscTerm, :view?
-    newId = params[:newId]
-    newNamespace = params[:newNamespace]
-    oldId = params[:oldId]
-    oldNamespace = params[:oldNamespace]
-    @oldCdiscTerm = CdiscTerm.find(oldId, oldNamespace, false)
-    @newCdiscTerm = CdiscTerm.find(newId, newNamespace, false)
-    version_hash = {:new_version => @newCdiscTerm.version.to_s, :old_version => @oldCdiscTerm.version.to_s}
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, version_hash)
-  end
-  
-  def compareCalc
-    authorize CdiscTerm, :view?
-    
-    # Get the two terminology versions
-    newId = params[:newId]
-    newNamespace = params[:newNamespace]
-    oldId = params[:oldId]
-    oldNamespace = params[:oldNamespace]
-    oldCdiscTerm = CdiscTerm.find(oldId, oldNamespace, false)
-    newCdiscTerm = CdiscTerm.find(newId, newNamespace, false)
-    
+    old_cdisc_term = CdiscTerm.find(params[:oldId], params[:oldNamespace], false)
+    new_cdisc_term = CdiscTerm.find(params[:newId], params[:newNamespace], false)
     # If results already prepared redirect, else calculate.
-    version_hash = {:new_version => newCdiscTerm.version.to_s, :old_version => oldCdiscTerm.version.to_s}
+    version_hash = {:new_version => new_cdisc_term.version.to_s, :old_version => old_cdisc_term.version.to_s}
     if CdiscCtChanges.exists?(CdiscCtChanges::C_TWO_CT, version_hash)
-      redirect_to compare_cdisc_terms_path(params)
+      redirect_to compare_cdisc_terms_path(params.symbolize_keys)
     else
-      hash = CdiscTerm.compare(oldCdiscTerm, newCdiscTerm)
+      hash = CdiscTerm.compare(old_cdisc_term, new_cdisc_term)
       @cdiscTerm = hash[:object]
       @job = hash[:job]
       if @cdiscTerm.errors.empty?
@@ -146,21 +100,18 @@ class CdiscTermsController < ApplicationController
     end
   end
 
-  def changes
+  def compare
     authorize CdiscTerm, :view?
-    ct = CdiscTerm.current
-    @identifier = ct.identifier
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
+    old_cdisc_term = CdiscTerm.find(params[:oldId], params[:oldNamespace], false)
+    new_cdisc_term = CdiscTerm.find(params[:newId], params[:newNamespace], false)
+    version_hash = {:new_version => new_cdisc_term.version.to_s, :old_version => old_cdisc_term.version.to_s}
+    @identifier = old_cdisc_term.identifier
+    @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, version_hash)
+    @cls = transpose_results(@results)
+    render "changes"
   end
-
-  def changes_report
-    authorize CdiscTerm, :view?
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-    pdf = Reports::CdiscChangesReport.new(@results, current_user)
-    send_data pdf.render, filename: 'cdisc_changes.pdf', type: 'application/pdf', disposition: 'inline'
-  end
-
-  def changesCalc
+  
+  def changes_calc
     authorize CdiscTerm, :view?
     if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_CT)
         redirect_to changes_cdisc_terms_path
@@ -177,15 +128,26 @@ class CdiscTermsController < ApplicationController
     end
   end
 
-  def submission
+  def changes
     authorize CdiscTerm, :view?
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+    ct = CdiscTerm.current
+    @identifier = ct.identifier
+    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
+    @cls = transpose_results(@results)
   end
 
-  def submissionCalc
+  def changes_report
+    authorize CdiscTerm, :view?
+    results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
+    cls = transpose_results(results)
+    @pdf = Reports::CdiscChangesReport.create(results, cls, current_user)
+    send_data @pdf, filename: 'cdisc_changes.pdf', type: 'application/pdf', disposition: 'inline'
+  end
+
+  def submission_calc
     authorize CdiscTerm, :view?
     if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_SUB)
-        redirect_to submission_cdisc_terms_path
+      redirect_to submission_cdisc_terms_path
     else
       hash = CdiscTerm.submission_changes
       @cdiscTerm = hash[:object]
@@ -199,37 +161,20 @@ class CdiscTermsController < ApplicationController
     end
   end
 
-  def submission_report
+  def submission
     authorize CdiscTerm, :view?
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    pdf = Reports::CdiscSubmissionReport.new(@results, current_user)
-    send_data pdf.render, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
   end
 
-  def impact
+  def submission_report
     authorize CdiscTerm, :view?
-    @new_cdisc_term = CdiscTerm.find_only(params[:new_id], params[:new_ns])
-    @old_cdisc_term = CdiscTerm.find_only(params[:old_id], params[:old_ns])
-    @new_version = params[:new_version]
-    @old_version = params[:old_version]
-    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
-    @results = impact_flatten(results)
-  end
-
-  def impact_graph
-    authorize CdiscTerm, :view?
-    ConsoleLogger::log(C_CLASS_NAME,"impact_graph","Here!")  
-    @new_cdisc_term = CdiscTerm.find_only(params[:new_id], params[:new_ns])
-    @old_cdisc_term = CdiscTerm.find_only(params[:old_id], params[:old_ns])
-    @new_version = params[:new_version]
-    @old_version = params[:old_version]
-    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
-    @graph = impact_graph_root(results) 
+    results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+    @pdf = Reports::CdiscSubmissionReport.create(results, current_user)
+    send_data @pdf, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
   end
 
   def impact_calc
     authorize CdiscTerm, :view?
-    # If results already prepared redirect, else calculate.
     if CdiscCtChanges.exists?(CdiscCtChanges::C_TWO_CT_IMPACT, params)
       redirect_to impact_cdisc_terms_path(params)
     else
@@ -245,6 +190,26 @@ class CdiscTermsController < ApplicationController
     end
   end
 
+  def impact
+    authorize CdiscTerm, :view?
+    @new_cdisc_term = CdiscTerm.find_only(params[:new_id], params[:new_ns])
+    @old_cdisc_term = CdiscTerm.find_only(params[:old_id], params[:old_ns])
+    @new_version = params[:new_version]
+    @old_version = params[:old_version]
+    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+    @results = impact_flatten(results)
+  end
+
+  def impact_graph
+    authorize CdiscTerm, :view?
+    @new_cdisc_term = CdiscTerm.find_only(params[:new_id], params[:new_ns])
+    @old_cdisc_term = CdiscTerm.find_only(params[:old_id], params[:old_ns])
+    @new_version = params[:new_version]
+    @old_version = params[:old_version]
+    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
+    @graph = impact_graph_root(results) 
+  end
+
   def impact_report
     authorize CdiscTerm, :view?
     results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
@@ -255,15 +220,13 @@ class CdiscTermsController < ApplicationController
 
   def file
     authorize CdiscTerm, :import?
-    @files = @files = Dir.glob(CdiscCtChanges.dir_path + "*")
+    @files = Dir.glob(CdiscCtChanges.dir_path + "*")
   end
 
   def file_delete
     authorize CdiscTerm, :import?
-    ConsoleLogger::log(C_CLASS_NAME,"file_delete","Params=" + params.to_s)
     files = this_params[:files]
     files.each do |file|
-      ConsoleLogger::log(C_CLASS_NAME,"file_delete","File" + file.to_s)
       File.delete(file) if File.exist?(file)
     end 
     redirect_to file_cdisc_terms_path
@@ -275,97 +238,6 @@ private
     params.require(:cdisc_term).permit(:version, :date, :term, :textSearch, :cCodeSearch, :files => [] )
   end
   
-  def clsForTerm(cdiscTerm, data)  
-    cdiscCls = CdiscCl.allTopLevel(cdiscTerm.id, cdiscTerm.namespace)
-    temp = {:term => cdiscTerm, :cls => cdiscCls}
-    data.push(temp)        
-  end
-
-  def buildResults (data)
-  
-    missing = Array.new
-    results = Hash.new
-    last = data.length - 1
-  	data.each_with_index do |curr, index|
-      currTerm = curr[:term]
-      version = currTerm.version
-      currCls = curr[:cls]
-      key = "V" + version.to_s
-      missing.push(key)
-      if index >= 1
-        if currCls != nil
-          prev = data[index - 1]
-          prevTerm = prev[:term]
-          prevCls = prev[:cls]
-          if prevCls != nil
-            currCls.each do |clId, currCl|
-              if prevCls.has_key?(clId)
-                prevCl = prevCls[clId]
-                if CdiscCl.diff?(currCl, prevCl)
-                  mark = "M"
-                else
-                  #if currCl.diff?(prevCl)
-                  #  mark = "M"
-                  #else
-                    mark = "."
-                  #end
-                end
-              else
-                mark = "."
-              end
-              if results.has_key?(clId)
-                clEntry = results[clId]
-                result = clEntry[:result]
-                result[key] = mark
-              else
-                result = Hash.new
-                missing.each do |mKey|
-                  result[mKey] = ""
-                end    
-                result[key] = mark
-                clEntry = Hash.new
-                clEntry = {:cl => currCl, :result => result }
-                results[clId] = clEntry
-              end
-            end
-          end
-        end
-      else
-        
-        # First item. Build an entry for every member
-        if currCls != nil
-           currCls.each do |clId, currCl|
-            result = Hash.new
-            result[key] = "."
-            clEntry = Hash.new
-            clEntry = {:cl => currCl, :result => result }
-            results[clId] = clEntry
-          end
-        end
-      end
-    end
-
-    # Run through the entire set of results and check for missing entries.
-    # If any found then mark as deleted
-    results.each do |clId, clEntry|
-      result = clEntry[:result]
-      update = false
-      missing.each do |mKey|
-        if !result.has_key?(mKey)
-          result[mKey] = "X"
-          update = true
-        end
-      end 
-      if update
-        clEntry[:result] = result
-      end
-    end  
-    
-    # Return the results
-    return results
-    
-  end
-
   def impact_flatten(tree_array)
     results = Array.new
     tree_array.each do |tree|
@@ -491,10 +363,5 @@ private
     #ConsoleLogger::log(C_CLASS_NAME,"impact_node", "Result=#{result.to_json}")  
     return index
   end
-
-  #def set_local_params
-  #  json = JSON.parse(IO.read("/Users/daveih/Documents/Rails/Glandon/public/upload/cdiscImportManifest.json"))
-  #  return json
-  #end
 
 end

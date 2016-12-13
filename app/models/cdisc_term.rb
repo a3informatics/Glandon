@@ -16,7 +16,6 @@ class CdiscTerm < Thesaurus
   # @param id [string] The id of the form
   # @return [object] The form object
   def initialize(triples=nil, id=nil)
-    #@@cdisc_namespace ||= IsoNamespace.findByShortName("CDISC")
     if triples.nil?
       super
     else
@@ -38,7 +37,7 @@ class CdiscTerm < Thesaurus
     return object
   end
 
-  # Find Only the root object
+  # Find Only the root object.
   #
   # @param id [string] The id of the form.
   # @param namespace [hash] The raw triples keyed by id.
@@ -72,6 +71,9 @@ class CdiscTerm < Thesaurus
     return uri
   end
 
+  # Find all items.
+  #
+  # @return [array] Array of objects found.
   def self.all
     results = Array.new
     tSet = super
@@ -83,26 +85,44 @@ class CdiscTerm < Thesaurus
     return results  
   end
 
+  # Find history
+  #
+  # @return [array] An array of objects.
   def self.history
     return super({ :identifier => C_IDENTIFIER, :scope_id => @@cdisc_namespace.id })
   end
 
+  # Find all except the specified version.
+  #
+  # @param version [integer] The version not to be found.
+  # @return [array] Array of objects found.
   def self.all_except(version)
     results = self.all
     results.delete_if { |h| h.scopedIdentifier.version == version }
     return results  
   end
   
+  # Find all versions previous to the specified version.
+  #
+  # @param version [integer] The version not to be found.
+  # @return [array] Array of objects found.
   def self.all_previous(version)
     results = self.all
     results.delete_if { |h| h.scopedIdentifier.version >= version }
     return results
   end
   
+  # Find the current item
+  #
+  # @return [object] The object or nil if no current version.
   def self.current
     return super({ :identifier => C_IDENTIFIER, :scope_id => @@cdisc_namespace.id })
   end
   
+  # Create a new version. This is an import and runs in the background.
+  #
+  # @param params [Hash] The parameters
+  # @return [Hash] An hash containing any errors and the background job reference.
   def self.create(params)
     object = self.new
     object.errors.clear
@@ -133,22 +153,33 @@ class CdiscTerm < Thesaurus
     return { :object => object, :job => job }
   end
   
+  # Initiate background job to detect all changes
+  #
+  # @return [Hash] A hash containing any errors and the job reference.
   def self.changes
     object = self.new
     object.errors.clear
     job = Background.create
-    job.changesCdiscTerm()
+    job.changes_cdisc_term()
     return { :object => object, :job => job }
   end
 
+  # Initiate background job to detect all changes
+  #
+  # @param old_term [Object] The old CDISC terminology
+  # @param new_term [Object] The new CDISC terminology
+  # @return [Hash] A hash containing any errors and the job reference.
   def self.compare(old_term, new_term)
     object = self.new
     object.errors.clear
     job = Background.create
-    job.compareCdiscTerm(old_term, new_term)
+    job.compare_cdisc_term([old_term, new_term])
     return { :object => object, :job => job }
   end
 
+  # Initiate background job to detect all submission value (notation) changes
+  #
+  # @return [Hash] A hash containing any errors and the job reference.
   def self.submission_changes
     object = self.new
     object.errors.clear
@@ -157,6 +188,9 @@ class CdiscTerm < Thesaurus
     return { :object => object, :job => job }
   end
 
+  # Initiate background job to detect impact of all submission value (notation) changes
+  #
+  # @return [Hash] A hash containing any errors and the job reference.
   def self.impact(params)
     object = self.new
     object.errors.clear
@@ -165,14 +199,20 @@ class CdiscTerm < Thesaurus
     return { :object => object, :job => job }
   end
 
-  def self.submission_diff(old_term, new_term)
-    results = Array.new
+  # Get differences in notations (submission value) between two terminology versions
+  #
+  # @param old_term [Object] The old CDISC terminology
+  # @param new_term [Object] The new CDISC terminology
+  # @return [Hash] A hash containing any errors and the job reference.
+  def self.submission_difference(old_term, new_term)
+    results = {}
     query = UriManagement.buildPrefix("", ["iso25964"]) +
-      "SELECT DISTINCT ?a1 ?b1 ?c1 ?d1 ?f1 ?a2 ?c2 WHERE \n" +
+      "SELECT DISTINCT ?a1 ?b1 ?c1 ?d1 ?f1 ?g1 ?a2 ?c2 WHERE \n" +
       "  {\n" +
       "    {\n" +
       "      ?a1 iso25964:identifier ?b1 . \n" +
       "      ?a1 iso25964:notation ?c1 . \n" +
+      "      ?a1 iso25964:preferredTerm ?g1 . \n" +
       "      ?a1 rdfs:label ?f1 . \n" +
       "      ?e1 iso25964:hasChild ?a1 . \n" +
       "      ?e1 iso25964:identifier ?d1 . \n" +
@@ -188,6 +228,7 @@ class CdiscTerm < Thesaurus
       "    {\n" +
       "      ?a1 iso25964:identifier ?b1 . \n" +
       "      ?a1 iso25964:notation ?c1 . \n" +
+      "      ?a1 iso25964:preferredTerm ?g1 . \n" +
       "      ?a1 rdfs:label ?f1 . \n" +
       "      ?e1 iso25964:hasChild ?a1 . \n" +
       "      ?e1 iso25964:identifier ?d1 . \n" +
@@ -202,64 +243,73 @@ class CdiscTerm < Thesaurus
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      uri1Set = ModelUtility.getValue('a1', true, node)
-      uri2Set = ModelUtility.getValue('a2', true, node)
-      i1Set = ModelUtility.getValue('b1', false, node)
-      n1Set = ModelUtility.getValue('c1', false, node)
-      n2Set = ModelUtility.getValue('c2', false, node)
-      p1Set = ModelUtility.getValue('d1', false, node)
+      uri1 = ModelUtility.getValue('a1', true, node)
+      uri2 = ModelUtility.getValue('a2', true, node)
+      i1 = ModelUtility.getValue('b1', false, node)
+      n1 = ModelUtility.getValue('c1', false, node)
+      n2 = ModelUtility.getValue('c2', false, node)
+      p1 = ModelUtility.getValue('d1', false, node)
       label = ModelUtility.getValue('f1', false, node)
-      if !uri1Set.empty? 
-        object = Hash.new 
-        object = {:old_uri => uri1Set, :new_uri => uri2Set, :id => ModelUtility.extractCid(uri1Set), :namespace => ModelUtility.extractNs(uri1Set), 
-          :identifier => i1Set, :label => label, :old_notation => n1Set, :new_notation => n2Set, :parent_identifier => p1Set}
-        results << object
+      pt = ModelUtility.getValue('g1', false, node)
+      if !uri1.empty? 
+        object = 
+        {
+          :previous_uri => UriV2.new({uri: uri1}), 
+          :current_uri => UriV2.new({uri: uri2}), 
+          :identifier => i1, 
+          :label => label, 
+          :preferred_term => pt, 
+          :result => { :previous => n1, :current => n2 },
+          :parent_identifier => p1
+        }
+        results[i1] = object
       end
     end
     return results
   end
 
-  #def self.count(searchTerm, ns)
-  #  count = 0
-  #  if searchTerm == ""
-  #    query = UriManagement.buildNs(ns, ["iso25964"]) +
-  #      "SELECT DISTINCT (COUNT(?b) as ?total) WHERE \n" +
-  #      "  {\n" +
-  #      "    ?a iso25964:identifier ?b . \n" +
-  #      "    FILTER(STRSTARTS(STR(?a), \"" + ns + "\"))" +
-  #     "  }"
-  #    response = CRUD.query(query)
-  #    xmlDoc = Nokogiri::XML(response.body)
-  #    xmlDoc.remove_namespaces!
-  #    xmlDoc.xpath("//result").each do |node|
-  #      countSet = node.xpath("binding[@name='total']/literal")
-  #      count = countSet[0].text.to_i
-  #    end
-  #  else
-  #    query = UriManagement.buildNs(ns, ["iso25964"]) + queryString(searchTerm, ns) 
-  #    response = CRUD.query(query)
-  #    xmlDoc = Nokogiri::XML(response.body)
-  #    xmlDoc.remove_namespaces!
-  #    count = xmlDoc.xpath("//result").length
-  #  end
-  #  return count
-  #end
-
-  #def self.search(offset, limit, col, dir, searchTerm, ns)
-  #  results = Array.new
-  #  variable = getOrderVariable(col)
-  #  order = getOrdering(dir)
-  #  query = UriManagement.buildNs(ns, ["iso25964"]) + 
-  #    queryString(searchTerm, ns) + 
-  #    " ORDER BY " + order + "(" + variable + ") OFFSET " + offset.to_s + " LIMIT " + limit.to_s
-  #  response = CRUD.query(query)
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  xmlDoc.xpath("//result").each do |node|
-  #    processNode(node, results)
-  #  end
-  #  return results
-  #end
+  # Differences between this and another terminology. Details for the terminology
+  # and a staus on the children.
+  #
+  # @previous [Object] The previous object being compared
+  # @current [Object] The current object being compared
+  # @return [Hash] The differenc hash
+  def self.difference(previous, current)
+    results = super(previous, current)
+    children = {}
+    if previous.nil? && current.nil?
+      children = {}
+    elsif previous.nil?
+      current.children.each do |child|
+        children[child.identifier.to_sym] = { status: :created, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
+      end
+    elsif current.nil?
+      previous.children.each do |child|
+        children[child.identifier.to_sym] = { status: :deleted, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
+      end
+    else
+      deleted = current.deleted_set(previous, "children", "identifier" )
+      current_index = Hash[current.children.map{|x| [x.identifier, x]}]
+      previous_index = Hash[previous.children.map{|x| [x.identifier, x]}]
+      current.children.each do |current|
+        diff = self.diff?(previous_index[current.identifier], current) 
+        if diff && previous_index[current.identifier].nil? 
+          status = :created
+        elsif diff
+          status = :updated
+        else
+          status = :no_change
+        end
+        children[current.identifier.to_sym] = { status: status, preferred_term: current.preferredTerm, notation: current.notation, id: current.id, namespace: current.namespace}
+      end
+      deleted.each do |deleted|
+        item = previous_index[deleted]
+        children[deleted.to_sym] = { status: :deleted, preferred_term: item.preferredTerm, notation: item.notation, id: item.id, namespace: item.namespace}
+      end
+    end
+    results[:children] = children
+    return results
+  end
 
   def self.next(offset, limit, ns)
     results = Array.new

@@ -127,216 +127,133 @@ class Background < ActiveRecord::Base
   end
   handle_asynchronously :importCdiscTerm
 
-  def compareCdiscTerm(old_term, new_term)
-    # Create the background job status
+  # Compare CDISC Terminology
+  #
+  # @param cdisc_terms [Array] Array of the terminologies to be compared
+  # @param all [Boolean] All or two items to be compared. Defaults to false
+  # @return null No return, kicks off the background job
+  def compare_cdisc_term(cdisc_terms, all=false)
+    version_labels = cdisc_terms.map {|x| "#{x.versionLabel}"}.join ','
     self.update(
-      description: "Detect CDISC Terminology changes, " + new_term.versionLabel + " (V" + new_term.version.to_s + ") to " + old_term.versionLabel + " (V" + old_term.version.to_s + ").", 
+      description: "Detect CDISC Terminology changes, versions: #{version_labels}.", 
       status: "Starting.",
       started: Time.now())
-    # Get the CT top level items
     data = Array.new
-    total_ct_count = 2
+    total_ct_count = cdisc_terms.length
     counts = Hash.new
     counts[:cl_count] = 0
     counts[:ct_count] = 0
-    load_cls(data, old_term, counts, total_ct_count)
-    #ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
-    load_cls(data, new_term, counts, total_ct_count)
-    #ConsoleLogger::log(C_CLASS_NAME, "compareCdiscTerm", "CT Count=" + counts[:ct_count].to_s + ", CL Count=" + counts[:cl_count].to_s)
-    # Compare
-    results = compare(data, counts[:cl_count])
-    # Save the results
-    version_hash = {:new_version => new_term.version.to_s, :old_version => old_term.version.to_s} 
-    CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT, results, version_hash)
-    # Finish
-    self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
-  rescue => e
-    self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
-  end
-  handle_asynchronously :compareCdiscTerm
-
-  def changesCdiscTerm()
-    # Create the background job status
-    self.update(
-      description: "Detect CDISC Terminology changes, all versions.", 
-      status: "Starting.",
-      started: Time.now())
-    # Get the CT top level items
-    data = Array.new
-    cdiscTerms = CdiscTerm.all()
-    total_ct_count = cdiscTerms.length
-    counts = Hash.new
-    counts[:cl_count] = 0
-    counts[:ct_count] = 0
-    cdiscTerms.each do |ct|
-      load_cls(data, ct, counts, total_ct_count)
+    cdisc_terms.each do |term|
+      load_term(data, term, counts, total_ct_count)
     end
-    # Compare
-    results = compare(data, counts[:cl_count])
-    # Save the results
-    CdiscCtChanges.save(CdiscCtChanges::C_ALL_CT, results)
-    # Report Status
+    results = term_changes(data, counts[:cl_count])
+    if all
+      CdiscCtChanges.save(CdiscCtChanges::C_ALL_CT, results)
+    else
+      version_hash = {:new_version => cdisc_terms[1].version.to_s, :old_version => cdisc_terms[0].version.to_s} 
+      CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT, results, version_hash)
+    end
     self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
   rescue => e
     self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
-  handle_asynchronously :changesCdiscTerm
+  handle_asynchronously :compare_cdisc_term unless Rails.env.test?
 
+  # Compare CDISC Terminology. Compares all versions
+  #
+  # @return null No return, kicks off the background job
+  def changes_cdisc_term()
+    cdisc_terms = CdiscTerm.all()
+    compare_cdisc_term(cdisc_terms, true)
+  end
+
+  # Compare Submission Values (notation field). Compares all versions
+  #
+  # @return null No return, kicks off the background job
   def submission_changes_cdisc_term()
-    # Create the background job status
+    # start
     self.update(
       description: "Detect CDISC Terminology submission value changes, all versions.", 
       status: "Starting.",
       started: Time.now())
-    # Get the CT top level items
-    results = Hash.new
-    cdisc_terms = CdiscTerm.all()
+    # Get the changes
     prev_ct = nil
-    missing = Array.new
+    results = []
+    cdisc_terms = CdiscTerm.all()
     cdisc_terms.each_with_index do |ct, index|
-      key = ct.versionLabel
-      missing << key
+      results << { version_label: ct.versionLabel, children: {} }
       if index != 0 
-        diffs = CdiscTerm.submission_diff(prev_ct, ct)
-        diffs.each do |diff|
-          old_id = ModelUtility.extractCid(diff[:old_uri])
-          old_ns = ModelUtility.extractNs(diff[:old_uri])
-          if results.has_key?(old_id)
-            entry = results[old_id]
-            result = entry[:result]
-            result[key] = diff[:old_notation] + " -> " + diff[:new_notation]
-            results[old_id] = entry
-          else
-            cli = CdiscCli.find(old_id, old_ns)
-            entry = {:cli => {:id => old_id, :parent_identifier => diff[:parent_identifier], 
-              :identifier => diff[:identifier], :label => cli.preferredTerm, :original_notation => diff[:old_notation]}, :result => {}}
-            result = entry[:result]
-            missing.each do |ver|
-              result[ver] = ""
-            end
-            result[key] = diff[:old_notation] + " -> " + diff[:new_notation]
-            results[old_id] = entry
-          end
-        end
-      end
-      results.each do |cli, entry|
-        result = entry[:result]
-        if !result.has_key?(key)
-          result[key] = ""
-        end
+        results[index][:children] = CdiscTerm.submission_difference(prev_ct, ct)
       end
       prev_ct = ct
-      p = 95.0 * (index.to_f/cdisc_terms.count.to_f)
+      p = 90.0 * (index.to_f/cdisc_terms.count.to_f)
       self.update(status: "Checked " + ct.versionLabel + ".", percentage: p.to_i)
     end
-    # Save the results
-    CdiscCtChanges.save(CdiscCtChanges::C_ALL_SUB, results)
-    # Report Status
+    # Format the results
+    ConsoleLogger.debug(C_CLASS_NAME, "submission_changes_cdisc_term", "Results=#{results}")
+    check = {}
+    list = []
+    versions = []
+    transformed_results = {}
+    results.each do |result|
+      list = list | result[:children].keys
+      versions << result[:version_label]
+    end
+    list.each do |key|
+      transformed_results[key] = { parent_identifier: "", label: "", preferred_term: "", notation: "", result: Array.new(versions.length, { previous: "", current: "", status: :no_change }) }
+    end
+    index = 0
+    results.each do |result|
+      result[:children].each do |key, child|
+        if !check.has_key?(child[:identifier])
+          transformed_results[key][:identifier] = child[:identifier]
+          transformed_results[key][:parent_identifier] = child[:parent_identifier]
+          transformed_results[key][:label] = child[:label]
+          transformed_results[key][:notation] = child[:result][:previous]
+          transformed_results[key][:preferred_term] = child[:preferred_term]
+          transformed_results[key][:id] = child[:previous_uri].id
+          check[child[:identifier]] = true
+        end      
+        transformed_results[key][:result][index] = child[:result]
+        transformed_results[key][:result][index][:status] = :updated
+      end
+      index += 1
+    end
+    # Finish up.
+    CdiscCtChanges.save(CdiscCtChanges::C_ALL_SUB, { :versions => versions, :children => transformed_results })
     self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
   rescue => e
     self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
-  handle_asynchronously :submission_changes_cdisc_term
+  handle_asynchronously :submission_changes_cdisc_term unless Rails.env.test?
 
+  # Assess impact of submission values (notation field) changes. Compares two versions
+  #
+  # @return null No return, kicks off the background job
   def submission_changes_impact(params)
-    # Create the background job status
     self.update(
       description: "Detect CDISC Terminology submission value changes impact.", 
       status: "Starting.",
       started: Time.now())
-    # Get the CTs
-    new_id = params[:new_id]
-    new_ns = params[:new_ns]
-    old_id = params[:old_id]
-    old_ns = params[:old_ns]
-    old_ct = CdiscTerm.find(old_id, old_ns, false)
-    new_ct = CdiscTerm.find(new_id, new_ns, false)   
-    # Get the submission differences  
-    diffs = CdiscTerm.submission_diff(old_ct, new_ct)
-    # Assess impact
-    index = 1
-    count = diffs.length
-    diffs.each do |diff|
-      uri = diff[:old_uri]
-      id = ModelUtility.extractCid(uri)
-      ns = ModelUtility.extractNs(uri)
-      #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "BCs=#{uri.to_json}")
-      bcs = BiomedicalConcept.term_impact({:id => id, :namespace => ns})
-      #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "BCs=#{bcs.to_json}")
-      bc_results = Array.new  
-      if bcs.length > 0
-        bcs.each do |bc_id, bc|
-          form_results = Array.new
-          forms = Form.bc_impact({:id => bc.id, :namespace => bc.namespace})
-          #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "Forms(BC)=#{forms.to_json}")
-          forms.each do |form_id, form|
-            form_results << 
-              {
-                :type => "Form", 
-                :id => form.id, 
-                :namespace => form.namespace, 
-                :identifier => form.identifier, 
-                :label => form.label, 
-                :via => "#{bc.label} (#{bc.identifier})", 
-                :children => []
-              }
-          end
-          domain_results = Array.new
-          domains = SdtmUserDomain.bc_impact({:id => bc.id, :namespace => bc.namespace})
-          #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "Domains(BC)=#{domains.to_json}")
-          domains.each do |domain_id, domain|
-            domain_results << 
-              {
-                :type => "Domain", 
-                :id => domain.id, 
-                :namespace => domain.namespace, 
-                :identifier => domain.identifier, 
-                :label => domain.label, 
-                :via => "#{bc.label} (#{bc.identifier})", 
-                :children => []
-              }
-          end
-          bc_results << 
-            {
-              :type => "Biomedical Concept", 
-              :id => bc.id, 
-              :namespace => bc.namespace, 
-              :identifier => bc.identifier, 
-              :label => bc.label, 
-              :via => "", 
-              :children => form_results + domain_results}
-        end
-      end
-      forms = Form.term_impact({:id => id, :namespace => ns})
-      #ConsoleLogger.log(C_CLASS_NAME, "submission_changes_impact", "Forms(Term)=#{forms.to_json}")
-      form_results = Array.new
-      if forms.length > 0
-        forms.each do |form_id, form|
-          form_results << 
-            {
-              :type => "Form", 
-              :id => form.id, 
-              :namespace => form.namespace, 
-              :identifier => form.identifier, 
-              :label => form.label, 
-              :via => "", 
-              :children => []
-            }
-        end
-      end
-      diff[:children] = bc_results + form_results
-      p = (index.to_f/count.to_f)*100.0
-      self.update(status: "Checked " + diff[:identifier] + ".", percentage: p.to_i)
+    old_ct = CdiscTerm.find(params[:old_id], params[:old_ns], false)
+    new_ct = CdiscTerm.find(params[:new_id], params[:new_ns], false)   
+    results = CdiscTerm.submission_difference(old_ct, new_ct)
+    self.update(status: "Differences detected.", percentage: 50)
+    index = 0
+    items = []
+    results.each do |key, entry|
+      result = IsoConcept.links_to(entry[:previous_uri].id, entry[:previous_uri].namespace)
+      items += linked_from(result)
+      p = 50.0 + ((index.to_f/results.count.to_f) * 50.0)
+      self.update(status: "Checked impact of change to #{key}.", percentage: p.to_i)
       index += 1
     end
-    # Save the results
-    CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT_IMPACT, diffs, params)
-    # Report Status
+    CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT_IMPACT, items, params)
     self.update(status: "Complete. Successful impact assessment.", percentage: 100, complete: true, completed: Time.now())
   rescue => e
     self.update(status: "Complete. Unsuccessful impact assessment. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
-  handle_asynchronously :submission_changes_impact
+  handle_asynchronously :submission_changes_impact unless Rails.env.test?
 
 private
 
@@ -359,116 +276,46 @@ private
     return path
   end
 
-  def load_cls(data, ct, counts, total_ct_count)
-    # Get the Cls
+  # Load a single version of the terminology.
+  def load_term(data, ct, counts, total_ct_count)
     cdisc_term = CdiscTerm.find(ct.id, ct.namespace)
-    cls = cdisc_term.children
-    cls_hash = Hash.new
-    cls.each do |cl|
-      cls_hash[cl.id] = cl
-    end
-    temp = {:term => ct, :cls => cls_hash}
-    data.push(temp)   
-    counts[:cl_count] += cls.length
-    # Report Status
+    data << {:term => cdisc_term}
+    counts[:cl_count] += cdisc_term.children.length
     counts[:ct_count] += 1
     p = (counts[:ct_count].to_f / total_ct_count.to_f) * 10.0
-    self.update(status: "Loading release of " + ct.versionLabel + ".", percentage: p.to_i)
+    self.update(status: "Loading release of #{ct.versionLabel}.", percentage: p.to_i)
     return counts
   end
 
-  def compare(data, totalCount)    
-    #ConsoleLogger::log(C_CLASS_NAME,"compare","*****Entry*****")
-    # Do the comparison
-    currentCount = 0
-    missing = Array.new
-    results = Hash.new
-    last = data.length - 1
+  # Determine the changes across the terminologies.
+  def term_changes(data, total_count)
+    results = []
+    prev_term = nil
     data.each_with_index do |curr, index|
-      #ConsoleLogger::log(C_CLASS_NAME,"compare","Index=" + index.to_s)
-      currTerm = curr[:term]
-      version = currTerm.version
-      currCls = curr[:cls]
-      key = currTerm.versionLabel
-      missing.push(key)
+      curr_term = curr[:term]
       if index >= 1
-        if currCls != nil
-          prev = data[index - 1]
-          prevTerm = prev[:term]
-          prevCls = prev[:cls]
-          if prevCls != nil
-            clCount = currCls.length
-            currCls.each do |clId, currCl|
-              #ConsoleLogger::log(C_CLASS_NAME,"compare","CL=" + clId)
-              if prevCls.has_key?(clId)
-                #ConsoleLogger::log(C_CLASS_NAME,"compare","Prev CL=" + clId)
-                prevCl = prevCls[clId]
-                if CdiscCl.diff?(currCl, prevCl)
-                  #ConsoleLogger::log(C_CLASS_NAME,"compare"," M ")
-                  mark = "M"
-                else
-                  #ConsoleLogger::log(C_CLASS_NAME,"compare"," . ")
-                  mark = "."
-                end
-              else
-                #ConsoleLogger::log(C_CLASS_NAME,"compare","No Prev CL")
-                mark = "."
-              end
-              if results.has_key?(clId)
-                clEntry = results[clId]
-                result = clEntry[:result]
-                result[key] = mark
-              else
-                result = Hash.new
-                missing.each do |mKey|
-                  result[mKey] = ""
-                end    
-                result[key] = mark
-                clEntry = Hash.new
-                clEntry = {:cl => {:id => currCl.id, :namespace => currCl.namespace, :identifier => currCl.identifier, :label => currCl.label, :notation => currCl.notation}, :result => result }
-                results[clId] = clEntry
-              end
-              # Report Status
-              currentCount += 1
-              p = 10.0 + ((currentCount.to_f * 85.0)/totalCount.to_f)
-              self.update(status: "Checking " + currTerm.versionLabel + " [" + currCl.identifier + ", " + currentCount.to_s + " of " + totalCount.to_s + "]", percentage: p.to_i)
-            end
-          end
-        end
-      else
-        # First item. Build an entry for every member
-        if currCls != nil
-          currCls.each do |clId, currCl|
-            result = Hash.new
-            result[key] = "."
-            clEntry = Hash.new
-            clEntry = {:cl => {:id => currCl.id, :namespace => currCl.namespace, :identifier => currCl.identifier, :label => currCl.label, :notation => currCl.notation}, :result => result }
-            results[clId] = clEntry
-            # Report Status
-            currentCount += 1
-            p = 10.0 + ((currentCount.to_f * 85.0)/totalCount.to_f)
-            self.update(status: "Checking " + currTerm.versionLabel + " [" + currCl.identifier + ", " + currentCount.to_s + " of " + totalCount.to_s + "]", percentage: p.to_i)
-          end
-        end
+        prev_term = data[index - 1][:term]
+      end
+      result = CdiscTerm.difference(prev_term, curr_term) {
+        p = 10.0 + ((currentCount.to_f * 85.0)/total_count.to_f)
+        self.update(status: "Checking #{curr_term.versionLabel} [#{current_count} of #{total_count}].", percentage: p.to_i)
+      }
+      result[:version] = curr_term.version
+      result[:date] = curr_term.versionLabel
+      results << result
+    end
+    return results
+  end
+
+  def linked_from(results)
+    items = []
+    results.each do |result|
+      if !result[:local]
+        mi = IsoManaged.find_parent(result[:uri].id, result[:uri].namespace)
+        items += mi.find_links_from_to(from=false)
       end
     end
-    # Run through the entire set of results and check for missing entries.
-    # If any found then mark as deleted
-    results.each do |clId, clEntry|
-      result = clEntry[:result]
-      update = false
-      missing.each do |mKey|
-        if !result.has_key?(mKey)
-          result[mKey] = "X"
-          update = true
-        end
-      end 
-      if update
-        clEntry[:result] = result
-      end
-    end 
-    # And return
-    return results 
-  end    
+    return items
+  end
 
 end

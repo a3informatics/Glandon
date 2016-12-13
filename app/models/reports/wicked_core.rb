@@ -7,10 +7,17 @@ class Reports::WickedCore
     @paper_size = ""
   end
     
-  def open(doc_title, options, managed_item, history, user)
+  # Open the document
+  #
+  # @param doc_type [String] The document type, a title string
+  # @param options ...
+  # @param managed_item [Object] Managed item. Can be nil if not applicable
+  # @param history [Object] The document history. Used if options[:full] set to true
+  # @param user [Object] The user creating the report
+  def open(doc_type, options, managed_item, history, user)
     @paper_size = user.paper_size
     @html = page_header
-    @html += title_page(doc_title, managed_item, user)
+    @html += title_page(doc_type, managed_item, user)
     if options[:full] 
       @html += history_page(history)
     end
@@ -24,10 +31,9 @@ class Reports::WickedCore
     return "<p style='page-break-after:always;'></p>"
   end
 
-def save
+  def save
     @html += page_footer
-    ConsoleLogger::log(C_CLASS_NAME,"save","html=#{@html}" )    
-    pdf = WickedPdf.new.pdf_from_string(@html, :page_size => @paper_size, :footer => {:font_size => "10", :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", :left => "", :center => "", :right => "[page] of [topage]"} )
+    pdf = WickedPdf.new.pdf_from_string(@html, :page_size => @paper_size, :footer => {:font_size => "8", :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", :left => "", :center => "", :right => "[page] of [topage]"} )
     return pdf
   end
 
@@ -48,6 +54,9 @@ private
     html += "table.simple { border: 1px solid black; border-collapse: collapse; width: 100%;}\n"
     html += "table.simple tr td { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
     html += "table.simple tr th { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
+    html += "table.general { border: 1px solid black; border-collapse: collapse; width: 100%;}\n"
+    html += "table.general tr td { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: center; vertical-align: top; padding: 5px;}\n"
+    html += "table.general tr th { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: center; vertical-align: top; padding: 5px;}\n"
     html += "table.form_table { border: 1px solid black; width: 100%;}\n"
     html += "table.form_table tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
     html += "table.form_table h4 { vertical-align: middle;}\n"
@@ -80,8 +89,9 @@ private
 
   def title_page(doc_type, managed_item, user)
     html = ""
+    title = ""
     name = APP_CONFIG['organization_title']
-    title = "#{managed_item[:label]}<br>#{managed_item[:identifier]}"
+    title = "#{managed_item[:label]}<br>#{managed_item[:identifier]}" if !managed_item.nil?
     image_file = APP_CONFIG['organization_image_file']
     dir = Rails.root.join("app", "assets", "images")
     file = File.join(dir, image_file)

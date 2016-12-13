@@ -1,79 +1,56 @@
-class Reports::CdiscChangesReport < Reports::PdfReport
+class Reports::CdiscChangesReport
 
-  TABLE_WIDTHS = [40, 40, 100]
-  TABLE_HEADERS = ["Code List", "Item", "Label"]
+  C_CLASS_NAME = "Report::CdiscChangesReport"
 
-  def initialize(results, user)
-    super('Report', 'CDISC Terminology Changes', user)
-    # Build header
-    entry = results.values[0]
-    result = entry["result"]
-    title_row = ["Code List", "Label", "Submission Value"]
-    result.each do |vKey, status|
-        title_row << vKey
-    end
-    # Init
-    rows = 1
-    counter = 0
-    table_data = main_setup(title_row)
-    # Build data
-    results.each do |key, entry|
-      row = []
-      cli = entry["cl"]
-      result = entry["result"]
-      row << cli["identifier"]
-      row << cli["label"]
-      row << cli["notation"]
-      result.each do |vKey, status|
-        if status == "."
-          row << "."
-        elsif status == "X"
-          row << "X"
-        elsif status == "M"
-          row << "M"
-        else
-          row << ""
-        end
-        counter += 1
-      end
-      table_data << row
-      if rows % 12 == 0
-        # New page
-        start_new_page(:layout => :landscape)
-        # Output current content
-        table(table_data, :header => true, :column_widths => [60, 150, 100])  do
-          row(0).background_color = "F0F0F0"
-          style(row(0), :size => 10, :font_style => :bold)
-          style(columns(3..-1), :align => :center)
-        end
-        text "\n"
-        text "\n"
-        text "'.' = Unchanged, 'M' = Modified, 'X' = Deleted, ' ' = Not Defined", size: 9, align: :center, :style => :italic
-        # Init again
-        rows = 1
-        counter = 0
-        table_data = main_setup(title_row)
-      else
-        rows += 1
-      end
-    end
-    if counter > 0
-      # New page
-      start_new_page(:layout => :landscape)
-      # Output current content if anything left over
-      table(table_data, :header => true, :column_widths => [60, 150, 100]) do
-        row(0).background_color = "F0F0F0"
-        style(row(0), :size => 10, :font_style => :bold)
-        style(columns(3..-1), :align => :center)
-      end
-    end
-    # Footer
-    footer
+  def self.create(results, cls, user)
+    @report = Reports::WickedCore.new
+    @report.open("CDISC Terminology Change Report", {}, nil, nil, user)
+    html = body(results, cls)
+    @report.html_body(html)
+    pdf = @report.save
+    return pdf
   end
 
-  def main_setup(headers)
-    local = Array.new
-    local << headers
+private
+
+  def self.body(results, cls)
+    html = ""
+    html += "<h3>Conventions</h3><p>In the following table for a code list entry:<ul><li><p>C = Code List was created in the CDISC Terminology</p></li><li><p>U = Code List was updated in some way</p></li>"
+    html += "<li><p>'-' = There was no change to the Code List</p></li><li><p>X = The Code List was deleted from teh CDISC Terminology</p></li></ul></p><h3>Changes</h3>"
+    html += "<table class=\"general\"><thead>"
+    html += "<th>Identifier</th>"
+    html += "<th>Label</th>"
+    html += "<th>Submission Value</th>"
+    results.each do |result|
+      r = result[:results]
+      html += "<th>" + result[:date] + "</th>"
+    end
+    html += "</tr></thead><tbody>"
+    cls.each do |key, cl|
+      s = cl[:status]
+      html += "<tr>"
+      html += "<td>#{key}</td>"
+      html += "<td>#{cl[:preferred_term]}</td>"
+      html += "<td>#{cl[:notation]}</td>"
+      s.each do |status|
+        if status == :created
+          html += "<td>C</td>"
+        elsif status == :no_change
+          html += "<td>-</td>"
+        elsif status == :updated
+          html += "<td>U</td>"
+        elsif status == :deleted
+          html += "<td>X</td>"
+        elsif status == :not_present
+          html += "<td>&nbsp;</td>"
+        else
+          html += "<td>[#{status}]></td>"
+        end
+      end
+      html += "</tr>"
+    end
+    html += "</tbody></table>"
+    return html
   end
 
 end

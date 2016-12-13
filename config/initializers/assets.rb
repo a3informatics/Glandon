@@ -20,10 +20,7 @@ Rails.application.config.assets.version = '1.0'
   sdtmigs 
   backgrounds background_index 
 	biomedical_concept_templates biomedical_concepts biomedical_concepts_editor 
-	cdisc_cls 
-  cdisc_clis 
-  cdisc_terms cdisc_search
-  sponsor_terms 
+	cdisc_search
   thesauri_editor thesauri_viewer thesauri_search
   forms forms/groups forms/items form_placeholder_new form_editor form_editor_new form_viewer 
   d3local d3_local_v2 d3graph d3_graph d3_editor 

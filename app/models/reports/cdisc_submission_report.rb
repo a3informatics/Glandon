@@ -1,93 +1,49 @@
-class Reports::CdiscSubmissionReport < Reports::PdfReport
+class Reports::CdiscSubmissionReport
 
-  TABLE_WIDTHS = [40, 40, 100]
-  TABLE_HEADERS = ["Code List", "Item", "Label"]
+  C_CLASS_NAME = "Report::CdiscChangesReport"
 
-  def initialize(results, user)
-    super('Report', 'CDISC Submission Value Changes', user)
-    # Build header
-    entry = results.values[0]
-    result = entry["result"]
-    title_row = ["Code List", "Item", "Label"]
-    result.each do |vKey, status|
-        title_row << vKey
+  def self.create(results, user)
+    @report = Reports::WickedCore.new
+    @report.open("CDISC Submission Value Change Report", {}, nil, nil, user)
+    html = body(results)
+    @report.html_body(html)
+    pdf = @report.save
+    return pdf
+  end
+
+private
+
+  def self.body(results)
+    html = ""
+    html += "<h3>Conventions</h3><p>In the following table for a code list entry:<ul><li><p>C = Code List was created in the CDISC Terminology</p></li><li><p>U = Code List was updated in some way</p></li>"
+    html += "<li><p>'-' = There was no change to the Code List</p></li><li><p>X = The Code List was deleted from teh CDISC Terminology</p></li></ul></p><h3>Changes</h3>"
+    html += "<table class=\"general\"><thead>"
+    html += "<th>Code</th>"
+    html += "<th>Item</th>"
+    html += "<th>Label</th>"
+    html += "<th>Original Submission Value</th>"
+    results[:versions].each do |label|
+      html += "<th>#{label}</th>"
     end
-    # Init
-    rows = 1
-    counter = 0
-    table_data = main_setup(title_row)
-    detail_data = detail_setup
-    # Build data
-    results.each do |key, entry|
-      row = []
-      cli = entry["cli"]
-      result = entry["result"]
-      row << cli["parent_identifier"]
-      row << cli["identifier"]
-      row << cli["label"]
-      result.each do |vKey, status|
-        if status == ""
-          row << status
+    html += "</tr></thead><tbody>"
+    results[:children].each do |key, entry|
+      html += "<tr>"
+      html += "<td>#{entry[:parent_identifier]}</td>"
+      html += "<td>#{entry[:identifier]}</td>"
+      html += "<td>#{entry[:label]}</td>"
+      html += "<td>#{entry[:notation]}</td>"
+      entry[:result].each do |result|
+        status = result[:status]
+        if status == :updated
+          html += "<td>U</td>"
         else
-          counter += 1
-          row << "[#{counter}]"
-          amendment = status.split('->')
-          from = amendment[0]
-          to = amendment[1].blank? ? "[***DELETED***]" : amendment[1]
-          detail_data << ["[#{counter}]", "#{from}", "#{to}"]
+          html += "<td>-</td>"
         end
       end
-      table_data << row
-      if rows % 7 == 0
-        # New page
-        start_new_page(:layout => :landscape)
-        # Output current content
-        table(table_data, :header => true, :column_widths => [60, 60, 150])  do
-          row(0).background_color = "F0F0F0"
-          style(row(0), :size => 10, :font_style => :bold)
-          style(columns(3..-1), :align => :center)
-        end
-        text "\n"
-        table(detail_data, :column_widths => [40]) do
-          row(0).background_color = "F0F0F0"
-          style(row(0), :size => 10, :font_style => :bold)
-        end
-        # Init again
-        rows = 1
-        counter = 0
-        table_data = main_setup(title_row)
-        detail_data = detail_setup
-      else
-        rows += 1
-      end
+      html += "</tr>"
     end
-    if counter > 0
-      # New page
-      start_new_page(:layout => :landscape)
-      # Output current content if anything left over
-      table(table_data, :header => true, :column_widths => [50, 50, 150])  do
-        row(0).background_color = "F0F0F0"
-        style(row(0), :size => 10, :font_style => :bold)
-        style(columns(3..-1), :align => :center)
-      end
-      text "\n"
-      table(detail_data, :column_widths => [40])  do
-        row(0).background_color = "F0F0F0"
-        style(row(0), :size => 10, :font_style => :bold)
-      end
-    end
-    # Footer
-    footer
-  end
-
-  def detail_setup
-    local = Array.new
-    local << ["Index", "From", "To"]
-  end
-
-  def main_setup(headers)
-    local = Array.new
-    local << headers
+    html += "</tbody></table>"
+    return html
   end
 
 end
