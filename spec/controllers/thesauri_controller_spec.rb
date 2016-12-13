@@ -74,6 +74,21 @@ describe ThesauriController do
       expect(response).to redirect_to("/thesauri/new")
     end
 
+    it "edits thesaurus, no next version" do
+      params = 
+      {
+        :id => "TH-ACME_NEWTH", 
+        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
+      }
+      get :edit, params
+      result = assigns(:thesaurus)
+      token = assigns(:token)
+      expect(token.user_id).to eq(@user.id)
+      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_NEWTH") # Note no new version, no copy.
+      expect(result.identifier).to eq("NEW TH")
+      expect(response).to render_template("edit")
+    end
+
     it "edits thesaurus, create next version" do
       params = 
       {
