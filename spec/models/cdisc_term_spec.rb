@@ -160,7 +160,7 @@ describe CdiscTerm do
     old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
     new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
     results = CdiscTerm.submission_difference(old_ct, new_ct)
-    write_hash_to_yaml_file(results, "cdisc_term_submission_difference.yaml")
+    #write_hash_to_yaml_file(results, "cdisc_term_submission_difference.yaml")
     expected = read_yaml_file_to_hash("cdisc_term_submission_difference.yaml")
     expect(results.to_json).to eq(expected.to_json)
   end
@@ -169,7 +169,7 @@ describe CdiscTerm do
     old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
     new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
     results = CdiscTerm.submission_difference(old_ct, new_ct)
-    write_hash_to_yaml_file(results, "cdisc_term_submission_impact.yaml")
+    #write_hash_to_yaml_file(results, "cdisc_term_submission_impact.yaml")
     expected = read_yaml_file_to_hash("cdisc_term_submission_impact.yaml")
     expect(results.to_json).to eq(expected.to_json)
   end
