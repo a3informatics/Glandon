@@ -15,8 +15,10 @@ describe CdiscCl do
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("CDISCTerm.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("CT_V34.ttl")
-    load_test_file_into_triple_store("CT_V35.ttl")
+    load_test_file_into_triple_store("CT_V39.ttl")
+    load_test_file_into_triple_store("CT_V40.ttl")
+    load_test_file_into_triple_store("CT_V41.ttl")
+    load_test_file_into_triple_store("CT_V42.ttl")
     clear_iso_concept_object
   end
 
@@ -57,23 +59,23 @@ describe CdiscCl do
   end 
 
   it "allows a TC to be found" do
-    tc = CdiscCl.find("CL-C85491", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc = CdiscCl.find("CL-C85491", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     expect(tc.identifier).to eq("C85491")    
   end
 
   it "allows a TC to be found - error" do
-    tc = CdiscCl.find("CL-C85491x", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc = CdiscCl.find("CL-C85491x", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     expect(tc).to eq(nil)    
   end
 
   it "allows a TC to be found, check extensible" do
-    tc = CdiscCl.find("CL-C85491", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc = CdiscCl.find("CL-C85491", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     expect(tc.identifier).to eq("C85491")    
     expect(tc.extensible).to eq(true)    
   end
 
   it "allows a TC to be found, check extensible" do
-    tc = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     expect(tc.identifier).to eq("C101843")    
     expect(tc.extensible).to eq(false)    
   end
@@ -91,22 +93,22 @@ describe CdiscCl do
   end
 
   it "allows two CLs to be compared, same" do
-    tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+    tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     result = CdiscCl.diff?(tc1, tc2)
     expect(result).to eq(false)    
   end
 
   it "allows two CLs to be compared, different" do
-    tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    tc2 = CdiscCl.find("CL-C103329", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+    tc2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
     result = CdiscCl.diff?(tc1, tc2)
     expect(result).to eq(true)    
   end
 
   it "allows the difference between two CLs to be found, same" do
-    tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+    tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     result = CdiscCl.difference(tc1, tc2)
     #write_hash_to_yaml_file(result, "cdisc_cl_differences_1.yaml")
     expected = read_yaml_file_to_hash("cdisc_cl_differences_1.yaml")
@@ -114,8 +116,8 @@ describe CdiscCl do
   end
 
   it "allows the difference between two CLs to be found, different" do
-    tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    tc2 = CdiscCl.find("CL-C103329", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+    tc2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
     result = CdiscCl.difference(tc1, tc2)
     #write_hash_to_yaml_file(result, "cdisc_cl_differences_2.yaml")
     expected = read_yaml_file_to_hash("cdisc_cl_differences_2.yaml")

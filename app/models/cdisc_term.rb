@@ -281,30 +281,30 @@ class CdiscTerm < Thesaurus
       children = {}
     elsif previous.nil?
       current.children.each do |child|
-        children[child.identifier.to_sym] = { status: :created, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
+        children[child.identifier.to_sym] = { status: :created, identifier: child.identifier, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
       end
     elsif current.nil?
       previous.children.each do |child|
-        children[child.identifier.to_sym] = { status: :deleted, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
+        children[child.identifier.to_sym] = { status: :deleted, identifier: child.identifier, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
       end
     else
       deleted = current.deleted_set(previous, "children", "identifier" )
       current_index = Hash[current.children.map{|x| [x.identifier, x]}]
       previous_index = Hash[previous.children.map{|x| [x.identifier, x]}]
-      current.children.each do |current|
-        diff = self.diff?(previous_index[current.identifier], current) 
-        if diff && previous_index[current.identifier].nil? 
+      current.children.each do |child|
+        diff = self.diff?(previous_index[child.identifier], child) 
+        if diff && previous_index[child.identifier].nil? 
           status = :created
         elsif diff
           status = :updated
         else
           status = :no_change
         end
-        children[current.identifier.to_sym] = { status: status, preferred_term: current.preferredTerm, notation: current.notation, id: current.id, namespace: current.namespace}
+        children[child.identifier.to_sym] = { status: status, identifier: child.identifier, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
       end
       deleted.each do |deleted|
         item = previous_index[deleted]
-        children[deleted.to_sym] = { status: :deleted, preferred_term: item.preferredTerm, notation: item.notation, id: item.id, namespace: item.namespace}
+        children[deleted.to_sym] = { status: :deleted, identifier: item.identifier, preferred_term: item.preferredTerm, notation: item.notation, id: item.id, namespace: item.namespace}
       end
     end
     results[:children] = children

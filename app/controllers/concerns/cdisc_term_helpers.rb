@@ -75,13 +75,14 @@ module CdiscTermHelpers
       list = list | children.keys
     end
     list.each do |key|
-      new_results[key] = { preferred_term: "", notation: "", id: "", status: Array.new(results.length, :not_present)}
+      new_results[key] = { preferred_term: "", identifier: "", notation: "", id: "", status: Array.new(results.length, :not_present)}
     end
     index = 0
     results.each do |result|
       result[:children].each do |key, child|
         new_results[key][:status][index] = child[:status]
         if child[:status] == :created
+          new_results[key][:identifier] = child[:identifier]
           new_results[key][:preferred_term] = child[:preferred_term]
           new_results[key][:notation] = child[:notation]
           new_results[key][:id] = child[:id]

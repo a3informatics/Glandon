@@ -84,11 +84,11 @@ class CdiscCl < ThesaurusConcept
       children = {}
     elsif previous.nil?
       current.children.each do |child|
-        children[CdiscTermUtility.cli_key(current.identifier, child.identifier)] = { status: :created, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
+        children[CdiscTermUtility.cli_key(current.identifier, child.identifier)] = { status: :created, identifier: child.identifier, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
       end
     elsif current.nil?
       previous.children.each do |child|
-        children[CdiscTermUtility.cli_key(previous.identifier, child.identifier)] = { status: :deleted, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
+        children[CdiscTermUtility.cli_key(previous.identifier, child.identifier)] = { status: :deleted, identifier: child.identifier, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
       end
     else
       deleted = current.deleted_set(previous, "children", "identifier" )
@@ -103,11 +103,11 @@ class CdiscCl < ThesaurusConcept
         else
           status = :no_change
         end
-        children[CdiscTermUtility.cli_key(current.identifier, child.identifier)] = { status: status, preferred_term: current.preferredTerm, notation: current.notation, id: current.id, namespace: current.namespace}
+        children[CdiscTermUtility.cli_key(current.identifier, child.identifier)] = { status: status, identifier: child.identifier, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
       end
       deleted.each do |deleted|
         item = previous_index[deleted]
-        children[CdiscTermUtility.cli_key(previous.identifier, deleted)] = { status: :deleted, preferred_term: item.preferredTerm, notation: item.notation, id: item.id, namespace: item.namespace}
+        children[CdiscTermUtility.cli_key(previous.identifier, deleted)] = { status: :deleted, identifier: item.identifier, preferred_term: item.preferredTerm, notation: item.notation, id: item.id, namespace: item.namespace}
       end
     end
     results[:children] = children

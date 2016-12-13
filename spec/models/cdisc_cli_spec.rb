@@ -15,7 +15,9 @@ describe CdiscCli do
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("CDISCTerm.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("CT_V34.ttl")
+    load_test_file_into_triple_store("CT_V39.ttl")
+    load_test_file_into_triple_store("CT_V40.ttl")
+    load_test_file_into_triple_store("CT_V41.ttl")
     clear_iso_concept_object
   end
 
@@ -56,25 +58,25 @@ describe CdiscCli do
   end 
 
   it "allows a TC to be found" do
-    tc = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     expect(tc.identifier).to eq("C105274")    
   end
 
   it "allows a TC to be found - error" do
-    tc = CdiscCli.find("CLI-C105135_C105274x", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc = CdiscCli.find("CLI-C105135_C105274x", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     expect(tc).to eq(nil)    
   end
 
   it "allows two CLs to be compared, same" do
-    tc1 = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    tc2 = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc1 = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+    tc2 = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     result = CdiscCli.diff?(tc1, tc2)
     expect(result).to eq(false)    
   end
 
   it "allows two CLs to be compared, different" do
-    tc1 = CdiscCli.find("CLI-C105135_C105274", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    tc2 = CdiscCli.find("CLI-C105135_C105275", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    tc1 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+    tc2 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
     result = CdiscCli.diff?(tc1, tc2)
     expect(result).to eq(true)    
   end
