@@ -2,7 +2,7 @@ class Reports::CdiscChangesReport
 
   C_CLASS_NAME = "Report::CdiscChangesReport"
 
-  def self.create(results, cls, user)
+  def create(results, cls, user)
     @report = Reports::WickedCore.new
     @report.open("CDISC Terminology Change Report", {}, nil, nil, user)
     html = body(results, cls)
@@ -11,9 +11,18 @@ class Reports::CdiscChangesReport
     return pdf
   end
 
+  if Rails.env == "test"
+    # Return the current HTML. Only available for testing.
+    #
+    # @return [String] The HTML
+    def html
+      return @report.html
+    end
+  end
+
 private
 
-  def self.body(results, cls)
+  def body(results, cls)
     html = ""
     html += "<h3>Conventions</h3><p>In the following table for a code list entry:<ul><li><p>C = Code List was created in the CDISC Terminology</p></li><li><p>U = Code List was updated in some way</p></li>"
     html += "<li><p>'-' = There was no change to the Code List</p></li><li><p>X = The Code List was deleted from teh CDISC Terminology</p></li></ul></p><h3>Changes</h3>"

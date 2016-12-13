@@ -76,6 +76,9 @@ private
     html += "table.general { border: 1px solid black; border-collapse: collapse; width: 100%;}\n"
     html += "table.general tr td { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: center; vertical-align: top; padding: 5px;}\n"
     html += "table.general tr th { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: center; vertical-align: top; padding: 5px;}\n"
+    html += "table.general-left { border: 1px solid black; border-collapse: collapse; width: 100%;}\n"
+    html += "table.general-left tr td { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
+    html += "table.general-left tr th { border: 1px solid black; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
     html += "table.form_table { border: 1px solid black; width: 100%;}\n"
     html += "table.form_table tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 10pt; text-align: left; vertical-align: top; padding: 5px;}\n"
     html += "table.form_table h4 { vertical-align: middle;}\n"
@@ -120,7 +123,7 @@ private
     html += "<h2 class=\"title\">#{name}</h2>"
     html += "<br>" * 10
     html += "<h1 class=\"title\">#{doc_type}<br>#{title}</h1>"
-    html += "<br>" * 23
+    html += "<br>" * 40
     html += "<table class=\"details\" align=\"right\"><tr><td>Run at:</td><td>#{time_generated.strftime("%Y-%b-%d, %H:%M:%S")}</td></tr><tr><td>Run by:</td><td>#{user.email}</td></tr></table>"
     html += self.page_break
     return html
