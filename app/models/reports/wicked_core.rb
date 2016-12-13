@@ -11,9 +11,10 @@ class Reports::WickedCore
   #
   # @param doc_type [String] The document type, a title string
   # @param options ...
-  # @param managed_item [Object] Managed item. Can be nil if not applicable
-  # @param history [Object] The document history. Used if options[:full] set to true
+  # @param managed_item [Hash] Managed item. Can be empty
+  # @param history [Hash] The document history. Used if options[:full] set to true
   # @param user [Object] The user creating the report
+  # @return Null
   def open(doc_type, options, managed_item, history, user)
     @paper_size = user.paper_size
     @html = page_header
@@ -23,18 +24,36 @@ class Reports::WickedCore
     end
   end
 
+  # Set the HTML body
+  #
+  # @return Null
   def html_body(html)
     @html += html
   end
   
+  # Insert page break
+  #
+  # @return Null
   def page_break
     return "<p style='page-break-after:always;'></p>"
   end
 
+  # Save and create PDF
+  #
+  # @return [Object] The PDF document
   def save
     @html += page_footer
     pdf = WickedPdf.new.pdf_from_string(@html, :page_size => @paper_size, :footer => {:font_size => "8", :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", :left => "", :center => "", :right => "[page] of [topage]"} )
     return pdf
+  end
+
+  if Rails.env == "test"
+    # Return the current HTML. Only available for testing.
+    #
+    # @return [String] The HTML
+    def html
+      return @html
+    end
   end
 
 private
@@ -91,7 +110,7 @@ private
     html = ""
     title = ""
     name = APP_CONFIG['organization_title']
-    title = "#{managed_item[:label]}<br>#{managed_item[:identifier]}" if !managed_item.nil?
+    title = "#{managed_item[:label]}<br>#{managed_item[:identifier]}" if !managed_item.blank?
     image_file = APP_CONFIG['organization_image_file']
     dir = Rails.root.join("app", "assets", "images")
     file = File.join(dir, image_file)
