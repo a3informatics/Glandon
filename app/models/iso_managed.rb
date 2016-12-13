@@ -988,11 +988,13 @@ private
     return triples
   end
 
+  # Find the links from and to the managed item.
   def find_links(id, namespace, map, hop, from = true, to = true)
     results = []
     concepts = []
     return results if hop > APP_CONFIG['max_impact_hops'].to_i
     item = IsoManaged.find(id, namespace, false)
+    # Dont expand if a terminology, just blows up.
     if item.rdf_type != Thesaurus::C_RDF_TYPE_URI.to_s
       uri = UriV2.new({id: id, namespace: namespace})
       map[uri.to_s] = true

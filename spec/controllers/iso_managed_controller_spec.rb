@@ -115,10 +115,11 @@ describe IsoManagedController do
           uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347",
           rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance"
         },
-        {
-          uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology",
-          rdf_type: "http://www.assero.co.uk/ISO25964#Thesaurus"
-        },
+        # Terminologies not found anymore.
+        #{
+        #  uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology",
+        #  rdf_type: "http://www.assero.co.uk/ISO25964#Thesaurus"
+        #},
         {
           uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299",
           rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance"
