@@ -1,10 +1,20 @@
 require 'rails_helper'
 
 describe CdiscCtChanges do
+
+  include PublicFileHelpers
 	
   test_json = { a: "A string", b: "B String", c: { c1: "child 1", c2: "child 2" } }
   
-	it "returns the directory path" do
+  before :all do
+    delete_all_public_files
+  end
+
+	after :all do
+    delete_all_public_files
+  end
+
+  it "returns the directory path" do
 		expect(CdiscCtChanges.dir_path()).to eq("public/test/")
 	end
 
