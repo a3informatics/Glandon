@@ -11,6 +11,7 @@ module SparqlUtility
     text.gsub!("\r", "<LINEFEED>")
     text.gsub!("\n", "<CARRIAGERETURN>")
     text.gsub!("&", "%26")
+    text.gsub!("+", "%2B")
     text.gsub!("\\", "\\\\\\\\")
     text.gsub!("<LINEFEED>", "\\r")
     text.gsub!("<CARRIAGERETURN>", "\\n")

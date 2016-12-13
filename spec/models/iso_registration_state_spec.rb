@@ -3,6 +3,7 @@ require 'rails_helper'
 describe IsoRegistrationState do
   
   include DataHelpers
+  include PauseHelpers
 
   before :all do
     clear_triple_store
@@ -510,11 +511,15 @@ describe IsoRegistrationState do
   it "allows for an object to be made current" do
     object = IsoRegistrationState.find("RS-TEST_3-5")
     IsoRegistrationState.make_current(object.id)
+    object = IsoRegistrationState.find("RS-TEST_3-5")
+    expect(object.current).to eq(true)
   end
   
   it "allows for an object to be made not current" do
     object = IsoRegistrationState.find("RS-TEST_3-5")
     IsoRegistrationState.make_not_current(object.id)
+    object = IsoRegistrationState.find("RS-TEST_3-5")
+    expect(object.current).to eq(false)
   end
   
   # self.from_data(identifier, version, ra)

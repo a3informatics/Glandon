@@ -110,7 +110,8 @@ class IsoManagedController < ApplicationController
   def graph_links
     authorize IsoManaged, :show?
     map = {}
-    results = merge(params[:id], params[:namespace], map)
+    @item = IsoManaged.find(params[:id], params[:namespace])
+    results = @item.find_links_from_to()
     results.each do |result|
       result[:uri] = result[:uri].to_s
     end
@@ -121,7 +122,7 @@ class IsoManagedController < ApplicationController
     authorize IsoManaged, :show?
     map = {}
     @item = IsoManaged.find(params[:id], params[:namespace], false)
-    managed_items = merge(params[:id], params[:namespace], map, from = false)
+    managed_items = @item.find_links_from_to(from=false)
     managed_items.each do |result|
       result[:uri] = result[:uri].to_s
     end
@@ -129,40 +130,6 @@ class IsoManagedController < ApplicationController
   end
 
 private
-
-  def merge(id, namespace, map, from = true, to = true)
-    results = []
-    concepts = []
-    item = IsoManaged.find(id, namespace, false)
-    if item.rdf_type != Thesaurus::C_RDF_TYPE_URI.to_s
-      uri = UriV2.new({id: id, namespace: namespace})
-      map[uri.to_s] = true
-      concepts += IsoConcept.links_from(id, namespace) if from
-      concepts += IsoConcept.links_to(id, namespace) if to
-      concepts.each do |concept|
-        concept_uri = concept[:uri]
-        if !map.has_key?(concept_uri.to_s)
-          if concept[:local]
-            results += merge(concept_uri.id, concept_uri.namespace, map, from, to)
-          else
-            mi = IsoManaged.find_managed(concept_uri.id, concept_uri.namespace)
-            mi_uri = mi[:uri]
-            if !mi_uri.nil? 
-              if !map.has_key?(mi_uri.to_s)
-                managed_item = IsoManaged.find(mi_uri.id, mi_uri.namespace, false)
-                results << { uri: mi_uri, rdf_type: managed_item.rdf_type }
-                map[mi_uri.to_s] = true
-              end
-            else
-              ConsoleLogger.info(C_CLASS_NAME, "merge", "Failed to find managed item, URI=#{uri}")
-            end
-          end
-        end
-        map[concept_uri.to_s] = true
-      end
-    end
-    return results
-  end
 
   def this_params
     params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer)

@@ -525,14 +525,15 @@ class IsoRegistrationState
       "} \n" +
       "INSERT \n" +
       "{ \n" +
-      " :" + id + " isoR:effectiveDate \"" + Time.now.iso8601 + "\"^^xsd:dateTime . \n" +
-      " :" + id + " isoR:untilDate \"" + C_UNTIL_DATETIME + "\"^^xsd:dateTime . \n" +
+      " :" + id + " isoR:effectiveDate \"" + SparqlUtility.replace_special_chars(Time.now.iso8601) + "\"^^xsd:dateTime . \n" +
+      " :" + id + " isoR:untilDate \"" + SparqlUtility.replace_special_chars(C_UNTIL_DATETIME) + "\"^^xsd:dateTime . \n" +
       "} \n" +
       "WHERE \n" +
       "{ \n" +
       " :" + id + " isoR:effectiveDate ?a . \n" +
       " :" + id + " isoR:untilDate ?b . \n" +
       "}"
+    ConsoleLogger.debug(C_CLASS_NAME, "make_current", "Update=#{update}")
     # Send the request, wait the resonse
     response = CRUD.update(update)
     # Response
@@ -579,8 +580,6 @@ class IsoRegistrationState
     object.id = uri.id
     object.registrationStatus = C_INCOMPLETE
     object.administrativeNote = ""
-    #object.effective_date = Time.parse(C_DEFAULT_DATETIME)
-    #object.until_date = Time.parse(C_DEFAULT_DATETIME)
     object.unresolvedIssue = ""
     object.administrativeStatus = ""
     object.previousState  = C_INCOMPLETE 

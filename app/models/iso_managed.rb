@@ -551,12 +551,12 @@ class IsoManaged < IsoConcept
     return results  
   end
 
-  # FInd the current item
+  # Find the current item
   #
   # @param rdf_type [string] RDF type
   # @param namespace [string] The schema namespace
   # @param params [hash] {:identifier, :scope_id}
-  # @return [hash] The JSON hash.
+  # @return [object] The object or nil if no current version.
   def self.current(rdf_type, namespace, params)    
     identifier = params[:identifier]
     namespace_id = params[:scope_id]
@@ -780,9 +780,20 @@ class IsoManaged < IsoConcept
     end
   end
 
+  # Find the items that are linked from or to this managed item.
+  #
+  # @param from [Boolean] Include the items linked from this item if true. Default true
+  # @param to [Boolean] Include the items linked to this item if true. Default true
+  # @return [Array] Array of items found.
+  def find_links_from_to(from=true, to=true)
+    map = {}
+    results = find_links(self.id, self.namespace, map, 1, from, to)
+  end
+
   # Create the object from JSON
   #
-  # @return [hash] The JSON hash.
+  # @param json [Hash] The JSON hash.
+  # @return [Object] The object created
   def self.from_json(json)
     object = super(json)
     object.origin = json[:origin]
@@ -797,9 +808,12 @@ class IsoManaged < IsoConcept
 
   # Update the object as directed by the operation
   #
+  # @param json [Hash] The JSON hash.
+  # @param prefix [String] The prefix for the URI fragment
+  # @param instance_namespace [String] The namespace for the URI
+  # @param ra [Object] The registration authority object
   # @return [null]
   def from_operation(json, prefix, instance_namespace, ra)
-    ConsoleLogger::log(C_CLASS_NAME,"from_operation","JSON=#{json}")
     # Set the new version before RS and SI created
     self.scopedIdentifier.version = json[:new_version].to_i
     # Ensure base RS and SI set.
@@ -819,7 +833,13 @@ class IsoManaged < IsoConcept
 
   # Create an object from data.
   #
-  # @return [hash] The JSON hash.
+  # @param json [Hash] The JSON hash.
+  # @param prefix [String] The prefix for the URI fragment
+  # @param instance_namespace [String] The namespace for the URI
+  # @param schema_namespace [String] The namespace of the schema
+  # @param rdf_type [String] The rdf type (fragment)
+  # @param ra [Object] The registration authority object
+  # @return [Object] Teh object created
   def self.from_data(json, prefix, instance_namespace, schema_namespace, rdf_type, ra)
     operation = json[:operation]
     managed_item = json[:managed_item]
@@ -834,6 +854,8 @@ class IsoManaged < IsoConcept
 
   # Return the object as SPARQL
   #
+  # @param sparql [Object] The sparql object being built
+  # @param schema_prefix [String] The schema prefix for the default namespace
   # @return [object] The uri of the object
   def to_sparql_v2(sparql, schema_prefix)
     sparql.default_namespace(self.namespace)
@@ -964,6 +986,41 @@ private
       end
     end
     return triples
+  end
+
+  def find_links(id, namespace, map, hop, from = true, to = true)
+    results = []
+    concepts = []
+    return results if hop > APP_CONFIG['max_impact_hops'].to_i
+    item = IsoManaged.find(id, namespace, false)
+    if item.rdf_type != Thesaurus::C_RDF_TYPE_URI.to_s
+      uri = UriV2.new({id: id, namespace: namespace})
+      map[uri.to_s] = true
+      concepts += IsoConcept.links_from(id, namespace) if from
+      concepts += IsoConcept.links_to(id, namespace) if to
+      concepts.each do |concept|
+        concept_uri = concept[:uri]
+        if !map.has_key?(concept_uri.to_s)
+          if concept[:local]
+            results += find_links(concept_uri.id, concept_uri.namespace, map, (hop + 1), from, to)
+          else
+            mi = IsoManaged.find_managed(concept_uri.id, concept_uri.namespace)
+            mi_uri = mi[:uri]
+            if !mi_uri.nil? 
+              if !map.has_key?(mi_uri.to_s)
+                managed_item = IsoManaged.find(mi_uri.id, mi_uri.namespace, false)
+                results << { uri: mi_uri, rdf_type: managed_item.rdf_type }
+                map[mi_uri.to_s] = true
+              end
+            else
+              ConsoleLogger.info(C_CLASS_NAME, "merge", "Failed to find managed item, URI=#{uri}")
+            end
+          end
+        end
+        map[concept_uri.to_s] = true
+      end
+    end
+    return results
   end
 
 end

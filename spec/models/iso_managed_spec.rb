@@ -293,9 +293,6 @@ describe IsoManaged do
     expect(item[0].scopedIdentifier.identifier).to eq("TEST")
   end
   
-  #def self.graph_to(id, namespace)
-  #def self.graph_from(id, namespace)
-
   it "checks if an item cannot be created, existing identifier and version" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(item.create_permitted?).to eq(false)
@@ -449,6 +446,27 @@ describe IsoManaged do
     mi = IsoManaged.find_managed( "F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     result = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}), rdf_type: "http://www.assero.co.uk/BusinessForm#Form" }
     expect(mi.to_json).to eq(result.to_json)
+  end
+
+  it "finds the links to and from the managed object" do
+    # Assumes data load from previous test
+    mi = IsoManaged.find("BC-ACME_BC_C25347", "http://www.assero.co.uk/MDRBCs/V1")
+    expected = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}), rdf_type: "http://www.assero.co.uk/BusinessForm#Form" }
+    results = mi.find_links_from_to(from=false)
+    expect(results.count).to eq(1)
+    expect(results[0].to_json).to eq(expected.to_json)
+    expected = []
+    expected[0] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347"}), rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" }
+    expected[1] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299"}), rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" }
+    expected[2] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208"}), rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" }
+    expected[3] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298"}), rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" }
+    mi = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    results = mi.find_links_from_to()
+    expect(results.count).to eq(4)
+    expect(results[0].to_json).to eq(expected[0].to_json)
+    expect(results[1].to_json).to eq(expected[1].to_json)
+    expect(results[2].to_json).to eq(expected[2].to_json)
+    expect(results[3].to_json).to eq(expected[3].to_json)
   end
 
 end
