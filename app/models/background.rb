@@ -1,5 +1,7 @@
 class Background < ActiveRecord::Base
 
+  include CdiscTermUtility
+  
   C_CLASS_NAME = "Background"
 
 	def importCdiscSdtmModel(params, files)
@@ -133,7 +135,7 @@ class Background < ActiveRecord::Base
   # @param all [Boolean] All or two items to be compared. Defaults to false
   # @return null No return, kicks off the background job
   def compare_cdisc_term(cdisc_terms, all=false)
-    version_labels = cdisc_terms.map {|x| "#{x.versionLabel}"}.join ','
+    version_labels = cdisc_terms.map {|x| "#{x.versionLabel}"}.join ', '
     self.update(
       description: "Detect CDISC Terminology changes, versions: #{version_labels}.", 
       status: "Starting.",
@@ -190,7 +192,6 @@ class Background < ActiveRecord::Base
       self.update(status: "Checked " + ct.versionLabel + ".", percentage: p.to_i)
     end
     # Format the results
-    ConsoleLogger.debug(C_CLASS_NAME, "submission_changes_cdisc_term", "Results=#{results}")
     check = {}
     list = []
     versions = []
@@ -205,14 +206,14 @@ class Background < ActiveRecord::Base
     index = 0
     results.each do |result|
       result[:children].each do |key, child|
-        if !check.has_key?(child[:identifier])
+        if !check.has_key?(CdiscTermUtility.cli_key(child[:parent_identifier], child[:identifier]))
           transformed_results[key][:identifier] = child[:identifier]
           transformed_results[key][:parent_identifier] = child[:parent_identifier]
           transformed_results[key][:label] = child[:label]
           transformed_results[key][:notation] = child[:result][:previous]
           transformed_results[key][:preferred_term] = child[:preferred_term]
           transformed_results[key][:id] = child[:previous_uri].id
-          check[child[:identifier]] = true
+          check[CdiscTermUtility.cli_key(child[:parent_identifier], child[:identifier])] = true
         end      
         transformed_results[key][:result][index] = child[:result]
         transformed_results[key][:result][index][:status] = :updated
@@ -282,7 +283,7 @@ private
     data << {:term => cdisc_term}
     counts[:cl_count] += cdisc_term.children.length
     counts[:ct_count] += 1
-    p = (counts[:ct_count].to_f / total_ct_count.to_f) * 10.0
+    p = (counts[:ct_count].to_f / total_ct_count.to_f) * 80.0
     self.update(status: "Loading release of #{ct.versionLabel}.", percentage: p.to_i)
     return counts
   end
@@ -297,7 +298,7 @@ private
         prev_term = data[index - 1][:term]
       end
       result = CdiscTerm.difference(prev_term, curr_term) {
-        p = 10.0 + ((currentCount.to_f * 85.0)/total_count.to_f)
+        p = 80.0 + ((currentCount.to_f * 20.0)/total_count.to_f)
         self.update(status: "Checking #{curr_term.versionLabel} [#{current_count} of #{total_count}].", percentage: p.to_i)
       }
       result[:version] = curr_term.version

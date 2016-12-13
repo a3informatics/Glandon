@@ -140,7 +140,7 @@ class CdiscTermsController < ApplicationController
     authorize CdiscTerm, :view?
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
     cls = transpose_results(results)
-    @pdf = Reports::CdiscChangesReport.create(results, cls, current_user)
+    @pdf = Reports::CdiscChangesReport.new.create(results, cls, current_user)
     send_data @pdf, filename: 'cdisc_changes.pdf', type: 'application/pdf', disposition: 'inline'
   end
 
@@ -169,7 +169,7 @@ class CdiscTermsController < ApplicationController
   def submission_report
     authorize CdiscTerm, :view?
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    @pdf = Reports::CdiscSubmissionReport.create(results, current_user)
+    @pdf = Reports::CdiscSubmissionReport.new.create(results, current_user)
     send_data @pdf, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
   end
 

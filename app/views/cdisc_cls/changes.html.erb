@@ -75,7 +75,7 @@
 			<% @clis.each do |key, cli| %>
 			  <% s = cli[:status] %>
 			  <tr>
-					<td><%= key %></td>
+					<td><%= cli[:identifier] %></td>
 					<td><%= cli[:preferred_term] %></td>
 					<td><%= cli[:notation] %></td>
 					<% s.each do |status| %>

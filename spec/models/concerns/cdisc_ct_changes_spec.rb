@@ -10,11 +10,7 @@ describe CdiscCtChanges do
     delete_all_public_files
   end
 
-	after :all do
-    delete_all_public_files
-  end
-
-  it "returns the directory path" do
+	it "returns the directory path" do
 		expect(CdiscCtChanges.dir_path()).to eq("public/test/")
 	end
 

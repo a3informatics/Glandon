@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Reports::WickedCore do
 
   include DataHelpers
+  include ReportHelpers
   
   before :all do
     clear_triple_store
@@ -20,10 +21,6 @@ describe Reports::WickedCore do
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
-  end
-
-  def extract_run_at(text)
-    return text[/<td>Run at:<\/td><td>\d\d\d\d\-[a-zA-Z]{3}\-\d\d, \d\d:\d\d:\d\d<\/td>/]
   end
 
   it "Initiates a simple report" do

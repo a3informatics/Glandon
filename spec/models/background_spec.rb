@@ -28,10 +28,6 @@ describe Background do
     delete_all_public_files
   end
 
-  after :all do
-    delete_all_public_files
-  end
-
   it "compares CDISC terminology" do
     terms = []
     terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
@@ -54,12 +50,13 @@ describe Background do
   it "compares all CDISC terminology submission values" do
     job = Background.create
     job.submission_changes_cdisc_term()
+    puts job.errors.full_messages
     expected = read_yaml_file_to_hash("background_cdisc_submission_difference.yaml")
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
     expect(results).to eq(expected)
   end
 
-  it "compares all CDISC terminology submission values" #do
+  it "determines the impact of CDISC terminology submission value changes" #do
     #job = Background.create
     #params = {}
     #params[:old_id] = "TH-CDISC_CDISCTerminology"

@@ -262,7 +262,7 @@ class CdiscTerm < Thesaurus
           :result => { :previous => n1, :current => n2 },
           :parent_identifier => p1
         }
-        results[i1] = object
+        results["#{p1}.#{i1}".to_sym] = object
       end
     end
     return results

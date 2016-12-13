@@ -102,7 +102,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C117976'
       expect(page).to have_content 'C100945'
       click_link 'Changes'
-      #save_and_open_page
+      save_and_open_page
       expect(page).to have_content 'Changes: CDISC SDTM Vital Sign Test Code Terminology C66741'
       expect(page).to have_content 'C104622'
       find(:xpath, "//tr[contains(.,'BODYFATM')]/td/a", :text => 'Changes').click

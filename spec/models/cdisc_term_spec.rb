@@ -156,6 +156,13 @@ describe CdiscTerm do
     expect(result[:object].errors.count).to eq(0)
   end
 
+  it "initiates the CDISC Submission Changes background job" do
+    result = CdiscTerm.submission_changes
+    expect(result[:object].errors.count).to eq(0)
+  end
+  
+  it "initiates the CDISC Submission Changes Impact background job"
+
   it "determines changes in submission values" do
     old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
     new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
@@ -165,14 +172,14 @@ describe CdiscTerm do
     expect(results.to_json).to eq(expected.to_json)
   end
 
-  it "determines impact of changes in submission values" do
-    old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
-    new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
-    results = CdiscTerm.submission_difference(old_ct, new_ct)
+  it "determines impact of changes in submission values" #do
+    #old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    #new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+    #results = CdiscTerm.submission_difference(old_ct, new_ct)
     #write_hash_to_yaml_file(results, "cdisc_term_submission_impact.yaml")
-    expected = read_yaml_file_to_hash("cdisc_term_submission_impact.yaml")
-    expect(results.to_json).to eq(expected.to_json)
-  end
+    #expected = read_yaml_file_to_hash("cdisc_term_submission_impact.yaml")
+    #expect(results.to_json).to eq(expected.to_json)
+  #end
   
   it "determines the difference between two items" do
     term1 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
