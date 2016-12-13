@@ -4,6 +4,7 @@ describe CdiscTermsController do
 
   include DataHelpers
   include PauseHelpers
+  include PublicFileHelpers
   
   describe "Curator User" do
   	
@@ -26,10 +27,7 @@ describe CdiscTermsController do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
-      files = Dir.glob(CdiscCtChanges.dir_path + "*")
-      files.each do |file|
-        File.delete(file)
-      end
+      delete_all_public_files
     end
 
     it "returns an error when it cannot find a code list, no current version" do

@@ -36,6 +36,7 @@
       </tr>
   	</tfoot>
 	</table>
+	<%= link_to "Close", history_cdisc_terms_path, :class => "btn btn-primary" %>
 </div>
 <input type="hidden" id="termId" value="<%= @cdiscTerm.id %>">
 <input type="hidden" id="namespace" value="<%= @cdiscTerm.namespace %>" %>	

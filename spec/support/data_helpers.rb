@@ -81,4 +81,8 @@ module DataHelpers
     Token.class_variable_set(:@@token_timeout, nil)
   end
 
+  def clear_all_edit_locks
+    Token.delete_all
+  end
+
 end

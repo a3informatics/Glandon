@@ -4,15 +4,6 @@ describe "Thesaurus", :type => :feature do
   
   include DataHelpers
 
-  before :each do
-    user = FactoryGirl.create(:user)
-    user.add_role :curator
-    visit '/users/sign_in'
-    fill_in 'Email', with: 'user@example.com'
-    fill_in 'Password', with: 'example1234'
-    click_button 'Log in'
-  end
-
   describe "Sponsor Terminology", :type => :feature do
   
     before :all do
@@ -30,6 +21,16 @@ describe "Thesaurus", :type => :feature do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
+      clear_all_edit_locks
+    end
+
+    before :each do
+      user = FactoryGirl.create(:user)
+      user.add_role :curator
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'user@example.com'
+      fill_in 'Password', with: 'example1234'
+      click_button 'Log in'
     end
 
     it "allows access to index page" do
@@ -100,6 +101,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'History: CDISC EXT'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (0.1, V1, Standard)'
+      #save_and_open_page
       click_link 'Close'
       expect(page).to have_content 'History: CDISC EXT'
     end

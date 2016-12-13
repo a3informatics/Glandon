@@ -64,6 +64,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-06-26')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-06-26'
+      #save_and_open_page
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end

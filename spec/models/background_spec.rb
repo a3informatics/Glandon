@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Background do
 
   include DataHelpers
+  include PublicFileHelpers
 
   before :all do
     clear_triple_store
@@ -18,10 +19,17 @@ describe Background do
     load_test_file_into_triple_store("CT_V34.ttl")
     load_test_file_into_triple_store("CT_V35.ttl")
     load_test_file_into_triple_store("CT_V36.ttl")
-    #load_test_file_into_triple_store("CT_V42.ttl")
-    #load_test_file_into_triple_store("CT_V43.ttl")
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+    clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
+    delete_all_public_files
+  end
+
+  after :all do
+    delete_all_public_files
   end
 
   it "compares CDISC terminology" do
