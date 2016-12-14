@@ -82,7 +82,6 @@ describe Form::Group do
       "<http://www.example.com/path#parent_G1> bf:optional \"false\"^^xsd:boolean . \n" +
       "<http://www.example.com/path#parent_G1> bf:note \"Note\"^^xsd:string . \n" +
       "<http://www.example.com/path#parent_G1> bf:completion \"Completion\"^^xsd:string . \n" + 
-      "<http://www.example.com/path#parent_G1> bf:isGroupOf <http://www.example.com/path#parent> . \n" + 
       "}"
     item = Form::Group.new
     item.rdf_type = "http://www.example.com/path#rdf_test_type"

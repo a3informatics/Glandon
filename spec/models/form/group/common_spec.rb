@@ -41,7 +41,7 @@ describe Form::Group::Common::Common do
   it "allows object to be initialized from triples" do
     result = 
       {
-        :id => "F-ACME_TEST_G1_I1", 
+        :id => "F-ACME_TEST_G1_G1", 
         :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
         :completion => "",
         :extension_properties => [],
@@ -54,15 +54,15 @@ describe Form::Group::Common::Common do
       }
     triples = {}
     triples ["F-ACME_TEST_G1_I1"] = []
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#CommonGroup" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "My Group" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#isGroupOf", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1>" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasItem", object: "<http://www.assero.co.uk/MDRForms/UCB/V2#F-UCB_AEPI103_G1_I1>" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#label_text", object: "XXXXX" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#CommonGroup" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "My Group" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#hasItem", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1_I1>" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#hasItem", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1_I2>" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#label_text", object: "XXXXX" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
     expect(Form::Group::Common.new(triples, "F-ACME_TEST_G1_I1").to_json).to eq(result)    
   end
 
@@ -81,14 +81,33 @@ describe Form::Group::Common::Common do
       "<http://www.example.com/path#parent_G1> bf:ordinal \"1\"^^xsd:positiveInteger . \n" +
       "<http://www.example.com/path#parent_G1> bf:optional \"false\"^^xsd:boolean . \n" +
       "<http://www.example.com/path#parent_G1> bf:note \"Note\"^^xsd:string . \n" +
-      "<http://www.example.com/path#parent_G1> bf:completion \"Completion\"^^xsd:string . \n" + 
-      "<http://www.example.com/path#parent_G1> bf:isGroupOf <http://www.example.com/path#parent> . \n" + 
+      "<http://www.example.com/path#parent_G1> bf:completion \"Completion\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_G1_I1> rdf:type <http://www.assero.co.uk/BusinessForm#CommonItem> . \n" +
+      "<http://www.example.com/path#parent_G1_I1> rdfs:label \"\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_G1_I1> bf:ordinal \"1\"^^xsd:positiveInteger . \n" +
+      "<http://www.example.com/path#parent_G1_I1> bf:note \"\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_G1_I1> bf:completion \"\"^^xsd:string . \n" + 
+      "<http://www.example.com/path#parent_G1_I1> bf:optional \"false\"^^xsd:boolean . \n" +
+      "<http://www.example.com/path#parent_G1> bf:hasItem <http://www.example.com/path#parent_G1_I1> . \n" +
+      "<http://www.example.com/path#parent_G1_I2> rdf:type <http://www.assero.co.uk/BusinessForm#CommonItem> . \n" +
+      "<http://www.example.com/path#parent_G1_I2> rdfs:label \"\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_G1_I2> bf:ordinal \"2\"^^xsd:positiveInteger . \n" +
+      "<http://www.example.com/path#parent_G1_I2> bf:note \"\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_G1_I2> bf:completion \"\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_G1_I2> bf:optional \"false\"^^xsd:boolean . \n" +
+      "<http://www.example.com/path#parent_G1> bf:hasItem <http://www.example.com/path#parent_G1_I2> . \n" +
       "}"
     item = Form::Group::Common.new
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "test label"
     item.completion = "Completion"
     item.note = "Note"
+    common_item = Form::Item::Common.new
+    common_item.ordinal = 1
+    item.children << common_item
+    common_item = Form::Item::Common.new
+    common_item.ordinal = 2
+    item.children << common_item
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end

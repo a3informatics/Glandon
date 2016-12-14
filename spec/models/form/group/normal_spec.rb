@@ -83,7 +83,6 @@ describe Form::Group::Normal do
       "<http://www.example.com/path#parent_G1> bf:optional \"false\"^^xsd:boolean . \n" +
       "<http://www.example.com/path#parent_G1> bf:note \"Note\"^^xsd:string . \n" +
       "<http://www.example.com/path#parent_G1> bf:completion \"Completion\"^^xsd:string . \n" + 
-      "<http://www.example.com/path#parent_G1> bf:isGroupOf <http://www.example.com/path#parent> . \n" + 
       "<http://www.example.com/path#parent_G1> bf:repeating \"true\"^^xsd:boolean . \n" + 
       "}"
     item = Form::Group::Normal.new
