@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Item:", :item => @form} %>
 <div class="col-md-12">
 	<% if @formItem.rdf_type == "#{Form::Item::BcProperty::C_RDF_TYPE_URI}" %>

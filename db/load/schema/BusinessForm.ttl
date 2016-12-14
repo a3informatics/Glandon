@@ -62,6 +62,18 @@
   rdfs:subClassOf :Item ;
   skos:definition "A passive text label item."^^xsd:string
 .
+:Mapping
+  rdf:type owl:Class ;
+  rdfs:label "Mapping"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "A passive mapping item."^^xsd:string
+.
+:TextLabel
+  rdf:type owl:Class ;
+  rdfs:label "Text label"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "A passive text label item."^^xsd:string
+.
 :BcProperty
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept based Item"^^xsd:string ;
@@ -70,9 +82,15 @@
 .
 :Question
   rdf:type owl:Class ;
-  rdfs:label "Variable Item"^^xsd:string ;
+  rdfs:label "Question Item"^^xsd:string ;
   rdfs:subClassOf :Item ;
   skos:definition "A form question."^^xsd:string
+.
+:CommonItem
+  rdf:type owl:Class ;
+  rdfs:label "Common Item"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "A common item."^^xsd:string
 .
 :hasGroup
   rdf:type owl:ObjectProperty ;
@@ -82,21 +100,13 @@
   rdfs:range :Group ;
   skos:definition ""^^xsd:string
 .
-:isGroupOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Group ;
-  rdfs:label "Has group relationship"^^xsd:string ;
-  rdfs:range :Form ;
-  skos:definition ""^^xsd:string
-.
 :hasItem
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Group ;
   rdfs:label "Has group relationship"^^xsd:string ;
   rdfs:range :Item ;
-  skos:definition ""^^xsd:string
+  skos:definition "Has an item relationship"^^xsd:string
 .
 :hasCommon
   rdf:type owl:ObjectProperty ;
@@ -104,15 +114,15 @@
   rdfs:domain :Group ;
   rdfs:label "Has common group relationship"^^xsd:string ;
   rdfs:range :CommonGroup ;
-  skos:definition ""^^xsd:string
+  skos:definition "Has a common group relationship"^^xsd:string
 .
 :hasCommonItem
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :BcProperty ;
   rdfs:label "Has common item relationship"^^xsd:string ;
+  rdfs:domain :CommonItem ;
   rdfs:range :BcProperty ;
-  skos:definition ""^^xsd:string
+  skos:definition "Has a common item relationship"^^xsd:string
 .
 :hasSubGroup
   rdf:type owl:ObjectProperty ;
@@ -120,15 +130,7 @@
   rdfs:domain :NormalGroup ;
   rdfs:label "Has sub group relationship"^^xsd:string ;
   rdfs:range :NormalGroup ;
-  skos:definition ""^^xsd:string
-.
-:isItemOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Item ;
-  rdfs:label "Has group relationship"^^xsd:string ;
-  rdfs:range :Group ;
-  skos:definition ""^^xsd:string
+  skos:definition "Has a sub group relationship"^^xsd:string
 .
 :hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
@@ -136,7 +138,7 @@
   rdfs:domain :Group ;
   rdfs:label "Reference to Biomedical Concept"^^xsd:string ;
   rdfs:range bo:BcReference ;
-  skos:definition ""^^xsd:string
+  skos:definition "Reference to a Biomedical Concept"^^xsd:string
 .
 :hasProperty
   rdf:type owl:ObjectProperty ;
@@ -144,7 +146,7 @@
   rdfs:domain :BcProperty ;
   rdfs:label "Reference to Biomedical Concept property."^^xsd:string ;
   rdfs:range bo:BcReference;
-  skos:definition ""^^xsd:string
+  skos:definition "Reference to a Biomedical Concept property"^^xsd:string
 .
 :hasThesaurusConcept
   rdf:type owl:ObjectProperty ;
@@ -233,7 +235,9 @@
 :mapping
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :Question ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Mapping :Question)
+    ] ;
   rdfs:label "Mapping"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "The annotation/mapping."^^xsd:string
@@ -246,5 +250,12 @@
   rdfs:range xsd:string ;
   skos:definition "The question text."^^xsd:string
 .
-
+:is_common
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :CommonItem ;
+  rdfs:label "Is common"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+  skos:definition "The item is marked as being a common item."^^xsd:string
+.
 
