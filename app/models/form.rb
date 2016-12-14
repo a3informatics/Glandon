@@ -139,23 +139,21 @@ class Form < IsoManaged
   #
   # @return [array] Array of objects found.
   def self.all
-    super(C_RDF_TYPE, C_SCHEMA_NS)
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   # Find list of managed items of a given type.
   #
   # @return [array] Array of objects found.
   def self.unique
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   # Find all released item for all identifiers of a given type.
   #
   # @return [array] An array of objects.
   def self.list
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   # Find history for a given identifier
@@ -164,8 +162,7 @@ class Form < IsoManaged
   # @params [hash] {:identifier, :scope_id}
   # @return [array] An array of objects.
   def self.history(params)
-    results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS, params)
   end
 
   # Create a placeholder form
@@ -192,7 +189,6 @@ class Form < IsoManaged
   # @param params [hash] {data:} The operational hash
   # @return [oject] The form object. Valid if no errors set.
   def self.create(params)
-    ConsoleLogger::log(C_CLASS_NAME, "create", "params=#{params}")
     operation = params[:operation]
     managed_item = params[:managed_item]
     object = Form.from_json(managed_item)
@@ -202,35 +198,42 @@ class Form < IsoManaged
         sparql = object.to_sparql_v2
         response = CRUD.update(sparql.to_s)
         if !response.success?
-          object.errors.add(:base, "The Form was not created in the database.")
+          ConsoleLogger.info(C_CLASS_NAME, "create", "Failed to create object.")
+          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
         end
       end
     end
     return object
   end
 
+  # Update a form
+  #
+  # @param params [Hash] The operational hash
+  # @return [Object] The form object. Valid if no errors set.
   def self.update(params)
-    object = self.new 
-    object.errors.clear
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    #ConsoleLogger::log(C_CLASS_NAME,"update", "managed_item=" + managed_item.to_json.to_s)
-    form = Form.find(managed_item[:id], managed_item[:namespace])
-    ra = IsoRegistrationAuthority.owner
-    object = Form.from_json(data)
-    sparql = object.to_sparql(ra)
-    form.destroy # Destroys the old entry before the creation of the new item
-    ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
-    response = CRUD.update(sparql.to_s)
-    if response.success?
-      object.errors.clear
-    else
-      object.errors.add(:base, "The Form was not updated in the database.")
+    existing_form = Form.find(managed_item[:id], managed_item[:namespace])
+    operation = params[:operation]
+    managed_item = params[:managed_item]
+    object = Form.from_json(managed_item)
+    object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
+    if object.valid? then
+      if object.create_permitted?
+        sparql = object.to_sparql_v2
+        existing_form.destroy # Destroys the old entry before the creation of the new item
+        response = CRUD.update(sparql.to_s)
+        if !response.success?
+          ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+          raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+        end
+      end
     end
     return object
   end
 
+  # Destroy a form
+  #
+  # @raise [ExceptionClass] DestroyError if object not destroyed
+  # @return [Null] No return
   def destroy
     super(self.namespace)
   end

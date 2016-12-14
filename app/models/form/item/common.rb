@@ -55,7 +55,7 @@ class Form::Item::Common < Form::Item
     json = super
     json[:children] = []
     self.children.each do |child|
-      json[:children] << child.uri.to_json
+      json[:children] << child.to_json
     end
     return json
   end
@@ -109,7 +109,7 @@ class Form::Item::Common < Form::Item
 private
 
   def self.children_from_triples(object, triples, id)
-    super(object, triples, id)
+    ConsoleLogger.debug(C_CLASS_NAME, "children_from_triples", "Links=#{object.get_links(C_SCHEMA_PREFIX, "hasCommonItem").to_json}")    
     object.children = object.get_links(C_SCHEMA_PREFIX, "hasCommonItem")
   end
 

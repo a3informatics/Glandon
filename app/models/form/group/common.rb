@@ -102,7 +102,7 @@ private
     super(object, triples, id)
     links = object.get_links_v2(C_SCHEMA_PREFIX, "hasItem")
     links.each do |link|
-      object.children << Form::Item::CommonItem.find_from_triples(triples, link.id)
+      object.children << Form::Item::Common.find_from_triples(triples, link.id)
     end  
   end
 
