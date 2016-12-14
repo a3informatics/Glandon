@@ -1,6 +1,6 @@
 class Form::Item::BcProperty < Form::Item
 
-  attr_accessor :property_ref, :value_refs
+  attr_accessor :is_common, :property_ref, :children
   
   # Constants
   C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
@@ -34,8 +34,9 @@ class Form::Item::BcProperty < Form::Item
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
+    self.is_common = false
     self.property_ref = nil
-    self.value_refs = Array.new
+    self.children = Array.new
     if triples.nil?
       super
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
@@ -75,10 +76,11 @@ class Form::Item::BcProperty < Form::Item
   # @return [hash] The object hash 
   def to_json
     json = super
+    json[:is_common] = self.is_common
     json[:property_ref] = self.property_ref.to_json
     json[:children] = Array.new
-    value_refs.each do |ref|
-      json[:children] << ref.to_json
+    children.each do |child|
+      json[:children] << child.to_json
     end
     return json
   end
@@ -89,10 +91,11 @@ class Form::Item::BcProperty < Form::Item
   # @return [object] The object
   def self.from_json(json)
     object = super(json)
+    object.is_common = json[:is_common]
     object.property_ref = OperationalReferenceV2.from_json(json[:property_ref])
     if !json[:children].blank?
       json[:children].each do |child|
-        object.value_refs << OperationalReferenceV2.from_json(child)
+        object.children << OperationalReferenceV2.from_json(child)
       end
     end
     return object
@@ -106,11 +109,12 @@ class Form::Item::BcProperty < Form::Item
   def to_sparql_v2(parent_uri, sparql)
     uri = super(parent_uri, sparql)
     subject = {:uri => uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "is_common"}, {:literal => "#{self.is_common}", :primitive_type => "boolean"})
     ref_uri = property_ref.to_sparql_v2(uri, "hasProperty", 'PR', property_ref.ordinal, sparql)
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasProperty"}, {:uri => ref_uri})
-    self.value_refs.each do |value_ref|
-      ref_uri = value_ref.to_sparql_v2(uri, "hasValue", 'VR', value_ref.ordinal, sparql)
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasValue"}, {:uri => ref_uri})
+    self.children.each do |child|
+      ref_uri = child.to_sparql_v2(uri, "hasThesaurusConcept", 'TCR', child.ordinal, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasThesaurusConcept"}, {:uri => ref_uri})
     end
     return uri
   end
@@ -156,9 +160,9 @@ private
     if links.length > 0
       object.property_ref = OperationalReferenceV2.find_from_triples(triples, links[0].id)
     end      
-    links = object.get_links_v2("bf", "hasValue")
+    links = object.get_links_v2(C_SCHEMA_PREFIX, "hasThesaurusConcept")
     links.each do |link|
-      object.value_refs << OperationalReferenceV2.find_from_triples(triples, link.id)
+      object.children << OperationalReferenceV2.find_from_triples(triples, link.id)
     end      
   end
 
