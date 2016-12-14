@@ -1,5 +1,7 @@
 class Form::Group::Common < Form::Group
   
+  attr_accessor :children
+
   # Constants
   C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
   C_CLASS_NAME = "Form::Group::Common"
@@ -13,6 +15,7 @@ class Form::Group::Common < Form::Group
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
+    self.children = []
     if triples.nil?
       super
       self.rdf_type = C_RDF_TYPE_URI.to_s
@@ -20,14 +23,16 @@ class Form::Group::Common < Form::Group
       super(triples, id)    
     end
   end
-
-  # Find the object
+# Find the object
   #
   # @param id [string] The id of the item to be found
   # @param ns [string] The namespace of the item to be found
   # @return [object] The new object
   def self.find(id, ns, children=true)
     object = super(id, ns)
+    if children
+      children_from_triples(object, object.triples, id)
+    end
     return object
   end
 
@@ -47,6 +52,10 @@ class Form::Group::Common < Form::Group
   # @return [hash] The object hash 
   def to_json
     json = super
+    json[:children] = Array.new
+    self.children.each do |child|
+      json[:children] << child.to_json
+    end
     return json
   end
 
@@ -56,6 +65,11 @@ class Form::Group::Common < Form::Group
   # @return [object] The object
   def self.from_json(json)
     object = super(json)
+    if !json[:children].blank?
+      json[:children].each do |child|
+        object.children << Form::Item::CommonItem.from_json(child)
+      end
+    end
     return object
   end
 
@@ -66,6 +80,10 @@ class Form::Group::Common < Form::Group
   # @return [object] The URI
   def to_sparql_v2(parent_id, sparql)
     uri = super(parent_id, sparql)
+    self.children.each do |child|
+      ref_uri = child.to_sparql_v2(uri, sparql)
+      sparql.triple({uri: uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, {:uri => ref_uri})
+    end
     return uri
   end
 
@@ -82,6 +100,10 @@ private
 
   def self.children_from_triples(object, triples, id)
     super(object, triples, id)
+    links = object.get_links_v2(C_SCHEMA_PREFIX, "hasItem")
+    links.each do |link|
+      object.children << Form::Item::CommonItem.find_from_triples(triples, link.id)
+    end  
   end
 
 end
