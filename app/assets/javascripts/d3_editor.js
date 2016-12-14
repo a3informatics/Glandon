@@ -39,11 +39,11 @@ function d3eGetCurrent() {
 function d3eClick(node) {    
   if (currentNode != null) {
     clickCallBackPreFunction(currentNode);
-    clearNode(currentNode, currentGRef);  
+    d3ClearNode(currentNode, currentGRef);  
   }
   currentGRef = this;
   currentNode = node;
-  markNode1(this);
+  d3MarkNode(this);
   clickCallBackPostFunction(currentNode);
 }  
 
@@ -80,11 +80,11 @@ function d3eAddSourceNode(parent, node, end) {
  *  Function to draw the tree
  */
 function d3eDisplayTree(nodeKey) {
-  treeNormal(d3Div, rootNode, d3eClick, d3eDblClick);
-  var gRef = findNode(nodeKey);
+  d3TreeNormal(d3Div, rootNode, d3eClick, d3eDblClick);
+  var gRef = d3FindNode(nodeKey);
   currentGRef = gRef;
   currentNode = gRef.__data__;
-  markNode1(currentGRef);    
+  d3MarkNode(currentGRef);    
 }
 
 function d3eAddNode(parent, name, type, enabled, data, addAtEnd) {

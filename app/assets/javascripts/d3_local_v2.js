@@ -44,47 +44,6 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   d3.select(self.frameElement).style("height", height + "px");
 }
 
-/**
- *  Function to draw circular tree.
- */
-function d3TreeCircular(d3Div, jsonData, clickCallBack, dblClickCallBack) {
-  d3.select('svg').remove();
-  var radius = (d3Div.clientWidth - 50)/2; 
-  var height = d3Div.clientHeight - 50; 
-  var cluster = d3.layout.cluster()
-        .size([height, radius - 120]);
-  var diagonal = d3.svg.diagonal.radial()
-    .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
-  var svg = d3.select(d3Div).append("svg")
-    .attr("width", radius * 2)
-    .attr("height", radius * 2)
-    .append("g")
-    .attr("transform", "translate(" + radius + "," + radius + ")");
-  var nodes = cluster.nodes(jsonData);
-  links = cluster.links(nodes) 
-  var link = svg.selectAll("path.link")
-    .data(links)
-    .enter().append("path")
-    .attr("class", "link")
-    .attr("d", diagonal);
-  var node = svg.selectAll("g.node")
-    .data(nodes)
-    .enter().append("g")
-    .attr("class", "node")
-    .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")";  })
-    .on("click", clickCallBack)
-    .on("dblclick", dblClickCallBack);
-  node.append("circle")
-    .attr("r", 4.5)
-    .attr("fill", function(d) { return d3NodeColour(d); });
-  node.append("text")
-    .attr("dy", ".31em")
-    .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-    .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
-    .text(function(d) { return d.name; });
-  d3.select(self.frameElement).style("height", radius * 2 + "px");
-}
-
 /*
  * Mark node
  */
