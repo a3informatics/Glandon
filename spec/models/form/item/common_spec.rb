@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Form::Item::Placeholder do
+describe Form::Item::Common do
   
   include DataHelpers
 
@@ -18,15 +18,14 @@ describe Form::Item::Placeholder do
   end
 
   it "validates a valid object" do
-    result = Form::Item::Placeholder.new
-    result.free_text = "Draft 123"
+    result = Form::Item::Common.new
     expect(result.valid?).to eq(true)
   end
 
   it "does not validate an invalid object, text label" do
-    result = Form::Item::Placeholder.new
-    result.free_text = "Draft 123 more tesxt >"
-    expect(result.valid?).to eq(false)
+    # Item is always valid at the moment.
+    result = Form::Item::Common.new
+    expect(result.valid?).to eq(true)
   end
 
   it "allows object to be initialized from triples" do
@@ -34,25 +33,27 @@ describe Form::Item::Placeholder do
       {
         :id => "F-ACME_PLACEHOLDERTEST_G1_I1", 
         :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
-        :free_text => "XXXXX",
         :completion => "",
         :extension_properties => [],
-        :label => "Placeholder",
+        :label => "Text Label",
         :note => "xxxxx",
         :optional => false,
         :ordinal => 1,
-        :type => "http://www.assero.co.uk/BusinessForm#Placeholder"
+        :type => "http://www.assero.co.uk/BusinessForm#CommonItem",
+        :children => []
       }
     triples = {}
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] = []
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#Placeholder" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "Placeholder" }
+    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#CommonItem" }
+    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "Text Label" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#free_text", object: "XXXXX" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
-    expect(Form::Item::Placeholder.new(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)    
+    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasCommonItem", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1>" }
+    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasCommonItem", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1>" }
+    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasCommonItem", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1>" }
+    expect(Form::Item::Common.new(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)    
   end
 
   it "allows an object to be found"
@@ -75,12 +76,18 @@ describe Form::Item::Placeholder do
       "<http://www.example.com/path#parent_I1> bf:note \"\"^^xsd:string . \n" +
       "<http://www.example.com/path#parent_I1> bf:completion \"\"^^xsd:string . \n" + 
       "<http://www.example.com/path#parent_I1> bf:optional \"false\"^^xsd:boolean . \n" +
-      "<http://www.example.com/path#parent_I1> bf:free_text \"****free****\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1> . \n" +
+      "<http://www.example.com/path#parent_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1> . \n" +
+      "<http://www.example.com/path#parent_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1> . \n" +
+      "<http://www.example.com/path#parent_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G5_I1> . \n" +
       "}"
-    item = Form::Item::Placeholder.new
+    item = Form::Item::Common.new
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "label"
-    item.free_text = "****free****"
+    item.children[0] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1"})
+    item.children[1] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1"})
+    item.children[2] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1"})
+    item.children[3] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G5_I1"})
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end
