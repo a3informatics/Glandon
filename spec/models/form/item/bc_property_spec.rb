@@ -19,7 +19,6 @@ describe Form::Item::BcProperty do
 
   it "validates a valid object" do
     result = Form::Item::BcProperty.new
-    result.item_refs = Array.new
     result.property_ref = nil
     result.value_refs = Array.new
     expect(result.valid?).to eq(true)
@@ -39,7 +38,6 @@ describe Form::Item::BcProperty do
         :type => "http://www.assero.co.uk/BusinessForm#BcProperty",
         :children => [],
         :property_ref => "null",
-        :otherCommon => []
       }
     triples = {}
     triples ["F-ACME_TEST_G1_I1"] = []

@@ -1,6 +1,6 @@
 class Form::Item::BcProperty < Form::Item
 
-  attr_accessor :item_refs, :property_ref, :value_refs
+  attr_accessor :property_ref, :value_refs
   
   # Constants
   C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
@@ -34,7 +34,6 @@ class Form::Item::BcProperty < Form::Item
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
-    self.item_refs = Array.new
     self.property_ref = nil
     self.value_refs = Array.new
     if triples.nil?
@@ -78,12 +77,8 @@ class Form::Item::BcProperty < Form::Item
     json = super
     json[:property_ref] = self.property_ref.to_json
     json[:children] = Array.new
-    json[:otherCommon] = Array.new
     value_refs.each do |ref|
       json[:children] << ref.to_json
-    end
-    item_refs.each do |ref|
-      json[:otherCommon] << ref.to_json
     end
     return json
   end
@@ -100,11 +95,6 @@ class Form::Item::BcProperty < Form::Item
         object.value_refs << OperationalReferenceV2.from_json(child)
       end
     end
-    if !json[:otherCommon].blank?
-      json[:otherCommon].each do |child|
-        object.item_refs << Form::Item::BcProperty.from_json(child)
-      end
-    end
     return object
   end
 
@@ -118,10 +108,6 @@ class Form::Item::BcProperty < Form::Item
     subject = {:uri => uri}
     ref_uri = property_ref.to_sparql_v2(uri, "hasProperty", 'PR', property_ref.ordinal, sparql)
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasProperty"}, {:uri => ref_uri})
-    self.item_refs.each do |item_ref|
-      ref_uri = item_ref.to_sparql_v2(uri, sparql)
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasCommonItem"}, {:uri => ref_uri})
-    end
     self.value_refs.each do |value_ref|
       ref_uri = value_ref.to_sparql_v2(uri, "hasValue", 'VR', value_ref.ordinal, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasValue"}, {:uri => ref_uri})
@@ -166,7 +152,6 @@ class Form::Item::BcProperty < Form::Item
 private
 
   def self.children_from_triples(object, triples, id)
-    object.item_refs = Form::Item::BcProperty.find_for_parent(triples, object.get_links("bf", "hasCommonItem"))
     links = object.get_links_v2(C_SCHEMA_PREFIX, "hasProperty")
     if links.length > 0
       object.property_ref = OperationalReferenceV2.find_from_triples(triples, links[0].id)
