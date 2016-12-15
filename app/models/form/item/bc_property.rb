@@ -14,8 +14,8 @@ class Form::Item::BcProperty < Form::Item
   # @return [object] Array of concepts
   def thesaurus_concepts
     results = Array.new
-    refs.each do |ref|
-      results << ThesaurusConcept.find(ref.subject_ref.id, ref.subject_ref.namespace, false)
+    children.each do |child|
+      results << ThesaurusConcept.find(child.subject_ref.id, child.subject_ref.namespace, false)
     end
     return results
   end

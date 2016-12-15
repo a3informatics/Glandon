@@ -2,10 +2,10 @@ class Forms::ItemsController < ApplicationController
   
   before_action :authenticate_user!
   
-  def index
-    authorize Form::Item
-    @formItems = Form::Item.all
-  end
+  #def index
+  #  authorize Form::Item
+  #  @formItems = Form::Item.all
+  #end
   
   def show 
     authorize Form::Item
@@ -17,6 +17,8 @@ class Forms::ItemsController < ApplicationController
       @formItem = Form::Item::Question.find(params[:id], params[:namespace])
     elsif type.to_s == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
       @formItem = Form::Item::Placeholder.find(params[:id], params[:namespace])
+    elsif type.to_s == Form::Item::mapping::C_RDF_TYPE_URI.to_s
+      @formItem = Form::Item::Mapping.find(params[:id], params[:namespace])
     else
       @formItem = Form::Item::TextLabel.find(params[:id], params[:namespace])
     end
@@ -27,7 +29,7 @@ class Forms::ItemsController < ApplicationController
 private
 
   def the_params
-    params.require(:form_item_group).permit(:formId, :groupId, :namespace)
+    params.require(:form_item_group).permit()
   end  
 
 end

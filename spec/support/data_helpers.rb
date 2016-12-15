@@ -5,7 +5,6 @@ module DataHelpers
       "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
       "DELETE { ?a ?b ?c } WHERE { ?a ?b ?c }"
   	CRUD.update(sparql_query)
-    #sleep 1.5
   end
 
   def load_test_file_into_triple_store(filename)
@@ -28,8 +27,20 @@ module DataHelpers
     return YAML.load_file(full_path)
   end
 
+  def read_yaml_file_to_hash_2(sub_dir, filename)
+    full_path = set_path(sub_dir, filename)
+    return YAML.load_file(full_path)
+  end
+
   def write_hash_to_yaml_file(item, filename)
     full_path = Rails.root.join "db/load/test/#{filename}"
+    File.open(full_path, "w+") do |f|
+      f.write(item.to_yaml)
+    end
+  end
+
+  def write_hash_to_yaml_file_2(item, sub_dir, filename)
+    full_path = set_path(sub_dir, filename)
     File.open(full_path, "w+") do |f|
       f.write(item.to_yaml)
     end
@@ -44,8 +55,24 @@ module DataHelpers
     return text
   end
 
+  def read_text_file_2(sub_dir, filename)
+    text = ""
+    full_path = set_path(sub_dir, filename)
+    File.open(full_path, "r") do |f|
+      text = f.read
+    end
+    return text
+  end
+
   def write_text_file(item, filename)
     full_path = Rails.root.join "db/load/test/#{filename}"
+    File.open(full_path, "w+") do |f|
+      f.write(item)
+    end
+  end
+
+  def write_text_file_2(item, sub_dir, filename)
+    full_path = set_path(sub_dir, filename)
     File.open(full_path, "w+") do |f|
       f.write(item)
     end
@@ -83,6 +110,12 @@ module DataHelpers
 
   def clear_all_edit_locks
     Token.delete_all
+  end
+
+private
+
+  def set_path(sub_dir, filename)
+    return Rails.root.join "spec/fixtures/files/#{sub_dir}/#{filename}"
   end
 
 end

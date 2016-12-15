@@ -187,7 +187,7 @@ Rails.application.routes.draw do
   end
   namespace :forms do
     resources :groups
-    resources :items
+    resources :items, :only => [:show]
   end
   resources :backgrounds do
     collection do
