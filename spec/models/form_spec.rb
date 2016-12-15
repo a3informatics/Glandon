@@ -22,12 +22,24 @@ describe Form do
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_dm1.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
+    load_test_file_into_triple_store("form_example_general.ttl")
+    clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
   end
  
   it "validates a valid object" do
     result = Form.new
+    ra = IsoRegistrationAuthority.new
+    ra.number = "123456789"
+    ra.scheme = "DUNS"
+    ra.namespace = IsoNamespace.find("NS-ACME")
+    result.registrationState.registrationAuthority = ra
+    si = IsoScopedIdentifier.new
+    si.identifier = "X FACTOR"
+    result.scopedIdentifier = si
     result.valid?
-    puts result.errors.full_messages.to_sentence
     expect(result.valid?).to eq(true)
   end
   
@@ -38,7 +50,7 @@ describe Form do
   end
 
   it "allows a placeholder form to be created from parameters" do
-    item = Form.create_placeholder({:identifier => "T2", :label => "Test 2", :freeText => "Placeholder Test Form No. 2"})
+    item = Form.create_placeholder({:identifier => "PLACE NEW", :label => "Placeholder New", :freeText => "Placeholder Test Form"})
     expect(item.errors.count).to eq(0)
   end
 
@@ -93,7 +105,7 @@ describe Form do
 
   it "finds list of all released entries" do
     expected = []
-    expected[0] = {:id => "F-ACME_DM101", :scoped_identifier_version => 1}
+    expected[0] = {:id => "F-ACME_VSBASELINE1", :scoped_identifier_version => 1}
     results = Form.list
     expected.each_with_index do |x, index|
       expect(results[index].id).to eq(expected[index][:id])
@@ -113,6 +125,12 @@ describe Form do
         {
           :identifier=>"P1",
           :label=>"Placeholder 1",
+          :owner_id=>"NS-ACME",
+          :owner=>"ACME"
+        },
+        {
+          :identifier=>"PLACE NEW",
+          :label=>"Placeholder New",
           :owner_id=>"NS-ACME",
           :owner=>"ACME"
         },

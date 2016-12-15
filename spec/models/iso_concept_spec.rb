@@ -24,6 +24,9 @@ describe IsoConcept do
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
     clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
   end
 
 	it "validates a valid object" do

@@ -9,6 +9,14 @@ class Form::Group::Common < Form::Group
   C_RDF_TYPE = "CommonGroup"
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
   
+  def repeating
+    return false
+  end
+
+  def groups
+    return []
+  end
+  
   # Initialize
   #
   # @param triples [hash] The raw triples keyed by subject
@@ -67,7 +75,7 @@ class Form::Group::Common < Form::Group
     object = super(json)
     if !json[:children].blank?
       json[:children].each do |child|
-        object.children << Form::Item::CommonItem.from_json(child)
+        object.children << Form::Item::Common.from_json(child)
       end
     end
     return object

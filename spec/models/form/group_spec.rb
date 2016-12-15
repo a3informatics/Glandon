@@ -2,9 +2,11 @@ require 'rails_helper'
 
 describe Form::Group do
   
+  C_SUB_DIR = "models/form"
+
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -15,6 +17,9 @@ describe Form::Group do
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
   end
 
   it "validates a valid object" do
@@ -56,7 +61,6 @@ describe Form::Group do
     triples ["F-ACME_TEST_G1_I1"] = []
     triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#NormalGroup" }
     triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "My Group" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#isGroupOf", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1>" }
     triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasItem", object: "<http://www.assero.co.uk/MDRForms/UCB/V2#F-UCB_AEPI103_G1_I1>" }
     triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
     triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
@@ -66,6 +70,10 @@ describe Form::Group do
     expect(Form::Group.new(triples, "F-ACME_TEST_G1_I1").to_json).to eq(result)    
   end
 
+  it "allows an object to be created from JSON"
+  
+  it "allows an object to be exported as JSON"
+  
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new
     result = 

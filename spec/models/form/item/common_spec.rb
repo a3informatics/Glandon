@@ -103,6 +103,10 @@ describe Form::Item::Common do
     expect(Form::Item::Common.find_from_triples(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)    
   end
 
+  it "allows an object to be created from JSON"
+  
+  it "allows an object to be exported as JSON"
+
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new
     result = 

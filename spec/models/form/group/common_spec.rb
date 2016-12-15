@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe Form::Group::Common::Common do
   
+  C_SUB_DIR = "models/form/group"
+
   include DataHelpers
 
   it "clears triple store and loads test data" do
@@ -14,7 +16,11 @@ describe Form::Group::Common::Common do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
+    load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
     clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
   end
 
   it "validates a valid object" do
@@ -65,6 +71,17 @@ describe Form::Group::Common::Common do
     triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
     expect(Form::Group::Common.new(triples, "F-ACME_TEST_G1_I1").to_json).to eq(result)    
   end
+
+  it "allows an object to be found" do
+    item = Form::Group::Common.find("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
+    #write_hash_to_yaml_file_2(item.to_json, C_SUB_DIR, "common_find.yaml")
+    expected = read_yaml_file_to_hash_2(C_SUB_DIR, "common_find.yaml")
+    expect(item.to_json).to eq(expected)
+  end
+
+  it "allows an object to be created from JSON"
+  
+  it "allows an object to be exported as JSON"
 
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new

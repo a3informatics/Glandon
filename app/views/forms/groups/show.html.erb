@@ -64,7 +64,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @formGroup.items.each do |item| %>
+			<% @formGroup.children.each do |item| %>
 				<tr>
 					<td><%= item.ordinal %></td>
 					<td><%= item.label %></td>

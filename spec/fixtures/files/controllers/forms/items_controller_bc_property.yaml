@@ -1,0 +1,73 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#BcProperty
+:id: F-ACME_VSBASELINE1_G1_G2_I3
+:namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+:label: Result Units (--ORRESU)
+:extension_properties: []
+:ordinal: 2
+:note: ''
+:completion: ''
+:optional: false
+:is_common: false
+:property_ref:
+  :type: http://www.assero.co.uk/BusinessOperational#PReference
+  :id: F-ACME_VSBASELINE1_G1_G2_I3_PR1
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: BC Property Reference
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code
+:children:
+- :type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :id: F-ACME_VSBASELINE1_G1_G2_I3_VR1
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: BC Property Value Reference
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :local_label: International Foot
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :id: CLI-C71620_C71253
+- :type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :id: F-ACME_VSBASELINE1_G1_G2_I3_VR4
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: BC Property Value Reference
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 4
+  :local_label: Centimeter
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :id: CLI-C66770_C49668
+- :type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :id: F-ACME_VSBASELINE1_G1_G2_I3_VR3
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: BC Property Value Reference
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 3
+  :local_label: Inch
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :id: CLI-C66770_C48500
+- :type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :id: F-ACME_VSBASELINE1_G1_G2_I3_VR2
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: BC Property Value Reference
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 2
+  :local_label: Meter
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :id: CLI-C71620_C41139

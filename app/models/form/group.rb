@@ -1,6 +1,6 @@
 class Form::Group < IsoConcept
   
-  attr_accessor :items, :ordinal, :note, :optional, :completion
+  attr_accessor :children, :ordinal, :note, :optional, :completion
   
   # Constants
   C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
@@ -19,7 +19,7 @@ class Form::Group < IsoConcept
     self.note = ""
     self.optional = false
     self.completion = ""
-    self.items = Array.new
+    self.children = Array.new
     if triples.nil?
       super
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
@@ -38,8 +38,8 @@ class Form::Group < IsoConcept
     json[:completion] = self.completion
     json[:note] = self.note
     json[:children] = Array.new
-    self.items.sort_by! {|u| u.ordinal}
-    self.items.each do |item|
+    self.children.sort_by! {|u| u.ordinal}
+    self.children.each do |item|
       json[:children] << item.to_json
     end
     return json
@@ -58,13 +58,15 @@ class Form::Group < IsoConcept
     if !json[:children].blank?
       json[:children].each do |child|
         if child[:type] == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
-          object.items << Form::Item::Placeholder.from_json(child)
+          object.children << Form::Item::Placeholder.from_json(child)
         elsif child[:type] == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
-          object.items << Form::Item::TextLabel.from_json(child)
+          object.children << Form::Item::TextLabel.from_json(child)
         elsif child[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
-          object.items << Form::Item::Question.from_json(child)
+          object.children << Form::Item::Question.from_json(child)
+        elsif child[:type] == Form::Item::Mapping::C_RDF_TYPE_URI.to_s
+          object.children << Form::Item::Mapping.from_json(child)
         elsif child[:type] == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
-          object.items << Form::Item::BcProperty.from_json(child)
+          object.children << Form::Item::BcProperty.from_json(child)
         end   
       end
     end
@@ -85,7 +87,7 @@ class Form::Group < IsoConcept
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "optional"}, {:literal => "#{self.optional}", :primitive_type => "boolean"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "note"}, {:literal => "#{self.note}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "completion"}, {:literal => "#{self.completion}", :primitive_type => "string"})
-    self.items.each do |item|
+    self.children.each do |item|
       ref_uri = item.to_sparql_v2(uri, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, {:uri => ref_uri})
     end
@@ -101,7 +103,7 @@ class Form::Group < IsoConcept
   def to_xml(metadata_version, form_def)
     form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
     item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
-    self.items.each do |item|
+    self.children.each do |item|
       item.to_xml(metadata_version, form_def, item_group_def)
     end
   end
@@ -124,13 +126,15 @@ private
     links.each do |link|
       rdf_type = object.get_link_object_type_v2(link)
       if rdf_type == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
-        object.items += Form::Item::Placeholder.find_for_parent(triples, [link])
+        object.children += Form::Item::Placeholder.find_for_parent(triples, [link])
       elsif rdf_type == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
-        object.items += Form::Item::TextLabel.find_for_parent(triples, [link])
+        object.children += Form::Item::TextLabel.find_for_parent(triples, [link])
       elsif rdf_type == Form::Item::Question::C_RDF_TYPE_URI.to_s
-        object.items += Form::Item::Question.find_for_parent(triples, [link])
+        object.children += Form::Item::Question.find_for_parent(triples, [link])
+      elsif rdf_type == Form::Item::Mapping::C_RDF_TYPE_URI.to_s
+        object.children += Form::Item::Mapping.find_for_parent(triples, [link])
       elsif rdf_type == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
-        object.items += Form::Item::BcProperty.find_for_parent(triples, [link])
+        object.children += Form::Item::BcProperty.find_for_parent(triples, [link])
       end  
     end
   end

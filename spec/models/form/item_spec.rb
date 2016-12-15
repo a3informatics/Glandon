@@ -2,19 +2,11 @@ require 'rails_helper'
 
 describe Form::Item do
   
+  C_SUB_DIR = "models/form"
+
   include DataHelpers
 
-  it "has a dummy TC return" do
-    result = Form::Item.new
-    expect(result.thesaurus_concepts).to eq(Array.new)
-  end
-
-  it "has a dummy BC return" do
-    result = Form::Item.new
-    expect(result.bc_property).to eq(nil)
-  end
-  
-  it "clears triple store and loads test data" do
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -25,6 +17,19 @@ describe Form::Item do
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
+  end
+
+  it "has a dummy TC return" do
+    result = Form::Item.new
+    expect(result.thesaurus_concepts).to eq(Array.new)
+  end
+
+  it "has a dummy BC return" do
+    result = Form::Item.new
+    expect(result.bc_property).to eq(nil)
   end
 
   it "validates a valid object" do
@@ -53,10 +58,9 @@ describe Form::Item do
       {
         :id => "F-ACME_PLACEHOLDERTEST_G1_I1", 
         :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
-        :label_text => "XXXXX",
+        :label => "Text Label",
         :completion => "",
         :extension_properties => [],
-        :label => "Text Label",
         :note => "xxxxx",
         :optional => false,
         :ordinal => 1,
@@ -66,15 +70,18 @@ describe Form::Item do
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] = []
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#TextLabel" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "Text Label" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#isItemOf", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1>" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#label_text", object: "XXXXX" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
-    expect(Form::Item::TextLabel.new(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)    
+    expect(Form::Item.new(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)    
   end
 
+  it "allows an object to be created from JSON" 
+  
+  it "allows an object to be exported as JSON"
+  
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new
     result = 

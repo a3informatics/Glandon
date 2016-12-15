@@ -2,10 +2,10 @@ class Forms::GroupsController < ApplicationController
   
   before_action :authenticate_user!
   
-  def index
-    authorize Form::Group
-    @formGroups = Form::Group.all
-  end
+  #def index
+  #  authorize Form::Group
+  #  @formGroups = Form::Group.all
+  #end
   
   def show 
     authorize Form::Group

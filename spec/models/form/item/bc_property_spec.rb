@@ -16,6 +16,7 @@ describe Form::Item::BcProperty do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
+    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
     load_test_file_into_triple_store("BC.ttl")
@@ -119,6 +120,8 @@ describe Form::Item::BcProperty do
   end
 =end
 
+  it "allows an object to be created from JSON"
+  
   it "allows an object to be exported as JSON" do
     expected = 
     {
