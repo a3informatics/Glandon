@@ -261,6 +261,20 @@ class IsoConcept
     return results
   end
 
+  # Create a Object
+  #
+  # @param sparql [Object] The sparql object for the concept tbeing created
+  # @raise [CreateError] If object not created.
+  # @return null
+  def create(sparql)
+    ConsoleLogger.debug(C_CLASS_NAME, "create", "UPDATE=#{sparql.create}")
+    response = CRUD.update(sparql.create)
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME, "create", "Failed to create object.")
+      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+    end
+  end
+
   # Destroy the object
   #
   # @raise [DestroyError] If object not destroyed.
@@ -270,19 +284,74 @@ class IsoConcept
     update = UriManagement.buildNs(self.namespace, []) +
       "DELETE \n" +
       "{\n" +
-      "  ?s ?p ?o . \n" +
+      "  :#{self.id} ?p ?o . \n" +
       "}\n" +
       "WHERE\n" + 
       "{\n" +
-      "  :" + self.id + " (:|!:)* ?s . \n" +  
-      "  ?s ?p ?o . \n" +
-      "  FILTER(STRSTARTS(STR(?s), \"" + self.namespace + "\"))" +
+      "  :#{self.id} ?p ?o . \n" +
       "}\n"
     # Send the request, wait the resonse
     response = CRUD.update(update)
     if !response.success?
       ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
       raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
+    end
+  end
+
+  # Create a Child Object
+  #
+  # @param child [Object] The new child object. Assumed to be valid.
+  # @param sparql [Object] The sparql object for the concept tbeing created
+  # @param schema_prefix [String] The schema prefix for the link from this parent to the child
+  # @param rdf_type [String] The rdf type for the link from this parent to the child
+  # @raise [CreateError] If object not created.
+  # @return null
+  def create_child(child, sparql, schema_prefix, rdf_type)
+    sparql.triple({:uri => self.uri}, {:prefix => schema_prefix, :id => rdf_type}, {:uri => child.uri})
+    ConsoleLogger.debug(C_CLASS_NAME, "create_child", "SPARQL=#{sparql.to_s}")
+    response = CRUD.update(sparql.create)
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME, "create_child", "Failed to create child object.")
+      raise Exceptions::CreateError.new(message: "Failed to create child " + C_CLASS_NAME + " object.")
+    end
+  end
+
+  # Destroy Object and links to the object
+  #
+  # @raise [DestroyError] If object not destroyed.
+  # @return null
+  def destroy_with_links
+    # Create the query
+    update = UriManagement.buildNs(self.namespace, []) +
+      "DELETE \n" +
+      "{\n" +
+      "  :#{self.id} ?p1 ?o . \n" +
+      "  ?s ?p2 :#{self.id} . \n" +
+      "}\n" +
+      "WHERE\n" + 
+      "{\n" +
+      "  :#{self.id} ?p1 ?o . \n" +
+      "  ?s ?p2 :#{self.id} . \n" +
+      "}\n"
+    # Send the request, wait the resonse
+    response = CRUD.update(update)
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
+    end
+  end
+
+  # Update the object
+  #
+  # @param sparql [Object] The sparql object for the concept tbeing created
+  # @raise [DestroyError] If object not destroyed.
+  # @return null
+  def update(sparql)
+    ConsoleLogger.debug(C_CLASS_NAME, "create_child", "UPDATE=#{sparql.update(self.uri)}")
+    response = CRUD.update(sparql.update(self.uri))
+    if !response.success?
+      ConsoleLogger::log(C_CLASS_NAME, "update", "Failed to update object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
   end
 
@@ -690,6 +759,15 @@ class IsoConcept
   def copy_errors(object, text)
     object.errors.full_messages.each do |msg|
       self.errors[:base] << "#{text} #{msg}"
+    end
+  end
+
+  if Rails.env == "test"
+    # Return the triples
+    #
+    # @return [Hash] The triples
+    def triples
+      return @triples
     end
   end
 

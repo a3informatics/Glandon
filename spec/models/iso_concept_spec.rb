@@ -19,9 +19,10 @@ describe IsoConcept do
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
     load_test_file_into_triple_store("iso_concept_extension.ttl")
     load_test_file_into_triple_store("iso_concept_data.ttl")
+    load_test_file_into_triple_store("iso_concept_data_2.ttl")
     load_test_file_into_triple_store("CT_V42.ttl")
     load_test_file_into_triple_store("BC.ttl")
-    load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+    load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
     clear_iso_concept_object
   end
 
@@ -213,7 +214,143 @@ describe IsoConcept do
     end
   end
 
-	it "allows an extension property to be added" do
+  it "allows a concept to be created" do
+    input =     
+      { 
+        :type => "http://www.assero.co.uk/BusinessForm#Question",
+        :id => "F-T_G1_I5", 
+        :namespace => "http://www.assero.co.uk/Y/V1", 
+        :label => "NEW NEW NEW"
+      }
+    concept = IsoConcept.from_json(input)
+    sparql = SparqlUpdateV2.new
+    sparql.default_namespace(concept.namespace)
+    concept.to_sparql_v2(sparql, "bf") 
+    concept.create(sparql)
+    all = IsoConcept.find("F-T_G1_I5", "http://www.assero.co.uk/Y/V1", true)
+    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_create.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_triples_create.yaml")
+    expect(all.triples).to eq(expected)
+  end
+
+  it "handles failed response when a concept is being created" do
+    input =     
+      { 
+        :type => "http://www.assero.co.uk/BusinessForm#Question",
+        :id => "F-T_G1_I5", 
+        :namespace => "http://www.assero.co.uk/Y/V1", 
+        :label => "NEW NEW NEW"
+      }
+    concept = IsoConcept.from_json(input)
+    sparql = SparqlUpdateV2.new
+    sparql.default_namespace(concept.namespace)
+    concept.to_sparql_v2(sparql, "bf") 
+    response = Typhoeus::Response.new(code: 200, body: "") # Beware of odering og these next three lines. Should be just before test call.
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{concept.create(sparql)}.to raise_error(Exceptions::CreateError)
+  end
+
+  it "handles failed response when a concept is being destroyed" do
+    # Do this befoe next test or else object is not there
+    concept = IsoConcept.find("F-T_G1_I3", "http://www.assero.co.uk/Y/V1")
+    response = Typhoeus::Response.new(code: 200, body: "") # Beware of odering og these next three lines. Should be just before test call.
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{concept.destroy}.to raise_error(Exceptions::DestroyError)
+  end
+
+  it "allows an concept to be destroyed" do
+    concept = IsoConcept.find("F-T_G1_I3", "http://www.assero.co.uk/Y/V1")
+    concept.destroy
+    all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
+    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_destroy.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_triples_destroy.yaml")
+    expect(all.triples).to eq(expected)
+  end
+
+  it "allows a child concept to be created" do
+    input =     
+      { 
+        :type => "http://www.assero.co.uk/BusinessForm#Question",
+        :id => "F-T_G1_I2_I1", 
+        :namespace => "http://www.assero.co.uk/Y/V1", 
+        :label => "CHILD"
+      }
+    child = IsoConcept.from_json(input)
+    parent = IsoConcept.find("F-T_G1_I2", "http://www.assero.co.uk/Y/V1")
+    sparql = SparqlUpdateV2.new
+    sparql.default_namespace(parent.namespace)
+    child.to_sparql_v2(sparql, "bf") 
+    parent.create_child(child, sparql, "bf", "test_link")    
+    all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
+    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_create_child.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_triples_create_child.yaml")
+    expect(all.triples).to eq(expected)
+  end
+
+  it "handles failed response when a child concept is being created" do
+    input =     
+      { 
+        :type => "http://www.assero.co.uk/BusinessForm#Question",
+        :id => "F-T_G1_I2_I1", 
+        :namespace => "http://www.assero.co.uk/Y/V1", 
+        :label => "CHILD"
+      }
+    child = IsoConcept.from_json(input)
+    parent = IsoConcept.find("F-T_G1_I2", "http://www.assero.co.uk/Y/V1")
+    sparql = SparqlUpdateV2.new
+    sparql.default_namespace(parent.namespace)
+    child.to_sparql_v2(sparql, "bf") 
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response) # Beware of odering og these next three lines. Should be just before test call.
+    expect(response).to receive(:success?).and_return(false)
+    expect{parent.create_child(child, sparql, "bf", "test_link")  }.to raise_error(Exceptions::CreateError)
+  end
+
+  it "handles failed response when a concept with associated links is being destroyed" do
+    child = IsoConcept.find("F-T_G1_I2_I1", "http://www.assero.co.uk/Y/V1")
+    response = Typhoeus::Response.new(code: 200, body: "") # Beware of odering og these next three lines. Should be just before test call.
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{child.destroy_with_links}.to raise_error(Exceptions::DestroyError)
+  end
+
+  it "allows a concept to be destroyed with associated links" do
+    child = IsoConcept.find("F-T_G1_I2_I1", "http://www.assero.co.uk/Y/V1")
+    child.destroy_with_links
+    all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
+    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_destroy_links.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_triples_destroy_links.yaml")
+    expect(all.triples).to eq(expected)
+  end
+
+  it "allows a concept to be updated" do
+    child = IsoConcept.find("F-T_G1_I2", "http://www.assero.co.uk/Y/V1")
+    child.label = "Very new label"
+    sparql = SparqlUpdateV2.new
+    sparql.default_namespace(child.namespace)
+    child.to_sparql_v2(sparql, "bf")
+    child.update(sparql)
+    all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
+    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_updated.yaml")
+    expected = read_yaml_file_to_hash("iso_concept_triples_updated.yaml")
+    expect(all.triples).to eq(expected)
+  end
+
+	it "handles failed response when a concept is being updated" do
+    child = IsoConcept.find("F-T_G1_I2", "http://www.assero.co.uk/Y/V1")
+    child.label = "Very very very new label"
+    sparql = SparqlUpdateV2.new
+    sparql.default_namespace(child.namespace)
+    child.to_sparql_v2(sparql, "bf")
+    response = Typhoeus::Response.new(code: 200, body: "") # Beware of odering og these next three lines. Should be just before test call.
+    expect(Rest).to receive(:sendRequest).and_return(response) 
+    expect(response).to receive(:success?).and_return(false)
+    expect{child.update(sparql)}.to raise_error(Exceptions::UpdateError)
+  end
+
+  it "allows an extension property to be added" do
 		result = {}
 		result["http://www.assero.co.uk/BusinessForm#Extension2"] = 
     	{
@@ -383,18 +520,13 @@ describe IsoConcept do
 	end
 
   it "allows the links from a concept to be determined, BC Property Ref" do
-    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G1_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
+    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
     expected = 
     [ 
       { 
         uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"}), 
         rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
         local: false 
-      },
-      { 
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I1_I1"}), 
-        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-        local: true
       }
     ]
     expect(results.to_json).to eq(expected.to_json)
@@ -405,7 +537,7 @@ describe IsoConcept do
     expected = 
     [ 
       { 
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I1"}), 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1"}), 
         rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
         local: false  
       },
@@ -418,23 +550,18 @@ describe IsoConcept do
     expect(results.to_json).to eq(expected.to_json)
   end
 
-  it "allows the links from a concept to be determined, Internal" do
+  it "allows the links from a concept to be determined, internal to managed item hierarchy" do
     results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
     expected = 
     [ 
       { 
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1"}), 
-        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-        local: true  
-      },
-      { 
         uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2"}), 
-        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+        rdf_type: "http://www.assero.co.uk/BusinessForm#CommonItem",
         local: true
       },
       { 
         uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I1"}), 
-        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+        rdf_type: "http://www.assero.co.uk/BusinessForm#CommonItem",
         local: true 
       }
     ]
@@ -449,39 +576,13 @@ describe IsoConcept do
         uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}),
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form",
         local: true
-      },
-      {
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2"}),
-        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-        local: true
-      },
-      {
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1"}),
-        rdf_type: "http://www.assero.co.uk/BusinessForm#CommonGroup",
-        local: true
-      },
-      {
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G5"}),
-        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-        local: true
-      },
-      {
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G3"}),
-        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-        local: true 
-      },
-      {
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G4"}),
-        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-        local: true
       }
     ]
-
     expect(results.to_json).to eq(expected.to_json)
   end
 
   it "allows the links from a concept to be determined, TC Ref" do
-    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G1_I2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
+    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G4_I4","http://www.assero.co.uk/MDRForms/ACME/V1")
     expected = 
     [ 
       { 
@@ -490,17 +591,17 @@ describe IsoConcept do
         local: false  
       },
       { 
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"}), 
-        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-        local: false  
-      },
-      { 
         uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62166"}), 
         rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
         local: false 
       },
+      { 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"}), 
+        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+        local: false  
+      },
       {
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code"}),
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}),
         rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
         local: false 
       }
@@ -533,12 +634,12 @@ describe IsoConcept do
         local: false 
       },
       { 
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2"}), 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G5_I4"}), 
         rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
         local: false  
       },
       { 
-        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2_I1"}), 
+        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G4_I4"}), 
         rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
         local: false  
       },
