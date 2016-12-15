@@ -18,7 +18,7 @@ Rails.application.config.assets.version = '1.0'
   dashboard_viewer dashboard_index 
   markdown_editor
   sdtmigs 
-  backgrounds background_index 
+  background_index 
 	biomedical_concept_templates biomedical_concepts biomedical_concepts_editor 
 	cdisc_search
   thesauri_editor thesauri_viewer thesauri_search

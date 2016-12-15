@@ -4,8 +4,10 @@ class BackgroundsController < ApplicationController
 
 	def index
 		authorize Background
-  	end
+		@jobs = Background.all
+  end
 
+=begin
 	def running
 		authorize Background
 	    jobs = Background.all
@@ -16,10 +18,11 @@ class BackgroundsController < ApplicationController
 	    end
 	    render :json => results, :status => 200
 	end
+=end
 
 	def clear
 		authorize Background
-    	jobs = Background.all
+    jobs = Background.all
 		jobs.each do |job|
 			job.destroy
 		end
@@ -28,7 +31,7 @@ class BackgroundsController < ApplicationController
 
 	def clear_completed
 		authorize Background
-    	jobs = Background.where(complete: true).find_each
+    jobs = Background.where(complete: true).find_each
 		jobs.each do |job|
 			job.destroy
 		end
