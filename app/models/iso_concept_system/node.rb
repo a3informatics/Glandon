@@ -4,58 +4,42 @@ class IsoConceptSystem::Node < IsoConceptSystemGeneric
   C_CLASS_NAME = "IsoConceptSystem::Node"
   C_CID_PREFIX = "CSN"
   C_RDF_TYPE = "ConceptSystemNode"
-  
-  def self.create(params)
-    object = IsoConceptSystem::Node.from_json(params)
-    if object.valid? 
-      sparql = object.to_sparql_v2
-      sparql.default_namespace(object.namespace)
-      response = CRUD.update(sparql.to_s)
-      if !response.success?
-        object.errors.add(:base, "The Concept System Node was not created in the database.")
-      end
-    end
-    return object
-  end
+  C_SCHEMA_PREFIX = IsoConceptSystemGeneric::C_SCHEMA_PREFIX
 
+  # Add a child object
+  #
+  # @raise [CreateError] If object not created.
+  # @return [Object] The new object created if no exception raised
   def add(params)
     object = IsoConceptSystem::Node.from_json(params)
     if object.valid?
       sparql = object.to_sparql_v2
-      sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_C, :id => "hasMember"}, {:uri => object.uri})
       sparql.default_namespace(object.namespace)
-      response = CRUD.update(sparql.to_s)
-      if !response.success?
-        object.errors.add(:base, "The Concept System Node was not created in the database.")
-      end
+      create_child(object, sparql, C_SCHEMA_PREFIX, "hasMember")
     end
     return object
   end
 
+  # Destroy this object and links to it.
+  #
+  # @raise [DestroyError] If object not destroyed.
+  # @return [Null]
   def destroy
-    update = UriManagement.buildNs(self.namespace, [C_SCHEMA_PREFIX]) +
-      "DELETE \n" +
-      "{\n" +
-      "  :#{self.id} ?p ?o . \n" +  
-      "  ?s #{C_SCHEMA_PREFIX}:hasMember :#{self.id} . \n" +  
-      "}\n" +
-      "WHERE\n" + 
-      "{\n" +
-      "  :" + self.id + " ?p ?o . \n" +  
-      "  ?s #{C_SCHEMA_PREFIX}:hasMember :#{self.id} . \n" +  
-      "}\n"
-    response = CRUD.update(update)
-    if !response.success?
-      ConsoleLogger::info(C_CLASS_NAME,"destroy", "Failed to destroy object.")
-      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
-    end
+    destroy_with_links
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = super(json, C_RDF_TYPE)
     return object
   end
 
+  # Return the object as SPARQL
+  #
+  # @return [object] The URI of the object
   def to_sparql_v2
     sparql = super(C_CID_PREFIX)
     return sparql

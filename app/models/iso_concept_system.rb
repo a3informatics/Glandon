@@ -4,61 +4,63 @@ class IsoConceptSystem < IsoConceptSystemGeneric
   C_CLASS_NAME = "IsoConceptSystem"
   C_CID_PREFIX = "CS"
   C_RDF_TYPE = "ConceptSystem"
+  C_SCHEMA_PREFIX = IsoConceptSystemGeneric::C_SCHEMA_PREFIX
   
+  # Find all concepts of a given type within specified namespace.
+  #
+  # @return [array] Array of objects
   def self.all
     results = super(C_RDF_TYPE)
   end
 
+  # Create an object from params
+  #
+  # @raise [CreateError] If object not created.
+  # @return [Object] The new object created if no exception raised
   def self.create(params)
     object = IsoConceptSystem.from_json(params)
     if object.valid?
       sparql = object.to_sparql_v2
       sparql.default_namespace(object.namespace)
-      response = CRUD.update(sparql.to_s)
-      if !response.success?
-        object.errors.add(:base, "The Concept System was not created in the database.")
-      end
+      object.create(sparql)
     end
     return object
   end
 
+  # Add a child object
+  #
+  # @raise [CreateError] If object not created.
+  # @return [Object] The new object created if no exception raised
   def add(params)
     object = IsoConceptSystem::Node.from_json(params)
     if object.valid?
       sparql = object.to_sparql_v2
-      sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_C, :id => "hasMember"}, {:uri => object.uri})
       sparql.default_namespace(object.namespace)
-      response = CRUD.update(sparql.to_s)
-      ConsoleLogger.info(C_CLASS_NAME, "add", "SPARQl=#{sparql.to_s}")
-      if !response.success?
-        object.errors.add(:base, "The Concept System Node was not created in the database.")
-      end
+      create_child(object, sparql, C_SCHEMA_PREFIX, "hasMember")
     end
     return object
   end
 
+  # Destroy this object
+  #
+  # @raise [DestroyError] If object not destroyed.
+  # @return [Null]
   def destroy
-    update = UriManagement.buildNs(self.namespace, [C_SCHEMA_PREFIX]) +
-      "DELETE \n" +
-      "{\n" +
-      "  :#{self.id} ?p ?o . \n" +  
-      "}\n" +
-      "WHERE\n" + 
-      "{\n" +
-      "  :" + self.id + " ?p ?o . \n" +  
-      "}\n"
-    response = CRUD.update(update)
-    if !response.success?
-      ConsoleLogger.info(C_CLASS_NAME,"destroy", "Failed to destroy object.")
-      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
-    end
+    super
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
   def self.from_json(json)
     object = super(json, C_RDF_TYPE)
     return object
   end
 
+  # Return the object as SPARQL
+  #
+  # @return [object] The URI of the object
   def to_sparql_v2
     sparql = super(C_CID_PREFIX)
     return sparql

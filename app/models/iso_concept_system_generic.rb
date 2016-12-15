@@ -28,10 +28,10 @@ class IsoConceptSystemGeneric < IsoConcept
 
   # Find a given item given the id and namespace
   #
-  # @param id [string] The id
-  # @param namespace [string] The instance schema namespace
-  # @param children [boolean] include all children concepts in the find
-  # @return [object] The concept
+  # @param id [String] The id
+  # @param ns [String] The instance schema namespace
+  # @param children [Boolean] include all children concepts in the find
+  # @return [Object] The concept
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -42,15 +42,15 @@ class IsoConceptSystemGeneric < IsoConcept
 
   # Find all concepts of a given type within specified namespace.
   #
-  # @param rdf_type [string] The RDF type
-  # @return [array] Array of objects
+  # @param rdf_type [Atring] The RDF type
+  # @return [Array] Array of objects
   def self.all(rdf_type)
     results = super(rdf_type, C_SCHEMA_NS)
   end
 
   # To JSON
   #
-  # @return [hash] The object hash 
+  # @return [Hash] The object hash 
   def to_json
     result = super
     result[:description] = self.description
@@ -63,8 +63,8 @@ class IsoConceptSystemGeneric < IsoConcept
 
   # From JSON
   #
-  # @param json [hash] The hash of values for the object 
-  # @return [object] The object
+  # @param json [Hash] The hash of values for the object 
+  # @return [Object] The object
   def self.from_json(json, rdf_type)
     object = super(json)
     object.description = json[:description]
@@ -79,9 +79,8 @@ class IsoConceptSystemGeneric < IsoConcept
 
   # Return the object as SPARQL
   #
-  # @param sparql [object] The sparql object being built (to be added to)
-  # @param schema_prefix [string] The schema prefix
-  # @return [object] The URI of the object
+  # @param cid_prefix [String] The fragment prefix
+  # @return [Object] The sparql object
   def to_sparql_v2(cid_prefix)
     sparql = SparqlUpdateV2.new
     ra = IsoRegistrationAuthority.owner
@@ -93,9 +92,9 @@ class IsoConceptSystemGeneric < IsoConcept
     return sparql
   end
 
-  # Object Valid
+  # Object Valid?
   #
-  # @return [boolean] True if valid, false otherwise.
+  # @return [Boolean] True if valid, false otherwise.
   def valid?
     result1 = super
     result2 = FieldValidation::valid_long_name?(:description, self.description, self)

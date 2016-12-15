@@ -21,6 +21,7 @@ describe IsoConceptSystem::Node do
     clear_iso_registration_state_object
   end
 
+=begin
   it "allows the object to be created from json" do
     json =     
       { 
@@ -47,21 +48,7 @@ describe IsoConceptSystem::Node do
     expected[:id] = concept.id # Needed because contains a timestamp
     expect(result).to eq(expected)
   end
-
-  it "prevents an object being created from invalid json" do
-    json =     
-      { 
-        :type => "",
-        :id => "", 
-        :namespace => "", 
-        :label => "Node 3",
-        :extension_properties => [],
-        :description => "Description 3<>",
-        :children => []
-      }
-    concept = IsoConceptSystem::Node.create(json)
-    expect(concept.errors.count).to eq(1)
-  end
+=end
 
   it "allows a child object to be added" do
     concept = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
@@ -82,6 +69,22 @@ describe IsoConceptSystem::Node do
     expect(new_concept.errors.count).to eq(0)
     new_concept = IsoConceptSystem::Node.find(new_concept.id, "http://www.assero.co.uk/MDRConcepts", false)
     expect(new_concept.to_json).to eq(json)
+  end
+
+  it "prevents a child object being added from invalid json" do
+    concept = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
+    json =     
+      { 
+        :type => "",
+        :id => "", 
+        :namespace => "", 
+        :label => "Node 3",
+        :extension_properties => [],
+        :description => "Description 3<>",
+        :children => []
+      }
+    new_concept = concept.add(json)
+    expect(new_concept.errors.count).to eq(1)
   end
 
   it "allows an object to be destroyed" do
@@ -125,6 +128,7 @@ describe IsoConceptSystem::Node do
     expect(result.to_s).to eq(updated_expected)
   end
 
+=begin
   it "handles a bad response error - create" do
     response = Typhoeus::Response.new(code: 200, body: "")
     expect(Rest).to receive(:sendRequest).and_return(response)
@@ -142,6 +146,7 @@ describe IsoConceptSystem::Node do
     new_object = IsoConceptSystem::Node.create(json)
     expect(new_object.errors.count).to eq(1)
   end
+=end
 
   it "handles a bad response error - add" do
     concept = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
@@ -158,22 +163,11 @@ describe IsoConceptSystem::Node do
     response = Typhoeus::Response.new(code: 200, body: "")
     expect(Rest).to receive(:sendRequest).and_return(response)
     expect(response).to receive(:success?).and_return(false)
-    new_object = concept.add(json)
-    expect(new_object.errors.count).to eq(1)
+    expect{concept.add(json)}.to raise_error(Exceptions::CreateError)
   end
 
   it "handles a bad response error - destroy" do
-    json =     
-      { 
-        :type => "",
-        :id => "", 
-        :namespace => "", 
-        :label => "Node 3",
-        :extension_properties => [],
-        :description => "Description 3",
-        :children => []
-      }
-    concept = IsoConceptSystem::Node.create(json)
+    concept = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
     response = Typhoeus::Response.new(code: 200, body: "")
     expect(Rest).to receive(:sendRequest).and_return(response)
     expect(response).to receive(:success?).and_return(false)

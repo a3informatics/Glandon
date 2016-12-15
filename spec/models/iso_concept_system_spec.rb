@@ -127,8 +127,10 @@ describe IsoConceptSystem do
         :description => "Description 3",
         :children => []
       }
-    new_object = IsoConceptSystem.create(json)
-    expect(new_object.errors.count).to eq(1)
+    #new_object = IsoConceptSystem.create(json)
+    #expect(new_object.errors.count).to eq(1)
+    expect{IsoConceptSystem.create(json)}.to raise_error(Exceptions::CreateError)
+
   end
 
   it "handles a bad response error - add" do
@@ -146,8 +148,9 @@ describe IsoConceptSystem do
     response = Typhoeus::Response.new(code: 200, body: "")
     expect(Rest).to receive(:sendRequest).and_return(response)
     expect(response).to receive(:success?).and_return(false)
-    new_object = concept.add(json)
-    expect(new_object.errors.count).to eq(1)
+    #new_object = concept.add(json)
+    #expect(new_object.errors.count).to eq(1)
+    expect{concept.add(json)}.to raise_error(Exceptions::CreateError)
   end
 
   it "handles a bad response error - destroy" do
