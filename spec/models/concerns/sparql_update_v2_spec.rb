@@ -146,4 +146,58 @@ describe SparqlUpdateV2 do
     expect(sparql.to_s).to eq(result)
   end
 
+  it "creates new (overloaded name)" do
+    result = "PREFIX : <http://www.example.com/default#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "INSERT DATA \n" +
+      "{ \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ppp> <http://www.example.com/test#ooo> . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/default#ooo2> <http://www.example.com/test#ooo> . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/default#ooo3> <http://www.example.com/default#ooo4> . \n" +
+      "}"
+    sparql = SparqlUpdateV2.new()
+    sparql.default_namespace("http://www.example.com/default")
+    s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = UriV2.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = UriV2.new({:uri => "http://www.example.com/test#ppp"})
+    sparql.triple({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
+    expect(sparql.create).to eq(result)
+  end
+
+  it "creates an update" do
+    result = "PREFIX : <http://www.example.com/default#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "DELETE \n" +
+      "{\n" +
+      "<http://www.example.com/test#sss> ?p ?o . \n" +
+      "}\n" +
+      "INSERT \n" +
+      "{\n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ppp> <http://www.example.com/test#ooo> . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/default#ooo2> <http://www.example.com/test#ooo> . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/default#ooo3> <http://www.example.com/default#ooo4> . \n" +
+      "}\n" +
+      "WHERE \n" +
+      "{\n" +
+      "<http://www.example.com/test#sss> ?p ?o . \n" +
+      "}"
+    sparql = SparqlUpdateV2.new()
+    sparql.default_namespace("http://www.example.com/default")
+    s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = UriV2.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = UriV2.new({:uri => "http://www.example.com/test#ppp"})
+    sparql.triple({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
+    expect(sparql.update(s_uri)).to eq(result)
+  end
+
 end

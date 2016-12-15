@@ -9,19 +9,28 @@ class SparqlUpdateV2
     @triples = ""
   end
 
+  # Set default namespace
+  #
+  # @param namespace [string] The namespace
+  # @return [Null] Nothing returned
   def default_namespace(namespace)
-    #ConsoleLogger::log(C_CLASS_NAME,"add_default_namespace","Default NS=#{ns}")
     @default_namespace = namespace
   end
 
-  # subject, predicate, object all <Inner Hash>
-  # 
-  # where
+  # Add a Triple
+  #
+  # @param subject [Hash] The subject
+  # @param predicate [Hash] The predictae
+  # @param object [Hash] The object
+  #
+  # where each can be
   # 
   # {:uri => UriV2 class}
   # {:namespace => string, :id => string} - Namespace can be "" but default namepace must be set
   # {:prefix => string, :id => string} - Prefix can be "" but default namepace must be set
   # {:literal => string, primitive_type => xsd:type as string} - Only valid for objects
+  #
+  # @return [Null] Nothing returned
   def triple(subject, predicate, object)
     triple = ""
     triple = process_part(subject)
@@ -30,8 +39,38 @@ class SparqlUpdateV2
     @triples += triple
   end
 
+  # Create Update
+  #
+  # @param uri [Object] The subject uri
+  # @return [String] The sparql update string
+  def update(uri)
+    update = UriManagement.buildNs(@default_namespace, @prefix_set) +
+      "DELETE \n" +
+      "{\n" +
+      "#{uri.to_ref} ?p ?o . \n" +
+      "}\n" +
+      "INSERT \n" +
+      "{\n" +
+      "#{@triples}" +
+      "}\n" +
+      "WHERE \n" + 
+      "{\n" +
+      "#{uri.to_ref} ?p ?o . \n" +
+      "}"
+    return update
+  end
+
+  # Insert Update
+  #
+  # @return [String] The sparql update string
+  def create
+    return to_s
+  end
+
+  # To String
+  #
+  # @return [String] The sparql update string
   def to_s
-    #ConsoleLogger::log(C_CLASS_NAME,"to_s","Default NS=#{@default_namespace}")
     update = UriManagement.buildNs(@default_namespace, @prefix_set) +
       "INSERT DATA \n" +
       "{ \n" +
