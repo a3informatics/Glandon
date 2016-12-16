@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag    'd3local', 'sdtm_user_domain_editor'%>
-<%= javascript_include_tag 'd3local', 'sdtm_user_domain_editor'%>
+<%= stylesheet_link_tag    'd3_local', 'sdtm_user_domain_editor'%>
+<%= javascript_include_tag 'd3_local_v2', 'sdtm_user_domain_editor', 'ajax_requests'%>
 <script id="domainJson" type="text/json">
     <%= raw @sdtm_user_domain.to_edit(true).to_json %>
 </script>
