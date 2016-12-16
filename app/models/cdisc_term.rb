@@ -8,7 +8,7 @@ class CdiscTerm < Thesaurus
   C_IDENTIFIER = "CDISC Terminology"
   
   # class variables
-  @@cdisc_namespace ||= IsoNamespace.findByShortName("CDISC")
+  @@cdisc_namespace_object = nil
 
   # Initialize the object
   #
@@ -78,7 +78,7 @@ class CdiscTerm < Thesaurus
     results = Array.new
     tSet = super
     tSet.each do |thesaurus|
-      if thesaurus.scopedIdentifier.namespace.shortName == @@cdisc_namespace.shortName
+      if thesaurus.scopedIdentifier.namespace.shortName == cdisc_namespace.shortName
         results << thesaurus
       end
     end
@@ -89,7 +89,7 @@ class CdiscTerm < Thesaurus
   #
   # @return [array] An array of objects.
   def self.history
-    return super({ :identifier => C_IDENTIFIER, :scope_id => @@cdisc_namespace.id })
+    return super({ :identifier => C_IDENTIFIER, :scope_id => cdisc_namespace.id })
   end
 
   # Find all except the specified version.
@@ -116,7 +116,7 @@ class CdiscTerm < Thesaurus
   #
   # @return [object] The object or nil if no current version.
   def self.current
-    return super({ :identifier => C_IDENTIFIER, :scope_id => @@cdisc_namespace.id })
+    return super({ :identifier => C_IDENTIFIER, :scope_id => cdisc_namespace.id })
   end
   
   # Create a new version. This is an import and runs in the background.
@@ -134,7 +134,7 @@ class CdiscTerm < Thesaurus
     params[:versionLabel] = date.to_s
     params[:label] = identifier + " " + date.to_s
     # Check to ensure version does not exist
-    if !versionExists?(identifier, version, @@cdisc_namespace)
+    if !versionExists?(identifier, version, @@cdisc_namespace_object)
       # Clean any empty entries
       files.reject!(&:blank?)
       # Determine the SI, namespace and CID
@@ -328,6 +328,11 @@ class CdiscTerm < Thesaurus
   end
 
 private
+
+  def self.cdisc_namespace
+    @@cdisc_namespace_object = IsoNamespace.findByShortName("CDISC") if @@cdisc_namespace_object.nil?
+    return @@cdisc_namespace_object
+  end
 
   def self.processNode(node, results)
     object = nil

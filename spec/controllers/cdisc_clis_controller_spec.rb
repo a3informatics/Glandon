@@ -3,6 +3,7 @@ require 'rails_helper'
 describe CdiscClisController do
 
   include DataHelpers
+  include PauseHelpers
   
   describe "Authorized User" do
   	
@@ -25,6 +26,7 @@ describe CdiscClisController do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
+      clear_cdisc_term_object
     end
 
     it "calculates all changes for a code list item" do

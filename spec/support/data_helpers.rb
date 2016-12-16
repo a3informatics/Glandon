@@ -108,6 +108,10 @@ module DataHelpers
     Token.class_variable_set(:@@token_timeout, nil)
   end
 
+  def clear_cdisc_term_object
+    CdiscTerm.class_variable_set(:@@cdisc_namespace, nil)
+  end
+
   def clear_all_edit_locks
     Token.delete_all
   end
