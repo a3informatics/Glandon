@@ -13,7 +13,7 @@ describe "CDISC Term", :type => :feature do
     click_button 'Log in'
   end
 
-  describe "Sponsor Terminology", :type => :feature do
+  describe "CDISC Terminology", :type => :feature do
   
     before :all do
       clear_triple_store

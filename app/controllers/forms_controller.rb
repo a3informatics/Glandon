@@ -40,6 +40,7 @@ class FormsController < ApplicationController
     authorize Form, :create?
     @form = Form.create_placeholder(the_params)
     if @form.errors.empty?
+      flash[:success] = 'Form was successfully created.'
       AuditTrail.create_item_event(current_user, @form, "Form created.")
       redirect_to forms_path
     else
@@ -50,16 +51,12 @@ class FormsController < ApplicationController
   
   def edit
     authorize Form
-    ns = params[:namespace]
-    id = params[:id]
-    @form = Form.find(id, ns)
+    @form = Form.find(params[:id], params[:namespace])
   end
 
   def clone
     authorize Form
-    ns = params[:namespace]
-    id = params[:id]
-    @form = Form.find(id, ns)
+    @form = Form.find(params[:id], params[:namespace])
   end
 
   def create
@@ -86,9 +83,7 @@ class FormsController < ApplicationController
 
   def destroy
     authorize Form
-    id = params[:id]
-    namespace = params[:namespace]
-    form = Form.find(id, namespace, false)
+    form = Form.find(params[:id], params[:namespace], false)
     form.destroy
     AuditTrail.delete_item_event(current_user, @form, "Form deleted.")
     redirect_to forms_path
@@ -108,25 +103,19 @@ class FormsController < ApplicationController
   
   def export_ttl
     authorize Form
-    id = params[:id]
-    namespace = params[:namespace]
-    @form = IsoManaged::find(id, namespace)
+    @form = IsoManaged::find(params[:id], params[:namespace])
     send_data to_turtle(@form.triples), filename: "#{@form.owner}_#{@form.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   
   def export_json
     authorize Form
-    id = params[:id]
-    namespace = params[:namespace]
-    @form = Form.find(id, namespace)
+    @form = Form.find(params[:id], params[:namespace])
     send_data @form.to_json, filename: "#{@form.owner}_#{@form.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
   def export_odm
     authorize Form, :export_json?
-    id = params[:id]
-    namespace = params[:namespace]
-    @form = Form.find(id, namespace)
+    @form = Form.find(params[:id], params[:namespace])
     send_data @form.to_xml, filename: "#{@form.owner}_#{@form.identifier}_ODM.xml", :type => 'application/xhtml+xml; header=present', disposition: "attachment"
   end
 

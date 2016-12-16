@@ -91,7 +91,7 @@
         :note: ''
         :completion: ''
         :optional: false
-        :is_common: true
+        :is_common: false
         :property_ref:
           :type: http://www.assero.co.uk/BusinessOperational#PReference
           :id: F-ACME_VSBASELINE1_G1_G2_I1_PR1
@@ -130,7 +130,7 @@
         :note: ''
         :completion: ''
         :optional: false
-        :is_common: true
+        :is_common: false
         :property_ref:
           :type: http://www.assero.co.uk/BusinessOperational#PReference
           :id: F-ACME_VSBASELINE1_G1_G5_I4_PR1
@@ -312,6 +312,19 @@
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C66770_C49668
     :repeating: false
+    :bc_ref:
+      :type: http://www.assero.co.uk/BusinessOperational#BcReference
+      :id: F-ACME_VSBASELINE1_G1_G2_BCR1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: BC Reference
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25347
   - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
     :id: F-ACME_VSBASELINE1_G1_G3
     :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -443,6 +456,19 @@
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C66770_C28252
     :repeating: false
+    :bc_ref:
+      :type: http://www.assero.co.uk/BusinessOperational#BcReference
+      :id: F-ACME_VSBASELINE1_G1_G3_BCR1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: BC Reference
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25208
   - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
     :id: F-ACME_VSBASELINE1_G1_G4
     :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -598,6 +624,19 @@
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C66770_C49670
     :repeating: false
+    :bc_ref:
+      :type: http://www.assero.co.uk/BusinessOperational#BcReference
+      :id: F-ACME_VSBASELINE1_G1_G4_BCR1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: BC Reference
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25298
   - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
     :id: F-ACME_VSBASELINE1_G1_G5
     :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -753,4 +792,18 @@
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C66770_C49670
     :repeating: false
+    :bc_ref:
+      :type: http://www.assero.co.uk/BusinessOperational#BcReference
+      :id: F-ACME_VSBASELINE1_G1_G5_BCR1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: BC Reference
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25299
   :repeating: false
+  :bc_ref: {}

@@ -60,7 +60,8 @@ describe Form::Group::Normal do
         :repeating => false,
         :ordinal => 1,
         :type => "http://www.assero.co.uk/BusinessForm#NormalGroup",
-        :children => []
+        :children => [],
+        :bc_ref => {}
       }
     triples = {}
     triples ["F-ACME_TEST_G1_I1"] = []
@@ -78,7 +79,7 @@ describe Form::Group::Normal do
 
   it "allows an object to be found" do
     item = Form::Group::Normal.find("F-ACME_T2_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "normal_find.yaml")
+    write_hash_to_yaml_file_2(item.to_json, sub_dir, "normal_find.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "normal_find.yaml")
     expect(item.to_json).to eq(expected)
   end

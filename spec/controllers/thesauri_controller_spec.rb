@@ -304,4 +304,30 @@ describe ThesauriController do
 
   end
 
+  describe "Unauthorized User" do
+    
+    login_reader
+
+    it "prevents access to a reader, edit" do
+      post :edit
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to a reader, add child" do
+      get :add_child
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to a reader, update" do
+      post :update
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to a reader, destroy" do
+      delete :destroy
+      expect(response).to redirect_to("/")
+    end
+
+  end
+  
 end
