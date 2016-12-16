@@ -7,6 +7,7 @@ $(document).ready(function() {
   var mainTabe;
   var ordinal;
 
+  // Initialise main table
   mainTable = $('#main').DataTable({
     rowId: 'id',
     columns: [
@@ -19,7 +20,7 @@ $(document).ready(function() {
       {"data" : "terminology", "width" : "15%"},
       {"data" : "optional", "render": function(data, type, full, meta) { 
           if (data === true) {
-            return '<i class="glyphicon glyphicon-question-sign" style="font-size:20px;"/>';
+            return '<i class="glyphicon glyphicon-question-sign text-warning" style="font-size:20px;"/>';
           } else {
             return "";
           }
@@ -35,6 +36,9 @@ $(document).ready(function() {
   // Init any data. Draw the tree
   initData();
   
+  /*
+  * Init function
+  */
   function initData () { 
     html = $("#jsonData").html();
     json = $.parseJSON(html);
@@ -73,10 +77,21 @@ $(document).ready(function() {
     }
   }
 
+  /*
+  * Build a table row
+  */
   function buildRow(sNode, ordianl) {
-    var d3Node = {};
-    sNode.note = sNode.hasOwnProperty('note') ? sNode.note : "";
-    sNode.completion = sNode.hasOwnProperty('completion') ? sNode.completion : "";
+    var d3Node = {}; 
+    if (sNode.hasOwnProperty('note')) {
+      getMarkdown(sNode, sNode.note, noteCallback);
+    } else {
+      sNode.note = "";
+    }
+    if (sNode.hasOwnProperty('completion')) {
+      getMarkdown(sNode, sNode.completion, completionCallback);
+    } else {
+      sNode.completion = "";
+    }
     sNode.question_text = sNode.hasOwnProperty('question_text') ? sNode.question_text : "";
     sNode.datatype = sNode.hasOwnProperty('datatype') ? sNode.datatype : "";
     sNode.format = sNode.hasOwnProperty('format') ? sNode.format : "";
@@ -97,6 +112,25 @@ $(document).ready(function() {
       sNode.ordinal = ordinal;
       mainTable.row.add(sNode).draw();
       ordinal += 1;
+    }
+  }
+
+  /*
+  * markdown callbacks
+  */
+  function noteCallback(sNode, text) {
+    var index = mainTable.row('#' + sNode.id);
+    if(index.length > 0) {
+      sNode.note = text;
+      mainTable.row(index[0]).data(sNode)
+    }
+  }
+
+  function completionCallback(sNode, text) {
+    var index = mainTable.row('#' + sNode.id);
+    if(index.length > 0) {
+      sNode.completion = text
+      mainTable.row(index[0]).data(sNode)
     }
   }
 

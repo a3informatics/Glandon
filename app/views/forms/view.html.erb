@@ -308,8 +308,10 @@
             </div>
         </div>
     </div>
-    <%= link_to "Close", forms_path, :class => "btn btn-primary" %>
-    <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+    <%= link_to "Close", @close_path, :class => "btn btn-primary" %>
+    <% if @form.edit? and @form.latest? %>
+        <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+    <% end %>
     <%= link_to "CRF", crf_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
     <%= link_to "aCRF", acrf_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
 </div>

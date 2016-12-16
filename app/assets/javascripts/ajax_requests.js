@@ -47,11 +47,12 @@ function getBcProperty(node, callback) {
 /*
 * Get Markdown 
 *
-* @param element [UI Control] The element into which markdown to be placed
+* @param object [UI Control] The object to be quoted in the callback
 * @param text [String] The text to be converted
+* @param callback [Function] The callback function to be called on success
 * @return [Null]
 */
-function getMarkdown(text, callback) {
+function getMarkdown(object, text, callback) {
   if (text !== "") {
     $.ajax({
       url: "/markdown_engines",
@@ -64,10 +65,10 @@ function getMarkdown(text, callback) {
       },
       success: function(result){
         var html_text = $.parseJSON(JSON.stringify(result));
-        callback(html_text.result);
+        callback(object, html_text.result);
       }
     });
   } else {
-    callback(result);
+    callback(object, text);
   }
 }

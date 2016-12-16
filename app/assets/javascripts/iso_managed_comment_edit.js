@@ -19,17 +19,17 @@ $(document).ready( function() {
   */
   $( "#iso_managed_changeDescription" ).focus(function() {
     markdownElement = this;
-    getMarkdown(this.value, setMarkdown); 
+    getMarkdown(genericMarkdownElement, this.value, setMarkdown); 
   });
 
   $( "#iso_managed_explanatoryComment" ).focus(function() {
     markdownElement = this;
-    getMarkdown(this.value, setMarkdown); 
+    getMarkdown(genericMarkdownElement, this.value, setMarkdown); 
   });
 
   $( "#iso_managed_origin" ).focus(function() {
     markdownElement = this;
-    getMarkdown(this.value, setMarkdown); 
+    getMarkdown(genericMarkdownElement, this.value, setMarkdown); 
   });
 
   /*
@@ -40,12 +40,12 @@ $(document).ready( function() {
       var html = alertWarning("You need to select a form field.");
       displayAlerts(html);
     } else {
-      getMarkdown(markdownElement.value, setMarkdown);  
+      getMarkdown(genericMarkdownElement, markdownElement.value, setMarkdown);  
     }
   });
 
-  function setMarkdown(text) {
-    genericMarkdownElement.innerHTML = text;
+  function setMarkdown(element, text) {
+    element.innerHTML = text;
   }
 		
 });
