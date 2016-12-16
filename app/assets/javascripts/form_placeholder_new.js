@@ -17,7 +17,7 @@ $(document).ready(function () {
   */
   $( "#form_freeText" ).focus(function() {
     markdownElement = this;
-    getMarkdown(genericMarkdownElement, this.value); 
+    getMarkdown(this.value, setMarkdown); 
   });
 
   /*
@@ -28,8 +28,12 @@ $(document).ready(function () {
       var html = alertWarning("You need to select a form field.");
       displayAlerts(html);
     } else {
-      getMarkdown(genericMarkdownElement, markdownElement.value);  
+      getMarkdown(markdownElement.value, setMarkdown);  
     }
   });
+
+  function setMarkdown(text) {
+    genericMarkdownElement.innerHTML = text;
+  }
 
 });

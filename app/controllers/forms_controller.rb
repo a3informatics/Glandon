@@ -38,7 +38,7 @@ class FormsController < ApplicationController
   
   def placeholder_create
     authorize Form, :create?
-    @form = Form.createPlaceholder(the_params)
+    @form = Form.create_placeholder(the_params)
     if @form.errors.empty?
       AuditTrail.create_item_event(current_user, @form, "Form created.")
       redirect_to forms_path

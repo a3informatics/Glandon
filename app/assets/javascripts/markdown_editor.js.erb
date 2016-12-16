@@ -15,14 +15,18 @@ $(document).ready(function () {
   * Completion and notes focus functions
   */
   $( "#raw_markdown" ).focus(function() {
-    getMarkdown(genericMarkdownElement, this.value); 
+    getMarkdown(this.value, setMarkdown); 
   });
 
   /*
   * Functions to handle completion instruction preview
   */
   $('#markdown_preview').click(function() {
-    getMarkdown(genericMarkdownElement, markdownElement.value);  
+    getMarkdown(markdownElement.value, setMarkdown);  
   });
+
+  function setMarkdown(text) {
+    genericMarkdownElement.innerHTML = text;
+  }
 
 });

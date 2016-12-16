@@ -51,8 +51,8 @@ function getBcProperty(node, callback) {
 * @param text [String] The text to be converted
 * @return [Null]
 */
-function getMarkdown(element, text) {
-  if (text != "") {
+function getMarkdown(text, callback) {
+  if (text !== "") {
     $.ajax({
       url: "/markdown_engines",
       type: "POST",
@@ -64,11 +64,10 @@ function getMarkdown(element, text) {
       },
       success: function(result){
         var html_text = $.parseJSON(JSON.stringify(result));
-        element.innerHTML = html_text.result;
+        callback(html_text.result);
       }
     });
   } else {
-    element.innerHTML = "";    
+    callback(result);
   }
 }
-
