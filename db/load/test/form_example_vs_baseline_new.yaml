@@ -64,20 +64,6 @@
     :note: ''
     :children:
     - :type: http://www.assero.co.uk/BusinessForm#CommonItem
-      :id: F-ACME_VSBASELINE1_G1_G1_I2
-      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
-      :label: Common Item
-      :extension_properties: []
-      :ordinal: 2
-      :note: ''
-      :completion: ''
-      :optional: false
-      :children:
-      - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
-        :id: F-ACME_VSBASELINE1_G1_G5_I4
-      - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
-        :id: F-ACME_VSBASELINE1_G1_G4_I4
-    - :type: http://www.assero.co.uk/BusinessForm#CommonItem
       :id: F-ACME_VSBASELINE1_G1_G1_I1
       :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
       :label: Common Item
@@ -86,7 +72,7 @@
       :note: ''
       :completion: ''
       :optional: false
-      :children:
+      :item_refs:
       - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
         :id: F-ACME_VSBASELINE1_G1_G2_I1
       - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -95,6 +81,106 @@
         :id: F-ACME_VSBASELINE1_G1_G4_I1
       - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
         :id: F-ACME_VSBASELINE1_G1_G3_I1
+      :children:
+      - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+        :id: F-ACME_VSBASELINE1_G1_G2_I1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Date and Time (--DTC)
+        :extension_properties: []
+        :ordinal: 1
+        :note: ''
+        :completion: ''
+        :optional: false
+        :is_common: true
+        :property_ref:
+          :type: http://www.assero.co.uk/BusinessOperational#PReference
+          :id: F-ACME_VSBASELINE1_G1_G2_I1_PR1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: BC Property Reference
+          :extension_properties: []
+          :enabled: true
+          :optional: false
+          :ordinal: 1
+          :local_label: ''
+          :subject_ref:
+            :namespace: http://www.assero.co.uk/MDRBCs/V1
+            :id: BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+        :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#CommonItem
+      :id: F-ACME_VSBASELINE1_G1_G1_I2
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Common Item
+      :extension_properties: []
+      :ordinal: 2
+      :note: ''
+      :completion: ''
+      :optional: false
+      :item_refs:
+      - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :id: F-ACME_VSBASELINE1_G1_G5_I4
+      - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :id: F-ACME_VSBASELINE1_G1_G4_I4
+      :children:
+      - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+        :id: F-ACME_VSBASELINE1_G1_G5_I4
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Body Position (--POS)
+        :extension_properties: []
+        :ordinal: 2
+        :note: ''
+        :completion: ''
+        :optional: false
+        :is_common: true
+        :property_ref:
+          :type: http://www.assero.co.uk/BusinessOperational#PReference
+          :id: F-ACME_VSBASELINE1_G1_G5_I4_PR1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: BC Property Reference
+          :extension_properties: []
+          :enabled: true
+          :optional: false
+          :ordinal: 1
+          :local_label: ''
+          :subject_ref:
+            :namespace: http://www.assero.co.uk/MDRBCs/V1
+            :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code
+        :children:
+        - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+          :id: F-ACME_VSBASELINE1_G1_G5_I4_VR1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: BC Property Value Reference
+          :extension_properties: []
+          :enabled: true
+          :optional: false
+          :ordinal: 1
+          :local_label: Supine Position
+          :subject_ref:
+            :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+            :id: CLI-C71148_C62167
+        - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+          :id: F-ACME_VSBASELINE1_G1_G5_I4_VR2
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: BC Property Value Reference
+          :extension_properties: []
+          :enabled: true
+          :optional: false
+          :ordinal: 2
+          :local_label: Standing
+          :subject_ref:
+            :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+            :id: CLI-C71148_C62166
+        - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+          :id: F-ACME_VSBASELINE1_G1_G5_I4_VR3
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: BC Property Value Reference
+          :extension_properties: []
+          :enabled: true
+          :optional: false
+          :ordinal: 3
+          :local_label: Sitting
+          :subject_ref:
+            :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+            :id: CLI-C71148_C62122
   - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
     :id: F-ACME_VSBASELINE1_G1_G2
     :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -190,17 +276,17 @@
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C71620_C71253
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
-        :id: F-ACME_VSBASELINE1_G1_G2_I3_VR4
+        :id: F-ACME_VSBASELINE1_G1_G2_I3_VR2
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
         :label: BC Property Value Reference
         :extension_properties: []
         :enabled: true
         :optional: false
-        :ordinal: 4
-        :local_label: Centimeter
+        :ordinal: 2
+        :local_label: Meter
         :subject_ref:
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C49668
+          :id: CLI-C71620_C41139
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G2_I3_VR3
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -214,17 +300,17 @@
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C66770_C48500
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
-        :id: F-ACME_VSBASELINE1_G1_G2_I3_VR2
+        :id: F-ACME_VSBASELINE1_G1_G2_I3_VR4
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
         :label: BC Property Value Reference
         :extension_properties: []
         :enabled: true
         :optional: false
-        :ordinal: 2
-        :local_label: Meter
+        :ordinal: 4
+        :local_label: Centimeter
         :subject_ref:
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71620_C41139
+          :id: CLI-C66770_C49668
     :repeating: false
   - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
     :id: F-ACME_VSBASELINE1_G1_G3
@@ -309,18 +395,6 @@
           :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code
       :children:
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
-        :id: F-ACME_VSBASELINE1_G1_G3_I3_VR2
-        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
-        :label: BC Property Value Reference
-        :extension_properties: []
-        :enabled: true
-        :optional: false
-        :ordinal: 2
-        :local_label: Gram
-        :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C48155
-      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G3_I3_VR1
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
         :label: BC Property Value Reference
@@ -332,6 +406,18 @@
         :subject_ref:
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C71620_C48519
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_VSBASELINE1_G1_G3_I3_VR2
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Value Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :local_label: Gram
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C48155
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G3_I3_VR3
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -440,17 +526,17 @@
           :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code
       :children:
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
-        :id: F-ACME_VSBASELINE1_G1_G4_I4_VR3
+        :id: F-ACME_VSBASELINE1_G1_G4_I4_VR1
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
         :label: BC Property Value Reference
         :extension_properties: []
         :enabled: true
         :optional: false
-        :ordinal: 3
-        :local_label: Sitting
+        :ordinal: 1
+        :local_label: Supine Position
         :subject_ref:
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71148_C62122
+          :id: CLI-C71148_C62167
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G4_I4_VR2
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -464,17 +550,17 @@
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C71148_C62166
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
-        :id: F-ACME_VSBASELINE1_G1_G4_I4_VR1
+        :id: F-ACME_VSBASELINE1_G1_G4_I4_VR3
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
         :label: BC Property Value Reference
         :extension_properties: []
         :enabled: true
         :optional: false
-        :ordinal: 1
-        :local_label: Supine Position
+        :ordinal: 3
+        :local_label: Sitting
         :subject_ref:
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71148_C62167
+          :id: CLI-C71148_C62122
     - :type: http://www.assero.co.uk/BusinessForm#BcProperty
       :id: F-ACME_VSBASELINE1_G1_G4_I3
       :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -595,6 +681,18 @@
           :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code
       :children:
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_VSBASELINE1_G1_G5_I4_VR1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Value Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :local_label: Supine Position
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71148_C62167
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G5_I4_VR2
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
         :label: BC Property Value Reference
@@ -618,18 +716,6 @@
         :subject_ref:
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C71148_C62122
-      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
-        :id: F-ACME_VSBASELINE1_G1_G5_I4_VR1
-        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
-        :label: BC Property Value Reference
-        :extension_properties: []
-        :enabled: true
-        :optional: false
-        :ordinal: 1
-        :local_label: Supine Position
-        :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71148_C62167
     - :type: http://www.assero.co.uk/BusinessForm#BcProperty
       :id: F-ACME_VSBASELINE1_G1_G5_I3
       :namespace: http://www.assero.co.uk/MDRForms/ACME/V1

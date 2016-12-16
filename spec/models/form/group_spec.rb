@@ -2,9 +2,13 @@ require 'rails_helper'
 
 describe Form::Group do
   
-  C_SUB_DIR = "models/form"
+  sub_dir = "models/form"
 
   include DataHelpers
+
+  def sub_dir
+    return "models/form"
+  end
 
   before :all do
     clear_triple_store

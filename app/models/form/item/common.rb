@@ -1,6 +1,6 @@
 class Form::Item::Common < Form::Item
 
-  attr_accessor :children
+  attr_accessor :item_refs, :children
   
   # Constants
   C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
@@ -16,6 +16,7 @@ class Form::Item::Common < Form::Item
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
     self.children = []
+    self.item_refs = []
     if triples.nil?
       super
       self.rdf_type = C_RDF_TYPE_URI.to_s
@@ -53,10 +54,12 @@ class Form::Item::Common < Form::Item
   # @return [hash] The object hash 
   def to_json
     json = super
-    json[:children] = []
-    self.children.each do |child|
-      json[:children] << child.to_json
+    json[:item_refs] = []
+    self.item_refs.each do |ref|
+      json[:item_refs] << ref.to_json
     end
+    json[:children] = []
+    json[:children] << Form::Item::BcProperty.find(item_refs[0].id, item_refs[0].namespace).to_json if item_refs.length > 0
     return json
   end
 
@@ -66,9 +69,9 @@ class Form::Item::Common < Form::Item
   # @return [object] The object
   def self.from_json(json)
     object = super(json)
-    if !json[:children].blank?
-      json[:children].each do |child|
-        object.children << UriV2.new(child)  
+    if !json[:item_refs].blank?
+      json[:item_refs].each do |ref|
+        object.item_refs << UriV2.new(ref)  
       end
     end
     return object
@@ -82,8 +85,8 @@ class Form::Item::Common < Form::Item
   def to_sparql_v2(parent_uri, sparql)
     uri = super(parent_uri, sparql)
     subject = {:uri => uri}
-    self.children.each do |child|
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasCommonItem"}, {:uri => child})
+    self.item_refs.each do |ref|
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasCommonItem"}, {:uri => ref})
     end
     return uri
   end
@@ -109,8 +112,7 @@ class Form::Item::Common < Form::Item
 private
 
   def self.children_from_triples(object, triples, id)
-    ConsoleLogger.debug(C_CLASS_NAME, "children_from_triples", "Links=#{object.get_links(C_SCHEMA_PREFIX, "hasCommonItem").to_json}")    
-    object.children = object.get_links(C_SCHEMA_PREFIX, "hasCommonItem")
+    object.item_refs = object.get_links(C_SCHEMA_PREFIX, "hasCommonItem")
   end
 
 end

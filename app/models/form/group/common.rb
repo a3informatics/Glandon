@@ -88,10 +88,6 @@ class Form::Group::Common < Form::Group
   # @return [object] The URI
   def to_sparql_v2(parent_id, sparql)
     uri = super(parent_id, sparql)
-    self.children.each do |child|
-      ref_uri = child.to_sparql_v2(uri, sparql)
-      sparql.triple({uri: uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, {:uri => ref_uri})
-    end
     return uri
   end
 

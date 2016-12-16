@@ -2,9 +2,11 @@ require 'rails_helper'
 
 describe Form::Group::Normal do
   
-  C_SUB_DIR = "models/form/group"
-
   include DataHelpers
+
+  def sub_dir
+    return "models/form/group"
+  end
 
   before :all do
     clear_triple_store
@@ -76,8 +78,8 @@ describe Form::Group::Normal do
 
   it "allows an object to be found" do
     item = Form::Group::Normal.find("F-ACME_T2_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, C_SUB_DIR, "normal_find.yaml")
-    expected = read_yaml_file_to_hash_2(C_SUB_DIR, "normal_find.yaml")
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "normal_find.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "normal_find.yaml")
     expect(item.to_json).to eq(expected)
   end
 

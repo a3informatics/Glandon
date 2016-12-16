@@ -78,6 +78,7 @@ class Form::Item::Question < Form::Item
     json[:question_text] = self.question_text
     json[:mapping] = self.mapping
     json[:children] = Array.new
+    self.tc_refs.sort_by! {|u| u.ordinal}
     self.tc_refs.each do |tc_ref|
       json[:children] << tc_ref.to_json
     end 

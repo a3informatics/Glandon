@@ -37,24 +37,28 @@
 		<thead>
 			<tr>
 				<th>Ordinal</th>
-				<th>Type</th>
+				<th>Label</th>
 				<th>Optional</th>
-				<th>Repeating</th>
 				<th>Completion</th>
 				<th>Note</th>
-				<th></th>
+				<th>Question Text</th>
+				<th>Datatype</th>
+				<th>Format</th>
+				<th>Mapping</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% @form.groups.each do |group| %>
+			<% @results.each do |item| %>
 				<tr>
-			  	<td><%= group.ordinal%></td>
-			  	<td><%= group.rdf_type_fragment%></td>
-			  	<td><%= group.optional%></td>
-			  	<td><%= group.repeating%></td>
-			  	<td><%= raw group.completion%></td>
-			  	<td><%= raw group.note%></td>
-			  	<td><%= link_to "Show", forms_group_path(:id => group.id, :formId => @form.id, :namespace => @form.namespace), :class => "btn btn-primary btn-xs" %></td>
+			  	<td><%= item[:ordinal] %></td>
+			  	<td><%= item[:label] %></td>
+			  	<td><%= item[:optional] %></td>
+			  	<td><%= raw item[:completion] %></td>
+			  	<td><%= raw item[:note] %></td>
+			  	<td><%= raw item[:question_text] %></td>
+			  	<td><%= raw item[:datatype] %></td>
+			  	<td><%= raw item[:format] %></td>
+			  	<td><%= raw item[:mapping] %></td>
 				</tr>
 			<% end %>	
 		</tbody>

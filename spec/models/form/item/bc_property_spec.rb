@@ -2,11 +2,13 @@ require 'rails_helper'
 
 describe Form::Item::BcProperty do
 
-  C_SUB_DIR = "models/form/item"
-
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  def sub_dir
+    return "models/form/item"
+  end
+
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -65,16 +67,16 @@ describe Form::Item::BcProperty do
 
   it "allows the item to be found" do
     item = Form::Item::BcProperty.find("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, C_SUB_DIR, "bc_property_find.yaml")
-    expected = read_yaml_file_to_hash_2(C_SUB_DIR, "bc_property_find.yaml")
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_property_find.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "bc_property_find.yaml")
     expect(item.to_json).to eq(expected)
   end
 
   it "allows the BC Property to be found" do
     item = Form::Item::BcProperty.find("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
     result = item.bc_property
-    #write_hash_to_yaml_file_2(result.to_json, C_SUB_DIR, "bc_property_property.yaml")
-    expected = read_yaml_file_to_hash_2(C_SUB_DIR, "bc_property_property.yaml")
+    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "bc_property_property.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "bc_property_property.yaml")
     expect(result.to_json).to eq(expected)
   end
 
@@ -83,8 +85,8 @@ describe Form::Item::BcProperty do
     result = item.thesaurus_concepts
     json = []
     result.each {|tc| json << tc.to_json}
-    #write_hash_to_yaml_file_2(json, C_SUB_DIR, "bc_property_tcs.yaml")
-    expected = read_yaml_file_to_hash_2(C_SUB_DIR, "bc_property_tcs.yaml")
+    #write_hash_to_yaml_file_2(json, sub_dir, "bc_property_tcs.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "bc_property_tcs.yaml")
     expect(json).to eq(expected)
   end 
 

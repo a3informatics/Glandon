@@ -2,11 +2,13 @@ require 'rails_helper'
 
 describe Form::Item::Common do
   
-  C_SUB_DIR = "models/form/item"
-
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  def sub_dir
+    return "models/form/item"
+  end
+
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -47,7 +49,8 @@ describe Form::Item::Common do
         :optional => false,
         :ordinal => 1,
         :type => "http://www.assero.co.uk/BusinessForm#CommonItem",
-        :children => [] 
+        :children => [],
+        :item_refs => []
       }
     triples = {}
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] = []
@@ -65,8 +68,8 @@ describe Form::Item::Common do
 
   it "allows an object to be found" do
     item = Form::Item::Common.find("F-ACME_VSBASELINE1_G1_G1_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, C_SUB_DIR, "common_find.yaml")
-    expected = read_yaml_file_to_hash_2(C_SUB_DIR, "common_find.yaml")
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "common_find.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "common_find.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -82,7 +85,8 @@ describe Form::Item::Common do
         :optional => false,
         :ordinal => 1,
         :type => "http://www.assero.co.uk/BusinessForm#CommonItem",
-        :children => 
+        :children => [],
+        :item_refs => 
         [ 
           UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1"}).to_json,
           UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1"}).to_json,
@@ -131,10 +135,10 @@ describe Form::Item::Common do
     item = Form::Item::Common.new
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "label"
-    item.children[0] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1"})
-    item.children[1] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1"})
-    item.children[2] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1"})
-    item.children[3] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G5_I1"})
+    item.item_refs[0] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1"})
+    item.item_refs[1] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1"})
+    item.item_refs[2] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1"})
+    item.item_refs[3] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G5_I1"})
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end

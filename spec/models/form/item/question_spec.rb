@@ -2,11 +2,13 @@ require 'rails_helper'
 
 describe Form::Item::Question do
   
-  C_SUB_DIR = "models/form/item"
-
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  def sub_dir
+    return "models/form/item"
+  end
+
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -119,8 +121,8 @@ describe Form::Item::Question do
 
   it "allows an object to be found" do
     item = Form::Item::Mapping.find("F-ACME_T2_G1_I4","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, C_SUB_DIR, "question_find.yaml")
-    expected = read_yaml_file_to_hash_2(C_SUB_DIR, "question_find.yaml")
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "question_find.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "question_find.yaml")
     expect(item.to_json).to eq(expected)
   end
 

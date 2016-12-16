@@ -2,8 +2,7 @@ require 'odm'
 
 class Form < IsoManaged
   
-  attr_accessor :groups, :completion, :note
-  #validates_presence_of :groups
+  attr_accessor :children, :completion, :note
   
   # Constants
   C_SCHEMA_PREFIX = "bf"
@@ -108,7 +107,7 @@ class Form < IsoManaged
   # @param id [string] The id of the form
   # @return [object] The form object
   def initialize(triples=nil, id=nil)
-    self.groups = Array.new
+    self.children = Array.new
     self.label = "New Form"
     self.completion = ""
     self.note = ""
@@ -129,7 +128,7 @@ class Form < IsoManaged
   def self.find(id, namespace, children=true)
     object = super(id, namespace)
     if children
-      object.groups = Form::Group::Normal.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
+      object.children = Form::Group::Normal.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
     end
     object.triples = ""
     return object     
@@ -178,8 +177,8 @@ class Form < IsoManaged
     item = Form::Item::Placeholder.new
     item.label = "Placeholder"
     item.free_text = params[:freeText]
-    object.groups << group
-    group.items << item
+    object.children << group
+    group.children << item
     object = Form.create(object.to_operation)
     return object
   end
@@ -246,7 +245,7 @@ class Form < IsoManaged
     json[:completion] = self.completion
     json[:note] = self.note
     json[:children] = Array.new
-    self.groups.each do |child|
+    self.children.each do |child|
       json[:children] << child.to_json
     end
     return json
@@ -261,11 +260,10 @@ class Form < IsoManaged
     subject = {:uri => uri}
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "completion"}, {:literal => "#{self.completion}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "note"}, {:literal => "#{self.note}", :primitive_type => "string"})
-    self.groups.each do |group|
-      ref_uri = group.to_sparql_v2(uri, sparql)
+    self.children.each do |child|
+      ref_uri = child.to_sparql_v2(uri, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasGroup"}, {:uri => ref_uri})
     end
-    ConsoleLogger::log(C_CLASS_NAME,"to_sparql","SPARQL=#{sparql}")
     return sparql
   end
 
@@ -286,8 +284,8 @@ class Form < IsoManaged
     study_event_def = metadata_version.add_study_event_def("SE-#{self.id}", "Not applicable. Single form export.", "No", "Scheduled", "")    
     study_event_def.add_form_ref("#{self.id}", "1", "Yes", "")
     form_def = metadata_version.add_form_def("#{self.id}", "#{self.label}", "No")
-    self.groups.each do |group|
-      group.to_xml(metadata_version, form_def)
+    self.children.each do |child|
+      child.to_xml(metadata_version, form_def)
     end
     return odm_document.to_xml
   end
@@ -302,7 +300,7 @@ class Form < IsoManaged
     object.note = json[:note]
     if !json[:children].blank?
       json[:children].each do |child|
-        object.groups << Form::Group::Normal.from_json(child)
+        object.children << Form::Group::Normal.from_json(child)
       end
     end
     return object

@@ -91,7 +91,6 @@ class Form::Group < IsoConcept
       ref_uri = item.to_sparql_v2(uri, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, {:uri => ref_uri})
     end
-    ConsoleLogger::log(C_CLASS_NAME, "to_sparql_v2", "URI=#{self.uri}.")
     return uri
   end
 

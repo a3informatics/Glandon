@@ -79,6 +79,7 @@ class Form::Item::BcProperty < Form::Item
     json[:is_common] = self.is_common
     json[:property_ref] = self.property_ref.to_json
     json[:children] = Array.new
+    self.children.sort_by! {|u| u.ordinal}
     children.each do |child|
       json[:children] << child.to_json
     end
