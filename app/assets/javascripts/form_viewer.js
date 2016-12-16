@@ -1,104 +1,108 @@
 $(document).ready(function() {
   
-  var sourceJson ;
-  var d3Div = document.getElementById("d3");
-  var html  = $("#jsonData").html();
-  var normal = true;
-  var currentNode = null;
-  var currentThis = null;
-  var managedItem = null;
-  var nextKeyId;
+  var html;
+  var json;
   var rootNode;
+  var mi;
 
-  // Get the JSON structure. 
-  sourceJson = $.parseJSON(html);
-  managedItem = sourceJson.managed_item;
-  
-  // Create root node
-  rootNode = d3Root(managedItem);
-  nextKeyId = rootNode.key + 1;
-  for (i=0; i<rootNode.children.length; i++) {
-    child = rootNode.children[i];
-    d3Node(child, rootNode);
-  }
-
-  // Draw the initial tree;
-  displayTree(1);
+  // Init any data. Draw the tree
+  initData();
   selectForm();
+  displayForm(rootNode); // Why have form????
   
-  // get the TC references. 
-  getReferences(rootNode);
-  //displayTree(1);
-
-  // D3 functions
-  function d3Root(node) {
-    node.key = 1
-    node.save = node.children;
-    node.enabled = true;
-    node.name = node.label;
-    return node;
-  }  
-
-  function d3Node(node, parent) {
-    var i;
-    var child;
-    node.key = nextKeyId;
-    node.enabled = true;
-    node.save = node.children;
-    node.parent = parent;
-    node.name = node.label;
-    if (node.hasOwnProperty('children')) {
-      for (i=0; i<node.children.length; i++) {
-        child = node.children[i];
-        d3Node(child, node);
+  function initData () { 
+    html = $("#jsonData").html();
+    json = $.parseJSON(html);
+    mi = json.managed_item;
+    d3eInit(empty, displayNode);
+    rootNode = d3eRoot(mi.label, "", mi)
+    if (mi.hasOwnProperty('children')) {
+      for (i=0; i<mi.children.length; i++) {
+        child = mi.children[i];
+        setD3(child, rootNode);
       }
-    } 
-  }
-
-
-  /**
-   * Function to handle click on the D3 tree.
-   * Show the node info. Highlight the node.
-   */
-  function click(node) {
-    if (currentNode != null) {
-      clearNode(currentNode, currentThis);
     }
-    markNode1(this);
-    currentNode = node;
-    currentThis = this;
-    displayNode();
-  }  
-
-  /**
-   * Function to handle double click on the D3 tree.
-   * Expand/delete the node clicked.
-   */
-  function dblClick(node) {
-    var index;
-    if (node.hasOwnProperty('children')) {
-      node.children = [];
-    } else {
-      node.children = node.save;  
-    }  
-    displayTree(node.key);
-    displayNode();
-  } 
-
-  /**
-   *  Function to draw the tree
-   */
-  function displayTree(nodeKey) {
-    treeNormal(d3Div, rootNode, click, dblClick);
-    var gRef = findNode(nodeKey);
-    currentThis = gRef;
-    currentNode = gRef.__data__;
-    markNode1(currentThis);
-    displayForm(currentNode);
+    d3eDisplayTree(1);
   }
 
   /*
-  * Info functions
+  * Set the D3 Structures
+  *
+  * @param sourceNode [Object] The data node
+  * @param d3ParentNode [Object] The parent D3 node
+  * @return [Null]
+  */
+  function setD3(sourceNode, d3ParentNode) {
+    var use;
+    var newNode;
+    var i;
+    var child;
+    sourceNode.hasOwnProperty('is_common') ? use = !sourceNode.is_common : use = true;
+    if (use) {
+      newNode = d3eAddNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
+      getReference(newNode);
+      if (sourceNode.hasOwnProperty('children')) {
+        for (i=0; i<sourceNode.children.length; i++) {
+          child = sourceNode.children[i];
+          setD3(child, newNode);
+        }
+      }
+    }
+  }
+
+  /*
+  * Get Reference
+  *
+  * @param node [Object] The D3 node
+  * @return [Null]
+  */
+  function getReference(d3Node) {
+    if (d3Node.type == C_TC_REF) {
+      getThesaurusConcept(d3Node, tcResult)
+    } else if (d3Node.type == C_BC_QUESTION) {
+      getBcProperty(d3Node, bcPropertyResult)
+    } 
+  }
+
+  /*
+  * Thesaurus Ref AJAX Result Callback
+  *
+  * @param node [Object] The D3 node
+  * @param result [Object] Result received from server
+  * @return [Null]
+  */
+  function tcResult(d3Node, result) {
+    d3Node.data.subject_data = result;
+    d3Node.name = result.label;
+    d3eDisplayTree(1);
+  }
+
+  /*
+  * BC Property Ref AJAX Result Callback
+  *
+  * @param node [Object] The D3 node
+  * @param result [Object] Result received from server
+  * @return [Null]
+  */
+  function bcPropertyResult(d3Node, result) {
+    d3Node.data.subject_data = result;
+    d3eDisplayTree(1);
+  }
+
+  /*
+  * Empty Callback Function
+  *
+  * @param node [Object] The D3 node
+  * @return [Null]
+  */
+  
+  function empty(node) {
+  }
+
+  /*
+  * Display The Current Node
+  *
+  * @return [Null]
   */
   function displayNode() {
     if (currentNode.type == C_FORM) {
@@ -131,6 +135,9 @@ $(document).ready(function() {
     }
   }
 
+  /*
+  * Display Panels Functions.
+  */
   function selectNone() {
     $("#formTable").addClass('hidden');
     $("#groupTable").addClass('hidden');
@@ -144,209 +151,112 @@ $(document).ready(function() {
   }
 
   function selectForm() {
+    selectNone();
     $("#formTable").removeClass('hidden');
-    $("#groupTable").addClass('hidden');
-    $("#commonTable").addClass('hidden');
-    $("#bcTable").addClass('hidden');
-    $("#bcItemTable").addClass('hidden');
-    $("#questionTable").addClass('hidden');
-    $("#labelTextTable").addClass('hidden');
-    $("#placeholderTable").addClass('hidden');
-    $("#clTable").addClass('hidden');
-  }
+    }
 
   function selectGroup() {
-    $("#formTable").addClass('hidden');
+    selectNone();
     $("#groupTable").removeClass('hidden');
-    $("#commonTable").addClass('hidden');
-    $("#bcTable").addClass('hidden');
-    $("#bcItemTable").addClass('hidden');
-    $("#questionTable").addClass('hidden');
-    $("#labelTextTable").addClass('hidden');
-    $("#placeholderTable").addClass('hidden');
-    $("#clTable").addClass('hidden');
   }
   
   function selectBcItem() {
-    $("#formTable").addClass('hidden');
-    $("#groupTable").addClass('hidden');
-    $("#commonTable").addClass('hidden');
-    $("#bcTable").addClass('hidden');
+    selectNone();
     $("#bcItemTable").removeClass('hidden');
-    $("#questionTable").addClass('hidden');
-    $("#labelTextTable").addClass('hidden');
-    $("#placeholderTable").addClass('hidden');
-    $("#clTable").addClass('hidden');
   }
   
   function selectQuestion() {
-    $("#formTable").addClass('hidden');
-    $("#groupTable").addClass('hidden');
-    $("#commonTable").addClass('hidden');
-    $("#bcTable").addClass('hidden');
-    $("#bcItemTable").addClass('hidden');
+    selectNone();
     $("#questionTable").removeClass('hidden');
-    $("#labelTextTable").addClass('hidden');
-    $("#placeholderTable").addClass('hidden');
-    $("#clTable").addClass('hidden');
   }
   
   function selectPlaceholder() {
-    $("#formTable").addClass('hidden');
-    $("#groupTable").addClass('hidden');
-    $("#commonTable").addClass('hidden');
-    $("#bcTable").addClass('hidden');
-    $("#bcItemTable").addClass('hidden');
-    $("#questionTable").addClass('hidden');
-    $("#labelTextTable").addClass('hidden');
+    selectNone();
     $("#placeholderTable").removeClass('hidden');
-    $("#clTable").addClass('hidden');
   }
   
   function selectLabelText() {
-    $("#formTable").addClass('hidden');
-    $("#groupTable").addClass('hidden');
-    $("#commonTable").addClass('hidden');
-    $("#bcTable").addClass('hidden');
-    $("#bcItemTable").addClass('hidden');
-    $("#questionTable").addClass('hidden');
+    selectNone();
     $("#labelTextTable").removeClass('hidden');
-    $("#placeholderTable").addClass('hidden');
-    $("#clTable").addClass('hidden');
   }
   
   function selectCl() {
-    $("#formTable").addClass('hidden');
-    $("#groupTable").addClass('hidden');
-    $("#commonTable").addClass('hidden');
-    $("#bcTable").addClass('hidden');
-    $("#bcItemTable").addClass('hidden');
-    $("#questionTable").addClass('hidden');
-    $("#labelTextTable").addClass('hidden');
-    $("#placeholderTable").addClass('hidden');
+    selectNone();
     $("#clTable").removeClass('hidden');
   }
 
   function selectCommon() {
-    $("#formTable").addClass('hidden');
-    $("#groupTable").addClass('hidden');
+    selectNone();
     $("#commonTable").removeClass('hidden');
-    $("#bcTable").addClass('hidden');
-    $("#bcItemTable").addClass('hidden');
-    $("#questionTable").addClass('hidden');
-    $("#labelTextTable").addClass('hidden');
-    $("#placeholderTable").addClass('hidden');
-    $("#clTable").addClass('hidden');
   }
   
+  /*
+  * Display Data in Panels Functions.
+  */
   function displayForm(node) {
-    document.getElementById("formIdentifier").innerHTML = node.scoped_identifier.identifier;
-    document.getElementById("formLabel").innerHTML = node.label;
-    getMarkdown(document.getElementById("formCompletion"), node.completion);
-    getMarkdown(document.getElementById("formNote"), node.note);
+    document.getElementById("formIdentifier").innerHTML = node.data.scoped_identifier.identifier;
+    document.getElementById("formLabel").innerHTML = node.data.label;
+    getMarkdown(document.getElementById("formCompletion"), node.data.completion);
+    getMarkdown(document.getElementById("formNote"), node.data.note);
   }
 
   function displayGroup(node) {
-    document.getElementById("groupLabel").innerHTML = node.label;
-    document.getElementById("groupRepeating").innerHTML = node.repeating;
-    document.getElementById("groupOptional").innerHTML = node.optional;
-    getMarkdown(document.getElementById("groupCompletion"), node.completion);
-    getMarkdown(document.getElementById("groupNote"), node.note);
+    document.getElementById("groupLabel").innerHTML = node.data.label;
+    document.getElementById("groupRepeating").innerHTML = node.data.repeating;
+    document.getElementById("groupOptional").innerHTML = node.data.optional;
+    getMarkdown(document.getElementById("groupCompletion"), node.data.completion);
+    getMarkdown(document.getElementById("groupNote"), node.data.note);
   }
 
   function displayBcItem(node) {
-    document.getElementById("bcItemLabel").innerHTML = node.name;
-    document.getElementById("bcItemEnabled").innerHTML = node.enabled;
-    document.getElementById("bcItemOptional").innerHTML = node.optional;
-    document.getElementById("bcItemQText").innerHTML = node.subject_data.qText;
-    document.getElementById("bcItemDatatype").innerHTML = node.subject_data.datatype;
-    document.getElementById("bcItemFormat").innerHTML = node.subject_data.format;
-    getMarkdown(document.getElementById("bcItemCompletion"), node.completion);
-    getMarkdown(document.getElementById("bcItemNote"), node.note);
+    document.getElementById("bcItemLabel").innerHTML = node.data.label;
+    document.getElementById("bcItemEnabled").innerHTML = node.data.enabled;
+    document.getElementById("bcItemOptional").innerHTML = node.data.optional;
+    document.getElementById("bcItemQText").innerHTML = node.data.subject_data.question_text;
+    document.getElementById("bcItemDatatype").innerHTML = node.data.subject_data.datatype;
+    document.getElementById("bcItemFormat").innerHTML = node.data.subject_data.format;
+    getMarkdown(document.getElementById("bcItemCompletion"), node.data.completion);
+    getMarkdown(document.getElementById("bcItemNote"), node.data.note);
   }
 
   function displayQuestion(node) {
-    document.getElementById("questionLabel").innerHTML = node.name;
-    document.getElementById("questionOptional").innerHTML = node.optional;
-    document.getElementById("questionQText").innerHTML = node.question_text;
-    document.getElementById("questionMapping").innerHTML = node.mapping;
-    document.getElementById("questionDatatype").innerHTML = node.datatype;
-    document.getElementById("questionFormat").innerHTML = node.format;
-    getMarkdown(document.getElementById("questionCompletion"), node.completion);
-    getMarkdown(document.getElementById("questionNote"), node.note);
+    document.getElementById("questionLabel").innerHTML = node.data.label;
+    document.getElementById("questionOptional").innerHTML = node.data.optional;
+    document.getElementById("questionQText").innerHTML = node.data.question_text;
+    document.getElementById("questionMapping").innerHTML = node.data.mapping;
+    document.getElementById("questionDatatype").innerHTML = node.data.datatype;
+    document.getElementById("questionFormat").innerHTML = node.data.format;
+    getMarkdown(document.getElementById("questionCompletion"), node.data.completion);
+    getMarkdown(document.getElementById("questionNote"), node.data.note);
   }
 
   function displayPlaceholder(node) {
-    document.getElementById("placeholderLabel").innerHTML = node.name;
-    document.getElementById("placeholderOptional").innerHTML = node.optional;
-    getMarkdown(document.getElementById("placeholderFreeText"), node.free_text)
-    getMarkdown(document.getElementById("placeholderCompletion"), node.completion);
-    getMarkdown(document.getElementById("placeholderNote"), node.note);
+    document.getElementById("placeholderLabel").innerHTML = node.data.label;
+    document.getElementById("placeholderOptional").innerHTML = node.data.optional;
+    getMarkdown(document.getElementById("placeholderFreeText"), node.data.free_text)
+    getMarkdown(document.getElementById("placeholderCompletion"), node.data.completion);
+    getMarkdown(document.getElementById("placeholderNote"), node.data.note);
   }
 
   function displayLabelText(node) {
-    document.getElementById("labelTextLabel").innerHTML = node.name;
-    document.getElementById("labelTextOptional").innerHTML = node.optional;
-    getMarkdown(document.getElementById("labelTextLabelText"), node.label_text)
-    getMarkdown(document.getElementById("labelTextCompletion"), node.completion);
-    getMarkdown(document.getElementById("labelTextNote"), node.note);
+    document.getElementById("labelTextLabel").innerHTML = node.data.label;
+    document.getElementById("labelTextOptional").innerHTML = node.data.optional;
+    getMarkdown(document.getElementById("labelTextLabelText"), node.data.label_text)
+    getMarkdown(document.getElementById("labelTextCompletion"), node.data.completion);
+    getMarkdown(document.getElementById("labelTextNote"), node.data.note);
   }
 
   function displayCl(node) {
-    document.getElementById("clIdentifier").innerHTML = node.subject_data.identifier;
-    document.getElementById("clLabel").innerHTML = node.subject_data.label;
-    document.getElementById("clDefaultLabel").innerHTML = node.local_label;
-    document.getElementById("clSubmission").innerHTML = node.subject_data.notation;
-    document.getElementById("clEnabled").innerHTML = node.enabled;
-    document.getElementById("clOptional").innerHTML = node.optional;
+    document.getElementById("clIdentifier").innerHTML = node.data.subject_data.identifier;
+    document.getElementById("clLabel").innerHTML = node.data.subject_data.label;
+    document.getElementById("clDefaultLabel").innerHTML = node.data.local_label;
+    document.getElementById("clSubmission").innerHTML = node.data.subject_data.notation;
+    document.getElementById("clEnabled").innerHTML = node.data.enabled;
+    document.getElementById("clOptional").innerHTML = node.data.optional;
   }
 
   function displayCommon(node) {
-    document.getElementById("commonLabel").innerHTML = node.label;
-  }
-
-  // Fill out the TC references.
-  function getReferences(node) {
-    var i;
-    var child;
-    if (node.type == C_Q_CL || node.type == C_BC_CL) {
-      $.ajax({
-        url: "/thesaurus_concepts/" + node.subject_ref.id,
-        type: "GET",
-        data: { "namespace": node.subject_ref.namespace },
-        dataType: 'json',
-        error: function (xhr, status, error) {
-          var html = alertError("An error has occurred loading a Terminology reference.");
-          displayAlerts(html);
-        },
-        success: function(result){
-          node.subject_data = result;
-          node.name = result.label;
-          displayTree(1);
-        }
-      });
-    } else if (node.type == C_BC_QUESTION) {
-      $.ajax({
-        url: "/biomedical_concepts/properties/" + node.property_ref.subject_ref.id,
-        type: "GET",
-        data: { "namespace": node.property_ref.subject_ref.namespace },
-        dataType: 'json',
-        error: function (xhr, status, error) {
-          var html = alertError("An error has occurred loading a Biomedical Concept reference.");
-          displayAlerts(html);
-        },
-        success: function(result){
-          node.subject_data = result;
-          displayTree(1);
-        }
-      });
-    }
-    if (node.hasOwnProperty('children')) {
-      for (i=0; i<node.children.length; i++) {
-        child = node.children[i];
-        getReferences(child);
-      }
-    } 
+    document.getElementById("commonLabel").innerHTML = node.data.label;
   }
   
 });

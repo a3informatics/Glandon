@@ -57,7 +57,7 @@ class Form::Group::Normal < Form::Group
   def to_json
     json = super
     json[:repeating] = self.repeating
-    self.bc_ref = self.bc_ref.nil? ? {} : self.bc_ref.to_json
+    json[:bc_ref] = self.bc_ref.nil? ? {} : self.bc_ref.to_json
     self.groups.sort_by! {|u| u.ordinal}
     self.groups.each do |group|
       json[:children] << group.to_json

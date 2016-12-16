@@ -1,4 +1,7 @@
-<%= javascript_include_tag 'standard_datatable' %>
+<%= javascript_include_tag 'form_show', 'ajax_requests', 'form_utility'%>
+<script id="jsonData" type="text/json">
+    <%= raw @form.to_operation.to_json %>
+</script>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @form} %>
 <div class="col-md-12">
 	<h4>Details</h4>
@@ -38,29 +41,17 @@
 			<tr>
 				<th>Ordinal</th>
 				<th>Label</th>
-				<th>Optional</th>
-				<th>Completion</th>
-				<th>Note</th>
 				<th>Question Text</th>
 				<th>Datatype</th>
 				<th>Format</th>
 				<th>Mapping</th>
+				<th>Terminology</th>
+				<th></th>
+				<th>Completion</th>
+				<th>Note</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% @results.each do |item| %>
-				<tr>
-			  	<td><%= item[:ordinal] %></td>
-			  	<td><%= item[:label] %></td>
-			  	<td><%= item[:optional] %></td>
-			  	<td><%= raw item[:completion] %></td>
-			  	<td><%= raw item[:note] %></td>
-			  	<td><%= raw item[:question_text] %></td>
-			  	<td><%= raw item[:datatype] %></td>
-			  	<td><%= raw item[:format] %></td>
-			  	<td><%= raw item[:mapping] %></td>
-				</tr>
-			<% end %>	
 		</tbody>
 	</table>
 	<%= link_to "Clone", clone_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>

@@ -59,7 +59,11 @@ class Form::Item::Common < Form::Item
       json[:item_refs] << ref.to_json
     end
     json[:children] = []
-    json[:children] << Form::Item::BcProperty.find(item_refs[0].id, item_refs[0].namespace).to_json if item_refs.length > 0
+    if item_refs.length > 0
+      property = Form::Item::BcProperty.find(item_refs[0].id, item_refs[0].namespace)
+      property.is_common = false # Important so that the item is displayed. This is the common group so it is not common!!
+      json[:children] << property.to_json 
+    end
     return json
   end
 

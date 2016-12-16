@@ -27,13 +27,6 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 
-// Small attempt to collapse nav. Ignore for the moment
-//$(document).ready(function() {
-//  $('#page_nav_menu_hide').click(function() {
-//    $('#page_nav_menu').hide();
-//  });
-//});
-
 // Managed Item Types
 var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
 var C_USERDOMAIN = "http://www.assero.co.uk/BusinessDomain#UserDomain";
@@ -65,6 +58,8 @@ var C_PLACEHOLDER = "http://www.assero.co.uk/BusinessForm#Placeholder";
 var C_TEXTLABEL = "http://www.assero.co.uk/BusinessForm#TextLabel";
 var C_BC_QUESTION = "http://www.assero.co.uk/BusinessForm#BcProperty";
 var C_QUESTION = "http://www.assero.co.uk/BusinessForm#Question";
+var C_MAPPING = "http://www.assero.co.uk/BusinessForm#Mapping";
+var C_COMMON_ITEM = "http://www.assero.co.uk/BusinessForm#CommonItem";
 var C_Q_CL = C_TC_REF;
 var C_BC_CL = C_TC_REF;
 

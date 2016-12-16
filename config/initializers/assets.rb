@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-%w( colour token print
+%w( colour token print ajax_requests
   iso_concept_system_viewer 
   iso_concept_graph iso_concept_impact
   iso_managed_comment_edit iso_managed_list iso_managed_tag_edit iso_managed_tag_list iso_managed_graph
@@ -22,7 +22,7 @@ Rails.application.config.assets.version = '1.0'
 	biomedical_concept_templates biomedical_concepts biomedical_concepts_editor 
 	cdisc_search
   thesauri_editor thesauri_viewer thesauri_search
-  form_placeholder_new form_editor form_viewer 
+  form_placeholder_new form_editor form_viewer form_show form_utility
   d3_local_v2 d3graph d3_graph d3_editor 
   standard_datatable ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]

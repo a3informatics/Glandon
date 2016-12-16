@@ -4,13 +4,6 @@ class FormsController < ApplicationController
   
   C_CLASS_NAME = "FormsController"
 
-  #def test
-  #  authorize Form, :view?
-  #  ns = params[:namespace]
-  #  id = params[:id]
-  #  @form = Form.find(id,ns)
-  #end
-
   def new
     authorize Form
     @form = Form.new
@@ -43,12 +36,6 @@ class FormsController < ApplicationController
     @form = Form.new
   end
   
-  def bc_normal_new
-    authorize Form, :new?
-    @forms = BiomedicalConcept.all
-    @form = Form.new
-  end
-  
   def placeholder_create
     authorize Form, :create?
     @form = Form.createPlaceholder(the_params)
@@ -60,17 +47,6 @@ class FormsController < ApplicationController
       redirect_to placeholder_new_forms_path
     end
   end
-  
-  #def bc_normal_create
-  #  authorize Form, :create?
-  #  @form = Form.createBcNormal(the_params)
-  #  if @form.errors.empty?
-  #    redirect_to forms_path
-  #  else
-  #    flash[:error] = @form.errors.full_messages.to_sentence
-  #    redirect_to bc_normal_new_forms_path
-  #  end
-  #end
   
   def edit
     authorize Form
@@ -184,7 +160,9 @@ class FormsController < ApplicationController
   end
 
 private
+
   def the_params
     params.require(:form).permit(:formId, :namespace, :freeText, :identifier, :label, :children => {}, :bcs => [])
-  end  
+  end
+
 end
