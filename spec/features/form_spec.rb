@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe "Thesaurus", :type => :feature do
+describe "Forms", :type => :feature do
   
   include DataHelpers
 
-  describe "Sponsor Terminology", :type => :feature do
+  describe "Forms", :type => :feature do
   
     before :all do
       clear_triple_store
@@ -75,9 +75,6 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Show').click
       #save_and_open_page
       expect(page).to have_content 'Show: Test 2 T2 (, V1, Incomplete)'
-      expect(page).to have_content 'A00001'
-      #expect(page).to have_content 'A00010'
-      #expect(page).to have_content 'A00020'
     end
 
     it "history allows the view page to be viewed" do
@@ -108,10 +105,10 @@ describe "Thesaurus", :type => :feature do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: CDISC EXT'
+      expect(page).to have_content 'History: T2'
       find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Edit').click
-      save_and_open_page
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note the up version because V1 is at 'Standard'
+      #save_and_open_page
+      expect(page).to have_content 'Edit: Test 2 T2 (, V1, Incomplete)' # Note the up version because V1 is at 'Standard'
       #click_button 'Close' # This requires Javascript so wont work in this test.
       #expect(page).to have_content 'History: CDISC EXT'
     end

@@ -309,7 +309,7 @@ describe ThesauriController do
     login_reader
 
     it "prevents access to a reader, edit" do
-      post :edit
+      get :edit, id: 1 # id required to be there for routing, can be anything
       expect(response).to redirect_to("/")
     end
 
@@ -318,13 +318,8 @@ describe ThesauriController do
       expect(response).to redirect_to("/")
     end
 
-    it "prevents access to a reader, update" do
-      post :update
-      expect(response).to redirect_to("/")
-    end
-
     it "prevents access to a reader, destroy" do
-      delete :destroy
+      delete :destroy, id: 10 # id required to be there for routing, can be anything
       expect(response).to redirect_to("/")
     end
 
