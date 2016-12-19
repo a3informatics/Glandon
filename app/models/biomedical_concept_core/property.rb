@@ -195,37 +195,4 @@ private
     return object  
   end
 
-=begin
-  def self.getDatatype (parentDatatype, count, bridg_path)
-    result = ""
-    if count > 0 then
-      result = "CL"
-    else
-      if parentDatatype == "CD"
-        result = "CL"
-      elsif parentDatatype == "PQR"
-        # TODO: This is horid. Oddity with ISO21090. 
-        # TODO: Need better mechanism
-        if bridg_path.ends_with?(".code")
-          result = "CL"
-        else
-          result = "F"
-        end
-      elsif parentDatatype == "BL"
-        result = "BL"
-      elsif parentDatatype == "SC"
-        result = "CL"
-      elsif parentDatatype == "IVL_TS_DATETIME"
-        result = "D+T"
-      elsif parentDatatype == "TS_DATETIME"
-        result = "D+T"
-      else
-        result = "S"
-      end
-    end
-    #ConsoleLogger::log(C_CLASS_NAME,"getDatatype","Parent=" + parentDatatype + ", Result=" + result + ", Count=" + count.to_s)
-    return result 
-  end
-=end
-
 end

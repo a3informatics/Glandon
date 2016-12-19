@@ -112,6 +112,7 @@ describe BiomedicalConceptCore::Property do
         :enabled => false,
         :format => "5.2",
         :simple_datatype => "string",
+        :bridg_path => "a.b.c",
         :type => "http://www.assero.co.uk/CDISCBiomedicalConcept#Node"
       }
     triples = {}
@@ -126,6 +127,7 @@ describe BiomedicalConceptCore::Property do
     triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.assero.co.uk/CDISCBiomedicalConcept#enabled", object: "false" }
     triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.assero.co.uk/CDISCBiomedicalConcept#format", object: "5.2" }
     triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.assero.co.uk/CDISCBiomedicalConcept#simple_datatype", object: "string" }
+    triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.assero.co.uk/CDISCBiomedicalConcept#bridg_path", object: "a.b.c" }
     item = BiomedicalConceptCore::Property.new(triples, "N_1")
     expect(item.to_json).to eq(result)    
   end
@@ -165,6 +167,7 @@ describe BiomedicalConceptCore::Property do
                   :enabled => false,
                   :format => "",
                   :simple_datatype => "string",
+                  :bridg_path=>"DefinedObservation.nameCode.CD.originalText.ED.value",
                   :children => []
                 }
               ]
@@ -190,6 +193,7 @@ describe BiomedicalConceptCore::Property do
         :prompt_text => "Units",
         :question_text => "Result units?",
         :simple_datatype => "string",
+        :bridg_path => "PerformedClinicalResult.value.PQR.code",
         :children => 
         [ 
           {
@@ -278,6 +282,7 @@ describe BiomedicalConceptCore::Property do
         :enabled => false,
         :format => "10.1",
         :simple_datatype => "float",
+        :bridg_path => "x.y.z",
         :type => "http://www.example.com/path#rdf_test_type"
       }
     item = BiomedicalConceptCore::Property.new
@@ -292,6 +297,7 @@ describe BiomedicalConceptCore::Property do
     item.collect = false
     item.format = "10.1"
     item.simple_datatype = "float"
+    item.bridg_path = "x.y.z"
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     expect(item.to_json).to eq(result)
   end
@@ -312,6 +318,7 @@ describe BiomedicalConceptCore::Property do
         :enabled => false,
         :format => "10.1",
         :simple_datatype => "float",
+        :bridg_path => "ddd.eee.fff",
         :type => "http://www.example.com/path#rdf_test_type"
       }
     expect(BiomedicalConceptCore::Property.from_json(result).to_json).to eq(result)
@@ -336,7 +343,7 @@ describe BiomedicalConceptCore::Property do
       "<http://www.example.com/path#XXX_P1> cbc:format \"10.1\"^^xsd:string . \n" +
       "<http://www.example.com/path#XXX_P1> cbc:enabled \"false\"^^xsd:boolean . \n" +
       "<http://www.example.com/path#XXX_P1> cbc:collect \"false\"^^xsd:boolean . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:bridg_path \"\"^^xsd:string . \n" +
+      "<http://www.example.com/path#XXX_P1> cbc:bridg_path \"ddd.eee.fff\"^^xsd:string . \n" +
       "<http://www.example.com/path#XXX_P1> cbc:simple_datatype \"float\"^^xsd:string . \n" +
       "}"
     item = BiomedicalConceptCore::Property.new
@@ -351,6 +358,7 @@ describe BiomedicalConceptCore::Property do
     item.collect = false
     item.format = "10.1"
     item.simple_datatype = "float"
+    item.bridg_path = "ddd.eee.fff"
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
     expect(sparql.to_s).to eq(result)
