@@ -4,6 +4,10 @@ describe Thesaurus do
 
   include DataHelpers
 
+  def sub_dir
+    return "models"
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -70,8 +74,8 @@ describe Thesaurus do
 
   it "allows a Thesaurus to be found" do
     th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #write_hash_to_yaml_file(th.to_json, "thesaurus_example_1.yaml")
-    result_th = read_yaml_file_to_hash("thesaurus_example_1.yaml")
+    #write_hash_to_yaml_file_2(th.to_json, sub_dir, "thesaurus_example_1.yaml")
+    result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_1.yaml")
     expect(th.to_json).to eq(result_th)
   end
 
@@ -82,12 +86,12 @@ describe Thesaurus do
 
   it "allows the complete Th to be found" do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    result_th = read_yaml_file_to_hash("thesaurus_example_2.yaml")
+    result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_2.yaml")
     expect(th.to_json).to eq(result_th)    
   end
 
   it "allows the thesaurus to be found from a concept" do
-    result_th = read_yaml_file_to_hash("thesaurus_example_3.yaml")
+    result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_3.yaml")
     th =Thesaurus.find_from_concept("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     expect(th.to_json).to eq(result_th)
   end
@@ -151,7 +155,7 @@ describe Thesaurus do
   end
   
   it "allows a simple creation of a thesaurus" do
-    result_th = read_yaml_file_to_hash("thesaurus_example_4.yaml")
+    result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_4.yaml")
     th = Thesaurus.create_simple({:identifier => "TEST", :label => "Test Thesaurus"})
     result_th[:creation_date] = date_check_now(th.creationDate).iso8601
     result_th[:last_changed_date] = date_check_now(th.lastChangeDate).iso8601
@@ -160,8 +164,8 @@ describe Thesaurus do
   end
 
   it "allows for the creation of a thesaurus" do
-    th_result = read_yaml_file_to_hash("thesaurus_example_6.yaml")
-    operation = read_yaml_file_to_hash("thesaurus_example_5.yaml")
+    th_result = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_6.yaml")
+    operation = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_5.yaml")
     th = Thesaurus.create(operation)
     th_result[:creation_date] = operation[:managed_item][:creation_date]
     th_result[:last_changed_date] = date_check_now(th.lastChangeDate).iso8601
@@ -179,7 +183,7 @@ describe Thesaurus do
   it "allows the Th to be exported as SPARQL" do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     sparql = th.to_sparql_v2
-    result_sparql = read_text_file("thesaurus_example_7.txt")
+    result_sparql = read_text_file_2(sub_dir, "thesaurus_example_7.txt")
     expect(sparql.to_s).to eq(result_sparql)
   end
 

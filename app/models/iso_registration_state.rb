@@ -163,9 +163,6 @@ class IsoRegistrationState
       end
       self.registrationStatus = Triples.get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
       self.administrativeNote = Triples.get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
-      #temp_effective_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate")
-      #temp_until_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "untilDate")
-      #set_current_datetimes(temp_effective_date, temp_until_date)
       self.effective_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "effectiveDate").to_time_with_default
       self.until_date = Triples.get_property_value(triples, UriManagement::C_ISO_R, "untilDate").to_time_with_default
       self.unresolvedIssue = Triples.get_property_value(triples, UriManagement::C_ISO_R, "unresolvedIssue")
@@ -326,7 +323,6 @@ class IsoRegistrationState
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      #ConsoleLogger::log(C_CLASS_NAME,"find","Node=" + node.to_s)
       raSet = node.xpath("binding[@name='b']/uri")
       rsSet = node.xpath("binding[@name='c']/literal")
       anSet = node.xpath("binding[@name='d']/literal")
@@ -335,7 +331,7 @@ class IsoRegistrationState
       uiSet = node.xpath("binding[@name='f']/literal")
       asSet = node.xpath("binding[@name='g']/literal")
       psSet = node.xpath("binding[@name='h']/literal")
-      if raSet.length == 1 # && rsSet.length == 1 && anSet.length == 1 && edSet.length == 1 && uiSet.length == 1 && asSet.length == 1 && psSet.length == 1
+      if raSet.length == 1
         object.id = id
         object.registrationAuthority = IsoRegistrationAuthority.find(ModelUtility.extractCid(raSet[0].text))
         object.registrationStatus = rsSet[0].text
@@ -388,7 +384,7 @@ class IsoRegistrationState
       uiSet = node.xpath("binding[@name='f']/literal")
       asSet = node.xpath("binding[@name='g']/literal")
       psSet = node.xpath("binding[@name='h']/literal")
-      if uriSet.length == 1 # && rsSet.length == 1 && rnSet.length == 1 && edSet.length == 1 && uiSet.length == 1 && asSet.length == 1 && psSet.length == 1
+      if uriSet.length == 1
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.registrationStatus = rsSet[0].text
@@ -426,8 +422,8 @@ class IsoRegistrationState
           "	:#{object.id} isoR:byAuthority :#{object.registrationAuthority.id} . \n" +
           "	:#{object.id} isoR:registrationStatus \"#{object.registrationStatus}\"^^xsd:string . \n" +
           "	:#{object.id} isoR:administrativeNote \"#{object.administrativeNote}\"^^xsd:string . \n" +
-          "	:#{object.id} isoR:effectiveDate \"#{object.effective_date}\"^^xsd:string . \n" +
-          " :#{object.id} isoR:untilDate \"#{object.until_date}\"^^xsd:string . \n" +
+          "	:#{object.id} isoR:effectiveDate \"#{SparqlUtility.replace_special_chars(object.effective_date.iso8601)}\"^^xsd:dateTime . \n" +
+          " :#{object.id} isoR:untilDate \"#{SparqlUtility.replace_special_chars(object.until_date.iso8601)}\"^^xsd:dateTime . \n" +
           "	:#{object.id} isoR:unresolvedIssue \"#{object.unresolvedIssue}\"^^xsd:string . \n" +
           "	:#{object.id} isoR:administrativeStatus \"#{object.administrativeStatus}\"^^xsd:string . \n" +
           "	:#{object.id} isoR:previousState \"#{object.previousState}\"^^xsd:string . \n" +
@@ -525,8 +521,8 @@ class IsoRegistrationState
       "} \n" +
       "INSERT \n" +
       "{ \n" +
-      " :" + id + " isoR:effectiveDate \"" + SparqlUtility.replace_special_chars(Time.now.iso8601) + "\"^^xsd:dateTime . \n" +
-      " :" + id + " isoR:untilDate \"" + SparqlUtility.replace_special_chars(C_UNTIL_DATETIME) + "\"^^xsd:dateTime . \n" +
+      " :" + id + " isoR:effectiveDate \"#{SparqlUtility.replace_special_chars(Time.now.iso8601)}\"^^xsd:dateTime . \n" +
+      " :" + id + " isoR:untilDate \"#{SparqlUtility.replace_special_chars(C_UNTIL_DATETIME)}\"^^xsd:dateTime . \n" +
       "} \n" +
       "WHERE \n" +
       "{ \n" +
@@ -553,7 +549,7 @@ class IsoRegistrationState
       "} \n" +
       "INSERT \n" +
       "{ \n" +
-      " :" + id + " isoR:untilDate \"" + Time.now.iso8601 + "\"^^xsd:dateTime . \n" +
+      " :" + id + " isoR:untilDate \"#{SparqlUtility.replace_special_chars(Time.now.iso8601)}\"^^xsd:dateTime . \n" +
       "} \n" +
       "WHERE \n" +
       "{ \n" +

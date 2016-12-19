@@ -114,7 +114,7 @@ private
       end
     elsif args.has_key?(:literal) && args.has_key?(:primitive_type) && object_literal
       literal = args[:literal]
-      if args[:primitive_type] == "string"
+      if args[:primitive_type] == BaseDatatype.to_xsd(BaseDatatype::C_STRING) || BaseDatatype.to_xsd(BaseDatatype::C_DATETIME) 
         literal = SparqlUtility::replace_special_chars(args[:literal])
       end
       part = "\"#{literal}\"^^xsd:#{args[:primitive_type]}"

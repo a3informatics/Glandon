@@ -89,6 +89,32 @@ describe SparqlUpdateV2 do
     expect(sparql.to_s).to eq(result)
   end
 
+  it "allows a literal triple to be added, dateTime" do
+    result = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "INSERT DATA \n" +
+      "{ \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ppp> <http://www.example.com/test#ooo> . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> <http://www.example.com/test#ooo> . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> owl:ooo3 . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"2012-01-01T12:34:56%2B01:00\"^^xsd:dateTime . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\"^^xsd:string . \n" +
+      "}"
+    sparql = SparqlUpdateV2.new()
+    s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = UriV2.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = UriV2.new({:uri => "http://www.example.com/test#ppp"})
+    sparql.triple({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
+    sparql.triple({:uri => s_uri}, {:namespace => "http://www.example.com/test", :id => "#ooo2"}, {:uri => o_uri})
+    sparql.triple({:uri => s_uri}, {:namespace => "http://www.example.com/test", :id => "#ooo2"}, {:prefix => "owl", :id => "ooo3"})
+    sparql.triple({:uri => s_uri}, {:namespace => "http://www.example.com/test", :id => "#ooo2"}, {:literal => "2012-01-01T12:34:56+01:00", :primitive_type => "dateTime"})
+    sparql.triple({:uri => s_uri}, {:namespace => "http://www.example.com/test", :id => "#ooo2"}, {:literal => "hello world", :primitive_type => "string"})
+    expect(sparql.to_s).to eq(result)
+  end
+
   it "put a literal triple in the predicate position" do
     sparql = SparqlUpdateV2.new()
     s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})

@@ -730,7 +730,7 @@ class IsoManaged < IsoConcept
       " :" + self.id + " isoT:explanatoryComment \"" + SparqlUtility::replace_special_chars(params[:explanatoryComment]) + "\"^^xsd:string . \n" +
       " :" + self.id + " isoT:changeDescription \"" + SparqlUtility::replace_special_chars(params[:changeDescription]) + "\"^^xsd:string . \n" +
       " :" + self.id + " isoT:origin \"" + SparqlUtility::replace_special_chars(params[:origin]) + "\"^^xsd:string . \n" +
-      " :" + self.id + " isoT:lastChangeDate \"#{date_time}\"^^xsd:dateTime . \n" +
+      " :" + self.id + " isoT:lastChangeDate \"#{SparqlUtility::replace_special_chars(date_time)}\"^^xsd:dateTime . \n" +
       "} \n" +
       "WHERE \n" +
       "{ \n" +
