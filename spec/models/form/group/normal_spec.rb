@@ -79,14 +79,53 @@ describe Form::Group::Normal do
 
   it "allows an object to be found" do
     item = Form::Group::Normal.find("F-ACME_T2_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    write_hash_to_yaml_file_2(item.to_json, sub_dir, "normal_find.yaml")
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "normal_find.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "normal_find.yaml")
     expect(item.to_json).to eq(expected)
   end
 
-  it "allows an object to be created from JSON"
+  it "allows an object to be created from JSON" do
+    json = 
+    {
+      type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
+      label: "Group",
+      id: "",
+      namespace: "",
+      ordinal: 1,
+      optional: false,
+      repeating: false,
+      note: "",
+      completion: "",
+      bc_ref: {},
+      children: 
+      [
+        {
+          type: "http://www.assero.co.uk/BusinessForm#CommonGroup",
+          label: "Common New",
+          id: "",
+          namespace: "",
+          ordinal: 1,
+          optional: false,
+          repeating: false,
+          completion: "",
+          note: "",
+          children: []
+        }
+      ]
+    }
+    result = Form::Group::Normal.from_json(json)
+    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "from_json.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "from_json.yaml")
+    expect(result.to_json).to eq(expected)
+  end
   
-  it "allows an object to be exported as JSON"
+  it "allows an object to be exported as JSON" do
+    item = Form::Group::Normal.find("F-ACME_T2_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
+    result = item.to_json
+    write_hash_to_yaml_file_2(result, sub_dir, "to_json.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "to_json.yaml")
+    expect(result).to eq(expected)
+  end
 
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new

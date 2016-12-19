@@ -854,8 +854,8 @@ function makeCommon(node) {
 // Detaches the node from its 'natural' position
 function refFromCommon(d3Parent, d3Node) {
   var ref = {};
-  ref.id = d3Node.data.id;
-  ref.namespace = d3Node.data.namespace;
+  ref.id = d3Node.data.property_ref.subject_ref.id;
+  ref.namespace = d3Node.data.property_ref.subject_ref.namespace;
   ref.key = d3Node.key;
   d3Parent.data.item_refs.push(ref);
   setParent(d3Parent);
@@ -879,7 +879,7 @@ function restoreCommon(d3Node) {
 function newFormGroup(nullVar) {
   return { 
     type: C_NORMAL_GROUP, label: "", id: "", namespace: "", ordinal: 0, optional: false, repeating: false, 
-    note: "", completion: "", biomedical_concept_reference: {}, children: [] };
+    note: "", completion: "", bc_ref: {}, children: [] };
 }
 
 function newCommonGroup(nullVar) {
@@ -930,7 +930,6 @@ function newLabelText(nullVar) {
 }
 
 function newBCGroup(bc) {
-  // TODO: Extra fields in the biomedical_concept_reference
   return {
     type: C_NORMAL_GROUP, label: "", id: "", namespace: "", ordinal: 0, 
     repeating: false, completion: "", note: "", 
@@ -947,10 +946,9 @@ function newBCGroup(bc) {
 }
 
 function newBCProperty(property) {
-  // TODO: Extra fields in the property_reference
   return {
-    type: C_BC_QUESTION, label: "", label: "", id: "", namespace: "", ordinal: 0, 
-    completion: "", note: "",
+    type: C_BC_QUESTION, label: "", id: "", namespace: "", ordinal: 0, 
+    is_common: false, completion: "", note: "",
     property_ref: 
       { 
         enabled: true, 
@@ -1159,12 +1157,15 @@ function initData () {
   varClCurrent = null;
   varClCurrentRow = null;
   questionDatatypeValue = "I";
-  d3eInit(saveNode, displayNode);
+  d3eInit(saveNode, displayNode, empty);
   rootNode = d3eRoot(managedItem.label, C_FORM, managedItem)
   for (i=0; i<managedItem.children.length; i++) {
     child = managedItem.children[i];
     setD3(child, rootNode);
   }
+}
+
+function empty(node) {
 }
 
 /*
@@ -1186,7 +1187,7 @@ function setD3(sourceNode, d3ParentNode) {
       child = sourceNode.children[i];
       setD3(child, newNode);
     }
-    }
+  }
 }
 
 function saveNode() {
@@ -1211,7 +1212,7 @@ function saveNode() {
   } else if (d3Node.type == C_TC_REF) {
     saveCl(d3Node)
   } 
-  saveRest();
+  //saveRest();
 }
 
 function displayNode(d3Node) {
@@ -1242,8 +1243,8 @@ function displayNode(d3Node) {
     selectMapping();
     displayMapping(d3Node);
   } else if (d3Node.type == C_COMMON_ITEM) {
-    selectItem();
-    displayItem(d3Node);
+    clearSelect();
+    //displayItem(d3Node);
   } else if (d3Node.type == C_PLACEHOLDER) {
     selectPlaceholder();
     displayPlaceholder(d3Node);

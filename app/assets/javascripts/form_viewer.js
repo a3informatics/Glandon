@@ -14,7 +14,7 @@ $(document).ready(function() {
     html = $("#jsonData").html();
     json = $.parseJSON(html);
     mi = json.managed_item;
-    d3eInit(empty, displayNode);
+    d3eInit(empty, displayNode, empty);
     rootNode = d3eRoot(mi.label, "", mi)
     if (mi.hasOwnProperty('children')) {
       for (i=0; i<mi.children.length; i++) {

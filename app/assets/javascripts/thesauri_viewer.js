@@ -1,155 +1,95 @@
 $(document).ready(function() {
   
-  var sourceJson;
-  var managedItem;
-  var d3Div = document.getElementById("d3");
-  var html  = $("#jsonData").html();
-  var normal = true;
-  var currentNode = null;
-  var currentThis = null;
-  var nextKeyId;
+  var html;
+  var json;
   var rootNode;
+  var mi;
 
-  var conceptLabelElement = document.getElementById("conceptLabel");
-  var conceptIdElement = document.getElementById("conceptId");
-  var conceptNotationElement = document.getElementById("conceptNotation");
-  var conceptDefinitionElement = document.getElementById("conceptDefinition");
-  var conceptPreferredTermElement = document.getElementById("conceptPreferredTerm");
-  var conceptSynonymElement = document.getElementById("conceptSynonym");
-  
-  // Get the JSON structure. Set the namespace of the thesauri.
-  sourceJson = $.parseJSON(html);
-  managedItem = sourceJson.managed_item;
-
-  // Create root node
-  rootNode = d3Root(managedItem);
-  nextKeyId = rootNode.key + 1;
-  for (i=0; i<rootNode.children.length; i++) {
-    child = rootNode.children[i];
-    d3Node(child, rootNode);
+  html = $("#jsonData").html();
+  json = $.parseJSON(html);
+  mi = json.managed_item;
+  d3eInit(empty, displayNode, dblClick);
+  rootNode = d3eRoot(mi.label, "", mi)
+  rootNode.children_checked = true;
+  if (mi.hasOwnProperty('children')) {
+    for (i=0; i<mi.children.length; i++) {
+      child = mi.children[i];
+      setD3(child, rootNode);
+    }
   }
-
-  // Draw the initial tree;
-  displayTree(rootNode.key);
-
-  /**
-   *  Function to handle click on the toggle button. 
-   */
-  $('#toggleButton').click(function() {
-    if (normal) {
-      normal = false;
-    } else {
-      normal = true;
-    }
-    displayTree();
-  });
-
-  /**
-   * Function to handle click on the D3 tree.
-   * Show the node info. Highlight the node.
-   */
-  function click(node) {
-    if (currentNode != null) {
-      d3ClearNode(currentNode, currentThis);
-    }
-    d3MarkNode(this);
-    currentNode = node;
-    currentThis = this;
-    if (!node.expand) {
-      conceptLabelElement.innerHTML = node.label;
-      conceptIdElement.innerHTML = node.identifier;
-      conceptNotationElement.innerHTML = node.notation;
-      conceptDefinitionElement.innerHTML = node.definition;
-      conceptPreferredTermElement.innerHTML = node.preferredTerm;
-      conceptSynonymElement.innerHTML = node.synonym; 
-    }
-  }  
-
-  /**
-   * Function to handle double click on the D3 tree.
-   * Expand/delete the node clicked.
-   */
-  function dblClick(node) {
-    if (!node.children_checked) {
+  d3eDisplayTree(rootNode.key);
+  
+  /*
+  * Double Click Callback
+  *
+  * @param d3Node [Object] The D3 node double clicked on
+  * @return [Null]
+  */
+  function dblClick(d3Node) {
+    if (!d3Node.children_checked) {
       $.ajax({
-        url: "/thesaurus_concepts/" + node.id,
+        url: "/thesaurus_concepts/" + d3Node.data.id,
         data: {
-          "id": node.id,
-          "namespace": node.namespace
+          "id": d3Node.data.id,
+          "namespace": d3Node.data.namespace
         },
         dataType: 'json',
         success: function(result){
-          node.children = result.children;
-          node.save = result.children;
-          node.children_checked = true;
-          for (i=0; i<node.children.length; i++) {
-            var child = node.children[i];
-            d3Node(child, node);
+          for (i=0; i<result.children.length; i++) {
+            var child = result.children[i];
+            setD3(child, d3Node);
           }
-          displayTree(node.key);
+          d3Node.children_checked = true;
+          d3eDisplayTree(d3Node.key);
         }
       });  
-    } else {
-      if (node.hasOwnProperty('children')) {
-        node.children = [];
-      } else {
-        node.children = node.save;  
-      }  
-      displayTree(node.key);
     }
   }
 
-  /**
-   *  Function to draw the tree
-   */
-  function displayTree(nodeKey) {
-    var height = 400 * (rootNode.children.length / 15);
-    d3AdjustHeight(height);
-    if (normal) {
-      d3TreeNormal(d3Div, rootNode, click, dblClick);
-    } else {
-      d3TreeCircular(d3Div, rootNode, click, dblClick);
-    }
-    var gRef = d3FindGRef(nodeKey);
-    currentThis = gRef;
-    currentNode = gRef.__data__;
-    d3MarkNode(currentThis);
+  /*
+  * Empty Callback Function
+  *
+  * @param node [Object] The D3 node
+  * @return [Null]
+  */
+  function empty(node) {
   }
 
-  // D3 functions
-  // ============
-
-  /**
-   *  Function to setup the root
-   */
-  function d3Root(node) {
-    node.key = 1
-    node.save = node.children;
-    node.enabled = true;
-    node.name = node.label;
-    node.children_checked = true;
-    return node;
-  }  
-
-  /**
-   *  Function to setup the children (recursive).
-   */
-  function d3Node(node, parent) {
+  /*
+  * Set the D3 Structures
+  *
+  * @param sourceNode [Object] The data node
+  * @param d3ParentNode [Object] The parent D3 node
+  * @return [Null]
+  */
+  function setD3(sourceNode, d3ParentNode) {
+    var use;
+    var newNode;
     var i;
     var child;
-    node.key = nextKeyId;
-    node.enabled = true;
-    node.save = node.children;
-    node.parent = parent;
-    node.name = node.label;
-    node.children_checked = false;
-    nextKeyId += 1;
-    if (node.hasOwnProperty('children')) {
-      for (i=0; i<node.children.length; i++) {
-        var child = node.children[i];
-        d3Node(child, node);
-      } 
-    } 
+    newNode = d3eAddNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
+    newNode.children_checked = false;
+    if (sourceNode.hasOwnProperty('children')) {
+      for (i=0; i<sourceNode.children.length; i++) {
+        child = sourceNode.children[i];
+        setD3(child, newNode);
+      }
+    }
   }
-  
+
+  /*
+  * Display The Current Node
+  *
+  * @return [Null]
+  */
+  function displayNode() {
+    var node = d3eGetCurrent();
+    $('#conceptLabel').html(node.data.label); 
+    $('#conceptId').html(node.data.identifier);
+    $('#conceptNotation').html(node.data.notation);
+    $('#conceptDefinition').html(node.data.definition);
+    $('#conceptPreferredTerm').html(node.data.preferredTerm);
+    $('#conceptSynonym').html(node.data.synonym); 
+  }
+
 });

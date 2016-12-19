@@ -1,317 +1,307 @@
 <%= stylesheet_link_tag    'd3_local_v2' %>
 <%= javascript_include_tag 'd3_local_v2', 'd3_editor', 'form_viewer', 'ajax_requests', 'form_utility' %>
 <script id="jsonData" type="text/json">
-    <%= raw @form.to_operation.to_json %>
+  <%= raw @form.to_operation.to_json %>
 </script>
 <div class="col-md-7">
-    <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "View:", :item => @form} %>
-    <div style="height: 800px;" id="d3">
-        <!-- D3 Area -->
-    </div>
+  <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "View:", :item => @form} %>
+    <%= link_to "Close", @close_path, :class => "btn btn-primary" %>
+  <% if @form.edit? and @form.latest? %>
+    <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+  <% end %>
+  <%= link_to "CRF", crf_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+  <%= link_to "aCRF", acrf_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+  <div style="height: 800px;" id="d3">
+    <!-- D3 Area -->
+  </div>
 </div>
 <div class="col-md-5">
-    <br/>
-    <div>
-        <div id="formTable" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Form</h3>
-            </div>
-            <div class="panel-body">
-                    <table class="table table-striped table-condensed">
-                        <tbody>
-                            <tr>
-                                <td><strong>Identifier:</strong></td>
-                                <td id="formIdentifier"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Label:</strong></td>
-                                <td id="formLabel"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Completion Instructions:</strong></td>
-                                <td id="formCompletion"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Notes:</strong></td>
-                                <td id="formNote"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-        <div id="groupTable" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Group</h3>
-            </div>
-            <div class="panel-body">
-                    <table class="table table-striped table-condensed">
-                        <tbody>
-                            <tr>
-                                <td><strong>Label:</strong></td>
-                                <td id="groupLabel"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Repeating:</strong></td>
-                                <td id="groupRepeating"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Optional:</strong></td>
-                                <td id="groupOptional"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Completion Instructions:</strong></td>
-                                <td id="groupCompletion"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Notes:</strong></td>
-                                <td id="groupNote"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-        <div id="commonTable" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Common Group</h3>
-            </div>
-            <div class="panel-body">
-                    <table class="table table-striped table-condensed">
-                        <tbody>
-                            <tr>
-                                <td><strong>Label:</strong></td>
-                                <td id="commonLabel"></td>
-                            </tr>
-                            <!--<tr>
-                                <td><strong>Completion Instructions:</strong></td>
-                                <td id="commonCompletion"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Notes:</strong></td>
-                                <td id="commonNote"></td>
-                            </tr>-->
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-        <div id="bcTable" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Biomedical Concept</h3>
-            </div>
-            <div class="panel-body">
-                    <table class="table table-striped table-condensed">
-                        <tbody>
-                            <tr>
-                                <td><strong>Label:</strong></td>
-                                <td id="bcLabel"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Repeating:</strong></td>
-                                <td id="bcRepeating"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Optional:</strong></td>
-                                <td id="bcOptional"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Completion Instructions:</strong></td>
-                                <td id="bcCompletion"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Notes:</strong></td>
-                                <td id="bcNote"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-        <div id="bcItemTable" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Biomedical Concept Item</h3>
-            </div>
-            <div class="panel-body">
-                    <table class="table table-striped table-condensed">
-                        <tbody>
-                            <tr>
-                                <td><strong>Label:</strong></td>
-                                <td id="bcItemLabel"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Enabled:</strong></td>
-                                <td id="bcItemEnabled"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Optional:</strong></td>
-                                <td id="bcItemOptional"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Question Text:</strong></td>
-                                <td id="bcItemQText"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Datatype:</strong></td>
-                                <td id="bcItemDatatype"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Format:</strong></td>
-                                <td id="bcItemFormat"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Completion Instructions:</strong></td>
-                                <td id="bcItemCompletion"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Notes:</strong></td>
-                                <td id="bcItemNote"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-        <div id="questionTable" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Question</h3>
-            </div>
-            <div class="panel-body">
-                    <table class="table table-striped table-condensed">
-                        <tbody>
-                            <tr>
-                                <td><strong>Label:</strong></td>
-                                <td id="questionLabel"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Optional:</strong></td>
-                                <td id="questionOptional"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Question Text:</strong></td>
-                                <td id="questionQText"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Mapping:</strong></td>
-                                <td id="questionMapping"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Datatype:</strong></td>
-                                <td id="questionDatatype"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Format:</strong></td>
-                                <td id="questionFormat"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Completion Instructions:</strong></td>
-                                <td id="questionCompletion"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Notes:</strong></td>
-                                <td id="questionNote"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-        <div id="labelTextTable" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Label Text</h3>
-            </div>
-            <div class="panel-body">
-                    <table class="table table-striped table-condensed">
-                        <tbody>
-                            <tr>
-                                <td><strong>Label:</strong></td>
-                                <td id="labelTextLabel"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Optional:</strong></td>
-                                <td id="labelTextOptional"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Label Text:</strong></td>
-                                <td id="labelTextLabelText"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Completion Instructions:</strong></td>
-                                <td id="labelTextCompletion"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Notes:</strong></td>
-                                <td id="labelTextNote"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-        <div id="placeholderTable" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Placeholder</h3>
-            </div>
-            <div class="panel-body">
-                    <table class="table table-striped table-condensed">
-                        <tbody>
-                            <tr>
-                                <td><strong>Label:</strong></td>
-                                <td id="placeholderLabel"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Optional:</strong></td>
-                                <td id="placeholderOptional"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Free Text:</strong></td>
-                                <td id="placeholderFreeText"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Completion Instructions:</strong></td>
-                                <td id="placeholderCompletion"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Notes:</strong></td>
-                                <td id="placeholderNote"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-        <div id="clTable" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Code List</h3>
-            </div>
-            <div class="panel-body">
-                    <table class="table table-striped table-condensed">
-                        <tbody>
-                            <tr>
-                                <td><strong>Identifier:</strong></td>
-                                <td id="clIdentifier"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Label:</strong></td>
-                                <td id="clLabel"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Default Label:</strong></td>
-                                <td id="clDefaultLabel"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Submission Value:</strong></td>
-                                <td id="clSubmission"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Enabled:</strong></td>
-                                <td id="clEnabled"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Optional:</strong></td>
-                                <td id="clOptional"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
+  <br/>
+  <div id="formTable" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Form</h3>
     </div>
-    <%= link_to "Close", @close_path, :class => "btn btn-primary" %>
-    <% if @form.edit? and @form.latest? %>
-        <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
-    <% end %>
-    <%= link_to "CRF", crf_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
-    <%= link_to "aCRF", acrf_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr>
+            <td><strong>Identifier:</strong></td>
+            <td id="formIdentifier"></td>
+          </tr>
+          <tr>
+            <td><strong>Label:</strong></td>
+            <td id="formLabel"></td>
+          </tr>
+          <tr>
+            <td><strong>Completion Instructions:</strong></td>
+            <td id="formCompletion"></td>
+          </tr>
+          <tr>
+            <td><strong>Notes:</strong></td>
+            <td id="formNote"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="groupTable" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Group</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr>
+            <td><strong>Label:</strong></td>
+            <td id="groupLabel"></td>
+          </tr>
+          <tr>
+            <td><strong>Repeating:</strong></td>
+            <td id="groupRepeating"></td>
+          </tr>
+          <tr>
+            <td><strong>Optional:</strong></td>
+            <td id="groupOptional"></td>
+          </tr>
+          <tr>
+            <td><strong>Completion Instructions:</strong></td>
+            <td id="groupCompletion"></td>
+          </tr>
+          <tr>
+            <td><strong>Notes:</strong></td>
+            <td id="groupNote"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="commonTable" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Common Group</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr>
+            <td><strong>Label:</strong></td>
+            <td id="commonLabel"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="bcTable" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Biomedical Concept</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr>
+            <td><strong>Label:</strong></td>
+            <td id="bcLabel"></td>
+          </tr>
+          <tr>
+            <td><strong>Repeating:</strong></td>
+            <td id="bcRepeating"></td>
+          </tr>
+          <tr>
+            <td><strong>Optional:</strong></td>
+            <td id="bcOptional"></td>
+          </tr>
+          <tr>
+            <td><strong>Completion Instructions:</strong></td>
+            <td id="bcCompletion"></td>
+          </tr>
+          <tr>
+            <td><strong>Notes:</strong></td>
+            <td id="bcNote"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="bcItemTable" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Biomedical Concept Item</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr>
+            <td><strong>Label:</strong></td>
+            <td id="bcItemLabel"></td>
+          </tr>
+          <tr>
+            <td><strong>Enabled:</strong></td>
+            <td id="bcItemEnabled"></td>
+          </tr>
+          <tr>
+            <td><strong>Optional:</strong></td>
+            <td id="bcItemOptional"></td>
+          </tr>
+          <tr>
+            <td><strong>Question Text:</strong></td>
+            <td id="bcItemQText"></td>
+          </tr>
+          <tr>
+            <td><strong>Datatype:</strong></td>
+            <td id="bcItemDatatype"></td>
+          </tr>
+          <tr>
+            <td><strong>Format:</strong></td>
+            <td id="bcItemFormat"></td>
+          </tr>
+          <tr>
+            <td><strong>Completion Instructions:</strong></td>
+            <td id="bcItemCompletion"></td>
+          </tr>
+          <tr>
+            <td><strong>Notes:</strong></td>
+            <td id="bcItemNote"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="questionTable" class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Question</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr>
+              <td><strong>Label:</strong></td>
+              <td id="questionLabel"></td>
+          </tr>
+          <tr>
+              <td><strong>Optional:</strong></td>
+              <td id="questionOptional"></td>
+          </tr>
+          <tr>
+              <td><strong>Question Text:</strong></td>
+              <td id="questionQText"></td>
+          </tr>
+          <tr>
+              <td><strong>Mapping:</strong></td>
+              <td id="questionMapping"></td>
+          </tr>
+          <tr>
+              <td><strong>Datatype:</strong></td>
+              <td id="questionDatatype"></td>
+          </tr>
+          <tr>
+              <td><strong>Format:</strong></td>
+              <td id="questionFormat"></td>
+          </tr>
+          <tr>
+              <td><strong>Completion Instructions:</strong></td>
+              <td id="questionCompletion"></td>
+          </tr>
+          <tr>
+              <td><strong>Notes:</strong></td>
+              <td id="questionNote"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="labelTextTable" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Label Text</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr>
+            <td><strong>Label:</strong></td>
+            <td id="labelTextLabel"></td>
+          </tr>
+          <tr>
+            <td><strong>Optional:</strong></td>
+            <td id="labelTextOptional"></td>
+          </tr>
+          <tr>
+            <td><strong>Label Text:</strong></td>
+            <td id="labelTextLabelText"></td>
+          </tr>
+          <tr>
+            <td><strong>Completion Instructions:</strong></td>
+            <td id="labelTextCompletion"></td>
+          </tr>
+          <tr>
+            <td><strong>Notes:</strong></td>
+            <td id="labelTextNote"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="placeholderTable" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Placeholder</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr>
+            <td><strong>Label:</strong></td>
+            <td id="placeholderLabel"></td>
+          </tr>
+          <tr>
+            <td><strong>Optional:</strong></td>
+            <td id="placeholderOptional"></td>
+          </tr>
+          <tr>
+            <td><strong>Free Text:</strong></td>
+            <td id="placeholderFreeText"></td>
+          </tr>
+          <tr>
+            <td><strong>Completion Instructions:</strong></td>
+            <td id="placeholderCompletion"></td>
+          </tr>
+          <tr>
+            <td><strong>Notes:</strong></td>
+            <td id="placeholderNote"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="clTable" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Code List</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed">
+        <tbody>
+          <tr>
+            <td><strong>Identifier:</strong></td>
+            <td id="clIdentifier"></td>
+          </tr>
+          <tr>
+            <td><strong>Label:</strong></td>
+            <td id="clLabel"></td>
+          </tr>
+          <tr>
+            <td><strong>Default Label:</strong></td>
+            <td id="clDefaultLabel"></td>
+          </tr>
+          <tr>
+            <td><strong>Submission Value:</strong></td>
+            <td id="clSubmission"></td>
+          </tr>
+          <tr>
+            <td><strong>Enabled:</strong></td>
+            <td id="clEnabled"></td>
+          </tr>
+          <tr>
+            <td><strong>Optional:</strong></td>
+            <td id="clOptional"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

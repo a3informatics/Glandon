@@ -100,19 +100,18 @@ class Form::Group::Normal < Form::Group
     subject = {:uri => uri}
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "repeating"}, {:literal => "#{self.repeating}", :primitive_type => "boolean"})
     if !self.bc_ref.nil? 
-      ref_id = self.bc_ref.to_sparql_v2(uri, "hasBiomedicalConcept", 'BCR', 1, sparql)
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasBiomedicalConcept"}, {:namespace => "#{self.namespace}", :id => "#{ref_id}"})
+      ref_uri = self.bc_ref.to_sparql_v2(uri, "hasBiomedicalConcept", 'BCR', 1, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasBiomedicalConcept"}, {:uri => ref_uri})
     end
     self.groups.each do |child|
       if child.rdf_type == Form::Group::Common::C_RDF_TYPE_URI.to_s
-        ref_id = child.to_sparql_v2(uri, sparql)
-        sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id =>  "hasCommon"}, {:namespace => "#{self.namespace}", :id => "#{ref_id}"})
+        ref_uri = child.to_sparql_v2(uri, sparql)
+        sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id =>  "hasCommon"}, {:uri => ref_uri})
       else
-        ref_id = child.to_sparql_v2(uri, sparql)
-        sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id =>  "hasSubGroup"}, {:namespace => "#{self.namespace}", :id => "#{ref_id}"})
+        ref_uri = child.to_sparql_v2(uri, sparql)
+        sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id =>  "hasSubGroup"}, {:uri => ref_uri})
       end    
     end
-    ConsoleLogger::log(C_CLASS_NAME, "to_sparql_v2", "URI=#{self.uri}.")
     return uri
   end
 

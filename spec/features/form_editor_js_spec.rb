@@ -148,9 +148,9 @@ describe "Form Editor", :type => :feature do
       ui_check_input('labelTextText', "This is a markdown label")
       click_button 'markdown_preview'
       ui_check_div_text("genericCompletion", "This is a markdown label")
-      pause
+      #pause
       ui_check_node_ordinal("LT 1", 3)
-      pause
+      #pause
       ui_click_node("Group 1")
       click_button 'groupAddLabelText'
       fill_in 'labelTextLabel', with: "LT 2"

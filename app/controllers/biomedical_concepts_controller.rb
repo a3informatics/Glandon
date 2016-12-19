@@ -42,6 +42,7 @@ class BiomedicalConceptsController < ApplicationController
     authorize BiomedicalConcept
     @identifier = params[:identifier]
     @bc = BiomedicalConcept.history(params)
+    redirect_to biomedical_concepts_path if @bc.count == 0
   end
 
   def new_template

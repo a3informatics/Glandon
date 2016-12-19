@@ -13,7 +13,7 @@ $(document).ready(function() {
     html = $("#jsonData").html();
     json = $.parseJSON(html);
     // Init D3 Editor
-    d3eInit(empty,displayNode);
+    d3eInit(empty, displayNode, empty);
     // Add D3 nodes and display
     rootNode = d3eRoot(json.label, "", json)
     for (i=0; i<json.children.length; i++) {

@@ -1,472 +1,427 @@
-<div class="col-md-5" >
-  <br/>
-  <form id="main_form">
-    <div id="general_panel" class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">General</h3>
+<br/>
+<div id="formInfo" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Form Details</h3>
+  </div>
+  <div class="panel-body">
+    <div>
+      <div class="form-group">
+        <label for="formIdentifier">Identifier:</label>
+        <input type="text" class="form-control" id="formIdentifier" name="Form Identifier">
       </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-4" >
-            <button type="button" id="close" class="btn btn-primary">Close</button>
-            <div class="btn-group" role="group" aria-label="First group">
-              <button id="saving" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-refresh"></span>
-              </button>
-              <button type="submit" id="save" class="btn btn-primary">Save</button>
-            </div>
-          </div>
-          <% if Rails.env == "test" || Rails.env == "development" %>
-            <div class="col-md-4" >
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button type="button" id="click_node" class="btn btn-primary">N:</button>
-                </span>
-                <input type="text" class="form-control" id="click_node_text">
-              </div>
-            </div>
-            <div class="col-md-4" >
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button type="button" id="test" class="btn btn-primary">T:</button>
-                </span>
-                <input type="text" class="form-control" id="test_text">
-              </div>
-            </div>
-          <% end %>
-        </div>
+      <div class="form-group">
+        <label for="formLabel">Label:</label>
+        <input type="text" class="form-control" id="formLabel" name="Form Label" value="Form">
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#formCompletion">
+          <span class="glyphicon glyphicon-resize-full"></span>
+        </button>
+        <label for="formCompletion">Completion Instructions:</label><br/>
+        <textarea class="form-control collapse in" id="formCompletion" name="Form Completion" rows="5" style="font-family:monospace;"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#ormNote">
+          <span class="glyphicon glyphicon-resize-full"></span>
+        </button>
+        <label for="formNote">Notes:</label>
+        <textarea class="form-control collapse in" id="formNote" name="Form Note" rows="5" style="font-family:monospace;"></textarea>
       </div>
     </div>
-    <div id="formInfo" class="panel panel-default">
+    <button type="button" id="formAddGroup" class="btn btn-primary">G+</button>
+  </div>
+</div>
+  <div id="groupInfo" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Group Details</h3>
+    </div>
+    <div class="panel-body">
+      <div>
+        <div class="form-group">
+          <label for="groupLabel">Label:</label>
+          <input type="text" class="form-control" id="groupLabel" name="Group Label" value="Group">
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="checkbox-inline">
+              <input type="checkbox" id="groupRepeating" name="Group Repeating"><strong>Repeating</strong>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="groupOptional" name="Group Optional"><strong>Optional</strong>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#groupCompletion">
+            <span class="glyphicon glyphicon-resize-full"></span>
+          </button>
+          <label for="groupCompletion">Completion Instruction:</label>
+          <textarea class="form-control collapse in" id="groupCompletion" name="Group Completion" rows="5" style="font-family:monospace;"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#groupNote">
+            <span class="glyphicon glyphicon-resize-full"></span>
+          </button>
+          <label for="groupNote">Notes:</label>
+          <textarea class="form-control collapse in" id="groupNote" name="Group Note" rows="5" style="font-family:monospace;"></textarea>
+        </div>
+      </div>
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" id="groupUp" class="btn btn-primary node-up-action">
+          <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
+        </button>
+        <button type="button" id="groupDown" class="btn btn-primary node-down-action">
+          <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
+        </button> 
+        <button type="button" id="groupAddGroup" class="btn btn-primary">G+</button>
+        <button type="button" id="groupAddCommon" class="btn btn-primary">C+</button>
+        <button type="button" id="groupAddBc" class="btn btn-primary">BC+</button>
+        <button type="button" id="groupAddQuestion" class="btn btn-primary">Q+</button>
+        <button type="button" id="groupAddMapping" class="btn btn-primary">M+</button>
+        <button type="button" id="groupAddLabelText" class="btn btn-primary">L+</button>
+        <button type="button" id="groupAddPlaceholder" class="btn btn-primary">P+</button>
+        <button type="button" id="groupDelete" class="btn btn-danger">Delete</button>
+      </div>
+    </div>    
+  </div>
+  <div id="commonInfo" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Common Group Details</h3>
+    </div>
+    <div class="panel-body">
+      <div>
+        <div class="form-group">
+          <label for="commonLabel">Label:</label>
+          <input type="text" class="form-control" id="commonLabel" name="Common Label" value="Common">
+        </div>
+      </div>
+      <button type="button" id="commonDelete" class="btn btn-danger node-delete-action">Delete</button>
+    </div>
+  </div>
+  <div id="bcInfo" class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Form Details</h3>
+          <h3 class="panel-title">Biomedical Concept Details</h3>
       </div>
       <div class="panel-body">
+          <table class="table table-striped table-condensed">
+              <tbody>
+                  <tr>
+                      <td><strong>Identifier:</strong></td>
+                      <td id="bcIdentifier"></td>
+                  </tr>
+                  <tr>
+                      <td><strong>Label:</strong></td>
+                      <td id="bcLabel"></td>
+                  </tr>
+              </tbody>
+          </table>
+          <button type="button" id="bcDelete" class="btn btn-danger">Delete</button>
+      </div>
+  </div>
+  <div id="questionInfo" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Question Details</h3>
+    </div>
+    <div class="panel-body">
+      <div>
         <div>
           <div class="form-group">
-            <label for="formIdentifier">Identifier:</label>
-            <input type="text" class="form-control" id="formIdentifier" name="Form Identifier">
+            <label for="questionLabel">Label:</label>
+            <input type="text" class="form-control" id="questionLabel" name="Question Label">
           </div>
           <div class="form-group">
-            <label for="formLabel">Label:</label>
-            <input type="text" class="form-control" id="formLabel" name="Form Label" value="Form">
+            <label for="questionText">Question Text:</label>
+            <input type="text" class="form-control" id="questionText" name="Question Text">
           </div>
           <div class="form-group">
-            <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#formCompletion">
-              <span class="glyphicon glyphicon-resize-full"></span>
-            </button>
-            <label for="formCompletion">Completion Instructions:</label><br/>
-            <textarea class="form-control collapse in" id="formCompletion" name="Form Completion" rows="5" style="font-family:monospace;"></textarea>
+            <div class="checkbox">
+              <label class="checkbox-inline">
+                <input type="checkbox" id="questionOptional" name="questionOptional"><strong>Optional</strong>
+              </label>
+            </div>
           </div>
           <div class="form-group">
-            <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#ormNote">
-              <span class="glyphicon glyphicon-resize-full"></span>
-            </button>
-            <label for="formNote">Notes:</label>
-            <textarea class="form-control collapse in" id="formNote" name="Form Note" rows="5" style="font-family:monospace;"></textarea>
+            <label for="questionDatatype">Mapping:</label>
+            <input type="text" class="form-control" id="questionMapping" name="Question Mapping">
+          </div>
+          <div id="questionDatatype" class="col-sm-9">
+            <label for="questionDatatype">Datatype:</label><br/>
+            <label class="radio-inline">
+              <input type="radio" id="form_datatype_i" name="dtRadio" value="I"> I
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id="form_datatype_f" name="dtRadio" value="F"> F
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id="form_datatype_s" name="dtRadio" value="S"> S
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id="form_datatype_cl" name="dtRadio" value="CL"> CL
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id="form_datatype_bl" name="dtRadio" value="BL"> BL
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id="form_datatype_d" name="dtRadio" value="D"> D
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id="form_datatype_t" name="dtRadio" value="T"> T
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id="form_datatype_dt" name="dtRadio" value="D+T"> D+T
+            </label>
+          </div>
+          <div class="form-group  col-sm-3">
+            <label for="questionFormat">Format:</label>
+            <input type="text" class="form-control" id="questionFormat" name="questionFormat">
           </div>
         </div>
-        <button type="button" id="formAddGroup" class="btn btn-primary">G+</button>
+        <label for="questionClTable">Code List:</label>
+        <table id="questionClTable" class="table table-striped table-bordered"  cellspacing="0" width="100%">
+          <thead>
+            <tr> 
+              <th>Item</th>
+              <th>Submission Value</th>                                        
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <button type="button" id="deleteTerm" class="btn btn-danger">Delete</button><br/><br/>
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#questionCompletion">
+            <span class="glyphicon glyphicon-resize-full"></span>
+          </button>
+          <label for="questionCompletion">Completion Instruction:</label>
+          <textarea class="form-control collapse in" id="questionCompletion" name="Question Completion" rows="5" style="font-family:monospace;"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#questionNote">
+            <span class="glyphicon glyphicon-resize-full"></span>
+          </button>
+          <label for="questionNote">Notes:</label>
+          <textarea class="form-control collapse in" id="questionNote" name="Question Note" rows="5" style="font-family:monospace;"></textarea>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" id="questionUp" class="btn btn-primary node-up-action">
+            <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
+          </button>
+          <button type="button" id="questionDown" class="btn btn-primary node-down-action">
+            <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
+          </button> 
+          <button type="button" id="questionDelete" class="btn btn-danger node-delete-action">Delete</button>
+        </div>
       </div>
     </div>
-      <div id="groupInfo" class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Group Details</h3>
+  </div>
+  <div id="mappingInfo" class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Mapping Details</h3>
+    </div>
+    <div class="panel-body">
+      <div>
+        <div class="form-group">
+            <label for="mappingMapping">Mapping:</label>
+            <input type="text" class="form-control" id="mappingMapping" name="Mapping">
         </div>
-        <div class="panel-body">
-          <div>
-            <div class="form-group">
-              <label for="groupLabel">Label:</label>
-              <input type="text" class="form-control" id="groupLabel" name="Group Label" value="Group">
-            </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="groupRepeating" name="Group Repeating"><strong>Repeating</strong>
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="groupOptional" name="Group Optional"><strong>Optional</strong>
-                </label>
-              </div>
-            </div>
-            <div class="form-group">
-              <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#groupCompletion">
-                <span class="glyphicon glyphicon-resize-full"></span>
-              </button>
-              <label for="groupCompletion">Completion Instruction:</label>
-              <textarea class="form-control collapse in" id="groupCompletion" name="Group Completion" rows="5" style="font-family:monospace;"></textarea>
-            </div>
-            <div class="form-group">
-              <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#groupNote">
-                <span class="glyphicon glyphicon-resize-full"></span>
-              </button>
-              <label for="groupNote">Notes:</label>
-              <textarea class="form-control collapse in" id="groupNote" name="Group Note" rows="5" style="font-family:monospace;"></textarea>
-            </div>
-          </div>
-          <div class="btn-group" role="group" aria-label="...">
-            <button type="button" id="groupUp" class="btn btn-primary node-up-action">
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" id="mappingUp" class="btn btn-primary node-up-action">
               <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
-            </button>
-            <button type="button" id="groupDown" class="btn btn-primary node-down-action">
+          </button>
+          <button type="button" id="mappingDown" class="btn btn-primary node-down-action">
               <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
-            </button> 
-            <button type="button" id="groupAddGroup" class="btn btn-primary">G+</button>
-            <button type="button" id="groupAddCommon" class="btn btn-primary">C+</button>
-            <button type="button" id="groupAddBc" class="btn btn-primary">BC+</button>
-            <button type="button" id="groupAddQuestion" class="btn btn-primary">Q+</button>
-            <button type="button" id="groupAddMapping" class="btn btn-primary">M+</button>
-            <button type="button" id="groupAddLabelText" class="btn btn-primary">L+</button>
-            <button type="button" id="groupAddPlaceholder" class="btn btn-primary">P+</button>
-            <button type="button" id="groupDelete" class="btn btn-danger">Delete</button>
-          </div>
-        </div>    
-      </div>
-      <div id="commonInfo" class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Common Group Details</h3>
+          </button> 
+          <button type="button" id="mappingDelete" class="btn btn-danger node-delete-action">Delete</button>
         </div>
-        <div class="panel-body">
+      </div>
+    </div>
+  </div>
+  <div id="placeholderInfo" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Placeholder Details</h3>
+    </div>
+    <div class="panel-body">
+      <div>
+        <div class="form-group">
+          <label for="placeholderText">Placeholder Text:</label>
+          <textarea class="form-control" id="placeholderText" name="Placeholder Text" rows="5" style="font-family:monospace;"></textarea>
+        </div>
+      </div>
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" id="placeholderUp" class="btn btn-primary node-up-action">
+          <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
+        </button>
+        <button type="button" id="placeholderDown" class="btn btn-primary node-down-action">
+          <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
+        </button> 
+        <button type="button" id="placeholderDelete" class="btn btn-danger node-delete-action">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div id="labelTextInfo" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Label Details</h3>
+    </div>
+    <div class="panel-body">
+      <div>
+        <div class="form-group">
+          <label for="labelTextLabel">Label:</label>
+          <input type="text" class="form-control" id="labelTextLabel" name="Label Text Label">
+        </div>
+        <div class="form-group">
+          <label for="labelTextText">Label Text:</label>
+          <textarea class="form-control" id="labelTextText" name="Label Text Text" rows="5" style="font-family:monospace;"></textarea>
+        </div>
+      </div>
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" id="labelTextUp" class="btn btn-primary node-up-action">
+          <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
+        </button>
+        <button type="button" id="labelTextDown" class="btn btn-primary node-down-action">
+          <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
+        </button> 
+        <button type="button" id="labelTextDelete" class="btn btn-danger node-delete-action">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div id="itemInfo" class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">BC Item Details</h3>
+      </div>
+      <div class="panel-body">
           <div>
-            <div class="form-group">
-              <label for="commonLabel">Label:</label>
-              <input type="text" class="form-control" id="commonLabel" name="Common Label" value="Common">
-            </div>
+              <table class="table table-striped table-condensed">
+                  <tbody>
+                      <tr>
+                          <td><strong>Label:</strong></td>
+                          <td id="itemLabel"></td>
+                      </tr>
+                  </tbody>
+              </table>
+              <div class="form-group">
+                  <div class="checkbox">
+                      <label class="checkbox-inline">
+                          <input type="checkbox" id="itemEnable" checked="yes"><strong>Enable</strong>
+                      </label>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="checkbox">
+                      <label class="checkbox-inline">
+                          <input type="checkbox" id="itemOptional" checked="no"><strong>Optional</strong>
+                      </label>
+                  </div>
+              </div>
+              <div class="btn-group" role="group" aria-label="...">
+                <button type="button" id="itemCommon" class="btn btn-primary">Common</button>
+                <button type="button" id="itemRestore" class="btn btn-primary">Restore</button>
+              </div>
           </div>
-          <button type="button" id="commonDelete" class="btn btn-danger node-delete-action">Delete</button>
-        </div>
       </div>
-      <div id="bcInfo" class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">Biomedical Concept Details</h3>
-          </div>
-          <div class="panel-body">
+  </div>
+  <div id="clInfo" class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Code List Details</h3>
+      </div>
+      <div class="panel-body">
+          <div>
               <table class="table table-striped table-condensed">
                   <tbody>
                       <tr>
                           <td><strong>Identifier:</strong></td>
-                          <td id="bcIdentifier"></td>
+                          <td id="clIdentifier"></td>
                       </tr>
                       <tr>
-                          <td><strong>Label:</strong></td>
-                          <td id="bcLabel"></td>
+                          <td><strong>Default Label:</strong></td>
+                          <td id="clLabel"></td>
+                      </tr>
+                      <tr>
+                          <td><strong>Submission Value:</strong></td>
+                          <td id="clNotation"></td>
                       </tr>
                   </tbody>
               </table>
-              <button type="button" id="bcDelete" class="btn btn-danger">Delete</button>
-          </div>
-      </div>
-      <div id="questionInfo" class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Question Details</h3>
-        </div>
-        <div class="panel-body">
-          <div>
-            <div>
               <div class="form-group">
-                <label for="questionLabel">Label:</label>
-                <input type="text" class="form-control" id="questionLabel" name="Question Label">
+                  <label for="clLocalLabel">Label:</label>
+                  <input type="text" class="form-control" id="clLocalLabel" name="Code List Label">
               </div>
               <div class="form-group">
-                <label for="questionText">Question Text:</label>
-                <input type="text" class="form-control" id="questionText" name="Question Text">
+                  <div class="checkbox">
+                      <label class="checkbox-inline">
+                          <input type="checkbox" id="clEnable" checked="yes"><strong>Enable</strong>
+                      </label>
+                  </div>
               </div>
               <div class="form-group">
-                <div class="checkbox">
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="questionOptional" name="questionOptional"><strong>Optional</strong>
-                  </label>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="questionDatatype">Mapping:</label>
-                <input type="text" class="form-control" id="questionMapping" name="Question Mapping">
-              </div>
-              <div id="questionDatatype" class="col-sm-9">
-                <label for="questionDatatype">Datatype:</label><br/>
-                <label class="radio-inline">
-                  <input type="radio" id="form_datatype_i" name="dtRadio" value="I"> I
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" id="form_datatype_f" name="dtRadio" value="F"> F
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" id="form_datatype_s" name="dtRadio" value="S"> S
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" id="form_datatype_cl" name="dtRadio" value="CL"> CL
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" id="form_datatype_bl" name="dtRadio" value="BL"> BL
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" id="form_datatype_d" name="dtRadio" value="D"> D
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" id="form_datatype_t" name="dtRadio" value="T"> T
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" id="form_datatype_dt" name="dtRadio" value="D+T"> D+T
-                </label>
-              </div>
-              <div class="form-group  col-sm-3">
-                <label for="questionFormat">Format:</label>
-                <input type="text" class="form-control" id="questionFormat" name="questionFormat">
-              </div>
-            </div>
-            <label for="questionClTable">Code List:</label>
-            <table id="questionClTable" class="table table-striped table-bordered"  cellspacing="0" width="100%">
-              <thead>
-                <tr> 
-                  <th>Item</th>
-                  <th>Submission Value</th>                                        
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-            <button type="button" id="deleteTerm" class="btn btn-danger">Delete</button><br/><br/>
-            <div class="form-group">
-              <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#questionCompletion">
-                <span class="glyphicon glyphicon-resize-full"></span>
-              </button>
-              <label for="questionCompletion">Completion Instruction:</label>
-              <textarea class="form-control collapse in" id="questionCompletion" name="Question Completion" rows="5" style="font-family:monospace;"></textarea>
-            </div>
-            <div class="form-group">
-              <button type="button" class="btn btn-success btn-xs"  data-toggle="collapse" data-target="#questionNote">
-                <span class="glyphicon glyphicon-resize-full"></span>
-              </button>
-              <label for="questionNote">Notes:</label>
-              <textarea class="form-control collapse in" id="questionNote" name="Question Note" rows="5" style="font-family:monospace;"></textarea>
-            </div>
-            <div class="btn-group" role="group" aria-label="...">
-              <button type="button" id="questionUp" class="btn btn-primary node-up-action">
-                <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
-              </button>
-              <button type="button" id="questionDown" class="btn btn-primary node-down-action">
-                <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
-              </button> 
-              <button type="button" id="questionDelete" class="btn btn-danger node-delete-action">Delete</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="mappingInfo" class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Mapping Details</h3>
-        </div>
-        <div class="panel-body">
-          <div>
-            <div class="form-group">
-                <label for="mappingMapping">Mapping:</label>
-                <input type="text" class="form-control" id="mappingMapping" name="Mapping">
-            </div>
-            <div class="btn-group" role="group" aria-label="...">
-              <button type="button" id="mappingUp" class="btn btn-primary node-up-action">
-                  <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
-              </button>
-              <button type="button" id="mappingDown" class="btn btn-primary node-down-action">
-                  <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
-              </button> 
-              <button type="button" id="mappingDelete" class="btn btn-danger node-delete-action">Delete</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="placeholderInfo" class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Placeholder Details</h3>
-        </div>
-        <div class="panel-body">
-          <div>
-            <div class="form-group">
-              <label for="placeholderText">Placeholder Text:</label>
-              <textarea class="form-control" id="placeholderText" name="Placeholder Text" rows="5" style="font-family:monospace;"></textarea>
-            </div>
-          </div>
-          <div class="btn-group" role="group" aria-label="...">
-            <button type="button" id="placeholderUp" class="btn btn-primary node-up-action">
-              <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
-            </button>
-            <button type="button" id="placeholderDown" class="btn btn-primary node-down-action">
-              <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
-            </button> 
-            <button type="button" id="placeholderDelete" class="btn btn-danger node-delete-action">Delete</button>
-          </div>
-        </div>
-      </div>
-      <div id="labelTextInfo" class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Label Details</h3>
-        </div>
-        <div class="panel-body">
-          <div>
-            <div class="form-group">
-              <label for="labelTextLabel">Label:</label>
-              <input type="text" class="form-control" id="labelTextLabel" name="Label Text Label">
-            </div>
-            <div class="form-group">
-              <label for="labelTextText">Label Text:</label>
-              <textarea class="form-control" id="labelTextText" name="Label Text Text" rows="5" style="font-family:monospace;"></textarea>
-            </div>
-          </div>
-          <div class="btn-group" role="group" aria-label="...">
-            <button type="button" id="labelTextUp" class="btn btn-primary node-up-action">
-              <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
-            </button>
-            <button type="button" id="labelTextDown" class="btn btn-primary node-down-action">
-              <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
-            </button> 
-            <button type="button" id="labelTextDelete" class="btn btn-danger node-delete-action">Delete</button>
-          </div>
-        </div>
-      </div>
-      <div id="itemInfo" class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">BC Item Details</h3>
-          </div>
-          <div class="panel-body">
-              <div>
-                  <table class="table table-striped table-condensed">
-                      <tbody>
-                          <tr>
-                              <td><strong>Label:</strong></td>
-                              <td id="itemLabel"></td>
-                          </tr>
-                      </tbody>
-                  </table>
-                  <div class="form-group">
-                      <div class="checkbox">
-                          <label class="checkbox-inline">
-                              <input type="checkbox" id="itemEnable" checked="yes"><strong>Enable</strong>
-                          </label>
-                      </div>
+                  <div class="checkbox">
+                      <label class="checkbox-inline">
+                          <input type="checkbox" id="clOptional" checked="no"><strong>Optional</strong>
+                      </label>
                   </div>
-                  <div class="form-group">
-                      <div class="checkbox">
-                          <label class="checkbox-inline">
-                              <input type="checkbox" id="itemOptional" checked="no"><strong>Optional</strong>
-                          </label>
-                      </div>
-                  </div>
-                  <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" id="itemCommon" class="btn btn-primary">Common</button>
-                    <button type="button" id="itemRestore" class="btn btn-primary">Restore</button>
-                  </div>
+              </div>
+              <div class="btn-group" role="group" aria-label="...">
+                <button type="button" id="clDefault" class="btn btn-primary">Default</button>
+                <button type="button" id="clUp" class="btn btn-primary node-up-action">
+                    <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
+                </button>
+                <button type="button" id="clDown" class="btn btn-primary node-down-action">
+                    <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
+                </button> 
               </div>
           </div>
       </div>
-      <div id="clInfo" class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">Code List Details</h3>
-          </div>
-          <div class="panel-body">
-              <div>
-                  <table class="table table-striped table-condensed">
-                      <tbody>
-                          <tr>
-                              <td><strong>Identifier:</strong></td>
-                              <td id="clIdentifier"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Default Label:</strong></td>
-                              <td id="clLabel"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Submission Value:</strong></td>
-                              <td id="clNotation"></td>
-                          </tr>
-                      </tbody>
-                  </table>
-                  <div class="form-group">
-                      <label for="clLocalLabel">Label:</label>
-                      <input type="text" class="form-control" id="clLocalLabel" name="Code List Label">
-                  </div>
-                  <div class="form-group">
-                      <div class="checkbox">
-                          <label class="checkbox-inline">
-                              <input type="checkbox" id="clEnable" checked="yes"><strong>Enable</strong>
-                          </label>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="checkbox">
-                          <label class="checkbox-inline">
-                              <input type="checkbox" id="clOptional" checked="no"><strong>Optional</strong>
-                          </label>
-                      </div>
-                  </div>
-                  <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" id="clDefault" class="btn btn-primary">Default</button>
-                    <button type="button" id="clUp" class="btn btn-primary node-up-action">
-                        <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
-                    </button>
-                    <button type="button" id="clDown" class="btn btn-primary node-down-action">
-                        <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
-                    </button> 
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div id="bcSelection" class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">Biomedical Concept Selection</h3>
-          </div>
-          <div class="panel-body">
-              <table id="bcTable" class="table table-striped table-bordered table-condensed">
-                  <thead>
-                      <tr>
-                          <th>Identifier</th>
-                          <th>Label</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td></td>
-                          <td></td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
-      <div id="notepad_panel" class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Notepad</h3>
-        </div>
-        <div class="panel-body">
-          <table id="notepad_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
-            <thead>
-                <tr> 
-                    <th>Item</th>
-                    <th>Submission Value</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-          <div class="btn-group" role="group" aria-label="...">
-            <button type="button" id="notepad_add" class="btn btn-primary">Add</button>
-            <button type="button" id="notepad_refresh" class="btn btn-primary">Refresh</button>    
-          </div>
-        </div>
-      </div>
-    <div id="markdown_panel" class="panel panel-default">
+  </div>
+  <div id="bcSelection" class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Markdown Preview</h3>
+          <h3 class="panel-title">Biomedical Concept Selection</h3>
       </div>
       <div class="panel-body">
-        <div id="genericCompletion"></div>
-        <div class="btn-group" role="group" aria-label="...">
-          <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
-          <button type="button" id="markdown_hide" class="btn btn-primary">Hide</button>
-        </div>
+          <table id="bcTable" class="table table-striped table-bordered table-condensed">
+              <thead>
+                  <tr>
+                      <th>Identifier</th>
+                      <th>Label</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <div id="notepad_panel" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Notepad</h3>
+    </div>
+    <div class="panel-body">
+      <table id="notepad_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
+        <thead>
+            <tr> 
+                <th>Item</th>
+                <th>Submission Value</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" id="notepad_add" class="btn btn-primary">Add</button>
+        <button type="button" id="notepad_refresh" class="btn btn-primary">Refresh</button>    
       </div>
     </div>
-  </form>
+  </div>
+<div id="markdown_panel" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Markdown Preview</h3>
+  </div>
+  <div class="panel-body">
+    <div id="genericCompletion"></div>
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+      <button type="button" id="markdown_hide" class="btn btn-primary">Hide</button>
+    </div>
+  </div>
 </div>
-
-
-
-
-

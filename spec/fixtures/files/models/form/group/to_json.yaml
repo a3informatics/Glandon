@@ -1,0 +1,57 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#NormalGroup
+:id: F-ACME_T2_G1
+:namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+:label: Placeholder Group
+:extension_properties: []
+:ordinal: 1
+:optional: false
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#Placeholder
+  :id: F-ACME_T2_G1_I1
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Placeholder
+  :extension_properties: []
+  :ordinal: 1
+  :note: ''
+  :completion: ''
+  :optional: false
+  :free_text: Placeholder Test Form No. 2
+- :type: http://www.assero.co.uk/BusinessForm#Mapping
+  :id: F-ACME_T2_G1_I2
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Mapping
+  :extension_properties: []
+  :ordinal: 2
+  :note: ''
+  :completion: ''
+  :optional: false
+  :mapping: XXTERM when XXTESTCD=WHOEVER
+- :type: http://www.assero.co.uk/BusinessForm#TextLabel
+  :id: F-ACME_T2_G1_I3
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Free Label
+  :extension_properties: []
+  :ordinal: 3
+  :note: ''
+  :completion: ''
+  :optional: false
+  :label_text: A very long label, not really!
+- :type: http://www.assero.co.uk/BusinessForm#Question
+  :id: F-ACME_T2_G1_I4
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Question 1
+  :extension_properties: []
+  :ordinal: 4
+  :note: ''
+  :completion: ''
+  :optional: false
+  :datatype: integer
+  :format: '5'
+  :question_text: 'CRF Number:'
+  :mapping: "[NOT SUBMITTED]"
+  :children: []
+:repeating: false
+:bc_ref: {}

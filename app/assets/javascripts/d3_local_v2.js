@@ -9,7 +9,8 @@
 function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   d3.select('svg').remove();
   var width = d3Div.clientWidth - 50; 
-  var height = d3Div.clientHeight - 50; 
+  //var height = d3Div.clientHeight - 50;
+  var height = $(window).height() - 200; 
   var tree = d3.layout.tree()
     .size([height, width - 160]);
   var diagonal = d3.svg.diagonal()

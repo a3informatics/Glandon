@@ -84,7 +84,7 @@ function tcResult(d3Node, result) {
 * @return [Null]
 */
 function bcPropertyResult(d3Node, result) {
-  d3Node.data.subject_data = result;
+  d3Node.data.property_ref.subject_data = result;
   d3eDisplayTree(1);
 }
 

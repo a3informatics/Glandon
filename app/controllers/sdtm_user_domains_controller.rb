@@ -24,6 +24,7 @@ class SdtmUserDomainsController < ApplicationController
     authorize SdtmUserDomain
     @identifier = params[:identifier]
     @history = SdtmUserDomain.history(params)
+    redirect_to sdtm_user_domains_path if @history.count == 0
   end
   
   def show

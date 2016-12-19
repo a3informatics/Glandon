@@ -29,6 +29,7 @@ class ThesauriController < ApplicationController
     authorize Thesaurus
     @identifier = params[:identifier]
     @thesauri = Thesaurus.history(params)
+    redirect_to thesauri_index_path if @thesauri.count == 0
   end
   
   def create

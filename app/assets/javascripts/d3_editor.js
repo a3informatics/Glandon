@@ -4,9 +4,10 @@ var currentGRef;
 var rootNode;
 var clickCallBackPreFunction;
 var clickCallBackPostFunction;
+var dblClickCallBackPostFunction;
 var d3Div;
 
-function d3eInit(clickCallBackPre, clickCallBackPost) {
+function d3eInit(clickCallBackPre, clickCallBackPost, dblClickCallBackPost) {
   nextKeyId = 1;
   currentGRef = null;
   currentNode = null;
@@ -14,6 +15,7 @@ function d3eInit(clickCallBackPre, clickCallBackPost) {
   d3Div = document.getElementById("d3");
   clickCallBackPreFunction = clickCallBackPre
   clickCallBackPostFunction = clickCallBackPost
+  dblClickCallBackPostFunction = dblClickCallBackPost
 }
 
 function d3eCurrentSet() {
@@ -61,6 +63,7 @@ function d3eDblClick(node) {
     node.expand = true;
     d3eDisplayTree(node.key); 
   }
+  dblClickCallBackPostFunction(node);
 } 
 
 function d3eAddSourceNode(parent, node, end) {

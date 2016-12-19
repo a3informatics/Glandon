@@ -28,7 +28,8 @@ class FormsController < ApplicationController
   def history
     authorize Form
     @identifier = params[:identifier]
-    @form = Form.history(params)
+    @forms = Form.history(params)
+    redirect_to forms_path if @forms.count == 0
   end
 
   def placeholder_new
@@ -52,9 +53,13 @@ class FormsController < ApplicationController
   def edit
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
+    if @form.new_version?
+      json = @form.to_operation
+      new_form = Form.create(json)
+      @form = Form.find(new_form.id, new_form.namespace, false)
+    end
     @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.owner_id)
     @token = Token.obtain(@form, current_user)
-    ConsoleLogger.debug(C_CLASS_NAME, "edit", "Token=#{@token.to_json}")
     if @token.nil?
       flash[:error] = "The item is locked for editing by another user."
       redirect_to request.referer
@@ -83,12 +88,9 @@ class FormsController < ApplicationController
     authorize Form
     ConsoleLogger.debug(C_CLASS_NAME, "update", "id=#{params[:id]}, namesapce=#{params[:namespace]}")
     form = Form.find(params[:id], params[:namespace], false)
-    ConsoleLogger.debug(C_CLASS_NAME, "update", "Form=#{form.to_json}")
     token = Token.find_token(form, current_user)
-    ConsoleLogger.debug(C_CLASS_NAME, "update", "Token=#{token.to_json}")
     if !token.nil?
       @form = Form.update(params[:form])
-      ConsoleLogger.debug(C_CLASS_NAME, "update", "Form=#{form.to_json}")
       if @form.errors.empty?
         AuditTrail.update_item_event(current_user, @form, "Form updated.") if token.refresh == 1
         render :json => { :data => @form.to_operation}, :status => 200
