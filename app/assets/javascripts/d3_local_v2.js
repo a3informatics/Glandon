@@ -34,11 +34,12 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .on("click", clickCallBack)
     .on("dblclick", dblClickCallBack);
   node.append("circle")
-    .attr("r", 4.5)
+    .attr("r", 5)
     .attr("fill", function(d) { return d3NodeColour(d); });
   node.append("text")
     .attr("dx", function(d) { return d.children ? -8 : 8; })
     .attr("dy", 3)
+    .attr("fill", function(d) { return d3TextColour(d); })
     .attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
     .text(function(d) { if (d.name.length > 15) { return d.name.substring(0,12) + "..."} else { return d.name;} });
   d3.select(self.frameElement).style("height", height + "px");
@@ -104,15 +105,36 @@ function d3ClearNode (node, ref) {
 function d3NodeColour (node) {
   if (node.expand) {
     return "skyblue";
-  } else if ('enabled' in node) {
+  }
+  if ('enabled' in node) {
     if (node.enabled) {
-      return "mediumseagreen";
+      if ('is_common' in node) {
+        if(node.is_common) {
+          return "silver";
+        } else {
+          return "mediumseagreen";
+        }
+      } else {
+        return "mediumseagreen";
+      }
     } else {
       return "orangered";
     }
   } else {
     return "white";
   }
+}
+
+/*
+ * Node colour function. 
+ */ 
+function d3TextColour (node) {
+  if ('is_common' in node) {
+    if(node.is_common) {
+      return "silver";
+    }
+  }
+  return "black";
 }
 
 function d3AdjustHeight (height) {

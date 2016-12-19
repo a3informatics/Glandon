@@ -181,7 +181,7 @@ $(document).ready(function() {
   * Form Panel Actions
   */
   $('#formAddGroup').click(function() {
-    currentNode = d3eGetCurrent()
+    var currentNode = d3eGetCurrent()
     if (currentNode === null) {
       displayWarning("You need to select the form node.");
     } else {
@@ -204,24 +204,26 @@ $(document).ready(function() {
   });
 
   $('#groupAddCommon').click(function() {
-    if (d3eGetCurrent() == null) {
+    var currentNode = d3eGetCurrent()
+    if (currentNode === null) {
       displayWarning("You need to select a group node.");
     } else if (hasCommonGroup(d3eGetCurrent())) {
       displayWarning("Group already has a common node.");
     } else {
-      var node = addCommon();
+      var node = addCommonGroup(d3eGetCurrent());
       displayNode(node);
       //d3eDisplayTree(node.key);
     }
   }); 
 
   $('#groupAddBc').click(function() {
-    if (d3eGetCurrent() == null) {
+    var currentNode = d3eGetCurrent()
+    if (currentNode === null) {
       displayWarning("You need to select a group node.");
-    } else if (bcCurrent ==  null) {
+    } else if (bcCurrent === null) {
       displayWarning("You need to select a Biomedical Concept.");
     } else {
-      addBc();
+      addBc(currentNode);
     }
   }); 
 
@@ -252,18 +254,22 @@ $(document).ready(function() {
   * Item Panel Actions
   */
   $('#itemCommon').click(function() {
-    if (d3eGetCurrent() == null) {
+    var currentNode = d3eGetCurrent()
+    if (currentNode === null) {
       displayWarning("You need to select an item node.");
     } else {
-      makeCommon(d3eGetCurrent());
+      var node = makeCommon(currentNode);
+      displayNode(node);
     }
   }); 
 
   $('#itemRestore').click(function() {
-    if (d3eGetCurrent() == null) {
+    var currentNode = d3eGetCurrent()
+    if (currentNode === null) {
       displayWarning("You need to select an item node.");
     } else {
-      restoreCommon(d3eGetCurrent());
+      restoreCommon(currentNode);
+      treeNodeDelete();
     }
   }); 
 
@@ -556,35 +562,37 @@ function saveRest() {
 * Generic functions
 */
 function treeNodeAdd(addFunction) {
-  if (d3eGetCurrent() == null) {
+  var currentNode = d3eGetCurrent();
+  if (currentNode === null) {
     displayWarning("You need to select a node.");
   } else {
     saveNode();
-    node = addFunction(d3eGetCurrent());
+    var node = addFunction(currentNode);
     displayNode(node);
   }
 }
 
 function treeNodeDelete(checkChildren = false) {
-  if (d3eGetCurrent() == null) {
+  var currentNode = d3eGetCurrent();
+  if (currentNode === null) {
     displayWarning("You need to select a node.");
   } else {
-    if (checkChildren && hasChildren(d3eGetCurrent())) {
+    if (checkChildren && hasChildren(currentNode)) {
       displayWarning("You need to remove the child nodes.");
     } else {
-      var node = d3eDeleteNode(d3eGetCurrent());
+      var node = d3eDeleteNode(currentNode);
       displayNode(node);
     } 
   }
 }
 
 function treeNodeUp() {
-  if (d3eGetCurrent() == null) {
+  var currentNode = d3eGetCurrent();
+  if (currentNode === null) {
     displayWarning("You need to select a node.");
   } else {
-    var currentNode = d3eGetCurrent();
     var parentNode = currentNode.parent;
-    if (d3eGetCurrent().index != 0) {
+    if (currentNode.index != 0) {
       d3eMoveNodeUp(currentNode);
       displayNode(currentNode);
     } else {
@@ -594,7 +602,8 @@ function treeNodeUp() {
 }
 
 function treeNodeDown() {
-  if (d3eGetCurrent() == null) {
+  var currentNode = d3eGetCurrent();
+  if (currentNode === null) {
     displayWarning("You need to select a node.");
   } else {
     var parentNode = currentNode.parent;
@@ -626,8 +635,8 @@ function displayGroup(node) {
 }
 
 function displayBC(node) {
-  $('#bcIdentifier').val(node.data.label);
-  $('#bcLabel').val(node.data.label);
+  $('#bcIdentifier').html(node.data.label);
+  $('#bcLabel').html(node.data.label);
 }
 
 function displayCommon(node) {
@@ -635,12 +644,8 @@ function displayCommon(node) {
 }
 
 function displayItem(node) {
-  var parentNode;
-  var itemEnableElement = document.getElementById("itemEnable");
-  var itemOptionalElement = document.getElementById("itemOptional");
-  $('#itemLabel').val(node.data.label);
-  parentNode = node.parent;
-  if (isCommon(parentNode)) {
+  $('#itemLabel').html(node.data.label);
+  if (isCommonGroup(node.parent)) {
     $("#itemEnable").prop('disabled', true);
     $("#itemOptional").prop('disabled', true);
     $("#itemUpdate").prop('disabled', true);
@@ -790,136 +795,82 @@ function saveCl(node) {
   node.data.optional = $('#clOptional').is(":checked");
   node.data.local_label = $('#clLabel').val();
   node.name = node.data.local_label;
-  node.enabled = clEnableElement.checked;
+  node.enabled = node.data.enabled
 }
 
 function makeCommon(node) {
-  var child;
-  var item;
+  var returnD3Node = node;
   var commonGroup;
-  var otherNodes = [];
-  var otherSourceNodes = [];
-  var bcParent = node.parent;
-  var groupParent = bcParent.parent;
-  var sourceNode;
-  if (bcParent != null && groupParent != null) {
-    for (var i=0; i<groupParent.save.length; i++) {
-      child = groupParent.save[i];
+  var commonD3Nodes = [];
+  var bcD3Node = node.parent;
+  var groupD3Node = bcD3Node.parent;
+  if (bcD3Node != null && groupD3Node != null) {
+    for (var i=0; i<groupD3Node.save.length; i++) {
+      var child = groupD3Node.save[i];
       if (child.type == C_COMMON_GROUP) {
         commonGroup = child;
       } else {
         for (var j=0; j<child.save.length; j++) {
-          item = child.save[j];
-          if ('bridgPath' in item.data) {
+          var item = child.save[j];
+          if ('bridg_path' in item.data.property_ref.subject_data) {
             if (node.key == item.key) {
-              // Same node, ignore.
-            } else if (node.data.bridgPath == item.data.bridgPath) {
-              // Push to node for later
-              otherNodes.push(item);
-              otherSourceNodes.push(item.data);
+              commonD3Nodes.push(item);
+            } else if (node.data.property_ref.subject_data.bridg_path === item.data.property_ref.subject_data.bridg_path) {
+              commonD3Nodes.push(item);
             }
           }
         }
       }
     }
-
-    // Node refers to the selected node, otherNodes all the nodes of
-    // the same type within the BCs at the same level within parent group
     if (commonGroup != null) {
-      sourceNode = node.data;
-
-      node.otherCommon = [];
-      sourceNode.otherCommon = [];
-      if (!commonGroup.hasOwnProperty('save')) {
-        commonGroup.children = [];
-        commonGroup.save = [];
-        commonGroup.data.children = [];
-      }  
-      
-      // Move the clicked on node. Set the ordinals.
-      detachForCommon(node);
-      commonGroup.save.push(node);
-      commonGroup.children = commonGroup.save;
-      commonGroup.data.children.push(sourceNode);
-      setOrdinal(commonGroup.data);
-
-      // Move the other noted (found) nodes. Set the ordinals
-      for (var k=0; k<otherNodes.length; k++) {
-        var otherNode = otherNodes[k];
-        detachForCommon(otherNode);
-      } 
-      node.otherCommon = otherNodes
-      sourceNode.otherCommon = otherSourceNodes;
-      setOrdinal(sourceNode.otherCommon);
-
-      // Display the tree. Will need to set the parents in the new common group.
-      setParent(commonGroup);
-      displayNode(commonGroup);
-      d3eDisplayTree(commonGroup.key);  
-
+      if (commonD3Nodes.length > 0) {
+        var d3CommonItem = addCommonItem(commonGroup, commonD3Nodes[0].name);
+        returnD3Node = d3CommonItem;
+        for (var k=0; k<commonD3Nodes.length; k++) {
+          var d3Node = commonD3Nodes[k];
+          refFromCommon(d3CommonItem, d3Node);
+          d3Node.is_common = true;
+          d3Node.data.is_common = true;
+        } 
+        //addD3Node(d3CommonItem, C_BC_QUESTION, "NEW NEW", newBCProperty, commonD3Nodes[0], true, true);
+      } else {
+        displayWarning("No common items matched.");
+      }
     } else {
-      displayWarning("Common group not found within this group.");
-      displayAlerts(html);
+      displayWarning("A common group was not found.");
     }
   } else {
-    if (bcParent == null && groupParent == null) {
-      displayWarning("Something has gone wrong! Cannot find Biomedical Concept and the Group parent nodes.");
-    } else if (bcParent == null) {
-      displayWarning("Something has gone wrong! Cannot find Biomedical Concept parent nodes.");
-    } else if (groupParent == null) {
-      displayWarning("Something has gone wrong! Cannot find Group parent nodes.");
+    if (bcD3Node == null && groupD3Node == null) {
+      displayWarning("Cannot find Biomedical Concept and the Group parent nodes.");
+    } else if (bcD3Node == null) {
+      displayWarning("Cannot find Biomedical Concept parent node.");
+    } else if (groupD3Node == null) {
+      displayWarning("Cannot find Group parent node.");
     }
-    displayAlerts(html);
   }
+  return returnD3Node;
 }
 
 // Detaches the node from its 'natural' position
-function detachForCommon(node) {
-  var sourceParent;
-  var parent;
-  parent = node.parent;
-  sourceParent = parent.data;
-  node.realParent = node.parent;
-  parent.save.splice(node.index, 1);
-  setParent(parent);
-  sourceParent.children.splice(node.index, 1);
-  setOrdinal(sourceParent);
+function refFromCommon(d3Parent, d3Node) {
+  var ref = {};
+  ref.id = d3Node.data.id;
+  ref.namespace = d3Node.data.namespace;
+  ref.key = d3Node.key;
+  d3Parent.data.item_refs.push(ref);
+  setParent(d3Parent);
+  setOrdinal(d3Parent.data);
 }
 
 // Restore from common to 'natural' position.
-function restoreCommon(node) {
-  var item;
-  var parentNode;
-  var parentSourceNode;
-  var index;
-
-  // Restore the 'other' nodes. These are the copies.
-  for (i=0; i<node.otherCommon.length; i++) {
-    item = node.otherCommon[i];
-    parentNode = item.realParent;
-    parentSourceNode = parentNode.data;
-    index = item.index;
-    parentNode.save.splice(index, 0, item);
-    parentSourceNode.children.splice(index, 0, item.data);
-    setOrdinal(parentSourceNode);
+function restoreCommon(d3Node) {
+  for (i=0; i<d3Node.data.item_refs.length; i++) {
+    var ref = d3Node.data.item_refs[i];
+    var gRef = d3FindGRef(ref.key);
+    var commonD3Node = d3GetData(gRef);
+    commonD3Node.is_common = false;
+    commonD3Node.data.is_common = false;
   }
-
-  // Restore the 'main' node.
-  parentNode = node.realParent
-  parentSourceNode = parentNode.data;
-  index = node.index;
-  parentNode.save.splice(index, 0, node);
-  parentSourceNode.children.splice(index, 0, node.data);
-  setOrdinal(parentSourceNode);
-
-  // Delete the item from its current position and clean out the other
-  // common nodes.
-  node.otherCommon = [];
-  node.data.otherCommon = [];
-  deleteNode(node);
-
-  // Draw the tree. Set the root as the selected node.
-  setRoot();
 }
 
 /*
@@ -934,7 +885,13 @@ function newFormGroup(nullVar) {
 function newCommonGroup(nullVar) {
   return {
     type: C_COMMON_GROUP, label: "", id: "", namespace: "", ordinal: 0, 
-    optional: false, repeating: false, completion: "", note: "", bc_ref: {}, children: [] };
+    optional: false, repeating: false, completion: "", note: "", children: [] };
+}
+
+function newCommonItem(nullVar) {
+  return {
+    type: C_COMMON_ITEM, label: "", id: "", namespace: "", ordinal: 0, 
+    optional: false, completion: "", note: "", item_refs: [], children: [] };
 }
 
 function newQuestion(nullVar) {
@@ -975,15 +932,16 @@ function newLabelText(nullVar) {
 function newBCGroup(bc) {
   // TODO: Extra fields in the biomedical_concept_reference
   return {
-    type: C_NORMAL_GROUP, label: "", id: bc.id, namespace: bc.namespace, ordinal: 0, 
-    optional: bc.optional, repeating: false, note: bc.note, 
+    type: C_NORMAL_GROUP, label: "", id: "", namespace: "", ordinal: 0, 
+    repeating: false, completion: "", note: "", 
     bc_ref: 
       { 
         enabled: true, 
         optional: false,
         ordinal: 0, 
         local_label: "",
-        subject_ref: {id: bc.id, namespace: bc.namespace}
+        subject_ref: {id: bc.id, namespace: bc.namespace},
+        subject_data: bc
       },
     children: [] };
 }
@@ -991,17 +949,16 @@ function newBCGroup(bc) {
 function newBCProperty(property) {
   // TODO: Extra fields in the property_reference
   return {
-    type: C_BC_QUESTION, label: "", id: property.id, namespace: property.namespace, ordinal: 0, 
-    optional: property.optional, note: property.note, free_text: property.free_text, datatype: property.datatype,
-    format: property.format, question_text: property.question_text, pText: property.pText, mapping: property.mapping,
-    bridgPath: property.bridgPath, 
+    type: C_BC_QUESTION, label: "", label: "", id: "", namespace: "", ordinal: 0, 
+    completion: "", note: "",
     property_ref: 
       { 
         enabled: true, 
         optional: false,
         ordinal: 0, 
         local_label: "",
-        subject_ref: {id: property.id, namespace: property.namespace}
+        subject_ref: {id: property.id, namespace: property.namespace},
+        subject_data: property
       },
     children: [] 
   };
@@ -1009,15 +966,9 @@ function newBCProperty(property) {
 
 function newBCPropertyCli(cli) {
   return {
-    type: C_TC_REF, 
-    label: "", 
-    id: "", 
-    namespace: "",
-    local_label: cli.Local_label, 
-    ordinal: 0, 
-    enabled: true, 
-    optional: false,
-    subject_ref: {id: cli.subject_ref.id, namespace: cli.subject_ref.namespace}
+    type: C_TC_REF, label: "", id: "", namespace: "", ordinal: 0, 
+    local_label: cli.Local_label, enabled: true, optional: false,
+    subject_ref: {id: cli.subject_ref.id, namespace: cli.subject_ref.namespace},
   };
 }
 
@@ -1035,46 +986,50 @@ function newQuestionCli(cli) {
   };
 }
 
-function addGroup(currentNode) {
-  var d3Node = addD3Node(currentNode, C_NORMAL_GROUP, "Group", newFormGroup, true);
-  addSNode(currentNode.data, d3Node.data, true);
+function addGroup(d3ParentNode) {
+  var d3Node = addD3Node(d3ParentNode, C_NORMAL_GROUP, "Group", newFormGroup, null, true);
+  addSNode(d3ParentNode.data, d3Node.data, true);
   return d3Node;
 }
 
-function addCommon(data) {
-  var d3Node = addD3Node(currentNode, C_COMMON_GROUP, "Common", newCommonGroup, null, false);
-  addSNode(currentNode.data, d3Node.data, false);
+function addCommonGroup(d3ParentNode) {
+  var d3Node = addD3Node(d3ParentNode, C_COMMON_GROUP, "Common Group", newCommonGroup, null, false);
+  addSNode(d3ParentNode.data, d3Node.data, false);
   return d3Node;
 }
 
-function addQuestion(currentNode) {
-  var d3Node = addD3Node(currentNode, C_QUESTION, "Question", newQuestion, null, true, true);
-  addSNode(currentNode.data, d3Node.data, true);
+function addCommonItem(d3ParentNode, label) {
+  var d3Node = addD3Node(d3ParentNode, C_COMMON_ITEM, label, newCommonItem, null, true, true);
+  addSNode(d3ParentNode.data, d3Node.data, false);
   return d3Node;
 }
 
-function addMapping(currentNode) {
-  var d3Node = addD3Node(currentNode, C_MAPPING, "Mapping", newQuestion, null, true, true);
-  addSNode(currentNode.data, d3Node.data, true);
+function addQuestion(d3ParentNode) {
+  var d3Node = addD3Node(d3ParentNode, C_QUESTION, "Question", newQuestion, null, true, true);
+  addSNode(d3ParentNode.data, d3Node.data, true);
   return d3Node;
 }
 
-function addPlaceholder(currentNode) {
-  var d3Node = addD3Node(currentNode, C_PLACEHOLDER, "Placeholder", newPlaceholder, null, true, true);
-  addSNode(currentNode.data, d3Node.data, true);
+function addMapping(d3ParentNode) {
+  var d3Node = addD3Node(d3ParentNode, C_MAPPING, "Mapping", newQuestion, null, true, true);
+  addSNode(d3ParentNode.data, d3Node.data, true);
   return d3Node;
 }
 
-function addLabelText(currentNode) {
-  var d3Node = addD3Node(currentNode, C_TEXTLABEL, "Label Text", newLabelText, null, true, true);
-  addSNode(currentNode.data, d3Node.data, true)
+function addPlaceholder(d3ParentNode) {
+  var d3Node = addD3Node(d3ParentNode, C_PLACEHOLDER, "Placeholder", newPlaceholder, null, true, true);
+  addSNode(d3ParentNode.data, d3Node.data, true);
   return d3Node;
 }
 
-function addBc() {
-  var currentNode = d3eGetCurrent();
+function addLabelText(d3ParentNode) {
+  var d3Node = addD3Node(d3ParentNode, C_TEXTLABEL, "Label Text", newLabelText, null, true, true);
+  addSNode(d3ParentNode.data, d3Node.data, true)
+  return d3Node;
+}
+
+function addBc(d3ParentNode) {
   var data = bcSelect.row(bcCurrentRow).data();
-  bcD3Node = null;
   $.ajax({
     url: "/biomedical_concepts/" + data.id,
     data: {
@@ -1088,32 +1043,31 @@ function addBc() {
     },
     success: function(result){
       var bc = $.parseJSON(JSON.stringify(result));
-      var i;
-      var j;
-      var bcD3Node = addD3Node(currentNode, C_BC_QUESTION, bc.label, newBCGroup, bc, true, true);
-      addSNode(currentNode.data, bcD3Node.data, true)
-      for (i=0; i<bc.children.length; i++) {
+      var bcD3Node = addD3Node(d3ParentNode, C_NORMAL_GROUP, bc.label, newBCGroup, bc, true, false);
+      addSNode(d3ParentNode.data, bcD3Node.data, true)
+      for (var i=0; i<bc.children.length; i++) {
         var property = bc.children[i];
         if (property.enabled && property.collect) {
-          var propertyD3Node = addD3Node(bcD3Node, C_BC_QUESTION, property.alias, newBCProperty, property, true, true);
+          var propertyD3Node = addD3Node(bcD3Node, C_BC_QUESTION, property.alias, newBCProperty, property, true, false);
           addSNode(bcD3Node.data, propertyD3Node.data, true)
-          for (j=0; j<property.children.length; j++) {
+          for (var j=0; j<property.children.length; j++) {
             var tcRef = property.children[j];
-            var tcRefD3Node = addD3Node(propertyD3Node, C_TC_REF, tcRef.local_label, newBCPropertyCli, tcRef, true, true);
+            var tcRefD3Node = addD3Node(propertyD3Node, C_TC_REF, tcRef.local_label, newBCPropertyCli, tcRef, true, false);
             tcRefD3Node.enabled = true    
             addSNode(propertyD3Node.data, tcRefD3Node.data, true);
             getReference(tcRefD3Node);
           }
         }
       }
-      
+      displayNode(d3ParentNode);
+
       /* Now check for a common group and, if present, see if anything needs
       * moving.
       */
-      /*if (hasCommon(currentNode)) {
+      /*if (hasCommon(d3ParentNode)) {
         var item;
         var commonItem;
-        var commonNode = currentNode.save[0];
+        var commonNode = d3ParentNode.save[0];
         if (commonNode.hasOwnProperty('save')) {
           for (i=0; i<commonNode.save.length; i++) {
             commonItem = commonNode.save[i];
@@ -1130,10 +1084,6 @@ function addBc() {
           }
         }
       }*/
-
-      // And display everything.
-      displayNode(currentNode);
-      //d3eDisplayTree(currentNode.key);
     }
   });
 }
@@ -1172,33 +1122,23 @@ function addSNode(parent, node, end) {
 * Other utility functions
 */
 function handleBCTable(table, ref) {
-  // Toggle the highlight for the row
   if (bcCurrent != null) {
     $(bcCurrent).toggleClass('success');
   }
   $(ref).toggleClass('success');
-
-  // Get the row
   var row = table.row(ref).index();
   var data = table.row(row).data();
-
-  // Save the selection
   bcCurrent = ref;
   bcCurrentRow = row;
 }
 
 function handleQuestionTable(table, ref) {
-  // Toggle the highlight for the row
   if (varClCurrent != null) {
     $(varClCurrent).toggleClass('success');
   }
   $(ref).toggleClass('success');
-
-  // Get the row
   var row = table.row(ref).index();
   var data = table.row(row).data();
-
-  // Save the selection
   varClCurrent = ref;
   varClCurrentRow = row;
 }
@@ -1239,80 +1179,79 @@ function setD3(sourceNode, d3ParentNode) {
   var newNode;
   var i;
   var child;
-  sourceNode.hasOwnProperty('is_common') ? use = !sourceNode.is_common : use = true;
-  if (use) {
-    newNode = d3eAddNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
-    getReference(newNode);
-    if (sourceNode.hasOwnProperty('children')) {
-      for (i=0; i<sourceNode.children.length; i++) {
-        child = sourceNode.children[i];
-        setD3(child, newNode);
-      }
+  newNode = d3eAddNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
+  getReference(newNode);
+  if (sourceNode.hasOwnProperty('children')) {
+    for (i=0; i<sourceNode.children.length; i++) {
+      child = sourceNode.children[i];
+      setD3(child, newNode);
     }
-  }
+    }
 }
 
 function saveNode() {
   $('#main_form').valid(); // Won't return if invalid.
-  currentNode = d3eGetCurrent();
-  if (currentNode.type == C_FORM) {
-    saveForm(currentNode)
-  } else if (currentNode.type == C_NORMAL_GROUP) {
-    if (!isBcGroup(currentNode)) {
-      saveGroup(currentNode)
+  var d3Node = d3eGetCurrent();
+  if (d3Node.type == C_FORM) {
+    saveForm(d3Node)
+  } else if (d3Node.type == C_NORMAL_GROUP) {
+    if (!isBcGroup(d3Node)) {
+      saveGroup(d3Node)
     }
-  } else if (currentNode.type == C_COMMON_GROUP) {
-    saveCommon(currentNode)
-  } else if (currentNode.type == C_PLACEHOLDER) {
-    savePlaceholder(currentNode)
-  } else if (currentNode.type == C_TEXTLABEL) {
-    saveLabelText(currentNode)
-  } else if (currentNode.type == C_QUESTION) {
-    saveQuestion(currentNode)
-  } else if (currentNode.type == C_MAPPING) {
-    saveMapping(currentNode)
-  } else if (currentNode.type == C_TC_REF) {
-    saveCl(currentNode)
+  } else if (d3Node.type == C_COMMON_GROUP) {
+    saveCommon(d3Node)
+  } else if (d3Node.type == C_PLACEHOLDER) {
+    savePlaceholder(d3Node)
+  } else if (d3Node.type == C_TEXTLABEL) {
+    saveLabelText(d3Node)
+  } else if (d3Node.type == C_QUESTION) {
+    saveQuestion(d3Node)
+  } else if (d3Node.type == C_MAPPING) {
+    saveMapping(d3Node)
+  } else if (d3Node.type == C_TC_REF) {
+    saveCl(d3Node)
   } 
   saveRest();
 }
 
-function displayNode(node) {
-  d3eDisplayTree(node.key);
-  if (node.type ==  C_FORM ) {
+function displayNode(d3Node) {
+  d3eDisplayTree(d3Node.key);
+  if (d3Node.type ==  C_FORM ) {
     selectForm();
-    displayForm(node);
-  } else if (node.type == C_NORMAL_GROUP) {
-    if (!isBcGroup(node)) {
+    displayForm(d3Node);
+  } else if (d3Node.type == C_NORMAL_GROUP) {
+    if (!isBcGroup(d3Node)) {
       selectGroup();
-      displayGroup(node);
+      displayGroup(d3Node);
     } else {
       selectBC();
-      displayBC(node);
+      displayBC(d3Node);
     }
-  } else if (node.type == C_COMMON_GROUP) {
+  } else if (d3Node.type == C_COMMON_GROUP) {
     selectCommon();
-    displayCommon(node);
-  } else if (node.type == C_BC_QUESTION) {
+    displayCommon(d3Node);
+  } else if (d3Node.type == C_BC_QUESTION) {
     selectItem();
-    displayItem(node);
-  } else if (node.type == C_QUESTION) {
+    displayItem(d3Node);
+  } else if (d3Node.type == C_QUESTION) {
     questionClTable.clear();
     selectQuestion();
-    displayQuestion(node);
+    displayQuestion(d3Node);
     questionClTable.draw(false);
-  } else if (node.type == C_MAPPING) {
+  } else if (d3Node.type == C_MAPPING) {
     selectMapping();
-    displayMapping(node);
-    questionClTable.draw(false);
-  } else if (node.type == C_PLACEHOLDER) {
+    displayMapping(d3Node);
+  } else if (d3Node.type == C_COMMON_ITEM) {
+    selectItem();
+    displayItem(d3Node);
+  } else if (d3Node.type == C_PLACEHOLDER) {
     selectPlaceholder();
-    displayPlaceholder(node);
-  } else if (node.type == C_TEXTLABEL) {
+    displayPlaceholder(d3Node);
+  } else if (d3Node.type == C_TEXTLABEL) {
     selectLabelText();
-    displayLabelText(node);
-  } else if (node.type == C_TC_REF) {
+    displayLabelText(d3Node);
+  } else if (d3Node.type == C_TC_REF) {
     selectCl();
-    displayCl(node);
+    displayCl(d3Node);
   } 
 }

@@ -1,7 +1,7 @@
 /*
 * Obtain a Thesaurus Concept
 *
-* @param node [Object] The source data node (the D3 node data)
+* @param node [Object] The D3 data node
 * @param callback [Function] The callback function to be called on success
 * @return [Null]
 */
@@ -24,7 +24,7 @@ function getThesaurusConcept(node, callback) {
 /*
 * Obtain a BC Property 
 *
-* @param node [Object] The source data node (the D3 node data)
+* @param node [Object] The D3 data node
 * @param callback [Function] The callback function to be called on success
 * @return [Null]
 */

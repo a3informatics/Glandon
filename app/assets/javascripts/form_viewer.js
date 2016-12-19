@@ -37,8 +37,8 @@ $(document).ready(function() {
     var newNode;
     var i;
     var child;
-    sourceNode.hasOwnProperty('is_common') ? use = !sourceNode.is_common : use = true;
-    if (use) {
+    //sourceNode.hasOwnProperty('is_common') ? use = !sourceNode.is_common : use = true;
+    //if (use) {
       newNode = d3eAddNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
       getReference(newNode);
       if (sourceNode.hasOwnProperty('children')) {
@@ -47,7 +47,7 @@ $(document).ready(function() {
           setD3(child, newNode);
         }
       }
-    }
+    //}
   }
 
   /*

@@ -1,7 +1,5 @@
 class Form::Group::Common < Form::Group
   
-  attr_accessor :children
-
   # Constants
   C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
   C_CLASS_NAME = "Form::Group::Common"
@@ -23,7 +21,6 @@ class Form::Group::Common < Form::Group
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
-    self.children = []
     if triples.nil?
       super
       self.rdf_type = C_RDF_TYPE_URI.to_s
@@ -60,7 +57,7 @@ class Form::Group::Common < Form::Group
   # @return [hash] The object hash 
   def to_json
     json = super
-    json[:children] = Array.new
+    json[:children] = []
     self.children.each do |child|
       json[:children] << child.to_json
     end

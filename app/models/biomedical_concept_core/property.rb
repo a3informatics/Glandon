@@ -95,7 +95,8 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
       object.prompt_text = json[:prompt_text]
       object.simple_datatype = json[:simple_datatype]
       object.format = json[:format]
-			if !json[:children].blank?
+			object.bridg_path = json[:bridg_path]
+      if !json[:children].blank?
         json[:children].each do |child|
           object.children << OperationalReferenceV2.from_json(child)
         end
@@ -118,6 +119,7 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
       json[:prompt_text] = self.prompt_text
       json[:simple_datatype] = self.simple_datatype
       json[:format] = self.format
+      json[:bridg_path] = self.bridg_path
       json[:children] = Array.new
       self.tc_refs.each do |tc_ref|
         json[:children] << tc_ref.to_json

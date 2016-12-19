@@ -93,6 +93,7 @@ function d3eAddNode(parent, name, type, enabled, data, addAtEnd) {
   node.name = name;
   node.type = type;
   node.enabled = enabled;
+  node.is_common = data.hasOwnProperty('is_common') ? data.is_common : parent.data.is_common;
   node.key = nextKeyId;
   node.parent = parent;
   node.data = data;
@@ -122,6 +123,8 @@ function d3eRoot(name, type, data) {
   var node = {};
   node.name = name;
   node.type = type;
+  node.enabled = true;
+  node.is_common = false;
   node.key = 1;
   node.parent = null;
   node.data = data;
