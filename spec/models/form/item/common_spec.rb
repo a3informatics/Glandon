@@ -49,7 +49,6 @@ describe Form::Item::Common do
         :optional => false,
         :ordinal => 1,
         :type => "http://www.assero.co.uk/BusinessForm#CommonItem",
-        :children => [],
         :item_refs => []
       }
     triples = {}
@@ -85,7 +84,6 @@ describe Form::Item::Common do
         :optional => false,
         :ordinal => 1,
         :type => "http://www.assero.co.uk/BusinessForm#CommonItem",
-        :children => [],
         :item_refs => 
         [ 
           UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1"}).to_json,

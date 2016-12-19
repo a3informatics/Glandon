@@ -61,8 +61,23 @@ describe FormsController do
     end
 
     it "shows the history" do
-      get :history
+      params = 
+      {
+        :identifier => "DM1 01", 
+        :scope_id => IsoRegistrationAuthority.owner.namespace.id ,
+      }
+      get :history, params
       expect(response).to render_template("history")
+    end
+
+    it "shows the history, redirects when empty" do
+      params = 
+      {
+        :identifier => "DM1 01X", 
+        :scope_id => IsoRegistrationAuthority.owner.namespace.id ,
+      }
+      get :history, params
+      expect(response).to redirect_to("/forms")
     end
 
     it "placeholder_new" do

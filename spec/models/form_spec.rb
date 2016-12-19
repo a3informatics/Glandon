@@ -141,7 +141,7 @@ describe Form do
   it "allows a form to be updated" do
     item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item.label = "New Label"
-    item.update(item.to_operation)
+    Form.update(item.to_operation)
   end
 
   it "destroy"

@@ -17,28 +17,3 @@
   :id: F-ACME_VSBASELINE1_G1_G4_I1
 - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
   :id: F-ACME_VSBASELINE1_G1_G3_I1
-:children:
-- :type: http://www.assero.co.uk/BusinessForm#BcProperty
-  :id: F-ACME_VSBASELINE1_G1_G2_I1
-  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
-  :label: Date and Time (--DTC)
-  :extension_properties: []
-  :ordinal: 1
-  :note: ''
-  :completion: ''
-  :optional: false
-  :is_common: false
-  :property_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: F-ACME_VSBASELINE1_G1_G2_I1_PR1
-    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
-  :children: []

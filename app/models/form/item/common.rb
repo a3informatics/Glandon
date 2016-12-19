@@ -1,6 +1,6 @@
 class Form::Item::Common < Form::Item
 
-  attr_accessor :item_refs, :children
+  attr_accessor :item_refs
   
   # Constants
   C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
@@ -15,7 +15,6 @@ class Form::Item::Common < Form::Item
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
-    self.children = []
     self.item_refs = []
     if triples.nil?
       super
@@ -57,12 +56,6 @@ class Form::Item::Common < Form::Item
     json[:item_refs] = []
     self.item_refs.each do |ref|
       json[:item_refs] << ref.to_json
-    end
-    json[:children] = []
-    if item_refs.length > 0
-      property = Form::Item::BcProperty.find(item_refs[0].id, item_refs[0].namespace)
-      property.is_common = false # Important so that the item is displayed. This is the common group so it is not common!!
-      json[:children] << property.to_json 
     end
     return json
   end

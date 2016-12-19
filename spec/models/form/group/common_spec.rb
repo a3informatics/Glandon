@@ -76,7 +76,7 @@ describe Form::Group::Common::Common do
 
   it "allows an object to be found" do
     item = Form::Group::Common.find("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    write_hash_to_yaml_file_2(item.to_json, sub_dir, "common_find.yaml")
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "common_find.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "common_find.yaml")
     expect(item.to_json).to eq(expected)
   end
