@@ -5,7 +5,11 @@ describe BiomedicalConceptCore do
   
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  def sub_dir
+    return "models"
+  end
+
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -51,19 +55,21 @@ describe BiomedicalConceptCore do
   end
 
   it "allows the properties to be returned" do
-    properties_json = read_yaml_file_to_hash("bc_core_properties_2.yaml")
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     json = item.get_properties
+    #write_hash_to_yaml_file_2(json, sub_dir, "bc_core_properties_find.yaml")
+    properties_json = read_yaml_file_to_hash_2(sub_dir, "bc_core_properties_find.yaml")
     expect(json).to eq(properties_json)
   end
 
   it "allows the properties to be update the object" do
-    properties_json = read_yaml_file_to_hash("bc_core_properties_3.yaml")
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     json = item.get_properties
     json[:children][3][:question_text] = "Updated Question text"
     item.set_properties(json)
     json = item.get_properties
+    #write_hash_to_yaml_file_2(json, sub_dir, "bc_core_properties_update.yaml")
+    properties_json = read_yaml_file_to_hash_2(sub_dir, "bc_core_properties_update.yaml")
     expect(json).to eq(properties_json)
   end
 

@@ -54,6 +54,7 @@
   :prompt_text: Prompt text
   :simple_datatype: boolean
   :format: ''
+  :bridg_path: PerformedClinicalResult.baselineIndicator.BL.value
   :children:
   - :type: http://www.assero.co.uk/BusinessOperational#TcReference
     :id: BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1
@@ -92,6 +93,7 @@
   :prompt_text: Location
   :simple_datatype: string
   :format: ''
+  :bridg_path: DefinedObservation.targetAnatomicSiteCode.CD.code
   :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
   :id: BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
@@ -106,6 +108,7 @@
   :prompt_text: Prompt text
   :simple_datatype: dateTime
   :format: ''
+  :bridg_path: PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value
   :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
   :id: BC-ACME_BC_C25206_PerformedObservation_bodyPositionCode_CD_code
@@ -120,6 +123,7 @@
   :prompt_text: Prompt text
   :simple_datatype: string
   :format: ''
+  :bridg_path: PerformedObservation.bodyPositionCode.CD.code
   :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
   :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value
@@ -134,6 +138,7 @@
   :prompt_text: Prompt text
   :simple_datatype: string
   :format: ''
+  :bridg_path: DefinedObservation.nameCode.CD.originalText.ED.value
   :children:
   - :type: http://www.assero.co.uk/BusinessOperational#TcReference
     :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
@@ -160,6 +165,7 @@
   :prompt_text: Prompt text
   :simple_datatype: string
   :format: ''
+  :bridg_path: DefinedObservation.nameCode.CD.code
   :children:
   - :type: http://www.assero.co.uk/BusinessOperational#TcReference
     :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code_TR_1
@@ -186,6 +192,7 @@
   :prompt_text: Prompt text
   :simple_datatype: string
   :format: ''
+  :bridg_path: PerformedObservation.targetAnatomicSiteLateralityCode.CD.code
   :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
   :id: BC-ACME_BC_C25206_DefinedObservation_methodCode_CD_code
@@ -200,6 +207,7 @@
   :prompt_text: Prompt text
   :simple_datatype: string
   :format: ''
+  :bridg_path: DefinedObservation.methodCode.CD.code
   :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
   :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code
@@ -214,6 +222,7 @@
   :prompt_text: Prompt text
   :simple_datatype: string
   :format: ''
+  :bridg_path: PerformedClinicalResult.value.PQR.code
   :children:
   - :type: http://www.assero.co.uk/BusinessOperational#TcReference
     :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1
@@ -240,4 +249,5 @@
   :prompt_text: Prompt text
   :simple_datatype: float
   :format: ''
+  :bridg_path: PerformedClinicalResult.value.PQR.value
   :children: []
