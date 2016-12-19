@@ -1,5 +1,8 @@
 <%= stylesheet_link_tag    'd3_local_v2', 'form_editor'%>
-<%= javascript_include_tag 'd3_local_v2', 'form_editor'%>
+<%= javascript_include_tag 'd3_local_v2', 'form_editor', 'ajax_requests', 'form_utility', 'd3_editor', 'unload' %>
+<% if Rails.env == "test" || Rails.env == "development" %>
+	<%= javascript_include_tag 'rspec_helper' %>
+<% end %>
 <script id="formJson" type="text/json">
     <%= raw @form.to_operation.to_json %>
 </script>
@@ -12,3 +15,5 @@
     </div>
     <%= render partial: "shared/formEditor"%>
 </div>
+<input type="hidden" id="token" value="<%= @token.id %>">
+<input type="hidden" id="close_path" value="<%= @close_path %>">

@@ -183,6 +183,17 @@ class Form < IsoManaged
     return object
   end
   
+  # Create Simple
+  #
+  # @param params
+  def self.create_simple(params)
+    object = self.new 
+    object.scopedIdentifier.identifier = params[:identifier]
+    object.label = params[:label]
+    object = Form.create(object.to_operation)
+    return object
+  end
+
   # Create a form
   #
   # @param params [hash] {data:} The operational hash
@@ -210,13 +221,13 @@ class Form < IsoManaged
   # @param params [Hash] The operational hash
   # @return [Object] The form object. Valid if no errors set.
   def self.update(params)
-    existing_form = Form.find(managed_item[:id], managed_item[:namespace])
     operation = params[:operation]
     managed_item = params[:managed_item]
+    existing_form = Form.find(managed_item[:id], managed_item[:namespace])
     object = Form.from_json(managed_item)
     object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
     if object.valid? then
-      if object.create_permitted?
+      #if object.create_permitted?
         sparql = object.to_sparql_v2
         existing_form.destroy # Destroys the old entry before the creation of the new item
         response = CRUD.update(sparql.to_s)
@@ -224,7 +235,7 @@ class Form < IsoManaged
           ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
           raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
         end
-      end
+      #end
     end
     return object
   end
@@ -234,7 +245,7 @@ class Form < IsoManaged
   # @raise [ExceptionClass] DestroyError if object not destroyed
   # @return [Null] No return
   def destroy
-    super(self.namespace)
+    super
   end
 
   # To JSON

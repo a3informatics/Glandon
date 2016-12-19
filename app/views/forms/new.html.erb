@@ -1,14 +1,14 @@
-<%= stylesheet_link_tag    'd3_local_v2', 'form_editor'%>
-<%= javascript_include_tag 'd3_local_v2', 'form_editor'%>
-<script id="formJson" type="text/json">
-    <%= raw @form.to_operation.to_json %>
-</script>
-<div class="row">
-    <div class="col-md-7">
-        <h3>New Form:</h3>
-        <div style="height: 800px;" id="d3">
-            <!-- D3 Area -->
-        </div>
-    </div>
-    <%= render partial: "shared/formEditor"%>
+<h3>New Form:</h3>
+<div class="col-md-3">
+	<%= form_for @form do |f| %>
+	  	<div class="form-group">
+	    	<%= label_tag :identifier, "Identifier:" %><br />
+	    	<%= text_field_tag "form[identifier]", "" ,class: "form-control" %>
+	  	</div>
+	  	<div class="form-group">
+	    	<%= label_tag :label, "Label:" %><br />
+	    	<%= text_field_tag "form[label]", "" , class: "form-control" %>
+	  	</div>
+		<%= f.submit "Create", class: "btn btn-default btn-primary" %>
+	<% end %>
 </div>

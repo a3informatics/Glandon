@@ -28,7 +28,7 @@ describe Form do
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
   end
- 
+
   it "validates a valid object" do
     result = Form.new
     ra = IsoRegistrationAuthority.new
@@ -43,17 +43,6 @@ describe Form do
     expect(result.valid?).to eq(true)
   end
   
-  it "allows a form to be created from operation JSON" do
-    operation = read_yaml_file_to_hash("form_example_simple_placeholder_with_operation.yaml")
-    item = Form.create(operation)
-    expect(item.errors.count).to eq(0)
-  end
-
-  it "allows a placeholder form to be created from parameters" do
-    item = Form.create_placeholder({:identifier => "PLACE NEW", :label => "Placeholder New", :freeText => "Placeholder Test Form"})
-    expect(item.errors.count).to eq(0)
-  end
-
   it "allows a form to be found" do
     item = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(item.identifier).to eq("T2")
@@ -73,6 +62,53 @@ describe Form do
     expect(item.to_json).to eq(result.to_json)
   end
 
+  it "finds all entries" do
+    expected = []
+    expected[0] = {:id => "F-ACME_DM101"}
+    expected[1] = {:id => "F-ACME_T2"}
+    expected[2] = {:id => "F-ACME_VSBASELINE1"}
+    results = Form.all
+    expect(results.count).to eq(3)
+    expected.each_with_index do |x, index|
+      expect(results[index].id).to eq(expected[index][:id])
+    end
+  end
+
+  it "finds all unique entries" do
+    result = 
+      [
+        {
+          :identifier=>"T2",
+          :label=>"Test 2",
+          :owner_id=>"NS-ACME",
+          :owner=>"ACME"
+        },
+        {
+          :identifier=>"DM1 01",
+          :label=>"Demographics",
+          :owner_id=>"NS-ACME",
+          :owner=>"ACME"
+        },
+        {
+          :identifier=>"VS BASELINE",
+          :label=>"Vital Signs Baseline",
+          :owner_id=>"NS-ACME",
+          :owner=>"ACME"
+        }
+      ]
+    expect(Form.unique).to eq (result)
+  end
+
+  it "finds list of all released entries" do
+    expected = []
+    expected[0] = {:id => "F-ACME_VSBASELINE1", :scoped_identifier_version => 1}
+    results = Form.list
+    expected.each_with_index do |x, index|
+      expect(results[index].id).to eq(expected[index][:id])
+      expect(results[index].scopedIdentifier.version).to eq(expected[index][:scoped_identifier_version])
+    end
+  end
+
   it "finds the history of an item" do
     results = []
     results[0] = {:id => "F-ACME_DM101", :scoped_identifier_version => 2}
@@ -90,64 +126,35 @@ describe Form do
       expect(results[index][:scoped_identifier_version]).to eq(items[index].scopedIdentifier.version)
     end   
   end
-
-  it "finds all entries" do
-    expected = []
-    expected[0] = {:id => "F-ACME_DM101"}
-    expected[1] = {:id => "F-ACME_P1"}
-    expected[2] = {:id => "F-ACME_T2"}
-    expected[3] = {:id => "F-ACME_DM101"}
-    results = Form.all
-    expected.each_with_index do |x, index|
-      expect(results[index].id).to eq(expected[index][:id])
-    end
+  
+  it "allows a placeholder form to be created from parameters" do
+    item = Form.create_placeholder({:identifier => "PLACE NEW", :label => "Placeholder New", :freeText => "Placeholder Test Form"})
+    expect(item.errors.count).to eq(0)
   end
 
-  it "finds list of all released entries" do
-    expected = []
-    expected[0] = {:id => "F-ACME_VSBASELINE1", :scoped_identifier_version => 1}
-    results = Form.list
-    expected.each_with_index do |x, index|
-      expect(results[index].id).to eq(expected[index][:id])
-      expect(results[index].scopedIdentifier.version).to eq(expected[index][:scoped_identifier_version])
-    end
+  it "allows a form to be created from operation JSON" do
+    operation = read_yaml_file_to_hash("form_example_simple_placeholder_with_operation.yaml")
+    item = Form.create(operation)
+    expect(item.errors.count).to eq(0)
   end
 
-  it "finds all unique entries" do
-    result = 
-      [
-        {
-          :identifier=>"DM1 01",
-          :label=>"Demographics",
-          :owner_id=>"NS-ACME",
-          :owner=>"ACME"
-        },
-        {
-          :identifier=>"P1",
-          :label=>"Placeholder 1",
-          :owner_id=>"NS-ACME",
-          :owner=>"ACME"
-        },
-        {
-          :identifier=>"PLACE NEW",
-          :label=>"Placeholder New",
-          :owner_id=>"NS-ACME",
-          :owner=>"ACME"
-        },
-        {
-          :identifier=>"T2",
-          :label=>"Test 2",
-          :owner_id=>"NS-ACME",
-          :owner=>"ACME"
-        },
-        {
-          :identifier=>"VS BASELINE",
-          :label=>"Vital Signs Baseline",
-          :owner_id=>"NS-ACME",
-          :owner=>"ACME"
-        }
-      ]
-    expect(Form.unique).to eq (result)
+  it "allows a form to be updated" do
+    item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.label = "New Label"
+    item.update(item.to_operation)
   end
+
+  it "destroy"
+  it "to_json"
+  it "to_sparql_v2"
+  it "to_xml"
+  it "self.from_json(json)"
+  it "valid?"
+  it "self.bc_impact(params)"
+  it "self.term_impact(params)"
+  it "crf"
+  it "acrf"
+  it "annotations"
+  it "report(options, user)"
 
 end

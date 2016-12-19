@@ -84,7 +84,7 @@ class ThesauriController < ApplicationController
         render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
       end
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
     end
   end
 

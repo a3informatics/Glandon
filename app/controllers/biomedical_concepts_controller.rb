@@ -112,21 +112,15 @@ class BiomedicalConceptsController < ApplicationController
     id = params[:id]
     namespace = params[:namespace]
     @bc = BiomedicalConcept.find(id, namespace)
-    @items = @bc.get_properties(true)
-    @references = BiomedicalConcept.get_unique_references(@items)
     respond_to do |format|
-      format.html 
+      format.html do
+        @items = @bc.get_properties(true)
+        @references = BiomedicalConcept.get_unique_references(@items)
+      end
       format.json do
-        results = {}
-        results[:id] = id
-        results[:identifier] = @bc.identifier
-        results[:label] = @bc.label
-        results[:namespace] = namespace
-        results[:properties] = []
-        @items.each do |property|
-          results[:properties] << property
-        end
-        render json: results
+        @items = @bc.get_properties(false)
+        ConsoleLogger::log(C_CLASS_NAME, "show", "Items=#{@items}")
+        render json: @items
       end
     end
   end

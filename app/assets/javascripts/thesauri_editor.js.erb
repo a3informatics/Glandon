@@ -29,6 +29,10 @@ $(document).ready(function() {
     window.location.href = $('#close_path').val();
   });
 
+  // Null function for page unload. Nothing to do
+  function pageUnloadAction() {
+  }
+
   $('#referer_button').click(function() {
     keepToken = true;
     window.location.href = $('#referer_path').val();

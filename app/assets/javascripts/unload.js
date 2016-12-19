@@ -1,7 +1,8 @@
 var keepToken = false;
-window.onbeforeunload = releaseToken;
+window.onbeforeunload = pageUnload;
 
-function releaseToken() {
+function pageUnload() {
+	pageUnloadAction();
 	if (!keepToken) {
 		var token_id = $('#token').val();
 		$.ajax({

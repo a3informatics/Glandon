@@ -52,19 +52,42 @@ function d3MarkNode (ref) {
 }
 
 /*
- * Find node based on key
+ * Find the d3 node (not the data)
  */
-function d3FindNode (key) {
-  var node;
+function d3FindGRef(key) {
+  var gRef = null;
   var nodes = d3.selectAll("g.node");
   for (var i=0; i<nodes[0].length; i++) {
     var data = nodes[0][i].__data__;
     if (data.key == key) {
-      node = nodes[0][i];
+      gRef = nodes[0][i];
       break;
     }
   }
-  return node;
+  return gRef;
+}
+
+/*
+ * Find d3 node (not the data) based on name
+ */
+function d3FindGRefByName(name) {
+  var gRef = null;
+  var nodes = d3.selectAll("g.node");
+  for (var i=0; i<nodes[0].length; i++) {
+    var data = nodes[0][i].__data__;
+    if (data.name == name) {
+      gRef = nodes[0][i];
+      break;
+    }
+  }
+  return gRef;
+}
+
+/*
+ * Get the node from a gRef
+ */
+function d3GetData(gRef) {
+  return gRef.__data__;
 }
 
 /*
@@ -97,4 +120,4 @@ function d3AdjustHeight (height) {
     height = 800;
   }  
   $('#d3').css("height",height + "px");  
-}
+}  

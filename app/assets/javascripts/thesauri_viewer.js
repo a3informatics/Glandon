@@ -110,7 +110,7 @@ $(document).ready(function() {
     } else {
       d3TreeCircular(d3Div, rootNode, click, dblClick);
     }
-    var gRef = d3FindNode(nodeKey);
+    var gRef = d3FindGRef(nodeKey);
     currentThis = gRef;
     currentNode = gRef.__data__;
     d3MarkNode(currentThis);

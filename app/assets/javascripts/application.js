@@ -130,6 +130,21 @@ function notImplementedYet() {
   displayAlerts(html);
 }
 
+function displayWarning(text) {
+  var html = alertWarning(text);
+  displayAlerts(html);
+}
+
+function displayError(text) {
+  var html = alertError(text);
+  displayAlerts(html);
+}
+
+function displaySuccess(text) {
+  var html = alertSuccess(text);
+  displayAlerts(html);
+}
+
 function handleAjaxError (xhr, status, error) {
     var json;
     var errors;

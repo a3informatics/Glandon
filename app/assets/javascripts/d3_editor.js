@@ -81,7 +81,7 @@ function d3eAddSourceNode(parent, node, end) {
  */
 function d3eDisplayTree(nodeKey) {
   d3TreeNormal(d3Div, rootNode, d3eClick, d3eDblClick);
-  var gRef = d3FindNode(nodeKey);
+  var gRef = d3FindGRef(nodeKey);
   currentGRef = gRef;
   currentNode = gRef.__data__;
   d3MarkNode(currentGRef);    
@@ -204,5 +204,29 @@ function d3eMoveNodeDown(node) {
     tempNode1.index = parentIndex;
     tempNode2.index = parentIndex + 1;
     setOrdinal(sourceParentNode);
+  }
+}
+
+function setParent(node) {
+  var i;
+  var child;
+  if (node.hasOwnProperty('save')) {
+    for (i=0; i<node.save.length; i++) {
+      child = node.save[i];
+      child.parent = node;
+      child.index = i;
+      setParent(child);
+    }
+  }
+}
+
+function setOrdinal(node) {
+  var i;
+  var child;
+  if (node.hasOwnProperty('children')) {
+    for (i=0; i<node.children.length; i++) {
+      child = node.children[i];
+      child.ordinal = i+1;
+    }
   }
 }
