@@ -45,6 +45,29 @@ function getBcProperty(node, callback) {
 }
 
 /*
+* Obtain a BC Property 
+*
+* @param node [Object] The D3 data node
+* @param callback [Function] The callback function to be called on success
+* @return [Null]
+*/
+function getBcPropertyCommon(node, callback) {
+  $.ajax({
+    url: "/biomedical_concepts/properties/" + node.data.item_refs[0].id,
+    type: "GET",
+    data: { "namespace": node.data.item_refs[0].namespace },
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      var html = alertError("An error has occurred loading a Biomedical Concept reference.");
+      displayAlerts(html);
+    },
+    success: function(result){
+      callback(node, result);
+    }
+  });
+}
+
+/*
 * Get Markdown 
 *
 * @param object [UI Control] The object to be quoted in the callback

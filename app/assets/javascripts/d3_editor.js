@@ -66,19 +66,6 @@ function d3eDblClick(node) {
   dblClickCallBackPostFunction(node);
 } 
 
-function d3eAddSourceNode(parent, node, end) {
-  if (end) {
-    parent.children.push(node);
-  } else {
-    parent.children.unshift(node);
-  }
-  //node.ordinal = parent.children.length;
-  for (i=0; i<parent.children.length; i++) {
-    temp = parent.children[i];
-    temp.ordinal = i + 1;
-  }
-}
-
 /**
  *  Function to draw the tree
  */
@@ -88,6 +75,13 @@ function d3eDisplayTree(nodeKey) {
   currentGRef = gRef;
   currentNode = gRef.__data__;
   d3MarkNode(currentGRef);    
+}
+
+/*
+ * Get the key of the last node created.
+ */
+function d3eLastKey() {
+  return nextKeyId - 1;
 }
 
 function d3eAddNode(parent, name, type, enabled, data, addAtEnd) {
@@ -227,12 +221,25 @@ function setParent(node) {
 }
 
 function setOrdinal(node) {
-  var i;
   var child;
   if (node.hasOwnProperty('children')) {
-    for (i=0; i<node.children.length; i++) {
-      child = node.children[i];
-      child.ordinal = i+1;
+    for (var i=0; i<node.children.length; i++) {
+      node.children[i].ordinal = i+1;
     }
   }
 }
+
+/*function d3eAddSourceNode(parent, node, end) {
+  if (end) {
+    parent.children.push(node);
+  } else {
+    parent.children.unshift(node);
+  }
+  for (i=0; i<parent.children.length; i++) {
+    temp = parent.children[i];
+    temp.ordinal = i + 1;
+  }
+  parent.children = parent.save;
+}*/
+
+

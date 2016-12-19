@@ -70,7 +70,7 @@ function d3FindGRef(key) {
 }
 
 /*
- * Find d3 node (not the data) based on name
+ * Find d3 reference (not the data) based on name
  */
 function d3FindGRefByName(name) {
   var gRef = null;
