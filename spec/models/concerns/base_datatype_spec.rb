@@ -2,7 +2,13 @@ require 'rails_helper'
 
 describe BaseDatatype do
 	
-	it "obtain xsd datatype - integer" do
+	include DataHelpers
+
+  def sub_dir
+    return "models/concerns"
+  end
+
+  it "obtain xsd datatype - integer" do
 		expect(BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)).to eq("integer")
 	end
 
@@ -92,4 +98,16 @@ describe BaseDatatype do
     expect(BaseDatatype.valid?("stringx")).to eq(false)
   end
 
+  it "allows the whole map to be exported as JSON" do
+    #write_text_file_2(BaseDatatype.to_json, sub_dir, "base_datatype_json.txt")
+    result = read_text_file_2(sub_dir, "base_datatype_json.txt")
+    expect(BaseDatatype.to_json).to eq(result)
+  end
+
+  it "allows the whole map to be exported as JSON" do
+    #write_text_file_2(BaseDatatype.to_json, sub_dir, "base_datatype_json.txt")
+    result = read_text_file_2(sub_dir, "base_datatype_json.txt")
+    expect(BaseDatatype.to_json).to eq(result)
+  end
+  
 end

@@ -8,12 +8,12 @@ var notepadData;
 var notepadRow;
 var varClCurrent;
 var varClCurrentRow;
-var questionDatatypeValue
 var markdownElement;
 var markdownType;
 var previousSave;
 var bcSelect;
 var idKeyMap;
+var datatypeMap;
 
 $(document).ready(function() {
 
@@ -54,8 +54,8 @@ $(document).ready(function() {
     "pageLength": 5,
     "lengthChange": false,
     "columns": [
-      {"data" : "identifier", "width" : "50%"},
-      {"data" : "useful_1", "width" : "50%"},
+      {"data" : "data.subject_data.identifier", "width" : "50%"},
+      {"data" : "data.subject_data.notation", "width" : "50%"},
     ]
   });
   questionClTable.clear();
@@ -105,6 +105,14 @@ $(document).ready(function() {
     notepadTableReload = true;    
   }
 
+  // Initialise everything.
+  initData();
+  initialNotepadLoad();
+  displayNode(rootNode);
+
+  /* 
+  * Notepad Actions
+  */
   $('#notepad_refresh').click(function() {
     if (!notepadTableReload) {
       initialNotepadLoad();
@@ -116,28 +124,30 @@ $(document).ready(function() {
   $('#notepad_add').click(function() {
     var data;
     var text;
-    if (notepadRow != null) {
+    if (notepadRow !== null) {
       data = notepadTable.row(notepadRow).data();
-      questionClTable.row.add(data);
+      var currentD3Node = d3eGetCurrent();
+      var tcRefSNode = newQuestionCli(data);
+      var tcRefD3Node = d3eAddNode(currentD3Node, tcRefSNode.label, tcRefSNode.type, true, tcRefSNode, true);
+      addSNode(currentD3Node.data, tcRefD3Node.data, true);
+      questionClTable.row.add(tcRefD3Node);
       questionClTable.draw(false);
+      displayNode(currentD3Node);
+    } else {
+      displayWarning("You need to select a notepad item.");
     }
   });
 
   $('#notepad_table tbody').on('click', 'tr', function () {
     var row = notepadTable.row(this).index();
     var data = notepadTable.row(row).data();
-    if (notepadRow != null) {
+    if (notepadRow !== null) {
       $(notepadRow).toggleClass('success');
     }
     $(this).toggleClass('success')
     notepadData = data;
     notepadRow = this
   });
-
-  // Initialise everything.
-  initData();
-  initialNotepadLoad();
-  displayNode(rootNode);
 
   /*
   * General Panel Actions
@@ -149,16 +159,24 @@ $(document).ready(function() {
     window.location.href = $('#close_path').val();
   });
 
-  // Function for testing. Allows a tree node to be clicked.
-  $('#click_node').click(function() {
-    var nodeName = $('#click_node_text').val();
+  /*
+  * Functions for testing. 
+  */
+  $('#click_node_name').click(function() {
+    var nodeName = $('#click_node_name_text').val();
     var node = d3FindGRefByName(nodeName);
     simulateClick(node);
   });
 
-  $('#test').click(function() {
-    var ordinal = getOrdinal($('#click_node_text').val());
-    $('#test_text').val(ordinal)
+  $('#click_node_key').click(function() {
+    var nodeKey = $('#click_node_key_text').val();
+    var node = d3FindGRef(nodeKey);
+    simulateClick(node);
+  });
+
+  $('#clear_current_node').click(function() {
+    currentGRef = null;
+    currentNode = null;
   });
 
   /*
@@ -180,7 +198,7 @@ $(document).ready(function() {
   * Form Panel Actions
   */
   $('#formAddGroup').click(function() {
-    var currentNode = d3eGetCurrent()
+    var currentNode = d3eGetCurrent();
     if (currentNode === null) {
       displayWarning("You need to select the form node.");
     } else {
@@ -198,13 +216,13 @@ $(document).ready(function() {
   });
 
   $('#groupDelete').click(function() {
-    treeNodeDelete();
+    treeNodeDelete(true);
   });
 
   $('#groupAddCommon').click(function() {
-    var currentNode = d3eGetCurrent()
+    var currentNode = d3eGetCurrent();
     if (currentNode === null) {
-      displayWarning("You need to select a group node.");
+      displayWarning("You need to select a node.");
     } else if (hasCommonGroup(d3eGetCurrent())) {
       displayWarning("Group already has a common node.");
     } else {
@@ -216,7 +234,7 @@ $(document).ready(function() {
   $('#groupAddBc').click(function() {
     var currentNode = d3eGetCurrent()
     if (currentNode === null) {
-      displayWarning("You need to select a group node.");
+      displayWarning("You need to select a node.");
     } else if (bcCurrent === null) {
       displayWarning("You need to select a Biomedical Concept.");
     } else {
@@ -293,14 +311,28 @@ $(document).ready(function() {
    * Function to handle click on the BC selection table.
    */
   $('#bcTable tbody').on('click', 'tr', function () {
-    handleBCTable(bcSelect, this);
+    if (bcCurrent != null) {
+      $(bcCurrent).toggleClass('success');
+    }
+    $(this).toggleClass('success');
+    var row = bcSelect.row(this).index();
+    //var data = bcSelect.row(row).data();
+    bcCurrent = this;
+    bcCurrentRow = row;
   });
 
   /*
-   * Function to handle click on question cl table
+   * Function to handle click on Question CL table
    */
   $('#questionClTable tbody').on('click', 'tr', function () {
-    handleQuestionTable(questionClTable, this);
+    if (varClCurrent != null) {
+      $(varClCurrent).toggleClass('success');
+    }
+    $(this).toggleClass('success');
+    var row = questionClTable.row(this).index();
+    //var data = questionClTable.row(row).data();
+    varClCurrent = this;
+    varClCurrentRow = row;
   });
 
   /* 
@@ -311,17 +343,22 @@ $(document).ready(function() {
     if (varClCurrentRow == null) {
       displayWarning("You need to select a code list item.");
     } else {
+      var clData = questionClTable.row(varClCurrentRow).data();
+      var gRef = d3FindGRef(clData.key);
+      var node = d3GetData(gRef);
+      var parent = node.parent; 
+      d3eDeleteNode(node);
       questionClTable.row(varClCurrentRow).remove();
       varClCurrentRow = null;
       questionClTable.draw();
+      displayNode(parent);
     }
   });
 
   $('#questionDatatype input:radio').click(function() {
     var value = $(this).val();
-    clEnableDisable(value);
-    clFormat(value);
-    questionDatatypeValue = value;
+    clEnableDisable(value, false);
+    clFormat(value, false);
   });
 
   /*
@@ -404,27 +441,38 @@ function markdownCallback(element, text) {
 /*
 *
 */
-function clEnableDisable (value) {
-  if (value == "I" || value == "S" || value == "F") {
+
+function clEnableDisable (value, coded) {
+  if (coded) {
+    $("#questionFormat").prop('disabled', true);
+    $("#notepad_add").prop('disabled', false);
+    $("#deleteTerm").prop('disabled', false);
+  } else if (value === datatypeMap['string']['xsd_fragment']) {
+    $("#questionFormat").prop('disabled', false);
+    $("#notepad_add").prop('disabled', false);
+    $("#deleteTerm").prop('disabled', false);
+  } else if (value === datatypeMap['integer']['xsd_fragment'] || value === datatypeMap['float']['xsd_fragment']) {
     $("#questionFormat").prop('disabled', false);
     $("#notepad_add").prop('disabled', true);
     $("#deleteTerm").prop('disabled', true);
   } else {
     $("#questionFormat").prop('disabled', true);
-    $("#notepad_add").prop('disabled', false);
-    $("#deleteTerm").prop('disabled', false);
+    $("#notepad_add").prop('disabled', true);
+    $("#deleteTerm").prop('disabled', true);
   }
 }
 
-function clFormat (value) {
-  if (value == "I") {
-    questionFormatElement.value = "3"
-  } else if (value == "S") {
-    questionFormatElement.value = "20"
-  } else if (value == "F") {
-    questionFormatElement.value = "6.2"
+function clFormat (value, coded) {
+  if (coded) {
+    $('#questionFormat').val("")
+  } else if (value === datatypeMap['integer']['xsd_fragment']) {
+    $('#questionFormat').val("3")
+  } else if (value === datatypeMap['string']['xsd_fragment']) {
+    $('#questionFormat').val("20")
+  } else if (value === datatypeMap['float']['xsd_fragment']) {
+    $('#questionFormat').val("6.2")
   } else {
-    questionFormatElement.value = ""
+    $('#questionFormat').val("")
   }
 }
 
@@ -555,7 +603,7 @@ function saveRest() {
 }
 
 /*
-* Generic functions
+* Generic node functions
 */
 function treeNodeAdd(addFunction) {
   var currentNode = d3eGetCurrent();
@@ -663,22 +711,23 @@ function displayQuestion(node) {
   $('#questionText').val(node.data.question_text);
   $("#questionOptional").prop('checked', node.data.optional);
   $('#questionMapping').val(node.data.mapping);
-  var $radios = $('input:radio[name=dtRadio]');
-  $radios.filter('[value=' + node.data.datatype +']').prop('checked', true);
   $('#questionFormat').val(node.data.format);
   $('#questionComplation').val(node.data.completion);
   $('#questionNote').val(node.data.note);
+  var $radios = $('input:radio[name=dtRadio]');
+  $radios.filter('[value=' + node.data.datatype +']').prop('checked', true);
   questionClTable.clear();
-  if (node.hasOwnProperty('children')) {
-    for (j=0; j<node.children.length; j++) {
-      var child = node.children[j];
-      var data = child.data
-      var ref = data.subject_data;
-      var clRow = {identifier: ref.identifier, uri_id: ref.id, uri_ns: ref.namespace, useful_1: ref.notation, useful_2: ref.label}; 
-      questionClTable.row.add(clRow);
+  if (hasChildren(node)) {
+    for (var j=0; j<node.children.length; j++) {
+      questionClTable.row.add(node.children[j]);
     }
+    node.data.datatype = datatypeMap['string']['xsd_fragment'];
+    clEnableDisable(node.data.datatype, true);
+    $radios.prop("disabled", true);
+  } else {
+    clEnableDisable(node.data.datatype, false);
+    $radios.prop("disabled", false);
   }
-  clEnableDisable(node.data.datatype);
 }
 
 function displayMapping(node) {
@@ -713,8 +762,8 @@ function displayCl(node) {
   }
 }
 
-/**
- * Functions to save info.
+/*
+ * Functions to save the panels
  */
 function saveForm(node) {
   node.data.label = $('#formLabel').val();
@@ -758,17 +807,6 @@ function saveQuestion(node) {
   node.data.format = $('#questionFormat').val();
   node.data.completion = $('#questionCompletion').val();
   node.data.note = $('#questionNote').val();
-  node.data.children = [];
-  node.save = [];
-  node.children = [];
-  rowData = questionClTable.rows().data();
-  for (i=0; i<rowData.length; i++) {
-    row = rowData.row(i).data();
-    tcRefSNode = newQuestionCli(row);
-    tcRefD3Node = d3eAddNode(node, row.useful_2, C_Q_CL, true, tcRefSNode, true); 
-    addSNode(node.data, tcRefSNode, true);
-    tcReference(tcRefD3Node);
-  }
 }
 
 function saveMapping(node) {
@@ -793,6 +831,9 @@ function saveCl(node) {
   node.enabled = node.data.enabled
 }
 
+/*
+* Common handling
+*/
 function makeCommon(node) {
   var returnD3Node = node;
   var commonGroup;
@@ -896,7 +937,7 @@ function findKeyFromId(id) {
 }
 
 /*
-* Group generic functions
+* New blank object functions
 */
 function newFormGroup(nullVar) {
   return { 
@@ -986,20 +1027,24 @@ function newBCProperty(property) {
 
 function newBCPropertyCli(cli) {
   return {
-    type: C_TC_REF, label: "", id: "", namespace: "", ordinal: 0, 
+    type: C_TC_REF, label: cli.useful_2, id: "", namespace: "", ordinal: 0, 
     local_label: cli.Local_label, enabled: true, optional: false,
-    subject_ref: {id: cli.subject_ref.id, namespace: cli.subject_ref.namespace},
+    subject_ref: {id: cli.subject_ref.id, namespace: cli.subject_ref.namespace}
   };
 }
 
 function newQuestionCli(cli) {
   return {
-    type: C_TC_REF, label: "", id: "", namespace: "", ordinal: 0, 
+    type: C_TC_REF, label: cli.useful_2, id: "", namespace: "", ordinal: 0, 
     local_label: cli.useful_2, enabled: true, optional: false, 
-    subject_ref: {id: cli.subject_ref.uri_id, namespace: cli.subject_ref.uri_ns}
+    subject_ref: {id: cli.uri_id, namespace: cli.uri_ns},
+    subject_data: {identifier: cli.identifier, notation: cli.useful_1}
   };
 }
 
+/*
+* Add functions
+*/
 function addGroup(d3ParentNode) {
   var d3Node = addD3Node(d3ParentNode, C_NORMAL_GROUP, "Group", newFormGroup, null, true);
   addSNode(d3ParentNode.data, d3Node.data, true);
@@ -1121,28 +1166,6 @@ function addSNode(parent, node, end) {
 /*
 * Other utility functions
 */
-function handleBCTable(table, ref) {
-  if (bcCurrent != null) {
-    $(bcCurrent).toggleClass('success');
-  }
-  $(ref).toggleClass('success');
-  var row = table.row(ref).index();
-  var data = table.row(row).data();
-  bcCurrent = ref;
-  bcCurrentRow = row;
-}
-
-function handleQuestionTable(table, ref) {
-  if (varClCurrent != null) {
-    $(varClCurrent).toggleClass('success');
-  }
-  $(ref).toggleClass('success');
-  var row = table.row(ref).index();
-  var data = table.row(row).data();
-  varClCurrent = ref;
-  varClCurrentRow = row;
-}
-
 function findNodeFromId(id) {
   if (idKeyMap.hasOwnProperty(id)) {
     return idKeyMap[id];
@@ -1154,8 +1177,12 @@ function findNodeFromId(id) {
 
 function initData () {
   var managedItem;
-  var html = $("#formJson").html();
-  formDefinition = $.parseJSON(html);
+  // Get the JSON objects
+  var html1 = $("#formJson").html();
+  formDefinition = $.parseJSON(html1);
+  var html2 = $("#datatype_map").html();
+  datatypeMap = $.parseJSON(html2);
+  // Initialise
   managedItem = formDefinition.managed_item;
   previousSave = currentSave = JSON.stringify(formDefinition);
   markdownElement = null;
@@ -1167,7 +1194,6 @@ function initData () {
   notepadRow = null; 
   varClCurrent = null;
   varClCurrentRow = null;
-  questionDatatypeValue = "I";
   d3eInit(saveNode, displayNode, empty);
   rootNode = d3eRoot(managedItem.label, C_FORM, managedItem)
   idKeyMap = {};
@@ -1219,7 +1245,7 @@ function saveNode() {
   } else if (d3Node.type == C_TC_REF) {
     saveCl(d3Node)
   } 
-  //saveRest();
+  saveRest();
 }
 
 function displayNode(d3Node) {
@@ -1272,7 +1298,7 @@ function displayNode(d3Node) {
 */
 function getReference(d3Node) {
   if (d3Node.type == C_TC_REF) {
-    getThesaurusConcept(d3Node, tcResult)
+    getThesaurusConcept(d3Node, tcResult);
   } else if (d3Node.type == C_BC_QUESTION) {
     getBcProperty(d3Node, bcPropertyResult)
   } else if (d3Node.type == C_COMMON_ITEM) {
@@ -1290,9 +1316,10 @@ function getReference(d3Node) {
 * @return [Null]
 */
 function tcResult(d3Node, result) {
+  var d3CurrentNode = d3eGetCurrent();
   d3Node.data.subject_data = result;
   d3Node.name = result.label;
-  displayNode(rootNode);
+  displayNode(d3CurrentNode);
 }
 
 /*
@@ -1303,11 +1330,12 @@ function tcResult(d3Node, result) {
 * @return [Null]
 */
 function bcPropertyResult(d3Node, result) {
+  var d3CurrentNode = d3eGetCurrent();
   d3Node.data.property_ref.subject_data = result;
   idKeyMap[d3Node.data.property_ref.subject_ref.id] = d3Node.key;
   var parent = d3Node.parent;
   var group = d3Node.parent.parent;
-  displayNode(group);
+  displayNode(d3CurrentNode);
 }
 
 /*
@@ -1318,6 +1346,7 @@ function bcPropertyResult(d3Node, result) {
 * @return [Null]
 */
 function bcPropertyResultCommon(d3Node, result) {
+  var d3CurrentNode = d3eGetCurrent();
   d3Node.data.bridg_path = result.bridg_path;
   if (!hasChildren(d3Node)) {
     for (var i=0; i<result.children.length; i++) {

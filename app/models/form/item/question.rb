@@ -118,7 +118,7 @@ class Form::Item::Question < Form::Item
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "mapping"}, {:literal => "#{self.mapping}", :primitive_type => "string"})
     self.tc_refs.each do |tc_ref|
       ref_uri = tc_ref.to_sparql_v2(uri, "hasThesaurusConcept", 'TCR', tc_ref.ordinal, sparql)
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, {:uri => uri})
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasThesaurusConcept"}, {:uri => ref_uri})
     end
     return uri
   end

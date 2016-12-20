@@ -159,7 +159,50 @@ describe Form::Item::Question do
     expect(Form::Item::Question.find_from_triples(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)    
   end
 
-  it "allows an object to be created from JSON"
+  it "allows an object to be created from JSON" do
+    json = 
+    {
+      type: "http://www.assero.co.uk/BusinessForm#Question",
+      id: "F-ACME_T10_G1_I1",
+      namespace: "http://www.assero.co.uk/MDRForms/ACME/V1",
+      label: "Question 1",
+      extension_properties: nil,
+      ordinal: 1,
+      note: "",
+      completion: "",
+      optional: false,
+      datatype: "CL",
+      format: "",
+      question_text: "TEST",
+      mapping: "",
+      children: [
+        {
+          type: "http://www.assero.co.uk/BusinessOperational#TcReference",
+          label: "Mile Per Hour",
+          id: "",
+          namespace: "",
+          ordinal: 1,
+          local_label: "Mile Per Hour",
+          enabled: true,
+          optional: false,
+          subject_ref: {
+            id: "CLI-C71620_C105500",
+            namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
+          },
+          subject_data: {
+            identifier: "C105500",
+            notation: "mph"
+          }
+        }
+      ]
+    }
+    result = Form::Item::Question.from_json(json)
+    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "question_from_json.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "question_from_json.yaml")
+    expect(result.to_json).to eq(expected)
+    sparql = SparqlUpdateV2.new
+    result.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
+  end
   
   it "allows an object to be exported as JSON"
 
@@ -195,6 +238,51 @@ describe Form::Item::Question do
     expect(sparql.to_s).to eq(result)
   end
   
+  it "allows an object to be exported as SPARQL, with child" do
+    json = 
+    {
+      type: "http://www.assero.co.uk/BusinessForm#Question",
+      id: "F-ACME_T10_G1_I1",
+      namespace: "http://www.assero.co.uk/MDRForms/ACME/V1",
+      label: "Question 1",
+      extension_properties: nil,
+      ordinal: 1,
+      note: "",
+      completion: "",
+      optional: false,
+      datatype: "CL",
+      format: "",
+      question_text: "TEST",
+      mapping: "",
+      children: [
+        {
+          type: "http://www.assero.co.uk/BusinessOperational#TcReference",
+          label: "Mile Per Hour",
+          id: "",
+          namespace: "",
+          ordinal: 1,
+          local_label: "Mile Per Hour",
+          enabled: true,
+          optional: false,
+          subject_ref: {
+            id: "CLI-C71620_C105500",
+            namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
+          },
+          subject_data: {
+            identifier: "C105500",
+            notation: "mph"
+          }
+        }
+      ]
+    }
+    result = Form::Item::Question.from_json(json)
+    sparql = SparqlUpdateV2.new
+    result.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
+    #write_text_file_2(sparql.to_s, sub_dir, "question_sparql.txt")
+    expected = read_text_file_2(sub_dir, "question_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
+
   it "allows an object to be exported as XML"
 
 end

@@ -6,6 +6,9 @@
 <script id="formJson" type="text/json">
   <%= raw @form.to_operation.to_json %>
 </script>
+<script id="datatype_map" type="text/json">
+  <%= raw BaseDatatype.to_json %>
+</script>
 <form id="main_form">
 	<div class="row">
 	  <div class="col-md-7">
@@ -24,22 +27,27 @@
 	  <div class="col-md-5" >
 	  	<%= render partial: "shared/formEditor"%>
 		  <% if Rails.env == "test" || Rails.env == "development" %>
-		    <div class="col-md-6" >
-		      <div class="input-group">
-		        <span class="input-group-btn">
-		          <button type="button" id="click_node" class="btn btn-primary">N:</button>
-		        </span>
-		        <input type="text" class="form-control" id="click_node_text">
-		      </div>
-		    </div>
-		    <div class="col-md-6" >
-		      <div class="input-group">
-		        <span class="input-group-btn">
-		          <button type="button" id="test" class="btn btn-primary">T:</button>
-		        </span>
-		        <input type="text" class="form-control" id="test_text">
-		      </div>
-		    </div>
+		    <div class="row">
+			    <div class="col-md-4" >
+			      <div class="input-group">
+			        <span class="input-group-btn">
+			          <button type="button" id="click_node_name" class="btn btn-primary">N:</button>
+			        </span>
+			        <input type="text" class="form-control" id="click_node_name_text">
+			      </div>
+			    </div>
+			    <div class="col-md-4" >
+			      <div class="input-group">
+			        <span class="input-group-btn">
+			          <button type="button" id="click_node_key" class="btn btn-primary">K:</button>
+			        </span>
+			        <input type="text" class="form-control" id="click_node_key_text">
+			      </div>
+			    </div>
+			    <div class="col-md-4" >
+		        <button type="button" id="clear_current_node" class="btn btn-primary">Clear</button>
+			    </div>
+			  </div>
 		  <% end %>
 	  </div>
 	</div>

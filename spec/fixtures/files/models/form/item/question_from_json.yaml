@@ -1,0 +1,27 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Question
+:id: F-ACME_T10_G1_I1
+:namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+:label: Question 1
+:extension_properties: []
+:ordinal: 1
+:note: ''
+:completion: ''
+:optional: false
+:datatype: CL
+:format: ''
+:question_text: TEST
+:mapping: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :id: ''
+  :namespace: ''
+  :label: Mile Per Hour
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :local_label: Mile Per Hour
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :id: CLI-C71620_C105500

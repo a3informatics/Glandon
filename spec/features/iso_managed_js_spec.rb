@@ -4,7 +4,7 @@ describe "ISO Managed JS", :type => :feature do
   
   include DataHelpers
   include PauseHelpers
-  include FeatureHelpers
+  include UiHelpers
   
   before :all do
     user = User.create :email => "curator@example.com", :password => "12345678" 
@@ -88,10 +88,10 @@ describe "ISO Managed JS", :type => :feature do
       fill_in "iso_managed_origin", with: "@@@@@"
       expect(page).to have_content 'Please enter valid markdown.'
       #pause
-      set_focus("iso_managed_explanatoryComment")
+      ui_set_focus("iso_managed_explanatoryComment")
       div = page.find("#generic_markdown")
       expect(div.text(:all)).to eq("I am a comment")
-      set_focus("iso_managed_changeDescription")
+      ui_set_focus("iso_managed_changeDescription")
       div = page.find("#generic_markdown")
       expect(div.text(:all)).to eq("Hello world. This is a change description")
       fill_in "iso_managed_origin", with: "Origin"

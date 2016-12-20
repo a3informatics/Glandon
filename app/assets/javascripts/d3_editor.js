@@ -96,7 +96,7 @@ function d3eAddNode(parent, name, type, enabled, data, addAtEnd) {
   node.data = data;
   node.expand = false;
   node.children = [];
-  node.save = node.children;
+  node.save = [];
   if (!parent.hasOwnProperty('save')) {
     parent.save = [];
     parent.children = [];

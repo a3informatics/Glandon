@@ -134,50 +134,33 @@
             <input type="text" class="form-control" id="questionText" name="Question Text">
           </div>
           <div class="form-group">
+            <label for="questionDatatype">Mapping:</label>
+            <input type="text" class="form-control" id="questionMapping" name="Question Mapping">
+          </div>
+          <div class="form-group">
             <div class="checkbox">
               <label class="checkbox-inline">
                 <input type="checkbox" id="questionOptional" name="questionOptional"><strong>Optional</strong>
               </label>
             </div>
           </div>
-          <div class="form-group">
-            <label for="questionDatatype">Mapping:</label>
-            <input type="text" class="form-control" id="questionMapping" name="Question Mapping">
-          </div>
-          <div id="questionDatatype" class="col-sm-9">
+          <div id="questionDatatype" class="col-sm-8">
             <label for="questionDatatype">Datatype:</label><br/>
-            <label class="radio-inline">
-              <input type="radio" id="form_datatype_i" name="dtRadio" value="I"> I
-            </label>
-            <label class="radio-inline">
-              <input type="radio" id="form_datatype_f" name="dtRadio" value="F"> F
-            </label>
-            <label class="radio-inline">
-              <input type="radio" id="form_datatype_s" name="dtRadio" value="S"> S
-            </label>
-            <label class="radio-inline">
-              <input type="radio" id="form_datatype_cl" name="dtRadio" value="CL"> CL
-            </label>
-            <label class="radio-inline">
-              <input type="radio" id="form_datatype_bl" name="dtRadio" value="BL"> BL
-            </label>
-            <label class="radio-inline">
-              <input type="radio" id="form_datatype_d" name="dtRadio" value="D"> D
-            </label>
-            <label class="radio-inline">
-              <input type="radio" id="form_datatype_t" name="dtRadio" value="T"> T
-            </label>
-            <label class="radio-inline">
-              <input type="radio" id="form_datatype_dt" name="dtRadio" value="D+T"> D+T
-            </label>
+              <% BaseDatatype.get_map.each do |key, datatype| %>
+                <% if datatype[:display] %>
+                  <label class="radio-inline">
+                    <input type="radio" id="<%= "form_datatype_#{datatype[:short_label].downcase}" %>" name="dtRadio" value="<%= "#{datatype[:xsd_fragment]}" %>"><%= " #{datatype[:short_label]}" %>
+                  </label>
+                <% end %>
+              <% end %>
           </div>
-          <div class="form-group  col-sm-3">
+          <div class="form-group col-sm-4">
             <label for="questionFormat">Format:</label>
             <input type="text" class="form-control" id="questionFormat" name="questionFormat">
           </div>
         </div>
         <label for="questionClTable">Code List:</label>
-        <table id="questionClTable" class="table table-striped table-bordered"  cellspacing="0" width="100%">
+        <table id="questionClTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
             <tr> 
               <th>Item</th>
@@ -372,25 +355,21 @@
       </div>
   </div>
   <div id="bcSelection" class="panel panel-default">
-      <div class="panel-heading">
-          <h3 class="panel-title">Biomedical Concept Selection</h3>
-      </div>
-      <div class="panel-body">
-          <table id="bcTable" class="table table-striped table-bordered table-condensed">
-              <thead>
-                  <tr>
-                      <th>Identifier</th>
-                      <th>Label</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
+    <div class="panel-heading">
+        <h3 class="panel-title">Biomedical Concept Selection</h3>
+    </div>
+    <div class="panel-body">
+      <table id="bcTable" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>Identifier</th>
+            <th>Label</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div id="notepad_panel" class="panel panel-default">
     <div class="panel-heading">

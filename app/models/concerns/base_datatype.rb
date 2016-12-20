@@ -111,4 +111,17 @@ module BaseDatatype
 		return @@map.has_key?(datatype)
 	end
 
+	# To JSON
+	#
+	# @return [String] The JSON serialization of the entire map
+	def self.to_json
+		return @@map.to_json
+	end
+	
+	# Get Map
+	#
+	# @return [Hash] The map as defined
+	def self.get_map
+		return @@map
+	end
 end

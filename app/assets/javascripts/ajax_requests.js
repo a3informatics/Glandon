@@ -1,3 +1,27 @@
+KLASS = "ajax-completed"
+var ajaxRequests;
+
+/*
+* testing functions
+*/
+function clearAjax() {
+  ajaxRequests = 0;
+}
+
+function incAjax() {
+  ajaxRequests += 1;
+  if (ajaxRequests > 0) {
+    $(document.body).removeClass(KLASS)
+  }
+}
+
+function decAjax() {
+  ajaxRequests -= 1;
+  if (ajaxRequests === 0) {
+    $(document.body).addClass(KLASS)
+  }
+}
+
 /*
 * Obtain a Thesaurus Concept
 *
