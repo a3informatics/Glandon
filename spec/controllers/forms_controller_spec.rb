@@ -15,6 +15,8 @@ describe FormsController do
 
     before :all do
       clear_triple_store
+      Token.delete_all
+      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Basic.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
@@ -32,6 +34,11 @@ describe FormsController do
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
       clear_cdisc_term_object
+    end
+
+    after :all do
+      user = User.where(:email => "lock@example.com").first
+      user.destroy
     end
 
     it "provides a new object" do
@@ -61,35 +68,25 @@ describe FormsController do
     end
 
     it "shows the history" do
-      params = 
-      {
-        :identifier => "DM1 01", 
-        :scope_id => IsoRegistrationAuthority.owner.namespace.id ,
-      }
-      get :history, params
+      get :history, { :identifier => "DM1 01", :scope_id => IsoRegistrationAuthority.owner.namespace.id }
       expect(response).to render_template("history")
     end
 
     it "shows the history, redirects when empty" do
-      params = 
-      {
-        :identifier => "DM1 01X", 
-        :scope_id => IsoRegistrationAuthority.owner.namespace.id ,
-      }
-      get :history, params
+      get :history, { :identifier => "DM1 01X", :scope_id => IsoRegistrationAuthority.owner.namespace.id }
       expect(response).to redirect_to("/forms")
     end
 
-    it "placeholder_new" do
-      get :new
+    it "initiates the creation of a new placeholder form" do
+      get :placeholder_new
       expect(assigns[:form].to_json).to eq(Form.new.to_json)
-      expect(response).to render_template("new")
+      expect(response).to render_template("placeholder_new")
     end
 
-    it "placeholder_create" do
+    it "creates the placeholder form" do
       audit_count = AuditTrail.count
       form_count = Form.all.count
-      post :placeholder_create, form: { :identifier => "NEW TH", :label => "New Thesaurus", :freeText => "* List Item 1\n* List Item 2\n\nThis form is required to do the following:\n\n* Collect the date" }
+      post :placeholder_create, form: { :identifier => "NEW TH", :label => "New TH Form", :freeText => "* List Item 1\n* List Item 2\n\nThis form is required to do the following:\n\n* Collect the date" }
       form = assigns(:form)
       expect(form.errors.count).to eq(0)
       expect(Form.unique.count).to eq(form_count + 1) 
@@ -98,11 +95,77 @@ describe FormsController do
       expect(response).to redirect_to("/forms")
     end
 
-    it "edit"
-    it "clone"
+    it "edit, no next version" do
+      get :edit, { :id => "F-ACME_NEWTH", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      result = assigns(:form)
+      token = assigns(:token)
+      expect(token.user_id).to eq(@user.id)
+      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_NEWTH") # Note no new version, no copy.
+      expect(result.identifier).to eq("NEW TH")
+      expect(response).to render_template("edit")
+    end
+    
+    it "edit form, next version" do
+      get :edit, { :id => "F-ACME_VSBASELINE1", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      result = assigns(:form)
+      token = assigns(:token)
+      expect(token.user_id).to eq(@user.id)
+      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_VSBASELINE") # Note no new version, no copy.
+      expect(result.identifier).to eq("VS BASELINE")
+      expect(response).to render_template("edit")
+    end
+    
+    it "edits form, already locked" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/forms'
+      form = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V2") # Use the new version from previous test.
+      token = Token.obtain(form, @lock_user)
+      get :edit, { :id => "F-ACME_VSBASELINE1", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V2" }
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/forms")
+    end
+
+    it "initiates the cloning of a form" do
+      get :clone, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      form = assigns(:form)
+      expect(form.id).to eq("F-ACME_DM101")
+      expect(response).to render_template("clone")
+    end
+
+    it "clones a form" do
+      audit_count = AuditTrail.count
+      form_count = Form.unique.count
+      post :clone_create,  { form: { :identifier => "CLONE", :label => "New Clone" }, :form_id => "F-ACME_DM101", :form_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      form = assigns(:form)
+      expect(form.errors.count).to eq(0)
+      expect(Form.unique.count).to eq(form_count + 1) 
+      expect(flash[:success]).to be_present
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(response).to redirect_to("/forms")
+    end
+
+    it "clones a form, error duplicate" do
+      audit_count = AuditTrail.count
+      form_count = Form.all.count
+      post :clone_create,  { form: { :identifier => "CLONE", :label => "New Clone" }, :form_id => "F-ACME_DM101", :form_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      form = assigns(:form)
+      expect(form.errors.count).to eq(1)
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/forms/clone?id=F-ACME_DM101&namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1")
+    end
+
     it "create"
     it "update"
-    it "destroy"
+
+    it "destroy" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/forms'
+      audit_count = AuditTrail.count
+      form_count = Form.all.count
+      token_count = Token.all.count
+      delete :destroy, { :id => "F-ACME_CLONE", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      expect(Form.all.count).to eq(form_count - 1)
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(Token.count).to eq(token_count)
+    end
 
     it "show" do
       get :show, { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }

@@ -180,6 +180,7 @@ Rails.application.routes.draw do
       get :acrf_report
       get :full_crf_report
       get :clone
+      post :clone_create
       get :export_json
       get :export_ttl
       get :export_odm

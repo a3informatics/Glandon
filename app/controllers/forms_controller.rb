@@ -71,6 +71,25 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id], params[:namespace])
   end
 
+  def clone_create
+    authorize Form, :create?
+    base_form = Form.find(params[:form_id], params[:form_namespace])
+    identifier = base_form.identifier # Preserve for audit log
+    operation = base_form.to_clone
+    managed_item = operation[:managed_item]
+    managed_item[:scoped_identifier][:identifier] = the_params[:identifier]
+    managed_item[:label] = the_params[:label]
+    @form = Form.create(operation)
+    if @form.errors.empty?
+      AuditTrail.create_item_event(current_user, @form, "Form cloned from #{identifier}.")
+      flash[:success] = 'Form was successfully created.'
+      redirect_to forms_path
+    else
+      flash[:error] = @form.errors.full_messages.to_sentence
+      redirect_to clone_forms_path(:id => params[:form_id], :namespace => params[:form_namespace])
+    end
+  end
+
   def create
     authorize Form
     @form = Form.create_simple(the_params)
@@ -86,7 +105,6 @@ class FormsController < ApplicationController
 
   def update
     authorize Form
-    ConsoleLogger.debug(C_CLASS_NAME, "update", "id=#{params[:id]}, namesapce=#{params[:namespace]}")
     form = Form.find(params[:id], params[:namespace], false)
     token = Token.find_token(form, current_user)
     if !token.nil?
@@ -180,7 +198,7 @@ class FormsController < ApplicationController
 private
 
   def the_params
-    params.require(:form).permit(:formId, :namespace, :freeText, :identifier, :label, :children => {}, :bcs => [])
+    params.require(:form).permit(:namespace, :freeText, :identifier, :label, :children => {}, :bcs => [])
   end
 
 end

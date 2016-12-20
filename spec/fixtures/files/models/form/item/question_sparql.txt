@@ -23,5 +23,5 @@ INSERT DATA
 <http://www.example.com/path#parent_I1_TCR1> bo:optional "false"^^xsd:boolean . 
 <http://www.example.com/path#parent_I1_TCR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.example.com/path#parent_I1_TCR1> bo:local_label "Mile Per Hour"^^xsd:string . 
-<http://www.example.com/path#parent_I1> bf:hasItem <http://www.example.com/path#parent_I1_TCR1> . 
+<http://www.example.com/path#parent_I1> bf:hasThesaurusConcept <http://www.example.com/path#parent_I1_TCR1> . 
 }
