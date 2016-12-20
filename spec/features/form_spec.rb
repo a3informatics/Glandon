@@ -113,7 +113,129 @@ describe "Forms", :type => :feature do
       #expect(page).to have_content 'History: CDISC EXT'
     end
 
+    it "allows a form to be cloned" do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: T2'
+      find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Test 2 T2 (, V1, Incomplete)'
+      click_link 'Clone'
+      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      fill_in 'form[identifier]', with: 'A CLONE FORM'
+      fill_in 'form[label]', with: 'Test Clone Form'
+      click_button 'Clone'
+      expect(page).to have_content 'Index: Forms'
+      expect(page).to have_content 'Test Clone Form'
+    end
     
+    it "prevents a duplicate form being cloned." do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: T2'
+      find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Test 2 T2 (, V1, Incomplete)'
+      click_link 'Clone'
+      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      fill_in 'form[identifier]', with: 'A CLONE FORM'
+      fill_in 'form[label]', with: 'Test 2nd Clone Form'
+      click_button 'Clone'
+      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
+    end
+
+    it "prevents a form to be cloned, identifier error." do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: T2'
+      find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Test 2 T2 (, V1, Incomplete)'
+      click_link 'Clone'
+      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      fill_in 'form[identifier]', with: 'A CLONE FORM@'
+      fill_in 'form[label]', with: 'Test 2nd Clone Form'
+      click_button 'Clone'
+      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Identifier contains invalid characters'
+    end
+
+    it "allows a form to be created" do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      click_link 'New'
+      expect(page).to have_content 'New Form:'
+      fill_in 'form[identifier]', with: 'A NEW FORM'
+      fill_in 'form[label]', with: 'Test New Form'
+      click_button 'Create'
+      expect(page).to have_content 'Index: Forms'
+      expect(page).to have_content 'Test New Form'
+    end
+    
+    it "prevents a duplicate form being created." do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      click_link 'New'
+      expect(page).to have_content 'New Form:'
+      fill_in 'form[identifier]', with: 'A NEW FORM'
+      fill_in 'form[label]', with: 'Test New Form'
+      click_button 'Create'
+      expect(page).to have_content 'New Form:'
+      expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
+    end
+
+    it "prevents a form to be cloned, identifier error." do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      click_link 'New'
+      expect(page).to have_content 'New Form:'
+      fill_in 'form[identifier]', with: 'A NEW FORM&'
+      fill_in 'form[label]', with: 'Test New Form'
+      click_button 'Create'
+      expect(page).to have_content 'New Form:'
+      expect(page).to have_content 'Identifier contains invalid characters'
+    end
+
+    it "allows a placeholder form to be created" do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      click_link 'New Placeholder'
+      expect(page).to have_content 'New Placeholder Form:'
+      fill_in 'form[identifier]', with: 'A PLACEHOLDER FORM'
+      fill_in 'form[label]', with: 'Test Placeholder Form'
+      fill_in 'form[freeText]', with: 'This is **some** mardown with a little mardown in *it*'
+      #click_button 'markdown_preview'
+      #ui_check_div_text('generic_markdown', 'This is some mardown with a little mardown in it') # Need Javascript for this
+      click_button 'Create'
+      expect(page).to have_content 'Index: Forms'
+      expect(page).to have_content 'Test Placeholder Form'
+    end
+    
+    it "prevents a placeholder duplicate form being created." do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      click_link 'New Placeholder'
+      expect(page).to have_content 'New Placeholder Form:'
+      fill_in 'form[identifier]', with: 'A PLACEHOLDER FORM'
+      fill_in 'form[label]', with: 'Test Placeholder Form'
+      click_button 'Create'
+      expect(page).to have_content 'New Placeholder Form:'
+      expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
+    end
+
+    it "prevents a placeholder form to be cloned, identifier error." do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      click_link 'New Placeholder'
+      expect(page).to have_content 'New Placeholder Form:'
+      fill_in 'form[identifier]', with: 'A PLACEHOLDER FORM&'
+      fill_in 'form[label]', with: 'Test Placeholder Form'
+      click_button 'Create'
+      expect(page).to have_content 'New Placeholder Form:'
+      expect(page).to have_content 'Identifier contains invalid characters'
+    end
+
   end
 
 end
