@@ -34,7 +34,7 @@ function d3eGetCurrent() {
   }
 }
 
-/**
+/*
  * Function to handle click on the D3 tree.
  * Show the node info. Highlight the node.
  */
@@ -49,24 +49,45 @@ function d3eClick(node) {
   clickCallBackPostFunction(currentNode);
 }  
 
-/**
+/*
  * Function to handle double click on the D3 tree.
- * Expand/delete the node clicked.
  */
 function d3eDblClick(node) {
-  if (node.expand) {
-    node.children = node.save;
-    node.expand = false;
-    d3eDisplayTree(node.key);
-  } else if (node.hasOwnProperty('children')) {
-    node.children = [];
-    node.expand = true;
-    d3eDisplayTree(node.key); 
-  }
+  d3eExpandHide(node);
+  d3eDisplayTree(node.key);
   dblClickCallBackPostFunction(node);
 } 
 
-/**
+/*
+ * Toggle Expand/Hide of a node.
+ */
+function d3eExpandHide(node) {
+  if (node.expand) {
+    node.children = node.save;
+    node.expand = false;
+  } else if (node.hasOwnProperty('children')) {
+    node.children = [];
+    node.expand = (node.save.length > 0) ? true : false;
+  }
+} 
+
+/*
+ * Force hide a node
+ */
+function d3eForceHide(node) {
+  node.expand = false;
+  d3eExpandHide(node);
+} 
+
+/*
+ * Force expand a node. Only do it if there are children.
+ */
+function d3eForceExpand(node) {
+  node.expand = (node.save.length > 0) ? true : false;
+  d3eExpandHide(node); 
+} 
+
+/*
  *  Function to draw the tree
  */
 function d3eDisplayTree(nodeKey) {
@@ -228,18 +249,3 @@ function setOrdinal(node) {
     }
   }
 }
-
-/*function d3eAddSourceNode(parent, node, end) {
-  if (end) {
-    parent.children.push(node);
-  } else {
-    parent.children.unshift(node);
-  }
-  for (i=0; i<parent.children.length; i++) {
-    temp = parent.children[i];
-    temp.ordinal = i + 1;
-  }
-  parent.children = parent.save;
-}*/
-
-

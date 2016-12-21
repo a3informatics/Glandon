@@ -93,6 +93,21 @@ function d3GetData(gRef) {
 }
 
 /*
+ * Find the d3 node (not the data)
+ */
+function d3FindData(key) {
+  var result = null;
+  var nodes = d3.selectAll("g.node");
+  for (var i=0; i<nodes[0].length; i++) {
+    var data = nodes[0][i].__data__;
+    if (data.key == key) {
+      return data
+    }
+  }
+  return result;
+}
+
+/*
  * Clear node
  */ 
 function d3ClearNode (node, ref) {

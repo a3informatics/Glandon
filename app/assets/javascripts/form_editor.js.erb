@@ -165,13 +165,17 @@ $(document).ready(function() {
   $('#click_node_name').click(function() {
     var nodeName = $('#click_node_name_text').val();
     var node = d3FindGRefByName(nodeName);
-    simulateClick(node);
+    if (node !== null) {
+      simulateClick(node);
+    }
   });
 
   $('#click_node_key').click(function() {
     var nodeKey = $('#click_node_key_text').val();
     var node = d3FindGRef(nodeKey);
-    simulateClick(node);
+    if (node !== null) {
+      simulateClick(node);
+    }
   });
 
   $('#clear_current_node').click(function() {
@@ -259,9 +263,18 @@ $(document).ready(function() {
   }); 
 
   /*
+  * Common Panel Actions
+  */
+  $('#commonDelete').click(function() {
+    treeNodeDelete(true);
+  });
+
+  /*
   * BC Panel Actions
   */
   $('#bcDelete').click(function() {
+    var currentD3Node = d3eGetCurrent();
+    deleteCommon(currentD3Node);
     treeNodeDelete();
   });
 
@@ -269,7 +282,7 @@ $(document).ready(function() {
   * Item Panel Actions
   */
   $('#itemCommon').click(function() {
-    var currentNode = d3eGetCurrent()
+    var currentNode = d3eGetCurrent();
     if (currentNode === null) {
       displayWarning("You need to select an item node.");
     } else {
@@ -344,14 +357,17 @@ $(document).ready(function() {
       displayWarning("You need to select a code list item.");
     } else {
       var clData = questionClTable.row(varClCurrentRow).data();
-      var gRef = d3FindGRef(clData.key);
-      var node = d3GetData(gRef);
-      var parent = node.parent; 
-      d3eDeleteNode(node);
-      questionClTable.row(varClCurrentRow).remove();
-      varClCurrentRow = null;
-      questionClTable.draw();
-      displayNode(parent);
+      var node = d3FindData(clData.key);
+      if (node !== null) {
+        var parent = node.parent; 
+        d3eDeleteNode(node);
+        questionClTable.row(varClCurrentRow).remove();
+        varClCurrentRow = null;
+        questionClTable.draw();
+        displayNode(parent);
+      } else {
+        displayError("Cannot delete terminology item, could not find node.");
+      }
     }
   });
 
@@ -840,21 +856,20 @@ function makeCommon(node) {
   var commonD3Nodes = [];
   var bcD3Node = node.parent;
   var groupD3Node = bcD3Node.parent;
-  if (bcD3Node != null && groupD3Node != null) {
+  if (bcD3Node !== null && groupD3Node !== null) {
+    commonD3Nodes.push(node);
     for (var i=0; i<groupD3Node.save.length; i++) {
       var child = groupD3Node.save[i];
-      if (child.type == C_COMMON_GROUP) {
+      if (child.type === C_COMMON_GROUP) {
         commonGroup = child;
       } else {
-        for (var j=0; j<child.save.length; j++) {
-          var item = child.save[j];
-          if ('bridg_path' in item.data.property_ref.subject_data) {
-            if (node.key == item.key) {
-              commonD3Nodes.push(item);
-            } else if (node.data.property_ref.subject_data.bridg_path === item.data.property_ref.subject_data.bridg_path) {
+        if (bcD3Node.key !== child.key && isBcGroup(child)) {
+          for (var j=0; j<child.save.length; j++) {
+            var item = child.save[j];
+            if (commonMatch(node, item)) {
               commonD3Nodes.push(item);
             }
-          }
+          }  
         }
       }
     }
@@ -863,8 +878,7 @@ function makeCommon(node) {
         var d3CommonItem = addCommonItem(commonGroup, commonD3Nodes[0].name);
         returnD3Node = d3CommonItem;
         for (var k=0; k<commonD3Nodes.length; k++) {
-          var d3Node = commonD3Nodes[k];
-          refFromCommon(d3CommonItem, d3Node);
+          refFromCommon(d3CommonItem, commonD3Nodes[k]);
         } 
       } else {
         displayWarning("No common items matched.");
@@ -884,7 +898,41 @@ function makeCommon(node) {
   return returnD3Node;
 }
 
-// Detaches the node from its 'natural' position
+// Determine if there is a match
+function commonMatch(commonD3Node, d3Node) {
+  //if ('bridg_path' in d3Node.data.property_ref.subject_data) {
+  if (d3Node.data.property_ref.subject_data.bridg_path === commonD3Node.data.property_ref.subject_data.bridg_path) {
+    if (d3Node.save.length === commonD3Node.save.length) {
+      for (var i=0; i<commonD3Node.save.length; i++) {
+        var commonChild = commonD3Node.save[i].data;
+        var otherChild = d3Node.save[i].data;
+        if (commonChild.subject_data.id !== commonChild.subject_data.id || 
+          commonChild.subject_data.namespace !== commonChild.subject_data.namespace) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+  return false;
+}
+
+// Find the common node if present.
+function getCommon(d3Node) {
+  if (d3Node !== null) {
+    if (hasChildren(d3Node)) {
+      var child = d3Node.save[0];
+      if (child.type === C_COMMON_GROUP) {
+        return child;
+      }
+    }
+  }
+  return null;
+}
+
+// Detaches the node from its 'natural' position and makes common
 function refFromCommon(d3Parent, d3Node) {
   var ref = {};
   ref.id = d3Node.data.property_ref.subject_ref.id;
@@ -894,25 +942,62 @@ function refFromCommon(d3Parent, d3Node) {
   d3Parent.bridg_path = d3Node.data.property_ref.subject_data.bridg_path;
   setParent(d3Parent);
   setOrdinal(d3Parent.data);
-  commonMark(d3Node, true);
   if (!hasChildren(d3Parent)) {
-    for (var i=0; i<d3Node.data.children.length; i++) {
-      setD3(d3Node.data.children[i], d3Parent);
+    for (var i=0; i<d3Node.save.length; i++) {
+      var copy = JSON.parse(JSON.stringify(d3Node.save[i].data))
+      setD3(copy, d3Parent);
+    }
+  }
+  commonMark(d3Node, true);
+  d3eForceHide(d3Node);
+}
+
+// Restores from common to the nodes 'natural' position.
+function restoreCommon(d3Node) {
+  for (var i=0; i<d3Node.data.item_refs.length; i++) {
+    var ref = d3Node.data.item_refs[i];
+    var key = findKeyFromId(ref.id);
+    if (key !== null) {
+      var commonD3Node = d3FindData(key);
+      if (commonD3Node !== null) {
+        commonMark(commonD3Node, false);
+        d3eForceExpand(commonD3Node);
+      } else {
+        displayError("Cannot restore common item back to the owning Biomedical Concept, cannot find node.");
+      }
+    } else {
+      displayError("Cannot restore common item back to the owning Biomedical Concept, cannot find key.");
     }
   }
 }
 
-// Restore from common to 'natural' position.
-function restoreCommon(d3Node) {
-  for (i=0; i<d3Node.data.item_refs.length; i++) {
-    var ref = d3Node.data.item_refs[i];
-    var key = findKeyFromId(ref.id);
-    if (key !== null) {
-      var gRef = d3FindGRef(key);
-      var commonD3Node = d3GetData(gRef);
-      commonMark(commonD3Node, false);
-    } else {
-      displayError("Cannot restore common item to the owning Biomedical Concept.");
+// Deletes from common as BC node is being deleted.
+function deleteCommon(bcNode) {
+  var d3Node = getCommon(bcNode.parent);
+  if (d3Node !== null) {
+    for (var i=0; i<d3Node.save.length; i++) {
+      var itemD3Node = d3Node.save[i];
+      for (var j=0; j<bcNode.save.length; j++) {
+        var sNode = bcNode.save[j].data;
+        removeItemRef(itemD3Node, sNode.property_ref.subject_ref.id);
+      }
+    }
+    for (var i=0; i<d3Node.save.length; i++) {
+      itemD3Node = d3Node.save[i];
+      if (itemD3Node.data.item_refs.length === 0) {
+        d3eDeleteNode(itemD3Node);
+      }
+    }
+  }
+}
+
+function removeItemRef(d3Node, id) {
+  for (var k=0; k<d3Node.data.item_refs.length; k++) {
+    var item_ref = d3Node.data.item_refs[k];
+    if (id === item_ref.id) {
+      d3Node.data.item_refs.splice(k, 1);
+      removeKeyFromId(id);
+      break;
     }
   }
 }
@@ -921,9 +1006,9 @@ function commonMark(d3Node, value) {
   d3Node.is_common = value;
   d3Node.data.is_common = value;
   if (hasChildren(d3Node)) {
-    for (var i=0; i<d3Node.children.length; i++) {
-      d3Node.children[i].is_common = value;
-      //d3Node.data.children[i].is_common = value;
+    for (var i=0; i<d3Node.save.length; i++) {
+      d3Node.save[i].is_common = value;
+      d3Node.save[i].data.is_common = value;
     }
   }
 }
@@ -933,6 +1018,12 @@ function findKeyFromId(id) {
     return idKeyMap[id];
   } else {
     return null;
+  }
+}
+
+function removeKeyFromId(id) {
+  if (idKeyMap.hasOwnProperty(id)) {
+    delete idKeyMap[id]; 
   }
 }
 
@@ -1094,8 +1185,7 @@ function addBc(d3ParentNode) {
     data: { "id": data.id, "namespace": data.namespace },
     dataType: 'json',
     error: function (xhr, status, error) {
-      var html = alertError("An error has occurred loading the Biomedical Concept.");
-      displayAlerts(html);
+      displayError("An error has occurred loading the Biomedical Concept.");
     },
     success: function(result){
       var bc = $.parseJSON(JSON.stringify(result));
@@ -1122,8 +1212,21 @@ function addBc(d3ParentNode) {
             var d3CommonItem = commonNode.save[i];
             for (var j=0; j<bcD3Node.save.length; j++) {
               var item = bcD3Node.save[j];
-              if (d3CommonItem.bridg_path === item.data.property_ref.subject_data.bridg_path) {
-                refFromCommon(d3CommonItem, item);
+              if (d3CommonItem.data.item_refs.length > 0) {
+                var ref = d3CommonItem.data.item_refs[0];
+                var key = findKeyFromId(ref.id);
+                if (key !== null) {
+                  var node = d3FindData(key);
+                  if (node !== null) {
+                    if (commonMatch(node, item)) {
+                      refFromCommon(d3CommonItem, item);
+                    }
+                  } else {
+                    displayError("An error has occurred loading the Biomedical Concept, cannot find node.");
+                  }
+                } else {
+                  displayError("An error has occurred loading the Biomedical Concept, cannot find key.");
+                }
               }
             }
           }
@@ -1220,6 +1323,9 @@ function setD3(sourceNode, d3ParentNode) {
       var child = sourceNode.children[i];
       setD3(child, newNode);
     }
+  }
+  if (newNode.is_common) {
+    d3eForceHide(newNode);
   }
 }
 

@@ -65,8 +65,8 @@ $(document).ready(function() {
     var i;
     var child;
     sNode.parent = parentSNode
-    use = sNode.hasOwnProperty('is_common') ? !sNode.is_common : true;
-    if (use) {
+    //use = sNode.hasOwnProperty('is_common') ? !sNode.is_common : true;
+    //if (use) {
       buildRow(sNode, ordinal);
       if (sNode.hasOwnProperty('children')) {
         for (i=0; i<sNode.children.length; i++) {
@@ -74,7 +74,7 @@ $(document).ready(function() {
           processNode(child, sNode, ordinal);
         }
       }
-    }
+    //}
   }
 
   /*
@@ -100,7 +100,12 @@ $(document).ready(function() {
     d3Node.data = sNode;
     d3Node.type = sNode.type; // Need to copy this up
     if (isCommonItem(d3Node)) {
-      // Do nothing
+      if (d3Node.data.item_refs.length > 0) {
+        getBcPropertyCommon(d3Node, bcPropertyResult)
+      }
+      sNode.ordinal = ordinal;
+      mainTable.row.add(sNode).draw();
+      ordinal += 1;
     } else if (sNode.type == C_TC_REF) {
       getThesaurusConcept(d3Node, tcResult)
     } else if (sNode.type == C_BC_QUESTION) {
@@ -132,22 +137,6 @@ $(document).ready(function() {
       sNode.completion = text
       mainTable.row(index[0]).data(sNode)
     }
-  }
-
-  /*
-  * Get Reference
-  *
-  * @param node [Object] The source data node
-  * @return [Null]
-  */
-  function getReference(sNode) {
-    d3Node = {}
-    d3Node.data = sNode;
-    if (sNode.type == C_TC_REF) {
-      getThesaurusConcept(d3Node, tcResult)
-    } else if (sNode.type == C_BC_QUESTION) {
-      getBcProperty(d3Node, bcPropertyResult)
-    } 
   }
 
   /*
