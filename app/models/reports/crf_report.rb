@@ -41,6 +41,7 @@ private
 
   def self.crf_body(form, options)
     html = crf_node(form.to_json, form.annotations, options)
+    html += @report.page_break
   end
 
   def self.completion_notes_and_term(form)

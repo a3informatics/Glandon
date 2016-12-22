@@ -75,8 +75,8 @@ private
     file = File.join(dir, image_file)
     time_generated = Time.now
     # Generate HTML
-    html = "<img style=\"height:75px;\" src=\"#{file}\">"
-    html += "<h2 class=\"text-center col-md-12\">#{name}</h2>"
+    html = "<div style=\"vertical-align:middle; text-align:center\"><img height=\"75\" src=\"#{file}\"></div>"
+    html += "<h3 class=\"text-center col-md-12\">#{name}</h3>"
     html += "<br>" * 10
     html += "<div class=\"text-center col-md-12\"><h1>#{doc_type}<br>#{title}</h1></div>"
     html += "<br>" * 25
