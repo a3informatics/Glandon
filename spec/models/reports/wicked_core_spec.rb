@@ -74,7 +74,8 @@ describe Reports::WickedCore do
     user = User.create email: "wicked@example.com", password: "12345678"
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
-    report.add_to_body("<h1>THIS IS THE BODY</h1>")
+    report.add_to_body("<h1>THIS IS THE BODY ITEM 1</h1>")
+    report.add_to_body("<h1>THIS IS THE BODY ITEM 2</h1>")
     html = report.html
     #write_text_file_2(html, sub_dir, "wicked_core_body.txt")
     expected = read_text_file_2(sub_dir, "wicked_core_body.txt")
@@ -88,13 +89,49 @@ describe Reports::WickedCore do
     user = User.create email: "wicked@example.com", password: "12345678"
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
-    html = "<h1>THIS IS THE BODY</h1>"
-    html += report.page_break
-    html += "<h1>THIS IS MORE OF THE BODY</h1>"
-    report.add_to_body(html)
+    report.add_to_body("<h1>THIS IS THE BODY</h1>")
+    report.add_page_break
+    report.add_to_body("<h1>THIS IS MORE OF THE BODY</h1>")
+    report.add_page_break
     html = report.html
     #write_text_file_2(html, sub_dir, "wicked_core_break.txt")
     expected = read_text_file_2(sub_dir, "wicked_core_break.txt")
+    run_at_1 = extract_run_at(expected)
+    run_at_2 = extract_run_at(html)
+    html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    expect(html).to eq(expected)
+  end
+
+  it "Allows the document to be closed" do
+    user = User.create email: "wicked@example.com", password: "12345678"
+    report = Reports::WickedCore.new
+    report.open("TEST DOC", "Title", [], user)
+    report.add_to_body("<h1>THIS IS THE BODY. Close check</h1>")
+    report.add_page_break
+    report.add_to_body("<h1>THIS IS MORE OF THE BODY</h1>")
+    report.add_to_body(html)
+    report.close
+    html = report.html
+    #write_text_file_2(html, sub_dir, "wicked_core_closed.txt")
+    expected = read_text_file_2(sub_dir, "wicked_core_closed.txt")
+    run_at_1 = extract_run_at(expected)
+    run_at_2 = extract_run_at(html)
+    html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    expect(html).to eq(expected)
+  end
+
+  it "Allows the document html to be returned" do
+    user = User.create email: "wicked@example.com", password: "12345678"
+    report = Reports::WickedCore.new
+    report.open("TEST DOC", "Title", [], user)
+    report.add_to_body("<h1>THIS IS THE BODY. This is the html check</h1>")
+    report.add_page_break
+    report.add_to_body("<h1>THIS IS MORE OF THE BODY</h1>")
+    report.add_to_body(html)
+    report.close
+    html = report.html
+    #write_text_file_2(html, sub_dir, "wicked_core_html.txt")
+    expected = read_text_file_2(sub_dir, "wicked_core_html.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
@@ -105,9 +142,10 @@ describe Reports::WickedCore do
     user = User.create email: "wicked@example.com", password: "12345678"
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
-    html = "<h1>THIS IS THE BODY</h1>"
-    html += report.page_break
-    html += "<h1>THIS IS MORE OF THE BODY</h1>"
+    report.open("TEST DOC", "Title", [], user)
+    report.add_to_body("<h1>THIS IS THE BODY</h1>")
+    report.add_page_break
+    report.add_to_body("<h1>THIS IS MORE OF THE BODY FOR THE pdf test</h1>")
     report.add_to_body(html)
     report.close
     pdf = report.pdf

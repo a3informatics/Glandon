@@ -7,9 +7,7 @@ class Reports::CdiscSubmissionReport
   def create(results, user)
     @report = Reports::WickedCore.new
     @report.open("CDISC Submission Value Change Report", "", [], user)
-    @report.add_to_body(body(results))
-    #pdf = @report.save
-    #return pdf
+    body(results)
     @report.close
     return @report.html
   end
@@ -32,7 +30,8 @@ private
     html = ""
     main_table = main_header_row(results[:versions])
     secondary_table = secondary_header_row
-    html += "<h3>Conventions</h3><p>In the following table each page contains two tables. The first table indicates when a change took " +
+    html += "<h3>Conventions</h3>"
+    html += "<p>In the following table each page contains two tables. The first table indicates when a change took " +
     html += "place while the second table details the change. The changes are releated by the index thus [n].</p>"
     results[:children].each do |key, entry|
       if index % C_PER_PAGE == 0
@@ -42,8 +41,10 @@ private
         secondary_table += close_table
         html += main_table + "<br/><br/>"
         html += secondary_table
-        html += @report.page_break
+        @report.add_to_body(html)
+        @report.add_page_break
         #restart
+        html = ""
         @ref = 1
         page += 1
         main_table = main_header_row(results[:versions])
@@ -59,7 +60,7 @@ private
       html += main_table 
       html += secondary_table
     end
-    return html
+    @report.add_to_body(html)
   end
 
   def main_header_row(versions)

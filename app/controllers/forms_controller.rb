@@ -170,10 +170,10 @@ class FormsController < ApplicationController
     @close_path = request.referer
     respond_to do |format|
       format.html do
-        @html = Reports::CrfReport.create(@form, {:annotate => true, :full => false}, current_user)
+        @html = Reports::CrfReport.new.create(@form, {:annotate => true, :full => false}, current_user)
       end
       format.pdf do
-        @html = Reports::CrfReport.create(@form, {:annotate => true, :full => true}, current_user)
+        @html = Reports::CrfReport.new.create(@form, {:annotate => true, :full => true}, current_user)
         render pdf: "#{@form.owner}_#{@form.identifier}_CRF.pdf", page_size: current_user.paper_size
       end
     end
@@ -185,10 +185,10 @@ class FormsController < ApplicationController
     @close_path = request.referer
     respond_to do |format|
       format.html do
-        @html = Reports::CrfReport.create(@form, {:annotate => false, :full => false}, current_user)
+        @html = Reports::CrfReport.new.create(@form, {:annotate => false, :full => false}, current_user)
       end
       format.pdf do
-        @html = Reports::CrfReport.create(@form, {:annotate => false, :full => true}, current_user)
+        @html = Reports::CrfReport.new.create(@form, {:annotate => false, :full => true}, current_user)
         render pdf: "#{@form.owner}_#{@form.identifier}_CRF.pdf", page_size: current_user.paper_size
       end
     end

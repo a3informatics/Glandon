@@ -29,6 +29,8 @@ describe FormsController do
       load_test_file_into_triple_store("form_example_dm1.ttl")
       load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
       load_test_file_into_triple_store("form_example_general.ttl")
+      load_test_file_into_triple_store("CT_V43.ttl")
+      load_test_file_into_triple_store("CT_ACME_V1.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -168,23 +170,40 @@ describe FormsController do
     end
 
     it "show" do
-      get :show, { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }
+      get :show, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
       expect(response).to render_template("show")
     end
 
     it "view " do
-      get :view, { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }
+      get :view, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
       expect(response).to render_template("view")
     end
 
     it "export_ttl"
     it "export_json"
     it "export_odm"
-    it "acrf"
-    it "acrf_report"
-    it "crf"
-    it "crf_report"
-    it "full_crf_report"
+    
+    it "presents acrf as pdf" do
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      get :acrf, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      expect(response.content_type).to eq("application/pdf")
+    end
+
+    it "presents acrf as pdf" do
+      get :acrf, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      expect(response).to render_template("acrf")
+    end
+
+    it "presents acrf as pdf" do
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      get :crf, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      expect(response.content_type).to eq("application/pdf")
+    end
+
+    it "presents acrf as pdf" do
+      get :crf, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      expect(response).to render_template("crf")
+    end
 
   end
 

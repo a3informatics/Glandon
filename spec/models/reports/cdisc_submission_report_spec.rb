@@ -5,7 +5,7 @@ describe Reports::CdiscSubmissionReport do
   include DataHelpers
   include ReportHelpers
   include PublicFileHelpers
-  
+
   def sub_dir
     return "models/reports"
   end
@@ -45,7 +45,6 @@ describe Reports::CdiscSubmissionReport do
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
     expect(html).to eq(expected)
-    expect(pdf[0,4]).to eq('%PDF')
   end
 
 end

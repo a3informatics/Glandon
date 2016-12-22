@@ -12,37 +12,51 @@ class Reports::WickedCore
   # @param doc_type [String] The document type, a title string
   # @param managed_item [Hash] Managed item. Can be empty
   # @param user [Object] The user creating the report
-  # @return Null
+  # @return [Null]
   def open(doc_type, title, history, user)
     @paper_size = user.paper_size
     @html = page_header
+    ConsoleLogger.debug( C_CLASS_NAME, "open", "HMTL1=#{@html}")
     @html += title_page(doc_type, title, user)
+    ConsoleLogger.debug( C_CLASS_NAME, "open", "HMTL2=#{@html}")
     @html += history_page(history) if !history.empty?
+    ConsoleLogger.debug( C_CLASS_NAME, "open", "HMTL3=#{@html}")
   end
 
   # Add to the body
   #
-  # @return Null
+  # @return [Null]
   def add_to_body(html)
     @html += html
   end
   
   # Insert page break
   #
-  # @return Null
-  def page_break
-    return "<div style='page-break-after:always;'></div>"
+  # @return [Null]
+  def add_page_break
+    @html += page_break
   end
 
   # Close up the HTML
   #
-  # @return [Object] The PDF document
+  # @return [Null] 
   def close
     @html += page_footer
   end
 
+  # Get the PDF
+  #
+  # @return [Object] The PDF document
   def pdf
-    pdf = WickedPdf.new.pdf_from_string(@html, :page_size => @paper_size, :footer => {:font_size => "8", :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", :left => "", :center => "", :right => "[page] of [topage]"} )
+    footer = 
+    {
+      :font_size => "8", 
+      :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", 
+      :left => "", 
+      :center => "", 
+      :right => "[page] of [topage]"
+    }
+    pdf = WickedPdf.new.pdf_from_string(@html, :page_size => @paper_size, :footer => footer )
     return pdf
   end
 
@@ -84,7 +98,7 @@ private
     html += "<div class=\"text-center col-md-5\">"
     html += "<table class=\"table table-striped\"><tr><td>Run at:</td><td>#{time_generated.strftime("%Y-%b-%d, %H:%M:%S")}</td></tr>"
     html += "<tr><td>Run by:</td><td>#{user.email}</td></tr></table></div>"
-    html += self.page_break
+    html += page_break
     return html
   end
 
@@ -102,9 +116,13 @@ private
         html += "<tr><td>#{changed_date}</td><td>#{description}</td><td>#{comment}</td><td>#{refs}</td></tr>"
       end 
       html += "</tbody></table>"
-      html += self.page_break
+      html += page_break
     end
     return html
   end
 
+  def page_break
+    return "<div style='page-break-after:always;'></div>"
+  end
+  
 end

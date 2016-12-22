@@ -5,9 +5,7 @@ class Reports::CdiscChangesReport
   def create(results, cls, user)
     @report = Reports::WickedCore.new
     @report.open("CDISC Terminology Change Report", "", [], user)
-    @report.add_to_body(body(results, cls))
-    #pdf = @report.pdf
-    #return pdf
+    body(results, cls)
     @report.close
     return @report.html
   end
@@ -25,8 +23,12 @@ private
 
   def body(results, cls)
     html = ""
-    html += "<h3>Conventions</h3><p>In the following table for a code list entry:<ul><li><p>C = Code List was created in the CDISC Terminology</p></li><li><p>U = Code List was updated in some way</p></li>"
-    html += "<li><p>'-' = There was no change to the Code List</p></li><li><p>X = The Code List was deleted from teh CDISC Terminology</p></li></ul></p><h3>Changes</h3>"
+    html += "<h3>Conventions</h3>"
+    html += "<p>In the following table for a code list entry:<ul><li><p>C = Code List was created in the CDISC Terminology</p></li>"
+    html += "<li><p>U = Code List was updated in some way</p></li>"
+    html += "<li><p>'-' = There was no change to the Code List</p></li>"
+    html += "<li><p>X = The Code List was deleted from teh CDISC Terminology</p></li></ul></p>"
+    html += "<h3>Changes</h3>"
     html += "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
     html += "<th>Identifier</th>"
     html += "<th>Label</th>"
@@ -60,7 +62,7 @@ private
       html += "</tr>"
     end
     html += "</tbody></table>"
-    return html
+    @report.add_to_body(html)
   end
 
 end
