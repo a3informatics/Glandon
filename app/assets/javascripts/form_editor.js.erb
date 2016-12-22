@@ -155,7 +155,7 @@ $(document).ready(function() {
   $('#close').click(function() {
     saveNode();
     saveRest();
-    keepToken = true;
+    //keepToken = true;
     window.location.href = $('#close_path').val();
   });
 
@@ -1161,7 +1161,7 @@ function addQuestion(d3ParentNode) {
 }
 
 function addMapping(d3ParentNode) {
-  var d3Node = addD3Node(d3ParentNode, C_MAPPING, "Mapping", newQuestion, null, true, true);
+  var d3Node = addD3Node(d3ParentNode, C_MAPPING, "Mapping", newMapping, null, true, true);
   addSNode(d3ParentNode.data, d3Node.data, true);
   return d3Node;
 }

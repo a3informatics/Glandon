@@ -5,6 +5,10 @@ describe Reports::WickedCore do
   include DataHelpers
   include ReportHelpers
   
+  def sub_dir
+    return "models/reports"
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -23,27 +27,13 @@ describe Reports::WickedCore do
     clear_iso_registration_state_object
   end
 
-  it "Initiates a simple report" do
+  it "Initiates a report" do
     user = User.create email: "wicked@example.com", password: "12345678"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", {}, nil, {}, user)
+    report.open("TEST DOC", "Title", [], user)
     html = report.html
-    #write_text_file(html, "wicked_core_simple_report.txt")
-    expected = read_text_file("wicked_core_simple_report.txt")
-    run_at_1 = extract_run_at(expected)
-    run_at_2 = extract_run_at(html)
-    html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    expect(html).to eq(expected)
-  end
-
-  it "Initiates a managed item report" do
-    user = User.create email: "wicked@example.com", password: "12345678"
-    mi = Form.find("#F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    report = Reports::WickedCore.new
-    report.open("TEST DOC", {}, mi.to_json, {}, user)
-    html = report.html
-    #write_text_file(html, "wicked_core_mi_report.txt")
-    expected = read_text_file("wicked_core_mi_report.txt")
+    #write_text_file_2(html, sub_dir, "wicked_core_simple_report.txt")
+    expected = read_text_file_2(sub_dir,"wicked_core_simple_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
@@ -70,10 +60,10 @@ describe Reports::WickedCore do
       }
     ] 
     report = Reports::WickedCore.new
-    report.open("TEST DOC", {:full => true}, mi.to_json, history, user)
+    report.open("TEST DOC", "Title", history, user)
     html = report.html
-    #write_text_file(html, "wicked_core_full_report.txt")
-    expected = read_text_file("wicked_core_full_report.txt")
+    #write_text_file_2(html, sub_dir, "wicked_core_full_report.txt")
+    expected = read_text_file_2(sub_dir, "wicked_core_full_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
@@ -83,11 +73,11 @@ describe Reports::WickedCore do
   it "Allows the body to be set" do
     user = User.create email: "wicked@example.com", password: "12345678"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", {}, nil, {}, user)
-    report.html_body("<h1>THIS IS THE BODY</h1>")
+    report.open("TEST DOC", "Title", [], user)
+    report.add_to_body("<h1>THIS IS THE BODY</h1>")
     html = report.html
-    #write_text_file(html, "wicked_core_body.txt")
-    expected = read_text_file("wicked_core_body.txt")
+    #write_text_file_2(html, sub_dir, "wicked_core_body.txt")
+    expected = read_text_file_2(sub_dir, "wicked_core_body.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
@@ -97,14 +87,14 @@ describe Reports::WickedCore do
   it "Allows a page break to be set" do
     user = User.create email: "wicked@example.com", password: "12345678"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", {}, nil, {}, user)
+    report.open("TEST DOC", "Title", [], user)
     html = "<h1>THIS IS THE BODY</h1>"
     html += report.page_break
     html += "<h1>THIS IS MORE OF THE BODY</h1>"
-    report.html_body(html)
+    report.add_to_body(html)
     html = report.html
-    #write_text_file(html, "wicked_core_break.txt")
-    expected = read_text_file("wicked_core_break.txt")
+    #write_text_file_2(html, sub_dir, "wicked_core_break.txt")
+    expected = read_text_file_2(sub_dir, "wicked_core_break.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
@@ -114,15 +104,16 @@ describe Reports::WickedCore do
   it "Allows the PDF to be generated" do
     user = User.create email: "wicked@example.com", password: "12345678"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", {}, nil, {}, user)
+    report.open("TEST DOC", "Title", [], user)
     html = "<h1>THIS IS THE BODY</h1>"
     html += report.page_break
     html += "<h1>THIS IS MORE OF THE BODY</h1>"
-    report.html_body(html)
-    pdf = report.save
+    report.add_to_body(html)
+    report.close
+    pdf = report.pdf
     html = report.html
-    #write_text_file(html, "wicked_core_report.txt")
-    expected = read_text_file("wicked_core_report.txt")
+    #write_text_file_2(html, sub_dir, "wicked_core_report.txt")
+    expected = read_text_file_2(sub_dir, "wicked_core_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison

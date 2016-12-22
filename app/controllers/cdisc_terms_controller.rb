@@ -140,8 +140,14 @@ class CdiscTermsController < ApplicationController
     authorize CdiscTerm, :view?
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
     cls = transpose_results(results)
-    @pdf = Reports::CdiscChangesReport.new.create(results, cls, current_user)
-    send_data @pdf, filename: 'cdisc_changes.pdf', type: 'application/pdf', disposition: 'inline'
+    #@pdf = Reports::CdiscChangesReport.new.create(results, cls, current_user)
+    #send_data @pdf, filename: 'cdisc_changes.pdf', type: 'application/pdf', disposition: 'inline'
+    respond_to do |format|
+      format.pdf do
+        @html = Reports::CdiscChangesReport.new.create(results, cls, current_user)
+        render pdf: "cdisc_changes.pdf", page_size: current_user.paper_size
+      end
+    end
   end
 
   def submission_calc
@@ -169,8 +175,14 @@ class CdiscTermsController < ApplicationController
   def submission_report
     authorize CdiscTerm, :view?
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    @pdf = Reports::CdiscSubmissionReport.new.create(results, current_user)
-    send_data @pdf, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
+    #@pdf = Reports::CdiscSubmissionReport.new.create(results, current_user)
+    #send_data @pdf, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
+    respond_to do |format|
+      format.pdf do
+        @html = Reports::CdiscSubmissionReport.new.create(results, current_user)
+        render pdf: 'cdisc_submission.pdf', page_size: current_user.paper_size
+      end
+    end
   end
 
   def impact_calc

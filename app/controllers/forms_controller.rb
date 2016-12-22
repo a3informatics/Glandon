@@ -167,32 +167,31 @@ class FormsController < ApplicationController
   def acrf
     authorize Form, :view?
     @form = Form.find(params[:id], params[:namespace])
-  end
-
-  def acrf_report
-    authorize Form, :view?
-    form = Form.find(params[:id], params[:namespace])
-    pdf = form.report({:annotate => true, :full => false}, current_user)
-    send_data pdf, filename: "#{form.owner}_#{form.identifier}_aCRF.pdf", type: 'application/pdf', disposition: 'inline'
+    @close_path = request.referer
+    respond_to do |format|
+      format.html do
+        @html = Reports::CrfReport.create(@form, {:annotate => true, :full => false}, current_user)
+      end
+      format.pdf do
+        @html = Reports::CrfReport.create(@form, {:annotate => true, :full => true}, current_user)
+        render pdf: "#{@form.owner}_#{@form.identifier}_CRF.pdf", page_size: current_user.paper_size
+      end
+    end
   end
 
   def crf
     authorize Form, :view?
     @form = Form.find(params[:id], params[:namespace])
-  end
-
-  def crf_report
-    authorize Form, :view?
-    form = Form.find(params[:id], params[:namespace])
-    pdf = form.report({:annotate => false, :full => false}, current_user)
-    send_data pdf, filename: "#{form.owner}_#{form.identifier}_CRF.pdf", type: 'application/pdf', disposition: 'inline'
-  end
-
-  def full_crf_report
-    authorize Form, :view?
-    form = Form.find(params[:id], params[:namespace])
-    pdf = form.report({:annotate => true, :full => true}, current_user)
-    send_data pdf, filename: "#{form.owner}_#{form.identifier}_FullCRF.pdf", type: 'application/pdf', disposition: 'inline'
+    @close_path = request.referer
+    respond_to do |format|
+      format.html do
+        @html = Reports::CrfReport.create(@form, {:annotate => false, :full => false}, current_user)
+      end
+      format.pdf do
+        @html = Reports::CrfReport.create(@form, {:annotate => false, :full => true}, current_user)
+        render pdf: "#{@form.owner}_#{@form.identifier}_CRF.pdf", page_size: current_user.paper_size
+      end
+    end
   end
 
 private

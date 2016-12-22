@@ -6,6 +6,10 @@ describe Reports::CdiscSubmissionReport do
   include ReportHelpers
   include PublicFileHelpers
   
+  def sub_dir
+    return "models/reports"
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -35,8 +39,8 @@ describe Reports::CdiscSubmissionReport do
     report = Reports::CdiscSubmissionReport.new
     pdf = report.create(results, user)
     html = report.html
-    #write_text_file(html, "cdisc_submission_report.txt")
-    expected = read_text_file("cdisc_submission_report.txt")
+    #write_text_file_2(html, sub_dir, "cdisc_submission_report.txt")
+    expected = read_text_file_2(sub_dir, "cdisc_submission_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison

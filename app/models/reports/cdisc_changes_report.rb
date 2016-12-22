@@ -4,11 +4,12 @@ class Reports::CdiscChangesReport
 
   def create(results, cls, user)
     @report = Reports::WickedCore.new
-    @report.open("CDISC Terminology Change Report", {}, nil, nil, user)
-    html = body(results, cls)
-    @report.html_body(html)
-    pdf = @report.save
-    return pdf
+    @report.open("CDISC Terminology Change Report", "", [], user)
+    @report.add_to_body(body(results, cls))
+    #pdf = @report.pdf
+    #return pdf
+    @report.close
+    return @report.html
   end
 
   if Rails.env == "test"
@@ -26,7 +27,7 @@ private
     html = ""
     html += "<h3>Conventions</h3><p>In the following table for a code list entry:<ul><li><p>C = Code List was created in the CDISC Terminology</p></li><li><p>U = Code List was updated in some way</p></li>"
     html += "<li><p>'-' = There was no change to the Code List</p></li><li><p>X = The Code List was deleted from teh CDISC Terminology</p></li></ul></p><h3>Changes</h3>"
-    html += "<table class=\"general\"><thead>"
+    html += "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
     html += "<th>Identifier</th>"
     html += "<th>Label</th>"
     html += "<th>Submission Value</th>"

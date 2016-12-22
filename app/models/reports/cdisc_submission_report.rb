@@ -6,11 +6,12 @@ class Reports::CdiscSubmissionReport
 
   def create(results, user)
     @report = Reports::WickedCore.new
-    @report.open("CDISC Submission Value Change Report", {}, nil, nil, user)
-    html = body(results)
-    @report.html_body(html)
-    pdf = @report.save
-    return pdf
+    @report.open("CDISC Submission Value Change Report", "", [], user)
+    @report.add_to_body(body(results))
+    #pdf = @report.save
+    #return pdf
+    @report.close
+    return @report.html
   end
 
   if Rails.env == "test"
@@ -62,7 +63,7 @@ private
   end
 
   def main_header_row(versions)
-    html = "<table class=\"general\"><thead>"
+    html = "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
     html += "<th>Code</th>"
     html += "<th>Item</th>"
     html += "<th>Label</th>"
@@ -75,7 +76,7 @@ private
   end
 
   def secondary_header_row
-    html = "<table class=\"general-left\"><thead>"
+    html = "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
     html += "<th>Index</th>"
     html += "<th>From</th>"
     html += "<th>To</th>"

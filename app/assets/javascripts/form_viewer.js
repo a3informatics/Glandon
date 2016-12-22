@@ -60,31 +60,34 @@ function empty(node) {
 * @return [Null]
 */
 function displayNode() {
-  if (currentNode.type == C_FORM) {
+  if (currentNode.type === C_FORM) {
     selectForm();
     displayForm(currentNode);
-  } else if (currentNode.type == C_NORMAL_GROUP) {
+  } else if (currentNode.type === C_NORMAL_GROUP) {
     selectGroup();
     displayGroup(currentNode);
-  } else if (currentNode.type == C_BC_QUESTION) {
+  } else if (currentNode.type === C_BC_QUESTION) {
     selectBcItem();
     displayBcItem(currentNode);
-  } else if (currentNode.type == C_QUESTION) {
+  } else if (currentNode.type === C_QUESTION) {
     selectQuestion();
     displayQuestion(currentNode);
-  } else if (currentNode.type == C_PLACEHOLDER) {
+  } else if (currentNode.type === C_MAPPING) {
+    selectMapping();
+    displayMapping(currentNode);
+  }else if (currentNode.type === C_PLACEHOLDER) {
     selectPlaceholder();
     displayPlaceholder(currentNode);
-  } else if (currentNode.type == C_TEXTLABEL) {
+  } else if (currentNode.type === C_TEXTLABEL) {
     selectLabelText();
     displayLabelText(currentNode);
-  } else if (currentNode.type == C_TC_REF) {
+  } else if (currentNode.type === C_TC_REF) {
     selectCl();
     displayCl(currentNode);
-  } else if (currentNode.type == C_COMMON_GROUP) {
+  } else if (currentNode.type === C_COMMON_GROUP) {
     selectCommon();
     displayCommon(currentNode);
-  } else if (currentNode.type == C_COMMON_ITEM) {
+  } else if (currentNode.type === C_COMMON_ITEM) {
     selectBcItem();
     displayBcItem(currentNode);
   }
@@ -100,6 +103,7 @@ function selectNone() {
   $("#bcTable").addClass('hidden');
   $("#bcItemTable").addClass('hidden');
   $("#questionTable").addClass('hidden');
+  $("#mappingTable").addClass('hidden');
   $("#placeholderTable").addClass('hidden');
   $("#labelTextTable").addClass('hidden');
   $("#clTable").addClass('hidden');
@@ -123,6 +127,11 @@ function selectBcItem() {
 function selectQuestion() {
   selectNone();
   $("#questionTable").removeClass('hidden');
+}
+
+function selectMapping() {
+  selectNone();
+  $("#mappingTable").removeClass('hidden');
 }
 
 function selectPlaceholder() {
@@ -216,6 +225,11 @@ function displayCommon(node) {
 
 function markdownCallback(element, text) {
   element.innerHTML = text;
+}
+
+function displayMapping(node) {
+  document.getElementById("mappingLabel").innerHTML = node.data.label;
+  document.getElementById("mappingMapping").innerHTML = node.data.mapping;
 }
 
 /*

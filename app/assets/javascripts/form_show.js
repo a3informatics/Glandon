@@ -18,18 +18,8 @@ $(document).ready(function() {
       {"data" : "format", "width" : "5%"},
       {"data" : "mapping", "width" : "5%"},
       {"data" : "terminology", "width" : "15%"},
-      {"data" : "optional", "render": function(data, type, full, meta) { 
-          if (data === true) {
-            return '<i class="glyphicon glyphicon-question-sign text-warning" style="font-size:20px;"/>';
-          } else {
-            return "";
-          }
-      }},
       {"data" : "completion", "width" : "30%"},
       {"data" : "note", "width" : "20%"}
-    ],
-    "columnDefs": [
-      { className: "text-center", "targets": [ 7 ] }
     ]
   });
 
@@ -81,7 +71,8 @@ $(document).ready(function() {
   * Build a table row
   */
   function buildRow(sNode, ordianl) {
-    var d3Node = {}; 
+    var d3Node = {};
+    var optional = false 
     if (sNode.hasOwnProperty('note')) {
       getMarkdown(sNode, sNode.note, noteCallback);
     } else {
@@ -91,6 +82,9 @@ $(document).ready(function() {
       getMarkdown(sNode, sNode.completion, completionCallback);
     } else {
       sNode.completion = "";
+    }
+    if (sNode.hasOwnProperty('optional')) {
+      sNode.DT_RowClass = sNode.optional ? "warning" : "";
     }
     sNode.question_text = sNode.hasOwnProperty('question_text') ? sNode.question_text : "";
     sNode.datatype = sNode.hasOwnProperty('datatype') ? sNode.datatype : "";
