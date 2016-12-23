@@ -50,11 +50,7 @@ it "allows a BC to be found" do
   end
 
   it "handles a BCT not being found" do
-    item = BiomedicalConcept.find("F-ACME_T2x", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    result = BiomedicalConcept.new
-    result.rdf_type = ""
-    result.template_ref = nil
-    expect(item.to_json).to eq(result.to_json)
+    expect{BiomedicalConcept.find("F-ACME_T2x", "http://www.assero.co.uk/MDRForms/ACME/V1")}.to raise_error(Exceptions::NotFoundError)
   end
 
   it "finds all entries" do

@@ -212,9 +212,7 @@ describe IsoManaged do
   end
 
   it "handles not finding an item correctly" do
-    item = IsoManaged.find("F-ACME_TESTx", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    result = IsoManaged.new
-    expect(item.to_json).to eq(result.to_json)
+    expect{IsoManaged.find("F-ACME_TESTx", "http://www.assero.co.uk/MDRForms/ACME/V1")}.to raise_error(Exceptions::NotFoundError)
   end
 
   it "allows the item to be updated" do

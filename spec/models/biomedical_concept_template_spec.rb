@@ -49,10 +49,7 @@ describe BiomedicalConceptTemplate do
   end
 
   it "handles a BCT not being found" do
-    item = BiomedicalConceptTemplate.find("F-ACME_T2x", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    result = BiomedicalConceptTemplate.new
-    result.rdf_type = ""
-    expect(item.to_json).to eq(result.to_json)
+    expect{BiomedicalConceptTemplate.find("F-ACME_T2x", "http://www.assero.co.uk/MDRForms/ACME/V1")}.to raise_error(Exceptions::NotFoundError)
   end
 
   it "finds all entries" do

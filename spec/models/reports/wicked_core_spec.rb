@@ -42,7 +42,7 @@ describe Reports::WickedCore do
 
   it "Initiates a full report" do
     user = User.create email: "wicked@example.com", password: "12345678"
-    mi = Form.find("#F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    mi = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     history = 
     [
       {

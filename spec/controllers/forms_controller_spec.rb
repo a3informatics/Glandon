@@ -119,9 +119,9 @@ describe FormsController do
     
     it "edits form, already locked" do
       @request.env['HTTP_REFERER'] = 'http://test.host/forms'
-      form = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V2") # Use the new version from previous test.
+      form = Form.find("F-ACME_NEWTH", "http://www.assero.co.uk/MDRForms/ACME/V1") 
       token = Token.obtain(form, @lock_user)
-      get :edit, { :id => "F-ACME_VSBASELINE1", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V2" }
+      get :edit, { :id => "F-ACME_NEWTH", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/forms")
     end

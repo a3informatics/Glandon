@@ -300,6 +300,7 @@ class IsoManaged < IsoConcept
     end
     # Create the object based on the triples.
     object = new(triples, id)
+    raise Exceptions::NotFoundError.new(message: "Failed to find #{ns}##{id} in #{C_CLASS_NAME} object.") if object.id.empty?
     return object   
   end
 

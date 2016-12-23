@@ -1,0 +1,67 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: F-ACME_PLACENEW
+:namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+:label: New Label
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2016-12-23T15:42:04+00:00'
+:last_changed_date: '2016-12-23T15:42:04+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-ACME_PLACENEW-1
+  :registration_authority:
+    :id: RA-123456789
+    :number: '123456789'
+    :scheme: DUNS
+    :owner: true
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-ACME
+      :name: ACME Pharma
+      :shortName: ACME
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+:scoped_identifier:
+  :id: SI-ACME_PLACENEW-1
+  :identifier: PLACE NEW
+  :version_label: ''
+  :version: 1
+  :namespace:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: NS-ACME
+    :name: ACME Pharma
+    :shortName: ACME
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: F-ACME_PLACENEW_G1
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Placeholder Group
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Placeholder
+    :id: F-ACME_PLACENEW_G1_I1
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Placeholder
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :free_text: Placeholder Test Form
+  :repeating: false
+  :bc_ref: {}
