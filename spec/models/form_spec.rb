@@ -4,12 +4,11 @@ describe Form do
 
 	include DataHelpers
 
-  def date_check_now(item)
-    expect(item).to be_within(1.second).of Time.now
-    return item
+  def sub_dir
+    return "models"
   end
-    
-	before :all do
+
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -50,8 +49,8 @@ describe Form do
 
   it "allows a form to be found, BC based" do
     result = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    write_hash_to_yaml_file(result.to_json, "form_example_vs_baseline_new.yaml")
-    expected = read_yaml_file_to_hash("form_example_vs_baseline_new.yaml")
+    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "form_example_vs_baseline_new.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "form_example_vs_baseline_new.yaml")
     expect(result.to_json).to eq(expected)
   end
 
@@ -133,9 +132,35 @@ describe Form do
   end
 
   it "allows a form to be created from operation JSON" do
-    operation = read_yaml_file_to_hash("form_example_simple_placeholder_with_operation.yaml")
+    operation = read_yaml_file_to_hash_2(sub_dir, "form_example_simple_placeholder_with_operation.yaml")
     item = Form.create(operation)
     expect(item.errors.count).to eq(0)
+  end
+
+  it "allows a form to be created from operation JSON, base core form" do
+    #text = read_text_file_2(sub_dir, "form_base_core.txt")
+    #hash = JSON.parse(text)
+    #write_hash_to_yaml_file_2(hash.deep_symbolize_keys, sub_dir, "form_base_core.yaml")
+    parameters = read_yaml_file_to_hash_2(sub_dir, "form_base_core.yaml")
+    item = Form.create(parameters[:form])
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "form_base_core_result.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "form_base_core_result.yaml")
+    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+    expect(item.errors.count).to eq(0)
+    expect(item.to_json).to eq(expected)
+  end
+
+  it "allows a form to be created from operation JSON, base BC form" do
+    #text = read_text_file_2(sub_dir, "form_base_bc.txt")
+    #hash = JSON.parse(text)
+    #write_hash_to_yaml_file_2(hash.deep_symbolize_keys, sub_dir, "form_base_bc.yaml")
+    parameters = read_yaml_file_to_hash_2(sub_dir, "form_base_bc.yaml")
+    item = Form.create(parameters[:form])
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "form_base_bc_result.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "form_base_bc_result.yaml")
+    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+    expect(item.errors.count).to eq(0)
+    expect(item.to_json).to eq(expected)
   end
 
   it "allows a form to be updated" do
@@ -144,17 +169,75 @@ describe Form do
     Form.update(item.to_operation)
   end
 
-  it "destroy"
-  it "to_json"
-  it "to_sparql_v2"
+  it "allows a form to be destroyed" do
+    item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.destroy
+    expect{Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")}.to raise_error(Exceptions::NotFoundError)
+  end
+
+  it "allows a form to be destroyed" do
+    item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    expect{item.destroy}.to raise_error(Exceptions::DestroyError)
+  end
+    
+  it "can serialize as json, core form" do
+    item = Form.find("F-ACME_TEST1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    expected = read_yaml_file_to_hash_2(sub_dir, "form_base_core_result.yaml")
+    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+    expect(item.to_json).to eq(expected)
+  end
+
+  it "can serialize as json, BC form" do
+    item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "form_base_bc_json.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "form_base_bc_json.yaml")
+    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+    expect(item.to_json).to eq(expected)
+  end
+
+  it "can create the sparql for core form" do
+    item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "form_base_core_sparql.txt")
+    expected = read_text_file_2(sub_dir, "form_base_core_sparql.txt")
+    expect(item.to_sparql_v2.to_s).to eq(expected)
+  end
+
+  it "can create the sparql for BC form" do
+    item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "form_base_bc_sparql.txt")
+    expected = read_text_file_2(sub_dir, "form_base_bc_sparql.txt")
+    expect(item.to_sparql_v2.to_s).to eq(expected)
+  end
+
   it "to_xml"
-  it "self.from_json(json)"
-  it "valid?"
-  it "self.bc_impact(params)"
-  it "self.term_impact(params)"
-  it "crf"
-  it "acrf"
-  it "annotations"
-  it "report(options, user)"
+  
+  it "checks if the form is valid?" do
+    item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    result = item.valid?
+    expect(result).to eq(true)
+    item.label = "@@@@@@@"
+    result = item.valid?
+    expect(result).to eq(false)
+    expect(item.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
+    item.label = "addd"
+    result = item.valid?
+    expect(result).to eq(true)
+    item.completion = ">>>>"
+    result = item.valid?
+    expect(result).to eq(false)
+    expect(item.errors.full_messages.to_sentence).to eq("Completion contains invalid markdown")
+    item.completion = ""
+    result = item.valid?
+    expect(result).to eq(true)
+    item.note = "<<<<<<"
+    result = item.valid?
+    expect(result).to eq(false)
+    expect(item.errors.full_messages.to_sentence).to eq("Note contains invalid markdown")
+    item.note = ""
+    result = item.valid?
+    expect(result).to eq(true)
+  end
+  
+  it "generates the form annotations"
 
 end

@@ -1,0 +1,1305 @@
+---
+:namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+:form:
+  :operation:
+    :action: UPDATE
+    :new_version: 1
+    :new_state: Incomplete
+    :identifier_edit: false
+  :managed_item:
+    :type: http://www.assero.co.uk/BusinessForm#Form
+    :id: F-ACME_TEST2
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Test Form No. 2
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2016-12-21T10:22:51+00:00'
+    :last_changed_date: '2016-12-22T10:41:11+00:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_TEST2-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+    :scoped_identifier:
+      :id: SI-ACME_TEST2-1
+      :identifier: TEST 2
+      :version_label: ''
+      :version: 1
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+    :completion: ''
+    :note: ''
+    :children:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :id: F-ACME_TEST2_G1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Group
+      :extension_properties: []
+      :ordinal: 1
+      :optional: false
+      :completion: ''
+      :note: ''
+      :children:
+      - :type: http://www.assero.co.uk/BusinessForm#CommonGroup
+        :id: F-ACME_TEST2_G1_G1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Common Group
+        :extension_properties: []
+        :ordinal: 1
+        :optional: false
+        :completion: ''
+        :note: ''
+        :children:
+        - :type: http://www.assero.co.uk/BusinessForm#CommonItem
+          :id: F-ACME_TEST2_G1_G1_I1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Body Position (--POS) 2
+          :extension_properties: []
+          :ordinal: 1
+          :note: ''
+          :completion: ''
+          :optional: false
+          :item_refs:
+          - :namespace: http://www.assero.co.uk/MDRBCs/V1
+            :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code
+          - :namespace: http://www.assero.co.uk/MDRBCs/V1
+            :id: BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code
+          :bridg_path: PerformedObservation.bodyPositionCode.CD.code
+      - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+        :id: F-ACME_TEST2_G1_G2
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Temperature (BC_C25206)
+        :extension_properties: []
+        :ordinal: 2
+        :optional: false
+        :completion: ''
+        :note: ''
+        :children:
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G2_I1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Date and Time (--DTC)
+          :extension_properties: []
+          :ordinal: 1
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G2_I1_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Date and Time (--DTC)
+              :collect: true
+              :enabled: true
+              :question_text: Question text
+              :prompt_text: Prompt text
+              :simple_datatype: dateTime
+              :format: ''
+              :bridg_path: PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value
+              :children: []
+          :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G2_I2
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Result Value (--ORRES)
+          :extension_properties: []
+          :ordinal: 2
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G2_I2_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Result Value (--ORRES)
+              :collect: true
+              :enabled: true
+              :question_text: Question text
+              :prompt_text: Prompt text
+              :simple_datatype: float
+              :format: ''
+              :bridg_path: PerformedClinicalResult.value.PQR.value
+              :children: []
+          :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G2_I3
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Result Units (--ORRESU)
+          :extension_properties: []
+          :ordinal: 3
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G2_I3_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 2
+              :alias: Result Units (--ORRESU)
+              :collect: true
+              :enabled: true
+              :question_text: Question text
+              :prompt_text: Prompt text
+              :simple_datatype: string
+              :format: ''
+              :bridg_path: PerformedClinicalResult.value.PQR.code
+              :children:
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 1
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C66770_C42559
+          :children:
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G2_I3_TCR1
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 1
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C66770_C42559
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C66770_C42559
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Degree Celsius
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C42559
+              :notation: C
+              :synonym: Degree Celsius
+              :definition: A unit of temperature of the temperature scale designed
+                so that the freezing point of water is 0 degrees and the boiling point
+                is 100 degrees at standard atmospheric pressure. The current official
+                definition of the Celsius sets 0.01 C to be at the triple point of
+                water and a degree to be 1/273.16 of the difference in temperature
+                between the triple point of water and absolute zero. One degree Celsius
+                represents the same temperature difference as one Kelvin. (NCI)
+              :preferredTerm: Degree Celsius
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+        :repeating: false
+        :bc_ref:
+          :type: http://www.assero.co.uk/BusinessOperational#BcReference
+          :id: F-ACME_TEST2_G1_G2_BCR1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: BC Reference
+          :extension_properties: []
+          :enabled: true
+          :optional: false
+          :ordinal: 1
+          :local_label: ''
+          :subject_ref:
+            :namespace: http://www.assero.co.uk/MDRBCs/V1
+            :id: BC-ACME_BC_C25206
+      - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+        :id: F-ACME_TEST2_G1_G3
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Weight (BC_C25208)
+        :extension_properties: []
+        :ordinal: 3
+        :optional: false
+        :completion: ''
+        :note: ''
+        :children:
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G3_I1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Date and Time (--DTC)
+          :extension_properties: []
+          :ordinal: 1
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G3_I1_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25208_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25208_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Date and Time (--DTC)
+              :collect: true
+              :enabled: true
+              :question_text: Question text
+              :prompt_text: Prompt text
+              :simple_datatype: dateTime
+              :format: ''
+              :bridg_path: PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value
+              :children: []
+          :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G3_I2
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Result Value (--ORRES)
+          :extension_properties: []
+          :ordinal: 2
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G3_I2_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_value
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_value
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Result Value (--ORRES)
+              :collect: true
+              :enabled: true
+              :question_text: Result value?
+              :prompt_text: Result
+              :simple_datatype: float
+              :format: ''
+              :bridg_path: PerformedClinicalResult.value.PQR.value
+              :children: []
+          :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G3_I3
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Result Units (--ORRESU)
+          :extension_properties: []
+          :ordinal: 3
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G3_I3_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 2
+              :alias: Result Units (--ORRESU)
+              :collect: true
+              :enabled: true
+              :question_text: Result units?
+              :prompt_text: Units
+              :simple_datatype: string
+              :format: ''
+              :bridg_path: PerformedClinicalResult.value.PQR.code
+              :children:
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code_TR_1
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 1
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C66770_C28252
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code_TR_2
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 2
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C66770_C48531
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code_TR_3
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 3
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C66770_C48155
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code_TR_4
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 4
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C71620_C48519
+          :children:
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G3_I3_TCR1
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 1
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C66770_C28252
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C66770_C28252
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Kilogram
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C28252
+              :notation: kg
+              :synonym: Kilogram
+              :definition: The basic SI unit of mass. It is defined as the mass of
+                an international prototype in the form of a platinum-iridium cylinder
+                kept at Sevres in France. It is the only basic unit still defined
+                in terms of a material object, and also the only one with a prefix
+                [kilo] already in place. A kilogram is equal to 1,000 grams and 2.204
+                622 6 pounds. (NCI)
+              :preferredTerm: Kilogram
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G3_I3_TCR2
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 2
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C66770_C48531
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C66770_C48531
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Pound
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C48531
+              :notation: LB
+              :synonym: Pound
+              :definition: A traditional unit of mass. By international agreement,
+                one avoirdupois pound is equal to exactly 0.453 592 37 kilogram, 16
+                ounces, or 1.215 28 troy pounds. (NCI)
+              :preferredTerm: Pound
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G3_I3_TCR3
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 3
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C66770_C48155
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C66770_C48155
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Gram
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C48155
+              :notation: g
+              :synonym: Gram
+              :definition: A metric unit of mass equal to one one thousandth of a
+                kilogram. (NCI)
+              :preferredTerm: Gram
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G3_I3_TCR4
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 4
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C71620_C48519
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C71620_C48519
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Ounce
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C48519
+              :notation: oz
+              :synonym: Ounce
+              :definition: A unit of mass, the avoirdupois ounce is equal to 1/16
+                pound, or 28.3495 grams, or 0.911 457 troy ounce.(NCI)
+              :preferredTerm: Ounce
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+        :repeating: false
+        :bc_ref:
+          :type: http://www.assero.co.uk/BusinessOperational#BcReference
+          :id: F-ACME_TEST2_G1_G3_BCR1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: BC Reference
+          :extension_properties: []
+          :enabled: true
+          :optional: false
+          :ordinal: 1
+          :local_label: ''
+          :subject_ref:
+            :namespace: http://www.assero.co.uk/MDRBCs/V1
+            :id: BC-ACME_BC_C25208
+      - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+        :id: F-ACME_TEST2_G1_G4
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Systolic Blood Pressure (BC_C25298)
+        :extension_properties: []
+        :ordinal: 4
+        :optional: false
+        :completion: ''
+        :note: ''
+        :children:
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G4_I1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Date and Time (--DTC)
+          :extension_properties: []
+          :ordinal: 1
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G4_I1_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Date and Time (--DTC)
+              :collect: true
+              :enabled: true
+              :question_text: Question text
+              :prompt_text: Prompt text
+              :simple_datatype: dateTime
+              :format: ''
+              :bridg_path: PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value
+              :children: []
+          :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G4_I2
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Body Position (--POS)
+          :extension_properties: []
+          :ordinal: 2
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: true
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G4_I2_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Body Position (--POS)
+              :collect: true
+              :enabled: true
+              :question_text: Body position?
+              :prompt_text: Position
+              :simple_datatype: string
+              :format: ''
+              :bridg_path: PerformedObservation.bodyPositionCode.CD.code
+              :children:
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code_TR_1
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 1
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C71148_C62122
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code_TR_2
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 2
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C71148_C62166
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code_TR_3
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 3
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C71148_C62167
+          :children:
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G4_I2_TCR1
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 1
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C71148_C62122
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C71148_C62122
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Sitting
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C62122
+              :notation: SITTING
+              :synonym: Sitting
+              :definition: The state or act of one who sits; the posture of one who
+                occupies a seat. (NCI)
+              :preferredTerm: Sitting
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G4_I2_TCR2
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 2
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C71148_C62166
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C71148_C62166
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Standing
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C62166
+              :notation: STANDING
+              :synonym: Standing
+              :definition: The act of assuming or maintaining an erect upright position.
+                (NCI)
+              :preferredTerm: Standing
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G4_I2_TCR3
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 3
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C71148_C62167
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C71148_C62167
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Supine Position
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C62167
+              :notation: SUPINE
+              :synonym: Supine
+              :definition: A posterior recumbent body position whereby the person
+                lies on its back and faces upward. (NCI)
+              :preferredTerm: Supine Position
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G4_I3
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Result Value (--ORRES)
+          :extension_properties: []
+          :ordinal: 3
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G4_I3_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_value
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_value
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Result Value (--ORRES)
+              :collect: true
+              :enabled: true
+              :question_text: Result value?
+              :prompt_text: Result
+              :simple_datatype: float
+              :format: ''
+              :bridg_path: PerformedClinicalResult.value.PQR.value
+              :children: []
+          :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G4_I4
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Result Units (--ORRESU)
+          :extension_properties: []
+          :ordinal: 4
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G4_I4_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 2
+              :alias: Result Units (--ORRESU)
+              :collect: true
+              :enabled: true
+              :question_text: Result units?
+              :prompt_text: Units
+              :simple_datatype: string
+              :format: ''
+              :bridg_path: PerformedClinicalResult.value.PQR.code
+              :children:
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code_TR_1
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 1
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C66770_C49670
+          :children:
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G4_I4_TCR1
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 1
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C66770_C49670
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C66770_C49670
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Millimeter of Mercury
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C49670
+              :notation: mmHg
+              :synonym: Millimeter of Mercury
+              :definition: A unit of pressure equal to 0.001316 atmosphere and equal
+                to the pressure indicated by one millimeter rise of mercury in a barometer
+                at the Earth's surface. (NCI)
+              :preferredTerm: Millimeter of Mercury
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+        :repeating: false
+        :bc_ref:
+          :type: http://www.assero.co.uk/BusinessOperational#BcReference
+          :id: F-ACME_TEST2_G1_G4_BCR1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: BC Reference
+          :extension_properties: []
+          :enabled: true
+          :optional: false
+          :ordinal: 1
+          :local_label: ''
+          :subject_ref:
+            :namespace: http://www.assero.co.uk/MDRBCs/V1
+            :id: BC-ACME_BC_C25298
+      - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+        :id: F-ACME_TEST2_G1_G5
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Diastolic Blood Pressure (BC_C25299)
+        :extension_properties: []
+        :ordinal: 5
+        :optional: false
+        :completion: ''
+        :note: ''
+        :children:
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G5_I1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Date and Time (--DTC)
+          :extension_properties: []
+          :ordinal: 1
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G5_I1_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Date and Time (--DTC)
+              :collect: true
+              :enabled: true
+              :question_text: Question text
+              :prompt_text: Prompt text
+              :simple_datatype: dateTime
+              :format: ''
+              :bridg_path: PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value
+              :children: []
+          :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G5_I2
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Body Position (--POS)
+          :extension_properties: []
+          :ordinal: 2
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: true
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G5_I2_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Body Position (--POS)
+              :collect: true
+              :enabled: true
+              :question_text: Body position?
+              :prompt_text: Position
+              :simple_datatype: string
+              :format: ''
+              :bridg_path: PerformedObservation.bodyPositionCode.CD.code
+              :children:
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code_TR_1
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 1
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C71148_C62122
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code_TR_2
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 2
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C71148_C62166
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code_TR_3
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 3
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C71148_C62167
+          :children:
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G5_I2_TCR1
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 1
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C71148_C62122
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C71148_C62122
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Sitting
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C62122
+              :notation: SITTING
+              :synonym: Sitting
+              :definition: The state or act of one who sits; the posture of one who
+                occupies a seat. (NCI)
+              :preferredTerm: Sitting
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G5_I2_TCR2
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 2
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C71148_C62166
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C71148_C62166
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Standing
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C62166
+              :notation: STANDING
+              :synonym: Standing
+              :definition: The act of assuming or maintaining an erect upright position.
+                (NCI)
+              :preferredTerm: Standing
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G5_I2_TCR3
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 3
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C71148_C62167
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C71148_C62167
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Supine Position
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C62167
+              :notation: SUPINE
+              :synonym: Supine
+              :definition: A posterior recumbent body position whereby the person
+                lies on its back and faces upward. (NCI)
+              :preferredTerm: Supine Position
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G5_I3
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Result Value (--ORRES)
+          :extension_properties: []
+          :ordinal: 3
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G5_I3_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_value
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_value
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 1
+              :alias: Result Value (--ORRES)
+              :collect: true
+              :enabled: true
+              :question_text: Result value?
+              :prompt_text: Result
+              :simple_datatype: float
+              :format: ''
+              :bridg_path: PerformedClinicalResult.value.PQR.value
+              :children: []
+          :children: []
+        - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+          :id: F-ACME_TEST2_G1_G5_I4
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: Result Units (--ORRESU)
+          :extension_properties: []
+          :ordinal: 4
+          :note: ''
+          :completion: ''
+          :optional: false
+          :is_common: false
+          :property_ref:
+            :type: http://www.assero.co.uk/BusinessOperational#PReference
+            :id: F-ACME_TEST2_G1_G5_I4_PR0
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: BC Property Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 0
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :id: BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_code
+            :subject_data:
+              :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+              :id: BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_code
+              :namespace: http://www.assero.co.uk/MDRBCs/V1
+              :label: ''
+              :extension_properties: []
+              :ordinal: 2
+              :alias: Result Units (--ORRESU)
+              :collect: true
+              :enabled: true
+              :question_text: Result units?
+              :prompt_text: Units
+              :simple_datatype: string
+              :format: ''
+              :bridg_path: PerformedClinicalResult.value.PQR.code
+              :children:
+              - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+                :id: BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_code_TR_1
+                :namespace: http://www.assero.co.uk/MDRBCs/V1
+                :label: Thesaurus Concept Reference
+                :extension_properties: []
+                :enabled: true
+                :optional: true
+                :ordinal: 1
+                :local_label: ''
+                :subject_ref:
+                  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+                  :id: CLI-C66770_C49670
+          :children:
+          - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+            :id: F-ACME_TEST2_G1_G5_I4_TCR1
+            :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+            :label: Thesaurus Concept Reference
+            :extension_properties: []
+            :enabled: true
+            :optional: false
+            :ordinal: 1
+            :local_label: ''
+            :subject_ref:
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :id: CLI-C66770_C49670
+            :subject_data:
+              :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+              :id: CLI-C66770_C49670
+              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+              :label: Millimeter of Mercury
+              :extension_properties:
+              - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+                :instance_variable: extensible
+                :label: Extensible
+              :identifier: C49670
+              :notation: mmHg
+              :synonym: Millimeter of Mercury
+              :definition: A unit of pressure equal to 0.001316 atmosphere and equal
+                to the pressure indicated by one millimeter rise of mercury in a barometer
+                at the Earth's surface. (NCI)
+              :preferredTerm: Millimeter of Mercury
+              :topLevel: false
+              :parentIdentifier: ''
+              :children: []
+        :repeating: false
+        :bc_ref:
+          :type: http://www.assero.co.uk/BusinessOperational#BcReference
+          :id: F-ACME_TEST2_G1_G5_BCR1
+          :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+          :label: BC Reference
+          :extension_properties: []
+          :enabled: true
+          :optional: false
+          :ordinal: 1
+          :local_label: ''
+          :subject_ref:
+            :namespace: http://www.assero.co.uk/MDRBCs/V1
+            :id: BC-ACME_BC_C25299
+      :repeating: false
+      :bc_ref: {}
+:id: F-ACME_TEST2
