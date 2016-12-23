@@ -33,10 +33,12 @@ class CdiscTermsController < ApplicationController
     authorize CdiscTerm
     @files = Dir.glob(Rails.root.join("public","upload") + "*")
     @cdiscTerm = CdiscTerm.new
+    all = CdiscTerm.all
+    @next_version = all.last.next_version
   end
   
   def create
-    authorize CdiscTerm
+    authorize CdiscTerm, :import?
     hash = CdiscTerm.create(this_params)
     @cdiscTerm = hash[:object]
     @job = hash[:job]
@@ -44,7 +46,7 @@ class CdiscTermsController < ApplicationController
       redirect_to backgrounds_path
     else
       flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
-      redirect_to history_cdisc_terms_path
+      redirect_to import_cdisc_terms_path
     end
   end
   
@@ -140,8 +142,6 @@ class CdiscTermsController < ApplicationController
     authorize CdiscTerm, :view?
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
     cls = transpose_results(results)
-    #@pdf = Reports::CdiscChangesReport.new.create(results, cls, current_user)
-    #send_data @pdf, filename: 'cdisc_changes.pdf', type: 'application/pdf', disposition: 'inline'
     respond_to do |format|
       format.pdf do
         @html = Reports::CdiscChangesReport.new.create(results, cls, current_user)
@@ -175,8 +175,6 @@ class CdiscTermsController < ApplicationController
   def submission_report
     authorize CdiscTerm, :view?
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    #@pdf = Reports::CdiscSubmissionReport.new.create(results, current_user)
-    #send_data @pdf, filename: 'cdisc_submission.pdf', type: 'application/pdf', disposition: 'inline'
     respond_to do |format|
       format.pdf do
         @html = Reports::CdiscSubmissionReport.new.create(results, current_user)

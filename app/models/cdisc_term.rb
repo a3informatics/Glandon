@@ -6,9 +6,16 @@ class CdiscTerm < Thesaurus
   # Constants
   C_CLASS_NAME = "CdiscTerm"
   C_IDENTIFIER = "CDISC Terminology"
-  
+  C_SCHEMA_PREFIX = Thesaurus::C_SCHEMA_PREFIX
+  C_INSTANCE_PREFIX = Thesaurus::C_INSTANCE_PREFIX
+  C_CID_PREFIX = Thesaurus::C_CID_PREFIX
+  C_RDF_TYPE = Thesaurus::C_RDF_TYPE
+  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
+
   # class variables
-  @@cdisc_namespace_object = nil
+  @@cdisc_ra = nil
 
   # Initialize the object
   #
@@ -18,6 +25,7 @@ class CdiscTerm < Thesaurus
   def initialize(triples=nil, id=nil)
     if triples.nil?
       super
+      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
@@ -122,33 +130,44 @@ class CdiscTerm < Thesaurus
   # Create a new version. This is an import and runs in the background.
   #
   # @param params [Hash] The parameters
-  # @return [Hash] An hash containing any errors and the background job reference.
+  # @option opts [String] :date The release date of the version being created
+  # @option opts [String] :version The version being created
+  # @option opts [String] :files Array of files being used 
+  # @return [Hash] A hash containing any errors and the background job reference.
   def self.create(params)
-    object = self.new
-    object.errors.clear
-    identifier = C_IDENTIFIER
+    job = nil
+    files = params[:files]
     version = params[:version]
     date = params[:date]
-    files = params[:files]
-    params[:identifier] = identifier
-    params[:versionLabel] = date.to_s
-    params[:label] = identifier + " " + date.to_s
-    # Check to ensure version does not exist
-    if !versionExists?(identifier, version, @@cdisc_namespace_object)
-      # Clean any empty entries
-      files.reject!(&:blank?)
-      # Determine the SI, namespace and CID
-      thesaurus = Thesaurus.import(params, namespace)
-      params[:si] = thesaurus.scopedIdentifier.id
-      params[:rs] = thesaurus.registrationState.id
-      params[:ns] = thesaurus.namespace
-      params[:cid] = thesaurus.id
-      # Create the background job status
-      job = Background.create
-      job.importCdiscTerm(params)
-    else
-      object.errors.add(:base, "The version has already been created.")
-      job = nil
+    object = self.new
+    # Make sure we have valid version and date. 
+    if FieldValidation.valid_version?(:version, version, object) &&
+       FieldValidation.valid_date?(:date, date, object)
+      # Save the core info
+      object.label = "#{C_IDENTIFIER} #{params[:date]}"
+      object.scopedIdentifier.identifier = C_IDENTIFIER
+      object.scopedIdentifier.versionLabel = params[:date]
+      # Build the full object
+      operation = object.to_operation
+      operation[:new_version] = params[:version]
+      operation[:new_state] = IsoRegistrationState.releasedState
+      object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+      # Check the full object
+      if object.valid? then
+        ConsoleLogger.debug(C_CLASS_NAME, "create", "Valid 2")
+        if object.create_permitted?
+          files.reject!(&:blank?)
+          params[:identifier] = object.identifier
+          params[:versionLabel] = object.versionLabel
+          params[:label] = object.label
+          params[:si] = object.scopedIdentifier.id
+          params[:rs] = object.registrationState.id
+          params[:ns] = object.namespace
+          params[:cid] = object.id
+          job = Background.create
+          job.import_cdisc_term(params)
+        end
+      end
     end
     return { :object => object, :job => job }
   end
@@ -281,11 +300,26 @@ class CdiscTerm < Thesaurus
       children = {}
     elsif previous.nil?
       current.children.each do |child|
-        children[child.identifier.to_sym] = { status: :created, identifier: child.identifier, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
+        children[child.identifier.to_sym] = 
+        { 
+          status: :created, 
+          identifier: child.identifier, 
+          preferred_term: child.preferredTerm, 
+          notation: child.notation, id: child.id, 
+          namespace: child.namespace
+        }
       end
     elsif current.nil?
       previous.children.each do |child|
-        children[child.identifier.to_sym] = { status: :deleted, identifier: child.identifier, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
+        children[child.identifier.to_sym] = 
+        { 
+          status: :deleted, 
+          identifier: child.identifier, 
+          preferred_term: child.preferredTerm, 
+          notation: child.notation, 
+          id: child.id, namespace: 
+          child.namespace
+        }
       end
     else
       deleted = current.deleted_set(previous, "children", "identifier" )
@@ -300,11 +334,27 @@ class CdiscTerm < Thesaurus
         else
           status = :no_change
         end
-        children[child.identifier.to_sym] = { status: status, identifier: child.identifier, preferred_term: child.preferredTerm, notation: child.notation, id: child.id, namespace: child.namespace}
+        children[child.identifier.to_sym] = 
+        { 
+          status: status, 
+          identifier: child.identifier, 
+          preferred_term: child.preferredTerm, 
+          notation: child.notation, 
+          id: child.id, 
+          namespace: child.namespace
+        }
       end
       deleted.each do |deleted|
         item = previous_index[deleted]
-        children[deleted.to_sym] = { status: :deleted, identifier: item.identifier, preferred_term: item.preferredTerm, notation: item.notation, id: item.id, namespace: item.namespace}
+        children[deleted.to_sym] = 
+        { 
+          status: :deleted, 
+          identifier: item.identifier, 
+          preferred_term: item.preferredTerm, 
+          notation: item.notation, 
+          id: item.id, 
+          namespace: item.namespace
+        }
       end
     end
     results[:children] = children
@@ -327,11 +377,22 @@ class CdiscTerm < Thesaurus
     return results
   end
 
+  # Object Valid
+  #
+  # @return [boolean] True if valid, false otherwise.
+  def valid?
+    super
+  end
+
 private
 
   def self.cdisc_namespace
-    @@cdisc_namespace_object = IsoNamespace.findByShortName("CDISC") if @@cdisc_namespace_object.nil?
-    return @@cdisc_namespace_object
+    return cdisc_ra.namespace
+  end
+
+  def self.cdisc_ra
+    @@cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC") if @@cdisc_ra.nil?
+    return @@cdisc_ra
   end
 
   def self.processNode(node, results)

@@ -6,11 +6,12 @@ class PublicFile
   # @param filename [string] The filename
   # @return null
   def self.save(sub_dir, filename, results)
-		publicDir = Rails.root.join("public", sub_dir)
-	  outputFile = File.join(publicDir, filename)
-		File.open(outputFile, "w+") do |f|
+		public_dir = Rails.root.join("public", sub_dir)
+	  output_file = File.join(public_dir, filename)
+		File.open(output_file, "wb") do |f|
 	  	f.write(results.to_s)
 		end
+		return output_file
 	end
 
 end

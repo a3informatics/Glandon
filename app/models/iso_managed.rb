@@ -831,27 +831,6 @@ class IsoManaged < IsoConcept
     self.id = uri.id
   end
 
-  # Create an object from data.
-  #
-  # @param json [Hash] The JSON hash.
-  # @param prefix [String] The prefix for the URI fragment
-  # @param instance_namespace [String] The namespace for the URI
-  # @param schema_namespace [String] The namespace of the schema
-  # @param rdf_type [String] The rdf type (fragment)
-  # @param ra [Object] The registration authority object
-  # @return [Object] Teh object created
-  def self.from_data(json, prefix, instance_namespace, schema_namespace, rdf_type, ra)
-    operation = json[:operation]
-    managed_item = json[:managed_item]
-    # Assumes will be released and needs RDF type setting
-    managed_item[:rdf_type] = UriV2.new({:namespace => schema_namespace, :id => rdf_type}).to_s
-    operation[:new_state] = IsoRegistrationState.releasedState
-    # Create the object
-    object = from_json(managed_item)
-    object.from_operation(operation, prefix, instance_namespace, ra)
-    return object
-  end
-
   # Return the object as SPARQL
   #
   # @param sparql [Object] The sparql object being built

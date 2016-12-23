@@ -64,10 +64,6 @@ describe CdiscTermsController do
       expect(response).to render_template("history")
     end
 
-    it "import"
-
-    it "create"
-    
     it "show" do
       params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }
       get :show, params
@@ -141,8 +137,9 @@ describe CdiscTermsController do
     end
 
     it "changes_report" do
+      request.env['HTTP_ACCEPT'] = "application/pdf"
       get :changes_report
-      expect(assigns(:pdf)[0,4]).to eq('%PDF')
+      expect(response.content_type).to eq("application/pdf")
     end
     
     it "calculates the submission changes results, no file" do
@@ -163,8 +160,9 @@ describe CdiscTermsController do
     end
 
     it "submission_report" do
+      request.env['HTTP_ACCEPT'] = "application/pdf"
       get :submission_report
-      expect(assigns(:pdf)[0,4]).to eq('%PDF')
+      expect(response.content_type).to eq("application/pdf")
     end
     
     it "impact"
@@ -177,6 +175,47 @@ describe CdiscTermsController do
   describe "Content Admin User" do
     
     login_content_admin
+
+    it "presents the import view"  do
+      get :import
+      expect(assigns(:next_version)).to eq(42)
+      expect(response).to render_template("import")
+    end
+
+    it "allows a CDISC Terminology to be created" do
+      delete_public_file("upload", "background_term.owl")
+      copy_file_to_public_files("controllers", "background_term.owl", "upload")
+      filename = upload_path("background_term.owl")
+      params = 
+      {
+        :cdisc_term => 
+        { 
+          :version => "12", 
+          :date => "2016-12-13", 
+          :files => ["#{filename}"]
+        }
+      }
+      post :create, params
+      public_file_exists?("upload", "CT_V12.ttl")
+      delete_public_file("upload", "CT_V12.ttl")
+      expect(response).to redirect_to("/backgrounds")
+    end
+    
+    it "allows a CDISC Terminology to be created, error" do
+      filename = upload_path("background_term.owl")
+      params = 
+      {
+        :cdisc_term => 
+        { 
+          :version => "aa", 
+          :date => "2016-12-13", 
+          :files => ["#{filename}"]
+        }
+      }
+      post :create, params
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/cdisc_terms/import")
+    end
 
     it "provides a list of the CDISC files" do
       expected = 
@@ -204,4 +243,97 @@ describe CdiscTermsController do
 
   end
 
+  describe "Reader User" do
+    
+    login_reader
+
+    it "prevents access to the import view"  do
+      get :import
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to creation of a CDISC Terminology" do
+      params = 
+      {
+        :cdisc_term => 
+        { 
+          :version => "12", 
+          :date => "2016-12-13", 
+          :files => ["xxx.txt"]
+        }
+      }
+      post :create, params
+      expect(response).to redirect_to("/")
+    end
+    
+    it "prevents access to the list of the CDISC files" do
+      expected = 
+      [
+        "public/test/CDISC_CT_40_39_Changes.yaml", 
+        "public/test/CDISC_CT_Changes.yaml", 
+        "public/test/CDISC_CT_Submission_Changes.yaml"
+      ]
+      get :file
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to file deletion" do
+      expected = 
+      [
+        "public/test/CDISC_CT_Changes.yaml", 
+        "public/test/CDISC_CT_Submission_Changes.yaml"
+      ]
+      params = {:cdisc_term => { :files => ["public/test/CDISC_CT_40_39_Changes.yaml"] }}
+      delete :file_delete, params
+      expect(response).to redirect_to("/")
+    end
+
+  end
+
+  describe "Curator User" do
+    
+    login_curator
+
+    it "prevents access to the import view"  do
+      get :import
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to creation of a CDISC Terminology" do
+      params = 
+      {
+        :cdisc_term => 
+        { 
+          :version => "12", 
+          :date => "2016-12-13", 
+          :files => ["xxx.txt"]
+        }
+      }
+      post :create, params
+      expect(response).to redirect_to("/")
+    end
+    
+    it "prevents access to the list of the CDISC files" do
+      expected = 
+      [
+        "public/test/CDISC_CT_40_39_Changes.yaml", 
+        "public/test/CDISC_CT_Changes.yaml", 
+        "public/test/CDISC_CT_Submission_Changes.yaml"
+      ]
+      get :file
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to file deletion" do
+      expected = 
+      [
+        "public/test/CDISC_CT_Changes.yaml", 
+        "public/test/CDISC_CT_Submission_Changes.yaml"
+      ]
+      params = {:cdisc_term => { :files => ["public/test/CDISC_CT_40_39_Changes.yaml"] }}
+      delete :file_delete, params
+      expect(response).to redirect_to("/")
+    end
+
+  end
 end

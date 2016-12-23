@@ -37,10 +37,6 @@ class ApplicationPolicy
     curator?
   end
 
-  def import_file?
-    content_admin?
-  end
-
   def update?
     curator?
   end

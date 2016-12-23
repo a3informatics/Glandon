@@ -5,6 +5,10 @@ describe Background do
   include DataHelpers
   include PublicFileHelpers
 
+  def sub_dir
+    return "models"
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -34,7 +38,7 @@ describe Background do
     terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
     job = Background.create
     job.compare_cdisc_term(terms)
-    expected = read_yaml_file_to_hash("background_cdisc_compare_two.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "background_cdisc_compare_two.yaml")
     results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, {new_version: 36, old_version: 35})
     expect(results).to eq(expected)
   end
@@ -42,7 +46,7 @@ describe Background do
   it "compares all CDISC terminology" do
     job = Background.create
     job.changes_cdisc_term()
-    expected = read_yaml_file_to_hash("background_cdisc_compare_all.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "background_cdisc_compare_all.yaml")
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
     expect(results).to eq(expected)
   end
@@ -51,22 +55,41 @@ describe Background do
     job = Background.create
     job.submission_changes_cdisc_term()
     puts job.errors.full_messages
-    expected = read_yaml_file_to_hash("background_cdisc_submission_difference.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "background_cdisc_submission_difference.yaml")
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
     expect(results).to eq(expected)
   end
 
-  it "determines the impact of CDISC terminology submission value changes" #do
-    #job = Background.create
-    #params = {}
-    #params[:old_id] = "TH-CDISC_CDISCTerminology"
-    #params[:old_ns] = "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"
-    #params[:new_id] = "TH-CDISC_CDISCTerminology" 
-    #params[:new_ns] = "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
-    #job.submission_changes_impact(params)
-    #expected = read_yaml_file_to_hash("background_cdisc_submission_impact.yaml")
-    #results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT)
-    #expect(results).to eq([])
-  #end
+  it "determines the impact of CDISC terminology submission value changes"
+
+  it "imports a cdisc terminology" do
+    job = Background.create
+    params = 
+    { 
+      :date => "2016-12-22", 
+      :version => "99", 
+      :files => ["xxx.ttl"], 
+      :ns => "http://www.assero.co.uk/MDRThesaurus/CDISC/V99", 
+      :cid => "TH-CDISC_CDISCTerminology", 
+      :si => "SI-CDISC_CDISCTerminology-99" , 
+      :rs => "RS-CDISC_CDISCTerminology-99" 
+    }
+    xslt_params = 
+    { 
+      :UseVersion => "99", 
+      :Namespace => "'http://www.assero.co.uk/MDRThesaurus/CDISC/V99'", 
+      :SI => "'SI-CDISC_CDISCTerminology-99'", 
+      :RS => "'RS-CDISC_CDISCTerminology-99'", 
+      :CID => "'TH-CDISC_CDISCTerminology'"
+    }
+    expect(Xslt).to receive(:execute).with("/Users/daveih/Documents/rails/Glandon/public/upload/cdiscImportManifest.xml", 
+      "thesaurus/import/cdisc/cdiscTermImport.xsl", 
+      xslt_params, 
+      "CT_V99.ttl")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendFile).and_return(response)
+    expect(response).to receive(:success?).and_return(true)
+    job.import_cdisc_term(params)
+  end
 
 end

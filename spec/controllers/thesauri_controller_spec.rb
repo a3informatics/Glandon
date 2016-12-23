@@ -20,6 +20,7 @@ describe ThesauriController do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("thesaurus.ttl")
       load_test_file_into_triple_store("thesaurus_concept.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -45,13 +46,13 @@ describe ThesauriController do
     end
 
     it "thesaurus history" do
-      params = 
-      {
-        :id => "THC-A00001", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-      }
-      get :history, params
+      get :history, { :identifier => "CDISC EXT", :scope_id => IsoRegistrationAuthority.owner.namespace.id }
       expect(response).to render_template("history")
+    end
+
+    it "thesaurus history, none" do
+      get :history, { :identifier => "CDISC EXT NEW", :scope_id => IsoRegistrationAuthority.owner.namespace.id }
+      expect(response).to redirect_to("/thesauri")
     end
 
     it 'creates thesaurus' do

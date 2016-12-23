@@ -1,11 +1,12 @@
 require 'rails_helper'
+require 'action_view'
 
 describe Reports::CdiscChangesReport do
 
   include DataHelpers
   include ReportHelpers
   include PublicFileHelpers
-  include ActionView::CdiscTermHelpers
+  include CdiscTermHelpers
 
   def sub_dir
     return "models/reports"

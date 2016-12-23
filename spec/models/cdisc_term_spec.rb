@@ -3,6 +3,7 @@ require 'rails_helper'
 describe CdiscTerm do
 
   include DataHelpers
+  include PublicFileHelpers
 
   before :all do
     clear_triple_store
@@ -62,6 +63,19 @@ describe CdiscTerm do
     valid = th.valid?
     expect(th.errors.count).to eq(0)
     expect(valid).to eq(true)
+  end 
+
+  it "allows validity of the object to be checked, version" do
+    th =CdiscTerm.new
+    th.registrationState.registrationAuthority.namespace.shortName = "AAA"
+    th.registrationState.registrationAuthority.namespace.name = "USER AAA"
+    th.registrationState.registrationAuthority.number = "123456789"
+    th.scopedIdentifier.identifier = "hello"
+    th.scopedIdentifier.version = "hello"
+    valid = th.valid?
+    expect(valid).to eq(false)
+    expect(th.errors.count).to eq(1)
+    expect(th.errors.full_messages[0]).to eq("Scoped Identifier error: Version contains invalid characters, must be an integer")
   end 
 
   it "allows a CDISC Term to be found" do
@@ -142,7 +156,32 @@ describe CdiscTerm do
     expect(current_th.version).to eq(th.version)
   end
 
-  it "allows a new version to be created (imported)"
+  it "allows a new version to be created (imported)"  do
+    delete_public_file("upload", "background_term.owl")
+    copy_file_to_public_files("models", "background_term.owl", "upload")
+    result = CdiscTerm.create({:date => "2016-12-12", :version => 12, :files => ["background_term.owl"]})
+    expect(result[:object].errors.count).to eq(0)  
+    public_file_exists?("upload", "CT_V12.ttl")
+    delete_public_file("upload", "CT_V12.ttl")  
+  end
+
+  it "prevents a new version to be created (imported) if version is in error"  do
+    result = CdiscTerm.create({:date => "2016-12-12", :version => "12a", :files => ["xxx.ttl"]})
+    expect(result[:object].errors.count).to eq(1)
+    expect(result[:object].errors.full_messages.to_sentence).to eq("Version contains invalid characters, must be an integer")    
+  end
+
+  it "prevents a new version to be created (imported) if date is in error"  do
+    result = CdiscTerm.create({:date => "2016x-12-12", :version => "12", :files => ["xxx.ttl"]})
+    expect(result[:object].errors.count).to eq(1)
+    expect(result[:object].errors.full_messages.to_sentence).to eq("Date contains invalid characters")    
+  end
+
+  it "prevents a new version to be created (imported) if date is in error"  do
+    result = CdiscTerm.create({:date => "2016/12/12", :version => "12", :files => ["xxx.ttl"]})
+    expect(result[:object].errors.count).to eq(1)
+    expect(result[:object].errors.full_messages.to_sentence).to eq("Date contains invalid characters")    
+  end
 
   it "initiates the CDISC Terminology changes background job" do
     result = CdiscTerm.changes

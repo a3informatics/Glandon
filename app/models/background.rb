@@ -97,22 +97,34 @@ class Background < ActiveRecord::Base
   end
   handle_asynchronously :importCdiscSdtmIg
 
-  def importCdiscTerm(params)
+
+  # Import CDISC Terminology
+  #
+  # @param params [Hash] Parameters
+  # @option opts [String] :date The release date of the version being created
+  # @option opts [String] :version The version being created
+  # @option opts [String] :files Array of files being used 
+  # @option opts [String] :ns The namespace into which the terminology is being placed
+  # @option opts [String] :cid The cid of the terminology
+  # @option opts [String] :si The CID of the scoped identifier
+  # @option opts [String] :rs The CID of the registration status
+  # @return null No return, kicks off the background job
+  def import_cdisc_term(params)
     # Create the background job status
     self.update(
-    	description: "Import CDISC terminology file(s). Date: " + params[:date] + ", Internal Version: " + params[:version] + ".", 
+    	description: "Import CDISC terminology file(s). Date: #{params[:date]}, Internal Version: #{params[:version]}.", 
     	status: "Building manifest file.",
     	started: Time.now())
     # Create manifest file
-    manifest = buildCdiscTermImportManifest(params[:date], params[:version], params[:files])
+    manifest = build_cdisc_term_import_manifest(params[:date], params[:version], params[:files])
     # Create the thesaurus (does not actually create the database entries).
     # Entries in DB created as part of the XSLT and load
     self.update(status: "Transforming terminology file.", percentage: 10)
     # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
-    filename = "CT_V" + params[:version ] + ".ttl"
+    filename = "CT_V#{params[:version]}.ttl"
     Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", 
-      { :UseVersion => params[:version], :Namespace => "'" + params[:ns] + "'", 
-        :SI => "'" + params[:si] + "'", :RS => "'" + params[:rs] + "'", :CID => "'" + params[:cid] + "'"}, filename)
+      { :UseVersion => "#{params[:version]}", :Namespace => "'#{params[:ns]}'", 
+        :SI => "'#{params[:si]}'", :RS => "'#{params[:rs]}'", :CID => "'#{params[:cid]}'" }, filename)
     # upload the file to the database. Send the request, wait the resonse
     self.update(status: "Loading file into database.", percentage: 50)
     publicDir = Rails.root.join("public","upload")
@@ -127,7 +139,7 @@ class Background < ActiveRecord::Base
   rescue => e
     self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
-  handle_asynchronously :importCdiscTerm
+  handle_asynchronously :import_cdisc_term unless Rails.env.test?
 
   # Compare CDISC Terminology
   #
@@ -258,7 +270,8 @@ class Background < ActiveRecord::Base
 
 private
 
-  def buildCdiscTermImportManifest(date, version, files)
+  # Builds the CDISC Terminology import manifest file
+  def build_cdisc_term_import_manifest(date, version, files)
     builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
       xml.CDISCTerminology() {
         xml.Update(:date => date, :version => version) {
@@ -268,12 +281,7 @@ private
         }
       }
     end
-    #TODO: Replace with public file utility
-    directory = Rails.root.join("public","upload")
-    path = File.join(directory, "cdiscImportManifest.xml")
-    File.open(path, "wb") do |f|
-       f.write(builder.to_xml)
-    end
+    path = PublicFile.save("upload", "cdiscImportManifest.xml", builder.to_xml)
     return path
   end
 
