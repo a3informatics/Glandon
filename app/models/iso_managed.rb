@@ -919,6 +919,7 @@ class IsoManaged < IsoConcept
   #
   # @return [boolean] True if valid, false otherwise.
   def valid?
+    super_valid = super
     rs_valid = self.registrationState.valid?
     if !rs_valid
       ConsoleLogger::log(C_CLASS_NAME,"valid?","RS")
@@ -933,7 +934,8 @@ class IsoManaged < IsoConcept
         self.errors[:base] << "Scoped Identifier error: #{msg}"
       end
     end
-    result = rs_valid &&
+    result = super_valid &&
+      rs_valid &&
       si_valid &&
       FieldValidation.valid_label?(:change_description, self.changeDescription, self) &&
       FieldValidation.valid_label?(:explanatory_comment, self.explanatoryComment, self) &&

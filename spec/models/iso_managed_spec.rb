@@ -83,26 +83,40 @@ describe IsoManaged do
   end
 
 	it "validates a valid object" do
-    result = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    expect(result.valid?).to eq(true)
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    expect(item.valid?).to eq(true)
   end
 
   it "does not validate an invalid object" do
-    result = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    result.origin = "£"
-    expect(result.valid?).to eq(false)
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.origin = "£"
+    result = item.valid?
+    expect(result).to eq(false)
+    expect(item.errors.full_messages.to_sentence).to eq("Origin contains invalid characters")
   end
 
   it "does not validate an invalid object" do
-    result = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    result.explanatoryComment  = "£"
-    expect(result.valid?).to eq(false)
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.explanatoryComment  = "£"
+    result = item.valid?
+    expect(result).to eq(false)
+    expect(item.errors.full_messages.to_sentence).to eq("Explanatory comment contains invalid characters")
   end
 
   it "does not validate an invalid object" do
-    result = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    result.changeDescription = "£"
-    expect(result.valid?).to eq(false)
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.changeDescription = "£"
+    result = item.valid?
+    expect(result).to eq(false)
+    expect(item.errors.full_messages.to_sentence).to eq("Change description contains invalid characters")
+  end
+
+  it "does not validate an invalid object" do
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.label = "£"
+    result = item.valid?
+    expect(result).to eq(false)
+    expect(item.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
   end
 
   it "allows a blank item to be created" do
