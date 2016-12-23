@@ -462,7 +462,7 @@ $(document).ready(function() {
     displayDomain(currentNode);
   }
 
-  function setParent(node) {
+  function d3eSetParent(node) {
     var i;
     var child;
     if (node.hasOwnProperty('save')) {
@@ -470,12 +470,12 @@ $(document).ready(function() {
         child = node.save[i];
         child.parent = node;
         child.index = i;
-        setParent(child);
+        d3eSetParent(child);
       }
     }
   }
 
-  function setOrdinal(node) {
+  function d3eSetOrdinal(node) {
     var i;
     var child;
     if (node.hasOwnProperty('children')) {
@@ -572,8 +572,8 @@ $(document).ready(function() {
       delete parentNode.save;
       sourceParentNode.children = [];
     }
-    setParent(parentNode);
-    setOrdinal(sourceParentNode);
+    d3eSetParent(parentNode);
+    d3eSetOrdinal(sourceParentNode);
     return parentNode;
   }
 
@@ -595,7 +595,7 @@ $(document).ready(function() {
       sourceParentNode.children[parentIndex] = tempNode1;
       tempNode1.index = parentIndex;
       tempNode2.index = parentIndex - 1;
-      setOrdinal(sourceParentNode);
+      d3eSetOrdinal(sourceParentNode);
     }
   }
 
@@ -617,7 +617,7 @@ $(document).ready(function() {
       sourceParentNode.children[parentIndex] = tempNode1;
       tempNode1.index = parentIndex;
       tempNode2.index = parentIndex + 1;
-      setOrdinal(sourceParentNode);
+      d3eSetOrdinal(sourceParentNode);
     }
   }
 

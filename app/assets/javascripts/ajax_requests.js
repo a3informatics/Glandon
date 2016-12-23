@@ -1,27 +1,3 @@
-KLASS = "ajax-completed"
-var ajaxRequests;
-
-/*
-* testing functions
-*/
-function clearAjax() {
-  ajaxRequests = 0;
-}
-
-function incAjax() {
-  ajaxRequests += 1;
-  if (ajaxRequests > 0) {
-    $(document.body).removeClass(KLASS)
-  }
-}
-
-function decAjax() {
-  ajaxRequests -= 1;
-  if (ajaxRequests === 0) {
-    $(document.body).addClass(KLASS)
-  }
-}
-
 /*
 * Obtain a Thesaurus Concept
 *
@@ -37,6 +13,29 @@ function getThesaurusConcept(node, callback) {
     dataType: 'json',
     error: function (xhr, status, error) {
       var html = alertError("An error has occurred loading a Terminology reference.");
+      displayAlerts(html);
+    },
+    success: function(result){
+      callback(node, result);
+    }
+  });
+}
+
+/*
+* Obtain a BC
+*
+* @param node [Object] The D3 data node
+* @param callback [Function] The callback function to be called on success
+* @return [Null]
+*/
+function getBc(node, callback) {
+  $.ajax({
+    url: "/biomedical_concepts/" + node.data.bc_ref.subject_ref.id,
+    type: "GET",
+    data: { "namespace": node.data.bc_ref.subject_ref.namespace },
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      var html = alertError("An error has occurred loading a Biomedical Concept reference.");
       displayAlerts(html);
     },
     success: function(result){

@@ -30,6 +30,10 @@ $(document).ready(function() {
         "Group Label": {required: true, label: true },
         "Group Note": {required: false, markdown: true},
         "Group Completion": {required: false, markdown: true},
+        "BC Note": {required: false, markdown: true},
+        "BC Completion": {required: false, markdown: true},
+        "BC Item Note": {required: false, markdown: true},
+        "BC Item Completion": {required: false, markdown: true},
         "Question Label": {required: true, label: true },
         "Question Text": {required: true, question: true },
         "Question Note": {required: false, markdown: true},
@@ -198,6 +202,10 @@ $(document).ready(function() {
     treeNodeDelete();
   });
 
+  $( ".markdown-area" ).focus(function() {
+    handleFocus("OTHER", this);
+  });
+
   /*
   * Form Panel Actions
   */
@@ -305,21 +313,14 @@ $(document).ready(function() {
   * Code List Panel Actions
   */
   $('#clDefault').click(function() {
-    if (d3eGetCurrent() == null) {
+    var d3CurrentNode = d3eGetCurrent();
+    if (d3CurrentNode === null) {
       displayWarning("You need to select a code list node.");
     } else {
-      clLabelElement.value = d3eGetCurrent().data.subject_data.label;
+      $('#clLocalLabel').val(d3CurrentNode.data.subject_data.label);
     }
   });
   
-  $('#clUp').click(function() {
-    treeNodeUp();
-  }); 
-
-  $('#clDown').click(function() {
-    treeNodeDown();
-  }); 
-
   /*
    * Function to handle click on the BC selection table.
    */
@@ -329,7 +330,6 @@ $(document).ready(function() {
     }
     $(this).toggleClass('success');
     var row = bcSelect.row(this).index();
-    //var data = bcSelect.row(row).data();
     bcCurrent = this;
     bcCurrentRow = row;
   });
@@ -343,7 +343,6 @@ $(document).ready(function() {
     }
     $(this).toggleClass('success');
     var row = questionClTable.row(this).index();
-    //var data = questionClTable.row(row).data();
     varClCurrent = this;
     varClCurrentRow = row;
   });
@@ -400,40 +399,24 @@ $(document).ready(function() {
     markdownType = "";
   });
 
-  $( "#formCompletion" ).focus(function() {
-    handleFocus(C_FORM, document.getElementById("formCompletion"));
-  });
-
-  $( "#formNote" ).focus(function() {
-    handleFocus(C_FORM,  document.getElementById("formNote"));
-  });
-
   $( "#groupCompletion" ).focus(function() {
     hideBCSelection();
-    handleFocus(C_NORMAL_GROUP, document.getElementById("groupCompletion"));
+    handleFocus(C_NORMAL_GROUP, this);
   });
 
   $( "#groupNote" ).focus(function() {
     hideBCSelection();
-    handleFocus(C_NORMAL_GROUP, document.getElementById("groupNote"));
+    handleFocus(C_NORMAL_GROUP, this);
   });
 
   $( "#questionCompletion" ).focus(function() {
     hideNotepad();
-    handleFocus(C_QUESTION, document.getElementById("questionCompletion"));
+    handleFocus(C_QUESTION, this);
   });
 
   $( "#questionNote" ).focus(function() {
     hideNotepad();
-    handleFocus(C_QUESTION, document.getElementById("questionNote"));
-  });
-
-  $( "#placeholderText" ).focus(function() {
-    handleFocus(C_PLACEHOLDER, document.getElementById("placeholderText"));
-  });
-
-  $( "#labelTextText" ).focus(function() {
-    handleFocus(C_TEXTLABEL, document.getElementById("labelTextText"));
+    handleFocus(C_QUESTION, this);
   });
 
 });
@@ -447,6 +430,7 @@ function handleFocus(type, element) {
   showCi();
   markdownType = type;
   markdownElement = element;
+  element.innerHTML = "";
   getMarkdown(element, element.value, markdownCallback);
 }
 
@@ -521,9 +505,14 @@ function selectCommon() {
   $("#commonInfo").removeClass('hidden');
 }
 
-function selectItem() {
+function selectBcQuestion() {
   clearSelect();
-  $("#itemInfo").removeClass('hidden');
+  $("#bcItemInfo").removeClass('hidden');
+}
+
+function selectCommonItem() {
+  clearSelect();
+  $("#commonItemInfo").removeClass('hidden');
 }
 
 function selectQuestion() {
@@ -683,6 +672,7 @@ function displayForm(node) {
   $('#formLabel').val(node.data.label);
   $('#formCompletion').val(node.data.completion);
   $('#formNote').val(node.data.note);
+  $('#formIdentifier').val(node.data.scoped_identifier.identifier);
   $("#formIdentifier").prop( "disabled", true );
 }
 
@@ -690,36 +680,31 @@ function displayGroup(node) {
   $('#groupLabel').val(node.data.label);
   $('#groupCompletion').val(node.data.completion);
   $('#groupNote').val(node.data.note);
-  $( "#groupRepeating").prop('checked', node.data.repeating);
-  $( "#groupOptional").prop('checked', node.data.optional);
+  $("#groupRepeating").prop('checked', node.data.repeating);
+  $("#groupOptional").prop('checked', node.data.optional);
 }
 
 function displayBC(node) {
-  $('#bcIdentifier').html(node.data.label);
+  $('#bcIdentifier').html(node.data.bc_ref.subject_data.identifier);
   $('#bcLabel').html(node.data.label);
+  $('#bcCompletion').val(node.data.completion);
+  $('#bcNote').val(node.data.note);
 }
 
 function displayCommon(node) {
   $('#commonLabel').val(node.data.label);
 }
 
-function displayItem(node) {
-  $('#itemLabel').html(node.data.label);
-  if (isCommonGroup(node.parent)) {
-    $("#itemEnable").prop('disabled', true);
-    $("#itemOptional").prop('disabled', true);
-    $("#itemUpdate").prop('disabled', true);
-    $("#itemCommon").prop('disabled', true);
-    $("#itemRestore").prop('disabled', false);
-  } else {
-    $("#itemEnable").prop('disabled', false);
-    $("#itemOptional").prop('disabled', false);
-    $("#itemUpdate").prop('disabled', false);
-    $("#itemCommon").prop('disabled', false);
-    $("#itemRestore").prop('disabled', true);
-    $("#itemEnable").prop('checked', node.data.enabled);
-    $("#itemOptional").prop('checked', node.data.optional);
-  }
+function displayBcItem(node) {
+  $('#bcItemLabel').html(node.data.label);
+  $("#bcItemEnable").prop('checked', node.data.enabled);
+  $("#bcItemOptional").prop('checked', node.data.optional);
+  $('#bcItemCompletion').val(node.data.completion);
+  $('#bcItemNote').val(node.data.note);
+}
+
+function displayCommonItem(node) {
+  $('#commonItemLabel').html(node.data.label);
 }
 
 function displayQuestion(node) {
@@ -728,7 +713,7 @@ function displayQuestion(node) {
   $("#questionOptional").prop('checked', node.data.optional);
   $('#questionMapping').val(node.data.mapping);
   $('#questionFormat').val(node.data.format);
-  $('#questionComplation').val(node.data.completion);
+  $('#questionCompletion').val(node.data.completion);
   $('#questionNote').val(node.data.note);
   var $radios = $('input:radio[name=dtRadio]');
   $radios.filter('[value=' + node.data.datatype +']').prop('checked', true);
@@ -760,20 +745,18 @@ function displayLabelText(node) {
 }
 
 function displayCl(node) {
-  var clEnableElement = document.getElementById("clEnable");
-  var clOptionalElement = document.getElementById("clOptional");
   $('#clIdentifier').html(node.data.subject_data.identifier);
-  $('#clLabel').val(node.data.local_label);
   $('#clDefaultLabel').html(node.data.subject_data.label);
   $('#clNotation').html(node.data.subject_data.notation);
+  $('#clLocalLabel').val(node.data.local_label);
   $("#clEnable").prop('checked', node.data.enabled);
   $("#clOptional").prop('checked', node.data.optional);
   parentNode = node.parent;
   if (parentNode.type == C_QUESTION) {
-    $("#clLocalLabel").prop('disabled', false);
+    $("#clDefault").prop('disabled', false);
     $("#clEnable").prop('disabled', true);
   } else {
-    $("#clLocalLabel").prop('disabled', true);
+    $("#clDefault").prop('disabled', true);
     $("#clEnable").prop('disabled', false);
   }
 }
@@ -802,10 +785,21 @@ function saveCommon(node) {
   node.name = node.data.label;
 }
 
-function saveItem(node) {
-  node.data.enabled = $('#itemEnable').is(":checked");
-  node.data.optional = $('#clOptional').is(":checked");
-  node.enabled = itemEnableElement.checked;
+function saveBc(node) {
+  node.data.completion = $('#bcCompletion').val();
+  node.data.note = $('#bcNote').val();
+}
+
+function saveBcItem(node) {
+  node.data.enabled = $('#bcItemEnable').is(":checked");
+  node.data.optional = $('#bcItemOptional').is(":checked");
+  node.data.completion = $('#bcItemCompletion').val();
+  node.data.note = $('#bcItemNote').val();
+  node.enabled = node.data.enabled;
+}
+
+function saveCommonItem(node) {
+  // Nothing to save
 }
 
 function saveQuestion(node) {
@@ -842,7 +836,7 @@ function saveLabelText(node) {
 function saveCl(node) {
   node.data.enabled = $('#clEnable').is(":checked");
   node.data.optional = $('#clOptional').is(":checked");
-  node.data.local_label = $('#clLabel').val();
+  node.data.local_label = $('#clLocalLabel').val();
   node.name = node.data.local_label;
   node.enabled = node.data.enabled
 }
@@ -940,8 +934,8 @@ function refFromCommon(d3Parent, d3Node) {
   d3Parent.data.item_refs.push(ref);
   idKeyMap[ref.id] = d3Node.key;
   d3Parent.bridg_path = d3Node.data.property_ref.subject_data.bridg_path;
-  setParent(d3Parent);
-  setOrdinal(d3Parent.data);
+  //d3eSetParent(d3Parent);
+  //d3eSetOrdinal(d3Parent.data);
   if (!hasChildren(d3Parent)) {
     for (var i=0; i<d3Node.save.length; i++) {
       var copy = JSON.parse(JSON.stringify(d3Node.save[i].data))
@@ -1118,8 +1112,8 @@ function newBCProperty(property) {
 
 function newBCPropertyCli(cli) {
   return {
-    type: C_TC_REF, label: cli.useful_2, id: "", namespace: "", ordinal: 0, 
-    local_label: cli.Local_label, enabled: true, optional: false,
+    type: C_TC_REF, label: cli.label, id: "", namespace: "", ordinal: 0, 
+    local_label: cli.label, enabled: true, optional: false,
     subject_ref: {id: cli.subject_ref.id, namespace: cli.subject_ref.namespace}
   };
 }
@@ -1127,7 +1121,7 @@ function newBCPropertyCli(cli) {
 function newQuestionCli(cli) {
   return {
     type: C_TC_REF, label: cli.useful_2, id: "", namespace: "", ordinal: 0, 
-    local_label: cli.useful_2, enabled: true, optional: false, 
+    local_label: cli.useful_1, enabled: true, optional: false, 
     subject_ref: {id: cli.uri_id, namespace: cli.uri_ns},
     subject_data: {identifier: cli.identifier, notation: cli.useful_1}
   };
@@ -1149,8 +1143,8 @@ function addCommonGroup(d3ParentNode) {
 }
 
 function addCommonItem(d3ParentNode, label) {
-  var d3Node = addD3Node(d3ParentNode, C_COMMON_ITEM, label, newCommonItem, null, true, true);
-  addSNode(d3ParentNode.data, d3Node.data, false);
+  var d3Node = addD3Node(d3ParentNode, C_COMMON_ITEM, label, newCommonItem, null, true, false);
+  addSNode(d3ParentNode.data, d3Node.data, true);
   return d3Node;
 }
 
@@ -1261,9 +1255,7 @@ function addSNode(parent, node, end) {
   } else {
     parent.children.unshift(node);
   }
-  for (i=0; i<parent.children.length; i++) {
-    parent.children[i].ordinal = i + 1;
-  }
+  d3eSetOrdinal(parent);
 }
 
 /*
@@ -1332,23 +1324,29 @@ function setD3(sourceNode, d3ParentNode) {
 function saveNode() {
   $('#main_form').valid(); // Won't return if invalid.
   var d3Node = d3eGetCurrent();
-  if (d3Node.type == C_FORM) {
+  if (d3Node.type === C_FORM) {
     saveForm(d3Node)
-  } else if (d3Node.type == C_NORMAL_GROUP) {
+  } else if (d3Node.type === C_NORMAL_GROUP) {
     if (!isBcGroup(d3Node)) {
-      saveGroup(d3Node)
+      saveGroup(d3Node);
+    } else {
+      saveBc(d3Node);
     }
-  } else if (d3Node.type == C_COMMON_GROUP) {
+  } else if (d3Node.type === C_COMMON_GROUP) {
     saveCommon(d3Node)
-  } else if (d3Node.type == C_PLACEHOLDER) {
+  } else if (d3Node.type === C_BC_QUESTION) {
+    saveBcItem(d3Node);
+  } else if (d3Node.type === C_PLACEHOLDER) {
     savePlaceholder(d3Node)
-  } else if (d3Node.type == C_TEXTLABEL) {
+  } else if (d3Node.type === C_TEXTLABEL) {
     saveLabelText(d3Node)
-  } else if (d3Node.type == C_QUESTION) {
+  } else if (d3Node.type === C_QUESTION) {
     saveQuestion(d3Node)
-  } else if (d3Node.type == C_MAPPING) {
+  } else if (d3Node.type === C_MAPPING) {
     saveMapping(d3Node)
-  } else if (d3Node.type == C_TC_REF) {
+  } else if (d3Node.type === C_COMMON_ITEM) {
+    saveCommonItem(d3Node);
+  } else if (d3Node.type === C_TC_REF) {
     saveCl(d3Node)
   } 
   saveRest();
@@ -1356,10 +1354,10 @@ function saveNode() {
 
 function displayNode(d3Node) {
   d3eDisplayTree(d3Node.key);
-  if (d3Node.type ==  C_FORM ) {
+  if (d3Node.type === C_FORM ) {
     selectForm();
     displayForm(d3Node);
-  } else if (d3Node.type == C_NORMAL_GROUP) {
+  } else if (d3Node.type === C_NORMAL_GROUP) {
     if (!isBcGroup(d3Node)) {
       selectGroup();
       displayGroup(d3Node);
@@ -1367,30 +1365,30 @@ function displayNode(d3Node) {
       selectBC();
       displayBC(d3Node);
     }
-  } else if (d3Node.type == C_COMMON_GROUP) {
+  } else if (d3Node.type === C_COMMON_GROUP) {
     selectCommon();
     displayCommon(d3Node);
-  } else if (d3Node.type == C_BC_QUESTION) {
-    selectItem();
-    displayItem(d3Node);
-  } else if (d3Node.type == C_QUESTION) {
+  } else if (d3Node.type === C_BC_QUESTION) {
+    selectBcQuestion();
+    displayBcItem(d3Node);
+  } else if (d3Node.type === C_QUESTION) {
     questionClTable.clear();
     selectQuestion();
     displayQuestion(d3Node);
     questionClTable.draw(false);
-  } else if (d3Node.type == C_MAPPING) {
+  } else if (d3Node.type === C_MAPPING) {
     selectMapping();
     displayMapping(d3Node);
-  } else if (d3Node.type == C_COMMON_ITEM) {
-    selectItem();
-    displayItem(d3Node);
-  } else if (d3Node.type == C_PLACEHOLDER) {
+  } else if (d3Node.type === C_COMMON_ITEM) {
+    selectCommonItem();
+    displayCommonItem(d3Node);
+  } else if (d3Node.type === C_PLACEHOLDER) {
     selectPlaceholder();
     displayPlaceholder(d3Node);
-  } else if (d3Node.type == C_TEXTLABEL) {
+  } else if (d3Node.type === C_TEXTLABEL) {
     selectLabelText();
     displayLabelText(d3Node);
-  } else if (d3Node.type == C_TC_REF) {
+  } else if (d3Node.type === C_TC_REF) {
     selectCl();
     displayCl(d3Node);
   } 
@@ -1403,11 +1401,13 @@ function displayNode(d3Node) {
 * @return [Null]
 */
 function getReference(d3Node) {
-  if (d3Node.type == C_TC_REF) {
+  if (isBcGroup(d3Node)) {
+    getBc(d3Node, bcResult);
+  } else if (d3Node.type === C_TC_REF) {
     getThesaurusConcept(d3Node, tcResult);
-  } else if (d3Node.type == C_BC_QUESTION) {
+  } else if (d3Node.type === C_BC_QUESTION) {
     getBcProperty(d3Node, bcPropertyResult)
-  } else if (d3Node.type == C_COMMON_ITEM) {
+  } else if (d3Node.type === C_COMMON_ITEM) {
     if (d3Node.data.item_refs.length > 0) {
       getBcPropertyCommon(d3Node, bcPropertyResultCommon)
     }
@@ -1424,6 +1424,25 @@ function getReference(d3Node) {
 function tcResult(d3Node, result) {
   var d3CurrentNode = d3eGetCurrent();
   d3Node.data.subject_data = result;
+  if (d3Node.data.subject_ref.hasOwnProperty['local_label']) {
+    d3Node.name = d3Node.data.subject_ref.local_label;
+  } else {
+    d3Node.name = result.label;
+  }
+  displayNode(d3CurrentNode);
+}
+
+/*
+* BC Ref AJAX Result Callback for BC
+*
+* @param node [Object] The D3 node
+* @param result [Object] Result received from server
+* @return [Null]
+*/
+function bcResult(d3Node, result) {
+  var d3CurrentNode = d3eGetCurrent();
+  d3Node.data.bc_ref.subject_data = {};
+  d3Node.data.bc_ref.subject_data.identifier = result.scoped_identifier.identifier;
   d3Node.name = result.label;
   displayNode(d3CurrentNode);
 }
