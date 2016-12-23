@@ -163,13 +163,14 @@ describe Form do
   end
 
   it "allows a form to be updated" do
+    old_item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    old_item.label = "New Label"
+    Form.update(old_item.to_operation)
     item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    item.label = "New Label"
-    Form.update(item.to_operation)
-    item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    write_hash_to_yaml_file_2(item.to_json, sub_dir, "form_update.yaml")
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "form_update.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "form_update.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+    expected[:creation_date] = date_check_now(item.creationDate).iso8601
     expect(item.errors.count).to eq(0)
     expect(item.to_json).to eq(expected)
   end
