@@ -49,18 +49,18 @@ describe BiomedicalConceptTemplatesController do
 
     it "shows the history" do
       ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-      get :history, { :identifier => "Obs PQR", :scope_id => ra.namespace.id }
+      get :history, { :biomedical_concept_template => { :identifier => "Obs PQR", :scope_id => ra.namespace.id }}
       expect(response).to render_template("history")
     end
 
     it "shows the history, redirects when empty" do
       ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-      get :history, { :identifier => "Obs PQRx", :scope_id => ra.namespace.id }
+      get :history, { :biomedical_concept_template => { :identifier => "Obs PQRx", :scope_id => ra.namespace.id }}
       expect(response).to redirect_to("/biomedical_concept_templates")
     end
 
     it "show" do
-      get :show, { :id => "BCT-Obs_PQR", :namespace => "http://www.assero.co.uk/MDRBCTs/V1" }
+      get :show, { :id => "BCT-Obs_PQR", :biomedical_concept_template => { :namespace => "http://www.assero.co.uk/MDRBCTs/V1" }}
       expect(response).to render_template("show")
     end
 

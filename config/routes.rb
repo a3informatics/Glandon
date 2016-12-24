@@ -131,16 +131,11 @@ Rails.application.routes.draw do
   end
   resources :cdisc_cls, :only => [:show] do
     collection do
-      #get :compare
-      #get :history
       get :changes
     end
   end
   resources :cdisc_clis, :only => [:show] do
     collection do
-      #get :compare
-      #get :history
-      #get :impact
       get :changes
     end
   end
@@ -156,15 +151,18 @@ Rails.application.routes.draw do
     resources :property_values
   end
   resources :biomedical_concepts do
-    collection do
-      get :list
-      get :history
-      get :impact
-      post :new_template
-      get :clone
+    member do
       get :export_json
       get :export_ttl
+      get :clone
+      post :clone_create
       get :upgrade
+    end
+    collection do
+      get :history
+      post :new_from_template
+      get :list
+      #get :impact
     end
   end
   resources :forms do

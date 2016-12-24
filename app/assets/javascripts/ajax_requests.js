@@ -32,7 +32,7 @@ function getBc(node, callback) {
   $.ajax({
     url: "/biomedical_concepts/" + node.data.bc_ref.subject_ref.id,
     type: "GET",
-    data: { "namespace": node.data.bc_ref.subject_ref.namespace },
+    data: { "biomedical_concept": { "namespace": node.data.bc_ref.subject_ref.namespace }},
     dataType: 'json',
     error: function (xhr, status, error) {
       var html = alertError("An error has occurred loading a Biomedical Concept reference.");

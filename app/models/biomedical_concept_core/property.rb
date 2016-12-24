@@ -164,6 +164,7 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
       end
     else
       if !BaseDatatype::valid?(self.simple_datatype) 
+        ConsoleLogger::log(C_CLASS_NAME, "valid?", "datatype=#{self.simple_datatype}")
         self.errors.add(:simple_datatype, "is invalid")
         result = false
       end

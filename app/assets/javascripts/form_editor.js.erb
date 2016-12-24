@@ -82,7 +82,7 @@ $(document).ready(function() {
       "processing": "<img src='<%= asset_path('processing.gif') %>'>"
     },
     "columns": [
-      {"data" : "identifier", "width" : "50%"},
+      {"data" : "scoped_identifier.identifier", "width" : "50%"},
       {"data" : "label", "width" : "50%"}
     ]
   });
@@ -1176,7 +1176,7 @@ function addBc(d3ParentNode) {
   var data = bcSelect.row(bcCurrentRow).data();
   $.ajax({
     url: "/biomedical_concepts/" + data.id,
-    data: { "id": data.id, "namespace": data.namespace },
+    data: { "biomedical_concept": { "namespace": data.namespace }},
     dataType: 'json',
     error: function (xhr, status, error) {
       displayError("An error has occurred loading the Biomedical Concept.");

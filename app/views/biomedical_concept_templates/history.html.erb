@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <h3>History: <%= @identifier %></h3>
 <div class="row">
 	<div class="col-md-12">
@@ -8,7 +9,7 @@
 				<% @bct.each do |item| %>
 					<%= render partial: "shared/stdInstanceRow", :locals => {:item => item, 
 		  				:current_item => current_item, 
-		  				:showPath => biomedical_concept_template_path(:id => item.id, :namespace => item.namespace), 
+		  				:showPath => biomedical_concept_template_path(:id => item.id, :biomedical_concept_template => { :namespace => item.namespace }), 
 		  				:searchPath => "", 
 		  				:viewPath => "",
 		  				:editPath => "",

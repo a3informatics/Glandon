@@ -19,7 +19,7 @@ Rails.application.config.assets.version = '1.0'
   markdown_editor
   sdtmigs 
   background_index 
-	biomedical_concept_templates biomedical_concepts biomedical_concepts_editor 
+	biomedical_concepts_editor 
 	cdisc_search
   thesauri_editor thesauri_viewer thesauri_search
   form_placeholder_new form_editor form_viewer form_show form_utility

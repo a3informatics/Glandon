@@ -62,6 +62,37 @@ class BiomedicalConcept < BiomedicalConceptCore
     return super(C_RDF_TYPE, C_SCHEMA_NS, params)
   end
 
+  # Create Simple
+  #
+  # @param params
+  # @return [Object] The BC created. Includes errors if failed.
+  def self.create_simple(params)
+    object = BiomedicalConceptTemplate.find(params[:bct_id], params[:bct_namespace])
+    ref = OperationalReferenceV2.new
+    ref.subject_ref = object.uri
+    operation = object.to_operation
+    managed_item = operation[:managed_item]
+    managed_item[:scoped_identifier][:identifier] = params[:identifier]
+    managed_item[:label] = params[:label]
+    managed_item[:template_ref] = ref.to_json
+    new_object = BiomedicalConcept.create(operation)
+    return new_object
+  end
+
+  # Create Clone
+  #
+  # @param params
+  # @return [Object] The BC created. Includes errors if failed.
+  def self.create_clone(params)
+    base_bc = BiomedicalConcept.find(the_params[:bc_id], the_params[:bc_namespace])
+    operation = base_bc.to_clone
+    managed_item = operation[:managed_item]
+    managed_item[:scoped_identifier][:identifier] = the_params[:identifier]
+    managed_item[:label] = the_params[:label]
+    new_object = BiomedicalConcept.create(operation)
+    return new_object
+  end
+
   def self.create(params)
     ConsoleLogger::log(C_CLASS_NAME, "create", "params=#{params}")
     operation = params[:operation]

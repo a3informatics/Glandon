@@ -17,14 +17,14 @@ class BiomedicalConceptTemplatesController < ApplicationController
   
   def history
     authorize BiomedicalConceptTemplate
-    @identifier = params[:identifier]
-    @bct = BiomedicalConceptTemplate.history(params)
+    @identifier = the_params[:identifier]
+    @bct = BiomedicalConceptTemplate.history(the_params)
     redirect_to biomedical_concept_templates_path if @bct.count == 0
   end
 
   def show 
     authorize BiomedicalConcept
-    @bct = BiomedicalConceptTemplate.find(params[:id], params[:namespace])
+    @bct = BiomedicalConceptTemplate.find(params[:id], the_params[:namespace])
     respond_to do |format|
       format.html do
         @items = @bct.get_properties
@@ -39,7 +39,7 @@ class BiomedicalConceptTemplatesController < ApplicationController
 private
 
   def the_params
-    params.require(:bct).permit()
+    params.require(:biomedical_concept_template).permit(:namespace, :identifier, :scope_id)
   end  
 
 end

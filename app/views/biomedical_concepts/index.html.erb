@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <h3>Index: Biomedical Concepts</h3>
 <div class="row">
 	<div class="col-md-8">
@@ -16,7 +17,7 @@
 				    	<td><%= item[:owner] %></td>
 			    		<td><%= item[:identifier] %></td>
 			    		<td><%= item[:label] %></td>
-			    		<td><%= link_to "History", history_biomedical_concepts_path(:identifier => item[:identifier], :scope_id => item[:owner_id]), :class => "btn btn-primary btn-xs" %></td>
+			    		<td><%= link_to "History", history_biomedical_concepts_path(:biomedical_concept => { :identifier => item[:identifier], :scope_id => item[:owner_id] }), :class => "btn btn-primary btn-xs" %></td>
 				  	</tr>
 				<% end %>
 			</tbody>
@@ -28,10 +29,10 @@
           <h3 class="panel-title">New Biomedical Concept</h3>
       </div>
       <div class="panel-body">
-				<%= form_for @biomedical_concept, :url => new_template_biomedical_concepts_path do |f| %>
+				<%= form_for @biomedical_concept, :url => new_from_template_biomedical_concepts_path do |f| %>
 						<div class="form-group">
-					    <%= f.label :identifier, "Template Identifier:" %><br />
-							<%= select_tag(:uri, options_for_select(@bcts.map{ |u| [u.identifier, u.namespace + "#" + u.id]})) %>
+					    <%= f.label :uri, "Template Identifier:" %><br />
+							<%= f.select(:uri, options_for_select(@bcts.map{ |u| [u.identifier, u.namespace + "#" + u.id]})) %>
 					  </div>
 					<%= f.submit "New", class: "btn btn-default btn-success" %>
 				</div>

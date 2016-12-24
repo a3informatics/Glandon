@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
-  panel ("main1", "forms");
-  panel ("main2", "thesauri");
-  panel ("main3", "biomedical_concepts");
-  panel ("main4", "biomedical_concept_templates");
-  panel ("main5", "sdtm_user_domains");
+  panel ("main1", "forms", "");
+  panel ("main2", "thesauri", "");
+  panel ("main3", "biomedical_concepts", "biomedical_concept");
+  panel ("main4", "biomedical_concept_templates", "biomedical_concept_template");
+  panel ("main5", "sdtm_user_domains", "");
 
   var x  = $("#barGraph").html();
   var barData = $.parseJSON(x);
@@ -16,7 +16,7 @@ $(document).ready(function () {
     labels: ['Items']
   });
 
-  function panel(control, url) {
+  function panel(control, url, safe_parameter) {
     $("#" + control).DataTable({
       "pagingType": "full",
       "ajax": {
@@ -34,10 +34,13 @@ $(document).ready(function () {
         {"data" : "owner", "width" : "10%"},
         {"data" : "label", "width" : "70%"},
         {"data" : "identifier", "render": function(data,type,full,meta) { 
-          return '<a href="' + url + '/history?identifier='+ data +'&scope_id=' + full.owner_id +'"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
+          var query_string = 'identifier='+ data +'&scope_id=' + full.owner_id;
+          if(safe_parameter !== "") {
+            query_string = safe_parameter + '[identifier]=' + data + '&' + safe_parameter + '[scope_id]=' + full.owner_id;
+          }
+          return '<a href="' + url + '/history?' + query_string  + '"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
         }}
       ]
     });
   }
-
 });

@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <h3>Index: Biomedical Concept Templates</h3>
 <div class="col-md-8">
 		<table id="main" class="table table-striped table-bordered table-condensed">
@@ -15,7 +16,7 @@
 			    	<td><%= item[:owner] %></td>
 			    	<td><%= item[:identifier] %></td>
 			    	<td><%= item[:label] %></td>
-			    	<td><%= link_to "History", history_biomedical_concept_templates_path(:identifier => item[:identifier], :scope_id => item[:owner_id]), :class => "btn btn-primary btn-xs" %></td>
+			    	<td><%= link_to "History", history_biomedical_concept_templates_path(:biomedical_concept_template => { :identifier => item[:identifier], :scope_id => item[:owner_id]}), :class => "btn btn-primary btn-xs" %></td>
 			  	</tr>
 			<% end %>
 		</tbody>
