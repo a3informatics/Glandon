@@ -32,4 +32,12 @@ module ApplicationHelper
 		end
 	end
 
+	def true_false_glyphicon(data)
+		if data
+			return raw("<td class=\"text-center\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>")
+		else
+			return raw("<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>")
+		end
+	end
+
 end

@@ -10,7 +10,7 @@ describe FormsController do
     login_curator
 
     def sub_dir
-      return "controllers/forms"
+      return "controllers"
     end
 
     before :all do

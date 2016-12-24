@@ -30,18 +30,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @items.each do |item| %>
-				<% if item.enabled %>
-					<tr class="success">
-				<% else %>
-					<tr>
-				<% end %>		
-				<td><%= item.alias %></td>
-				<td><%= item.qText %></td>
-				<td><%= item.pText %></td>
-				<td><%= item.enabled %></td>
-				<td><%= item.collect %></td>
-				<td><%= item.datatype %></td>
-				</tr>
+			<% @items[:children].each do |item| %>
+				<tr>
+					<td><%= item[:alias] %></td>
+					<td><%= item[:question_text] %></td>
+					<td><%= item[:prompt_text] %></td>
+					<%= true_false_glyphicon(item[:enabled]) %>
+					<%= true_false_glyphicon(item[:enabled]) %>
+					<td><%= item[:datatype] %></td>
+		  	</tr>
 			<% end %>
 		</tbody>
+	</table>
+</div>
