@@ -22,6 +22,7 @@ class BiomedicalConcept < BiomedicalConceptCore
     self.template_ref = OperationalReferenceV2.new
     if triples.nil?
       super
+      self.rdf_type = "#{C_RDF_TYPE_URI}"
     else
       super(triples, id)
     end
@@ -36,65 +37,85 @@ class BiomedicalConcept < BiomedicalConceptCore
   def self.find(id, ns, children=true)
     object = super(id, ns, children)
     if children
-      if object.link_exists?(C_SCHEMA_PREFIX, "basedOnTeplate")
-        links = object.get_links_v2(C_SCHEMA_PREFIX, "basedOnTeplate")
-        object.template_ref = OperationalReferenceV2.find(links[0])
-      else
-        object.template_ref = nil 
-      end 
+      links = object.get_links_v2(C_SCHEMA_PREFIX, "basedOnTemplate")
+      object.template_ref = OperationalReferenceV2.find_from_triples(object.triples, links[0].id) if links.length > 0
     end
     return object 
   end
 
+  # Find all managed items based on their type.
+  #
+  # @return [array] Array of objects found.
   def self.all
     return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
+  # Find list of managed items of a given type.
+  #
+  # @return [array] Array of objects found.
   def self.unique
     return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
+  # Find all released item for all identifiers of a given type.
+  #
+  # @return [array] An array of objects.
   def self.list
     return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
+  # Find history for a given identifier. Return the object as JSON
+  #
+  # @params [Hash] {:identifier, :scope_id}
+  # @option param [String] :identifier the identifier for the item 
+  # @option param [String] :scope_id the id of the scope in which identifier is valid
+  # @return [array] An array of objects found
   def self.history(params)
     return super(C_RDF_TYPE, C_SCHEMA_NS, params)
   end
 
-  # Create Simple
+  # Create a new object based on a template
   #
-  # @param params
-  # @return [Object] The BC created. Includes errors if failed.
+  # @param params [Hash] the parameter options
+  # @option param [String] :bct_id The BCT id
+  # @option param [String] :bct_namespace The BCT namespace
+  # @raise [CreateError] if an error is raised when the object is being created
+  # @return [Object] the BC created that includes errors if the create fails
   def self.create_simple(params)
     object = BiomedicalConceptTemplate.find(params[:bct_id], params[:bct_namespace])
     ref = OperationalReferenceV2.new
     ref.subject_ref = object.uri
-    operation = object.to_operation
+    operation = object.to_clone
     managed_item = operation[:managed_item]
     managed_item[:scoped_identifier][:identifier] = params[:identifier]
     managed_item[:label] = params[:label]
     managed_item[:template_ref] = ref.to_json
+    managed_item[:type] = "#{C_RDF_TYPE_URI}"
     new_object = BiomedicalConcept.create(operation)
     return new_object
   end
 
-  # Create Clone
+  # Create a new object based on another
   #
-  # @param params
+  # @param params [Hash]
+  # @raise [CreateError] If object not created.
   # @return [Object] The BC created. Includes errors if failed.
   def self.create_clone(params)
-    base_bc = BiomedicalConcept.find(the_params[:bc_id], the_params[:bc_namespace])
+    base_bc = BiomedicalConcept.find(params[:bc_id], params[:bc_namespace])
     operation = base_bc.to_clone
     managed_item = operation[:managed_item]
-    managed_item[:scoped_identifier][:identifier] = the_params[:identifier]
-    managed_item[:label] = the_params[:label]
+    managed_item[:scoped_identifier][:identifier] = params[:identifier]
+    managed_item[:label] = params[:label]
     new_object = BiomedicalConcept.create(operation)
     return new_object
   end
 
+  # Create an item from the standard operation hash
+  #
+  # @param params [Hash] The standard operation hash
+  # @raise [CreateError] If object not created.
+  # @return [Object] The BC created. Includes errors if failed.
   def self.create(params)
-    ConsoleLogger::log(C_CLASS_NAME, "create", "params=#{params}")
     operation = params[:operation]
     managed_item = params[:managed_item]
     object = BiomedicalConcept.from_json(managed_item)
@@ -104,7 +125,8 @@ class BiomedicalConcept < BiomedicalConceptCore
         sparql = object.to_sparql_v2
         response = CRUD.update(sparql.to_s)
         if !response.success?
-          object.errors.add(:base, "The Biomedical Concept was not created in the database.")
+          ConsoleLogger.info(C_CLASS_NAME, "create", "Failed to create object.")
+          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
         end
       end
     end
@@ -132,35 +154,6 @@ class BiomedicalConcept < BiomedicalConceptCore
     end
     return object
   end
-
-  #def self.term_impact(params)
-  #  id = params[:id]
-  #  namespace = params[:namespace]
-  #  results = Hash.new
-  #  # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
-  #  query = UriManagement.buildPrefix("", ["cbc"])  +
-  #    "SELECT DISTINCT ?bc WHERE \n" +
-  #    "{ \n " +
-  #    "  ?bc rdf:type cbc:BiomedicalConceptInstance . \n " +
-  #    "  ?bc (cbc:hasItem|cbc:hasDatatype|cbc:hasProperty|cbc:hasComplexDatatype|cbc:hasValue|cbc:nextValue)%2B ?o . \n " +
-  #    "  ?o cbc:value " + ModelUtility.buildUri(namespace, id) + " . \n " +
-  #    "}\n"
-  #  # Send the request, wait the resonse
-  #  response = CRUD.query(query)
-  #  # Process the response
-  #  xmlDoc = Nokogiri::XML(response.body)
-  #  xmlDoc.remove_namespaces!
-  #  xmlDoc.xpath("//result").each do |node|
-  #    bc = ModelUtility.getValue('bc', true, node)
-  #    if bc != ""
-  #      id = ModelUtility.extractCid(bc)
-  #      namespace = ModelUtility.extractNs(bc)
-  #      results[id] = find(id, namespace, false)
-  #      ConsoleLogger::log(C_CLASS_NAME,"impact","Object found, id=" + id)        
-  #    end
-  #  end
-  #  return results
-  #end
 
   def upgrade
     term_map = Hash.new
@@ -237,11 +230,11 @@ class BiomedicalConcept < BiomedicalConceptCore
   def self.from_json(json)
     object = super(json)
     object.template_ref = OperationalReferenceV2.from_json(json[:template_ref])
-    if !json[:children].blank?
-      json[:children].each do |child|
-        object.items << BiomedicalConceptCore::Item.from_json(child)
-      end
-    end
+    #if !json[:children].blank?
+    #  json[:children].each do |child|
+    #    object.items << BiomedicalConceptCore::Item.from_json(child)
+    #  end
+    #end
     return object
   end
   
@@ -294,11 +287,6 @@ class BiomedicalConcept < BiomedicalConceptCore
   def to_json
     json = super
     json[:template_ref] = template_ref.to_json
-    json[:children] = Array.new
-    self.items.each do |item|
-      json[:children] << item.to_json
-    end 
-    json[:children] = json[:children].sort_by {|item| item[:ordinal]}
     return json
   end
   
@@ -309,8 +297,8 @@ class BiomedicalConcept < BiomedicalConceptCore
   def to_sparql_v2
     sparql = SparqlUpdateV2.new
     uri = super(sparql)
-    self.template_ref.to_sparql_v2(sparql)
-    sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "basedOnTemplate"}, { :uri => self.bct })
+    ref_uri = self.template_ref.to_sparql_v2(uri, "basedOnTemplate", "TPR", 1, sparql)
+    sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "basedOnTemplate"}, { :uri => ref_uri })
     return sparql
   end
 

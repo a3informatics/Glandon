@@ -56,7 +56,7 @@ class FormsController < ApplicationController
     if @form.new_version?
       json = @form.to_operation
       new_form = Form.create(json)
-      @form = Form.find(new_form.id, new_form.namespace, false)
+      @form = Form.find(new_form.id, new_form.namespace)
     end
     @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.owner_id)
     @token = Token.obtain(@form, current_user)

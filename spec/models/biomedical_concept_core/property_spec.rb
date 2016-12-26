@@ -5,7 +5,11 @@ describe BiomedicalConceptCore::Property do
   
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  def sub_dir
+    return "models/biomedical_concept_core"
+  end
+
+it "clears triple store and loads test data" do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -132,7 +136,7 @@ describe BiomedicalConceptCore::Property do
     expect(item.to_json).to eq(result)    
   end
 
-  it "allows the object to be found - BCT" do
+  it "allows the object to be found - Complex datatype" do
     result = 
       {
         :id => "BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", 
@@ -174,10 +178,10 @@ describe BiomedicalConceptCore::Property do
           }
       }
     property = BiomedicalConceptCore::Property.find("BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", "http://www.assero.co.uk/MDRBCTs/V1")
-    expect(property.to_json).to eq (result)
+    expect(property.to_json).to eq(result)
   end
 
-  it "allows the object to be found - BC" do
+  it "allows the object to be found - TC Refs" do
     result = 
       {
         :id => "BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", 
@@ -302,6 +306,50 @@ describe BiomedicalConceptCore::Property do
     expect(item.to_json).to eq(result)
   end
 
+  it "allows the object to be created from JSON, complex datatype" do
+    result = 
+      {
+        :id => "BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", 
+        :namespace => "http://www.assero.co.uk/MDRBCTs/V1", 
+        :type => "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+        :extension_properties => [],
+        :label => "",
+        :alias => "Name",
+        :ordinal => 1,
+        :complex_datatype => 
+        {
+          :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype", 
+          :id =>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED", 
+          :namespace =>"http://www.assero.co.uk/MDRBCTs/V1", 
+          :label =>"", :extension_properties=>[], 
+          :ordinal =>1, 
+          :alias =>"", 
+          :iso21090_datatype =>"", 
+          :children =>
+            [
+              { 
+                :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+                :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value",
+                :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+                :label=>"",
+                :extension_properties=>[],    
+                :alias => "Test Name (--TEST)",
+                :question_text => "",
+                :prompt_text => "",
+                :ordinal => 1,
+                :collect => false,
+                :enabled => false,
+                :format => "",
+                :simple_datatype => "string",
+                :bridg_path=>"DefinedObservation.nameCode.CD.originalText.ED.value",
+                :children => []
+              }
+            ]
+        }
+      }
+    expect(BiomedicalConceptCore::Property.from_json(result).to_json).to eq(result)
+  end
+
   it "allows the object to be created from JSON" do
     result = 
       {
@@ -326,26 +374,6 @@ describe BiomedicalConceptCore::Property do
 
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new
-    result = 
-      "PREFIX cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "INSERT DATA \n" +
-      "{ \n" + 
-      "<http://www.example.com/path#XXX_P1> rdf:type <http://www.example.com/path#rdf_test_type> . \n" +
-      "<http://www.example.com/path#XXX_P1> rdfs:label \"test label\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:ordinal \"1\"^^xsd:positiveInteger . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:alias \"Note\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:question_text \"XXXX\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:prompt_text \"YYYY\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:format \"10.1\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:enabled \"false\"^^xsd:boolean . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:collect \"false\"^^xsd:boolean . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:bridg_path \"ddd.eee.fff\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_P1> cbc:simple_datatype \"float\"^^xsd:string . \n" +
-      "}"
     item = BiomedicalConceptCore::Property.new
     item.id = "123"
     item.namespace = "http://www.example.com/path"
@@ -361,8 +389,60 @@ describe BiomedicalConceptCore::Property do
     item.bridg_path = "ddd.eee.fff"
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
-    expect(sparql.to_s).to eq(result)
+    #write_text_file_2(sparql.to_s, sub_dir, "property_sparql_simple.txt")
+    expected = read_text_file_2(sub_dir, "property_sparql_simple.txt")
+    expect(sparql.to_s).to eq(expected)
   end
   
+  it "allows an object to be exported as SPARQL, complex datatype" do
+    sparql = SparqlUpdateV2.new
+    result = 
+      {
+        :id => "BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", 
+        :namespace => "http://www.assero.co.uk/MDRBCTs/V1", 
+        :type => "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+        :extension_properties => [],
+        :label => "",
+        :alias => "Name",
+        :ordinal => 1,
+        :complex_datatype => 
+        {
+          :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype", 
+          :id =>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED", 
+          :namespace =>"http://www.assero.co.uk/MDRBCTs/V1", 
+          :label =>"", :extension_properties=>[], 
+          :ordinal =>1, 
+          :alias =>"", 
+          :iso21090_datatype =>"", 
+          :children =>
+            [
+              { 
+                :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+                :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value",
+                :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+                :label=>"",
+                :extension_properties=>[],    
+                :alias => "Test Name (--TEST)",
+                :question_text => "",
+                :prompt_text => "",
+                :ordinal => 1,
+                :collect => false,
+                :enabled => false,
+                :format => "",
+                :simple_datatype => "string",
+                :bridg_path=>"DefinedObservation.nameCode.CD.originalText.ED.value",
+                :children => []
+              }
+            ]
+        }
+      }
+    item = BiomedicalConceptCore::Property.from_json(result)
+    parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
+    item.to_sparql_v2(parent_uri, sparql)
+    #write_text_file_2(sparql.to_s, sub_dir, "property_sparql_complex.txt")
+    expected = read_text_file_2(sub_dir, "property_sparql_complex.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
+
 end
   

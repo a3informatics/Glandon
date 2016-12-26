@@ -88,8 +88,9 @@ class BiomedicalConceptCore::Datatype  < BiomedicalConceptCore::Node
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "iso21090_datatype"}, {:literal => "#{self.iso21090_datatype}", :primitive_type => "string"})
     self.children.each do |child|
       ref_uri = child.to_sparql_v2(uri, sparql)
-      sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasProperty"}, { :namespace => uri })
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasProperty"}, { :uri => ref_uri })
     end
+    return uri
   end
 
   # Check Valid

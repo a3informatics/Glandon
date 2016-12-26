@@ -43,10 +43,10 @@ describe "ISO Managed JS", :type => :feature do
       click_link 'Biomedical Concepts'
       #pause
       expect(page).to have_content 'Index: Biomedical Concepts'
-      find(:xpath, "//tr[contains(.,'BC_A00003')]/td/a", :text => 'History').click
+      find(:xpath, "//tr[contains(.,'BC A00003')]/td/a", :text => 'History').click
       #pause
-      expect(page).to have_content 'History: BC_A00003'
-      find(:xpath, "//tr[contains(.,'BC_A00003')]/td/a", :text => 'Gr-').click
+      expect(page).to have_content 'History: BC A00003'
+      find(:xpath, "//tr[contains(.,'BC A00003')]/td/a", :text => 'Gr-').click
       expect(page).to have_content 'Metadata View:'
       expect(page).to have_button('graph_focus', disabled: true)
       expect(page).to have_field('concept_type', disabled: true)

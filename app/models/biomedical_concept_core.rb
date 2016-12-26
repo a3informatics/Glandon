@@ -93,10 +93,11 @@ class BiomedicalConceptCore < IsoManaged
   # @param sparql [object] The SPARQL object
   # @return [object] The URI
   def to_sparql_v2(sparql)
-    subject = {:uri => self.uri}
+    uri = super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => uri}
     self.items.each do |item|
-      ref_uri = item.to_sparql(uri, sparql)
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, { :uri => uri })
+      ref_uri = item.to_sparql_v2(uri, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, { :uri => ref_uri })
     end
     return uri
   end

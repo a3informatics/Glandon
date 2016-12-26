@@ -23,8 +23,6 @@
 		<thead>
 	  	<tr>
 				<th>Alias</th>
-				<th>Question Text</th>
-				<th>Prompt Text</th> 
 				<th>Enabled</th> 
 				<th>Collect</th> 
 				<th>Datatype</th> 
@@ -34,11 +32,9 @@
 			<% @items[:children].each do |item| %>
 				<tr>
 					<td><%= item[:alias] %></td>
-					<td><%= item[:question_text] %></td>
-					<td><%= item[:prompt_text] %></td>
 					<%= true_false_glyphicon(item[:enabled]) %>
-					<%= true_false_glyphicon(item[:enabled]) %>
-					<td><%= item[:datatype] %></td>
+					<%= true_false_glyphicon(item[:collect]) %>
+					<td><%= item[:simple_datatype] %></td>
 		  	</tr>
 			<% end %>
 		</tbody>

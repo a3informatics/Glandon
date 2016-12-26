@@ -4,7 +4,11 @@ describe BiomedicalConcept do
   
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  def sub_dir
+    return "models"
+  end
+
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -46,10 +50,10 @@ describe BiomedicalConcept do
 
 it "allows a BC to be found" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-    expect(item.identifier).to eq("BC_C25206")
+    expect(item.identifier).to eq("BC C25206")
   end
 
-  it "handles a BCT not being found" do
+  it "handles a BC not being found" do
     expect{BiomedicalConcept.find("F-ACME_T2x", "http://www.assero.co.uk/MDRForms/ACME/V1")}.to raise_error(Exceptions::NotFoundError)
   end
 
@@ -81,7 +85,7 @@ it "allows a BC to be found" do
   it "finds the history of an item" do
     results = []
     results[0] = {:id => "BC-ACME_BC_C25347", :scoped_identifier_version => 1}
-    params = {:identifier => "BC_C25347", :scope_id => IsoRegistrationAuthority.owner.namespace.id}
+    params = {:identifier => "BC C25347", :scope_id => IsoRegistrationAuthority.owner.namespace.id}
     items = BiomedicalConcept.history(params)
     expect(items.count).to eq(1)
     items.each_with_index do |item, index|
@@ -121,43 +125,75 @@ it "allows a BC to be found" do
 
   it "finds all unique entries"
 
-  it "allows the object to be exported as JSON"
+  it "allows the object to be exported as JSON" do
+    item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_to_json.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "bc_to_json.yaml")
+    expect(item.to_json).to eq(expected)
+  end
 
-  it "allows the object to be created from JSON"
+  it "creates an object based on a template" do
+    bct = BiomedicalConceptTemplate.find("BCT-Obs_PQR", "http://www.assero.co.uk/MDRBCTs/V1")
+    item = BiomedicalConcept.create_simple({:bct_id => bct.id, :bct_namespace => bct.namespace, :identifier => "NEW BC", :label => "New BC"})
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_simple.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "bc_simple.yaml")
+    expected[:creation_date] = date_check_now(item.creationDate).iso8601
+    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+    expect(item.to_json).to eq(expected)
+  end
 
-  it "allows an object to be exported as SPARQL"
+  it "creates an object based on another object" do
+    bc = BiomedicalConcept.find("BC-ACME_BC_C98793", "http://www.assero.co.uk/MDRBCs/V1")
+    item = BiomedicalConcept.create_clone({:bc_id => bc.id, :bc_namespace => bc.namespace, :identifier => "NEW BC", :label => "New BC"})
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_clone.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "bc_clone.yaml")
+    expected[:creation_date] = date_check_now(item.creationDate).iso8601
+    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+    expect(item.to_json).to eq(expected)
+  end
+
+  it "creates an object based on the standard operation JSON" do
+    json = read_yaml_file_to_hash_2(sub_dir, "bc_operation.yaml")
+    item = BiomedicalConcept.create(json)
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_create.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "bc_create.yaml")
+    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+    expect(item.to_json).to eq(expected)
+  end
+    
+  it "allows the object to be created, create error" #do
+  #  json = read_yaml_file_to_hash_2(sub_dir, "bc_operation.yaml")
+  #  item = BiomedicalConcept.create(json)
+  #  puts item.errors.full_messages.to_sentence
+  #  #response = Typhoeus::Response.new(code: 200, body: "")
+  #  #expect(Rest).to receive(:sendRequest).and_return(response)
+  #  #expect(response).to receive(:success?).and_return(false)
+  #  #expect{BiomedicalConcept.create(json)}.to raise_error(Exceptions::CreateError)
+  #end
+
+  it "update"
+
+  it "upgrade"
+
+  it "allows the object to be created from JSON" do
+    json = read_yaml_file_to_hash_2(sub_dir, "bc_to_json.yaml")
+    item = BiomedicalConcept.from_json(json)
+    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_from_json.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "bc_from_json.yaml")
+    expect(item.to_json).to eq(expected)
+  end
+
+  it "allows an object to be exported as SPARQL" do
+    item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+    result = item.to_sparql_v2
+    #write_text_file_2(result.to_s, sub_dir, "bc_sparql.txt")
+    expected = read_text_file_2(sub_dir, "bc_sparql.txt")
+    expect(result.to_s).to eq(expected)
+  end
 
   it "get the properties"
 
   it "get the unique references"
-
-=begin
-    sparql = SparqlUpdateV2.new
-    result = 
-      "PREFIX cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "INSERT DATA \n" +
-      "{ \n" + 
-      "<http://www.example.com/path#XXX_I1> rdf:type <http://www.example.com/path#rdf_test_type> . \n" +
-      "<http://www.example.com/path#XXX_I1> rdfs:label \"test label\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_I1> cbc:ordinal \"1\"^^xsd:positiveInteger . \n" +
-      "<http://www.example.com/path#XXX_I1> cbc:alias \"Note\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_I1> cbc:bridg_class \"Class\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_I1> cbc:bridg_attribute \"Attribute\"^^xsd:string . \n" +
-      "}"
-    item = BiomedicalConcept.new
-    item.id = "123"
-    item.namespace = "http://www.example.com/path"
-    item.rdf_type = "http://www.example.com/path#rdf_test_type"
-    item.label = "test label"
-    parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
-    item.to_sparql_v2(parent_uri, sparql)
-    expect(sparql.to_s).to eq(result)
-  end
-=end
 
 end
   

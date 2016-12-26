@@ -44,7 +44,6 @@ class BiomedicalConceptsController < ApplicationController
   def new_from_template
     authorize BiomedicalConcept, :new?
     uri = UriV2.new({uri: the_params[:uri]})
-    ConsoleLogger.debug(C_CLASS_NAME, "new_from_template", "URI=#{uri.to_s}")
     @bct = BiomedicalConceptTemplate.find(uri.id, uri.namespace)
   end
 
@@ -64,6 +63,17 @@ class BiomedicalConceptsController < ApplicationController
   def edit
     authorize BiomedicalConcept
     @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
+    if @bc.new_version?
+      json = @bc.to_operation
+      new_bc = BiomedicalConcept.create(json)
+      @bc = BiomedicalConcept.find(new_bc.id, new_bc.namespace)
+    end
+    @close_path = history_biomedical_concepts_path(identifier: @bc.identifier, scope_id: @bc.owner_id)
+    @token = Token.obtain(@bc, current_user)
+    if @token.nil?
+      flash[:error] = "The item is locked for editing by another user."
+      redirect_to request.referer
+    end
   end
 
   def clone
@@ -73,14 +83,15 @@ class BiomedicalConceptsController < ApplicationController
 
   def clone_create
     authorize BiomedicalConcept, :create?
+    from_bc = BiomedicalConcept.find(the_params[:bc_id], the_params[:bc_namespace])
     @bc = BiomedicalConcept.create_clone(the_params)
     if @bc.errors.empty?
-      AuditTrail.create_item_event(current_user, @bc, "BiomedicalConcept cloned from #{identifier}.")
+      AuditTrail.create_item_event(current_user, @bc, "BiomedicalConcept cloned from #{from_bc.identifier}.")
       flash[:success] = 'Biomedical Concept was successfully created.'
-      redirect_to forms_path
+      redirect_to biomedical_concepts_path
     else
       flash[:error] = @bc.errors.full_messages.to_sentence
-      redirect_to clone_biomedical_concepts_path(:id => params[:form_id], :namespace => params[:form_namespace])
+      redirect_to clone_biomedical_concept_path(:id => the_params[:bc_id], :namespace => the_params[:bc_namespace])
     end
   end
 
@@ -103,7 +114,7 @@ class BiomedicalConceptsController < ApplicationController
     token = Token.obtain(bc, current_user)
     if !token.nil?
       bc.destroy
-      AuditTrail.delete_item_event(current_user, form, "Biomedical Concept deleted.")
+      AuditTrail.delete_item_event(current_user, bc, "Biomedical Concept deleted.")
       token.release
     else
       flash[:error] = "The item is locked for editing by another user."
@@ -121,7 +132,6 @@ class BiomedicalConceptsController < ApplicationController
       end
       format.json do
         @items = @bc.get_properties(false)
-        ConsoleLogger::log(C_CLASS_NAME, "show", "Items=#{@items}")
         render json: @items
       end
     end

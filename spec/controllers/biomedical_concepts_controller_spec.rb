@@ -15,6 +15,8 @@ describe BiomedicalConceptsController do
 
     before :all do
       clear_triple_store
+      Token.delete_all
+      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Basic.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
@@ -31,6 +33,11 @@ describe BiomedicalConceptsController do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
+    end
+
+    after :all do
+      user = User.where(:email => "lock@example.com").first
+      user.destroy
     end
 
     it "lists all unique templates, HTML" do
@@ -53,13 +60,13 @@ describe BiomedicalConceptsController do
 
     it "shows the history" do
       ra = IsoRegistrationAuthority.find_by_short_name("ACME")
-      get :history, { :biomedical_concept => { :identifier => "BC_C49677", :scope_id => ra.namespace.id }}
+      get :history, { :biomedical_concept => { :identifier => "BC C49677", :scope_id => ra.namespace.id }}
       expect(response).to render_template("history")
     end
 
     it "shows the history, redirects when empty" do
       ra = IsoRegistrationAuthority.find_by_short_name("ACME")
-      get :history, { :biomedical_concept => { :identifier => "BC_C49678x", :scope_id => ra.namespace.id }}
+      get :history, { :biomedical_concept => { :identifier => "BC C49678x", :scope_id => ra.namespace.id }}
       expect(response).to redirect_to("/biomedical_concepts")
     end
 
@@ -76,54 +83,63 @@ describe BiomedicalConceptsController do
       bc_count = BiomedicalConcept.all.count
       post :create, { :biomedical_concept => { :bct_id => item.id, :bct_namespace => item.namespace, :identifier => "NEW BC", :label => "New BC" }}
       bc = assigns(:bc)
-      puts bc.errors.full_messages.to_sentence
       expect(bc.errors.count).to eq(0)
-      expect(BiomedicalConcept.unique.count).to eq(bc_count + 1) 
+      expect(BiomedicalConcept.all.count).to eq(bc_count + 1) 
       expect(flash[:success]).to be_present
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(response).to redirect_to("/biomedical_concepts")
     end
 
     it "edit, no next version" do
-      get :edit, { :id => "F-ACME_NEWTH", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      get :edit, { :id => "BC-ACME_NEWBC", :biomedical_concept => {:namespace => "http://www.assero.co.uk/MDRBCs/ACME/V1" }}
       result = assigns(:bc)
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_NEWTH") # Note no new version, no copy.
-      expect(result.identifier).to eq("NEW TH")
+      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_NEWBC") # Note no new version, no copy.
+      expect(result.identifier).to eq("NEW BC")
       expect(response).to render_template("edit")
     end
-    
+
     it "edit form, next version" do
-      get :edit, { :id => "F-ACME_VSBASELINE1", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      get :edit, { :id => "BC-ACME_BC_C25347", :biomedical_concept => {:namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
       result = assigns(:bc)
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_VSBASELINE") # Note no new version, no copy.
-      expect(result.identifier).to eq("VS BASELINE")
+      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC25347") # Note no new version, no copy.
+      expect(result.identifier).to eq("BC C25347")
       expect(response).to render_template("edit")
     end
     
     it "edits form, already locked" do
       @request.env['HTTP_REFERER'] = 'http://test.host/biomedical_concepts'
-      bc = BiomedicalConcept.find("F-ACME_NEWTH", "http://www.assero.co.uk/MDRForms/ACME/V1") 
+      bc = BiomedicalConcept.find("BC-ACME_NEWBC", "http://www.assero.co.uk/MDRBCs/ACME/V1") 
       token = Token.obtain(bc, @lock_user)
-      get :edit, { :id => "F-ACME_NEWTH", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      get :edit, { :id => "BC-ACME_NEWBC", :biomedical_concept => {:namespace => "http://www.assero.co.uk/MDRBCs/ACME/V1" }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/biomedical_concepts")
     end
 
     it "initiates the cloning of a BC" do
-      get :clone, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      get :clone, { :id => "BC-ACME_BC_C25347", :biomedical_concept => {:namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
       bc = assigns(:bc)
-      expect(bc.id).to eq("F-ACME_DM101")
+      expect(bc.id).to eq("BC-ACME_BC_C25347")
       expect(response).to render_template("clone")
     end
 
     it "clones a BC" do
       audit_count = AuditTrail.count
       bc_count = BiomedicalConcept.unique.count
-      post :clone_create,  { bc: { :identifier => "CLONE", :label => "New Clone" }, :bc_id => "F-ACME_DM101", :bc_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      params = 
+      { 
+        biomedical_concept: 
+        { 
+          :identifier => "CLONE", 
+          :label => "New Clone" , 
+          :bc_id => "BC-ACME_BC_C25347", 
+          :bc_namespace => "http://www.assero.co.uk/MDRBCs/V1" 
+        }
+      }
+      post :clone_create, params
       bc = assigns(:bc)
       expect(bc.errors.count).to eq(0)
       expect(BiomedicalConcept.unique.count).to eq(bc_count + 1) 
@@ -135,11 +151,21 @@ describe BiomedicalConceptsController do
     it "clones a BC, error duplicate" do
       audit_count = AuditTrail.count
       bc_count = BiomedicalConcept.all.count
-      post :clone_create,  { bc: { :identifier => "CLONE", :label => "New Clone" }, :bc_id => "F-ACME_DM101", :bc_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      params = 
+      { 
+        biomedical_concept: 
+        { 
+          :identifier => "CLONE", 
+          :label => "New Clone" , 
+          :bc_id => "BC-ACME_BC_C25347", 
+          :bc_namespace => "http://www.assero.co.uk/MDRBCs/V1" 
+        }
+      }
+      post :clone_create, params
       bc = assigns(:bc)
-      expect(form.errors.count).to eq(1)
+      expect(bc.errors.count).to eq(1)
       expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/biomedical_concepts/clone?id=F-ACME_DM101&namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1")
+      expect(response).to redirect_to("/biomedical_concepts/BC-ACME_BC_C25347/clone?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRBCs%2FV1")
     end
 
     it "create"
@@ -150,7 +176,7 @@ describe BiomedicalConceptsController do
       audit_count = AuditTrail.count
       bc_count = BiomedicalConcept.all.count
       token_count = Token.all.count
-      delete :destroy, { :id => "F-ACME_CLONE", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      delete :destroy, { :id => "BC-ACME_CLONE", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/ACME/V1" }}
       expect(BiomedicalConcept.all.count).to eq(bc_count - 1)
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(Token.count).to eq(token_count)
@@ -164,8 +190,8 @@ describe BiomedicalConceptsController do
     end
 
     it "export_ttl"
+
     it "export_json"
-    it "upgrade"
 
   end
 
@@ -175,25 +201,6 @@ describe BiomedicalConceptsController do
 
     def sub_dir
       return "controllers"
-    end
-
-    before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Basic.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Data.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
     end
 
     it "initiates the creation of a new BC" do
@@ -221,7 +228,11 @@ describe BiomedicalConceptsController do
       expect(response).to redirect_to("/")
     end
 
-    it "create"
+    it "create" do 
+      post :create, { :id => "BC-ACME_BC_C49678", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
+      expect(response).to redirect_to("/")
+    end
+    
     it "update"
 
     it "destroy" do

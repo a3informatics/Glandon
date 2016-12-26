@@ -59,6 +59,7 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_nameCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_class "DefinedObservation"^^xsd:string ;
 	cbc:bridg_attribute "DefinedObservation_nameCode"^^xsd:string ;
 	cbc:alias "Test"^^xsd:string ;
@@ -73,6 +74,7 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_DefinedObservation_nameCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Test Code (--TESTCD)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "DefinedObservation.nameCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
@@ -89,12 +91,14 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value
 	rdf:type cbc:Property ;
 	cbc:alias "Test Name (--TEST)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_PQR_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "2"^^xsd:positiveInteger ;
 	cbc:bridg_class "DefinedObservation"^^xsd:string ;
 	cbc:bridg_attribute "DefinedObservation_targetAnatomicSiteCode"^^xsd:string ;
 	cbc:alias "SiteOfAdministration"^^xsd:string ;
@@ -108,12 +112,14 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_DefinedObservation_targetAnatomicSiteCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Site Of Administration (--LOC)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "DefinedObservation.targetAnatomicSiteCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_PQR_methodCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "3"^^xsd:positiveInteger ;
 	cbc:bridg_class "DefinedObservation"^^xsd:string ;
 	cbc:bridg_attribute "DefinedObservation_methodCode"^^xsd:string ;
 	cbc:alias "Method"^^xsd:string ;
@@ -127,12 +133,14 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_DefinedObservation_methodCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Method (--METHOD)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "DefinedObservation.methodCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_PQR_bodyPositionCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "4"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedObservation"^^xsd:string ;
 	cbc:bridg_attribute "PerformedObservation_bodyPositionCode"^^xsd:string ;
 	cbc:alias "Position"^^xsd:string ;
@@ -146,12 +154,14 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_PerformedObservation_bodyPositionCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Body Position (--POS)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservation.bodyPositionCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_PQR_targetAnatomicSiteLateralityCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "5"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedObservation"^^xsd:string ;
 	cbc:bridg_attribute "PerformedObservation_targetAnatomicSiteLateralityCode"^^xsd:string ;
 	cbc:alias "Laterality"^^xsd:string ;
@@ -165,12 +175,14 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Laterality (--LAT)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservation.targetAnatomicSiteLateralityCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_PQR_dateRange
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "6"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedObservation"^^xsd:string ;
 	cbc:bridg_attribute "PerformedObservation_dateRange"^^xsd:string ;
 	cbc:alias "DateTime"^^xsd:string ;
@@ -194,12 +206,14 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
 	rdf:type cbc:Property ;
 	cbc:alias "Date Time (--DTC)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value"^^xsd:string ;
 	cbc:simple_datatype "dateTime"^^xsd:string ;
 .
 :BCT-Obs_PQR_negationReason
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "7"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedObservation"^^xsd:string ;
 	cbc:bridg_attribute "PerformedObservation_negationReason"^^xsd:string ;
 	cbc:alias "ReasonNotDone"^^xsd:string ;
@@ -223,12 +237,14 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_PerformedObservation_negationReason_SC_code_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Reason Not Done (--REASND)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservation.negationReason.SC.code.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_PQR_value
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "8"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedClinicalResult"^^xsd:string ;
 	cbc:bridg_attribute "PerformedClinicalResult_value"^^xsd:string ;
 	cbc:alias "Result"^^xsd:string ;
@@ -243,18 +259,21 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_PerformedClinicalResult_value_PQR_value
 	rdf:type cbc:Property ;
 	cbc:alias "Result Value (--ORRES)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedClinicalResult.value.PQR.value"^^xsd:string ;
 	cbc:simple_datatype "float"^^xsd:string ;
 .
 :BCT-Obs_PQR_PerformedClinicalResult_value_PQR_code
 	rdf:type cbc:Property ;
 	cbc:alias "Result Units (--ORRESU)"^^xsd:string ;
+	cbc:ordinal "2"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedClinicalResult.value.PQR.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_PQR_baselineIndicator
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "9"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedClinicalResult"^^xsd:string ;
 	cbc:bridg_attribute "PerformedClinicalResult_baselineIndicator"^^xsd:string ;
 	cbc:alias "Baseline"^^xsd:string ;
@@ -268,6 +287,7 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_PerformedClinicalResult_baselineIndicator_BL_value
 	rdf:type cbc:Property ;
 	cbc:alias "Baseline (--BLFL)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedClinicalResult.baselineIndicator.BL.value"^^xsd:string ;
 	cbc:simple_datatype "boolean"^^xsd:string ;
 .
@@ -312,6 +332,7 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_nameCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_CD ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_class "DefinedObservation"^^xsd:string ;
 	cbc:bridg_attribute "DefinedObservation_nameCode"^^xsd:string ;
 	cbc:alias "Test"^^xsd:string ;
@@ -326,6 +347,7 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_DefinedObservation_nameCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Test Code (--TESTCD)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "DefinedObservation.nameCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
@@ -342,12 +364,14 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_DefinedObservation_nameCode_CD_originalText_ED_value
 	rdf:type cbc:Property ;
 	cbc:alias "Test Name (--TEST)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_CD_targetAnatomicSiteCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_CD ;
+	cbc:ordinal "2"^^xsd:positiveInteger ;
 	cbc:bridg_class "DefinedObservation"^^xsd:string ;
 	cbc:bridg_attribute "DefinedObservation_targetAnatomicSiteCode"^^xsd:string ;
 	cbc:alias "SiteOfAdministration"^^xsd:string ;
@@ -361,12 +385,14 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_DefinedObservation_targetAnatomicSiteCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Site Of Administration (--LOC)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "DefinedObservation.targetAnatomicSiteCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_CD_methodCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_CD ;
+	cbc:ordinal "3"^^xsd:positiveInteger ;
 	cbc:bridg_class "DefinedObservation"^^xsd:string ;
 	cbc:bridg_attribute "DefinedObservation_methodCode"^^xsd:string ;
 	cbc:alias "Method"^^xsd:string ;
@@ -380,12 +406,14 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_DefinedObservation_methodCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Method (--METHOD)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "DefinedObservation.methodCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_CD_bodyPositionCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_CD ;
+	cbc:ordinal "4"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedObservation"^^xsd:string ;
 	cbc:bridg_attribute "PerformedObservation_bodyPositionCode"^^xsd:string ;
 	cbc:alias "Position"^^xsd:string ;
@@ -399,12 +427,14 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_PerformedObservation_bodyPositionCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Body Position (--POS)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservation.bodyPositionCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_CD_targetAnatomicSiteLateralityCode
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_CD ;
+	cbc:ordinal "5"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedObservation"^^xsd:string ;
 	cbc:bridg_attribute "PerformedObservation_targetAnatomicSiteLateralityCode"^^xsd:string ;
 	cbc:alias "Laterality"^^xsd:string ;
@@ -418,12 +448,14 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Laterality (--LAT)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservation.targetAnatomicSiteLateralityCode.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_CD_dateRange
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_CD ;
+	cbc:ordinal "6"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedObservation"^^xsd:string ;
 	cbc:bridg_attribute "PerformedObservation_dateRange"^^xsd:string ;
 	cbc:alias "DateTime"^^xsd:string ;
@@ -447,12 +479,14 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
 	rdf:type cbc:Property ;
 	cbc:alias "Date Time (--DTC)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value"^^xsd:string ;
 	cbc:simple_datatype "dateTime"^^xsd:string ;
 .
 :BCT-Obs_CD_negationReason
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_CD ;
+	cbc:ordinal "7"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedObservation"^^xsd:string ;
 	cbc:bridg_attribute "PerformedObservation_negationReason"^^xsd:string ;
 	cbc:alias "ReasonNotDone"^^xsd:string ;
@@ -476,12 +510,14 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_PerformedObservation_negationReason_SC_code_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Reason Not Done (--REASND)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservation.negationReason.SC.code.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_CD_value
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_CD ;
+	cbc:ordinal "8"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedClinicalResult"^^xsd:string ;
 	cbc:bridg_attribute "PerformedClinicalResult_value"^^xsd:string ;
 	cbc:alias "Result"^^xsd:string ;
@@ -495,12 +531,14 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_PerformedClinicalResult_value_CD_code
 	rdf:type cbc:Property ;
 	cbc:alias "Result Value (--ORRES)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedClinicalResult.value.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .
 :BCT-Obs_CD_baselineIndicator
 	rdf:type cbc:Item ;
 	cbc:isItemOf :BCT-Obs_CD ;
+	cbc:ordinal "9"^^xsd:positiveInteger ;
 	cbc:bridg_class "PerformedClinicalResult"^^xsd:string ;
 	cbc:bridg_attribute "PerformedClinicalResult_baselineIndicator"^^xsd:string ;
 	cbc:alias "Baseline"^^xsd:string ;
@@ -514,6 +552,7 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_PerformedClinicalResult_baselineIndicator_BL_value
 	rdf:type cbc:Property ;
 	cbc:alias "Baseline (--BLFL)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedClinicalResult.baselineIndicator.BL.value"^^xsd:string ;
 	cbc:simple_datatype "boolean"^^xsd:string ;
 .

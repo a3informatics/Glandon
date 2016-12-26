@@ -67,11 +67,6 @@ class BiomedicalConceptTemplate < BiomedicalConceptCore
   # @return [hash] The object hash 
   def to_json
     json = super
-    json[:children] = Array.new
-    self.items.each do |item|
-      json[:children] << item.to_json
-    end 
-    json[:children] = json[:children].sort_by {|item| item[:ordinal]}
     return json
   end
   

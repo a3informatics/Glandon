@@ -79,7 +79,7 @@ class BiomedicalConceptCore::Item < BiomedicalConceptCore::Node
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "bridg_class"}, {:literal => "#{self.bridg_class}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "bridg_attribute"}, {:literal => "#{self.bridg_attribute}", :primitive_type => "string"})
     ref_uri = self.datatype.to_sparql_v2(uri, sparql)
-    sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasDatatype"}, { :uri => uri })
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasDatatype"}, { :uri => ref_uri })
     return uri
   end
 

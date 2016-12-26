@@ -133,6 +133,7 @@
         
         <xsl:param name="pPrefix"/>
         <xsl:variable name="BRIDGPath" select="@Name"/>
+        <xsl:variable name="ACount" select="count(preceding-sibling::Class/Attribute)" />
         
         <xsl:for-each select="Attribute">
             <xsl:call-template name="Subject"> 
@@ -146,6 +147,11 @@
                 <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':isItemOf')" /> 
                 <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$URIFinish)" /> 
             </xsl:call-template>
+            <xsl:call-template name="PredicateObject"> 
+                <xsl:with-param name="pPredicateName" select="'cbc:ordinal'" /> 
+                <!--<xsl:with-param name="pObjectName" select="count(preceding::Attribute)+1" />--> 
+                <xsl:with-param name="pObjectName" select="concat($quote,position()+$ACount,$quote,'^^xsd:positiveInteger')" /> 
+            </xsl:call-template>            
             <xsl:call-template name="PredicateObject"> 
                 <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':bridg_class')" /> 
                 <xsl:with-param name="pObjectName" select="concat($quote,../@Name,$quote,'^^xsd:string')" /> 
@@ -272,6 +278,7 @@
         
         <xsl:variable name="PropertyName" select="string(@Name)"/>
         <xsl:variable name="PropertyAlias" select="string(@Alias)"/>
+        <xsl:variable name="PCount" select="count(preceding-sibling::Property)+1" />
         
         <xsl:variable name="Datatype" select="$DatatypeDocument/ISO21090DataTypes/ISO21090DataType[@Name=$pDatatype]"/>
         <xsl:for-each select="$Datatype/ISO21090Property">
@@ -300,6 +307,12 @@
                             
                             <xsl:variable name="simpleDT" select="$DatatypeDocument/ISO21090DataTypes/primitiveTypes/primitiveType[@Name=$PropertyDatatype]"/>
                             <xsl:variable name="schemaType" select="$simpleDT/@Map"/>
+                            
+                            <!-- Ordinal -->
+                            <xsl:call-template name="PredicateObject"> 
+                                <xsl:with-param name="pPredicateName" select="'cbc:ordinal'" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$PCount,$quote,'^^xsd:positiveInteger')" /> 
+                            </xsl:call-template>
                             
                             <!--<xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':hasValue')" /> 

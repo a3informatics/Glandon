@@ -69,7 +69,7 @@ describe "Biomedical Concept Templates", :type => :feature do
       click_link 'Close'
       expect(page).to have_content 'History: Obs CD'
     end
-    
+
   end
 
 end

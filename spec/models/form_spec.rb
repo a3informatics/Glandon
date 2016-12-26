@@ -162,6 +162,15 @@ describe Form do
     expect(item.to_json).to eq(expected)
   end
 
+  it "allows a form to be created from operation JSON, create error" #do
+  #  parameters = read_yaml_file_to_hash_2(sub_dir, "form_base_bc.yaml")
+  #  response = Typhoeus::Response.new(code: 200, body: "")
+  #  expect(Rest).to receive(:sendRequest).and_return(response)
+  #  expect(response).to receive(:success?).and_return(false)
+  #  item = 
+  #  expect{Form.create(parameters[:form])}.to raise_error(Exceptions::CreateError)
+  #end
+
   it "allows a form to be updated" do
     old_item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
     old_item.label = "New Label"

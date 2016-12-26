@@ -18,6 +18,11 @@ function d3eInit(clickCallBackPre, clickCallBackPost, dblClickCallBackPost) {
   dblClickCallBackPostFunction = dblClickCallBackPost
 }
 
+/**
+ * Determines if current node set
+ * 
+ * @return [Boolean] true if set, otherwise false
+ */
 function d3eCurrentSet() {
   if (currentGRef == null) {
     return false;
@@ -26,6 +31,11 @@ function d3eCurrentSet() {
   }
 }
 
+/**
+ * Get the current node
+ * 
+ * @return [Object] The current node
+ */
 function d3eGetCurrent() {
   if (currentGRef == null) {
     return null;
@@ -34,9 +44,12 @@ function d3eGetCurrent() {
   }
 }
 
-/*
- * Function to handle click on the D3 tree.
- * Show the node info. Highlight the node.
+/**
+ * Function to handle click on the D3 tree. Show the node info. Highlight the node.
+ * Perform the pre and post callbacks.
+ *
+ * @param node [Object] the current node
+ * @return [Null] 
  */
 function d3eClick(node) {    
   if (currentNode != null) {
@@ -49,8 +62,12 @@ function d3eClick(node) {
   clickCallBackPostFunction(currentNode);
 }  
 
-/*
- * Function to handle double click on the D3 tree.
+/**
+ * Function to handle double click on the D3 tree. Expand or hide the children,
+ * display the tree and make the callback.
+ *
+ * @param node [Object] the current node
+ * @return [Null] 
  */
 function d3eDblClick(node) {
   d3eExpandHide(node);
@@ -58,8 +75,11 @@ function d3eDblClick(node) {
   dblClickCallBackPostFunction(node);
 } 
 
-/*
- * Toggle Expand/Hide of a node.
+/**
+ * Expands or hide a node's children
+ * 
+ * @param node [Object] the node
+ * @return [Null]
  */
 function d3eExpandHide(node) {
   if (node.expand) {
@@ -87,9 +107,6 @@ function d3eForceExpand(node) {
   d3eExpandHide(node); 
 } 
 
-/*
- *  Function to draw the tree
- */
 function d3eDisplayTree(nodeKey) {
   d3TreeNormal(d3Div, rootNode, d3eClick, d3eDblClick);
   var gRef = d3FindGRef(nodeKey);
@@ -98,20 +115,155 @@ function d3eDisplayTree(nodeKey) {
   d3MarkNode(currentGRef);    
 }
 
-/*
+/**
+ * Deletes a node.
+ * 
+ * @param node [Object] the node
+ * @return [Null]
+ */
+function d3eDeleteNode(node) {
+  var parentNode = node.parent
+  var parentData = parentNode.data;
+  //var sourceNode = node.data;
+  var parentIndex = node.index
+  parentNode.save.splice(parentIndex, 1);
+  parentData.children.splice(parentIndex, 1);
+  if (parentNode.save.length === 0) {
+    delete parentNode.children;
+    delete parentNode.save;
+    parentData.children = [];
+  }
+  d3eSetParent(parentNode);
+  d3eSetOrdinal(parentData);
+  return parentNode;
+}
+
+/**
+ * Moves the node up. Prevents moving up past first position.
+ * 
+ * @param node [Object] the node
+ * @return [Null]
+ */
+function d3eMoveNodeUp(node) {
+  var parentNode = node.parent
+  var parentIndex = node.index
+  var parentData = parentNode.data;
+  //var sourceNode = node.data;
+  if (parentIndex != 0 && parentNode.save.length > 1) {
+    var tempNode1 = parentNode.save[parentIndex - 1];
+    var tempNode2 = parentNode.save[parentIndex];
+    parentNode.save[parentIndex - 1] = tempNode2;
+    parentNode.save[parentIndex] = tempNode1;
+    tempNode1.index = parentIndex;
+    tempNode2.index = parentIndex - 1;
+    tempNode1 = parentData.children[parentIndex - 1];
+    tempNode2 = parentData.children[parentIndex];
+    parentData.children[parentIndex - 1] = tempNode2;
+    parentData.children[parentIndex] = tempNode1;
+    tempNode1.index = parentIndex;
+    tempNode2.index = parentIndex - 1;
+    d3eSetOrdinal(parentData);
+  }
+}
+
+/**
+ * Moves the node down. Prevents moving down past last position.
+ * 
+ * @param node [Object] the node
+ * @return [Null]
+ */
+function d3eMoveNodeDown(node) {
+  var parentNode = node.parent
+  var parentIndex = node.index
+  var parentData = parentNode.data;
+  //var sourceNode = node.data;
+  if (parentIndex != (parentNode.save.length - 1) && parentNode.save.length > 1) {
+    var tempNode1 = parentNode.save[parentIndex + 1];
+    var tempNode2 = parentNode.save[parentIndex];
+    parentNode.save[parentIndex + 1] = tempNode2;
+    parentNode.save[parentIndex] = tempNode1;
+    tempNode1.index = parentIndex;
+    tempNode2.index = parentIndex + 1;
+    tempNode1 = parentData.children[parentIndex + 1];
+    tempNode2 = parentData.children[parentIndex];
+    parentData.children[parentIndex + 1] = tempNode2;
+    parentData.children[parentIndex] = tempNode1;
+    tempNode1.index = parentIndex;
+    tempNode2.index = parentIndex + 1;
+    d3eSetOrdinal(parentData);
+  }
+}
+
+/**
  * Get the key of the last node created.
+ * 
+ * @return [Integer] the last used key
  */
 function d3eLastKey() {
   return nextKeyId - 1;
 }
 
+/**
+ * Tests if node has children
+ *
+ * @param node [Object] the node
+ * @return [Boolean] true if node has children, false otherwise.
+ */
+function d3eHasChildren(node) {
+  var result = true;
+  if (node.hasOwnProperty('save')) {
+    if (node.save.length === 0) {
+      result = false;
+    }
+  } else {
+    result = false;
+  }
+  return result;
+}
+
+/**
+ *
+ * @param parentNode [Object] The parent node
+ * @param data [Object] The data object associated with the node
+ * @param addAtEnd [Object] At at end of existing nodes if true, at front if false
+ */
+function d3eAddData(parentNode, data, addAtEnd) {
+  if (!parentNode.data.hasOwnProperty('children')) {
+    parentNode.data.children = [];
+  }
+  if (addAtEnd) {
+    parentNode.data.children.push(data);
+  } else {
+    parentNode.data.children.unshift(data);
+  }
+  d3eSetOrdinal(parentNode.data);
+}
+
+/**
+ * Add a node to the parent. Can be placed at the start or at the end.
+ * Will also add th edata into the corresponding position in the 
+ * parallel data tree.
+ *
+ * @param parent [Object] The parent node
+ * @param name [Object] The node name
+ * @param type [Object] The node type
+ * @param enabled [Object] The node enabled flag
+ * @param data [Object] The data object associated with the node
+ * @param addAtEnd [Object] At at end of existing nodes if true, at front if false
+ * @return [Object] The new node.
+ */
 function d3eAddNode(parent, name, type, enabled, data, addAtEnd) {
-  var node = {};
-  var temp;
+  var node = d3eEmptyNode();
+  //node = {};
   node.name = name;
   node.type = type;
   node.enabled = enabled;
-  node.is_common = data.hasOwnProperty('is_common') ? data.is_common : parent.data.is_common;
+  //node.is_common = data.hasOwnProperty('is_common') ? data.is_common : parent.data.is_common;
+  if (data.hasOwnProperty('is_common')) {
+    node.is_common = data.is_common;
+  } else if (parent.data.hasOwnProperty('is_common')) {
+    node.is_common = parent.data.is_common;
+  }
   node.key = nextKeyId;
   node.parent = parent;
   node.data = data;
@@ -128,8 +280,7 @@ function d3eAddNode(parent, name, type, enabled, data, addAtEnd) {
   } else {
     parent.save.unshift(node);
     for (i=0; i<parent.save.length; i++) {
-      temp = parent.save[i];
-      temp.index = i;
+      parent.save[i].index = i;
     }
   }
   parent.children = parent.save;
@@ -137,6 +288,14 @@ function d3eAddNode(parent, name, type, enabled, data, addAtEnd) {
   return node;
 }
 
+/**
+ * Creates the root node.
+ *
+ * @param name [Object] The node name
+ * @param type [Object] The node type
+ * @param data [Object] The data object associated with the node
+ * @return [Object] The new node.
+ */
 function d3eRoot(name, type, data) {
   var node = {};
   node.name = name;
@@ -155,79 +314,35 @@ function d3eRoot(name, type, data) {
   return node;
 }
 
-function d3eHasChildren(node) {
-  var result = true;
-  if (node.hasOwnProperty('save')) {
-    if (currentNode.save.length == 0) {
-      result = false;
-    }
-  } else {
-    result = false;
-  }
-  return result;
+/**
+ * Creates an empty node.
+ *
+ * @return [Object] The new node.
+ */
+function d3eEmptyNode() {
+  var node = {  
+    name: "",
+    type: "",
+    enabled: true,
+    is_common: false,
+    index: 0,
+    key: 0,
+    parent: null,
+    data: null,
+    expand: false,
+    index: 0,
+    children: [],
+    save: []
+  };
+  return node;
 }
 
-function d3eDeleteNode(node) {
-  var parentNode = node.parent
-  var sourceParentNode = parentNode.data;
-  var sourceNode = node.data;
-  var parentIndex = node.index
-  parentNode.save.splice(parentIndex, 1);
-  sourceParentNode.children.splice(parentIndex, 1);
-  if (parentNode.save.length == 0) {
-    delete parentNode.children;
-    delete parentNode.save;
-    sourceParentNode.children = [];
-  }
-  d3eSetParent(parentNode);
-  d3eSetOrdinal(sourceParentNode);
-  return parentNode;
-}
-
-function d3eMoveNodeUp(node) {
-  var parentNode = node.parent
-  var parentIndex = node.index
-  var sourceParentNode = parentNode.data;
-  var sourceNode = node.data;
-  if (parentIndex != 0 && parentNode.save.length > 1) {
-    var tempNode1 = parentNode.save[parentIndex - 1];
-    var tempNode2 = parentNode.save[parentIndex];
-    parentNode.save[parentIndex - 1] = tempNode2;
-    parentNode.save[parentIndex] = tempNode1;
-    tempNode1.index = parentIndex;
-    tempNode2.index = parentIndex - 1;
-    tempNode1 = sourceParentNode.children[parentIndex - 1];
-    tempNode2 = sourceParentNode.children[parentIndex];
-    sourceParentNode.children[parentIndex - 1] = tempNode2;
-    sourceParentNode.children[parentIndex] = tempNode1;
-    tempNode1.index = parentIndex;
-    tempNode2.index = parentIndex - 1;
-    d3eSetOrdinal(sourceParentNode);
-  }
-}
-
-function d3eMoveNodeDown(node) {
-  var parentNode = node.parent
-  var parentIndex = node.index
-  var sourceParentNode = parentNode.data;
-  var sourceNode = node.data;
-  if (parentIndex != (parentNode.save.length - 1) && parentNode.save.length > 1) {
-    var tempNode1 = parentNode.save[parentIndex + 1];
-    var tempNode2 = parentNode.save[parentIndex];
-    parentNode.save[parentIndex + 1] = tempNode2;
-    parentNode.save[parentIndex] = tempNode1;
-    tempNode1.index = parentIndex;
-    tempNode2.index = parentIndex + 1;
-    tempNode1 = sourceParentNode.children[parentIndex + 1];
-    tempNode2 = sourceParentNode.children[parentIndex];
-    sourceParentNode.children[parentIndex + 1] = tempNode2;
-    sourceParentNode.children[parentIndex] = tempNode1;
-    tempNode1.index = parentIndex;
-    tempNode2.index = parentIndex + 1;
-    d3eSetOrdinal(sourceParentNode);
-  }
-}
-
+/**
+ * Sets the parents for the entire tree from the node specified. Recursive
+ *
+ * @param node [Object] the node
+ * @return [Null]
+ */
 function d3eSetParent(node) {
   var i;
   var child;
@@ -241,6 +356,12 @@ function d3eSetParent(node) {
   }
 }
 
+/**
+ * Set the ordinals for the children for a node
+ *
+ * @param node [Object] the node
+ * @return [Null]
+ */
 function d3eSetOrdinal(node) {
   var child;
   if (node.hasOwnProperty('children')) {

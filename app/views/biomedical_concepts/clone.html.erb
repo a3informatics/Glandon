@@ -1,125 +1,16 @@
-<%= stylesheet_link_tag    'biomedical_concepts_editor'%>
-<%= javascript_include_tag 'biomedical_concepts_editor'%>
-<script id="bcJson" type="text/json">
-    <%= raw @bc.to_clone.to_json %>
-</script>
-<div class="row">
-    <div class="col-md-9">
-        <h3>Clone: Biomedical Concepts</h3>
-        <table id="bc_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
-            <thead>
-                <tr> 
-                    <th>BC</th>
-                    <th>Identifier</th>
-                    <th>Label</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Cloning:", :item => @bc} %>
+<div class="col-md-3">
+    <%= form_for BiomedicalConcept.new, :url => clone_create_biomedical_concepts_path do |f| %>
+    <div class="form-group">
+        <%= label_tag :identifier, "Identifier:" %><br />
+        <%= f.text_field :identifier, class: "form-control" %>
     </div>
-    <div class="col-md-3" >
-        <br/>
-        <div>
-            <div id="main_bc_panel" class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Biomedical Concept</h3>
-                </div>
-                <div class="panel-body">
-                    <label for="name">Biomedical Concept Template:</label>
-                    <p><%= @bc.bct.identifier %></p>
-                    <button type="button" id="bc_save" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-            <div id="text_bc_panel" class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Biomedical Concept Details</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label for="bcText">Edit:</label>
-                        <input type="text" class="form-control" id="bcText">
-                    </div>
-                    <button type="button" id="bc_update_text" class="btn btn-primary">Update</button>
-                </div>
-            </div>
-        </div>
+    <div class="form-group">
+        <%= label_tag :label, "Label:" %><br />
+        <%= f.text_field :label, class: "form-control" %>
     </div>
+        <%= f.hidden_field :bc_id, :value => @bc.id %>
+        <%= f.hidden_field :bc_namespace, :value => @bc.namespace %>
+        <%= f.submit "Clone", class: "btn btn-default btn-primary" %>
+    <% end %>
 </div>
-<div class="row">
-    <div class="col-md-9">
-        <h4>Properties</h4>
-        <table id="property_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
-            <thead>
-                <tr> 
-                    <th>BC</th>
-                    <th>Prop</th>
-                    <th>Alias</th>
-                    <th>Question Text</th>
-                    <th>Prompt Text</th>
-                    <th>En</th>
-                    <th>Co</th>
-                    <th>DT</th>
-                    <th>F</th>
-                    <th>Terminology</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-3" >
-        <div>
-            <div id="text_property_panel" class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Property Details</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label for="pText">Edit:</label>
-                        <input type="text" class="form-control" id="pText">
-                    </div>
-                    <button type="button" id="property_update_text" class="btn btn-primary">Update</button>   
-                </div>     
-            </div>
-            <div id="cl_property_panel" class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Property Details</h3>
-                </div>
-                <div class="panel-body">
-                    <table id="cl_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
-                        <thead>
-                            <tr> 
-                                <th>Item</th>
-                                <th>Submission Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                    <button type="button" id="cl_delete" class="btn btn-primary">Delete</button>
-                </div>     
-            </div>
-            <div id="notepad_panel" class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Notepad</h3>
-                </div>
-                <div class="panel-body">
-                    <table id="notepad_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
-                        <thead>
-                            <tr> 
-                                <th>Item</th>
-                                <th>Submission Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                    <button type="button" id="notepad_add" class="btn btn-primary">Add</button>
-                    <button type="button" id="notepad_refresh" class="btn btn-primary">Refresh</button>    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<input type="hidden" id="load_data" value="true">

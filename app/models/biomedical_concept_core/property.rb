@@ -37,7 +37,7 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
   end
 
   def is_complex?
-    return self.complex_datatype != nil
+    return !self.complex_datatype.nil?
   end
 
 	# Get Properties
@@ -86,8 +86,8 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
   # @return [object] The object
   def self.from_json(json)
 		object = super(json)
-		if json.has_key?([:complex_datatype])
-      object.complex_datatype = BiomedicalConceptCore::Datatype.from(json(json[:complex_datatype]))
+		if !json[:complex_datatype].blank?
+      object.complex_datatype = BiomedicalConceptCore::Datatype.from_json(json[:complex_datatype])
     else
       object.collect = json[:collect]
       object.enabled = json[:enabled]
@@ -98,7 +98,7 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
 			object.bridg_path = json[:bridg_path]
       if !json[:children].blank?
         json[:children].each do |child|
-          object.children << OperationalReferenceV2.from_json(child)
+          object.tc_refs << OperationalReferenceV2.from_json(child)
         end
       end
 		end
@@ -139,8 +139,8 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
     uri = super(sparql)
     subject = {:uri => uri}
     if self.is_complex? 
-      uri = complex_datatype.to_sparql_v2(sparql)
-      sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasComplexDatatype"}, { :namespace => uri })
+      ref_uri = complex_datatype.to_sparql_v2(uri, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasComplexDatatype"}, { :uri => ref_uri })
     else
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "question_text"}, {:literal => "#{self.question_text}", :primitive_type => "string"})
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prompt_text"}, {:literal => "#{self.prompt_text}", :primitive_type => "string"})
@@ -149,7 +149,8 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "collect"}, {:literal => "#{self.collect}", :primitive_type => "boolean"})
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "bridg_path"}, {:literal => "#{self.bridg_path}", :primitive_type => "string"})
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "simple_datatype"}, {:literal => "#{self.simple_datatype}", :primitive_type => "string"})
-    end  
+    end
+    return uri
   end
 
   # Check Valid
@@ -165,6 +166,7 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
     else
       if !BaseDatatype::valid?(self.simple_datatype) 
         ConsoleLogger::log(C_CLASS_NAME, "valid?", "datatype=#{self.simple_datatype}")
+        ConsoleLogger::log(C_CLASS_NAME, "valid?", "JSON=#{self.to_json}")
         self.errors.add(:simple_datatype, "is invalid")
         result = false
       end

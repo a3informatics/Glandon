@@ -155,12 +155,12 @@ Rails.application.routes.draw do
       get :export_json
       get :export_ttl
       get :clone
-      post :clone_create
       get :upgrade
     end
     collection do
       get :history
       post :new_from_template
+      post :clone_create
       get :list
       #get :impact
     end

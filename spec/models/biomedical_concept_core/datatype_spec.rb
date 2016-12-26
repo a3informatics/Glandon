@@ -5,6 +5,10 @@ describe BiomedicalConceptCore::Datatype do
   
   include DataHelpers
 
+  def sub_dir
+    return "models/biomedical_concept_core"
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -91,7 +95,7 @@ describe BiomedicalConceptCore::Datatype do
     expect(item.to_json).to eq(result)
   end
 
-  it "allows the object to be created from JSON" do
+  it "allows the object to be created from JSON, simple" do
     result = 
       {
         :id => "123", 
@@ -107,22 +111,42 @@ describe BiomedicalConceptCore::Datatype do
     expect(BiomedicalConceptCore::Datatype.from_json(result).to_json).to eq(result)
   end
 
-  it "allows an object to be exported as SPARQL" do
-    sparql = SparqlUpdateV2.new
+  it "allows the object to be created from JSON, complex" do
     result = 
-      "PREFIX cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "INSERT DATA \n" +
-      "{ \n" + 
-      "<http://www.example.com/path#XXX_DT1> rdf:type <http://www.example.com/path#rdf_test_type> . \n" +
-      "<http://www.example.com/path#XXX_DT1> rdfs:label \"test label\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_DT1> cbc:ordinal \"1\"^^xsd:positiveInteger . \n" +
-      "<http://www.example.com/path#XXX_DT1> cbc:alias \"Note\"^^xsd:string . \n" +
-      "<http://www.example.com/path#XXX_DT1> cbc:iso21090_datatype \"CD\"^^xsd:string . \n" +
-      "}"
+    {
+      :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+      :id =>"BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME",
+      :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+      :label=>"",
+      :extension_properties=>[],
+      :ordinal=>1,
+      :alias=>"",
+      :iso21090_datatype=>"",
+      :children=>[
+        {
+          :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+          :id=>"BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value",
+          :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+          :label=>"",
+          :extension_properties=>[],
+          :ordinal=>1,
+          :alias=>"Date Time (--DTC)",
+          :collect=>false,
+          :enabled=>false,
+          :question_text=>"",
+          :prompt_text=>"",
+          :simple_datatype=>"dateTime",
+          :format=>"",
+          :bridg_path=>"PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value",
+          :children=>[]
+        }
+      ]
+    }
+    expect(BiomedicalConceptCore::Datatype.from_json(result).to_json).to eq(result)
+  end
+
+  it "allows an object to be exported as SPARQL, simple" do
+    sparql = SparqlUpdateV2.new
     item = BiomedicalConceptCore::Datatype.new
     item.id = "123"
     item.namespace = "http://www.example.com/path"
@@ -132,8 +156,50 @@ describe BiomedicalConceptCore::Datatype do
     item.iso21090_datatype = "CD"
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
-    expect(sparql.to_s).to eq(result)
+    #write_text_file_2(sparql.to_s, sub_dir, "datatype_sparql_simple.txt")
+    expected = read_text_file_2(sub_dir, "datatype_sparql_simple.txt")
+    expect(sparql.to_s).to eq(expected)
   end
   
+  it "allows an object to be exported as SPARQL, complex" do
+    sparql = SparqlUpdateV2.new
+    result = 
+    {
+      :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+      :id =>"BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME",
+      :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+      :label=>"",
+      :extension_properties=>[],
+      :ordinal=>1,
+      :alias=>"",
+      :iso21090_datatype=>"",
+      :children=>[
+        {
+          :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+          :id=>"BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value",
+          :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+          :label=>"",
+          :extension_properties=>[],
+          :ordinal=>1,
+          :alias=>"Date Time (--DTC)",
+          :collect=>false,
+          :enabled=>false,
+          :question_text=>"",
+          :prompt_text=>"",
+          :simple_datatype=>"dateTime",
+          :format=>"",
+          :bridg_path=>"PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value",
+          :children=>[]
+        }
+      ]
+    }
+    item = BiomedicalConceptCore::Datatype.from_json(result)
+    parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
+    item.to_sparql_v2(parent_uri, sparql)
+    #write_text_file_2(sparql.to_s, sub_dir, "datatype_sparql_complex.txt")
+    expected = read_text_file_2(sub_dir, "datatype_sparql_complex.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
+
 end
   

@@ -153,7 +153,7 @@ describe BiomedicalConceptCore::Item do
       "<http://www.example.com/path#XXX_I1_DT1> cbc:ordinal \"1\"^^xsd:positiveInteger . \n" + 
       "<http://www.example.com/path#XXX_I1_DT1> cbc:alias \"\"^^xsd:string . \n" + 
       "<http://www.example.com/path#XXX_I1_DT1> cbc:iso21090_datatype \"\"^^xsd:string . \n" + 
-      "<http://www.example.com/path#XXX_I1> cbc:hasDatatype <http://www.example.com/path#XXX_I1> . \n" +
+      "<http://www.example.com/path#XXX_I1> cbc:hasDatatype <http://www.example.com/path#XXX_I1_DT1> . \n" +
       "}"
     item = BiomedicalConceptCore::Item.new
     item.id = "123"

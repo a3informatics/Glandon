@@ -41,10 +41,10 @@ describe "Dashboard JS", :type => :feature do
       click_link 'Biomedical Concepts'
       #pause
       expect(page).to have_content 'Index: Biomedical Concepts'
-      find(:xpath, "//tr[contains(.,'BC_C16358')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: BC_C16358'
+      find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: BC  C16358'
       #pause
-      find(:xpath, "//tr[contains(.,'BC_C16358')]/td/a", :text => /\AT\z/).click
+      find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => /\AT\z/).click
       expect(page).to have_content 'Triple Store View'
       expect(page).to have_field('subjectNs', disabled: true)
       expect(page).to have_field('subjectId', disabled: true)
@@ -77,10 +77,10 @@ describe "Dashboard JS", :type => :feature do
       click_link 'Biomedical Concepts'
       #pause
       expect(page).to have_content 'Index: Biomedical Concepts'
-      find(:xpath, "//tr[contains(.,'BC_C16358')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: BC_C16358'
+      find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: BC  C16358'
       #pause
-      find(:xpath, "//tr[contains(.,'BC_C16358')]/td/a", :text => /\AT\z/).click
+      find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => /\AT\z/).click
       expect(page).to have_content 'Triple Store View'
       expect(page).to have_field('subjectNs', disabled: true)
       expect(page).to have_field('subjectId', disabled: true)
@@ -98,8 +98,8 @@ describe "Dashboard JS", :type => :feature do
       click_button 'Log in'
       #pause
       expect(page).to have_content 'CDISC Terminology 2015-09-25'
-      expect(page).to have_content 'Temperature (BC_C25206)'
-      expect(page).to have_content 'Weight (BC_C25208)'
+      expect(page).to have_content 'Temperature (BC C25206)'
+      expect(page).to have_content 'Weight (BC C25208)'
       expect(page).to have_content 'Vital Signs Baseline'      
     end
 
@@ -109,8 +109,8 @@ describe "Dashboard JS", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       #pause
-      find(:xpath, "//tr[contains(.,'APGAR Score (BC_A00002)')]/td/a", :text => /\AHistory\z/).click
-      expect(page).to have_content 'History: BC_A00002'
+      find(:xpath, "//tr[contains(.,'APGAR Score (BC A00002)')]/td/a", :text => /\AHistory\z/).click
+      expect(page).to have_content 'History: BC  A00002'
     end
 
   end

@@ -55,7 +55,7 @@
 	</table>
 	<%= link_to "Close", @close_path, :class => "btn btn-primary" %>
   <% if @form.edit? and @form.latest? %>
-    <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+    <%= link_to "Edit", edit_form_path(:id => @form.id, :biomedical_concept => { :namespace => @form.namespace }), :class => "btn btn-primary" %>
   <% end %>
   <%= link_to "Clone", clone_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
 	<%= link_to "Export JSON", export_json_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-info" %>

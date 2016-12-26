@@ -133,7 +133,7 @@ $(document).ready(function() {
       var currentD3Node = d3eGetCurrent();
       var tcRefSNode = newQuestionCli(data);
       var tcRefD3Node = d3eAddNode(currentD3Node, tcRefSNode.label, tcRefSNode.type, true, tcRefSNode, true);
-      addSNode(currentD3Node.data, tcRefD3Node.data, true);
+      d3eAddData(currentD3Node, tcRefD3Node.data, true);
       questionClTable.row.add(tcRefD3Node);
       questionClTable.draw(false);
       displayNode(currentD3Node);
@@ -1132,43 +1132,43 @@ function newQuestionCli(cli) {
 */
 function addGroup(d3ParentNode) {
   var d3Node = addD3Node(d3ParentNode, C_NORMAL_GROUP, "Group", newFormGroup, null, true);
-  addSNode(d3ParentNode.data, d3Node.data, true);
+  d3eAddData(d3ParentNode, d3Node.data, true);
   return d3Node;
 }
 
 function addCommonGroup(d3ParentNode) {
   var d3Node = addD3Node(d3ParentNode, C_COMMON_GROUP, "Common Group", newCommonGroup, null, false);
-  addSNode(d3ParentNode.data, d3Node.data, false);
+  d3eAddData(d3ParentNode, d3Node.data, false);
   return d3Node;
 }
 
 function addCommonItem(d3ParentNode, label) {
   var d3Node = addD3Node(d3ParentNode, C_COMMON_ITEM, label, newCommonItem, null, true, false);
-  addSNode(d3ParentNode.data, d3Node.data, true);
+  d3eAddData(d3ParentNode, d3Node.data, true);
   return d3Node;
 }
 
 function addQuestion(d3ParentNode) {
   var d3Node = addD3Node(d3ParentNode, C_QUESTION, "Question", newQuestion, null, true, true);
-  addSNode(d3ParentNode.data, d3Node.data, true);
+  d3eAddData(d3ParentNode, d3Node.data, true);
   return d3Node;
 }
 
 function addMapping(d3ParentNode) {
   var d3Node = addD3Node(d3ParentNode, C_MAPPING, "Mapping", newMapping, null, true, true);
-  addSNode(d3ParentNode.data, d3Node.data, true);
+  d3eAddData(d3ParentNode, d3Node.data, true);
   return d3Node;
 }
 
 function addPlaceholder(d3ParentNode) {
   var d3Node = addD3Node(d3ParentNode, C_PLACEHOLDER, "Placeholder", newPlaceholder, null, true, true);
-  addSNode(d3ParentNode.data, d3Node.data, true);
+  d3eAddData(d3ParentNode, d3Node.data, true);
   return d3Node;
 }
 
 function addLabelText(d3ParentNode) {
   var d3Node = addD3Node(d3ParentNode, C_TEXTLABEL, "Label Text", newLabelText, null, true, true);
-  addSNode(d3ParentNode.data, d3Node.data, true)
+  d3eAddData(d3ParentNode, d3Node.data, true)
   return d3Node;
 }
 
@@ -1184,17 +1184,17 @@ function addBc(d3ParentNode) {
     success: function(result){
       var bc = $.parseJSON(JSON.stringify(result));
       var bcD3Node = addD3Node(d3ParentNode, C_NORMAL_GROUP, bc.label, newBCGroup, bc, true, false);
-      addSNode(d3ParentNode.data, bcD3Node.data, true)
+      d3eAddData(d3ParentNode, bcD3Node.data, true)
       for (var i=0; i<bc.children.length; i++) {
         var property = bc.children[i];
         if (property.enabled && property.collect) {
           var propertyD3Node = addD3Node(bcD3Node, C_BC_QUESTION, property.alias, newBCProperty, property, true, false);
-          addSNode(bcD3Node.data, propertyD3Node.data, true)
+          d3eAddData(bcD3Node, propertyD3Node.data, true)
           for (var j=0; j<property.children.length; j++) {
             var tcRef = property.children[j];
             var tcRefD3Node = addD3Node(propertyD3Node, C_TC_REF, tcRef.local_label, newBCPropertyCli, tcRef, true, false);
             tcRefD3Node.enabled = true    
-            addSNode(propertyD3Node.data, tcRefD3Node.data, true);
+            d3eAddData(propertyD3Node, tcRefD3Node.data, true);
             getReference(tcRefD3Node);
           }
         }
@@ -1249,14 +1249,14 @@ function addD3Node(d3ParentNode, type, label, newFunction, functionData, atEnd, 
   return d3Node
 }
 
-function addSNode(parent, node, end) {
-  if (end) {
-    parent.children.push(node);
-  } else {
-    parent.children.unshift(node);
-  }
-  d3eSetOrdinal(parent);
-}
+//function addSNode(parent, node, end) {
+//  if (end) {
+//    parent.children.push(node);
+//  } else {
+//    parent.children.unshift(node);
+//  }
+//  d3eSetOrdinal(parent);
+//}
 
 /*
 * Other utility functions
