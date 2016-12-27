@@ -104,13 +104,19 @@ describe("D3 Editor", function() {
 	it("handles a double click on a node", function() {
 		var rootNode = testTree();
 		d3eDisplayTree(rootNode.key);
-		var gRef = d3FindGRef(2);
+		var gRef = d3FindGRefByName("child-1");
 		var fill = getFill(gRef)
 		simulateDblClick(gRef);
-		//expect(lastDblClickNode.name).to.equal("child-1");
-		expect(hiddenNodeTest(getFill(gRef))).to.equal(true);		
-		simulateDlClick(gRef);
-		expect(hiddenNodeTest(getFill(gRef))).to.equal(false);		
+		expect(lastDblClickNode.name).to.equal("child-1");
+		var hiddenGRef = d3FindGRefByName("child-1"); // Have to refresh reference, new tree after double click
+		expect(selectedNodeTest(getFill(hiddenGRef))).to.equal(true);		
+		var otherGRef = d3FindGRefByName("child-2");  
+		simulateClick(otherGRef);
+		expect(selectedNodeTest(getFill(otherGRef))).to.equal(true);		
+		expect(hiddenNodeTest(getFill(hiddenGRef))).to.equal(true);		
+		simulateDblClick(hiddenGRef);
+		var hiddenGRef = d3FindGRefByName("child-1"); // Have to refresh reference, new tree after double click
+		expect(hiddenNodeTest(getFill(hiddenGRef))).to.equal(false);		
   });
   
 	

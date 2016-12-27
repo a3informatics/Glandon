@@ -99,16 +99,22 @@ function d3eExpandHide(node) {
   }
 } 
 
-/*
- * Force hide a node
+/**
+ * Force hide a node's children
+ * 
+ * @param node [Object] the node
+ * @return [Null]
  */
 function d3eForceHide(node) {
   node.expand = false;
   d3eExpandHide(node);
 } 
 
-/*
- * Force expand a node. Only do it if there are children.
+/**
+ * Force expand a node's children
+ * 
+ * @param node [Object] the node
+ * @return [Null]
  */
 function d3eForceExpand(node) {
   node.expand = (node.save.length > 0) ? true : false;

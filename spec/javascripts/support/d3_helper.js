@@ -1,5 +1,5 @@
 function getFill(gRef) {
-	return d3.select(gRef).select('circle')[0][0].style.fill; // Syntac a bit evil, not sure why the [0][0]  
+	return d3.select(gRef).select('circle')[0][0].style.fill; // Syntax a bit evil, not sure why the [0][0]  
 }
 
 function selectedNodeTest(fill) {
