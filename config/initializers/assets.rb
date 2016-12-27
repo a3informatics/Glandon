@@ -23,7 +23,7 @@ Rails.application.config.assets.version = '1.0'
 	cdisc_search
   thesauri_editor thesauri_viewer thesauri_search
   form_placeholder_new form_editor form_viewer form_show form_utility
-  d3_local_v2 d3graph d3_graph d3_editor 
+  d3_tree d3graph d3_graph d3_editor 
   standard_datatable ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end

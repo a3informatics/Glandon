@@ -115,9 +115,12 @@ function d3ClearNode (node, ref) {
   d3.select(ref).select('circle').style("fill", colour);
 }
 
-/*
- * Node colour function. 
- */ 
+/**
+ * Sets the node fill colour
+ *
+ * @param node [Object] the current node
+ * @return [String] the fill colour
+ */
 function d3NodeColour (node) {
   if (node.expand) {
     return "skyblue";
@@ -141,9 +144,12 @@ function d3NodeColour (node) {
   }
 }
 
-/*
- * Node colour function. 
- */ 
+/**
+ * Sets the node text colour
+ *
+ * @param node [Object] the current node
+ * @return [String] the text colour
+ */
 function d3TextColour (node) {
   if ('is_common' in node) {
     if(node.is_common) {
