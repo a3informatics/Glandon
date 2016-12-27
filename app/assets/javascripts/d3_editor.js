@@ -7,6 +7,14 @@ var clickCallBackPostFunction;
 var dblClickCallBackPostFunction;
 var d3Div;
 
+/**
+ * Initialize the editor. Set the call back functions
+ *
+ * @param clickCallBackPre [Function] the function to be called pre click processing
+ * @param clickCallBackPost [Function] the function to be called post click processing
+ * @param dblClickCallBackPost [Function] the function to be called post click processing
+ * @return [Null] 
+ */
 function d3eInit(clickCallBackPre, clickCallBackPost, dblClickCallBackPost) {
   nextKeyId = 1;
   currentGRef = null;
@@ -54,7 +62,7 @@ function d3eGetCurrent() {
 function d3eClick(node) {    
   if (currentNode != null) {
     clickCallBackPreFunction(currentNode);
-    d3ClearNode(currentNode, currentGRef);  
+    d3RestoreNode(currentGRef);  
   }
   currentGRef = this;
   currentNode = node;
@@ -107,12 +115,20 @@ function d3eForceExpand(node) {
   d3eExpandHide(node); 
 } 
 
+/**
+ * Displays the tree
+ * 
+ * @param nodeKey [Integer] the node key of the node to be displayed
+ * @return [Null]
+ */
 function d3eDisplayTree(nodeKey) {
   d3TreeNormal(d3Div, rootNode, d3eClick, d3eDblClick);
   var gRef = d3FindGRef(nodeKey);
-  currentGRef = gRef;
-  currentNode = gRef.__data__;
-  d3MarkNode(currentGRef);    
+  if (gRef !== null) {
+    currentGRef = gRef;
+    currentNode = gRef.__data__;
+    d3MarkNode(currentGRef);
+  }
 }
 
 /**

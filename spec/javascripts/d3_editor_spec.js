@@ -1,40 +1,167 @@
+//= require d3_tree
 //= require d3_editor
+//= require rspec_helper
 
 describe("D3 Editor", function() {
 
-  it("initialises the editor", function() {
-  });
+  var lastClickPreNode;
+	var lastClickPostNode;
+	var lastDblClickNode;
+	
+  function clickPre (node) {
+  	lastClickPreNode = node;
+ 	}
 
+	function clickPost (node) {
+  	lastClickPostNode = node;
+ 	}
 
-	it("sets the current node", function() {
-  });
+	function dblClick (node) {
+  	lastDblClickNode = node;
+  }
   
+  function testTree() {
+  	d3eInit(clickPre, clickPost, dblClick);
+  	var data = {name: "root-data", is_common: true};
+  	var root_node = d3eRoot("root", "x-type", data);
+		var data1 = {name: "level-1-data-1"};
+  	var node1 = d3eAddNode(root_node, "child-1", "level-1-type", false, data1, true);
+		d3eAddData(root_node, data1, true);
+		var data2 = {name: "level-1-data-2"};
+  	var node2 = d3eAddNode(root_node, "child-2", "level-1-type", false, data2, true);
+  	d3eAddData(root_node, data2, true);
+		var data3 = {name: "level-1-data-3"};
+  	var node3 = d3eAddNode(root_node, "child-3", "level-1-type", false, data3, false);
+  	d3eAddData(root_node, data3, false);
+  	var data4 = {name: "level-1-data-4"};
+  	var node4 = d3eAddNode(root_node, "child-4", "level-1-type", false, data4, true);
+  	d3eAddData(root_node, data4, true);
+  	var data5 = {name: "level-2-data-5"};
+  	var node5 = d3eAddNode(node1, "child-5", "level-2-type", false, data5, true);
+  	d3eAddData(node1, data5, true);
+  	var data6 = {name: "level-2-data-6"};
+  	var node6 = d3eAddNode(node1, "child-6", "level-2-type", false, data6, true);
+  	d3eAddData(node1, data6, true);
+  	return root_node;
+  }
+
+  beforeEach(function() {
+  	fixture.set('<div id="d3" style="height: 300px; width: 300px"></div>');
+  	//d3Div = document.getElementById("d3");
+	});
+
+  it("initialises the editor", function() {
+  	d3eInit(clickPre, clickPost, dblClick);
+  	expect(nextKeyId).to.equal(1);
+  	expect(currentGRef).to.equal(null);
+  	expect(currentNode).to.equal(null);
+  	expect(rootNode).to.equal(null);
+  	expect(clickCallBackPreFunction).to.equal(clickPre);
+  	expect(clickCallBackPostFunction).to.equal(clickPost);
+  	expect(dblClickCallBackPostFunction).to.equal(dblClick);
+  });
+
+	it("determines if current set", function() {
+		var rootNode = testTree();
+		expect(d3eCurrentSet()).to.equal(false);
+		var rootGRef = d3FindGRef(rootNode.key);
+		d3eDisplayTree(rootNode.key);
+		expect(d3eCurrentSet()).to.equal(true);
+  });  
 	
 	it("gets the current node", function() {
+		var rootNode = testTree();
+		var rootGRef = d3FindGRef(rootNode.key);
+		d3eDisplayTree(rootNode.key);
+		expect(d3eGetCurrent()).to.equal(rootNode);
   });
   
 	
-	it("d3eClick(node)", function() {
+	it("handles a click on a node", function() {
+		var rootNode = testTree();
+		d3eDisplayTree(rootNode.key);
+		var gRef = d3FindGRef(3);
+		var nodeData = d3FindData(3);
+		simulateClick(gRef);
+		expect(lastClickPostNode.name).to.equal("child-2");
+		expect(currentNode).to.equal(nodeData);
+		expect(currentGRef).to.not.be.null;
+		expect(selectedNodeTest(getFill(gRef))).to.equal(true);
+		var prevGRef = gRef;
+		var gRef = d3FindGRef(4);
+		var nodeData = d3FindData(4);
+		simulateClick(gRef);
+		expect(lastClickPreNode.name).to.equal("child-2");
+		expect(lastClickPostNode.name).to.equal("child-3");
+		expect(currentNode).to.equal(nodeData);
+		expect(currentGRef).to.not.be.null;
+		expect(disabledNodeTest(getFill(prevGRef))).to.equal(true);
+		expect(selectedNodeTest(getFill(prevGRef))).to.equal(false);
+		expect(selectedNodeTest(getFill(gRef))).to.equal(true);
   });
   
 	    
 	it("handles a double click on a node", function() {
+		var rootNode = testTree();
+		d3eDisplayTree(rootNode.key);
+		var gRef = d3FindGRef(2);
+		var fill = getFill(gRef)
+		simulateDblClick(gRef);
+		//expect(lastDblClickNode.name).to.equal("child-1");
+		expect(hiddenNodeTest(getFill(gRef))).to.equal(true);		
+		simulateDlClick(gRef);
+		expect(hiddenNodeTest(getFill(gRef))).to.equal(false);		
   });
   
 	
-	it("exapnad hide", function() {
+	it("expand / hide a node", function() {
+		var rootNode = testTree();
+		d3eDisplayTree(rootNode.key);
+		var node = d3FindData(2);
+		expect(node.name).to.equal("child-1")
+		d3eExpandHide(node);
+		expect(node.children.length).to.equal(0);
+		expect(node.expand).to.equal(true);
+		d3eExpandHide(node);
+		expect(node.children.length).to.equal(2);
+		expect(node.expand).to.equal(false);
+		node = d3FindData(6);
+		d3eExpandHide(node);
+		expect(node.hasOwnProperty('children')).to.equal(false);
+		expect(node.expand).to.equal(false);
   });
   
-	
 	it("forces a the child nodes to be hidden", function() {
+		var rootNode = testTree();
+		d3eDisplayTree(rootNode.key);
+		var node = d3FindData(2);
+		expect(node.expand).to.equal(false);
+		d3eForceHide(node);
+		expect(node.expand).to.equal(true);
   });
   
 	
 	it("forces the child nodes to be expanded", function() {
+		var rootNode = testTree();
+		d3eDisplayTree(rootNode.key);
+		var node = d3FindData(2);
+		expect(node.expand).to.equal(false);
+		d3eForceHide(node);
+		expect(node.children.length).to.equal(0);
+		expect(node.expand).to.equal(true);
+		d3eForceExpand(node);
+		expect(node.children.length).to.equal(2);
+		expect(node.expand).to.equal(false);
   });
   
 	
-	it("display the tree with focus being given to a node", function() {
+	it("display the tree with focus being given to a specified node", function() {
+		var rootNode = testTree();
+		var rootGRef = d3FindGRef(rootNode.key);
+		d3eDisplayTree(rootNode.key);
+		expect(currentNode).to.equal(rootNode);
+		expect(currentGRef).to.not.be.null;
+		expect(selectedNodeTest(getFill(currentGRef))).to.equal(true);
   });
   
 	

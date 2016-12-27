@@ -1,10 +1,17 @@
-/*
+/**
+* A small interface to the D3 library for the creation of trees in a 
+* standardised method.
+*
+*/
+
+/**
  * D3 Initialise: Create a D3 tree. 
  *
- * d3Div:             The Div for the tree
- * jsonData:          The nodes for the tree
- * clickCallBack:     The click call back function
- * dblClickCallBack:  The click call back function
+ * @param d3Div [Object] the Div for the tree
+ * @param jsonData [Object] the nodes for the tree
+ * @param clickCallBack [Function] the click call back function
+ * @param dblClickCallBack [Function] the click call back function
+ * @return [Null]
  */
 function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   d3.select('svg').remove();
@@ -36,32 +43,40 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .on("dblclick", dblClickCallBack);
   node.append("circle")
     .attr("r", 5)
-    .attr("fill", function(d) { return d3NodeColour(d); });
+    //.attr("fill", function(d) { return d3NodeColour(d); });
+    .style("fill", function(d) { return d3NodeColour(d); });
   node.append("text")
     .attr("dx", function(d) { return d.children ? -8 : 8; })
     .attr("dy", 3)
-    .attr("fill", function(d) { return d3TextColour(d); })
+    //.attr("fill", function(d) { return d3TextColour(d); })
+    .style("fill", function(d) { return d3TextColour(d); })
     .attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
     .text(function(d) { if (d.name.length > 15) { return d.name.substring(0,12) + "..."} else { return d.name;} });
   d3.select(self.frameElement).style("height", height + "px");
 }
 
-/*
- * Mark node
+/**
+ * Marks a node by element reference
+ *
+ * @param ref [Object] the element reference for the node
+ * @return [Null]
  */
-function d3MarkNode (ref) {
-  d3.select(ref).select('circle').style("fill", "steelblue");
+function d3MarkNode(gRef) {
+  d3.select(gRef).select("circle").style("fill", "steelblue");
 }
 
-/*
- * Find the d3 node (not the data)
+/**
+ * Find the node element reference by key
+ *
+ * @param key [String] the key for the node
+ * @return [Object] the node element reference
  */
 function d3FindGRef(key) {
   var gRef = null;
   var nodes = d3.selectAll("g.node");
   for (var i=0; i<nodes[0].length; i++) {
     var data = nodes[0][i].__data__;
-    if (data.key == key) {
+    if (data.key === key) {
       gRef = nodes[0][i];
       break;
     }
@@ -69,15 +84,18 @@ function d3FindGRef(key) {
   return gRef;
 }
 
-/*
- * Find d3 reference (not the data) based on name
+/**
+ * Find the node element reference by name
+ *
+ * @param name [String] the key for the node
+ * @return [Object] the node element reference
  */
 function d3FindGRefByName(name) {
   var gRef = null;
   var nodes = d3.selectAll("g.node");
   for (var i=0; i<nodes[0].length; i++) {
     var data = nodes[0][i].__data__;
-    if (data.name == name) {
+    if (data.name === name) {
       gRef = nodes[0][i];
       break;
     }
@@ -85,15 +103,21 @@ function d3FindGRefByName(name) {
   return gRef;
 }
 
-/*
- * Get the node from a gRef
+/**
+ * Find the node data using the element reference
+ *
+ * @param gRef [Object] the element refeence for the node
+ * @return [Object] the node data
  */
 function d3GetData(gRef) {
   return gRef.__data__;
 }
 
-/*
- * Find the d3 node (not the data)
+/**
+ * Find the node data by key
+ *
+ * @param key [String] the key for the node
+ * @return [Object] the node data
  */
 function d3FindData(key) {
   var result = null;
@@ -107,12 +131,14 @@ function d3FindData(key) {
   return result;
 }
 
-/*
- * Clear node
- */ 
-function d3ClearNode (node, ref) {
-  var colour = d3NodeColour(node)
-  d3.select(ref).select('circle').style("fill", colour);
+/**
+ * Restore the node colour by element reference
+ *
+ * @param gRef [Object] the element refeence for the node
+ * @return [Object] the node data
+ */
+function d3RestoreNode(gRef) {
+  d3.select(gRef).select('circle').style("fill", d3NodeColour(gRef.__data__));
 }
 
 /**
