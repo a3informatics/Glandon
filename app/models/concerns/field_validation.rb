@@ -15,25 +15,43 @@ module FieldValidation
     else
       result = value.match /\A[A-Za-z0-9 ]+\z/ 
       return true if result != nil
-      object.errors.add(symbol, "contains an invalid characters")
+      object.errors.add(symbol, "contains invalid characters")
       return false
     end
   end
 
-  # Valid Domain Prefix
+  # Valid SDTM Domain Prefix
   #
   # @param symbol [String] The item being checked
   # @param value [String] The value being checked
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
-  def self.valid_domain_prefix?(symbol, value, object)
+  def self.valid_sdtm_domain_prefix?(symbol, value, object)
     if value.nil?
       object.errors.add(symbol, "is empty")
       return false
     else
       result = value.match /\A[A-Z]{2}\z/ 
       return true if result != nil
-      object.errors.add(symbol, "contains an invalid characters")
+      object.errors.add(symbol, "contains invalid characters, is empty or is too long")
+      return false
+    end
+  end
+
+  # Valid SDTM Variable
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_sdtm_variable_name?(symbol, value, object)
+    if value.nil?
+      object.errors.add(symbol, "is empty")
+      return false
+    else
+      result = value.match /\A[A-Z][A-Z0-9]{7}\z/ 
+      return true if result != nil
+      object.errors.add(symbol, "contains invalid characters, is empty or is too long")
       return false
     end
   end
@@ -51,7 +69,7 @@ module FieldValidation
     else
       result = "#{value}".match /\A[0-9]+\z/ 
       return true if result != nil
-      object.errors.add(symbol, "contains an invalid characters, must be an integer")
+      object.errors.add(symbol, "contains invalid characters, must be an integer")
       return false
     end
   end
@@ -69,7 +87,7 @@ module FieldValidation
     else
       result = value.match /\A[A-Za-z0-9]+\z/ 
       return true if result != nil
-      object.errors.add(symbol, "contains an invalid characters")
+      object.errors.add(symbol, "contains invalid characters")
       return false
     end
   end
@@ -83,7 +101,7 @@ module FieldValidation
   def self.valid_long_name?(symbol, value, object)
     result = value.match /^\A[A-Za-z0-9.!?,_ \-()]+\z/ 
     return true if result != nil
-    object.errors.add(symbol, "contains an invalid characters or is empty")
+    object.errors.add(symbol, "contains invalid characters or is empty")
     return false
   end
 
@@ -96,7 +114,7 @@ module FieldValidation
   def self.valid_submission_value?(symbol, value, object)
     result = value.match /^\A[A-Za-z0-9 ]*\z/ 
     return true if result != nil
-    object.errors.add(symbol, "contains an invalid characters")
+    object.errors.add(symbol, "contains invalid characters")
     return false
   end
 
@@ -109,7 +127,7 @@ module FieldValidation
   def self.valid_terminology_property?(symbol, value, object)
     result = value.match /^\A[A-Za-z0-9 .!?,'"_\-\/\\()\[\]~#*=:;&|]*\z/ 
     return true if result != nil
-    object.errors.add(symbol, "contains an invalid characters")
+    object.errors.add(symbol, "contains invalid characters")
     return false
   end
 
@@ -122,7 +140,7 @@ module FieldValidation
   def self.valid_label?(symbol, value, object)
     result = value.match /^\A[A-Za-z0-9.!?,_ \-()]*\z/ 
     return true if result != nil
-    object.errors.add(symbol, "contains an invalid characters")
+    object.errors.add(symbol, "contains invalid characters")
     return false
   end
 
@@ -135,7 +153,7 @@ module FieldValidation
   def self.valid_question?(symbol, value, object)
     result = value.match /^\A[A-Za-z0-9 .?,\-:;]*\z/ 
     return true if result != nil
-    object.errors.add(symbol, "contains an invalid characters")
+    object.errors.add(symbol, "contains invalid characters")
     return false
   end
 
@@ -148,7 +166,7 @@ module FieldValidation
   def self.valid_mapping?(symbol, value, object)
     result = value.match /^\A[A-Za-z0-9 .=]*\z/ 
     return true if result != nil
-    object.errors.add(symbol, "contains an invalid characters")
+    object.errors.add(symbol, "contains invalid characters")
     return false
   end
 
@@ -162,7 +180,7 @@ module FieldValidation
     return true if value.empty?
     result = value.match /^\A^\d+(\.\d+)?\z/ 
     return true if result != nil
-    object.errors.add(symbol, "contains an invalid characters")
+    object.errors.add(symbol, "contains invalid characters")
     return false
   end
 
@@ -194,7 +212,7 @@ module FieldValidation
       return true
     end
   rescue => e 
-    object.errors.add(symbol, "contains an invalid characters")
+    object.errors.add(symbol, "contains invalid characters")
     return false
   end
 

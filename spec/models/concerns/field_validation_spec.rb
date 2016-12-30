@@ -11,19 +11,19 @@ describe FieldValidation do
   it "checks an invalid identifier, @" do
     object = IsoConcept.new
     expect(FieldValidation.valid_identifier?(:test, "ABab@0123 zxZX ", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks an invalid identifier, \"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_identifier?(:test, "ABab\"", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks an invalid identifier, empty" do
     object = IsoConcept.new
     expect(FieldValidation.valid_identifier?(:test, "", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks an invalid identifier, nil" do
@@ -32,34 +32,93 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
   end
 
-  it "checks a valid prefix" do
+  it "checks a valid SDTM Domain prefix" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_domain_prefix?(:test, "AZ", object)).to eq(true)
+    expect(FieldValidation.valid_sdtm_domain_prefix?(:test, "AZ", object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
 
-  it "checks an invalid prefix, Az" do
+  it "checks an invalid SDTM Domain prefix, Az" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_domain_prefix?(:test, "Az", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(FieldValidation.valid_sdtm_domain_prefix?(:test, "Az", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
   end
 
-  it "checks an invalid prefix, zA" do
+  it "checks an invalid SDTM Domain prefix, zA" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_domain_prefix?(:test, "zA", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(FieldValidation.valid_sdtm_domain_prefix?(:test, "zA", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
   end
 
-  it "checks an invalid prefix, AAA" do
+  it "checks an invalid SDTM Domain prefix, AAA" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_domain_prefix?(:test, "AAA", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(FieldValidation.valid_sdtm_domain_prefix?(:test, "AAA", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
   end
 
-  it "checks an invalid prefix, A£" do
+  it "checks an invalid SDTM Domain prefix, A£" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_domain_prefix?(:test, "A£", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(FieldValidation.valid_sdtm_domain_prefix?(:test, "A£", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
+  it "checks an invalid SDTM Domain prefix, \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_domain_prefix?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
+  it "checks an invalid SDTM Domain prefix, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_domain_prefix?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
+  it "checks a valid SDTM variable, A1234567" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "A1234567", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks an invalid SDTM variable, --234567" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "--234567", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+  it "checks an invalid SDTM variable, A12345678" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "A12345678", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
+  it "checks an invalid SDTM variable, 12345678" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "12345678", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
+  it "checks an invalid SDTM variable, 1CCCCCCC" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "1CCCCCCC", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
+  it "checks an invalid SDTM variable, VSXXXXXXX" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "VSXXXXXXX", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
+  it "checks an invalid SDTM variable, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
+  it "checks an invalid SDTM variable, \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
   end
 
   it "checks a valid version, 1" do
@@ -83,7 +142,7 @@ describe FieldValidation do
   it "checks an invalid version, 1*" do
     object = IsoConcept.new
     expect(FieldValidation.valid_version?(:test, "1*", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters, must be an integer")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, must be an integer")
   end
 
   it "checks a valid short name, AShortName" do
@@ -101,13 +160,13 @@ describe FieldValidation do
   it "checks an invalid short name, A Short Name" do
     object = IsoConcept.new
     expect(FieldValidation.valid_short_name?(:test, "A Short Name", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks an invalid short name, AShortName!" do
     object = IsoConcept.new
     expect(FieldValidation.valid_short_name?(:test, "AShortName!", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks an invalid short name, nil" do
@@ -131,13 +190,13 @@ describe FieldValidation do
   it "checks an invalid long name, \"\"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_long_name?(:test, "", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters or is empty")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters or is empty")
   end
 
   it "checks an invalid long name, ALongName|" do
     object = IsoConcept.new
     expect(FieldValidation.valid_long_name?(:test, "ALongName|", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters or is empty")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters or is empty")
   end
 
   it "checks a valid submission value, \" \"" do
@@ -173,13 +232,13 @@ describe FieldValidation do
   it "checks an invalid submission value, !!" do
     object = IsoConcept.new
     expect(FieldValidation.valid_submission_value?(:test, "!!", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks an invalid submission value, \"@ \"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_submission_value?(:test, "@ ", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks a valid terminology property value, \"\"" do
@@ -197,7 +256,7 @@ describe FieldValidation do
   it "checks an invalid terminology property value, <>" do
     object = IsoConcept.new
     expect(FieldValidation.valid_terminology_property?(:test, "<>", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks a valid label" do
@@ -215,13 +274,13 @@ describe FieldValidation do
   it "checks an invalid label, @" do
     object = IsoConcept.new
     expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()@", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks an invalid label, &" do
     object = IsoConcept.new
     expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()&", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks a valid question" do
@@ -239,13 +298,13 @@ describe FieldValidation do
   it "checks an invalid question, #£" do
     object = IsoConcept.new
     expect(FieldValidation.valid_question?(:test, "A Question  #£", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks an invalid question, &" do
     object = IsoConcept.new
     expect(FieldValidation.valid_question?(:test, "A Question  &", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks valid date, 1960-02-13" do
@@ -257,13 +316,13 @@ describe FieldValidation do
   it "checks an invalid date, 1960-13-01" do
     object = IsoConcept.new
     expect(FieldValidation.valid_date?(:test, "1960-13-01", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks an invalid date, 1960-Nov-01" do
     object = IsoConcept.new
     expect(FieldValidation.valid_date?(:test, "1960-Nov-01", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks valid file, xxx" do
@@ -353,7 +412,7 @@ describe FieldValidation do
   it "checks invalid mapping" do
     object = IsoConcept.new
     expect(FieldValidation.valid_mapping?(:test, "WT!!!", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
   
   it "checks valid format, empty \"\"" do
@@ -395,19 +454,19 @@ describe FieldValidation do
   it "checks invalid format, ad" do
     object = IsoConcept.new
     expect(FieldValidation.valid_format?(:test, "a2", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks invalid format, d-d" do
     object = IsoConcept.new
     expect(FieldValidation.valid_format?(:test, "2-2", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks invalid format, .d" do
     object = IsoConcept.new
     expect(FieldValidation.valid_format?(:test, ".2", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid characters")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
   it "checks valid boolean, true" do
