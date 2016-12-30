@@ -1,0 +1,963 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: F-ACME_CRFTest
+:namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+:label: CRF Test Form
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2016-12-29T11:20:14+00:00'
+:last_changed_date: '2016-12-29T11:24:22+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-ACME_CRFTest-1
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+:scoped_identifier:
+  :id: SI-ACME_CRFTest-1
+  :identifier: CRF Test
+  :version_label: ''
+  :version: 1
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: F-ACME_CRFTest_G1
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: BC Group
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#CommonGroup
+    :id: F-ACME_CRFTest_G1_G1
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Common Group
+    :extension_properties: []
+    :ordinal: 1
+    :optional: false
+    :completion: ''
+    :note: ''
+    :children:
+    - :type: http://www.assero.co.uk/BusinessForm#CommonItem
+      :id: F-ACME_CRFTest_G1_G1_I1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Date and Time (--DTC)
+      :extension_properties: []
+      :ordinal: 1
+      :note: ''
+      :completion: ''
+      :optional: false
+      :item_refs:
+      - :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+      - :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+    - :type: http://www.assero.co.uk/BusinessForm#CommonItem
+      :id: F-ACME_CRFTest_G1_G1_I2
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Body Position (--POS)
+      :extension_properties: []
+      :ordinal: 2
+      :note: ''
+      :completion: ''
+      :optional: false
+      :item_refs:
+      - :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code
+      - :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :id: F-ACME_CRFTest_G1_G2
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Systolic Blood Pressure (BC C25298)
+    :extension_properties: []
+    :ordinal: 2
+    :optional: false
+    :completion: ''
+    :note: ''
+    :children:
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G1_G2_I1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Date and Time (--DTC)
+      :extension_properties: []
+      :ordinal: 1
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: true
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G1_G2_I1_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G1_G2_I2
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Body Position (--POS)
+      :extension_properties: []
+      :ordinal: 2
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: true
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G1_G2_I2_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G1_G2_I2_TCR1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71148_C62122
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G1_G2_I2_TCR2
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71148_C62166
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G1_G2_I2_TCR3
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71148_C62167
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G1_G2_I3
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Value (--ORRES)
+      :extension_properties: []
+      :ordinal: 3
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G1_G2_I3_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G1_G2_I4
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Units (--ORRESU)
+      :extension_properties: []
+      :ordinal: 4
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G1_G2_I4_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G1_G2_I4_TCR1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C49670
+    :repeating: false
+    :bc_ref:
+      :type: http://www.assero.co.uk/BusinessOperational#BcReference
+      :id: F-ACME_CRFTest_G1_G2_BCR1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: BC Reference
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25298
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :id: F-ACME_CRFTest_G1_G3
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Diastolic Blood Pressure (BC C25299)
+    :extension_properties: []
+    :ordinal: 3
+    :optional: false
+    :completion: ''
+    :note: ''
+    :children:
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G1_G3_I1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Date and Time (--DTC)
+      :extension_properties: []
+      :ordinal: 1
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: true
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G1_G3_I1_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G1_G3_I2
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Body Position (--POS)
+      :extension_properties: []
+      :ordinal: 2
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: true
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G1_G3_I2_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G1_G3_I2_TCR1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71148_C62122
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G1_G3_I2_TCR2
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71148_C62166
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G1_G3_I2_TCR3
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71148_C62167
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G1_G3_I3
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Value (--ORRES)
+      :extension_properties: []
+      :ordinal: 3
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G1_G3_I3_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G1_G3_I4
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Units (--ORRESU)
+      :extension_properties: []
+      :ordinal: 4
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G1_G3_I4_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_code
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G1_G3_I4_TCR1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C49670
+    :repeating: false
+    :bc_ref:
+      :type: http://www.assero.co.uk/BusinessOperational#BcReference
+      :id: F-ACME_CRFTest_G1_G3_BCR1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: BC Reference
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25299
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: F-ACME_CRFTest_G4
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Q Repeating Group
+  :extension_properties: []
+  :ordinal: 4
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: F-ACME_CRFTest_G4_I1
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Question 1
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Test Name
+    :mapping: VSTEST
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: F-ACME_CRFTest_G4_I2
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Question 2
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Value
+    :mapping: VSORRES
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: F-ACME_CRFTest_G4_I3
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Question 3
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '3'
+    :question_text: Units
+    :mapping: VSORESU
+    :children: []
+  :repeating: true
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: F-ACME_CRFTest_G3
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Q Group
+  :extension_properties: []
+  :ordinal: 3
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: F-ACME_CRFTest_G3_I1
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Question 1
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '3'
+    :question_text: Question 1
+    :mapping: MAP 1 = MAP 2
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: F-ACME_CRFTest_G3_I2
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Question 2
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '3'
+    :question_text: Text 2
+    :mapping: MAP 2 = YYY
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Mapping
+    :id: F-ACME_CRFTest_G3_I3
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Mapping 3
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :mapping: ''
+  - :type: http://www.assero.co.uk/BusinessForm#TextLabel
+    :id: F-ACME_CRFTest_G3_I4
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Label Text 4
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :label_text: ''
+  - :type: http://www.assero.co.uk/BusinessForm#Placeholder
+    :id: F-ACME_CRFTest_G3_I5
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Placeholder 5
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :free_text: ''
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: F-ACME_CRFTest_G2
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: BC Repeating Group
+  :extension_properties: []
+  :ordinal: 2
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :id: F-ACME_CRFTest_G2_G1
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Temperature (BC C25206)
+    :extension_properties: []
+    :ordinal: 1
+    :optional: false
+    :completion: ''
+    :note: ''
+    :children:
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G2_G1_I1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Date and Time (--DTC)
+      :extension_properties: []
+      :ordinal: 1
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G2_G1_I1_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G2_G1_I2
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Value (--ORRES)
+      :extension_properties: []
+      :ordinal: 2
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G2_G1_I2_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G2_G1_I3
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Units (--ORRESU)
+      :extension_properties: []
+      :ordinal: 3
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G2_G1_I3_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G2_G1_I3_TCR1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C42559
+    :repeating: false
+    :bc_ref:
+      :type: http://www.assero.co.uk/BusinessOperational#BcReference
+      :id: F-ACME_CRFTest_G2_G1_BCR1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: BC Reference
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25206
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :id: F-ACME_CRFTest_G2_G2
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Weight (BC C25208)
+    :extension_properties: []
+    :ordinal: 2
+    :optional: false
+    :completion: ''
+    :note: ''
+    :children:
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G2_G2_I1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Date and Time (--DTC)
+      :extension_properties: []
+      :ordinal: 1
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G2_G2_I1_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25208_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G2_G2_I2
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Value (--ORRES)
+      :extension_properties: []
+      :ordinal: 2
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G2_G2_I2_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G2_G2_I3
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Units (--ORRESU)
+      :extension_properties: []
+      :ordinal: 3
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G2_G2_I3_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G2_G2_I3_TCR1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C28252
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G2_G2_I3_TCR2
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C48531
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G2_G2_I3_TCR3
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C48155
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G2_G2_I3_TCR4
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 4
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71620_C48519
+    :repeating: false
+    :bc_ref:
+      :type: http://www.assero.co.uk/BusinessOperational#BcReference
+      :id: F-ACME_CRFTest_G2_G2_BCR1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: BC Reference
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25208
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :id: F-ACME_CRFTest_G2_G3
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Height (BC C25347)
+    :extension_properties: []
+    :ordinal: 3
+    :optional: false
+    :completion: ''
+    :note: ''
+    :children:
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G2_G3_I1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Date and Time (--DTC)
+      :extension_properties: []
+      :ordinal: 1
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G2_G3_I1_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G2_G3_I2
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Value (--ORRES)
+      :extension_properties: []
+      :ordinal: 2
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G2_G3_I2_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_value
+      :children: []
+    - :type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :id: F-ACME_CRFTest_G2_G3_I3
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: Result Units (--ORRESU)
+      :extension_properties: []
+      :ordinal: 3
+      :note: ''
+      :completion: ''
+      :optional: false
+      :is_common: false
+      :property_ref:
+        :type: http://www.assero.co.uk/BusinessOperational#PReference
+        :id: F-ACME_CRFTest_G2_G3_I3_PR0
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: BC Property Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 0
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G2_G3_I3_TCR1
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C49668
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G2_G3_I3_TCR2
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C66770_C48500
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G2_G3_I3_TCR3
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71620_C41139
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: F-ACME_CRFTest_G2_G3_I3_TCR4
+        :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: false
+        :ordinal: 4
+        :local_label: Thesaurus Concept Reference
+        :subject_ref:
+          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+          :id: CLI-C71620_C71253
+    :repeating: false
+    :bc_ref:
+      :type: http://www.assero.co.uk/BusinessOperational#BcReference
+      :id: F-ACME_CRFTest_G2_G3_BCR1
+      :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+      :label: BC Reference
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_BC_C25347
+  :repeating: true
+  :bc_ref: {}

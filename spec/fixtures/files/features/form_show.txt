@@ -1,0 +1,249 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-fbc705d876f043ba40e3c6d54b9c1982bf5c5a63ccfc476ac17dffeedb2b76ac.ico" />
+
+  	<title>Glandon</title>
+      <link rel="stylesheet" media="all" href="/assets/application-f5e4e6b933b8dc6388b68116172a8a80d897ecfd0d7968f5a397e30ac478fa06.css" />
+      <script src="/assets/application-7a35e846de7b4ab627ccff906b57227f5b14a8ca9c1a22cb9e1f1879797a1491.js"></script>
+    <link rel="stylesheet" media="print" href="/assets/print-756a84fd869b38b1aff00d1f503cc78bbf65c26b169399d49cf2ce7539eb94bd.css" />
+    
+
+    <style>
+      body {
+        padding-top: 55px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                  <img alt="Brand" src="/assets/glandon1-fef0984200177de93f68545ba7b8c592ef509efe8e1487681846363417b31d5f.png" height="25" />
+                </a>
+                <a class="navbar-brand" href="/">Glandon (v2.3.0)</a>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                  <li>
+                    <a id="print_button" href="">
+                      <span class="glyphicon glyphicon-print"></span>
+</a>                  </li>
+                  <li><a id="settings_button" href="/user_settings"><span class="glyphicon glyphicon-cog"></span> </a></li>
+                  <li><a id="home_button" href="/"><span class="glyphicon glyphicon-home"></span> </a></li>
+                  <li>
+                    <a id="logoff_button" rel="nofollow" data-method="delete" href="/users/sign_out">
+                      <span class="glyphicon glyphicon-off"></span>
+</a>                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div id="page_nav_menu" class="col-md-2">
+          <ul class="well">
+            <li><a href="/iso_concept_systems">Classifications (tags)</a></li>
+          </ul>
+          <ul class="well">
+            <li><a href="/notepads">Notepad</a></li>
+            <li><a href="/markdown_engines">Markdown</a></li>
+          </ul>
+          <ul class="well">
+            <li class="active"><a href="/thesauri">Terminology<span class="sr-only">(current)</span></a></li>
+            <li><a href="/cdisc_terms/history">CDISC Terminology</a></li>
+          </ul>
+          <ul class="well">
+            <li><a href="/biomedical_concept_templates">Biomedical Concept Templates</a></li>
+            <li><a href="/biomedical_concepts">Biomedical Concepts</a></li>
+          </ul>
+          <ul class="well">
+            <li><a href="/forms">Forms</a></li>
+          </ul>
+          <ul class="well">
+            <li><a href="/sdtm_models/history">CDISC SDTM Model</a></li>
+            <li><a href="/sdtm_igs/history">CDISC SDTM IGs</a></li>
+          </ul>
+          <ul class="well">
+            <li><a href="/sdtm_user_domains">Domains</a></li>
+          </ul>
+          <!--<button type="button" id="page_nav_menu_hide" class="btn btn-primary">Hide</button>-->
+        </div>
+
+				<div class="col-md-10">
+          <div id="alerts">
+          </div>
+  				<script src="/assets/form_show-da06059d4b5b2ce3763c85c887c147b4c8919c52a652633ee97cd48c6ae83ca1.js"></script>
+<script src="/assets/ajax_requests-d5aed4ab6dd00e19456f28ff0ca3e49d3bef17275bb4d0079dd3715668006492.js"></script>
+<script src="/assets/form_utility-acb9b9ed56ded701d01370babcead384671ab7ce1f046377b91ee5d690be522b.js"></script>
+<script id="jsonData" type="text/json">
+    {"operation":{"action":"UPDATE","new_version":1,"new_state":"Candidate","identifier_edit":false},"managed_item":{"type":"http://www.assero.co.uk/BusinessForm#Form","id":"F-ACME_DM101","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Demographics","extension_properties":[],"origin":"See the MS Word Document for Demographics dated 2015-07-28","change_description":"Created from MS Word document","creation_date":"2016-09-01T09:37:58+01:00","last_changed_date":"2016-09-01T09:38:03+01:00","explanatory_comment":"Incorporates all changes up to and including 2015-07-28","registration_state":{"namespace":"http://www.assero.co.uk/MDRItems","id":"RS-ACME_DM101-1","registration_authority":{"id":"RA-123456789","number":"123456789","scheme":"DUNS","owner":true,"namespace":{"namespace":"http://www.assero.co.uk/MDRItems","id":"NS-ACME","name":"ACME Pharma","shortName":"ACME"}},"registration_status":"Candidate","administrative_note":"","effective_date":"2016-01-01T00:00:00Z","until_date":"2016-01-01T00:00:00Z","current":false,"unresolved_issue":"","administrative_status":"","previous_state":"Candidate"},"scoped_identifier":{"id":"SI-ACME_DM101-1","identifier":"DM1 01","version_label":"","version":1,"namespace":{"namespace":"http://www.assero.co.uk/MDRItems","id":"NS-ACME","name":"ACME Pharma","shortName":"ACME"}},"completion":"","note":"* This is a mandatory module that must appear in ALL CRFs.\n* CRF Number should be deleted for EDC trials.  This field should only be used for internal UCB paper studies.\n* Ethnic subgroup section can be deleted when not required as per protocol.  If used, the list of races / countries must be customized as per protocol (for internal UCB studies: new codes will need to be created).\n* For extension studies, Race, Ethnicity and Ethnic subgroup should be deleted.\n* Based on a decision made in the 31Oct12 DARC meeting, the Date of Birth field was split into three (3) separate fields: birth day, birth month and birth year.  This split is not represented in the modules within this document.  Depending upon country regulations, acceptable data collections are:\n    * Full birth date = birth day, birth month and birth year\n    * Partial birth date = birth month and birth year\n    * Birth year only\n* Most NIS studies will use version DM3_01.\n","children":[{"type":"http://www.assero.co.uk/BusinessForm#NormalGroup","id":"F-ACME_DM101_G1","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Question Group","extension_properties":[],"ordinal":1,"optional":false,"completion":"","note":"","children":[{"type":"http://www.assero.co.uk/BusinessForm#Question","id":"F-ACME_DM101_G1_I1","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"CRF Number","extension_properties":[],"ordinal":1,"note":"","completion":"* Record the subjects 5-digit CRF number in the space provided.","optional":true,"datatype":"integer","format":"5","question_text":"CRF Number:","mapping":"[NOT SUBMITTED]","children":[]},{"type":"http://www.assero.co.uk/BusinessForm#Question","id":"F-ACME_DM101_G1_I2","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Date of Birth","extension_properties":[],"ordinal":2,"note":"","completion":"* Record the birth date using the format DD MMM YYYY.\n\nExample:\n\n| DD | MMM | YYYY |\n|----|-----|------|\n| 15 | Nov | 1966 | \n\n\n\n\n* Confirm the subject is 6-17 years of age.\n* **For sites within countries that do not allow the collection of a full date of birth (eg, Germany), the subject s YEAR of birth ONLY must be recorded.  Draw a line through the fields for day and month and ONLY record the 4-digit year the subject was born (see example below).**\n\nExample:\n\n\n| DD | MMM | YYYY |\n|----|-----|------|\n| -- | --- | 1966 |\n","optional":false,"datatype":"date","format":"","question_text":"Date of Birth:","mapping":"BRTHDTC","children":[]},{"type":"http://www.assero.co.uk/BusinessForm#Question","id":"F-ACME_DM101_G1_I3","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Sex","extension_properties":[],"ordinal":3,"note":"","completion":"* Indicate the appropriate sex.","optional":false,"datatype":"string","format":"","question_text":"Sex:","mapping":"SEX","children":[{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I3_TCR1","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":1,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","id":"CLI-C66731_C20197"}},{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I3_TCR2","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":2,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","id":"CLI-C66731_C16576"}}]},{"type":"http://www.assero.co.uk/BusinessForm#Question","id":"F-ACME_DM101_G1_I4","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Race","extension_properties":[],"ordinal":4,"note":"","completion":"* **Race must be self-reported by the subject (not judged by the site).** \nThe race definitions below, which have been adapted from the FDA Race \u0026 Ethnicity Guideline, can be used to help match subject-reported races with the options in the CRF. \n\nSelect the race most closely associated with the subject s reported race.  \n* American Indian or Alaska Native: A person having origins in any of the original peoples of North and South America (including Central America)\n    - Asian: A person having origins in any of the original peoples of the Far East, Southeast Asia or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand and Vietnam.\n    - Black: A person having origins in any of the black racial groups of Africa.\n    - Native Hawaiian or Other Pacific Islander: A person having origins in any of the original peoples of Hawaii, Guam, Samoa or other Pacific Island.\n    - White: A person having origins in any of the original peoples of Europe, the Middle East or North Africa.\n* If multiple races have been reported, select Other / Mixed and enter the reported races in the space provided.\n","optional":false,"datatype":"string","format":"","question_text":"Race:","mapping":"RACE","children":[{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I4_TCR1","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":1,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","id":"CLI-C74457_C41259"}},{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I4_TCR2","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":2,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","id":"CLI-C74457_C41260"}},{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I4_TCR3","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":3,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","id":"CLI-C74457_C16352"}},{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I4_TCR4","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":4,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","id":"CLI-C74457_C41219"}},{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I4_TCR5","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":5,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","id":"CLI-C74457_C41261"}},{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I4_TCR6","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":6,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/ACME/V1","id":"THC-A00021"}}]},{"type":"http://www.assero.co.uk/BusinessForm#Question","id":"F-ACME_DM101_G1_I5","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Race Other","extension_properties":[],"ordinal":5,"note":"","completion":"","optional":false,"datatype":"string","format":"20","question_text":"Race Other Mixed Specify:","mapping":"SUPPDM.QVAL when QNAM=RACEOTH","children":[]},{"type":"http://www.assero.co.uk/BusinessForm#Question","id":"F-ACME_DM101_G1_I6","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Ethnicity","extension_properties":[],"ordinal":6,"note":"","completion":"* Tick the box most closely associated with the subject s ethnicity.\n* The definition below has been adapted from the FDA Race \u0026 Ethnicity Guideline:\n    - Hispanic or Latino: A person of Cuban, Mexican, Puerto Rican, South or Central American or other Spanish culture or origin, regardless of race.\n","optional":false,"datatype":"string","format":"","question_text":"Ethnicity:","mapping":"ETHNIC","children":[{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I6_TCR1","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":1,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","id":"CLI-C66790_C17459"}},{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I6_TCR2","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":2,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","id":"CLI-C66790_C41222"}}]},{"type":"http://www.assero.co.uk/BusinessForm#Question","id":"F-ACME_DM101_G1_I7","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Ethnic Subgroup","extension_properties":[],"ordinal":7,"note":"","completion":"* Tick the appropriate box to indicate the subject s ethnic subgroup.  If the appropriate subgroup is not listed, tick Other","optional":true,"datatype":"string","format":"","question_text":"Ethnic Subgroup:","mapping":"SUPPDM.QVAL when QNAM=RACESG","children":[{"type":"http://www.assero.co.uk/BusinessOperational#TcReference","id":"F-ACME_DM101_G1_I7_TCR1","namespace":"http://www.assero.co.uk/MDRForms/ACME/V1","label":"Thesaurus Concept Reference","extension_properties":[],"enabled":true,"optional":false,"ordinal":1,"local_label":"","subject_ref":{"namespace":"http://www.assero.co.uk/MDRThesaurus/ACME/V1","id":"THC-A00011"}}]}],"repeating":false,"bc_ref":{}}]}}
+</script>
+<h3>Show: Demographics <small>DM1 01 (, V1, Candidate)</small></h3>
+<div class="col-md-12">
+	<h4>Form Details</h4>
+	<table class="table table-striped table-bordered table-condensed">
+	  <tbody><tr>
+	    <th>Identifer</th>
+	    <th>Label</th>
+	    <th>Owner</th>
+	    <th>Status</th>
+	    <th>Version</th>
+	    <th>Version Label</th>
+	    <th></th>
+	  </tr>
+	  <tr>
+	    <td>DM1 01</td>
+	    <td>Demographics</td>
+	    <td>ACME</td>
+	    <td>Candidate</td>
+	    <td>1</td>
+	    <td></td>
+	    <td><a class="btn btn-info btn-xs" href="/iso_managed/impact?id=F-ACME_DM101&amp;namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1">Impact</a></td>
+	  </tr>
+	</tbody></table>
+	<table class="table table-striped table-bordered table-condensed">
+	  <tbody><tr>
+	    <th>Completion Instructions</th>
+	    <th>Notes</th>
+	  </tr>
+	  <tr>
+	    <td> </td>
+	    <td><ul>
+<li>This is a mandatory module that must appear in ALL CRFs.</li>
+<li>CRF Number should be deleted for EDC trials.  This field should only be used for internal UCB paper studies.</li>
+<li>Ethnic subgroup section can be deleted when not required as per protocol.  If used, the list of races / countries must be customized as per protocol (for internal UCB studies: new codes will need to be created).</li>
+<li>For extension studies, Race, Ethnicity and Ethnic subgroup should be deleted.</li>
+<li>Based on a decision made in the 31Oct12 DARC meeting, the Date of Birth field was split into three (3) separate fields: birth day, birth month and birth year.  This split is not represented in the modules within this document.  Depending upon country regulations, acceptable data collections are:
+
+<ul>
+<li>Full birth date = birth day, birth month and birth year</li>
+<li>Partial birth date = birth month and birth year</li>
+<li>Birth year only</li>
+</ul></li>
+<li>Most NIS studies will use version DM3_01.</li>
+</ul>
+</td>
+	  </tr>
+	</tbody></table>
+	<h4>Groups and Items</h4>
+	<div id="main_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="main_length"><label>Show <select name="main_length" aria-controls="main" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="main_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="main" /></label></div></div></div><div class="row"><div class="col-sm-12"><table id="main" class="table table-striped table-bordered table-condensed dataTable no-footer" role="grid" aria-describedby="main_info" style="width: 850px;">
+		<thead>
+			<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="main" rowspan="1" colspan="1" aria-label="Ordinal: activate to sort column descending" aria-sort="ascending" style="width: 49px;">Ordinal</th><th class="sorting" tabindex="0" aria-controls="main" rowspan="1" colspan="1" aria-label="Label: activate to sort column ascending" style="width: 46px;">Label</th><th class="sorting" tabindex="0" aria-controls="main" rowspan="1" colspan="1" aria-label="Question Text: activate to sort column ascending" style="width: 61px;">Question Text</th><th class="sorting" tabindex="0" aria-controls="main" rowspan="1" colspan="1" aria-label="Datatype: activate to sort column ascending" style="width: 61px;">Datatype</th><th class="sorting" tabindex="0" aria-controls="main" rowspan="1" colspan="1" aria-label="Format: activate to sort column ascending" style="width: 48px;">Format</th><th class="sorting" tabindex="0" aria-controls="main" rowspan="1" colspan="1" aria-label="Mapping: activate to sort column ascending" style="width: 59px;">Mapping</th><th class="sorting" tabindex="0" aria-controls="main" rowspan="1" colspan="1" aria-label="Terminology: activate to sort column ascending" style="width: 90px;">Terminology</th><th class="sorting" tabindex="0" aria-controls="main" rowspan="1" colspan="1" aria-label="Completion: activate to sort column ascending" style="width: 141px;">Completion</th><th class="sorting" tabindex="0" aria-controls="main" rowspan="1" colspan="1" aria-label="Note: activate to sort column ascending" style="width: 62px;">Note</th></tr>
+		</thead>
+		<tbody>
+		<tr id="F-ACME_DM101_G1" role="row" class="odd"><td class="sorting_1">1</td><td>Question Group</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr id="F-ACME_DM101_G1_I1" class="even warning" role="row"><td class="sorting_1">2</td><td>CRF Number</td><td>CRF Number:</td><td>integer</td><td>5</td><td>[NOT SUBMITTED]</td><td></td><td><ul>
+<li>Record the subjects 5-digit CRF number in the space provided.</li>
+</ul>
+</td><td></td></tr><tr id="F-ACME_DM101_G1_I2" role="row" class="odd"><td class="sorting_1">3</td><td>Date of Birth</td><td>Date of Birth:</td><td>date</td><td></td><td>BRTHDTC</td><td></td><td><ul>
+<li>Record the birth date using the format DD MMM YYYY.</li>
+</ul>
+
+<p>Example:</p>
+
+<table><thead>
+<tr>
+<th>DD</th>
+<th>MMM</th>
+<th>YYYY</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>15</td>
+<td>Nov</td>
+<td>1966</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>Confirm the subject is 6-17 years of age.</li>
+<li><strong>For sites within countries that do not allow the collection of a full date of birth (eg, Germany), the subject s YEAR of birth ONLY must be recorded.  Draw a line through the fields for day and month and ONLY record the 4-digit year the subject was born (see example below).</strong></li>
+</ul>
+
+<p>Example:</p>
+
+<table><thead>
+<tr>
+<th>DD</th>
+<th>MMM</th>
+<th>YYYY</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>--</td>
+<td>---</td>
+<td>1966</td>
+</tr>
+</tbody></table>
+</td><td></td></tr><tr id="F-ACME_DM101_G1_I3" role="row" class="even"><td class="sorting_1">4</td><td>Sex</td><td>Sex:</td><td>string</td><td></td><td>SEX</td><td> []<br /> []<br /></td><td><ul>
+<li>Indicate the appropriate sex.</li>
+</ul>
+</td><td></td></tr><tr id="F-ACME_DM101_G1_I4" role="row" class="odd"><td class="sorting_1">5</td><td>Race</td><td>Race:</td><td>string</td><td></td><td>RACE</td><td> []<br /> []<br /> []<br /> []<br /> []<br /> []<br /></td><td><ul>
+<li><strong>Race must be self-reported by the subject (not judged by the site).</strong> 
+The race definitions below, which have been adapted from the FDA Race &amp; Ethnicity Guideline, can be used to help match subject-reported races with the options in the CRF. </li>
+</ul>
+
+<p>Select the race most closely associated with the subject s reported race.<br /><br />
+* American Indian or Alaska Native: A person having origins in any of the original peoples of North and South America (including Central America)<br />
+    - Asian: A person having origins in any of the original peoples of the Far East, Southeast Asia or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand and Vietnam.<br />
+    - Black: A person having origins in any of the black racial groups of Africa.<br />
+    - Native Hawaiian or Other Pacific Islander: A person having origins in any of the original peoples of Hawaii, Guam, Samoa or other Pacific Island.<br />
+    - White: A person having origins in any of the original peoples of Europe, the Middle East or North Africa.<br />
+* If multiple races have been reported, select Other / Mixed and enter the reported races in the space provided.</p>
+</td><td></td></tr><tr id="F-ACME_DM101_G1_I5" role="row" class="even"><td class="sorting_1">6</td><td>Race Other</td><td>Race Other Mixed Specify:</td><td>string</td><td>20</td><td>SUPPDM.QVAL when QNAM=RACEOTH</td><td></td><td></td><td></td></tr><tr id="F-ACME_DM101_G1_I6" role="row" class="odd"><td class="sorting_1">7</td><td>Ethnicity</td><td>Ethnicity:</td><td>string</td><td></td><td>ETHNIC</td><td> []<br /> []<br /></td><td><ul>
+<li>Tick the box most closely associated with the subject s ethnicity.</li>
+<li>The definition below has been adapted from the FDA Race &amp; Ethnicity Guideline:
+
+<ul>
+<li>Hispanic or Latino: A person of Cuban, Mexican, Puerto Rican, South or Central American or other Spanish culture or origin, regardless of race.</li>
+</ul></li>
+</ul>
+</td><td></td></tr><tr id="F-ACME_DM101_G1_I7" class="even warning" role="row"><td class="sorting_1">8</td><td>Ethnic Subgroup</td><td>Ethnic Subgroup:</td><td>string</td><td></td><td>SUPPDM.QVAL when QNAM=RACESG</td><td> []<br /></td><td><ul>
+<li>Tick the appropriate box to indicate the subject s ethnic subgroup.  If the appropriate subgroup is not listed, tick Other</li>
+</ul>
+</td><td></td></tr></tbody>
+	</table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="main_info" role="status" aria-live="polite">Showing 1 to 8 of 8 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="main_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="main_previous"><a href="#" aria-controls="main" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="main" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button next disabled" id="main_next"><a href="#" aria-controls="main" data-dt-idx="2" tabindex="0">Next</a></li></ul></div></div></div></div>
+	<a class="btn btn-primary" href="/forms/history?identifier=DM1+01&amp;scope_id=NS-ACME">Close</a>
+    <a class="btn btn-primary" href="/forms/F-ACME_DM101/edit?biomedical_concept%5Bnamespace%5D=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1">Edit</a>
+  <a class="btn btn-primary" href="/forms/clone?id=F-ACME_DM101&amp;namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1">Clone</a>
+	<a class="btn btn-info" href="/forms/export_json?id=F-ACME_DM101&amp;namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1">Export JSON</a>
+	<a class="btn btn-info" href="/forms/export_ttl?id=F-ACME_DM101&amp;namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1">Export Turtle</a>
+	<a class="btn btn-info" href="/forms/export_odm?id=F-ACME_DM101&amp;namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1">Export ODM</a>
+</div>
+
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+           
+        </div>
+      </div>   
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>-->
+    
+		
+		
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  
+</body></html>

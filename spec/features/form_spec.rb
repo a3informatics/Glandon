@@ -42,22 +42,6 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Index: Forms'
     end
 
-    it "allows a form to be created" #do
-=begin
-      visit '/forms'
-      expect(page).to have_content 'Index: Forms'
-      click_link 'New'
-      expect(page).to have_content 'New Terminology:'
-      fill_in 'thesauri_identifier', with: 'TEST test'
-      fill_in 'thesauri_label', with: 'Test Terminology'
-      click_button 'Create'
-      expect(page).to have_content 'Terminology was successfully created.'
-      expect(page).to have_content 'Index: Forms'
-      find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: TEST test'
-    end
-=end
-
     it "allows the history page to be viewed" do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
