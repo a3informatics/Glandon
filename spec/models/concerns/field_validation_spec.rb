@@ -412,13 +412,13 @@ describe FieldValidation do
   it "checks invalid markdown, contains <" do
     object = IsoConcept.new
     expect(FieldValidation.valid_markdown?(:test, "This is some invalid < markup", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid markdown")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid markdown")
   end
 
   it "checks invalid markdown, contains >" do
     object = IsoConcept.new
     expect(FieldValidation.valid_markdown?(:test, "This is some invalid > markup", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid markdown")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid markdown")
   end
 
   it "checks valid datatype" do

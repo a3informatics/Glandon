@@ -7,7 +7,7 @@
 :origin: ''
 :change_description: ''
 :creation_date: '2016-12-29T11:20:14+00:00'
-:last_changed_date: '2016-12-29T11:24:22+00:00'
+:last_changed_date: '2016-12-29T17:24:07+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -530,7 +530,7 @@
     :note: ''
     :completion: ''
     :optional: false
-    :mapping: ''
+    :mapping: MAPPING ITEM
   - :type: http://www.assero.co.uk/BusinessForm#TextLabel
     :id: F-ACME_CRFTest_G3_I4
     :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -540,7 +540,7 @@
     :note: ''
     :completion: ''
     :optional: false
-    :label_text: ''
+    :label_text: This is **free** label text
   - :type: http://www.assero.co.uk/BusinessForm#Placeholder
     :id: F-ACME_CRFTest_G3_I5
     :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -550,7 +550,7 @@
     :note: ''
     :completion: ''
     :optional: false
-    :free_text: ''
+    :free_text: This is *placeholder* text
   :repeating: false
   :bc_ref: {}
 - :type: http://www.assero.co.uk/BusinessForm#NormalGroup

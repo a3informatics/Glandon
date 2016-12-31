@@ -4,6 +4,7 @@ class Form::Crf
   C_DOMAIN_CLASS_COUNT = 5
 
   @@domain_map = {}
+  @@common_map = {}
 
 	# Create CRF
 	#
@@ -11,26 +12,28 @@ class Form::Crf
 	# @param annotations [] The form's annotations
 	# @return [Null]
 	def self.create(node, annotations, options)
+    ConsoleLogger::log(C_CLASS_NAME, "create", "annotations=#{annotations}")
     html = "<style>"
     html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
     html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; " 
     html += "vertical-align: center; padding: 5px; }\n"
     html += "table.crf-input-field td:not(:last-child){border-right: 1px dashed}\n"
-    html += "h4.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 10px; }\n"
-    html += "p.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 10px; }\n"
-    html += "h4.domain-2 {border-radius: 5px; background: #AED6F1; padding: 10px; }\n"
-    html += "p.domain-2 {border-radius: 5px; background: #AED6F1; padding: 10px; }\n"
-    html += "h4.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 10px; }\n"
-    html += "p.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 10px; }\n"
-    html += "h4.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 10px; }\n"
-    html += "p.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 10px; }\n"
-    html += "h4.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 10px; }\n"
-    html += "p.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 10px; }\n"
-    html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 10px; }\n"
-    html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 10px; }\n"
+    html += "h4.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
+    html += "p.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
+    html += "h4.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
+    html += "p.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
+    html += "h4.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
+    html += "p.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
+    html += "h4.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
+    html += "p.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
+    html += "h4.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
+    html += "p.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
+    html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
+    html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
     html += "</style>"
-		html += crf_node(node, annotations, options)
-		ConsoleLogger::log(C_CLASS_NAME,"create","html=#{html}")
+		build_common_map(node)
+    html += crf_node(node, annotations, options)
+		#ConsoleLogger::log(C_CLASS_NAME,"create","html=#{html}")
 		return html
 	end
 
@@ -38,7 +41,7 @@ private
 
   def self.crf_node(node, annotations, options)
   	html = ""
-    ConsoleLogger::log(C_CLASS_NAME, "crf_node", "Node=#{node}")
+    #ConsoleLogger::log(C_CLASS_NAME, "crf_node", "Node=#{node}")
     if node[:type] == Form::C_RDF_TYPE_URI.to_s
       html += '<table class="table table-striped table-bordered table-condensed">'
       html += '<tr>'
@@ -51,9 +54,9 @@ private
           if !domain[:domain_long_name].empty?
             domain_annotation += "=" + domain[:domain_long_name]
           end
-          class_suffix = index < C_DOMAIN_CLASS_COUNT ? "#{C_DOMAIN_CLASS_COUNT}" : "other"
-          class_name = "domain#-{class_suffix}"
-          html += "<h4 class=\"{class_name}\">#{domain_annotation}</h4><br/>"
+          class_suffix = index < C_DOMAIN_CLASS_COUNT ? "#{index + 1}" : "other"
+          class_name = "domain-#{class_suffix}"
+          html += "<h4 class=\"#{class_name}\">#{domain_annotation}</h4>"
           domain[:class] = class_name
           @@domain_map[domain[:domain_prefix]] = domain
         end
@@ -91,7 +94,8 @@ private
     elsif node[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
       html += start_row(node[:optional])
       html += question_cell(node[:question_text])
-      html += mapping_cell(node[:mapping], options)
+      qa = question_annotations(node[:id], node[:mapping], annotations, options)
+      html += mapping_cell(qa, options)
       if node[:children].length == 0
       	html += input_field(node, annotations)
       else
@@ -102,11 +106,12 @@ private
       if !node[:is_common]
         property_ref = node[:property_ref][:subject_ref]
         property = BiomedicalConceptCore::Property.find(property_ref[:id], property_ref[:namespace])
-        node.deep_merge!(property.to_json)
+        node = property.to_json.merge(node)
         node[:datatype] = node[:simple_datatype]
         html += start_row(node[:optional])
         html += question_cell(node[:question_text])
-        html += mapping_cell(property_annotations(node, annotations, options), options)
+        pa = property_annotations(node[:id], annotations, options)
+        html += mapping_cell(pa, options)
         if node[:children].length == 0
           html += input_field(node, annotations)
         else
@@ -115,14 +120,24 @@ private
         html += end_row
       end
     elsif node[:type] == Form::Item::Common::C_RDF_TYPE_URI.to_s
-      item_ref = node[:item_refs][0]
-      property = BiomedicalConceptCore::Property.find(item_ref[:id], item_ref[:namespace])
-      node.deep_merge!(property.to_json)
-      node[:datatype] = node[:simple_datatype]
+      pa = ""
+      node[:item_refs].each do |ref|
+        uri = UriV2.new({:id => ref[:id], :namespace => ref[:namespace]})
+        if @@common_map.has_key?(uri.to_s)
+          other_node = @@common_map[uri.to_s]
+          pa += property_annotations(other_node[:id], annotations, options)
+          node[:datatype] = other_node[:simple_datatype]
+          node[:question_text] = other_node[:question_text]
+          node[:format] = other_node[:format]
+          node[:children] = other_node[:children]
+        else
+          node[:children] = []
+        end
+      end
       html += start_row(node[:optional])
       html += question_cell(node[:question_text])
-      html += mapping_cell(property_annotations(node, annotations, options), options)
-      if property.tc_refs.length == 0
+      html += mapping_cell(pa, options)
+      if node[:children].length == 0
         html += input_field(node, annotations)
       else
         html += terminology_cell(node, annotations, options)
@@ -232,7 +247,8 @@ private
       html += '<tr>'
       node[:children].each do |child|
         if child[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
-          html += mapping_cell(child[:mapping], options)
+          qa = question_annotations(child[:id], child[:mapping], annotations, options)
+          html += mapping_cell(qa, options)
         elsif child[:type] == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s ||
           child[:type] == Form::Item::Mapping::C_RDF_TYPE_URI.to_s
           # do nothing
@@ -262,44 +278,73 @@ private
   # Repeating BC group
   def self.repeating_bc_group(node, annotations, options)
     html = ""
+    html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
+    html += '<tr>'
     columns = {}
-    node[:children].each do |child|
-      child[:children].each do |property|
-        property_ref = property[:property_ref][:subject_ref]
-        full_property = BiomedicalConceptCore::Property.find(property_ref[:id], property_ref[:namespace])
-        property.deep_merge!(full_property.to_json)
-        if property[:enabled] && property[:collect]
-          if !columns.has_key?(property[:bridg_path])
-            columns[property[:bridg_path]] = property[:bridg_path] 
+    node[:children].each do |bc_node|
+      bc_node[:children].each do |property_node|
+        ref = property_node[:property_ref][:subject_ref]
+        property = BiomedicalConceptCore::Property.find(ref[:id], ref[:namespace])
+        #property_node.deep_merge!(property.to_json)
+        property_node[:bridg_path] = property.bridg_path
+        property_node[:question_text] = property.question_text
+        #property_node[:children] = property.tc_refs
+        property_node[:datatype] = property.simple_datatype
+          
+        if property.enabled && property.collect
+          if !columns.has_key?(property_node[:bridg_path])
+            columns[property_node[:bridg_path]] = property_node[:bridg_path] 
           end
         end
       end
     end
-    #columns.each do |key, column|
-      child = node[:children][0]
+    # Question text
+    html += start_row(false)
+    bc_node = node[:children][0]
+    bc_node[:children].each do |property_node|
+      if columns.has_key?(property_node[:bridg_path])
+        html += question_cell(property_node[:question_text])
+      end
+    end
+    html += end_row
+    # Annotation. Commented out, gives a block of annotations
+    #html += start_row(false)
+    #columns.each do |key, bridg_path|
+    #  pa = ""
+    #  node[:children].each do |bc_node|
+    #    bc_node[:children].each do |property_node|
+    #      if property_node[:bridg_path] == bridg_path
+    #        pa += property_annotations(property_node[:id], annotations, options)
+    #      end
+    #    end
+    #  end
+    #  html += mapping_cell(pa, options)
+    #end
+    #html += end_row
+    # BCs and the input fields
+    node[:children].each do |bc_node|
       html += start_row(false)
-      child[:children].each do |property|
-        if columns.has_key?(property[:bridg_path])
-          html += question_cell(property[:question_text])
+      bc_node[:children].each do |property_node|
+        if columns.has_key?(property_node[:bridg_path])
+          if property_node[:children].length == 0
+            html += input_field(property_node, annotations)
+          else
+            html += terminology_cell(property_node, annotations, options)
+          end
         end
       end
       html += end_row
-    #end
-    #columns.each do |key, column|
-      node[:children].each do |child|
-        html += start_row(false)
-        child[:children].each do |property|
-          if columns.has_key?(property[:bridg_path])
-            if property[:children].length == 0
-              html += input_field(property, annotations)
-            else
-              html += terminology_cell(property, annotations, options)
-            end
-          end
+      html += start_row(false)
+      bc_node[:children].each do |property_node|
+        if columns.has_key?(property_node[:bridg_path])
+          pa = property_annotations(property_node[:id], annotations, options)
+          html += mapping_cell(pa, options)
         end
-        html += end_row
       end
-    #end
+      html += end_row
+    end
+    html += '</tr>'
+    html += '</table></td>'
     return html
   end
 
@@ -310,7 +355,7 @@ private
 
   # Mapping
   def self.mapping_row(mapping)
-    return "<tr><td><p class=\"domain-other\">#{mapping}</p></td><td colspan=\"2\"></td></tr>"
+    return "<tr><td>#{mapping}</td><td colspan=\"2\"></td></tr>"
   end
 
   def self.start_row(optional)
@@ -331,7 +376,7 @@ private
   end
 
   def self.mapping_cell(text, options)
-    return "<td><p class=\"domain-other\">#{text}</p></td>" if !text.empty? && options[:annotate]
+    return "<td>#{text}</td>" if !text.empty? && options[:annotate]
     return empty_cell
   end
   
@@ -352,20 +397,55 @@ private
     return html
   end
 
-  def self.property_annotations(node, annotations, options)
+  def self.property_annotations(node_id, annotations, options)
     return "" if !options[:annotate]
     html = ""
     first = true
-    entries = annotations.select {|item| item[:id] == node[:id]}
+    entries = annotations.select {|item| item[:id] == node_id}
     entries.each do |entry|
       if !first
         html += "<br/>"
       end
-      p_class = @@domain_map[entry[:domain_prefix]]
+      p_class = @@domain_map[entry[:domain_prefix]][:class]
       html += "<p class=\"#{p_class}\">#{entry[:sdtm_variable]} where #{entry[:sdtm_topic_variable]}=#{entry[:sdtm_topic_value]}</p>"
       first = false
     end
     return html
   end
 
+  def self.question_annotations(node_id, mapping, annotations, options)
+    return "" if !options[:annotate]
+    html = ""
+    entries = annotations.select {|item| item[:id] == node_id}
+    if entries.count > 0
+      first = true
+      entries.each do |entry|
+        if !first
+          html += "<br/>"
+        end
+        p_class = @@domain_map[entry[:domain_prefix]][:class]
+        html += "<p class=\"#{p_class}\">#{mapping}</p>"
+        first = false
+      end
+    else
+      html = "<p class=\"domain-other\">#{mapping}</p>"
+    end
+    return html
+  end
+
+  def self.build_common_map(node)
+    if node[:type] == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
+      if node[:is_common]
+        property_ref = node[:property_ref][:subject_ref]
+        property = BiomedicalConceptCore::Property.find(property_ref[:id], property_ref[:namespace])
+        node = property.to_json.merge(node)
+        @@common_map[property.uri.to_s] = node if !@@common_map.has_key?(property.uri.to_s)
+      end
+    end
+    if !node[:children].blank?
+      node[:children].each do |child|
+        build_common_map(child)
+      end
+    end
+  end
 end

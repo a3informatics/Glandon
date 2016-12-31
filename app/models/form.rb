@@ -329,6 +329,9 @@ class Form < IsoManaged
     return result
   end
 
+  # Get annotations for the form
+  #
+  # @return [Hash] Hash containing te annotations
   def annotations
     form = self.to_json
     annotations = Array.new
@@ -340,16 +343,15 @@ class Form < IsoManaged
 private
 
   def bc_annotations()
-    ConsoleLogger::log(C_CLASS_NAME,"bc_annotations", "*****Entry*****")
     results = Array.new
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoI", "iso25964"])  +
       "SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE \n" +
       "{ \n " +
       "  ?topic_var bd:hasProperty ?op_ref3 . \n " +
       "  ?op_ref3 bo:hasProperty ?bc_topic_property . \n " +     
-      "  ?bc_topic_property (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n " +
-      "  ?bc_topic_property cbc:hasValue ?valueRef . \n " +
-      "  ?valueRef cbc:value ?sdtmTopicValueObj . \n " +     
+      "  ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bc_topic_property . \n " +
+      "  ?bc_topic_property cbc:hasThesaurusConcept ?valueRef . \n " +
+      "  ?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj . \n " +     
       "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +     
       "  {\n " +
       "    SELECT ?form ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName ?topic_var WHERE \n " +
@@ -358,7 +360,6 @@ private
       "      ?dataset bd:includesColumn ?var . \n " +              
       "      ?dataset bd:prefix ?domain . \n " +              
       "      ?dataset bd:includesColumn ?topic_var . \n " +              
-      #"      ?topic_var bd:classifiedAs <http://www.assero.co.uk/MDRModels/CDISC/V1#M-CDISC_SDTMMODEL_C_TOPIC> . \n " +              
       "      ?topic_var bd:classifiedAs ?classification . \n " +              
       "      ?classification rdfs:label \"Topic\"^^xsd:string . \n " +              
       "      ?topic_var bd:name ?sdtmTopicName . \n " +              
@@ -372,7 +373,7 @@ private
       "          ?op_ref1 bo:hasProperty ?bcProperty  . \n " +             
       "          ?op_ref2 bo:hasProperty ?bcProperty . \n " +
       "          ?var bd:hasProperty ?op_ref2 . \n " +
-      "          ?bcProperty (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B ?bcRoot . \n" +
+      "          ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bcProperty . \n" +
       "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
       "          ?bcProperty cbc:ordinal ?pord . \n " +     
       "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
@@ -382,13 +383,10 @@ private
       "    } \n " +
       "  } \n " +
       "} ORDER BY ?gord ?pord \n " 
-    # Send the request, wait the resonse
     response = CRUD.query(query)
-    # Process the response
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      #ConsoleLogger::log(C_CLASS_NAME,"bc_annotations", "node=" + node.to_json.to_s)
       item = ModelUtility.getValue('item', true, node)
       domain = ModelUtility.getValue('domain', false, node)
       sdtm_var = ModelUtility.getValue('sdtmVarName', false, node)
@@ -396,31 +394,27 @@ private
       sdtm_topic_value = ModelUtility.getValue('sdtmTopicSub', false, node)
       domain_long_name = ""
       if item != ""
-        #ConsoleLogger::log(C_CLASS_NAME,"bc_annotations","domain=" + domain.to_s)
         if @@domain_map.has_key?(domain)
           domain_long_name = @@domain_map[domain]
-          #ConsoleLogger::log(C_CLASS_NAME,"bc_annotations","domain long name(1)=" + domain_long_name.to_s)
         end
-        #ConsoleLogger::log(C_CLASS_NAME,"bc_annotation","domain long name(2)=" + domain_long_name.to_s)
         results << {
           :id => ModelUtility.extractCid(item), :namespace => ModelUtility.extractNs(item), 
           :domain_prefix => domain, :domain_long_name => domain_long_name, :sdtm_variable => sdtm_var, :sdtm_topic_variable => sdtm_topic, :sdtm_topic_value => sdtm_topic_value
         }
       end
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"bc_annotations","results=" + results.to_json.to_s)
     return results
   end
 
   def question_annotations()
-    ConsoleLogger::log(C_CLASS_NAME,"question_annotations", "*****Entry*****")
     results = Array.new
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "bd", "isoI", "iso25964"])  +
-      "SELECT ?var ?domain ?item WHERE \n" +       
+      "SELECT DISTINCT ?var ?domain ?item WHERE \n" +       
       "{ \n" +         
       "  ?col bd:name ?var .  \n" +        
       "  ?dataset bd:includesColumn ?col . \n" +         
-      "  ?dataset rdfs:label ?domain . \n" +         
+      "  ?dataset bd:prefix ?domain . \n " +              
+      #"  ?dataset rdfs:label ?domain . \n" +         
       "  { \n" +           
       "    SELECT ?group ?item ?var ?gord ?pord WHERE \n" +           
       "    { \n" +             
@@ -438,25 +432,21 @@ private
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      ConsoleLogger::log(C_CLASS_NAME,"bc_annotations", "node=" + node.to_json.to_s)
+      ConsoleLogger::log(C_CLASS_NAME,"question_annotations", "node=" + node.to_json.to_s)
       item = ModelUtility.getValue('item', true, node)
       variable = ModelUtility.getValue('var', false, node)
       domain = ModelUtility.getValue('domain', false, node)
       domain_long_name = ""
       if item != ""
-        #ConsoleLogger::log(C_CLASS_NAME,"question_annotation","domain=" + domain.to_s)
         if @@domain_map.has_key?(domain)
           domain_long_name = @@domain_map[domain]
-          #ConsoleLogger::log(C_CLASS_NAME,"question_annotation","domain long name(1)=" + domain_long_name.to_s)
         end
-        #ConsoleLogger::log(C_CLASS_NAME,"question_annotation","domain long name(2)=" + domain_long_name.to_s)
         results << {
           :id => ModelUtility.extractCid(item), :namespace => ModelUtility.extractNs(item), 
           :domain_prefix => domain, :domain_long_name => domain_long_name, :sdtm_variable => variable, :sdtm_topic_variable => "", :sdtm_topic_value => ""
         }
       end
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"question_annotation","results=" + results.to_json.to_s)
     return results
   end
 

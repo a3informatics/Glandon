@@ -261,7 +261,7 @@ module FieldValidation
   def self.valid_markdown?(symbol, value, object)
     result = value.match /^\A[A-Za-z0-9 .!?,'"_\-\/\\()\[\]~#*=:;&|\r\n]*\z/ 
     return true if result != nil
-    object.errors.add(symbol, "contains an invalid markdown")
+    object.errors.add(symbol, "contains invalid markdown")
     return false
   end
 
