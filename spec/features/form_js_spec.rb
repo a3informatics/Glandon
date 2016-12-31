@@ -111,6 +111,8 @@ describe "Forms", :type => :feature do
       click_link 'Close'
     end
 
+    it "allows a form to be deleted"
+    
   end
 
 end

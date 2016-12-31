@@ -293,12 +293,12 @@ describe "Form Editor", :type => :feature do
       ui_click_node_name("Group 1")
       click_button 'groupAddBc'
       expect(page).to have_content("You need to select a Biomedical Concept.")
-      pause
+      #pause
       ui_table_row_click("bcTable", "(BC C25206)")
       click_button 'groupAddBc'
       wait_for_ajax
       ui_click_node_name("Temperature (BC C25206)")
-      pause
+      #pause
     end
 
     it "makes sure a node is selected, group", js: true do

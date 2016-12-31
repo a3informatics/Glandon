@@ -92,6 +92,8 @@ describe "Thesaurus", :type => :feature do
       expect(page).not_to have_content 'A00032'
     end
 
+    it "allows a thesaurus to be deleted"
+    
   end
 
 end
