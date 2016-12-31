@@ -2,6 +2,12 @@ class Reports::CrfReport
 
   C_CLASS_NAME = "Report::CrfReport"
 
+  # Create the CRF report
+  #
+  # @param form [Form] the form object
+  # @param options [Hash] the options
+  # @param user [User] the user
+  # @return [String] the HTML
   def create(form, options, user)
     history = build_history(form)
     @report = Reports::WickedCore.new
@@ -16,7 +22,7 @@ class Reports::CrfReport
   if Rails.env == "test"
     # Return the current HTML. Only available for testing.
     #
-    # @return [String] The HTML
+    # @return [String] the HTML
     def html
       return @report.html
     end

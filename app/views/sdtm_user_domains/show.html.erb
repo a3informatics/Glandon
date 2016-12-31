@@ -145,7 +145,7 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "Report", full_report_sdtm_user_domain_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), 
+	<%= link_to "Report", full_report_sdtm_user_domain_path(:format => :pdf, :id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 
 		:class => "btn btn-primary", :target => "_blank" %>
 	<%= link_to "BC+", add_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 
 		:class => "btn btn-primary" %>

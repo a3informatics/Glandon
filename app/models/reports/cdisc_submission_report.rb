@@ -4,6 +4,12 @@ class Reports::CdiscSubmissionReport
   C_PER_PAGE = 10
   C_DELETED = "[ *** Submission Value Deleted *** ]"
 
+  # Create the domain report
+  #
+  # @param domain [Domain] the domain object
+  # @param options [Hash] the options
+  # @param user [User] the user
+  # @return [String] the HTML
   def create(results, user)
     @report = Reports::WickedCore.new
     @report.open("CDISC Submission Value Change Report", "", [], user)

@@ -2,6 +2,12 @@ class Reports::CdiscChangesReport
 
   C_CLASS_NAME = "Report::CdiscChangesReport"
 
+  # Create the CDISC changes report
+  #
+  # @param results [Hash] the results hash
+  # @param cls [Hash] the code lists
+  # @param user [User] the user
+  # @return [String] the HTML
   def create(results, cls, user)
     @report = Reports::WickedCore.new
     @report.open("CDISC Terminology Change Report", "", [], user)

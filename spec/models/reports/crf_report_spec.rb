@@ -37,7 +37,7 @@ describe Reports::CrfReport do
     form = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => false, :full => false}, user)
-    write_text_file_2(html, sub_dir, "crf_report_simple_non_annotated.txt")
+    #write_text_file_2(html, sub_dir, "crf_report_simple_non_annotated.txt")
     expected = read_text_file_2(sub_dir, "crf_report_simple_non_annotated.txt")
     expect(html).to eq(expected)
   end

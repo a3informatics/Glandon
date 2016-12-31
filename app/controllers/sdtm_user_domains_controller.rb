@@ -191,8 +191,12 @@ class SdtmUserDomainsController < ApplicationController
   def full_report
     authorize SdtmUserDomain, :view?
     domain = SdtmUserDomain.find(params[:id], the_params[:namespace])
-    pdf = domain.report({:full => true}, current_user)
-    send_data pdf, filename: "#{domain.owner}_#{domain.identifier}_Domain.pdf", type: 'application/pdf', disposition: 'inline'
+    respond_to do |format|
+      format.pdf do
+        @html = Reports::DomainReport.new.create(domain, {}, current_user)
+        render pdf: "#{domain.owner}_#{domain.identifier}.pdf", page_size: current_user.paper_size
+      end
+    end
   end
 
 private

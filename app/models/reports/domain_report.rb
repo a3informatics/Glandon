@@ -1,34 +1,59 @@
 class Reports::DomainReport
 
-  C_CLASS_NAME = "Report::DomainReport"
+  C_CLASS_NAME = "Reports::DomainReport"
 
-  def self.create(domain, options, history, user)
+  # Create the domain report
+  #
+  # @param domain [Domain] the domain object
+  # @param options [Hash] the options
+  # @param user [User] the user
+  # @return [String] the HTML
+  def create(domain, options, user)
+    history = build_history(domain)
     @report = Reports::WickedCore.new
-    @report.open("Domain", options, domain, history, user)
-    html = body(domain)
-    @report.html_body(html)
-    pdf = @report.save
-    return pdf
+    @report.open("SDTM Domain", domain, history, user) #if options[:full]
+    body(domain.to_json, options)
+    @report.close
+    return @report.html
   end
 
-  def self.body(domain)
+  if Rails.env == "test"
+    # Return the current HTML. Only available for testing.
+    #
+    # @return [String] The HTML
+    def html
+      return @report.html
+    end
+  end
+
+private
+
+  def build_history(domain)
+    doc_history = []
+    history = IsoManaged::history(SdtmUserDomain::C_RDF_TYPE, SdtmUserDomain::C_SCHEMA_NS, {:identifier => domain.identifier, :scope_id => domain.owner_id})
+    history.each do |item|
+      if domain.same_version?(item.version) || domain.later_version?(item.version)
+        doc_history << item.to_json
+      end
+    end
+    return doc_history
+  end
+
+  def body(domain, options)
     si = domain[:scoped_identifier]
     rs = domain[:registration_state]
     html = ""
-    #ConsoleLogger::log(C_CLASS_NAME,"body","html1=#{html}" )    
     html += "<h3>Domain: #{domain[:label]} <small>#{si[:identifier]} (#{si[:version_label]}, V#{si[:version]}, #{rs[:registration_status]})</small></h3>"
-    #ConsoleLogger::log(C_CLASS_NAME,"body","html2=#{html}" )    
     html += "<h3>Details</h3>"
-    #ConsoleLogger::log(C_CLASS_NAME,"body","html3=#{html}" )    
-    html += "<table class=\"ci\">"
-    #ConsoleLogger::log(C_CLASS_NAME,"body","html4=#{html}" )    
+    html += "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
     html += "<tr><td><strong>Prefix</strong></td><td>#{domain[:prefix]}</td></tr>"
     html += "<tr><td><strong>Structure</strong></td><td>#{domain[:structure]}</td></tr>"
     html += "<tr><td><strong>Notes</strong></td><td>#{MarkdownEngine::render(domain[:notes])}</td></tr>"
     html += "</table>"
-    html += @report.page_break
-    html += "<h3>Used Variables</h3>"
-    html += "<table class=\"simple\">"
+    @report.add_to_body(html)
+    @report.add_page_break
+    html = "<h3>Used Variables</h3>"
+    html += "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
     html += "<thead><tr>" +
       "<th>Ordinal</th>" +
       "<th>Name</th>" +
@@ -39,7 +64,6 @@ class Reports::DomainReport
       "<th>Notes</th>" +
       "<th>Core</th>" +
       "</tr></thead><tbody>"
-    #ConsoleLogger::log(C_CLASS_NAME,"body","html5=#{html}" )    
     domain[:children].each do |child|
       if child[:used] then
         html += "<tr>"
@@ -57,9 +81,10 @@ class Reports::DomainReport
       end    
     end
     html += "</tbody></table>"
-    html += @report.page_break
-    html += "<h3>Unused Variables</h3>"
-    html += "<table class=\"simple\">"
+    @report.add_to_body(html)
+    @report.add_page_break
+    html = "<h3>Unused Variables</h3>"
+    html += "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
     html += "<thead><tr>" +
       "<th>Ordinal</th>" +
       "<th>Name</th>" +
@@ -70,7 +95,6 @@ class Reports::DomainReport
       "<th>Notes</th>" +
       "<th>Core</th>" +
       "</tr></thead><tbody>"
-    #ConsoleLogger::log(C_CLASS_NAME,"body","html9=#{html}" )    
     domain[:children].each do |child|
       if !child[:used] then
         html += "<tr>"
@@ -88,8 +112,7 @@ class Reports::DomainReport
       end    
     end
     html += "</tbody></table>"
-    #ConsoleLogger::log(C_CLASS_NAME,"body","html10=#{html}" )    
-    return html
+    @report.add_to_body(html)
   end
 
 end

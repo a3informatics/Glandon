@@ -16,11 +16,8 @@ class Reports::WickedCore
   def open(doc_type, title, history, user)
     @paper_size = user.paper_size
     @html = page_header
-    ConsoleLogger.debug( C_CLASS_NAME, "open", "HMTL1=#{@html}")
     @html += title_page(doc_type, title, user)
-    ConsoleLogger.debug( C_CLASS_NAME, "open", "HMTL2=#{@html}")
     @html += history_page(history) if !history.empty?
-    ConsoleLogger.debug( C_CLASS_NAME, "open", "HMTL3=#{@html}")
   end
 
   # Add to the body
