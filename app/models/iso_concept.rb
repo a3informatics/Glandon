@@ -68,22 +68,24 @@ class IsoConcept
     if !triples.nil?
       class_triples = triples[id]
       self.triples = triples
-      if class_triples.length > 0
-        self.id = ModelUtility.extractCid(class_triples[0][:subject])
-        self.namespace = ModelUtility.extractNs(class_triples[0][:subject])
-        class_triples.each do |triple|
-          if triple[:predicate] == C_RDF_TYPE
-            self.rdf_type = triple[:object]
-          elsif triple[:predicate] == C_RDFS_LABEL
-            self.label = triple[:object]
-          elsif @@property_attributes.has_key?(triple[:predicate])
-            set_class_property(triple)
-          elsif @@extension_attributes.has_key?(triple[:predicate])
-            set_class_property(triple, true)
-          elsif @@link_attributes.has_key?(triple[:predicate])
-            self.links << {:rdf_type => triple[:predicate], :value => triple[:object]}
-          else
-            # @todo Should we do something else?
+      if !class_triples.nil?
+        if class_triples.length > 0
+          self.id = ModelUtility.extractCid(class_triples[0][:subject])
+          self.namespace = ModelUtility.extractNs(class_triples[0][:subject])
+          class_triples.each do |triple|
+            if triple[:predicate] == C_RDF_TYPE
+              self.rdf_type = triple[:object]
+            elsif triple[:predicate] == C_RDFS_LABEL
+              self.label = triple[:object]
+            elsif @@property_attributes.has_key?(triple[:predicate])
+              set_class_property(triple)
+            elsif @@extension_attributes.has_key?(triple[:predicate])
+              set_class_property(triple, true)
+            elsif @@link_attributes.has_key?(triple[:predicate])
+              self.links << {:rdf_type => triple[:predicate], :value => triple[:object]}
+            else
+              # @todo Should we do something else?
+            end
           end
         end
       end

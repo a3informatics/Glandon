@@ -241,6 +241,36 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
+  it "checks a valid SDTM format value, ISO 8601" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_format_value?(:test, "ISO 8601", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid SDTM format value, ISO 3166" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_format_value?(:test, "ISO 3166", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks an invalid SDTM format value, ISO 8602" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_format_value?(:test, "ISO 8602", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid value")
+  end
+
+  it "checks an invalid SDTM format value, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_format_value?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is not set")
+  end
+
+  it "checks a valid SDTM format value, \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_format_value?(:test, "", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
   it "checks a valid terminology property value, \"\"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_terminology_property?(:test, "", object)).to eq(true)

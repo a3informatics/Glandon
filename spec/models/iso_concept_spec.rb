@@ -5,7 +5,11 @@ describe IsoConcept do
 	include DataHelpers
   include PauseHelpers
 
-	before :all do
+	def sub_dir
+    return "models"
+  end
+
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -39,6 +43,48 @@ describe IsoConcept do
     result = IsoConcept.new
     result.label = "123456789@£$%"
     expect(result.valid?).to eq(false)
+  end
+
+  it "allows an object to be created from triples" do
+    #concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
+    #write_yaml_file(concept.triples, sub_dir, "iso_concept_triples.yaml")
+    expected = 
+    {
+      :extension_properties => 
+      [
+        {
+          :rdf_type => "http://www.assero.co.uk/BusinessForm#Extension1", 
+          :instance_variable=>"Extension1", 
+          :label=>"Extension 1"
+        }, 
+        {
+          :rdf_type=>"http://www.assero.co.uk/BusinessForm#Extension2", 
+          :instance_variable=>"Extension2", 
+          :label=>"Extension 2"
+        }
+      ],
+      :id => "F-AE_G1_I2",
+      :label => "Adverse Event",
+      :namespace => "http://www.assero.co.uk/X/V1",
+      :type => "http://www.assero.co.uk/BusinessForm#Question",
+    }
+    triples = read_yaml_file(sub_dir, "iso_concept_triples.yaml")
+    result = IsoConcept.new(triples, "F-AE_G1_I2")
+    expect(result.to_json).to eq(expected)
+  end
+
+  it "allows an object to be created from triples, none present" do
+    expected = 
+    {
+      :extension_properties => [],
+      :id => "",
+      :label => "",
+      :namespace => "",
+      :type => "",
+    }
+    triples = read_yaml_file(sub_dir, "iso_concept_triples.yaml")
+    result = IsoConcept.new(triples, "F-AE_G7_I10")
+    expect(result.to_json).to eq(expected)
   end
 
   it "allows a blank concept to be created" do
@@ -231,8 +277,8 @@ describe IsoConcept do
     concept.to_sparql_v2(sparql, "bf") 
     concept.create(sparql)
     all = IsoConcept.find("F-T_G1_I5", "http://www.assero.co.uk/Y/V1", true)
-    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_create.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_triples_create.yaml")
+    #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_create.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_triples_create.yaml")
     expect(all.triples).to eq(expected)
   end
 
@@ -267,8 +313,8 @@ describe IsoConcept do
     concept = IsoConcept.find("F-T_G1_I3", "http://www.assero.co.uk/Y/V1")
     concept.destroy
     all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
-    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_destroy.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_triples_destroy.yaml")
+    #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_destroy.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_triples_destroy.yaml")
     expect(all.triples).to eq(expected)
   end
 
@@ -287,8 +333,8 @@ describe IsoConcept do
     child.to_sparql_v2(sparql, "bf") 
     parent.create_child(child, sparql, "bf", "test_link")    
     all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
-    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_create_child.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_triples_create_child.yaml")
+    #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_create_child.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_triples_create_child.yaml")
     expect(all.triples).to eq(expected)
   end
 
@@ -323,8 +369,8 @@ describe IsoConcept do
     child = IsoConcept.find("F-T_G1_I2_I1", "http://www.assero.co.uk/Y/V1")
     child.destroy_with_links
     all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
-    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_destroy_links.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_triples_destroy_links.yaml")
+    #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_destroy_links.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_triples_destroy_links.yaml")
     expect(all.triples).to eq(expected)
   end
 
@@ -336,8 +382,8 @@ describe IsoConcept do
     child.to_sparql_v2(sparql, "bf")
     child.update(sparql)
     all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
-    #write_hash_to_yaml_file(all.triples, "iso_concept_triples_updated.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_triples_updated.yaml")
+    #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_updated.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_triples_updated.yaml")
     expect(all.triples).to eq(expected)
   end
 
@@ -377,7 +423,8 @@ describe IsoConcept do
     		:xsd_type=>"http://www.w3.org/2001/XMLSchema#string"
     	}
 		concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
-		concept.add_extension_property("http://www.assero.co.uk/BusinessForm", { :identifier => "XXX", :datatype => "string", :label => "A new extended property", :definition => "A definition"})
+		concept.add_extension_property("http://www.assero.co.uk/BusinessForm", 
+      { :identifier => "XXX", :datatype => "string", :label => "A new extended property", :definition => "A definition"})
 		expect(concept.errors.count).to eq(0)
 		expect(concept.extension_attributes).to eq(result)
 	end
@@ -406,7 +453,8 @@ describe IsoConcept do
     		:xsd_type=>"http://www.w3.org/2001/XMLSchema#string"
     	}
 		concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
-		concept.add_extension_property("http://www.assero.co.uk/BusinessForm", { :identifier => "XXX", :datatype => "string", :label => "A new extended property", :definition => "A definition"})
+		concept.add_extension_property("http://www.assero.co.uk/BusinessForm", 
+      { :identifier => "XXX", :datatype => "string", :label => "A new extended property", :definition => "A definition"})
 		expect(concept.errors.count).to eq(1)
 		expect(concept.extension_attributes).to eq(result)
 	end
@@ -708,8 +756,8 @@ describe IsoConcept do
     previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
     current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
     result = IsoConcept.difference(previous, current)
-    #write_hash_to_yaml_file(result, "iso_concept_differences_1.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_differences_1.yaml")
+    #write_yaml_file(result, sub_dir, "iso_concept_differences_1.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_differences_1.yaml")
     expect(result).to eq(expected)
   end
 
@@ -717,8 +765,8 @@ describe IsoConcept do
     previous = nil
     current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
     result = IsoConcept.difference(previous, current)
-    #write_hash_to_yaml_file(result, "iso_concept_differences_2.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_differences_2.yaml")
+    #write_yaml_file(result, sub_dir, "iso_concept_differences_2.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_differences_2.yaml")
     expect(result).to eq(expected)
   end
   
@@ -726,8 +774,8 @@ describe IsoConcept do
     current = nil
     previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
     result = IsoConcept.difference(previous, current)
-    #write_hash_to_yaml_file(result, "iso_concept_differences_3.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_differences_3.yaml")
+    #write_yaml_file(result, sub_dir, "iso_concept_differences_3.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_differences_3.yaml")
     expect(result).to eq(expected)
   end
   
@@ -735,8 +783,8 @@ describe IsoConcept do
     previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
     current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
     result = IsoConcept.difference(previous, current)
-    #write_hash_to_yaml_file(result, "iso_concept_differences_4.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_differences_4.yaml")
+    #write_yaml_file(result, sub_dir, "iso_concept_differences_4.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_differences_4.yaml")
     expect(result).to eq(expected)
   end
  
@@ -744,8 +792,8 @@ describe IsoConcept do
     current = nil
     previous = nil
     result = IsoConcept.difference(previous, current)
-    #write_hash_to_yaml_file(result, "iso_concept_differences_5.yaml")
-    expected = read_yaml_file_to_hash("iso_concept_differences_5.yaml")
+    #write_yaml_file(result, sub_dir, "iso_concept_differences_5.yaml")
+    expected = read_yaml_file(sub_dir, "iso_concept_differences_5.yaml")
     expect(result).to eq(expected)
   end
   
