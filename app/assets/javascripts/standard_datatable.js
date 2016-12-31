@@ -1,11 +1,15 @@
 $(document).ready( function() {
 
-    $('#main').DataTable({
-        columnDefs: [ ]
-    } );
+  $('#main').DataTable({
+    columnDefs: [ ]
+  } );
 
-    $('#secondary').DataTable({
-        columnDefs: [ ]
-    } );		
-    
+  $('#secondary').DataTable({
+    columnDefs: [ ]
+  } );		
+  
+  $('#tertiary').DataTable({
+  	columnDefs: [ ]
+	});
+
 } );

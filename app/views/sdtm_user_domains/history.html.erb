@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <h3>History: <%= @identifier %></h3>
 <div class="row">
 	<div class="col-md-12">
@@ -9,11 +10,11 @@
 				<% @history.each do |item| %>
 					<%= render partial: "shared/stdInstanceRow", :locals => {:item => item,
 						:current_item => current_item, 
-		  				:showPath => sdtm_user_domain_path(:id => item.id, :namespace => item.namespace), 
+		  				:showPath => sdtm_user_domain_path(:id => item.id, :sdtm_user_domain => { :namespace => item.namespace }), 
 		  				:searchPath => "", 
 		  				:viewPath => "",
-		  				:editPath => edit_sdtm_user_domain_path(:id => item.id, :namespace => item.namespace),
-		  				:deletePath => sdtm_user_domain_path(:id => item.id, :namespace => item.namespace) } %>
+		  				:editPath => edit_sdtm_user_domain_path(:id => item.id, :sdtm_user_domain => { :namespace => item.namespace }),
+		  				:deletePath => sdtm_user_domain_path(:id => item.id, :sdtm_user_domain => { :namespace => item.namespace })} %>
 				<% end %>				
 			</tbody>
 		</table>

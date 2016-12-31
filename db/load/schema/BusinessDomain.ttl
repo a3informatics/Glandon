@@ -306,6 +306,15 @@
   rdfs:range xsd:string ;
   skos:definition "Format of the variable."^^xsd:string ;
 .
+:ct
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "ct"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :UserVariable ;
+  rdfs:range xsd:string ;
+  skos:definition "Controlled terminology reference for the variable."^^xsd:string ;
+.
 :length
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Variable length"^^xsd:string ;

@@ -45,10 +45,10 @@ class EnumeratedLabel < IsoConcept
     return results
   end
 
-  #def self.find_from_triples(triples, id)
-  #  object = new(triples, id)
-  #  object.triples = ""
-  #  return object
-  #end
+  def self.find_from_triples(triples, id)
+    object = new(triples, id)
+    object.triples = ""
+    return object
+  end
 
 end

@@ -5,7 +5,7 @@ class SdtmUserDomain::Variable < Tabular::Column
   include ActiveModel::Validations
   
   # Attributes
-  attr_accessor :name, :notes, :format, :non_standard, :comment, :length, :used, :key_ordinal, :datatype, :compliance, 
+  attr_accessor :name, :notes, :ct, :format, :non_standard, :comment, :length, :used, :key_ordinal, :datatype, :compliance, 
     :classification, :sub_classification, :variable_ref
 
   # Constants
@@ -18,11 +18,13 @@ class SdtmUserDomain::Variable < Tabular::Column
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
   C_IGV_REF_PREFIX = "IGV"
+  C_VARIABLE_PREFIX = "V"
   
   def initialize(triples=nil, id=nil)
     self.name = ""
     self.notes = ""
     self.format = "" 
+    self.ct = "" 
     self.non_standard = false
     self.comment = ""
     self.length = 0
@@ -35,7 +37,6 @@ class SdtmUserDomain::Variable < Tabular::Column
     self.variable_ref = nil
     if triples.nil?
       super
-      # Set the type. Overwrite default.
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
@@ -58,27 +59,36 @@ class SdtmUserDomain::Variable < Tabular::Column
     return compliance.nil? ? "" : compliance.label
   end
 
+  # Find a given variable
+  #
+  # @param id [String] the id of the variable
+  # @param namespace [String] the namespace of the variable
+  # @param children [Boolean] find all child objects. Defaults to true.
+  # @return [SdtmUserDomain::Variable] The variable object.
   def self.find(id, ns, children=true)
-    object = super(id, ns, children)
+    object = super(id, ns)
     if children
       children_from_triples(object, object.triples, id)
     end
     return object
   end
 
+  # To JSON
+  #
+  # @return [Hash] the object hash 
   def to_json
     json = super
     json[:ordinal] = self.ordinal
     json[:name] = self.name
     json[:notes] = self.notes 
     json[:format] = self.format 
+    json[:ct] = self.ct 
     json[:non_standard] = self.non_standard
     json[:comment] = self.comment
     json[:length] = self.length
     json[:used] = self.used
     json[:key_ordinal] = self.key_ordinal
     json[:datatype] = self.datatype.to_json
-    #ConsoleLogger::log(C_CLASS_NAME,"to_json","Datatype=#{self.datatype.to_json}")
     json[:compliance] = self.compliance.to_json
     json[:classification] = self.classification.to_json
     if !self.sub_classification.nil? 
@@ -92,12 +102,17 @@ class SdtmUserDomain::Variable < Tabular::Column
     return json
   end
 
+  # From JSON
+  #
+  # @param json [Hash] the hash of values for the object 
+  # @return [SdtmUserDomain::Variable] the object
   def self.from_json(json)
     object = super(json)
     object.ordinal = json[:ordinal]
     object.name = json[:name]
     object.notes = json[:notes]
     object.format = json[:format]
+    object.ct = json[:ct]
     object.non_standard = json[:non_standard]
     object.comment = json[:comment]
     object.length = json[:length]
@@ -117,30 +132,54 @@ class SdtmUserDomain::Variable < Tabular::Column
     return object
   end
 
-  def to_sparql(parent_id, sparql)
-    self.id = "#{parent_id}#{Uri::C_UID_SECTION_SEPARATOR}#{self.ordinal}"
+  # To SPARQL
+  #
+  # @param parent_uri [UriV2] the parent URI object
+  # @param sparql [SparqlUpdateV2] the SPARQL object
+  # @return [UriV2] the item's URI
+  def to_sparql_v2(parent_uri, sparql)
+    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{C_VARIABLE_PREFIX}#{self.ordinal}"
+    self.namespace = parent_uri.namespace
+    subject = {:uri => self.uri}
     super(sparql, C_SCHEMA_PREFIX)
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "ordinal", "#{self.ordinal}", "positiveInteger")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "name", "#{self.name}", "string")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "notes", "#{self.notes}", "string")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "format", "#{self.format}", "string")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "non_standard", "#{self.non_standard}", "boolean")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "comment", "#{self.comment}", "string")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "length", "#{self.length}", "string")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "used", "#{self.used}", "boolean")
-    sparql.triple_primitive_type("", self.id, C_SCHEMA_PREFIX, "key_ordinal", "#{self.key_ordinal}", "positiveInteger")
-    sparql.triple_uri_full_v2("", self.id, C_SCHEMA_PREFIX, "typedAs", self.datatype.uri)  
-    sparql.triple_uri_full_v2("", self.id, C_SCHEMA_PREFIX, "compliance", self.compliance.uri)  
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "notes"}, {:literal => "#{self.notes}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "format"}, {:literal => "#{self.format}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ct"}, {:literal => "#{self.ct}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "non_standard"}, {:literal => "#{self.non_standard}", :primitive_type => "boolean"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "comment"}, {:literal => "#{self.comment}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "length"}, {:literal => "#{self.length}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "used"}, {:literal => "#{self.used}", :primitive_type => "boolean"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "key_ordinal"}, {:literal => "#{self.key_ordinal}", :primitive_type => "integer"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "typedAs"}, {:uri => self.datatype.uri})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "compliance"}, {:uri => self.compliance.uri})
     if self.sub_classification.nil?
-      sparql.triple_uri_full_v2("", self.id, C_SCHEMA_PREFIX, "classifiedAs", self.classification.uri)   
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:uri => self.classification.uri})
     else
-      sparql.triple_uri_full_v2("", self.id, C_SCHEMA_PREFIX, "classifiedAs", self.sub_classification.uri)   
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:uri => self.sub_classification.uri})
     end
     if !self.variable_ref.nil? 
-      ref_id = self.variable_ref.to_sparql(id, "basedOnVariable", C_IGV_REF_PREFIX, 1, sparql)
-      sparql.triple("", self.id, UriManagement::C_BD, "basedOnVariable", "", "#{ref_id}")
+      ref_uri = self.variable_ref.to_sparql_v2(self.uri, "basedOnVariable", C_IGV_REF_PREFIX, 1, sparql)
+      sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "basedOnVariable"}, {:uri => ref_uri})
     end
-    return self.id
+    return self.uri
+  end
+
+  # Check Valid
+  #
+  # @return [Boolean] returns true if valid, false otherwise.
+  def valid?
+    result = super
+    result = result &&
+      FieldValidation::valid_sdtm_variable_name?(:name, self.name, self) && 
+      FieldValidation::valid_submission_value?(:ct, self.ct, self) && 
+      FieldValidation::valid_sdtm_format_value?(:format, self.format, self) && 
+      FieldValidation::valid_boolean?(:non_standard, self.non_standard, self) &&
+      FieldValidation::valid_boolean?(:used, self.used, self) &&
+      FieldValidation::valid_integer?(:key_ordinal, self.key_ordinal, self) &&
+      FieldValidation::valid_label?(:notes, self.notes, self) &&
+      FieldValidation::valid_label?(:comment, self.comment, self)
+    return result
   end
 
 private

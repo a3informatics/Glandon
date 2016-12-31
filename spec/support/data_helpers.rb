@@ -28,6 +28,10 @@ module DataHelpers
   end
 
   def read_yaml_file_to_hash_2(sub_dir, filename)
+    read_yaml_file(sub_dir, filename)
+  end
+
+  def read_yaml_file(sub_dir, filename)
     full_path = set_path(sub_dir, filename)
     return YAML.load_file(full_path)
   end
@@ -40,6 +44,10 @@ module DataHelpers
   end
 
   def write_hash_to_yaml_file_2(item, sub_dir, filename)
+    write_yaml_file(item, sub_dir, filename)
+  end
+
+  def write_yaml_file(item, sub_dir, filename)
     full_path = set_path(sub_dir, filename)
     File.open(full_path, "w+") do |f|
       f.write(item.to_yaml)

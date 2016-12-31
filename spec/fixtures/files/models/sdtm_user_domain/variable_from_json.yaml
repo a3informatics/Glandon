@@ -1,0 +1,48 @@
+---
+:type: http://www.assero.co.uk/BusinessDomain#UserVariable
+:id: D-ACME_VSDomain_V5
+:namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+:label: Group ID
+:extension_properties: []
+:ordinal: 5
+:rule: ''
+:name: VSGRPID
+:notes: ''
+:format: ''
+:ct: ''
+:non_standard: false
+:comment: ''
+:length: 0
+:used: true
+:key_ordinal: 0
+:datatype:
+  :type: http://www.assero.co.uk/BusinessDomain#VariableType
+  :id: M-CDISC_SDTMMODEL_DT_CHAR
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Char
+  :extension_properties: []
+:compliance:
+  :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+  :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Permissible
+  :extension_properties: []
+:classification:
+  :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+  :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Identifier
+  :extension_properties: []
+:variable_ref:
+  :type: http://www.assero.co.uk/BusinessOperational#CReference
+  :id: D-ACME_VSDomain_V5_IGV1
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Based on Variable Reference
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIGVS_VSGRPID

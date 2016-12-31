@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @sdtm_user_domain} %>
 <div class="col-md-12">
 	<h4>Details</h4>
@@ -41,7 +42,8 @@
 		  		<th>Name</th>
 		  		<th>Label</th>
 		  		<th>Datatype</th>
-		  		<th>CT or Format</th>
+		  		<th>CT</th>
+		  		<th>Format</th>
 		  		<th>Role</th>
 		  		<th>Sub Role</th>
 		  		<th>IG Notes</th>
@@ -58,7 +60,14 @@
 			    	<td><%= item.name %></td>
 			  		<td><%= item.label %></td>
 			  		<td><%= item.datatype_label %></td>
-			  		<td><%= ig_variable.controlled_term_or_format %></td>
+			  		<td>
+			  			<% if !item.ct.empty? %>
+			  				<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn btn-primary btn-xs" %><br/>
+			  			<% else %>
+			  				&nbsp;
+			  			<% end %>
+			  		</td>
+			  		<td><%= item.format %></td>
 			  		<td><%= item.classification_label %></td>
 			  		<td><%= item.sub_classification_label %></td>
 			  		<td><%= ig_variable.notes %></td>
@@ -77,7 +86,8 @@
 		  		<th>Name</th>
 		  		<th>Label</th>
 		  		<th>Datatype</th>
-		  		<th>CT or Format</th>
+		  		<th>CT</th>
+		  		<th>Format</th>
 		  		<th>Role</th>
 		  		<th>Sub Role</th>
 		  		<th>IG Notes</th>
@@ -94,7 +104,14 @@
 			    	<td><%= item.name %></td>
 			  		<td><%= item.label %></td>
 			  		<td><%= item.datatype_label %></td>
-			  		<td><%= ig_variable.controlled_term_or_format %></td>
+			  		<td>
+			  			<% if !item.ct.empty? %>
+			  				<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn btn-primary btn-xs" %><br/>
+			  			<% else %>
+			  				&nbsp;
+			  			<% end %>
+			  		</td>
+			  		<td><%= item.format %></td>
 			  		<td><%= item.classification_label %></td>
 			  		<td><%= item.sub_classification_label %></td>
 			  		<td><%= ig_variable.notes %></td>
@@ -128,10 +145,14 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "Full Report", full_report_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-primary", :target => "_blank" %>
-	<%= link_to "BC+", add_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-primary" %>
-	<%= link_to "BC-", remove_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-danger" %>
-	<%= link_to "Export JSON", export_json_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-info" %>
-	<%= link_to "Export Turtle", export_ttl_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), :class => "btn btn-info" %>
-	<br/><br/>
+	<%= link_to "Report", full_report_sdtm_user_domain_path(:id => @sdtm_user_domain.id, :namespace => @sdtm_user_domain.namespace), 
+		:class => "btn btn-primary", :target => "_blank" %>
+	<%= link_to "BC+", add_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 
+		:class => "btn btn-primary" %>
+	<%= link_to "BC-", remove_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 
+		:class => "btn btn-danger" %>
+	<%= link_to "Export JSON", export_json_sdtm_user_domain_path(:id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 
+		:class => "btn btn-info" %>
+	<%= link_to "Export Turtle", export_ttl_sdtm_user_domain_path(:id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 
+		:class => "btn btn-info" %>
 </div>

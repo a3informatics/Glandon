@@ -24,6 +24,7 @@ class SdtmUserDomain < Tabular::Tabulation
   def initialize(triples=nil, id=nil)
     self.prefix = SdtmUtility::C_PREFIX
     self.structure = ""
+    self.notes = ""
     self.bc_refs = Array.new
     self.model_ref = OperationalReferenceV2.new
     self.ig_ref = OperationalReferenceV2.new
@@ -36,6 +37,12 @@ class SdtmUserDomain < Tabular::Tabulation
     end
   end
 
+  # Find a given user domain.
+  #
+  # @param id [String] the id of the domain
+  # @param namespace [String] the namespace of the domain
+  # @param children [Boolean] find all child objects. Defaults to true.
+  # @return [SdtmUserDomain] the domain object.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -44,29 +51,44 @@ class SdtmUserDomain < Tabular::Tabulation
     return object
   end
 
+  # Find all managed items based on their type.
+  #
+  # @return [Array] array of objects found
   def self.all
-    super(C_RDF_TYPE, C_SCHEMA_NS)
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
-  def self.list
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
-  end
-
-  def self.history(params)
-    results = super(C_RDF_TYPE, C_SCHEMA_NS, params)
-    return results
-  end
-
+  # Find list of managed items of a given type.
+  #
+  # @return [Array] Array of objects found
   def self.unique
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
-  def self.upgrade(ig_domain)
+  # Find all released item for all identifiers of a given type.
+  #
+  # @return [Array] An array of objects
+  def self.list
+    return super(C_RDF_TYPE, C_SCHEMA_NS)
+  end
+
+  # Find history for a given identifier
+  #
+  # @params [Hash] {:identifier, :scope_id}
+  # @return [Array] an array of objects
+  def self.history(params)
+    return super(C_RDF_TYPE, C_SCHEMA_NS, params)
+  end
+
+  # Create a clone based on a specified IG domain
+  #
+  # @params [SdtmIgDomain] the template IG domain
+  # @raise [CreateError] If object not created.
+  # @return [SdtmuserDomain] the new user domain object
+  def self.create_clone_ig(params, ig_domain)
     object = self.new
-    object.label = ig_domain.label
-    object.prefix = ig_domain.prefix
+    object.label = params[:label]
+    object.prefix = params[:prefix]
     object.ig_ref = OperationalReferenceV2.new
     object.ig_ref.subject_ref = ig_domain.uri
     object.model_ref = ig_domain.model_ref
@@ -81,6 +103,14 @@ class SdtmUserDomain < Tabular::Tabulation
       variable.name = model_variable.name
       variable.ordinal = child.ordinal
       variable.label = child.label
+      if child.ct?
+        variable.format = ""
+        variable.ct = child.ct
+      else
+        variable.format = child.format
+        variable.ct = ""
+      end
+      variable.used = true
       variable.datatype = model_variable.datatype
       variable.compliance = child.compliance
       variable.classification = model_variable.classification 
@@ -90,39 +120,35 @@ class SdtmUserDomain < Tabular::Tabulation
       variable.variable_ref = op_ref
       object.children << variable
     end
-    return object
+    operation = object.to_clone
+    managed_item = operation[:managed_item]
+    managed_item[:scoped_identifier][:identifier] = "#{params[:prefix]} Domain"
+    managed_item[:type] = "#{C_RDF_TYPE_URI}"
+    new_object = SdtmUserDomain.create(operation)
+    return new_object
   end
 
+  # Create an item from the standard operation hash
+  #
+  # @param params [Hash] The standard operation hash
+  # @raise [CreateError] If object not created.
+  # @return [Object] The BC created. Includes errors if failed.
   def self.create(params)
-    # Get the parameters
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    # Create blank object for the errors
-    object = self.new
-    object.errors.clear
-    # Set owner ship
-    ra = IsoRegistrationAuthority.owner
-    if params_valid?(managed_item, object) then
-      # Build a full object. Special case, fill in the identifier, base on domain prefix.
-      object = SdtmUserDomain.from_json(data)
-      object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
-    
-      #object.scopedIdentifier.identifier = "SDTM USER " + managed_item[:prefix]
-      #ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{object.to_json}")
-      # Can we create?
+    ConsoleLogger.debug(C_CLASS_NAME, "create", "params=#{params}")
+    operation = params[:operation]
+    managed_item = params[:managed_item]
+    object = SdtmUserDomain.from_json(managed_item)
+    object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
+    if object.valid? then
       if object.create_permitted?
-        # Amend the prefix
         object.children.each do |item|
           item.name = SdtmUtility.overwrite_prefix(item.name, object.prefix) if SdtmUtility.prefixed?(item.name)
         end
-        # Build sparql
-        sparql = object.to_sparql_v2(ra)
-        # Send to database
-        #ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
+        sparql = object.to_sparql_v2
         response = CRUD.update(sparql.to_s)
         if !response.success?
-          object.errors.add(:base, "The Domain was not created in the database.")
+          ConsoleLogger.info(C_CLASS_NAME, "create", "Failed to create object.")
+          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
         end
       end
     end
@@ -151,10 +177,17 @@ class SdtmUserDomain < Tabular::Tabulation
     return object
   end
 
+  # Destroy a domain
+  #
+  # @raise [DestroyError] if object not destroyed
+  # @return [Null] no return
   def destroy
-    super(self.namespace)
+    super
   end
 
+  # To JSON
+  #
+  # @return [Hash] the object hash 
   def to_json
     json = super
     json[:prefix] = self.prefix
@@ -173,116 +206,114 @@ class SdtmUserDomain < Tabular::Tabulation
     return json
   end
 
+  # From JSON
+  #
+  # @param json [Hash] the hash of values for the object 
+  # @return [SdtmUserDomain] the object created
   def self.from_json(json)
-    managed_item = json[:managed_item]
-    object = super(managed_item)
-    object.prefix = managed_item[:prefix]
-    object.structure = managed_item[:structure]
-    object.notes = managed_item[:notes]
-    object.model_ref = OperationalReferenceV2.from_json(managed_item[:model_ref])
-    object.ig_ref = OperationalReferenceV2.from_json(managed_item[:ig_ref])
-    if !managed_item[:children].blank?
-      managed_item[:children].each do |child|
+    object = super(json)
+    object.prefix = json[:prefix]
+    object.structure = json[:structure]
+    object.notes = json[:notes]
+    object.model_ref = OperationalReferenceV2.from_json(json[:model_ref])
+    object.ig_ref = OperationalReferenceV2.from_json(json[:ig_ref])
+    if !json[:children].blank?
+      json[:children].each do |child|
         object.children << SdtmUserDomain::Variable.from_json(child)
       end
     end
-    if !managed_item[:bc_refs].blank?
-      managed_item[:bc_refs].each do |child|
+    if !json[:bc_refs].blank?
+      json[:bc_refs].each do |child|
         object.bc_refs << OperationalReferenceV2.from_json(child)
       end
     end
     return object
   end
 
-  def to_sparql_v2(ra)
+  # To SPARQL
+  #
+  # @return [SparqlUpdateV2] the SPARQL object created
+  def to_sparql_v2
     sparql = SparqlUpdateV2.new
     uri = super(sparql, C_SCHEMA_PREFIX)
-    # Set the properties
-    sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "prefix", "#{self.prefix}", "string")
-    sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "structure", "#{self.structure}", "string")
-    sparql.triple_primitive_type("", uri.id, C_SCHEMA_PREFIX, "notes", "#{self.notes}", "string")
-    # References
-    ig_id = self.ig_ref.to_sparql(uri.id, "basedOnDomain", C_IGD_REF_PREFIX, 1, sparql)
-    model_id = self.model_ref.to_sparql(uri.id, "basedOnDomain", C_MD_REF_PREFIX, 1, sparql)
-    sparql.triple("", self.id, UriManagement::C_BD, "basedOnDomain", "", "#{ig_id}")
-    sparql.triple("", self.id, UriManagement::C_BD, "basedOnDomain", "", "#{model_id}")
-    # Now deal with the children
+    subject = {:uri => uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefix"}, {:literal => "#{self.prefix}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "structure"}, {:literal => "#{self.structure}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "notes"}, {:literal => "#{self.notes}", :primitive_type => "string"})
+    ig_uri = self.ig_ref.to_sparql_v2(uri, "basedOnDomain", C_IGD_REF_PREFIX, 1, sparql)
+    model_uri = self.model_ref.to_sparql_v2(uri, "basedOnDomain", C_MD_REF_PREFIX, 1, sparql)
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "basedOnDomain"}, {uri: ig_uri})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "basedOnDomain"}, {uri: model_uri})
     ordinal = 1
     self.children.each do |item|
-      ref_id = item.to_sparql(uri.id, sparql)
-      sparql.triple("", uri.id, C_SCHEMA_PREFIX, "includesColumn", "", ref_id)
+      ref_uri = item.to_sparql_v2(uri, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {uri: ref_uri})
       ordinal += 1
     end
     ordinal = 1
     self.bc_refs.each do |item|
-      ref_id = item.to_sparql(uri.id, "hasBiomedicalConcept", C_BCP_REF_PREFIX, ordinal, sparql)
-      sparql.triple("", uri.id, C_SCHEMA_PREFIX, "hasBiomedicalConcept", "", ref_id)
+      ref_uri = item.to_sparql_v2(subject, "hasBiomedicalConcept", C_BCP_REF_PREFIX, ordinal, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasBiomedicalConcept"}, {uri: ref_uri})
       ordinal += 1
     end
-    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql","SPARQL=#{sparql}")
     return sparql
   end
 
+  # Add 1 or more BC associations to the domain
+  #
+  # @param params [Hash] a hash of parameters
+  # @option params [String] :bcs Array of BCs
+  # @return [Null] no return
   def add(params)
     update = false
     bcs = params[:bcs]
-    sparql = SparqlUpdate.new
-    bc_ordinal = self.bc_refs.length + 1
-    bcs.each do |key|
-      #ConsoleLogger::log(C_CLASS_NAME,"add","ordinal=#{bc_ordinal}")
-      parts = key.split("|")
-      bc_id = parts[0]
-      bc_namespace = parts[1]
-      if !bc_referenced?(bc_namespace, bc_id)
+    sparql = SparqlUpdateV2.new
+    bc_ordinal = next_bc_ordinal
+    bcs.each do |bc_uri|
+      bc_uri = UriV2.new({:uri => bc_uri})
+      if !bc_referenced?(bc_uri)
         update = true
-        bc = BiomedicalConcept.find(bc_id, bc_namespace)
-        bc.flatten.each do |property|
-          if property.enabled
-            bridg = property.bridgPath
-            sdtm = BridgSdtm.get(bridg)
-            ConsoleLogger::log(C_CLASS_NAME,"add","bridg=#{bridg}, sdtm=#{sdtm}")
-            if sdtm != ""
+        bc = BiomedicalConcept.find(bc_uri.id, bc_uri.namespace)
+        bc.get_properties[:children].each do |property|
+          if property[:enabled]
+            sdtm = BridgSdtm.get(property[:bridg_path])
+            if !sdtm.empty?
               variable = find_variable_by_name(self.prefix, sdtm)
-              if variable != nil
-                ConsoleLogger::log(C_CLASS_NAME,"add","variable=" + variable.name )
+              if !variable.nil?
                 p_ref = OperationalReferenceV2.new
-                p_ref.subject_ref = UriV2.new({:id => property.id, :namespace => property.namespace})
-                ref_id = p_ref.to_sparql(variable.id, "hasProperty", C_BCP_REF_PREFIX, bc_ordinal, sparql)
-                sparql.triple("", variable.id, UriManagement::C_BD, "hasProperty", "", "#{ref_id}")
+                p_ref.subject_ref = UriV2.new({:id => property[:id], :namespace => property[:namespace]})
+                ref_uri = p_ref.to_sparql_v2(variable.uri, "hasProperty", C_BCP_REF_PREFIX, bc_ordinal, sparql)
+                sparql.triple({:uri => variable.uri}, {:prefix => UriManagement::C_BD, :id => "hasProperty"}, {:uri => ref_uri})
               end
             end
           end
         end
-        # Add in the domain reference
         p_ref = OperationalReferenceV2.new
-        p_ref.subject_ref = UriV2.new({:id => bc.id, :namespace => bc.namespace})
-        ref_id = p_ref.to_sparql(self.id, "hasBiomedicalConcept", C_BC_REF_PREFIX, bc_ordinal, sparql)
-        sparql.triple("", self.id, UriManagement::C_BD, "hasBiomedicalConcept", "", "#{ref_id}")
-        # Increment ordinal
+        p_ref.subject_ref = UriV2.new({:id => bc_uri.id, :namespace => bc_uri.namespace})
+        ref_uri = p_ref.to_sparql_v2(self.uri, "hasBiomedicalConcept", C_BC_REF_PREFIX, bc_ordinal, sparql)
+        sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_BD, :id => "hasBiomedicalConcept"}, {:uri => ref_uri})
         bc_ordinal += 1
       end
     end
-    # Create the query if anything to do
     if update
-      sparql.add_default_namespace(self.namespace)
-      ConsoleLogger::log(C_CLASS_NAME,"add","sparql=#{sparql}" )    
+      sparql.default_namespace(self.namespace)
       response = CRUD.update(sparql.to_s)
       if !response.success?
-        ConsoleLogger::log(C_CLASS_NAME,"add","Update failed!.")
+        ConsoleLogger.info(C_CLASS_NAME, "add", "Failed to update object.")
+        raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
       end
     end
   end
 
+  # Remove 1 or more BC associations from the domain
+  #
+  # @param params [Hash] a hash of parameters
+  # @option params [String] :bcs Array of BCs
+  # @return [Null] no return
   def remove(params)
     bcs = params[:bcs]
-    deleteSparql = ""    
-    bcs.each do |key|
-      ConsoleLogger::log(C_CLASS_NAME,"remove","Add BC=#{key}")
-      parts = key.split("|")
-      bc_id = parts[0]
-      bc_namespace = parts[1]
-      uri = UriV2.new({:namespace => bc_namespace, :id => bc_id})
-      # Create the query
+    bcs.each do |bc_uri|
+      uri = UriV2.new({:uri => bc_uri})
       update = UriManagement.buildNs(self.namespace, ["bd", "bo", "cbc"]) +
         "DELETE \n" +
         "{ \n" +
@@ -300,18 +331,16 @@ class SdtmUserDomain < Tabular::Tabulation
         "    :" + self.id + " bd:includesColumn ?col . \n" + 
         "    ?col bd:hasProperty ?s . \n" + 
         "    ?s bo:hasProperty ?property . \n" +  
-        "    ?property (cbc:isPropertyOf | cbc:isDatatypeOf | cbc:isItemOf)%2B #{uri.to_ref} . \n" +
+        "    #{uri.to_ref} (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem)%2B ?property . \n" +
         "    ?s ?p ?o . \n" +
         "  }\n" +
         "}"
-      ConsoleLogger::log(C_CLASS_NAME,"remove","SPARQL=#{update}")
-      # Send the request, wait the resonse
       response = CRUD.update(update)
       if !response.success?
-        ConsoleLogger::log(C_CLASS_NAME,"remove","Update failed!.")
+        ConsoleLogger.info(C_CLASS_NAME, "add", "Failed to update object.")
+        raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
       end
     end
-
   end
 
   def report(options, user)
@@ -328,6 +357,7 @@ class SdtmUserDomain < Tabular::Tabulation
     pdf = Reports::DomainReport.create(domain, options, doc_history, user)
   end
 
+=begin
   def self.bc_impact(params)
     id = params[:id]
     namespace = params[:namespace]
@@ -355,10 +385,12 @@ class SdtmUserDomain < Tabular::Tabulation
     end
     return results
   end
+=end
 
   def compliance()
     results = Array.new
-    # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
+    # Build the query. 
+    # @todo Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
     query = UriManagement.buildNs(self.namespace, ["bd", "bo"])  +
       "SELECT DISTINCT ?b ?c WHERE \n" +
       "{ \n " +
@@ -385,33 +417,41 @@ class SdtmUserDomain < Tabular::Tabulation
     return results
   end
 
-private
-
-  def self.params_valid?(params, object)
-    result1 = FieldValidation::valid_domain_prefix?(:prefix, params[:prefix], object)
-    return result1 # && result2 && result3 && result4
+  # Check Valid
+  #
+  # @return [Boolean] returns true if valid, false otherwise.
+  def valid?
+    result = super
+    result = result &&
+      FieldValidation::valid_sdtm_domain_prefix?(:prefix, self.prefix, self) && 
+      FieldValidation::valid_markdown?(:notes, self.notes, self) && 
+      FieldValidation::valid_label?(:structure, self.structure, self)
+    return result
   end
+
+private
 
   def find_variable_by_name(prefix, name)
     local_name = SdtmUtility.overwrite_prefix(name, prefix) if SdtmUtility.prefixed?(name)
     self.children.each do |variable|
-      if variable.name == local_name
-        return variable
-      end
+      return variable if variable.name == local_name
     end
     return nil
   end
 
-  def bc_referenced?(namespace, id)
-    uri = UriV2.new({:namespace => namespace, :id => id})
+  def bc_referenced?(uri)
     self.bc_refs.each do |bc_ref|
-      ConsoleLogger::log(C_CLASS_NAME,"bc_referenced?","BC Ref=#{bc_ref.subject_ref}, New=#{uri}")
-      if "#{bc_ref.subject_ref}" == "#{uri}"
-        ConsoleLogger::log(C_CLASS_NAME,"bc_referenced?","Return true")
-        return true
-      end
+      return true if bc_ref.subject_ref.to_s == uri.to_s
     end
     return false
+  end
+
+  def next_bc_ordinal
+    ordinal = 1
+    self.bc_refs.each do |bc_ref|
+      ordinal = bc_ref.ordinal if bc_ref.ordinal >= ordinal
+    end
+    return ordinal + 1
   end
 
   def self.children_from_triples(object, triples, id)

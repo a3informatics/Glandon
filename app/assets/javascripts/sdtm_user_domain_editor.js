@@ -79,7 +79,7 @@ $(document).ready(function() {
       clearNode(currentNode, currentGRef);
     }
     displayNode(node)
-    markNode1(this);
+    d3MarkNode(this);
     currentGRef = this;
     currentNode = node;
   }  
@@ -422,11 +422,11 @@ $(document).ready(function() {
    *  Function to draw the tree
    */
   function displayTree(nodeKey) {
-    treeNormal(d3Div, rootNode, click, dblClick);
-    var gRef = findNode(nodeKey);
+    d3TreeNormal(d3Div, rootNode, click, dblClick);
+    var gRef = d3FindGRef(nodeKey);
     currentGRef = gRef;
     currentNode = gRef.__data__;
-    markNode1(currentGRef);    
+    d3MarkNode(currentGRef);    
   }
   
   function notImplementedYet() {
