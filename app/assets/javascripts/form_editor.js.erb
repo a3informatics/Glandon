@@ -175,7 +175,7 @@ $(document).ready(function() {
   });
 
   $('#click_node_key').click(function() {
-    var nodeKey = $('#click_node_key_text').val();
+    var nodeKey = parseInt($('#click_node_key_text').val());
     var node = d3FindGRef(nodeKey);
     if (node !== null) {
       simulateClick(node);

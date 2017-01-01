@@ -101,6 +101,8 @@ describe "Forms", :type => :feature do
       #expect(show_body).to eq(expected)
     end
 
+    it "allows a form show page to be viewed, Show table details"
+
     it "allows a form show page to be viewed", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
@@ -110,6 +112,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'View: Demographics DM1 01 (, V1, Candidate)'
       click_link 'Close'
     end
+
+    it "allows a form show page to be viewed, View tree details"
 
     it "allows a form to be deleted"
     

@@ -124,7 +124,7 @@ function d3FindData(key) {
   var nodes = d3.selectAll("g.node");
   for (var i=0; i<nodes[0].length; i++) {
     var data = nodes[0][i].__data__;
-    if (data.key == key) {
+    if (data.key === key) {
       return data
     }
   }

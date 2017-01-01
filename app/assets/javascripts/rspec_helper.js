@@ -1,3 +1,5 @@
+var C_NULL = -1;
+
 function simulateClick(elem /* Must be the element */) {
   var evt = document.createEvent("MouseEvents");
   evt.initMouseEvent(
@@ -40,11 +42,58 @@ function simulateDblClick(elem /* Must be the element */) {
   elem.dispatchEvent(evt);
 }
 
-function getOrdinal(nodeName) {
-  var gRef = d3FindGRefByName(nodeName);
-  if (gRef !== null) {
-    var node = d3GetData(gRef);
+function rhGetOrdinal(key) {
+  var node = d3FindData(parseInt(key));
+  if (node !== null) {
     return node.data.ordinal;
   }
-  return -1;
+  return C_NULL;
+}
+
+function rhGetCommon(key) {
+  var node = d3FindData(parseInt(key));
+  if (node !== null) {
+    if (node.data.is_common) {
+      return "common"
+    } else {
+      return "not common"
+    }
+  }
+  return "";  
+}
+
+function rhGetViaName(text) {
+  var gRef = d3FindGRefByName(text);
+  if (gRef !== null) {
+    var node = d3GetData(gRef);
+    return node.key;
+  }
+  return C_NULL; 
+}
+
+function rhGetViaPath(path) {
+  var rootNode = d3FindData(1);
+  if (path[0] === rootNode.name && path.length > 1) {
+    return getNextInPath(rootNode, path, 1);
+  } else if (path[0] === rootNode.name && path.length === 1) {
+    return rootNode.key;
+  }
+  return C_NULL; 
+}
+
+function getNextInPath(node, path, index) {
+  if (node.hasOwnProperty('save')) {
+    for (var i=0; i<node.save.length; i++) {
+      if (node.save[i].name === path[index]) {
+        if (index === (path.length - 1)) {
+          return node.save[i].key;
+        } else if (index <= (path.length - 1)) {
+          return getNextInPath(node.save[i], path, index + 1);
+        } else {
+          return C_NULL;
+        }
+      }
+    }
+  }
+  return C_NULL;
 }

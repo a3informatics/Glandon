@@ -1,6 +1,9 @@
 module UiHelpers
 
-	def ui_click_ok(text="")
+	# General UI helpers
+  # ==================
+  
+  def ui_click_ok(text="")
     a = page.driver.browser.switch_to.alert
     expect(a.text).to eq(text) if !text.empty?
     a.accept 
@@ -12,16 +15,6 @@ module UiHelpers
     a.dismiss
   end
   
-  def ui_click_node_name(text)
-    fill_in 'click_node_name_text', with: text
-    click_button 'click_node_name'
-  end
-
-  def ui_click_node_key(key)
-    fill_in 'click_node_key_text', with: key
-    click_button 'click_node_key'
-  end
-
   def ui_table_row_link_click(content, link_text)
     find(:xpath, "//tr[contains(.,'#{content}')]/td/a", :text => "#{link_text}").click
   end
@@ -32,21 +25,28 @@ module UiHelpers
     end
   end
 
+  # Note: Won't work if field disabled
   def ui_check_input(id, value)
     expect(find_field("#{id}").value).to eq "#{value}"
+  end
+
+  def ui_check_disabled_input(field_id, value)
+    expect(find_field("#{field_id}", disabled: true).value).to eq(value)
+  end
+
+  def ui_check_checkbox(id, value)
+    expected = "on" if value
+    expected = "off" if !value
+    expect(find_field("#{id}").value).to eq("#{expected}")
+  end
+
+  def ui_check_radio(id, value)
+    expect(find_field("#{id}").checked?).to eq(value)
   end
 
   def ui_check_div_text(id, text)
     text_field = page.find(:xpath, "//div[@id=\"#{id}\"]")
     expect(text_field.text).to eq(text)
-  end
-
-  def ui_check_node_ordinal(text, value)
-    expect(page.evaluate_script("getOrdinal(\"#{text}\")").to_i).to eq(value)
-  end
-
-  def ui_get_last_node
-    return page.evaluate_script("d3eLastKey()").to_i
   end
 
   def ui_set_focus(field_id)
@@ -69,6 +69,7 @@ module UiHelpers
     expect(page).to have_button("#{field_id}", disabled: false)
   end       
 
+  # Not sure this works!!!!
   def ui_is_not_visible(field_id)
     #expect(page).not_to have_selector("#{field_id}", visible: true)
     #page.find("#{field_id}")[:class].include?("hidden")
@@ -79,6 +80,45 @@ module UiHelpers
   def ui_is_visible(field_id)
     #expect(page).to have_selector("#{field_id}", visible: true)
     expect(page).to have_selector(:xpath, "//div[@id='#{field_id}' and @class='panel panel-default']")
+  end
+
+  # Datatables
+  #
+  def ui_main_show_all
+    page.evaluate_script("dtMainTableAll()")
+  end
+
+  # D3 Tree Functions
+  # =================
+
+  def ui_click_node_name(text)
+    fill_in 'click_node_name_text', with: text
+    click_button 'click_node_name'
+  end
+
+  def ui_click_node_key(key)
+    fill_in 'click_node_key_text', with: key
+    click_button 'click_node_key'
+  end
+
+  def ui_check_node_ordinal(key, value)
+    expect(page.evaluate_script("rhGetOrdinal(#{key})").to_i).to eq(value)
+  end
+
+  def ui_check_node_is_common(key, value)
+    expect(page.evaluate_script("rhGetCommon(#{key})")).to eq(value)
+  end
+
+  def ui_get_last_node
+    return page.evaluate_script("d3eLastKey()").to_i
+  end
+
+  def ui_get_key_by_path(path)
+    return page.evaluate_script("rhGetViaPath(#{path})").to_i
+  end
+
+  def ui_get_key_by_name(text)
+    return page.evaluate_script("rhGetViaName(\"#{text}\")").to_i
   end
 
 end
