@@ -54,7 +54,7 @@ describe SdtmUserDomainsController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
+      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
       expected = read_text_file_2(sub_dir, "sdtm_user_domain_controller_index.txt")
       expect(response.body).to eq(expected)
     end
@@ -115,17 +115,51 @@ describe SdtmUserDomainsController do
 
     it "allows a domain to be created"
     
-    it "allows a domain to be updated"
+    it "allows a domain to be updated" do
+      domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
+      token = Token.obtain(domain, @user)
+      data = domain.to_operation
+      put :update, { :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update.txt")
+      expected = read_text_file_2(sub_dir, "sdtm_user_domain_update.txt")
+      expect(response.body).to eq(expected)
+    end
     
-    it "edit, no next version" #do
-      #get :edit, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
-      #result = assigns(:bc)
-      #token = assigns(:token)
-      #expect(token.user_id).to eq(@user.id)
-      #expect(token.item_uri).to eq("http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_NEWdomain") # Note no new version, no copy.
-      #expect(result.identifier).to eq("NEW domain")
-      #expect(response).to render_template("edit")
-    #end
+    it "allows a domain to be updated, error" do
+      domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
+      domain.notes = "<><><>"
+      token = Token.obtain(domain, @user)
+      data = domain.to_operation
+      put :update, { :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update_error.txt")
+      expected = read_text_file_2(sub_dir, "sdtm_user_domain_update_error.txt")
+      expect(response.body).to eq(expected)
+    end
+    
+    it "allows a domain to be updated, already locked" do
+      domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
+      token = Token.obtain(domain, @lock_user)
+      put :update, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update_locked.txt")
+      expected = read_text_file_2(sub_dir, "sdtm_user_domain_update_locked.txt")
+      expect(response.body).to eq(expected)
+    end
+    
+    it "edit, no next version" do
+      get :edit, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      result = assigns(:sdtm_user_domain)
+      token = assigns(:token)
+      expect(token.user_id).to eq(@user.id)
+      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain") # Note no new version, no copy.
+      expect(result.identifier).to eq("DM Domain")
+      expect(response).to render_template("edit")
+    end
 
     it "edit domain, next version" #do
       #get :edit, { "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
@@ -137,14 +171,14 @@ describe SdtmUserDomainsController do
       #expect(response).to render_template("edit")
     #end
     
-    it "edits domain, already locked" #do
-      #@request.env['HTTP_REFERER'] = 'http://test.host/sdtm_user_domains'
-      #domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
-      #token = Token.obtain(domain, @lock_user)
-      #get :edit, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
-      #expect(flash[:error]).to be_present
-      #expect(response).to redirect_to("/sdtm_user_domains")
-    #end
+    it "edits domain, already locked" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/sdtm_user_domains'
+      domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
+      token = Token.obtain(domain, @lock_user)
+      get :edit, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/sdtm_user_domains")
+    end
 
     it "initiates the add operation" do
       get :add, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}

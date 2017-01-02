@@ -73,11 +73,18 @@ class SdtmUserDomainsController < ApplicationController
 
   def update
     authorize SdtmUserDomain
-    @sdtm_user_domain = SdtmUserDomain.update(params)
-    if @sdtm_user_domain.errors.empty?
-      render :json => { :data => @sdtm_user_domain.to_edit}, :status => 200
+    sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace], false)
+    token = Token.find_token(sdtm_user_domain, current_user)
+    if !token.nil?
+      @sdtm_user_domain = SdtmUserDomain.update(params[:data])
+      if @sdtm_user_domain.errors.empty?
+        AuditTrail.update_item_event(current_user, @sdtm_user_domain, "Domain updated.") if token.refresh == 1
+        render :json => { :data => @sdtm_user_domain.to_operation}, :status => 200
+      else
+        render :json => { :errors => @sdtm_user_domain.errors.full_messages}, :status => 422
+      end
     else
-      render :json => { :errors => @sdtm_user_domain.errors.full_messages}, :status => 422
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
     end
   end
 
@@ -89,7 +96,7 @@ class SdtmUserDomainsController < ApplicationController
       new_domain = SdtmUserDomain.create(json)
       @sdtm_user_domain = SdtmUserDomain.find(new_domain.id, new_domain.namespace)
     end
-    @close_path = history_biomedical_concepts_path(identifier: @bc.identifier, scope_id: @bc.owner_id)
+    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.owner_id })
     @token = Token.obtain(@sdtm_user_domain, current_user)
     if @token.nil?
       flash[:error] = "The item is locked for editing by another user."

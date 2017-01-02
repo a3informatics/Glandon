@@ -319,15 +319,15 @@ describe "Form Editor", :type => :feature do
       ui_set_focus('questionCompletion')
       expect(page).to have_content 'Markdown Preview'
       ui_is_not_visible("#notepad_panel")
-      fill_in 'questionCompletion', with: "*Hello* World!"
+      fill_in 'questionCompletion', with: "*Hello* World! Also add soem single quotes 'like' this."
       click_button 'markdown_preview'
-      ui_check_div_text('genericCompletion', "Hello World!")
+      ui_check_div_text('genericCompletion', "Hello World! Also add soem single quotes 'like' this.")
       click_button 'markdown_hide'
       expect(page).to have_content 'Notepad'
       expect(page).to have_no_content 'Markdown Preview'
-      fill_in 'questionNote', with: "And now for smething completely different ..."
+      fill_in 'questionNote', with: 'And now for smething completely different ... and some double quotes "here".'
       click_button 'markdown_preview'
-      ui_check_div_text('genericCompletion', "And now for smething completely different ...")
+      ui_check_div_text('genericCompletion', "And now for smething completely different ... and some double quotes \"here\".")
       click_button 'markdown_hide'
       expect(page).to have_content 'Notepad'
       expect(page).to have_no_content 'Markdown Preview'
@@ -742,6 +742,10 @@ describe "Form Editor", :type => :feature do
     it "displays the CL Item Panel for Questions" 
 
     it "allows the CL to be moved up and down for Questions" 
+
+    it "allows a BC to be deleted"
+
+    it "handles common when BC deleted"
 
   end
 

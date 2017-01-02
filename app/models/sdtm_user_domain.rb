@@ -155,24 +155,26 @@ class SdtmUserDomain < Tabular::Tabulation
     return object
   end
 
+  # Update a domain
+  #
+  # @param params [Hash] The operational hash
+  # @return [SdtmUserDomain] The domain object. Valid if no errors set.
   def self.update(params)
-    object = self.new 
-    object.errors.clear
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    #ConsoleLogger::log(C_CLASS_NAME,"update", "managed_item=" + managed_item.to_json.to_s)
-    domain = SdtmUserDomain.find(managed_item[:id], managed_item[:namespace])
-    ra = IsoRegistrationAuthority.owner
-    object = SdtmUserDomain.from_json(data)
-    sparql = object.to_sparql(ra)
-    domain.destroy # Destroys the old entry before the creation of the new item
-    #ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
-    response = CRUD.update(sparql.to_s)
-    if response.success?
-      object.errors.clear
-    else
-      object.errors.add(:base, "The Domain was not created in the database.")
+    operation = params[:operation]
+    managed_item = params[:managed_item]
+    existing_domain = SdtmUserDomain.find(managed_item[:id], managed_item[:namespace])
+    object = SdtmUserDomain.from_json(managed_item)
+    object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
+    if object.valid? then
+      #if object.create_permitted?
+        sparql = object.to_sparql_v2
+        existing_domain.destroy # Destroys the old entry before the creation of the new item
+        response = CRUD.update(sparql.to_s)
+        if !response.success?
+          ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+          raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+        end
+      #end
     end
     return object
   end
@@ -200,6 +202,7 @@ class SdtmUserDomain < Tabular::Tabulation
     self.children.each do |child|
       json[:children] << child.to_json
     end
+    json[:children] = json[:children].sort_by {|item| item[:ordinal]}
     self.bc_refs.each do |child|
       json[:bc_refs] << child.to_json
     end

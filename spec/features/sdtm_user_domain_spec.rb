@@ -120,13 +120,21 @@ describe "SDTM User Domains", :type => :feature do
       expect(domain.bc_refs.count).to eq(bc_count - 1)
     end
 
-    it "allows for a BC to be edited"
+    it "history allows the edit page to be entered" do
+      visit '/sdtm_user_domains'
+      expect(page).to have_content 'Index: Domains'
+      find(:xpath, "//tr[contains(.,'VS Domain')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: VS Domain'
+      #save_and_open_page
+      find(:xpath, "//tr[contains(.,'VS Domain')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: VS Copy VS Domain (, V1, Incomplete)'
+    end
 
-    it "allows for a new BC to be created"
+    it "allows for a domain to be exported as JSON"
 
-    it "allows for a BC to be exported as JSON"
+    it "allows for a domain to be exprted as TTL"
 
-    it "allows for a BC to be expoerted as TTL"
+    it "allows for a report to be exported"
 
   end
 

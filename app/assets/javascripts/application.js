@@ -294,20 +294,32 @@ function validatorDefaults () {
 * URI functions
 */ 
 function getNamespace(uri) {
-  var parts = uri.split("#");
-  if (parts.length == 2) {
-    return parts[0];
-  } else {
+  if (uri === null) {
     return "";
+  } else if (uri === "") {
+    return "";
+  } else {
+    var parts = uri.split("#");
+    if (parts.length === 2) {
+      return parts[0];
+    } else {
+      return "";
+    }
   }
 }
 
 function getId(uri) {
-  var parts = uri.split("#");
-  if (parts.length == 2) {
-    return parts[1];
-  } else {
+  if (uri === null) {
     return "";
+  } else if (uri === "") {
+    return "";
+  } else {
+    var parts = uri.split("#");
+    if (parts.length == 2) {
+      return parts[1];
+    } else {
+      return "";
+    }
   }
 }
 

@@ -1,14 +1,53 @@
 <%= stylesheet_link_tag    'd3_tree', 'sdtm_user_domain_editor'%>
-<%= javascript_include_tag 'd3_tree', 'sdtm_user_domain_editor', 'ajax_requests'%>
+<%= javascript_include_tag 'd3_tree', 'sdtm_user_domain_editor', 'ajax_requests', 'd3_editor', 'unload' %>
+<% if Rails.env == "test" || Rails.env == "development" %>
+	<%= javascript_include_tag 'rspec_helper' %>
+<% end %>
 <script id="domainJson" type="text/json">
-    <%= raw @sdtm_user_domain.to_edit(true).to_json %>
+  <%= raw @sdtm_user_domain.to_operation.to_json %>
 </script>
-<div class="row">
-    <div class="col-md-7">
-        <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Edit:", :item => @sdtm_user_domain} %>
-        <div style="height: 800px;" id="d3">
-            <!-- D3 Area -->
-        </div>
-    </div>
-    <%= render partial: "shared/sdtmUserDomainEditor"%>
-</div>
+<form id="main_form">
+	<div class="row">
+	 	<div class="col-md-7">
+	    <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Edit:", :item => @sdtm_user_domain} %>
+	    <div class="btn-group" role="group" aria-label="First group">
+	      <button id="saving" type="button" class="btn btn-default">
+	        <span class="glyphicon glyphicon-refresh"></span>
+	      </button>
+	      <button type="submit" id="save" class="btn btn-primary">Save</button>
+	    </div>
+	    <button type="button" id="close" class="btn btn-primary">Close</button>
+	    <div id="d3">
+	      <!-- D3 Area -->
+	    </div>
+	  </div>
+		<div class="col-md-5" >
+		  <%= render partial: "shared/sdtmUserDomainEditor"%>
+		  <% if Rails.env == "test" || Rails.env == "development" %>
+		    <div class="row">
+			    <div class="col-md-4" >
+			      <div class="input-group">
+			        <span class="input-group-btn">
+			          <button type="button" id="click_node_name" class="btn btn-primary">N:</button>
+			        </span>
+			        <input type="text" class="form-control" id="click_node_name_text">
+			      </div>
+			    </div>
+			    <div class="col-md-4" >
+			      <div class="input-group">
+			        <span class="input-group-btn">
+			          <button type="button" id="click_node_key" class="btn btn-primary">K:</button>
+			        </span>
+			        <input type="text" class="form-control" id="click_node_key_text">
+			      </div>
+			    </div>
+			    <div class="col-md-4" >
+		        <button type="button" id="clear_current_node" class="btn btn-primary">Clear</button>
+			    </div>
+			  </div>
+			<% end %>
+		</div>
+	</div>
+</form>
+<input type="hidden" id="token" value="<%= @token.id %>">
+<input type="hidden" id="close_path" value="<%= @close_path %>">

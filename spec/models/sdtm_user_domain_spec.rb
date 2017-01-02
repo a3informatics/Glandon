@@ -78,9 +78,26 @@ describe SdtmUserDomain do
     expect(new_domain.to_json).to eq(expected)
   end
   
-  it "allows a domain to be created"
+  it "allows a domain to be created" do
+    params = read_yaml_file(sub_dir, "sdtm_user_domain_2.yaml")
+    new_domain = SdtmUserDomain.create(params[:data])
+    #write_yaml_file(new_domain.to_json, sub_dir, "sdtm_user_domain_create.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_user_domain_create.yaml")
+    expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
+    expect(new_domain.to_json).to eq(expected)
+  end      
   
-  it "allows a domain to be updated"
+  it "allows a domain to be updated" do
+    #text = read_text_file_2(sub_dir, "sdtm_user_domain_update.txt")
+    #hash = JSON.parse(text)
+    #write_hash_to_yaml_file_2(hash.deep_symbolize_keys, sub_dir, "sdtm_user_domain_2.yaml")
+    params = read_yaml_file(sub_dir, "sdtm_user_domain_2.yaml")
+    new_domain = SdtmUserDomain.update(params[:data])
+    #write_yaml_file(new_domain.to_json, sub_dir, "sdtm_user_domain_update.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_user_domain_update.yaml")
+    expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
+    expect(new_domain.to_json).to eq(expected)
+  end      
   
   it "allows a domain to be destroyed" do
     ig_domain = SdtmIgDomain.find("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
