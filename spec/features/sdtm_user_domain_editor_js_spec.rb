@@ -26,19 +26,24 @@ describe "SDTM User Domain Editor", :type => :feature do
     load_test_file_into_triple_store("sdtm_user_domain_dm.ttl")
     load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")
     load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
-    @user = User.create :email => "form_edit@example.com", :password => "12345678" 
+    clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
+    clear_cdisc_term_object
+    @user = User.create :email => "domain_edit@example.com", :password => "12345678" 
     @user.add_role :curator
   end
 
   after :all do
-    user = User.where(:email => "form_edit@example.com").first
+    user = User.where(:email => "domain_edit@example.com").first
     user.destroy
   end
 
 =begin
   def create_form(identifier, label, new_label)
     visit '/users/sign_in'
-    fill_in 'Email', with: 'form_edit@example.com'
+    fill_in 'Email', with: 'domain_edit@example.com'
     fill_in 'Password', with: '12345678'
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'  
@@ -59,13 +64,15 @@ describe "SDTM User Domain Editor", :type => :feature do
 
   def load_domain(identifier)
     visit '/users/sign_in'
-    fill_in 'Email', with: 'form_edit@example.com'
+    fill_in 'Email', with: 'domain_edit@example.com'
     fill_in 'Password', with: '12345678'
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'  
     click_link 'Domains'
     expect(page).to have_content 'Index: Domains'
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
+    expect(page).to have_content 'History:'
+    #pause
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
   end
 

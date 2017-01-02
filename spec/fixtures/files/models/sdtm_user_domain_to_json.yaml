@@ -71,13 +71,13 @@
     :id: IG-CDISC_SDTMIGVS
 :children:
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V6
+  :id: D-ACME_VSDomain_V1
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Sponsor-Defined Identifier
+  :label: Study Identifier
   :extension_properties: []
-  :ordinal: 6
+  :ordinal: 1
   :rule: ''
-  :name: VSSPID
+  :name: STUDYID
   :notes: ''
   :format: ''
   :ct: ''
@@ -94,9 +94,9 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+    :id: IG-CDISC_SDTMIGVS_C_REQUIRED
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Permissible
+    :label: Required
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
@@ -106,7 +106,7 @@
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V6_IGV1
+    :id: D-ACME_VSDomain_V1_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -116,107 +116,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSSPID
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V12
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Result or Finding in Original Units
-  :extension_properties: []
-  :ordinal: 12
-  :rule: ''
-  :name: VSORRES
-  :notes: ''
-  :format: ''
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Expected
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Result Qualifier
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V12_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSORRES
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V28
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Planned Time Point Name
-  :extension_properties: []
-  :ordinal: 28
-  :rule: ''
-  :name: VSTPT
-  :notes: ''
-  :format: ''
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_TIMING
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Timing
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V28_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSTPT
+      :id: IG-CDISC_SDTMIGVS_STUDYID
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V2
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -265,13 +165,13 @@
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_DOMAIN
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V1
+  :id: D-ACME_VSDomain_V3
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Study Identifier
+  :label: Unique Subject Identifier
   :extension_properties: []
-  :ordinal: 1
+  :ordinal: 3
   :rule: ''
-  :name: STUDYID
+  :name: USUBJID
   :notes: ''
   :format: ''
   :ct: ''
@@ -300,7 +200,7 @@
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V1_IGV1
+    :id: D-ACME_VSDomain_V3_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -310,219 +210,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_STUDYID
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V11
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Vital Signs Position of Subject
-  :extension_properties: []
-  :ordinal: 11
-  :rule: ''
-  :name: VSPOS
-  :notes: ''
-  :format: ''
-  :ct: POSITION
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Record Qualifier
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V11_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSPOS
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V17
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Completion Status
-  :extension_properties: []
-  :ordinal: 17
-  :rule: ''
-  :name: VSSTAT
-  :notes: ''
-  :format: ''
-  :ct: ND
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Record Qualifier
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V17_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSSTAT
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V10
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Subcategory for Vital Signs
-  :extension_properties: []
-  :ordinal: 10
-  :rule: ''
-  :name: VSSCAT
-  :notes: ''
-  :format: ''
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Grouping Qualifier
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V10_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSSCAT
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V16
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Standard Units
-  :extension_properties: []
-  :ordinal: 16
-  :rule: ''
-  :name: VSSTRESU
-  :notes: ''
-  :format: ''
-  :ct: VSRESU
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Expected
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Variable Qualifier
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V16_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSSTRESU
+      :id: IG-CDISC_SDTMIGVS_USUBJID
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V4
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -571,113 +259,13 @@
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSSEQ
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V20
+  :id: D-ACME_VSDomain_V5
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Laterality
+  :label: Group ID
   :extension_properties: []
-  :ordinal: 20
+  :ordinal: 5
   :rule: ''
-  :name: VSLAT
-  :notes: ''
-  :format: ''
-  :ct: LAT
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Variable Qualifier
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V20_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSLAT
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V26
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Date/Time of Measurements
-  :extension_properties: []
-  :ordinal: 26
-  :rule: ''
-  :name: VSDTC
-  :notes: ''
-  :format: ISO 8601
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Expected
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_TIMING
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Timing
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V26_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSDTC
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V9
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Category for Vital Signs
-  :extension_properties: []
-  :ordinal: 9
-  :rule: ''
-  :name: VSCAT
+  :name: VSGRPID
   :notes: ''
   :format: ''
   :ct: ''
@@ -700,19 +288,13 @@
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Grouping Qualifier
+    :label: Identifier
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V9_IGV1
+    :id: D-ACME_VSDomain_V5_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -722,62 +304,15 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSCAT
+      :id: IG-CDISC_SDTMIGVS_VSGRPID
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V25
+  :id: D-ACME_VSDomain_V6
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Planned Study Day of Visit
+  :label: Sponsor-Defined Identifier
   :extension_properties: []
-  :ordinal: 25
+  :ordinal: 6
   :rule: ''
-  :name: VISITDY
-  :notes: ''
-  :format: ''
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_NUM
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Num
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_TIMING
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Timing
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V25_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VISITDY
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V31
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Time Point Reference
-  :extension_properties: []
-  :ordinal: 31
-  :rule: ''
-  :name: VSTPTREF
+  :name: VSSPID
   :notes: ''
   :format: ''
   :ct: ''
@@ -800,13 +335,13 @@
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Timing
+    :label: Identifier
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V31_IGV1
+    :id: D-ACME_VSDomain_V6_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -816,54 +351,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSTPTREF
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V30
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Planned Elapsed Time from Time Point Ref
-  :extension_properties: []
-  :ordinal: 30
-  :rule: ''
-  :name: VSELTM
-  :notes: ''
-  :format: ISO 8601
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_TIMING
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Timing
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V30_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSELTM
+      :id: IG-CDISC_SDTMIGVS_VSSPID
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V7
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -911,159 +399,6 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSTESTCD
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V23
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Visit Number
-  :extension_properties: []
-  :ordinal: 23
-  :rule: ''
-  :name: VISITNUM
-  :notes: ''
-  :format: ''
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_NUM
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Num
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Expected
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_TIMING
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Timing
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V23_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VISITNUM
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V15
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Numeric Result/Finding in Standard Units
-  :extension_properties: []
-  :ordinal: 15
-  :rule: ''
-  :name: VSSTRESN
-  :notes: ''
-  :format: ''
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_NUM
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Num
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Expected
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Result Qualifier
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V15_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSSTRESN
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V14
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Character Result/Finding in Std Format
-  :extension_properties: []
-  :ordinal: 14
-  :rule: ''
-  :name: VSSTRESC
-  :notes: ''
-  :format: ''
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_CHAR
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Char
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Expected
-    :extension_properties: []
-  :classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Result Qualifier
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V14_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSSTRESC
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V8
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1118,13 +453,13 @@
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSTEST
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V24
+  :id: D-ACME_VSDomain_V9
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Visit Name
+  :label: Category for Vital Signs
   :extension_properties: []
-  :ordinal: 24
+  :ordinal: 9
   :rule: ''
-  :name: VISIT
+  :name: VSCAT
   :notes: ''
   :format: ''
   :ct: ''
@@ -1147,60 +482,19 @@
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Timing
+    :label: Qualifier
     :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V24_IGV1
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VISIT
-- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V29
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Planned Time Point Number
-  :extension_properties: []
-  :ordinal: 29
-  :rule: ''
-  :name: VSTPTNUM
-  :notes: ''
-  :format: ''
-  :ct: ''
-  :non_standard: false
-  :comment: ''
-  :length: 0
-  :used: true
-  :key_ordinal: 0
-  :datatype:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableType
-    :id: M-CDISC_SDTMMODEL_DT_NUM
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Num
-    :extension_properties: []
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :classification:
+  :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Timing
+    :label: Grouping Qualifier
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V29_IGV1
+    :id: D-ACME_VSDomain_V9_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1210,15 +504,15 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSTPTNUM
+      :id: IG-CDISC_SDTMIGVS_VSCAT
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V3
+  :id: D-ACME_VSDomain_V10
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Unique Subject Identifier
+  :label: Subcategory for Vital Signs
   :extension_properties: []
-  :ordinal: 3
+  :ordinal: 10
   :rule: ''
-  :name: USUBJID
+  :name: VSSCAT
   :notes: ''
   :format: ''
   :ct: ''
@@ -1235,19 +529,25 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_REQUIRED
+    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Required
+    :label: Permissible
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Identifier
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Grouping Qualifier
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V3_IGV1
+    :id: D-ACME_VSDomain_V10_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1257,18 +557,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_USUBJID
+      :id: IG-CDISC_SDTMIGVS_VSSCAT
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V19
+  :id: D-ACME_VSDomain_V11
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Location of Vital Signs Measurement
+  :label: Vital Signs Position of Subject
   :extension_properties: []
-  :ordinal: 19
+  :ordinal: 11
   :rule: ''
-  :name: VSLOC
+  :name: VSPOS
   :notes: ''
   :format: ''
-  :ct: LOC
+  :ct: POSITION
   :non_standard: false
   :comment: ''
   :length: 0
@@ -1300,7 +600,7 @@
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V19_IGV1
+    :id: D-ACME_VSDomain_V11_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1310,18 +610,283 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSLOC
+      :id: IG-CDISC_SDTMIGVS_VSPOS
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V32
+  :id: D-ACME_VSDomain_V12
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Date/Time of Reference Time Point
+  :label: Result or Finding in Original Units
   :extension_properties: []
-  :ordinal: 32
+  :ordinal: 12
   :rule: ''
-  :name: VSRFTDTC
+  :name: VSORRES
   :notes: ''
-  :format: ISO 8601
+  :format: ''
   :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Expected
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Result Qualifier
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V12_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSORRES
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V13
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Original Units
+  :extension_properties: []
+  :ordinal: 13
+  :rule: ''
+  :name: VSORRESU
+  :notes: ''
+  :format: ''
+  :ct: VSRESU
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Expected
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Variable Qualifier
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V13_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSORRESU
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V14
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Character Result/Finding in Std Format
+  :extension_properties: []
+  :ordinal: 14
+  :rule: ''
+  :name: VSSTRESC
+  :notes: ''
+  :format: ''
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Expected
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Result Qualifier
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V14_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSSTRESC
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V15
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Numeric Result/Finding in Standard Units
+  :extension_properties: []
+  :ordinal: 15
+  :rule: ''
+  :name: VSSTRESN
+  :notes: ''
+  :format: ''
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_NUM
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Num
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Expected
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Result Qualifier
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V15_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSSTRESN
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V16
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Standard Units
+  :extension_properties: []
+  :ordinal: 16
+  :rule: ''
+  :name: VSSTRESU
+  :notes: ''
+  :format: ''
+  :ct: VSRESU
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Expected
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Variable Qualifier
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V16_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSSTRESU
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V17
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Completion Status
+  :extension_properties: []
+  :ordinal: 17
+  :rule: ''
+  :name: VSSTAT
+  :notes: ''
+  :format: ''
+  :ct: ND
   :non_standard: false
   :comment: ''
   :length: 0
@@ -1341,13 +906,19 @@
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Timing
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Record Qualifier
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V32_IGV1
+    :id: D-ACME_VSDomain_V17_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1357,7 +928,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSRFTDTC
+      :id: IG-CDISC_SDTMIGVS_VSSTAT
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V18
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1412,16 +983,16 @@
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSREASND
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V22
+  :id: D-ACME_VSDomain_V19
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Derived Flag
+  :label: Location of Vital Signs Measurement
   :extension_properties: []
-  :ordinal: 22
+  :ordinal: 19
   :rule: ''
-  :name: VSDRVFL
+  :name: VSLOC
   :notes: ''
   :format: ''
-  :ct: NY
+  :ct: LOC
   :non_standard: false
   :comment: ''
   :length: 0
@@ -1453,7 +1024,7 @@
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V22_IGV1
+    :id: D-ACME_VSDomain_V19_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1463,18 +1034,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSDRVFL
+      :id: IG-CDISC_SDTMIGVS_VSLOC
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V5
+  :id: D-ACME_VSDomain_V20
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Group ID
+  :label: Laterality
   :extension_properties: []
-  :ordinal: 5
+  :ordinal: 20
   :rule: ''
-  :name: VSGRPID
+  :name: VSLAT
   :notes: ''
   :format: ''
-  :ct: ''
+  :ct: LAT
   :non_standard: false
   :comment: ''
   :length: 0
@@ -1494,13 +1065,19 @@
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Identifier
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Variable Qualifier
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V5_IGV1
+    :id: D-ACME_VSDomain_V20_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1510,7 +1087,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSGRPID
+      :id: IG-CDISC_SDTMIGVS_VSLAT
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V21
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1565,6 +1142,247 @@
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSBLFL
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V22
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Derived Flag
+  :extension_properties: []
+  :ordinal: 22
+  :rule: ''
+  :name: VSDRVFL
+  :notes: ''
+  :format: ''
+  :ct: NY
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Record Qualifier
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V22_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSDRVFL
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V23
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Visit Number
+  :extension_properties: []
+  :ordinal: 23
+  :rule: ''
+  :name: VISITNUM
+  :notes: ''
+  :format: ''
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_NUM
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Num
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Expected
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Timing
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V23_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VISITNUM
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V24
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Visit Name
+  :extension_properties: []
+  :ordinal: 24
+  :rule: ''
+  :name: VISIT
+  :notes: ''
+  :format: ''
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Timing
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V24_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VISIT
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V25
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Planned Study Day of Visit
+  :extension_properties: []
+  :ordinal: 25
+  :rule: ''
+  :name: VISITDY
+  :notes: ''
+  :format: ''
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_NUM
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Num
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Timing
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V25_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VISITDY
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V26
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Date/Time of Measurements
+  :extension_properties: []
+  :ordinal: 26
+  :rule: ''
+  :name: VSDTC
+  :notes: ''
+  :format: ISO 8601
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Expected
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Timing
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V26_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSDTC
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V27
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
   :label: Study Day of Vital Signs
@@ -1612,16 +1430,16 @@
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSDY
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
-  :id: D-ACME_VSDomain_V13
+  :id: D-ACME_VSDomain_V28
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: Original Units
+  :label: Planned Time Point Name
   :extension_properties: []
-  :ordinal: 13
+  :ordinal: 28
   :rule: ''
-  :name: VSORRESU
+  :name: VSTPT
   :notes: ''
   :format: ''
-  :ct: VSRESU
+  :ct: ''
   :non_standard: false
   :comment: ''
   :length: 0
@@ -1635,25 +1453,19 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
+    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Expected
+    :label: Permissible
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_TIMING
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Variable Qualifier
+    :label: Timing
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: D-ACME_VSDomain_V13_IGV1
+    :id: D-ACME_VSDomain_V28_IGV1
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1663,7 +1475,195 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-      :id: IG-CDISC_SDTMIGVS_VSORRESU
+      :id: IG-CDISC_SDTMIGVS_VSTPT
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V29
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Planned Time Point Number
+  :extension_properties: []
+  :ordinal: 29
+  :rule: ''
+  :name: VSTPTNUM
+  :notes: ''
+  :format: ''
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_NUM
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Num
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Timing
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V29_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSTPTNUM
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V30
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Planned Elapsed Time from Time Point Ref
+  :extension_properties: []
+  :ordinal: 30
+  :rule: ''
+  :name: VSELTM
+  :notes: ''
+  :format: ISO 8601
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Timing
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V30_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSELTM
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V31
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Time Point Reference
+  :extension_properties: []
+  :ordinal: 31
+  :rule: ''
+  :name: VSTPTREF
+  :notes: ''
+  :format: ''
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Timing
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V31_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSTPTREF
+- :type: http://www.assero.co.uk/BusinessDomain#UserVariable
+  :id: D-ACME_VSDomain_V32
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: Date/Time of Reference Time Point
+  :extension_properties: []
+  :ordinal: 32
+  :rule: ''
+  :name: VSRFTDTC
+  :notes: ''
+  :format: ISO 8601
+  :ct: ''
+  :non_standard: false
+  :comment: ''
+  :length: 0
+  :used: true
+  :key_ordinal: 0
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Timing
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: D-ACME_VSDomain_V32_IGV1
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+      :id: IG-CDISC_SDTMIGVS_VSRFTDTC
 :bc_refs:
 - :type: http://www.assero.co.uk/BusinessOperational#BcReference
   :id: D-ACME_VSDomain_BCR3

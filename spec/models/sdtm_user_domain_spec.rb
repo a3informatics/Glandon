@@ -139,7 +139,7 @@ describe SdtmUserDomain do
     item.add(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count + 2)
-    write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_1.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_1.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_user_domain_bc_1.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -151,7 +151,7 @@ describe SdtmUserDomain do
     item.add(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count)
-    write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_2.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_2.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_user_domain_bc_2.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -163,7 +163,7 @@ describe SdtmUserDomain do
     item.remove(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count - 2)
-    write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_3.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_3.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_user_domain_bc_3.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -175,7 +175,7 @@ describe SdtmUserDomain do
     item.remove(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count - 1)
-    write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_4.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_4.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_user_domain_bc_4.yaml")
     expect(item.to_json).to eq(expected)
   end
