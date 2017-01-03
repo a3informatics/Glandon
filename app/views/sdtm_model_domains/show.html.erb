@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @sdtm_model_domain} %>
 <div class="col-md-12">
 	<h4>Details</h4>
@@ -49,7 +50,7 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "Export JSON", export_json_sdtm_model_domains_path(:id => @sdtm_model_domain.id, :namespace => @sdtm_model_domain.namespace), :class => "btn btn-info" %>
-	<%= link_to "Export Turtle", export_ttl_sdtm_model_domains_path(:id => @sdtm_model_domain.id, :namespace => @sdtm_model_domain.namespace), :class => "btn btn-info" %>
+	<%= link_to "Export JSON", export_json_sdtm_model_domain_path(:id => @sdtm_model_domain.id, :namespace => @sdtm_model_domain.namespace), :class => "btn btn-info" %>
+	<%= link_to "Export Turtle", export_ttl_sdtm_model_domain_path(:id => @sdtm_model_domain.id, :namespace => @sdtm_model_domain.namespace), :class => "btn btn-info" %>
 	<br/><br/>
 </div>

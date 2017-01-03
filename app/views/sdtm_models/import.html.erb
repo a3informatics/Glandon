@@ -1,6 +1,6 @@
 <h3>Import CDISC SDTM Model Version</h3>
 <div class="col-md-6">
-  <%= form_for @sdtm_class_model, url: import_sdtm_models_path do |f| %>
+  <%= form_for @sdtm_class_model, url: create_sdtm_models_path do |f| %>
       <div class="form-group">
           <%= label_tag :version, "Version (internal system):" %><br/>
           <%= text_field_tag "sdtm_model[version]", "", class: "form-control" %>

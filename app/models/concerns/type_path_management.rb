@@ -8,7 +8,7 @@ module TypePathManagement
       BiomedicalConceptTemplate::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_biomedical_concept_templates_path, strong: "biomedical_concept_template" },
       BiomedicalConcept::C_RDF_TYPE_URI.to_s =>  { path: Rails.application.routes.url_helpers.history_biomedical_concepts_path, strong: "biomedical_concept" },
       Form::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_forms_path, strong: "" },
-      SdtmModel::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_models_path, strong: "" },
+      SdtmModel::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_models_path, strong: "sdtm_model" },
       SdtmIg::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_igs_path, strong: "" },
       SdtmIgDomain::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_ig_domains_path, strong: "" },
       SdtmUserDomain::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_user_domains_path, strong: "sdtm_user_domain" }

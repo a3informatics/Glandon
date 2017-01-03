@@ -9,15 +9,15 @@ class SdtmModelsController < ApplicationController
     @history = SdtmModel.history()
   end
   
-  def import_file
+  def import
     authorize SdtmModel
     @files = Dir.glob(Rails.root.join("public","upload") + "*")
     @sdtm_class_model = SdtmModel.new
   end
   
-  def import
-    authorize SdtmModel
-    hash = SdtmModel.import(this_params)
+  def create
+    authorize SdtmModel, :import?
+    hash = SdtmModel.import(the_params)
     @sdtm_model = hash[:object]
     @job = hash[:job]
     if @sdtm_model.errors.empty?
@@ -30,10 +30,8 @@ class SdtmModelsController < ApplicationController
   
   def show
     authorize SdtmModel
-    id = params[:id]
-    namespace = params[:namespace]
     @sdtm_model_classes = Array.new
-    @sdtm_model = SdtmModel.find(id, namespace)
+    @sdtm_model = SdtmModel.find(params[:id], the_params[:namespace])
     @sdtm_model.class_refs.each do |class_ref|
       @sdtm_model_classes << IsoManaged.find(class_ref.subject_ref.id, class_ref.subject_ref.namespace, false)
     end
@@ -41,24 +39,20 @@ class SdtmModelsController < ApplicationController
 
   def export_ttl
     authorize SdtmModel
-    id = params[:id]
-    namespace = params[:namespace]
-    @sdtm_model = IsoManaged::find(id, namespace)
+    @sdtm_model = IsoManaged::find(params[:id], the_params[:namespace])
     send_data to_turtle(@sdtm_model.triples), filename: "#{@sdtm_model.owner}_#{@sdtm_model.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   
   def export_json
     authorize SdtmModel
-    id = params[:id]
-    namespace = params[:namespace]
-    @sdtm_model = SdtmModel.find(id, namespace)
+    @sdtm_model = IsoManaged::find(params[:id], the_params[:namespace])
     send_data @sdtm_model.to_json, filename: "#{@sdtm_model.owner}_#{@sdtm_model.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
 private
   
-  def this_params
-    params.require(:sdtm_model).permit(:version, :version_label, :date, :files => [] )
+  def the_params
+    params.require(:sdtm_model).permit(:namespace, :version, :version_label, :date, :files => [] )
   end  
 
 end

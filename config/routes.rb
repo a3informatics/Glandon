@@ -195,8 +195,10 @@ Rails.application.routes.draw do
   resources :sdtm_models do
     collection do
       get :history
-      get :import_file
-      post :import
+      get :import
+      post :create
+    end
+    member do
       get :export_json
       get :export_ttl
     end
@@ -204,16 +206,18 @@ Rails.application.routes.draw do
   namespace :sdtm_models do
     resources :variables
   end
-  resources :sdtm_model_domains do
+  resources :sdtm_model_domains, :only => [:show] do
     collection do
-      get :history
+      #get :history
+    end
+    member do
       get :export_json
       get :export_ttl
     end
   end
-  namespace :sdtm_model_domains do
-    resources :variables
-  end
+  #namespace :sdtm_model_domains do
+  #  resources :variables
+  #end
   resources :sdtm_igs  do
     collection do
       get :history
@@ -230,9 +234,9 @@ Rails.application.routes.draw do
       get :export_ttl
     end
   end
-  namespace :sdtm_ig_domains do
-    resources :variables
-  end
+  #namespace :sdtm_ig_domains do
+  #  resources :variables
+  #end
   resources :sdtm_user_domains do
     member do
       get :export_json
@@ -250,7 +254,7 @@ Rails.application.routes.draw do
       post :update_remove
     end
   end
-  namespace :sdtm_user_domains do
-    resources :variables
-  end
+  #namespace :sdtm_user_domains do
+  #  resources :variables
+  #end
 end
