@@ -7,15 +7,15 @@ class SdtmIgsController < ApplicationController
     @history = SdtmIg.history()
   end
   
-  def import_file
+  def import
     authorize SdtmIg
     @files = Dir.glob(Rails.root.join("public","upload") + "*")
     @sdtm_ig = SdtmIg.new
     @sdtm_models = SdtmModel.all
   end
   
-  def import
-    authorize SdtmIg
+  def create
+    authorize SdtmIg, :import?
     hash = SdtmIg.import(this_params)
     @sdtm_ig = hash[:object]
     @job = hash[:job]
@@ -30,9 +30,7 @@ class SdtmIgsController < ApplicationController
   def show
     authorize SdtmIg
     @sdtm_ig_domains = Array.new
-    id = params[:id]
-    namespace = params[:namespace]
-    @sdtm_ig = SdtmIg.find(id, namespace)
+    @sdtm_ig = SdtmIg.find(params[:id], the_params[:namespace])
     @sdtm_ig.domain_refs.each do |op_ref|
       @sdtm_ig_domains << IsoManaged.find(op_ref.subject_ref.id, op_ref.subject_ref.namespace, false)
     end
@@ -40,24 +38,20 @@ class SdtmIgsController < ApplicationController
   
 def export_ttl
     authorize SdtmIg
-    id = params[:id]
-    namespace = params[:namespace]
-    @sdtm_ig = IsoManaged::find(id, namespace)
+    @sdtm_ig = IsoManaged::find(params[:id], the_params[:namespace])
     send_data to_turtle(@sdtm_ig.triples), filename: "#{@sdtm_ig.owner}_#{@sdtm_ig.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   
   def export_json
     authorize SdtmIg
-    id = params[:id]
-    namespace = params[:namespace]
-    @sdtm_ig = SdtmIg.find(id, namespace)
+    @sdtm_ig = SdtmIg.find(params[:id], the_params[:namespace])
     send_data @sdtm_ig.to_json, filename: "#{@sdtm_ig.owner}_#{@sdtm_ig.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
 private
   
-  def this_params
-    params.require(:sdtm_ig).permit(:version, :version_label, :date, :model_uri, :files => [] )
+  def the_params
+    params.require(:sdtm_ig).permit(:namespace, :version, :version_label, :date, :model_uri, :files => [] )
   end  
 
 end

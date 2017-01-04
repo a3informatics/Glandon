@@ -13,11 +13,10 @@ Rails.application.config.assets.version = '1.0'
   iso_concept_system_viewer 
   iso_concept_graph iso_concept_impact
   iso_managed_comment_edit iso_managed_list iso_managed_tag_edit iso_managed_tag_list iso_managed_graph
-  sdtm_igs sdtm_ig_domains sdtm_user_domain_editor
+  sdtm_user_domain_editor
   domains domains/variables 
   dashboard_viewer dashboard_index 
   markdown_editor
-  sdtmigs 
   background_index 
 	biomedical_concepts_editor 
 	cdisc_search

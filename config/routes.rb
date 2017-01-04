@@ -218,18 +218,22 @@ Rails.application.routes.draw do
   #namespace :sdtm_model_domains do
   #  resources :variables
   #end
-  resources :sdtm_igs  do
+  resources :sdtm_igs do
     collection do
       get :history
-      get :import_file
-      post :import
+      get :import
+      post :create
+    end
+    member do
       get :export_json
       get :export_ttl
     end
   end
-  resources :sdtm_ig_domains do
+  resources :sdtm_ig_domains, :only => [:show] do
     collection do
-      get :history
+      #get :history
+    end
+    member do
       get :export_json
       get :export_ttl
     end

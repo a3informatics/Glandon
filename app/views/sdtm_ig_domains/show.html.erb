@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'standard_datatable' %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @sdtm_ig_domain} %>
 <div class="col-md-12">
 	<h4>Details</h4>
@@ -58,8 +59,8 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "Clone", clone_ig_sdtm_user_domains_path(:sdtm_user_domain => {:sdtm_ig_domain_id => @sdtm_ig_domain.id, :sdtm_ig_domain_namespace => @sdtm_ig_domain.namespace}), :class => "btn btn-primary" %>
-	<%= link_to "Export JSON", export_json_sdtm_ig_domains_path(:id => @sdtm_ig_domain.id, :namespace => @sdtm_ig_domain.namespace), :class => "btn btn-info" %>
-	<%= link_to "Export Turtle", export_ttl_sdtm_ig_domains_path(:id => @sdtm_ig_domain.id, :namespace => @sdtm_ig_domain.namespace), :class => "btn btn-info" %>
+	<%= link_to "Clone", clone_ig_sdtm_user_domains_path(:sdtm_user_domain => { :sdtm_ig_domain_id => @sdtm_ig_domain.id, :sdtm_ig_domain_namespace => @sdtm_ig_domain.namespace }), :class => "btn btn-primary" %>
+	<%= link_to "Export JSON", export_json_sdtm_ig_domain_path(:id => @sdtm_ig_domain.id, :sdtm_ig_domain => { :namespace => @sdtm_ig_domain.namespace }), :class => "btn btn-info" %>
+	<%= link_to "Export Turtle", export_ttl_sdtm_ig_domain_path(:id => @sdtm_ig_domain.id, :sdtm_ig_domain => { :namespace => @sdtm_ig_domain.namespace }), :class => "btn btn-info" %>
 	<br/><br/>
 </div>

@@ -24,6 +24,11 @@ describe TypePathManagement do
     expect(TypePathManagement.history_url(SdtmModel::C_RDF_TYPE_URI.to_s, "XXX", "YYY" )).to eq(result)
   end
 
+  it "returns a valid url, SDTM IG" do
+    result = Rails.application.routes.url_helpers.history_sdtm_igs_path + "/?sdtm_ig[identifier]=XXX&sdtm_ig[scope_id]=YYY"
+    expect(TypePathManagement.history_url(SdtmIg::C_RDF_TYPE_URI.to_s, "XXX", "YYY" )).to eq(result)
+  end
+
   it "returns a valid url, Form" do
     result = Rails.application.routes.url_helpers.history_forms_path + "/?identifier=XXX&scope_id=YYY"
     expect(TypePathManagement.history_url(Form::C_RDF_TYPE_URI.to_s, "XXX", "YYY" )).to eq(result)
