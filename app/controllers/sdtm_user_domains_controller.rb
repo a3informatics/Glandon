@@ -81,6 +81,7 @@ class SdtmUserDomainsController < ApplicationController
         AuditTrail.update_item_event(current_user, @sdtm_user_domain, "Domain updated.") if token.refresh == 1
         render :json => { :data => @sdtm_user_domain.to_operation}, :status => 200
       else
+        ConsoleLogger.debug(C_CLASS_NAME, "update", "Errors=#{@sdtm_user_domain.errors.full_messages}")
         render :json => { :errors => @sdtm_user_domain.errors.full_messages}, :status => 422
       end
     else

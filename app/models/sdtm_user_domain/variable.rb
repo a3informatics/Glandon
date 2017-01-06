@@ -78,7 +78,6 @@ class SdtmUserDomain::Variable < Tabular::Column
   # @return [Hash] the object hash 
   def to_json
     json = super
-    json[:ordinal] = self.ordinal
     json[:name] = self.name
     json[:notes] = self.notes 
     json[:format] = self.format 
@@ -108,7 +107,6 @@ class SdtmUserDomain::Variable < Tabular::Column
   # @return [SdtmUserDomain::Variable] the object
   def self.from_json(json)
     object = super(json)
-    object.ordinal = json[:ordinal]
     object.name = json[:name]
     object.notes = json[:notes]
     object.format = json[:format]
@@ -140,8 +138,8 @@ class SdtmUserDomain::Variable < Tabular::Column
   def to_sparql_v2(parent_uri, sparql)
     self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{C_VARIABLE_PREFIX}#{self.ordinal}"
     self.namespace = parent_uri.namespace
-    subject = {:uri => self.uri}
     super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => self.uri}
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "notes"}, {:literal => "#{self.notes}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "format"}, {:literal => "#{self.format}", :primitive_type => "string"})
@@ -169,7 +167,8 @@ class SdtmUserDomain::Variable < Tabular::Column
   #
   # @return [Boolean] returns true if valid, false otherwise.
   def valid?
-    result = super
+    #result = super 
+    result = true
     result = result &&
       FieldValidation::valid_sdtm_variable_name?(:name, self.name, self) && 
       FieldValidation::valid_submission_value?(:ct, self.ct, self) && 
@@ -177,6 +176,7 @@ class SdtmUserDomain::Variable < Tabular::Column
       FieldValidation::valid_boolean?(:non_standard, self.non_standard, self) &&
       FieldValidation::valid_boolean?(:used, self.used, self) &&
       FieldValidation::valid_integer?(:key_ordinal, self.key_ordinal, self) &&
+      FieldValidation::valid_integer?(:length, self.length, self) &&
       FieldValidation::valid_label?(:notes, self.notes, self) &&
       FieldValidation::valid_label?(:comment, self.comment, self)
     return result

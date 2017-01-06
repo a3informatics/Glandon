@@ -1,10 +1,10 @@
-class SdtmIgDomain < Tabular::Tabulation
+class SdtmIgDomain < Tabular
   
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
   
-  attr_accessor :prefix, :structure, :model_ref
+  attr_accessor :children, :prefix, :structure, :model_ref
 
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD
@@ -19,6 +19,7 @@ class SdtmIgDomain < Tabular::Tabulation
   def initialize(triples=nil, id=nil)
     self.prefix = SdtmUtility::C_PREFIX
     self.structure = ""
+    self.children = Array.new
     self.model_ref = OperationalReferenceV2.new
     if triples.nil?
       super

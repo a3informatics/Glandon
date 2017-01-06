@@ -1,10 +1,10 @@
-class SdtmUserDomain < Tabular::Tabulation
+class SdtmUserDomain < Tabular
   
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
   
-  attr_accessor :prefix, :structure, :notes, :bc_refs, :model_ref, :ig_ref
+  attr_accessor :children, :prefix, :structure, :notes, :bc_refs, :model_ref, :ig_ref
 
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD
@@ -26,6 +26,7 @@ class SdtmUserDomain < Tabular::Tabulation
     self.structure = ""
     self.notes = ""
     self.bc_refs = Array.new
+    self.children = Array.new
     self.model_ref = OperationalReferenceV2.new
     self.ig_ref = OperationalReferenceV2.new
     if triples.nil?
@@ -87,6 +88,7 @@ class SdtmUserDomain < Tabular::Tabulation
   # @return [SdtmuserDomain] the new user domain object
   def self.create_clone_ig(params, ig_domain)
     object = self.new
+    object.ordinal = 1
     object.label = params[:label]
     object.prefix = params[:prefix]
     object.ig_ref = OperationalReferenceV2.new
@@ -101,6 +103,7 @@ class SdtmUserDomain < Tabular::Tabulation
         model_variable = SdtmModel::Variable.new
       end
       variable.name = model_variable.name
+      variable.name = SdtmUtility.overwrite_prefix(variable.name, object.prefix) if SdtmUtility.prefixed?(variable.name)
       variable.ordinal = child.ordinal
       variable.label = child.label
       if child.ct?
@@ -141,9 +144,6 @@ class SdtmUserDomain < Tabular::Tabulation
     object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
     if object.valid? then
       if object.create_permitted?
-        object.children.each do |item|
-          item.name = SdtmUtility.overwrite_prefix(item.name, object.prefix) if SdtmUtility.prefixed?(item.name)
-        end
         sparql = object.to_sparql_v2
         response = CRUD.update(sparql.to_s)
         if !response.success?
@@ -425,6 +425,12 @@ class SdtmUserDomain < Tabular::Tabulation
   # @return [Boolean] returns true if valid, false otherwise.
   def valid?
     result = super
+    self.children.each do |child|
+      if !child.valid?
+        self.copy_errors(child, "Variable, ordinal=#{child.ordinal}, error:")
+        result = false
+      end
+    end
     result = result &&
       FieldValidation::valid_sdtm_domain_prefix?(:prefix, self.prefix, self) && 
       FieldValidation::valid_markdown?(:notes, self.notes, self) && 

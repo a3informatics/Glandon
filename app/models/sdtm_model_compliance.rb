@@ -5,29 +5,41 @@ class SdtmModelCompliance < EnumeratedLabel
   C_RDF_TYPE = "VariableCompliance"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   
+  # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     if triples.nil?
       super
     else
       super(triples, id)
     end
-    # Set the type. Overwrite default.
     self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
   end
 
+  # Get all items
+  #
+  # @params namespace [String] the namespace from which the items are to be retrieved
+  # @return [Array] array of SdtmModelDatatype objects
   def self.all(namespace)
-    results = super(C_RDF_TYPE, C_SCHEMA_PREFIX, namespace)  
-    return results
+    return super(C_RDF_TYPE, C_SCHEMA_PREFIX, namespace)  
   end
 
+  # To JSON
+  #
+  # @return [Hash] the object hash 
   def to_json
-    json = super
-    return json
+    return super
   end
 
+  # From JSON
+  #
+  # @param json [Hash] the hash of values for the object 
+  # @return [SdtmModelDatatype] the object
   def self.from_json(json)
-    object  = super(json)
-    return object
+    return super(json)
   end
 
 end

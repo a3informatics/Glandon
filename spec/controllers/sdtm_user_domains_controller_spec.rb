@@ -31,6 +31,7 @@ describe SdtmUserDomainsController do
       load_test_file_into_triple_store("BC.ttl")
       load_test_file_into_triple_store("sdtm_user_domain_dm.ttl")
       load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")
+      load_test_file_into_triple_store("sdtm_user_domain_ds.ttl")
       load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -45,7 +46,7 @@ describe SdtmUserDomainsController do
 
     it "lists all unique user domains, HTML" do
       get :index
-      expect(assigns[:sdtm_user_domains].count).to eq(2)
+      expect(assigns[:sdtm_user_domains].count).to eq(3)
       expect(response).to render_template("index")
     end
     
@@ -116,10 +117,11 @@ describe SdtmUserDomainsController do
     it "allows a domain to be created"
     
     it "allows a domain to be updated" do
-      domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
+      domain = SdtmUserDomain.find("D-ACME_DSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @user)
       data = domain.to_operation
-      put :update, { :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      params = { :id => "D-ACME_DSDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      put :update, params.merge(format: :json)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update.txt")
@@ -132,7 +134,8 @@ describe SdtmUserDomainsController do
       domain.notes = "<><><>"
       token = Token.obtain(domain, @user)
       data = domain.to_operation
-      put :update, { :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      params = { :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      put :update, params.merge(format: :json)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
       #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update_error.txt")

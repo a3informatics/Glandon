@@ -42,7 +42,7 @@ describe "SDTM Model Domains", :type => :feature do
       expect(page).to have_content 'History: CDISC SDTM Model'
       find(:xpath, "//tr[contains(.,'SDTM Model 2013-11-26')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: SDTM Model 2013-11-26 SDTM MODEL (1.4, V3, Standard)'
-      save_and_open_page
+      #save_and_open_page
       find(:xpath, "//tr[contains(.,'SDTMMODEL_INTERVENTIONS')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: Interventions SDTMMODEL_INTERVENTIONS (1.4, V3, Standard)'  
     end

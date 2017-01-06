@@ -1,0 +1,30 @@
+---
+M-CDISC_SDTMMODEL_EVENTS_xxSCAT:
+- :subject: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT
+  :predicate: http://www.w3.org/2000/01/rdf-schema#label
+  :object: Subcategory
+- :subject: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT
+  :predicate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  :object: http://www.assero.co.uk/BusinessDomain#ClassVariable
+- :subject: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT
+  :predicate: http://www.assero.co.uk/BusinessDomain#ordinal
+  :object: '23'
+- :subject: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT
+  :predicate: http://www.assero.co.uk/BusinessDomain#basedOnVariable
+  :object: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR
+M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR:
+- :subject: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR
+  :predicate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  :object: http://www.assero.co.uk/BusinessOperational#CReference
+- :subject: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR
+  :predicate: http://www.assero.co.uk/BusinessOperational#ordinal
+  :object: '23'
+- :subject: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR
+  :predicate: http://www.assero.co.uk/BusinessOperational#enabled
+  :object: 'true'
+- :subject: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR
+  :predicate: http://www.assero.co.uk/BusinessOperational#optional
+  :object: 'false'
+- :subject: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR
+  :predicate: http://www.assero.co.uk/BusinessOperational#hasColumn
+  :object: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCAT

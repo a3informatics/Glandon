@@ -74,7 +74,7 @@ describe "SDTM User Domains", :type => :feature do
     end
     
     it "allows a domain to be cloned" do
-      visit 'sdtm_ig_domains/IG-CDISC_SDTMIGEG?namespace=http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3'
+      visit 'sdtm_ig_domains/IG-CDISC_SDTMIGEG?sdtm_ig_domain[namespace]=http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3'
       click_link 'Clone'
       expect(page).to have_content 'Cloning: Electrocardiogram SDTM IG EG (3.2, V3, Standard)'
       ui_check_input('sdtm_user_domain_prefix', 'EG')

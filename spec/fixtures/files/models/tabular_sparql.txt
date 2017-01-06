@@ -1,0 +1,38 @@
+PREFIX : <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#>
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
+PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
+PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> rdf:type <http://www.assero.co.uk/BusinessDomain#UserDomain> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> rdfs:label "VS Copy"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> rdf:type isoR:RegistrationState . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:byAuthority mdrItems:RA-123456789 . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:registrationStatus "Incomplete"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:administrativeNote ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:untilDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:unresolvedIssue ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:administrativeStatus ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:previousState "Incomplete"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> isoI:identifier "VS Domain"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> rdf:type isoI:ScopedIdentifier . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> isoI:version "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> isoI:versionLabel ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> isoI:hasScope mdrItems:NS-ACME . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:creationDate "2016-12-31T06:28:17%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:lastChangeDate "2016-12-31T06:28:17%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:changeDescription ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:explanatoryComment ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:origin ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:rule ""^^xsd:string . 
+}

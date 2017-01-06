@@ -121,6 +121,18 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
   end
 
+  it "checks an invalid SDTM variable, STUDYID" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "STUDYID", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks an invalid SDTM variable, VSORRES" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "VSORRES", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
   it "checks a valid version, 1" do
     object = IsoConcept.new
     expect(FieldValidation.valid_version?(:test, 1, object)).to eq(true)

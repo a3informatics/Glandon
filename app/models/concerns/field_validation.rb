@@ -49,7 +49,7 @@ module FieldValidation
       object.errors.add(symbol, "is empty")
       return false
     else
-      result = value.match /\A[A-Z][A-Z0-9]{7}\z/ 
+      result = value.match /\A[A-Z][A-Z0-9]{0,7}\z/ 
       return true if result != nil
       object.errors.add(symbol, "contains invalid characters, is empty or is too long")
       return false

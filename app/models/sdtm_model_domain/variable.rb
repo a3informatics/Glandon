@@ -16,6 +16,11 @@ class SdtmModelDomain::Variable < Tabular::Column
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
+  # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     self.variable_ref = nil
     if triples.nil?
@@ -25,6 +30,12 @@ class SdtmModelDomain::Variable < Tabular::Column
     end
   end
 
+  # Find an item
+  #
+  # @params id [String] the id of the item to be found.
+  # @params namespace [String] the namespace of the item to be found.
+  # @raise [NotFoundError] if the object is not found.
+  # @return [SdtmModelDomain::Varianle] the object found.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -39,6 +50,7 @@ class SdtmModelDomain::Variable < Tabular::Column
     super(namespace, id, sparql, UriManagement::C_BD, C_RDF_TYPE, json[:label])
     sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "ordinal"}, {:literal => "#{json[:ordinal]}", :primitive_type => "positiveInteger"})
     uri = map[json[:variable_name]]
+    # @todo this is an operation reference, could be coded better
     ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'CR'
     ref_subject = {:namespace => namespace, :id => ref_id}
     sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "basedOnVariable"}, {:namespace => namespace, :id => ref_id.to_s})
@@ -50,6 +62,9 @@ class SdtmModelDomain::Variable < Tabular::Column
     return id
   end
 
+  # To JSON
+  #
+  # @return [Hash] the object hash.
   def to_json
     json = super
     if !self.variable_ref.nil? 

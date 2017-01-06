@@ -422,8 +422,9 @@ describe IsoManaged do
        "}"
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     sparql = SparqlUpdateV2.new
-    item.to_sparql_v2(sparql, "bf")
+    result_uri = item.to_sparql_v2(sparql, "bf")
     expect(sparql.to_s).to eq(result)
+    expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
   end
 
   it "permits the item to be exported as JSON" do

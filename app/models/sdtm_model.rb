@@ -5,7 +5,7 @@ class SdtmModel < Tabular
   include ActiveModel::Validations
   
   # Attributes
-  attr_accessor :class_refs
+  attr_accessor :children, :class_refs
   
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD

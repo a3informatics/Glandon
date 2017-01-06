@@ -39,7 +39,7 @@ describe "SDTM Models", :type => :feature do
 
     it "allows the history page to be viewed" do
       visit '/sdtm_igs/history'
-      save_and_open_page
+      #save_and_open_page
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
     end
 

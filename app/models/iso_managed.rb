@@ -851,7 +851,7 @@ class IsoManaged < IsoConcept
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "changeDescription"}, {:literal => "#{self.changeDescription}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "explanatoryComment"}, {:literal => "#{self.explanatoryComment}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "origin"}, {:literal => "#{self.origin}", :primitive_type => "string"})
-    return uri
+    return self.uri
   end
 
   # Return the object as JSON

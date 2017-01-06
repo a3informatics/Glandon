@@ -1,9 +1,11 @@
-class SdtmModelDomain < Tabular::Tabulation
+class SdtmModelDomain < Tabular
   
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
   
+  attr_accessor :children
+
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD
   C_INSTANCE_PREFIX = UriManagement::C_MDR_MD
@@ -30,6 +32,7 @@ class SdtmModelDomain < Tabular::Tabulation
   C_RELATIONSHIP_IDENTIFIER = "SDTMMODEL_RELATIONSHIP"
     
   def initialize(triples=nil, id=nil)
+    self.children = Array.new
     if triples.nil?
       super
     else

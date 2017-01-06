@@ -23,6 +23,7 @@ describe SdtmUserDomain do
     load_test_file_into_triple_store("BCT.ttl")
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("sdtm_user_domain_dm.ttl")
+    load_test_file_into_triple_store("sdtm_user_domain_ds.ttl")
     load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")
     load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
     clear_iso_concept_object
@@ -44,16 +45,18 @@ describe SdtmUserDomain do
 
   it "allows all domains to be found" do
     result = SdtmUserDomain.all 
-    expect(result.count).to eq(2)
+    expect(result.count).to eq(3)
     expect(result[0].identifier).to eq("DM Domain")
     expect(result[1].identifier).to eq("VS Domain")
+    expect(result[2].identifier).to eq("DS Domain")
   end
   
   it "allows all unique domains to be found" do
     result = SdtmUserDomain.unique 
-    expect(result.count).to eq(2)
+    expect(result.count).to eq(3)
     expect(result[0][:identifier]).to eq("DM Domain")
-    expect(result[1][:identifier]).to eq("VS Domain")
+    expect(result[1][:identifier]).to eq("DS Domain")
+    expect(result[2][:identifier]).to eq("VS Domain")
   end
 
   it "allows all released domains to be found" do
@@ -70,6 +73,7 @@ describe SdtmUserDomain do
   it "allows a clone of an IG domain to be created" do
     ig_domain = SdtmIgDomain.find("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     new_domain = SdtmUserDomain.create_clone_ig({:prefix => "XX", :label => "Clone VS as XX"}, ig_domain)
+    expect(new_domain.errors.count).to eq(0)
     #write_yaml_file(new_domain.to_json, sub_dir, "sdtm_user_domain_clone_ig.yaml")
     #write_yaml_file(new_domain.to_json, sub_dir, "sdtm_user_domain.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_user_domain_clone_ig.yaml")

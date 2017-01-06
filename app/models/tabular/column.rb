@@ -10,6 +10,11 @@ class Tabular::Column < IsoConcept
   # Constants
   C_CLASS_NAME = "Column"
 
+  # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     self.rule = ""
     self.ordinal = 0

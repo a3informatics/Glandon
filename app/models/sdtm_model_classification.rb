@@ -5,16 +5,24 @@ class SdtmModelClassification < EnumeratedLabel
   C_RDF_TYPE = "VariableClassification"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   
+   # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     if triples.nil?
       super
     else
       super(triples, id)
     end
-    # Set the type. Overwrite default.
     self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
   end
 
+  # Get all items
+  #
+  # @params instance_namespace [String] the namespace from which the items are to be retrieved
+  # @return [Array] array of SdtmModelDatatype objects
   def self.all(instance_namespace)
     results = Array.new
     query = UriManagement.buildPrefix(C_SCHEMA_PREFIX, [UriManagement::C_BD]) +
@@ -43,14 +51,19 @@ class SdtmModelClassification < EnumeratedLabel
     return results
   end
 
+  # To JSON
+  #
+  # @return [Hash] The object hash 
   def to_json
-    json = super
-    return json
+    return super
   end
 
+  # From JSON
+  #
+  # @param json [Hash] The hash of values for the object 
+  # @return [SdtmModelDatatype] The object
   def self.from_json(json)
-    object  = super(json)
-    return object
+    return super(json)
   end
 
 end
