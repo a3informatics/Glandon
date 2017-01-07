@@ -1,22 +1,38 @@
-module CdiscTermHelpers
+class CdiscTerm::Utility
 
-  C_CLASS_NAME = "CdiscTermHelpers"
+  C_CLASS_NAME = "CdiscTerm::Utility"
 
-  def compare_cli(ct, previous, current)
+  # Compare Code List item
+  #
+  # @param ct [CdiscTerm] the current terminology
+  # @param previous [CdiscCli] the previous code list 
+  # @param current [CdiscCli] the current code list
+  # @return [Hash] the result hash
+  def self.compare_cli(ct, previous, current)
     result = CdiscCli.difference(previous, current)
     result[:version] = ct.version
     result[:date] = ct.versionLabel
     return result
   end
 
-  def compare_cl(ct, previous, current)
+  # Compare Code List
+  #
+  # @param ct [CdiscTerm] the current terminology
+  # @param previous [CdiscCl] the previous code list 
+  # @param current [CdiscCl] the current code list
+  # @return [Hash] the result hash
+  def self.compare_cl(ct, previous, current)
     result = CdiscCl.difference(previous, current)
     result[:version] = ct.version
     result[:date] = ct.versionLabel
     return result
   end
 
-  def cli_changes(id)
+  # Code List Item Changes for given id
+  #
+  # @param id [String] the id of the code list item to be compared for changes
+  # @return [Hash] the resulting changes across all the versions
+  def self.cli_changes(id)
     data = []
     results = []
     cdisc_terms = CdiscTerm.all()
@@ -41,7 +57,11 @@ module CdiscTermHelpers
     return results
   end
 
-  def cl_changes(id)
+  # Code List Changes for given id
+  #
+  # @param id [String] the id of the code list item to be compared for changes
+  # @return [Hash] the resulting changes across all the versions
+  def self.cl_changes(id)
     data = []
     results = []
     cdisc_terms = CdiscTerm.all()
@@ -67,7 +87,11 @@ module CdiscTermHelpers
     return results
   end
 
-  def transpose_results(results)
+  # Transpose result into array structure
+  #
+  # @param results [Hash] the results to be transposed
+  # @return [Hash] the resulting structure
+  def self.transpose_results(results)
     list = []
     new_results = {}
     results.each do |result|

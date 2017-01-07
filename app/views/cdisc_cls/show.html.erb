@@ -21,7 +21,7 @@
 		    <td><%= @cdiscCl.notation %></td>
 		    <td><%= @cdiscCl.preferredTerm %></td>
 		    <td><%= @cdiscCl.synonym %></td>
-		    <td><%= @cdiscCl.extensible %></td>
+		    <%= true_false_glyphicon(@cdiscCl.extensible) %>
 		    <td><%= @cdiscCl.definition %></td>
 		  </tr>
 		</tbody>

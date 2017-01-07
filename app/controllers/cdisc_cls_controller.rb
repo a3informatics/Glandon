@@ -1,20 +1,20 @@
 class CdiscClsController < ApplicationController
   
-  include CdiscTermHelpers
-
   before_action :authenticate_user!
   
   C_CLASS_NAME = "CdiscClsController"
 
-  def changes    
-    authorize CdiscCl, :view?
-    @results = cl_changes(params[:id])
-    @clis = transpose_results(@results)
-  end
-  
   def show
     authorize CdiscCl
     @cdiscCl = CdiscCl.find(params[:id], params[:namespace])
+  end
+  
+  def changes    
+    authorize CdiscCl, :view?
+    @results = CdiscTerm::Utility.cl_changes(params[:id])
+    @clis = CdiscTerm::Utility.transpose_results(@results)
+    @identifier = @results.length > 0 ? @results[0][:results][:Identifier][:current] : ""
+    @title = @results.length > 0 ? @results[0][:results][:"Preferred Term"][:current] : ""
   end
   
 private

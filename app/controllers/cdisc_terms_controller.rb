@@ -1,7 +1,5 @@
 class CdiscTermsController < ApplicationController
   
-  include CdiscTermHelpers
-
   before_action :authenticate_user!
   
   C_CLASS_NAME = "CdiscTermsController"
@@ -109,7 +107,7 @@ class CdiscTermsController < ApplicationController
     version_hash = {:new_version => new_cdisc_term.version.to_s, :old_version => old_cdisc_term.version.to_s}
     @identifier = old_cdisc_term.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, version_hash)
-    @cls = transpose_results(@results)
+    @cls = CdiscTerm::Utility.transpose_results(@results)
     render "changes"
   end
   
@@ -135,13 +133,13 @@ class CdiscTermsController < ApplicationController
     ct = CdiscTerm.current
     @identifier = ct.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-    @cls = transpose_results(@results)
+    @cls = CdiscTerm::Utility.transpose_results(@results)
   end
 
   def changes_report
     authorize CdiscTerm, :view?
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-    cls = transpose_results(results)
+    cls = CdiscTerm::Utility.transpose_results(results)
     respond_to do |format|
       format.pdf do
         @html = Reports::CdiscChangesReport.new.create(results, cls, current_user)

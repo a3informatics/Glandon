@@ -1,12 +1,10 @@
 require 'rails_helper'
-require 'action_view'
 
 describe Reports::CdiscChangesReport do
 
   include DataHelpers
   include ReportHelpers
   include PublicFileHelpers
-  include CdiscTermHelpers
 
   def sub_dir
     return "models/reports"
@@ -39,7 +37,7 @@ describe Reports::CdiscChangesReport do
     job.changes_cdisc_term()
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
     report = Reports::CdiscChangesReport.new
-    pdf = report.create(results, transpose_results(results), user)
+    pdf = report.create(results, CdiscTerm::Utility.transpose_results(results), user)
     html = report.html
     #write_text_file_2(html, sub_dir, "cdisc_changes_report.txt")
     expected = read_text_file_2(sub_dir, "cdisc_changes_report.txt")

@@ -29,8 +29,12 @@
 				    <%= diff_glyphicon(r[:Notation]) %>
 				    <%= diff_glyphicon(r[:"Preferred Term"]) %>
 				    <%= diff_glyphicon(r[:Synonym]) %>
-			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
-				    <%= diff_glyphicon(r[:Definition]) %>
+			      <% if r[:Extensible][:status] == :created %>
+			      	<%= true_false_glyphicon(r[:Extensible][:current]) %>
+			      <% else %>
+			      	<td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
+			      <% end %>
+			      <%= diff_glyphicon(r[:Definition]) %>
 			    <% elsif result[:status] == :no_change %>
 				    <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>
 			      <td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>

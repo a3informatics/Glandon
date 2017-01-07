@@ -1,0 +1,122 @@
+---
+:status: :created
+:results:
+  :Definition:
+    :status: :created
+    :previous: ''
+    :current: Clinical Dementia Rating test name.
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="ins"><ins>Clinical Dementia Rating test name.</ins></li>
+        </ul>
+      </div>
+  :Preferred Term:
+    :status: :created
+    :previous: ''
+    :current: CDISC Questionnaire CDR Test Name Terminology
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="ins"><ins>CDISC Questionnaire CDR Test Name Terminology</ins></li>
+        </ul>
+      </div>
+  :Notation:
+    :status: :created
+    :previous: ''
+    :current: CDR TEST
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="ins"><ins>CDR TEST</ins></li>
+        </ul>
+      </div>
+  :Identifier:
+    :status: :created
+    :previous: ''
+    :current: C101812
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="ins"><ins>C101812</ins></li>
+        </ul>
+      </div>
+  :Synonym:
+    :status: :created
+    :previous: ''
+    :current: Clinical Dementia Rating Test Name
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="ins"><ins>Clinical Dementia Rating Test Name</ins></li>
+        </ul>
+      </div>
+  :Extensible:
+    :status: :created
+    :previous: ''
+    :current: false
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="ins"><ins>false</ins></li>
+        </ul>
+      </div>
+:children:
+  :C101812.C102050:
+    :status: :created
+    :identifier: C102050
+    :preferred_term: CDR - Memory
+    :notation: CDR01-Memory
+    :id: CLI-C101812_C102050
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+  :C101812.C102051:
+    :status: :created
+    :identifier: C102051
+    :preferred_term: CDR - Orientation
+    :notation: CDR01-Orientation
+    :id: CLI-C101812_C102051
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+  :C101812.C102052:
+    :status: :created
+    :identifier: C102052
+    :preferred_term: CDR - Judgment and Problem Solving
+    :notation: CDR01-Judgment and Problem Solving
+    :id: CLI-C101812_C102052
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+  :C101812.C102053:
+    :status: :created
+    :identifier: C102053
+    :preferred_term: CDR - Community Affairs
+    :notation: CDR01-Community Affairs
+    :id: CLI-C101812_C102053
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+  :C101812.C113880:
+    :status: :created
+    :identifier: C113880
+    :preferred_term: CDR - Sum of Boxes
+    :notation: CDR01-Sum of Boxes
+    :id: CLI-C101812_C113880
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+  :C101812.C113881:
+    :status: :created
+    :identifier: C113881
+    :preferred_term: CDR - Global CDR
+    :notation: CDR01-Global CDR
+    :id: CLI-C101812_C113881
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+  :C101812.C102055:
+    :status: :created
+    :identifier: C102055
+    :preferred_term: CDR - Personal Care
+    :notation: CDR01-Personal Care
+    :id: CLI-C101812_C102055
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+  :C101812.C102054:
+    :status: :created
+    :identifier: C102054
+    :preferred_term: CDR - Home and Hobbies
+    :notation: CDR01-Home and Hobbies
+    :id: CLI-C101812_C102054
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+:version: 43
+:date: '2015-12-18'

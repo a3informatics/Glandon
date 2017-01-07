@@ -24,6 +24,7 @@ describe "CDISC Term", :type => :feature do
       load_schema_file_into_triple_store("ISO11179Data.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
+      load_schema_file_into_triple_store("CDISCTerm.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("CT_V39.ttl")
       load_test_file_into_triple_store("CT_V40.ttl")
@@ -101,8 +102,8 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C100947'
       expect(page).to have_content 'C117976'
       expect(page).to have_content 'C100945'
-      click_link 'Changes'
       #save_and_open_page
+      click_link 'Changes'
       expect(page).to have_content 'Changes: CDISC SDTM Vital Sign Test Code Terminology C66741'
       expect(page).to have_content 'C104622'
       find(:xpath, "//tr[contains(.,'BODYFATM')]/td/a", :text => 'Changes').click

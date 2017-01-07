@@ -710,7 +710,7 @@ class IsoConcept
       status = :deleted
     else
       changes1 = difference_properties(previous, previous.properties, current, current.properties, results)
-      changes2 = difference_properties(previous, previous.properties, current, current.properties, results)
+      changes2 = difference_properties(previous, previous.extension_properties, current, current.extension_properties, results)
       status = :updated if changes1 || changes2
     end
     return {status: status, results: results}
