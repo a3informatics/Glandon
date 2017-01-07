@@ -1289,7 +1289,7 @@ function initData () {
   notepadRow = null; 
   varClCurrent = null;
   varClCurrentRow = null;
-  d3eInit(saveNode, displayNode, empty);
+  d3eInit(saveNode, displayNode, empty, validateNode);
   rootNode = d3eRoot(managedItem.label, C_FORM, managedItem)
   idKeyMap = {};
   for (var i=0; i<managedItem.children.length; i++) {
@@ -1321,8 +1321,11 @@ function setD3(sourceNode, d3ParentNode) {
   }
 }
 
+function validateNode(node) {
+  return $('#main_form').valid();
+}
+
 function saveNode() {
-  $('#main_form').valid(); // Won't return if invalid.
   var d3Node = d3eGetCurrent();
   if (d3Node.type === C_FORM) {
     saveForm(d3Node)

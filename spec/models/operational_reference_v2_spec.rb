@@ -27,7 +27,7 @@ describe OperationalReferenceV2 do
 
   it "does not validate an invalid object, text label" do
     result = OperationalReferenceV2.new
-    result.local_label = "Draft 123 more tesxt >"
+    result.local_label = "Draft 123 more tesxt @"
     expect(result.valid?).to eq(false)
   end
 

@@ -137,6 +137,14 @@ class Form::Group::Normal < Form::Group
   # @return [boolean] Returns true if valid, false otherwise.
   def valid?
     result = super
+    self.groups.each do |group|
+      if !group.valid?
+        self.copy_errors(group, "Item, ordinal=#{group.ordinal}, error:")
+        result = false
+      end
+    end
+    result = result &&
+      FieldValidation::valid_boolean?(:repeating, self.repeating, self)
     return result
   end
 

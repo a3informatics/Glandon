@@ -26,24 +26,34 @@ describe Form::Group::Common::Common do
   end
 
   it "validates a valid object" do
-    result = Form::Group::Common.new
-    result.note = "OK"
-    result.completion = "Draft 123"
-    expect(result.valid?).to eq(true)
+    item = Form::Group::Common.new
+    item.note = "OK"
+    item.completion = "Draft 123"
+    item.ordinal = 2
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(item.errors.count).to eq(0)
+    expect(result).to eq(true)
   end
 
   it "does not validate an invalid object, completion" do
-    result = Form::Group::Common.new
-    result.note = "OK"
-    result.completion = "Draft 123>"
-    expect(result.valid?).to eq(false)
+    item = Form::Group::Common.new
+    item.note = "OK"
+    item.completion = "Draft 123@"
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Completion contains invalid markdown")
+    expect(item.errors.count).to eq(1)
+    expect(result).to eq(false)
   end
 
   it "does not validate an invalid object, note" do
-    result = Form::Group::Common.new
-    result.note = "OK<"
-    result.completion = "Draft 123"
-    expect(result.valid?).to eq(false)
+    item = Form::Group::Common.new
+    item.note = "OK±"
+    item.completion = "Draft 123"
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Note contains invalid markdown")
+    expect(item.errors.count).to eq(1)
+    expect(result).to eq(false)
   end
 
   it "allows object to be initialized from triples" do
@@ -62,15 +72,59 @@ describe Form::Group::Common::Common do
       }
     triples = {}
     triples ["F-ACME_TEST_G1_I1"] = []
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#CommonGroup" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "My Group" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#hasItem", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1_I1>" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#hasItem", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1_I2>" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#label_text", object: "XXXXX" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
+    triples ["F-ACME_TEST_G1_I1"] << 
+    { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", 
+      predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", 
+      object: "http://www.assero.co.uk/BusinessForm#CommonGroup" 
+    }
+    triples ["F-ACME_TEST_G1_I1"] << 
+    { 
+      subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", 
+      predicate: "http://www.w3.org/2000/01/rdf-schema#label", 
+      object: "My Group" 
+    }
+    triples ["F-ACME_TEST_G1_I1"] << 
+    { 
+      subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", 
+      predicate: "http://www.assero.co.uk/BusinessForm#hasItem", 
+      object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1_I1>" 
+    }
+    triples ["F-ACME_TEST_G1_I1"] << 
+    { 
+      subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", 
+      predicate: "http://www.assero.co.uk/BusinessForm#hasItem", 
+      object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1_I2>" 
+    }
+    triples ["F-ACME_TEST_G1_I1"] << 
+    { 
+      subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", 
+      predicate: "http://www.assero.co.uk/BusinessForm#note", 
+      object: "xxxxx" 
+    }
+    triples ["F-ACME_TEST_G1_I1"] << 
+    { 
+      subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", 
+      predicate: "http://www.assero.co.uk/BusinessForm#optional", 
+      object: "false" 
+    }
+    triples ["F-ACME_TEST_G1_I1"] << 
+    { 
+      subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", 
+      predicate: "http://www.assero.co.uk/BusinessForm#label_text", 
+      object: "XXXXX" 
+    }
+    triples ["F-ACME_TEST_G1_I1"] << 
+    { 
+      subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", 
+      predicate: "http://www.assero.co.uk/BusinessForm#ordinal", 
+      object: "1" 
+    }
+    triples ["F-ACME_TEST_G1_I1"] << 
+    { 
+      subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_G1", 
+      predicate: "http://www.assero.co.uk/BusinessForm#completion", 
+      object: "" 
+    }
     expect(Form::Group::Common.new(triples, "F-ACME_TEST_G1_I1").to_json).to eq(result)    
   end
 
@@ -121,6 +175,7 @@ describe Form::Group::Common::Common do
     item.label = "test label"
     item.completion = "Completion"
     item.note = "Note"
+    item.ordinal = 1
     common_item = Form::Item::Common.new
     common_item.ordinal = 1
     item.children << common_item

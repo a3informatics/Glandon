@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe SdtmModelDomain::Variable do
+describe SdtmIgDomain::Variable do
 
   include DataHelpers
 
   def sub_dir
-    return "models/sdtm_model_domain"
+    return "models/sdtm_ig_domain"
   end
 
   before :all do
@@ -26,7 +26,7 @@ describe SdtmModelDomain::Variable do
   end
 
   it "validates a valid object" do
-    item = SdtmModelDomain::Variable.new
+    item = SdtmIgDomain::Variable.new
     item.ordinal = 1
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("")
@@ -34,7 +34,7 @@ describe SdtmModelDomain::Variable do
   end
 
   it "does not validate an invalid object, name" do
-    item = SdtmModelDomain::Variable.new
+    item = SdtmIgDomain::Variable.new
     result = item.valid?
     expect(result.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
     expect(result).to eq(false)
@@ -52,20 +52,20 @@ describe SdtmModelDomain::Variable do
       :type => "http://www.assero.co.uk/BusinessDomain#ClassVariable"
     }
     triples = read_yaml_file(sub_dir, "variable_triples.yaml")
-    expect(SdtmModelDomain::Variable.new(triples, "M-CDISC_SDTMMODEL_EVENTS_xxSCAT").to_json).to eq(result) 
+    expect(SdtmIgDomain::Variable.new(triples, "M-CDISC_SDTMMODEL_EVENTS_xxSCAT").to_json).to eq(result) 
   end 
 
   it "allows an object to be found" do
-    variable = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODEL_EVENTS_xxSCAT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-    #write_yaml_file(variable.triples, sub_dir, "variable_triples.yaml")
-    #write_yaml_file(variable.to_json, sub_dir, "variable.yaml")
+    variable = SdtmIgDomain::Variable.find("M-CDISC_SDTMMODEL_EVENTS_xxSCAT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+    write_yaml_file(variable.triples, sub_dir, "variable_triples.yaml")
+    write_yaml_file(variable.to_json, sub_dir, "variable.yaml")
     expected = read_yaml_file(sub_dir, "variable.yaml")
     expect(variable.to_json).to eq(expected)
   end
 
   it "allows an object to be exported as JSON" do
-    variable = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODEL_EVENTS_xxSCAT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-    #write_yaml_file(variable.to_json, sub_dir, "variable_to_json.yaml")
+    variable = SdtmIgDomain::Variable.find("M-CDISC_SDTMMODEL_EVENTS_xxSCAT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+    write_yaml_file(variable.to_json, sub_dir, "variable_to_json.yaml")
     expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
     expect(variable.to_json).to eq(expected)
   end

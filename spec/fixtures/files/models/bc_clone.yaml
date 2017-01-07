@@ -1,17 +1,17 @@
 ---
 :type: http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance
-:id: BC-ACME_NEWBC
+:id: BC-ACME_NEWBCTWO
 :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
-:label: New BC
+:label: New BC Two
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2016-12-26T14:48:10+00:00'
-:last_changed_date: '2016-12-26T14:48:10+00:00'
+:creation_date: '2017-01-07T06:48:01+00:00'
+:last_changed_date: '2017-01-07T06:48:01+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
-  :id: RS-ACME_NEWBC-1
+  :id: RS-ACME_NEWBCTWO-1
   :registration_authority:
     :id: RA-123456789
     :number: '123456789'
@@ -31,8 +31,8 @@
   :administrative_status: ''
   :previous_state: Incomplete
 :scoped_identifier:
-  :id: SI-ACME_NEWBC-1
-  :identifier: NEW BC
+  :id: SI-ACME_NEWBCTWO-1
+  :identifier: NEW BC TWO
   :version_label: ''
   :version: 1
   :namespace:
@@ -42,8 +42,8 @@
     :shortName: ACME
 :children:
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
-  :id: BC-ACME_BC_C98793_DefinedObservation_nameCode
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :id: BC-ACME_NEWBCTWO_I1
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
   :label: ''
   :extension_properties: []
   :ordinal: 1
@@ -53,8 +53,8 @@
   :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-    :id: BC-ACME_BC_C98793_DefinedObservation_nameCode_CD
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_NEWBCTWO_I1_DT1
+    :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
     :label: ''
     :extension_properties: []
     :ordinal: 1
@@ -62,16 +62,16 @@
     :iso21090_datatype: CD
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_DefinedObservation_nameCode_CD_originalText
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I1_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
       :alias: Name
       :complex_datatype:
         :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-        :id: BC-ACME_BC_C98793_DefinedObservation_nameCode_CD_originalText_ED
-        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_NEWBCTWO_I1_DT1_P1_DT1
+        :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
         :label: ''
         :extension_properties: []
         :ordinal: 1
@@ -79,8 +79,8 @@
         :iso21090_datatype: ED
         :children:
         - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-          :id: BC-ACME_BC_C98793_DefinedObservation_nameCode_CD_originalText_ED_value
-          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_NEWBCTWO_I1_DT1_P1_DT1_P1
+          :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
           :label: ''
           :extension_properties: []
           :ordinal: 1
@@ -106,8 +106,8 @@
               :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
               :id: CLI-C67153_C98793
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_DefinedObservation_nameCode_CD_code
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I1_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
@@ -133,8 +133,8 @@
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C66741_C98793
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
-  :id: BC-ACME_BC_C98793_DefinedObservation_targetAnatomicSiteCode
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :id: BC-ACME_NEWBCTWO_I2
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
   :label: ''
   :extension_properties: []
   :ordinal: 2
@@ -144,8 +144,8 @@
   :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-    :id: BC-ACME_BC_C98793_DefinedObservation_targetAnatomicSiteCode_CD
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_NEWBCTWO_I2_DT1
+    :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
     :label: ''
     :extension_properties: []
     :ordinal: 1
@@ -153,8 +153,8 @@
     :iso21090_datatype: CD
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_DefinedObservation_targetAnatomicSiteCode_CD_code
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I2_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
@@ -168,8 +168,8 @@
       :bridg_path: DefinedObservation.targetAnatomicSiteCode.CD.code
       :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
-  :id: BC-ACME_BC_C98793_DefinedObservation_methodCode
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :id: BC-ACME_NEWBCTWO_I3
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
   :label: ''
   :extension_properties: []
   :ordinal: 3
@@ -179,8 +179,8 @@
   :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-    :id: BC-ACME_BC_C98793_DefinedObservation_methodCode_CD
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_NEWBCTWO_I3_DT1
+    :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
     :label: ''
     :extension_properties: []
     :ordinal: 1
@@ -188,8 +188,8 @@
     :iso21090_datatype: CD
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_DefinedObservation_methodCode_CD_code
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I3_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
@@ -203,8 +203,8 @@
       :bridg_path: DefinedObservation.methodCode.CD.code
       :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
-  :id: BC-ACME_BC_C98793_PerformedObservation_dateRange
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :id: BC-ACME_NEWBCTWO_I4
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
   :label: ''
   :extension_properties: []
   :ordinal: 4
@@ -214,8 +214,8 @@
   :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-    :id: BC-ACME_BC_C98793_PerformedObservation_dateRange_IVL_TS_DATETIME
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_NEWBCTWO_I4_DT1
+    :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
     :label: ''
     :extension_properties: []
     :ordinal: 1
@@ -223,16 +223,16 @@
     :iso21090_datatype: IVL_TS_DATETIME
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_PerformedObservation_dateRange_IVL_TS_DATETIME_low
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I4_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
       :alias: Date
       :complex_datatype:
         :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-        :id: BC-ACME_BC_C98793_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME
-        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_NEWBCTWO_I4_DT1_P1_DT1
+        :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
         :label: ''
         :extension_properties: []
         :ordinal: 1
@@ -240,8 +240,8 @@
         :iso21090_datatype: TS_DATETIME
         :children:
         - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-          :id: BC-ACME_BC_C98793_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
-          :namespace: http://www.assero.co.uk/MDRBCs/V1
+          :id: BC-ACME_NEWBCTWO_I4_DT1_P1_DT1_P1
+          :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
           :label: ''
           :extension_properties: []
           :ordinal: 1
@@ -255,8 +255,8 @@
           :bridg_path: PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value
           :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
-  :id: BC-ACME_BC_C98793_PerformedObservation_negationReason
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :id: BC-ACME_NEWBCTWO_I5
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
   :label: ''
   :extension_properties: []
   :ordinal: 5
@@ -266,8 +266,8 @@
   :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-    :id: BC-ACME_BC_C98793_PerformedObservation_negationReason_SC
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_NEWBCTWO_I5_DT1
+    :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
     :label: ''
     :extension_properties: []
     :ordinal: 1
@@ -275,16 +275,16 @@
     :iso21090_datatype: SC
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_PerformedObservation_negationReason_SC_code
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I5_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
       :alias: Code
       :complex_datatype:
         :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-        :id: BC-ACME_BC_C98793_PerformedObservation_negationReason_SC_code_CD
-        :namespace: http://www.assero.co.uk/MDRBCs/V1
+        :id: BC-ACME_NEWBCTWO_I5_DT1_P1_DT1
+        :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
         :label: ''
         :extension_properties: []
         :ordinal: 1
@@ -292,8 +292,8 @@
         :iso21090_datatype: CD
         :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
-  :id: BC-ACME_BC_C98793_PerformedObservation_bodyPositionCode
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :id: BC-ACME_NEWBCTWO_I6
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
   :label: ''
   :extension_properties: []
   :ordinal: 6
@@ -303,8 +303,8 @@
   :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-    :id: BC-ACME_BC_C98793_PerformedObservation_bodyPositionCode_CD
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_NEWBCTWO_I6_DT1
+    :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
     :label: ''
     :extension_properties: []
     :ordinal: 1
@@ -312,8 +312,8 @@
     :iso21090_datatype: CD
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_PerformedObservation_bodyPositionCode_CD_code
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I6_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
@@ -327,8 +327,8 @@
       :bridg_path: PerformedObservation.bodyPositionCode.CD.code
       :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
-  :id: BC-ACME_BC_C98793_PerformedObservation_targetAnatomicSiteLateralityCode
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :id: BC-ACME_NEWBCTWO_I7
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
   :label: ''
   :extension_properties: []
   :ordinal: 7
@@ -338,8 +338,8 @@
   :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-    :id: BC-ACME_BC_C98793_PerformedObservation_targetAnatomicSiteLateralityCode_CD
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_NEWBCTWO_I7_DT1
+    :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
     :label: ''
     :extension_properties: []
     :ordinal: 1
@@ -347,8 +347,8 @@
     :iso21090_datatype: CD
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I7_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
@@ -362,8 +362,8 @@
       :bridg_path: PerformedObservation.targetAnatomicSiteLateralityCode.CD.code
       :children: []
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
-  :id: BC-ACME_BC_C98793_PerformedClinicalResult_value
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :id: BC-ACME_NEWBCTWO_I8
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
   :label: ''
   :extension_properties: []
   :ordinal: 8
@@ -373,8 +373,8 @@
   :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-    :id: BC-ACME_BC_C98793_PerformedClinicalResult_value_PQR
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_NEWBCTWO_I8_DT1
+    :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
     :label: ''
     :extension_properties: []
     :ordinal: 1
@@ -382,8 +382,8 @@
     :iso21090_datatype: PQR
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_PerformedClinicalResult_value_PQR_value
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I8_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
@@ -397,8 +397,8 @@
       :bridg_path: PerformedClinicalResult.value.PQR.value
       :children: []
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_PerformedClinicalResult_value_PQR_code
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I8_DT1_P2
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 2
@@ -424,8 +424,8 @@
           :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
           :id: CLI-C66770_C28251
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
-  :id: BC-ACME_BC_C98793_PerformedClinicalResult_baselineIndicator
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :id: BC-ACME_NEWBCTWO_I9
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
   :label: ''
   :extension_properties: []
   :ordinal: 9
@@ -435,8 +435,8 @@
   :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
-    :id: BC-ACME_BC_C98793_PerformedClinicalResult_baselineIndicator_BL
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_NEWBCTWO_I9_DT1
+    :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
     :label: ''
     :extension_properties: []
     :ordinal: 1
@@ -444,8 +444,8 @@
     :iso21090_datatype: BL
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_BC_C98793_PerformedClinicalResult_baselineIndicator_BL_value
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_NEWBCTWO_I9_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
       :extension_properties: []
       :ordinal: 1
@@ -484,9 +484,9 @@
           :id: CLI-C66742_C49488
 :template_ref:
   :type: http://www.assero.co.uk/BusinessOperational#BctReference
-  :id: BC-ACME_BC_C98793_TPR
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
-  :label: Biomedical Concept Template Reference
+  :id: BC-ACME_NEWBCTWO_TPR1
+  :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
+  :label: Based on Template Reference
   :extension_properties: []
   :enabled: true
   :optional: false

@@ -7,7 +7,9 @@ describe("D3 Editor", function() {
   var lastClickPreNode;
 	var lastClickPostNode;
 	var lastDblClickNode;
-	
+	var lastValidateNode;
+	var validateTrueFalse = true;
+
   function clickPre (node) {
   	lastClickPreNode = node;
  	}
@@ -20,8 +22,13 @@ describe("D3 Editor", function() {
   	lastDblClickNode = node;
   }
   
+  function validateCallBack (node) {
+  	lastValidateNode = node;
+  	return validateTrueFalse;
+  }
+
   function testTree() {
-  	d3eInit(clickPre, clickPost, dblClick);
+  	d3eInit(clickPre, clickPost, dblClick, validateCallBack);
   	var data = {name: "root-data", is_common: true};
   	var root_node = d3eRoot("root", "x-type", data);
 		var data1 = {name: "level-1-data-1"};
@@ -51,14 +58,15 @@ describe("D3 Editor", function() {
 	});
 
   it("initialises the editor", function() {
-  	d3eInit(clickPre, clickPost, dblClick);
-  	expect(nextKeyId).to.equal(1);
-  	expect(currentGRef).to.equal(null);
-  	expect(currentNode).to.equal(null);
-  	expect(rootNode).to.equal(null);
-  	expect(clickCallBackPreFunction).to.equal(clickPre);
-  	expect(clickCallBackPostFunction).to.equal(clickPost);
-  	expect(dblClickCallBackPostFunction).to.equal(dblClick);
+  	d3eInit(clickPre, clickPost, dblClick, validateCallBack);
+  	expect(d3eNextKeyId).to.equal(1);
+  	expect(d3eCurrentGRef).to.equal(null);
+  	expect(d3eCurrentNode).to.equal(null);
+  	expect(d3eRootNode).to.equal(null);
+  	expect(d3eClickCallBackPre).to.equal(clickPre);
+  	expect(d3eClickCallBackPost).to.equal(clickPost);
+  	expect(d3eDblClickCallBackPost).to.equal(dblClick);
+  	expect(d3eValidateCallBack).to.equal(validateCallBack);
   });
 
 	it("determines if current set", function() {
@@ -84,8 +92,8 @@ describe("D3 Editor", function() {
 		var nodeData = d3FindData(3);
 		simulateClick(gRef);
 		expect(lastClickPostNode.name).to.equal("child-2");
-		expect(currentNode).to.equal(nodeData);
-		expect(currentGRef).to.not.be.null;
+		expect(d3eCurrentNode).to.equal(nodeData);
+		expect(d3eCurrentGRef).to.not.be.null;
 		expect(selectedNodeTest(getFill(gRef))).to.equal(true);
 		var prevGRef = gRef;
 		var gRef = d3FindGRef(4);
@@ -93,8 +101,8 @@ describe("D3 Editor", function() {
 		simulateClick(gRef);
 		expect(lastClickPreNode.name).to.equal("child-2");
 		expect(lastClickPostNode.name).to.equal("child-3");
-		expect(currentNode).to.equal(nodeData);
-		expect(currentGRef).to.not.be.null;
+		expect(d3eCurrentNode).to.equal(nodeData);
+		expect(d3eCurrentGRef).to.not.be.null;
 		expect(disabledNodeTest(getFill(prevGRef))).to.equal(true);
 		expect(selectedNodeTest(getFill(prevGRef))).to.equal(false);
 		expect(selectedNodeTest(getFill(gRef))).to.equal(true);
@@ -165,9 +173,9 @@ describe("D3 Editor", function() {
 		var rootNode = testTree();
 		var rootGRef = d3FindGRef(rootNode.key);
 		d3eDisplayTree(rootNode.key);
-		expect(currentNode).to.equal(rootNode);
-		expect(currentGRef).to.not.be.null;
-		expect(selectedNodeTest(getFill(currentGRef))).to.equal(true);
+		expect(d3eCurrentNode).to.equal(rootNode);
+		expect(d3eCurrentGRef).to.not.be.null;
+		expect(selectedNodeTest(getFill(d3eCurrentGRef))).to.equal(true);
   });
   
 	
@@ -334,7 +342,7 @@ describe("D3 Editor", function() {
 		expect(node.children.length).to.equal(0);
 		expect(root_node.save.length).to.equal(1);
 		expect(root_node.children.length).to.equal(1);
-		expect(nextKeyId).to.equal(3);
+		expect(d3eNextKeyId).to.equal(3);
 	});
 	
 	it("adds a node, first child, data has common", function() {
@@ -356,7 +364,7 @@ describe("D3 Editor", function() {
 		expect(node.children.length).to.equal(0);
 		expect(root_node.save.length).to.equal(1);
 		expect(root_node.children.length).to.equal(1);
-		expect(nextKeyId).to.equal(3);
+		expect(d3eNextKeyId).to.equal(3);
 	});
 
 	it("adds a node, first child, parent has common", function() {
@@ -378,7 +386,7 @@ describe("D3 Editor", function() {
 		expect(node.children.length).to.equal(0);
 		expect(root_node.save.length).to.equal(1);
 		expect(root_node.children.length).to.equal(1);
-		expect(nextKeyId).to.equal(3);
+		expect(d3eNextKeyId).to.equal(3);
 	});
 
 	it("adds a node, adds at end and then at front plus creates parent save", function() {
@@ -398,7 +406,7 @@ describe("D3 Editor", function() {
   	expect(root_node.children[0].data.name).to.equal("level-1-data-3")
   	expect(root_node.children[1].data.name).to.equal("level-1-data-1")
   	expect(root_node.children[2].data.name).to.equal("level-1-data-2")
-		expect(nextKeyId).to.equal(5);
+		expect(d3eNextKeyId).to.equal(5);
 	});
 
 	it("can create the root node", function() {

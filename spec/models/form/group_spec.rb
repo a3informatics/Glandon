@@ -30,20 +30,28 @@ describe Form::Group do
     result = Form::Group.new
     result.note = "OK"
     result.completion = "Draft 123"
+    result.ordinal = 1
     expect(result.valid?).to eq(true)
   end
 
   it "does not validate an invalid object, completion" do
     result = Form::Group.new
     result.note = "OK"
-    result.completion = "Draft 123>"
+    result.completion = "Draft 123€"
     expect(result.valid?).to eq(false)
   end
 
   it "does not validate an invalid object, note" do
     result = Form::Group.new
-    result.note = "OK<"
+    result.note = "OK€"
     result.completion = "Draft 123"
+    expect(result.valid?).to eq(false)
+  end
+
+  it "does not validate an invalid object, optional" do
+    result = Form::Group.new
+    result.ordinal = 1
+    result.optional = ""
     expect(result.valid?).to eq(false)
   end
 
@@ -100,6 +108,7 @@ describe Form::Group do
     item.label = "test label"
     item.completion = "Completion"
     item.note = "Note"
+    item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end

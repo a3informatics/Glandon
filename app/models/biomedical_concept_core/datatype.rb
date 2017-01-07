@@ -101,7 +101,7 @@ class BiomedicalConceptCore::Datatype  < BiomedicalConceptCore::Node
     self.children.each do |child|
       if !child.valid?
         result = false
-        self.copy_errors(child, "Datatype error:")
+        self.copy_errors(child, "Property, ordinal=#{child.ordinal}, error:")
       end
     end
     return result

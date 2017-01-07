@@ -27,15 +27,21 @@ describe Form::Item::Placeholder do
   end
 
   it "validates a valid object" do
-    result = Form::Item::Placeholder.new
-    result.free_text = "Draft 123"
-    expect(result.valid?).to eq(true)
+    item = Form::Item::Placeholder.new
+    item.free_text = "Draft 123"
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(item.errors.count).to eq(0)
+    expect(result).to eq(true)
   end
 
   it "does not validate an invalid object, text label" do
-    result = Form::Item::Placeholder.new
-    result.free_text = "Draft 123 more tesxt >"
-    expect(result.valid?).to eq(false)
+    item = Form::Item::Placeholder.new
+    item.free_text = "Draft 123@"
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Free text contains invalid markdown")
+    expect(item.errors.count).to eq(1)
+    expect(result).to eq(false)
   end
 
   it "allows object to be initialized from triples" do

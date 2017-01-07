@@ -127,7 +127,7 @@ describe "ISO Managed JS", :type => :feature do
       click_button "state_submit"
       expect(page).to have_content "Administrativenote contains invalid characters"
       fill_in "iso_registration_state_administrativeNote", with: "Good text"
-      fill_in "iso_registration_state_unresolvedIssue", with: "&&&&"
+      fill_in "iso_registration_state_unresolvedIssue", with: "±§"
       click_button "state_submit"
       expect(page).to have_content "Unresolvedissue contains invalid characters"
       fill_in "iso_registration_state_administrativeNote", with: "Good text"

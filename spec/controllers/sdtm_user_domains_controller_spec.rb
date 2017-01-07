@@ -124,14 +124,14 @@ describe SdtmUserDomainsController do
       put :update, params.merge(format: :json)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update.txt")
-      expected = read_text_file_2(sub_dir, "sdtm_user_domain_update.txt")
-      expect(response.body).to eq(expected)
+      new_domain = SdtmUserDomain.find("D-ACME_DSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
+      expected = { :data => new_domain.to_operation }
+      expect(response.body).to eq(expected.to_json)
     end
     
     it "allows a domain to be updated, error" do
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
-      domain.notes = "<><><>"
+      domain.notes = "@@@@@@@@"
       token = Token.obtain(domain, @user)
       data = domain.to_operation
       params = { :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}

@@ -27,24 +27,56 @@ describe Form::Group::Normal do
   end
 
   it "validates a valid object" do
-    result = Form::Group::Normal.new
-    result.note = "OK"
-    result.completion = "Draft 123"
-    expect(result.valid?).to eq(true)
+    item = Form::Group::Normal.new
+    item.note = "OK"
+    item.completion = "Draft 123"
+    item.ordinal = 1
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(result).to eq(true)
   end
 
   it "does not validate an invalid object, completion" do
-    result = Form::Group::Normal.new
-    result.note = "OK"
-    result.completion = "Draft 123>"
-    expect(result.valid?).to eq(false)
+    item = Form::Group::Normal.new
+    item.note = "OK"
+    item.completion = "Draft 123£"
+    item.ordinal = 1
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Completion contains invalid markdown")
+    expect(result).to eq(false)
   end
 
   it "does not validate an invalid object, note" do
-    result = Form::Group::Normal.new
-    result.note = "OK<"
-    result.completion = "Draft 123"
-    expect(result.valid?).to eq(false)
+    item = Form::Group::Normal.new
+    item.note = "OK±"
+    item.completion = "Draft 123"
+    item.ordinal = 1
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Note contains invalid markdown")
+    expect(result).to eq(false)
+  end
+
+  it "does not validate an invalid object, repeating" do
+    item = Form::Group::Normal.new
+    item.note = "OK"
+    item.completion = "Draft 123"
+    item.repeating = ""
+    item.ordinal = 1
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Repeating contains an invalid boolean value")
+    expect(result).to eq(false)
+  end
+
+  it "does not validate an invalid object, child" do
+    item = Form::Group::Normal.new
+    item.note = "OK"
+    item.completion = "Draft 123"
+    item.repeating = false
+    item.ordinal = 1
+    item.groups << Form::Group::Normal.new
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Item, ordinal=0, error: Ordinal contains an invalid positive integer value")
+    expect(result).to eq(false)
   end
 
   it "allows object to be initialized from triples" do
@@ -151,6 +183,7 @@ describe Form::Group::Normal do
     item.completion = "Completion"
     item.note = "Note"
     item.repeating = "true"
+    item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end

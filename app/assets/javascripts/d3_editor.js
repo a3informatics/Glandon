@@ -1,11 +1,12 @@
-var nextKeyId;
-var currentNode;
-var currentGRef;
-var rootNode;
-var clickCallBackPreFunction;
-var clickCallBackPostFunction;
-var dblClickCallBackPostFunction;
-var d3Div;
+var d3eNextKeyId;
+var d3eCurrentNode;
+var d3eCurrentGRef;
+var d3eRootNode;
+var d3eClickCallBackPre;
+var d3eClickCallBackPost;
+var d3eDblClickCallBackPost;
+var d3eValidateCallBack;
+var d3eDiv;
 
 /**
  * Initialize the editor. Set the call back functions
@@ -15,15 +16,16 @@ var d3Div;
  * @param dblClickCallBackPost [Function] the function to be called post click processing
  * @return [Null] 
  */
-function d3eInit(clickCallBackPre, clickCallBackPost, dblClickCallBackPost) {
-  nextKeyId = 1;
-  currentGRef = null;
-  currentNode = null;
-  rootNode = null;
-  d3Div = document.getElementById("d3");
-  clickCallBackPreFunction = clickCallBackPre
-  clickCallBackPostFunction = clickCallBackPost
-  dblClickCallBackPostFunction = dblClickCallBackPost
+function d3eInit(clickCallBackPre, clickCallBackPost, dblClickCallBackPost, validateCallBack) {
+  d3eNextKeyId = 1;
+  d3eCurrentGRef = null;
+  d3eCurrentNode = null;
+  d3eRootNode = null;
+  d3eDiv = document.getElementById("d3");
+  d3eClickCallBackPre = clickCallBackPre;
+  d3eClickCallBackPost = clickCallBackPost;
+  d3eDblClickCallBackPost = dblClickCallBackPost;
+  d3eValidateCallBack = validateCallBack;
 }
 
 /**
@@ -32,7 +34,7 @@ function d3eInit(clickCallBackPre, clickCallBackPost, dblClickCallBackPost) {
  * @return [Boolean] true if set, otherwise false
  */
 function d3eCurrentSet() {
-  if (currentGRef == null) {
+  if (d3eCurrentGRef == null) {
     return false;
   } else {
     return true;
@@ -45,10 +47,10 @@ function d3eCurrentSet() {
  * @return [Object] The current node
  */
 function d3eGetCurrent() {
-  if (currentGRef == null) {
+  if (d3eCurrentGRef == null) {
     return null;
   } else {
-    return currentNode;
+    return d3eCurrentNode;
   }
 }
 
@@ -60,14 +62,20 @@ function d3eGetCurrent() {
  * @return [Null] 
  */
 function d3eClick(node) {    
-  if (currentNode != null) {
-    clickCallBackPreFunction(currentNode);
-    d3RestoreNode(currentGRef);  
+  var valid = true;
+  if (d3eCurrentNode != null) {
+    valid = d3eValidateCallBack(node);
+    if (valid) {
+      d3eClickCallBackPre(d3eCurrentNode);
+      d3RestoreNode(d3eCurrentGRef);  
+    }
   }
-  currentGRef = this;
-  currentNode = node;
-  d3MarkNode(this);
-  clickCallBackPostFunction(currentNode);
+  if (valid) { 
+    d3eCurrentGRef = this;
+    d3eCurrentNode = node;
+    d3MarkNode(this);
+    d3eClickCallBackPost(d3eCurrentNode);
+  }
 }  
 
 /**
@@ -80,7 +88,7 @@ function d3eClick(node) {
 function d3eDblClick(node) {
   d3eExpandHide(node);
   d3eDisplayTree(node.key);
-  dblClickCallBackPostFunction(node);
+  d3eDblClickCallBackPost(node);
 } 
 
 /**
@@ -128,12 +136,12 @@ function d3eForceExpand(node) {
  * @return [Null]
  */
 function d3eDisplayTree(nodeKey) {
-  d3TreeNormal(d3Div, rootNode, d3eClick, d3eDblClick);
+  d3TreeNormal(d3eDiv, d3eRootNode, d3eClick, d3eDblClick);
   var gRef = d3FindGRef(nodeKey);
   if (gRef !== null) {
-    currentGRef = gRef;
-    currentNode = gRef.__data__;
-    d3MarkNode(currentGRef);
+    d3eCurrentGRef = gRef;
+    d3eCurrentNode = gRef.__data__;
+    d3MarkNode(d3eCurrentGRef);
   }
 }
 
@@ -222,7 +230,7 @@ function d3eMoveNodeDown(node) {
  * @return [Integer] the last used key
  */
 function d3eLastKey() {
-  return nextKeyId - 1;
+  return d3eNextKeyId - 1;
 }
 
 /**
@@ -286,7 +294,7 @@ function d3eAddNode(parent, name, type, enabled, data, addAtEnd) {
   } else if (parent.data.hasOwnProperty('is_common')) {
     node.is_common = parent.data.is_common;
   }
-  node.key = nextKeyId;
+  node.key = d3eNextKeyId;
   node.parent = parent;
   node.data = data;
   node.expand = false;
@@ -306,7 +314,7 @@ function d3eAddNode(parent, name, type, enabled, data, addAtEnd) {
     }
   }
   parent.children = parent.save;
-  nextKeyId += 1;
+  d3eNextKeyId += 1;
   return node;
 }
 
@@ -331,8 +339,8 @@ function d3eRoot(name, type, data) {
   node.index = 0;
   node.children = [];
   node.save = node.children;
-  rootNode = node;
-  nextKeyId = 2;
+  d3eRootNode = node;
+  d3eNextKeyId = 2;
   return node;
 }
 

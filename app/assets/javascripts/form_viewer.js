@@ -11,7 +11,7 @@ function initData () {
   var html = $("#jsonData").html();
   var json = $.parseJSON(html);
   mi = json.managed_item;
-  d3eInit(empty, displayNode, empty);
+  d3eInit(empty, displayNode, empty, emptyValidate);
   rootNode = d3eRoot(mi.label, "", mi)
   if (mi.hasOwnProperty('children')) {
     for (i=0; i<mi.children.length; i++) {
@@ -50,8 +50,17 @@ function setD3(sourceNode, d3ParentNode) {
 * @param node [Object] The D3 node
 * @return [Null]
 */
-
 function empty(node) {
+}
+
+/*
+* Empty Callback Function
+*
+* @param node [Object] The D3 node
+* @return [Null]
+*/
+function emptyValidate(node) {
+  return true;
 }
 
 /*
@@ -60,6 +69,7 @@ function empty(node) {
 * @return [Null]
 */
 function displayNode() {
+  var currentNode = d3eGetCurrent();
   if (currentNode.type === C_FORM) {
     selectForm();
     displayForm(currentNode);

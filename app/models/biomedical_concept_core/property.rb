@@ -160,13 +160,11 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
     result = super
     if self.is_complex?
       if !self.complex_datatype.valid?
-        self.errors.add(:complex_datatype, "is invalid")
+        self.copy_errors(self.complex_datatype, "Complex datatype, error:")
         result = false
       end
     else
       if !BaseDatatype::valid?(self.simple_datatype) 
-        ConsoleLogger::log(C_CLASS_NAME, "valid?", "datatype=#{self.simple_datatype}")
-        ConsoleLogger::log(C_CLASS_NAME, "valid?", "JSON=#{self.to_json}")
         self.errors.add(:simple_datatype, "is invalid")
         result = false
       end

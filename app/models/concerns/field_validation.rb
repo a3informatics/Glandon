@@ -1,7 +1,19 @@
 module FieldValidation
 
   C_CLASS_NAME = "FieldValidation"
-
+  C_ALPHA_NUMERICS = "a-zA-Z0-9"
+  C_ALPHA_NUMERICS_SPACE = "#{C_ALPHA_NUMERICS} "
+  C_FREE_TEXT = "#{C_ALPHA_NUMERICS} .!?,'\"_\\-\\/\\\\()\\[\\]~#*=:;&|<>"
+  C_IDENTIFIER = "[#{C_ALPHA_NUMERICS_SPACE}]+"
+  C_MARKDOWN = "[#{C_FREE_TEXT}\r\n]*"
+  C_LONG_NAME = "[#{C_FREE_TEXT}]+"
+  C_TERM_PROPERTY = "[#{C_FREE_TEXT}]*"
+  C_QUESTION = "[#{C_FREE_TEXT}]*"
+  C_LABEL = "[#{C_FREE_TEXT}]*"
+  C_SDTM_LABEL = "[#{C_FREE_TEXT}]{1,40}"
+  C_SDTM_NAME = "[A-Z][A-Z0-9]{0,7}"
+  C_MAPPING = "[#{C_FREE_TEXT}]*"
+  
   # Valid Identifier
   #
   # @param symbol [String] The item being checked
@@ -13,8 +25,7 @@ module FieldValidation
       object.errors.add(symbol, "is empty")
       return false
     else
-      result = value.match /\A[A-Za-z0-9 ]+\z/ 
-      return true if result != nil
+      return true if value =~ /\A#{C_IDENTIFIER}\z/
       object.errors.add(symbol, "contains invalid characters")
       return false
     end
@@ -49,8 +60,24 @@ module FieldValidation
       object.errors.add(symbol, "is empty")
       return false
     else
-      result = value.match /\A[A-Z][A-Z0-9]{0,7}\z/ 
-      return true if result != nil
+      return true if value =~ /\A#{C_SDTM_NAME}\z/
+      object.errors.add(symbol, "contains invalid characters, is empty or is too long")
+      return false
+    end
+  end
+
+  # Valid SDTM Label
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_sdtm_variable_label?(symbol, value, object)
+    if value.nil?
+      object.errors.add(symbol, "is empty")
+      return false
+    else
+      return true if value =~ /\A#{C_SDTM_LABEL}\z/ 
       object.errors.add(symbol, "contains invalid characters, is empty or is too long")
       return false
     end
@@ -99,8 +126,7 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_long_name?(symbol, value, object)
-    result = value.match /^\A[A-Za-z0-9.!?,_ \-()]+\z/ 
-    return true if result != nil
+    return true if value =~ /\A#{C_LONG_NAME}\z/
     object.errors.add(symbol, "contains invalid characters or is empty")
     return false
   end
@@ -142,8 +168,7 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_terminology_property?(symbol, value, object)
-    result = value.match /^\A[A-Za-z0-9 .!?,'"_\-\/\\()\[\]~#*=:;&|]*\z/ 
-    return true if result != nil
+    return true if value =~ /\A#{C_TERM_PROPERTY}\z/
     object.errors.add(symbol, "contains invalid characters")
     return false
   end
@@ -155,8 +180,7 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_label?(symbol, value, object)
-    result = value.match /^\A[A-Za-z0-9.!?,_ \-()]*\z/ 
-    return true if result != nil
+    return true if value =~ /\A#{C_LABEL}\z/
     object.errors.add(symbol, "contains invalid characters")
     return false
   end
@@ -168,8 +192,7 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_question?(symbol, value, object)
-    result = value.match /^\A[A-Za-z0-9 .?,\-:;]*\z/ 
-    return true if result != nil
+    return true if value =~ /\A#{C_QUESTION}\z/
     object.errors.add(symbol, "contains invalid characters")
     return false
   end
@@ -181,8 +204,7 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_mapping?(symbol, value, object)
-    result = value.match /^\A[A-Za-z0-9 .=]*\z/ 
-    return true if result != nil
+    return true if value =~ /\A#{C_MAPPING}\z/ 
     object.errors.add(symbol, "contains invalid characters")
     return false
   end
@@ -259,8 +281,7 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_markdown?(symbol, value, object)
-    result = value.match /^\A[A-Za-z0-9 .!?,'"_\-\/\\()\[\]~#*=:;&|\r\n]*\z/ 
-    return true if result != nil
+    return true if value =~ /^\A#{C_MARKDOWN}\z/
     object.errors.add(symbol, "contains invalid markdown")
     return false
   end

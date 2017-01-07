@@ -5,7 +5,11 @@ describe IsoConceptSystem::Node do
 	include DataHelpers
   include PauseHelpers
 
-	before :all do
+	def sub_dir
+    return "models/iso_concept_system"
+  end
+
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -80,10 +84,11 @@ describe IsoConceptSystem::Node do
         :namespace => "", 
         :label => "Node 3",
         :extension_properties => [],
-        :description => "Description 3<>",
+        :description => "Description 3@@",
         :children => []
       }
     new_concept = concept.add(json)
+    expect(new_concept.errors.full_messages.to_sentence).to eq("Description contains invalid characters or is empty")
     expect(new_concept.errors.count).to eq(1)
   end
 

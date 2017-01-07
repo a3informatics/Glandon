@@ -113,6 +113,7 @@ describe Form do
     item.registrationState.registrationStatus = "Standard"
     operation = item.to_operation
     new_item = Form.create(operation)
+    expect(new_item.errors.full_messages.to_sentence).to eq("")
     expect(new_item.errors.count).to eq(0)
     params = {:identifier => "DM1 01", :scope_id => IsoRegistrationAuthority.owner.namespace.id}
     items = Form.history(params)
@@ -125,12 +126,14 @@ describe Form do
   
   it "allows a placeholder form to be created from parameters" do
     item = Form.create_placeholder({:identifier => "PLACE NEW", :label => "Placeholder New", :freeText => "Placeholder Test Form"})
+    expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
   end
 
   it "allows a form to be created from operation JSON" do
     operation = read_yaml_file_to_hash_2(sub_dir, "form_example_simple_placeholder_with_operation.yaml")
     item = Form.create(operation)
+    expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
   end
 
@@ -234,14 +237,14 @@ describe Form do
     item.label = "addd"
     result = item.valid?
     expect(result).to eq(true)
-    item.completion = ">>>>"
+    item.completion = "±±±±±"
     result = item.valid?
     expect(result).to eq(false)
     expect(item.errors.full_messages.to_sentence).to eq("Completion contains invalid markdown")
     item.completion = ""
     result = item.valid?
     expect(result).to eq(true)
-    item.note = "<<<<<<"
+    item.note = "§§§§§§"
     result = item.valid?
     expect(result).to eq(false)
     expect(item.errors.full_messages.to_sentence).to eq("Note contains invalid markdown")

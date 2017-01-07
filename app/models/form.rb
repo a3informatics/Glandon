@@ -174,9 +174,11 @@ class Form < IsoManaged
     object.label = params[:label]
     group = Form::Group::Normal.new
     group.label = "Placeholder Group"
+    group.ordinal = 1
     item = Form::Item::Placeholder.new
     item.label = "Placeholder"
     item.free_text = params[:freeText]
+    item.ordinal = 1
     object.children << group
     group.children << item
     object = Form.create(object.to_operation)
@@ -323,6 +325,12 @@ class Form < IsoManaged
   def valid?
     self.errors.clear
     result = super
+    self.children.each do |child|
+      if !child.valid?
+        self.copy_errors(child, "Group, ordinal=#{child.ordinal}, error:")
+        result = false
+      end
+    end
     result = result &&
       FieldValidation::valid_markdown?(:completion, self.completion, self) &&
       FieldValidation::valid_markdown?(:note, self.note, self)

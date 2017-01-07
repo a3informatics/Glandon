@@ -61,6 +61,7 @@ describe "Forms", :type => :feature do
       fill_in 'form[label]', with: 'Test Placeholder Form'
       fill_in 'form[freeText]', with: 'This is **some** mardown with a little mardown in *it*'
       click_button 'markdown_preview'
+      #pause
       ui_check_div_text('generic_markdown', 'This is some mardown with a little mardown in it') # Need Javascript for this
       click_button 'Create'
       expect(page).to have_content 'Index: Forms'

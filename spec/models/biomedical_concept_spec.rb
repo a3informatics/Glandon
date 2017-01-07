@@ -135,6 +135,8 @@ it "allows a BC to be found" do
   it "creates an object based on a template" do
     bct = BiomedicalConceptTemplate.find("BCT-Obs_PQR", "http://www.assero.co.uk/MDRBCTs/V1")
     item = BiomedicalConcept.create_simple({:bct_id => bct.id, :bct_namespace => bct.namespace, :identifier => "NEW BC", :label => "New BC"})
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(item.errors.count).to eq(0)
     #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_simple.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "bc_simple.yaml")
     expected[:creation_date] = date_check_now(item.creationDate).iso8601
@@ -144,7 +146,9 @@ it "allows a BC to be found" do
 
   it "creates an object based on another object" do
     bc = BiomedicalConcept.find("BC-ACME_BC_C98793", "http://www.assero.co.uk/MDRBCs/V1")
-    item = BiomedicalConcept.create_clone({:bc_id => bc.id, :bc_namespace => bc.namespace, :identifier => "NEW BC", :label => "New BC"})
+    item = BiomedicalConcept.create_clone({:bc_id => bc.id, :bc_namespace => bc.namespace, :identifier => "NEW BC TWO", :label => "New BC Two"})
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(item.errors.count).to eq(0)
     #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_clone.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "bc_clone.yaml")
     expected[:creation_date] = date_check_now(item.creationDate).iso8601

@@ -32,17 +32,20 @@ describe BiomedicalConceptCore::Datatype do
     datatype = BiomedicalConceptCore::Datatype.new
     property = BiomedicalConceptCore::Property.new
     property.question_text = "Draft 123"
+    property.prompt_text = "Draft"
     datatype.children[0] = property
-    expect(datatype.valid?).to eq(true)
+    result = datatype.valid?
+    expect(datatype.errors.full_messages.to_sentence).to eq("")
+    expect(result).to eq(true)
   end
 
   it "validates an invalid object - Children question text" do
     datatype = BiomedicalConceptCore::Datatype.new
     property = BiomedicalConceptCore::Property.new
-    property.question_text = "Draft 123^^^"
+    property.question_text = "Draft 123±±±"
     datatype.children[0] = property
     expect(datatype.valid?).to eq(false)
-    expect(datatype.errors.full_messages[0]).to eq("Datatype error: Question text contains invalid characters")
+    expect(datatype.errors.full_messages[0]).to eq("Property, ordinal=1, error: Question text contains invalid characters")
   end
 
   it "allows object to be initialized from triples" do

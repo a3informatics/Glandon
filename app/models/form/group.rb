@@ -15,7 +15,7 @@ class Form::Group < IsoConcept
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
-    self.ordinal = 1
+    self.ordinal = 0
     self.note = ""
     self.optional = false
     self.completion = ""
@@ -112,9 +112,17 @@ class Form::Group < IsoConcept
   # @return [boolean] Returns true if valid, false otherwise.
   def valid?
     result = super
+    self.children.each do |child|
+      if !child.valid?
+        self.copy_errors(child, "Item, ordinal=#{child.ordinal}, error:")
+        result = false
+      end
+    end
     result = result &&
       FieldValidation::valid_markdown?(:completion, self.completion, self) &&
-      FieldValidation::valid_markdown?(:note, self.note, self)
+      FieldValidation::valid_markdown?(:note, self.note, self) &&
+      FieldValidation::valid_boolean?(:optional, self.optional, self) &&
+      FieldValidation::valid_positive_integer?(:ordinal, self.ordinal, self)
     return result
   end
 

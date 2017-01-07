@@ -35,7 +35,7 @@ describe IsoConceptSystems::NodesController do
     end
 
     it "prevents an invalid node being added" do
-      get :node_add, {:id => "GSC-C2", :namespace => "http://www.assero.co.uk/MDRConcepts", :iso_concept_systems_node => {:label => "New Label", :description => "New Description<>"}}
+      get :node_add, {:id => "GSC-C2", :namespace => "http://www.assero.co.uk/MDRConcepts", :iso_concept_systems_node => {:label => "New Label", :description => "New Description±±"}}
       expect(flash[:error]).to be_present
     end
 

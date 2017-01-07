@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag    'd3_tree', 'sdtm_user_domain_editor'%>
-<%= javascript_include_tag 'd3_tree', 'sdtm_user_domain_editor', 'ajax_requests', 'd3_editor', 'unload' %>
+<%= javascript_include_tag 'd3_tree', 'sdtm_user_domain_editor', 'ajax_requests', 'd3_editor', 'unload', 'field_validation' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>

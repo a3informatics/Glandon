@@ -27,12 +27,14 @@ describe Form::Item::Question do
   end
 
   it "validates a valid object" do
-    result = Form::Item::Question.new
-    result.datatype = "string"
-    result.format = "20"
-    result.question_text = "Hello"
-    result.tc_refs = []
-    expect(result.valid?).to eq(true)
+    item = Form::Item::Question.new
+    item.datatype = "string"
+    item.format = "20"
+    item.question_text = "Hello"
+    item.tc_refs = []
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(result).to eq(true)
   end
 
   it "does not validate an invalid object, question label" do

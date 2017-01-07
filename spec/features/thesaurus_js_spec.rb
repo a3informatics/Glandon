@@ -25,7 +25,7 @@ describe "Thesaurus", :type => :feature do
       clear_iso_registration_state_object
       user = User.create :email => "curator@example.com", :password => "12345678" 
       user.add_role :curator
-      Token.set_timeout(60)
+      Token.set_timeout(30)
     end
 
     after :all do
@@ -49,9 +49,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'A00030' # Note up version
       find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[2]").click
       fill_in "DTE_Field_label", with: "Label text\t"
-      #find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[3]").click
       fill_in "DTE_Field_notation", with: "SUBMISSION\t"
-      #find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[4]").click
       fill_in "DTE_Field_preferredTerm", with: "The PT\n"
       find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[5]").click
       fill_in "DTE_Field_synonym", with: "Same as A; B\n"
@@ -60,13 +58,12 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'Same as A; B')]/td/button", :text => 'Edit').click
       expect(page).to have_content 'Edit: Label text A00030'
       fill_in 'Identifier', with: 'A00031'
+      #pause
       click_button 'New'
       expect(page).to have_content 'A00031'
       find(:xpath, "//table[@id='editor_table']/tbody/tr[1]/td[2]").click
       fill_in "DTE_Field_label", with: "Label text 31\t"
-      #find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[3]").click
       fill_in "DTE_Field_notation", with: "SUBMISSION 31\t"
-      #find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[4]").click
       fill_in "DTE_Field_preferredTerm", with: "The PT 31\n"
       find(:xpath, "//table[@id='editor_table']/tbody/tr[1]/td[5]").click
       fill_in "DTE_Field_synonym", with: "Same as 31\n"
@@ -77,9 +74,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'A00032'
       find(:xpath, "//table[@id='editor_table']/tbody/tr[2]/td[2]").click
       fill_in "DTE_Field_label", with: "Label text 32\t"
-      #find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[3]").click
       fill_in "DTE_Field_notation", with: "SUBMISSION 32\t"
-      #find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[4]").click
       fill_in "DTE_Field_preferredTerm", with: "The PT 32\n"
       find(:xpath, "//table[@id='editor_table']/tbody/tr[2]/td[5]").click
       fill_in "DTE_Field_synonym", with: "Same as 32\n"

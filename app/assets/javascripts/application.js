@@ -168,7 +168,7 @@ function handleAjaxError (xhr, status, error) {
 /**
 * Error functions
 */
-function highlight(element) {
+/*function highlight(element) {
   $(element).closest('.form-group').addClass('has-error');
 }
 
@@ -182,113 +182,7 @@ function addErrorText(error, element) {
 
 function removeErrorText(element) {
   element.next("span").remove();
-}
-
-
-/*
-* Non Jquery validation
-*/
-function validateIdentifier(value) {
-  var result = /^[A-Za-z0-9 ]+$/.test( value );
-  return result
-}
-
-function identifierErrorText() {
-  return "<span class=\"help-block\">Please enter a valid identifier. Upper and lower case alphanumeric and space characters only.</span>"
-}
-  
-function validateLabel(value) {
-  var result = /^[A-Za-z0-9 .!?,_\-\/\\()]*$/.test( value );
-  return result
-}
-  
-function labelErrorText() {
-  return "<span class=\"help-block\">Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,_-/\\() special characters only.</span>"
-}
-  
-function validateQuestion (value) {
-  var result = /^[A-Za-z0-9 .?,\-:;]+$/.test( value );
-  return result
-}
-
-function questionErrorText() {
-  return "<span class=\"help-block\">Please enter valid question text. Upper and lower case case alphanumerics, space and .?: special characters only.</span>"
-}
- 
-function validateFormat(value) {
-  var result = /^[0-9].[0-9]$/.test( value );
-  return result
-}
-
-function formatErrorText() {
-  return "<span class=\"help-block\">Please enter valid format N.N.</span>"
-}
-
-/*
-* Validator plugin standard regex functions
-*/
-jQuery.validator.addMethod("identifier", function(value, element) {
-  var result = /^[A-Za-z0-9 ]+$/.test( value ); 
-  return result;
-}, "Please enter a valid identifier. Upper and lower case alphanumeric and space characters only.");
-
-jQuery.validator.addMethod("label", function(value, element) {
-  var result = /^[A-Za-z0-9 .!?,_\-\/\\()]+$/.test( value );
-  return result
-}, "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,_-/\\() special characters only.");
-
-jQuery.validator.addMethod("question", function(value, element) {
-  var result = /^[A-Za-z0-9 .?,\-:;]+$/.test( value );
-  return result
-}, "Please enter a valid question text. Upper and lower case case alphanumerics, space and .?,-:; special characters only.");
-
-jQuery.validator.addMethod("freeText", function(value, element) {
-  var result = /^[A-Za-z0-9 .!?,_\-\/\\()\r\n]+$/.test( value );
-  return result
-}, "Please enter a valid free text. Upper and lower case case alphanumerics, space, .!?,_-/\\() special characters and return only.");
-
-jQuery.validator.addMethod("markdown", function(value, element) {
-  var result = /^[A-Za-z0-9 .!?,'"_\-\/\\()[\]~#*=:;&|\r\n]*$/.test( value );
-  return result;
-}, "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&| special characters and return only.");
-
-jQuery.validator.addMethod("variableName", function(value, element) {
-  var result = /^[A-Z][A-Z0-9]{1,7}$/.test( value );
-  return result;
-}, "Please enter a valid variable name. Upper case alpha characters, 1 to 8 characters long.");
-
-jQuery.validator.addMethod("variableLabel", function(value, element) {
-  var result = /^[A-Za-z0-9 .!?,'"_\-()#*:;&]{1,40}$/.test( value );
-  return result;
-}, "Please enter a valid variable name. Upper and lower case alphanumeric, space, .!?,'\"_-()#*:;& special characters, 1 to 40 characters long.");
-
-jQuery.validator.addMethod("domainPrefix", function(value, element) {
-  var result = /^[A-Z]{2}$/.test( value );
-  return result;
-}, "Please enter a valid domain prefix. Upper case alpha characters, 2 characters long.");
-
-// Set validator plugin defaults.
-// TODO: Think about the span bit, not sure it is needed.
-function validatorDefaults () {
-  jQuery.validator.setDefaults({
-    highlight: function(element) {
-      $(element).closest('.form-group').addClass('has-error');
-    },
-    unhighlight: function(element) {
-      $(element).closest('.form-group').removeClass('has-error');
-    },
-    //ignore: [],
-    errorElement: 'span',
-    errorClass: 'help-block',
-    errorPlacement: function(error, element) {
-      if(element.parent('.input-group').length) {
-          error.insertAfter(element.parent());
-      } else {
-          error.insertAfter(element);
-      }
-    }
-  });
-}
+}*/
 
 /*
 * URI functions

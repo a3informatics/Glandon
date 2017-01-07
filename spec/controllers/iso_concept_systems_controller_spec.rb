@@ -72,7 +72,7 @@ describe IsoConceptSystemsController do
     end
 
     it "allows a concept system to be created" do
-      post :create, {:iso_concept_system => {:label => "New Label<>", :description => "New Description"}}
+      post :create, {:iso_concept_system => {:label => "New Label§§", :description => "New Description"}}
       expect(flash[:error]).to be_present
     end
         
@@ -90,7 +90,7 @@ describe IsoConceptSystemsController do
     end
 
     it "prevents an invalid node being added" do
-      get :node_add, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts", :iso_concept_system => {:label => "New Label", :description => "New Description<>"}}
+      get :node_add, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts", :iso_concept_system => {:label => "New Label", :description => "New Description±"}}
       expect(flash[:error]).to be_present
     end
 

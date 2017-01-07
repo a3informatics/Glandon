@@ -9,7 +9,7 @@ describe BiomedicalConceptCore::Property do
     return "models/biomedical_concept_core"
   end
 
-it "clears triple store and loads test data" do
+before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -25,9 +25,12 @@ it "clears triple store and loads test data" do
   end
 
   it "validates a valid object" do
-    result = BiomedicalConceptCore::Property.new
-    result.valid?
-    expect(result.valid?).to eq(true)
+    item = BiomedicalConceptCore::Property.new
+    item.question_text = "Draft 123"
+    item.prompt_text = "Draft 123"
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(result).to eq(true)
   end
 
   it "validates a valid object - Set" do
@@ -43,12 +46,27 @@ it "clears triple store and loads test data" do
   end
 
   it "validates a valid object - Complex" do
-    result = BiomedicalConceptCore::Property.new
-    result.complex_datatype = BiomedicalConceptCore::Datatype.new
+    item = BiomedicalConceptCore::Property.new
+    item.complex_datatype = BiomedicalConceptCore::Datatype.new
+    item.complex_datatype.iso21090_datatype = "PQ"
     property = BiomedicalConceptCore::Property.new
     property.question_text = "Draft 123"
-    result.complex_datatype.children[0] = property
-    expect(result.valid?).to eq(true)
+    property.prompt_text = "Draft 123"
+    item.complex_datatype.children[0] = property
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(result).to eq(true)
+  end
+
+  it "does not validate an invalid object - Complex" do
+    item = BiomedicalConceptCore::Property.new
+    item.complex_datatype = BiomedicalConceptCore::Datatype.new
+    property = BiomedicalConceptCore::Property.new
+    item.complex_datatype.children[0] = property
+    property.question_text = "€"
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Complex datatype, error: Property, ordinal=1, error: Question text contains invalid characters")
+    expect(result).to eq(false)
   end
 
   it "does not validate an invalid object - Question Text" do
@@ -61,7 +79,7 @@ it "clears triple store and loads test data" do
     result.bridg_path = "path"
     result.simple_datatype = "string"
     expect(result.valid?).to eq(false)
-    expect(result.errors.full_messages[0]).to eq("Question text contains invalid characters")
+    expect(result.errors.full_messages.to_sentence).to eq("Question text contains invalid characters")
   end
 
   it "does not validate an invalid object - Prompt Text" do
