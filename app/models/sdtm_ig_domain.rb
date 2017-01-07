@@ -16,6 +16,11 @@ class SdtmIgDomain < Tabular
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
 
+  # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     self.prefix = SdtmUtility::C_PREFIX
     self.structure = ""
@@ -28,6 +33,12 @@ class SdtmIgDomain < Tabular
     end
   end
 
+  # Find a given IG domain.
+  #
+  # @param id [String] the id of the domain
+  # @param namespace [String] the namespace of the domain
+  # @param children [Boolean] find all child objects. Defaults to true.
+  # @return [SdtmModelDomain] the domain object.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -36,10 +47,16 @@ class SdtmIgDomain < Tabular
     return object
   end
 
+  # Find all the IG domains
+  #
+  # @return [Array] array of objects found
   def self.all
     super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
+  # Find all released IG domains
+  #
+  # @return [Array] An array of objects
   def self.list
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
@@ -99,6 +116,9 @@ class SdtmIgDomain < Tabular
     return { :uri => uri, :map => map, :object => object }
   end
 
+  # To JSON
+  #
+  # @return [Hash] the object hash 
   def to_json
     json = super
     json[:prefix] = self.prefix

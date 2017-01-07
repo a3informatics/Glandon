@@ -36,27 +36,44 @@ describe SdtmIgDomain::Variable do
   it "does not validate an invalid object, name" do
     item = SdtmIgDomain::Variable.new
     result = item.valid?
-    expect(result.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
+    expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
     expect(result).to eq(false)
+  end
+
+  it "returns the compliance label" do
+    variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+    expect(variable.compliance_label).to eq("Required")
+  end
+
+  it "returns blank compliance label if none present" do
+    variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+    variable.compliance = nil
+    expect(variable.compliance_label).to eq("")
   end
 
   it "allows object to be initialized from triples" do
     result = 
     {
       :extension_properties => [],
-      :id => "M-CDISC_SDTMMODEL_EVENTS_xxSCAT",
-      :label => "Subcategory",
-      :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3",
-      :ordinal => 23,
+      :id => "IG-CDISC_SDTMIGRP_RPTEST",
+      :label => "Reproductive System Findings Test Name",
+      :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3",
+      :ordinal => 9,
       :rule => "",
-      :type => "http://www.assero.co.uk/BusinessDomain#ClassVariable"
+      :name => "RPTEST",
+      :type => "http://www.assero.co.uk/BusinessDomain#IgVariable",
+      :controlled_term_or_format => "(RPTEST)",
+      :notes => "Verbatim name of the test or examination used to obtain the measurement or finding. " +
+        "The value in RPTEST cannot be longer than 40 characters. Examples: Number of Live Births, Number " +
+        "of Pregnancies, Birth Control Method, etc.",
+      :compliance => "null"
     }
     triples = read_yaml_file(sub_dir, "variable_triples.yaml")
-    expect(SdtmIgDomain::Variable.new(triples, "M-CDISC_SDTMMODEL_EVENTS_xxSCAT").to_json).to eq(result) 
+    expect(SdtmIgDomain::Variable.new(triples, "IG-CDISC_SDTMIGRP_RPTEST").to_json).to eq(result) 
   end 
 
   it "allows an object to be found" do
-    variable = SdtmIgDomain::Variable.find("M-CDISC_SDTMMODEL_EVENTS_xxSCAT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+    variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     write_yaml_file(variable.triples, sub_dir, "variable_triples.yaml")
     write_yaml_file(variable.to_json, sub_dir, "variable.yaml")
     expected = read_yaml_file(sub_dir, "variable.yaml")
@@ -64,7 +81,7 @@ describe SdtmIgDomain::Variable do
   end
 
   it "allows an object to be exported as JSON" do
-    variable = SdtmIgDomain::Variable.find("M-CDISC_SDTMMODEL_EVENTS_xxSCAT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+    variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     write_yaml_file(variable.to_json, sub_dir, "variable_to_json.yaml")
     expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
     expect(variable.to_json).to eq(expected)

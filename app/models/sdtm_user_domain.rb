@@ -21,6 +21,11 @@ class SdtmUserDomain < Tabular
   C_BC_REF_PREFIX = "BCR"
   C_BCP_REF_PREFIX = "PR"
   
+  # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     self.prefix = SdtmUtility::C_PREFIX
     self.structure = ""

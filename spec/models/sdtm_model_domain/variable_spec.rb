@@ -36,7 +36,7 @@ describe SdtmModelDomain::Variable do
   it "does not validate an invalid object, name" do
     item = SdtmModelDomain::Variable.new
     result = item.valid?
-    expect(result.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
+    expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
     expect(result).to eq(false)
   end
 

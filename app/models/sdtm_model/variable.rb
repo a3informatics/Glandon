@@ -32,6 +32,11 @@ class SdtmModel::Variable < Tabular::Column
   C_ROLE_Q_RECORD = "Record Qualifier"
   C_ROLE_Q_VARIABLE = "Variable Qualifier"
 
+  # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     self.name = ""
     self.prefixed = false
@@ -46,24 +51,38 @@ class SdtmModel::Variable < Tabular::Column
     end
   end
 
+  # Classification Label
+  #
+  # @return [String] the label, set blank if none exists
   def classification_label
     return classification.nil? ? "" : classification.label
   end
 
+  # Sub Classification Label
+  #
+  # @return [String] the label, set blank if none exists
   def sub_classification_label
     return sub_classification.nil? ? "" : sub_classification.label 
   end
   
+  # Datatype Label
+  #
+  # @return [String] the label, set blank if none exists
   def datatype_label
     return datatype.nil? ? "" : datatype.label 
   end
 
+  # Find an item
+  #
+  # @params id [String] the id of the item to be found.
+  # @params namespace [String] the namespace of the item to be found.
+  # @raise [NotFoundError] if the object is not found.
+  # @return [SdtmModel::Variable] the object found.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
       children_from_triples(object, object.triples, id)
     end
-    object.triples = ""
     return object
   end
 
@@ -86,6 +105,9 @@ class SdtmModel::Variable < Tabular::Column
     return id
   end
 
+  # To JSON
+  #
+  # @return [Hash] the object hash.
   def to_json
     json = super
     json[:name] = self.name

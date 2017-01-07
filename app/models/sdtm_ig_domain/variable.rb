@@ -21,10 +21,15 @@ class SdtmIgDomain::Variable < Tabular::Column
   C_CORE_PERM = "Permissible"
   C_CORE_EXP = "Expected"
   
+  # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     self.name = ""
     self.notes = ""
-    self. controlled_term_or_format = ""
+    self.controlled_term_or_format = ""
     self.variable_ref = nil
     if triples.nil?
       super
@@ -33,15 +38,24 @@ class SdtmIgDomain::Variable < Tabular::Column
     end
   end
 
+  # Compliance Label
+  #
+  # @return [String] the label, set blank if none exists
   def compliance_label
     return compliance.nil? ? "" : compliance.label
   end
 
+  # Format. Formatis anythign that is not a CT ref, see below.
+  #
+  # @return [String] the format from the CT or Format field
   def format
     temp = self.controlled_term_or_format
     return temp.sub /\s*\(.+\)$/, ''
   end
 
+  # CT. This takes the form '(NAME)' if present, otherwise a format
+  #
+  # @return [String] the CT from the CT or Format field
   def ct
     temp = self.controlled_term_or_format
     temp = temp.scan(/\(([^\)]+)\)/).last.first
@@ -51,10 +65,19 @@ class SdtmIgDomain::Variable < Tabular::Column
     return ""
   end
 
+  # Determines if CT present in the CT/Format field
+  #
+  # @return [Boolean] true if a CT reference is present
   def ct?
     return !self.ct.empty?
   end
 
+  # Find an item
+  #
+  # @params id [String] the id of the item to be found.
+  # @params namespace [String] the namespace of the item to be found.
+  # @raise [NotFoundError] if the object is not found.
+  # @return [SdtmIgDomain::Variable] the object found.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -97,6 +120,9 @@ class SdtmIgDomain::Variable < Tabular::Column
     return id
   end
 
+  # To JSON
+  #
+  # @return [Hash] the object hash.
   def to_json
     json = super
     json[:name] = self.name

@@ -21,6 +21,11 @@ class SdtmIg < Tabular
   # Class-wide variables
   @@cdiscNamespace = nil # CDISC Organization identifier
   
+  # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     self.domain_refs = Array.new
     if triples.nil?
@@ -30,6 +35,12 @@ class SdtmIg < Tabular
     end
   end
 
+  # Find a given IG.
+  #
+  # @param id [String] the id of the domain
+  # @param namespace [String] the namespace of the domain
+  # @param children [Boolean] find all child objects. Defaults to true.
+  # @return [SdtmModelDomain] the domain object.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -39,11 +50,17 @@ class SdtmIg < Tabular
     return object
   end
 
+  # Find all the IGs.
+  #
+  # @return [Array] array of objects found
   def self.all()
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
 
+  # Find the IG history
+  #
+  # @return [array] An array of objects.
   def self.history()
     @@cdiscNamespace ||= IsoNamespace.findByShortName("CDISC")
     results = super(C_RDF_TYPE, C_SCHEMA_NS, { :identifier => C_IDENTIFIER, :scope_id => @@cdiscNamespace.id })
@@ -111,6 +128,9 @@ class SdtmIg < Tabular
     return { :object => object }
   end
 
+  # To JSON
+  #
+  # @return [Hash] the object hash 
   def to_json
     json = super
     json[:domain_refs] = Array.new

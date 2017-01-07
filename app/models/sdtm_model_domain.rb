@@ -31,6 +31,11 @@ class SdtmModelDomain < Tabular
   C_TRIAL_DESIGN_IDENTIFIER = "SDTMMODEL_TRIAL_DESIGN"
   C_RELATIONSHIP_IDENTIFIER = "SDTMMODEL_RELATIONSHIP"
     
+  # Initialize
+  #
+  # @params triples [Hash] the triples
+  # @params id [String] the id to be initialized
+  # @return [Null]
   def initialize(triples=nil, id=nil)
     self.children = Array.new
     if triples.nil?
@@ -40,6 +45,12 @@ class SdtmModelDomain < Tabular
     end
   end
 
+  # Find a given model domain.
+  #
+  # @param id [String] the id of the domain
+  # @param namespace [String] the namespace of the domain
+  # @param children [Boolean] find all child objects. Defaults to true.
+  # @return [SdtmModelDomain] the domain object.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -48,10 +59,16 @@ class SdtmModelDomain < Tabular
     return object
   end
 
+  # Find all model domains.
+  #
+  # @return [Array] array of objects found
   def self.all
     super(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
+  # Find all released model domains.
+  #
+  # @return [Array] An array of objects
   def self.list
     results = super(C_RDF_TYPE, C_SCHEMA_NS)
     return results
@@ -84,6 +101,9 @@ class SdtmModelDomain < Tabular
     return { :uri => uri, :map => map, :object => object }
   end
 
+  # To JSON
+  #
+  # @return [Hash] the object hash 
   def to_json
     json = super
     json[:children] = Array.new

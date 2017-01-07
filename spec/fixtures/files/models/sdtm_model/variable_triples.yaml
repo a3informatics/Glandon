@@ -1,0 +1,44 @@
+---
+M-CDISC_SDTMMODEL_xxTPTREF:
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :predicate: http://www.w3.org/2000/01/rdf-schema#label
+  :object: Time Point Reference
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :predicate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  :object: http://www.assero.co.uk/BusinessDomain#ModelVariable
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :predicate: http://www.assero.co.uk/BusinessDomain#ordinal
+  :object: '27'
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :predicate: http://www.assero.co.uk/BusinessDomain#classifiedAs
+  :object: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :predicate: http://www.assero.co.uk/BusinessDomain#name
+  :object: "--TPTREF"
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :predicate: http://www.assero.co.uk/BusinessDomain#prefixed
+  :object: 'true'
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :predicate: http://www.assero.co.uk/BusinessDomain#description
+  :object: 'Description of the fixed reference point referred to by --ELTM, --TPTNUM,
+    and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL.'
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :predicate: http://www.assero.co.uk/BusinessDomain#rule
+  :object: ''
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :predicate: http://www.assero.co.uk/BusinessDomain#typedAs
+  :object: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR
+M-CDISC_SDTMMODEL_C_TIMING:
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING
+  :predicate: http://www.w3.org/2000/01/rdf-schema#label
+  :object: Timing
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING
+  :predicate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  :object: http://www.assero.co.uk/BusinessDomain#VariableClassification
+M-CDISC_SDTMMODEL_DT_CHAR:
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR
+  :predicate: http://www.w3.org/2000/01/rdf-schema#label
+  :object: Char
+- :subject: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR
+  :predicate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  :object: http://www.assero.co.uk/BusinessDomain#VariableType

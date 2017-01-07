@@ -35,7 +35,7 @@ class SdtmModelDomain::Variable < Tabular::Column
   # @params id [String] the id of the item to be found.
   # @params namespace [String] the namespace of the item to be found.
   # @raise [NotFoundError] if the object is not found.
-  # @return [SdtmModelDomain::Varianle] the object found.
+  # @return [SdtmModelDomain::Variable] the object found.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children

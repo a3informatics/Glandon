@@ -1,0 +1,51 @@
+---
+IG-CDISC_SDTMIGRP_RPTEST:
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST
+  :predicate: http://www.w3.org/2000/01/rdf-schema#label
+  :object: Reproductive System Findings Test Name
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST
+  :predicate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  :object: http://www.assero.co.uk/BusinessDomain#IgVariable
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST
+  :predicate: http://www.assero.co.uk/BusinessDomain#ordinal
+  :object: '9'
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST
+  :predicate: http://www.assero.co.uk/BusinessDomain#controlled_term_or_format
+  :object: "(RPTEST)"
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST
+  :predicate: http://www.assero.co.uk/BusinessDomain#name
+  :object: RPTEST
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST
+  :predicate: http://www.assero.co.uk/BusinessDomain#notes
+  :object: 'Verbatim name of the test or examination used to obtain the measurement
+    or finding. The value in RPTEST cannot be longer than 40 characters. Examples:
+    Number of Live Births, Number of Pregnancies, Birth Control Method, etc.'
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST
+  :predicate: http://www.assero.co.uk/BusinessDomain#basedOnVariable
+  :object: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST_VR
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST
+  :predicate: http://www.assero.co.uk/BusinessDomain#compliance
+  :object: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_C_REQUIRED
+IG-CDISC_SDTMIGRP_RPTEST_VR:
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST_VR
+  :predicate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  :object: http://www.assero.co.uk/BusinessOperational#CReference
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST_VR
+  :predicate: http://www.assero.co.uk/BusinessOperational#ordinal
+  :object: '1'
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST_VR
+  :predicate: http://www.assero.co.uk/BusinessOperational#enabled
+  :object: 'true'
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST_VR
+  :predicate: http://www.assero.co.uk/BusinessOperational#optional
+  :object: 'false'
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_RPTEST_VR
+  :predicate: http://www.assero.co.uk/BusinessOperational#hasColumn
+  :object: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_FINDINGS_xxTEST
+IG-CDISC_SDTMIGRP_C_REQUIRED:
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_C_REQUIRED
+  :predicate: http://www.w3.org/2000/01/rdf-schema#label
+  :object: Required
+- :subject: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_C_REQUIRED
+  :predicate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  :object: http://www.assero.co.uk/BusinessDomain#VariableCompliance
