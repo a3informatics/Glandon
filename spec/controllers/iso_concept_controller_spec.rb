@@ -57,11 +57,6 @@ describe IsoConceptController do
       results = 
       [
         {
-          uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1",
-          rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-          local: true
-        },
-        {
           uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1",
           rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
           local: true
