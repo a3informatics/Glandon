@@ -110,10 +110,14 @@
           <ul class="well">
             <li><a href="/sdtm_user_domains">Domains</a></li>
           </ul>
-          <!--<button type="button" id="page_nav_menu_hide" class="btn btn-primary">Hide</button>-->
         </div>
 
 				<div class="col-md-10">
+          <div id="datatables">
+            <!-- Datatables page length options-->
+            <%= javascript_tag "var pageLength = #{current_user.table_rows};" %>
+            <%= javascript_tag "var pageSettings = #{UserSettings.datatable_settings};" %>
+          </div>
           <div id="alerts">
             <% flash.each do |type, message| %>
               <div class="alert <%= bootstrap_class_for(type) %> fade in">

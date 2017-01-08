@@ -8,15 +8,21 @@ var dtTertiaryDataTable;	// Reference to tertiary table
 $(document).ready( function() {
 
   dtMainDataTable = $('#main').DataTable({
-    columnDefs: [ ]
+    columnDefs: [ ],
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings
   } );
 
   dtSecondaryDataTable = $('#secondary').DataTable({
-    columnDefs: [ ]
+    columnDefs: [ ],
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings
   } );		
   
   dtTertiaryDataTable = $('#tertiary').DataTable({
-  	columnDefs: [ ]
+  	columnDefs: [ ],
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings
 	});
 
 } );

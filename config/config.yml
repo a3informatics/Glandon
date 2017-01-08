@@ -1,4 +1,5 @@
 defaults: &defaults
+  # General Settings
   self_registration: false # Self registration enabled
   token_timeout: 300 # Timeout in seconds
   organization_title: ACME Pharma # Installation organisation title
@@ -6,13 +7,28 @@ defaults: &defaults
   rest_timeout: 5 # REST timeout period
   cdisc_ct_files: public/results/  # CDISC CT file directory
   max_impact_hops: 3 # Maximum hops for impact assesment
-  # User config
-  paper_size:
-   - type: enum
-     enum_values: A3 A4 Letter
-     value: A4
-     label: Paper Size
-
+  # User Settings 
+  user_settings:
+    paper_size: # Paper size settings
+      type: enum
+      values: 
+       - A3
+       - A4
+       - Letter
+      default_value: A4
+      label: Paper Size
+    table_rows: # Table rows length settings 
+      type: coded
+      values: 
+        '5': 5 
+        '10': 10 
+        '15': 15
+        '25': 25
+        '50': 50
+        '100': 100
+        All: -1
+      default_value: 10
+      label: Table Rows
 development:
   <<: *defaults
   self_registration: false

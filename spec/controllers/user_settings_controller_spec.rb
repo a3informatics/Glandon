@@ -4,6 +4,7 @@ describe UserSettingsController do
 
   include DataHelpers
   include PauseHelpers
+  include UserSettingsHelpers
 
   describe "user settings as curator" do
   	
@@ -11,7 +12,7 @@ describe UserSettingsController do
    
     it "index settings" do
       get :index
-      expect(assigns(:settings_metadata).to_json).to eq("{\"paper_size\":{\"type\":\"enum\",\"enum_values\":[\"A3\",\"A4\",\"Letter\"],\"label\":\"Paper Size\"}}")
+      expect(assigns(:settings_metadata)).to eq(us_expected_metadata)
       expect(response).to render_template("index")
     end
 

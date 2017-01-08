@@ -13,11 +13,12 @@ module UserSettings
   included do
     has_many :user_settings, :dependent => :destroy
     # User settings
-    hash = APP_CONFIG['paper_size'][0]
-    values = hash['enum_values']
-    enum_values = values.split
-    @@settings_metadata = {:paper_size => {:type => hash['type'], :enum_values => enum_values, :label => hash['label']}}
-    @@settings = {:paper_size => hash['value']}
+    user_hash = APP_CONFIG['user_settings']
+    @@settings_metadata = user_hash.deep_symbolize_keys
+    @@settings = {}
+    @@settings_metadata.each do |key, hash|
+      @@settings[key.to_sym] = hash[:default_value]
+    end
   end
 
   # Add class methods
@@ -42,6 +43,26 @@ module UserSettings
       results[key] = result.value
     end  
     return results
+  end
+
+  # Return the datatable settings
+  #
+  # @return [String] contains settings for datatables initialization
+  def self.datatable_settings
+    return "[[5,10,25,50,100,-1], [\"5\",\"10\",\"25\",\"50\",\"100\",\"All\"]]" if !@@settings_metadata.has_key?(:table_rows)
+    info = @@settings_metadata[:table_rows][:values]
+    values = info.map{|l,v| v}.join(",")
+    labels = info.map{|l,v| "\"#{l}\""}.join(",")
+    return "[[#{values}], [#{labels}]]"
+  end
+
+  # Clear the settings metadata. Only used for testing
+  #
+  # @return [Null]
+  if Rails.env == "test"
+    def self.clear_settings_metadata
+      @@settings_metadata = {}
+    end
   end
 
   # Return the settings metadata
