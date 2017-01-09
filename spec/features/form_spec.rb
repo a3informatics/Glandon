@@ -92,9 +92,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'History: T2'
       find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Edit').click
       #save_and_open_page
-      expect(page).to have_content 'Edit: Test 2 T2 (, V1, Incomplete)' # Note the up version because V1 is at 'Standard'
-      #click_button 'Close' # This requires Javascript so wont work in this test.
-      #expect(page).to have_content 'History: CDISC EXT'
+      expect(page).to have_content 'Edit: Test 2 T2 (, V1, Incomplete)'
     end
 
     it "allows a form to be cloned" do
@@ -189,8 +187,6 @@ describe "Forms", :type => :feature do
       fill_in 'form[identifier]', with: 'A PLACEHOLDER FORM'
       fill_in 'form[label]', with: 'Test Placeholder Form'
       fill_in 'form[freeText]', with: 'This is **some** mardown with a little mardown in *it*'
-      #click_button 'markdown_preview'
-      #ui_check_div_text('generic_markdown', 'This is some mardown with a little mardown in it') # Need Javascript for this
       click_button 'Create'
       expect(page).to have_content 'Index: Forms'
       expect(page).to have_content 'Test Placeholder Form'

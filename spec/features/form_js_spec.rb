@@ -5,6 +5,7 @@ describe "Forms", :type => :feature do
   include DataHelpers
   include UiHelpers
   include PauseHelpers
+  include WaitForAjaxHelper
 
   def sub_dir
     return "features"
@@ -22,6 +23,8 @@ describe "Forms", :type => :feature do
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
       load_schema_file_into_triple_store("ISO11179Data.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      load_schema_file_into_triple_store("ISO25964.ttl")
+      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessForm.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
@@ -102,7 +105,35 @@ describe "Forms", :type => :feature do
       #expect(show_body).to eq(expected)
     end
 
-    it "allows a form show page to be viewed, Show table details"
+    it "allows a form show page to be viewed, show table details", js: true do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: DM1 01'
+      find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Demographics DM1 01 (, V1, Candidate)'
+      wait_for_ajax
+      ui_check_table_row('main', 1, ["1", "Question Group", "", "", "", "", "", "", ""])
+      ui_check_table_row('main', 4, ["4", "Sex", "Sex:", "string", "", "SEX", "M [C20197]<br/>F [C16576]", "Indicate the appropriate sex.", ""])
+      ui_check_table_row('main', 6, ["6", "Race Other", "Race Other Mixed Specify:", "string", "20", "SUPPDM.QVAL when QNAM=RACEOTH", "", "", ""])
+      ui_check_table_row('main', 8, ["8", "Ethnic Subgroup", "Ethnic Subgroup:", "string", "", "SUPPDM.QVAL when QNAM=RACESG", "ETHNIC SUBGROUP [1] [A00011]", "Tick the appropriate box to indicate the subject s ethnic subgroup. If the appropriate subgroup is not listed, tick Other", ""])
+      ui_check_table_row_class('main', 2, 'warning')
+      ui_check_table_row_class('main', 7, 'warning')
+      ui_check_table_row_class('main', 8, 'warning')
+    end
+
+    it "allows a form show page to be viewed, show table details, VS BC", js: true do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: VS BASELINE'
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Vital Signs Baseline VS BASELINE (, V1, Standard)'
+      wait_for_ajax
+      ui_check_table_row('main', 1, ["1", "Group", "", "", "", "", "", "", ""])
+      ui_check_table_row('main', 6, ["6", "Date and Time (--DTC)", "Question text", "dateTime", "", "", "", "", ""])
+      ui_check_table_row('main', 12, ["12", "Result Units (--ORRESU)", "Result units?", "string", "", "", "oz [C48519]<br/>g [C48155]]<br/>LB [C48531]]<br/>kg [C28252]", "", ""])
+    end
 
     it "allows a form show page to be viewed", js: true do
       visit '/forms'
@@ -114,9 +145,174 @@ describe "Forms", :type => :feature do
       click_link 'Close'
     end
 
-    it "allows a form show page to be viewed, View tree details"
+    it "allows a form show page to be viewed, view tree details, DM", js: true do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: DM1 01'
+      find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'View').click
+      wait_for_ajax
+      expect(page).to have_content 'View: Demographics DM1 01 (, V1, Candidate)'
+      expect(page).to have_content 'Form'
+      ui_check_anon_table_row(1, ["Identifier:", "DM1 01"])
+      ui_check_anon_table_row(2, ["Label:", "Demographics"])
+      ui_check_anon_table_row(3, ["Completion Instructions:", ""])
+      key = ui_get_key_by_path('["Demographics", "Question Group"]')      
+      ui_click_node_key(key)
+      expect(page).to have_content 'Group'
+      ui_check_anon_table_row(1, ["Label:", "Question Group"])
+      ui_check_anon_table_row(2, ["Repeating:", "false"])
+      ui_check_anon_table_row(3, ["Optional:", "false"])
+      key = ui_get_key_by_path('["Demographics", "Question Group", "Race"]')      
+      ui_click_node_key(key)
+      expect(page).to have_content 'Question'
+      ui_check_anon_table_row(1, ["Label:", "Race"])
+      ui_check_anon_table_row(2, ["Optional:", "false"])
+      ui_check_anon_table_row(3, ["Question Text:", "Race:"])
+      ui_check_anon_table_row(4, ["Mapping:", "RACE"])
+      ui_check_anon_table_row(5, ["Datatype:", "string"])
+      ui_check_anon_table_row(6, ["Format:", ""])
+      key = ui_get_key_by_path('["Demographics", "Question Group", "Race", "Asian"]')      
+      ui_click_node_key(key)
+      expect(page).to have_content 'Code List'
+      ui_check_anon_table_row(1, ["Identifier:", "C41260"])
+      ui_check_anon_table_row(2, ["Label:", "Asian"])
+      ui_check_anon_table_row(3, ["Default Label:", ""])
+      ui_check_anon_table_row(4, ["Submission Value:", "ASIAN"])
+      ui_check_anon_table_row(5, ["Enabled:", "true"])
+      ui_check_anon_table_row(6, ["Optional:", "false"])
+      key = ui_get_key_by_path('["Demographics", "Question Group", "CRF Number"]')      
+      ui_click_node_key(key)
+      expect(page).to have_content 'Question'
+      ui_check_anon_table_row(1, ["Label:", "CRF Number"])
+      ui_check_anon_table_row(4, ["Mapping:", "[NOT SUBMITTED]"])      
+      ui_check_anon_table_row(5, ["Datatype:", "integer"])
+      key = ui_get_key_by_path('["Demographics"]')      
+      ui_click_node_key(key)
+      ui_check_anon_table_row(1, ["Identifier:", "DM1 01"])
+      ui_check_anon_table_row(2, ["Label:", "Demographics"])
+      ui_check_anon_table_row(3, ["Completion Instructions:", ""])     
+    end
 
-    it "allows a form to be deleted"
+    it "allows a form show page to be viewed, view tree details, VS BC", js: true do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: VS BASELINE'
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'View').click
+      wait_for_ajax
+      expect(page).to have_content 'View: Vital Signs Baseline VS BASELINE (, V1, Standard)'
+      expect(page).to have_content 'Form'
+      ui_check_anon_table_row(1, ["Identifier:", "VS BASELINE"])
+      ui_check_anon_table_row(2, ["Label:", "Vital Signs Baseline"])
+      ui_check_anon_table_row(3, ["Completion Instructions:", ""])
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group"]')      
+      ui_click_node_key(key)
+      expect(page).to have_content 'Group'
+      ui_check_anon_table_row(1, ["Label:", "Group"])
+      ui_check_anon_table_row(2, ["Repeating:", "false"])
+      ui_check_anon_table_row(3, ["Optional:", "false"])
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)"]')      
+      ui_click_node_key(key)
+      expect(page).to have_content 'Group'
+      ui_check_anon_table_row(1, ["Label:", "Height (BC_C25347)"])
+      ui_check_anon_table_row(2, ["Repeating:", "false"])
+      ui_check_anon_table_row(3, ["Optional:", "false"])
+      ui_check_anon_table_row(4, ["Completion Instructions:", ""])
+      ui_check_anon_table_row(5, ["Notes:", ""])
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)", "Result Units (--ORRESU)"]') 
+      #pause     
+      ui_click_node_key(key)
+      expect(page).to have_content 'Biomedical Concept Item'
+      ui_check_anon_table_row(1, ["Label:", "Result Units (--ORRESU)"])
+      ui_check_anon_table_row(2, ["Enabled:", "true"])
+      ui_check_anon_table_row(3, ["Optional:", "false"])
+      ui_check_anon_table_row(4, ["Question Text:", "Result units?"])
+      ui_check_anon_table_row(5, ["Datatype:", ""])
+      ui_check_anon_table_row(6, ["Format:", ""])
+      ui_check_anon_table_row(7, ["Completion Instructions:", ""])
+      ui_check_anon_table_row(8, ["Notes:", ""])
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)", "Result Units (--ORRESU)", "Meter"]')      
+      ui_click_node_key(key)
+      expect(page).to have_content 'Code List'
+      ui_check_anon_table_row(1, ["Identifier:", "C41139"])
+      ui_check_anon_table_row(2, ["Label:", "Meter"])
+      ui_check_anon_table_row(3, ["Default Label:", "Meter"])
+      ui_check_anon_table_row(4, ["Submission Value:", "m"])      
+      ui_check_anon_table_row(5, ["Enabled:", "true"])
+      ui_check_anon_table_row(6, ["Optional:", "false"])
+      key = ui_get_key_by_path('["Vital Signs Baseline"]')      
+      ui_click_node_key(key)
+      ui_check_anon_table_row(1, ["Identifier:", "VS BASELINE"])
+      ui_check_anon_table_row(2, ["Label:", "Vital Signs Baseline"])
+      ui_check_anon_table_row(3, ["Completion Instructions:", ""])
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)"]')      
+      ui_click_node_key(key)
+      expect(page).to have_content 'Group'
+      ui_check_anon_table_row(1, ["Label:", "Height (BC_C25347)"])
+      ui_check_anon_table_row(2, ["Repeating:", "false"])
+      ui_check_anon_table_row(3, ["Optional:", "false"])
+      ui_check_anon_table_row(4, ["Completion Instructions:", ""])
+      ui_check_anon_table_row(5, ["Notes:", ""])  
+    end
+
+    it "allows a form to be deleted", js: true do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: T2'
+      find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'Delete').click
+      ui_click_cancel("Are you sure?")
+      expect(page).to have_content 'History: T2'
+      find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'Delete').click
+      ui_click_ok("Are you sure?")
+      expect(page).to have_content 'Index: Forms'
+    end
+
+    it "allows a placeholder form to be created, field validation", js: true do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      click_link 'New Placeholder'
+      expect(page).to have_content 'New Placeholder Form:'
+      fill_in 'form[identifier]', with: '@@@'
+      fill_in 'form[label]', with: '€€€'
+      fill_in 'form[freeText]', with: '±±±'
+      click_button 'Create'
+      expect(page).to have_content "Please enter a valid identifier. Upper and lower case alphanumeric and space characters only."
+      expect(page).to have_content "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
+      expect(page).to have_content "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&|<> special characters and return only."
+      fill_in 'form[identifier]', with: 'BETTER'
+      click_button 'Create'
+      expect(page).to have_content "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
+      expect(page).to have_content "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&|<> special characters and return only."
+      fill_in 'form[label]', with: 'Nice Label'
+      click_button 'Create'
+      expect(page).to have_content "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&|<> special characters and return only."
+      fill_in 'form[freeText]', with: '**Brilliant**'
+      click_button 'Create'
+      expect(page).to have_content "Form was successfully created."
+      expect(page).to have_content "BETTER"
+      expect(page).to have_content "Nice Label"
+    end
+    
+    it "allows a placeholder form to be created, field validation", js: true do
+      visit '/forms/new'
+      expect(page).to have_content 'New Form:'
+      fill_in 'form[identifier]', with: '@@@'
+      fill_in 'form[label]', with: '€€€'
+      click_button 'Create'
+      expect(page).to have_content "Label contains invalid characters and Scoped Identifier error: Identifier contains invalid characters"
+      fill_in 'form[identifier]', with: 'BETTER2'
+      fill_in 'form[label]', with: '€€€'
+      click_button 'Create'
+      expect(page).to have_content "Label contains invalid characters"
+      fill_in 'form[identifier]', with: 'BETTER2'
+      fill_in 'form[label]', with: 'Nice Label'
+      click_button 'Create'
+      expect(page).to have_content "Form was successfully created."
+      expect(page).to have_content "BETTER"
+      expect(page).to have_content "Nice Label"
+    end
     
   end
 

@@ -12,7 +12,7 @@ function initData () {
   var json = $.parseJSON(html);
   mi = json.managed_item;
   d3eInit(empty, displayNode, empty, emptyValidate);
-  rootNode = d3eRoot(mi.label, "", mi)
+  rootNode = d3eRoot(mi.label, mi.type, mi)
   if (mi.hasOwnProperty('children')) {
     for (i=0; i<mi.children.length; i++) {
       child = mi.children[i];

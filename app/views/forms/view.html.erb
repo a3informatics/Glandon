@@ -1,5 +1,8 @@
 <%= stylesheet_link_tag    'd3_tree' %>
 <%= javascript_include_tag 'd3_tree', 'd3_editor', 'form_viewer', 'ajax_requests', 'form_utility' %>
+<% if Rails.env == "test" || Rails.env == "development" %>
+  <%= javascript_include_tag 'rspec_helper' %>
+<% end %>
 <script id="jsonData" type="text/json">
   <%= raw @form.to_operation.to_json %>
 </script>

@@ -10,6 +10,8 @@ $(document).ready(function() {
   // Initialise main table
   mainTable = $('#main').DataTable({
     rowId: 'id',
+    pageLength: pageLength,
+    lengthMenu: pageSettings,
     columns: [
       {"data" : "ordinal", "width" : "5%"},
       {"data" : "label", "width" : "10%"},

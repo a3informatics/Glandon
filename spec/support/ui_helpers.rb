@@ -88,6 +88,29 @@ module UiHelpers
     page.evaluate_script("dtMainTableAll()")
   end
 
+  # check table row
+  def ui_check_table_row(table_id, row, data)
+    page.all("table##{table_id} tbody tr:nth-child(#{row}) td").each_with_index do |td, index|
+      #puts "#{td.text} <-> #{data[index]}, for index #{index}"
+      if index < data.length
+        expect(td.text).to eq(data[index])
+      end
+    end
+  end
+
+  def ui_check_table_row_class(table_id, row, the_class)
+    expect(page.all("table##{table_id} tbody tr:nth-child(#{row})")[:class]).to include(the_class)
+  end
+
+  def ui_check_anon_table_row(row, data)
+    page.all("table tbody tr:nth-child(#{row}) td").each_with_index do |td, index|
+      #puts "#{td.text} <-> #{data[index]}, for index #{index}"
+      if index < data.length
+        expect(td.text).to eq(data[index])
+      end
+    end
+  end
+
   # D3 Tree Functions
   # =================
 
