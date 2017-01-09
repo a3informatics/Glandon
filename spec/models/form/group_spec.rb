@@ -55,6 +55,13 @@ describe Form::Group do
     expect(result.valid?).to eq(false)
   end
 
+  it "does not validate an invalid object, ordinal" do
+    result = Form::Group.new
+    result.ordinal = 0
+    result.optional = true
+    expect(result.valid?).to eq(false)
+  end
+
   it "allows object to be initialized from triples" do
     result = 
       {

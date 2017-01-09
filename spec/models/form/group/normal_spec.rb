@@ -67,7 +67,7 @@ describe Form::Group::Normal do
     expect(result).to eq(false)
   end
 
-  it "does not validate an invalid object, child" do
+  it "does not validate an invalid object, group 1" do
     item = Form::Group::Normal.new
     item.note = "OK"
     item.completion = "Draft 123"
@@ -75,7 +75,21 @@ describe Form::Group::Normal do
     item.ordinal = 1
     item.groups << Form::Group::Normal.new
     result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("Item, ordinal=0, error: Ordinal contains an invalid positive integer value")
+    expect(item.errors.full_messages.to_sentence).to eq("Group, ordinal=0, error: Ordinal contains an invalid positive integer value")
+    expect(result).to eq(false)
+  end
+
+  it "does not validate an invalid object, group 2" do
+    item = Form::Group::Normal.new
+    item.note = "OK"
+    item.completion = "Draft 123"
+    item.repeating = false
+    item.ordinal = 1
+    group = Form::Group::Normal.new
+    group.optional = ""
+    item.groups << group
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Group, ordinal=0, error: Optional contains an invalid boolean value")
     expect(result).to eq(false)
   end
 

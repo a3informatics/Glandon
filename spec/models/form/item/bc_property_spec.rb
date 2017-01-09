@@ -31,9 +31,16 @@ describe Form::Item::BcProperty do
 
   it "validates a valid object" do
     result = Form::Item::BcProperty.new
-    result.property_ref = nil
-    result.children = Array.new
+    result.ordinal = 1
     expect(result.valid?).to eq(true)
+  end
+
+  it "does not validate an invalid object, ordinal" do
+    item = Form::Item::BcProperty.new
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
+    expect(item.errors.count).to eq(1)
+    expect(result).to eq(false)
   end
 
   it "allows object to be initialized from triples" do
@@ -162,6 +169,7 @@ describe Form::Item::BcProperty do
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "label"
     item.note = "Hello!"
+    item.ordinal = 1
     item.is_common = true
     expect(item.to_json).to eq(expected)
   end
@@ -199,6 +207,7 @@ describe Form::Item::BcProperty do
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "label"
     item.is_common = true
+    item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "XXXX", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end

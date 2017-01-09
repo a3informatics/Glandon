@@ -38,6 +38,7 @@ describe Form::Item do
     result = Form::Item.new
     result.note = "OK"
     result.completion = "Draft 123"
+    result.ordinal = 1
     expect(result.valid?).to eq(true)
   end
 
@@ -45,6 +46,7 @@ describe Form::Item do
     result = Form::Item.new
     result.note = "OK"
     result.completion = "Draft 123@"
+    result.ordinal = 1
     expect(result.valid?).to eq(false)
   end
 
@@ -52,6 +54,23 @@ describe Form::Item do
     result = Form::Item.new
     result.note = "OK§"
     result.completion = "Draft 123"
+    result.ordinal = 1
+    expect(result.valid?).to eq(false)
+  end
+
+  it "does not validate an invalid object, ordinal" do
+    result = Form::Item.new
+    result.note = "OK"
+    result.completion = "Draft 123"
+    expect(result.valid?).to eq(false)
+  end
+
+  it "does not validate an invalid object, optional" do
+    result = Form::Item.new
+    result.note = "OK"
+    result.completion = "Draft 123"
+    result.ordinal = 1
+    result.optional = ""
     expect(result.valid?).to eq(false)
   end
 
@@ -106,6 +125,7 @@ describe Form::Item do
     item.label = "test label"
     item.completion = "Completion"
     item.note = "Note"
+    item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end

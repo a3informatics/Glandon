@@ -187,6 +187,17 @@ describe Form do
     expect(item.to_json).to eq(expected)
   end
 
+  it "allows a form to be updated, error" do
+    item = Form.create_placeholder({:identifier => "UPDATE ERRORS", :label => "Update Errors", :freeText => "Update Errors"})
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(item.errors.count).to eq(0)
+    old_item = Form.find("F-ACME_UPDATEERRORS", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    new_item = read_yaml_file_to_hash_2(sub_dir, "form_update_error_1.yaml")
+    update_item = Form.update(new_item[:form])
+    expect(update_item.errors.full_messages.to_sentence).to eq("Group, ordinal=1, error: Group, ordinal=2, error: Item, ordinal=1, error: Optional contains an invalid boolean value")
+    expect(update_item.errors.count).to eq(1)
+  end
+
   it "allows a form to be destroyed" do
     item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item.destroy

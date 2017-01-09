@@ -42,7 +42,7 @@ class Form::Item < IsoConcept
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
-    self.ordinal = 1
+    self.ordinal = 0
     self.note = ""
     self.completion = ""
     self.optional = false
@@ -111,7 +111,9 @@ class Form::Item < IsoConcept
     result = super
     result = result &&
       FieldValidation::valid_markdown?(:completion, self.completion, self) &&
-      FieldValidation::valid_markdown?(:note, self.note, self)
+      FieldValidation::valid_markdown?(:note, self.note, self) &&
+      FieldValidation::valid_boolean?(:optional, self.optional, self) &&
+      FieldValidation::valid_positive_integer?(:ordinal, self.ordinal, self)
     return result
   end
 

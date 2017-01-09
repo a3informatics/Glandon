@@ -31,6 +31,7 @@ describe Form::Item::Question do
     item.datatype = "string"
     item.format = "20"
     item.question_text = "Hello"
+    item.ordinal = 1
     item.tc_refs = []
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("")
@@ -236,6 +237,7 @@ describe Form::Item::Question do
     item.format = "5"
     item.datatype = "string"
     item.mapping = "X=Y"
+    item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end

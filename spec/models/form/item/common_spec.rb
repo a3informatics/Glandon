@@ -28,13 +28,16 @@ describe Form::Item::Common do
 
   it "validates a valid object" do
     result = Form::Item::Common.new
+    result.ordinal = 1
     expect(result.valid?).to eq(true)
   end
 
-  it "does not validate an invalid object, text label" do
-    # Item is always valid at the moment.
-    result = Form::Item::Common.new
-    expect(result.valid?).to eq(true)
+  it "does not validate an invalid object, ordinal" do
+    item = Form::Item::Common.new
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
+    expect(item.errors.count).to eq(1)
+    expect(result).to eq(false)
   end
 
   it "allows object to be initialized from triples" do
@@ -133,6 +136,7 @@ describe Form::Item::Common do
     item = Form::Item::Common.new
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "label"
+    item.ordinal = 1
     item.item_refs[0] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1"})
     item.item_refs[1] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1"})
     item.item_refs[2] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1"})

@@ -29,6 +29,7 @@ describe Form::Item::Placeholder do
   it "validates a valid object" do
     item = Form::Item::Placeholder.new
     item.free_text = "Draft 123"
+    item.ordinal = 1
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
@@ -38,8 +39,18 @@ describe Form::Item::Placeholder do
   it "does not validate an invalid object, text label" do
     item = Form::Item::Placeholder.new
     item.free_text = "Draft 123@"
+    item.ordinal = 1
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Free text contains invalid markdown")
+    expect(item.errors.count).to eq(1)
+    expect(result).to eq(false)
+  end
+
+  it "does not validate an invalid object, ordinal" do
+    item = Form::Item::Placeholder.new
+    item.free_text = "Draft 123@"
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
     expect(item.errors.count).to eq(1)
     expect(result).to eq(false)
   end
@@ -129,6 +140,7 @@ describe Form::Item::Placeholder do
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "label"
     item.free_text = "****free****"
+    item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end

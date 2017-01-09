@@ -9,6 +9,7 @@ C_FV_MARKDOWN = C_FV_START + C_FV_FREE_TEXT + "\r\n" + C_FV_END_EMPTY
 C_FV_LONG_NAME = C_FV_START + C_FV_FREE_TEXT + C_FV_END_1_OR_MORE
 C_FV_TERM_PROPERTY = C_FV_START + C_FV_FREE_TEXT + C_FV_END_EMPTY
 C_FV_QUESTION = C_FV_START + C_FV_FREE_TEXT + C_FV_END_EMPTY
+C_FV_MAPPING = C_FV_START + C_FV_FREE_TEXT + C_FV_END_EMPTY
 C_FV_LABEL = C_FV_START + C_FV_FREE_TEXT + C_FV_END_1_OR_MORE
 C_FV_SDTM_LABEL = C_FV_START + C_FV_FREE_TEXT + "]{1,40}$"
 
@@ -24,7 +25,7 @@ var fvSdtmVarNameRegEx = new RegExp(/^[A-Z][A-Z0-9]{1,7}$/)
 var fvSdtmVarLabelRegEx = new RegExp(C_FV_SDTM_LABEL)
 var fvDomainPrefixRegEx = new RegExp(/^[A-Z]{2}$/)
 var fvFormatRegEx = new RegExp(/^\d+(\.\d+)?$/)
-var fvSdtmMappingRegEx = new RegExp(/^[A-Za-z0-9 .=]*?$/)
+var fvSdtmMappingRegEx = new RegExp(C_FV_MAPPING)
 
 /*
 * Validator plugin standard regex functions
@@ -39,7 +40,7 @@ jQuery.validator.addMethod("label", function(value, element) {
 
 jQuery.validator.addMethod("question", function(value, element) {
   return fvQuestionRegEx.test(value);
-}, "Please enter a valid question text. Upper and lower case case alphanumerics, space and " + C_FV_MESSAGE + " special characters only.");
+}, "Please enter valid question text. Upper and lower case case alphanumerics, space and " + C_FV_MESSAGE + " special characters only.");
 
 jQuery.validator.addMethod("markdown", function(value, element) {
   return fvMarkdownRegEx.test(value);
@@ -63,7 +64,7 @@ jQuery.validator.addMethod("format", function(value, element) {
 
 jQuery.validator.addMethod("mapping", function(value, element) {
   return fvSdtmMappingRegEx.test(value);
-}, "Please enter a valid mapping. Upper and lower case alphanumeric, space, . and = characters.");
+}, "Please enter valid question text. Upper and lower case case alphanumerics, space and " + C_FV_MESSAGE + " special characters only.");
 
 // Set validator plugin defaults.
 // TODO: Think about the span bit, not sure it is needed.

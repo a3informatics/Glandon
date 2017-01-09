@@ -29,6 +29,7 @@ describe Form::Item::Mapping do
   it "validates a valid object" do
     item = Form::Item::Mapping.new
     item.mapping = "EGMONKEY when XXTESTCD=HELLO"
+    item.ordinal = 1
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
@@ -38,8 +39,18 @@ describe Form::Item::Mapping do
   it "does not validate an invalid object, text label" do
     item = Form::Item::Mapping.new
     item.mapping = "EGMONKEY when @@TESTCD=HELLO"
+    item.ordinal = 1
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Mapping contains invalid characters")
+    expect(item.errors.count).to eq(1)
+    expect(result).to eq(false)
+  end
+
+  it "does not validate an invalid object, ordinal" do
+    item = Form::Item::Mapping.new
+    item.mapping = "EGMONKEY when @@TESTCD=HELLO"
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
     expect(item.errors.count).to eq(1)
     expect(result).to eq(false)
   end
@@ -129,6 +140,7 @@ describe Form::Item::Mapping do
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "label"
     item.mapping = "XXX=YYY"
+    item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end

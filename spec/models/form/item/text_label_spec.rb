@@ -29,6 +29,7 @@ describe Form::Item::TextLabel do
   it "validates a valid object" do
     result = Form::Item::TextLabel.new
     result.label_text = "Draft 123"
+    result.ordinal = 1
     expect(result.valid?).to eq(true)
   end
 
@@ -123,6 +124,7 @@ describe Form::Item::TextLabel do
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "label"
     item.label_text = "test label"
+    item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
     expect(sparql.to_s).to eq(result)
   end
