@@ -42,7 +42,8 @@ $(document).ready(function() {
         "Label Text Label": {required: true, label: true},
         "Label Text Text": {required: false, markdown: true},
         "Code List Label": {required: true, label: true },
-        "Common Label": {required: true, label: true }
+        "Common Label": {required: true, label: true },
+        "Mapping": {required: true, mapping: true }        
     },
     submitHandler: function(form) {
       saveRest();
@@ -132,7 +133,7 @@ $(document).ready(function() {
       data = notepadTable.row(notepadRow).data();
       var currentD3Node = d3eGetCurrent();
       var tcRefSNode = newQuestionCli(data);
-      var tcRefD3Node = d3eAddNode(currentD3Node, tcRefSNode.label, tcRefSNode.type, true, tcRefSNode, true);
+      var tcRefD3Node = d3eAddNode(currentD3Node, tcRefSNode.local_label, tcRefSNode.type, true, tcRefSNode, true);
       d3eAddData(currentD3Node, tcRefD3Node.data, true);
       questionClTable.row.add(tcRefD3Node);
       questionClTable.draw(false);
@@ -161,30 +162,6 @@ $(document).ready(function() {
     saveRest();
     //keepToken = true;
     window.location.href = $('#close_path').val();
-  });
-
-  /*
-  * Functions for testing. 
-  */
-  $('#click_node_name').click(function() {
-    var nodeName = $('#click_node_name_text').val();
-    var node = d3FindGRefByName(nodeName);
-    if (node !== null) {
-      simulateClick(node);
-    }
-  });
-
-  $('#click_node_key').click(function() {
-    var nodeKey = parseInt($('#click_node_key_text').val());
-    var node = d3FindGRef(nodeKey);
-    if (node !== null) {
-      simulateClick(node);
-    }
-  });
-
-  $('#clear_current_node').click(function() {
-    currentGRef = null;
-    currentNode = null;
   });
 
   /*
@@ -656,7 +633,7 @@ function treeNodeDown() {
     displayWarning("You need to select a node.");
   } else {
     var parentNode = currentNode.parent;
-    if (currentNode.index < parentNode.save.length) {
+    if (currentNode.index < (parentNode.save.length - 1)) {
       d3eMoveNodeDown(currentNode);
       displayNode(currentNode);
     } else {
@@ -685,7 +662,7 @@ function displayGroup(node) {
 }
 
 function displayBC(node) {
-  $('#bcIdentifier').html(node.data.bc_ref.subject_data.identifier);
+  $('#bcIdentifier').html(node.data.bc_ref.subject_data.scoped_identifier.identifier);
   $('#bcLabel').html(node.data.label);
   $('#bcCompletion').val(node.data.completion);
   $('#bcNote').val(node.data.note);
@@ -746,7 +723,7 @@ function displayLabelText(node) {
 
 function displayCl(node) {
   $('#clIdentifier').html(node.data.subject_data.identifier);
-  $('#clDefaultLabel').html(node.data.subject_data.label);
+  $('#clDefaultLabel').html(node.data.subject_data.preferredTerm);
   $('#clNotation').html(node.data.subject_data.notation);
   $('#clLocalLabel').val(node.data.local_label);
   $("#clEnable").prop('checked', node.data.enabled);
@@ -1080,7 +1057,7 @@ function newLabelText(nullVar) {
 function newBCGroup(bc) {
   return {
     type: C_NORMAL_GROUP, label: "", id: "", namespace: "", ordinal: 0, 
-    repeating: false, completion: "", note: "", 
+    repeating: false, optional: false, completion: "", note: "", 
     bc_ref: 
       { 
         enabled: true, 
@@ -1096,7 +1073,7 @@ function newBCGroup(bc) {
 function newBCProperty(property) {
   return {
     type: C_BC_QUESTION, label: "", id: "", namespace: "", ordinal: 0, 
-    is_common: false, completion: "", note: "",
+    is_common: false, optional: false, completion: "", note: "",
     property_ref: 
       { 
         enabled: true, 
@@ -1113,17 +1090,17 @@ function newBCProperty(property) {
 function newBCPropertyCli(cli) {
   return {
     type: C_TC_REF, label: cli.label, id: "", namespace: "", ordinal: 0, 
-    local_label: cli.label, enabled: true, optional: false,
+    local_label: cli.local_label, enabled: true, optional: false,
     subject_ref: {id: cli.subject_ref.id, namespace: cli.subject_ref.namespace}
   };
 }
 
 function newQuestionCli(cli) {
   return {
-    type: C_TC_REF, label: cli.useful_2, id: "", namespace: "", ordinal: 0, 
-    local_label: cli.useful_1, enabled: true, optional: false, 
+    type: C_TC_REF, label: "Thesaurus Concept Reference", id: "", namespace: "", ordinal: 0, 
+    local_label: cli.useful_2, enabled: true, optional: false, 
     subject_ref: {id: cli.uri_id, namespace: cli.uri_ns},
-    subject_data: {identifier: cli.identifier, notation: cli.useful_1}
+    subject_data: {identifier: cli.identifier, notation: cli.useful_1, preferredTerm: cli.useful_2}
   };
 }
 
@@ -1427,11 +1404,14 @@ function getReference(d3Node) {
 function tcResult(d3Node, result) {
   var d3CurrentNode = d3eGetCurrent();
   d3Node.data.subject_data = result;
-  if (d3Node.data.subject_ref.hasOwnProperty['local_label']) {
-    d3Node.name = d3Node.data.subject_ref.local_label;
+  if (d3Node.data.hasOwnProperty['local_label']) {
+    if (d3Node.data.local_label === "") {
+      d3Node.data.local_label = result.preferredTerm;
+    }
   } else {
-    d3Node.name = result.label;
+    d3Node.data.local_label = result.preferredTerm;
   }
+  d3Node.name = d3Node.data.local_label;
   displayNode(d3CurrentNode);
 }
 
@@ -1445,7 +1425,8 @@ function tcResult(d3Node, result) {
 function bcResult(d3Node, result) {
   var d3CurrentNode = d3eGetCurrent();
   d3Node.data.bc_ref.subject_data = {};
-  d3Node.data.bc_ref.subject_data.identifier = result.scoped_identifier.identifier;
+  d3Node.data.bc_ref.subject_data.scoped_identifier = {};
+  d3Node.data.bc_ref.subject_data.scoped_identifier.identifier = result.scoped_identifier.identifier;
   d3Node.name = result.label;
   displayNode(d3CurrentNode);
 }

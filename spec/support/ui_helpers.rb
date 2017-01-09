@@ -92,13 +92,11 @@ module UiHelpers
   # =================
 
   def ui_click_node_name(text)
-    fill_in 'click_node_name_text', with: text
-    click_button 'click_node_name'
+    page.evaluate_script("rhClickNodeByName(\"#{text}\")")
   end
 
   def ui_click_node_key(key)
-    fill_in 'click_node_key_text', with: key
-    click_button 'click_node_key'
+    page.evaluate_script("rhClickNodeByKey(#{key})")
   end
 
   def ui_check_node_ordinal(key, value)
@@ -113,12 +111,36 @@ module UiHelpers
     return page.evaluate_script("d3eLastKey()").to_i
   end
 
+  def ui_clear_current_node
+    page.evaluate_script("d3eClearCurrent()")
+  end
+
+  def ui_get_current_key
+    page.evaluate_script("rhGetCurrent()").to_i
+  end
+
   def ui_get_key_by_path(path)
     return page.evaluate_script("rhGetViaPath(#{path})").to_i
   end
 
   def ui_get_key_by_name(text)
     return page.evaluate_script("rhGetViaName(\"#{text}\")").to_i
+  end
+
+  def ui_check_validation_error(current_key, field, text, error_msg, to_key)
+    ui_click_node_key(current_key)
+    fill_in field, with: text
+    ui_click_node_key(to_key)
+    expect(ui_get_current_key).to eq(current_key)
+    expect(page).to have_content(error_msg)
+  end
+
+  def ui_check_validation_ok(current_key, field, text, to_key)
+    ui_click_node_key(current_key)
+    fill_in field, with: text
+    ui_click_node_key(to_key)
+    wait_for_ajax
+    expect(ui_get_current_key).to eq(to_key)
   end
 
 end

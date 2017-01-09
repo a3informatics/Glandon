@@ -29,6 +29,16 @@ function d3eInit(clickCallBackPre, clickCallBackPost, dblClickCallBackPost, vali
 }
 
 /**
+ * Clear current. To be used for testing only
+ * 
+ * @return [Null]
+ */
+function d3eClearCurrent() {
+  d3eCurrentGRef = null;
+  d3eCurrentNode = null;
+}
+
+/**
  * Determines if current node set
  * 
  * @return [Boolean] true if set, otherwise false

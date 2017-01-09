@@ -42,6 +42,14 @@ function simulateDblClick(elem /* Must be the element */) {
   elem.dispatchEvent(evt);
 }
 
+function rhGetCurrent() {
+  var node = d3eGetCurrent();
+  if (node !== null) {
+    return node.key;
+  }
+  return C_NULL;
+}
+
 function rhGetOrdinal(key) {
   var node = d3FindData(parseInt(key));
   if (node !== null) {
@@ -96,4 +104,18 @@ function getNextInPath(node, path, index) {
     }
   }
   return C_NULL;
+}
+
+function rhClickNodeByName(nodeName) {
+  var node = d3FindGRefByName(nodeName);
+  if (node !== null) {
+    simulateClick(node);
+  }
+}
+
+function rhClickNodeByKey(nodeKey) {
+  var node = d3FindGRef(nodeKey);
+  if (node !== null) {
+    simulateClick(node);
+  }
 }

@@ -8,6 +8,13 @@ describe "Form Editor", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
 
+  C_ALL_CHARS = "the dirty brown fox jumps over the lazy dog. " + 
+    "THE DIRTY BROWN FOX JUMPS OVER THE LAZY DOG. 0123456789. !?,'\"_-/\\()[]~#*=:;&|<>"
+  C_LABEL_ERROR = "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
+  C_MARKDOWN_ERROR = "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&|<> special characters and return only."
+  C_QUESTION_ERROR = "Please enter valid question text. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
+  C_MAPPING_ERROR = "Please enter valid question text. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -23,7 +30,8 @@ describe "Form Editor", :type => :feature do
     load_test_file_into_triple_store("CT_V42.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("BC.ttl")
-    load_test_file_into_triple_store("form_example_crf.ttl")
+    load_test_file_into_triple_store("form_crf_test_1.ttl")
+    load_test_file_into_triple_store("form_crf_test_2.ttl")
     @user = User.create :email => "form_edit@example.com", :password => "12345678" 
     @user.add_role :curator
     Notepad.create :uri_id => "CLI-C66741_C25157", :uri_ns => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", :identifier => "C25157", 
@@ -42,6 +50,7 @@ describe "Form Editor", :type => :feature do
 
   def create_form(identifier, label, new_label)
     visit '/users/sign_in'
+    expect(page).to have_content 'Log in'  
     fill_in 'Email', with: 'form_edit@example.com'
     fill_in 'Password', with: '12345678'
     click_button 'Log in'
@@ -62,6 +71,7 @@ describe "Form Editor", :type => :feature do
 
   def load_form(identifier)
     visit '/users/sign_in'
+    expect(page).to have_content 'Log in'  
     fill_in 'Email', with: 'form_edit@example.com'
     fill_in 'Password', with: '12345678'
     click_button 'Log in'
@@ -89,7 +99,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows a form to be defined, Form Panel", js: true do
-      create_form("TEST 1", "Test", "Test 1") 
+      create_form("TEST 1A", "Test", "Test 1") # TEST 1 -> TEST1A to avoid name clash
       fill_in 'formCompletion', with: "Completion for the form **level**"
       fill_in 'formNote', with: "Notes for *form*"
       click_button 'formAddGroup'
@@ -100,7 +110,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows a group to be added, Group Panel", js: true do
-      create_form("TEST 2", "Test", "Test 2") 
+      create_form("TEST 2A", "Test", "Test 2") # TEST 2 -> TEST2A to avoid name clash
       click_button 'formAddGroup'
       expect(page).to have_content 'Group Details'
       fill_in 'groupLabel', with: "Group 1"
@@ -212,7 +222,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "Common Item Panel", js: true do
-      load_form("CRF Test") 
+      load_form("CRF TEST 1") 
       #key = ui_get_key_by_path('["CRF Test Form"]')
       #expect(key).to eq(1)
       #key = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
@@ -224,7 +234,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows items to be moved up and down", js: true do
-      load_form("CRF Test") 
+      load_form("CRF TEST 1") 
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 2"]')
       ui_click_node_key(key1)
@@ -279,7 +289,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows groups to be moved up and down", js: true do
-      load_form("CRF Test") 
+      load_form("CRF TEST 1") 
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Repeating Group"]')
       ui_click_node_key(key1)
@@ -298,22 +308,29 @@ describe "Form Editor", :type => :feature do
       click_button 'groupAddQuestion'
       expect(page).to have_content 'Question Details'
       expect(page).to have_content 'Notepad'
+      fill_in 'questionText', with: "Question text must be set"
       ui_click_node_key(2)
+      wait_for_ajax
       click_button 'groupAddMapping'
       expect(page).to have_content 'Mapping Details'
+      fill_in 'mappingMapping', with: "Mapping text must be set"
       ui_click_node_key(2)
+      wait_for_ajax
       click_button 'groupAddLabelText'
       expect(page).to have_content 'Label Details'
       expect(page).to have_content 'Markdown Preview'
       ui_click_node_key(2)
+      wait_for_ajax
       click_button 'groupAddPlaceholder'
       expect(page).to have_content 'Placeholder Details'
       expect(page).to have_content 'Markdown Preview'
       ui_click_node_key(2)
+      wait_for_ajax
       click_button 'groupAddCommon'
       expect(page).to have_content 'Common Group Details'
       expect(page).to have_no_content 'Markdown Preview'
       ui_click_node_key(3)
+      wait_for_ajax
       expect(page).to have_content 'Question Details'
       expect(page).to have_content 'Notepad'
       ui_set_focus('questionCompletion')
@@ -332,9 +349,11 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Notepad'
       expect(page).to have_no_content 'Markdown Preview'
       ui_click_node_key(4)
+      wait_for_ajax
       expect(page).to have_content 'Mapping Details'
       expect(page).to have_no_content 'Markdown Preview'
       ui_click_node_key(5)
+      wait_for_ajax
       expect(page).to have_content 'Label Details'
       expect(page).to have_content 'Markdown Preview'
       fill_in 'labelTextText', with: "This is **Strong**"
@@ -345,6 +364,7 @@ describe "Form Editor", :type => :feature do
       ui_set_focus('labelTextText')
       expect(page).to have_content 'Markdown Preview'
       ui_click_node_key(6)
+      wait_for_ajax
       expect(page).to have_content 'Placeholder Details'
       expect(page).to have_content 'Markdown Preview'
       fill_in 'placeholderText', with: "# Header 1\n## Header 2\n### Header 3"
@@ -355,6 +375,7 @@ describe "Form Editor", :type => :feature do
       ui_set_focus('placeholderText')
       expect(page).to have_content 'Markdown Preview'
       ui_click_node_key(2)
+      wait_for_ajax
       expect(page).to have_content 'Group Details'
       expect(page).to have_content 'Biomedical Concept Selection'
       expect(page).to have_no_content 'Markdown Preview'
@@ -382,8 +403,9 @@ describe "Form Editor", :type => :feature do
       fill_in 'groupLabel', with: "Group 1"
       ui_click_node_name("Test Group 1")
       ui_click_node_name("Group 1")
-      click_button 'clear_current_node'
+      ui_clear_current_node
       click_button 'groupAddGroup'
+      #pause
       expect(page).to have_content('You need to select a node.')
       click_button 'groupAddCommon'
       expect(page).to have_content('You need to select a node.')
@@ -407,6 +429,7 @@ describe "Form Editor", :type => :feature do
       click_button 'groupAddPlaceholder'
       ui_click_node_name("Group 1")
       click_button 'groupAddMapping'
+      fill_in 'mappingMapping', with: "Mapping text must be set"
       ui_click_node_name("Group 1")
       click_button 'groupDelete'
       expect(page).to have_content("You need to remove the child nodes.")
@@ -604,6 +627,7 @@ describe "Form Editor", :type => :feature do
       expect(items.count).to eq(4)
       click_button 'notepad_refresh'
       ui_click_node_key(3)
+      #pause
       expect(page).to have_content 'C49680' # Wait for page to settle
     end
 
@@ -644,12 +668,14 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content("You need to select a Biomedical Concept.")
       ui_table_row_click("bcTable", "(BC C25206)")
       click_button 'groupAddBc'
+      wait_for_ajax
       ui_click_node_name("Temperature (BC C25206)")
       expect(page).to have_content("Biomedical Concept Details")
       expect(page).to have_content("Temperature (BC C25206)")
       ui_click_node_name("Group 1")
       ui_table_row_click("bcTable", "(BC C25208)")
       click_button 'groupAddBc'
+      wait_for_ajax
       ui_click_node_name("Weight (BC C25208)")
       expect(page).to have_content("Biomedical Concept Details")
       expect(page).to have_content("Weight (BC C25208)")
@@ -704,11 +730,11 @@ describe "Form Editor", :type => :feature do
     it "allows items to be made common when BC added"
 
     it "allows common items to be moved up and down", js: true do
-      load_form("CRF Test") 
+      load_form("CRF TEST 1") 
+      wait_for_ajax
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Date and Time (--DTC)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)"]')
       ui_click_node_key(key1)
-      #pause
       click_button "commonItemDown"
       ui_check_node_ordinal(key1, 2)
       ui_check_node_ordinal(key2, 1)
@@ -722,30 +748,231 @@ describe "Form Editor", :type => :feature do
       ui_check_node_ordinal(key2, 1)
     end
 
-    it "allows BCs to have completion instructions and notes"
+    it "allows BCs to have completion instructions and notes", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
+      key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
+      ui_click_node_key(key1)
+      expect(page).to have_content("BC C25298")
+      expect(page).to have_content("Systolic Blood Pressure (BC C25298)")
+      fill_in 'bcCompletion', with: "Completion for BC"
+      fill_in 'bcNote', with: "Notes for BC"
+      ui_click_node_key(key2)
+      ui_click_node_key(key1)
+      ui_check_input('bcCompletion', "Completion for BC")
+      ui_check_input('bcNote', "Notes for BC")
+    end
     
-    it "allows a BC property to have enabled and optional, completion instructions and notes"
+    it "allows a BC property to have enabled and optional, completion instructions and notes", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)", "Result Value (--ORRES)"]')
+      key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
+      ui_click_node_key(key1)
+      expect(page).to have_content("BC Item Details")
+      fill_in 'bcItemCompletion', with: "Completion for BC Item"
+      fill_in 'bcItemNote', with: "Notes for BC Item"
+      check 'bcItemOptional'  
+      check 'bcItemEnable'  
+      ui_click_node_key(key2)
+      ui_click_node_key(key1)
+      expect(page).to have_content("BC Item Details")
+      ui_check_input('bcItemCompletion', "Completion for BC Item")
+      ui_check_input('bcItemNote', "Notes for BC Item")
+      ui_check_checkbox('bcItemOptional', true)
+      ui_check_checkbox('bcItemEnable', true)
+      uncheck 'bcItemOptional'  
+      uncheck 'bcItemEnable'  
+      ui_click_node_key(key2)
+      ui_click_node_key(key1)
+      expect(page).to have_content("BC Item Details")
+      ui_check_checkbox('bcItemOptional', false)
+      ui_check_checkbox('bcItemEnable', false)
+    end
     
-    it "allows the form to be saved"
+    it "allows the CL to be moved up and down for BC common group", js: true do 
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)", "Supine Position"]')
+      #pause
+      ui_click_node_key(key1)
+      ui_check_node_ordinal(key1, 3)    
+      click_button "clUp"
+      ui_check_node_ordinal(key1, 2)    
+      click_button "clDown"
+      ui_check_node_ordinal(key1, 3)    
+    end
+
+    it "allows the CL to be moved up and down for BC common group", js: true do 
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      key1 = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Weight (BC C25208)", "Result Units (--ORRESU)", "Gram"]')
+      ui_click_node_key(key1)
+      #pause
+      ui_check_node_ordinal(key1, 3)    
+      click_button "clUp"
+      ui_check_node_ordinal(key1, 2)    
+      click_button "clDown"
+      ui_check_node_ordinal(key1, 3)    
+    end
+
+    it "displays the CL Item Panel for BCs", js: true do 
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)", "Standing"]')
+      ui_click_node_key(key1)
+      expect(page).to have_content("Code List Details")
+      expect(page).to have_content("C62166")
+      expect(page).to have_content("STANDING")
+    end      
+
+    it "allows the CL to be moved up and down for Questions, checks CL Item Panel", js: true do 
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1"]')
+      ui_click_node_key(key1)
+      wait_for_ajax
+      choose 'form_datatype_s'
+      ui_table_row_click('notepad_table', 'C16358')
+      click_button 'notepad_add'
+      wait_for_ajax
+      ui_table_row_click('notepad_table', 'C25157')
+      click_button 'notepad_add'
+      wait_for_ajax
+      ui_click_node_key(key1)
+      key2 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1", "Body Surface Area"]')
+      ui_click_node_key(key2)
+      expect(page).to have_content("Code List Details")
+      expect(page).to have_content("C25157")
+      expect(page).to have_content("BSA")
+      ui_check_node_ordinal(key2, 2)    
+      click_button "clUp"
+      ui_check_node_ordinal(key2, 1)    
+      click_button "clDown"
+      ui_check_node_ordinal(key2, 2)    
+    end
+
+    it "allows a BC to be deleted", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
+      key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
+      ui_click_node_key(key1)
+      click_button "bcDelete"
+      key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
+      expect(key1).to eq(-1)
+    end
+
+    it "handles common when BC deleted", js: true do
+      load_form("CRF TEST 2") 
+      wait_for_ajax
+      key1 = ui_get_key_by_path('["CRF Test Form", "Group", "Systolic Blood Pressure (BC C25298)"]')
+      ui_click_node_key(key1)
+      click_button "bcDelete"
+      key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
+      expect(key1).to eq(-1)
+      expect(false).to eq(true)
+    end
+
+    it "allows the form to be saved", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (, V1, Incomplete)")
+      expect(page).to have_content("Form Details")
+      expect(page).to have_content("G+")
+      expect(page).to have_content("Save")
+      expect(page).to have_content("Close")
+      ui_check_disabled_input('formIdentifier', "CRF TEST 1")
+      ui_check_input('formLabel', "CRF Test Form")
+      fill_in 'formLabel', with: "Updated And Wonderful Label"
+      find(:xpath, '//*[@id="close"]', :text => "Close").click
       #click_button 'close'
-      #expect(page).to have_content 'History: TEST INITIAL'
-      #ui_table_row_link_click("TEST INITIAL", "Edit")
-      #expect(page).to have_content("Edit: Initial Layout Test TEST INITIAL (, V1, Incomplete)")
-      #ui_click_node_name("Top Level Group")
+      expect(page).to have_content 'History: CRF TEST 1'
+      ui_table_row_link_click("CRF TEST 1", "Edit")
+      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (, V1, Incomplete)")
+      ui_check_input('formLabel', "Updated And Wonderful Label")
+      fill_in 'formLabel', with: "Updated And Wonderful Label, 2nd attempt!"
+      click_button 'close'
+      expect(page).to have_content 'History: CRF TEST 1'
+      ui_table_row_link_click("CRF TEST 1", "Edit")
+      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (, V1, Incomplete)")
+      ui_check_input('formLabel', "Updated And Wonderful Label, 2nd attempt!")
+    end
 
-    it "allows the fields to be valdated"
-
-    it "allows the CL to be moved up and down for BCs" 
-
-    it "displays the CL Item Panel for BCs" 
-
-    it "displays the CL Item Panel for Questions" 
-
-    it "allows the CL to be moved up and down for Questions" 
-
-    it "allows a BC to be deleted"
-
-    it "handles common when BC deleted"
+    it "allows the fields to be valdated", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      # Keys
+      key_form = ui_get_key_by_path('["CRF Test Form"]')
+      key_bc_group = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
+      key_common_group = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group"]')
+      key_q_group = ui_get_key_by_path('["CRF Test Form", "Q Group"]')
+      key_question = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 2"]')
+      key_mapping = ui_get_key_by_path('["CRF Test Form", "Q Group", "Mapping 3"]')
+      key_label = ui_get_key_by_path('["CRF Test Form", "Q Group", "Label Text 4"]')
+      key_placeholder = ui_get_key_by_path('["CRF Test Form", "Q Group", "Placeholder 5"]')
+      key_bc_temp = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Temperature (BC C25206)"]')
+      key_bc_temp_item = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Temperature (BC C25206)", "Result Value (--ORRES)"]')
+      key_bc_temp_item_cl = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Temperature (BC C25206)", "Result Units (--ORRESU)", "Degree Celsius"]')
+      # Form
+      ui_check_validation_error(key_form, "formLabel", "", "This field is required.", key_bc_group)
+      ui_check_validation_error(key_form, "formLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
+      ui_check_validation_ok(key_form, "formLabel", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_form, "formNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_form, "formNote", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_form, "formCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_form, "formCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      # Group
+      ui_check_validation_error(key_q_group, "groupLabel", "", "This field is required.", key_bc_group)
+      ui_check_validation_error(key_q_group, "groupLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
+      ui_check_validation_ok(key_q_group, "groupLabel", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_q_group, "groupNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_q_group, "groupNote", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_q_group, "groupCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_q_group, "groupCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      # BC
+      ui_check_validation_error(key_bc_temp, "bcNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_bc_temp, "bcNote", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_bc_temp, "bcCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_bc_temp, "bcCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      # BC Item
+      ui_check_validation_error(key_bc_temp_item, "bcItemNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_bc_temp_item, "bcItemNote", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_bc_temp_item, "bcItemCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_bc_temp_item, "bcItemCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      # Question
+      ui_check_validation_error(key_question, "questionLabel", "", "This field is required.", key_bc_group)
+      ui_check_validation_error(key_question, "questionLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
+      ui_check_validation_ok(key_question, "questionLabel", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_question, "questionText", "", "This field is required.", key_bc_group)
+      ui_check_validation_error(key_question, "questionText", "±±±±", C_QUESTION_ERROR, key_bc_group)
+      ui_check_validation_ok(key_question, "questionText", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_question, "questionNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_question, "questionNote", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_question, "questionCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_question, "questionCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      # Placeholder
+      ui_check_validation_error(key_placeholder, "placeholderText", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_placeholder, "placeholderText", "#{C_ALL_CHARS}", key_bc_group)
+      # Mapping
+      ui_check_validation_error(key_mapping, "mappingMapping", "±±±±", C_MAPPING_ERROR, key_bc_group)
+      ui_check_validation_ok(key_mapping, "mappingMapping", "#{C_ALL_CHARS}", key_bc_group)
+      # Label
+      ui_check_validation_error(key_label, "labelTextLabel", "", "This field is required.", key_bc_group)
+      ui_check_validation_error(key_label, "labelTextLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
+      ui_check_validation_ok(key_label, "labelTextLabel", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_label, "labelTextText", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
+      ui_check_validation_ok(key_label, "labelTextText", "#{C_ALL_CHARS}", key_bc_group)
+      # Common Group
+      ui_check_validation_error(key_common_group, "commonLabel", "", "This field is required.", key_bc_group)
+      ui_check_validation_error(key_common_group, "commonLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
+      ui_check_validation_ok(key_common_group, "commonLabel", "#{C_ALL_CHARS}", key_bc_group)
+      # Code List Label
+      ui_check_validation_error(key_bc_temp_item_cl, "clLocalLabel", "", "This field is required.", key_bc_group)
+      ui_check_validation_error(key_bc_temp_item_cl, "clLocalLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
+      ui_check_validation_ok(key_bc_temp_item_cl, "clLocalLabel", "#{C_ALL_CHARS}", key_bc_group)
+    end
 
   end
 

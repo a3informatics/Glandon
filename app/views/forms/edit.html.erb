@@ -26,29 +26,6 @@
 	  </div>
 	  <div class="col-md-5" >
 	  	<%= render partial: "shared/formEditor"%>
-		  <% if Rails.env == "test" || Rails.env == "development" %>
-		    <div class="row">
-			    <div class="col-md-4" >
-			      <div class="input-group">
-			        <span class="input-group-btn">
-			          <button type="button" id="click_node_name" class="btn btn-primary">N:</button>
-			        </span>
-			        <input type="text" class="form-control" id="click_node_name_text">
-			      </div>
-			    </div>
-			    <div class="col-md-4" >
-			      <div class="input-group">
-			        <span class="input-group-btn">
-			          <button type="button" id="click_node_key" class="btn btn-primary">K:</button>
-			        </span>
-			        <input type="text" class="form-control" id="click_node_key_text">
-			      </div>
-			    </div>
-			    <div class="col-md-4" >
-		        <button type="button" id="clear_current_node" class="btn btn-primary">Clear</button>
-			    </div>
-			  </div>
-		  <% end %>
 	  </div>
 	</div>
 </form>
