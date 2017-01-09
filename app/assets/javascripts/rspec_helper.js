@@ -119,3 +119,10 @@ function rhClickNodeByKey(nodeKey) {
     simulateClick(node);
   }
 }
+
+function rhDblClickNodeByKey(nodeKey) {
+  var node = d3FindGRef(nodeKey);
+  if (node !== null) {
+    simulateDblClick(node);
+  }
+}

@@ -4,6 +4,9 @@
 *
 */
 
+var d3HeightOverride = false;
+var d3HeightOverrideValue = $(window).height() - 200; 
+
 /**
  * D3 Initialise: Create a D3 tree. 
  *
@@ -16,8 +19,12 @@
 function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   d3.select('svg').remove();
   var width = d3Div.clientWidth - 50; 
-  //var height = d3Div.clientHeight - 50;
-  var height = $(window).height() - 200; 
+  var height;
+  if (d3HeightOverride) {
+    height = d3HeightOverrideValue;
+  } else {
+    height = $(window).height() - 200; 
+  }
   var tree = d3.layout.tree()
     .size([height, width - 160]);
   var diagonal = d3.svg.diagonal()
@@ -185,9 +192,11 @@ function d3TextColour (node) {
   return "black";
 }
 
-function d3AdjustHeight (height) {
+function d3AdjustHeight(height) {
   if (height < 800) {
     height = 800;
-  }  
-  $('#d3').css("height",height + "px");  
+  }
+  d3HeightOverride = true;
+  d3HeightOverrideValue = height;  
+  //$('#d3').css("height",height + "px");  
 }  

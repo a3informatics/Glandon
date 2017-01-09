@@ -111,6 +111,13 @@ module UiHelpers
     end
   end
 
+  def ui_check_td_with_id(id, text)
+    td = find(:xpath, "//*[@id='#{id}']")
+    #//*[@id="conceptLabel"]
+    expect(td.text).to eq(text)
+  end
+
+  
   # D3 Tree Functions
   # =================
 
@@ -120,6 +127,10 @@ module UiHelpers
 
   def ui_click_node_key(key)
     page.evaluate_script("rhClickNodeByKey(#{key})")
+  end
+
+  def ui_double_click_node_key(key)
+    page.evaluate_script("rhDblClickNodeByKey(#{key})")
   end
 
   def ui_check_node_ordinal(key, value)
