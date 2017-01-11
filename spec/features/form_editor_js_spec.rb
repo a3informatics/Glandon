@@ -79,7 +79,9 @@ describe "Form Editor", :type => :feature do
     click_link 'Forms'
     expect(page).to have_content 'Index: Forms'  
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
+    expect(page).to have_content 'History:'  
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
+    expect(page).to have_content 'Edit:'  
   end
 
   describe "Curator User", :type => :feature do
@@ -804,7 +806,7 @@ describe "Form Editor", :type => :feature do
       ui_check_node_ordinal(key1, 3)    
     end
 
-    it "allows the CL to be moved up and down for BC common group", js: true do 
+    it "allows the CL to be moved up and down for BC group", js: true do 
       load_form("CRF TEST 1") 
       wait_for_ajax
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Weight (BC C25208)", "Result Units (--ORRESU)", "Gram"]')
@@ -865,14 +867,14 @@ describe "Form Editor", :type => :feature do
     end
 
     it "handles common when BC deleted", js: true do
-      load_form("CRF TEST 2") 
+      load_form("CRF TEST 2")
       wait_for_ajax
-      key1 = ui_get_key_by_path('["CRF Test Form", "Group", "Systolic Blood Pressure (BC C25298)"]')
+      key1 = ui_get_key_by_path('["CRF test Form 2", "Group", "Systolic Blood Pressure (BC C25298)"]')
       ui_click_node_key(key1)
+      wait_for_ajax
       click_button "bcDelete"
-      key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
+      key1 = ui_get_key_by_path('["CRF test Form 2", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
       expect(key1).to eq(-1)
-      expect(false).to eq(true)
     end
 
     it "allows the form to be saved", js: true do

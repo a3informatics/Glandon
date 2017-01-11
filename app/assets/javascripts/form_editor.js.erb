@@ -176,7 +176,7 @@ $(document).ready(function() {
   });
 
   $('.node-delete-action').click(function() {
-    treeNodeDelete();
+    treeNodeDelete(false);
   });
 
   $( ".markdown-area" ).focus(function() {
@@ -260,7 +260,7 @@ $(document).ready(function() {
   $('#bcDelete').click(function() {
     var currentD3Node = d3eGetCurrent();
     deleteCommon(currentD3Node);
-    treeNodeDelete();
+    treeNodeDelete(false);
   });
 
   /*
@@ -282,7 +282,7 @@ $(document).ready(function() {
       displayWarning("You need to select an item node.");
     } else {
       restoreCommon(currentNode);
-      treeNodeDelete();
+      treeNodeDelete(false);
     }
   }); 
 
@@ -598,7 +598,7 @@ function treeNodeAdd(addFunction) {
   }
 }
 
-function treeNodeDelete(checkChildren = false) {
+function treeNodeDelete(checkChildren) {
   var currentNode = d3eGetCurrent();
   if (currentNode === null) {
     displayWarning("You need to select a node.");
