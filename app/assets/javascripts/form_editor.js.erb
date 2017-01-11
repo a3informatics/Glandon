@@ -1108,13 +1108,13 @@ function newQuestionCli(cli) {
 * Add functions
 */
 function addGroup(d3ParentNode) {
-  var d3Node = addD3Node(d3ParentNode, C_NORMAL_GROUP, "Group", newFormGroup, null, true);
+  var d3Node = addD3Node(d3ParentNode, C_NORMAL_GROUP, "Group", newFormGroup, null, true, false);
   d3eAddData(d3ParentNode, d3Node.data, true);
   return d3Node;
 }
 
 function addCommonGroup(d3ParentNode) {
-  var d3Node = addD3Node(d3ParentNode, C_COMMON_GROUP, "Common Group", newCommonGroup, null, false);
+  var d3Node = addD3Node(d3ParentNode, C_COMMON_GROUP, "Common Group", newCommonGroup, null, false, false);
   d3eAddData(d3ParentNode, d3Node.data, false);
   return d3Node;
 }
@@ -1207,7 +1207,7 @@ function addBc(d3ParentNode) {
   });
 }
 
-function addD3Node(d3ParentNode, type, label, newFunction, functionData, atEnd, addCount=false) {
+function addD3Node(d3ParentNode, type, label, newFunction, functionData, atEnd, addCount) {
   var count;
   var text;
   if (addCount) {
