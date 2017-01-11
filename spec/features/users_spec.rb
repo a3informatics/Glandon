@@ -39,6 +39,16 @@ describe "Users", :type => :feature do
       expect(AuditTrail.count).to eq(audit_count + 2)
     end
 
+    it "allows password reset email to be sent" do
+      email_count = ActionMailer::Base.deliveries.count
+      visit '/users/sign_in'
+      click_link 'Forgot your password?'
+      fill_in 'Email', with: 'user@example.com'
+      click_button 'Send me reset password instructions'
+      expect(page).to have_content 'Log in'
+      expect(ActionMailer::Base.deliveries.count).to eq(email_count + 1)
+    end
+
   end
 
   describe "Reader User", :type => :feature do
