@@ -1,4 +1,4 @@
-class Reports::CdiscImpactReport < Reports::PdfReport
+class Reports::CdiscImpactReport
 
   C_CLASS_NAME = "Reports::CdiscImpactReport"
 
