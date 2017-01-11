@@ -5,7 +5,11 @@ describe IsoConceptSystemGeneric do
 	include DataHelpers
   include PauseHelpers
 
-	before :all do
+	def sub_dir
+    return "models"
+  end
+
+    before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -158,7 +162,7 @@ describe IsoConceptSystemGeneric do
   end
 
   it "allows the object to be returned as SPARQL" do
-    expected = read_text_file("iso_concept_system_generic_sparql.txt")
+    expected = read_text_file_2(sub_dir, "iso_concept_system_generic_sparql.txt")
     concept = IsoConceptSystemGeneric.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
     result = concept.to_sparql_v2("GSC")
     timestamps = /(\d{10})/.match(result.to_s) # Find the timestamp used in the test call

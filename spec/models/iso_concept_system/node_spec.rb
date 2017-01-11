@@ -125,7 +125,7 @@ describe IsoConceptSystem::Node do
   end
 
   it "allows the object to be returned as SPARQL" do
-    expected = read_text_file("iso_concept_system_node_sparql.txt")
+    expected = read_text_file_2(sub_dir, "node_sparql.txt")
     concept = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
     result = concept.to_sparql_v2
     timestamps = /(\d{10})/.match(result.to_s) # Find the timestamp used in the test call

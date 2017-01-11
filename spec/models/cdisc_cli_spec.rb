@@ -4,6 +4,10 @@ describe CdiscCli do
 
   include DataHelpers
 
+  def sub_dir
+    return "models"
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")

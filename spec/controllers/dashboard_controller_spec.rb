@@ -4,6 +4,10 @@ describe DashboardController do
 
   include DataHelpers
   
+  def sub_dir
+    return "controllers"
+  end
+
   describe "Authorized User" do
   	
     login_reader
@@ -34,7 +38,7 @@ describe DashboardController do
       get :database, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      results = read_text_file("dashboard_controller_example_1.txt")
+      results = read_text_file_2(sub_dir, "dashboard_controller_example_1.txt")
       expect(response.body).to eq(results)
     end
 

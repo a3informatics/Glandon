@@ -6,6 +6,10 @@ describe IsoConceptSystemsController do
   
   describe "Authrorized User" do
   	
+    def sub_dir
+      return "controllers"
+    end
+
     login_curator
 
     before :all do
@@ -24,7 +28,7 @@ describe IsoConceptSystemsController do
     it "returns a concept system tree" do
       get :view
       result = assigns(:concept_systems)
-      expected = read_yaml_file_to_hash("iso_concept_system_controller.yaml")
+      expected = read_yaml_file(sub_dir, "iso_concept_system_controller.yaml")
       expect(result).to eq(expected)
     end
 

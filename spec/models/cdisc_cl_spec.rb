@@ -4,6 +4,10 @@ describe CdiscCl do
 
   include DataHelpers
 
+  def sub_dir
+    return "models"
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -110,8 +114,8 @@ describe CdiscCl do
     tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     result = CdiscCl.difference(tc1, tc2)
-    #write_hash_to_yaml_file(result, "cdisc_cl_differences_1.yaml")
-    expected = read_yaml_file_to_hash("cdisc_cl_differences_1.yaml")
+    #write_yaml_file(result, sub_dir, "cdisc_cl_differences_1.yaml")
+    expected = read_yaml_file(sub_dir, "cdisc_cl_differences_1.yaml")
     expect(result).to eq(expected) 
   end
 
@@ -119,8 +123,8 @@ describe CdiscCl do
     tc1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
     tc2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
     result = CdiscCl.difference(tc1, tc2)
-    #write_hash_to_yaml_file(result, "cdisc_cl_differences_2.yaml")
-    expected = read_yaml_file_to_hash("cdisc_cl_differences_2.yaml")
+    #write_yaml_file(result, sub_dir, "cdisc_cl_differences_2.yaml")
+    expected = read_yaml_file(sub_dir, "cdisc_cl_differences_2.yaml")
     expect(result).to eq(expected) 
   end
 

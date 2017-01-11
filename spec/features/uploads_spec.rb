@@ -7,6 +7,10 @@ describe "Upload Files", :type => :feature do
     user.add_role :content_admin
   end
 
+  def sub_dir
+    return "controllers"
+  end
+
   describe "valid user", :type => :feature do
   
     it "allows file upload" do
@@ -17,7 +21,7 @@ describe "Upload Files", :type => :feature do
       expect(page).to have_content 'Signed in successfully'
       click_link 'Upload'
       expect(page).to have_content 'File Upload'
-      attach_file('upload_datafile', Rails.root.join("db/load/test/upload.txt"))
+      attach_file('upload_datafile', Rails.root.join("spec/fixtures/files/features/upload.txt"))
     end
 
   end

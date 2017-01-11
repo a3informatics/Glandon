@@ -8,6 +8,10 @@ describe CdiscClsController do
   	
     login_curator
 
+    def sub_dir
+      return "controllers"
+    end
+
     before :all do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -31,12 +35,12 @@ describe CdiscClsController do
       params = { :id => "CL-C66741" }
       get :changes, params
       results = assigns(:results)
-      #write_hash_to_yaml_file(results, "cdisc_cl_controller_1.yaml")
-      expected = read_yaml_file_to_hash("cdisc_cl_controller_1.yaml")
+      #write_yaml_file(results, sub_dir, "cdisc_cl_controller_1.yaml")
+      expected = read_yaml_file(sub_dir, "cdisc_cl_controller_1.yaml")
       expect(results).to eq(expected)
       clis = assigns(:clis)
-      #write_hash_to_yaml_file(clis, "cdisc_cl_controller_2.yaml")
-      expected = read_yaml_file_to_hash("cdisc_cl_controller_2.yaml")
+      #write_yaml_file(clis, sub_dir, "cdisc_cl_controller_2.yaml")
+      expected = read_yaml_file(sub_dir, "cdisc_cl_controller_2.yaml")
       expect(clis).to eq(expected)
     end
     
@@ -44,8 +48,8 @@ describe CdiscClsController do
       params = {:id => "CL-C66741", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V40"}
       get :show, params
       results = assigns(:cdiscCl)
-      #write_hash_to_yaml_file(results.to_json, "cdisc_cl_controller_3.yaml")
-      expected = read_yaml_file_to_hash("cdisc_cl_controller_3.yaml")
+      #write_yaml_file(results.to_json, sub_dir, "cdisc_cl_controller_3.yaml")
+      expected = read_yaml_file(sub_dir, "cdisc_cl_controller_3.yaml")
       expect(results.to_json).to eq(expected)
     end
 

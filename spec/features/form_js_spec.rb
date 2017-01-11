@@ -14,7 +14,7 @@ describe "Forms", :type => :feature do
   describe "Forms", :type => :feature do
   
     before :all do
-      user = User.create :email => "reader@example.com", :password => "12345678" 
+      user = User.create :email => "curator@example.com", :password => "12345678" 
       user.add_role :curator
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -44,13 +44,13 @@ describe "Forms", :type => :feature do
     end
 
     after :all do
-      user = User.where(:email => "reader@example.com").first
+      user = User.where(:email => "curator@example.com").first
       user.destroy
     end
 
     before :each do
       visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Email', with: 'curator@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
     end
@@ -295,7 +295,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content "Nice Label"
     end
     
-    it "allows a placeholder form to be created, field validation", js: true do
+    it "allows a form to be created, field validation", js: true do
       visit '/forms/new'
       expect(page).to have_content 'New Form:'
       fill_in 'form[identifier]', with: '@@@'

@@ -10,6 +10,10 @@ describe CdiscTermsController do
   	
     login_curator
 
+    def sub_dir
+      return "controllers"
+    end
+
     before :all do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -45,8 +49,8 @@ describe CdiscTermsController do
       params = { :notation => "VSTESTCD" }
       get :find_submission, params
       results = assigns(:cdiscCl)
-      #write_hash_to_yaml_file(results.to_json, "cdisc_term_controller_find_submission.yaml")
-      expected = read_yaml_file_to_hash("cdisc_term_controller_find_submission.yaml")
+      #write__yaml_file(results.to_json, sub_dir, "cdisc_term_controller_find_submission.yaml")
+      expected = read_yaml_file(sub_dir, "cdisc_term_controller_find_submission.yaml")
       expect(results.to_json).to eq(expected)
     end
     
@@ -82,8 +86,8 @@ describe CdiscTermsController do
       get :next, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file(response.body, "cdisc_term_controller_next.txt")
-      expected = read_text_file("cdisc_term_controller_next.txt")
+      #write_text_file_2(response.body, sub_dir, "cdisc_term_controller_next.txt")
+      expected = read_text_file_2(sub_dir, "cdisc_term_controller_next.txt")
       expect(response.body).to eq(expected)
     end
 

@@ -86,9 +86,7 @@ class IsoManagedController < ApplicationController
         results = Hash.new
         results[:data] = Array.new
         item.tag_refs.each do |ref|
-          uri = UriV2.new({:uri => ref})
-          tag = IsoConceptSystem::Node.find(uri.id, uri.namespace)
-          results[:data] << tag.to_json
+          results[:data] << IsoConceptSystem::Node.find(ref.id, ref.namespace).to_json
         end
         render json: results
       end

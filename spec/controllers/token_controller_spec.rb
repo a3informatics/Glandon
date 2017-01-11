@@ -48,6 +48,7 @@ describe TokensController do
     after :all do
       @user1 = User.where(:email => "token@example.com")
       @user1[0].destroy
+      Token.delete_all
     end
 
     it "index" do
@@ -61,6 +62,7 @@ describe TokensController do
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#4", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id }
       ]
       expect(assigns(:timeout)).to eq(5)
+      expect(tokens.count).to eq(4)
       expected.each_with_index do |item, index|
         token = tokens[index]
         expect(token.refresh_count).to eq(item[:refresh_count]) 
@@ -81,6 +83,7 @@ describe TokensController do
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#3", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id },
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#4", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id }
       ]
+      expect(tokens.count).to eq(3)
       expected.each_with_index do |item, index|
         token = tokens[index]
         expect(token.refresh_count).to eq(item[:refresh_count]) 
@@ -99,6 +102,7 @@ describe TokensController do
       expect(response.code).to eq("200")  
       expect(response.body).to eq("{}")
       tokens = Token.all
+      expect(tokens.count).to eq(3)
       expected = 
       [
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#1", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id },
