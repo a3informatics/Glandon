@@ -34,7 +34,7 @@ describe SdtmUserDomain do
 
   it "allows a domain to be found" do
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-    write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_find.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_find.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_user_domain_find.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -131,7 +131,7 @@ describe SdtmUserDomain do
     json = read_yaml_file(sub_dir, "sdtm_user_domain.yaml")
     item = SdtmUserDomain.from_json(json)
     sparql = item.to_sparql_v2
-    #write_text_file_2(sparql.to_s, sub_dir, "sdtm_user_domain_sparql.txt")
+    write_text_file_2(sparql.to_s, sub_dir, "sdtm_user_domain_sparql.txt")
     expected = read_text_file_2(sub_dir, "sdtm_user_domain_sparql.txt")
     expect(sparql.to_s).to eq(expected)
   end
@@ -186,6 +186,4 @@ describe SdtmUserDomain do
   
   it "allows a domain report to be generated"
   
-  it "compliance()"
-
 end

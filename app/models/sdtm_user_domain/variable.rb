@@ -92,6 +92,8 @@ class SdtmUserDomain::Variable < Tabular::Column
     json[:classification] = self.classification.to_json
     if !self.sub_classification.nil? 
       json[:sub_classification] = self.sub_classification.to_json
+    else
+      json[:sub_classification] = {}
     end
     if !self.variable_ref.nil? 
       json[:variable_ref] = self.variable_ref.to_json
@@ -191,7 +193,7 @@ private
     end
     links = object.get_links_v2(C_SCHEMA_PREFIX, "compliance")
     if links.length > 0
-      object.compliance = EnumeratedLabel.find(links[0].id, links[0].namespace)
+      object.compliance = SdtmModelCompliance.find(links[0].id, links[0].namespace)
     end
     links = object.get_links_v2(C_SCHEMA_PREFIX, "typedAs")
     if links.length > 0
@@ -200,10 +202,10 @@ private
     # Work out the classifcation and sub-classification
     links = object.get_links_v2(C_SCHEMA_PREFIX, "classifiedAs")
     if links.length > 0
-      classification = EnumeratedLabel.find(links[0].id, links[0].namespace)
+      classification = SdtmModelClassification.find(links[0].id, links[0].namespace)
       parent_links = classification.get_links_v2(C_SCHEMA_PREFIX, "parentClassification")
       if parent_links.length > 0
-        object.classification = EnumeratedLabel.find(parent_links[0].id, parent_links[0].namespace)
+        object.classification = SdtmModelClassification.find(parent_links[0].id, parent_links[0].namespace)
         object.sub_classification = classification
       else
         object.classification = classification

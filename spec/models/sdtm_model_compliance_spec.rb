@@ -32,10 +32,6 @@ describe SdtmModelCompliance do
     expect(result.to_json).to eq(expected)
   end
 
-  it "allows the object to be validated"
-
-  it "ensures the compliance items are unique"
-  
   it "allows the object to be created from JSON" do
     json = 
     {
@@ -64,12 +60,26 @@ describe SdtmModelCompliance do
   end
 
   it "allows all labels to be returned" do
-    result = SdtmModelCompliance.all("http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+    result = SdtmModelCompliance.all("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     json = []
     result.each {|tc| json << tc.to_json}
     #write_yaml_file(json, sub_dir, "sdtm_model_compliance_all.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_compliance_all.yaml")
     expect(json).to eq(expected)
+  end
+
+  it "allows default label to be returned" do
+    expected = 
+    {
+      :type => "http://www.assero.co.uk/BusinessDomain#VariableCompliance", 
+      :id => "IG-CDISC_SDTMIGVS_C_PERMISSIBLE", 
+      :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3", 
+      :label => "Permissible", 
+      :extension_properties => []
+    }
+    result = SdtmModelCompliance.all("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+    default = SdtmModelCompliance.default(result)
+    expect(default.to_json).to eq(expected)
   end
 
 end

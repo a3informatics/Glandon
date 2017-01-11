@@ -4,7 +4,8 @@ class SdtmModelCompliance < EnumeratedLabel
   C_SCHEMA_PREFIX = UriManagement::C_BD
   C_RDF_TYPE = "VariableCompliance"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  
+  C_DEFAULT = "PERMISSIBLE"
+
   # Initialize
   #
   # @params triples [Hash] the triples
@@ -21,10 +22,43 @@ class SdtmModelCompliance < EnumeratedLabel
 
   # Get all items
   #
-  # @params namespace [String] the namespace from which the items are to be retrieved
-  # @return [Array] array of SdtmModelDatatype objects
-  def self.all(namespace)
-    return super(C_RDF_TYPE, C_SCHEMA_PREFIX, namespace)  
+  # @params id [String] the id of the domain for which the compliance values are required
+  # @params namespace [String] the namespace of the domain for which the compliance values are required
+  # @return [Array] array of SdtmModelCompliance objects
+  def self.all(id, namespace)
+    results = Array.new
+    query = UriManagement.buildNs(namespace, ["bd", "bo"])  +
+      "SELECT DISTINCT ?b ?c WHERE \n" +
+      "{ \n " +
+      "  :#{id} bd:includesColumn ?a . \n " +
+      "  ?a bd:compliance ?b . \n" +
+      "  ?b rdfs:label ?c . \n" +
+      "}\n"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('b', true, node)
+      label = ModelUtility.getValue('c', false, node)
+      if uri != ""
+        object = self.new
+        object.id = ModelUtility.extractCid(uri)
+        object.namespace = ModelUtility.extractNs(uri)
+        object.rdf_type = UriV2.new({ id: C_RDF_TYPE , namespace: C_SCHEMA_NS }).to_s
+        object.label = label
+        results << object
+      end
+    end
+    return results
+  end
+  
+  # Find the defalt value (label) from a set of values. Upper case comparison made.
+  #
+  # @param value_set [Array] the value set, an array from the all method
+  # @raise ApplicationLogicError if the item is not found
+  # @return [Object] the item found
+  def self.default(value_set)
+    return super(value_set, C_DEFAULT)
   end
 
   # To JSON

@@ -395,51 +395,25 @@ class SdtmUserDomain < Tabular
   end
 =end
 
-  def compliance()
-    results = Array.new
-    # Build the query. 
-    # @todo Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
-    query = UriManagement.buildNs(self.namespace, ["bd", "bo"])  +
-      "SELECT DISTINCT ?b ?c WHERE \n" +
-      "{ \n " +
-      "  :#{self.id} bd:includesColumn ?a . \n " +
-      "  ?a bd:compliance ?b . \n" +
-      "  ?b rdfs:label ?c . \n" +
-      "}\n"
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uri = ModelUtility.getValue('b', true, node)
-      label = ModelUtility.getValue('c', false, node)
-      if uri != "" && label != ""
-        object = SdtmModelCompliance.new
-        object.id = ModelUtility.extractCid(uri)
-        object.namespace = ModelUtility.extractNs(uri)
-        object.label = label
-        results << object
-      end
-    end
-    return results
-  end
-
   # Check Valid
   #
   # @return [Boolean] returns true if valid, false otherwise.
   def valid?
     result = super
-    self.children.each do |child|
-      if !child.valid?
-        self.copy_errors(child, "Variable, ordinal=#{child.ordinal}, error:")
-        result = false
-      end
-    end
+    # Bit of a special but check the prefix first. If not valid there will be a lot of errors
+    # so dont check the children
     result = result &&
       FieldValidation::valid_sdtm_domain_prefix?(:prefix, self.prefix, self) && 
       FieldValidation::valid_markdown?(:notes, self.notes, self) && 
       FieldValidation::valid_label?(:structure, self.structure, self)
+    if result
+      self.children.each do |child|
+        if !child.valid?
+          self.copy_errors(child, "Variable, ordinal=#{child.ordinal}, error:")
+          result = false
+        end
+      end
+    end
     return result
   end
 

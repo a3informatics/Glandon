@@ -61,13 +61,59 @@ describe SdtmModelClassification do
     expect(result.to_json).to eq(expected)
   end
 
-  it "allows all labels to be returned" do
-    result = SdtmModelClassification.all("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+  it "allows all leaf labels to be returned" do
+    result = SdtmModelClassification.all_leaf("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
     json = []
     result.each {|tc| json << tc.to_json}
-    #write_yaml_file(json, sub_dir, "sdtm_model_classification_all.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_model_classification_all.yaml")
+    #write_yaml_file(json, sub_dir, "sdtm_model_classification_all_leaf.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_model_classification_all_leaf.yaml")
     expect(json).to eq(expected)
+  end
+
+  it "allows all parent labels to be returned" do
+    result = SdtmModelClassification.all_parent("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    json = []
+    result.each {|tc| json << tc.to_json}
+    #write_yaml_file(json, sub_dir, "sdtm_model_classification_all_parent.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_model_classification_all_parent.yaml")
+    expect(json).to eq(expected)
+  end
+
+  it "allows all child labels to be returned" do
+    result = SdtmModelClassification.all_children("M-CDISC_SDTMMODEL_C_QUALIFIER", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    json = []
+    result.each {|tc| json << tc.to_json}
+    #write_yaml_file(json, sub_dir, "sdtm_model_classification_all_child.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_model_classification_all_child.yaml")
+    expect(json).to eq(expected)
+  end
+
+  it "allows default parent label to be returned" do
+    expected = 
+    {
+      :type => "http://www.assero.co.uk/BusinessDomain#VariableClassification", 
+      :id => "M-CDISC_SDTMMODEL_C_QUALIFIER", 
+      :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3", 
+      :label => "Qualifier", 
+      :extension_properties => []
+    }
+    result = SdtmModelClassification.all_parent("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    default = SdtmModelClassification.default_parent(result)
+    expect(default.to_json).to eq(expected)
+  end
+
+  it "allows default child label to be returned" do
+    expected = 
+    {
+      :type => "http://www.assero.co.uk/BusinessDomain#VariableClassification", 
+      :id => "M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER", 
+      :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3", 
+      :label => "Record Qualifier", 
+      :extension_properties => []
+    }
+    result = SdtmModelClassification.all_children("M-CDISC_SDTMMODEL_C_QUALIFIER", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    default = SdtmModelClassification.default_child(result)
+    expect(default.to_json).to eq(expected)
   end
 
 end

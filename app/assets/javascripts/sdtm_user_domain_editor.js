@@ -1,4 +1,5 @@
 var domainDefinition;
+var domainDefaults;
 var rootNode;
 var markdownElement;
 var markdownType;
@@ -21,8 +22,10 @@ $(document).ready(function() {
         "Variable Comment": {required: false, markdown: true}
     },
     submitHandler: function(form) {
-      saveNode();
-      saveRest();
+      if (checkLastNode(true)) {
+        saveNode();
+        saveRest();
+      }
       return false;
     },
     invalidHandler: function(event, validator) {
@@ -38,50 +41,19 @@ $(document).ready(function() {
   * General Panel Actions
   */
   $('#close').click(function() {
-    saveNode();
-    saveRest();
+    if (checkLastNode(false)) {
+      saveNode();
+      saveRest();
+    }
     window.location.href = $('#close_path').val();
   });
 
   /*
-  * Functions for testing. 
-  */
-  $('#click_node_name').click(function() {
-    var nodeName = $('#click_node_name_text').val();
-    var node = d3FindGRefByName(nodeName);
-    if (node !== null) {
-      simulateClick(node);
-    }
-  });
-
-  $('#click_node_key').click(function() {
-    var nodeKey = parseInt($('#click_node_key_text').val());
-    var node = d3FindGRef(nodeKey);
-    if (node !== null) {
-      simulateClick(node);
-    }
-  });
-
-  $('#clear_current_node').click(function() {
-    currentGRef = null;
-    currentNode = null;
-  });
-
-  /*
-   * Functions to handle the form actions.
+   * Functions to handle the domain actions.
    */
-  $('#domainUpdate').click(function() {
-    if (currentGRef == null) {
-      displayWarning("You need to select the domain node.");
-    } else {
-      $('#main_form').valid();
-      saveDomain(currentNode);
-      displayNode(currentNode);
-    }
-  });
-
   $('#domainAddVariable').click(function() {
-    if (currentGRef == null) {
+    var currentNode = d3eGetCurrent();
+    if (currentNode === null) {
       displayWarning("You need to select the domain node.");
     } else {
       var node = addVariable();
@@ -91,12 +63,13 @@ $(document).ready(function() {
   });
 
   /*
-  * Functions to handle the group actions
+  * Functions to handle the variable actions
   */
   $('#variableUpdate').click(function() {
-    if (currentGRef == null) {
+    var currentNode = d3eGetCurrent();
+    if (currentNode === null) {
       displayWarning("You need to select a variable node.");
-          } else {
+    } else {
       $('#main_form').valid();
       saveVariable(currentNode)
       displayNode(currentNode);
@@ -104,19 +77,25 @@ $(document).ready(function() {
   });
 
   $('#variableDelete').click(function() {
+    var currentNode = d3eGetCurrent();
     var node = d3eDeleteNode(currentNode);
     displayNode(node);
     displayNode(node);
   });
 
   $('#variableUp').click(function() {
-    if (currentNode == null) {
+    var currentNode = d3eGetCurrent();
+    if (currentNode === null) {
       displayWarning("You need to select a group node.");
     } else {
       var parentNode = currentNode.parent;
       if (currentNode.index != 0) {
-        d3eMoveNodeUp(currentNode);
-        displayNode(currentNode);
+        if (parentNode.save[currentNode.index - 1].data.non_standard) {
+          d3eMoveNodeUp(currentNode);
+          displayNode(currentNode);
+        } else {
+          displayWarning("You cannot move the node up past a standard variable.");
+        }
       } else {
         displayWarning("You cannot move the node up.");
       }
@@ -124,16 +103,28 @@ $(document).ready(function() {
   }); 
 
   $('#variableDown').click(function() {
-    if (currentNode == null) {
+    var currentNode = d3eGetCurrent();
+    if (currentNode === null) {
       displayWarning("You need to select a group node.");
     } else {
       var parentNode = currentNode.parent;
-      if (currentNode.index < parentNode.save.length) {
-        de3MoveNodeDown(currentNode);
+      if (currentNode.index < (parentNode.save.length - 1)) {
+        d3eMoveNodeDown(currentNode);
         displayNode(currentNode);
       } else {
         displayWarning("You cannot move the node down.");
       }
+    }
+  }); 
+
+  $("#variableClassification").change(function() {
+    var currentNode = d3eGetCurrent();
+    if (currentNode === null) {
+      displayWarning("You need to select a group node.");
+    } else {
+      var namespace = getNamespace($("#variableClassification").val());
+      var id = getId($("#variableClassification").val());
+      subClassificationRest(id, namespace);
     }
   }); 
 
@@ -145,16 +136,14 @@ $(document).ready(function() {
       displayWarning("You need to select a completion instruction field.");
     } else {
       var text = markdownElement.value;
-      getMarkdown(document.getElementById("genericCompletion"), text, markdownCallback);      }
+      getMarkdown(document.getElementById("genericMarkdown"), text, markdownCallback);      }
   });
 
   $('#markdown_hide').click(function() {
     hideCi();
-    if (markdownType == C_USERDOMAIN) {
-      //showBCSelection();
-    } else if (markdownType == C_QUESTION) {
-      //showNotepad();    
-    }
+    //if (markdownType == C_USERDOMAIN) {
+    //} else if (markdownType == C_QUESTION) {
+    //}
     markdownElement = null;
     markdownType = "";
   });
@@ -211,6 +200,28 @@ function saveRest() {
   }
 }
 
+function subClassificationRest(id, namespace) {
+  var url = '/sdtm_user_domains/sub_classifications?sdtm_user_domain[classification_id]=' + id + 
+    '&sdtm_user_domain[classification_namespace]=' + namespace;
+  $("#variableSubClassification").empty();
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      displayError("An error has occurred loading a sub-classification.");
+    },
+    success: function(result){
+      $('#variableSubClassification').empty();
+      for(var i=0; i<result.length; i++) {
+        var entry = result[i];
+        var option = new Option(entry.value, entry.key);
+        $('#variableSubClassification').append($(option));
+      }
+    }
+  });
+}
+  
 function handleFocus(type, element) {
   showCi();
   markdownType = type;
@@ -259,10 +270,12 @@ function addSpinner() {
   $("#saving > span").addClass('glyphicon-spin');
 }
 
-// Function for page unload. Nothing to do
+// Function for page unload.
 function pageUnloadAction() {
-  saveNode();
-  saveRest();
+  if (checkLastNode(false)) {
+    saveNode();
+    saveRest();
+  }
 }
 
 /**
@@ -272,7 +285,7 @@ function displayDomain(node) {
   $("#domainPrefix").val(node.data.prefix);
   $("#domainLabel").val(node.data.label);
   $("#domainNotes").val(node.data.notes);
-  $("#domainPrefix").prop( "disabled", true );
+  $("#domainPrefix").prop( "disabled", true);
 }
 
 function displayVariable(node) {
@@ -286,15 +299,34 @@ function displayVariable(node) {
   $("#variableDatatype").val(toUri(node.data.datatype.namespace, node.data.datatype.id));
   $("#variableCompliance").val(toUri(node.data.compliance.namespace, node.data.compliance.id));
   $("#variableClassification").val(toUri(node.data.classification.namespace, node.data.classification.id));
-  $("#variableNonStandard").prop('disabled', true);
+  if (jQuery.isEmptyObject(node.data.sub_classification)) {
+    // Hide select
+  } else {
+    $("#variableSubClassification").val(toUri(node.data.sub_classification.namespace, node.data.sub_classification.id));
+  }
+  subClassificationRest(node.data.classification.id, node.data.classification.namespace);
   if (node.data.non_standard) {
+    $("#variableNonStandard").prop('disabled', true);
     $("#variableDelete").prop('disabled', false);
     $("#variableUp").prop('disabled', false);
     $("#variableDown").prop('disabled', false);
+    $("#variableName").prop( "disabled", false);
+    $("#variableLabel").prop( "disabled", false);
+    $("#variableDatatype").prop( "disabled", false);
+    $("#variableCompliance").prop( "disabled", false);
+    $("#variableClassification").prop( "disabled", false);
+    $("#variableSubClassification").prop( "disabled", false);
   } else {
+    $("#variableNonStandard").prop('disabled', true);
     $("#variableDelete").prop('disabled', true);
     $("#variableUp").prop('disabled', true);
     $("#variableDown").prop('disabled', true);
+    $("#variableName").prop( "disabled", true);
+    $("#variableLabel").prop( "disabled", true);
+    $("#variableDatatype").prop( "disabled", true);
+    $("#variableCompliance").prop( "disabled", true);
+    $("#variableClassification").prop( "disabled", true);
+    $("#variableSubClassification").prop( "disabled", true);
   }
 }
 
@@ -321,6 +353,12 @@ function saveVariable(node) {
   node.data.compliance.id = getId($("#variableCompliance").val());
   node.data.classification.namespace = getNamespace($("#variableClassification").val());
   node.data.classification.id = getId($("#variableClassification").val());
+  if (!$('#variableSubClassification').prop("disabled")) {
+    node.data.sub_classification.namespace = getNamespace($("#variableSubClassification").val());
+    node.data.sub_classification.id = getId($("#variableSubClassification").val());
+  } else {
+    node.data.sub_classification = {};
+  }
   node.name = node.data.name;
   node.enabled = node.data.used;
 }
@@ -329,47 +367,52 @@ function saveVariable(node) {
 * Variable generic functions
 */
 function addVariable() {
-  var sourceNode;
-  var d3Node;
-  var label;
-  label = "Non Standard";
-  sourceNode = newVariable(label)
-  d3Node = d3eAddNode(currentNode, sourceNode.name, C_USERVARIABLE, true, sourceNode, true);     
+  var label = "Non Standard";
+  var currentNode = d3eGetCurrent();
+  var sourceNode = newVariable(label)
+  var d3Node = d3eAddNode(currentNode, sourceNode.name, C_USERVARIABLE, true, sourceNode, true);     
   d3eAddData(currentNode, d3Node.data, true)
   return d3Node;
 }
 
 function newVariable(label) {
-  return {
-      type: C_USERVARIABLE,
-      id: "",
-      namespace: "",
-      label: label,
-      ordinal: "",
-      name: domainPrefix + pad(newCount, 6, '0'),
-      notes: "",
-      format: "",
-      non_standard: true,
-      comment: "",
-      length: 0,
-      used: true,
-      key_ordinal: 0,
-      datatype: { type: "", id: "", namespace: "", label: ""},
-      compliance: { type: "", id: "", namespace: "", label: ""},
-      classification: { type: "", id: "", namespace: "", label: ""},
-      variable_ref: {} };
-      newCount += 1;
+  result = 
+  {
+    type: C_USERVARIABLE,
+    id: "",
+    namespace: "",
+    label: label,
+    ordinal: "",
+    name: domainPrefix + pad(newCount, 6, '0'),
+    notes: "",
+    ct: "",
+    format: "",
+    non_standard: true,
+    comment: "",
+    length: 0,
+    used: true,
+    key_ordinal: 0,
+    datatype: domainDefaults.datatype,
+    compliance: domainDefaults.compliance,
+    classification: domainDefaults.classification,
+    sub_classification: {},
+    variable_ref: {} 
+  };
+  newCount += 1;
+  return result;
 }
 
 function initData () { 
-  html = $("#domainJson").html();
-  domainDefinition = $.parseJSON(html);
+  var html1 = $("#domainJson").html();
+  domainDefinition = $.parseJSON(html1);
+  var html2 = $("#defaultsJson").html();
+  domainDefaults = $.parseJSON(html2);
   markdownElement = null;
   markdownType = "";
   var managedItem = domainDefinition.managed_item;
   previousSave = currentSave = JSON.stringify(domainDefinition);
   domainPrefix = managedItem.prefix
-  d3eInit(saveNode, displayNode, empty);
+  d3eInit(saveNode, displayNode, empty, validateNode);
   rootNode = d3eRoot(managedItem.label, C_USERDOMAIN, managedItem)
   nextKeyId = rootNode.key + 1;
   for (i=0; i<managedItem.children.length; i++) {
@@ -380,6 +423,67 @@ function initData () {
 }
 
 function empty(node) {
+}
+
+function validateNode(node) {
+  clearVariableNameError();
+  var validForm = $('#main_form').valid();
+  var validName = validateNonStandardVariableName(node);
+  if (!validName) {
+    showVariableNameError();
+  }
+  return validName && validForm;
+}
+
+function checkLastNode(alertUser) {
+  var validName = true;
+  var node = d3eGetCurrent();
+  if (node !== null) {
+    validName = validateNonStandardVariableName(node);
+    if (alertUser && !validName) {
+      clearVariableNameError();
+      showVariableNameError();
+    }
+  }
+  return validName;
+}
+
+function clearVariableNameError () {
+  unhighlight($('#variableName'));
+  removeErrorText($('#variableName'));  
+}
+
+function showVariableNameError () {
+  highlight($('#variableName'))
+  var text = "<span class=\"help-block\">The variable name is not valid. Check the prefix, valid characters and length.</span>";
+  addErrorText($(text), $('#variableName'));
+}
+
+function validateNonStandardVariableName(node) {
+  var result = true;
+  if (node.type === C_USERVARIABLE) {
+    if (node.data.non_standard) {
+      var name = $("#variableName").val();
+      if (name.length > 2) {
+        var prefix = name.substring(0,2);
+        if (prefix === domainDefinition.managed_item.prefix) {
+          for (var i=0; i<rootNode.save.length; i++) {
+            if (node.index === i) {
+              // Do nothing, our own node
+            } else if (rootNode.save[i].data.name === name) {
+              result = false;
+              break;
+            }
+          }
+        } else {
+          result = false;
+        }
+      } else {
+        result = false;
+      }
+    }
+  }
+  return result;
 }
 
 function setD3(sourceNode, d3Node) {
@@ -401,7 +505,7 @@ function setD3(sourceNode, d3Node) {
 
 function saveNode() {
   if ($('#main_form').valid()) {
-    var d3Node = d3eGetCurrent();
+    var currentNode = d3eGetCurrent();
     if (currentNode.type == C_USERDOMAIN) {
       saveDomain(currentNode)
     } else if (currentNode.type == C_USERVARIABLE) {

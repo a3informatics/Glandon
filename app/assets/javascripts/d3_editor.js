@@ -74,7 +74,7 @@ function d3eGetCurrent() {
 function d3eClick(node) {    
   var valid = true;
   if (d3eCurrentNode != null) {
-    valid = d3eValidateCallBack(node);
+    valid = d3eValidateCallBack(d3eCurrentNode);
     if (valid) {
       d3eClickCallBackPre(d3eCurrentNode);
       d3RestoreNode(d3eCurrentGRef);  

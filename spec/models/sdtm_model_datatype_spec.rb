@@ -70,4 +70,18 @@ describe SdtmModelDatatype do
     expect(json).to eq(expected)
   end
 
+  it "allows default label to be returned" do
+    expected = 
+    {
+      :type => "http://www.assero.co.uk/BusinessDomain#VariableType", 
+      :id => "M-CDISC_SDTMMODEL_DT_CHAR", 
+      :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3", 
+      :label => "Char", 
+      :extension_properties => []
+    }
+    result = SdtmModelDatatype.all("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    default = SdtmModelDatatype.default(result)
+    expect(default.to_json).to eq(expected)
+  end
+
 end

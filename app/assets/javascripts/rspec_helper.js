@@ -1,5 +1,13 @@
 var C_NULL = -1;
 
+function rhClickClose() {
+  simulateClick($('#close')[0]);
+}
+
+function rhClickSave() {
+  simulateClick($('#save')[0]);
+}
+
 function simulateClick(elem /* Must be the element */) {
   var evt = document.createEvent("MouseEvents");
   evt.initMouseEvent(

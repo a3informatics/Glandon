@@ -256,6 +256,7 @@ Rails.application.routes.draw do
       get :remove
       post :update_add
       post :update_remove
+      get :sub_classifications
     end
   end
   #namespace :sdtm_user_domains do

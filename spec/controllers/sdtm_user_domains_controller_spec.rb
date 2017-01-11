@@ -111,7 +111,10 @@ describe SdtmUserDomainsController do
         }
       }
       post :clone_ig_create, params
-      expect(response).to redirect_to("http://test.host/sdtm_user_domains/clone_ig?id=IG-CDISC_SDTMIGEG&namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRSdtmIgD%2FCDISC%2FV3")
+      url = "http://test.host/sdtm_user_domains/clone_ig?" +
+        "sdtm_user_domain%5Bsdtm_ig_domain_id%5D=IG-CDISC_SDTMIGEG&" +
+        "sdtm_user_domain%5Bsdtm_ig_domain_namespace%5D=http%3A%2F%2Fwww.assero.co.uk%2FMDRSdtmIgD%2FCDISC%2FV3"
+      expect(response).to redirect_to(url)
     end
 
     it "allows a domain to be created"
@@ -264,7 +267,7 @@ describe SdtmUserDomainsController do
       expect(response).to redirect_to("http://test.host/sdtm_user_domains/D-ACME_DMDomain?sdtm_user_domain%5Bnamespace%5D=http%3A%2F%2Fwww.assero.co.uk%2FMDRSdtmUD%2FACME%2FV1")
     end
 
-    it "destroy" do
+    it "allows a domain to be destroyed" do
       @request.env['HTTP_REFERER'] = 'http://test.host/sdtm_user_domains'
       audit_count = AuditTrail.count
       bc_count = SdtmUserDomain.all.count
@@ -273,6 +276,26 @@ describe SdtmUserDomainsController do
       expect(SdtmUserDomain.all.count).to eq(bc_count - 1)
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(Token.count).to eq(token_count)
+    end
+
+    it "allows the sub-classifications to be found, some found" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :sub_classifications, { sdtm_user_domain: { classification_id: "M-CDISC_SDTMMODEL_C_QUALIFIER", classification_namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_sub_classifications_1.txt")
+      expected = read_text_file_2(sub_dir, "sdtm_user_domain_controller_sub_classifications_1.txt")
+      expect(response.body).to eq(expected)
+    end
+    
+    it "allows the sub-classifications to be found, none found" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :sub_classifications, { sdtm_user_domain: { classification_id: "M-CDISC_SDTMMODEL_C_IDENTIFIER", classification_namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_sub_classifications_2.txt")
+      expected = read_text_file_2(sub_dir, "sdtm_user_domain_controller_sub_classifications_2.txt")
+      expect(response.body).to eq(expected)
     end
     
     it "export_ttl"

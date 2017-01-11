@@ -1,7 +1,7 @@
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#UserDomain> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"DM Copy" . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2016-12-30T18:47:35+00:00" . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2016-12-30T18:47:35+00:00" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Demographics" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2017-01-11T15:23:43+00:00" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2017-01-11T15:23:43+00:00" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
@@ -37,11 +37,11 @@
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain_V28> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#basedOnDomain> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain_IGD1> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#basedOnDomain> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain_MD1> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#rule> 			"" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"1" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#prefix> 			"DM" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#structure> 			"" . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"1" . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain> 			<http://www.assero.co.uk/BusinessDomain#rule> 			"" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain_V1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#UserVariable> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain_V1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Study Identifier" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain_V1> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain_V1_IGV1> . 

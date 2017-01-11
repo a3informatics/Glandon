@@ -57,20 +57,10 @@ class SdtmUserDomainsController < ApplicationController
       redirect_to sdtm_user_domains_path
     else
       flash[:error] = @sdtm_user_domain.errors.full_messages.to_sentence
-      redirect_to clone_ig_sdtm_user_domains_path(:id => the_params[:sdtm_ig_domain_id], :namespace => the_params[:sdtm_ig_domain_namespace])
+      redirect_to clone_ig_sdtm_user_domains_path(sdtm_user_domain: { :sdtm_ig_domain_id => the_params[:sdtm_ig_domain_id], :sdtm_ig_domain_namespace => the_params[:sdtm_ig_domain_namespace] })
     end
   end
   
-  #def create
-  #  authorize SdtmUserDomain
-  #  @sdtm_user_domain = SdtmUserDomain.create(params)
-  #  if @sdtm_user_domain.errors.empty?
-  #    render :json => { :data => @sdtm_user_domain.to_edit}, :status => 200
-  #  else
-  #    render :json => { :errors => @sdtm_user_domain.errors.full_messages}, :status => 422
-  #  end
-  #end
-
   def update
     authorize SdtmUserDomain
     sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace], false)
@@ -81,7 +71,6 @@ class SdtmUserDomainsController < ApplicationController
         AuditTrail.update_item_event(current_user, @sdtm_user_domain, "Domain updated.") if token.refresh == 1
         render :json => { :data => @sdtm_user_domain.to_operation}, :status => 200
       else
-        ConsoleLogger.debug(C_CLASS_NAME, "update", "Errors=#{@sdtm_user_domain.errors.full_messages}")
         render :json => { :errors => @sdtm_user_domain.errors.full_messages}, :status => 422
       end
     else
@@ -102,16 +91,17 @@ class SdtmUserDomainsController < ApplicationController
     if @token.nil?
       flash[:error] = "The item is locked for editing by another user."
       redirect_to request.referer
-    end
-    if @sdtm_user_domain.children.length > 0
+    elsif @sdtm_user_domain.children.length > 0
+      @defaults = {}
       variable = @sdtm_user_domain.children[0]   
       @datatypes = SdtmModelDatatype.all(variable.datatype.namespace)
-      @classifications = SdtmModelClassification.all(variable.classification.namespace)
-      @compliance = @sdtm_user_domain.compliance
+      @defaults[:datatype] = SdtmModelDatatype.default(@datatypes).to_json
+      @classifications = SdtmModelClassification.all_parent(variable.classification.namespace)
+      @defaults[:classification] = SdtmModelClassification.default_parent(@classifications).to_json
+      @compliance = SdtmModelCompliance.all(@sdtm_user_domain.id, @sdtm_user_domain.namespace)
+      @defaults[:compliance] = SdtmModelCompliance.default(@compliance).to_json 
     else
-      @datatypes = Array.new
-      @classifications = Array.new
-      @compliance = Array.new
+      raise Exceptions::ApplicationLogicError.new(message: "No children in domain in #{C_CLASS_NAME} object.")
     end
   end
 
@@ -182,6 +172,14 @@ class SdtmUserDomainsController < ApplicationController
     redirect_to request.referer
   end
 
+  def sub_classifications
+    authorize SdtmUserDomain, :show?
+    values = SdtmModelClassification.all_children(the_params[:classification_id], the_params[:classification_namespace])
+    result = []
+    values.each { |x| result << { key: x.uri.to_s, value: x.label } }
+    render :json => result
+  end
+
   def export_ttl
     authorize SdtmUserDomain
     @sdtm_user_domain = IsoManaged::find(params[:id], the_params[:namespace])
@@ -210,7 +208,8 @@ class SdtmUserDomainsController < ApplicationController
 private
 
   def the_params
-    params.require(:sdtm_user_domain).permit(:namespace, :identifier, :scope_id, :sdtm_ig_domain_id, :sdtm_ig_domain_namespace, :label, :prefix, :bcs => [])
+    params.require(:sdtm_user_domain).permit(:namespace, :identifier, :scope_id, :sdtm_ig_domain_id, :sdtm_ig_domain_namespace, 
+      :classification_id, :classification_namespace, :label, :prefix, :bcs => [])
   end  
 
 end

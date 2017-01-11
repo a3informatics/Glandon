@@ -108,6 +108,32 @@ describe("D3 Editor", function() {
 		expect(selectedNodeTest(getFill(gRef))).to.equal(true);
   });
   
+  it("handles a click on a node, validation passes and fails", function() {
+		var rootNode = testTree();
+		d3eDisplayTree(rootNode.key);
+		var gRef = d3FindGRef(4);
+		validateTrueFalse = true;
+  	simulateClick(gRef);
+		expect(lastValidateNode.name).to.equal("root");
+		// Validation passes
+		validateTrueFalse = true;
+  	gRef = d3FindGRef(3);
+		simulateClick(gRef);
+		expect(lastValidateNode.name).to.equal("child-3");
+		expect(lastClickPreNode.name).to.equal("child-3");
+		expect(lastClickPostNode.name).to.equal("child-2");
+		// Validation fails
+		lastValidateNode = null;
+		lastClickPreNode = null;
+		lastClickPostNode = null;
+		validateTrueFalse = false;
+  	gRef = d3FindGRef(4);
+		simulateClick(gRef);
+		expect(lastValidateNode.name).to.equal("child-2");
+		expect(lastClickPreNode).to.be.null;
+		expect(lastClickPostNode).to.be.null;
+		validateTrueFalse = true; // Set back to true for all other tests
+  });
 	    
 	it("handles a double click on a node", function() {
 		var rootNode = testTree();

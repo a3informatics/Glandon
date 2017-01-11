@@ -77,12 +77,16 @@
         <%= select_tag("variableDatatype", options_for_select(@datatypes.map{ |u| [u.label, u.namespace + "#" + u.id]}), class: "form-control", :multiple => false) %>
       </div>
       <div class="form-group">
-        <%= label_tag :datatype, "Compliance:" %><br/>
+        <%= label_tag :compliance, "Compliance:" %><br/>
         <%= select_tag("variableCompliance", options_for_select(@compliance.map{ |u| [u.label, u.namespace + "#" + u.id]}), class: "form-control", :multiple => false) %>
       </div>
       <div class="form-group">
-        <%= label_tag :datatype, "Classification:" %><br/>
+        <%= label_tag :classification, "Classification:" %><br/>
         <%= select_tag("variableClassification", options_for_select(@classifications.map{ |u| [u.label, u.namespace + "#" + u.id]}), class: "form-control", :multiple => false) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :sub_classification, "Sub-classification:" %><br/>
+        <%= select_tag("variableSubClassification", [], class: "form-control", :multiple => false) %>
       </div>
     </div>
     <div class="btn-group" role="group" aria-label="...">

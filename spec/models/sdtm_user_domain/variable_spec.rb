@@ -64,6 +64,7 @@ describe SdtmUserDomain::Variable do
         :notes => "",
         :comment => "",
         :classification => "null",
+        :sub_classification => {},
         :compliance => "null",
         :datatype => "null",
         :variable_ref => {}

@@ -112,6 +112,10 @@ module DataHelpers
     IsoRegistrationState.class_variable_set(:@@owner, nil)
   end
   
+  def clear_enumerated_label_object
+    EnumeratedLabel.class_variable_set(:@@uri_cache, {})
+  end
+  
   def clear_token_object
     Token.class_variable_set(:@@token_timeout, nil)
   end

@@ -80,6 +80,10 @@ var C_SDTM_CLASSIFICATION = "http://www.assero.co.uk/BusinessDomain#VariableClas
 var C_SDTM_TYPE = "http://www.assero.co.uk/BusinessDomain#VariableType"
 var C_SDTM_COMPLIANCE = "http://www.assero.co.uk/BusinessDomain#VariableCompliance"
 
+// Concept system
+var C_SYSTEM = "http://www.assero.co.uk/ISO11179Concepts#ConceptSystem";
+var C_TAG = "http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode";
+  
 /*
 * General Alert handling functions
 */
@@ -168,7 +172,7 @@ function handleAjaxError (xhr, status, error) {
 /**
 * Error functions
 */
-/*function highlight(element) {
+function highlight(element) {
   $(element).closest('.form-group').addClass('has-error');
 }
 
@@ -182,7 +186,7 @@ function addErrorText(error, element) {
 
 function removeErrorText(element) {
   element.next("span").remove();
-}*/
+}
 
 /*
 * URI functions

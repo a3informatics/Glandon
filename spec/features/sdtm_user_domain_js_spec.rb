@@ -65,6 +65,25 @@ describe "SDTM User Domains", :type => :feature do
       expect(page).to have_content 'Index: Domains'
     end
 
+    it "allows a domain to be created, field validation", js: true do
+      visit '/sdtm_user_domains/clone_ig?sdtm_user_domain[sdtm_ig_domain_id]=IG-CDISC_SDTMIGEG&sdtm_user_domain[sdtm_ig_domain_namespace]=http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3'
+      expect(page).to have_content 'Cloning: Electrocardiogram SDTM IG EG (3.2, V3, Standard)'
+      fill_in 'sdtm_user_domain[prefix]', with: '@@@'
+      fill_in 'sdtm_user_domain[label]', with: '€€€'
+      click_button 'Clone'
+      expect(page).to have_content "Label contains invalid characters and Scoped Identifier error: Identifier contains invalid characters"
+      fill_in 'sdtm_user_domain[prefix]', with: 'XX'
+      fill_in 'sdtm_user_domain[label]', with: '€€€'
+      click_button 'Clone'
+      expect(page).to have_content "Label contains invalid characters"
+      fill_in 'sdtm_user_domain[prefix]', with: 'XX'
+      fill_in 'sdtm_user_domain[label]', with: 'Nice Label'
+      click_button 'Clone'
+      expect(page).to have_content "SDTM Sponsor Domain was successfully created."
+      expect(page).to have_content "XX"
+      expect(page).to have_content "Nice Label"
+    end
+
   end
 
 end

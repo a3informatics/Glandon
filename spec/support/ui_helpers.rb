@@ -61,12 +61,12 @@ module UiHelpers
     expect(page).to have_field("#{field_id}", disabled: false)
   end
 
-  def ui_button_disabled(field_id)
-    expect(page).to have_button("#{field_id}", disabled: true)
+  def ui_button_disabled(id)
+    expect(page).to have_button("#{id}", disabled: true)
   end       
 
-  def ui_button_enabled(field_id)
-    expect(page).to have_button("#{field_id}", disabled: false)
+  def ui_button_enabled(id)
+    expect(page).to have_button("#{id}", disabled: false)
   end       
 
   # Not sure this works!!!!
@@ -117,7 +117,16 @@ module UiHelpers
     expect(td.text).to eq(text)
   end
 
-  
+  # Close and Save
+  # ==============
+  def ui_click_close
+    page.evaluate_script("rhClickClose()")
+  end
+
+  def ui_click_save
+    page.evaluate_script("rhClickSave()")
+  end
+
   # D3 Tree Functions
   # =================
 
@@ -173,7 +182,7 @@ module UiHelpers
     ui_click_node_key(current_key)
     fill_in field, with: text
     ui_click_node_key(to_key)
-    wait_for_ajax
+    #wait_for_ajax
     expect(ui_get_current_key).to eq(to_key)
   end
 

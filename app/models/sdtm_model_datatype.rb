@@ -4,7 +4,8 @@ class SdtmModelDatatype < EnumeratedLabel
   C_SCHEMA_PREFIX = UriManagement::C_BD
   C_RDF_TYPE = "VariableType"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  
+  C_DEFAULT = "CHAR"
+
   # Initialize
   #
   # @params triples [Hash] the triples
@@ -26,6 +27,15 @@ class SdtmModelDatatype < EnumeratedLabel
   def self.all(namespace)
     results = super(C_RDF_TYPE, C_SCHEMA_PREFIX, namespace)  
     return results
+  end
+
+  # Find the defalt value (label) from a set of values. Upper case comparison made.
+  #
+  # @param value_set [Array] the value set, an array from the all method
+  # @raise ApplicationLogicError if the item is not found
+  # @return [Object] the item found
+  def self.default(value_set)
+    return super(value_set, C_DEFAULT)
   end
 
   # To JSON
