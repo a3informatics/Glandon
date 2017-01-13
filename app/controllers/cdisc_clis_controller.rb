@@ -11,9 +11,10 @@ class CdiscClisController < ApplicationController
   
   def changes
     authorize CdiscCli, :view?
-    @results = CdiscTerm::Utility.cli_changes(params[:id])
-    @identifier = @results.length > 0 ? @results[0][:results][:Identifier][:current] : ""
-    @title = @results.length > 0 ? @results[0][:results][:"Preferred Term"][:current] : ""
+    data = CdiscTerm::Utility.cli_changes(params[:id])
+    @results = data[:results]
+    @identifier = data[:identifier]
+    @title = data[:title]
   end
     
 private

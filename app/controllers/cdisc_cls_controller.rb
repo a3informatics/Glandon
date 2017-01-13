@@ -11,10 +11,11 @@ class CdiscClsController < ApplicationController
   
   def changes    
     authorize CdiscCl, :view?
-    @results = CdiscTerm::Utility.cl_changes(params[:id])
+    data = CdiscTerm::Utility.cl_changes(params[:id])
+    @results = data[:results]
     @clis = CdiscTerm::Utility.transpose_results(@results)
-    @identifier = @results.length > 0 ? @results[0][:results][:Identifier][:current] : ""
-    @title = @results.length > 0 ? @results[0][:results][:"Preferred Term"][:current] : ""
+    @identifier = data[:identifier]
+    @title = data[:title]
   end
   
 private

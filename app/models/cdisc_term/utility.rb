@@ -31,10 +31,12 @@ class CdiscTerm::Utility
   # Code List Item Changes for given id
   #
   # @param id [String] the id of the code list item to be compared for changes
-  # @return [Hash] the resulting changes across all the versions
+  # @return [Hash] a hash containing the identifier, title and the changes across all the versions
   def self.cli_changes(id)
     data = []
     results = []
+    identifier = ""
+    title = ""
     cdisc_terms = CdiscTerm.all()
     cdisc_terms.each do |ct|
       cli = CdiscCli.find(id, ct.namespace)
@@ -45,25 +47,27 @@ class CdiscTerm::Utility
     data.each_with_index do |curr, index|
       cli = curr[:cli]
       if !cli.nil? && !set
-        @id = cli.id
-        @identifier = cli.identifier
-        @title = cli.preferredTerm
+        #@id = cli.id
+        identifier = cli.identifier
+        title = cli.preferredTerm
       end
       if index >= 1
         prev_cli = data[index - 1][:cli]
       end
       results << compare_cli(curr[:term], prev_cli, cli)
     end
-    return results
+    return { identifier: identifier, title: title, results: results }
   end
 
   # Code List Changes for given id
   #
   # @param id [String] the id of the code list item to be compared for changes
-  # @return [Hash] the resulting changes across all the versions
+  # @return [Hash] a hash containing the identifier, title and the changes across all the versions
   def self.cl_changes(id)
     data = []
     results = []
+    identifier = ""
+    title = ""
     cdisc_terms = CdiscTerm.all()
     cdisc_terms.each do |ct|
       cl = CdiscCl.find(id, ct.namespace)
@@ -74,9 +78,9 @@ class CdiscTerm::Utility
     data.each_with_index do |curr, index|
       cl = curr[:cl]
       if !cl.nil? && !set
-        @id = cl.id
-        @identifier = cl.identifier
-        @title = cl.preferredTerm
+        #@id = cl.id
+        identifier = cl.identifier
+        title = cl.preferredTerm
         set = true
       end
       if index >= 1
@@ -84,7 +88,7 @@ class CdiscTerm::Utility
       end
       results << compare_cl(curr[:term], prev_cl, cl)
     end
-    return results
+    return { identifier: identifier, title: title, results: results }
   end
 
   # Transpose result into array structure

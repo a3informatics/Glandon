@@ -1,0 +1,196 @@
+---
+:identifier: C122006
+:title: CDISC SDTM COPD Findings About Test Name Terminology
+:results:
+- :status: :not_present
+  :results: {}
+  :children: {}
+  :version: 39
+  :date: '2014-12-16'
+- :status: :not_present
+  :results: {}
+  :children: {}
+  :version: 40
+  :date: '2015-03-27'
+- :status: :created
+  :results:
+    :Definition:
+      :status: :created
+      :previous: ''
+      :current: Terminology relevant to the test names that describe findings about
+        a COPD event or intervention.
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>Terminology relevant to the test names that describe findings about a COPD event or intervention.</ins></li>
+          </ul>
+        </div>
+    :Preferred Term:
+      :status: :created
+      :previous: ''
+      :current: CDISC SDTM COPD Findings About Test Name Terminology
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>CDISC SDTM COPD Findings About Test Name Terminology</ins></li>
+          </ul>
+        </div>
+    :Notation:
+      :status: :created
+      :previous: ''
+      :current: CPFATS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>CPFATS</ins></li>
+          </ul>
+        </div>
+    :Identifier:
+      :status: :created
+      :previous: ''
+      :current: C122006
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>C122006</ins></li>
+          </ul>
+        </div>
+    :Synonym:
+      :status: :created
+      :previous: ''
+      :current: COPD Findings About Test Name
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>COPD Findings About Test Name</ins></li>
+          </ul>
+        </div>
+    :Extensible:
+      :status: :created
+      :previous: ''
+      :current: true
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>true</ins></li>
+          </ul>
+        </div>
+  :children:
+    :C122006.C94596:
+      :status: :created
+      :identifier: C94596
+      :preferred_term: Cumulative Exposure
+      :notation: Cumulative Exposure
+      :id: CLI-C122006_C94596
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+  :version: 41
+  :date: '2015-06-26'
+- :status: :no_change
+  :results:
+    :Definition:
+      :status: :no_change
+      :previous: Terminology relevant to the test names that describe findings about
+        a COPD event or intervention.
+      :current: Terminology relevant to the test names that describe findings about
+        a COPD event or intervention.
+      :difference: ''
+    :Preferred Term:
+      :status: :no_change
+      :previous: CDISC SDTM COPD Findings About Test Name Terminology
+      :current: CDISC SDTM COPD Findings About Test Name Terminology
+      :difference: ''
+    :Notation:
+      :status: :no_change
+      :previous: CPFATS
+      :current: CPFATS
+      :difference: ''
+    :Identifier:
+      :status: :no_change
+      :previous: C122006
+      :current: C122006
+      :difference: ''
+    :Synonym:
+      :status: :no_change
+      :previous: COPD Findings About Test Name
+      :current: COPD Findings About Test Name
+      :difference: ''
+    :Extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: ''
+  :children:
+    :C122006.C94596:
+      :status: :no_change
+      :identifier: C94596
+      :preferred_term: Cumulative Exposure
+      :notation: Cumulative Exposure
+      :id: CLI-C122006_C94596
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+  :version: 42
+  :date: '2015-09-25'
+- :status: :no_change
+  :results:
+    :Definition:
+      :status: :no_change
+      :previous: Terminology relevant to the test names that describe findings about
+        a COPD event or intervention.
+      :current: Terminology relevant to the test names that describe findings about
+        a COPD event or intervention.
+      :difference: ''
+    :Preferred Term:
+      :status: :no_change
+      :previous: CDISC SDTM COPD Findings About Test Name Terminology
+      :current: CDISC SDTM COPD Findings About Test Name Terminology
+      :difference: ''
+    :Notation:
+      :status: :no_change
+      :previous: CPFATS
+      :current: CPFATS
+      :difference: ''
+    :Identifier:
+      :status: :no_change
+      :previous: C122006
+      :current: C122006
+      :difference: ''
+    :Synonym:
+      :status: :no_change
+      :previous: COPD Findings About Test Name
+      :current: COPD Findings About Test Name
+      :difference: ''
+    :Extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: ''
+  :children:
+    :C122006.C124330:
+      :status: :created
+      :identifier: C124330
+      :preferred_term: Number of Severe Episodes
+      :notation: Number of Severe Episodes
+      :id: CLI-C122006_C124330
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C122006.C94596:
+      :status: :no_change
+      :identifier: C94596
+      :preferred_term: Cumulative Exposure
+      :notation: Cumulative Exposure
+      :id: CLI-C122006_C94596
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C122006.C124329:
+      :status: :created
+      :identifier: C124329
+      :preferred_term: Number of Moderate Episodes
+      :notation: Number of Moderate Episodes
+      :id: CLI-C122006_C124329
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C122006.C124328:
+      :status: :created
+      :identifier: C124328
+      :preferred_term: Number of Mild Episodes
+      :notation: Number of Mild Episodes
+      :id: CLI-C122006_C124328
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+  :version: 43
+  :date: '2015-12-18'

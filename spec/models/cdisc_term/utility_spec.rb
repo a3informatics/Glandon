@@ -20,6 +20,8 @@ describe CdiscTerm::Utility do
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("CDISCTerm.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+    load_test_file_into_triple_store("CT_V39.ttl")
+    load_test_file_into_triple_store("CT_V40.ttl")
     load_test_file_into_triple_store("CT_V41.ttl")
     load_test_file_into_triple_store("CT_V42.ttl")
     load_test_file_into_triple_store("CT_V43.ttl")
@@ -30,7 +32,7 @@ describe CdiscTerm::Utility do
     current = CdiscCli.find("CLI-C101812_C102054", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     results = CdiscTerm::Utility.compare_cli(ct, previous, current)
-    #write_yaml_file(results, sub_dir, "cli_compare_same.yaml")
+    ##write_yaml_file(results, sub_dir, "cli_compare_same.yaml")
     expected = read_yaml_file(sub_dir, "cli_compare_same.yaml")
     expect(results).to eq(expected)
   end
@@ -41,7 +43,7 @@ describe CdiscTerm::Utility do
     current = CdiscCli.find("CLI-C101812_C102054", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     results = CdiscTerm::Utility.compare_cli(ct, previous, current)
-    #write_yaml_file(results, sub_dir, "cli_compare_diff.yaml")
+    ##write_yaml_file(results, sub_dir, "cli_compare_diff.yaml")
     expected = read_yaml_file(sub_dir, "cli_compare_diff.yaml")
     expect(results).to eq(expected)
   end
@@ -51,7 +53,7 @@ describe CdiscTerm::Utility do
     current = CdiscCli.find("CLI-C101812_C102054", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     results = CdiscTerm::Utility.compare_cli(ct, previous, current)
-    #write_yaml_file(results, sub_dir, "cli_compare_no_previous.yaml")
+    ##write_yaml_file(results, sub_dir, "cli_compare_no_previous.yaml")
     expected = read_yaml_file(sub_dir, "cli_compare_no_previous.yaml")
     expect(results).to eq(expected)
   end
@@ -61,7 +63,7 @@ describe CdiscTerm::Utility do
     current = nil
     ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     results = CdiscTerm::Utility.compare_cli(ct, previous, current)
-    #write_yaml_file(results, sub_dir, "cli_compare_no_current.yaml")
+    ##write_yaml_file(results, sub_dir, "cli_compare_no_current.yaml")
     expected = read_yaml_file(sub_dir, "cli_compare_no_current.yaml")
     expect(results).to eq(expected)
   end
@@ -71,7 +73,7 @@ describe CdiscTerm::Utility do
     current = CdiscCl.find("CL-C101812", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42") # Note same release to ensure they are the same
     ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     results = CdiscTerm::Utility.compare_cl(ct, previous, current)
-    #write_yaml_file(results, sub_dir, "cl_compare_same.yaml")
+    ##write_yaml_file(results, sub_dir, "cl_compare_same.yaml")
     expected = read_yaml_file(sub_dir, "cl_compare_same.yaml")
     expect(results).to eq(expected)
   end
@@ -81,7 +83,7 @@ describe CdiscTerm::Utility do
     current = CdiscCl.find("CL-C101812", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     results = CdiscTerm::Utility.compare_cl(ct, previous, current)
-    #write_yaml_file(results, sub_dir, "cl_compare_different.yaml")
+    ##write_yaml_file(results, sub_dir, "cl_compare_different.yaml")
     expected = read_yaml_file(sub_dir, "cl_compare_different.yaml")
     expect(results).to eq(expected)
   end
@@ -91,7 +93,7 @@ describe CdiscTerm::Utility do
     current = CdiscCl.find("CL-C101812", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     results = CdiscTerm::Utility.compare_cl(ct, previous, current)
-    #write_yaml_file(results, sub_dir, "cl_compare_no_previous.yaml")
+    ##write_yaml_file(results, sub_dir, "cl_compare_no_previous.yaml")
     expected = read_yaml_file(sub_dir, "cl_compare_no_previous.yaml")
     expect(results).to eq(expected)
   end
@@ -101,28 +103,70 @@ describe CdiscTerm::Utility do
     current = nil
     ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V43")
     results = CdiscTerm::Utility.compare_cl(ct, previous, current)
-    #write_yaml_file(results, sub_dir, "cl_compare_no_current.yaml")
+    ##write_yaml_file(results, sub_dir, "cl_compare_no_current.yaml")
     expected = read_yaml_file(sub_dir, "cl_compare_no_current.yaml")
     expect(results).to eq(expected)
   end
 
-  it "determines the CLI changes" do
+  it "determines the CLI changes 1" do
     results = CdiscTerm::Utility.cli_changes("CLI-C100129_C100775")
-    #write_yaml_file(results, sub_dir, "cli_changes.yaml")
-    expected = read_yaml_file(sub_dir, "cli_changes.yaml")
+    #write_yaml_file(results, sub_dir, "cli_changes_1.yaml")
+    expected = read_yaml_file(sub_dir, "cli_changes_1.yaml")
     expect(results).to eq(expected)
   end
 
-  it "determines the CL changes" do
+  it "determines the CLI changes 2" do
+    results = CdiscTerm::Utility.cli_changes("CLI-C120521_C120601")
+    #write_yaml_file(results, sub_dir, "cli_changes_2.yaml")
+    expected = read_yaml_file(sub_dir, "cli_changes_2.yaml")
+    expect(results).to eq(expected)
+  end
+
+  it "determines the CLI changes 3" do
+    results = CdiscTerm::Utility.cli_changes("CLI-C100145_C120601")
+    #write_yaml_file(results, sub_dir, "cli_changes_3.yaml")
+    expected = read_yaml_file(sub_dir, "cli_changes_3.yaml")
+    expect(results).to eq(expected)
+  end
+
+  it "determines the CLI changes 4" do
+    results = CdiscTerm::Utility.cli_changes("CLI-C122006_C94596")
+    #write_yaml_file(results, sub_dir, "cli_changes_4.yaml")
+    expected = read_yaml_file(sub_dir, "cli_changes_4.yaml")
+    expect(results).to eq(expected)
+  end
+
+  it "determines the CL changes 1" do
     results = CdiscTerm::Utility.cl_changes("CL-C100129")
-    #write_yaml_file(results, sub_dir, "cl_changes.yaml")
-    expected = read_yaml_file(sub_dir, "cl_changes.yaml")
+    #write_yaml_file(results, sub_dir, "cl_changes_1.yaml")
+    expected = read_yaml_file(sub_dir, "cl_changes_1.yaml")
+    expect(results).to eq(expected)
+  end
+
+  it "determines the CL changes 2" do
+    results = CdiscTerm::Utility.cl_changes("CL-C120521")
+    #write_yaml_file(results, sub_dir, "cl_changes_2.yaml")
+    expected = read_yaml_file(sub_dir, "cl_changes_2.yaml")
+    expect(results).to eq(expected)
+  end
+
+  it "determines the CL changes 3" do
+    results = CdiscTerm::Utility.cl_changes("CL-C100145")
+    #write_yaml_file(results, sub_dir, "cl_changes_3.yaml")
+    expected = read_yaml_file(sub_dir, "cl_changes_3.yaml")
+    expect(results).to eq(expected)
+  end
+
+  it "determines the CL changes 4" do
+    results = CdiscTerm::Utility.cl_changes("CL-C122006")
+    #write_yaml_file(results, sub_dir, "cl_changes_4.yaml")
+    expected = read_yaml_file(sub_dir, "cl_changes_4.yaml")
     expect(results).to eq(expected)
   end
 
   it "transposes the results" do
     changes = CdiscTerm::Utility.cl_changes("CL-C100129")
-    results = CdiscTerm::Utility.transpose_results(changes)
+    results = CdiscTerm::Utility.transpose_results(changes[:results])
     #write_yaml_file(results, sub_dir, "cl_transpose.yaml")
     expected = read_yaml_file(sub_dir, "cl_transpose.yaml")
     expect(results).to eq(expected)

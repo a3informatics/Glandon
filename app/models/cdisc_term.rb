@@ -90,6 +90,7 @@ class CdiscTerm < Thesaurus
         results << thesaurus
       end
     end
+    results.sort_by! {|u| u.version}
     return results  
   end
 

@@ -1,0 +1,431 @@
+---
+:identifier: C120521
+:title: CDISC SDTM Anti-Viral Outcome of Treatment Terminology
+:results:
+- :status: :not_present
+  :results: {}
+  :children: {}
+  :version: 39
+  :date: '2014-12-16'
+- :status: :created
+  :results:
+    :Definition:
+      :status: :created
+      :previous: ''
+      :current: A terminology codelist to describe the anti-viral outcome of treatment.
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>A terminology codelist to describe the anti-viral outcome of treatment.</ins></li>
+          </ul>
+        </div>
+    :Preferred Term:
+      :status: :created
+      :previous: ''
+      :current: CDISC SDTM Anti-Viral Outcome of Treatment Terminology
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>CDISC SDTM Anti-Viral Outcome of Treatment Terminology</ins></li>
+          </ul>
+        </div>
+    :Notation:
+      :status: :created
+      :previous: ''
+      :current: AVOUTTRT
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>AVOUTTRT</ins></li>
+          </ul>
+        </div>
+    :Identifier:
+      :status: :created
+      :previous: ''
+      :current: C120521
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>C120521</ins></li>
+          </ul>
+        </div>
+    :Synonym:
+      :status: :created
+      :previous: ''
+      :current: Anti-Viral Outcome of Treatment
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>Anti-Viral Outcome of Treatment</ins></li>
+          </ul>
+        </div>
+    :Extensible:
+      :status: :created
+      :previous: ''
+      :current: true
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="ins"><ins>true</ins></li>
+          </ul>
+        </div>
+  :children:
+    :C120521.C120597:
+      :status: :created
+      :identifier: C120597
+      :preferred_term: Rapid Virologic Response
+      :notation: RAPID VIROLOGIC RESPONSE
+      :id: CLI-C120521_C120597
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V40
+    :C120521.C120601:
+      :status: :created
+      :identifier: C120601
+      :preferred_term: Virologic End Of Treatment Response
+      :notation: VIROLOGIC END OF TREATMENT RESPONSE
+      :id: CLI-C120521_C120601
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V40
+    :C120521.C120598:
+      :status: :created
+      :identifier: C120598
+      :preferred_term: Sustained Virologic Response
+      :notation: SUSTAINED VIROLOGIC RESPONSE
+      :id: CLI-C120521_C120598
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V40
+    :C120521.C120602:
+      :status: :created
+      :identifier: C120602
+      :preferred_term: Virologic Failure
+      :notation: VIROLOGIC FAILURE
+      :id: CLI-C120521_C120602
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V40
+    :C120521.C120599:
+      :status: :created
+      :identifier: C120599
+      :preferred_term: Viral Breakthrough
+      :notation: VIRAL BREAKTHROUGH
+      :id: CLI-C120521_C120599
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V40
+    :C120521.C120603:
+      :status: :created
+      :identifier: C120603
+      :preferred_term: Virologic Non-Response
+      :notation: VIROLOGIC NON-RESPONSE
+      :id: CLI-C120521_C120603
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V40
+    :C120521.C120604:
+      :status: :created
+      :identifier: C120604
+      :preferred_term: Virologic Null-Response
+      :notation: VIROLOGIC NULL-RESPONSE
+      :id: CLI-C120521_C120604
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V40
+    :C120521.C120605:
+      :status: :created
+      :identifier: C120605
+      :preferred_term: Virologic Partial Response
+      :notation: VIROLOGIC PARTIAL RESPONSE
+      :id: CLI-C120521_C120605
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V40
+    :C120521.C120600:
+      :status: :created
+      :identifier: C120600
+      :preferred_term: Viral Relapse
+      :notation: VIRAL RELAPSE
+      :id: CLI-C120521_C120600
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V40
+  :version: 40
+  :date: '2015-03-27'
+- :status: :no_change
+  :results:
+    :Definition:
+      :status: :no_change
+      :previous: A terminology codelist to describe the anti-viral outcome of treatment.
+      :current: A terminology codelist to describe the anti-viral outcome of treatment.
+      :difference: ''
+    :Preferred Term:
+      :status: :no_change
+      :previous: CDISC SDTM Anti-Viral Outcome of Treatment Terminology
+      :current: CDISC SDTM Anti-Viral Outcome of Treatment Terminology
+      :difference: ''
+    :Notation:
+      :status: :no_change
+      :previous: AVOUTTRT
+      :current: AVOUTTRT
+      :difference: ''
+    :Identifier:
+      :status: :no_change
+      :previous: C120521
+      :current: C120521
+      :difference: ''
+    :Synonym:
+      :status: :no_change
+      :previous: Anti-Viral Outcome of Treatment
+      :current: Anti-Viral Outcome of Treatment
+      :difference: ''
+    :Extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: ''
+  :children:
+    :C120521.C120599:
+      :status: :no_change
+      :identifier: C120599
+      :preferred_term: Viral Breakthrough
+      :notation: VIRAL BREAKTHROUGH
+      :id: CLI-C120521_C120599
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+    :C120521.C120603:
+      :status: :no_change
+      :identifier: C120603
+      :preferred_term: Virologic Non-Response
+      :notation: VIROLOGIC NON-RESPONSE
+      :id: CLI-C120521_C120603
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+    :C120521.C120604:
+      :status: :no_change
+      :identifier: C120604
+      :preferred_term: Virologic Null-Response
+      :notation: VIROLOGIC NULL-RESPONSE
+      :id: CLI-C120521_C120604
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+    :C120521.C120605:
+      :status: :no_change
+      :identifier: C120605
+      :preferred_term: Virologic Partial Response
+      :notation: VIROLOGIC PARTIAL RESPONSE
+      :id: CLI-C120521_C120605
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+    :C120521.C120600:
+      :status: :no_change
+      :identifier: C120600
+      :preferred_term: Viral Relapse
+      :notation: VIRAL RELAPSE
+      :id: CLI-C120521_C120600
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+    :C120521.C120597:
+      :status: :no_change
+      :identifier: C120597
+      :preferred_term: Rapid Virologic Response
+      :notation: RAPID VIROLOGIC RESPONSE
+      :id: CLI-C120521_C120597
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+    :C120521.C120601:
+      :status: :no_change
+      :identifier: C120601
+      :preferred_term: Virologic End Of Treatment Response
+      :notation: VIROLOGIC END OF TREATMENT RESPONSE
+      :id: CLI-C120521_C120601
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+    :C120521.C120598:
+      :status: :no_change
+      :identifier: C120598
+      :preferred_term: Sustained Virologic Response
+      :notation: SUSTAINED VIROLOGIC RESPONSE
+      :id: CLI-C120521_C120598
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+    :C120521.C120602:
+      :status: :no_change
+      :identifier: C120602
+      :preferred_term: Virologic Failure
+      :notation: VIROLOGIC FAILURE
+      :id: CLI-C120521_C120602
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V41
+  :version: 41
+  :date: '2015-06-26'
+- :status: :no_change
+  :results:
+    :Definition:
+      :status: :no_change
+      :previous: A terminology codelist to describe the anti-viral outcome of treatment.
+      :current: A terminology codelist to describe the anti-viral outcome of treatment.
+      :difference: ''
+    :Preferred Term:
+      :status: :no_change
+      :previous: CDISC SDTM Anti-Viral Outcome of Treatment Terminology
+      :current: CDISC SDTM Anti-Viral Outcome of Treatment Terminology
+      :difference: ''
+    :Notation:
+      :status: :no_change
+      :previous: AVOUTTRT
+      :current: AVOUTTRT
+      :difference: ''
+    :Identifier:
+      :status: :no_change
+      :previous: C120521
+      :current: C120521
+      :difference: ''
+    :Synonym:
+      :status: :no_change
+      :previous: Anti-Viral Outcome of Treatment
+      :current: Anti-Viral Outcome of Treatment
+      :difference: ''
+    :Extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: ''
+  :children:
+    :C120521.C120597:
+      :status: :no_change
+      :identifier: C120597
+      :preferred_term: Rapid Virologic Response
+      :notation: RAPID VIROLOGIC RESPONSE
+      :id: CLI-C120521_C120597
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :C120521.C120601:
+      :status: :no_change
+      :identifier: C120601
+      :preferred_term: Virologic End Of Treatment Response
+      :notation: VIROLOGIC END OF TREATMENT RESPONSE
+      :id: CLI-C120521_C120601
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :C120521.C120598:
+      :status: :no_change
+      :identifier: C120598
+      :preferred_term: Sustained Virologic Response
+      :notation: SUSTAINED VIROLOGIC RESPONSE
+      :id: CLI-C120521_C120598
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :C120521.C120602:
+      :status: :no_change
+      :identifier: C120602
+      :preferred_term: Virologic Failure
+      :notation: VIROLOGIC FAILURE
+      :id: CLI-C120521_C120602
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :C120521.C120599:
+      :status: :no_change
+      :identifier: C120599
+      :preferred_term: Viral Breakthrough
+      :notation: VIRAL BREAKTHROUGH
+      :id: CLI-C120521_C120599
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :C120521.C120603:
+      :status: :no_change
+      :identifier: C120603
+      :preferred_term: Virologic Non-Response
+      :notation: VIROLOGIC NON-RESPONSE
+      :id: CLI-C120521_C120603
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :C120521.C120604:
+      :status: :no_change
+      :identifier: C120604
+      :preferred_term: Virologic Null-Response
+      :notation: VIROLOGIC NULL-RESPONSE
+      :id: CLI-C120521_C120604
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :C120521.C120605:
+      :status: :no_change
+      :identifier: C120605
+      :preferred_term: Virologic Partial Response
+      :notation: VIROLOGIC PARTIAL RESPONSE
+      :id: CLI-C120521_C120605
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :C120521.C120600:
+      :status: :no_change
+      :identifier: C120600
+      :preferred_term: Viral Relapse
+      :notation: VIRAL RELAPSE
+      :id: CLI-C120521_C120600
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+  :version: 42
+  :date: '2015-09-25'
+- :status: :no_change
+  :results:
+    :Definition:
+      :status: :no_change
+      :previous: A terminology codelist to describe the anti-viral outcome of treatment.
+      :current: A terminology codelist to describe the anti-viral outcome of treatment.
+      :difference: ''
+    :Preferred Term:
+      :status: :no_change
+      :previous: CDISC SDTM Anti-Viral Outcome of Treatment Terminology
+      :current: CDISC SDTM Anti-Viral Outcome of Treatment Terminology
+      :difference: ''
+    :Notation:
+      :status: :no_change
+      :previous: AVOUTTRT
+      :current: AVOUTTRT
+      :difference: ''
+    :Identifier:
+      :status: :no_change
+      :previous: C120521
+      :current: C120521
+      :difference: ''
+    :Synonym:
+      :status: :no_change
+      :previous: Anti-Viral Outcome of Treatment
+      :current: Anti-Viral Outcome of Treatment
+      :difference: ''
+    :Extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: ''
+  :children:
+    :C120521.C120599:
+      :status: :no_change
+      :identifier: C120599
+      :preferred_term: Viral Breakthrough
+      :notation: VIRAL BREAKTHROUGH
+      :id: CLI-C120521_C120599
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C120521.C120603:
+      :status: :no_change
+      :identifier: C120603
+      :preferred_term: Virologic Non-Response
+      :notation: VIROLOGIC NON-RESPONSE
+      :id: CLI-C120521_C120603
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C120521.C120604:
+      :status: :no_change
+      :identifier: C120604
+      :preferred_term: Virologic Null-Response
+      :notation: VIROLOGIC NULL-RESPONSE
+      :id: CLI-C120521_C120604
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C120521.C120598:
+      :status: :no_change
+      :identifier: C120598
+      :preferred_term: Sustained Virologic Response
+      :notation: SUSTAINED VIROLOGIC RESPONSE
+      :id: CLI-C120521_C120598
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C120521.C120597:
+      :status: :no_change
+      :identifier: C120597
+      :preferred_term: Rapid Virologic Response
+      :notation: RAPID VIROLOGIC RESPONSE
+      :id: CLI-C120521_C120597
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C120521.C120600:
+      :status: :no_change
+      :identifier: C120600
+      :preferred_term: Viral Relapse
+      :notation: VIRAL RELAPSE
+      :id: CLI-C120521_C120600
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C120521.C120601:
+      :status: :no_change
+      :identifier: C120601
+      :preferred_term: Virologic End Of Treatment Response
+      :notation: VIROLOGIC END OF TREATMENT RESPONSE
+      :id: CLI-C120521_C120601
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C120521.C120605:
+      :status: :no_change
+      :identifier: C120605
+      :preferred_term: Virologic Partial Response
+      :notation: VIROLOGIC PARTIAL RESPONSE
+      :id: CLI-C120521_C120605
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :C120521.C120602:
+      :status: :no_change
+      :identifier: C120602
+      :preferred_term: Virologic Failure
+      :notation: VIROLOGIC FAILURE
+      :id: CLI-C120521_C120602
+      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+  :version: 43
+  :date: '2015-12-18'

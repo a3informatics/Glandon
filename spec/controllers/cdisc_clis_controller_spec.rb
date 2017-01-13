@@ -24,8 +24,8 @@ describe CdiscClisController do
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("CT_V39.ttl")
-      load_test_file_into_triple_store("CT_V40.ttl")
       load_test_file_into_triple_store("CT_V41.ttl")
+      load_test_file_into_triple_store("CT_V40.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -37,8 +37,26 @@ describe CdiscClisController do
       params = { :id => "CLI-C66741_C12472" }
       get :changes, params
       results = assigns(:results)
-      #write__yaml_file(results, sub_dir, "cdisc_cli_controller_1.yaml")
-      expected = read_yaml_file(sub_dir, "cdisc_cli_controller_1.yaml")
+      #write__yaml_file(results, sub_dir, "cdisc_cli_controller_changes_1.yaml")
+      expected = read_yaml_file(sub_dir, "cdisc_cli_controller_changes_1.yaml")
+      expect(results).to eq(expected)
+    end
+    
+    it "calculates all changes for a code list item" do
+      params = { :id => "CLI-C120521_C120601" }
+      get :changes, params
+      results = assigns(:results)
+      #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_2.yaml")
+      expected = read_yaml_file(sub_dir, "cdisc_cli_controller_changes_2.yaml")
+      expect(results).to eq(expected)
+    end
+    
+    it "calculates all changes for a code list item" do
+      params = { :id => "CLI-C100145_C120601" }
+      get :changes, params
+      results = assigns(:results)
+      #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_3.yaml")
+      expected = read_yaml_file(sub_dir, "cdisc_cli_controller_changes_3.yaml")
       expect(results).to eq(expected)
     end
     
@@ -46,8 +64,8 @@ describe CdiscClisController do
       params = {:id => "CLI-C66741_C12472", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V40"}
       get :show, params
       results = assigns(:cdiscCli)
-      #write_yaml_file(results.to_json, sub_dir, "cdisc_cli_controller_2.yaml")
-      expected = read_yaml_file(sub_dir, "cdisc_cli_controller_2.yaml")
+      #write_yaml_file(results.to_json, sub_dir, "cdisc_cli_controller_show.yaml")
+      expected = read_yaml_file(sub_dir, "cdisc_cli_controller_show.yaml")
       expect(results.to_json).to eq(expected)
     end
 
