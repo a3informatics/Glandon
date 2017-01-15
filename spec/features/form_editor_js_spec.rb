@@ -42,6 +42,10 @@ describe "Form Editor", :type => :feature do
       :useful_1 =>"HR", :useful_2 => "Heart Rate", :user_id => @user.id, :note_type => 0
   end
 
+  after :each do
+    click_link 'logoff_button'
+  end
+
   after :all do
     Notepad.destroy_all
     user = User.where(:email => "form_edit@example.com").first
@@ -50,7 +54,7 @@ describe "Form Editor", :type => :feature do
 
   def create_form(identifier, label, new_label)
     visit '/users/sign_in'
-    expect(page).to have_content 'Log in'  
+    expect(page).to have_content 'Email'
     fill_in 'Email', with: 'form_edit@example.com'
     fill_in 'Password', with: '12345678'
     click_button 'Log in'
@@ -71,13 +75,15 @@ describe "Form Editor", :type => :feature do
 
   def load_form(identifier)
     visit '/users/sign_in'
-    expect(page).to have_content 'Log in'  
+    expect(page).to have_content 'Email'
     fill_in 'Email', with: 'form_edit@example.com'
     fill_in 'Password', with: '12345678'
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'  
     click_link 'Forms'
-    expect(page).to have_content 'Index: Forms'  
+    expect(page).to have_content 'Index: Forms' 
+    ui_main_show_all
+    expect(page).to have_content "#{identifier}" 
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
     expect(page).to have_content 'History:'  
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
@@ -225,14 +231,10 @@ describe "Form Editor", :type => :feature do
 
     it "Common Item Panel", js: true do
       load_form("CRF TEST 1") 
-      #key = ui_get_key_by_path('["CRF Test Form"]')
-      #expect(key).to eq(1)
-      #key = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
-      #expect(key).to eq(2)
       key = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Date and Time (--DTC)"]')
-      #expect(key).to eq(4)
       ui_click_node_key(key)
       expect(page).to have_content 'Common Item Details'
+      expect(page).to have_content 'Date and Time (--DTC)'
     end
 
     it "allows items to be moved up and down", js: true do
@@ -877,7 +879,7 @@ describe "Form Editor", :type => :feature do
       expect(key1).to eq(-1)
     end
 
-    it "allows the form to be saved", js: true do
+    it "allows the form to be saved using close button", js: true do
       load_form("CRF TEST 1") 
       wait_for_ajax
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (, V1, Incomplete)")
@@ -888,17 +890,19 @@ describe "Form Editor", :type => :feature do
       ui_check_disabled_input('formIdentifier', "CRF TEST 1")
       ui_check_input('formLabel', "CRF Test Form")
       fill_in 'formLabel', with: "Updated And Wonderful Label"
-      find(:xpath, '//*[@id="close"]', :text => "Close").click
-      #click_button 'close'
+      ui_click_close
       expect(page).to have_content 'History: CRF TEST 1'
       ui_table_row_link_click("CRF TEST 1", "Edit")
-      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (, V1, Incomplete)")
+      expect(page).to have_content("Edit: Updated And Wonderful Label CRF TEST 1 (, V1, Incomplete)")
+      sleep 3
       ui_check_input('formLabel', "Updated And Wonderful Label")
       fill_in 'formLabel', with: "Updated And Wonderful Label, 2nd attempt!"
-      click_button 'close'
+      ui_click_close
       expect(page).to have_content 'History: CRF TEST 1'
       ui_table_row_link_click("CRF TEST 1", "Edit")
-      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (, V1, Incomplete)")
+      sleep 3
+      pause
+      expect(page).to have_content("Edit: Updated And Wonderful Label, 2nd attempt! CRF TEST 1 (, V1, Incomplete)")
       ui_check_input('formLabel', "Updated And Wonderful Label, 2nd attempt!")
     end
 

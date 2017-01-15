@@ -35,9 +35,11 @@ module UiHelpers
   end
 
   def ui_check_checkbox(id, value)
-    expected = "on" if value
-    expected = "off" if !value
-    expect(find_field("#{id}").value).to eq("#{expected}")
+    #expected = "on" if value
+    #expected = "off" if !value
+    #expect(find_field("#{id}").value).to eq("#{expected}")
+    assert page.has_no_checked_field?(id) if !value 
+    assert page.has_checked_field?(id) if value 
   end
 
   def ui_check_radio(id, value)
@@ -98,11 +100,7 @@ module UiHelpers
     end
   end
 
-  def ui_check_table_row_class(table_id, row, the_class)
-    expect(page.all("table##{table_id} tbody tr:nth-child(#{row})")[:class]).to include(the_class)
-  end
-
-  def ui_check_anon_table_row(row, data)
+   def ui_check_anon_table_row(row, data)
     page.all("table tbody tr:nth-child(#{row}) td").each_with_index do |td, index|
       #puts "#{td.text} <-> #{data[index]}, for index #{index}"
       if index < data.length
@@ -115,6 +113,14 @@ module UiHelpers
     td = find(:xpath, "//*[@id='#{id}']")
     #//*[@id="conceptLabel"]
     expect(td.text).to eq(text)
+  end
+
+  def ui_check_no_flash_message_present
+    expect(page).not_to have_selector(:css, "alert")
+  end
+
+  def ui_check_flash_message_present
+    expect(page).to have_selector(:css, "alert")
   end
 
   # Close and Save
