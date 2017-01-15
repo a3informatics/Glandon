@@ -3,6 +3,7 @@ require 'rails_helper'
 describe "CDISC Term", :type => :feature do
   
   include DataHelpers
+  include PublicFileHelpers
 
   before :each do
     user = FactoryGirl.create(:user)
@@ -30,6 +31,7 @@ describe "CDISC Term", :type => :feature do
       load_test_file_into_triple_store("CT_V40.ttl")
       load_test_file_into_triple_store("CT_V41.ttl")
       load_test_file_into_triple_store("CT_V42.ttl")
+      load_test_file_into_triple_store("CT_V43.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -111,6 +113,26 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes: Body Fat Measurement C122232'
       #save_and_open_page
     end
+
+    it "allows changes to be viewed" do
+      copy_file_to_public_files("features", "CDISC_CT_Changes.yaml", "results")
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      click_link 'Changes'
+      expect(page).to have_content 'Changes: CDISC Terminology'
+    end
+
+    it "allows changes report to be produced"
+
+    it "allows submission to be viewed" do
+      copy_file_to_public_files("features", "CDISC_CT_Submission_Changes.yaml", "results")
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      click_link 'Submission'
+      expect(page).to have_content 'Submission Values Changes:'
+    end
+
+    it "allows submission report to be produced"
 
   end
 

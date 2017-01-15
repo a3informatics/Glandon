@@ -1,3 +1,7 @@
+var csSearchTable;
+var csOffset;
+var csLimit;
+  
 $(document).ready( function() {
 	
 	jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
@@ -9,19 +13,17 @@ $(document).ready( function() {
   var counter = document.getElementById("notepadAdd")
   var termId = document.getElementById("termId");
   var namespace = document.getElementById("namespace");
-  var offset;
-  var limit;
   var more;
   var currentRef;
   var currentRow;
 
   more = true;
-  offset = 1;
-  limit = 1000;
+  csOffset = 1;
+  csLimit = 1000;
   currentRef = null;
   currentRow = null;
   
-  var searchTable = $('#search2Table').DataTable({
+  csSearchTable = $('#search2Table').DataTable({
     "columns": [
       {"data" : "parentIdentifier", "width" : "10%"},
       {"data" : "identifier", "width" : "10%"},
@@ -31,15 +33,15 @@ $(document).ready( function() {
       {"data" : "preferredTerm", "width" : "15%"},
       {"data" : "extensible", "width" : "5%"}
     ],
-    "pageLength": 5,
-    "lengthMenu": [[5, 10, 25, 50, 75, 100], [5, 10, 25, 50, 75, 100]],
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
     "processing": true,
     "language": {
       "processing": "<img src='<%= asset_path('processing.gif') %>'>"
     }
   });
 
-  searchTable.processing(true);
+  csSearchTable.processing(true);
   next();
 
   // Setup - add a text input to each footer cell
@@ -55,7 +57,7 @@ $(document).ready( function() {
   } );
  
   // Apply the search
-  searchTable.columns().every( function () {
+  csSearchTable.columns().every( function () {
     var that = this;
     $( 'input', this.footer() ).on( 'keyup change', function () {
       if (that.search() !== this.value) {
@@ -74,8 +76,8 @@ $(document).ready( function() {
     $(this).toggleClass('success');
 
     // Get the row
-    var row = searchTable.row(this).index();
-    var data = searchTable.row(row).data();
+    var row = csSearchTable.row(this).index();
+    var data = csSearchTable.row(row).data();
 
     // Save the selection
     currentRef = this;
@@ -84,11 +86,10 @@ $(document).ready( function() {
 
   $('#notepadAdd').click(function() {
     if (currentRef != null) {
-      var row = searchTable.row(currentRef).index();
-      var data = searchTable.row(row).data();
+      var row = csSearchTable.row(currentRef).index();
+      var data = csSearchTable.row(row).data();
       if (data.identifier == data.parentIdentifier) {
-        var html = alertWarning("You need to select an item not a code list.");
-        displayAlerts(html);    
+        displayWarning("You need to select an item not a code list.");
       } else {
         $.ajax({
           url: "../notepads/create_term",
@@ -104,39 +105,48 @@ $(document).ready( function() {
         });
       }
     } else {
-      var html = alertWarning("You need to select an item.");
-      displayAlerts(html);
+      displayWarning("You need to select an item.");
     }
   });
 
-  // Get the next block of data for the table
-  function next() {
-    $.ajax({
-      url: "next",
-      data: { "id": termId.value, "namespace": namespace.value, "offset": offset, "limit": limit },
-      type: 'GET',
-      dataType: 'json',
-      success: function(result){
-        var data = result['data'];
-        offset = result['offset'];
-        limit = result['limit'];
-        more = result['more'];
-        var i;
-        for (i=0; i<data.length; i++) {
-          var row = data[i]
-          searchTable.row.add(row);
-        }
-        searchTable.draw();
-        if (more) {
-          next();
-        } else {
-          searchTable.processing(false);
-        }
-      },
-      error: function(xhr,status,error){
-        handleAjaxError(xhr, status, error);
-      }
-    });    
-  }
-
 });
+
+/**
+ * Show all items in the search table. 
+ * Really only for testing purposes.
+ *
+ * @return [Null] 
+ */
+function csSearchTableAll() {
+  csSearchTable.page.len(-1).draw();
+}
+
+// Get the next block of data for the table
+function next() {
+  $.ajax({
+    url: "next",
+    data: { "id": termId.value, "namespace": namespace.value, "offset": csOffset, "limit": csLimit },
+    type: 'GET',
+    dataType: 'json',
+    success: function(result){
+      var data = result['data'];
+      csOffset = result['offset'];
+      csLimit = result['limit'];
+      more = result['more'];
+      var i;
+      for (i=0; i<data.length; i++) {
+        var row = data[i]
+        csSearchTable.row.add(row);
+      }
+      csSearchTable.draw();
+      if (more) {
+        next();
+      } else {
+        csSearchTable.processing(false);
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+    }
+  });    
+}

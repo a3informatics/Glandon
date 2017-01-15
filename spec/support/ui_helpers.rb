@@ -90,6 +90,10 @@ module UiHelpers
     page.evaluate_script("dtMainTableAll()")
   end
 
+  def ui_cdisc_search_show_all
+    page.evaluate_script("csSearchTableAll()")
+  end
+  
   # check table row
   def ui_check_table_row(table_id, row, data)
     page.all("table##{table_id} tbody tr:nth-child(#{row}) td").each_with_index do |td, index|
@@ -131,6 +135,10 @@ module UiHelpers
 
   def ui_click_save
     page.evaluate_script("rhClickSave()")
+  end
+
+  def ui_click_by_id(id)
+    page.evaluate_script("simulateClick($('##{id}')[0])")
   end
 
   # D3 Tree Functions
