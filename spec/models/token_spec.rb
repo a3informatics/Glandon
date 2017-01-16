@@ -49,8 +49,10 @@ RSpec.describe Token, type: :model do
   it "allows the same user to obtain a token when already allocated" do
   	item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     token1 = Token.obtain(item, @user)
+    sleep 3 # Valid sleep in this case, to let token 1 elapse a bit so as to test reset
     token2 = Token.obtain(item, @user)
-    expect(token1.id).to eq(token2.id)
+    expect(token1.item_uri).to eq(token2.item_uri) # Same item locked
+    expect(token2.locked_at).to be_within(1.second).of Time.now # time reset to maximise lock time
   end
 
   it "prevents another user obtaining a token when already allocated" do

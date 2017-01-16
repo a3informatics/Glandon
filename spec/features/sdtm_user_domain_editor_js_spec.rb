@@ -45,6 +45,10 @@ describe "SDTM User Domain Editor", :type => :feature do
     user.destroy
   end
 
+  after :each do
+    click_link 'logoff_button'
+  end
+
   def clone_domain(prefix)
     visit '/users/sign_in'
     expect(page).to have_content 'Log in'  
@@ -64,6 +68,7 @@ describe "SDTM User Domain Editor", :type => :feature do
     find(:xpath, "//tr[contains(.,'#{prefix} Domain')]/td/a", :text => 'History').click
     expect(page).to have_content 'History:'
     find(:xpath, "//tr[contains(.,'#{prefix} Domain')]/td/a", :text => 'Edit').click
+    expect(page).to have_content 'Edit:'  
   end
 
   def load_domain(identifier)
@@ -77,8 +82,17 @@ describe "SDTM User Domain Editor", :type => :feature do
     expect(page).to have_content 'Index: Domains'
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
     expect(page).to have_content 'History:'
-    #pause
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
+    expect(page).to have_content 'Edit:'  
+  end
+
+  def reload_domain(identifier)
+    click_link 'Domains'
+    expect(page).to have_content 'Index: Domains'
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
+    expect(page).to have_content 'History:'
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
+    expect(page).to have_content 'Edit:'  
   end
 
   describe "Curator User", :type => :feature do
@@ -138,7 +152,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_check_input('variableComment', "Some comments for the site id")      
     end
 
-    it "allows a non-standard variable to be added", js: true do
+    it "allows a non-standard variable to be added and deleted", js: true do
       load_domain("DM Domain")
       click_button "V+"
       key_variable = ui_get_key_by_path('["Demographics", "DM000029"]')
@@ -161,7 +175,10 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_check_input('variableFormat', "ISO 1234")
       ui_check_input('variableNotes', "This is a new variable")
       ui_check_input('variableComment', "Some comments for the new kid")  
-      ui_check_input('variableDatatype', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM")  
+      ui_check_input('variableDatatype', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM")
+      click_button 'variableDelete'
+      key_variable = ui_get_key_by_path('["Demographics", "DMNEW"]')
+      expect(key_variable).to eq(-1)
     end  
 
     it "allows non-standard variable details to be updated", js: true do
@@ -172,25 +189,31 @@ describe "SDTM User Domain Editor", :type => :feature do
       fill_in 'variableName', with: "DMNEW"
       fill_in 'variableLabel', with: "New label"
       ui_click_node_name("ARM")
+      wait_for_ajax
       ui_click_node_name("DMNEW")
+      wait_for_ajax
       ui_check_input('variableName', "DMNEW")
       ui_check_input('variableLabel', "New label")
       fill_in 'variableLabel', with: "New label updated"
       ui_click_node_name("Demographics")      
+      wait_for_ajax
       ui_click_node_name("DMNEW")
-      ui_check_input('variableLabel', "New label updated")
+      ui_check_input('variableLabel', "New label updated")    
+      click_button 'variableDelete'
     end
 
-    it "allows non-standard variable to be moved up and down", js: true do
+    it "allows non-standard variable to be moved up and down and not pass a standard variable", js: true do
       load_domain("DM Domain")
       click_button "V+"
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
       expect(key_1).not_to eq(-1)
       ui_click_node_name("Demographics")
+      wait_for_ajax
       click_button "V+"
       key_2 = ui_get_key_by_path('["Demographics", "DM000030"]')
       expect(key_2).not_to eq(-1)
       ui_click_node_key(key_2)
+      wait_for_ajax
       click_button 'variableUp'
       ui_check_node_ordinal(key_2, 29)
       ui_check_node_ordinal(key_1, 30)
@@ -201,13 +224,9 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_check_node_ordinal(key_2, 30)
       click_button 'variableDown'
       expect(page).to have_content 'You cannot move the node down.'
-    end
-
-    it "non-standard variabled cannot be moved above a standard variable", js: true do
-      load_domain("DM Domain")
-      click_button "V+"
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
-      expect(key_1).not_to eq(-1)
+      ui_click_node_key(key_1)
+      wait_for_ajax
       click_button 'variableUp'
       expect(page).to have_content 'You cannot move the node up past a standard variable.'
     end
@@ -215,47 +234,30 @@ describe "SDTM User Domain Editor", :type => :feature do
     it "allows markdown for the notes and comments", js: true do
       load_domain("DM Domain")
       ui_click_node_name("DTHFL")
+      wait_for_ajax
       ui_check_disabled_input('variableLabel', "Subject Death Flag")
       ui_set_focus('variableNotes')
       expect(page).to have_content 'Markdown Preview'
       fill_in 'variableNotes', with: "*Hello* World! Also add soem single quotes 'like' this."
       click_button 'markdown_preview'
+      wait_for_ajax
       ui_check_div_text('genericMarkdown', "Hello World! Also add soem single quotes 'like' this.")
       click_button 'markdown_hide'
       expect(page).to have_no_content 'Markdown Preview'
       fill_in 'variableComment', with: 'And now for smething completely different ... and some double quotes "here".'
       click_button 'markdown_preview'
+      wait_for_ajax
       ui_check_div_text('genericMarkdown', "And now for smething completely different ... and some double quotes \"here\".")
       click_button 'markdown_hide'
       expect(page).to have_no_content 'Markdown Preview'
-    end
-
-    it "allows a non standard variable to be deleted", js: true do
-      load_domain("DM Domain")
-      click_button "V+"
-      key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
-      expect(key_1).not_to eq(-1)
-      click_button 'variableDelete'
-      key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
-      expect(key_1).to eq(-1)
     end
 
     it "prevents a standard variable from being deleted", js: true do
       load_domain("DM Domain")
       key_1 = ui_get_key_by_path('["Demographics", "SITEID"]')
       ui_click_node_key(key_1)
+      wait_for_ajax
       ui_button_disabled('variableDelete')
-    end
-
-    it "check unique name of variables", js: true do
-      load_domain("DM Domain")
-      click_button "V+"
-      key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
-      expect(key_1).not_to eq(-1)
-      fill_in 'variableName', with: "AGE"
-      ui_click_node_name("SITEID")
-      ui_check_input('variableName', "AGE")
-      expect(page).to have_content 'The variable name is not valid. Check the prefix, valid characters and length.'
     end
 
     it "allows the fields to be valdated", js: true do
@@ -278,10 +280,43 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_check_validation_ok(key_variable, "variableComment", "#{C_ALL_CHARS}", other_variable)
     end
 
+    it "allows the edit session to be saved", js: true do
+      load_domain("DM Domain")
+      click_button "V+"
+      wait_for_ajax
+      key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
+      expect(key_1).not_to eq(-1)
+      ui_click_save
+      #pause
+      ui_click_close
+      reload_domain("DM Domain")
+      key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
+      ui_click_node_key(key_1)
+      expect(key_1).not_to eq(-1)
+    end
+
     it "allows the edit session to be closed", js: true do
       load_domain("DM Domain")
+      key_1 = ui_get_key_by_path('["Demographics", "STUDYID"]')
+      ui_click_node_key(key_1)
+      fill_in 'variableComment', with: "Some comments for the **STUDYID** varaible"
       ui_click_close
-      expect(page).to have_content 'History:'
+      reload_domain("DM Domain")
+      key_1 = ui_get_key_by_path('["Demographics", "STUDYID"]')
+      ui_click_node_key(key_1)
+      ui_check_input('variableComment', "Some comments for the **STUDYID** varaible")
+    end
+
+    it "allows the edit session to be closed indirectly, saves data", js: true do
+      load_domain("DM Domain")
+      key_1 = ui_get_key_by_path('["Demographics", "STUDYID"]')
+      ui_click_node_key(key_1)
+      fill_in 'variableComment', with: "Some comments for the **STUDYID** varaible"
+      ui_click_back_button
+      reload_domain("DM Domain")
+      key_1 = ui_get_key_by_path('["Demographics", "STUDYID"]')
+      ui_click_node_key(key_1)
+      ui_check_input('variableComment', "Some comments for the **STUDYID** varaible")
     end
 
   end

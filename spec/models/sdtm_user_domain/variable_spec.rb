@@ -73,6 +73,35 @@ describe SdtmUserDomain::Variable do
     expect(SdtmUserDomain::Variable.new(triples, "D-ACME_VSDomain_V5").to_json).to eq(result) 
   end 
 
+  it "allows object to be initialized from triples" do
+    result = 
+      {
+        :id => "D-ACME_VSDomain_V9", 
+        :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", 
+        :extension_properties => [],
+        :label => "Category for Vital Signs",
+        :ordinal => 9,
+        :rule => "",
+        :type => "http://www.assero.co.uk/BusinessDomain#UserVariable",
+        :name => "VSCAT",
+        :used => true,
+        :non_standard => false,
+        :length => 0,
+        :key_ordinal => 0,
+        :format => "",
+        :ct => "",
+        :notes => "",
+        :comment => "",
+        :classification => "null",
+        :sub_classification => {},
+        :compliance => "null",
+        :datatype => "null",
+        :variable_ref => {}
+      }
+    triples = read_yaml_file(sub_dir, "variable_triples_2.yaml")
+    expect(SdtmUserDomain::Variable.new(triples, "D-ACME_VSDomain_V9").to_json).to eq(result) 
+  end 
+
   it "allows an object to be found" do
     variable = SdtmUserDomain::Variable.find("D-ACME_VSDomain_V5", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     #write_yaml_file(variable.triples, sub_dir, "variable_triples.yaml")
@@ -81,11 +110,29 @@ describe SdtmUserDomain::Variable do
     expect(variable.to_json).to eq(expected)
   end
 
+  it "allows an object to be found, classification and sub-classifcation" do
+    variable = SdtmUserDomain::Variable.find("D-ACME_VSDomain_V9", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
+    #write_yaml_file(variable.triples, sub_dir, "variable_triples_2.yaml")
+    #write_yaml_file(variable.to_json, sub_dir, "variable_2.yaml")
+    expected = read_yaml_file(sub_dir, "variable_2.yaml")
+    expect(variable.to_json).to eq(expected)
+  end
+
   it "allows an object to be created from JSON" do
     json = read_yaml_file(sub_dir, "variable.yaml")
     item = SdtmUserDomain::Variable.from_json(json)
     #write_yaml_file(item.to_json, sub_dir, "variable_from_json.yaml")
     expected = read_yaml_file(sub_dir, "variable_from_json.yaml")
+    expect(item.to_json).to eq(expected)
+  end
+  
+  it "allows an object to be created from JSON, comment" do
+    json = read_yaml_file(sub_dir, "variable.yaml")
+    json[:comment] = "NEW NEW NEW"
+    item = SdtmUserDomain::Variable.from_json(json)
+    #write_yaml_file(item.to_json, sub_dir, "variable_from_json.yaml")
+    expected = read_yaml_file(sub_dir, "variable_from_json.yaml")
+    expected[:comment] = "NEW NEW NEW"
     expect(item.to_json).to eq(expected)
   end
   

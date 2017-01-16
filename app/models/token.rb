@@ -1,3 +1,4 @@
+
 class Token < ActiveRecord::Base
 
 	C_CLASS_NAME = "Token"
@@ -15,7 +16,8 @@ class Token < ActiveRecord::Base
 			token = create(locked_at: Time.now, refresh_count: 0, item_uri: managed_item.uri, item_info: item_info, user_id: user.id)
 		elsif tokens.length == 1
 			if tokens[0].user_id == user.id
-				token = tokens[0]
+				tokens[0].destroy
+				token = create(locked_at: Time.now, refresh_count: 0, item_uri: managed_item.uri, item_info: item_info, user_id: user.id)				
 			elsif timed_out?(tokens[0])
 				tokens[0].destroy
 				token = create(locked_at: Time.now, refresh_count: 0, item_uri: managed_item.uri, item_info: item_info, user_id: user.id)

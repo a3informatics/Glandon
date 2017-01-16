@@ -155,6 +155,12 @@ describe "Thesaurus", :type => :feature do
       expect(page).not_to have_content 'A00032'
     end
 
+    it "allows a thesauri to be saved"
+
+    it "allows the edit sesison to be closed"
+
+    it "allows the edit session to be closed indirectly, saves data"
+
     it "allows a thesauri to be created, field validation", js: true do
       visit '/users/sign_in'
       fill_in 'Email', with: 'curator@example.com'

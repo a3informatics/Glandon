@@ -46,7 +46,8 @@ $(document).ready(function() {
         "Mapping": {required: true, mapping: true }        
     },
     submitHandler: function(form) {
-      saveRest();
+      saveNode();
+      //saveRest();
       return false;
     },
     invalidHandler: function(event, validator) {
@@ -159,8 +160,7 @@ $(document).ready(function() {
   */
   $('#close').click(function() {
     saveNode();
-    saveRest();
-    //keepToken = true;
+    //saveRest();
     window.location.href = $('#close_path').val();
   });
 
@@ -552,7 +552,7 @@ function addSpinner() {
 // Function for page unload. Nothing to do
 function pageUnloadAction() {
   saveNode();
-  saveRest();
+  //saveRest();
 }
 
 function saveRest() {

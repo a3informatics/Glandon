@@ -24,7 +24,7 @@ $(document).ready(function() {
     submitHandler: function(form) {
       if (checkLastNode(true)) {
         saveNode();
-        saveRest();
+        //saveRest();
       }
       return false;
     },
@@ -43,7 +43,7 @@ $(document).ready(function() {
   $('#close').click(function() {
     if (checkLastNode(false)) {
       saveNode();
-      saveRest();
+      //saveRest();
     }
     window.location.href = $('#close_path').val();
   });
@@ -274,7 +274,7 @@ function addSpinner() {
 function pageUnloadAction() {
   if (checkLastNode(false)) {
     saveNode();
-    saveRest();
+    //saveRest();
   }
 }
 
@@ -353,7 +353,7 @@ function saveVariable(node) {
   node.data.compliance.id = getId($("#variableCompliance").val());
   node.data.classification.namespace = getNamespace($("#variableClassification").val());
   node.data.classification.id = getId($("#variableClassification").val());
-  if (!$('#variableSubClassification').prop("disabled")) {
+  if (getId($("#variableSubClassification").val()) !== "") {
     node.data.sub_classification.namespace = getNamespace($("#variableSubClassification").val());
     node.data.sub_classification.id = getId($("#variableSubClassification").val());
   } else {

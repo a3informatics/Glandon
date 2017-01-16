@@ -90,6 +90,17 @@ describe "Form Editor", :type => :feature do
     expect(page).to have_content 'Edit:'  
   end
 
+  def reload_form(identifier)
+    click_link 'Forms'
+    expect(page).to have_content 'Index: Forms' 
+    ui_main_show_all
+    expect(page).to have_content "#{identifier}" 
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
+    expect(page).to have_content 'History:'  
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
+    expect(page).to have_content 'Edit:'  
+  end
+
   describe "Curator User", :type => :feature do
   
     it "has correct initial state", js: true do
@@ -879,33 +890,6 @@ describe "Form Editor", :type => :feature do
       expect(key1).to eq(-1)
     end
 
-    it "allows the form to be saved using close button", js: true do
-      load_form("CRF TEST 1") 
-      wait_for_ajax
-      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (, V1, Incomplete)")
-      expect(page).to have_content("Form Details")
-      expect(page).to have_content("G+")
-      expect(page).to have_content("Save")
-      expect(page).to have_content("Close")
-      ui_check_disabled_input('formIdentifier', "CRF TEST 1")
-      ui_check_input('formLabel', "CRF Test Form")
-      fill_in 'formLabel', with: "Updated And Wonderful Label"
-      ui_click_close
-      expect(page).to have_content 'History: CRF TEST 1'
-      ui_table_row_link_click("CRF TEST 1", "Edit")
-      expect(page).to have_content("Edit: Updated And Wonderful Label CRF TEST 1 (, V1, Incomplete)")
-      sleep 3
-      ui_check_input('formLabel', "Updated And Wonderful Label")
-      fill_in 'formLabel', with: "Updated And Wonderful Label, 2nd attempt!"
-      ui_click_close
-      expect(page).to have_content 'History: CRF TEST 1'
-      ui_table_row_link_click("CRF TEST 1", "Edit")
-      sleep 3
-      pause
-      expect(page).to have_content("Edit: Updated And Wonderful Label, 2nd attempt! CRF TEST 1 (, V1, Incomplete)")
-      ui_check_input('formLabel', "Updated And Wonderful Label, 2nd attempt!")
-    end
-
     it "allows the fields to be valdated", js: true do
       load_form("CRF TEST 1") 
       wait_for_ajax
@@ -978,6 +962,34 @@ describe "Form Editor", :type => :feature do
       ui_check_validation_error(key_bc_temp_item_cl, "clLocalLabel", "", "This field is required.", key_bc_group)
       ui_check_validation_error(key_bc_temp_item_cl, "clLocalLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
       ui_check_validation_ok(key_bc_temp_item_cl, "clLocalLabel", "#{C_ALL_CHARS}", key_bc_group)
+    end
+
+    it "allows the form to be saved", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      fill_in 'formLabel', with: "Updated And Wonderful Label"
+      ui_click_save
+      ui_click_close
+      reload_form("CRF TEST 1")
+      ui_check_input('formLabel', "Updated And Wonderful Label")
+    end
+
+    it "allows the edit session to be closed", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      fill_in 'formLabel', with: "Updated And Wonderful Label No. 2"
+      ui_click_close
+      reload_form("CRF TEST 1") 
+      ui_check_input('formLabel', "Updated And Wonderful Label No. 2")
+    end
+
+    it "allows the edit session to be closed indirectly, saves data", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      fill_in 'formLabel', with: "Updated And Wonderful Label No. 2, 2nd Time"
+      ui_click_back_button
+      reload_form("CRF TEST 1") 
+      ui_check_input('formLabel', "Updated And Wonderful Label No. 2, 2nd Time")
     end
 
   end

@@ -127,8 +127,8 @@ module UiHelpers
     expect(page).to have_selector(:css, "alert")
   end
 
-  # Close and Save
-  # ==============
+  # Buttons etc
+  # ===========
   def ui_click_close
     page.evaluate_script("rhClickClose()")
   end
@@ -139,6 +139,10 @@ module UiHelpers
 
   def ui_click_by_id(id)
     page.evaluate_script("simulateClick($('##{id}')[0])")
+  end
+
+  def ui_click_back_button
+    page.evaluate_script('window.history.back()')
   end
 
   # D3 Tree Functions

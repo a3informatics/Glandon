@@ -324,14 +324,14 @@
   rdfs:range xsd:integer ;
   skos:definition "Variable length."^^xsd:string ;
 .
-:user_comments
+:comment
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "Sponsor comments."^^xsd:string ;
+  rdfs:label "Comments."^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain :UserVariable ;
   rdfs:range xsd:string ;
-  skos:definition "User comments."^^xsd:string ;
+  skos:definition "Comments regarding the variable."^^xsd:string ;
 .
 :non_standard
   rdf:type owl:DatatypeProperty ;
