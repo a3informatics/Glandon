@@ -3,7 +3,7 @@ class IsoManaged < IsoConcept
   #include CRUD
   #include ModelUtility
   
-  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangeDate, :explanatoryComment, :tag_refs, :triples
+  attr_accessor :registrationState, :scopedIdentifier, :origin, :changeDescription, :creationDate, :lastChangeDate, :explanatoryComment, :tag_refs, :branched_from_ref, :triples
 
   # Constants
   C_CID_PREFIX = "ISOM"
@@ -13,8 +13,8 @@ class IsoManaged < IsoConcept
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
 
-  C_BCPV = "http://www.assero.co.uk/CDISCBiomedicalConcept#PropertyValue"
-  C_COMPONENT = "http://www.assero.co.uk/BusinessOperational/Component"
+  #C_BCPV = "http://www.assero.co.uk/CDISCBiomedicalConcept#PropertyValue"
+  #C_COMPONENT = "http://www.assero.co.uk/BusinessOperational/Component"
 
   # Initialize the object
   #
@@ -30,6 +30,7 @@ class IsoManaged < IsoConcept
     self.registrationState = IsoRegistrationState.new
     self.scopedIdentifier = IsoScopedIdentifier.new
     self.tag_refs = Array.new
+    self.branched_from_ref = nil
     self.triples = Hash.new
     if triples.nil?
       super
@@ -45,6 +46,8 @@ class IsoManaged < IsoConcept
         end
       end
       self.tag_refs = self.get_links_v2(UriManagement::C_ISO_C, "hasMember")  
+      links = self.get_links_v2(UriManagement::C_BO, "branchedFrom")
+      self.branched_from_ref = OperationalReferenceV2.find_from_triples(self.triples, links[0].id) if links.length > 0
     end    
   end  
 
@@ -120,15 +123,31 @@ class IsoManaged < IsoConcept
     return self.owner_id == owner.namespace.id
   end
 
+  # Determine if the object is a branch, i.e. a child
+  #
+  # @return [boolean] True if owned, false otherwise
+  def is_a_branch?
+    return !self.branched_from_ref.nil?
+  end
+
+  # Determine if the item can be branched
+  #
+  # @return [Boolean] true iof the item can be branched, false otherwise
+  def can_be_branched?
+    if self.registrationState == nil
+      return false
+    else
+      return self.registrationState.released_state? || self.registrationState.has_been_released_state? 
+    end
+  end
+
   # Return the registration status
   #
   # @return [string] The status
   def registrationStatus
     if self.registrationState == nil
-      #ConsoleLogger::log(C_CLASS_NAME,"registrationStatus","rs=na")
       return "na"
     else
-      #ConsoleLogger::log(C_CLASS_NAME,"registrationStatus","rs=" + self.registrationState.registrationStatus.to_s)
       return self.registrationState.registrationStatus
     end
   end
@@ -642,6 +661,7 @@ class IsoManaged < IsoConcept
   #
   # @param id [string] The id of the tag
   # @param namespace [string] The namespace of the tag
+  # @raise [Exceptions::UpdateError] if object not updated
   # @return null
   def add_tag(id, namespace)    
     # Create the query
@@ -654,11 +674,9 @@ class IsoManaged < IsoConcept
     # Send the request, wait the resonse
     response = CRUD.update(update)
     # Response
-    if response.success?
-      ConsoleLogger::log(C_CLASS_NAME,"create","Success, id=" + self.id)
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"create", "Failed to create object.")
-      raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
+    if !response.success?
+      ConsoleLogger::info(C_CLASS_NAME, "add_tag", "Failed to add tag to object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
   end
 
@@ -666,6 +684,7 @@ class IsoManaged < IsoConcept
   #
   # @param id [string] The id of the tag
   # @param namespace [string] The namespace of the tag
+  # @raise [Exceptions::UpdateError] if object not updated
   # @return null
   def delete_tag(id, namespace)  
     uri = UriV2.new({:id => id, :namespace => namespace})
@@ -680,8 +699,57 @@ class IsoManaged < IsoConcept
       "}"
     response = CRUD.update(update)
     if !response.success?
-      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      ConsoleLogger::info(C_CLASS_NAME, "add_tag", "Failed to remove tag from object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
+  end
+
+  # Add Branch Parent. Add reference to the parent managed item.
+  #
+  # @param id [String] The id of the parent managed item
+  # @param namespace [String] The namespace of the parent managed item
+  # @raise [Exceptions::UpdateError] if object not updated
+  # @return null
+  def add_branch_parent(id, namespace)    
+    sparql = SparqlUpdateV2.new
+    ref = OperationalReferenceV2.new
+    ref.subject_ref = UriV2.new({id: id, namespace: namespace})
+    subject = {:uri => self.uri}
+    ref_uri = ref.to_sparql_v2(self.uri, "branchedFrom", "BFR", 1, sparql)
+    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "branchedFrom"}, {:uri => ref_uri})
+    response = CRUD.update(sparql.to_s)
+    if !response.success?
+      ConsoleLogger::info(C_CLASS_NAME, "add_branch_parent", "Failed to add branch parent.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    end
+  end
+
+  # Branches. Obtains the items branched from this item
+  #
+  # @param id [String] The id of the item
+  # @param namespace [String] The namespace of the item
+  # @return [Array] Array of hash, each hash containing the URI and the RDF type of the item found
+  def self.branches(id, namespace)
+    results = Array.new
+    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C, UriManagement::C_BO]) +
+      "SELECT DISTINCT ?s WHERE \n" +
+      "{\n" +
+      "  ?o bo:branchedFrom :#{id} .\n" + 
+      "  ?s bo:branchedFrom ?o .\n" + 
+      "}"
+    response = CRUD.query(query) 
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      s_object = ModelUtility.getValue('s', true, node)
+      if !s_object.empty?
+        uri = UriV2.new({uri: s_object})
+        mi = IsoManaged.find(uri.id, uri.namespace)
+        #ConsoleLogger::log(C_CLASS_NAME, "branches", "mi={#{mi.to_json}}.")
+        results << mi
+      end
+    end
+    return results
   end
 
   # Determines if the item can be created
@@ -846,6 +914,10 @@ class IsoManaged < IsoConcept
     subject = {:namespace => self.namespace, :id => self.id}
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "hasIdentifier"}, {:uri => si_uri})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "hasState"}, {:uri => rs_uri})
+    if !branched_from_ref.nil?
+      ref_uri = branched_from_ref.to_sparql_v2(self.uri, "branchedFrom", "BFR", 1, sparql)
+      sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "branchedFrom"}, {:uri => ref_uri})
+    end
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "creationDate"}, {:literal => "#{self.creationDate.iso8601}", :primitive_type => "dateTime"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "lastChangeDate"}, {:literal => "#{self.lastChangeDate.iso8601}", :primitive_type => "dateTime"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "changeDescription"}, {:literal => "#{self.changeDescription}", :primitive_type => "string"})

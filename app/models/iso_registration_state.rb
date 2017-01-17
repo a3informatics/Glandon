@@ -230,6 +230,13 @@ class IsoRegistrationState
     self.registrationStatus == C_STANDARD
   end
   
+  # Has the item been at the released state
+  #
+  # @return [Boolean] true if it has been in the released state, false otherwise
+  def has_been_released_state?
+    self.registrationStatus == C_RETIRED || self.registrationStatus == C_SUPERSEDED 
+  end
+  
   # Can the item be edited
   #
   # @return [string] The next state

@@ -1,0 +1,16 @@
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Branch:", :item => @form} %>
+<div class="col-md-3">
+	<%= form_for Form.new, :url => branch_create_forms_path do |f| %>
+  	<div class="form-group">
+    	<%= label_tag :identifier, "Identifier:" %><br />
+    	<%= text_field_tag "form[identifier]", "" ,class: "form-control" %>
+  	</div>
+  	<div class="form-group">
+    	<%= label_tag :label, "Label:" %><br />
+    	<%= text_field_tag "form[label]", "" , class: "form-control" %>
+  	</div>
+		<%= hidden_field_tag :form_id, @form.id %>
+		<%= hidden_field_tag :form_namespace, @form.namespace %>
+		<%= f.submit "Branch", class: "btn btn-default btn-primary" %>
+	<% end %>
+</div>

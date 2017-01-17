@@ -1,0 +1,42 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: F-ACME_TEST
+:namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+:label: Iso Concept Test Form
+:extension_properties: []
+:origin: ''
+:change_description: Creation
+:creation_date: '2016-06-15T21:06:10+01:00'
+:last_changed_date: '2016-06-16T13:14:24+01:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-ACME_TEST-1
+  :registration_authority:
+    :id: RA-123456789
+    :number: '123456789'
+    :scheme: DUNS
+    :owner: true
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-BBB
+      :name: BBB Pharma
+      :shortName: BBB
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+:scoped_identifier:
+  :id: SI-ACME_TEST-1
+  :identifier: TEST
+  :version_label: '0.1'
+  :version: 1
+  :namespace:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: NS-BBB
+    :name: BBB Pharma
+    :shortName: BBB

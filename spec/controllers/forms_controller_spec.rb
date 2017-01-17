@@ -27,6 +27,7 @@ describe FormsController do
       load_schema_file_into_triple_store("BusinessForm.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("form_example_dm1.ttl")
+      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
       load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
       load_test_file_into_triple_store("form_example_general.ttl")
       load_test_file_into_triple_store("CT_V43.ttl")
@@ -55,7 +56,7 @@ describe FormsController do
 
     it "lists all unique forms, HTML" do
       get :index
-      expect(assigns[:forms].count).to eq(3)
+      expect(assigns[:forms].count).to eq(4)
       expect(response).to render_template("index")
     end
     
@@ -155,9 +156,40 @@ describe FormsController do
       expect(response).to redirect_to("/forms/clone?id=F-ACME_DM101&namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1")
     end
 
-    it "create"
+    it "initiates the branching of a form" do
+      get :branch, { :id => "F-ACME_DM101BRANCH", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      form = assigns(:form)
+      expect(form.id).to eq("F-ACME_DM101BRANCH")
+      expect(response).to render_template("branch")
+    end
+
+    it "branches a form" do
+      audit_count = AuditTrail.count
+      form_count = Form.unique.count
+      post :branch_create,  { form: { :identifier => "BRANCH", :label => "New Branch" }, :form_id => "F-ACME_DM101BRANCH", :form_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      form = assigns(:form)
+      expect(form.errors.count).to eq(0)
+      expect(Form.unique.count).to eq(form_count + 1) 
+      expect(flash[:success]).to be_present
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(response).to redirect_to("/forms")
+      item = Form.find("F-ACME_BRANCH", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      expect(item.is_a_branch?).to eq(true)
+    end
+
+    it "branches a form, error duplicate" do
+      audit_count = AuditTrail.count
+      form_count = Form.all.count
+      post :branch_create,  { form: { :identifier => "BRANCH", :label => "New Branch" }, :form_id => "F-ACME_DM101BRANCH", :form_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      form = assigns(:form)
+      expect(form.errors.count).to eq(1)
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/forms/branch?id=F-ACME_DM101BRANCH&namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1")
+    end
+
+    it "creates"
     
-    it "update"
+    it "updates"
 
     it "destroy" do
       @request.env['HTTP_REFERER'] = 'http://test.host/forms'

@@ -34,6 +34,7 @@ describe "Forms", :type => :feature do
       load_test_file_into_triple_store("BCT.ttl")
       load_test_file_into_triple_store("BC.ttl")
       load_test_file_into_triple_store("form_example_dm1.ttl")
+      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
       load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
       load_test_file_into_triple_store("form_example_general.ttl")
       clear_iso_concept_object
@@ -312,6 +313,44 @@ describe "Forms", :type => :feature do
       expect(page).to have_content "Form was successfully created."
       expect(page).to have_content "BETTER"
       expect(page).to have_content "Nice Label"
+    end
+
+    it "allows a form to be branched, presents a parent button", js: true do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: DM1 BRANCH'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'Show').click
+      #pause
+      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      click_link 'Branch'
+      #pause
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      fill_in 'form[identifier]', with: 'A BRANCH FORM'
+      fill_in 'form[label]', with: 'Test Branch Form'
+      click_button 'Branch'
+      expect(page).to have_content 'Index: Forms'
+      expect(page).to have_content 'Test Branch Form'
+      #pause
+      find(:xpath, "//tr[contains(.,'A BRANCH FORM')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: A BRANCH FORM'
+      find(:xpath, "//tr[contains(.,'A BRANCH FORM')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      expect(page).to have_link 'Branched From'
+      click_link 'Branched From'
+      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+    end
+
+    it "shows the forms that have been branched", js: true do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: DM1 BRANCH'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'A BRANCH FORM'
+      find(:xpath, "//tr[contains(.,'A BRANCH FORM')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Test Branch Form A BRANCH FORM (, V1, Incomplete)'
     end
     
   end

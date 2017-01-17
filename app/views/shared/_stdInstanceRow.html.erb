@@ -33,9 +33,7 @@
 			<td><%= link_to "Status", status_iso_managed_index_path(:id => item.id, :namespace => item.namespace, :current_id => ""), :class => "btn btn-primary btn-xs" %></td>
 		<% end %>
 		<% if item.current? %>
-			<td class="text-center bg-success">
-				<span class="text-center glyphicon glyphicon-ok"/>
-			</td>
+			<%= true_false_glyphicon(item.current?) %>
 		<% else %>
 			<td></td>
 		<% end %>

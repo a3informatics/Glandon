@@ -93,6 +93,15 @@ class IsoManagedController < ApplicationController
     end
   end
 
+  def branches
+    authorize IsoManaged, :branch?
+    results = {:data => []}
+    items = IsoManaged.branches(params[:id], this_params[:namespace])
+    items.each { |x| results[:data] << x.to_json }
+    render :json => results, :status => 200
+  end
+
+    
   def show 
     authorize IsoManaged
     @item = IsoManaged.find(params[:id], params[:namespace], false)

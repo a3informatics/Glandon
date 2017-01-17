@@ -4,59 +4,9 @@ describe IsoManaged do
 
 	include DataHelpers
 
-  def form_json
-    result =     
-      { 
-        :type => "http://www.assero.co.uk/BusinessForm#Form",
-        :id => "F-ACME_TEST", 
-        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
-        :label => "Iso Concept Test Form",
-        :extension_properties => [],
-        :origin => "",
-        :change_description => "Creation",
-        :creation_date => "2016-06-15T21:06:10+01:00",
-        :last_changed_date => "2016-06-16T13:14:24+01:00",
-        :explanatory_comment => "",
-        :registration_state => 
-          {
-            :namespace => "http://www.assero.co.uk/MDRItems", 
-            :id => "RS-ACME_TEST-1", 
-            :registration_authority => 
-              {
-                :id => "RA-123456789", 
-                :number => "123456789", 
-                :scheme => "DUNS", 
-                :owner => true, 
-                :namespace => 
-                  {
-                    :namespace => "http://www.assero.co.uk/MDRItems", 
-                    :id => "NS-BBB", 
-                    :name => "BBB Pharma", 
-                    :shortName => "BBB"}
-                  }, 
-                :registration_status => "Incomplete",
-                :administrative_note => "", 
-                :effective_date => "2016-01-01T00:00:00+00:00",
-                :until_date => "2016-01-01T00:00:00+00:00",
-                :current => false, 
-                :unresolved_issue => "", 
-                :administrative_status => "", 
-                :previous_state => "Incomplete"
-              },
-        :scoped_identifier => 
-          { 
-            :id => "SI-ACME_TEST-1", :identifier => "TEST", :version_label => "0.1", :version => 1, 
-            :namespace => 
-              {
-                :namespace => "http://www.assero.co.uk/MDRItems", 
-                :id => "NS-BBB", 
-                :name => "BBB Pharma", 
-                :shortName => "BBB"
-              } 
-          },
-      }
-      return result
-    end
+  def sub_dir
+    return "models"
+  end
     
 	before :all do
     clear_triple_store
@@ -143,7 +93,8 @@ describe IsoManaged do
 
 	it "allows an item to be found" do
 		item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    expect(item.to_json).to eq(form_json)   
+    expected = read_yaml_file(sub_dir, "iso_managed_form.yaml")
+    expect(item.to_json).to eq(expected)   
 	end
 
   it "allows the version, versionLabel and indentifier to be found" do
@@ -299,12 +250,28 @@ describe IsoManaged do
     expect(item[0].scopedIdentifier.identifier).to eq("TEST")
   end
 
+  it "allows a tag to be added, fail" do
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{item.add_tag("TAG1", "http://www.assero.co.uk/tags")}.to raise_error(Exceptions::UpdateError)
+  end
+
   it "allows a tag to be deleted" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item.add_tag("TAG2", "http://www.assero.co.uk/tags")
     item.delete_tag("TAG1", "http://www.assero.co.uk/tags")
     item = IsoManaged.find_by_tag("TAG2", "http://www.assero.co.uk/tags")
     expect(item[0].scopedIdentifier.identifier).to eq("TEST")
+  end
+  
+  it "allows a tag to be deleted, fail" do
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{item.delete_tag("TAG1", "http://www.assero.co.uk/tags")}.to raise_error(Exceptions::UpdateError)
   end
   
   it "checks if an item cannot be created, existing identifier and version" do
@@ -429,24 +396,27 @@ describe IsoManaged do
 
   it "permits the item to be exported as JSON" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    expect(item.to_json).to eq(form_json)
+    expected = read_yaml_file(sub_dir, "iso_managed_form.yaml")
+    expect(item.to_json).to eq(expected)
   end
 
   it "permits the item to be exported as Operation JSON" do
+    form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
     result = 
       { 
         :operation => { :action => "UPDATE", :new_version => 1, :new_state => "Incomplete", :identifier_edit => false }, 
-        :managed_item => form_json
+        :managed_item => form
       }
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(item.to_operation).to eq(result)
   end
 
   it "permits the item to be cloned" do
+    form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
     result = 
       { 
         :operation => { :action => "CREATE", :new_version => 1, :new_state => "Incomplete", :identifier_edit => true }, 
-        :managed_item => form_json 
+        :managed_item => form
       }
     result[:managed_item][:scoped_identifier] = IsoScopedIdentifier.new.to_json
     result[:managed_item][:registration_state] = IsoRegistrationState.new.to_json

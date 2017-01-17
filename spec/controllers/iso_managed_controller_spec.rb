@@ -8,6 +8,10 @@ describe IsoManagedController do
   	
     login_curator
 
+    def sub_dir
+      return "controllers"
+    end
+
     before :all do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -23,6 +27,8 @@ describe IsoManagedController do
       load_test_file_into_triple_store("iso_managed_data_2.ttl")
       load_test_file_into_triple_store("iso_managed_data_3.ttl")
       load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+      load_test_file_into_triple_store("form_example_general.ttl")
+      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
       load_test_file_into_triple_store("BC.ttl")
       load_test_file_into_triple_store("BCT.ttl")
       load_test_file_into_triple_store("CT_V42.ttl")
@@ -139,12 +145,35 @@ describe IsoManagedController do
       expect(response.body).to eq(results.to_json.to_s)
     end
 
+    it "returns the branches for an item" do
+      parent = Form.find("F-ACME_DM1BRANCH", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      child = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      child.add_branch_parent(parent.id, parent.namespace)
+      child = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      child.add_branch_parent(parent.id, parent.namespace)
+      get :branches, {id: "F-ACME_DM1BRANCH", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      #write_text_file_2(response.body, sub_dir, "iso_managed_branches_json_1.txt")
+      expected = read_text_file_2(sub_dir, "iso_managed_branches_json_1.txt")
+      expect(response.body).to eq(expected)
+    end
+
+    it "returns the branches for an item" do
+      results = { data: [] }
+      get :branches, {id: "F-ACME_VSBASELINE1", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(response.body).to eq(results.to_json.to_s)
+    end
+
     it "determines the change impact for managed item" do
       bc = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
       results = { item: bc.to_json, children: [{:uri=>"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1", :rdf_type=>"http://www.assero.co.uk/BusinessForm#Form"}] }
       get :impact, {id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(assigns(:results)).to eq(results)
     end
+
   end
 
   describe "Unauthorized User" do

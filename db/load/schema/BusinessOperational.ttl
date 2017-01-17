@@ -60,6 +60,12 @@
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Tabulation Column."^^xsd:string ;
 .
+:BReference
+  rdf:type owl:Class ;
+  rdfs:label "Branch Reference"^^xsd:string ;
+  rdfs:subClassOf :Reference ;
+  skos:definition "Holds the reference to the branch parent."^^xsd:string ;
+.
 :hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -110,6 +116,14 @@
   rdfs:label "Tabulation Column relationship."^^xsd:string ;
   rdfs:range iso25964:ThesaurusConcept ;
   skos:definition "Tabulation Column relationship."^^xsd:string ;
+.
+:branchedFrom
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :BReference ;
+  rdfs:label "Branched From relationship."^^xsd:string ;
+  rdfs:range :Component ;
+  skos:definition "Branched From relationship."^^xsd:string ;
 .
 :ordinal
   rdf:type owl:DatatypeProperty ;

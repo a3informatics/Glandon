@@ -190,6 +190,24 @@ describe IsoRegistrationState do
     expect(result.released_state?).to eq(false)
   end
   
+  it "allows the item state to be checked for has been in release state, superceeded" do
+    result = IsoRegistrationState.find("RS-TEST_1-1")
+    result.registrationStatus = IsoRegistrationState::C_SUPERSEDED 
+    expect(result.has_been_released_state?).to eq(true)
+  end
+  
+  it "allows the item state to be checked for has been in release state, retired" do
+    result = IsoRegistrationState.find("RS-TEST_1-1")
+    result.registrationStatus = IsoRegistrationState::C_RETIRED
+    expect(result.has_been_released_state?).to eq(true)
+  end
+  
+  it "allows the item state to be checked for has been in release state, standard" do
+    result = IsoRegistrationState.find("RS-TEST_1-1")
+    result.registrationStatus = IsoRegistrationState::C_STANDARD
+    expect(result.has_been_released_state?).to eq(false)
+  end
+  
   it "allows the edit state to be determined for an editable item" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
     expect(result.edit?).to eq(true)

@@ -4,7 +4,8 @@ $(document).ready(function() {
   var json;
   var rootNode;
   var mi;
-  var mainTabe;
+  var mainTable;
+  var secondaryTable;
   var ordinal;
 
   // Initialise main table
@@ -27,6 +28,38 @@ $(document).ready(function() {
 
   // Init any data. Draw the tree
   initData();
+
+  // Initialise the secondary table  
+  secondaryTable = $('#secondary').DataTable({
+    ajax: {
+      url: "/iso_managed/" + mi.id + "/branches",
+      data: function( d ) {
+        d.iso_managed = {};
+        d.iso_managed.namespace = mi.namespace;
+      },
+      dataSrc: "data",
+      error: function (xhr, status, error) {
+        displayError("An error has occurred loading the Branches table.");
+      }
+    },
+    processsing: true,
+    language: {
+      processing: "<img src='<%= asset_path('processing.gif') %>'>"
+    },
+    pageLength: pageLength,
+    lengthMenu: pageSettings,
+    dataType: 'json',
+    columns: [
+      {"data" : "scoped_identifier.identifier", "width" : "30%"},
+      {"data" : "label", "width" : "50%"},
+      {"data" : "scoped_identifier.version", "width" : "10%"},
+      {"data" : "scoped_identifier.version_label", "width" : "10%"},
+      // Following replaces the old way of putting in a button. Use link styled as a button.
+      {"render" : function (data, type, row, meta) {
+        return '<a href="' + getPath(row.type) + row.id + '?namespace=' + row.namespace + '" class="btn btn-primary btn-xs">Show</a>';
+      }}
+    ]
+  });
   
   /*
   * Init function

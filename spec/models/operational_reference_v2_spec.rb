@@ -188,6 +188,60 @@ describe OperationalReferenceV2 do
     expect(object.to_json).to eq(result)
   end
 
+  it "allows an object to be found from triples - Branch Reference" do
+    id = "BC-ACME_BC_C25347_BRR"
+    triples = {}
+    triples [id] = []
+    triples [id] = 
+      [
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_BRR",
+          :predicate => "http://www.w3.org/2000/01/rdf-schema#label",
+          :object => "BCT Reference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_BRR",
+          :predicate => "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+          :object => "http://www.assero.co.uk/BusinessOperational#BReference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_BRR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#branchedFrom",
+          :object => "http://www.assero.co.uk/MDRBCTs/V1#BC-ACME_C123456"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_BRR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#ordinal",
+          :object => "1"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_BRR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#enabled",
+          :object => "true"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_BRR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#optional",
+          :object => "true"
+        }
+      ]
+    result = 
+      {
+        :id => "BC-ACME_BC_C25347_BRR", 
+        :namespace => "http://www.assero.co.uk/MDRBCs/V1", 
+        :label => "BCT Reference",
+        :extension_properties => [],
+        :subject_ref => UriV2.new({:id => "BC-ACME_C123456", :namespace => "http://www.assero.co.uk/MDRBCTs/V1"}).to_json,
+        :optional => true,
+        :ordinal => 1,
+        :enabled => true,
+        :local_label => "",
+        :type => "http://www.assero.co.uk/BusinessOperational#BReference"
+      }
+    object = OperationalReferenceV2.find_from_triples(triples, id)
+    expect(object.to_json).to eq(result)
+  end
+
   it "allows an object to be found from triples - Old V Reference" do
     id = "F-ACME_VSBASELINE1_G1_G1_I2_I1_VR1"
     triples = {}
@@ -357,6 +411,33 @@ describe OperationalReferenceV2 do
     item.local_label = "****local****"
     item.subject_ref = UriV2.new({:id => "fragement", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), "basedOnTemplate", "XXX", 1, sparql)
+    expect(sparql.to_s).to eq(result)
+  end
+
+  it "allows an object to be exported as SPARQL, Branched From Reference" do
+    sparql = SparqlUpdateV2.new
+    result = 
+      "PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "INSERT DATA \n" +
+      "{ \n" + 
+      "<http://www.example.com/path#parent_XXX1> rdf:type <http://www.assero.co.uk/BusinessOperational#BReference> . \n" +
+      "<http://www.example.com/path#parent_XXX1> rdfs:label \"Branched From Reference\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:branchedFrom <http://www.example.com/path#fragement> . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:enabled \"true\"^^xsd:boolean . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:optional \"false\"^^xsd:boolean . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:ordinal \"1\"^^xsd:positiveInteger . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:local_label \"****local****\"^^xsd:string . \n" + 
+      "}"
+    item = OperationalReferenceV2.new
+    item.rdf_type = "http://www.example.com/path#rdf_test_type"
+    item.label = "label"
+    item.local_label = "****local****"
+    item.subject_ref = UriV2.new({:id => "fragement", :namespace => "http://www.example.com/path"})
+    item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), "branchedFrom", "XXX", 1, sparql)
     expect(sparql.to_s).to eq(result)
   end
 

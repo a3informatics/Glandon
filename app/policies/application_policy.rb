@@ -49,6 +49,10 @@ class ApplicationPolicy
     curator?
   end
 
+  def branch?
+    curator?
+  end
+
   def upgrade?
     curator?
   end

@@ -48,6 +48,9 @@ Rails.application.routes.draw do
       get :graph_links
       get :impact
     end
+    member do
+      get :branches
+    end
   end
   resources :dashboard do
     collection do
@@ -176,6 +179,8 @@ Rails.application.routes.draw do
       get :markdown
       get :clone
       post :clone_create
+      get :branch
+      post :branch_create
       get :export_json
       get :export_ttl
       get :export_odm

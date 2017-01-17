@@ -5,6 +5,7 @@ class OperationalReferenceV2 < IsoConcept
   # Constants
   C_NONE = "None"
   
+  C_PARENT_LINK_BF = "branchedFrom"
   C_PARENT_LINK_BC = "hasBiomedicalConcept"
   C_PARENT_LINK_BCT = "basedOnTemplate"
   C_PARENT_LINK_P = "hasProperty"
@@ -14,6 +15,7 @@ class OperationalReferenceV2 < IsoConcept
   C_PARENT_LINK_C = "includesColumn"
   C_PARENT_LINK_VC = "basedOnVariable"
   
+  C_B_TYPE = "BReference"
   C_BC_TYPE = "BcReference"
   C_BCT_TYPE = "BctReference"
   C_P_TYPE = "PReference"
@@ -21,6 +23,7 @@ class OperationalReferenceV2 < IsoConcept
   C_T_TYPE = "TReference"
   C_C_TYPE = "CReference"
   
+  C_B_LINK = "branchedFrom"
   C_BC_LINK = "hasBiomedicalConcept"
   C_BCT_LINK = "basedOnTemplate"
   C_P_LINK = "hasProperty"
@@ -32,6 +35,7 @@ class OperationalReferenceV2 < IsoConcept
   C_CLASS_NAME = "OperationalReferenceV2"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_RDF_TYPE = "Reference"
+  C_B_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_B_TYPE})
   C_BC_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_BC_TYPE})
   C_BCT_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_BCT_TYPE})
   C_P_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_P_TYPE})
@@ -41,6 +45,7 @@ class OperationalReferenceV2 < IsoConcept
   
   C_TO_TYPE_MAP = 
     {
+      C_PARENT_LINK_BF => C_B_TYPE,
       C_PARENT_LINK_BC => C_BC_TYPE,
       C_PARENT_LINK_P => C_P_TYPE,
       C_PARENT_LINK_TC => C_TC_TYPE,
@@ -53,6 +58,7 @@ class OperationalReferenceV2 < IsoConcept
     
   C_TO_LABEL_MAP = 
     {
+      C_PARENT_LINK_BF => "Branched From Reference",
       C_PARENT_LINK_BC => "BC Reference",
       C_PARENT_LINK_P => "BC Property Reference",
       C_PARENT_LINK_TC => "Thesaurus Concept Reference",
@@ -65,6 +71,7 @@ class OperationalReferenceV2 < IsoConcept
     
   C_TO_LINK_MAP = 
     {
+      C_PARENT_LINK_BF => C_B_LINK,
       C_PARENT_LINK_BC => C_BC_LINK,
       C_PARENT_LINK_P => C_P_LINK,
       C_PARENT_LINK_TC => C_TC_LINK,
@@ -77,6 +84,7 @@ class OperationalReferenceV2 < IsoConcept
     
   C_FROM_TYPE_MAP = 
     {
+      C_B_RDF_TYPE_URI.to_s => C_B_LINK,
       C_BC_RDF_TYPE_URI.to_s => C_BC_LINK,
       C_P_RDF_TYPE_URI.to_s => C_P_LINK,
       C_TC_RDF_TYPE_URI.to_s => C_TC_LINK,
@@ -133,7 +141,10 @@ class OperationalReferenceV2 < IsoConcept
 
   # To SPARQL
   #
-  # @param parent_uri [object] URI object
+  # @param parent_uri [UriV2] URI object
+  # @param ref_type [String] the type of the operation reference
+  # @param suffix [String] string used to make the URI unique
+  # @param ordinal [Integer] the ordinal value, positive integer 1 .. N
   # @param sparql [object] The SPARQL object
   # @return [object] The URI
   def to_sparql_v2(parent_uri, ref_type, suffix, ordinal, sparql)
@@ -163,9 +174,6 @@ class OperationalReferenceV2 < IsoConcept
       if links.length > 0
         object.subject_ref = links[0]
       end
-    #else
-    #  ConsoleLogger.info(C_CLASS_NAME, "find_from_triples", "object=#{object.to_json}.")
-    #  ConsoleLogger.info(C_CLASS_NAME, "find_from_triples", "C_FROM_TYPE_MAP=#{C_FROM_TYPE_MAP.to_json}.")
     end
     return object
   end

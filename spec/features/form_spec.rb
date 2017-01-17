@@ -18,6 +18,7 @@ describe "Forms", :type => :feature do
       load_schema_file_into_triple_store("BusinessForm.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("form_example_dm1.ttl")
+      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
       load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
       load_test_file_into_triple_store("form_example_general.ttl")
       clear_iso_concept_object
@@ -167,7 +168,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
     end
 
-    it "prevents a form to be cloned, identifier error." do
+    it "prevents a form to be created, identifier error." do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       click_link 'New'
@@ -204,7 +205,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
     end
 
-    it "prevents a placeholder form to be cloned, identifier error." do
+    it "prevents a placeholder form to be created, identifier error." do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       click_link 'New Placeholder'
@@ -213,6 +214,54 @@ describe "Forms", :type => :feature do
       fill_in 'form[label]', with: 'Test Placeholder Form'
       click_button 'Create'
       expect(page).to have_content 'New Placeholder Form:'
+      expect(page).to have_content 'Identifier contains invalid characters'
+    end
+
+    it "allows a form to be branched" do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: DM1 BRANCH'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      click_link 'Branch'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      fill_in 'form[identifier]', with: 'A BRANCH FORM'
+      fill_in 'form[label]', with: 'Test Branch Form'
+      click_button 'Branch'
+      expect(page).to have_content 'Index: Forms'
+      expect(page).to have_content 'Test Branch Form'
+    end
+
+    it "prevents a duplicate form being branched." do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: DM1 BRANCH'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      click_link 'Branch'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      fill_in 'form[identifier]', with: 'A BRANCH FORM'
+      fill_in 'form[label]', with: 'Test 2nd Branch Form'
+      click_button 'Branch'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
+    end
+
+    it "prevents a form to be branched, identifier error." do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: DM1 BRANCH'
+      find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      click_link 'Branch'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      fill_in 'form[identifier]', with: 'A BRANCH FORM@'
+      fill_in 'form[label]', with: 'Test 2nd Branch Form'
+      click_button 'Branch'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
       expect(page).to have_content 'Identifier contains invalid characters'
     end
 

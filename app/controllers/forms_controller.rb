@@ -90,6 +90,31 @@ class FormsController < ApplicationController
     end
   end
 
+  def branch
+    authorize Form
+    @form = Form.find(params[:id], params[:namespace])
+  end
+
+  def branch_create
+    authorize Form, :create?
+    base_form = Form.find(params[:form_id], params[:form_namespace])
+    identifier = base_form.identifier # Preserve for audit log
+    operation = base_form.to_clone
+    managed_item = operation[:managed_item]
+    managed_item[:scoped_identifier][:identifier] = the_params[:identifier]
+    managed_item[:label] = the_params[:label]
+    @form = Form.create(operation)
+    if @form.errors.empty?
+      @form.add_branch_parent(params[:form_id], params[:form_namespace]) 
+      AuditTrail.create_item_event(current_user, @form, "Form branched from #{identifier}.")
+      flash[:success] = 'Form was successfully created.'
+      redirect_to forms_path
+    else
+      flash[:error] = @form.errors.full_messages.to_sentence
+      redirect_to branch_forms_path(:id => params[:form_id], :namespace => params[:form_namespace])
+    end
+  end
+
   def create
     authorize Form
     @form = Form.create_simple(the_params)

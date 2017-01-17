@@ -286,4 +286,5 @@ describe Form do
     expected = read_yaml_file(sub_dir, "form_annotations_4.yaml")
     expect(annotations).to eq(expected)
   end
+  
 end
