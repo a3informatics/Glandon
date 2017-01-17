@@ -68,6 +68,7 @@ describe FormsController do
       #write_text_file_2(response.body, sub_dir, "forms_controller_index.txt")
       expected = read_text_file_2(sub_dir, "forms_controller_index.txt")
       expect(response.body).to eq(expected)
+
     end
 
     it "shows the history" do
@@ -157,16 +158,16 @@ describe FormsController do
     end
 
     it "initiates the branching of a form" do
-      get :branch, { :id => "F-ACME_DM101BRANCH", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      get :branch, { :id => "F-ACME_DM1BRANCH", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
       form = assigns(:form)
-      expect(form.id).to eq("F-ACME_DM101BRANCH")
+      expect(form.id).to eq("F-ACME_DM1BRANCH")
       expect(response).to render_template("branch")
     end
 
     it "branches a form" do
       audit_count = AuditTrail.count
       form_count = Form.unique.count
-      post :branch_create,  { form: { :identifier => "BRANCH", :label => "New Branch" }, :form_id => "F-ACME_DM101BRANCH", :form_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      post :branch_create,  { form: { :identifier => "BRANCH", :label => "New Branch" }, :form_id => "F-ACME_DM1BRANCH", :form_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
       form = assigns(:form)
       expect(form.errors.count).to eq(0)
       expect(Form.unique.count).to eq(form_count + 1) 
@@ -180,11 +181,11 @@ describe FormsController do
     it "branches a form, error duplicate" do
       audit_count = AuditTrail.count
       form_count = Form.all.count
-      post :branch_create,  { form: { :identifier => "BRANCH", :label => "New Branch" }, :form_id => "F-ACME_DM101BRANCH", :form_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      post :branch_create,  { form: { :identifier => "BRANCH", :label => "New Branch" }, :form_id => "F-ACME_DM1BRANCH", :form_namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
       form = assigns(:form)
       expect(form.errors.count).to eq(1)
       expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/forms/branch?id=F-ACME_DM101BRANCH&namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1")
+      expect(response).to redirect_to("/forms/branch?id=F-ACME_DM1BRANCH&namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRForms%2FACME%2FV1")
     end
 
     it "creates"
