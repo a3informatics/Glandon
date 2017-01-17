@@ -42,7 +42,7 @@
                 <a class="navbar-brand" href="/">
                   <img alt="Brand" src="<%= asset_path('glandon1.png') %>" height="25">
                 </a>
-                <a class="navbar-brand" href="/">Glandon (v<%= Version::VERSION %>)</a>
+                <a class="navbar-brand" href="/"><%= ENV['organization_navbar'] %><small>Glandon (v<%= Version::VERSION %>)</small></a>
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">

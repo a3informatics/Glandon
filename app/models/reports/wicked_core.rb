@@ -80,8 +80,10 @@ private
   def title_page(doc_type, title,  user)
     html = ""
     title = ""
-    name = APP_CONFIG['organization_title']
-    image_file = APP_CONFIG['organization_image_file']
+    #name = APP_CONFIG['organization_title']
+    #image_file = APP_CONFIG['organization_image_file']
+    name = ENV['organization_title']
+    image_file = ENV['organization_image_file']
     dir = Rails.root.join("app", "assets", "images")
     file = File.join(dir, image_file)
     time_generated = Time.now

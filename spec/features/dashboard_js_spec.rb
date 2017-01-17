@@ -113,6 +113,15 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'History: BC  A00002'
     end
 
+    it "displays the organization name", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      org = ENV['organization_navbar']
+      expect(page).to have_content("#{org} Glandon (v")
+    end
+
   end
 
 end

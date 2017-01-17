@@ -2,8 +2,6 @@ defaults: &defaults
   # General Settings
   self_registration: false # Self registration enabled
   token_timeout: 300 # Timeout in seconds
-  organization_title: ACME Pharma # Installation organisation title
-  organization_image_file: acme.jpg # File in images directory for orgnaization image
   rest_timeout: 5 # REST timeout period
   cdisc_ct_files: public/results/  # CDISC CT file directory
   max_impact_hops: 3 # Maximum hops for impact assesment
@@ -31,12 +29,9 @@ defaults: &defaults
       label: Table Rows
 development:
   <<: *defaults
-  self_registration: false
 
 production: 
   <<: *defaults
-  organization_title: UCB Biosciences, Inc
-  organization_image_file: ucb.jpg
   
 test: 
   <<: *defaults
