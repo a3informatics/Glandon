@@ -136,6 +136,18 @@ describe "Forms", :type => :feature do
       ui_check_table_row('main', 12, ["12", "Result Units (--ORRESU)", "Result units?", "string", "", "", "oz [C48519]<br/>g [C48155]]<br/>LB [C48531]]<br/>kg [C28252]", "", ""])
     end
 
+    it "allows a form show page to be viewed, edit button check", js: true do
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: VS BASELINE'
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Vital Signs Baseline VS BASELINE (, V1, Standard)'
+      wait_for_ajax
+      click_link 'Edit'
+      expect(page).to have_content 'Edit: Vital Signs Baseline VS BASELINE (, V2, Incomplete)' # Create a new version
+    end
+
     it "allows a form show page to be viewed", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'

@@ -228,13 +228,14 @@ describe IsoManaged do
 
   it "finds list of all released entries" do
     results = []
-    results[0] = {:id => "F-BBB_VSB1", :scoped_identifier_version => 1}
-    results[1] = {:id => "F-BBB_VSW", :scoped_identifier_version => 1}
     items = IsoManaged.list("Form", "http://www.assero.co.uk/BusinessForm")
-    items.each_with_index do |item, index|
-      expect(results[index][:id]).to eq(items[index].id)
-      expect(results[index][:scoped_identifier_version]).to eq(items[index].scopedIdentifier.version)
-    end
+    items.each { |x| results << x.to_json }
+    #write_yaml_file(results, sub_dir, "iso_managed_list.yaml")
+    expected = read_yaml_file(sub_dir, "iso_managed_list.yaml")
+    i = items.find { |x| x.id == "F-BBB_VSW" } # We know this got edited in an above test, modify time
+    e = expected.find { |x| x[:id] == "F-BBB_VSW" }
+    e[:last_changed_date] = date_check_now(i.lastChangeDate).iso8601
+    expect(results).to eq(expected)
   end
 
   it "allows the current item to be found" do

@@ -193,10 +193,12 @@ describe SdtmUserDomainsController do
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
       expect(token.item_uri).to eq("http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
-      expect(bcs.to_json).to eq(BiomedicalConcept.all.to_json)
+      expect(bcs.to_json).to eq(BiomedicalConcept.list.to_json)
       expected = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", false)
       expect(result.to_json).to eq(expected.to_json)
     end
+
+    it "only lists released BCs for the add operation, 1 or more tests as needed"
 
     it "initiates the add operation, already locked" do
       @request.env['HTTP_REFERER'] = 'http://test.host/sdtm_user_domains'

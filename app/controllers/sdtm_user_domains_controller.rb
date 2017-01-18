@@ -113,7 +113,7 @@ class SdtmUserDomainsController < ApplicationController
       flash[:error] = "The item is locked for editing by another user."
       redirect_to request.referer
     end
-    @bcs = BiomedicalConcept.all
+    @bcs = BiomedicalConcept.list
   end
 
   def update_add

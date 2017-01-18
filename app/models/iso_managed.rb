@@ -531,7 +531,9 @@ class IsoManaged < IsoConcept
       "SELECT ?a ?si ?rs ?d ?e ?f ?g ?h WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdf_type + " . \n" +
-      "  ?a rdfs:label ?d . \n" +
+      "  ?a rdfs:label ?b . \n" +
+      "  ?a isoT:creationDate ?c . \n" +
+      "  ?a isoT:lastChangeDate  ?d . \n" +
       "  ?a isoI:hasIdentifier ?si . \n" +
       "  ?a isoR:hasState ?rs . \n" +
       "  ?si isoI:identifier ?e . \n" +
@@ -547,7 +549,9 @@ class IsoManaged < IsoConcept
       uri = ModelUtility.getValue('a', true, node)
       si = ModelUtility.getValue('si', true, node)
       rs = ModelUtility.getValue('rs', true, node)
-      label = ModelUtility.getValue('d', false, node)
+      label = ModelUtility.getValue('b', false, node)
+      dateSet = ModelUtility.getValue('c', false, node)
+      lastSet = ModelUtility.getValue('d', false, node)
       identifier = ModelUtility.getValue('e', false, node)
       version = ModelUtility.getValue('f', false, node)
       status = ModelUtility.getValue('g', false, node)
@@ -560,6 +564,8 @@ class IsoManaged < IsoConcept
           object.namespace = ModelUtility.extractNs(uri)
           object.rdf_type = type_uri.to_s
           object.label = label
+          object.creationDate = dateSet.to_time_with_default
+          object.lastChangeDate = lastSet.to_time_with_default
           si_uri = UriV2.new({:uri => si})
           rs_uri = UriV2.new({:uri => rs})
           object.scopedIdentifier = IsoScopedIdentifier.find(si_uri.id)
