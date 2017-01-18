@@ -528,7 +528,7 @@ class IsoManaged < IsoConcept
     type_uri = UriV2.new({:id => rdf_type, :namespace => ns})
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
-      "SELECT ?a ?si ?rs ?d ?e ?f ?g ?h WHERE \n" +
+      "SELECT ?a ?b ?c ?si ?rs ?d ?e ?f ?g ?h WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdf_type + " . \n" +
       "  ?a rdfs:label ?b . \n" +
