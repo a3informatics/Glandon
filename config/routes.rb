@@ -83,6 +83,15 @@ Rails.application.routes.draw do
       post :release
     end
   end
+  resources :ad_hoc_reports, only: [:index, :show, :new, :create, :destroy] do
+    member do
+      get :run_start
+      get :run_progress
+      get :run_results
+      get :results
+      get :export_csv
+    end
+  end
   resources :thesauri do
     collection do
       get :history

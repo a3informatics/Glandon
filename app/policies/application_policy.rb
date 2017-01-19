@@ -77,6 +77,10 @@ class ApplicationPolicy
     curator?
   end
   
+  def export_csv?
+    curator?
+  end
+  
   def scope
     Pundit.policy_scope!(user, record.class)
   end

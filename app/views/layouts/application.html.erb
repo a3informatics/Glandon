@@ -75,16 +75,19 @@
               <li><a href="/iso_namespaces">Namespaces</a></li>
               <li><a href="/iso_scoped_identifiers">Scoped Identifiers</a></li>
               <li><a href="/iso_registration_states">Registration States</a></li>
-              <li><a href="/audit_trail">Audit Trail</a></li>
               <li><a href="/tokens">Edit Locks</a></li>
   					</ul>
   				<% end %>
-          <% if current_user.has_role? :content_admin %>
-          	<ul class="well">
-              <li><a href="/uploads">Upload</a></li>
-              <li><a href="/backgrounds">Background Jobs</a></li>
+          <% if current_user.has_role?(:content_admin) || current_user.has_role?(:curator) %>
+            <ul class="well">
+              <% if current_user.has_role? :content_admin %>
+                <li><a href="/uploads">Upload</a></li>
+                <li><a href="/backgrounds">Background Jobs</a></li>
+    					<% end %>
+              <li><a href="/audit_trail">Audit Trail</a></li>
+              <li><a href="/ad_hoc_reports">Ad Hoc Reports</a></li>
             </ul>
-					<% end %>
+          <% end %>
           <ul class="well">
             <li><a href="/iso_concept_systems">Classifications (tags)</a></li>
           </ul>

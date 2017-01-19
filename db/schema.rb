@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201174917) do
+ActiveRecord::Schema.define(version: 20170118151649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_hoc_reports", force: :cascade do |t|
+    t.string   "label"
+    t.string   "sparql_file"
+    t.string   "results_file"
+    t.datetime "last_run"
+    t.boolean  "active",        default: false
+    t.integer  "background_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
   create_table "audit_trails", force: :cascade do |t|
     t.datetime "date_time"

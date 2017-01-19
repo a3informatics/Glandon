@@ -54,11 +54,21 @@ describe Background do
   it "compares all CDISC terminology submission values" do
     job = Background.create
     job.submission_changes_cdisc_term()
-    puts job.errors.full_messages
     expected = read_yaml_file_to_hash_2(sub_dir, "background_cdisc_submission_difference.yaml")
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
     expect(results).to eq(expected)
   end
+
+  it "runs a background report" do
+    job = Background.create
+    report = AdHocReport.new
+    report.sparql_file = ""
+    report.results_file = ""
+    job.ad_hoc_report(report)
+    expected = read_yaml_file(sub_dir, "background_ad_hoc_report.yaml")
+    results = AdHocReportFiles.read("")
+    expect(results).to eq(expected)
+  end 
 
   it "determines the impact of CDISC terminology submission value changes"
 

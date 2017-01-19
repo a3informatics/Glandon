@@ -17,6 +17,7 @@ Rails.application.config.assets.version = '1.0'
   sdtm_user_domain_editor
   domains domains/variables 
   dashboard_viewer dashboard_index 
+  ad_hoc_report_results
   markdown_editor
   background_index 
 	biomedical_concepts_editor 

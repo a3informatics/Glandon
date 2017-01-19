@@ -1,6 +1,6 @@
 module PublicFileHelpers
 
-	def public_path(sub_dur, filename)
+	def public_path(sub_dir, filename)
     return Rails.root.join "public/#{sub_dir}/#{filename}"
   end
 
