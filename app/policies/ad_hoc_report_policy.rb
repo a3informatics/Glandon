@@ -4,6 +4,10 @@ class AdHocReportPolicy < ApplicationPolicy
     curator?
   end
 
+  def new?
+    content_admin?
+  end
+
   def create?
     content_admin?
   end

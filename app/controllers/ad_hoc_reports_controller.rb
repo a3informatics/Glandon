@@ -17,12 +17,13 @@ class AdHocReportsController < ApplicationController
 
   def create
     authorize AdHocReport
-    new_report = AdHocReport.create_report(the_params)
-    if new_report.errors.blank?
+    report = AdHocReport.create_report(the_params)
+    if report.errors.blank?
+      AuditTrail.create_event(current_user, "Ad-hoc report '#{report.label}' created.")
       flash[:success] = "Report was successfully created."
       redirect_to ad_hoc_reports_path
     else
-      flash[:error] = "#{new_report.errors.full_messages.to_sentence}."
+      flash[:error] = "#{report.errors.full_messages.to_sentence}."
       redirect_to new_ad_hoc_report_path
     end
   end  
@@ -52,6 +53,14 @@ class AdHocReportsController < ApplicationController
     authorize AdHocReport
     @report = AdHocReport.find(params[:id])
     @columns = @report.columns
+  end
+
+  def destroy
+    authorize AdHocReport
+    report = AdHocReport.find(params[:id])
+    report.destroy_report
+    AuditTrail.delete_event(current_user, "Ad-hoc report '#{report.label}' deleted.")
+    redirect_to request.referer
   end
 
   def export_csv

@@ -22,7 +22,11 @@
 		    		<%= true_false_glyphicon(item.active) %>
 		    		<td><%= link_to "Run", run_start_ad_hoc_report_path(item), :class => "btn btn-primary btn-xs" %></td>
 		    		<td><%= link_to "Results", results_ad_hoc_report_path(item), :class => "btn btn-primary btn-xs" %></td>
-		    		<td><%= link_to "Delete", ad_hoc_reports_path(item), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></td>
+		    		<% if policy(AdHocReport).destroy? %>
+		    			<td><%= link_to "Delete", ad_hoc_report_path(item), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></td>
+		    		<% else %>
+		    			<td></td>
+		    		<% end %>
 		    	</tr>
 				<% end %>
 		  </tbody>

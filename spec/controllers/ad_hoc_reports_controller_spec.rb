@@ -16,10 +16,12 @@ describe AdHocReportsController do
 
     before :all do
       clear_triple_store
+      delete_all_public_test_files
+      delete_all_public_report_files
       AdHocReport.delete_all
-      ahr = AdHocReport.create(label: "Report No. 1", sparql_file: "report_1_sparql.txt", results_file: "report_1_results.yaml", last_run: Time.now, active: false, background_id: 0)
-      ahr = AdHocReport.create(label: "Report No. 2", sparql_file: "report_2_sparql.txt", results_file: "report_2_results.yaml", last_run: Time.now, active: false, background_id: 0)
-      ahr = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
+      @ahr1 = AdHocReport.create(label: "Report No. 1", sparql_file: "report_1_sparql.txt", results_file: "report_1_results.yaml", last_run: Time.now, active: false, background_id: 0)
+      @ahr2 = AdHocReport.create(label: "Report No. 2", sparql_file: "report_2_sparql.txt", results_file: "report_2_results.yaml", last_run: Time.now, active: false, background_id: 0)
+      @ahr3 = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
     end
     
     it "lists all the reports" do
@@ -35,58 +37,103 @@ describe AdHocReportsController do
 
     it "allows a new report to be created, missing file" do
       count = AdHocReport.all.count
-      post :create, { ad_hoc_report: { label: "A new report", filename: "filname_root" }}
-      item = assigns(:new_report)
-      #expect(item.errors.count).to eq(1)
-      #expect(item.errors.full_messages.to_sentence).to eq("Filename contains invalid characters or is empty")
-      expect(flash[:error]).to be_present
-      expect(AdHocReport.all.count).to eq(count)
-      expect(response).to redirect_to("http://test.host/ad_hoc_reports/new")
-    end
-
-    it "allows a new report to be created, error label" do
-      count = AdHocReport.all.count
-      post :create, { ad_hoc_report: { label: "A new report@", filename: "filname_root" }}
-      expect(flash[:error]).to be_present
-      expect(AdHocReport.all.count).to eq(count)
-      expect(response).to redirect_to("http://test.host/ad_hoc_reports/new")
-    end
-
-    it "allows a new report to be created, error filename root" do
-      count = AdHocReport.all.count
-      post :create, { ad_hoc_report: { label: "A new report", filename: "filname_rootA" }}
-      item = assigns(:new_report)
+      filename = public_path("upload", "filname_root.yaml")
+      post :create, { ad_hoc_report: { files: [filename] }}
       expect(flash[:error]).to be_present
       expect(AdHocReport.all.count).to eq(count)
       expect(response).to redirect_to("http://test.host/ad_hoc_reports/new")
     end
 
     it "allows a new report to be created" do
-      copy_file_to_public_files("controllers", "ad_hoc_report_1_sparql.yaml", "test")
+      delete_all_public_test_files
+      delete_all_public_report_files
+      audit_count = AuditTrail.count
+      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
       count = AdHocReport.all.count
-      post :create, { ad_hoc_report: { label: "The first report", filename: "ad_hoc_report_1" }}
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      post :create, { ad_hoc_report: { files: [filename] }}
+      expect(flash[:success]).to be_present
       expect(AdHocReport.all.count).to eq(count + 1)
+      expect(AuditTrail.count).to eq(audit_count + 1)
       expect(response).to redirect_to("http://test.host/ad_hoc_reports")
     end
 
-    it "allows a report to be run"
+    it "allows a report to be run" do
+      delete_all_public_test_files
+      delete_all_public_report_files
+      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      post :create, { ad_hoc_report: { files: [filename] }}
+      report = AdHocReport.where(:label => "Ad Hoc Report 1").first
+      get :run_start, { id: report.id }
+      expect(response).to render_template("results")
+    end
 
-    it "allows a report to be deleted"
+    it "allows the progress of a report run to be seen" do
+      delete_all_public_test_files
+      delete_all_public_report_files
+      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      post :create, { ad_hoc_report: { files: [filename] }}
+      report = AdHocReport.where(:label => "Ad Hoc Report 1").first
+      get :run_start, { id: report.id }
+      get :run_progress, { id: report.id }
+      expect(response.code).to eq("200")
+      expect(response.body).to eq("{\"running\":false}")
+    end
 
-    it "allows the results of a report to be presented"
+    it "allows the results of a report to be presented" do
+      delete_all_public_test_files
+      delete_all_public_report_files
+      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      post :create, { ad_hoc_report: { files: [filename] }}
+      report = AdHocReport.where(:label => "Ad Hoc Report 1").first
+      get :run_start, { id: report.id }
+      get :run_progress, { id: report.id }
+      get :run_results, { id: report.id }
+      expect(response.code).to eq("200")
+      expect(response.body).to eq("{\"columns\":[[\"URI\"],[\"Identifier\"],[\"Label\"]],\"data\":[]}")
+    end
+
+    it "allows the existing results of a report to be presented" do
+      delete_all_public_test_files
+      delete_all_public_report_files
+      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      post :create, { ad_hoc_report: { files: [filename] }}
+      report = AdHocReport.where(:label => "Ad Hoc Report 1").first
+      get :results, { id: report.id }
+      found_report = assigns(:report)
+      columns = assigns(:columns)
+      expect(found_report.id).to eq(report.id)
+      expect(columns).to eq({"?a"=>{:label=>"URI", :type=>"uri"}, "?b" => {:label=>"Identifier", :type=>"literal"}, "?c" => {:label=>"Label", :type=>"literal"}})
+      expect(response).to render_template("results")   
+    end
+
+    it "allows a report to be deleted" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/ad_hoc_reports'
+      audit_count = AuditTrail.count
+      count = AdHocReport.all.count
+      post :destroy, { id: @ahr2.id }
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(AdHocReport.all.count).to eq(count - 1)
+      expect(response).to redirect_to("http://test.host/ad_hoc_reports")
+    end
 
   end
   
-  describe "Curator Role" do
+  describe "ad hoc reports as curator" do
   	
     login_curator
    
     before :all do
       clear_triple_store
+      delete_all_public_files
       AdHocReport.delete_all
-      ahr = AdHocReport.create(label: "Report No. 1", sparql_file: "report_1_sparql.txt", results_file: "report_1_results.yaml", last_run: Time.now, active: false, background_id: 0)
-      ahr = AdHocReport.create(label: "Report No. 2", sparql_file: "report_2_sparql.txt", results_file: "report_2_results.yaml", last_run: Time.now, active: false, background_id: 0)
-      ahr = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
+      @ahr1 = AdHocReport.create(label: "Report No. 1", sparql_file: "report_1_sparql.txt", results_file: "report_1_results.yaml", last_run: Time.now, active: false, background_id: 0)
+      @ahr2 = AdHocReport.create(label: "Report No. 2", sparql_file: "report_2_sparql.txt", results_file: "report_2_results.yaml", last_run: Time.now, active: false, background_id: 0)
+      @ahr3 = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
     end
     
     it "lists all the reports" do
@@ -95,13 +142,76 @@ describe AdHocReportsController do
       expect(response).to render_template("index")
     end
 
-    it "prevents a new report to be created"
+    it "prevents a new report to be created" do
+      get :new
+      expect(response).to redirect_to("/")
+    end
 
-    it "allows a report to be run"
+    it "allows a report to be run" do
+      delete_all_public_test_files
+      delete_all_public_report_files
+      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      files = []
+      files << filename
+      AdHocReport.create_report({files: files}) # Create directly as user cannot
+      report = AdHocReport.where(:label => "Ad Hoc Report 1").first
+      get :run_start, { id: report.id }
+      expect(response).to render_template("results")
+    end
 
-    it "prevents a report to be deleted"
+    it "allows the progress of a report run to be seen" do
+      delete_all_public_test_files
+      delete_all_public_report_files
+      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      files = []
+      files << filename
+      AdHocReport.create_report({files: files}) # Create directly as user cannot
+      report = AdHocReport.where(:label => "Ad Hoc Report 1").first
+      get :run_start, { id: report.id }
+      get :run_progress, { id: report.id  }
+      expect(response.code).to eq("200")
+    end
 
-    it "allows the results of a report to be presented"
+    it "allows the results of a report to be presented" do
+      delete_all_public_test_files
+      delete_all_public_report_files
+      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      files = []
+      files << filename
+      AdHocReport.create_report({files: files}) # Create directly as user cannot
+      report = AdHocReport.where(:label => "Ad Hoc Report 1").first
+      get :run_start, { id: report.id }
+      get :run_results, { id: report.id }
+      expect(response.code).to eq("200")
+      expect(response.body).to eq("{\"columns\":[[\"URI\"],[\"Identifier\"],[\"Label\"]],\"data\":[]}")
+    end
+
+     it "allows the existing results of a report to be presented" do
+      delete_all_public_test_files
+      delete_all_public_report_files
+      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
+      files = []
+      files << filename
+      AdHocReport.create_report({files: files}) # Create directly as user cannot
+      report = AdHocReport.where(:label => "Ad Hoc Report 1").first
+      get :results, { id: report.id }
+      found_report = assigns(:report)
+      columns = assigns(:columns)
+      expect(found_report.id).to eq(report.id)
+      expect(columns).to eq({"?a"=>{:label=>"URI", :type=>"uri"}, "?b" => {:label=>"Identifier", :type=>"literal"}, "?c" => {:label=>"Label", :type=>"literal"}})
+      expect(response).to render_template("results")    
+    end
+
+     it "prevents a report to be deleted" do
+      post :destroy, { id: @ahr3.id }
+      expect(response).to redirect_to("/")
+    end
+
   end
 
   describe "Reader Role" do
@@ -110,7 +220,7 @@ describe AdHocReportsController do
    
     before :all do
       clear_triple_store
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      delete_all_public_files
       AdHocReport.delete_all
       ahr = AdHocReport.create(label: "Report No. 1", sparql_file: "report_1_sparql.txt", results_file: "report_1_results.yaml", last_run: Time.now, active: false, background_id: 0)
       ahr = AdHocReport.create(label: "Report No. 2", sparql_file: "report_2_sparql.txt", results_file: "report_2_results.yaml", last_run: Time.now, active: false, background_id: 0)
@@ -128,12 +238,22 @@ describe AdHocReportsController do
     end
 
     it "prevents a reader running a report" do
-      get :run, { id: 1 }
+      get :run_start, { id: 1 }
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents a reader seeing a running report" do
+      get :run_progress, { id: 1 }
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents a reader to see report results" do
+      get :run_results, { id: 1 }
       expect(response).to redirect_to("/")
     end
 
     it "prevents a reader seeing the results of a report" do
-      get :show, { id: 1 }
+      get :results, { id: 1 }
       expect(response).to redirect_to("/")
     end
 
@@ -152,12 +272,22 @@ describe AdHocReportsController do
     end
 
     it "prevents unauthorized access to running a report" do
-      get :run, { id: 1 }
+      get :run_start, { id: 1 }
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "prevents unauthorized access to seeing a running report" do
+      get :run_progress, { id: 1 }
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "prevents unauthorized access to report results" do
+      get :run_results, { id: 1 }
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "prevents unauthorized access to seeing the results of a report" do
-      get :show, { id: 1 }
+      get :results, { id: 1 }
       expect(response).to redirect_to("/users/sign_in")
     end
 

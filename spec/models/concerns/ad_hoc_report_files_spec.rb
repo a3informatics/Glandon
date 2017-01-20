@@ -55,8 +55,14 @@ describe AdHocReportFiles do
 	end
 
   it "saves a file" do
-    AdHocReportFiles.save("test_report.yaml", test_json)
+    result = AdHocReportFiles.save("test_report.yaml", test_json)
+    expect(result).to match(true)
     expect(AdHocReportFiles.read("test_report.yaml")).to match(test_json)
+  end
+
+  it "saves a file, failed" do
+    result = AdHocReportFiles.save("/", test_json)
+    expect(result).to match(false)
   end
 
   it "detects the existance of a file, present" do
@@ -68,7 +74,23 @@ describe AdHocReportFiles do
   end
 
   it "reads a file" do
-    expect(AdHocReportFiles.read("test_report.yaml")).to match(test_json)
+    result = AdHocReportFiles.read("test_report.yaml")
+    expect(result).to match(test_json)
+  end
+
+  it "reads a file, fail" do
+    result = AdHocReportFiles.read("test_report.yamlxx")
+    expect(result).to match("")
+  end
+
+  it "deletes a file" do
+    result = AdHocReportFiles.delete("test_report.yaml")
+    expect(result).to eq(true)
+  end
+
+  it "deletes a file, fail" do
+    result = AdHocReportFiles.delete("test_report.yaml")
+    expect(result).to eq(false)
   end
 
 end

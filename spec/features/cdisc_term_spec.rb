@@ -36,6 +36,7 @@ describe "CDISC Term", :type => :feature do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
+      delete_all_public_test_files
     end
 
     it "allows the history page to be viewed" do
@@ -115,7 +116,7 @@ describe "CDISC Term", :type => :feature do
     end
 
     it "allows changes to be viewed" do
-      copy_file_to_public_files("features", "CDISC_CT_Changes.yaml", "results")
+      copy_file_to_public_files("features", "CDISC_CT_Changes.yaml", "test")
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Changes'
@@ -125,7 +126,7 @@ describe "CDISC Term", :type => :feature do
     it "allows changes report to be produced"
 
     it "allows submission to be viewed" do
-      copy_file_to_public_files("features", "CDISC_CT_Submission_Changes.yaml", "results")
+      copy_file_to_public_files("features", "CDISC_CT_Submission_Changes.yaml", "test")
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Submission'

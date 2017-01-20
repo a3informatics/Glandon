@@ -34,6 +34,16 @@ class AdHocReport < ActiveRecord::Base
     return object
   end
 
+  # Destroy Report
+  # Note: Not named destroy so as not to override
+  #
+  # @return [Null] no return
+  def destroy_report
+    result = AdHocReportFiles.delete(self.sparql_file)
+    result = AdHocReportFiles.delete(self.results_file)
+    self.destroy
+  end
+
   # Run A Report
   #
   # @return [Null] no return
@@ -68,7 +78,8 @@ class AdHocReport < ActiveRecord::Base
   # @return [Hash] the column hash
   def columns
     definition = AdHocReportFiles.read(self.sparql_file)
-    return definition[:columns]
+    return definition[:columns] if self.class.check_definition(definition)
+    return {}
   end
 
   # To CSV
@@ -76,10 +87,13 @@ class AdHocReport < ActiveRecord::Base
   # @return [Object] the CSV serialization
   def to_csv
     dt_result = AdHocReportFiles.read(self.results_file)
-    hashes = 
-    column_names = 
+    if dt_result.blank?
+      dt_result = { columns: [["No Results Error"]], data: [["No Results Error"]] }
+    end
     csv_data = CSV.generate do |csv|
-      csv << dt_result[:columns]
+      headers = []
+      dt_result[:columns].each { |x| headers << x.first }
+      csv << headers
       dt_result[:data].each do |x|
         csv << x
       end
@@ -91,12 +105,15 @@ private
 
   # Check the file structure
   def self.check_definition(definition)
+    return false if definition.blank?
     result = definition.key?(:type) &&
       definition.key?(:label) &&
       definition.key?(:columns) &&
       definition.key?(:query) &&
       definition[:type] == "Ad Hoc Report Definition"
     return result
+  rescue => e
+    return false
   end
 
 end

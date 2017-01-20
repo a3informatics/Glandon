@@ -32,12 +32,16 @@ class AdHocReportFiles
   #
   # @param filename [String] the filename with extension but no path
   # @param results [Hash] The results
-  # @results [Null]
+  # @results [Boolean] true if file saved, false otherwise
   def self.save(filename, results)
     outputFile = file_path(filename)
     File.open(outputFile, "w+") do |f|
       f.write(results.to_yaml)
     end
+    return true
+  rescue => e
+    ConsoleLogger.info(C_CLASS_NAME, "save", "Failed to save file #{filename}. Exception #{e} raised.")
+    return false
 	end
 
 	# See if file exisits
@@ -48,12 +52,27 @@ class AdHocReportFiles
     File.exist?(file_path(filename))
 	end
 
+  # Delete File
+  #
+  # @param filename [String] the filename with extension but no path
+  # @results [Boolean] true if the file deleted, false otherwise
+  def self.delete(filename)
+    File.delete(file_path(filename))
+    return true
+  rescue => e
+    ConsoleLogger.info(C_CLASS_NAME, "delete", "Failed to delete file #{filename}. Exception #{e} raised.")
+    return false
+  end
+
 	# Read a file
   #
   # @param filename [String] the filename with extension but no path
   # @results [Hash] a hash containing the file contents
   def self.read(filename)
 		return YAML.load_file(file_path(filename))
+  rescue => e
+    ConsoleLogger.info(C_CLASS_NAME, "read", "Failed to read file #{filename}. Exception #{e} raised.")
+    return ""
 	end
 
   # Directory Path. Obtain the directory path.

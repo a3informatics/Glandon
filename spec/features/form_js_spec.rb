@@ -212,7 +212,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: VS BASELINE'
-      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'View').click
+      find(:xpath, "//tr[contains(.,'Standard')]/td/a", :text => 'View').click
       wait_for_ajax
       expect(page).to have_content 'View: Vital Signs Baseline VS BASELINE (, V1, Standard)'
       expect(page).to have_content 'Form'

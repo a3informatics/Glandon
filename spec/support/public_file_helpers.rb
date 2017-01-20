@@ -8,12 +8,21 @@ module PublicFileHelpers
     expect(File.exists?(Rails.root.join "public/#{sub_dir}/#{filename}")).to be(true)
   end
 
+  def public_file_does_not_exist?(sub_dir, filename)
+    expect(File.exists?(Rails.root.join "public/#{sub_dir}/#{filename}")).to be(false)
+  end
+
+  # Deprecated
   def delete_all_public_files
-    public_dir = Rails.root.join("public", "test")
-    files = Dir.glob(public_dir + "*")
-    files.each do |file|
-      File.delete(file)
-    end
+    delete_all_public_test_files
+  end
+
+  def delete_all_public_test_files
+    delete_all_files("test")
+  end
+
+  def delete_all_public_report_files
+    delete_all_files("report")
   end
 
   def delete_public_file(sub_dir, filename)
@@ -32,6 +41,16 @@ module PublicFileHelpers
   	source_file = Rails.root.join "public/#{dest_sub_dir}/#{filename}"
   	dest_file = Rails.root.join "spec/fixtures/files/#{source_sub_dir}/#{filename}"
   	FileUtils.cp source_file, dest_file
+  end
+
+private
+
+  def delete_all_files(sub_dir)
+    public_dir = Rails.root.join("public", sub_dir)
+    files = Dir.glob(public_dir + "*")
+    files.each do |file|
+      File.delete(file)
+    end
   end
 
 end

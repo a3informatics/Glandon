@@ -59,14 +59,16 @@ describe Background do
     expect(results).to eq(expected)
   end
 
-  it "runs a background report" do
+  it "ad-hoc report" do
+    copy_file_to_public_files("models", "ad_hoc_report_test_1_sparql.yaml", "test")
     job = Background.create
     report = AdHocReport.new
-    report.sparql_file = ""
-    report.results_file = ""
+    report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
+    report.results_file = "ad_hoc_report_test_1_results.yaml"
     job.ad_hoc_report(report)
+    results = AdHocReportFiles.read("ad_hoc_report_test_1_results.yaml")
+    #write_yaml_file(results, sub_dir, "background_ad_hoc_report.yaml")
     expected = read_yaml_file(sub_dir, "background_ad_hoc_report.yaml")
-    results = AdHocReportFiles.read("")
     expect(results).to eq(expected)
   end 
 

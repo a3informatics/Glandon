@@ -298,7 +298,6 @@ class Background < ActiveRecord::Base
     end
     dt_hash = { columns: column_labels, data: results }
     AdHocReportFiles.save(report.results_file, dt_hash)
-    sleep 10
     self.update(status: "Complete. Successful ad-hoc report.", percentage: 100, complete: true, completed: Time.now())
   rescue => e
     self.update(status: "Complete. Unsuccessful ad-hoc report. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())

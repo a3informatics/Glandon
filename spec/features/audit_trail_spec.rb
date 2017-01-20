@@ -12,7 +12,7 @@ describe "Audit Trail", :type => :feature do
 
   before :each do
     user = FactoryGirl.create(:user)
-    user.add_role :sys_admin
+    user.add_role :curator 
     user1 = User.create :email => "user1@example.com", :password => "changeme" 
     user2 = User.create :email => "user2@example.com", :password => "changeme" 
     AuditTrail.delete_all
@@ -41,6 +41,7 @@ describe "Audit Trail", :type => :feature do
       fill_in 'Password', with: 'example1234'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
+      save_and_open_page
       click_link 'Audit Trail'
       expect(page).to have_content 'Index: Audit Trail'
     end

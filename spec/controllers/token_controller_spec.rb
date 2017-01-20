@@ -64,7 +64,8 @@ describe TokensController do
       expect(assigns(:timeout)).to eq(5)
       expect(tokens.count).to eq(4)
       expected.each_with_index do |item, index|
-        token = tokens[index]
+        #token = tokens[index]
+        token = tokens.find{|x| x.item_uri == item[:item_uri]}
         expect(token.refresh_count).to eq(item[:refresh_count]) 
         expect(token.item_uri).to eq(item[:item_uri]) 
         expect(token.item_info).to eq(item[:item_info]) 
@@ -85,7 +86,8 @@ describe TokensController do
       ]
       expect(tokens.count).to eq(3)
       expected.each_with_index do |item, index|
-        token = tokens[index]
+        #token = tokens[index]
+        token = tokens.find{|x| x.item_uri == item[:item_uri]}
         expect(token.refresh_count).to eq(item[:refresh_count]) 
         expect(token.item_uri).to eq(item[:item_uri]) 
         expect(token.item_info).to eq(item[:item_info]) 
@@ -110,7 +112,8 @@ describe TokensController do
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#4", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id }
       ]
       expected.each_with_index do |item, index|
-        token = tokens[index]
+        #token = tokens[index]
+        token = tokens.find{|x| x.item_uri == item[:item_uri]}
         expect(token.refresh_count).to eq(item[:refresh_count]) 
         expect(token.item_uri).to eq(item[:item_uri]) 
         expect(token.item_info).to eq(item[:item_info]) 
