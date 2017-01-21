@@ -1,0 +1,87 @@
+var ttCurrentClass;
+var ttWarningTimeout;
+
+var C_TT_SUCCESS = "btn btn-success"; 
+var C_TT_WARNING = "btn btn-warning"; 
+var C_TT_DANGER = "btn btn-danger"; 
+
+$(document).ready(function() {
+	ttCurrentClass = $('#token_timer').attr('class'); 
+	ttWarningTimeout = $('#warning_timeout').val(); 
+	$("#token_timer").prop("disabled", true);
+	$("#token_timer").hide();
+	ttStatusTimeout();
+});
+
+function ttStatusTimeout(period) {
+  setTimeout(function(){
+    ttGetStatus();
+  }, period);
+}
+
+function ttGetStatus() {
+  $.ajax({
+    url: "/tokens/" + $('#token').val() + "/status",
+    type: "GET",
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      displayError("An error has occurred obtaining the edit lock timeout information.");
+    },
+    success: function(result){
+      if (result.running) {
+      	if (result.remaining > ttWarningTimeout) {
+      		$("#token_timer").hide();
+      		ttStatusTimeout(10000);
+      	} else if (result.remaining > (ttWarningTimeout / 2)) {
+      		if (ttCurrentClass === C_TT_SUCCESS) {
+      			ttUpdateClass(C_TT_WARNING);
+						$("#token_timer").show();
+  				}	
+      		$('#token_timer').html(ttToMinSec(result.remaining));
+	      	ttStatusTimeout(1000);
+      	} else {
+      		if (ttCurrentClass === C_TT_WARNING) {
+	      		ttUpdateClass(C_TT_DANGER);
+						$("#token_timer").show();
+	      		displayError("The edit lock is about to timeout!")
+  				}	
+      		$('#token_timer').html(ttToMinSec(result.remaining));
+	      	ttStatusTimeout(1000);
+      	}
+      } else {
+      	$('#token_timer').html("00:00");
+      }
+    }
+  });
+}
+
+function ttToMinSec(seconds) {
+	var minutes = Math.floor(seconds/60);
+	var seconds = seconds % 60;
+	return pad(minutes, 2, '0') + ":" + pad(seconds, 2, '0');
+}
+
+function ttExtendLock() {
+  $.ajax({
+    url: "/tokens/" + $('#token').val() + "/extend_token",
+    type: "GET",
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      displayError("An error has occurred extending the edit lock timeout.");
+    },
+    success: function(result){
+    	ttUpdateClass(C_TT_SUCCESS);
+    	$("#token_timer").hide();
+    }
+  });
+}
+
+function ttSave() {
+  ttUpdateClass(C_TT_SUCCESS);
+  $("#token_timer").hide();
+}
+
+function ttUpdateClass(newClass) {
+	$("#token_timer").removeClass().addClass(newClass);
+	ttCurrentClass = $('#token_timer').attr('class'); 
+}

@@ -81,6 +81,8 @@ Rails.application.routes.draw do
   resources :tokens, only: [:index] do
     member do
       post :release
+      get :status
+      get :extend_token
     end
   end
   resources :ad_hoc_reports, only: [:index, :show, :new, :create, :destroy] do

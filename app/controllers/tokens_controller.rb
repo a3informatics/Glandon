@@ -22,4 +22,33 @@ class TokensController < ApplicationController
     end
   end
 
+  def status
+    authorize Token, :show?
+    if Token.exists?(params[:id])
+      item = Token.find(params[:id])
+      respond_to do |format|
+        format.json  { render :json => { running: !item.timed_out?, remaining: item.remaining }, :status => 200 }
+      end
+    else
+      respond_to do |format|
+        format.json  { render :json => { running: false, remaining: 0 }, :status => 200 }
+      end    
+    end
+  end
+
+  def extend_token
+    authorize Token, :show?
+    if Token.exists?(params[:id])
+      item = Token.find(params[:id])
+      item.extend_token
+      respond_to do |format|
+        format.json  { render :json => {}, :status => 200 }
+      end
+    else
+      respond_to do |format|
+        format.json  { render :json => {}, :status => 200 }
+      end
+    end    
+  end
+
 end

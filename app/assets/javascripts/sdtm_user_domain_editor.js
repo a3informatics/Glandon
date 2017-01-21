@@ -190,6 +190,7 @@ function saveRest() {
       contentType: 'application/json',
       success: function(result){
         removeSpinner();
+        ttSave();
       },
       error: function(xhr, status, error){
         handleAjaxError (xhr, status, error);
@@ -197,6 +198,8 @@ function saveRest() {
       }
     });
     previousSave = currentSave; 
+  } else {
+    ttExtendLock(); // Nothing to save, extend the edit lock timer.
   }
 }
 

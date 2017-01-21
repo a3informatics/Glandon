@@ -17,7 +17,7 @@ describe UserSettings do
   it "read settings" do
     user = User.create :email => "settings@example.com", :password => "changeme"
     the_settings = user.settings
-    expect(the_settings).to eq({:paper_size => "A4", :table_rows=>"10"})
+    expect(the_settings).to eq({:paper_size => "A4", :table_rows=>"10", :edit_lock_warning=>"60"})
   end
 
   it "read setting metadata" do

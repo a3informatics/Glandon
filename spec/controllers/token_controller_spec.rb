@@ -51,7 +51,8 @@ describe TokensController do
       Token.delete_all
     end
 
-    it "index" do
+    it "provides index of the tokens" do
+      Token.set_timeout(5)
       get :index
       tokens = assigns(:tokens)
       expected = 
@@ -75,7 +76,7 @@ describe TokensController do
       expect(response).to render_template("index")
     end
 
-    it "release" do
+    it "will release a token, HTTP" do
       post :release, :id => @token1.id
       tokens = Token.all
       expected = 
@@ -97,7 +98,7 @@ describe TokensController do
       expect(response).to redirect_to("/tokens")
     end
 
-    it "release" do
+    it "will release a token, JSON" do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :release, :id => @token2.id
       expect(response.content_type).to eq("application/json")
@@ -122,6 +123,44 @@ describe TokensController do
       end
     end
 
+    it "allows the staus of a token to be obtained" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      remaining = @token3.remaining
+      post :status, :id => @token3.id
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")  
+      result = JSON.parse(response.body)
+      expect(result["running"]).to eq(true)
+      expect(result["remaining"]).to eq(remaining)
+    end
+
+    it "allows the staus of a token to be obtained, no token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :status, :id => 6
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")  
+      result = JSON.parse(response.body)
+      expect(result["running"]).to eq(false)
+      expect(result["remaining"]).to eq(0)
+    end
+    
+    it "allows the token to be extended" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :extend_token, :id => @token3.id
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")  
+      expect(response.body).to eq("{}")
+      expect(@token3.remaining).to eq(Token.get_timeout)
+    end
+
+    it "allows the token to be extended, no token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :extend_token, :id => 6
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")  
+      expect(response.body).to eq("{}")
+    end
+
   end
 
   describe "Unauthorized User" do
@@ -140,6 +179,24 @@ describe TokensController do
     it "index" do
       get :index
       expect(response).to redirect_to("/")
+    end
+
+    it "allows the staus of a token to be obtained, no token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :status, :id => 6
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")  
+      result = JSON.parse(response.body)
+      expect(result["running"]).to eq(false)
+      expect(result["remaining"]).to eq(0)
+    end
+
+    it "allows the token to be extended, no token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :extend_token, :id => 6
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")  
+      expect(response.body).to eq("{}")
     end
 
   end

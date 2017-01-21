@@ -47,7 +47,8 @@ RSpec.describe Token, type: :model do
   end
 
   it "allows the same user to obtain a token when already allocated" do
-  	item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+  	Token.set_timeout(5)
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     token1 = Token.obtain(item, @user)
     sleep 3 # Valid sleep in this case, to let token 1 elapse a bit so as to test reset
     token2 = Token.obtain(item, @user)
@@ -87,6 +88,7 @@ RSpec.describe Token, type: :model do
   end
 
   it "determines if user does not own lock, released" do
+    Token.set_timeout(5)
     item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     token = Token.obtain(item, @user)
     sleep 6
@@ -99,6 +101,7 @@ RSpec.describe Token, type: :model do
   end
 
   it "allows tokens to be expired" do
+    Token.set_timeout(5)
     item1 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item1.id = "1"
     item2 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
@@ -132,6 +135,36 @@ RSpec.describe Token, type: :model do
     sleep 6
     expect(Token.find_token(item1, @user)).to eq(nil)
     Token.set_timeout(5)
+  end
+
+  it "tests for an expired timeout" do
+    Token.set_timeout(5)
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    token = Token.obtain(item, @user)
+    expect(token.timed_out?).to eq(false)
+    sleep 6
+    expect(token.timed_out?).to eq(true)
+  end
+
+  it "tests for the remaining time" do
+    Token.set_timeout(5)
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    token = Token.obtain(item, @user)
+    expect(token.remaining).to eq(5)
+    sleep 1
+    expect(token.remaining).to eq(4)
+    sleep 1
+    expect(token.remaining).to eq(3)
+  end
+
+  it "allows the timeout to be extended" do
+    Token.set_timeout(5)
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    token = Token.obtain(item, @user)
+    sleep 3
+    token.extend_token
+    sleep 4
+    expect(token.timed_out?).to eq(false)
   end
 
 end

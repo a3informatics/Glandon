@@ -28,6 +28,17 @@ defaults: &defaults
         All: -1
       default_value: 10
       label: Table Rows
+    edit_lock_warning: # Time for edit lock warning
+      type: coded
+      values: 
+        '30s': 30 
+        '1m': 60 
+        '1m 30s': 90 
+        '2m': 120
+        '3m': 180
+        '5m': 300
+      default_value: 60
+      label: Edit Lock Warning
 development:
   <<: *defaults
 
