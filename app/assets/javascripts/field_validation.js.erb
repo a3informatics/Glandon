@@ -4,6 +4,7 @@ C_FV_END_1_OR_MORE = "]+$"
 C_FV_ALPHA_NUMERICS = "a-zA-Z0-9"
 C_FV_ALPHA_NUMERICS_SPACE = C_FV_ALPHA_NUMERICS + " "
 C_FV_FREE_TEXT = C_FV_ALPHA_NUMERICS + " .!?,'\"_\\-\\/\\\\()\\[\\]~#*=:;&|<>"
+C_FV_TC_IDENTIFIER = C_FV_START + C_FV_ALPHA_NUMERICS + C_FV_END_1_OR_MORE
 C_FV_IDENTIFIER = C_FV_START + C_FV_ALPHA_NUMERICS_SPACE + C_FV_END_1_OR_MORE
 C_FV_MARKDOWN = C_FV_START + C_FV_FREE_TEXT + "\r\n" + C_FV_END_EMPTY
 C_FV_LONG_NAME = C_FV_START + C_FV_FREE_TEXT + C_FV_END_1_OR_MORE
@@ -15,6 +16,7 @@ C_FV_SDTM_LABEL = C_FV_START + C_FV_FREE_TEXT + "]{1,40}$"
 
 C_FV_MESSAGE = ".!?,'\"_-/\\()[]~#*=:;&|<>";
 
+var fvTcIdentifierRegEx = new RegExp(C_FV_TC_IDENTIFIER)
 var fvIdentifierRegEx = new RegExp(C_FV_IDENTIFIER)
 var fvMarkdownRegEx = new RegExp(C_FV_MARKDOWN)
 var fvLongNameRegEx = new RegExp(C_FV_LONG_NAME)
@@ -33,6 +35,10 @@ var fvSdtmMappingRegEx = new RegExp(C_FV_MAPPING)
 jQuery.validator.addMethod("identifier", function(value, element) {
   return fvIdentifierRegEx.test(value);
 }, "Please enter a valid identifier. Upper and lower case alphanumeric and space characters only.");
+
+jQuery.validator.addMethod("tcIdentifier", function(value, element) {
+  return fvTcIdentifierRegEx.test(value);
+}, "Please enter a valid identifier. Upper and lower case alphanumeric characters only.");
 
 jQuery.validator.addMethod("label", function(value, element) {
   return fvLabelRegEx.test(value);

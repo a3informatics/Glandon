@@ -4,6 +4,7 @@ module FieldValidation
   C_ALPHA_NUMERICS = "a-zA-Z0-9"
   C_ALPHA_NUMERICS_SPACE = "#{C_ALPHA_NUMERICS} "
   C_FREE_TEXT = "#{C_ALPHA_NUMERICS} .!?,'\"_\\-\\/\\\\()\\[\\]~#*=:;&|<>"
+  C_TC_PART = "[#{C_ALPHA_NUMERICS}]+"
   C_IDENTIFIER = "[#{C_ALPHA_NUMERICS_SPACE}]+"
   C_MARKDOWN = "[#{C_FREE_TEXT}\r\n]*"
   C_LONG_NAME = "[#{C_FREE_TEXT}]+"
@@ -28,6 +29,39 @@ module FieldValidation
       return true if value =~ /\A#{C_IDENTIFIER}\z/
       object.errors.add(symbol, "contains invalid characters")
       return false
+    end
+  end
+
+  # Valid Thesaurus Concept Identifier
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_tc_identifier?(symbol, value, object)
+    if value.blank?
+      object.errors.add(symbol, "is empty")
+      return false
+    else
+      if value[-1] == '.'
+        object.errors.add(symbol, "contains an empty part")
+        return false
+      else
+        parts = value.split('.')
+        parts.each do |part|
+          if part.blank?
+            object.errors.add(symbol, "contains an empty part")
+            return false
+          else
+            if part =~ /\A#{C_TC_PART}\z/
+            else
+              object.errors.add(symbol, "contains a part with invalid characters")
+              return false
+            end
+          end
+        end
+      end
+      return true
     end
   end
 

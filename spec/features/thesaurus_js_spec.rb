@@ -126,7 +126,6 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'Same as A; B')]/td/button", :text => 'Edit').click
       expect(page).to have_content 'Edit: Label text A00030'
       fill_in 'Identifier', with: 'A00031'
-      #pause
       click_button 'New'
       expect(page).to have_content 'A00031'
       find(:xpath, "//table[@id='editor_table']/tbody/tr[1]/td[2]").click
@@ -155,10 +154,116 @@ describe "Thesaurus", :type => :feature do
       expect(page).not_to have_content 'A00032'
     end
 
-    it "allows a thesauri to be saved"
+    it "allows terminology to be edited, identifier check", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      expect(find('#tcIdentifierPrefix')).to have_content('')
+      fill_in 'Identifier', with: 'A00040'
+      click_button 'New'
+      expect(page).to have_content 'A00040' # Note up version
+      find(:xpath, "//table[@id='editor_table']/tbody/tr[5]/td[2]").click
+      fill_in "DTE_Field_label", with: "A00040 Label text\t"
+      fill_in "DTE_Field_notation", with: "A00040SUBMISSION\t"
+      wait_for_ajax
+      find(:xpath, "//tr[contains(.,'A00040SUBMISSION')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'Edit: A00040 Label text'
+      expect(find('#tcIdentifierPrefix')).to have_content('A00040.')
+      fill_in 'Identifier', with: 'A00001'
+      click_button 'New'
+      expect(page).to have_content 'A00040.A00001'
+      find(:xpath, "//table[@id='editor_table']/tbody/tr[1]/td[2]").click
+      fill_in "DTE_Field_label", with: "Label text for A00040.A00001\t"
+      fill_in "DTE_Field_notation", with: "A00040A00001SUBMISSION\t"
+      wait_for_ajax
+      click_button 'Close'
+    end
 
-    it "allows the edit sesison to be closed"
+    it "allows terminology to be edited, identifier validation", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      expect(find('#tcIdentifierPrefix')).to have_content('')
+      fill_in 'Identifier', with: 'A00040 XX'
+      click_button 'New'
+      expect(page).to have_content 'Please enter a valid identifier. Upper and lower case alphanumeric characters only.'
+      fill_in 'Identifier', with: 'A00040£'
+      click_button 'New'
+      expect(page).to have_content 'Please enter a valid identifier. Upper and lower case alphanumeric characters only.'
+      fill_in 'Identifier', with: 'A00050'
+      click_button 'New'
+      expect(page).to have_content 'The concept has been saved.'
+      click_button 'Close'
+    end
 
+    it "allows the edit session to be closed, parent page", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      click_button 'Close'
+      expect(page).to have_content 'History: CDISC EXT'
+    end
+
+    it "allows the edit session to be closed, child page", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      wait_for_ajax
+      find(:xpath, "//tr[contains(.,'A00040SUBMISSION')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'Edit: A00040 Label text'
+      click_button 'Close'
+      expect(page).to have_content 'History: CDISC EXT'
+    end
+    
+    it "allows the parent page to be returned to", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      find(:xpath, "//tr[contains(.,'A00040SUBMISSION')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'Edit: A00040 Label text'
+      find(:xpath, "//tr[contains(.,'A00040A00001SUBMISSION')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'Edit: Label text for A00040.A00001 A00040.A00001'
+      click_button 'Parent'
+      expect(page).to have_content 'Edit: A00040 Label text'
+      click_button 'Parent'
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)'
+    end
+    
     it "allows the edit session to be closed indirectly, saves data"
 
     it "allows a thesauri to be created, field validation", js: true do

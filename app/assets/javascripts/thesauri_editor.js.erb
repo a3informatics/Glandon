@@ -151,7 +151,7 @@ $(document).ready(function() {
   validatorDefaults ();
   $('#main_form').validate({
     rules: {
-      "Code List Identifier": {required: true, identifier: true }
+      "Code List Identifier": {required: true, tcIdentifier: true }
     },
     submitHandler: function(form) {
       var localTc = cloneTC();

@@ -11,6 +11,7 @@ class ThesaurusConceptsController < ApplicationController
     @token = Token.find_token(thesaurus, current_user)
     @close_path = edit_lock_lost_link(thesaurus)
     @referer_path = get_parent_link(@thesaurus_concept)
+    @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
     if @token.nil?
       flash[:error] = "The edit lock has timed out."
       redirect_to edit_lock_lost_link(thesaurus)

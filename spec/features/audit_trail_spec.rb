@@ -41,7 +41,7 @@ describe "Audit Trail", :type => :feature do
       fill_in 'Password', with: 'example1234'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
-      save_and_open_page
+      #save_and_open_page
       click_link 'Audit Trail'
       expect(page).to have_content 'Index: Audit Trail'
     end

@@ -226,7 +226,7 @@ describe ThesaurusConceptsController do
       token = Token.obtain(th, @user)
       post :add_child, params
       tc = ThesaurusConcept.find("THC-A00001_A0000999", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expect(tc.identifier).to eq("A0000999")
+      expect(tc.identifier).to eq("A00001.A0000999")
       expect(tc.notation).to eq("NEW 999")
       expect(tc.definition).to eq("New def 999")
       expect(tc.preferredTerm).to eq("New PT 999")
@@ -258,7 +258,7 @@ describe ThesaurusConceptsController do
       post :add_child, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(response.body).to eq("{\"errors\":[\"The Thesaurus Concept, identifier A0000999, already exists in the database.\"]}")
+      expect(response.body).to eq("{\"errors\":[\"The Thesaurus Concept, identifier A00001.A0000999, already exists\"]}")
     end
     
     it "fails to add child concept, no token" do

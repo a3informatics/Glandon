@@ -161,7 +161,6 @@ class Thesaurus <  IsoManaged
   # @param params [hash] {data:} The operational hash
   # @return [oject] The form object. Valid if no errors set.
   def self.create(params)
-    ConsoleLogger::log(C_CLASS_NAME, "create", "params=#{params}")
     operation = params[:operation]
     managed_item = params[:managed_item]
     object = Thesaurus.from_json(managed_item)
@@ -185,10 +184,9 @@ class Thesaurus <  IsoManaged
   # @return [object] The object created. Errors set if create failed.
   def add_child(params)
     object = ThesaurusConcept.from_json(params)
+    object.identifier = "#{object.identifier}"
     if !object.exists?
-      ConsoleLogger::log(C_CLASS_NAME, "add_child", "Does not exist")
       if object.valid?
-        ConsoleLogger::log(C_CLASS_NAME, "add_child", "Valid")
         sparql = SparqlUpdateV2.new
         object.to_sparql_v2(self.uri, sparql)
         sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasConcept"}, {:uri => object.uri})
@@ -201,7 +199,6 @@ class Thesaurus <  IsoManaged
     else
       object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists in the database.")
     end
-    ConsoleLogger::log(C_CLASS_NAME, "add_child", "Object=#{object.to_json}")
     return object
   end
 

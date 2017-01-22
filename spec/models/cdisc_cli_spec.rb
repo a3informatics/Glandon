@@ -51,7 +51,7 @@ describe CdiscCli do
     valid = tc.valid?
     expect(valid).to eq(false)
     expect(tc.errors.count).to eq(1)
-    expect(tc.errors.full_messages[0]).to eq("Identifier contains invalid characters")
+    expect(tc.errors.full_messages[0]).to eq("Identifier is empty")
   end 
 
   it "allows validity of the object to be checked" do

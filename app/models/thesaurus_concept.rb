@@ -52,10 +52,6 @@ class ThesaurusConcept < IsoConcept
     return object
   end
 
-  #def self.unique
-  #  return super(C_RDF_TYPE, C_SCHEMA_NS)
-  #end
-
   # Exists. Checks if the identifier exists.
   #
   # @return [boolean] True of the identifier exists, false otherwise
@@ -65,10 +61,11 @@ class ThesaurusConcept < IsoConcept
 
   # Add a child concept
   #
-  # @params params [hash] The params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
-  # @return [object] The object created. Errors set if create failed.
+  # @params params [Hash] the params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
+  # @return [ThesaurusCocncept] the object created. Errors set if create failed.
   def add_child(params)
     object = ThesaurusConcept.from_json(params)
+    object.identifier = "#{self.identifier}.#{object.identifier}"
     if !object.exists?
       if object.valid?
         sparql = SparqlUpdateV2.new
@@ -76,24 +73,22 @@ class ThesaurusConcept < IsoConcept
         sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasChild"}, {:uri => object.uri})
         response = CRUD.update(sparql.to_s)
         if !response.success?
-          object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, was not created in the database.")
+          ConsoleLogger.info(C_CLASS_NAME, "add_child", "The Thesaurus Concept, identifier #{object.identifier}, was not created")
           raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
         end
       end
     else
-      object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists in the database.")
+      object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists")
     end
     return object
   end
 
   # Add a child concept
   #
-  # @params params [hash] The params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
-  # @return [boolean] True if the update is successful, false otherwise.
+  # @params params [Hash] The params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
+  # @return [Boolean] true if the update is successful, false otherwise. 
   def update(params)
     result = true
-    ConsoleLogger::log(C_CLASS_NAME, "update", "Object1=#{self.to_json}")
-    ConsoleLogger::log(C_CLASS_NAME, "update", "Params=#{params}")
     self.errors.clear
     self.label = "#{params[:label]}"
     self.notation = "#{params[:notation]}"
@@ -127,14 +122,15 @@ class ThesaurusConcept < IsoConcept
         "  :" + self.id + " iso25964:synonym ?d .\n" +
         "  :" + self.id + " iso25964:definition ?e .\n" +
         "}\n"
-      ConsoleLogger::log(C_CLASS_NAME, "update", "SPARQL=#{update}")
       response = CRUD.update(update)
       if !response.success?
+        ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
         raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
       end
+    else
+      result = false
     end
-    ConsoleLogger::log(C_CLASS_NAME, "update", "Errors=#{self.errors.full_messages.to_sentence}") if self.errors.count > 0
-    ConsoleLogger::log(C_CLASS_NAME, "update", "Object2=#{self.to_json}")
+    return result
   end
 
   # Destroy the object
@@ -158,7 +154,7 @@ class ThesaurusConcept < IsoConcept
         "}\n"
       response = CRUD.update(update)
       if !response.success?
-        ConsoleLogger::log(C_CLASS_NAME,"destroy", "Failed to destroy object.")
+        ConsoleLogger.info(C_CLASS_NAME, "destroy", "Failed to destroy object.")
         raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
       end
       return true
@@ -210,8 +206,9 @@ class ThesaurusConcept < IsoConcept
   #
   # @return [object] The SPARQL object created.
   def to_sparql_v2(parent_uri, sparql)
-    cid_extension = self.identifier
-    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{cid_extension.gsub(/[^0-9A-Za-z_]/, '')}"
+    cid_extension = self.identifier.split('.').last
+    #self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{cid_extension.gsub(/[^0-9A-Za-z\.]/, '')}"
+    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{cid_extension}"
     self.namespace = parent_uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => self.uri}
@@ -233,7 +230,7 @@ class ThesaurusConcept < IsoConcept
   def valid?
     result = super
     result = result &&
-      FieldValidation::valid_identifier?(:identifier, self.identifier, self) &&
+      FieldValidation::valid_tc_identifier?(:identifier, self.identifier, self) &&
       FieldValidation::valid_submission_value?(:notation, self.notation, self) &&
       FieldValidation::valid_terminology_property?(:preferredTerm, self.preferredTerm, self) &&
       FieldValidation::valid_terminology_property?(:synonym, self.synonym, self) &&

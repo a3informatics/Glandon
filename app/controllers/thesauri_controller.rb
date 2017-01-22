@@ -56,6 +56,7 @@ class ThesauriController < ApplicationController
     end
     @token = Token.obtain(@thesaurus, current_user)
     @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
+    @tc_identifier_prefix = ""
     if @token.nil?
       flash[:error] = "The item is locked for editing by another user."
       redirect_to request.referer

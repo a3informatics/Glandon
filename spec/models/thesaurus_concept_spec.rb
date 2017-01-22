@@ -43,7 +43,7 @@ describe ThesaurusConcept do
     valid = tc.valid?
     expect(valid).to eq(false)
     expect(tc.errors.count).to eq(1)
-    expect(tc.errors.full_messages[0]).to eq("Identifier contains invalid characters")
+    expect(tc.errors.full_messages[0]).to eq("Identifier is empty")
   end 
 
   it "allows validity of the object to be checked" do
@@ -132,7 +132,7 @@ describe ThesaurusConcept do
               :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
               :label => "New",
               :extension_properties => [],
-              :identifier => "A00004",
+              :identifier => "A00001.A00004",
               :notation => "NEWNEW",
               :synonym => "",
               :definition => "Other or mixed race",
@@ -162,6 +162,52 @@ describe ThesaurusConcept do
     expect(tc.to_json).to eq(new_json)
   end
 
+  it "prevents a duplicate TC being added" do
+    json = 
+      {
+        :children => [],
+        :definition => "Other or mixed race",
+        :extension_properties => [],
+        :id => "",
+        :identifier => "A00004",
+        :label => "New",
+        :namespace => "",
+        :notation => "NEWNEW",
+        :parentIdentifier => "",
+        :preferredTerm => "New Stuff",
+        :synonym => "",
+        :topLevel => false,
+        :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
+      }
+    tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    new_object = tc.add_child(json)
+    expect(new_object.errors.count).to eq(1)
+    expect(new_object.errors.full_messages[0]).to eq("The Thesaurus Concept, identifier A00001.A00004, already exists")
+  end
+
+  it "prevents a TC being added with invalid identifier" do
+    json = 
+      {
+        :children => [],
+        :definition => "Other or mixed race!",
+        :extension_properties => [],
+        :id => "THC-A00004",
+        :identifier => "£",
+        :label => "New",
+        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
+        :notation => "NEWNEW",
+        :parentIdentifier => "",
+        :preferredTerm => "New Stuff",
+        :synonym => "",
+        :topLevel => false,
+        :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
+      }
+    tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    new_object = tc.add_child(json)
+    expect(new_object.errors.count).to eq(1)
+    expect(new_object.errors.full_messages[0]).to eq("Identifier contains a part with invalid characters")
+  end
+
   it "prevents a TC being added with invalid data" do
     json = 
       {
@@ -188,7 +234,7 @@ describe ThesaurusConcept do
   it "allows a TC to be updated" do
     new_tc = 
       {
-        :identifier => "A00004",
+        :identifier => "A00001.A00004",
         :label => "New",
         :notation => "NEWNEW AND",
         :synonym => "And",
@@ -202,7 +248,7 @@ describe ThesaurusConcept do
         :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
         :label => "New",
         :extension_properties => [],
-        :identifier => "A00004",
+        :identifier => "A00001.A00004",
         :notation => "NEWNEW AND",
         :synonym => "And",
         :definition => "Other or mixed race new",
@@ -221,7 +267,7 @@ describe ThesaurusConcept do
   it "allows a TC to be updated, quotes test" do
     new_tc = 
       {
-        :identifier => "A00004",
+        :identifier => "A00001.A00004",
         :label => "New",
         :notation => "NEWNEW AND",
         :synonym => "\"Quote\"",
@@ -235,7 +281,7 @@ describe ThesaurusConcept do
         :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
         :label => "New",
         :extension_properties => [],
-        :identifier => "A00004",
+        :identifier => "A00001.A00004",
         :notation => "NEWNEW AND",
         :synonym => "\"Quote\"",
         :definition => "Other or 'mixed' race new",
@@ -254,7 +300,7 @@ describe ThesaurusConcept do
   it "allows a TC to be updated, character test" do
     new_tc = 
       {
-        :identifier => "A00004",
+        :identifier => "A00001.A00004",
         :label => "New",
         :notation => "NEWNEW AND",
         :synonym => "THE BROWN FOX JUMPS OVER THE LAZY DOG. the brown fox jumps over the lazy dog. 0123456789 .!?,'\"_-/\\()[]~#*=:;&|",
@@ -268,7 +314,7 @@ describe ThesaurusConcept do
         :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
         :label => "New",
         :extension_properties => [],
-        :identifier => "A00004",
+        :identifier => "A00001.A00004",
         :notation => "NEWNEW AND",
         :synonym => "THE BROWN FOX JUMPS OVER THE LAZY DOG. the brown fox jumps over the lazy dog. 0123456789 .!?,'\"_-/\\()[]~#*=:;&|",
         :definition => "Other or 'mixed' race new",
@@ -287,7 +333,7 @@ describe ThesaurusConcept do
   it "prevents a TC being updated with invalid data" do
     new_tc = 
       {
-        :identifier => "A00004",
+        :identifier => "A00001.A00004",
         :notation => "NEWNEW AND!@£$%^&*()",
         :synonym => "And",
         :definition => "Other or mixed race new",
@@ -420,6 +466,59 @@ describe ThesaurusConcept do
     expect(result).to eq(false)
     expect(tc.errors.count).to eq(1)
     expect(tc.errors.full_messages[0]).to eq("The Thesaurus Concept, identifier A00001, has children. It cannot be deleted.")
+  end
+
+  it "handles a bad response error - add_child" do
+    new_tc = 
+      {
+        :children => [],
+        :definition => "Other or mixed race",
+        :extension_properties => [],
+        :id => "",
+        :identifier => "A00005",
+        :label => "New",
+        :namespace => "",
+        :notation => "NEWNEW",
+        :parentIdentifier => "",
+        :preferredTerm => "New Stuff",
+        :synonym => "",
+        :topLevel => false,
+        :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
+      }
+    object = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    allow_any_instance_of(ThesaurusConcept).to receive(:exists?).and_return(false) 
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect(ConsoleLogger).to receive(:info)
+    expect{object.add_child(new_tc)}.to raise_error(Exceptions::CreateError)
+  end
+
+  it "handles a bad response error - update" do
+    new_tc = 
+      {
+        :identifier => "A00001.A00004",
+        :label => "New",
+        :notation => "NEWNEW AND",
+        :synonym => "\"Quote\"",
+        :definition => "Other or 'mixed' race new",
+        :preferredTerm => "New Stuff \"and\" new stuff"
+      }
+    object = ThesaurusConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect(ConsoleLogger).to receive(:info)
+    expect{object.update(new_tc)}.to raise_error(Exceptions::UpdateError)
+  end
+
+  it "handles a bad response error - destroy" do
+    object = ThesaurusConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect(ConsoleLogger).to receive(:info)
+    expect{object.destroy}.to raise_error(Exceptions::DestroyError)
   end
 
 end

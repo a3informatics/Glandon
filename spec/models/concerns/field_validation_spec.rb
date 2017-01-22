@@ -47,6 +47,72 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
   end
 
+  it "checks a valid TC identifier, A" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "A", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid TC identifier, A1" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "A1", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid TC identifier, a" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "a", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid TC identifier, a.a" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "a.a", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid TC identifier, a.1" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "a.1", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid TC identifier, ab.1z.z" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "ab.1z.z", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks an invalid TC identifier, \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
+  it "checks an invalid TC identifier, \"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, '"', object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains a part with invalid characters")
+  end
+
+  it "checks an invalid TC identifier, ab..z" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "ab..z", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains an empty part")
+  end
+
+  it "checks an invalid TC identifier, ab." do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "ab.", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains an empty part")
+  end
+
+  it "checks an invalid TC identifier, ab.£.z" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_tc_identifier?(:test, "ab.£.z", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains a part with invalid characters")
+  end
+
   it "checks a valid SDTM Domain prefix" do
     object = IsoConcept.new
     expect(FieldValidation.valid_sdtm_domain_prefix?(:test, "AZ", object)).to eq(true)
