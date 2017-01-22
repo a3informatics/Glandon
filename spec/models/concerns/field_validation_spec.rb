@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe FieldValidation do
 	
-  C_ALL_CHARS = "the dirty brown fox jumps over the lazy dog. " + 
-    "THE DIRTY BROWN FOX JUMPS OVER THE LAZY DOG. 0123456789. !?,'\"_-/\\()[]~#*=:;&|<>"
+  include ValidationHelpers
 
 	it "checks a valid identifier" do
     object = IsoConcept.new
@@ -348,7 +347,7 @@ describe FieldValidation do
 
   it "checks a valid terminology property value" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_terminology_property?(:test, C_ALL_CHARS, object)).to eq(true)
+    expect(FieldValidation.valid_terminology_property?(:test, vh_all_chars, object)).to eq(true)
   end
 
   it "checks an invalid terminology property value, ±" do
@@ -486,7 +485,7 @@ describe FieldValidation do
 
   it "checks a valid markdown" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_markdown?(:test, C_ALL_CHARS, object)).to eq(true)
+    expect(FieldValidation.valid_markdown?(:test, vh_all_chars, object)).to eq(true)
   end
 
   it "checks valid markdown" do
@@ -539,7 +538,7 @@ describe FieldValidation do
   
   it "checks valid mapping, all characters" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_mapping?(:test, C_ALL_CHARS, object)).to eq(true)
+    expect(FieldValidation.valid_mapping?(:test, vh_all_chars, object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
   
