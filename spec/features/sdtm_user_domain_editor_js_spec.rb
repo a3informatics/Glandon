@@ -7,13 +7,12 @@ describe "SDTM User Domain Editor", :type => :feature do
   include DataHelpers
   include UiHelpers
   include WaitForAjaxHelper
+  include ValidationHelpers
+  include DomainHelpers
 
-  C_ALL_CHARS = "the dirty brown fox jumps over the lazy dog. " + 
-    "THE DIRTY BROWN FOX JUMPS OVER THE LAZY DOG. 0123456789. !?,'\"_-/\\()[]~#*=:;&|<>"
-  C_LABEL_ERROR = "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
-  C_MARKDOWN_ERROR = "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&|<> special characters and return only."
-  
   before :all do
+    Token.destroy_all
+    Token.set_timeout(5)
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -47,52 +46,6 @@ describe "SDTM User Domain Editor", :type => :feature do
 
   after :each do
     click_link 'logoff_button'
-  end
-
-  def clone_domain(prefix)
-    visit '/users/sign_in'
-    expect(page).to have_content 'Log in'  
-    fill_in 'Email', with: 'domain_edit@example.com'
-    fill_in 'Password', with: '12345678'
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully'
-    visit 'sdtm_ig_domains/IG-CDISC_SDTMIGEG?sdtm_ig_domain[namespace]=http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3'
-    click_link 'Clone'
-    expect(page).to have_content 'Cloning: Electrocardiogram SDTM IG EG (3.2, V3, Standard)'
-    ui_check_input('sdtm_user_domain_prefix', 'EG')
-    fill_in 'sdtm_user_domain_prefix', with: "#{prefix}"
-    fill_in 'sdtm_user_domain_label', with: "Cloned EG"
-    click_button 'Clone'   
-    expect(page).to have_content 'SDTM Sponsor Domain was successfully created.'
-    expect(page).to have_content "Cloned EG"
-    find(:xpath, "//tr[contains(.,'#{prefix} Domain')]/td/a", :text => 'History').click
-    expect(page).to have_content 'History:'
-    find(:xpath, "//tr[contains(.,'#{prefix} Domain')]/td/a", :text => 'Edit').click
-    expect(page).to have_content 'Edit:'  
-  end
-
-  def load_domain(identifier)
-    visit '/users/sign_in'
-    expect(page).to have_content 'Log in'  
-    fill_in 'Email', with: 'domain_edit@example.com'
-    fill_in 'Password', with: '12345678'
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully'  
-    click_link 'Domains'
-    expect(page).to have_content 'Index: Domains'
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
-    expect(page).to have_content 'History:'
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
-    expect(page).to have_content 'Edit:'  
-  end
-
-  def reload_domain(identifier)
-    click_link 'Domains'
-    expect(page).to have_content 'Index: Domains'
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
-    expect(page).to have_content 'History:'
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
-    expect(page).to have_content 'Edit:'  
   end
 
   describe "Curator User", :type => :feature do
@@ -269,15 +222,15 @@ describe "SDTM User Domain Editor", :type => :feature do
       other_variable = ui_get_key_by_path('["Cloned EG", "STUDYID"]')
       # Domain
       ui_check_validation_error(key_domain, "domainLabel", "", "This field is required.", other_variable)
-      ui_check_validation_error(key_domain, "domainLabel", "±±±±", C_LABEL_ERROR, other_variable)
-      ui_check_validation_ok(key_domain, "domainLabel", "#{C_ALL_CHARS}", other_variable)
-      ui_check_validation_error(key_domain, "domainNotes", "±±±±", C_MARKDOWN_ERROR, other_variable)
-      ui_check_validation_ok(key_domain, "domainNotes", "#{C_ALL_CHARS}", other_variable)
+      ui_check_validation_error(key_domain, "domainLabel", "±±±±", vh_label_error, other_variable)
+      ui_check_validation_ok(key_domain, "domainLabel", "#{vh_all_chars}", other_variable)
+      ui_check_validation_error(key_domain, "domainNotes", "±±±±", vh_markdown_error, other_variable)
+      ui_check_validation_ok(key_domain, "domainNotes", "#{vh_all_chars}", other_variable)
       # Group
-      ui_check_validation_error(key_variable, "variableNotes", "±±±±", C_MARKDOWN_ERROR, other_variable)
-      ui_check_validation_ok(key_variable, "variableNotes", "#{C_ALL_CHARS}", other_variable)
-      ui_check_validation_error(key_variable, "variableComment", "±±±±", C_MARKDOWN_ERROR, other_variable)
-      ui_check_validation_ok(key_variable, "variableComment", "#{C_ALL_CHARS}", other_variable)
+      ui_check_validation_error(key_variable, "variableNotes", "±±±±", vh_markdown_error, other_variable)
+      ui_check_validation_ok(key_variable, "variableNotes", "#{vh_all_chars}", other_variable)
+      ui_check_validation_error(key_variable, "variableComment", "±±±±", vh_markdown_error, other_variable)
+      ui_check_validation_ok(key_variable, "variableComment", "#{vh_all_chars}", other_variable)
     end
 
     it "allows the edit session to be saved", js: true do

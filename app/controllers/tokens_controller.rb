@@ -6,7 +6,6 @@ class TokensController < ApplicationController
 
   def index
     authorize Token
-    ConsoleLogger.debug(C_CLASS_NAME, "index", "Here")
     Token.expire
     @timeout = Token.get_timeout
     @tokens = Token.all

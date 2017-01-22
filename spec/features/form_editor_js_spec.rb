@@ -7,16 +7,13 @@ describe "Form Editor", :type => :feature do
   include DataHelpers
   include UiHelpers
   include WaitForAjaxHelper
-
-  C_ALL_CHARS = "the dirty brown fox jumps over the lazy dog. " + 
-    "THE DIRTY BROWN FOX JUMPS OVER THE LAZY DOG. 0123456789. !?,'\"_-/\\()[]~#*=:;&|<>"
-  C_LABEL_ERROR = "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
-  C_MARKDOWN_ERROR = "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&|<> special characters and return only."
-  C_QUESTION_ERROR = "Please enter valid question text. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
-  C_MAPPING_ERROR = "Please enter valid question text. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
+  include ValidationHelpers
+  include FormHelpers
 
   before :all do
     clear_triple_store
+    Token.destroy_all
+    Token.set_timeout(5)
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
@@ -50,55 +47,6 @@ describe "Form Editor", :type => :feature do
     Notepad.destroy_all
     user = User.where(:email => "form_edit@example.com").first
     user.destroy
-  end
-
-  def create_form(identifier, label, new_label)
-    visit '/users/sign_in'
-    expect(page).to have_content 'Email'
-    fill_in 'Email', with: 'form_edit@example.com'
-    fill_in 'Password', with: '12345678'
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully'  
-    click_link 'Forms'
-    expect(page).to have_content 'Index: Forms'  
-    click_link 'New'
-    fill_in 'form_identifier', with: "#{identifier}"
-    fill_in 'form_label', with: "#{label}"
-    click_button 'Create'
-    expect(page).to have_content 'Form was successfully created.'
-    ui_main_show_all
-    ui_table_row_link_click("#{identifier}", "History")
-    expect(page).to have_content "History: #{identifier}"
-    ui_table_row_link_click("#{identifier}", "Edit")
-    fill_in 'formLabel', with: "#{new_label}"
-  end
-
-  def load_form(identifier)
-    visit '/users/sign_in'
-    expect(page).to have_content 'Email'
-    fill_in 'Email', with: 'form_edit@example.com'
-    fill_in 'Password', with: '12345678'
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully'  
-    click_link 'Forms'
-    expect(page).to have_content 'Index: Forms' 
-    ui_main_show_all
-    expect(page).to have_content "#{identifier}" 
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
-    expect(page).to have_content 'History:'  
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
-    expect(page).to have_content 'Edit:'  
-  end
-
-  def reload_form(identifier)
-    click_link 'Forms'
-    expect(page).to have_content 'Index: Forms' 
-    ui_main_show_all
-    expect(page).to have_content "#{identifier}" 
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
-    expect(page).to have_content 'History:'  
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
-    expect(page).to have_content 'Edit:'  
   end
 
   describe "Curator User", :type => :feature do
@@ -907,61 +855,61 @@ describe "Form Editor", :type => :feature do
       key_bc_temp_item_cl = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Temperature (BC C25206)", "Result Units (--ORRESU)", "Degree Celsius"]')
       # Form
       ui_check_validation_error(key_form, "formLabel", "", "This field is required.", key_bc_group)
-      ui_check_validation_error(key_form, "formLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
-      ui_check_validation_ok(key_form, "formLabel", "#{C_ALL_CHARS}", key_bc_group)
-      ui_check_validation_error(key_form, "formNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_form, "formNote", "#{C_ALL_CHARS}", key_bc_group)
-      ui_check_validation_error(key_form, "formCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_form, "formCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_form, "formLabel", "±±±±", vh_label_error, key_bc_group)
+      ui_check_validation_ok(key_form, "formLabel", "#{vh_all_chars}", key_bc_group)
+      ui_check_validation_error(key_form, "formNote", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_form, "formNote", "#{vh_all_chars}", key_bc_group)
+      ui_check_validation_error(key_form, "formCompletion", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_form, "formCompletion", "#{vh_all_chars}", key_bc_group)
       # Group
       ui_check_validation_error(key_q_group, "groupLabel", "", "This field is required.", key_bc_group)
-      ui_check_validation_error(key_q_group, "groupLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
-      ui_check_validation_ok(key_q_group, "groupLabel", "#{C_ALL_CHARS}", key_bc_group)
-      ui_check_validation_error(key_q_group, "groupNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_q_group, "groupNote", "#{C_ALL_CHARS}", key_bc_group)
-      ui_check_validation_error(key_q_group, "groupCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_q_group, "groupCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_q_group, "groupLabel", "±±±±", vh_label_error, key_bc_group)
+      ui_check_validation_ok(key_q_group, "groupLabel", "#{vh_all_chars}", key_bc_group)
+      ui_check_validation_error(key_q_group, "groupNote", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_q_group, "groupNote", "#{vh_all_chars}", key_bc_group)
+      ui_check_validation_error(key_q_group, "groupCompletion", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_q_group, "groupCompletion", "#{vh_all_chars}", key_bc_group)
       # BC
-      ui_check_validation_error(key_bc_temp, "bcNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_bc_temp, "bcNote", "#{C_ALL_CHARS}", key_bc_group)
-      ui_check_validation_error(key_bc_temp, "bcCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_bc_temp, "bcCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_bc_temp, "bcNote", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_bc_temp, "bcNote", "#{vh_all_chars}", key_bc_group)
+      ui_check_validation_error(key_bc_temp, "bcCompletion", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_bc_temp, "bcCompletion", "#{vh_all_chars}", key_bc_group)
       # BC Item
-      ui_check_validation_error(key_bc_temp_item, "bcItemNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_bc_temp_item, "bcItemNote", "#{C_ALL_CHARS}", key_bc_group)
-      ui_check_validation_error(key_bc_temp_item, "bcItemCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_bc_temp_item, "bcItemCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_bc_temp_item, "bcItemNote", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_bc_temp_item, "bcItemNote", "#{vh_all_chars}", key_bc_group)
+      ui_check_validation_error(key_bc_temp_item, "bcItemCompletion", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_bc_temp_item, "bcItemCompletion", "#{vh_all_chars}", key_bc_group)
       # Question
       ui_check_validation_error(key_question, "questionLabel", "", "This field is required.", key_bc_group)
-      ui_check_validation_error(key_question, "questionLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
-      ui_check_validation_ok(key_question, "questionLabel", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_question, "questionLabel", "±±±±", vh_label_error, key_bc_group)
+      ui_check_validation_ok(key_question, "questionLabel", "#{vh_all_chars}", key_bc_group)
       ui_check_validation_error(key_question, "questionText", "", "This field is required.", key_bc_group)
-      ui_check_validation_error(key_question, "questionText", "±±±±", C_QUESTION_ERROR, key_bc_group)
-      ui_check_validation_ok(key_question, "questionText", "#{C_ALL_CHARS}", key_bc_group)
-      ui_check_validation_error(key_question, "questionNote", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_question, "questionNote", "#{C_ALL_CHARS}", key_bc_group)
-      ui_check_validation_error(key_question, "questionCompletion", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_question, "questionCompletion", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_question, "questionText", "±±±±", vh_question_error, key_bc_group)
+      ui_check_validation_ok(key_question, "questionText", "#{vh_all_chars}", key_bc_group)
+      ui_check_validation_error(key_question, "questionNote", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_question, "questionNote", "#{vh_all_chars}", key_bc_group)
+      ui_check_validation_error(key_question, "questionCompletion", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_question, "questionCompletion", "#{vh_all_chars}", key_bc_group)
       # Placeholder
-      ui_check_validation_error(key_placeholder, "placeholderText", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_placeholder, "placeholderText", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_placeholder, "placeholderText", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_placeholder, "placeholderText", "#{vh_all_chars}", key_bc_group)
       # Mapping
-      ui_check_validation_error(key_mapping, "mappingMapping", "±±±±", C_MAPPING_ERROR, key_bc_group)
-      ui_check_validation_ok(key_mapping, "mappingMapping", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_mapping, "mappingMapping", "±±±±", vh_mapping_error, key_bc_group)
+      ui_check_validation_ok(key_mapping, "mappingMapping", "#{vh_all_chars}", key_bc_group)
       # Label
       ui_check_validation_error(key_label, "labelTextLabel", "", "This field is required.", key_bc_group)
-      ui_check_validation_error(key_label, "labelTextLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
-      ui_check_validation_ok(key_label, "labelTextLabel", "#{C_ALL_CHARS}", key_bc_group)
-      ui_check_validation_error(key_label, "labelTextText", "±±±±", C_MARKDOWN_ERROR, key_bc_group)
-      ui_check_validation_ok(key_label, "labelTextText", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_label, "labelTextLabel", "±±±±", vh_label_error, key_bc_group)
+      ui_check_validation_ok(key_label, "labelTextLabel", "#{vh_all_chars}", key_bc_group)
+      ui_check_validation_error(key_label, "labelTextText", "±±±±", vh_markdown_error, key_bc_group)
+      ui_check_validation_ok(key_label, "labelTextText", "#{vh_all_chars}", key_bc_group)
       # Common Group
       ui_check_validation_error(key_common_group, "commonLabel", "", "This field is required.", key_bc_group)
-      ui_check_validation_error(key_common_group, "commonLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
-      ui_check_validation_ok(key_common_group, "commonLabel", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_common_group, "commonLabel", "±±±±", vh_label_error, key_bc_group)
+      ui_check_validation_ok(key_common_group, "commonLabel", "#{vh_all_chars}", key_bc_group)
       # Code List Label
       ui_check_validation_error(key_bc_temp_item_cl, "clLocalLabel", "", "This field is required.", key_bc_group)
-      ui_check_validation_error(key_bc_temp_item_cl, "clLocalLabel", "±±±±", C_LABEL_ERROR, key_bc_group)
-      ui_check_validation_ok(key_bc_temp_item_cl, "clLocalLabel", "#{C_ALL_CHARS}", key_bc_group)
+      ui_check_validation_error(key_bc_temp_item_cl, "clLocalLabel", "±±±±", vh_label_error, key_bc_group)
+      ui_check_validation_ok(key_bc_temp_item_cl, "clLocalLabel", "#{vh_all_chars}", key_bc_group)
     end
 
     it "allows the form to be saved", js: true do
