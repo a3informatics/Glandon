@@ -31,22 +31,25 @@ describe IsoScopedIdentifiersController do
     end
 
     it 'creates scoped identifier' do
+      count = IsoScopedIdentifier.all.count
       post :create, iso_scoped_identifier: { identifier: "XXX SI", version: "1", versionLabel: "draft 1" }
-      expect(IsoScopedIdentifier.all.count).to eq(6)
+      expect(IsoScopedIdentifier.all.count).to eq(count  + 1)
       expect(response).to redirect_to("/iso_scoped_identifiers")
     end
 
     it 'fails to create an existing scoped identifier' do
+      count = IsoScopedIdentifier.all.count
       post :create, iso_scoped_identifier: { identifier: "XXX SI", version: "1", versionLabel: "draft 1" }
-      expect(IsoScopedIdentifier.all.count).to eq(6)
+      expect(IsoScopedIdentifier.all.count).to eq(count)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/iso_scoped_identifiers/new")
     end
 
     it 'deletes scoped_identifier' do
+      count = IsoScopedIdentifier.all.count
       scoped_identifiers = IsoScopedIdentifier.all
       delete :destroy, :id => scoped_identifiers[0].id
-      expect(IsoScopedIdentifier.all.count).to eq(5)
+      expect(IsoScopedIdentifier.all.count).to eq(count - 1)
     end
 
   end
@@ -56,21 +59,23 @@ describe IsoScopedIdentifiersController do
     login_curator
 
     it 'updates a scoped identifier' do
+      count = IsoScopedIdentifier.all.count
       @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
       scoped_identifier = IsoScopedIdentifier.all.first
       patch :update, { id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label" }}
       updated_scoped_identifier = IsoScopedIdentifier.find(scoped_identifier.id)
-      expect(IsoScopedIdentifier.all.count).to eq(5)
+      expect(IsoScopedIdentifier.all.count).to eq(count)
       expect(updated_scoped_identifier.versionLabel).to eq("update to label")
       expect(response).to redirect_to("/iso_scoped_identifiers")
     end
 
     it 'fails to update a scoped identifier, invalid version label' do
+      count = IsoScopedIdentifier.all.count
       @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
       scoped_identifier = IsoScopedIdentifier.all.first
       patch :update, { id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label@@@@@@@@" }}
       updated_scoped_identifier = IsoScopedIdentifier.find(scoped_identifier.id)
-      expect(IsoScopedIdentifier.all.count).to eq(5)
+      expect(IsoScopedIdentifier.all.count).to eq(count)
       expect(updated_scoped_identifier.versionLabel).to eq("update to label")
       expect(response).to redirect_to("/iso_scoped_identifiers")
     end 

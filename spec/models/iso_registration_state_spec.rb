@@ -299,11 +299,11 @@ describe IsoRegistrationState do
 
   # self.all
   it "allows all records to be returned" do
-    results = Array.new
+    expected = []
     org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
     #ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
     ra = IsoRegistrationAuthority.new
-    results << IsoRegistrationState.from_json(
+    expected << IsoRegistrationState.from_json(
       {
         :id=>"RS-TEST_1-1", 
         :registration_authority => ra.to_json, 
@@ -316,7 +316,7 @@ describe IsoRegistrationState do
         :administrative_status => "", 
         :previous_state => "Qualified"
       })
-    results << IsoRegistrationState.from_json(
+    expected << IsoRegistrationState.from_json(
       {
         :id=>"RS-TEST_3-3", 
         :registration_authority => ra.to_json, 
@@ -329,7 +329,7 @@ describe IsoRegistrationState do
         :administrative_status => "", 
         :previous_state => "Qualified"
       })
-    results << IsoRegistrationState.from_json(
+    expected << IsoRegistrationState.from_json(
       {
         :id=>"RS-TEST_2-2", 
         :registration_authority => ra.to_json, 
@@ -342,7 +342,7 @@ describe IsoRegistrationState do
         :administrative_status => "", 
         :previous_state => "Qualified"
       })
-    results << IsoRegistrationState.from_json(
+    expected << IsoRegistrationState.from_json(
       {
         :id=>"RS-TEST_3-5", 
         :registration_authority => ra.to_json, 
@@ -355,7 +355,7 @@ describe IsoRegistrationState do
         :administrative_status => "", 
         :previous_state => "Qualified"
       })
-    results << IsoRegistrationState.from_json(
+    expected << IsoRegistrationState.from_json(
       {
         :id=>"RS-TEST_3-4", 
         :registration_authority => ra.to_json, 
@@ -368,7 +368,38 @@ describe IsoRegistrationState do
         :administrative_status => "", 
         :previous_state => "Qualified"
       })
-    expect(IsoRegistrationState.all.to_json).to eq(results.to_json)
+    expected << IsoRegistrationState.from_json(
+      {
+        :id => "RS-TEST_SV1-5",
+        :registration_authority => ra.to_json, 
+        :registration_status => "Standard",
+        :administrative_note => "",
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
+        :current => false, 
+        :unresolved_issue => "",
+        :administrative_status => "",
+        :previous_state => "Qualified"
+      })
+    expected << IsoRegistrationState.from_json(
+      {
+        :id => "RS-TEST_SV2-5",
+        :registration_authority => ra.to_json, 
+        :registration_status => "Standard",
+        :administrative_note => "",
+        :effective_date=> "2016-01-01T00:00:00+00:00",
+        :until_date => "2016-01-01T00:00:00+00:00",
+        :current => false, 
+        :unresolved_issue => "",
+        :administrative_status => "",
+        :previous_state => "Qualified"
+      })
+    results = IsoRegistrationState.all
+    expect(results.count).to eq(7)
+    results.each do |result|
+      compare = expected.find{|x| x.id == result.id}
+      expect(result.to_json).to eq(compare.to_json)
+    end
   end
 
   it "allows an object to be created" do
@@ -436,7 +467,7 @@ describe IsoRegistrationState do
   it "provides a count of registration status" do
     result = 
       {
-        IsoRegistrationState::C_STANDARD => "5",
+        IsoRegistrationState::C_STANDARD => "7",
         IsoRegistrationState::C_INCOMPLETE => "1"
       }
     expect(IsoRegistrationState.count.to_json).to eq(result.to_json)

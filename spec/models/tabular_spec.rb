@@ -55,7 +55,7 @@ describe Tabular do
 
   it "allows an object to be found" do
     tabular = Tabular.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-    write_yaml_file(tabular.to_json, sub_dir, "tabular.yaml")
+    #write_yaml_file(tabular.to_json, sub_dir, "tabular.yaml")
     expected = read_yaml_file(sub_dir, "tabular.yaml")
     #write_yaml_file(tabular.triples, sub_dir, "tabular_triples.yaml")
     expect(tabular.to_json).to eq(expected)
