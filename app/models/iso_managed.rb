@@ -65,6 +65,13 @@ class IsoManaged < IsoConcept
     return self.scopedIdentifier.versionLabel
   end
 
+  # Semantic Version
+  #
+  # @return [SemanticVersion] The semantic version
+  def semantic_version
+    return self.scopedIdentifier.semantic_version
+  end
+
   # Return the identifier
   #
   # @return [string] The identifier.
@@ -220,9 +227,16 @@ class IsoManaged < IsoConcept
 
   # Return the next version
   #
-  # @return [integer] The next version
+  # @return [integer] the next version
   def next_version
     self.scopedIdentifier.next_version
+  end
+
+  # Return the next semantic version
+  #
+  # @return [SemanticVersion] the next semantic version
+  def next_semantic_version
+    self.scopedIdentifier.next_semantic_version
   end
 
   # Return the first version
@@ -889,10 +903,11 @@ class IsoManaged < IsoConcept
   # @param ra [Object] The registration authority object
   # @return [null]
   def from_operation(json, prefix, instance_namespace, ra)
-    # Set the new version before RS and SI created
-    self.scopedIdentifier.version = json[:new_version].to_i
+    # Set the new version and new semantic version before RS and SI created
+    new_version = json[:new_version].to_i
+    semantic_version = SemanticVersion.from_s(json[:new_semantic_version])
     # Ensure base RS and SI set.
-    self.scopedIdentifier = IsoScopedIdentifier.from_data(self.identifier, self.version, self.versionLabel, ra.namespace)
+    self.scopedIdentifier = IsoScopedIdentifier.from_data(self.identifier, new_version, self.versionLabel, semantic_version, ra.namespace)
     self.registrationState = IsoRegistrationState.from_data(self.identifier, self.version, ra)
     # Now update the version and state based on the operation. Done after base RS and SI created.
     self.registrationState.previousState = self.registrationState.registrationStatus
@@ -957,7 +972,8 @@ class IsoManaged < IsoConcept
       managed_item[:creation_date] = Time.now.iso8601
       operation = 
         { :action => "CREATE", 
-          :new_version => self.next_version, 
+          :new_version => self.next_version,
+          :new_semantic_version => self.next_semantic_version.to_s,
           :new_state => self.state_on_edit, 
           :identifier_edit => false 
         }
@@ -968,6 +984,7 @@ class IsoManaged < IsoConcept
       operation = 
         { :action => "UPDATE", 
           :new_version => self.version, 
+          :new_semantic_version => self.semantic_version.to_s,
           :new_state => self.state_on_edit, 
           :identifier_edit => false 
         }

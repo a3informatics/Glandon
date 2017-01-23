@@ -97,9 +97,10 @@ describe IsoManaged do
     expect(item.to_json).to eq(expected)   
 	end
 
-  it "allows the version, versionLabel and indentifier to be found" do
+  it "allows the version, semantic_version, versionLabel and indentifier to be found" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(item.version).to eq(1)   
+    expect(item.semantic_version.to_s).to eq("1.2.3")   
     expect(item.versionLabel).to eq("0.1")   
     expect(item.identifier).to eq("TEST")   
   end
@@ -141,10 +142,11 @@ describe IsoManaged do
     expect(item.can_be_current?).to eq(false)   
   end
 
-  it "allows new_version, next_version and first_version to be determined" do
+  it "allows new_version, next_version, next_semantic_version, and first_version to be determined" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(item.new_version?).to eq(false)   
     expect(item.next_version).to eq(2)   
+    expect(item.next_semantic_version.to_s).to eq("1.3.0")   
     expect(item.first_version).to eq(1)   
   end
 
@@ -305,6 +307,7 @@ describe IsoManaged do
       {
         :action => "CREATE",
         :new_version => 1,
+        :new_semantic_version => "2.2.2",
         :new_state => "Standard",
         :identifier_edit => true
       }
@@ -313,6 +316,7 @@ describe IsoManaged do
     old_item.namespace = "http://www.assero.co.uk/NewNamespace/BBB/V1"
     old_item.lastChangeDate = date_check_now(new_item.lastChangeDate)
     old_item.scopedIdentifier.id = "SI-BBB_TEST-1"
+    old_item.scopedIdentifier.semantic_version = SemanticVersion.from_s("2.2.2")
     old_item.registrationState.id = "RS-BBB_TEST-1"
     old_item.registrationState.registrationStatus = "Standard"
     expect(new_item.to_json).to eq(old_item.to_json)
@@ -379,6 +383,7 @@ describe IsoManaged do
        "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> rdf:type isoI:ScopedIdentifier . \n" +
        "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:version \"1\"^^xsd:positiveInteger . \n" +
        "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:versionLabel \"0.1\"^^xsd:string . \n" +
+       "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:semantic_version \"1.2.3\"^^xsd:string . \n" +
        "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:hasScope mdrItems:NS-BBB . \n" +
        "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> . \n" +
        "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> . \n" +
@@ -405,7 +410,7 @@ describe IsoManaged do
     form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
     result = 
       { 
-        :operation => { :action => "UPDATE", :new_version => 1, :new_state => "Incomplete", :identifier_edit => false }, 
+        :operation => { :action => "UPDATE", :new_version => 1, :new_semantic_version=>"1.2.3", :new_state => "Incomplete", :identifier_edit => false }, 
         :managed_item => form
       }
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
@@ -416,7 +421,7 @@ describe IsoManaged do
     form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
     result = 
       { 
-        :operation => { :action => "CREATE", :new_version => 1, :new_state => "Incomplete", :identifier_edit => true }, 
+        :operation => { :action => "CREATE", :new_version => 1, :new_semantic_version=>"0.1.0", :new_state => "Incomplete", :identifier_edit => true }, 
         :managed_item => form
       }
     result[:managed_item][:scoped_identifier] = IsoScopedIdentifier.new.to_json

@@ -80,14 +80,21 @@
 :version
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :ScopedIdentifier ;
-  rdfs:label "version"^^xsd:string ;
+  rdfs:label "Version"^^xsd:string ;
   rdfs:range xsd:positiveInteger ;
   skos:definition "Unique version identifier of the ScopedIdentifier which identifies an IdentifiedItem. Used by the repository to manage versions"^^xsd:string ;
+.
+:semantic_version
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "Semantic Version"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "Semantic version for the item. Used by the repository to display to users."^^xsd:string ;
 .
 :versionLabel
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :ScopedIdentifier ;
-  rdfs:label "version label"^^xsd:string ;
+  rdfs:label "Version Label"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "Human readable version label usually set by external organizations."^^xsd:string ;
 .

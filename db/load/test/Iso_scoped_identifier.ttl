@@ -158,3 +158,63 @@ mdrItems:RS-TEST_3-5
 	isoR:previousState "Qualified"^^xsd:string ;
 	isoR:byAuthority mdrItems:RA-123456789 ;
 .
+:BC-TEST_SV1
+	rdf:type :TestItem ;
+	rdfs:label "Test Item SV 1"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-TEST_SV1-5 ;
+	isoR:hasState mdrItems:RS-TEST_SV1-5 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
+.
+mdrItems:SI-TEST_SV1-5
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TESTSV 1"^^xsd:string ;
+	isoI:versionLabel "0.7"^^xsd:string ;
+	isoI:version "7"^^xsd:positiveInteger ;
+	isoI:semantic_version "0.0.7"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-BBB ;
+.
+mdrItems:RS-TEST_SV1-5
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+.
+:BC-TEST_SV2
+	rdf:type :TestItem ;
+	rdfs:label "Test Item SV 2"^^xsd:string ;
+	isoI:hasIdentifier mdrItems:SI-TEST_SV2-5 ;
+	isoR:hasState mdrItems:RS-TEST_SV2-5 ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01"^^xsd:date ;
+	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:explanatoryComment ""^^xsd:string ;
+.
+mdrItems:SI-TEST_SV2-5
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TESTSV 2"^^xsd:string ;
+	isoI:versionLabel "0.6"^^xsd:string ;
+	isoI:version "6"^^xsd:positiveInteger ;
+	isoI:semantic_version "3.1.6"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-BBB ;
+.
+mdrItems:RS-TEST_SV2-5
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+.

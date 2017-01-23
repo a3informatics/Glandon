@@ -9,7 +9,7 @@ class IsoScopedIdentifier
   include ActiveModel::Conversion
   include ActiveModel::Validations
       
-  attr_accessor :id, :identifier, :versionLabel, :version, :namespace
+  attr_accessor :id, :identifier, :versionLabel, :version, :semantic_version, :namespace
   
   # Constants
   C_NS_PREFIX = "mdrItems"
@@ -32,6 +32,7 @@ class IsoScopedIdentifier
       self.identifier = ""
       self.versionLabel = ""
       self.version = 0
+      self.semantic_version = SemanticVersion.new({})
     else
       self.id = ModelUtility.extractCid(triples[0][:subject])
       self.namespace = nil
@@ -43,6 +44,7 @@ class IsoScopedIdentifier
       self.identifier = Triples.get_property_value(triples, UriManagement::C_ISO_I, "identifier")
       self.version = Triples.get_property_value(triples, UriManagement::C_ISO_I, "version").to_i
       self.versionLabel = Triples.get_property_value(triples, UriManagement::C_ISO_I, "versionLabel")
+      self.semantic_version = SemanticVersion.from_s(Triples.get_property_value(triples, UriManagement::C_ISO_I, "semantic_version"))
     end
   end
 
@@ -69,6 +71,15 @@ class IsoScopedIdentifier
   # @return [integer] The updated version
   def next_version
     return self.version + 1
+  end
+  
+  # Get the next version
+  #
+  # @return [integer] The updated version
+  def next_semantic_version
+    temp = SemanticVersion.from_s self.semantic_version.to_s
+    temp.increment_minor
+    return temp
   end
   
   # A later version than specified?
@@ -201,12 +212,13 @@ class IsoScopedIdentifier
     #ConsoleLogger::log(C_CLASS_NAME,"find","Id=" + id.to_s)
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
-      "SELECT ?b ?c ?d ?e WHERE \n" +
+      "SELECT ?b ?c ?d ?e ?f WHERE \n" +
       "{ \n" +
       "  :" + id + " isoI:identifier ?b . \n" +
       "  :" + id + " isoI:versionLabel ?c . \n" +
       "  :" + id + " isoI:version ?d . \n" +
       "  :" + id + " isoI:hasScope ?e . \n" +
+      "  OPTIONAL { :" + id + " isoI:semantic_version ?f . } \n" +  
       "}"
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -219,11 +231,13 @@ class IsoScopedIdentifier
       vlSet = node.xpath("binding[@name='c']/literal")
       vSet = node.xpath("binding[@name='d']/literal")
       sSet = node.xpath("binding[@name='e']/uri")
+      sv = ModelUtility.getValue('f', false, node)
       if iSet.length == 1 and vlSet.length == 1 and vSet.length == 1
         object.id = id
         object.identifier = iSet[0].text
         object.version = (vSet[0].text).to_i
         object.versionLabel = vlSet[0].text
+        object.semantic_version = sv == "" ? SemanticVersion.new({}) : sv
         object.namespace = IsoNamespace.find(ModelUtility.extractCid(sSet[0].text))
       end
     end
@@ -237,14 +251,15 @@ class IsoScopedIdentifier
     results = Array.new
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
-      "SELECT ?a ?b ?c ?d ?e WHERE \n" +
+      "SELECT ?a ?b ?c ?d ?e ?f WHERE \n" +
         "{ \n" +
         "	 ?a rdf:type isoI:ScopedIdentifier . \n" +
         "  ?a isoI:identifier ?b . \n" +
         "	 ?a isoI:versionLabel ?c . \n" +
         "  ?a isoI:version ?d . \n" +
         "  ?a isoI:hasScope ?e . \n" +
-      "}"
+        "  OPTIONAL { ?a isoI:semantic_version ?f . } \n" +  
+        "}"
     # Send the request, wait the resonse
     response = CRUD.query(query)
     # Process the response
@@ -257,15 +272,16 @@ class IsoScopedIdentifier
       vlSet = node.xpath("binding[@name='c']/literal")
       vSet = node.xpath("binding[@name='d']/literal")
       sSet = node.xpath("binding[@name='e']/uri")
+      sv = ModelUtility.getValue('f', false, node)
       if uriSet.length == 1 and vlSet.length == 1 and iSet.length == 1 and vSet.length == 1 and sSet.length == 1
         object = self.new 
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.identifier = iSet[0].text
         object.version = (vSet[0].text).to_i
         object.versionLabel = vlSet[0].text
+        object.semantic_version = sv == "" ? SemanticVersion.new({}) : sv
         object.namespace = IsoNamespace.find(ModelUtility.extractCid(sSet[0].text))
-        #ConsoleLogger::log(C_CLASS_NAME,"all","Created object=" + object.id)
-        results.push (object)
+        results << object
       end
     end    
     return results
@@ -314,13 +330,15 @@ class IsoScopedIdentifier
 
   # Create the object in the triple store.
   #
-  # @param identifier [string] The identifer being checked.
-  # @param version [integer] The version.
-  # @param version_label [string] The version label.
-  # @param scope_org [object] The owner organisation (IsoNamespace object)
-  # @return [object] The created object. Error count set if failed.
-  def self.create(identifier, version, version_label, scope_org)
-    object = IsoScopedIdentifier.from_data(identifier, version, version_label, scope_org)
+  # @param identifier [String] the identifer being created
+  # @param version [Integer] the version.
+  # @param version_label [String] the version label
+  # @param semantic_version [String] the semanctic version
+  # @param scope_org [IsoNamespace] the owner organisation
+  # @return [IsoScopedIdentifier] The created object. Error count set if failed.
+  def self.create(identifier, version, version_label, semantic_version, scope_org)
+    semantic_version = SemanticVersion.from_s(semantic_version)
+    object = IsoScopedIdentifier.from_data(identifier, version, version_label, semantic_version, scope_org)
     if object.valid?
       if !object.exists?
         update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
@@ -330,6 +348,7 @@ class IsoScopedIdentifier
           "	 :#{object.id} isoI:identifier \"#{object.identifier}\"^^xsd:string . \n" +
           "	 :#{object.id} isoI:version \"#{object.version}\"^^xsd:positiveInteger . \n" +
           "  :#{object.id} isoI:versionLabel \"#{object.versionLabel}\"^^xsd:string . \n" +
+          "  :#{object.id} isoI:semantic_version \"#{object.semantic_version}\"^^xsd:string . \n" +
           "	 :#{object.id} isoI:hasScope :#{object.namespace.id} . \n" +
           "}"
         response = CRUD.update(update)
@@ -396,18 +415,20 @@ class IsoScopedIdentifier
 
   # Create the object from data. Will build the id for the object.
   #
-  # @param identifier [string] The identifer being checked.
-  # @param version [integer] The version.
-  # @param version_label [string] The version label.
+  # @param identifier [String] The identifer being checked.
+  # @param version [Integer] The version.
+  # @param version_label [String] The version label.
+  # @param semantic_version [SemanticVerson] The semantic version.
   # @param scope_org [object] The owner organisation (IsoNamespace object)
   # @return [object] The created object.
-  def self.from_data(identifier, version, version_label, scope_org)
+  def self.from_data(identifier, version, version_label, semantic_version, scope_org)
     uri = UriV2.new({:namespace => @@base_namespace, :prefix => C_CID_PREFIX, :org_name => scope_org.shortName, :identifier => identifier, :version => version})
     object = self.new
     object.id = uri.id
     object.version = version
     object.versionLabel = version_label
     object.identifier = identifier
+    object.semantic_version = semantic_version
     object.namespace = scope_org
     return object
   end
@@ -423,6 +444,7 @@ class IsoScopedIdentifier
     object.identifier = json[:identifier]
     object.versionLabel = json[:version_label]
     object.version = json[:version]
+    object.semantic_version = SemanticVersion.from_s(json[:semantic_version])
     return object
   end
 
@@ -436,6 +458,7 @@ class IsoScopedIdentifier
       :identifier => self.identifier,
       :version_label => self.versionLabel,
       :version => self.version,
+      :semantic_version => self.semantic_version.to_s,
       :namespace => self.namespace.to_json
     }
     return json
@@ -452,6 +475,7 @@ class IsoScopedIdentifier
     sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_ISO_I, :id => "ScopedIdentifier"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "version"}, {:literal => "#{self.version}", :primitive_type => "positiveInteger"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "versionLabel"}, {:literal => "#{self.versionLabel}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "semantic_version"}, {:literal => "#{self.semantic_version}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "hasScope"}, {:prefix => C_NS_PREFIX, :id => "#{self.namespace.id}"})
     return subject_uri
   end
