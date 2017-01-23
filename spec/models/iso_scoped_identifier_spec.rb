@@ -306,11 +306,28 @@ describe IsoScopedIdentifier do
     expect(sparql.to_s).to eq(result)
   end
   
-  it "allows for an object to be updated" do
+  it "allows for an object to be updated, version label" do
     object = IsoScopedIdentifier.find("SI-TEST_3-4")
     object.update({versionLabel: "0.10"})
     object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    expect(object.errors.count).to eq(0)
     expect(object.versionLabel).to eq("0.10")
+  end
+  
+  it "allows for an object to be updated, semantic version" do
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    object.update({semantic_version: :major})
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    expect(object.semantic_version.to_s).to eq("1.0.0")
+    expect(object.errors.count).to eq(0)
+  end
+  
+  it "allows for an object to be updated, semantic version & label" do
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    object.update({semantic_version: :major, versionLabel: "0.20"})
+    object = IsoScopedIdentifier.find("SI-TEST_3-4")
+    expect(object.versionLabel).to eq("0.20")
+    expect(object.semantic_version.to_s).to eq("2.0.0")
     expect(object.errors.count).to eq(0)
   end
   

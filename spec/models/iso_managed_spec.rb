@@ -180,6 +180,55 @@ describe IsoManaged do
     expect(item.to_json).to eq(result)
   end
 
+  it "allows the item status to be updated, not standard" do
+    item = IsoManaged.find("F-BBB_VSW", "http://www.assero.co.uk/X/V1")
+    params = {}
+    params[:registrationStatus] = "Qualified"
+    params[:previousState] = "Recorded"
+    params[:administrativeNote] = "New note"
+    params[:unresolvedIssue] = "Unresolved issues"
+    expected = item
+    expected.registrationState.registrationStatus = "SomethingNew"
+    expected.registrationState.previousState = "SomethingOld"
+    expected.registrationState.administrativeNote = "New note"
+    expected.registrationState.unresolvedIssue = "Unresolved issues"
+    item.update_status(params)
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(item.errors.count).to eq(0)
+    item = IsoManaged.find("F-BBB_VSW", "http://www.assero.co.uk/X/V1")
+    expect(item.to_json).to eq(expected.to_json)
+  end
+
+  it "allows the item status to be updated, error" do
+    item = IsoManaged.find("F-BBB_VSW", "http://www.assero.co.uk/X/V1")
+    params = {}
+    params[:registrationStatus] = "SomethingNew"
+    params[:previousState] = "SomethingOld"
+    params[:administrativeNote] = "New note"
+    params[:unresolvedIssue] = "Unresolved issues"
+    item.update_status(params)
+    expect(item.errors.full_messages.to_sentence).to eq("Registration State: Registrationstatus is invalid")
+    expect(item.errors.count).to eq(1)
+  end
+
+  it "allows the item status to be updated, standard" do
+    item = IsoManaged.find("F-BBB_VSW", "http://www.assero.co.uk/X/V1")
+    params = {}
+    params[:registrationStatus] = "Standard"
+    params[:previousState] = "Qualified"
+    params[:administrativeNote] = "New note"
+    params[:unresolvedIssue] = "Unresolved issues"
+    expected = IsoManaged.from_json(item.to_json)
+    expected.registrationState.registrationStatus = "Standard"
+    expected.registrationState.previousState = "Qualified"
+    expected.registrationState.administrativeNote = "New note"
+    expected.registrationState.unresolvedIssue = "Unresolved issues"
+    expected.scopedIdentifier.semantic_version = SemanticVersion.from_s("1.0.0")
+    item.update_status(params)
+    item = IsoManaged.find("F-BBB_VSW", "http://www.assero.co.uk/X/V1")
+    expect(item.to_json).to eq(expected.to_json)
+  end
+
   it "finds all unique entries" do
     result = 
       [
@@ -321,40 +370,6 @@ describe IsoManaged do
     old_item.registrationState.registrationStatus = "Standard"
     expect(new_item.to_json).to eq(old_item.to_json)
   end
-
-=begin
-  it "allows an item to be created from data" do
-    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    item.scopedIdentifier.identifier = "ZZZ"
-    new_item = IsoManaged.from_data(item.to_operation, "F", "http://www.assero.co.uk/MDRForms", "http://www.assero.co.uk/BusinessForm", "Form", IsoRegistrationAuthority.owner)
-    item.id = "F-BBB_ZZZ"
-    item.namespace = "http://www.assero.co.uk/MDRForms/BBB/V1"
-    item.lastChangeDate = date_check_now(new_item.lastChangeDate)
-    item.scopedIdentifier.id = "SI-BBB_ZZZ-1"
-    item.registrationState.id = "RS-BBB_ZZZ-1"
-    item.registrationState.registrationStatus = "Standard"
-    expect(new_item.to_json).to eq(item.to_json)
-  end
-  
-  it "allows an item to be created from data, for import" do
-    object = CdiscTerm.new
-    object.label = "CDISC Terminology 2016-12-13"
-    object.scopedIdentifier.identifier = "CDISC Terminology"
-    object.scopedIdentifier.version = 47
-    object.scopedIdentifier.versionLabel = "2016-12-13"
-    new_item = IsoManaged.from_data(object.to_operation, "TH", "http://www.assero.co.uk/MDRThesaurus", "http://www.assero.co.uk/ISO25964", "Thesaurus", IsoRegistrationAuthority.owner)
-    item = CdiscTerm.new
-    item.id = "TH-BBB_CDISCTerminology"
-    item.label = "CDISC Terminology 2015-12-18"
-    item.namespace = "http://www.assero.co.uk/MDRThesaurus/BBB/V44"
-    item.lastChangeDate = date_check_now(new_item.lastChangeDate)
-    item.scopedIdentifier.namespace = new_item.scopedIdentifier.namespace
-    item.scopedIdentifier.id = "SI-BBB_CDISCTerminology-44"
-    item.registrationState.id = "RS-BBB_CDISCTerminology-44"
-    item.registrationState.registrationStatus = "Standard"
-    expect(new_item.to_json).to eq(item.to_json)
-  end
-=end
   
   it "permits the item to be exported as SPARQL" do
     result = "PREFIX : <http://www.assero.co.uk/MDRForms/ACME/V1#>\n" +

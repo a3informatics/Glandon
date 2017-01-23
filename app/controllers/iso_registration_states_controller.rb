@@ -10,10 +10,10 @@ class IsoRegistrationStatesController < ApplicationController
   def update
     authorize IsoRegistrationState
     referer = request.referer
-    registration_state = IsoRegistrationState.find(params[:id])
-    registration_state.update(this_params)
-    if !registration_state.errors.empty?
-      flash[:error] = registration_state.errors.full_messages.to_sentence
+    @managed_item = IsoManaged.find(the_params[:mi_id], the_params[:mi_namespace])
+    @managed_item.update_status(the_params)
+    if !@managed_item.errors.empty?
+      flash[:error] = @managed_item.errors.full_messages.to_sentence
     end
     redirect_to referer
   end
@@ -32,8 +32,9 @@ class IsoRegistrationStatesController < ApplicationController
 
 private
 
-  def this_params
-    params.require(:iso_registration_state).permit(:registrationAuthority, :registrationStatus, :administrativeNote, :unresolvedIssue, :administrativeStatus, :previousState, :referer)
+  def the_params
+    params.require(:iso_registration_state).permit(:registrationAuthority, :registrationStatus, :administrativeNote, :unresolvedIssue, :administrativeStatus, 
+      :previousState, :referer, :mi_id, :mi_namespace)
   end
 
 end

@@ -237,7 +237,7 @@ class IsoScopedIdentifier
         object.identifier = iSet[0].text
         object.version = (vSet[0].text).to_i
         object.versionLabel = vlSet[0].text
-        object.semantic_version = sv == "" ? SemanticVersion.new({}) : sv
+        object.semantic_version = sv == "" ? SemanticVersion.new({}) : SemanticVersion.from_s(sv)
         object.namespace = IsoNamespace.find(ModelUtility.extractCid(sSet[0].text))
       end
     end
@@ -335,6 +335,7 @@ class IsoScopedIdentifier
   # @param version_label [String] the version label
   # @param semantic_version [String] the semanctic version
   # @param scope_org [IsoNamespace] the owner organisation
+  # @raise [Exceptions::CreateError] if any errors occur during the create
   # @return [IsoScopedIdentifier] The created object. Error count set if failed.
   def self.create(identifier, version, version_label, semantic_version, scope_org)
     semantic_version = SemanticVersion.from_s(semantic_version)
@@ -363,25 +364,29 @@ class IsoScopedIdentifier
     return object
   end
 
-  # Update the object
+  # Update the object. Updates the version label and/or semantic version.
   #
-  # @param params [hash] Contains the versionLabel 
-  # @return null
-  def update(params)  
-    self.versionLabel = params[:versionLabel]
+  # @raise [Exceptions::UpdateError] if any errors occur during the update
+  # @return [Null] no return. Errors, if any, in the class errors 
+  def update(params)
+    self.versionLabel = params[:versionLabel] if params[:versionLabel]
+    self.semantic_version.increment_major if params[:semantic_version] == :major
     if valid?
       update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI"]) +
         "DELETE \n" +
         "{ \n" +
-        " :" + self.id + " isoI:versionLabel ?a . \n" +
+        " :#{self.id} isoI:versionLabel ?a . \n" +
+        " :#{self.id} isoI:semantic_version ?b . \n" +
         "} \n" +
         "INSERT \n" +
         "{ \n" +
-        " :" + self.id + " isoI:versionLabel \"#{self.versionLabel}\"^^xsd:string . \n" +
+        " :#{self.id} isoI:versionLabel \"#{self.versionLabel}\"^^xsd:string . \n" +
+        " :#{self.id} isoI:semantic_version \"#{self.semantic_version}\"^^xsd:string . \n" +
         "} \n" +
         "WHERE \n" +
         "{ \n" +
-        " :" + self.id + " isoI:versionLabel ?a . \n" +
+        " :#{self.id} isoI:versionLabel ?a . \n" +
+        " OPTIONAL { :#{self.id} isoI:semantic_version ?b . } \n" +
         "}"
       response = CRUD.update(update)
       if !response.success?

@@ -801,10 +801,10 @@ class IsoManaged < IsoConcept
 
   # Update the item
   #
-  # @params [hash] The parameters {:explanatoryComment, :changeDescription, :origin}
+  # @params [Hash] The parameters {:explanatoryComment, :changeDescription, :origin}
+  # @raise [Exceptions::UpdateError] if an error occurs during the update
   # @return null
   def update(params)  
-    comment = 
     date_time = Time.now.iso8601
     update = UriManagement.buildNs(self.namespace, ["isoT"]) +
       "DELETE \n" +
@@ -828,18 +828,36 @@ class IsoManaged < IsoConcept
       " :" + self.id + " isoT:origin ?c . \n" +
       " :" + self.id + " isoT:lastChangeDate ?d . \n" +
       "}"
-    # Send the request, wait the resonse
     response = CRUD.update(update)
-    # Response
     if !response.success?
-      raise Exceptions::CreateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
     end
   end
   
+  # Update the item status. If we are moving to a released state then
+  # update the semantic version
+  #
+  # @params [Hash] the parameters
+  # @return [Null] errors are in the error object, if any 
+  def update_status(params)  
+    self.registrationState.update(params)
+    if !self.registrationState.errors.empty?
+      self.copy_errors(self.registrationState, "Registration State:")
+    else
+      if self.registrationState.released_state?
+        self.scopedIdentifier.update semantic_version: :major
+        if !self.scopedIdentifier.errors.empty?
+          self.copy_errors(self.scopedIdentifier, "Scoped Identifier:")
+        end
+      end
+    end
+  end
+
   # Destroy the object
   #
-  # @raise [ExceptionClass] DestroyError if object not destroyed
-  # @return null
+  # @raise [Exceptions::DestroyError] if object not destroyed
+  # @return [Null]
   def destroy
     # Create the query
     update = UriManagement.buildNs(self.namespace, [C_SCHEMA_PREFIX, "isoI", "isoR"]) +

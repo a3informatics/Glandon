@@ -174,7 +174,7 @@ mdrItems:SI-TEST_SV1-5
 	isoI:identifier "TESTSV 1"^^xsd:string ;
 	isoI:versionLabel "0.7"^^xsd:string ;
 	isoI:version "7"^^xsd:positiveInteger ;
-	isoI:semantic_version "0.0.7"^^xsd:positiveInteger ;
+	isoI:semantic_version "0.0.7"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-BBB ;
 .
 mdrItems:RS-TEST_SV1-5
@@ -204,7 +204,7 @@ mdrItems:SI-TEST_SV2-5
 	isoI:identifier "TESTSV 2"^^xsd:string ;
 	isoI:versionLabel "0.6"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
-	isoI:semantic_version "3.1.6"^^xsd:positiveInteger ;
+	isoI:semantic_version "3.1.6"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-BBB ;
 .
 mdrItems:RS-TEST_SV2-5
