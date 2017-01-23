@@ -111,6 +111,7 @@
             <xsl:with-param name="pIdentifier" select="@Id"/>
             <xsl:with-param name="pVersionLabel" select="'0.1'"/>
             <xsl:with-param name="pVersion" select="'1'"/>
+            <xsl:with-param name="pSemanticVersion" select="'1.0.0'"/>
             <xsl:with-param name="pScope" select="'NS-CDISC'"/>
         </xsl:call-template>
 

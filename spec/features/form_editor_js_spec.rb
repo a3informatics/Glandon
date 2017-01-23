@@ -53,7 +53,7 @@ describe "Form Editor", :type => :feature do
   
     it "has correct initial state", js: true do
       create_form("TEST INITIAL", "Initial", "Initial Layout Test") 
-      expect(page).to have_content("Edit: Initial TEST INITIAL (, V1, Incomplete)")
+      expect(page).to have_content("Edit: Initial TEST INITIAL (V0.1.0, 1, Incomplete)")
       expect(page).to have_content("Form Details")
       expect(page).to have_content("G+")
       expect(page).to have_content("Save")

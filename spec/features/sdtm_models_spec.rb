@@ -47,17 +47,19 @@ describe "SDTM Models", :type => :feature do
       visit '/sdtm_models/history'
       expect(page).to have_content 'History: CDISC SDTM Model'
       find(:xpath, "//tr[contains(.,'SDTM Model 2013-11-26')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: SDTM Model 2013-11-26 SDTM MODEL (1.4, V3, Standard)'
+      expect(page).to have_content 'Show: SDTM Model 2013-11-26 SDTM MODEL (V0.0.0, 3, Standard)'
     end
 
     it "history allows the status page to be viewed" do
       visit '/sdtm_models/history'
       expect(page).to have_content 'History: CDISC SDTM Model'
       find(:xpath, "//tr[contains(.,'SDTM Model 2013-11-26')]/td/a", :text => 'Status').click
-      expect(page).to have_content 'Status: SDTM Model 2013-11-26 SDTM MODEL (1.4, V3, Standard)'
+      expect(page).to have_content 'Status: SDTM Model 2013-11-26 SDTM MODEL (V0.0.0, 3, Standard)'
       click_link 'Close'
       expect(page).to have_content 'History: CDISC SDTM Model'
     end
+    
+    it "*** SDTM IMPORT SEMANTIC VERSION ***"
     
     it "allows for a SDTM Model to be exported as JSON"
 

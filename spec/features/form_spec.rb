@@ -59,7 +59,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'History: T2'
       find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Show').click
       #save_and_open_page
-      expect(page).to have_content 'Show: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Show: Test 2 T2 (V0.0.0, 1, Incomplete)'
     end
 
     it "history allows the view page to be viewed" do
@@ -69,7 +69,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'History: DM1 01'
       find(:xpath, "//tr[contains(.,'Demographics')]/td/a", :text => 'View').click
       #save_and_open_page
-      expect(page).to have_content 'View: Demographics DM1 01 (, V1, Candidate)'
+      expect(page).to have_content 'View: Demographics DM1 01 (V0.0.0, 1, Candidate)'
       click_link 'Close'
       expect(page).to have_content 'History: DM1 01'
     end
@@ -93,7 +93,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'History: T2'
       find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Edit').click
       #save_and_open_page
-      expect(page).to have_content 'Edit: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Edit: Test 2 T2 (V0.0.0, 1, Incomplete)'
     end
 
     it "allows a form to be cloned" do
@@ -102,9 +102,9 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: T2'
       find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Show: Test 2 T2 (V0.0.0, 1, Incomplete)'
       click_link 'Clone'
-      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Cloning: Test 2 T2 (V0.0.0, 1, Incomplete)'
       fill_in 'form[identifier]', with: 'A CLONE FORM'
       fill_in 'form[label]', with: 'Test Clone Form'
       click_button 'Clone'
@@ -118,13 +118,13 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: T2'
       find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Show: Test 2 T2 (V0.0.0, 1, Incomplete)'
       click_link 'Clone'
-      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Cloning: Test 2 T2 (V0.0.0, 1, Incomplete)'
       fill_in 'form[identifier]', with: 'A CLONE FORM'
       fill_in 'form[label]', with: 'Test 2nd Clone Form'
       click_button 'Clone'
-      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Cloning: Test 2 T2 (V0.0.0, 1, Incomplete)'
       expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
     end
 
@@ -134,13 +134,13 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: T2'
       find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Show: Test 2 T2 (V0.0.0, 1, Incomplete)'
       click_link 'Clone'
-      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Cloning: Test 2 T2 (V0.0.0, 1, Incomplete)'
       fill_in 'form[identifier]', with: 'A CLONE FORM@'
       fill_in 'form[label]', with: 'Test 2nd Clone Form'
       click_button 'Clone'
-      expect(page).to have_content 'Cloning: Test 2 T2 (, V1, Incomplete)'
+      expect(page).to have_content 'Cloning: Test 2 T2 (V0.0.0, 1, Incomplete)'
       expect(page).to have_content 'Identifier contains invalid characters'
     end
 
@@ -223,9 +223,9 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 BRANCH'
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
       click_link 'Branch'
-      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
       fill_in 'form[identifier]', with: 'A BRANCH FORM'
       fill_in 'form[label]', with: 'Test Branch Form'
       click_button 'Branch'
@@ -239,13 +239,13 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 BRANCH'
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
       click_link 'Branch'
-      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
       fill_in 'form[identifier]', with: 'A BRANCH FORM'
       fill_in 'form[label]', with: 'Test 2nd Branch Form'
       click_button 'Branch'
-      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
       expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
     end
 
@@ -255,13 +255,13 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 BRANCH'
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
       click_link 'Branch'
-      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
       fill_in 'form[identifier]', with: 'A BRANCH FORM@'
       fill_in 'form[label]', with: 'Test 2nd Branch Form'
       click_button 'Branch'
-      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (, V1, Standard)'
+      expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
       expect(page).to have_content 'Identifier contains invalid characters'
     end
 

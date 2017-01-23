@@ -53,7 +53,7 @@ describe "Edit Locks", :type => :feature do
       Token.set_timeout(@user1.edit_lock_warning.to_i + 10)
       load_form("CRF TEST 1") 
       wait_for_ajax
-      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (, V1, Incomplete)")
+      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       token = tokens[0]
       Capybara.ignore_hidden_elements = false
@@ -77,7 +77,7 @@ describe "Edit Locks", :type => :feature do
       wait_for_ajax
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       token = tokens[0]
-      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (, V1, Incomplete)")
+      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
       Capybara.ignore_hidden_elements = false
       ui_button_disabled('token_timer')
       page.find("#token_timer")[:class].include?("btn-success")
@@ -102,7 +102,7 @@ describe "Edit Locks", :type => :feature do
     it "domain edit timeout warnings and expiration", js: true do
       Token.set_timeout(@user2.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
-      expect(page).to have_content("Edit: Demographics DM Domain (, V1, Incomplete)")
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       token = tokens[0]
       Capybara.ignore_hidden_elements = false
@@ -123,7 +123,7 @@ describe "Edit Locks", :type => :feature do
     it "form edit timeout warnings and extend", js: true do
       Token.set_timeout(@user2.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
-      expect(page).to have_content("Edit: Demographics DM Domain (, V1, Incomplete)")
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       token = tokens[0]
       Capybara.ignore_hidden_elements = false

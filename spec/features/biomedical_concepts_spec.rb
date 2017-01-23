@@ -57,7 +57,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content 'History: BC C25206'
       #save_and_open_page
       find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (0.1, V1, Standard)'
+      expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
     end
 
     it "history allows the status page to be viewed" do
@@ -66,7 +66,7 @@ describe "Biomedical Concepts", :type => :feature do
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: BC C25206'
       find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Status').click
-      expect(page).to have_content 'Status: Temperature (BC C25206) BC C25206 (0.1, V1, Standard)'
+      expect(page).to have_content 'Status: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
       click_link 'Close'
       expect(page).to have_content 'History: BC C25206'
     end
@@ -77,9 +77,9 @@ describe "Biomedical Concepts", :type => :feature do
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: BC C25206'
       find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (0.1, V1, Standard)'
+      expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
       click_link 'Clone'
-      expect(page).to have_content 'Cloning: Temperature (BC C25206) BC C25206 (0.1, V1, Standard)'
+      expect(page).to have_content 'Cloning: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
       fill_in "biomedical_concept[identifier]", with: 'NEW NEW BC'
       fill_in "biomedical_concept[label]", with: 'A very new new BC'
       #save_and_open_page

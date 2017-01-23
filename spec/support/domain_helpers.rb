@@ -9,7 +9,7 @@ module DomainHelpers
     expect(page).to have_content 'Signed in successfully'
     visit 'sdtm_ig_domains/IG-CDISC_SDTMIGEG?sdtm_ig_domain[namespace]=http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3'
     click_link 'Clone'
-    expect(page).to have_content 'Cloning: Electrocardiogram SDTM IG EG (3.2, V3, Standard)'
+    expect(page).to have_content 'Cloning: Electrocardiogram SDTM IG EG (V0.0.0, 3, Standard)'
     ui_check_input('sdtm_user_domain_prefix', 'EG')
     fill_in 'sdtm_user_domain_prefix', with: "#{prefix}"
     fill_in 'sdtm_user_domain_label', with: "Cloned EG"

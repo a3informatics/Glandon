@@ -41,12 +41,14 @@ describe "SDTM Model Domains", :type => :feature do
       visit '/sdtm_models/history'
       expect(page).to have_content 'History: CDISC SDTM Model'
       find(:xpath, "//tr[contains(.,'SDTM Model 2013-11-26')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: SDTM Model 2013-11-26 SDTM MODEL (1.4, V3, Standard)'
+      expect(page).to have_content 'Show: SDTM Model 2013-11-26 SDTM MODEL (V0.0.0, 3, Standard)'
       #save_and_open_page
       find(:xpath, "//tr[contains(.,'SDTMMODEL_INTERVENTIONS')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Interventions SDTMMODEL_INTERVENTIONS (1.4, V3, Standard)'  
+      expect(page).to have_content 'Show: Interventions SDTMMODEL_INTERVENTIONS (V0.0.0, 3, Standard)'  
     end
 
+    it "*** SDTM IMPORT SEMANTIC VERSION ***"
+    
     it "allows for a SDTM Model to be exported as JSON"
 
     it "allows for a SDTM Model to be expoerted as TTL"

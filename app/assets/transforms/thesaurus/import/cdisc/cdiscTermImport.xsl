@@ -109,6 +109,7 @@
             <xsl:with-param name="pIdentifier" select="$CTIdentifier"/>
             <xsl:with-param name="pVersionLabel" select="$ReleaseDate"/>
             <xsl:with-param name="pVersion" select="$UseVersion"/>
+            <xsl:with-param name="pSemanticVersion" select="concat($UseVersion,'.0.0')"/>
             <xsl:with-param name="pScope" select="'NS-CDISC'"/>
         </xsl:call-template>
 

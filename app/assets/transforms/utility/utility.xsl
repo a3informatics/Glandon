@@ -55,6 +55,7 @@
         <xsl:param name="pIdentifier"/>
         <xsl:param name="pVersionLabel"/>
         <xsl:param name="pVersion"/>
+        <xsl:param name="pSemanticVersion"/>
         <xsl:param name="pScope"/>
         <xsl:call-template name="Subject">
             <xsl:with-param name="pName" select="concat('mdrItems:',$pCID)"/>
@@ -74,6 +75,10 @@
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoI:version'"/>
             <xsl:with-param name="pObjectName" select="concat($quote,$pVersion,$quote,'^^xsd:positiveInteger')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoI:semantic_version'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pSemanticVersion,$quote,'^^xsd:string')"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'isoI:hasScope'"/>

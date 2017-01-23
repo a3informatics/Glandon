@@ -46,7 +46,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'View').click
-      expect(page).to have_content 'View: CDISC Extensions CDISC EXT (0.1, V1, Standard)'
+      expect(page).to have_content 'View: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
       expect(page).to have_content 'Thesauri Details'
       ui_check_anon_table_row(1, ["Label:", "CDISC Extensions"])
       ui_check_anon_table_row(2, ["Identifier:", "CDISC EXT"])
@@ -80,7 +80,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Terminology')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'View').click
-      expect(page).to have_content 'View: CDISC Terminology 2015-12-18 CDISC Terminology (2015-12-18, V43, Standard)'
+      expect(page).to have_content 'View: CDISC Terminology 2015-12-18 CDISC Terminology (V43.0.0, 43, Standard)'
       expect(page).to have_content 'Thesauri Details'
       ui_check_anon_table_row(1, ["Label:", "CDISC Terminology 2015-12-18"])
       ui_check_anon_table_row(2, ["Identifier:", "CDISC Terminology"])
@@ -111,7 +111,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
       fill_in 'Identifier', with: 'A00030'
       click_button 'New'
       expect(page).to have_content 'A00030' # Note up version
@@ -164,7 +164,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
       expect(find('#tcIdentifierPrefix')).to have_content('')
       fill_in 'Identifier', with: 'A00040'
       click_button 'New'
@@ -196,7 +196,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
       expect(find('#tcIdentifierPrefix')).to have_content('')
       fill_in 'Identifier', with: 'A00040 XX'
       click_button 'New'
@@ -220,7 +220,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
       click_button 'Close'
       expect(page).to have_content 'History: CDISC EXT'
     end
@@ -235,7 +235,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
       wait_for_ajax
       find(:xpath, "//tr[contains(.,'A00040SUBMISSION')]/td/button", :text => 'Edit').click
       expect(page).to have_content 'Edit: A00040 Label text'
@@ -253,7 +253,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)' # Note up version
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
       find(:xpath, "//tr[contains(.,'A00040SUBMISSION')]/td/button", :text => 'Edit').click
       expect(page).to have_content 'Edit: A00040 Label text'
       find(:xpath, "//tr[contains(.,'A00040A00001SUBMISSION')]/td/button", :text => 'Edit').click
@@ -261,7 +261,7 @@ describe "Thesaurus", :type => :feature do
       click_button 'Parent'
       expect(page).to have_content 'Edit: A00040 Label text'
       click_button 'Parent'
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (0.1, V2, Incomplete)'
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)'
     end
     
     it "allows the edit session to be closed indirectly, saves data"

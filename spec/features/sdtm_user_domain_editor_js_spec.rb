@@ -52,7 +52,7 @@ describe "SDTM User Domain Editor", :type => :feature do
   
     it "has correct initial state", js: true do
       load_domain("DM Domain")
-      expect(page).to have_content("Edit: Demographics DM Domain (, V1, Incomplete)")
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
       expect(page).to have_content("Domain Details")
       expect(page).to have_content("V+")
       expect(page).to have_content("Save")

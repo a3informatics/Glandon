@@ -58,7 +58,7 @@ describe "CDISC Term", :type => :feature do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-09-25')]/td/a", :text => 'Status').click
-      expect(page).to have_content 'Status: CDISC Terminology 2015-09-25 CDISC Terminology (2015-09-25, V42, Standard)'
+      expect(page).to have_content 'Status: CDISC Terminology 2015-09-25 CDISC Terminology (V42.0.0, 42, Standard)'
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
@@ -77,7 +77,7 @@ describe "CDISC Term", :type => :feature do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-03-27')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: CDISC Terminology 2015-03-27 CDISC Terminology (2015-03-27, V40, Standard)'
+      expect(page).to have_content 'Show: CDISC Terminology 2015-03-27 CDISC Terminology (V40.0.0, 40, Standard)'
       expect(page).to have_content 'C100136'
       expect(page).to have_content 'C100135'
       expect(page).to have_content 'C100137'
@@ -96,7 +96,7 @@ describe "CDISC Term", :type => :feature do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2014-12-16')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: CDISC Terminology 2014-12-16 CDISC Terminology (2014-12-16, V39, Standard)'
+      expect(page).to have_content 'Show: CDISC Terminology 2014-12-16 CDISC Terminology (V39.0.0, 39, Standard)'
       expect(page).to have_content 'C100136'
       expect(page).to have_content 'C100135'
       expect(page).to have_content 'C100137'

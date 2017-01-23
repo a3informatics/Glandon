@@ -56,7 +56,7 @@ describe "Biomedical Concept Templates", :type => :feature do
       expect(page).to have_content 'History: Obs PQR'
       #save_and_open_page
       find(:xpath, "//tr[contains(.,'Simple Observation PQR Biomedical Research Concept Template')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Simple Observation PQR Biomedical Research Concept Template Obs PQR (0.1, V1, Standard)'
+      expect(page).to have_content 'Show: Simple Observation PQR Biomedical Research Concept Template Obs PQR (V1.0.0, 1, Standard)'
     end
 
     it "history allows the status page to be viewed" do
@@ -65,7 +65,7 @@ describe "Biomedical Concept Templates", :type => :feature do
       find(:xpath, "//tr[contains(.,'Obs CD')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: Obs CD'
       find(:xpath, "//tr[contains(.,'Simple Observation CD Biomedical Research Concept Template')]/td/a", :text => 'Status').click
-      expect(page).to have_content 'Status: Simple Observation CD Biomedical Research Concept Template Obs CD (0.1, V1, Standard)'
+      expect(page).to have_content 'Status: Simple Observation CD Biomedical Research Concept Template Obs CD (V1.0.0, 1, Standard)'
       click_link 'Close'
       expect(page).to have_content 'History: Obs CD'
     end
