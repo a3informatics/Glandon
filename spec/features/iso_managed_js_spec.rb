@@ -5,6 +5,7 @@ describe "ISO Managed JS", :type => :feature do
   include DataHelpers
   include PauseHelpers
   include UiHelpers
+  include WaitForAjaxHelper
   
   before :all do
     user = User.create :email => "curator@example.com", :password => "12345678" 
@@ -120,7 +121,8 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_content "Versionlabel contains invalid characters"
       fill_in "iso_scoped_identifier_versionLabel", with: "Draft 1"
       click_button "version_submit"
-      expect(page).to have_content "Draft 1"
+      ui_check_input("iso_scoped_identifier_versionLabel", "Draft 1")
+      #expect(page).to have_content "Draft 1"
       #pause      
       fill_in "iso_registration_state_administrativeNote", with: "£££££££££"
       fill_in "iso_registration_state_unresolvedIssue", with: "Draft 1"
@@ -136,6 +138,43 @@ describe "ISO Managed JS", :type => :feature do
       #pause
       expect(page).to have_content "Current Status: Superseded"
       #pause
+    end
+
+    it "allows the status to be updated, handles standard version", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      expect(page).to have_content 'Signed in successfully'
+      click_link 'Forms'
+      expect(page).to have_content 'Index: Forms'
+      click_link 'New'
+      expect(page).to have_content 'New Form:'
+      fill_in 'form[identifier]', with: 'A NEW FORM'
+      fill_in 'form[label]', with: 'Test New Form'
+      click_button 'Create'
+      expect(page).to have_content 'Index: Forms'
+      expect(page).to have_content 'Test New Form'
+      find(:xpath, "//tr[contains(.,'A NEW FORM')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: A NEW FORM'
+      find(:xpath, "//tr[contains(.,'A NEW FORM')]/td/a", :text => 'Status').click
+      ui_check_table_row("version_info", 1, ["Version:", "0.1.0"])
+      ui_check_table_row("version_info", 2, ["Internal Version:", "1"])
+      fill_in "iso_scoped_identifier_versionLabel", with: "Draft Form"
+      click_button "version_submit"
+      ui_check_input("iso_scoped_identifier_versionLabel", "Draft Form")
+      expect(page).to have_content("Current Status: Incomplete")
+      click_button "state_submit"
+      expect(page).to have_content("Current Status: Candidate")
+      click_button "state_submit"
+      expect(page).to have_content("Current Status: Recorded")
+      click_button "state_submit"
+      expect(page).to have_content("Current Status: Qualified")
+      ui_check_table_row("version_info", 1, ["Version:", "0.1.0"])
+      click_button "state_submit"
+      expect(page).to have_content("Current Status: Standard")
+      ui_check_table_row("version_info", 1, ["Version:", "1.0.0"])
+      ui_check_table_row("version_info", 2, ["Internal Version:", "1"])
     end
 
   end
