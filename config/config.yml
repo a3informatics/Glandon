@@ -1,7 +1,6 @@
 defaults: &defaults
   # General Settings
   self_registration: false # Self registration enabled
-  token_timeout: 300 # Timeout in seconds
   rest_timeout: 5 # REST timeout period
   cdisc_ct_files: public/results/  # CDISC CT file directory
   ad_hoc_report_files: public/reports/  # Ad Hoc Reports directory
@@ -49,4 +48,3 @@ test:
   <<: *defaults
   cdisc_ct_files: public/test/
   ad_hoc_report_files: public/test/
-  token_timeout: 5 
