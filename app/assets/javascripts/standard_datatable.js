@@ -7,17 +7,22 @@ var dtTertiaryDataTable;	// Reference to tertiary table
 */
 $(document).ready( function() {
 
+  if (typeof dtMainOrder === 'undefined') {
+    dtMainOrder = '[]'
+  }
+
   dtMainDataTable = $('#main').DataTable({
     columnDefs: [ ],
     "pageLength": pageLength,
-    "lengthMenu": pageSettings
-  } );
+    "lengthMenu": pageSettings,
+    "order": dtMainOrder
+  });
 
   dtSecondaryDataTable = $('#secondary').DataTable({
     columnDefs: [ ],
     "pageLength": pageLength,
     "lengthMenu": pageSettings
-  } );		
+  });		
   
   dtTertiaryDataTable = $('#tertiary').DataTable({
   	columnDefs: [ ],
@@ -25,7 +30,7 @@ $(document).ready( function() {
     "lengthMenu": pageSettings
 	});
 
-} );
+});
 
 /**
  * Show all items in the main table. 
