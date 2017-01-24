@@ -30,16 +30,16 @@ describe "Tokens", :type => :feature do
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
     Token.delete_all
-    @user1 = User.create :email => "user1@example.com", :password => "12345678" 
-    @user1.add_role :curator
-    @user2 = User.create :email => "user2@example.com", :password => "12345678" 
-    @user2.add_role :curator
+    user1 = User.create :email => "token_user_1@example.com", :password => "12345678" 
+    user1.add_role :curator
+    user2 = User.create :email => "token_user_2@example.com", :password => "12345678" 
+    user2.add_role :curator
   end
 
   after :all do
-    user = User.where(:email => "user1@example.com").first
+    user = User.where(:email => "token_user_1@example.com").first
     user.destroy
-    user = User.where(:email => "user2@example.com").first
+    user = User.where(:email => "token_user_2@example.com").first
     user.destroy
   end
 
@@ -49,7 +49,7 @@ describe "Tokens", :type => :feature do
 
       in_browser(:one) do
         visit '/users/sign_in'
-        fill_in 'Email', with: 'user1@example.com'
+        fill_in 'Email', with: 'token_user_1@example.com'
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
@@ -62,7 +62,7 @@ describe "Tokens", :type => :feature do
 
       in_browser(:two) do
         visit '/users/sign_in'
-        fill_in 'Email', with: 'user2@example.com'
+        fill_in 'Email', with: 'token_user_2@example.com'
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
@@ -81,7 +81,7 @@ describe "Tokens", :type => :feature do
 
       in_browser(:one) do
         visit '/users/sign_in'
-        fill_in 'Email', with: 'user1@example.com'
+        fill_in 'Email', with: 'token_user_1@example.com'
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
@@ -94,7 +94,7 @@ describe "Tokens", :type => :feature do
 
       in_browser(:two) do
         visit '/users/sign_in'
-        fill_in 'Email', with: 'user2@example.com'
+        fill_in 'Email', with: 'token_user_2@example.com'
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
@@ -111,7 +111,7 @@ describe "Tokens", :type => :feature do
 
       in_browser(:one) do
         visit '/users/sign_in'
-        fill_in 'Email', with: 'user1@example.com'
+        fill_in 'Email', with: 'token_user_1@example.com'
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
@@ -124,7 +124,7 @@ describe "Tokens", :type => :feature do
 
       in_browser(:two) do
         visit '/users/sign_in'
-        fill_in 'Email', with: 'user2@example.com'
+        fill_in 'Email', with: 'token_user_2@example.com'
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
