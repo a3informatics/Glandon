@@ -30,10 +30,10 @@ describe Form::Crf do
     clear_iso_registration_state_object
   end
 
-  it "save data as YAML" do
-    form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
-    write_hash_to_yaml_file_2(form.to_json, sub_dir, "example_crf.yaml")
-  end
+  #it "save data as YAML" do
+  #  form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
+  #  write_hash_to_yaml_file_2(form.to_json, sub_dir, "example_crf.yaml")
+  #end
 
   it "displays a CRF as HTML" do
     form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")

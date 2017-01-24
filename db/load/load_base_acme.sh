@@ -20,7 +20,6 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/Busin
 # Load Identification
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRIdentificationACME.ttl" $FileEndPoint
 # Load Terminology
-#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V34.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V35.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V36.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V37.ttl" $FileEndPoint

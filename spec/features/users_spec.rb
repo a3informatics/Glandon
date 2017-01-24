@@ -171,7 +171,7 @@ describe "Users", :type => :feature do
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
       find(:xpath, "//tr[contains(.,'delete@example.com')]/td/a", :text => 'Delete').click
-      expect(AuditTrail.count).to eq(audit_count + 2)
+      expect(AuditTrail.count).to eq(audit_count + 3)
       # Needs more here to confirm the deletion. Cannot do it without Javascript
     end
       

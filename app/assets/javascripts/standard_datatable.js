@@ -9,7 +9,7 @@ var dtMainOrder;          // Main table ordering
 $(document).ready( function() {
 
   // Set the order of the main table and update if overridden by page.
-  dtMainOrder = [];
+  dtMainOrder = [0, 'asc'];
   if (typeof dtMainOrderUpdate !== 'undefined') {
     dtMainOrder = dtMainOrderUpdate;
   }
