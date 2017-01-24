@@ -21,7 +21,7 @@
 	    <td><%= @form.label %></td>
 	    <td><%= @form.owner %></td>
 	    <td><%= @form.registrationState.registrationStatus %></td>
-	    <td><%= @form.version %></td>
+	    <td><%= @form.semantic_version %></td>
 	    <td><%= @form.versionLabel %></td>
 	    <% if @form.is_a_branch? %>
 	    	<td><%= link_to "Branched From", form_path(:id => @form.branched_from_ref.subject_ref.id, :namespace => @form.branched_from_ref.subject_ref.namespace), :class => "btn btn-primary btn-xs" %></td>

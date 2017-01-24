@@ -17,7 +17,7 @@
 	    <td><%= @sdtm_ig.identifier %></td>
 	    <td><%= @sdtm_ig.label %></td>
 	    <td><%= @sdtm_ig.owner %></td>
-	    <td><%= @sdtm_ig.version %></td>
+	    <td><%= @sdtm_ig.semantic_version %></td>
 	    <td><%= @sdtm_ig.versionLabel %></td>
 	  </tr>
 	</tbody>
@@ -40,7 +40,7 @@
 	    		<td><%= item.identifier %></td>
 			    <td><%= item.label %></td>
 			    <td><%= item.owner %></td>
-			    <td><%= item.version %></td>
+			    <td><%= item.semantic_version %></td>
 			    <td><%= item.versionLabel %></td>
 	    		<td><%= link_to "Show", sdtm_ig_domain_path(:id => item.id, :sdtm_ig_domain => { :namespace => item.namespace }), :class => "btn btn-primary btn-xs" %></td>
 	  		</tr>

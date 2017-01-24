@@ -14,9 +14,10 @@ describe "Audit Trail", :type => :feature do
     user1 = User.create :email => "audit_trail_user_1@example.com", :password => "changeme" 
     user2 = User.create :email => "audit_trail_user_2@example.com", :password => "changeme" 
     AuditTrail.delete_all
-    @now = Time.now
-    ar = AuditTrail.create(date_time: @now, user: "audit_trail_user_1@example.com", owner: "CDISC", identifier: "I1", version: "1", event: 1, description: "description")
-    ar = AuditTrail.create(date_time: @now - 10, user: "audit_trail_user_1@example.com", owner: "CDISC", identifier: "I2", version: "1", event: 1, description: "description")
+    @now1 = Time.now
+    @now2 = Time.now - 10
+    ar = AuditTrail.create(date_time: @now1, user: "audit_trail_user_1@example.com", owner: "CDISC", identifier: "I1", version: "1", event: 1, description: "description")
+    ar = AuditTrail.create(date_time: @now2, user: "audit_trail_user_1@example.com", owner: "CDISC", identifier: "I2", version: "1", event: 1, description: "description")
     ar = AuditTrail.create(date_time: Time.now - 20, user: "audit_trail_user_1@example.com", owner: "ACME", identifier: "T1", version: "1", event: 1, description: "description")
     ar = AuditTrail.create(date_time: Time.now - 30, user: "audit_trail_user_1@example.com", owner: "ACME", identifier: "T2", version: "2", event: 1, description: "description")
     ar = AuditTrail.create(date_time: Time.now - 40, user: "audit_trail_user_1@example.com", owner: "ACME", identifier: "T3", version: "3", event: 1, description: "description")
@@ -61,8 +62,8 @@ describe "Audit Trail", :type => :feature do
       expect(page).to have_content 'Signed in successfully'
       click_link 'Audit Trail'
       expect(page).to have_content 'Index: Audit Trail'
-      ui_check_table_row("main", 1, [Timestamp.new(@now).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
-      ui_check_table_row("main", 2, [Timestamp.new(@now - 10).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
+      ui_check_table_row("main", 1, [Timestamp.new(@now1).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
+      ui_check_table_row("main", 2, [Timestamp.new(@now2).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
     end
 
     it "allows searching - event" do

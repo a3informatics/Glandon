@@ -17,7 +17,7 @@
 	    		<td><%= @sdtm_model.identifier %></td>
 			    <td><%= @sdtm_model.label %></td>
 			    <td><%= @sdtm_model.owner %></td>
-			    <td><%= @sdtm_model.version %></td>
+			    <td><%= @sdtm_model.semantic_version %></td>
 			    <td><%= @sdtm_model.versionLabel %></td>
 	  		</tr>
 		</tbody>
@@ -67,7 +67,7 @@
 	    		<td><%= item.identifier %></td>
 			    <td><%= item.label %></td>
 			    <td><%= item.owner %></td>
-			    <td><%= item.version %></td>
+			    <td><%= item.semantic_version %></td>
 			    <td><%= item.versionLabel %></td>
 	    		<td><%= link_to "Show", sdtm_model_domain_path(:id => item.id, :sdtm_model_domain => { :namespace => item.namespace }), :class => "btn btn-primary btn-xs" %></td>
 	  		</tr>

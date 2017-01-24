@@ -19,7 +19,7 @@
 	    <td><%= @cdiscTerm.label %></td>
 	    <td><%= @cdiscTerm.owner %></td>
 	    <td><%= @cdiscTerm.registrationState.registrationStatus %></td>
-	    <td><%= @cdiscTerm.version %></td>
+	    <td><%= @cdiscTerm.semantic_version %></td>
 	    <td><%= @cdiscTerm.versionLabel %></td>
 	  </tr>
 	</tbody>
@@ -66,7 +66,7 @@
 			<% @cdiscTerms.each do |ct| %>
 			  	<tr>
 			    	<td><%= ct.label %></td>
-					<td><%= ct.version %></td>
+					<td><%= ct.semantic_version %></td>
 					<td><%= ct.versionLabel %></td>
 					<td><%= link_to "Show", cdisc_term_path(:id => ct.id, :namespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
 					<td><%= link_to "Compare", compare_calc_cdisc_terms_path(:newId => @cdiscTerm.id, :newNamespace => @cdiscTerm.namespace, :oldId => ct.id, :oldNamespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
