@@ -35,9 +35,6 @@ module UiHelpers
   end
 
   def ui_check_checkbox(id, value)
-    #expected = "on" if value
-    #expected = "off" if !value
-    #expect(find_field("#{id}").value).to eq("#{expected}")
     assert page.has_no_checked_field?(id) if !value 
     assert page.has_checked_field?(id) if value 
   end
