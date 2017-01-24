@@ -1,31 +1,34 @@
 var dtMainDataTable; 			// Reference to main table
 var dtSecondaryDataTable;	// Reference to secondary table
 var dtTertiaryDataTable;	// Reference to tertiary table
+var dtMainOrder;          // Main table ordering
 
 /*
 * Create tables on document ready
 */
 $(document).ready( function() {
 
-  if (typeof dtMainOrder === 'undefined') {
-    dtMainOrder = '[]'
+  // Set the order of the main table and update if overridden by page.
+  dtMainOrder = [];
+  if (typeof dtMainOrderUpdate !== 'undefined') {
+    dtMainOrder = dtMainOrderUpdate;
   }
 
   dtMainDataTable = $('#main').DataTable({
-    columnDefs: [ ],
+    columnDefs: [],
     "pageLength": pageLength,
     "lengthMenu": pageSettings,
     "order": dtMainOrder
   });
 
   dtSecondaryDataTable = $('#secondary').DataTable({
-    columnDefs: [ ],
+    columnDefs: [],
     "pageLength": pageLength,
     "lengthMenu": pageSettings
   });		
   
   dtTertiaryDataTable = $('#tertiary').DataTable({
-  	columnDefs: [ ],
+  	columnDefs: [],
     "pageLength": pageLength,
     "lengthMenu": pageSettings
 	});
