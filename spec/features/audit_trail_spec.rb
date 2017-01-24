@@ -4,18 +4,12 @@ describe "Audit Trail", :type => :feature do
   
   include PauseHelpers
   include DataHelpers
-
+  include UserAccountHelpers
+  
   before :all do
     clear_triple_store
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-    @user_c = User.create :email => "curator@example.com", :password => "12345678" 
-    @user_c.add_role :curator
-    @user_r = User.create :email => "reader@example.com", :password => "12345678" 
-    @user_r.add_role :reader
-    @user_sa = User.create :email => "sys_admin@example.com", :password => "12345678" 
-    @user_sa.add_role :sys_admin
-    @user_ca = User.create :email => "content_admin@example.com", :password => "12345678" 
-    @user_ca.add_role :content_admin
+    ua_create
     user1 = User.create :email => "user1@example.com", :password => "changeme" 
     user2 = User.create :email => "user2@example.com", :password => "changeme" 
     AuditTrail.delete_all
@@ -37,14 +31,7 @@ describe "Audit Trail", :type => :feature do
   end
 
   after :all do
-    user = User.where(:email => "curator@example.com").first
-    user.destroy
-    user = User.where(:email => "reader@example.com").first
-    user.destroy
-    user = User.where(:email => "sys_admin@example.com").first
-    user.destroy
-    user = User.where(:email => "content_admin@example.com").first
-    user.destroy
+    ua_destroy
   end
 
   describe "curator allowed access to audit", :type => :feature do
@@ -146,11 +133,11 @@ describe "Audit Trail", :type => :feature do
   
     it "allows viewing" do
       visit '/users/sign_in'
-      fill_in 'Email', with: 'system_admin@example.com'
+      fill_in 'Email', with: 'sys_admin@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
-      eclick_link 'Audit Trail'
+      click_link 'Audit Trail'
       expect(page).to have_content 'Index: Audit Trail'
     end
 

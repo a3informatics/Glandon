@@ -2,17 +2,23 @@ require 'rails_helper'
 
 describe "Users", :type => :feature do
   
-  before :each do
-    user = FactoryGirl.create(:user)
-  end
-
+  include UserAccountHelpers
+  
   describe "Login and Logout", :type => :feature do
   
+    before :all do
+      ua_create
+    end
+
+    after :all do
+      ua_destroy
+    end
+
     it "allows valid credentials and logs" do
       audit_count = AuditTrail.count
       visit '/users/sign_in'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'example1234'
+      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
       expect(AuditTrail.count).to eq(audit_count + 1)
@@ -21,8 +27,8 @@ describe "Users", :type => :feature do
     it "rejects invalid credentials" do
       audit_count = AuditTrail.count
       visit '/users/sign_in'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'example1234x'
+      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Password', with: 'example1234'
       click_button 'Log in'
       expect(page).to have_content 'Log in'
       expect(AuditTrail.count).to eq(audit_count)
@@ -31,8 +37,8 @@ describe "Users", :type => :feature do
     it "allows logout and logs" do
       audit_count = AuditTrail.count
       visit '/users/sign_in'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'example1234'
+      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
       click_link 'logoff_button'
@@ -43,7 +49,7 @@ describe "Users", :type => :feature do
       email_count = ActionMailer::Base.deliveries.count
       visit '/users/sign_in'
       click_link 'Forgot your password?'
-      fill_in 'Email', with: 'user@example.com'
+      fill_in 'Email', with: 'reader@example.com'
       click_button 'Send me reset password instructions'
       expect(page).to have_content 'Log in'
       expect(ActionMailer::Base.deliveries.count).to eq(email_count + 1)
@@ -51,12 +57,20 @@ describe "Users", :type => :feature do
 
   end
 
-  describe "Reader User", :type => :feature do
+  describe "User Management", :type => :feature do
   
+    before :all do
+      ua_create
+    end
+
+    after :all do
+      ua_destroy
+    end
+
     it "allows correct reader access" do
       visit '/users/sign_in'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'example1234'
+      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
       expect(page).to have_link 'settings_button'
@@ -71,12 +85,12 @@ describe "Users", :type => :feature do
       expect(page).to have_link 'Classifications (tags)'
     end
 
-    it "allows correct admin access" do
+    it "allows correct sys admin access" do
       user = User.create :email => "admin@example.com", :password => "changeme" 
       user.add_role :sys_admin
       visit '/users/sign_in'
-      fill_in 'Email', with: 'admin@example.com'
-      fill_in 'Password', with: 'changeme'
+      fill_in 'Email', with: 'sys_admin@example.com'
+      fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_link 'settings_button'
       expect(page).to have_link 'users_button'
@@ -99,7 +113,7 @@ describe "Users", :type => :feature do
       audit_count = AuditTrail.count
       visit '/users/sign_in'
       fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: 'changeme'
+      fill_in 'Password', with: '12345678'
       click_button 'Log in'
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
@@ -117,7 +131,7 @@ describe "Users", :type => :feature do
     it "prevents a new user with short password being created" do
       visit '/users/sign_in'
       fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: 'changeme'
+      fill_in 'Password', with: '12345678'
       click_button 'Log in'
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
@@ -136,7 +150,7 @@ describe "Users", :type => :feature do
       user.add_role :reader
       visit '/users/sign_in'
       fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: 'changeme'
+      fill_in 'Password', with: '12345678'
       click_button 'Log in'
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
@@ -152,12 +166,12 @@ describe "Users", :type => :feature do
       user.add_role :reader
       visit '/users/sign_in'
       fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: 'changeme'
+      fill_in 'Password', with: '12345678'
       click_button 'Log in'
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
       find(:xpath, "//tr[contains(.,'delete@example.com')]/td/a", :text => 'Delete').click
-      expect(AuditTrail.count).to eq(audit_count + 3)
+      expect(AuditTrail.count).to eq(audit_count + 2)
       # Needs more here to confirm the deletion. Cannot do it without Javascript
     end
       
