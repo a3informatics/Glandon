@@ -17,7 +17,9 @@ module UserSettingsHelpers
       	:values=>{'5': 5, '10': 10, '15': 15, '25': 25, '50': 50, '100': 100, All: -1}, 
       	:default_value=>10, 
       	:label=>"Table Rows"
-      }
+      },
+      :user_name_display => {:type=>"enum", :values=>["Yes", "No"], :default_value=>"Yes", :label=>"Display User Name"},
+      :user_role_display => {:type=>"enum", :values=>["Yes", "No"], :default_value=>"Yes", :label=>"Display User Roles"}
     }
   end
 

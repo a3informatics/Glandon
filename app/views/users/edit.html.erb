@@ -1,26 +1,61 @@
 <%= javascript_include_tag 'standard_datatable' %>
-<h3>Edit: <%= @user.email %></h3>
-<%= form_for @user do |f| %>
-  <div class="row">
-		<div class="col-md-6">
-		  	<table id="main" class="table table-striped table-bordered table-condensed">
-		  		<thead>
-		  			<tr>
-		    			<th>Role</th>
-							<th>Select</th>
-		  			</tr>
-		  		</thead>
-		  		<tbody>
-						<% Role.all.each do |role| %>
-  		  			<tr>
-    						<td><%= Role.role_to_s(role.name) %></td>
-			    			<td><%= check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id) %></td>
-  		  			</tr>
-						<% end %>
-			  	</tbody>
-			</table>
+<h3>Edit User: <%= @user.email %></h3><br/>
+<div class="row">
+	<div class="col-md-4">
+		<p>There are set number of role combinations. They can be set using the buttons to the right.</p>
+		<table id="version_info" class="table table-striped table-condensed">
+      <tbody>
+      	<tr>
+          <td><strong>User Email:</strong></td><td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td><strong>Current Roles:</strong></td><td><%= @user.role_list_stripped %></td>
+        </tr>
+        <tr>
+          <td><strong>Login Count:</strong></td><td><%= @user.sign_in_count %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to "Close", users_path, :class => "btn btn-primary" %>
+	</div>
+	<% role_id_map = Role.roles_to_id %>
+	<div class="col-md-4">
+		<div class="panel panel-success">
+			<div class="panel-heading">Reader Role</div>
+  		<div class="panel-body">
+    		<p>The lowest level of access. Reader access permits the user to have read-only access to the MDR's content.</p>
+    		<%= link_to "Set Reader Role", user_path(@user, :user => { :role_ids => [role_id_map[Role::C_READER]] }), method: :put, :class => "btn btn-success btn-block" %>
+  		</div>
+		</div>
+		<div class="panel panel-success">
+			<div class="panel-heading">Curator Role</div>
+  		<div class="panel-body">
+    		<p>The next level of access up from the reader. Curator access permits the user to have view access to the MDR's content while also being able to edit the content.</p>
+    		<%= link_to "Set Curator Role", user_path(@user, :user => { :role_ids => [role_id_map[Role::C_CURATOR]] }), method: :put, :class => "btn btn-success btn-block" %>
+  		</div>
+		</div>
+		<div class="panel panel-success">
+			<div class="panel-heading">Content Admin Role</div>
+  		<div class="panel-body">
+    		<p>The highest level of access. Content administration access permits the user to have view access to the MDR's content, allows for the editing of the content and permits new content to be imported.</p>
+    		<%= link_to "Set Content Admin Role", user_path(@user, :user => { :role_ids => [role_id_map[Role::C_CONTENT_ADMIN]] }), method: :put, :class => "btn btn-success btn-block" %>
+  		</div>
 		</div>
 	</div>
-	<%= f.submit "Update", class: "btn btn-default btn-primary" %>
-	<%= link_to "Users", users_path, :class => "btn btn-primary" %>
-<% end %>
+	<div class="col-md-4">
+		<div class="panel panel-warning">
+			<div class="panel-heading">Curator & System Admin Role</div>
+  		<div class="panel-body">
+    		<p>This access sets the curator role along with additional system administration rights.</p>
+    		<%= link_to "Set Curator & System Admin Role", user_path(@user, :user => { :role_ids => [role_id_map[Role::C_SYS_ADMIN], role_id_map[Role::C_CURATOR]] }), method: :put, :class => "btn btn-warning btn-block" %>
+  		</div>
+		</div>
+		<div class="panel panel-warning">
+			<div class="panel-heading">Content & System Admin Role</div>
+  		<div class="panel-body">
+    		<p>This access sets the content administration role along with additional system administration rights.</p>
+    		<%= link_to "Set Content & System Admin Role", user_path(@user, :user => { :role_ids => [role_id_map[Role::C_SYS_ADMIN], role_id_map[Role::C_CONTENT_ADMIN]] }), method: :put, :class => "btn btn-warning btn-block" %>
+  		</div>
+		</div>
+	</div>
+</div>

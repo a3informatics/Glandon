@@ -50,21 +50,18 @@ class UsersController < ApplicationController
 
   def destroy
     authorize User
-    delete_user = User.find(params[:id])
-    delete_email = delete_user.email
-    if current_user.id != delete_user.id 
-      if delete_user.destroy
-        AuditTrail.delete_event(current_user, "User #{delete_email} deleted.")
-        flash[:success] = "User #{delete_email} was successfully deleted."
-        redirect_to users_path
-      else
-        flash[:error] = "Failed to delete user #{delete_email}."
-        redirect_to users_path
-      end
+    # Note, no check on deleting the last admin user as cannot delete yourself and
+    # you need to be admin to delete.
+    user = User.find(params[:id])
+    delete_email = user.email
+    if current_user.id != user.id 
+      user.destroy
+      AuditTrail.delete_event(current_user, "User #{delete_email} deleted.")
+      flash[:success] = "User #{delete_email} was successfully deleted."  
     else
-      flash[:error] = "Cannot delete your own user!"
-      redirect_to users_path
+      flash[:error] = "You cannot delete your own user!"
     end
+    redirect_to users_path
   end
 
 private

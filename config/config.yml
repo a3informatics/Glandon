@@ -38,6 +38,20 @@ defaults: &defaults
         '5m': 300
       default_value: 60
       label: Edit Lock Warning
+    user_name_display: # Display user name in nav bar
+      type: enum
+      values: 
+       - 'Yes'
+       - 'No'
+      default_value: 'Yes'
+      label: Display User Name
+    user_role_display: # Display user roles in nav bar
+      type: enum
+      values: 
+       - 'Yes'
+       - 'No'
+      default_value: 'Yes'
+      label: Display User Roles
 development:
   <<: *defaults
 

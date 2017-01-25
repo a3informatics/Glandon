@@ -1,4 +1,5 @@
 class Role < ActiveRecord::Base
+  
   has_and_belongs_to_many :users, :join_table => :users_roles
 
   belongs_to :resource,
@@ -19,12 +20,23 @@ class Role < ActiveRecord::Base
 
   # Return role as a human readable string
   #
-  # @param role [symbol] The role
-  # @return [string] The role string if found, otherwise empty
+  # @param role [Symbol] The role
+  # @return [String] The role string if found, otherwise empty
   def self.role_to_s(role_name)
   	return @@map_to_s[role_name.to_sym] if @@map_to_s.has_key?(role_name.to_sym)
   	return ""
   end
 
+  # Get the roles to DB id map
+  #
+  # @return [Hash] hash of ids for the role names
+  def self.roles_to_id
+    results = {}
+    roles = Role.all
+    roles.each { |x| results[x.name.to_sym] = x.id }
+    return results
+  end
+
 	scopify
+
 end

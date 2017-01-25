@@ -46,7 +46,15 @@
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                  <% if current_user.has_role? :sys_admin %>
+                  <p class="navbar-text">
+                    <% if current_user.user_name_display == "Yes" %>
+                      <%= "#{current_user.email} "%>
+                    <% end %>
+                    <% if current_user.user_role_display == "Yes" %>
+                      <%= "[#{current_user.role_list_stripped}]"%>
+                    <% end %>
+                  </p>
+                  <% if current_user.is_a_system_admin? %>
                     <li><a id="users_button" href="/users"><span class="glyphicon glyphicon-user"></span>&nbsp;</a></li>
                   <% end %>
                   <li>
@@ -69,18 +77,17 @@
       </div>
       <div class="row">
         <div id="page_nav_menu" class="col-md-2">
-					<% if current_user.has_role? :sys_admin %>
+					<% if current_user.is_a_system_admin? %>
             <ul class="well">
               <li class="active"><a href="/iso_registration_authorities">Registration Authorities<span class="sr-only">(current)</span></a></li>
               <li><a href="/iso_namespaces">Namespaces</a></li>
-              <li><a href="/iso_scoped_identifiers">Scoped Identifiers</a></li>
-              <li><a href="/iso_registration_states">Registration States</a></li>
               <li><a href="/tokens">Edit Locks</a></li>
+              <li><a href="/audit_trail">Audit Trail</a></li>
   					</ul>
   				<% end %>
-          <% if current_user.has_role?(:content_admin) || current_user.has_role?(:curator) %>
+          <% if current_user.is_a_curator? %>
             <ul class="well">
-              <% if current_user.has_role? :content_admin %>
+              <% if current_user.is_a_content_admin? %>
                 <li><a href="/uploads">Upload</a></li>
                 <li><a href="/backgrounds">Background Jobs</a></li>
     					<% end %>
@@ -88,31 +95,33 @@
               <li><a href="/ad_hoc_reports">Ad Hoc Reports</a></li>
             </ul>
           <% end %>
-          <ul class="well">
-            <li><a href="/iso_concept_systems">Classifications (tags)</a></li>
-          </ul>
-          <ul class="well">
-            <li><a href="/notepads">Notepad</a></li>
-            <li><a href="/markdown_engines">Markdown</a></li>
-          </ul>
-          <ul class="well">
-            <li class="active"><a href="/thesauri">Terminology<span class="sr-only">(current)</span></a></li>
-            <li><a href="/cdisc_terms/history">CDISC Terminology</a></li>
-          </ul>
-          <ul class="well">
-            <li><a href="/biomedical_concept_templates">Biomedical Concept Templates</a></li>
-            <li><a href="/biomedical_concepts">Biomedical Concepts</a></li>
-          </ul>
-          <ul class="well">
-            <li><a href="/forms">Forms</a></li>
-          </ul>
-          <ul class="well">
-            <li><a href="/sdtm_models/history">CDISC SDTM Model</a></li>
-            <li><a href="/sdtm_igs/history">CDISC SDTM IGs</a></li>
-          </ul>
-          <ul class="well">
-            <li><a href="/sdtm_user_domains">Domains</a></li>
-          </ul>
+          <% if current_user.is_a_reader? %>
+            <ul class="well">
+              <li><a href="/iso_concept_systems">Classifications (tags)</a></li>
+            </ul>
+            <ul class="well">
+              <li><a href="/notepads">Notepad</a></li>
+              <li><a href="/markdown_engines">Markdown</a></li>
+            </ul>
+            <ul class="well">
+              <li class="active"><a href="/thesauri">Terminology<span class="sr-only">(current)</span></a></li>
+              <li><a href="/cdisc_terms/history">CDISC Terminology</a></li>
+            </ul>
+            <ul class="well">
+              <li><a href="/biomedical_concept_templates">Biomedical Concept Templates</a></li>
+              <li><a href="/biomedical_concepts">Biomedical Concepts</a></li>
+            </ul>
+            <ul class="well">
+              <li><a href="/forms">Forms</a></li>
+            </ul>
+            <ul class="well">
+              <li><a href="/sdtm_models/history">CDISC SDTM Model</a></li>
+              <li><a href="/sdtm_igs/history">CDISC SDTM IGs</a></li>
+            </ul>
+            <ul class="well">
+              <li><a href="/sdtm_user_domains">Domains</a></li>
+            </ul>
+          <% end %>  
         </div>
 
 				<div class="col-md-10">

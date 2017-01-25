@@ -7,7 +7,7 @@
 </style>
 <h3>Search: <%= @cdiscTerm.label %></h3>
 <div class="col-md-12">
-	<% if @cdiscTerm.current? && (current_user.has_role?(:curator) || current_user.has_role?(:content_admin)) %>
+	<% if @cdiscTerm.current? && current_user.is_a_curator? %>
 		<button id="notepadAdd" class="btn btn-primary" type="button">
   		Notepad+ <span class="badge"><%= @items.count %></span>
 		</button>

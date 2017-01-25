@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       get :branches
     end
   end
-  resources :dashboard do
+  resources :dashboard, only: [:index] do
     collection do
       get :view
       get :database

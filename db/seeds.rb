@@ -15,19 +15,13 @@ case Rails.env
 		user1 = User.create :email => "daveih1664@gmail.com", :password => "changeme" 
 		user1.add_role :sys_admin
 		user1.add_role :content_admin
-		user1.add_role :curator
-		user1.add_role :reader
 	when "test"
-		user1 = User.create :email => "sys_admin@example.com", :password => "changeme" 
+		user1 = User.create :email => "test_seed@example.com", :password => "changeme" 
 		user1.add_role :sys_admin
 		user1.add_role :content_admin
-		user1.add_role :curator
-		user1.add_role :reader
 	when "production"
 		user1 = User.create :email => "daveih1664@gmail.com", :password => "changeme" 
 		user1.add_role :sys_admin
 		user1.add_role :content_admin
-		user1.add_role :curator
-		user1.add_role :reader
 end
 

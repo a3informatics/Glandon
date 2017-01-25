@@ -14,10 +14,10 @@ describe UserSettings do
 		expect(setting.value.to_bool).to eq(true)
 	end
 
-  it "read settings" do
+  it "read settings, paper size" do
     user = User.create :email => "settings@example.com", :password => "changeme"
     the_settings = user.settings
-    expect(the_settings).to eq({:paper_size => "A4", :table_rows=>"10", :edit_lock_warning=>"60"})
+    expect(the_settings).to eq({:paper_size => "A4", :table_rows=>"10", :edit_lock_warning=>"60", :user_name_display=>"Yes", :user_role_display=>"Yes"})
   end
 
   it "read setting metadata" do

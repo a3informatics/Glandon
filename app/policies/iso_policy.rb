@@ -57,19 +57,19 @@ class IsoPolicy
 private
 
   def reader?
-    @user.has_role? Role::C_READER or @user.has_role? Role::C_CURATOR or @user.has_role? Role::C_CONTENT_ADMIN
+    return @user.is_a_reader?
   end
 
   def curator?
-    @user.has_role? Role::C_CURATOR or @user.has_role? Role::C_CONTENT_ADMIN
+    return @user.is_a_curator?
   end
 
   def content_admin?
-    @user.has_role? @user.has_role? Role::C_CONTENT_ADMIN
+    return @user.is_a_content_admin?
   end
 
   def system_admin?
-    @user.has_role? Role::C_SYS_ADMIN
+    return @user.is_a_system_admin?
   end
 
 end

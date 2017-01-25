@@ -42,4 +42,44 @@ class User < ActiveRecord::Base
     return result 
   end
 
+  # User roles stripped
+  #
+  # @return [array] Array of roles (strings)
+  def role_list_stripped
+    result = "#{self.role_list}"
+    return result.gsub(/[^A-Za-z, ]/, '') 
+  end
+
+  # Is A Reader
+  #
+  # @return [Boolean] true if the user has reader access, false otherwise
+  def is_a_reader?
+    result = self.has_role?(Role::C_READER) || self.has_role?(Role::C_CURATOR) || self.has_role?(Role::C_CONTENT_ADMIN)
+    return result
+  end
+
+  # Is A Curator
+  #
+  # @return [Boolean] true if the user has curator access, false otherwise
+  def is_a_curator?
+    result = self.has_role?(Role::C_CURATOR) || self.has_role?(Role::C_CONTENT_ADMIN)
+    return result
+  end
+
+  # Is A Content Admin
+  #
+  # @return [Boolean] true if the user has content admin access, false otherwise
+  def is_a_content_admin?
+    result = self.has_role? Role::C_CONTENT_ADMIN
+    return result
+  end
+
+  # Is A System Admin
+  #
+  # @return [Boolean] true if the user has system admin access, false otherwise
+  def is_a_system_admin?
+    result = self.has_role? Role::C_SYS_ADMIN
+    return result
+  end
+
 end
