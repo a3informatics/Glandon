@@ -77,17 +77,16 @@ describe "Users", :type => :feature do
       expect(page).to have_no_link 'users_button'
       expect(page).to have_no_link 'Registration Authorities'
       expect(page).to have_no_link 'Namespaces'
-      expect(page).to have_no_link 'Scoped Identifiers'
-      expect(page).to have_no_link 'Registration States'
+      #expect(page).to have_no_link 'Scoped Identifiers'
+      #expect(page).to have_no_link 'Registration States'
       expect(page).to have_no_link 'Audit Trail'
       expect(page).to have_no_link 'Upload'
       expect(page).to have_no_link 'Background Jobs'
       expect(page).to have_link 'Classifications (tags)'
+      expect(page).to have_content 'reader@example.com [Reader]'
     end
 
     it "allows correct sys admin access" do
-      user = User.create :email => "admin@example.com", :password => "changeme" 
-      user.add_role :sys_admin
       visit '/users/sign_in'
       fill_in 'Email', with: 'sys_admin@example.com'
       fill_in 'Password', with: '12345678'
@@ -96,17 +95,20 @@ describe "Users", :type => :feature do
       expect(page).to have_link 'users_button'
       expect(page).to have_link 'Registration Authorities'
       expect(page).to have_link 'Namespaces'
-      expect(page).to have_link 'Scoped Identifiers'
-      expect(page).to have_link 'Registration States'
+      #expect(page).to have_link 'Scoped Identifiers'
+      #expect(page).to have_link 'Registration States'
       expect(page).to have_link 'Audit Trail'
       expect(page).to have_no_link 'Upload'
       expect(page).to have_no_link 'Background Jobs'
       expect(page).to have_link 'Classifications (tags)'
+      expect(page).to have_content 'sys_admin@example.com [System Admin, Reader]' # This combination is possible from seed mechanism only!
       click_link 'users_button'
       expect(page).to have_content 'Index: Users'
       expect(page).to have_content 'sys_admin@example.com'      
-      expect(page).to have_content 'user@example.com'      
-      expect(page).to have_content 'admin@example.com'      
+      expect(page).to have_content 'test_seed@example.com'      
+      expect(page).to have_content 'reader@example.com'      
+      expect(page).to have_content 'curator@example.com'      
+      expect(page).to have_content 'content_admin@example.com'      
     end
 
     it "allows new user to be created" do
@@ -144,20 +146,49 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'User was not created.'
     end    
 
-    it "allows a user's details to be edited" do
+    it "allows a user's role to be modified" do
       audit_count = AuditTrail.count
-      user = User.create :email => "edit@example.com", :password => "changeme" 
-      user.add_role :reader
       visit '/users/sign_in'
       fill_in 'Email', with: 'sys_admin@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
-      find(:xpath, "//tr[contains(.,'edit@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: edit@example.com'
+      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit User: reader@example.com'
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(page).to have_content 'Current Roles:Reader'
+      click_link 'Set Curator Role'
+      expect(page).to have_content 'Index: User'
       expect(AuditTrail.count).to eq(audit_count + 2)
-      # Needs more here to confirm the deletion. Cannot do it without Javascript
+      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit User: reader@example.com'
+      expect(page).to have_content 'Current Roles:Curator'
+      click_link 'Set Content Admin Role'
+      expect(page).to have_content 'Index: User'
+      expect(AuditTrail.count).to eq(audit_count + 3)
+      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit User: reader@example.com'
+      expect(page).to have_content 'Current Roles:Content Admin'
+      click_link 'Set Content Admin Role'
+      expect(page).to have_content 'Index: User'
+      expect(AuditTrail.count).to eq(audit_count + 4)
+      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit User: reader@example.com'
+      expect(page).to have_content 'Current Roles:Content Admin'
+      click_link 'Set Curator & System Admin Role'
+      expect(page).to have_content 'Index: User'
+      expect(AuditTrail.count).to eq(audit_count + 5)
+      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit User: reader@example.com'
+      expect(page).to have_content 'Current Roles:System Admin, Curator'
+      click_link 'Set Content & System Admin Role'
+      expect(page).to have_content 'Index: User'
+      expect(AuditTrail.count).to eq(audit_count + 6)
+      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit User: reader@example.com'
+      expect(page).to have_content 'Current Roles:System Admin, Content Admin'      
+      click_link 'Set Reader Role'
     end
 
     it "allows a user to be deleted" do

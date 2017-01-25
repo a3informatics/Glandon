@@ -3,18 +3,14 @@ require 'rails_helper'
 describe "User Settings", :type => :feature do
   
   include PauseHelpers
+  include UserAccountHelpers
 
   before :all do
-    user = User.create :email => "curator@example.com", :password => "12345678" 
-    user.add_role :curator
-    user = User.create :email => "reader@example.com", :password => "12345678" 
+    ua_create
   end
 
   after :all do
-    user = User.where(:email => "curator@example.com").first
-    user.destroy
-    user = User.where(:email => "reader@example.com").first
-    user.destroy
+    ua_destroy
   end
 
   describe "amending settings", :type => :feature do
@@ -70,6 +66,90 @@ describe "User Settings", :type => :feature do
       click_link '100'
       tr = page.find('#main tbody tr', text: 'Table Rows')
       expect(tr).to have_css("button", text: "100")
+    end
+
+    it "allows edit lock timeout to be amended", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      expect(page).to have_content 'Signed in successfully'
+      click_link 'settings_button'
+      expect(page).to have_content 'User Settings:'
+      tr = page.find('#main tbody tr', text: 'Edit Lock Warning')
+      expect(tr).to have_css("button", text: "1m")
+      expect(tr).to have_css("a", text: "30s")
+      expect(tr).to have_css("a", text: "1m 30s")
+      expect(tr).to have_css("a", text: "2m")
+      expect(tr).to have_css("a", text: "3m")
+      expect(tr).to have_css("a", text: "5m")
+      click_link '30s'
+      tr = page.find('#main tbody tr', text: 'Edit Lock Warning')
+      expect(tr).to have_css("button", text: "30s")
+      click_link '1m 30s'
+      tr = page.find('#main tbody tr', text: 'Edit Lock Warning')
+      expect(tr).to have_css("button", text: "1m 30s")
+      click_link '2m'
+      tr = page.find('#main tbody tr', text: 'Edit Lock Warning')
+      expect(tr).to have_css("button", text: "2m")
+      click_link '3m'
+      tr = page.find('#main tbody tr', text: 'Edit Lock Warning')
+      expect(tr).to have_css("button", text: "3m")
+      click_link '5m'
+      tr = page.find('#main tbody tr', text: 'Edit Lock Warning')
+      expect(tr).to have_css("button", text: "5m")
+      click_link '1m'
+      tr = page.find('#main tbody tr', text: 'Edit Lock Warning')
+      expect(tr).to have_css("button", text: "1m")
+    end
+
+    it "allows display user name to be amended", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      expect(page).to have_content 'Signed in successfully'
+      click_link 'settings_button'
+      expect(page).to have_content 'User Settings:'
+      expect(page).to have_content 'reader@example.com [Reader]'
+      tr = page.find('#main tbody tr', text: 'Display User Name')
+      expect(tr).to have_css("button", text: "Yes")
+      expect(tr).to have_css("a", text: "No")
+      #click_link 'No'
+      find(:xpath, "//tr[contains(.,'Display User Name')]/td/a", :text => 'No').click
+      expect(page).to have_no_content 'reader@example.com [Reader]'
+      expect(page).to have_content '[Reader]'
+      tr = page.find('#main tbody tr', text: 'Display User Name')
+      expect(tr).to have_css("button", text: "No")
+      #click_link 'Yes'
+      find(:xpath, "//tr[contains(.,'Display User Name')]/td/a", :text => 'Yes').click
+      tr = page.find('#main tbody tr', text: 'Display User Name')
+      expect(tr).to have_css("button", text: "Yes")
+      expect(page).to have_content 'reader@example.com [Reader]'
+    end
+
+    it "allows display user role to be amended", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      expect(page).to have_content 'Signed in successfully'
+      click_link 'settings_button'
+      expect(page).to have_content 'User Settings:'
+      expect(page).to have_content 'reader@example.com [Reader]'
+      tr = page.find('#main tbody tr', text: 'Display User Roles')
+      expect(tr).to have_css("button", text: "Yes")
+      #click_link 'No'
+      find(:xpath, "//tr[contains(.,'Display User Roles')]/td/a", :text => 'No').click
+      expect(page).to have_no_content 'reader@example.com [Reader]'
+      expect(page).to have_content 'reader@example.com'
+      tr = page.find('#main tbody tr', text: 'Display User Roles')
+      expect(tr).to have_css("button", text: "No")
+      #click_link 'Yes'
+      find(:xpath, "//tr[contains(.,'Display User Roles')]/td/a", :text => 'Yes').click
+      tr = page.find('#main tbody tr', text: 'Display User Roles')
+      expect(tr).to have_css("button", text: "Yes")
+      expect(page).to have_content 'reader@example.com [Reader]'
     end
 
     it "settings are user specific", js: true do

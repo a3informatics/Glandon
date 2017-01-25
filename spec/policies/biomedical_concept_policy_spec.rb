@@ -9,7 +9,9 @@ describe BiomedicalConceptPolicy do
 
     let(:user) {User.new}
 
-    it "should check out the reader"
+    it "should check out the reader" do
+      expect(index?).to be(true)
+    end
 
 =begin
     it { should permit(:index) }
