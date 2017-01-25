@@ -23,6 +23,9 @@ describe "ISO Registration State", :type => :feature do
 
   describe "View", :type => :feature do
   
+    it "has had the UI disabled"
+
+=begin
     it "allows all registration states to be viewed" do
       click_link 'Registration States'
       expect(page).to have_content 'Registration States'
@@ -32,6 +35,7 @@ describe "ISO Registration State", :type => :feature do
       expect(page).to have_content 'RS-TEST_3-4'      
       expect(page).to have_content 'RS-TEST_3-5'      
     end
+=end
 
   end
 

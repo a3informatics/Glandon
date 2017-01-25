@@ -23,6 +23,9 @@ describe "ISO Scoped Identifier", :type => :feature do
 
   describe "View", :type => :feature do
   
+    it "has had the UI disabled"
+    
+=begin
     it "allows all scoped identifiers to be viewed" do
       click_link 'Scoped Identifiers'
       expect(page).to have_content 'Scoped Identifiers'
@@ -50,6 +53,7 @@ describe "ISO Scoped Identifier", :type => :feature do
       expect(page).to have_content 'SI-TEST_3-4'      
       expect(page).to have_content 'SI-TEST_3-5'      
     end
+=end
 
   end
 

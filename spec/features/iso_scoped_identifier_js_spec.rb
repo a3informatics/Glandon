@@ -23,6 +23,9 @@ describe "ISO Scoped identifier JS", :type => :feature do
 
   describe "valid user", :type => :feature, js: true do
 
+    it "has had the UI disabled"
+
+=begin
     it "deletes scoped identifier" do
       visit '/users/sign_in'
       fill_in 'Email', with: 'sysadmin@example.com'
@@ -42,6 +45,7 @@ describe "ISO Scoped identifier JS", :type => :feature do
       expect(page).to have_no_content 'SI-TEST_3-3'
       #pause
     end
+=end
 
   end
 
