@@ -129,6 +129,32 @@ class ThesauriController < ApplicationController
     @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
   end
   
+  def search_current
+    authorize Thesaurus, :view?
+    @items = Notepad.where(user_id: current_user).find_each
+    @close_path = thesauri_index_path
+  end
+  
+  #def search_new
+  #  authorize Thesaurus, :view?
+  #  @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
+  #  @items = Notepad.where(user_id: current_user).find_each
+  #  @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
+  #end
+  
+  def search_results
+    authorize Thesaurus, :view?
+    count = Thesaurus.count(params)
+    items = Thesaurus.search_new(params)
+    @results = {
+      :draw => params[:draw],
+      :recordsTotal => params[:length],
+      :recordsFiltered => count.to_s,
+      :data => items }
+    render json: @results
+  end
+
+=begin  
   def next
     authorize Thesaurus, :view?
     id = params[:id]
@@ -149,6 +175,7 @@ class ThesauriController < ApplicationController
     results[:data] = items
     render :json => results, :status => 200
   end
+=end
 
    def export_ttl
     authorize Thesaurus

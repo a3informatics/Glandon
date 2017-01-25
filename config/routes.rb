@@ -99,7 +99,9 @@ Rails.application.routes.draw do
       get :history
       get :view
       get :search
-      get :next
+      get :search_results
+      get :search_current
+      #get :next
       get :children
       post :add_child
       get :export_ttl
@@ -136,7 +138,8 @@ Rails.application.routes.draw do
       get :impact_graph
       get :history
       get :search
-      get :next
+      get :search_results
+      #get :next
       get :import
       get :load
       get :file

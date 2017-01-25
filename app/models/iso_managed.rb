@@ -636,6 +636,33 @@ class IsoManaged < IsoConcept
     return object
   end
 
+  # Find the current set for a given type
+  #
+  # @param rdf_type [string] the RDF type
+  # @param namespace [string] the schema namespace
+  # @return [Array] array of UriV2 objects
+  def self.current_set(rdf_type, namespace)    
+    results = []
+    date_time = Time.now.iso8601.gsub('+',"%2B")
+    query = UriManagement.buildNs(namespace, ["isoI", "isoT", "isoR", "mdrItems"]) +
+      "SELECT ?a WHERE \n" +
+      "{ \n" +
+      "  ?a rdf:type :" + rdf_type.to_s + " . \n" +
+      "  ?a isoR:hasState ?c . \n" +
+      "  ?c isoR:effectiveDate ?d . \n" +
+      "  ?c isoR:untilDate ?e . \n" +
+      "  FILTER ( xsd:dateTime(?d) <= \"#{date_time}\"^^xsd:dateTime ) . \n" +
+      "  FILTER ( xsd:dateTime(?e) >= \"#{date_time}\"^^xsd:dateTime ) . \n" +
+      "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      results << UriV2.new({ uri: ModelUtility.getValue('a', true, node) })
+    end
+    return results
+  end
+
   # Find Managed that is the ultimate parent of given an object.
   #
   # @param id [string] the id of the item 

@@ -58,8 +58,22 @@ class CdiscTermsController < ApplicationController
     authorize CdiscTerm, :view?
     @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)
     @items = Notepad.where(user_id: current_user).find_each
+    @close_path = history_thesauri_index_path(identifier: @cdiscTerm.identifier, scope_id: @cdiscTerm.owner_id)
   end
   
+  def search_results
+    authorize CdiscTerm, :view?
+    count = Thesaurus.count(params)
+    items = Thesaurus.search_new(params)
+    @results = {
+      :draw => params[:draw],
+      :recordsTotal => params[:length],
+      :recordsFiltered => count.to_s,
+      :data => items }
+    render json: @results
+  end
+
+=begin
   def next
     authorize CdiscTerm, :view?
     items = []
@@ -78,6 +92,7 @@ class CdiscTermsController < ApplicationController
     results[:data] = items
     render :json => results, :status => 200
   end
+=end
 
   def compare_calc
     authorize CdiscTerm, :view?

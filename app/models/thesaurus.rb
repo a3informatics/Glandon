@@ -255,40 +255,33 @@ class Thesaurus <  IsoManaged
     return sparql
   end
 
-=begin
-  def self.count(searchTerm, ns)
+  def self.count(params)
     count = 0
-    if searchTerm == ""
-      query = UriManagement.buildNs(ns, ["iso25964"]) +
-        "SELECT DISTINCT (COUNT(?b) as ?total) WHERE \n" +
-        "  {\n" +
-        "    ?a iso25964:identifier ?b . \n" +
-        "    FILTER(STRSTARTS(STR(?a), \"" + ns + "\"))" +
-        "  }"
-      response = CRUD.query(query)
-      xmlDoc = Nokogiri::XML(response.body)
-      xmlDoc.remove_namespaces!
-      xmlDoc.xpath("//result").each do |node|
-        countSet = node.xpath("binding[@name='total']/literal")
-        count = countSet[0].text.to_i
-      end
+    query = ""
+    if params[:namespace].blank?
+      query = UriManagement.buildNs(params[:namespace], ["iso25964"]) + query_string_current(params[:search], params[:columns])
     else
-      query = UriManagement.buildNs(ns, ["iso25964"]) + queryString(searchTerm, ns) 
-      response = CRUD.query(query)
-      xmlDoc = Nokogiri::XML(response.body)
-      xmlDoc.remove_namespaces!
-      count = xmlDoc.xpath("//result").length
-    end
+      query = UriManagement.buildNs(params[:namespace], ["iso25964"]) + query_string_single(params[:search], params[:columns], params[:namespace])
+    end 
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    count = xmlDoc.xpath("//result").length
     return count
   end
 
-  def self.search(offset, limit, col, dir, searchTerm, ns)
-    results = Array.new
-    variable = getOrderVariable(col)
-    order = getOrdering(dir)
-    query = UriManagement.buildNs(ns, ["iso25964"]) + 
-      queryString(searchTerm, ns) + 
-      " ORDER BY " + order + "(" + variable + ") OFFSET " + offset.to_s + " LIMIT " + limit.to_s
+  def self.search_new(params)
+    results = []
+    variable = getOrderVariable(params[:order]["0"][:column])
+    order = getOrdering(params[:order]["0"][:dir])
+    query = UriManagement.buildNs(params[:namespace], ["iso25964", "isoR"])
+    if params[:namespace].blank?
+        query += query_string_current(params[:search], params[:columns])
+    else
+      query += query_string_single(params[:search], params[:columns], params[:namespace])
+    end
+    query += " ORDER BY #{order} (#{variable}) OFFSET #{params[:start]} LIMIT #{params[:length]}"
+    ConsoleLogger.debug(C_CLASS_NAME, "queryString", "Query=#{query}")
     response = CRUD.query(query)
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
@@ -297,7 +290,6 @@ class Thesaurus <  IsoManaged
     end
     return results
   end
-=end
   
   def self.next(offset, limit, ns)
     results = Array.new
@@ -356,7 +348,7 @@ private
     end
   end
 
-  def self.queryString(searchTerm, ns)
+  def self.query_string_single(search, columns, ns)
     query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?g ?h ?k WHERE \n" +
       "  {\n" +
       "    ?a iso25964:identifier ?b . \n" +
@@ -373,24 +365,81 @@ private
       "      ?j iso25964:hasChild ?a .  \n" +
       "      ?j iso25964:identifier ?k .  \n" +
       "    } \n"
-      if searchTerm != ""
-        query += "    ?a ( iso25964:identifier | iso25964:notation | iso25964:preferredTerm | iso25964:synonym | iso25964:definition ) ?i . FILTER regex(?i, \"" + 
-          searchTerm + "\") . \n"
-      end
-      query += "    FILTER(STRSTARTS(STR(?a), \"" + ns + "\"))" +
-      "  }"
-      return query
+    # Filter by search terms, columns and overall
+    columns.each do |column|
+      query += "    FILTER regex(#{getOrderVariable(column[0])}, \"#{column[1][:search][:value]}\") . \n" if !column[1][:search][:value].blank?
+    end
+    query += "    ?a (iso25964:identifier|iso25964:notation|iso25964:preferredTerm|iso25964:synonym|iso25964:definition) ?i . FILTER regex(?i, \"" + 
+      search[:value] + "\") . \n" if !search[:value].blank?
+    # Filter by namesapce if in a single namespace
+    query += "    FILTER(STRSTARTS(STR(?a), \"" + ns + "\"))" +
+             "  }"
+    return query
+  end
+
+  def self.query_string_current(search, columns)
+    uri_set = IsoManaged.current_set(C_RDF_TYPE, C_SCHEMA_NS)
+    ConsoleLogger.debug(C_CLASS_NAME, "query_string_current", "URIs=#{uri_set}")
+    query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?g ?h ?k WHERE \n" +
+      "  {\n" +
+      "    {\n" 
+    uri_set.each do |uri|
+      query +=
+        "      {\n" +
+        "         #{uri.to_ref} iso25964:hasConcept ?a . \n" +
+        "         BIND (#{uri.to_ref} as ?k) . \n" +
+        "      }\n"
+      query +=
+        "      UNION\n" if uri != uri_set.last
+    end
+    query += 
+      "      ?a iso25964:identifier ?b . \n" +
+      "      ?a iso25964:notation ?c . \n" +
+      "      ?a iso25964:preferredTerm ?d . \n" +
+      "      ?a iso25964:synonym ?e . \n" +
+      "      ?a iso25964:definition ?g . \n" +
+      "    } UNION {\n" 
+    uri_set.each do |uri|
+      query +=
+        "      {\n" +
+        "         #{uri.to_ref} iso25964:hasConcept ?x . \n" +
+        "         ?x iso25964:hasChild+ ?a . \n" +
+        "      }\n"
+      query +=
+        "      UNION\n" if uri != uri_set.last
+    end
+    query += 
+      "      ?a iso25964:identifier ?b . \n" +
+      "      ?a iso25964:notation ?c . \n" +
+      "      ?a iso25964:preferredTerm ?d . \n" +
+      "      ?a iso25964:synonym ?e . \n" +
+      "      ?a iso25964:definition ?g . \n" +
+      "      OPTIONAL\n" +
+      "      { \n" +
+      "        ?j iso25964:hasChild ?a .  \n" +
+      "        ?j iso25964:identifier ?k .  \n" +
+      "      } \n" +
+      "    } \n"
+    # Filter by search terms, columns and overall
+    columns.each do |column|
+      query += "    FILTER regex(#{getOrderVariable(column[0])}, \"#{column[1][:search][:value]}\") . \n" if !column[1][:search][:value].blank?
+    end
+    query += "    ?a (iso25964:identifier|iso25964:notation|iso25964:preferredTerm|iso25964:synonym|iso25964:definition) ?i . FILTER regex(?i, \"" + 
+      search[:value] + "\") . \n" if !search[:value].blank?
+    query += "  }"
+    return query
   end
 
   def self.getOrderVariable(col)
     columnMap = 
       {
         # See query above to map the columns to variables
-        "0" => "?b", # identifier
-        "1" => "?c", # notation
-        "2" => "?f", # definition
-        "3" => "?e", # synonym
-        "4" => "?d"  # preferred term
+        "0" => "?k", # parent identifier
+        "1" => "?b", # identifier
+        "2" => "?c", # notation
+        "3" => "?d", # preferred term
+        "4" => "?e", # synonym
+        "5" => "?g"  # definition
       }  
     variable = columnMap["0"]
     if columnMap.has_key?(col)

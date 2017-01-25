@@ -1,0 +1,104 @@
+$(document).ready( function() {
+  var id = document.getElementById("thesaurus_id");
+  var namespace = document.getElementById("thesaurus_namespace");
+  var counter = document.getElementById("notepadAdd")
+  var currentRef;
+  var currentRow;
+  var columns;
+
+  currentRef = null;
+  currentRow = null;
+	columns = [
+    {"data" : "parentIdentifier", "width" : "10%"},
+    {"data" : "identifier", "width" : "10%"},
+    {"data" : "notation", "width" : "10%"},
+    {"data" : "preferredTerm", "width" : "15%" },
+    {"data" : "synonym", "width" : "15%" },
+    {"data" : "definition", "width" : "40%"}
+  ];
+
+  var searchTable = $('#searchTable').DataTable( {
+    "ajax": {
+      "url": "/thesauri/search_results",
+      "data": function( d ) {
+        d.id = id.value,
+        d.namespace = namespace.value
+      },
+    "dataSrc": "data" 
+    },
+    "processing": true,
+    "serverSide": true,
+    "language": {
+      "infoFiltered": "",
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    },
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
+    "columns": columns
+  });
+
+  // Setup - add a text input to each footer cell
+  $('#searchTable tfoot th').each( function () {
+    var title = $(this).text();
+    if (title == "Extensible") {
+      // Do nothing
+    } else if (title == "Definition") {
+      $(this).html( '<input type="text" class="form-control" size="20" placeholder="Search ..." />' );
+    } else {
+      $(this).html( '<input type="text" class="form-control" size="10" placeholder="Search ..." />' );
+    }
+  });
+
+  // Apply the search
+  searchTable.columns().every( function () {
+    var that = this;
+    $( 'input', this.footer() ).on( 'keyup change', function () {
+      if (that.search() !== this.value) {
+        that
+          .search( this.value )
+          .draw();
+      }
+    });
+  });
+
+  // Handle click on terminology table
+  $('#searchTable tbody').on('click', 'tr', function () {
+    if (currentRef != null) {
+      $(currentRef).toggleClass('success');
+    }
+    $(this).toggleClass('success');
+    // Get the row
+    var row = searchTable.row(this).index();
+    var data = searchTable.row(row).data();
+    // Save the selection
+    currentRef = this;
+    currentRow = row;
+  });
+
+  // Add to the notepad
+  $('#notepadAdd').click(function() {
+    if (currentRef != null) {
+      var row = searchTable.row(currentRef).index();
+      var data = searchTable.row(row).data();
+      if (data.identifier == data.parentIdentifier) {
+        displayWarning("You need to select an item not a code list.");
+      } else {
+        $.ajax({
+          url: "../notepads/create_term",
+          type: 'POST',
+          data: { "notepad": {"item_id": data.id, "item_ns": namespace.value }},
+          success: function(result){
+            var count = result['count'];
+            counter.innerHTML = 'Notepad+ <span class="badge">' + count + '</span>'
+          },
+          error: function(xhr, status, error){
+            handleAjaxError(xhr, status, error);
+          }
+        });
+      }
+    } else {
+      displayWarning("You need to select an item.");
+    }
+  });
+
+});
