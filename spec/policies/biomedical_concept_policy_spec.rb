@@ -2,93 +2,90 @@ require 'rails_helper'
 
 describe BiomedicalConceptPolicy do
 
+  include UserAccountHelpers
+
   subject { described_class.new(user, biomedical_concept) }
   let (:biomedical_concept) { BiomedicalConcept.new }
 
+  before :all do
+    ua_create
+  end
+
+  after :all do
+    ua_destroy
+  end
+  
+  def allow(action)
+    expect(subject.public_send("#{action}?")).to eq(true)
+  end
+
+  def deny(action)
+    expect(subject.public_send("#{action}?")).to eq(false)
+  end
+
+  def allow_list(action_list)
+    action_list.each do |action|
+      allow(action)
+    end
+  end
+
+  def deny_list(action_list)
+    action_list.each do |action|
+      deny(action)
+    end
+  end
+
   context "for a reader" do
 
-    let(:user) {User.new}
+    let (:user) { @user_r }
 
-    it "should check out the reader" do
-      expect(index?).to be(true)
+    it "allows access" do
+      allow_list [:index, :show, :view, :list, :history]
     end
 
-=begin
-    it { should permit(:index) }
-    it { should permit(:show) }
-    it { should permit(:view) }
-    it { should permit(:list) }
-    it { should permit(:history) }
+    it "test of matcher" do
+      ibby_permit(subject, :index)
+      ibby_permit(subject,:create)
+    end
 
-    it { should_not permit(:create) }
-    it { should_not permit(:new) }
-    it { should_not permit(:update) }
-    it { should_not permit(:edit) }
-    it { should_not permit(:clone) }
-    it { should_not permit(:upgrade) }
-    it { should_not permit(:destroy) }
-    it { should_not permit(:export_json) }
-    it { should_not permit(:export_ttl) }
-    it { should_not permit(:import) }
-=end
-  
+    it "denies access" do
+      deny_list [:create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import]
+    end
+
   end
 
   context "for a curator" do
 
-    it "should check out the curator"
+    let (:user) { @user_c }
 
-=begin
-    it { should permit(:index) }
-    it { should permit(:show) }
-    it { should permit(:view) }
-    it { should permit(:list) }
-    it { should permit(:history) }
-    it { should permit(:create) }
-    it { should permit(:new) }
-    it { should permit(:update) }
-    it { should permit(:edit) }
-    it { should permit(:clone) }
-    it { should permit(:upgrade) }
-    it { should permit(:destroy) }
-    it { should permit(:export_json) }
-    it { should permit(:export_ttl) }
-    
-    it { should_not permit(:import) }
-=end
+    it "allows access" do
+      allow_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl]
+    end
+
+    it "denies access" do
+      deny_list [:import]
+    end
 
   end
 
   context "for a content admin" do
 
-    it "should check out the content admin"
+    let (:user) { @user_ca }
 
-=begin
-    it { should permit(:index) }
-    it { should permit(:show) }
-    it { should permit(:view) }
-    it { should permit(:list) }
-    it { should permit(:history) }
-    it { should permit(:create) }
-    it { should permit(:new) }
-    it { should permit(:update) }
-    it { should permit(:edit) }
-    it { should permit(:clone) }
-    it { should permit(:upgrade) }
-    it { should permit(:destroy) }
-    it { should permit(:export_json) }
-    it { should permit(:export_ttl) }
-    it { should permit(:import) }
-=end
+    it "allows access" do
+      allow_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import]
+    end
 
   end
 
   describe "for a system admin" do
 
-    it "should check out the system admin"
+    let (:user) { @user_sa }
+
+    it "denies access" do
+      deny_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import]
+    end
 
   end
 
 end
-
-

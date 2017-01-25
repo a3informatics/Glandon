@@ -157,6 +157,7 @@ describe "Audit Trail", :type => :feature do
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
       click_link 'Audit Trail'
+      #save_and_open_page
       expect(page).to have_content 'Index: Audit Trail'
     end
 

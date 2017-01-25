@@ -1,13 +1,18 @@
-RSpec::Matchers.define :permit do |action|  
-  match do |policy|
-    policy.public_send("#{action}?")
+require 'rspec/expectations'
+
+RSpec::Matchers.define :pundit_permit do |subject, action|  
+
+  # Not working at present.
+  match do |subject|
+    subject.public_send("#{action}?")
   end
 
-  failure_message_for_should do |policy|
-    "#{policy.class} does not permit #{action} on #{policy.record} for #{policy.user.inspect}."
+  failure_message do |subject|
+    "#{subject.class} does not permit #{action} on #{subject.record} for #{subject.user.inspect}."
   end
 
-  failure_message_for_should_not do |policy|
-    "#{policy.class} does not forbid #{action} on #{policy.record} for #{policy.user.inspect}."
+  failure_message_when_negated do |subject|
+    "#{subject.class} does not forbid #{action} on #{subject.record} for #{subject.user.inspect}."
   end
+
 end
