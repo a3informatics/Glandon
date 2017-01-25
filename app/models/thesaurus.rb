@@ -387,7 +387,7 @@ private
       query +=
         "      {\n" +
         "         #{uri.to_ref} iso25964:hasConcept ?a . \n" +
-        "         BIND (#{uri.to_ref} as ?k) . \n" +
+        "         BIND (#{uri.to_ref} as ?h) . \n" +
         "      }\n"
       query +=
         "      UNION\n" if uri != uri_set.last
@@ -404,6 +404,7 @@ private
         "      {\n" +
         "         #{uri.to_ref} iso25964:hasConcept ?x . \n" +
         "         ?x iso25964:hasChild+ ?a . \n" +
+        "         ?x iso25964:identifier ?k .  \n" +
         "      }\n"
       query +=
         "      UNION\n" if uri != uri_set.last
@@ -414,11 +415,11 @@ private
       "      ?a iso25964:preferredTerm ?d . \n" +
       "      ?a iso25964:synonym ?e . \n" +
       "      ?a iso25964:definition ?g . \n" +
-      "      OPTIONAL\n" +
-      "      { \n" +
-      "        ?j iso25964:hasChild ?a .  \n" +
-      "        ?j iso25964:identifier ?k .  \n" +
-      "      } \n" +
+      #"      OPTIONAL\n" +
+      #"      { \n" +
+      #"        ?j iso25964:hasChild ?a .  \n" +
+      #"        ?j iso25964:identifier ?k .  \n" +
+      #"      } \n" +
       "    } \n"
     # Filter by search terms, columns and overall
     columns.each do |column|
