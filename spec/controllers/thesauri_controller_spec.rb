@@ -4,6 +4,29 @@ describe ThesauriController do
 
   include DataHelpers
   
+  def standard_params
+    params = 
+    {
+      :draw => "1", 
+      :columns =>
+      {
+        "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "5" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
+      }, 
+      :order => { "0" => { :column => "0", :dir => "asc" }}, 
+      :start => "0", 
+      :length => "15", 
+      :search => { :value => "", :regex => "false" }, 
+      :id => "TH-CDISC_CDISCTerminology", 
+      :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
+    }
+    return params
+  end
+
   describe "Authorized User" do
   	
     login_curator
@@ -22,6 +45,7 @@ describe ThesauriController do
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("thesaurus.ttl")
       load_test_file_into_triple_store("thesaurus_concept.ttl")
+      load_test_file_into_triple_store("CT_V43.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -57,20 +81,22 @@ describe ThesauriController do
 
     it 'creates thesaurus' do
       audit_count = AuditTrail.count
-      expect(Thesaurus.all.count).to eq(1) 
+      count = Thesaurus.all.count
+      expect(count).to eq(2) 
       post :create, thesauri: { :identifier => "NEW TH", :label => "New Thesaurus" }
       expect(assigns(:thesaurus).errors.count).to eq(0)
-      expect(Thesaurus.all.count).to eq(2) 
+      expect(Thesaurus.all.count).to eq(count + 1) 
       expect(flash[:success]).to be_present
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(response).to redirect_to("/thesauri")
     end
 
     it 'creates thesaurus, fails bad identifier' do
-      expect(Thesaurus.all.count).to eq(2) 
+      count = Thesaurus.all.count
+      expect(count).to eq(3) 
       post :create, thesauri: { :identifier => "NEW_TH!@£$%^&*", :label => "New Thesaurus" }
       expect(assigns(:thesaurus).errors.count).to eq(1)
-      expect(Thesaurus.all.count).to eq(2) 
+      expect(Thesaurus.all.count).to eq(count) 
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/thesauri/new")
     end
@@ -299,8 +325,29 @@ describe ThesauriController do
       expect(response.code).to eq("200")    
     end
 
-    it "def search"
-    it "def next"
+    it "initiates a search of a single terminology" do
+      params = standard_params
+      get :search, params
+      expect(response).to render_template("search")
+    end
+      
+    it "initiates a search of the current terminologies" do
+      params = standard_params
+      get :search_current, params
+      expect(response).to render_template("search_current")
+    end
+
+    it "obtains the search results" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      params = standard_params
+      params[:columns]["5"][:search][:value] = "cerebral"
+      params[:search][:value] = "Temporal"
+      results = Thesaurus.search(params)
+      get :search_results, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")    
+    end
+
     it "def export_ttl"
 
   end
