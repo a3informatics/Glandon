@@ -186,8 +186,6 @@ describe Thesaurus do
     expect(sparql.to_s).to eq(result_sparql)
   end
 
-  it "allows for the next block of records to be obtained"
-
   it "allows a child TC to be added" do
     child =
     {
