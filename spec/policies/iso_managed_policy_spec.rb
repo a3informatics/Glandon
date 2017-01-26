@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe BiomedicalConceptPolicy do
+describe IsoManagedPolicy do
 
   include UserAccountHelpers
   include PermissionsHelpers
 
-  subject { described_class.new(user, biomedical_concept) }
-  let (:biomedical_concept) { BiomedicalConcept.new }
+  subject { described_class.new(user, iso_managed) }
+  let (:iso_managed) { IsoManaged.new }
 
   before :all do
     ua_create
@@ -25,7 +25,7 @@ describe BiomedicalConceptPolicy do
     end
 
     it "denies access" do
-      deny_list [:create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import]
+      deny_list [:create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :status]
     end
 
   end
@@ -35,7 +35,7 @@ describe BiomedicalConceptPolicy do
     let (:user) { @user_c }
 
     it "allows access" do
-      allow_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl]
+      allow_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :status]
     end
 
     it "denies access" do
@@ -49,7 +49,7 @@ describe BiomedicalConceptPolicy do
     let (:user) { @user_ca }
 
     it "allows access" do
-      allow_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import]
+      allow_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import, :status]
     end
 
   end
@@ -60,7 +60,7 @@ describe BiomedicalConceptPolicy do
 
     it "denies access" do
       @user_sa.remove_role :reader # Just for this test
-      deny_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import]
+      deny_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import, :status]
       @user_sa.add_role :reader
     end
 

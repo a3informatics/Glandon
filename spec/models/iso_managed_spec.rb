@@ -26,6 +26,7 @@ describe IsoManaged do
     load_test_file_into_triple_store("iso_managed_data_3.ttl")
     load_test_file_into_triple_store("CT_V42.ttl")
     load_test_file_into_triple_store("CT_V43.ttl")
+    load_test_file_into_triple_store("CT_V41.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -293,6 +294,20 @@ describe IsoManaged do
     item = IsoManaged.current("Form", "http://www.assero.co.uk/BusinessForm", {:identifier => "VSW", :scope_id => IsoRegistrationAuthority.owner.namespace.id})
     expect(item.scopedIdentifier.identifier).to eq("VSW")    
     expect(item.scopedIdentifier.version).to eq(1)    
+  end
+
+  it "allows the current set to be found, terminology" do
+    items = IsoManaged.current_set("Thesaurus", "http://www.assero.co.uk/ISO25964")
+    #write_yaml_file(items.to_json, sub_dir, "iso_managed_current_set_term.yaml")
+    expected = read_yaml_file(sub_dir, "iso_managed_current_set_term.yaml")
+    expect(items.to_json).to eq(expected)
+  end
+
+  it "allows the current set to be found, Forms" do
+    items = IsoManaged.current_set("Form", "http://www.assero.co.uk/BusinessForm")
+    #write_yaml_file(items.to_json, sub_dir, "iso_managed_current_set_form.yaml")
+    expected = read_yaml_file(sub_dir, "iso_managed_current_set_form.yaml")
+    expect(items.to_json).to eq(expected)
   end
 
   it "allows a tag to be added" do

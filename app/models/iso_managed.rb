@@ -636,10 +636,10 @@ class IsoManaged < IsoConcept
     return object
   end
 
-  # Find the current set for a given type
+  # Find the set of current items for a given type
   #
-  # @param rdf_type [string] the RDF type
-  # @param namespace [string] the schema namespace
+  # @param rdf_type [String] the RDF type
+  # @param namespace [String] the schema namespace
   # @return [Array] array of UriV2 objects
   def self.current_set(rdf_type, namespace)    
     results = []

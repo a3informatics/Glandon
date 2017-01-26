@@ -135,47 +135,11 @@ class ThesauriController < ApplicationController
     @close_path = thesauri_index_path
   end
   
-  #def search_new
-  #  authorize Thesaurus, :view?
-  #  @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
-  #  @items = Notepad.where(user_id: current_user).find_each
-  #  @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
-  #end
-  
   def search_results
     authorize Thesaurus, :view?
-    count = Thesaurus.count(params)
-    items = Thesaurus.search_new(params)
-    @results = {
-      :draw => params[:draw],
-      :recordsTotal => params[:length],
-      :recordsFiltered => count.to_s,
-      :data => items }
-    render json: @results
+    results = Thesaurus.search(params)
+    render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
   end
-
-=begin  
-  def next
-    authorize Thesaurus, :view?
-    id = params[:id]
-    namespace = params[:namespace]
-    @cdiscTerm = Thesaurus.find(id, namespace, false)
-    items = []
-    more = true
-    offset = params[:offset].to_i
-    limit = params[:limit].to_i
-    items = Thesaurus.next(offset, limit, namespace)
-    if items.count < limit
-      more = false
-    end
-    results = {}
-    results[:offset] = offset + items.count
-    results[:limit] = limit
-    results[:more] = more
-    results[:data] = items
-    render :json => results, :status => 200
-  end
-=end
 
    def export_ttl
     authorize Thesaurus

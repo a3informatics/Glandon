@@ -49,17 +49,32 @@ $(document).ready( function() {
     }
   });
 
-  // Apply the search
+  // Apply the column search. Fires on return or field empty assuming not the
+  // current search value (i.e. something has changed).
   searchTable.columns().every( function () {
     var that = this;
-    $( 'input', this.footer() ).on( 'keyup change', function () {
-      if (that.search() !== this.value) {
-        that
-          .search( this.value )
-          .draw();
+    $( 'input', this.footer() ).on( 'keyup', function (e) {
+      if (e.which == 13 || this.value == "") {
+        if (that.search() !== this.value) {
+          that.search(this.value).draw();
+        }
       }
     });
   });
+
+  // Apply the overall search. Fires on return or field empty assuming not the
+  // current search value (i.e. something has changed).
+  $("#searchTable_filter input")
+    .unbind() // Unbind previous default bindings
+    .bind("keyup", function(e) { // Bind our desired behavior
+      if(this.value == "" || e.keyCode == 13) {
+        if (searchTable.search() !== this.value) {
+          searchTable.search(this.value).draw();
+        }
+      }
+      return;
+    });
+
 
   // Handle click on terminology table
   $('#searchTable tbody').on('click', 'tr', function () {

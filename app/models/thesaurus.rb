@@ -255,57 +255,67 @@ class Thesaurus <  IsoManaged
     return sparql
   end
 
-  def self.count(params)
-    count = 0
-    query = ""
+  # Count. Obtain count of number of items returned by asearch
+  #def self.count(params)
+  #  query = UriManagement.buildNs(params[:namespace], ["iso25964"])
+  #  if params[:namespace].blank?
+  #    query += query_string_current(params[:search], params[:columns])
+  #  else
+  #    query += query_string_single(params[:search], params[:columns], params[:namespace])
+  #  end 
+  #  response = CRUD.query(query)
+  #  xmlDoc = Nokogiri::XML(response.body)
+  #  xmlDoc.remove_namespaces!
+  #  return xmlDoc.xpath("//result").length
+  #end
+
+  # Search. The new version. Searches either the specified version or all current versions.
+  # 
+  # @param params [Hash]  the hash sent by datatables for a search. If namespace is empty then the 
+  #                       current versions of terminolgy are searched.
+  # @return [Hash]  a hash containing :count wiht the number of records that could be returned and
+  #                 :items which is an array of results.
+  def self.search(params)
+    results = []
+    variable = getOrderVariable(params[:order]["0"][:column])
+    order = getOrdering(params[:order]["0"][:dir])
     if params[:namespace].blank?
-      query = UriManagement.buildNs(params[:namespace], ["iso25964"]) + query_string_current(params[:search], params[:columns])
+      uri_set = IsoManaged.current_set(C_RDF_TYPE, C_SCHEMA_NS)
     else
-      query = UriManagement.buildNs(params[:namespace], ["iso25964"]) + query_string_single(params[:search], params[:columns], params[:namespace])
-    end 
+      uri_set = []
+      uri_set << UriV2.new({id: params[:id], namespace: params[:namespace]})
+    end
+    query = UriManagement.buildNs(params[:namespace], ["iso25964", "isoR"])
+    query += query_string(params[:search], params[:columns], uri_set)
     response = CRUD.query(query)
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     count = xmlDoc.xpath("//result").length
-    return count
-  end
-
-  def self.search_new(params)
-    results = []
-    variable = getOrderVariable(params[:order]["0"][:column])
-    order = getOrdering(params[:order]["0"][:dir])
-    query = UriManagement.buildNs(params[:namespace], ["iso25964", "isoR"])
-    if params[:namespace].blank?
-        query += query_string_current(params[:search], params[:columns])
-    else
-      query += query_string_single(params[:search], params[:columns], params[:namespace])
-    end
     query += " ORDER BY #{order} (#{variable}) OFFSET #{params[:start]} LIMIT #{params[:length]}"
-    ConsoleLogger.debug(C_CLASS_NAME, "queryString", "Query=#{query}")
     response = CRUD.query(query)
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       processNode(node, results)
     end
-    return results
+    return { count: count, items: results }
   end
   
-  def self.next(offset, limit, ns)
-    results = Array.new
-    variable = getOrderVariable(0)
-    order = getOrdering("asc")
-    query = UriManagement.buildNs(ns, ["iso25964"]) + 
-      queryString("", ns) + 
-      " ORDER BY " + order + "(" + variable + ") OFFSET " + offset.to_s + " LIMIT " + limit.to_s
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      processNode(node, results)
-    end
-    return results
-  end
+  #def self.next(offset, limit, ns)
+  #  results = Array.new
+  #  variable = getOrderVariable(0)
+  #  order = getOrdering("asc")
+  #  query = UriManagement.buildNs(ns, ["iso25964"]) + 
+  #    queryString("", ns) + 
+  #    " ORDER BY " + order + "(" + variable + ") OFFSET " + offset.to_s + " LIMIT " + limit.to_s
+  #  response = CRUD.query(query)
+  #  xmlDoc = Nokogiri::XML(response.body)
+  #  xmlDoc.remove_namespaces!
+  #  xmlDoc.xpath("//result").each do |node|
+  #    processNode(node, results)
+  #  end
+  #  return results
+  #end
 
   # Check Valid
   #
@@ -327,7 +337,7 @@ private
     tlSet = node.xpath("binding[@name='h']/uri")
     parentSet = node.xpath("binding[@name='k']/literal")
     if uriSet.length == 1 
-      object = CdiscCl.new 
+      object = ThesaurusConcept.new 
       object.id = ModelUtility.extractCid(uriSet[0].text)
       object.namespace = ModelUtility.extractNs(uriSet[0].text)
       object.identifier = idSet[0].text
@@ -348,6 +358,7 @@ private
     end
   end
 
+=begin
   def self.query_string_single(search, columns, ns)
     query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?g ?h ?k WHERE \n" +
       "  {\n" +
@@ -380,6 +391,59 @@ private
   def self.query_string_current(search, columns)
     uri_set = IsoManaged.current_set(C_RDF_TYPE, C_SCHEMA_NS)
     ConsoleLogger.debug(C_CLASS_NAME, "query_string_current", "URIs=#{uri_set}")
+    query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?g ?h ?k WHERE \n" +
+      "  {\n" +
+      "    {\n" 
+    uri_set.each do |uri|
+      query +=
+        "      {\n" +
+        "         #{uri.to_ref} iso25964:hasConcept ?a . \n" +
+        "         BIND (#{uri.to_ref} as ?h) . \n" +
+        "      }\n"
+      query +=
+        "      UNION\n" if uri != uri_set.last
+    end
+    query += 
+      "      ?a iso25964:identifier ?b . \n" +
+      "      ?a iso25964:notation ?c . \n" +
+      "      ?a iso25964:preferredTerm ?d . \n" +
+      "      ?a iso25964:synonym ?e . \n" +
+      "      ?a iso25964:definition ?g . \n" +
+      "    } UNION {\n" 
+    uri_set.each do |uri|
+      query +=
+        "      {\n" +
+        "         #{uri.to_ref} iso25964:hasConcept ?x . \n" +
+        "         ?x iso25964:hasChild+ ?a . \n" +
+        "         ?x iso25964:identifier ?k .  \n" +
+        "      }\n"
+      query +=
+        "      UNION\n" if uri != uri_set.last
+    end
+    query += 
+      "      ?a iso25964:identifier ?b . \n" +
+      "      ?a iso25964:notation ?c . \n" +
+      "      ?a iso25964:preferredTerm ?d . \n" +
+      "      ?a iso25964:synonym ?e . \n" +
+      "      ?a iso25964:definition ?g . \n" +
+      #"      OPTIONAL\n" +
+      #"      { \n" +
+      #"        ?j iso25964:hasChild ?a .  \n" +
+      #"        ?j iso25964:identifier ?k .  \n" +
+      #"      } \n" +
+      "    } \n"
+    # Filter by search terms, columns and overall
+    columns.each do |column|
+      query += "    FILTER regex(#{getOrderVariable(column[0])}, \"#{column[1][:search][:value]}\") . \n" if !column[1][:search][:value].blank?
+    end
+    query += "    ?a (iso25964:identifier|iso25964:notation|iso25964:preferredTerm|iso25964:synonym|iso25964:definition) ?i . FILTER regex(?i, \"" + 
+      search[:value] + "\") . \n" if !search[:value].blank?
+    query += "  }"
+    return query
+  end
+=end
+
+  def self.query_string(search, columns, uri_set)
     query = "SELECT DISTINCT ?a ?b ?c ?d ?e ?g ?h ?k WHERE \n" +
       "  {\n" +
       "    {\n" 
