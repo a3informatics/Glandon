@@ -68,22 +68,22 @@ describe CdiscTermsController do
       expect(response).to render_template("history")
     end
 
-    it "show" do
+    it "show the terminology" do
       params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }
       get :show, params
       expect(response).to render_template("show")
     end
 
-    it "search" do
+    it "initiates a search" do
       params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }
       get :search, params
       expect(response).to render_template("search")
     end
 
-    it "next" do
+    it "obtains the search results" do
       request.env['HTTP_ACCEPT'] = "application/json"
       params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V39", :offset => "20", :limit => "20" }
-      get :next, params
+      get :search_results, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       #write_text_file_2(response.body, sub_dir, "cdisc_term_controller_next.txt")

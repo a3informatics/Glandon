@@ -306,6 +306,40 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Index: Terminology'
     end
 
+    it "allows a search to be performed", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      visit '/thesauri'
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Search').click
+      expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
+      expect(page).to have_button('Notepad+')
+      wait_for_ajax(5) # Big load
+      expect(page).to have_content 'Showing 1 to 7 of 7 entries'
+      click_link 'Close'
+      expect(page).to have_content 'History: CDISC EXT'
+    end  
+
+    it "allows a search to be performed on all current versions", js: true do
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      visit '/thesauri'
+      expect(page).to have_content 'Index: Terminology'
+      click_link 'Search Current'
+      expect(page).to have_content 'Search: All Current Terminology'
+      expect(page).to have_button('Notepad+')
+      wait_for_ajax(5) # Big load
+      expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
+      click_link 'Close'
+      expect(page).to have_content 'Index: Terminology'
+    end  
+
   end
 
 end

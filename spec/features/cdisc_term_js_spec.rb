@@ -55,31 +55,103 @@ describe "CDISC Terminology", :type => :feature do
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-09-25')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-09-25'
-      wait_for_ajax(120) # Big load
-      expect(page).to have_content '16,902 entries'
+      wait_for_ajax(5) 
+      expect(page).to have_content 'Showing 1 to 10 of 16,903 entries'
       expect(page).not_to have_button('notepadAdd')
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
     
-    it "allows a search to be performed", js: true do
+    it "allows a search to be performed, add single to notepad", js: true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
-      wait_for_ajax(120) # Big load
-      expect(page).to have_content '17,355 entries'
+      wait_for_ajax(5) # Big load
+      expect(page).to have_content 'Showing 1 to 10 of 17,356 entries'
       expect(page).to have_button('Notepad+')
       ui_click_by_id('notepadAdd')
       expect(page).to have_content 'You need to select an item.'
-      ui_table_row_click('search2Table', "QSCAT")
+      ui_table_row_click('searchTable', "QSCAT")
       ui_click_by_id('notepadAdd')
       wait_for_ajax
       expect(page).to have_content 'You need to select an item not a code list.'
-      ui_table_row_click('search2Table', "C100759")
+      fill_in 'searchTable_csearch_cl', with: 'C100129'
+      ui_hit_return('searchTable_csearch_cl')
+      wait_for_ajax
+      ui_table_row_click('searchTable', "C100761")
       ui_click_by_id('notepadAdd')
       wait_for_ajax
       expect(page).to have_content 'Notepad+ 1'
+      click_link 'Close'
+      expect(page).to have_content 'History: CDISC Terminology'
+    end
+
+    it "allows a search to be performed, searches", js: true do
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
+      expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
+      wait_for_ajax(5) # Big load
+      expect(page).to have_content 'Showing 1 to 10 of 17,356 entries'
+
+      fill_in 'searchTable_csearch_cl', with: 'C100129'
+      ui_hit_return('searchTable_csearch_cl')
+      wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 10 of 141 entries'
+
+      fill_in 'searchTable_csearch_definition', with: 'Hamilton'
+      ui_hit_return('searchTable_csearch_definition')
+      wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 3 of 3 entries'
+
+      fill_in 'searchTable_csearch_notation', with: 'ADMINISTRATION'
+      ui_hit_return('searchTable_csearch_notation')
+      wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 2 of 2 entries'
+
+      fill_in 'searchTable_csearch_notation', with: 'A' # In effect delete all bar one character
+      ui_hit_backspace('searchTable_csearch_notation') # Delete last character so now empty
+      wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 3 of 3 entries'
+
+      fill_in 'searchTable_csearch_definition', with: 'H'
+      ui_hit_backspace('searchTable_csearch_definition')
+      wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 10 of 141 entries'
+
+      input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
+      input.set('Hamilton')
+      input.native.send_keys(:return)
+      wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 3 of 3 entries'
+
+      input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
+      input.set('H')
+      input.native.send_keys(:backspace)
+      wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 10 of 141 entries'
+
+      link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[3]/a')
+      link.click
+      wait_for_ajax
+      expect(page).to have_content 'Showing 11 to 20 of 141 entries'
+
+      link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[4]/a')
+      link.click
+      wait_for_ajax
+      expect(page).to have_content 'Showing 21 to 30 of 141 entries'
+
+      link = find(:xpath, '//*[@id="searchTable_previous"]/a')
+      link.click
+      wait_for_ajax
+      expect(page).to have_content 'Showing 11 to 20 of 141 entries'
+      
+      link = find(:xpath, '//*[@id="searchTable_next"]/a')
+      link.click
+      wait_for_ajax
+      expect(page).to have_content 'Showing 21 to 30 of 141 entries'
+
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
@@ -131,7 +203,7 @@ describe "CDISC Terminology", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-09-25')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-09-25'
       wait_for_ajax(120) # Big load
-      expect(page).to have_content '16,902 entries'
+      expect(page).to have_content 'Showing 1 to 10 of 16,903 entries'
       expect(page).not_to have_button('notepadAdd')
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
@@ -143,7 +215,7 @@ describe "CDISC Terminology", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
       wait_for_ajax(120) # Big load
-      expect(page).to have_content '17,355 entries'
+      expect(page).to have_content 'Showing 1 to 10 of 17,356 entries'
       expect(page).not_to have_button('Notepad+')
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'

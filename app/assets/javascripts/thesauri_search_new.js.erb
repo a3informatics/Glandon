@@ -40,12 +40,13 @@ $(document).ready( function() {
   // Setup - add a text input to each footer cell
   $('#searchTable tfoot th').each( function () {
     var title = $(this).text();
+    var id = "searchTable_csearch_" + title.toLowerCase();
     if (title == "Extensible") {
       // Do nothing
     } else if (title == "Definition") {
-      $(this).html( '<input type="text" class="form-control" size="20" placeholder="Search ..." />' );
+      $(this).html( '<input id="' + id + '" type="text" class="form-control" size="20" placeholder="Search ..." />' );
     } else {
-      $(this).html( '<input type="text" class="form-control" size="10" placeholder="Search ..." />' );
+      $(this).html( '<input id="' + id + '" type="text" class="form-control" size="10" placeholder="Search ..." />' );
     }
   });
 

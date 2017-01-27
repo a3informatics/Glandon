@@ -142,6 +142,16 @@ module UiHelpers
     page.evaluate_script('window.history.back()')
   end
 
+  # Return
+  def ui_hit_return(id)
+    find("##{id}").native.send_keys(:return)
+  end
+
+  # Backspace
+  def ui_hit_backspace(id)
+    find("##{id}").native.send_keys(:backspace)
+  end
+
   # D3 Tree Functions
   # =================
 
