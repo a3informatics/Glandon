@@ -96,26 +96,19 @@ describe Thesaurus do
   end
 
   it "allows all records to be retrieved" do
-    result = Thesaurus.all
-    expect(result.count).to eq(4)
-    expect(result[0].identifier).to eq("CDISC EXT")
-    expect(result[0].id).to eq("TH-SPONSOR_CT-1")
-    expect(result[0].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(result[1].identifier).to eq("CDISC Terminology")
-    expect(result[1].id).to eq("TH-CDISC_CDISCTerminology")
-    expect(result[1].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    expect(result[2].identifier).to eq("CDISC Terminology")
-    expect(result[2].id).to eq("TH-CDISC_CDISCTerminology")
-    expect(result[2].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
-    expect(result[3].identifier).to eq("CDISC Terminology")
-    expect(result[3].id).to eq("TH-CDISC_CDISCTerminology")
-    expect(result[3].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+    results = Thesaurus.all
+    expect(results.count).to eq(4)
+    write_yaml_file(results, sub_dir, "thesaurus_all_1.yaml")
+    expected = read_yaml_file(sub_dir, "thesaurus_all_1.yaml")
+    results.each do |result|
+      found = expected.find { |x| x.id == result.id }
+      expect(result.id).to eq(found.id)
+    end
   end
 
   it "allows the list to be retrieved" do
     result = Thesaurus.list
     expect(result.count).to eq(4)
-    #expect(result).to eq("")
     expect(result[3].identifier).to eq("CDISC EXT")
     expect(result[3].id).to eq("TH-SPONSOR_CT-1")
     expect(result[3].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")

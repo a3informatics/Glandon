@@ -27,9 +27,17 @@ class NotepadsController < ApplicationController
   def create_term
     authorize Notepad, :edit?
     user_id = current_user.id
-    @cli = CdiscCli.find(the_params[:item_id], the_params[:item_ns])
-    Notepad.create :uri_id => @cli.id, :uri_ns => @cli.namespace, :identifier => @cli.identifier, 
-      :useful_1 => @cli.notation, :useful_2 => @cli.label, :user_id => user_id, :note_type => 0
+    tc = ThesaurusConcept.find(the_params[:item_id], the_params[:item_ns], false)
+    if tc.children?
+      cl = ThesaurusConcept.find(the_params[:item_id], the_params[:item_ns])
+      cl.children.each do |tc|
+        Notepad.create :uri_id => tc.id, :uri_ns => tc.namespace, :identifier => tc.identifier, 
+          :useful_1 => tc.notation, :useful_2 => tc.label, :user_id => user_id, :note_type => 0
+      end
+    else
+      Notepad.create :uri_id => tc.id, :uri_ns => tc.namespace, :identifier => tc.identifier, 
+        :useful_1 => tc.notation, :useful_2 => tc.label, :user_id => user_id, :note_type => 0
+    end
     # TODO: There must be a better way og handling note_type parameter (should be :term not 0)
     @items = Notepad.where(user_id: user_id, note_type: 0).find_each
     render :json => { :count => @items.count }, :status => 200

@@ -8,6 +8,10 @@ describe IsoConceptController do
   	
     login_reader
 
+    def sub_dir
+      return "controllers"
+    end
+
     before :all do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -54,33 +58,13 @@ describe IsoConceptController do
     end
 
     it "returns the graph links for a concept" do
-      results = 
-      [
-        {
-          uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1",
-          rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-          local: true
-          },
-        {
-          uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I2",
-          rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-          local: true
-          },
-        {
-          uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347",
-          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance",
-          local: false
-        },
-        {
-          uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1",
-          rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-          local: true
-        }
-      ]
       get :graph_links, {id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(response.body).to eq(results.to_json.to_s)
+      hash = JSON.parse(response.body, symbolize_names: true)
+      #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_1.yaml")
+      results = read_yaml_file(sub_dir, "iso_concept_controller_example_1.yaml")
+      expect(hash).to match(results)
     end
 
     it "allows impact to be assessed" do

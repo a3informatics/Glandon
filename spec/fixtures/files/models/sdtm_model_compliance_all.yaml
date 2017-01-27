@@ -1,16 +1,28 @@
 ---
-- :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-  :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Permissible
-  :extension_properties: []
-- :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-  :id: IG-CDISC_SDTMIGVS_C_REQUIRED
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Required
-  :extension_properties: []
-- :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-  :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Expected
-  :extension_properties: []
+- !ruby/object:SdtmModelCompliance
+  rdf_type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+  id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Permissible
+  properties: []
+  links: []
+  extension_properties: []
+  triples: {}
+- !ruby/object:SdtmModelCompliance
+  rdf_type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+  id: IG-CDISC_SDTMIGVS_C_EXPECTED
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Expected
+  properties: []
+  links: []
+  extension_properties: []
+  triples: {}
+- !ruby/object:SdtmModelCompliance
+  rdf_type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+  id: IG-CDISC_SDTMIGVS_C_REQUIRED
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Required
+  properties: []
+  links: []
+  extension_properties: []
+  triples: {}

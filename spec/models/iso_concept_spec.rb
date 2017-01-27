@@ -225,7 +225,7 @@ describe IsoConcept do
   end
 
   it "allows the child links to be determined" do
-    result = 
+    expected = 
       [ 
         UriV2.new({:id => "F-AE_G1_I2", :namespace => "http://www.assero.co.uk/X/V1"}),
         UriV2.new({:id => "F-AE_G1_I3", :namespace => "http://www.assero.co.uk/X/V1"}),
@@ -234,8 +234,9 @@ describe IsoConcept do
       ]
     concept = IsoConcept.find("F-AE_G1", "http://www.assero.co.uk/X/V1")
     links = concept.get_links_v2("bf", "hasItem")
-    links.each_with_index do |link, index|
-      expect(link.to_json).to eq(result[index].to_json)
+    links.each_with_index do |link|
+      found = expected.find { |x| x.id == link.id }
+      expect(link.id).to eq(found.id)
     end
   end
 
@@ -251,15 +252,16 @@ describe IsoConcept do
     links = form.get_links_v2("bf", "hasItem")
     children = Form::Group.find_for_parent(concept.triples, links)
     expect(children.length).to eq(4)
-    result = 
+    expected = 
       [ 
         UriV2.new({:id => "F-AE_G1_I2", :namespace => "http://www.assero.co.uk/X/V1"}),
         UriV2.new({:id => "F-AE_G1_I3", :namespace => "http://www.assero.co.uk/X/V1"}),
         UriV2.new({:id => "F-AE_G1_I4", :namespace => "http://www.assero.co.uk/X/V1"}),
         UriV2.new({:id => "F-AE_G1_I1", :namespace => "http://www.assero.co.uk/X/V1"})
       ]
-    children.each_with_index do |child, index|
-      expect(child.uri.to_json).to eq(result[index].to_json)
+    children.each_with_index do |child|
+      found = expected.find { |x| x.id == child.id }
+      expect(child.id).to eq(found.id)
     end
   end
 
@@ -279,7 +281,10 @@ describe IsoConcept do
     all = IsoConcept.find("F-T_G1_I5", "http://www.assero.co.uk/Y/V1", true)
     #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_create.yaml")
     expected = read_yaml_file(sub_dir, "iso_concept_triples_create.yaml")
-    expect(all.triples).to eq(expected)
+    all.triples["F-T_G1_I5"].each do |triple|
+      found = expected["F-T_G1_I5"].find { |x| x[:subject] == triple[:subject] && x[:predicate] == triple[:predicate] }
+      expect(triple).to eq(found)
+    end
   end
 
   it "handles failed response when a concept is being created" do
@@ -315,7 +320,10 @@ describe IsoConcept do
     all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
     #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_destroy.yaml")
     expected = read_yaml_file(sub_dir, "iso_concept_triples_destroy.yaml")
-    expect(all.triples).to eq(expected)
+    all.triples["F-T_G1"].each do |triple|
+      found = expected["F-T_G1"].find { |x| x[:subject] == triple[:subject] && x[:predicate] == triple[:predicate] && x[:object] == triple[:object] }
+      expect(triple).to eq(found)
+    end
   end
 
   it "allows a child concept to be created" do
@@ -335,7 +343,10 @@ describe IsoConcept do
     all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
     #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_create_child.yaml")
     expected = read_yaml_file(sub_dir, "iso_concept_triples_create_child.yaml")
-    expect(all.triples).to eq(expected)
+    all.triples["F-T_G1"].each do |triple|
+      found = expected["F-T_G1"].find { |x| x[:subject] == triple[:subject] && x[:predicate] == triple[:predicate] && x[:object] == triple[:object] }
+      expect(triple).to eq(found)
+    end
   end
 
   it "handles failed response when a child concept is being created" do
@@ -371,7 +382,10 @@ describe IsoConcept do
     all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
     #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_destroy_links.yaml")
     expected = read_yaml_file(sub_dir, "iso_concept_triples_destroy_links.yaml")
-    expect(all.triples).to eq(expected)
+    all.triples["F-T_G1"].each do |triple|
+      found = expected["F-T_G1"].find { |x| x[:subject] == triple[:subject] && x[:predicate] == triple[:predicate] && x[:object] == triple[:object] }
+      expect(triple).to eq(found)
+    end
   end
 
   it "allows a concept to be updated" do
@@ -384,7 +398,10 @@ describe IsoConcept do
     all = IsoConcept.find("F-T_G1", "http://www.assero.co.uk/Y/V1", true)
     #write_yaml_file(all.triples, sub_dir, "iso_concept_triples_updated.yaml")
     expected = read_yaml_file(sub_dir, "iso_concept_triples_updated.yaml")
-    expect(all.triples).to eq(expected)
+    all.triples["F-T_G1"].each do |triple|
+      found = expected["F-T_G1"].find { |x| x[:subject] == triple[:subject] && x[:predicate] == triple[:predicate] && x[:object] == triple[:object] }
+      expect(triple).to eq(found)
+    end
   end
 
 	it "handles failed response when a concept is being updated" do

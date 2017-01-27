@@ -76,8 +76,8 @@ $(document).ready(function() {
     },
     dataType: 'json',
     "pageLength": 5,
-    "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-    "pagingType": "full",
+    "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
+      "pagingType": "full",
     "bProcessing": true,
     "language": {
       "infoFiltered": "",
@@ -96,13 +96,13 @@ $(document).ready(function() {
         "dataSrc": "data"  
       },
       "bProcessing": true,
-      "bInfo" : false,
-      //"searching": false,
+      "pagingType": "full",
       "pageLength": 5,
       "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
       "language": {
-          "processing": "<img src='<%= asset_path('processing.gif') %>'>"
-        },
+        "infoFiltered": "",
+        "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      },
       "columns": [
         {"data" : "identifier", "width" : "30%"},
         {"data" : "useful_1", "width" : "70%"}
@@ -115,15 +115,17 @@ $(document).ready(function() {
   initData();
   initialNotepadLoad();
   displayNode(rootNode);
-
+  
   /* 
-  * Notepad Actions
-  */
+   * Notepad functions
+   */
   $('#notepad_refresh').click(function() {
     if (!notepadTableReload) {
       initialNotepadLoad();
     } else {
-      notepadTable.ajax.reload();
+      notepadTable.ajax.reload(function ( json ) {
+        tsUpdate(notepadTable.data().count());
+      });
     }
   });
 
@@ -541,14 +543,6 @@ function clearSelect() {
   $("#general_panel").removeClass('hidden');
 }
 
-function removeSpinner() {
-  $("#saving > span").removeClass('glyphicon-spin');
-}
-
-function addSpinner() {
-  $("#saving > span").addClass('glyphicon-spin');
-}
-
 // Function for page unload. Nothing to do
 function pageUnloadAction() {
   saveNode();
@@ -563,7 +557,7 @@ function saveRest() {
   var form;
   var currentSave = JSON.stringify(formDefinition);
   if (currentSave !== previousSave) {
-    addSpinner();
+    spAddSpinner("#saving");
     form = formDefinition.managed_item;
     data = { "namespace": form['namespace'], "form": formDefinition };  
     $.ajax({
@@ -573,12 +567,12 @@ function saveRest() {
       dataType: 'json',
       contentType: 'application/json',
       success: function(result){
-        removeSpinner();
+        spRemoveSpinner("#saving");
         ttSave();
       },
       error: function(xhr, status, error){
         handleAjaxError (xhr, status, error);
-        removeSpinner();
+        spRemoveSpinner("#saving");
       }
     });
     previousSave = currentSave;
@@ -1270,6 +1264,7 @@ function initData () {
   varClCurrent = null;
   varClCurrentRow = null;
   d3eInit(saveNode, displayNode, empty, validateNode);
+  tsInit(notepadUpdated);
   rootNode = d3eRoot(managedItem.label, C_FORM, managedItem)
   idKeyMap = {};
   for (var i=0; i<managedItem.children.length; i++) {
@@ -1278,6 +1273,13 @@ function initData () {
 }
 
 function empty(node) {
+}
+
+// Note pad callback
+function notepadUpdated() {
+  if (notepadTableReload) {
+    notepadTable.ajax.reload();
+  }
 }
 
 /*

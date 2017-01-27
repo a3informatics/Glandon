@@ -54,9 +54,17 @@ class ThesaurusConcept < IsoConcept
 
   # Exists. Checks if the identifier exists.
   #
-  # @return [boolean] True of the identifier exists, false otherwise
+  # @return [boolean] True if the identifier exists, false otherwise
   def exists?
     return IsoConcept.exists?("identifier", self.identifier, C_RDF_TYPE, C_SCHEMA_NS, self.namespace)
+  end
+
+  # Children?
+  #
+  # @return [boolean] True if there are children, false otherwise
+  def children?
+    links = get_links_v2(UriManagement::C_ISO_25964, "hasChild")
+    return links.length > 0
   end
 
   # Add a child concept

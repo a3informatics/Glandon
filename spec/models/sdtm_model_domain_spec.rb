@@ -38,14 +38,14 @@ describe SdtmModelDomain do
   end
 
   it "allows all domains to be found" do
-    result = SdtmModelDomain.all 
-    expect(result.count).to eq(6)
-    expect(result[0].identifier).to eq("SDTMMODEL_FINDINGS")
-    expect(result[1].identifier).to eq("SDTMMODEL_SPECIAL_PURPOSE")
-    expect(result[2].identifier).to eq("SDTMMODEL_RELATIONSHIP")
-    expect(result[3].identifier).to eq("SDTMMODEL_INTERVENTIONS")
-    expect(result[4].identifier).to eq("SDTMMODEL_EVENTS")
-    expect(result[5].identifier).to eq("SDTMMODEL_TRIAL_DESIGN")
+    results = SdtmModelDomain.all 
+    expect(results.count).to eq(6)
+    #write_yaml_file(results, sub_dir, "sdtm_model_domain_all.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_model_domain_all.yaml")
+    results.each do |result|
+      found = expected.find { |x| x.identifier == result.identifier }
+      expect(result.identifier).to eq(found.identifier)
+    end
   end
   
   it "allows all released domains to be found" do
@@ -61,7 +61,7 @@ describe SdtmModelDomain do
   
   it "allows the domain to be exported as JSON" do
     item = SdtmModelDomain.find("M-CDISC_SDTMMODEL_INTERVENTIONS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-    write_yaml_file(item.to_json, sub_dir, "sdtm_model_domain_to_json.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "sdtm_model_domain_to_json.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_domain_to_json.yaml")
     expect(item.to_json).to eq(expected)
   end

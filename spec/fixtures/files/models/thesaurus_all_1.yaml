@@ -1,0 +1,171 @@
+---
+- !ruby/object:Thesaurus
+  children: []
+  origin: ''
+  changeDescription: ''
+  creationDate: 2014-03-28 00:00:00.000000000 +00:00
+  lastChangeDate: 2014-03-28 00:00:00.000000000 +00:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_CDISCTerminology-35
+    registrationAuthority: &2 !ruby/object:IsoRegistrationAuthority
+      id: RA-084433759
+      number: 084433759
+      scheme: DUNS
+      namespace: &1 !ruby/object:IsoNamespace
+        id: NS-CDISC
+        namespace: http://www.assero.co.uk/MDRItems
+        name: Clinical Data Interchange Standards Consortium
+        shortName: CDISC
+      owner: false
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2014-03-28 00:00:00.000000000 Z
+    until_date: 2014-03-28 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Qualified
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_CDISCTerminology-35
+    namespace: *1
+    identifier: CDISC Terminology
+    versionLabel: '2014-03-28'
+    version: 35
+    semantic_version: !ruby/object:SemanticVersion
+      major: 35
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: Thesaurus
+  id: TH-CDISC_CDISCTerminology
+  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V35
+  label: CDISC Terminology 2014-03-28
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:Thesaurus
+  children: []
+  origin: ''
+  changeDescription: ''
+  creationDate: 2014-06-27 00:00:00.000000000 +01:00
+  lastChangeDate: 2014-06-27 00:00:00.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_CDISCTerminology-36
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2014-06-27 00:00:00.000000000 Z
+    until_date: 2014-06-27 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Qualified
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_CDISCTerminology-36
+    namespace: *1
+    identifier: CDISC Terminology
+    versionLabel: '2014-06-27'
+    version: 36
+    semantic_version: !ruby/object:SemanticVersion
+      major: 36
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: Thesaurus
+  id: TH-CDISC_CDISCTerminology
+  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V36
+  label: CDISC Terminology 2014-06-27
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:Thesaurus
+  children: []
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-12-20 00:00:00.000000000 +00:00
+  lastChangeDate: 2013-12-20 00:00:00.000000000 +00:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_CDISCTerminology-34
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2013-12-20 00:00:00.000000000 Z
+    until_date: 2013-12-20 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Qualified
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_CDISCTerminology-34
+    namespace: *1
+    identifier: CDISC Terminology
+    versionLabel: '2013-12-20'
+    version: 34
+    semantic_version: !ruby/object:SemanticVersion
+      major: 34
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: Thesaurus
+  id: TH-CDISC_CDISCTerminology
+  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V34
+  label: CDISC Terminology 2013-12-20
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:Thesaurus
+  children: []
+  origin: ''
+  changeDescription: Creation
+  creationDate: 2015-11-22 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-01-01 00:00:00.000000000 +00:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-SPONSOR_CT
+    registrationAuthority: !ruby/object:IsoRegistrationAuthority
+      id: RA-123456789
+      number: '123456789'
+      scheme: DUNS
+      namespace: &3 !ruby/object:IsoNamespace
+        id: NS-ACME
+        namespace: http://www.assero.co.uk/MDRItems
+        name: ACME Pharma
+        shortName: ACME
+      owner: true
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2100-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Qualified
+    current: true
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-SPONSOR_CT-1
+    namespace: *3
+    identifier: CDISC EXT
+    versionLabel: '0.1'
+    version: 1
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: Thesaurus
+  id: TH-SPONSOR_CT-1
+  namespace: http://www.assero.co.uk/MDRThesaurus/ACME/V1
+  label: CDISC Extensions
+  properties: []
+  links: []
+  extension_properties: []

@@ -96,11 +96,11 @@ $(document).ready(function() {
       clearCurrent();
       processQueue();
       $("#graph_focus").prop("disabled", true);
-      addSpinner();
+      spAddSpinner("#graph_running");
     } else {
       drawGraphForce();
       $("#graph_focus").prop("disabled", false);
-      removeSpinner();
+      spRemoveSpinner("#graph_running");
     }
   });
 
@@ -238,14 +238,14 @@ $(document).ready(function() {
       next(item);
     } else {
       drawGraphForce();
-      removeSpinner();
+      spRemoveSpinner("#graph_running");
     }
   }
 
   function clearQueue() {
     queue = [];
     asked = {};
-    removeSpinner();
+    spRemoveSpinner("#graph_running");
   }
 
   function addCurrentToQueue() {
@@ -260,14 +260,6 @@ $(document).ready(function() {
     currentNode = null;
     currentThis = null;
     refreshLimit = C_REFRESH_START; 
-  }
-
-  function removeSpinner() {
-    $("#graph_running > span").removeClass('glyphicon-spin');
-  }
-
-  function addSpinner() {
-    $("#graph_running > span").addClass('glyphicon-spin');
   }
 
 });

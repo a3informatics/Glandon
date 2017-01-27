@@ -1,4 +1,9 @@
+var tsCallBack = null; // Callback function
+
 $(document).ready( function() {
+
+  $("#notepad_adding").prop("disabled", true);
+  
   var id = document.getElementById("thesaurus_id");
   var namespace = document.getElementById("thesaurus_namespace");
   var counter = document.getElementById("notepadAdd")
@@ -76,7 +81,6 @@ $(document).ready( function() {
       return;
     });
 
-
   // Handle click on terminology table
   $('#searchTable tbody').on('click', 'tr', function () {
     if (currentRef != null) {
@@ -96,25 +100,35 @@ $(document).ready( function() {
     if (currentRef != null) {
       var row = searchTable.row(currentRef).index();
       var data = searchTable.row(row).data();
-      if (data.identifier == data.parentIdentifier) {
-        displayWarning("You need to select an item not a code list.");
-      } else {
-        $.ajax({
-          url: "/notepads/create_term",
-          type: 'POST',
-          data: { "notepad": {"item_id": data.id, "item_ns": data.namespace }},
-          success: function(result){
-            var count = result['count'];
-            counter.innerHTML = 'Notepad+ <span class="badge">' + count + '</span>'
-          },
-          error: function(xhr, status, error){
-            handleAjaxError(xhr, status, error);
+      spAddSpinner("#notepad_adding");
+      $.ajax({
+        url: "/notepads/create_term",
+        type: 'POST',
+        data: { "notepad": {"item_id": data.id, "item_ns": data.namespace }},
+        success: function(result){
+          spRemoveSpinner("#notepad_adding");
+          var count = result['count'];
+          tsUpdate(count);
+          if (tsCallBack != null) {
+            tsCallBack();
           }
-        });
-      }
+        },
+        error: function(xhr, status, error){
+          spRemoveSpinner("#notepad_adding");
+          handleAjaxError(xhr, status, error);
+        }
+      });
     } else {
       displayWarning("You need to select an item.");
     }
   });
 
 });
+
+function tsInit(callback) {
+  tsCallBack = callback;
+}
+
+function tsUpdate(count) {
+  $("#notepadAdd").html('Notepad+ <span class="badge">' + count + '</span>');
+}

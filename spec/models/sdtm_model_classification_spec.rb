@@ -62,21 +62,23 @@ describe SdtmModelClassification do
   end
 
   it "allows all leaf labels to be returned" do
-    result = SdtmModelClassification.all_leaf("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-    json = []
-    result.each {|tc| json << tc.to_json}
-    #write_yaml_file(json, sub_dir, "sdtm_model_classification_all_leaf.yaml")
+    results = SdtmModelClassification.all_leaf("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    #write_yaml_file(results, sub_dir, "sdtm_model_classification_all_leaf.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_classification_all_leaf.yaml")
-    expect(json).to eq(expected)
+    results.each do |result|
+      found = expected.find { |x| x.id == result.id }
+      expect(result.id).to eq(found.id)
+    end
   end
 
   it "allows all parent labels to be returned" do
-    result = SdtmModelClassification.all_parent("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-    json = []
-    result.each {|tc| json << tc.to_json}
-    #write_yaml_file(json, sub_dir, "sdtm_model_classification_all_parent.yaml")
+    results = SdtmModelClassification.all_parent("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    #write_yaml_file(results, sub_dir, "sdtm_model_classification_all_parent.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_classification_all_parent.yaml")
-    expect(json).to eq(expected)
+    results.each do |result|
+      found = expected.find { |x| x.id == result.id }
+      expect(result.id).to eq(found.id)
+    end
   end
 
   it "allows all child labels to be returned" do

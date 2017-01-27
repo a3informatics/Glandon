@@ -65,8 +65,9 @@ describe Form do
     expected[2] = {:id => "F-ACME_VSBASELINE1"}
     results = Form.all
     expect(results.count).to eq(3)
-    expected.each_with_index do |x, index|
-      expect(results[index].id).to eq(expected[index][:id])
+    results.each do |result|
+      found = expected.find { |x| x[:id] == result.id }
+      expect(result.id).to eq(found[:id])
     end
   end
 

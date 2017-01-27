@@ -177,7 +177,7 @@ function saveRest() {
   var data;
   var currentSave = JSON.stringify(domainDefinition);
   if (currentSave !== previousSave) {
-    addSpinner();
+    spAddSpinner("#saving");
     method = 'PUT';
     domain = domainDefinition.managed_item;
     url = "/sdtm_user_domains/" + domain['id'];
@@ -189,12 +189,12 @@ function saveRest() {
       dataType: 'json',
       contentType: 'application/json',
       success: function(result){
-        removeSpinner();
+        spRemoveSpinner("#saving");
         ttSave();
       },
       error: function(xhr, status, error){
         handleAjaxError (xhr, status, error);
-        removeSpinner();
+        spRemoveSpinner("#saving");
       }
     });
     previousSave = currentSave; 
@@ -263,14 +263,6 @@ function clearSelect() {
   $("#domainInfo").addClass('hidden');
   $("#variableInfo").addClass('hidden');
   $("#markdown_panel").addClass('hidden');
-}
-  
-function removeSpinner() {
-  $("#saving > span").removeClass('glyphicon-spin');
-}
-
-function addSpinner() {
-  $("#saving > span").addClass('glyphicon-spin');
 }
 
 // Function for page unload.

@@ -38,15 +38,14 @@ describe SdtmIgDomain do
   end
 
   it "allows all domains to be found" do
-    result = SdtmIgDomain.all 
-    expect(result.count).to eq(41)
-    expect(result[0].identifier).to eq("SDTM IG VS")
-    expect(result[5].identifier).to eq("SDTM IG MH")
-    expect(result[10].identifier).to eq("SDTM IG TI")
-    expect(result[15].identifier).to eq("SDTM IG SE")
-    expect(result[20].identifier).to eq("SDTM IG EX")
-    expect(result[30].identifier).to eq("SDTM IG TE")
-    expect(result[40].identifier).to eq("SDTM IG DM")
+    results = SdtmIgDomain.all
+    #write_yaml_file(results, sub_dir, "sdtm_ig_domain_all.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_ig_domain_all.yaml")
+    expect(results.count).to eq(41)
+    results.each do |result|
+      found = expected.find { |x| x.identifier == result.identifier }
+      expect(result.identifier).to eq(found.identifier)
+    end
   end
   
   it "allows all released domains to be found" do
@@ -62,8 +61,8 @@ describe SdtmIgDomain do
   
   it "allows the domain to be exported as JSON" do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-    write_yaml_file(item.to_json, sub_dir, "sdtm_model_domain_to_json.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_model_domain_to_json.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "sdtm_ig_domain_to_json.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_ig_domain_to_json.yaml")
     expect(item.to_json).to eq(expected)
   end
   

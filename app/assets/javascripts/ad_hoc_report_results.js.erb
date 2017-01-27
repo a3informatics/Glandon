@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var reportId = document.getElementById("report_id").value;
   var resultsTable;
   
-  addSpinner();
+  spAddSpinner("#running");
   getStatus();
 
   function statusTimeout() {
@@ -40,7 +40,7 @@ $(document).ready(function() {
 	    success: function(result){
 	      if (!result.running) {
 	      	getResults();
-	      	removeSpinner();
+	      	spRemoveSpinner("#running");
 	      } else {
 	      	statusTimeout();
 	      	// Just load the table once to set up page nicely.
@@ -50,14 +50,6 @@ $(document).ready(function() {
 	      }
 	    }
 	  });
-	}
-
-	function removeSpinner() {
-  	$("#running > span").removeClass('glyphicon-spin');
-	}
-
-	function addSpinner() {
-	  $("#running > span").addClass('glyphicon-spin');
 	}
 
 });

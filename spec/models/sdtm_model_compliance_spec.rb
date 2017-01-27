@@ -60,12 +60,13 @@ describe SdtmModelCompliance do
   end
 
   it "allows all labels to be returned" do
-    result = SdtmModelCompliance.all("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-    json = []
-    result.each {|tc| json << tc.to_json}
-    #write_yaml_file(json, sub_dir, "sdtm_model_compliance_all.yaml")
+    results = SdtmModelCompliance.all("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+    #write_yaml_file(results, sub_dir, "sdtm_model_compliance_all.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_compliance_all.yaml")
-    expect(json).to eq(expected)
+    results.each do |result|
+      found = expected.find { |x| x.id == result.id }
+      expect(result.id).to eq(found.id)
+    end
   end
 
   it "allows default label to be returned" do

@@ -10,7 +10,7 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 %w( colour unload print ajax_requests rspec_helper panel_collapse
-  token_timer
+  token_timer spinner
   field_validation
   iso_concept_system_viewer 
   iso_concept_graph iso_concept_impact

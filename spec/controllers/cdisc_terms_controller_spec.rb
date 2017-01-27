@@ -14,6 +14,29 @@ describe CdiscTermsController do
       return "controllers"
     end
 
+    def standard_params
+      params = 
+      {
+        :draw => "1", 
+        :columns =>
+        {
+          "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+          "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+          "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+          "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+          "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+          "5" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
+        }, 
+        :order => { "0" => { :column => "0", :dir => "asc" }}, 
+        :start => "0", 
+        :length => "15", 
+        :search => { :value => "", :regex => "false" }, 
+        :id => "TH-CDISC_CDISCTerminology", 
+        :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
+      }
+      return params
+    end
+
     before :all do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -82,13 +105,13 @@ describe CdiscTermsController do
 
     it "obtains the search results" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V39", :offset => "20", :limit => "20" }
+      params = standard_params
+      params[:columns]["5"][:search][:value] = "cerebral"
+      params[:search][:value] = "Temporal"
+      results = CdiscTerm.search(params)
       get :search_results, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "cdisc_term_controller_next.txt")
-      expected = read_text_file_2(sub_dir, "cdisc_term_controller_next.txt")
-      expect(response.body).to eq(expected)
     end
 
     it "calculates the compare results, no file" do

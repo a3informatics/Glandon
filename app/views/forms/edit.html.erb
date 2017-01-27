@@ -1,5 +1,6 @@
-<%= stylesheet_link_tag    'd3_tree', 'form_editor', 'thesauri_search_new' %>
-<%= javascript_include_tag 'd3_tree', 'form_editor', 'ajax_requests', 'form_utility', 'd3_editor', 'unload', 'field_validation', 'token_timer', 'thesauri_search_new', 'panel_collapse' %>
+<%= stylesheet_link_tag    'd3_tree', 'thesauri_search_new', 'panel_collapse', 'spinner' %>
+<%= javascript_include_tag 'd3_tree', 'form_editor', 'ajax_requests', 'form_utility', 'd3_editor', 'unload', 'field_validation' %>
+<%= javascript_include_tag 'token_timer', 'thesauri_search_new', 'panel_collapse', 'spinner' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
@@ -8,17 +9,7 @@
 </script>
 <script id="datatype_map" type="text/json">
   <%= raw BaseDatatype.to_json %>
-</script>
-<style type="text/css">
-	.clickable{
-    cursor: pointer;   
-}
-
-.panel-heading span {
-	margin-top: -20px;
-	font-size: 15px;
-}
-</style>
+ </script>
 <form id="main_form">
 	<div id="title_row" class="row">
 	  <div class="col-md-12">

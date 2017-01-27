@@ -1,0 +1,2306 @@
+---
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:10.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGSV-3
+    registrationAuthority: &2 !ruby/object:IsoRegistrationAuthority
+      id: RA-084433759
+      number: 084433759
+      scheme: DUNS
+      namespace: &1 !ruby/object:IsoNamespace
+        id: NS-CDISC
+        namespace: http://www.assero.co.uk/MDRItems
+        name: Clinical Data Interchange Standards Consortium
+        shortName: CDISC
+      owner: false
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGSV-3
+    namespace: *1
+    identifier: SDTM IG SV
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGSV
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Subject Visits
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:56.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGMS-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGMS-3
+    namespace: *1
+    identifier: SDTM IG MS
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGMS
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Microbiology Susceptibility
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:54.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGMI-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGMI-3
+    namespace: *1
+    identifier: SDTM IG MI
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGMI
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Microscopic Findings
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:15.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGTU-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGTU-3
+    namespace: *1
+    identifier: SDTM IG TU
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGTU
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Tumor Identifier
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:54.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGMH-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGMH-3
+    namespace: *1
+    identifier: SDTM IG MH
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGMH
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Medical History
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:11.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGTA-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGTA-3
+    namespace: *1
+    identifier: SDTM IG TA
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGTA
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Trial Arms
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:51.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGHO-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGHO-3
+    namespace: *1
+    identifier: SDTM IG HO
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGHO
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Healthcare Encounters
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:49.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGDA-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGDA-3
+    namespace: *1
+    identifier: SDTM IG DA
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGDA
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Drug Accountability
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:15.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGTS-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGTS-3
+    namespace: *1
+    identifier: SDTM IG TS
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGTS
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Trial Summary
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:12.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGTI-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGTI-3
+    namespace: *1
+    identifier: SDTM IG TI
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGTI
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Trial Inclusion/Exclusion Criteria
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:00.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGPR-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGPR-3
+    namespace: *1
+    identifier: SDTM IG PR
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGPR
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Procedure
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:18.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGVS-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGVS-3
+    namespace: *1
+    identifier: SDTM IG VS
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGVS
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: 'Vital Signs '
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:55.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGMO-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGMO-3
+    namespace: *1
+    identifier: SDTM IG MO
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGMO
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Morphology Findings
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:02.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGQS-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGQS-3
+    namespace: *1
+    identifier: SDTM IG QS
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGQS
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Questionnaires
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:13.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGTR-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGTR-3
+    namespace: *1
+    identifier: SDTM IG TR
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGTR
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Tumor Results
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:07.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGSE-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGSE-3
+    namespace: *1
+    identifier: SDTM IG SE
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGSE
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Subject Element
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:52.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGLB-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGLB-3
+    namespace: *1
+    identifier: SDTM IG LB
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGLB
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Laboratory Data
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:51.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGIE-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGIE-3
+    namespace: *1
+    identifier: SDTM IG IE
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGIE
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Inclusion/Exclusion
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:53.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGMB-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGMB-3
+    namespace: *1
+    identifier: SDTM IG MB
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGMB
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Microbiology
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:09.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGSU-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGSU-3
+    namespace: *1
+    identifier: SDTM IG SU
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGSU
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Substance Use
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:50.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGEX-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGEX-3
+    namespace: *1
+    identifier: SDTM IG EX
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGEX
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Exposure
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:49.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGDS-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGDS-3
+    namespace: *1
+    identifier: SDTM IG DS
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGDS
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Disposition
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:17.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGTV-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGTV-3
+    namespace: *1
+    identifier: SDTM IG TV
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGTV
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Trial Visits
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:49.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGCM-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGCM-3
+    namespace: *1
+    identifier: SDTM IG CM
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGCM
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Concomitant Meds
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:04.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGRP-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGRP-3
+    namespace: *1
+    identifier: SDTM IG RP
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGRP
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Reproductive System Findings
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:05.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGRS-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGRS-3
+    namespace: *1
+    identifier: SDTM IG RS
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGRS
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Disease Response
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:59.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGPE-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGPE-3
+    namespace: *1
+    identifier: SDTM IG PE
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGPE
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Physical Exam
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:49.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGDD-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGDD-3
+    namespace: *1
+    identifier: SDTM IG DD
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGDD
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Death Diagnosis
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:08.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGSR-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGSR-3
+    namespace: *1
+    identifier: SDTM IG SR
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGSR
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Skin Response
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:49.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGCO-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGCO-3
+    namespace: *1
+    identifier: SDTM IG CO
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGCO
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Comments
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:12.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGTE-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGTE-3
+    namespace: *1
+    identifier: SDTM IG TE
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGTE
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Trial Elements
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:06.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGSC-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGSC-3
+    namespace: *1
+    identifier: SDTM IG SC
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGSC
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Subject Characteristics
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:48.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGCE-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGCE-3
+    namespace: *1
+    identifier: SDTM IG CE
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGCE
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Clinical Events
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:49.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGDV-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGDV-3
+    namespace: *1
+    identifier: SDTM IG DV
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGDV
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Protocol Deviations
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:48.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGAE-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGAE-3
+    namespace: *1
+    identifier: SDTM IG AE
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGAE
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Adverse Events
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:58.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGPC-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGPC-3
+    namespace: *1
+    identifier: SDTM IG PC
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGPC
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Pharmacokinetic Concentration
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:50.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGFA-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGFA-3
+    namespace: *1
+    identifier: SDTM IG FA
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGFA
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Findings About Events or Interventions
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:34:00.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGPP-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGPP-3
+    namespace: *1
+    identifier: SDTM IG PP
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGPP
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Pharmacokinetic Parameters
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:52.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGIS-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGIS-3
+    namespace: *1
+    identifier: SDTM IG IS
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGIS
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Immunogenicity Specimen Assessments
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:50.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGEG-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGEG-3
+    namespace: *1
+    identifier: SDTM IG EG
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGEG
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Electrocardiogram
+  properties: []
+  links: []
+  extension_properties: []
+- !ruby/object:SdtmIgDomain
+  prefix: "--"
+  structure: ''
+  children: []
+  model_ref: !ruby/object:OperationalReferenceV2
+    enabled: true
+    optional: false
+    ordinal: 0
+    local_label: ''
+    subject_ref: 
+    rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    id: ''
+    namespace: ''
+    label: ''
+    properties: []
+    links: []
+    extension_properties: []
+    triples: {}
+  rule: ''
+  ordinal: 0
+  origin: ''
+  changeDescription: ''
+  creationDate: 2013-11-26 00:00:00.000000000 +00:00
+  lastChangeDate: 2016-09-02 23:33:49.000000000 +01:00
+  explanatoryComment: ''
+  registrationState: !ruby/object:IsoRegistrationState
+    id: RS-CDISC_SDTMIGDM-3
+    registrationAuthority: *2
+    registrationStatus: Standard
+    administrativeNote: ''
+    effective_date: 2016-01-01 00:00:00.000000000 Z
+    until_date: 2016-01-01 00:00:00.000000000 Z
+    unresolvedIssue: ''
+    administrativeStatus: ''
+    previousState: Standard
+    current: false
+  scopedIdentifier: !ruby/object:IsoScopedIdentifier
+    id: SI-CDISC_SDTMIGDM-3
+    namespace: *1
+    identifier: SDTM IG DM
+    versionLabel: '3.2'
+    version: 3
+    semantic_version: !ruby/object:SemanticVersion
+      major: 0
+      minor: 0
+      patch: 0
+  tag_refs: []
+  branched_from_ref: 
+  triples: {}
+  rdf_type: IgDomain
+  id: IG-CDISC_SDTMIGDM
+  namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  label: Demographics
+  properties: []
+  links: []
+  extension_properties: []

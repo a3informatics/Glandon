@@ -63,36 +63,9 @@ class CdiscTermsController < ApplicationController
   
   def search_results
     authorize CdiscTerm, :view?
-    count = Thesaurus.count(params)
-    items = Thesaurus.search_new(params)
-    @results = {
-      :draw => params[:draw],
-      :recordsTotal => params[:length],
-      :recordsFiltered => count.to_s,
-      :data => items }
-    render json: @results
+    results = Thesaurus.search(params)
+    render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
   end
-
-=begin
-  def next
-    authorize CdiscTerm, :view?
-    items = []
-    more = true
-    @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)
-    limit = params[:limit].to_i
-    offset = params[:offset].to_i
-    items = CdiscTerm.next(offset, limit, params[:namespace])
-    if items.count < limit
-      more = false
-    end
-    results = {}
-    results[:offset] = offset + items.count
-    results[:limit] = limit
-    results[:more] = more
-    results[:data] = items
-    render :json => results, :status => 200
-  end
-=end
 
   def compare_calc
     authorize CdiscTerm, :view?

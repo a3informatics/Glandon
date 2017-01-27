@@ -1,6 +1,11 @@
-<button id="notepadAdd" class="btn btn-primary" type="button">
-	Notepad+ <span class="badge"><%= @items.count %></span>
-</button>
+<div class="btn-group" role="group" aria-label="First group">
+  <button id="notepad_adding" type="button" class="btn btn-default">
+    <span class="glyphicon glyphicon-refresh"></span>
+  </button>
+	<button id="notepadAdd" class="btn btn-primary" type="button">
+		Notepad+ <span class="badge"><%= @items.count %></span>
+	</button>
+</div>
 <h4></h4>
 <table id="searchTable" class="table table-striped table-bordered table-condensed">
 	<thead>

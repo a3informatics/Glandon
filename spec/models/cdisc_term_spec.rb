@@ -212,7 +212,10 @@ describe CdiscTerm do
     results = CdiscTerm.submission_difference(old_ct, new_ct)
     #write_yaml_file(results, sub_dir, "cdisc_term_submission_difference.yaml")
     expected = read_yaml_file(sub_dir, "cdisc_term_submission_difference.yaml")
-    expect(results.to_json).to eq(expected.to_json)
+    results.each do |key, result|
+      found = expected[key]
+      expect(result.to_json).to eq(found.to_json)
+    end
   end
 
   it "determines impact of changes in submission values" #do

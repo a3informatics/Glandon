@@ -62,12 +62,13 @@ describe SdtmModelDatatype do
   end
 
   it "allows all labels to be returned" do
-    result = SdtmModelDatatype.all("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-    json = []
-    result.each {|tc| json << tc.to_json}
-    #write_yaml_file(json, sub_dir, "sdtm_model_datatype_all.yaml")
+    results = SdtmModelDatatype.all("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    #write_yaml_file(results, sub_dir, "sdtm_model_datatype_all.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_datatype_all.yaml")
-    expect(json).to eq(expected)
+    results.each do |result|
+      found = expected.find { |x| x.id == result.id }
+      expect(result.id).to eq(found.id)
+    end
   end
 
   it "allows default label to be returned" do
