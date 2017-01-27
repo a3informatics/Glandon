@@ -315,7 +315,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Search').click
+      find(:xpath, "//tr[contains(.,'1.0.0')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
       expect(page).to have_button('Notepad+')
       wait_for_ajax(5) # Big load
