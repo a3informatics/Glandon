@@ -97,11 +97,11 @@ $(document).ready(function() {
       },
       "bProcessing": true,
       "bInfo" : false,
-      "searching": false,
+      //"searching": false,
       "pageLength": 5,
       "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
       "language": {
-             "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+          "processing": "<img src='<%= asset_path('processing.gif') %>'>"
         },
       "columns": [
         {"data" : "identifier", "width" : "30%"},
@@ -537,7 +537,7 @@ function hideCi() {
 }
 
 function clearSelect() {
-  $('.panel').addClass('hidden');
+  $('.panel-form').addClass('hidden');
   $("#general_panel").removeClass('hidden');
 }
 

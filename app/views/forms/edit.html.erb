@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag    'd3_tree', 'form_editor'%>
-<%= javascript_include_tag 'd3_tree', 'form_editor', 'ajax_requests', 'form_utility', 'd3_editor', 'unload', 'field_validation', 'token_timer' %>
+<%= stylesheet_link_tag    'd3_tree', 'form_editor', 'thesauri_search_new' %>
+<%= javascript_include_tag 'd3_tree', 'form_editor', 'ajax_requests', 'form_utility', 'd3_editor', 'unload', 'field_validation', 'token_timer', 'thesauri_search_new', 'panel_collapse' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
@@ -9,10 +9,29 @@
 <script id="datatype_map" type="text/json">
   <%= raw BaseDatatype.to_json %>
 </script>
+<style type="text/css">
+	.clickable{
+    cursor: pointer;   
+}
+
+.panel-heading span {
+	margin-top: -20px;
+	font-size: 15px;
+}
+</style>
 <form id="main_form">
-	<div class="row">
-	  <div class="col-md-7">
+	<div id="title_row" class="row">
+	  <div class="col-md-12">
       <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Edit:", :item => @form} %>
+		</div>
+	</div>
+	<div id="form_row" class="row">
+		<div class="col-md-7">
+      <div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Form Overview</h3>
+			  </div>
+			  <div class="panel-body">
 		  <div class="btn-group" role="group" aria-label="First group">
 	      <button id="saving" type="button" class="btn btn-default">
 	        <span class="glyphicon glyphicon-refresh"></span>
@@ -21,13 +40,30 @@
 	      <button type="submit" id="save" class="btn btn-primary">Save</button>
 	    </div>
 	    <button type="button" id="close" class="btn btn-primary">Close</button>
-	    <div id="d3">
+
+			<div id="d3">
         <!-- D3 Area -->
       </div>
+  </div>
+			</div>
+      
 	  </div>
 	  <div class="col-md-5" >
-	  	<%= render partial: "shared/formEditor"%>
+	  	<%= render partial: "shared/formEditor" %>
 	  </div>
+	</div>
+	<div id="current_term_row" class="row">
+	  <div class="col-md-12">
+	  	<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Current Terminologies</h3>
+			    <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+			  </div>
+			  <div class="panel-body">
+		      <%= render partial: "shared/termSearchCurrent" %>
+			  </div>
+			</div>
+		</div>
 	</div>
 </form>
 <input type="hidden" id="token" value="<%= @token.id %>">

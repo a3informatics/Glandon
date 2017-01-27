@@ -100,9 +100,9 @@ $(document).ready( function() {
         displayWarning("You need to select an item not a code list.");
       } else {
         $.ajax({
-          url: "../notepads/create_term",
+          url: "/notepads/create_term",
           type: 'POST',
-          data: { "notepad": {"item_id": data.id, "item_ns": namespace.value }},
+          data: { "notepad": {"item_id": data.id, "item_ns": data.namespace }},
           success: function(result){
             var count = result['count'];
             counter.innerHTML = 'Notepad+ <span class="badge">' + count + '</span>'

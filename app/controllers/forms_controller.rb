@@ -64,6 +64,7 @@ class FormsController < ApplicationController
       flash[:error] = "The item is locked for editing by another user."
       redirect_to request.referer
     end
+    @items = Notepad.where(user_id: current_user).find_each
   end
 
   def clone
