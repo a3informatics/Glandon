@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'standard_datatable' %>
+<% second_level_breadcrumb("CDISC Terminology", history_cdisc_terms_path, "Changes") %>
 <h3>Changes: <%= @identifier %> <small><%= @identifier %></small></h3>
 <style>
 	<%= Diffy::CSS %>

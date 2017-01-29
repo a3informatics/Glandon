@@ -213,7 +213,7 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(3, ["Completion Instructions:", ""])     
     end
 
-    it "allows a form show page to be viewed, view tree details, VS BC", js: true do
+    it "allows a form show page to be viewed, view tree details, VS BC - WILL FAIL CURRENTLY", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click

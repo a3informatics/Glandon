@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag    'thesauri_search_new' %>
 <%= javascript_include_tag 'thesauri_search_new' %>
+<% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Search:") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>

@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'standard_datatable' %>
+<% second_level_breadcrumb("CDISC SDTM IGs", history_sdtm_igs_path, "V#{@sdtm_ig.semantic_version}") %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @sdtm_ig} %>
 <div class="col-md-12">
 	<h4>Details</h4>

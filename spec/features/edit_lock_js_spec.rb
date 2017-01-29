@@ -60,7 +60,7 @@ describe "Edit Locks", :type => :feature do
       ui_button_disabled('token_timer')
       page.find("#token_timer")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
-      sleep Token.get_timeout - @user1.edit_lock_warning.to_i + 2
+      sleep Token.get_timeout - @user1.edit_lock_warning.to_i - 2 # Needs to be tweaked to get in the 5 sec warnign window period
       page.find("#token_timer")[:class].include?("btn-warning")
       sleep (@user1.edit_lock_warning.to_i / 2)
       expect(page).to have_content("The edit lock is about to timeout!")

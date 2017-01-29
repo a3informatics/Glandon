@@ -107,6 +107,7 @@ class ThesauriController < ApplicationController
   def show
     authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id], params[:namespace])
+    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
     respond_to do |format|
       format.html
       format.json do

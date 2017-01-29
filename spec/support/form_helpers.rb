@@ -39,7 +39,7 @@ module FormHelpers
   end
 
   def reload_form(identifier)
-    click_link 'Forms'
+    click_link 'main_nav_f'
     expect(page).to have_content 'Index: Forms' 
     ui_main_show_all
     expect(page).to have_content "#{identifier}" 

@@ -7,9 +7,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Pundit after action, verify authorized (checks if authorization was checked)
-	after_action :verify_authorized, unless: :devise_controller?
+	before_action :before_action_steps
 
-	# Pundit exception for not authorized
+	# Pundit after action, verify authorized (checks if authorization was checked)
+  after_action :verify_authorized, unless: :devise_controller?
+
+  # Pundit exception for not authorized
   rescue_from Pundit::NotAuthorizedError, :with => :not_authorized_method
 
   def not_authorized_method
@@ -23,6 +26,7 @@ class ApplicationController < ActionController::Base
   rescue_from Exceptions::CreateError, :with => :crud_error
   rescue_from Exceptions::UpdateError, :with => :crud_error
 
+  # Report a CRUD error
   def crud_error(exception)
     # TODO: This is wierd but not going to worry about it for the mo. Something odd in the 
     # exception def?
@@ -31,6 +35,8 @@ class ApplicationController < ActionController::Base
     true
   end
   
+  # Convert triples to a string
+  # @todo Move to a better location?
   def to_turtle(triples)
     result = ""
     triples.each do |key, triple_array|
@@ -48,6 +54,11 @@ class ApplicationController < ActionController::Base
       end
     end
     return result
+  end
+
+  # Clear the breadcrumbs session variable before any controller action.
+  def before_action_steps
+    session[:breadcrumbs] = ""
   end
 
 end

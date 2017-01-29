@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'standard_datatable' %>
+<% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Show:") %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @thesaurus} %>
 <div class="col-md-12">
   <h4>Details</h4>

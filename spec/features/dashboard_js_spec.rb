@@ -59,7 +59,6 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_field('subjectId', disabled: true)
       expect(find('#subjectNs').value).to eq 'http://www.assero.co.uk/MDRItems'
       expect(find('#subjectId').value).to eq 'SI-ACME_BC_C16358-1'      
-      #pause
       find(:xpath, "//table[@id='main']/tbody/tr/td", :text => /\A1\z/).click
       click_button 'View'
       #pause
@@ -84,7 +83,6 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Triple Store View'
       expect(page).to have_field('subjectNs', disabled: true)
       expect(page).to have_field('subjectId', disabled: true)
-      #pause
       expect(find('#subjectNs').value).to eq 'http://www.assero.co.uk/MDRBCs/V1'
       expect(find('#subjectId').value).to eq 'BC-ACME_BC_C16358'      
       click_button 'Gr+'

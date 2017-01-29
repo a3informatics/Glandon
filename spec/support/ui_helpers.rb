@@ -124,6 +124,34 @@ module UiHelpers
     expect(page).to have_selector(:css, "alert")
   end
 
+  # Breadcrumb
+  # ==========
+  def ui_check_breadcrumb(crumb_1, crumb_2, crumb_3)
+    if !crumb_1.empty?
+      li = find(:xpath, '//*[@id="breadcrumb_1"]')
+      expect(li.text).to eq(crumb_1)
+    end
+    if !crumb_2.empty?
+      li = find(:xpath, '//*[@id="breadcrumb_2"]')
+      expect(li.text).to eq(crumb_2)
+    end
+    if !crumb_3.empty?
+      li = find(:xpath, '//*[@id="breadcrumb_3"]')
+      expect(li.text).to eq(crumb_3)
+    end    
+  end
+
+  def ui_click_breadcrumb(index)
+    a = find(:xpath, "//*[@id=\"breadcrumb_#{index}\"]/a")
+    a.click
+  end
+
+  # Screen Size
+  # ===========
+  def set_screen_size(width=1200, height=786)
+    page.driver.browser.manage.window.resize_to(width, height)
+  end
+
   # Buttons etc
   # ===========
   def ui_click_close

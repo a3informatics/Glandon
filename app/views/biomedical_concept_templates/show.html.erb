@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'standard_datatable' %>
+<% third_level_managed_item_breadcrumb(@bct, "BC Templates", biomedical_concept_templates_path, @close_path, "Edit:") %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @bct} %>
 <div class="col-md-12">
 	<h4>Details</h4>

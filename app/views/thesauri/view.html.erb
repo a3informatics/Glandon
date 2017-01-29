@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag    'd3_tree' %>
 <%= javascript_include_tag 'd3_tree', 'thesauri_viewer', 'd3_editor' %>
+<% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "View:") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>

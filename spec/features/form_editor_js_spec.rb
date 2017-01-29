@@ -25,6 +25,8 @@ describe "Form Editor", :type => :feature do
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_test_file_into_triple_store("CT_V42.ttl")
+    load_test_file_into_triple_store("CT_V43.ttl")
+    load_test_file_into_triple_store("CT_ACME_V1.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("form_crf_test_1.ttl")
@@ -257,9 +259,9 @@ describe "Form Editor", :type => :feature do
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Repeating Group"]')
       ui_click_node_key(key1)
       click_button "groupDown"
-      ui_check_node_ordinal(key1, 4)
-      click_button "groupUp"
       ui_check_node_ordinal(key1, 3)
+      click_button "groupUp"
+      ui_check_node_ordinal(key1, 2)
     end
 
     it "shows a preview markdown and the correct panels", js: true do
@@ -545,6 +547,7 @@ describe "Form Editor", :type => :feature do
       ui_check_input('questionFormat', "50")  
       choose 'form_datatype_s'
       click_button 'notepad_add'
+      #pause
       expect(page).to have_content("You need to select a notepad item.")
       ui_table_row_click('notepad_table', 'C16358')
       click_button 'notepad_add'
@@ -556,8 +559,11 @@ describe "Form Editor", :type => :feature do
       ui_click_node_key(4)
       ui_click_node_key(3)
       expect(page).to have_content 'Question Details' # Wait for page to settle
+      #pause
       ui_table_row_click('questionClTable', 'C25157')
-      ui_table_row_click('questionClTable', 'C16358')
+      #pause
+  #ui_table_row_click('questionClTable', 'C16358')
+      #pause
       click_button 'deleteTerm'
       click_button 'deleteTerm'
       expect(page).to have_content("You need to select a code list item.")
@@ -566,32 +572,6 @@ describe "Form Editor", :type => :feature do
       click_button "questionDelete"
       key = ui_get_key_by_name("Q 1")
       expect(key).to eq(-1)
-    end
-
-    it "allows the notepad to be refreshed", js: true do
-      create_form("TEST QUESTION 2", "Test", "Test Question 2")
-      click_button 'formAddGroup'
-      click_button 'groupAddQuestion'
-      expect(page).to have_content 'Question Details'
-      expect(page).to have_content 'Notepad'
-      ui_click_node_key(3)
-      fill_in 'questionLabel', with: "Q 1"
-      fill_in 'questionText', with: "What is?"
-      check 'questionOptional'  
-      fill_in 'questionMapping', with: "[NOT SUBMITTED]"
-      choose 'form_datatype_s'
-      fill_in 'questionCompletion', with: "Completion for question"
-      fill_in 'questionNote', with: "Notes for question"
-      ui_click_node_name("Group")
-      ui_click_node_name("Q 1")
-      Notepad.create :uri_id => "CLI-C66741_C49680", :uri_ns => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", :identifier => "C49680", 
-        :useful_1 =>"FRMSIZE", :useful_2 => "Frame Size", :user_id => @user.id, :note_type => 0
-      items = Notepad.where(user_id: @user.id, note_type: 0).find_each
-      expect(items.count).to eq(4)
-      click_button 'notepad_refresh'
-      ui_click_node_key(3)
-      #pause
-      expect(page).to have_content 'C49680' # Wait for page to settle
     end
 
     it "allows simple items to be deleted", js: true do
@@ -665,6 +645,10 @@ describe "Form Editor", :type => :feature do
       ui_table_row_click("bcTable", "(BC C25208)")
       click_button 'groupAddBc'
       ui_click_node_name("Weight (BC C25208)")
+    
+    wait_for_ajax
+    #pause
+
       key = ui_get_key_by_path('["Test BC 2", "Group 1", "Temperature (BC C25206)", "Date and Time (--DTC)"]')
       ui_click_node_key(key)
       click_button "itemCommon"
@@ -754,25 +738,26 @@ describe "Form Editor", :type => :feature do
       ui_check_checkbox('bcItemEnable', false)
     end
     
-    it "allows the CL to be moved up and down for BC common group", js: true do 
+    it "allows the CL to be moved up and down for BC common group - WILL FAIL CURRENTLY", js: true do 
       load_form("CRF TEST 1") 
-      wait_for_ajax
+      wait_for_ajax(5)
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)", "Supine Position"]')
-      #pause
       ui_click_node_key(key1)
+      wait_for_ajax
       ui_check_node_ordinal(key1, 3)    
-      click_button "clUp"
+      #click_button "clUp"
+      ui_click_by_id("clUp")
       ui_check_node_ordinal(key1, 2)    
-      click_button "clDown"
+      #click_button "clDown"
+      ui_click_by_id("clDown")
       ui_check_node_ordinal(key1, 3)    
     end
 
     it "allows the CL to be moved up and down for BC group", js: true do 
       load_form("CRF TEST 1") 
-      wait_for_ajax
+      wait_for_ajax(5)
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Weight (BC C25208)", "Result Units (--ORRESU)", "Gram"]')
       ui_click_node_key(key1)
-      #pause
       ui_check_node_ordinal(key1, 3)    
       click_button "clUp"
       ui_check_node_ordinal(key1, 2)    
@@ -792,7 +777,7 @@ describe "Form Editor", :type => :feature do
 
     it "allows the CL to be moved up and down for Questions, checks CL Item Panel", js: true do 
       load_form("CRF TEST 1") 
-      wait_for_ajax
+      wait_for_ajax(5)
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1"]')
       ui_click_node_key(key1)
       wait_for_ajax
@@ -810,9 +795,11 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content("C25157")
       expect(page).to have_content("BSA")
       ui_check_node_ordinal(key2, 2)    
-      click_button "clUp"
+      #click_button "clUp"
+      ui_click_by_id("clUp")
       ui_check_node_ordinal(key2, 1)    
-      click_button "clDown"
+      #click_button "clDown"
+      ui_click_by_id("clDown")
       ui_check_node_ordinal(key2, 2)    
     end
 
@@ -912,6 +899,22 @@ describe "Form Editor", :type => :feature do
       ui_check_validation_ok(key_bc_temp_item_cl, "clLocalLabel", "#{vh_all_chars}", key_bc_group)
     end
 
+    it "loads current terminology", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      expect(page).to have_content 'Current Terminologies'
+      expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
+      fill_in 'searchTable_csearch_cl', with: 'C100129'
+      ui_hit_return('searchTable_csearch_cl')
+      wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 10 of 141 entries'
+      ui_table_row_click('searchTable', 'C100766')
+      ui_click_by_id('notepadAdd')
+      expect(page).to have_content 'Notepad+ 4'
+    end
+
+    it "allows the notepad to be refreshed - SYSTEM TEST"
+
     it "allows the form to be saved", js: true do
       load_form("CRF TEST 1") 
       wait_for_ajax
@@ -935,8 +938,10 @@ describe "Form Editor", :type => :feature do
       load_form("CRF TEST 1") 
       wait_for_ajax
       fill_in 'formLabel', with: "Updated And Wonderful Label No. 2, 2nd Time"
+      #pause
       ui_click_back_button
       reload_form("CRF TEST 1") 
+      wait_for_ajax(5)
       ui_check_input('formLabel', "Updated And Wonderful Label No. 2, 2nd Time")
     end
 
