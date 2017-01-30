@@ -2,6 +2,9 @@ $(document).ready(function() {
   
   initData();
   
+  // Set window resize.
+  window.addEventListener("resize", d3eReDisplay);
+
 });
 
 function initData () { 

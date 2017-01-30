@@ -116,6 +116,9 @@ $(document).ready(function() {
   initialNotepadLoad();
   displayNode(rootNode);
   
+  // Set window resize.
+  window.addEventListener("resize", d3eReDisplay);
+
   /* 
    * Notepad functions
    */

@@ -65,6 +65,9 @@ $(document).ready(function() {
   // Init D3
   d3gInit(colours, graphDistance);
   
+  // Set window resize.
+  window.addEventListener("resize", drawGraph);
+
   // Create the new node and add children to queue
   rootIndex = addNode(concept);
   addToQueue(concept, rootIndex);

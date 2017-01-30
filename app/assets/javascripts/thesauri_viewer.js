@@ -15,6 +15,10 @@ $(document).ready(function() {
     d3AdjustHeight(rootNode.children.length * 15);
   }
   d3eDisplayTree(rootNode.key);
+
+  // Set window resize.
+  window.addEventListener("resize", d3eReDisplay);
+
 });
  
 /*

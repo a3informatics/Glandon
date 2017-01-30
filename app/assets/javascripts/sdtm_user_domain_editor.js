@@ -37,6 +37,9 @@ $(document).ready(function() {
   initData();
   displayNode(rootNode);
 
+  // Set window resize.
+  window.addEventListener("resize", d3eReDisplay);
+
   /*
   * General Panel Actions
   */

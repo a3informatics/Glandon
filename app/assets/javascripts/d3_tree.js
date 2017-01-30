@@ -23,7 +23,8 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   if (d3HeightOverride) {
     height = d3HeightOverrideValue;
   } else {
-    height = $(window).height() - 200; 
+    //height = $(window).height() - 200; 
+    height = d3Div.clientHeight;
   }
   var tree = d3.layout.tree()
     .size([height, width - 160]);

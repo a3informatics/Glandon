@@ -45,6 +45,9 @@ $(document).ready(function() {
   // Init D3
   d3gInit(colours, 25);
   
+  // Set window resize.
+  window.addEventListener("resize", drawGraph);
+
   // Create the new node and add children
   miTable.processing(true);
   for (i=0; i<results.children.length; i++) {

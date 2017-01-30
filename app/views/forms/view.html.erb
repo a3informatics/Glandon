@@ -15,7 +15,7 @@
   <% end %>
   <%= link_to "CRF", crf_forms_path(:id => @form.id, :namespace => @form.namespace), :id => "form_view_crf", :class => "btn btn-primary" %>
   <%= link_to "aCRF", acrf_forms_path(:id => @form.id, :namespace => @form.namespace), :id => "form_view_acrf", :class => "btn btn-primary" %>
-  <div style="height: 800px;" id="d3">
+  <div class="d3-tree" id="d3">
     <!-- D3 Area -->
   </div>
 </div>

@@ -139,6 +139,7 @@ function d3eForceExpand(node) {
   d3eExpandHide(node); 
 } 
 
+
 /**
  * Displays the tree
  * 
@@ -152,6 +153,17 @@ function d3eDisplayTree(nodeKey) {
     d3eCurrentGRef = gRef;
     d3eCurrentNode = gRef.__data__;
     d3MarkNode(d3eCurrentGRef);
+  }
+}
+
+/**
+ * Redisplay tree
+ * 
+ * @return [Null]
+ */
+function d3eReDisplay() {
+  if (d3eCurrentNode != null) {
+    d3eDisplayTree(d3eCurrentNode .key);
   }
 }
 

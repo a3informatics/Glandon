@@ -5,6 +5,10 @@ $(document).ready(function() {
   initData();
   selectForm();
   displayForm(rootNode);
+
+  // Set window resize.
+  window.addEventListener("resize", d3eReDisplay);
+  
 });
 
 function initData () { 
