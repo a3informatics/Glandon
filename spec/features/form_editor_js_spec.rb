@@ -259,9 +259,9 @@ describe "Form Editor", :type => :feature do
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Repeating Group"]')
       ui_click_node_key(key1)
       click_button "groupDown"
-      ui_check_node_ordinal(key1, 3)
+      ui_check_node_ordinal(key1, 4)
       click_button "groupUp"
-      ui_check_node_ordinal(key1, 2)
+      ui_check_node_ordinal(key1, 3)
     end
 
     it "shows a preview markdown and the correct panels", js: true do

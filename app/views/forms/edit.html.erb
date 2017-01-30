@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag    'd3_tree', 'thesauri_search_new', 'panel_collapse', 'spinner' %>
-<% third_level_managed_item_breadcrumb(@form, "Forms", forms_path, @close_path, "Edit:") %>
 <%= javascript_include_tag 'd3_tree', 'form_editor', 'ajax_requests', 'form_utility', 'd3_editor', 'unload', 'field_validation' %>
 <%= javascript_include_tag 'token_timer', 'thesauri_search_new', 'panel_collapse', 'spinner' %>
+<% third_level_managed_item_breadcrumb(@form, "Forms", forms_path, @close_path, "Edit:") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
@@ -19,12 +19,7 @@
 	</div>
 	<div id="form_row" class="row">
 		<div class="col-md-7">
-      <div class="panel panel-default">
-			  <div class="panel-heading">
-			    <h3 class="panel-title">Form Overview</h3>
-			  </div>
-			  <div class="panel-body">
-		  		<div class="btn-group" role="group" aria-label="First group">
+      		<div class="btn-group" role="group" aria-label="First group">
 			      <button id="saving" type="button" class="btn btn-default">
 			        <span class="glyphicon glyphicon-refresh"></span>
 			      </button>
@@ -35,8 +30,6 @@
 					<div id="d3">
 		        <!-- D3 Area -->
 		      </div>
-		  	</div>
-			</div>
 	  </div>
 	  <div class="col-md-5" >
 	  	<%= render partial: "shared/formEditor" %>

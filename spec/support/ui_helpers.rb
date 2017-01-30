@@ -126,7 +126,7 @@ module UiHelpers
 
   # Breadcrumb
   # ==========
-  def ui_check_breadcrumb(crumb_1, crumb_2, crumb_3)
+  def ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)
     if !crumb_1.empty?
       li = find(:xpath, '//*[@id="breadcrumb_1"]')
       expect(li.text).to eq(crumb_1)
@@ -138,6 +138,10 @@ module UiHelpers
     if !crumb_3.empty?
       li = find(:xpath, '//*[@id="breadcrumb_3"]')
       expect(li.text).to eq(crumb_3)
+    end    
+    if !crumb_4.empty?
+      li = find(:xpath, '//*[@id="breadcrumb_4"]')
+      expect(li.text).to eq(crumb_4)
     end    
   end
 

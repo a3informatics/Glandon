@@ -12,7 +12,7 @@ class Form::Crf
 	# @param annotations [] The form's annotations
 	# @return [Null]
 	def self.create(node, annotations, options)
-    ConsoleLogger::log(C_CLASS_NAME, "create", "annotations=#{annotations}")
+    ConsoleLogger::log(C_CLASS_NAME, "create", "node=#{node}")
     html = "<style>"
     html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
     html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; " 

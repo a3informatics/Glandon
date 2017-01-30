@@ -97,6 +97,24 @@ module ApplicationHelper
   		{link: "#", text: "#{third_level_action} V#{managed_item.semantic_version}"}])
   end
 
+  # Fourth Level Breadcrumb
+  #
+  # @param managed_item [Object] the managed item
+  # @param parent_text [String] the parent-level breadcrumb link test
+  # @param parent_link [String] the parent-level link
+  # @param second_level_link [String] the second-level link
+  # @param third_level_action [String] the third-level prefix for the link text
+  # @param third_level_link [String] the third-level link
+  # @param fourthe_level_text [String] the third-level link
+  # @return [Null]
+  def fourth_level_managed_item_breadcrumb(managed_item, parent_text, parent_link, second_level_link, third_level_action, third_level_link, fourth_level_text)
+    breadcrumb ([{link: parent_link, text: "#{parent_text}"}, 
+      {link: second_level_link, text: "#{managed_item.identifier}"}, 
+      {link: third_level_link, text: "#{third_level_action} V#{managed_item.semantic_version}"},
+      {link: "#", text: "#{fourth_level_text}"},
+      ])
+  end
+
   # Breadcrumb. Formats the HTML for the breadcrumb. Places into a session variable.
   #
   # @param items [Array] array of hash items holding the text and link for each level of the breadcrumb

@@ -38,6 +38,7 @@ describe Form::Crf do
   it "displays a CRF as HTML" do
     form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
     result = Form::Crf.create(form.to_json, nil, {:annotate => false})
+    #write_yaml_file(form.to_json, sub_dir, "example_crf.yaml")
     #write_text_file_2(result, sub_dir, "example_crf.txt")
     expected = read_text_file_2(sub_dir, "example_crf.txt")
     expect(result).to eq(expected)
@@ -46,6 +47,7 @@ describe Form::Crf do
   it "displays a aCRF as HTML" do
     form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
     result = Form::Crf.create(form.to_json, form.annotations, {:annotate => true})
+    #write_yaml_file(form.to_json, sub_dir, "example_acrf.yaml")
     #write_text_file_2(result, sub_dir, "example_acrf.txt")
     expected = read_text_file_2(sub_dir, "example_acrf.txt")
     expect(result).to eq(expected)

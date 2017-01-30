@@ -258,6 +258,7 @@ class Form < IsoManaged
     json[:completion] = self.completion
     json[:note] = self.note
     json[:children] = Array.new
+    self.children.sort_by! {|u| u.ordinal}
     self.children.each do |child|
       json[:children] << child.to_json
     end
