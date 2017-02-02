@@ -16,12 +16,12 @@ var d3eDiv;
  * @param dblClickCallBackPost [Function] the function to be called post click processing
  * @return [Null] 
  */
-function d3eInit(clickCallBackPre, clickCallBackPost, dblClickCallBackPost, validateCallBack) {
+function d3eInit(d3DivId, clickCallBackPre, clickCallBackPost, dblClickCallBackPost, validateCallBack) {
   d3eNextKeyId = 1;
   d3eCurrentGRef = null;
   d3eCurrentNode = null;
   d3eRootNode = null;
-  d3eDiv = document.getElementById("d3");
+  d3eDiv = document.getElementById(d3DivId);
   d3eClickCallBackPre = clickCallBackPre;
   d3eClickCallBackPost = clickCallBackPost;
   d3eDblClickCallBackPost = dblClickCallBackPost;

@@ -10,8 +10,10 @@
     	<%= f.label :label, "Label:" %><br />
     	<%= f.text_field :label, class: "form-control" %>
   	</div>
-  	<%= f.hidden_field :bct_id, :value => @bct.id %>  
- 		<%= f.hidden_field :bct_namespace, :value => @bct.namespace %>  
+  	<div class="form-group">
+      <%= f.label :uri, "Template Identifier:" %><br />
+      <%= f.select :uri, options_for_select(@bcts.map{ |u| [u.identifier, u.namespace + "#" + u.id]}), {}, class: "form-control" %>
+    </div> 
 		<%= f.submit "Create", class: "btn btn-default btn-primary" %>
 	<% end %>
 </div>

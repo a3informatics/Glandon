@@ -62,7 +62,6 @@ class BiomedicalConceptCore::Item < BiomedicalConceptCore::Node
     json = super
     json[:bridg_class] = self.bridg_class
     json[:bridg_attribute] = self.bridg_attribute
-    json[:children] = Array.new
     json[:datatype] = self.datatype.to_json
     return json
   end

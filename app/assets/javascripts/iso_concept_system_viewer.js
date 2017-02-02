@@ -10,7 +10,7 @@ $(document).ready(function() {
 function initData () { 
   var html = $("#jsonData").html();
   var json = $.parseJSON(html);
-  d3eInit(empty, displayNode, empty, emptyValidation);
+  d3eInit("d3", empty, displayNode, empty, emptyValidation);
   rootNode = d3eRoot(json.label, "", json)
   for (i=0; i<json.children.length; i++) {
     child = json.children[i];

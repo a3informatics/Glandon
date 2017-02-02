@@ -17,7 +17,7 @@ var d3HeightOverrideValue = $(window).height() - 200;
  * @return [Null]
  */
 function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
-  d3.select('svg').remove();
+  d3.select(d3Div).select('svg').remove();
   var width = d3Div.clientWidth - 50; 
   var height;
   if (d3HeightOverride) {

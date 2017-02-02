@@ -1,15 +1,14 @@
 <%= stylesheet_link_tag    'd3_tree', 'thesauri_search_new', 'panel_collapse', 'spinner' %>
-<%= javascript_include_tag 'd3_tree', 'd3_editor', 'thesauri_search_new', 'biomedical_concepts_editor', 'unload', 'field_validation', 'token_timer' %>
-<%= javascript_include_tag 'panel_collapse', 'standard_datatable' %>
-<% third_level_managed_item_breadcrumb(@bc, "Biomedical Concepts", biomedical_concepts_path, @close_path, "Edit:") %>
+<%= javascript_include_tag 'd3_tree', 'biomedical_concepts_editor', 'unload', 'field_validation', 'd3_editor', 'token_timer', 'standard_datatable', 'panel_collapse' %>
+<% second_level_breadcrumb("Biomedical Concept", biomedical_concepts_path, "Edit Multiple") %>
 <div class="row">
   <div class="col-md-12">
-    <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Edit:", :item => @bc} %>
+    <h3>Edit Multiple Biomedical Concepts</h3>
   </div>
 </div>
 <%= render partial: "shared/biomedicalConceptEditor" %>
 <% empty_string = "" %>
-<input type="hidden" id="token_1" value="<%= @token.id %>">
+<input type="hidden" id="token_1" value="<%= empty_string %>">
 <input type="hidden" id="token_2" value="<%= empty_string %>">
 <input type="hidden" id="token_3" value="<%= empty_string %>">
 <input type="hidden" id="token_4" value="<%= empty_string %>">
@@ -19,5 +18,5 @@
 <input type="hidden" id="token_8" value="<%= empty_string %>">
 <input type="hidden" id="warning_timeout" value="<%= current_user.edit_lock_warning %>">
 <input type="hidden" id="close_path" value="<%= @close_path %>">
-<input type="hidden" id="bc_id" value="<%= @bc.id %>">
-<input type="hidden" id="bc_namespace" value="<%= @bc.namespace %>">
+<input type="hidden" id="bc_id" value="<%= empty_string %>">
+<input type="hidden" id="bc_namespace" value="<%= empty_string %>">

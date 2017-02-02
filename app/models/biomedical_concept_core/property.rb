@@ -40,7 +40,57 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
     return !self.complex_datatype.nil?
   end
 
-	# Get Properties
+	# Update
+  #
+  # @params params [Hash] The params hash containing the concept data {:question_text, :prompt_text, :enabled, :collect, :format}
+  # @return [Boolean] true if the update is successful, false otherwise. 
+  def update(params)
+    result = true
+    self.errors.clear
+    self.question_text = "#{params[:question_text]}"
+    self.prompt_text = "#{params[:prompt_text]}"
+    self.enabled = params[:enabled].to_bool
+    self.collect = params[:collect].to_bool
+    self.format = "#{params[:format]}"
+    if self.valid?
+      update = UriManagement.buildNs(self.namespace, ["cbc"]) +
+        # Note: Dont allow identifier or any links to be updated.
+        "DELETE \n" +
+        "{\n" +
+        "  :" + self.id + " cbc:question_text ?a .\n" +
+        "  :" + self.id + " cbc:prompt_text ?b .\n" +
+        "  :" + self.id + " cbc:enabled ?c .\n" +
+        "  :" + self.id + " cbc:collect ?d .\n" +
+        "  :" + self.id + " cbc:format ?e .\n" +
+        "}\n" +
+        "INSERT \n" +
+        "{ \n" +
+        "  :" + self.id + " cbc:question_text \"#{self.question_text}\"^^xsd:string . \n" +
+        "  :" + self.id + " cbc:prompt_text \"#{self.prompt_text}\"^^xsd:string . \n" +
+        "  :" + self.id + " cbc:enabled \"#{self.enabled}\"^^xsd:boolean . \n" +
+        "  :" + self.id + " cbc:collect \"#{self.collect}\"^^xsd:boolean . \n" +
+        "  :" + self.id + " cbc:format \"#{self.format}\"^^xsd:string . \n" +
+        "} \n" +
+        "WHERE \n" +
+        "{\n" +
+        "  :" + self.id + " cbc:question_text ?a .\n" +
+        "  :" + self.id + " cbc:prompt_text ?b .\n" +
+        "  :" + self.id + " cbc:enabled ?c .\n" +
+        "  :" + self.id + " cbc:collect ?d .\n" +
+        "  :" + self.id + " cbc:format ?e .\n" +
+        "}\n"
+      response = CRUD.update(update)
+      if !response.success?
+        ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+        raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      end
+    else
+      result = false
+    end
+    return result
+  end
+
+  # Get Properties
   #
   # @return [array] Array of leaf (property) JSON structures
   def get_properties

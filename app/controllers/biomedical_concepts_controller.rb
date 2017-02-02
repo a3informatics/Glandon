@@ -4,9 +4,20 @@ class BiomedicalConceptsController < ApplicationController
 
   before_action :authenticate_user!
   
+  def test
+    authorize BiomedicalConcept, :index?
+    @bcs = BiomedicalConcept.all
+    respond_to do |format|
+      format.json do
+        results = {:data => []}
+        @bcs.each { |x| results[:data] << x.to_json }
+        render json: results
+      end
+    end
+  end
+
   def index
     authorize BiomedicalConcept
-    @bcts = BiomedicalConceptTemplate.all
     @bcs = BiomedicalConcept.unique
     @biomedical_concept = BiomedicalConcept.new
     respond_to do |format|
@@ -41,39 +52,75 @@ class BiomedicalConceptsController < ApplicationController
     redirect_to biomedical_concepts_path if @bc.count == 0
   end
 
-  def new_from_template
+  def new
     authorize BiomedicalConcept, :new?
-    uri = UriV2.new({uri: the_params[:uri]})
-    @bct = BiomedicalConceptTemplate.find(uri.id, uri.namespace)
+    @bcts = BiomedicalConceptTemplate.all
   end
 
   def create
     authorize BiomedicalConcept
+    # New passes URI rather than id, namespace pair. Adjust for the simple create.
+    # @todo may be adjust this.
+    uri = UriV2.new({uri: the_params[:uri]})
+    params[:biomedical_concept][:bct_id] = uri.id
+    params[:biomedical_concept][:bct_namespace] = uri.namespace
     @bc = BiomedicalConcept.create_simple(the_params)
     if @bc.errors.empty?
-      flash[:success] = 'Biomedical Concept was successfully created.'
       AuditTrail.create_item_event(current_user, @bc, "Biomedical Concept created.")
-      redirect_to biomedical_concepts_path
+      respond_to do |format|
+        format.html do
+          flash[:success] = 'Biomedical Concept was successfully created.'
+          redirect_to biomedical_concepts_path
+        end
+        format.json do
+          render :json => { data: @bc.to_json }, :status => 200
+        end
+      end
     else
-      flash[:error] = @bc.errors.full_messages.to_sentence
-      redirect_to biomedical_concepts_path
+      respond_to do |format|
+        format.html do
+          flash[:error] = @bc.errors.full_messages.to_sentence
+          redirect_to biomedical_concepts_path
+        end
+        format.json do
+          render :json => { errors: @bc.errors.full_messages }, :status => 422
+        end
+      end
     end
   end
 
   def edit
     authorize BiomedicalConcept
     @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
+    @bcts = BiomedicalConceptTemplate.all
     if @bc.new_version?
       json = @bc.to_operation
       new_bc = BiomedicalConcept.create(json)
       @bc = BiomedicalConcept.find(new_bc.id, new_bc.namespace)
     end
-    @close_path = history_biomedical_concepts_path(identifier: @bc.identifier, scope_id: @bc.owner_id)
+    @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.identifier, scope_id: @bc.owner_id })
     @token = Token.obtain(@bc, current_user)
     if @token.nil?
       flash[:error] = "The item is locked for editing by another user."
       redirect_to request.referer
     end
+  end
+
+  def edit_lock
+    authorize BiomedicalConcept, :edit?
+    @bc = BiomedicalConcept.find(params[:id], the_params[:namespace], false)
+    @token = Token.obtain(@bc, current_user)
+    if @token.nil?
+      render :json => {}, :status => 422
+    else
+      render :json => { token: @token.id }, :status => 200
+    end
+  end
+
+  def edit_multiple
+    authorize BiomedicalConcept, :edit?
+    @bcts = BiomedicalConceptTemplate.all
+    @close_path = biomedical_concepts_path
   end
 
   def clone
@@ -94,19 +141,6 @@ class BiomedicalConceptsController < ApplicationController
       redirect_to clone_biomedical_concept_path(:id => the_params[:bc_id], :namespace => the_params[:bc_namespace])
     end
   end
-
-=begin
-  def update
-    authorize BiomedicalConcept
-    instance = params[:instance]
-    @bc = BiomedicalConcept.update(params)
-    if @bc.errors.empty?
-      render :json => { :instance => instance, :data => @bc.to_edit}, :status => 200
-    else
-      render :json => { :errors => @bc.errors.full_messages}, :status => 422
-    end
-  end
-=end
 
   def destroy
     authorize BiomedicalConcept
@@ -137,6 +171,12 @@ class BiomedicalConceptsController < ApplicationController
     end
   end
 
+  def show_full
+    authorize BiomedicalConcept, :show?
+    @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
+    render json: @bc.to_json
+  end
+
   def export_ttl
     authorize BiomedicalConcept
     bc = IsoManaged.find(params[:id], the_params[:namespace])
@@ -153,7 +193,7 @@ class BiomedicalConceptsController < ApplicationController
     authorize BiomedicalConcept
     @bc = BiomedicalConcept.create(params)
     @bc.upgrade
-    redirect_to history_biomedical_concept_path(:biomedical_concept => { :identifier => @bc.identifier, :scope_id => @bc.owner_id })
+    redirect_to history_biomedical_concepts_path(:biomedical_concept => { :identifier => @bc.identifier, :scope_id => @bc.owner_id })
   end
   
 private

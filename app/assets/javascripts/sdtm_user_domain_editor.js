@@ -40,6 +40,9 @@ $(document).ready(function() {
   // Set window resize.
   window.addEventListener("resize", d3eReDisplay);
 
+  // Start timeout timer
+  ttAddToken("1");
+
   /*
   * General Panel Actions
   */
@@ -202,7 +205,7 @@ function saveRest() {
     });
     previousSave = currentSave; 
   } else {
-    ttExtendLock(); // Nothing to save, extend the edit lock timer.
+    ttExtendLock("1"); // Nothing to save, extend the edit lock timer.
   }
 }
 
@@ -410,7 +413,7 @@ function initData () {
   var managedItem = domainDefinition.managed_item;
   previousSave = currentSave = JSON.stringify(domainDefinition);
   domainPrefix = managedItem.prefix
-  d3eInit(saveNode, displayNode, empty, validateNode);
+  d3eInit("d3", saveNode, displayNode, empty, validateNode);
   rootNode = d3eRoot(managedItem.label, C_USERDOMAIN, managedItem)
   nextKeyId = rootNode.key + 1;
   for (i=0; i<managedItem.children.length; i++) {

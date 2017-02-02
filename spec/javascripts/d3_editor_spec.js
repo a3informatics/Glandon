@@ -28,7 +28,7 @@ describe("D3 Editor", function() {
   }
 
   function testTree() {
-  	d3eInit(clickPre, clickPost, dblClick, validateCallBack);
+  	d3eInit("d3", clickPre, clickPost, dblClick, validateCallBack);
   	var data = {name: "root-data", is_common: true};
   	var root_node = d3eRoot("root", "x-type", data);
 		var data1 = {name: "level-1-data-1"};
@@ -58,7 +58,7 @@ describe("D3 Editor", function() {
 	});
 
   it("initialises the editor", function() {
-  	d3eInit(clickPre, clickPost, dblClick, validateCallBack);
+  	d3eInit("d3", clickPre, clickPost, dblClick, validateCallBack);
   	expect(d3eNextKeyId).to.equal(1);
   	expect(d3eCurrentGRef).to.equal(null);
   	expect(d3eCurrentNode).to.equal(null);

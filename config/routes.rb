@@ -173,13 +173,15 @@ Rails.application.routes.draw do
       get :export_ttl
       get :clone
       get :upgrade
+      get :show_full
+      get :edit_lock
     end
     collection do
+      get :test
       get :history
-      post :new_from_template
       post :clone_create
       get :list
-      #get :impact
+      get :edit_multiple
     end
   end
   resources :forms do

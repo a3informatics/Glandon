@@ -2,7 +2,7 @@ $(document).ready(function() {
   var html = $("#jsonData").html();
   var json = $.parseJSON(html);
   var mi = json.managed_item;
-  d3eInit(empty, displayNode, dblClick, emptyValidation);
+  d3eInit("d3", empty, displayNode, dblClick, emptyValidation);
   var rootNode = d3eRoot(mi.label, "", mi)
   rootNode.children_checked = true;
   if (mi.hasOwnProperty('children')) {

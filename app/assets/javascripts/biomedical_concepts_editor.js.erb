@@ -1,632 +1,550 @@
+var bceBcs;
+var bcePanelIndexMap;
+var bceCurrentIndex;
+var bceFirstIndex;
+var bceWarningTimeout;
+var bceToken;
+var bceId;
+var bceNamespace;
+var bceMainTable;
+var bceEditor;
+var bceTempTable;
+var bceEmptyProperty;
+var bceBcData;
+var bceBcRow;
+var bceBcTable;
+
+var C_PANEL_COUNT = 4;
+var C_MAX_COUNT = 8;
+var C_NULL = -1;
+
 $(document).ready(function() {
   
-  var PT_BC_ID_COL = 0;
-  var PT_PROP_ID_COL = 1;
-  var PT_ALIAS_COL = 2;
-  var PT_QTEXT_COL = 3;
-  var PT_PTEXT_COL = 4;
-  var PT_ENABLED_COL = 5;
-  var PT_COLLECT_COL = 6;
-  var PT_DATATYPE_COL = 7;
-  var PT_FORMAT_COL = 8;
-  var PT_TERM_COL = 9;
-
-  var html;
-  var loadDataFlag;
-  var operation;
-  var editIdentifierFlag;
-  var loadDataFlagInput;
-
-  var bcInfo;     // BC source structure json structure
-  var bcInstances;  // Array of BC instances being created
-  var bcCount;      // Count of BCs created
-  var bcTable;      // Main BC table
-  var bcTableCell;  // Current BC table cell
-  var bcTableCI;    // Current BC tbale column index
-  var bcTableRI;    // Current BC table row index
-  var bcTextInput ; // BC text input
-  var bcColAttributeMap;
-    
-  var notepadTable;       // Notepad table
-  var notepadTableReload; // Notepad reload table flag
-  var notepadData;        // Current notepad row data
-  var notepadRow;         // Current notepad table row
-  
-  var clData;        // Current notepad row data
-  var clRow;         // Current notepad table row
-  
-  var propertyTable;            
-  var propertyTableCell;
-  var propertyTableCI;
-  var propertyTableRI;
-  var propertyTextInput;
-  var propertyColAttributeMap;
-
-  var clTable;  // Code list table
-  
-  // Set table column to attribute name map
-  bcColAttributeMap = ['bcId', 'identifier', 'label'];
-  propertyColAttributeMap = ['bcId', 'pId', 'alias', 'qText', 'pText', 'enabled', 'collect', 'datatype', 'format', 'values'];
-
-  // Set up remainder of data
-  bcCount = 0;
-  bcInstances = [];
-  propertyTableCell = null;
-  bcTableCell = null;
-  notepadTableReload = false;
-  notepadData = null;
-  notePadRow = null;
-  clData = null;
-  clRow = null;
-  propertyTableCI = null;
-  propertyTableRI = null;
-  bcTableCI = null;
-  bcTableRI = null;
-  propertyTextInput = document.getElementById("pText");
-  bcTextInput = document.getElementById("bcText");
-  
-  // Set the flags
-  loadDataFlagInput = document.getElementById("load_data");
-  loadDataFlag = (loadDataFlagInput.value === 'true');
-
-  // Initialise the tables
-  bcTable = $('#bc_table').DataTable({
+  bceBcTable = $('#bc_table').DataTable( {
+    "ajax": {
+      "url": "/biomedical_concepts/test",
+      "dataSrc": "data",
+      error: function (xhr, status, error) {
+        displayError("An error has occurred loading the Add Biomedical Concepts table.");
+      }
+    },
+    dataType: 'json',
+    "bProcessing": true,
+    "language": {
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    },
     "columns": [
-      {"data" : "bcId", "width" : "4%"},
-      {"data" : "identifier", "width" : "30%"},
-      {"data" : "label", "width" : "65%"}
+      {"data" : "scoped_identifier.identifier", "width" : "50%"},
+      {"data" : "label", "width" : "50%"}
     ]
   });
 
-  propertyTable = $('#property_table').DataTable({
-    "pageLength": 10,
-    "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
-    "columns": [
-      {"data" : "bcId", "width" : "5%"},
-      {"data" : "propId", "width" : "5%"},
-      {"data" : "alias", "width" : "15%"},
-      {"data" : "qText", "width" : "15%"},
-      {"data" : "pText", "width" : "20%"},
-      {"data" : "enabled", "width" : "5%"},
-      {"data" : "collect", "width" : "5%"},
-      {"data" : "datatype", "width" : "5%"},
-      {"data" : "format", "width" : "5%"},
-      {"data" : "term", "width" : "20%"}
-    ]
-  });
-  
-  clTable = $('#cl_table').DataTable({
-    "searching": false,
-    "pageLength": 5,
-    "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
-    "bInfo" : false,
-    "columns": [
-      {"data" : "identifier", "width" : "30%"},
-      {"data" : "useful_1", "width" : "70%"}
-    ]
-  });
-
-  initialNotepadLoad();
-  
-  // Get the BCT json data definition
-  html = $("#bcJson").html();
-  bcInfo = $.parseJSON(html);
-  operation = bcInfo['operation'];
-  editIdentifierFlag = (operation['identifier_edit'] == true);
-  if (loadDataFlag) {
-    var clone = $.parseJSON(html);
-    addBC(clone, bcCount, false);   
-  }
-  
-  // Hide panels
-  bcTextHide ();
-  propertyTextHide ();
-  propertyClHide ()
-  propertyNotepadHide ()
-  
-  // ... and process, remainder is event driven.
-
-  /* 
-  * FUNCTIONS & EVENTS
-  * ==================
-  */
-
-  function initialNotepadLoad () {
-    notepadTable = $('#notepad_table').DataTable( {
-      "ajax": {
-        "url": "/notepads/index_term",
-        "dataSrc": "data"  
-      },
-      "bProcessing": true,
-      "bInfo" : false,
-      "searching": false,
-      "pageLength": 5,
-      "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
-      "language": {
-             "processing": "<img src='<%= asset_path('processing.gif') %>'>"
-        },
-      "columns": [
-        {"data" : "identifier", "width" : "30%"},
-        {"data" : "useful_1", "width" : "70%"}
-      ]
-    });
-    notepadTableReload = true;    
+  bceInit();
+  if (bceId !== "") {
+    bceAddBc(bceId, bceNamespace, false);
+  } else {
+    bceTempTableInit();
   }
 
-  $('#notepad_refresh').click(function() {
-    if (!notepadTableReload) {
-      initialNotepadLoad();
-    } else {
-      notepadTable.ajax.reload();
+  $('#close_button').click(function() {
+    window.location.href = $('#close_path').val();
+  });
+
+  // Set up the form validation for the create BC function.
+  validatorDefaults ();
+  $('#main_form').validate({
+    rules: {
+      "biomedical_concept[identifier]": {required: true, identifier: true },
+      "biomedical_concept[label]": {required: true, label: true }
+    },
+    submitHandler: function(form) {
+      bceCreateRest();
+      return false;
+    },
+    invalidHandler: function(event, validator) {
+      displayWarning("The form is not valid. Please correct the errors.");
     }
   });
 
-  $('#notepad_add').click(function() {
-    var data;
-    var text;
-    if (propertyTableCell != null) {
-      if (propertyTableCI === PT_TERM_COL) {
-        text = propertyTableCell.html();
-        propertyTableCell.html(addClItemText(text, notepadData.useful_1, notepadData.identifier));
-        clTable.row.add(notepadData);
-        clTable.draw(false);
-        data = propertyTable.row(propertyTableRI).data();
-        addPropertyValue(data.bcId-1, data.key, notepadData); 
-      }
+  $('.bc-select').click(function (event) {
+    var panelId = this.id.replace("bc_select_", "");
+    var index = bcePanelIndexMap[panelId];
+    bceSelectBc(index);
+  });
+
+  $('.bc-close').click(function (event) {
+    var panelId = this.id.replace("bc_close_", "");
+    var index = bcePanelIndexMap[panelId];
+    bceCloseBc(index);
+  });
+
+  $('#bc_previous').click(function (event) {
+    if (bceFirstIndex >= 1 && bceBcs.length > C_PANEL_COUNT) {
+      bceFirstIndex -= 1;
+      bceCheckCurrent();
+      bcePanelMove();
+      bceShowCurrentBc();
+    }
+  });
+
+  $('#bc_next').click(function (event) {
+    if (bceFirstIndex <= (bceBcs.length - C_PANEL_COUNT) && bceBcs.length > C_PANEL_COUNT)  {
+      bceFirstIndex += 1;
+      bceCheckCurrent();
+      bcePanelMove();
+      bceShowCurrentBc();
+    }
+  });
+
+  $('#bc_save').click(function (event) {
+    for (var i=0; i<bceBcs.length; i++) {
+      ttExtendLock(bceBcs[i].uiIndex);
     }
   });
 
   $('#bc_add').click(function() {
-    var clone = $.parseJSON(html);
-    addBC(clone, bcCount, true);
-  });
-
-
-  $('#bc_delete').click(function() {
-    var html = alertWarning("Function not implemented yet.");
-    displayAlerts(html);
-  });
-  
-  $('#bc_save').click(function() {
-    var url;
-    var method;
     var data;
-    var bcInstance;
-    var i;
-    bcCount = 0;
-    bcTable.clear();
-    propertyTable.clear();
-    for (i=0; i<bcInstances.length; i++) {
-      bcInstance = bcInstances[i];
-      if (operation['action'] === "CREATE") {
-        url = "/biomedical_concepts";
-        method = 'POST';
-        data = { "instance": i, "data": { "operation": operation, "managed_item": bcInstance }};  
-        $('#bc_add').prop('disabled',true);
-      } else {
-        url = "/biomedical_concepts/" + bcInstance['id'];
-        method = 'PUT';
-        data = { "instance": i, "namespace": bcInstance['namespace'], "data": { "operation": operation, "managed_item": bcInstance }};  
-      }
-      $.ajax({
-        url: url,
-        type: method,
-        data: JSON.stringify(data),
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function(result){
-          var html = alertSuccess("Biomedical Concept has been saved.");
-          displayAlerts(html);
-          //newItem = false;
-          var instance = parseInt(result['instance']);
-          addBC(result['data'], instance, false);
-        },
-        error: function(xhr,status,error){
-          handleAjaxError (xhr, status, error);
-        }
-      });
-      //bcInstances[i] = {};
-    }
-  });
-
-  $('#cl_delete').click(function() {
-    var rowData;
-    var i;
-    var item;
     var text;
-    var bcIndex;
-    var propertyKey;
-    var bc;
-    var properties;
-    var property;
-    var values;
-
-    if (clRow != null) {
-      clTable.row(clRow).remove();
-      clRow = null;
-      clTable.draw();
+    if (bceBcRow !== null) {
+      data = bceBcTable.row(bceBcRow).data();
+      bceAddBc(data.id, data.namespace, true);
+    } else {
+      displayWarning("You need to select a notepad item.");
     }
-    text = "";
-    data = propertyTable.row(propertyTableRI).data();
-    bcIndex = data.bcId - 1;
-    propertyKey = data.key;
-    bc = bcInstances[bcIndex];
-    properties = bc['children'];
-    property = properties[propertyKey]
-    //values = property.values;
-    property.values = [];
-    rowData = clTable.rows().data();
-    for (i=0; i<rowData.length; i++) {
-      item = rowData.row(i).data();
-      addPropertyValue(bcIndex, propertyKey, item); 
-      text = addClItemText(text, item.useful_1, item.identifier);
-    }
-    property.term = text;
-    propertyTableCell.html(text);
   });
-  
-  $('#notepad_table tbody').on('click', 'tr', function () {
-    var row = notepadTable.row(this).index();
-    var data = notepadTable.row(row).data();
-    if (notepadRow != null) {
-      $(notepadRow).toggleClass('success');
+
+  $('#bc_table tbody').on('click', 'tr', function () {
+    var row = bceBcTable.row(this).index();
+    var data = bceBcTable.row(row).data();
+    if (bceBcRow !== null) {
+      $(bceBcRow).toggleClass('success');
     }
     $(this).toggleClass('success')
-    notepadData = data;
-    notepadRow = this
+    bceBcData = data;
+    bceBcRow = this
   });
-
-  $('#cl_table tbody').on('click', 'tr', function () {
-    var row = clTable.row(this).index();
-    var data = clTable.row(row).data();
-    if (clRow != null) {
-      $(clRow).toggleClass('success');
-    }
-    $(this).toggleClass('success')
-    clData = data;
-    clRow = this
-  });
-
-  function bcText() {
-    var update;
-    var value;
-    var text;
-    update = true;
-    errorText = "";
-    value = bcTextInput.value;
-    if (bcColAttributeMap[bcTableCI] == 'identifier') {
-      if (!validateIdentifier(value)) {
-        text = identifierErrorText();
-        update = false;
-      }
-    } else {
-      if (!validateLabel(value)) {
-        text = labelErrorText();
-        update = false;
-      }
-    } 
-    if (update) {
-      bcTableCell.html(value);
-      setBcAttribute(bcTableRI, bcColAttributeMap[bcTableCI], value);
-      unhighlight($('#bcText'));
-      removeErrorText($('#bcText'));
-    } else {
-      highlight($('#bcText'))
-      addErrorText($(text), $('#bcText'));
-    }
-  }
-
-  function propertyText() {
-    var update;
-    var value;
-    var text;
-    update = true;
-    errorText = "";
-    value = propertyTextInput.value;
-    if (propertyColAttributeMap[propertyTableCI] == 'pText' || propertyColAttributeMap[propertyTableCI] == 'qText') {
-      if (!validateQuestion(value)) {
-        text = questionErrorText();
-        update = false;
-      }
-    } else {
-      if (!validateFormat(value)) {
-        text = formatErrorText();
-        update = false;
-      }
-    } 
-    if (update) {
-      propertyTableCell.html(propertyTextInput.value);
-      var data = propertyTable.row(propertyTableRI).data();
-      var attribute = propertyColAttributeMap[propertyTableCI];
-      setPropertyAttribute(data.bcId-1, data.key, attribute, propertyTextInput.value);
-      unhighlight($('#pText'));
-      removeErrorText($('#pText'));
-    } else {
-      highlight($('#pText'))
-      addErrorText($(text), $('#pText'));
-    }
-  }
-
-  $('#bc_update_text').click(function() {
-    if (bcTableCell != null) {
-      bcText();
-    }
-  });
-
-  $('#property_update_text').click(function() {
-    if (propertyTableCell != null) {
-      propertyText();
-    }
-  });
-
-  $('#bcText').keyup(function (e) {
-    if (e.keyCode == 13) {
-      if (bcTableCell != null) {
-        bcText();
-      }
-    }
-  });
-
-  $('#pText').keyup(function (e) {
-    if (e.keyCode == 13) {
-      if (propertyTableCell != null) {
-        propertyText();
-      }
-    }
-  });
-
-  $('#bc_table tbody').on('click', 'td', function () {
-    bcTableCI = parseInt($(this).index());
-    var tr = $(this).closest('tr');
-    var row = bcTable.row(tr).index();
-    var data = bcTable.row(row).data();
-    bcTableRI = tr.index();
-    if (bcTableCell != null) {
-      bcTableCell.toggleClass('success');
-    }
-    if (bcTableCI == 0) {
-      bcTextHide ();
-      bcTableCell = null;        
-    } else if (bcTableCI == 1) {
-      if (editIdentifierFlag) {
-        bcTextShow ();
-        bcTableCell = bcGetCell();
-        bcTableCell.toggleClass('success');
-        bcTextInput.value = bcTableCell.html();
-        bcTextInput.focus();
-      } else {
-        bcTextHide ();
-        bcTableCell = null;  
-      }
-    } else if (bcTableCI == 2) {
-      bcTextShow ();
-      bcTableCell = bcGetCell();
-      bcTableCell.toggleClass('success');
-      bcTextInput.value = bcTableCell.html();
-      bcTextInput.focus();
-    }      
-  });
-
-  $('#property_table tbody').on('click', 'td', function () {
-    propertyTableCI = parseInt($(this).index());
-    var tr = $(this).closest('tr');
-    var row = propertyTable.row(tr).index();
-    var data = propertyTable.row(row).data();
-    var bcIndex = data.bcId - 1;
-    var bcPropertyKey = data.key;
-    propertyTableRI = tr.index();
-    if (propertyTableCell != null) {
-      propertyTableCell.toggleClass('success');
-    }
-    if (propertyTableCI === PT_BC_ID_COL || propertyTableCI === PT_PROP_ID_COL || propertyTableCI === PT_ALIAS_COL || propertyTableCI === PT_DATATYPE_COL) {
-      propertyHideAll() ;
-      propertyTableCell = null;        
-    } else if (propertyTableCI == PT_ENABLED_COL || propertyTableCI == PT_COLLECT_COL) {
-      propertyHideAll() ;
-      propertyTableCell = propertyGetCell();
-      attribute = propertyColAttributeMap[propertyTableCI];
-      if (propertyTableCell.html() === "true") {
-        propertyTableCell.html("false");
-        setPropertyAttribute(data.bcId-1, data.key, attribute, "false")
-      } else {
-        propertyTableCell.html("true");        
-        setPropertyAttribute(data.bcId-1, data.key, attribute, "true")
-      }
-      propertyTableCell = null;    
-    } else if (propertyTableCI === PT_FORMAT_COL) {
-      var bc = bcInstances[bcIndex];
-      var properties = bc['children'];
-      var property = properties[bcPropertyKey]
-      if (property['datatype'] === "F" || property['datatype'] === "I") {
-        propertyTextShow ();
-        propertyClHide ();
-        propertyNotepadHide ();
-        propertyTableCell = propertyGetCell();
-        propertyTableCell.toggleClass('success');
-        propertyTextInput.focus();  
-      } else {
-        propertyTextHide ();
-        propertyClHide ();
-        propertyNotepadHide ();
-        propertyTableCell = null;   
-      }
-    } else if (propertyTableCI === PT_TERM_COL) {
-      var bc = bcInstances[bcIndex];
-      var properties = bc['children'];
-      var property = properties[bcPropertyKey]
-      if (property['datatype'] === "CL") {
-        propertyClShow ();
-        propertyNotepadShow ();
-        propertyTextHide ();
-        propertyTableCell = propertyGetCell();
-        propertyTableCell.toggleClass('success');
-        clTable.clear();
-        var values = getPropertyValues(bcIndex, bcPropertyKey)
-        for (var i=0; i<values.length; i++) {
-          var item = values[i]
-          clTable.row.add(item); 
-        }
-        clTable.draw(false);
-      } else {
-        propertyTextHide ();
-        propertyClHide ();
-        propertyNotepadHide ();
-        propertyTableCell = null;   
-      }
-    } else {
-      propertyTextShow ();
-      propertyClHide ();
-      propertyNotepadHide ();
-      propertyTableCell = propertyGetCell();
-      propertyTableCell.toggleClass('success');
-      propertyTextInput.value = propertyTableCell.html();
-      propertyTextInput.focus();
-    }      
-  });
-
-  function bcGetCell() {
-    var $tr = $('#bc_table tbody').find('tr:nth-child(' + (bcTableRI+1) + ')');
-    var $td = $tr.find('td:nth-child(' + (bcTableCI+1) + ')');
-    return $td
-  }
-
-    function propertyGetCell() {
-    var $tr = $('#property_table tbody').find('tr:nth-child(' + (propertyTableRI+1) + ')');
-    var $td = $tr.find('td:nth-child(' + (propertyTableCI+1) + ')');
-    return $td
-  }
-
-  function propertyHideAll() {
-    propertyTextHide ();
-    propertyClHide ();
-    propertyNotepadHide ();
-  }
-
-  function propertyClHide () {
-    $('#cl_property_panel').hide();
-  }
-
-  function propertyClShow () {
-    $('#cl_property_panel').show();
-  }
-
-  function propertyTextHide () {
-    $('#text_property_panel').hide();
-  }
-  
-  function propertyTextShow () {
-    $('#text_property_panel').show();
-  }
-  
-  function propertyNotepadHide () {
-    $('#notepad_panel').hide();
-  }
-  
-  function propertyNotepadShow () {
-    $('#notepad_panel').show();
-  }
-
-  function bcTextHide () {
-    $('#text_bc_panel').hide();
-  }
-  
-  function bcTextShow () {
-    $('#text_bc_panel').show();
-  }
-  
-  function setBcAttribute (bcIndex, attribute, text) {
-    var bc = bcInstances[bcIndex];
-    bc[attribute] = text;
-  }
-
-  function setPropertyAttribute(bcIndex, property, attribute, text) {
-    var bc = bcInstances[bcIndex];
-    var ps = bc['children'];
-    var p = ps[property]
-    p[attribute] = text;
-  }
-  
-  function getPropertyAttribute(bcIndex, property, attribute) {
-    var bc = bcInstances[bcIndex];
-    var ps = bc['children'];
-    var p = ps[property]
-    return p[attribute];
-  }
-
-  function addPropertyValue(bcIndex, property, data) {
-    var bc = bcInstances[bcIndex];
-    var properties = bc['children'];
-    var property = properties[property]
-    var values = property['values'];
-    values.push(data);
-  }
-
-  function getPropertyValues(bcIndex, property) {
-    var bc = bcInstances[bcIndex];
-    var properties = bc['children'];
-    var property = properties[property]
-    return property['values'];
-  }
-
-  function addBC(bcSource, index, newBC) {
-    var bcManagedItem;
-    var bcId;
-    bcCount += 1;
-    bcId = bcCount;
-    bcManagedItem = bcSource['managed_item'];
-    bcManagedItem['bcId'] = bcId;
-    if (newBC) {
-      bcManagedItem['identifier'] = "Biomedical Concept No. " + bcId;
-    }
-    bcTable.row.add(bcManagedItem);
-    bcTable.draw(false);
-    propertyTableAddBC(bcManagedItem['children'], bcId);
-    bcInstances[index] = bcManagedItem;
-  }
-  
-  function propertyTableAddBC(properties, bcId) {
-    var i;
-    var text;
-    var property;
-    var values;
-    var value;
-    var index;
-    index = 1;
-    for (var key in properties) {
-      if (properties.hasOwnProperty(key)) {
-        property = properties[key];
-        property['bcId'] = bcId;
-        property['propId'] = parseInt(index);
-        index += 1;
-        values = property['values'];
-        text = "";
-        for (i=0; i<values.length; i++) {
-          value = values[i]
-          text = addClItemText(text,value['useful_1'], value.identifier);  // Note both styles of access (intended, an experiment).
-        }
-        property['term'] = text;
-        property['key'] = key;
-        propertyTable.row.add(property);
-      }
-    }
-    propertyTable.draw(false); 
-  }
-
-  function addClItemText(existing, notation, identifier) {
-    var text;
-    text = existing === "" ? "" : existing + '<br/>';
-    text = text + notation + ' [' + identifier + ']';
-    return text;    
-  }
-
-  /*
-  * Not used but useful if going to use checkboxes
-  */
-  /*$.fn.dataTable.ext.order['dom-checkbox'] = function  ( settings, col )
-  {
-    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
-      return $('input', td).prop('checked') ? '1' : '0';
-    } );
-  }*/
 
 });
+  
+function bceCreateRest() {
+  var identifier = $('#biomedical_concept_identifier').val();
+  var label = $('#biomedical_concept_label').val();
+  var uri = $('#biomedical_concept_uri').val();
+  var data = { "biomedical_concept": { "identifier": identifier, "label": label, "uri": uri }};
+  $.ajax({
+    url: '/biomedical_concepts/',
+    type: 'POST',
+    data: JSON.stringify(data),
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function(result){
+      displaySuccess("The Biomedical Concept was succesfully created.");
+      bceAddBc(result.data.id, result.data.namespace, true);
+      $('#biomedical_concept_identifier').val("");
+      $('#biomedical_concept_label').val("");
+    },
+    error: function(xhr,status,error){
+      handleAjaxError (xhr, status, error);
+    }
+  }); 
+}
+
+function bceInit() {
+  bceBcs = [];
+  bceFirstIndex = 0;
+  bcePanelIndexMap = {};
+  bceCurrentIndex = C_NULL;
+  bceWarningTimeout = $('#warning_timeout').val();
+  bceToken = $('#token').val();
+  bceId = $('#bc_id').val();
+  bceNamespace = $('#bc_namespace').val();
+  bceMainTable = null;
+  bceEditor = null;
+  bceTempTable = null;
+  bceBcRow = null;
+  bceHidePanels();
+  bceHideTimers();
+  bceEmptyProperty = 
+  {
+    "type": C_BC_PROP, 
+    "id": "", 
+    "namespace": "", 
+    "label": "", 
+    "question_text": "", 
+    "prompt_text": "", 
+    "enabled": "", 
+    "collect": "",
+    "format": "",
+    "simple_datatype": ""      
+  };
+}
+
+function bceCheckCurrent() {
+  if (bceCurrentIndex < bceFirstIndex) {
+    bceCurrentIndex = bceFirstIndex;
+  }
+  if (bceCurrentIndex >= (bceFirstIndex + C_PANEL_COUNT)) {
+    bceCurrentIndex = bceFirstIndex + C_PANEL_COUNT - 1;
+  }
+}
+
+function bceSelectBc(index) {
+  bceCurrentIndex = index;
+  bceShowCurrentBc();
+}
+
+function bceCloseBc(index) {
+  var panelId = 1;
+  var bcIndex = index;
+  for (var i=0; i<bceBcs.length; i++) {
+    ttRemoveToken(bceBcs[i].uiIndex);
+  }
+  bceHidePanels();
+  bceHideTimers();
+  bceCurrentIndex = C_NULL; 
+  bceBcs.splice(bcIndex, 1);
+  bcePanelIndexMap = {}
+  if (bceBcs.length > 0) {
+    bceCurrentIndex = bceFirstIndex;
+    for (var i=0; i<bceBcs.length; i++) {
+      bceBcs[i].uiIndex = i + 1;
+      bceBcs[i].panelId = C_NULL;
+      ttAddToken(bceBcs[i].uiIndex);
+      if (panelId <= C_PANEL_COUNT) {
+        bceBcs[i].panelId = panelId;
+        panelId += 1;
+        bceGetBc(i);
+      }
+    }
+    bceShowCurrentBc();
+    bceShowBcCount();
+  }
+}
+
+function bcePanelMove() {
+  var panelId = 1;
+  for (var i=0; i<bceBcs.length; i++) {
+    bceBcs[i].panelId = C_NULL;
+  }
+  for (var i=bceFirstIndex; i<bceBcs.length; i++) {
+    if (panelId <= C_PANEL_COUNT) {
+      bceBcs[i].panelId = panelId;
+      if (bceBcs[i].display) {
+        bceShowPanel(i);
+        bceBcTree(i);
+      }
+    } else {
+      break;
+    }
+    panelId += 1;
+  }
+}
+
+function bceShowCurrentBc() {
+  var bc = bceBcs[bceCurrentIndex];
+  var panelId = bceBcs[bceCurrentIndex].panelId;
+  bceId = bc.id;
+  bceNamespace = bc.namespace;
+  if (bceEditor === null) {
+    bceEditorTableInit();
+  } else {
+    bceEditorTable.ajax.url(bceBcUrl()).load();
+  }
+  $(".bc-panel").removeClass("panel-success"); 
+  $("#bc_panel_" + panelId).addClass("panel-success"); 
+}
+
+function bceAddBc(id, namespace, lock) {
+  var bcIndex = bceBcs.length;
+  var uiIndex = bcIndex + 1;
+  var panelId = C_NULL;
+  var ok = true;
+  if (bcIndex === 0) {
+    bceCurrentIndex = bcIndex;
+    panelId = 1;
+    bceCreateBcRecord(id, namespace, bcIndex, uiIndex, panelId);
+
+  } else if (bceBcs.length < C_PANEL_COUNT) {
+    bceCurrentIndex = bcIndex;
+    panelId = bceBcs.length + 1;
+    bceCreateBcRecord(id, namespace, bcIndex, uiIndex, panelId);
+  } else if (bceBcs.length >= C_MAX_COUNT) {
+    displayError("Maximum number of Biomedical Concepts are being edited already. Max number is " + C_MAX_COUNT);
+    ok = false;
+  } else {
+    bceFirstIndex += 1;
+    bceCurrentIndex = bcIndex;
+    bceCreateBcRecord(id, namespace, bcIndex, uiIndex, C_NULL);
+    bcePanelMove();
+  }
+  if (ok) {    
+    bceGetBc(bcIndex);
+    if (lock) {
+      bceGetBcLock(bcIndex);
+    } else {
+      ttAddToken(uiIndex);
+      bceBcs[bcIndex].token = bceGetToken(bcIndex);
+    }
+    bceShowBcCount();
+    bceShowCurrentBc();
+  }
+}
+
+function bceCreateBcRecord(id, namespace, bcIndex, uiIndex, panelId) {
+  bceBcs[bcIndex] = { "id": id, "namespace": namespace, "label": "", "identifier": "", "panelId": panelId, "uiIndex": uiIndex, "display": false};
+}
+
+function bceGetBc(index) {
+  $.ajax({
+    url: "/biomedical_concepts/" + bceBcs[index].id + "/show_full",
+    type: "GET",
+    data: { "biomedical_concept": { "namespace": bceBcs[index].namespace }},
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      displayError("An error has occurred loading a Biomedical Concept.");
+    },
+    success: function(result) {
+      bceBcs[index].display = true;
+      bceBcs[index].json = result;
+      bceBcs[index].label = result.label;
+      bceBcs[index].identifier = result.identifier;
+      if (bceBcs[index].panelId !== C_NULL) {
+        bceShowPanel(index) 
+        bceBcTree(index);
+      }
+    }
+  });
+}
+
+function bceGetBcLock(index) {
+  $.ajax({
+    url: "/biomedical_concepts/" + bceBcs[index].id + "/edit_lock",
+    type: "GET",
+    data: { "biomedical_concept": { "namespace": bceBcs[index].namespace }},
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      displayError("An error has occurred locking a Biomedical Concept.");
+    },
+    success: function(result) {
+      bceBcs[index].token = result.token;
+      bceSetToken(index);
+      ttAddToken(bceBcs[index].uiIndex);
+    }
+  });
+}
+
+function bceEditorTableInit() {
+  bceEditor = new $.fn.dataTable.Editor( {
+    ajax: {
+      edit: {
+          type: 'PUT',
+          url:  '/biomedical_concepts/properties/_id_'
+      },
+    },
+    table: "#editor_table",
+    idSrc: "id",
+    fields: 
+    [
+      {
+          label: "Question Text",
+          name: "question_text"
+      },
+      {
+          label: "Prompt Text",
+          name: "prompt_text"
+      },
+      {
+          label: "Enabled",
+          name: "enabled"
+      },
+      {
+          label: "Collect",
+          name: "collect"
+      },
+      {
+          label: "Format",
+          name: "format"
+      }
+    ]
+  } );
+ 
+  bceEditorTable = $('#editor_table').DataTable({
+      lengthChange: false,
+      ajax: {
+        url: bceBcUrl(),
+        "dataSrc": "children",
+        error: function (xhr, status, error) {
+          displayError("An error has occurred loading the Biomedical Concept edit table.");
+        }
+      },
+      columns: [
+        { data: "alias" },
+        { data: "question_text" },
+        { data: "prompt_text" },
+        { data: "enabled", render: function(data,type,full,meta) { 
+          if (data) {
+            return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>";
+          } else {
+            return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>";
+          }
+        }},
+        { data: "collect", render: function(data,type,full,meta) { 
+          if (data) {
+            return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>";
+          } else {
+            return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>";
+          }
+        }},
+        { data: "simple_datatype" },
+        { data: "format" },
+        { data: null, "render": function(data,type,full,meta) { 
+          return '<button type="button" class="btn btn-primary btn-xs">Edit</button>';
+        }}
+      ],
+      keys: {
+          columns: [ 1, 2, 6 ],
+          keys: [ 9, 38, 40 ]
+      }
+  });
+
+  // Click on the table.
+  $('#editor_table').on('click', 'tbody td:not(:first-child)', function (e) {
+    var idx = bceEditorTable.cell(this).index();
+    var row = idx.row;
+    var col = idx.column;
+    var data = bceEditorTable.cell(this).data();
+    if (col === 3) {
+      data = !data;
+      bceEditor.edit(row, false).set('enabled', data).submit();
+    } else if (col === 4) {
+      data = !data;
+      bceEditor.edit(row, false).set('collect', data).submit();
+    } else {
+      bceEditor.inline(bceEditorTable.cell(this).index(), { submitOnBlur: true, submit: 'all' });
+    }
+  });
+
+  // Inline editing on tab focus
+  bceEditorTable.on( 'key-focus', function ( e, datatable, cell ) {
+    bceEditor.inline( cell.index(), { submitOnBlur: true, submit: 'all' } );
+  } );
+
+  // Presubmit event. Format the data.
+  bceEditor.on('preSubmit', function ( e, d, type ) {
+    if ( type === 'edit' ) {
+      d.property = cloneProperty();
+      d.namespace = bceNamespace;
+      var columnObject = firstObject(d.data);
+      $.each(columnObject, function(key, value) {
+        d.property[key] = value;
+      });
+      delete d.data;
+    }
+    return true;
+  });
+
+  // Postsubmit event. Extend the timeout
+  bceEditor.on('postSubmit', function ( e, json, data, type ) {
+    ttExtendLock(bceBcs[bceCurrentIndex].uiIndex);
+  });
+
+
+  // Submit error event. Route to the specified link.
+  bceEditor.on('submitError', function (e, xhr, err, thrown, data) {
+    window.location.href = xhr.responseJSON.link;
+  });
+
+  // Have a real table now, hide the temp empty one.
+  $('#temp_table').hide();
+  $('#editor_table').show();
+}
+
+function bceTempTableInit() {
+  bceTempTable = $('#temp_table').DataTable({
+    lengthChange: false
+  });
+  $('#temp_table').show();
+  $('#editor_table').hide();
+}
+
+function bceBcUrl() {
+  return "/biomedical_concepts/" + bceId + '?biomedical_concept[namespace]=' + bceNamespace;
+}
+
+function firstObject(object) {
+  var first;
+  for (var i in object) {
+    if (object.hasOwnProperty(i) && typeof(i) !== 'function') {
+      first = object[i];
+      break;
+    }
+  }
+  return first;
+}
+
+function cloneProperty() {
+  return JSON.parse(JSON.stringify(bceEmptyProperty));
+}
+
+function bceSetToken(index) {
+  $('#token_' + bceBcs[index].uiIndex).val(bceBcs[index].token);
+}
+
+function bceGetToken(index) {
+  return $('#token_' + bceBcs[index].uiIndex).val();
+}
+
+function bceShowBcCount() {
+  $('#bc_timer_count').html(bceBcs.length);  
+}
+
+// Null function for page unload. Nothing to do
+function pageUnloadAction() {
+}
+
+function bceShowPanel(index) {
+  panelId = bceBcs[index].panelId;
+  bcePanelIndexMap[panelId] = index;
+  $("#bc_panel_" + panelId).show();
+  $("#bc_panel_title_" + panelId).text(bceBcs[index].label);
+}
+
+function bceHidePanels() {
+  $('.bc-panel').hide();
+}
+
+function bceHideTimers() {
+  $('.bc-timer').hide();
+}
+
+function bceBcTree(index) {
+  panelId = bceBcs[index].panelId;
+  var div = "d3_" + panelId;
+  d3eInit(div, bceEmpty, bceEmpty, bceEmpty, bceEmpty);
+  var rootNode = d3eRoot("", C_BC, bceBcs[index].json)
+  for (var i=0; i<bceBcs[index].json.children.length; i++) {
+    bceSetD3(bceBcs[index].json.children[i], rootNode);
+  }
+  d3eDisplayTree(rootNode.key)
+  bceBcs[index].rootNode = rootNode;
+}
+
+function bceSetD3(sourceNode, d3ParentNode) {
+  var newNode = d3eAddNode(d3ParentNode, "", sourceNode.type, true, sourceNode, true);
+  if (sourceNode.hasOwnProperty('children')) {
+    if (sourceNode.children.length === 0) {
+      newNode.name = sourceNode.alias;
+    } else {
+      for (var i=0; i<sourceNode.children.length; i++) {
+        bceSetD3(sourceNode.children[i], newNode);
+      }
+    }
+  } else if (sourceNode.hasOwnProperty('complex_datatype')) {
+    bceSetD3(sourceNode.complex_datatype, newNode);
+  } else if (sourceNode.hasOwnProperty('datatype')) {
+    bceSetD3(sourceNode.datatype, newNode);
+  }
+}
+
+function bceEmpty() {
+}

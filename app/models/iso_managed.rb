@@ -682,7 +682,7 @@ class IsoManaged < IsoConcept
       "    ?s isoI:hasIdentifier ?si . \n" +      
       "    ?s rdf:type ?o . \n" +      
       "  } UNION {\n" +
-      "    ?s (cbc:hasItem|cbc:hasDatatype|cbc:hasProperty)* :#{id} . \n" +      
+      "    ?s (cbc:hasItem|cbc:hasDatatype|cbc:hasProperty|cbc:hasComplexDatatype)* :#{id} . \n" +      
       "    ?s isoI:hasIdentifier ?si . \n" +      
       "    ?s rdf:type ?o . \n" +      
       "  } UNION {\n" +

@@ -1,27 +1,34 @@
-var ttCurrentClass;
-var ttWarningTimeout;
+var ttTokens = {};
 
-var C_TT_SUCCESS = "btn btn-success"; 
-var C_TT_WARNING = "btn btn-warning"; 
-var C_TT_DANGER = "btn btn-danger"; 
+var C_TT_SUCCESS = "btn-success"; 
+var C_TT_WARNING = "btn-warning"; 
+var C_TT_DANGER = "btn-danger"; 
 
-$(document).ready(function() {
-	ttCurrentClass = $('#token_timer').attr('class'); 
-	ttWarningTimeout = $('#warning_timeout').val(); 
-	$("#token_timer").prop("disabled", true);
-	$("#token_timer").hide();
-	ttStatusTimeout();
-});
+function ttAddToken(id) {
+  ttTokens[id] = {};
+  ttTokens[id].timerId = null;
+  ttTokens[id].currentClass = ttGetTimerClass(id);
+  ttTokens[id].warningTimeout = ttGetTimerTimeout(id);
+  ttTokens[id].tokenId = $('#token_' + id).val();
+  ttDisableTimerField(id);
+  ttHideTimer(id)
+  ttStatusTimeout(id, 10000);
+}
 
-function ttStatusTimeout(period) {
-  setTimeout(function(){
-    ttGetStatus();
+function ttRemoveToken(id) {
+  clearTimeout(ttTokens[id]);
+  ttTokens[id] = {};
+}
+
+function ttStatusTimeout(id, period) {
+  ttTokens[id].timerId = setTimeout(function(){
+    ttGetStatus(id);
   }, period);
 }
 
-function ttGetStatus() {
+function ttGetStatus(id) {
   $.ajax({
-    url: "/tokens/" + $('#token').val() + "/status",
+    url: "/tokens/" + ttTokens[id].tokenId + "/status",
     type: "GET",
     dataType: 'json',
     error: function (xhr, status, error) {
@@ -29,49 +36,47 @@ function ttGetStatus() {
     },
     success: function(result){
       if (result.running) {
-      	if (result.remaining > ttWarningTimeout) {
-      		$("#token_timer").hide();
-      		ttStatusTimeout(10000);
-      	} else if (result.remaining > (ttWarningTimeout / 2)) {
-      		if (ttCurrentClass === C_TT_SUCCESS) {
-      			ttUpdateClass(C_TT_WARNING);
-						$("#token_timer").show();
+      	if (result.remaining > ttTokens[id].warningTimeout) {
+      		ttHideTimer(id);
+      		ttStatusTimeout(id, 10000);
+      	} else if (result.remaining > (ttTokens[id].warningTimeout / 2)) {
+      		if (ttTokens[id].currentClass.indexOf(C_TT_SUCCESS) >= 0) {
+      			ttUpdateTimerClass(id, C_TT_WARNING);
+            ttShowTimer(id);
   				}	
-      		$('#token_timer').html(ttToMinSec(result.remaining));
-	      	ttStatusTimeout(1000);
+      		ttTimerDisplay(id, result.remaining);
+	      	ttStatusTimeout(id, 1000);
       	} else {
-      		if (ttCurrentClass === C_TT_WARNING) {
-	      		ttUpdateClass(C_TT_DANGER);
-						$("#token_timer").show();
+      		if (ttTokens[id].currentClass.indexOf(C_TT_WARNING) >= 0) {
+	      		ttUpdateTimerClass(id, C_TT_DANGER);
+            ttShowTimer(id);
 	      		displayError("The edit lock is about to timeout!")
   				}	
-      		$('#token_timer').html(ttToMinSec(result.remaining));
-	      	ttStatusTimeout(1000);
+      		ttTimerDisplay(id, result.remaining);
+	      	ttStatusTimeout(id, 1000);
       	}
       } else {
-      	$('#token_timer').html("00:00");
+      	ttTimerDisplay(id, 0);
       }
     }
   });
 }
 
-function ttToMinSec(seconds) {
-	var minutes = Math.floor(seconds/60);
-	var seconds = seconds % 60;
-	return pad(minutes, 2, '0') + ":" + pad(seconds, 2, '0');
+function ttTimerDisplay(id, seconds) {
+  $('#token_timer_' + id).html(ttToMinSec(seconds));
 }
 
-function ttExtendLock() {
+function ttExtendLock(id) {
   $.ajax({
-    url: "/tokens/" + $('#token').val() + "/extend_token",
+    url: "/tokens/" + ttTokens[id].tokenId + "/extend_token",
     type: "GET",
     dataType: 'json',
     error: function (xhr, status, error) {
       displayError("An error has occurred extending the edit lock timeout.");
     },
     success: function(result){
-    	ttUpdateClass(C_TT_SUCCESS);
-    	$("#token_timer").hide();
+    	ttUpdateTimerClass(id, C_TT_SUCCESS);
+    	ttHideTimer(id);
     }
   });
 }
@@ -81,7 +86,42 @@ function ttSave() {
   $("#token_timer").hide();
 }
 
-function ttUpdateClass(newClass) {
-	$("#token_timer").removeClass().addClass(newClass);
-	ttCurrentClass = $('#token_timer').attr('class'); 
+function ttHideTimer(id) {
+  $("#token_timer_" + id).hide();
+}
+
+function ttShowTimer(id) {
+  $("#token_timer_" + id).show();
+}
+
+function ttUpdateTimerClass(id, newClass) {
+	$("#token_timer_" + id).removeClass(ttTokens[id].currentClass).addClass(newClass);
+	ttTokens[id].currentClass = newClass;
+}
+
+function ttGetTimerClass(id) {
+  var current = $("#token_timer_" + id).attr('class'); 
+  if (current.indexOf(C_TT_SUCCESS) >= 0) {
+    return C_TT_SUCCESS;
+  } else if (current.indexOf(C_TT_WARNING) >= 0) {
+    return C_TT_WARNING;
+  } else if (current.indexOf(C_TT_DANGER) >= 0) {
+    return C_TT_DANGER;
+  } else {
+    return "";
+  }
+}
+
+function ttGetTimerTimeout() {
+  return $('#warning_timeout').val(); 
+}
+
+function ttDisableTimerField(id) {
+  $("#token_timer_" + id).prop("disabled", true);
+}
+
+function ttToMinSec(seconds) {
+  var minutes = Math.floor(seconds/60);
+  var seconds = seconds % 60;
+  return pad(minutes, 2, '0') + ":" + pad(seconds, 2, '0');
 }
