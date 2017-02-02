@@ -164,6 +164,8 @@ function bceInit() {
   bceBcRow = null;
   bceHidePanels();
   bceHideTimers();
+  bceHideTempTable();
+  bceHideEditorTable();
   bceEmptyProperty = 
   {
     "type": C_BC_PROP, 
@@ -455,16 +457,32 @@ function bceEditorTableInit() {
   });
 
   // Have a real table now, hide the temp empty one.
-  $('#temp_table').hide();
-  $('#editor_table').show();
+  bceHideTempTable();
+  bceShowEditorTable();
 }
 
 function bceTempTableInit() {
   bceTempTable = $('#temp_table').DataTable({
     lengthChange: false
   });
-  $('#temp_table').show();
-  $('#editor_table').hide();
+  bceShowTempTable();
+  bceHideEditorTable();
+}
+
+function bceHideTempTable() {
+  $('#temp_table_div').hide();
+}
+
+function bceShowTempTable() {
+  $('#temp_table_div').show();
+}
+
+function bceHideEditorTable() {
+  $('#editor_table_div').hide();
+}
+
+function bceShowEditorTable() {
+  $('#editor_table_div').show();
 }
 
 function bceBcUrl() {
