@@ -208,6 +208,7 @@ function bceComplete(count, row) {
     success: function(result) {
       bceEditorTable.row(row).data(result.data[0]);    
       bceEditorTable.draw();
+      // Redraw D3 tree here.
     }
   });
 }
@@ -285,6 +286,7 @@ function bceShowCurrentBc() {
   }
   $(".bc-panel").removeClass("panel-success"); 
   $("#bc_panel_" + panelId).addClass("panel-success");
+  bceEditorTable.page.len(15);
 }
 
 function bceAddBc(id, namespace, lock) {
@@ -296,7 +298,6 @@ function bceAddBc(id, namespace, lock) {
     bceCurrentIndex = bcIndex;
     panelId = 1;
     bceCreateBcRecord(id, namespace, bcIndex, uiIndex, panelId);
-
   } else if (bceBcs.length < C_PANEL_COUNT) {
     bceCurrentIndex = bcIndex;
     panelId = bceBcs.length + 1;
