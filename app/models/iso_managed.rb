@@ -1078,9 +1078,9 @@ class IsoManaged < IsoConcept
     result = super_valid &&
       rs_valid &&
       si_valid &&
-      FieldValidation.valid_label?(:change_description, self.changeDescription, self) &&
-      FieldValidation.valid_label?(:explanatory_comment, self.explanatoryComment, self) &&
-      FieldValidation.valid_label?(:origin, self.origin, self) 
+      FieldValidation.valid_markdown?(:change_description, self.changeDescription, self) &&
+      FieldValidation.valid_markdown?(:explanatory_comment, self.explanatoryComment, self) &&
+      FieldValidation.valid_markdown?(:origin, self.origin, self) 
     return result
   end
 

@@ -165,7 +165,7 @@ class BiomedicalConceptsController < ApplicationController
         @references = BiomedicalConcept.get_unique_references(@items)
       end
       format.json do
-        @items = @bc.get_properties(false)
+        @items = @bc.get_properties(true)
         render json: @items
       end
     end

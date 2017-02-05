@@ -154,6 +154,29 @@ before :all do
     expect(item.to_json).to eq(result)    
   end
 
+  it "detects complex property" do
+    property = BiomedicalConceptCore::Property.find("BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", "http://www.assero.co.uk/MDRBCTs/V1")
+    expect(property.complex?).to eq(true)
+  end
+
+  it "allows coded to be set" do
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
+    property.set_coded
+    expect(property.coded?).to eq (true)
+  end
+
+  it "prevents coded being set on complex property" do
+    property = BiomedicalConceptCore::Property.find("BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", "http://www.assero.co.uk/MDRBCTs/V1")
+    property.set_coded
+    expect(property.coded?).to eq (false)
+  end
+
+  it "allows coded to be determined" do
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
+    property.set_coded
+    expect(property.coded?).to eq (true)
+  end
+
   it "allows the object to be found - Complex datatype" do
     result = 
       {

@@ -22,8 +22,7 @@ Rails.application.config.assets.version = '1.0'
   markdown_editor
   background_index 
 	biomedical_concepts_editor 
-	cdisc_search
-  thesauri_editor thesauri_viewer thesauri_search_new
+	thesauri_editor thesauri_viewer thesauri_search_new thesauri_field_editor
   form_placeholder_new form_editor form_viewer form_show form_utility
   d3_tree d3graph d3_graph d3_editor 
   standard_datatable ).each do |controller|

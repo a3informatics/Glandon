@@ -164,7 +164,12 @@ Rails.application.routes.draw do
   namespace :biomedical_concepts do
     resources :items
     resources :datatypes
-    resources :properties
+    resources :properties do
+      member do
+        post 'term', to: 'properties#add', as: :add
+        delete 'term', to: 'properties#remove', as: :remove
+      end
+    end
     resources :property_values
   end
   resources :biomedical_concepts do

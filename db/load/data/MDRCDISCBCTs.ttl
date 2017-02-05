@@ -86,7 +86,7 @@ mdrItems:RS-Obs_PQR-1
 .
 :BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED
 	rdf:type cbc:Datatype ;
-	cbc:hasDatatypeRef mdrIso21090:DT-CD ;
+	cbc:iso21090_datatype "ED"^^xsd:string ;
 	cbc:hasProperty :BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value ;
 .
 :BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value
@@ -201,7 +201,7 @@ mdrItems:RS-Obs_PQR-1
 .
 :BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME
 	rdf:type cbc:Datatype ;
-	cbc:hasDatatypeRef mdrIso21090:DT-IVL_TS_DATETIME ;
+	cbc:iso21090_datatype "TS_DATETIME"^^xsd:string ;
 	cbc:hasProperty :BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value ;
 .
 :BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
@@ -232,7 +232,7 @@ mdrItems:RS-Obs_PQR-1
 .
 :BCT-Obs_PQR_PerformedObservation_negationReason_SC_code_CD
 	rdf:type cbc:Datatype ;
-	cbc:hasDatatypeRef mdrIso21090:DT-SC ;
+	cbc:iso21090_datatype "CD"^^xsd:string ;
 	cbc:hasProperty :BCT-Obs_PQR_PerformedObservation_negationReason_SC_code_CD_code ;
 .
 :BCT-Obs_PQR_PerformedObservation_negationReason_SC_code_CD_code
@@ -360,7 +360,7 @@ mdrItems:RS-Obs_CD-1
 .
 :BCT-Obs_CD_DefinedObservation_nameCode_CD_originalText_ED
 	rdf:type cbc:Datatype ;
-	cbc:hasDatatypeRef mdrIso21090:DT-CD ;
+	cbc:iso21090_datatype "ED"^^xsd:string ;
 	cbc:hasProperty :BCT-Obs_CD_DefinedObservation_nameCode_CD_originalText_ED_value ;
 .
 :BCT-Obs_CD_DefinedObservation_nameCode_CD_originalText_ED_value
@@ -475,7 +475,7 @@ mdrItems:RS-Obs_CD-1
 .
 :BCT-Obs_CD_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME
 	rdf:type cbc:Datatype ;
-	cbc:hasDatatypeRef mdrIso21090:DT-IVL_TS_DATETIME ;
+	cbc:iso21090_datatype "TS_DATETIME"^^xsd:string ;
 	cbc:hasProperty :BCT-Obs_CD_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value ;
 .
 :BCT-Obs_CD_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
@@ -506,7 +506,7 @@ mdrItems:RS-Obs_CD-1
 .
 :BCT-Obs_CD_PerformedObservation_negationReason_SC_code_CD
 	rdf:type cbc:Datatype ;
-	cbc:hasDatatypeRef mdrIso21090:DT-SC ;
+	cbc:iso21090_datatype "CD"^^xsd:string ;
 	cbc:hasProperty :BCT-Obs_CD_PerformedObservation_negationReason_SC_code_CD_code ;
 .
 :BCT-Obs_CD_PerformedObservation_negationReason_SC_code_CD_code

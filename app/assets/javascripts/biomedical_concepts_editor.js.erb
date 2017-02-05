@@ -179,6 +179,36 @@ function bceInit() {
     "format": "",
     "simple_datatype": ""      
   };
+  tfeInit();
+  tfeSetCallBack(bceComplete);
+}
+
+function bceComplete(count, row) {
+  var type;
+  var data;
+  var rowData = bceEditorTable.row(row).data();
+  if (count === 0) {
+    type = "DELETE";
+    data = { "property": { "namespace": rowData.namespace }};
+  } else {
+    var refs = tfeToRefs();
+    type = "POST";
+    data = { "property": { "namespace": rowData.namespace, "tc_refs": refs }};    
+  }      
+  $.ajax({
+    url: "/biomedical_concepts/properties/" + rowData.id + "/term",
+    type: type,
+    data: JSON.stringify(data),
+    dataType: 'json',
+    contentType: 'application/json',
+    error: function (xhr, status, error) {
+      displayError("An error has occurred updating the terminology for a Biomedical Concept.");
+    },
+    success: function(result) {
+      bceEditorTable.row(row).data(result.data[0]);    
+      bceEditorTable.draw();
+    }
+  });
 }
 
 function bceCheckCurrent() {
@@ -253,7 +283,7 @@ function bceShowCurrentBc() {
     bceEditorTable.ajax.url(bceBcUrl()).load();
   }
   $(".bc-panel").removeClass("panel-success"); 
-  $("#bc_panel_" + panelId).addClass("panel-success"); 
+  $("#bc_panel_" + panelId).addClass("panel-success");
 }
 
 function bceAddBc(id, namespace, lock) {
@@ -310,10 +340,10 @@ function bceGetBc(index) {
       bceBcs[index].json = result;
       bceBcs[index].label = result.label;
       bceBcs[index].identifier = result.identifier;
-      if (bceBcs[index].panelId !== C_NULL) {
+      //if (bceBcs[index].panelId !== C_NULL) {
         bceShowPanel(index) 
         bceBcTree(index);
-      }
+      //}
     }
   });
 }
@@ -368,45 +398,70 @@ function bceEditorTableInit() {
           name: "format"
       }
     ]
-  } );
+  });
  
+  /*bceEditorTable = $('#editor_table').on('xhr.dt', function ( e, settings, json, xhr ) {
+    for ( var i=0, ien=json.children.length ; i<ien ; i++ ) {
+        json.children[i].terminology = "";
+    }
+    bceParseTable(json.children);
+    // Note no return - manipulate the data directly in the JSON object.
+  }).DataTable({*/
   bceEditorTable = $('#editor_table').DataTable({
-      lengthChange: false,
-      ajax: {
-        url: bceBcUrl(),
-        "dataSrc": "children",
-        error: function (xhr, status, error) {
-          displayError("An error has occurred loading the Biomedical Concept edit table.");
-        }
-      },
-      columns: [
-        { data: "alias" },
-        { data: "question_text" },
-        { data: "prompt_text" },
-        { data: "enabled", render: function(data,type,full,meta) { 
-          if (data) {
-            return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>";
-          } else {
-            return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>";
-          }
-        }},
-        { data: "collect", render: function(data,type,full,meta) { 
-          if (data) {
-            return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>";
-          } else {
-            return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>";
-          }
-        }},
-        { data: "simple_datatype" },
-        { data: "format" },
-        { data: null, "render": function(data,type,full,meta) { 
-          return '<button type="button" class="btn btn-primary btn-xs">Edit</button>';
-        }}
-      ],
-      keys: {
-          columns: [ 1, 2, 6 ],
-          keys: [ 9, 38, 40 ]
+    lengthChange: false,
+    ajax: {
+      url: bceBcUrl(),
+      "dataSrc": "children",
+      error: function (xhr, status, error) {
+        displayError("An error has occurred loading the Biomedical Concept edit table.");
       }
+    },
+    rowId: 'id',
+    columns: [
+      { data: "alias" },
+      { data: "question_text" },
+      { data: "prompt_text" },
+      { data: "enabled", render: function(data, type, full, meta) { 
+        if (data) {
+          return "<span class=\"glyphicon glyphicon-ok text-success\"/>";
+        } else {
+          return "<span class=\"glyphicon glyphicon-remove text-danger\"/>";
+        }
+      }},
+      { data: "collect", render: function(data, type, full, meta) { 
+        if (data) {
+          return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>";
+        } else {
+          return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>";
+        }
+      }},
+      { data: "simple_datatype", render: function(data, type, full, meta) { 
+        if (full.coded) {
+          return data + " [coded]";
+        } else {
+          return data;
+        }
+      }},
+      { data: "format" },
+      { data: "children", "render": function(data, type, full, meta) { 
+        if (full.enabled && full.coded) {
+          return bceFormatTerminology(full.children);
+        } else {
+          return ""
+        }
+      }},
+      { data: null, "render": function(data, type, full, meta) { 
+        if (full.enabled && full.coded) {
+          return '<button class="btn btn-primary btn-xs">T</button>';
+        } else {
+          return ""
+        }
+      }}
+    ],
+    keys: {
+        columns: [ 1, 2, 6 ],
+        keys: [ 9, 38, 40 ]
+    }
   });
 
   // Click on the table.
@@ -414,13 +469,20 @@ function bceEditorTableInit() {
     var idx = bceEditorTable.cell(this).index();
     var row = idx.row;
     var col = idx.column;
-    var data = bceEditorTable.cell(this).data();
+    var cellData = bceEditorTable.cell(this).data();
+    var rowData = bceEditorTable.row(row).data();
+    tfeDisable();
+    tfeClear();
     if (col === 3) {
-      data = !data;
-      bceEditor.edit(row, false).set('enabled', data).submit();
+      cellData = !cellData;
+      bceEditor.edit(row, false).set('enabled', cellData).submit();
     } else if (col === 4) {
-      data = !data;
-      bceEditor.edit(row, false).set('collect', data).submit();
+      cellData = !cellData;
+      bceEditor.edit(row, false).set('collect', cellData).submit();
+    } else if (col === 8) {
+      tfeEnable(rowData.alias, row);
+      tfeLoad(rowData.children);  
+    } else if (col === 5 || col === 7) {
     } else {
       bceEditor.inline(bceEditorTable.cell(this).index(), { submitOnBlur: true, submit: 'all' });
     }
@@ -435,7 +497,7 @@ function bceEditorTableInit() {
   bceEditor.on('preSubmit', function ( e, d, type ) {
     if ( type === 'edit' ) {
       d.property = cloneProperty();
-      d.namespace = bceNamespace;
+      d.property.namespace = bceNamespace;
       var columnObject = firstObject(d.data);
       $.each(columnObject, function(key, value) {
         d.property[key] = value;
@@ -456,10 +518,61 @@ function bceEditorTableInit() {
     window.location.href = xhr.responseJSON.link;
   });
 
+  //$('#editor_table').on( 'draw.dt', function () {
+  //  bceParseTable();
+  //});
+
   // Have a real table now, hide the temp empty one.
   bceHideTempTable();
   bceShowEditorTable();
 }
+
+function bceFormatTerminology(items) {
+  text = "";
+  for (var i=0; i<items.length; i++) {
+    var item = items[i];
+    text = text + item.subject_data.notation + ' [' + item.subject_data.identifier + ']<br/>';
+  }
+  return text;
+}
+
+/*function bceParseTable(json) {
+  //rowData = bceEditorTable.rows().data();
+  rowData= json;
+  for (var i=0; i<rowData.length; i++) {
+    bceParseRow(rowData[i]);
+  }
+}
+
+function bceParseRow(row) {
+  if (row.enabled && row.coded) {
+    for (var i=0; i<row.children.length; i++) {
+      var child = row.children[i];
+      bceGetTc(row.id, child.subject_ref.id, child.subject_ref.namespace);
+    }
+  }
+}
+
+function bceGetTc(rowId, id, namespace) {
+  $.ajax({
+    url: "/thesaurus_concepts/" + id,
+    type: "GET",
+    data: { "namespace": namespace },
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      displayError("An error has occurred loading a Terminology reference.");
+    },
+    success: function(result) {
+      var index = bceEditorTable.row('#' + rowId);
+      if(index.length > 0) {
+        var rowData = bceEditorTable.row(index[0]).data();
+        var text = rowData.terminology;
+        rowData.terminology = text + result.notation + ' [' + result.identifier + ']<br/>';
+        bceEditorTable.row(index[0]).data(rowData).draw();
+      }      
+    }
+  });
+}*/
 
 function bceTempTableInit() {
   bceTempTable = $('#temp_table').DataTable({

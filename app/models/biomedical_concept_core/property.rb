@@ -1,6 +1,6 @@
 class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
 
-  attr_accessor :collect, :enabled, :question_text, :prompt_text, :simple_datatype, :datatype, :format, :bridg_path, :tc_refs, :complex_datatype
+  attr_accessor :collect, :enabled, :question_text, :prompt_text, :format, :bridg_path, :simple_datatype, :complex_datatype, :coded, :tc_refs
   
   # Constants
   C_SCHEMA_PREFIX = "cbc"
@@ -18,11 +18,11 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
+    self.coded = false
     self.collect = false
     self.enabled = false
     self.question_text = ""
     self.prompt_text = ""
-    self.datatype = ""
     self.format = ""
     self.bridg_path = ""
     self.tc_refs = Array.new
@@ -33,11 +33,30 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
       self.rdf_type = C_RDF_TYPE_URI.to_s
     else
       super(triples, id)    
+      paths = APP_CONFIG['bridg_path_coded']
+      paths.each { |path| self.coded = true if self.bridg_path.end_with?(path) }
     end
   end
 
   def is_complex?
     return !self.complex_datatype.nil?
+  end
+
+  def set_coded
+    self.coded = true if self.complex_datatype.nil?
+  end
+
+  def coded?
+    return self.coded
+  end
+
+  def to_json_with_references
+    json = self.to_json
+    json[:children].each do |ref|
+      tc = ThesaurusConcept.find(ref[:subject_ref][:id], ref[:subject_ref][:namespace])
+      ref[:subject_data] = tc.to_json if !tc.nil?
+    end
+    return json
   end
 
 	# Update
@@ -88,6 +107,42 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
       result = false
     end
     return result
+  end
+
+  def remove
+    update = UriManagement.buildNs(self.namespace, ["cbc"]) +
+      "DELETE \n" +
+      "{\n" +
+      "  :" + self.id + " cbc:hasThesaurusConcept ?s .\n" +
+      "  ?s ?p ?o .\n"+
+      "}\n" +
+      "WHERE \n" +
+      "{\n" +
+      "  :" + self.id + " cbc:hasThesaurusConcept ?s .\n" +
+      "  ?s ?p ?o .\n"+
+      "}\n"
+    response = CRUD.update(update)
+    if !response.success?
+      ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    end
+  end
+
+  def add(params)
+    sparql = SparqlUpdateV2.new
+    subject = {:uri => self.uri}
+    params[:tc_refs].each do |ref|
+      tc_ref = OperationalReferenceV2.new()
+      tc_ref.subject_ref = UriV2.new({id: ref[:subject_ref][:id], namespace: ref[:subject_ref][:namespace]})
+      tc_ref.ordinal = ref[:ordinal]
+      ref_uri = tc_ref.to_sparql_v2(uri, "hasThesaurusConcept", 'TCR', tc_ref.ordinal, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasThesaurusConcept"}, {:uri => ref_uri})
+    end
+    response = CRUD.update(sparql.to_s)
+    if !response.success?
+      ConsoleLogger.info(C_CLASS_NAME, "add", "Failed to update object.")
+      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+    end
   end
 
   # Get Properties
@@ -163,6 +218,7 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
     if self.is_complex?
       json[:complex_datatype] = self.complex_datatype.to_json
     else
+      json[:coded] = self.coded
       json[:collect] = self.collect
       json[:enabled] = self.enabled
       json[:question_text] = self.question_text
@@ -199,6 +255,10 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "collect"}, {:literal => "#{self.collect}", :primitive_type => "boolean"})
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "bridg_path"}, {:literal => "#{self.bridg_path}", :primitive_type => "string"})
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "simple_datatype"}, {:literal => "#{self.simple_datatype}", :primitive_type => "string"})
+      self.tc_refs.each do |tc_ref|
+        ref_uri = tc_ref.to_sparql_v2(uri, "hasThesaurusConcept", 'TCR', tc_ref.ordinal, sparql)
+        sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasThesaurusConcept"}, {:uri => ref_uri})
+      end
     end
     return uri
   end

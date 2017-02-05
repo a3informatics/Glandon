@@ -190,6 +190,14 @@ function d3eDeleteNode(node) {
   return parentNode;
 }
 
+function d3eDeleteChildren(node) {
+  delete node.children;
+  delete node.data.children;
+  delete node.save;
+  node.children = [];
+  node.data.children = [];
+}
+
 /**
  * Moves the node up. Prevents moving up past first position.
  * 

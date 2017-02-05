@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag    'd3_tree', 'thesauri_search_new', 'panel_collapse', 'spinner' %>
 <%= javascript_include_tag 'd3_tree', 'form_editor', 'ajax_requests', 'form_utility', 'd3_editor', 'unload', 'field_validation' %>
-<%= javascript_include_tag 'token_timer', 'thesauri_search_new', 'panel_collapse', 'spinner' %>
+<%= javascript_include_tag 'token_timer', 'thesauri_search_new', 'panel_collapse', 'spinner', 'thesauri_field_editor' %>
 <% third_level_managed_item_breadcrumb(@form, "Forms", forms_path, @close_path, "Edit:") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
@@ -40,6 +40,7 @@
 	  </div>
 	  <div class="col-md-5" >
 	  	<%= render partial: "shared/formEditor" %>
+	  	<%= render partial: "shared/thesauriFieldEditorPanel" %>
 	  </div>
 	</div>
 	<div id="current_term_row" class="row">

@@ -2,12 +2,12 @@ var formDefinition ;
 var rootNode;
 var bcCurrent;
 var bcCurrentRow;
-var notepadTableReload;
-var norepadTable;
-var notepadData;
-var notepadRow;
-var varClCurrent;
-var varClCurrentRow;
+//var notepadTableReload;
+//var norepadTable;
+//var notepadData;
+//var notepadRow;
+//var varClCurrent;
+//var varClCurrentRow;
 var markdownElement;
 var markdownType;
 var previousSave;
@@ -55,7 +55,7 @@ $(document).ready(function() {
     }
   });
 
-  questionClTable = $('#questionClTable').DataTable({
+  /*questionClTable = $('#questionClTable').DataTable({
     "searching": false,
     "pageLength": 5,
     "lengthChange": false,
@@ -64,7 +64,7 @@ $(document).ready(function() {
       {"data" : "data.subject_data.notation", "width" : "50%"},
     ]
   });
-  questionClTable.clear();
+  questionClTable.clear();*/
 
   bcSelect = $('#bcTable').DataTable( {
     "ajax": {
@@ -89,7 +89,7 @@ $(document).ready(function() {
     ]
   });
 
-  function initialNotepadLoad () {
+  /*function initialNotepadLoad () {
     notepadTable = $('#notepad_table').DataTable( {
       "ajax": {
         "url": "/notepads/index_term",
@@ -109,11 +109,11 @@ $(document).ready(function() {
       ]
     });
     notepadTableReload = true;    
-  }
+  }*/
 
   // Initialise everything.
   initData();
-  initialNotepadLoad();
+  //initialNotepadLoad();
   displayNode(rootNode);
   
   // Set window resize.
@@ -125,7 +125,7 @@ $(document).ready(function() {
   /* 
    * Notepad functions
    */
-  $('#notepad_refresh').click(function() {
+  /*$('#notepad_refresh').click(function() {
     if (!notepadTableReload) {
       initialNotepadLoad();
     } else {
@@ -161,7 +161,7 @@ $(document).ready(function() {
     $(this).toggleClass('success')
     notepadData = data;
     notepadRow = this
-  });
+  });*/
 
   /*
   * General Panel Actions
@@ -322,7 +322,7 @@ $(document).ready(function() {
   /*
    * Function to handle click on Question CL table
    */
-  $('#questionClTable tbody').on('click', 'tr', function () {
+  /*$('#questionClTable tbody').on('click', 'tr', function () {
     if (varClCurrent != null) {
       $(varClCurrent).toggleClass('success');
     }
@@ -330,12 +330,12 @@ $(document).ready(function() {
     var row = questionClTable.row(this).index();
     varClCurrent = this;
     varClCurrentRow = row;
-  });
+  });*/
 
   /* 
   * Function to handle the terminology button clicks.
   */
-  $('#deleteTerm').click(function() {
+  /*$('#deleteTerm').click(function() {
     var data;
     if (varClCurrentRow == null) {
       displayWarning("You need to select a code list item.");
@@ -353,7 +353,7 @@ $(document).ready(function() {
         displayError("Cannot delete terminology item, could not find node.");
       }
     }
-  });
+  });*/
 
   $('#questionDatatype input:radio').click(function() {
     var value = $(this).val();
@@ -378,7 +378,7 @@ $(document).ready(function() {
     if (markdownType == C_NORMAL_GROUP) {
       showBCSelection();
     } else if (markdownType == C_QUESTION) {
-      showNotepad();    
+      //
     }
     markdownElement = null;
     markdownType = "";
@@ -395,12 +395,12 @@ $(document).ready(function() {
   });
 
   $( "#questionCompletion" ).focus(function() {
-    hideNotepad();
+    //tfeDisable();
     handleFocus(C_QUESTION, this);
   });
 
   $( "#questionNote" ).focus(function() {
-    hideNotepad();
+    //tfeDisable();
     handleFocus(C_QUESTION, this);
   });
 
@@ -429,21 +429,27 @@ function markdownCallback(element, text) {
 
 function clEnableDisable (value, coded) {
   if (coded) {
+    var currentNode = d3eGetCurrent();
     $("#questionFormat").prop('disabled', true);
-    $("#notepad_add").prop('disabled', false);
-    $("#deleteTerm").prop('disabled', false);
+    //$("#notepad_add").prop('disabled', false);
+    //$("#deleteTerm").prop('disabled', false);
+    tfeEnable(currentNode.label, currentNode);
   } else if (value === datatypeMap['string']['xsd_fragment']) {
+    var currentNode = d3eGetCurrent();
     $("#questionFormat").prop('disabled', false);
-    $("#notepad_add").prop('disabled', false);
-    $("#deleteTerm").prop('disabled', false);
+    //$("#notepad_add").prop('disabled', false);
+    //$("#deleteTerm").prop('disabled', false);
+    tfeEnable(currentNode.label, currentNode);
   } else if (value === datatypeMap['integer']['xsd_fragment'] || value === datatypeMap['float']['xsd_fragment']) {
     $("#questionFormat").prop('disabled', false);
-    $("#notepad_add").prop('disabled', true);
-    $("#deleteTerm").prop('disabled', true);
+    //$("#notepad_add").prop('disabled', true);
+    //$("#deleteTerm").prop('disabled', true);
+    tfeDisable();    
   } else {
     $("#questionFormat").prop('disabled', true);
-    $("#notepad_add").prop('disabled', true);
-    $("#deleteTerm").prop('disabled', true);
+    //$("#notepad_add").prop('disabled', true);
+    //$("#deleteTerm").prop('disabled', true);
+    tfeDisable();
   }
 }
 
@@ -503,7 +509,7 @@ function selectCommonItem() {
 function selectQuestion() {
   clearSelect();
   $("#questionInfo").removeClass('hidden');
-  $("#notepad_panel").removeClass('hidden');
+  //$("#notepad_panel").removeClass('hidden');
 }
 
 function selectMapping() {
@@ -528,13 +534,13 @@ function selectCl() {
   $("#clInfo").removeClass('hidden');
 }
 
-function showNotepad() {
-  $("#notepad_panel").removeClass('hidden');
-}
+//function showNotepad() {
+  //$("#notepad_panel").removeClass('hidden');  
+//}
 
-function hideNotepad() {
-  $("#notepad_panel").addClass('hidden');
-}
+//function hideNotepad() {
+  //$("#notepad_panel").addClass('hidden');
+//}
 
 function showCi() {
   $("#markdown_panel").removeClass('hidden');
@@ -546,6 +552,7 @@ function hideCi() {
 
 function clearSelect() {
   $('.panel-form').addClass('hidden');
+  tfeDisable();
   $("#general_panel").removeClass('hidden');
 }
 
@@ -574,7 +581,7 @@ function saveRest() {
       contentType: 'application/json',
       success: function(result){
         spRemoveSpinner("#saving");
-        ttSave();
+        ttSave("1");
       },
       error: function(xhr, status, error){
         handleAjaxError (xhr, status, error);
@@ -697,17 +704,21 @@ function displayQuestion(node) {
   $('#questionNote').val(node.data.note);
   var $radios = $('input:radio[name=dtRadio]');
   $radios.filter('[value=' + node.data.datatype +']').prop('checked', true);
-  questionClTable.clear();
+  //questionClTable.clear();
+  var items = [];
   if (hasChildren(node)) {
     for (var j=0; j<node.children.length; j++) {
-      questionClTable.row.add(node.children[j]);
+      items.push(node.children[j].data);
+      //questionClTable.row.add(node.children[j]);
     }
     node.data.datatype = datatypeMap['string']['xsd_fragment'];
     clEnableDisable(node.data.datatype, true);
     $radios.prop("disabled", true);
+    tfeLoad(items);
   } else {
     clEnableDisable(node.data.datatype, false);
     $radios.prop("disabled", false);
+    tfeLoad(items);
   }
 }
 
@@ -1100,10 +1111,10 @@ function newBCPropertyCli(cli) {
 
 function newQuestionCli(cli) {
   return {
-    type: C_TC_REF, label: "Thesaurus Concept Reference", id: "", namespace: "", ordinal: 0, 
-    local_label: cli.useful_2, enabled: true, optional: false, 
-    subject_ref: {id: cli.uri_id, namespace: cli.uri_ns},
-    subject_data: {identifier: cli.identifier, notation: cli.useful_1, preferredTerm: cli.useful_2}
+    type: C_TC_REF, label: cli.subject_data.label, id: "", namespace: "", ordinal: 0, 
+    local_label: cli.subject_data.label, enabled: true, optional: false, 
+    subject_ref: cli.subject_ref,
+    subject_data: cli.subject_data
   };
 }
 
@@ -1250,6 +1261,23 @@ function findNodeFromId(id) {
   }
 }
 
+function feTermCallBack(count, node) {
+  var currentD3Node = node;
+  if (count === 0) {
+    d3eDeleteChildren(currentD3Node);
+    displayNode(currentD3Node);
+  } else {
+    d3eDeleteChildren(currentD3Node);
+    var items = tfeToData();
+    for (var i=0; i<items.length; i++) {
+      var tcRefSNode = newQuestionCli(items[i]);
+      var tcRefD3Node = d3eAddNode(currentD3Node, tcRefSNode.local_label, tcRefSNode.type, true, tcRefSNode, true);
+      d3eAddData(currentD3Node, tcRefD3Node.data, true);
+    }
+    displayNode(currentD3Node);
+  }  
+}
+
 function initData () {
   var managedItem;
   // Get the JSON objects
@@ -1270,12 +1298,14 @@ function initData () {
   varClCurrent = null;
   varClCurrentRow = null;
   d3eInit("d3", saveNode, displayNode, empty, validateNode);
-  tsInit(notepadUpdated);
+  //tsInit(notepadUpdated);
   rootNode = d3eRoot(managedItem.label, C_FORM, managedItem)
   idKeyMap = {};
   for (var i=0; i<managedItem.children.length; i++) {
     setD3(managedItem.children[i], rootNode);
   }
+  tfeInit();
+  tfeSetCallBack(feTermCallBack);
 }
 
 function empty(node) {
@@ -1363,10 +1393,10 @@ function displayNode(d3Node) {
     selectBcQuestion();
     displayBcItem(d3Node);
   } else if (d3Node.type === C_QUESTION) {
-    questionClTable.clear();
+    //questionClTable.clear();
     selectQuestion();
     displayQuestion(d3Node);
-    questionClTable.draw(false);
+    //questionClTable.draw(false);
   } else if (d3Node.type === C_MAPPING) {
     selectMapping();
     displayMapping(d3Node);

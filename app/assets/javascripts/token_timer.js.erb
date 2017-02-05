@@ -81,9 +81,9 @@ function ttExtendLock(id) {
   });
 }
 
-function ttSave() {
-  ttUpdateClass(C_TT_SUCCESS);
-  $("#token_timer").hide();
+function ttSave(id) {
+  ttUpdateTimerClass(id, C_TT_SUCCESS);
+  $("#token_timer_" + id).hide();
 }
 
 function ttHideTimer(id) {

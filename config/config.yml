@@ -5,6 +5,10 @@ defaults: &defaults
   cdisc_ct_files: public/results/  # CDISC CT file directory
   ad_hoc_report_files: public/reports/  # Ad Hoc Reports directory
   max_impact_hops: 3 # Maximum hops for impact assesment
+  bridg_path_coded:
+   - CD.originalText.ED.value
+   - CD.code
+   - PQR.code
   # User Settings 
   user_settings:
     paper_size: # Paper size settings

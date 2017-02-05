@@ -1,4 +1,7 @@
 var tsCallBack = null; // Callback function
+var tsCurrentRef;
+var tsCurrentRow;
+var tsSearchTable;
 
 $(document).ready( function() {
 
@@ -6,13 +9,10 @@ $(document).ready( function() {
   
   var id = document.getElementById("thesaurus_id");
   var namespace = document.getElementById("thesaurus_namespace");
-  var counter = document.getElementById("notepadAdd")
-  var currentRef;
-  var currentRow;
   var columns;
 
-  currentRef = null;
-  currentRow = null;
+  tsCurrentRef = null;
+  tsCurrentRow = null;
 	columns = [
     {"data" : "parentIdentifier", "width" : "10%"},
     {"data" : "identifier", "width" : "10%"},
@@ -22,7 +22,7 @@ $(document).ready( function() {
     {"data" : "definition", "width" : "40%"}
   ];
 
-  var searchTable = $('#searchTable').DataTable( {
+  tsSearchTable = $('#searchTable').DataTable( {
     "ajax": {
       "url": "/thesauri/search_results",
       "data": function( d ) {
@@ -57,7 +57,7 @@ $(document).ready( function() {
 
   // Apply the column search. Fires on return or field empty assuming not the
   // current search value (i.e. something has changed).
-  searchTable.columns().every( function () {
+  tsSearchTable.columns().every( function () {
     var that = this;
     $( 'input', this.footer() ).on( 'keyup', function (e) {
       if (e.which == 13 || this.value == "") {
@@ -74,8 +74,8 @@ $(document).ready( function() {
     .unbind() // Unbind previous default bindings
     .bind("keyup", function(e) { // Bind our desired behavior
       if(this.value == "" || e.keyCode == 13) {
-        if (searchTable.search() !== this.value) {
-          searchTable.search(this.value).draw();
+        if (tsSearchTable.search() !== this.value) {
+          tsSearchTable.search(this.value).draw();
         }
       }
       return;
@@ -83,52 +83,48 @@ $(document).ready( function() {
 
   // Handle click on terminology table
   $('#searchTable tbody').on('click', 'tr', function () {
-    if (currentRef != null) {
-      $(currentRef).toggleClass('success');
+    if (tsCurrentRef != null) {
+      $(tsCurrentRef).toggleClass('success');
     }
     $(this).toggleClass('success');
-    // Get the row
-    var row = searchTable.row(this).index();
-    var data = searchTable.row(row).data();
-    // Save the selection
-    currentRef = this;
-    currentRow = row;
+    var row = tsSearchTable.row(this).index();
+    tsCurrentRef = this;
+    tsCurrentRow = row;
   });
 
-  // Add to the notepad
-  $('#notepadAdd').click(function() {
-    if (currentRef != null) {
-      var row = searchTable.row(currentRef).index();
-      var data = searchTable.row(row).data();
-      spAddSpinner("#notepad_adding");
-      $.ajax({
-        url: "/notepads/create_term",
-        type: 'POST',
-        data: { "notepad": {"item_id": data.id, "item_ns": data.namespace }},
-        success: function(result){
-          spRemoveSpinner("#notepad_adding");
-          var count = result['count'];
-          tsUpdate(count);
-          if (tsCallBack != null) {
-            tsCallBack();
-          }
-        },
-        error: function(xhr, status, error){
-          spRemoveSpinner("#notepad_adding");
-          handleAjaxError(xhr, status, error);
-        }
-      });
-    } else {
-      displayWarning("You need to select an item.");
+  // handle double click on terminology table
+  $('#searchTable tbody').on('dblclick', 'tr', function () {
+    if (tsCurrentRef != null) {
+      $(tsCurrentRef).toggleClass('success');
     }
+    $(this).toggleClass('success');
+    var row = tsSearchTable.row(this).index();
+    tsCurrentRef = this;
+    tsCurrentRow = row;
+    var data = tsSearchTable.row(row).data();
+    $('#searchTable_csearch_cl').val(data.parentIdentifier);
+    var e = jQuery.Event("keyup");
+    e.which = 13; 
+    e.keyCode = 13;
+    $('#searchTable_csearch_cl').trigger(e);
   });
 
 });
 
-function tsInit(callback) {
+/*function tsInit(callback) {
   tsCallBack = callback;
 }
 
 function tsUpdate(count) {
   $("#notepadAdd").html('Notepad+ <span class="badge">' + count + '</span>');
+}*/
+
+function tsGet() {
+  if (tsCurrentRef !== null) {
+    var row = tsSearchTable.row(tsCurrentRef).index();
+    var data = tsSearchTable.row(row).data();
+    return toUri(data.namespace, data.id);
+  } else {
+    return null;
+  }
 }

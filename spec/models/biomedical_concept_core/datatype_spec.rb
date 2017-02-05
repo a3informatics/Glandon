@@ -74,6 +74,10 @@ describe BiomedicalConceptCore::Datatype do
 
   it "allows the object to be found"
 
+  it "will set coded for simple CD properties"
+
+  it "will not set coded for complex CD properties"
+
   it "allows the object to be exported as JSON" do
     result = 
       {

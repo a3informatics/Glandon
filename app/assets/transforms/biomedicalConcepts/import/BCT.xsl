@@ -365,9 +365,13 @@
                                 <xsl:with-param name="pObjectName" select="concat(':',$pPrefix,$MinorSeparator,$PropertyName,$URIFinish)" /> 
                             </xsl:call-template>-->
                             <xsl:call-template name="PredicateObject"> 
+                                <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':iso21090_datatype')" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$PropertyDatatype,$quote,'^^xsd:string')" /> 
+                            </xsl:call-template>
+                            <!--<xsl:call-template name="PredicateObject"> 
                                 <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':hasDatatypeRef')" /> 
                                 <xsl:with-param name="pObjectName" select="concat('mdrIso21090:DT-',$pDatatype)" /> 
-                            </xsl:call-template>
+                            </xsl:call-template>-->
                             <xsl:for-each select="$pNode/Property">
                                 <xsl:call-template name="PredicateObject">
                                     <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':hasProperty')" /> 

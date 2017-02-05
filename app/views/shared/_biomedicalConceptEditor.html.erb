@@ -10,7 +10,7 @@
 </style>
 <div class="row top-buffer">
   <div class="col-md-12">
-    <div id="all_bc_panel" class="panel panel-default panel-form">
+    <div id="all_bc_panel" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">All Biomedical Concepts</h3>
         <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
@@ -55,7 +55,7 @@
 </div>
 <div class="row top-buffer">
   <div class="col-md-12">
-    <div id="current_bc_panel" class="panel panel-default panel-form">
+    <div id="current_bc_panel" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Current Biomedical Concept</h3>
         <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
@@ -73,6 +73,7 @@
                 <th>Datatype</th>
                 <th>Format</th>
                 <th>Terminology</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -91,6 +92,7 @@
                 <th>Datatype</th>
                 <th>Format</th>
                 <th>Terminology</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -99,11 +101,28 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Current Terminologies</h3>
+            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+          </div>
+          <div class="panel-body">
+            <%= render partial: "shared/termSearchCurrent" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <%= render partial: "shared/thesauriFieldEditorPanel" %>
+      </div>
+    </div>
     <div class="row top-buffer">
-      <div class="col-md-3">
+      <div class="col-md-6">
         <div id="bc_new_panel" class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">New Biomedical Concept</h3>
+            <h3 class="panel-title">New</h3>
+            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
           </div>
           <div class="panel-body">
             <%= form_for(BiomedicalConcept.new, :html => {:id => "main_form"}) do |f| %>
@@ -124,13 +143,13 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <div id="bc_add_panel" class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Add Biomedical Concept</h3>
+            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
           </div>
           <div class="panel-body">
-
             <table id="bc_table" class="table table-striped table-bordered table-condensed">
               <thead>
                 <tr>
@@ -142,7 +161,6 @@
               </tbody>
             </table>
             <button id="bc_add" class="btn btn-primary">Add</button>
-
           </div>
         </div>
       </div>
