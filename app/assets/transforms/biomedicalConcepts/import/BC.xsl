@@ -445,6 +445,12 @@
                             </xsl:for-each>
                         </xsl:when>
                         <xsl:otherwise>
+                            <!-- Ordinal -->
+                            <xsl:call-template name="PredicateObject"> 
+                                <xsl:with-param name="pPredicateName" select="'cbc:ordinal'" /> 
+                                <xsl:with-param name="pObjectName" select="concat($quote,$PCount,$quote,'^^xsd:positiveInteger')" /> 
+                            </xsl:call-template>
+                            
                             <!--  Complex type-->
                             <xsl:variable name="NextPrefix" select="concat($pPrefix,$MinorSeparator,$PropertyName,$MinorSeparator,$FixedDatatype)"/>
                             <xsl:call-template name="PredicateObject"> 

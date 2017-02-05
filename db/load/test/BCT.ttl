@@ -82,6 +82,7 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
 	cbc:alias "Name"^^xsd:string ;
+	cbc:ordinal "2"^^xsd:positiveInteger ;
 	cbc:hasComplexDatatype :BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED ;
 .
 :BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED
@@ -197,6 +198,7 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low
 	rdf:type cbc:Property ;
 	cbc:alias "Date"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:hasComplexDatatype :BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME ;
 .
 :BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME
@@ -228,6 +230,7 @@ mdrItems:RS-Obs_PQR-1
 :BCT-Obs_PQR_PerformedObservation_negationReason_SC_code
 	rdf:type cbc:Property ;
 	cbc:alias "Code"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:hasComplexDatatype :BCT-Obs_PQR_PerformedObservation_negationReason_SC_code_CD ;
 .
 :BCT-Obs_PQR_PerformedObservation_negationReason_SC_code_CD
@@ -356,6 +359,7 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_DefinedObservation_nameCode_CD_originalText
 	rdf:type cbc:Property ;
 	cbc:alias "Name"^^xsd:string ;
+	cbc:ordinal "2"^^xsd:positiveInteger ;
 	cbc:hasComplexDatatype :BCT-Obs_CD_DefinedObservation_nameCode_CD_originalText_ED ;
 .
 :BCT-Obs_CD_DefinedObservation_nameCode_CD_originalText_ED
@@ -471,6 +475,7 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_PerformedObservation_dateRange_IVL_TS_DATETIME_low
 	rdf:type cbc:Property ;
 	cbc:alias "Date"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:hasComplexDatatype :BCT-Obs_CD_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME ;
 .
 :BCT-Obs_CD_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME
@@ -502,6 +507,7 @@ mdrItems:RS-Obs_CD-1
 :BCT-Obs_CD_PerformedObservation_negationReason_SC_code
 	rdf:type cbc:Property ;
 	cbc:alias "Code"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
 	cbc:hasComplexDatatype :BCT-Obs_CD_PerformedObservation_negationReason_SC_code_CD ;
 .
 :BCT-Obs_CD_PerformedObservation_negationReason_SC_code_CD

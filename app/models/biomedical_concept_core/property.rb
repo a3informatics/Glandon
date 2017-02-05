@@ -165,7 +165,6 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
     if self.is_complex? 
       self.complex_datatype.set_properties(json) 
     else
-      ConsoleLogger::log(C_CLASS_NAME,"set_properties","json=#{json}")
       json.each do |property|
         if property[:id] == self.id 
           self.collect = property[:collect]
@@ -240,7 +239,7 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
   # @param sparql [object] The SPARQL object
   # @return [object] The URI
   def to_sparql_v2(parent_uri, sparql)
-    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}P#{ordinal}"
+    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}P#{self.ordinal}"
     self.namespace = parent_uri.namespace
     uri = super(sparql)
     subject = {:uri => uri}

@@ -81,7 +81,7 @@ class BiomedicalConceptCore::Datatype  < BiomedicalConceptCore::Node
   # @param sparql [object] The SPARQL object
   # @return [object] The URI
   def to_sparql_v2(parent_uri, sparql)
-    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}DT#{ordinal}"
+    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}DT#{self.ordinal}"
     self.namespace = parent_uri.namespace
     uri = super(sparql)
     subject = {:uri => uri}

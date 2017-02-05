@@ -45,7 +45,7 @@ describe BiomedicalConceptCore::Datatype do
     property.question_text = "Draft 123±±±"
     datatype.children[0] = property
     expect(datatype.valid?).to eq(false)
-    expect(datatype.errors.full_messages[0]).to eq("Property, ordinal=1, error: Question text contains invalid characters")
+    expect(datatype.errors.full_messages[0]).to eq("Property, ordinal=1, error:Question text contains invalid characters")
   end
 
   it "allows object to be initialized from triples" do
@@ -63,11 +63,11 @@ describe BiomedicalConceptCore::Datatype do
       }
     triples = {}
     triples ["N_1"] = []
-    triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/CDISCBiomedicalConcept#Node" }
-    triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "Text Label" }
-    triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.assero.co.uk/CDISCBiomedicalConcept#alias", object: "XXXXX" }
-    triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.assero.co.uk/CDISCBiomedicalConcept#ordinal", object: "1" }
-    triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.assero.co.uk/CDISCBiomedicalConcept#iso21090_datatype", object: "PQR" }
+    triples ["N_1"] << { subject:"http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate:"http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object:"http://www.assero.co.uk/CDISCBiomedicalConcept#Node" }
+    triples ["N_1"] << { subject:"http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate:"http://www.w3.org/2000/01/rdf-schema#label", object:"Text Label" }
+    triples ["N_1"] << { subject:"http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate:"http://www.assero.co.uk/CDISCBiomedicalConcept#alias", object:"XXXXX" }
+    triples ["N_1"] << { subject:"http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate:"http://www.assero.co.uk/CDISCBiomedicalConcept#ordinal", object:"1" }
+    triples ["N_1"] << { subject:"http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate:"http://www.assero.co.uk/CDISCBiomedicalConcept#iso21090_datatype", object:"PQR" }
     item = BiomedicalConceptCore::Datatype.new(triples, "N_1")
     expect(item.to_json).to eq(result)    
   end
@@ -118,7 +118,7 @@ describe BiomedicalConceptCore::Datatype do
     expect(BiomedicalConceptCore::Datatype.from_json(result).to_json).to eq(result)
   end
 
-  it "allows the object to be created from JSON, complex" do
+  it "allows the object to be created from JSON, complex I" do
     result = 
     {
       :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
@@ -152,6 +152,83 @@ describe BiomedicalConceptCore::Datatype do
     expect(BiomedicalConceptCore::Datatype.from_json(result).to_json).to eq(result)
   end
 
+  it "allows the object to be created from JSON, complex II" do
+    result = 
+    {
+      :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+      :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD",
+      :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+      :label=>"",
+      :extension_properties=>[],
+      :ordinal=>1,
+      :alias=>"",
+      :iso21090_datatype=>"CD",
+      :children=>
+      [
+        {
+          :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+          :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_code",
+          :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+          :label=>"",
+          :extension_properties=>[],
+          :ordinal=>1,
+          :alias=>"Test Code (--TESTCD)",
+          :coded=>true,
+          :collect=>false,
+          :enabled=>false,
+          :question_text=>"",
+          :prompt_text=>"",
+          :simple_datatype=>"string",
+          :format=>"",
+          :bridg_path=>"DefinedObservation.nameCode.CD.code",
+          :children=>[]
+        },
+        {
+          :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+          :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText",
+          :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+          :label=>"",
+          :extension_properties=>[],
+          :ordinal=>1,
+          :alias=>"Name",
+          :complex_datatype=>
+          {
+            :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+            :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED",
+            :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+            :label=>"",
+            :extension_properties=>[],
+            :ordinal=>1,
+            :alias=>"",
+            :iso21090_datatype=>"ED",
+            :children=>
+            [
+              {
+                :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+                :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value",
+                :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+                :label=>"",
+                :extension_properties=>[],
+                :ordinal=>1,
+                :alias=>"Test Name (--TEST)",
+                :coded=>true,
+                :collect=>false,
+                :enabled=>false,
+                :question_text=>"",
+                :prompt_text=>"",
+                :simple_datatype=>"string",
+                :format=>"",
+                :bridg_path=>"DefinedObservation.nameCode.CD.originalText.ED.value",
+                :children=>[]
+              }
+            ]
+          }
+        }
+      ]
+    }
+    expect(BiomedicalConceptCore::Datatype.from_json(result).to_json).to eq(result)
+  end
+
   it "allows an object to be exported as SPARQL, simple" do
     sparql = SparqlUpdateV2.new
     item = BiomedicalConceptCore::Datatype.new
@@ -168,7 +245,7 @@ describe BiomedicalConceptCore::Datatype do
     expect(sparql.to_s).to eq(expected)
   end
   
-  it "allows an object to be exported as SPARQL, complex" do
+  it "allows an object to be exported as SPARQL, complex I" do
     sparql = SparqlUpdateV2.new
     result = 
     {
@@ -205,6 +282,89 @@ describe BiomedicalConceptCore::Datatype do
     item.to_sparql_v2(parent_uri, sparql)
     #write_text_file_2(sparql.to_s, sub_dir, "datatype_sparql_complex.txt")
     expected = read_text_file_2(sub_dir, "datatype_sparql_complex.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
+
+  it "allows an object to be exported as SPARQL, complex II" do
+    sparql = SparqlUpdateV2.new
+    result = 
+    {
+      :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+      :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD",
+      :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+      :label=>"",
+      :extension_properties=>[],
+      :ordinal=>1,
+      :alias=>"",
+      :iso21090_datatype=>"CD",
+      :children=>
+      [
+        {
+          :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+          :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_code",
+          :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+          :label=>"",
+          :extension_properties=>[],
+          :ordinal=>1,
+          :alias=>"Test Code (--TESTCD)",
+          :coded=>true,
+          :collect=>false,
+          :enabled=>false,
+          :question_text=>"",
+          :prompt_text=>"",
+          :simple_datatype=>"string",
+          :format=>"",
+          :bridg_path=>"DefinedObservation.nameCode.CD.code",
+          :children=>[]
+        },
+        {
+          :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+          :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText",
+          :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+          :label=>"",
+          :extension_properties=>[],
+          :ordinal=>2,
+          :alias=>"Name",
+          :complex_datatype=>
+          {
+            :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+            :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED",
+            :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+            :label=>"",
+            :extension_properties=>[],
+            :ordinal=>1,
+            :alias=>"",
+            :iso21090_datatype=>"ED",
+            :children=>
+            [
+              {
+                :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+                :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value",
+                :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
+                :label=>"",
+                :extension_properties=>[],
+                :ordinal=>1,
+                :alias=>"Test Name (--TEST)",
+                :coded=>true,
+                :collect=>false,
+                :enabled=>false,
+                :question_text=>"",
+                :prompt_text=>"",
+                :simple_datatype=>"string",
+                :format=>"",
+                :bridg_path=>"DefinedObservation.nameCode.CD.originalText.ED.value",
+                :children=>[]
+              }
+            ]
+          }
+        }
+      ]
+    }
+    item = BiomedicalConceptCore::Datatype.from_json(result)
+    parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
+    item.to_sparql_v2(parent_uri, sparql)
+    write_text_file_2(sparql.to_s, sub_dir, "datatype_sparql_complex_II.txt")
+    expected = read_text_file_2(sub_dir, "datatype_sparql_complex_II.txt")
     expect(sparql.to_s).to eq(expected)
   end
 
