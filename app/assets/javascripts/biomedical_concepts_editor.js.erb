@@ -13,6 +13,7 @@ var bceEmptyProperty;
 var bceBcData;
 var bceBcRow;
 var bceBcTable;
+var bceRootNode;
 
 var C_PANEL_COUNT = 4;
 var C_MAX_COUNT = 8;
@@ -536,44 +537,6 @@ function bceFormatTerminology(items) {
   return text;
 }
 
-/*function bceParseTable(json) {
-  //rowData = bceEditorTable.rows().data();
-  rowData= json;
-  for (var i=0; i<rowData.length; i++) {
-    bceParseRow(rowData[i]);
-  }
-}
-
-function bceParseRow(row) {
-  if (row.enabled && row.coded) {
-    for (var i=0; i<row.children.length; i++) {
-      var child = row.children[i];
-      bceGetTc(row.id, child.subject_ref.id, child.subject_ref.namespace);
-    }
-  }
-}
-
-function bceGetTc(rowId, id, namespace) {
-  $.ajax({
-    url: "/thesaurus_concepts/" + id,
-    type: "GET",
-    data: { "namespace": namespace },
-    dataType: 'json',
-    error: function (xhr, status, error) {
-      displayError("An error has occurred loading a Terminology reference.");
-    },
-    success: function(result) {
-      var index = bceEditorTable.row('#' + rowId);
-      if(index.length > 0) {
-        var rowData = bceEditorTable.row(index[0]).data();
-        var text = rowData.terminology;
-        rowData.terminology = text + result.notation + ' [' + result.identifier + ']<br/>';
-        bceEditorTable.row(index[0]).data(rowData).draw();
-      }      
-    }
-  });
-}*/
-
 function bceTempTableInit() {
   bceTempTable = $('#temp_table').DataTable({
     lengthChange: false
@@ -652,29 +615,42 @@ function bceBcTree(index) {
   panelId = bceBcs[index].panelId;
   var div = "d3_" + panelId;
   d3eInit(div, bceEmpty, bceEmpty, bceEmpty, bceEmpty);
-  var rootNode = d3eRoot("", C_BC, bceBcs[index].json)
+  bceRootNode = d3eRoot("", C_BC, bceBcs[index].json)
   for (var i=0; i<bceBcs[index].json.children.length; i++) {
-    bceSetD3(bceBcs[index].json.children[i], rootNode);
+    bceSetD3(bceBcs[index].json.children[i], bceRootNode);
   }
-  d3eDisplayTree(rootNode.key)
-  bceBcs[index].rootNode = rootNode;
+  d3eDisplayTree(bceRootNode.key)
+  bceBcs[index].bceRootNode = bceRootNode;
 }
 
 function bceSetD3(sourceNode, d3ParentNode) {
   var newNode = d3eAddNode(d3ParentNode, "", sourceNode.type, true, sourceNode, true);
+  if (sourceNode.type === C_BC_PROP) {
+    newNode.name = "";
+  } else if (sourceNode.type === C_TC_REF) {
+    getThesaurusConcept(newNode, bceTcCallBack);
+  } else {
+    newNode.name = "";
+  }
   if (sourceNode.hasOwnProperty('children')) {
-    if (sourceNode.children.length === 0) {
-      newNode.name = sourceNode.alias;
-    } else {
+    //if (sourceNode.children.length === 0) {
+      
+    //} else {
       for (var i=0; i<sourceNode.children.length; i++) {
         bceSetD3(sourceNode.children[i], newNode);
       }
-    }
+    //}
   } else if (sourceNode.hasOwnProperty('complex_datatype')) {
     bceSetD3(sourceNode.complex_datatype, newNode);
   } else if (sourceNode.hasOwnProperty('datatype')) {
     bceSetD3(sourceNode.datatype, newNode);
   }
+}
+
+function bceTcCallBack(node, result) {
+  node.data.subject_data = result;
+  node.name = node.data.subject_data.notation;
+  d3eDisplayTree(bceRootNode.key)
 }
 
 function bceEmpty() {
