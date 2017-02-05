@@ -1,5 +1,5 @@
 $(document).on('click', '.panel-heading span.clickable', function(e){
-    var $this = $(this);
+  var $this = $(this);
   if(!$this.hasClass('panel-collapsed')) {
     $this.closest('.panel').find('.panel-body').slideUp();
     $this.addClass('panel-collapsed');

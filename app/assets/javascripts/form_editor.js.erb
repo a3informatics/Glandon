@@ -14,6 +14,7 @@ var previousSave;
 var bcSelect;
 var idKeyMap;
 var datatypeMap;
+var feInitializeTimeoutCount;
 
 $(document).ready(function() {
 
@@ -111,7 +112,7 @@ $(document).ready(function() {
     notepadTableReload = true;    
   }*/
 
-  // Initialise everything.
+  // Initialize everything.
   initData();
   //initialNotepadLoad();
   displayNode(rootNode);
@@ -1285,9 +1286,9 @@ function initData () {
   formDefinition = $.parseJSON(html1);
   var html2 = $("#datatype_map").html();
   datatypeMap = $.parseJSON(html2);
-  // Initialise
+  // Initialize
   managedItem = formDefinition.managed_item;
-  previousSave = currentSave = JSON.stringify(formDefinition);
+  previousSave = JSON.stringify(formDefinition);
   markdownElement = null;
   markdownType = "";
   bcCurrent = null;
@@ -1297,6 +1298,7 @@ function initData () {
   notepadRow = null; 
   varClCurrent = null;
   varClCurrentRow = null;
+  feInitializeTimeoutCount = 0;
   d3eInit("d3", saveNode, displayNode, empty, validateNode);
   //tsInit(notepadUpdated);
   rootNode = d3eRoot(managedItem.label, C_FORM, managedItem)
@@ -1306,7 +1308,27 @@ function initData () {
   }
   tfeInit();
   tfeSetCallBack(feTermCallBack);
+  feUpdateSave();
 }
+
+function feInitializeTimeout() {
+  setTimeout(function(){
+    feUpdateSave();
+  }, 500);
+}
+
+function feUpdateSave () {
+  //console.log ("Active=" + $.active + ", Counter=" + feInitializeTimeoutCount)
+  if ($.active) {
+    if (feInitializeTimeoutCount < 10) {
+      feInitializeTimeout();
+      feInitializeTimeoutCount++;
+      return;
+    }
+  } 
+  previousSave = JSON.stringify(formDefinition);
+}
+
 
 function empty(node) {
 }
