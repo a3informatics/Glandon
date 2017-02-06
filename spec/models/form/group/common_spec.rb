@@ -39,7 +39,7 @@ describe Form::Group::Common::Common do
   it "does not validate an invalid object, completion" do
     item = Form::Group::Common.new
     item.note = "OK"
-    item.completion = "Draft 123@"
+    item.completion = "Draft 123±"
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Completion contains invalid markdown")
     expect(item.errors.count).to eq(1)

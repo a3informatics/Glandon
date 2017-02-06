@@ -3,6 +3,7 @@ require 'rails_helper'
 describe IsoManaged do
 
 	include DataHelpers
+  include ValidationHelpers
 
   def sub_dir
     return "models"
@@ -33,8 +34,16 @@ describe IsoManaged do
     clear_iso_registration_state_object
   end
 
-	it "validates a valid object" do
+	it "validates a valid object, general" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    expect(item.valid?).to eq(true)
+  end
+
+  it "validates a valid object, markdown" do
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.origin = vh_all_chars
+    item.explanatoryComment  = vh_all_chars
+    item.changeDescription = vh_all_chars
     expect(item.valid?).to eq(true)
   end
 
@@ -43,7 +52,7 @@ describe IsoManaged do
     item.origin = "£"
     result = item.valid?
     expect(result).to eq(false)
-    expect(item.errors.full_messages.to_sentence).to eq("Origin contains invalid characters")
+    expect(item.errors.full_messages.to_sentence).to eq("Origin contains invalid markdown")
   end
 
   it "does not validate an invalid object" do
@@ -51,7 +60,7 @@ describe IsoManaged do
     item.explanatoryComment  = "£"
     result = item.valid?
     expect(result).to eq(false)
-    expect(item.errors.full_messages.to_sentence).to eq("Explanatory comment contains invalid characters")
+    expect(item.errors.full_messages.to_sentence).to eq("Explanatory comment contains invalid markdown")
   end
 
   it "does not validate an invalid object" do
@@ -59,7 +68,7 @@ describe IsoManaged do
     item.changeDescription = "£"
     result = item.valid?
     expect(result).to eq(false)
-    expect(item.errors.full_messages.to_sentence).to eq("Change description contains invalid characters")
+    expect(item.errors.full_messages.to_sentence).to eq("Change description contains invalid markdown")
   end
 
   it "does not validate an invalid object" do

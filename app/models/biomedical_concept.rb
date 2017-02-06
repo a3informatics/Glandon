@@ -85,13 +85,13 @@ class BiomedicalConcept < BiomedicalConceptCore
     object = BiomedicalConceptTemplate.find(params[:bct_id], params[:bct_namespace])
     ref = OperationalReferenceV2.new
     ref.subject_ref = object.uri
-    operation = object.to_clone
-    managed_item = operation[:managed_item]
+    operational_hash = object.to_clone
+    managed_item = operational_hash[:managed_item]
     managed_item[:scoped_identifier][:identifier] = params[:identifier]
     managed_item[:label] = params[:label]
     managed_item[:template_ref] = ref.to_json
     managed_item[:type] = "#{C_RDF_TYPE_URI}"
-    new_object = BiomedicalConcept.create(operation)
+    new_object = BiomedicalConcept.create(operational_hash)
     return new_object
   end
 
@@ -102,24 +102,24 @@ class BiomedicalConcept < BiomedicalConceptCore
   # @return [Object] The BC created. Includes errors if failed.
   def self.create_clone(params)
     base_bc = BiomedicalConcept.find(params[:bc_id], params[:bc_namespace])
-    operation = base_bc.to_clone
-    managed_item = operation[:managed_item]
+    operational_hash = base_bc.to_clone
+    managed_item = operational_hash[:managed_item]
     managed_item[:scoped_identifier][:identifier] = params[:identifier]
     managed_item[:label] = params[:label]
-    new_object = BiomedicalConcept.create(operation)
+    new_object = BiomedicalConcept.create(operational_hash)
     return new_object
   end
 
-  # Create an item from the standard operation hash
+  # Create an item from the standard operational hash
   #
-  # @param params [Hash] The standard operation hash
+  # @param params [Hash] The standard operational hash
   # @raise [CreateError] If object not created.
   # @return [Object] The BC created. Includes errors if failed.
   def self.create(params)
-    operation = params[:operation]
+    operational_hash = params[:operation]
     managed_item = params[:managed_item]
     object = BiomedicalConcept.from_json(managed_item)
-    object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
+    object.from_operation(operational_hash, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
     if object.valid? then
       if object.create_permitted?
         sparql = object.to_sparql_v2
@@ -133,60 +133,61 @@ class BiomedicalConcept < BiomedicalConceptCore
     return object
   end
 
+  # Update an item from the standard operational hash
+  #
+  # @param params [Hash] The standard operational hash
+  # @raise [UpdateError] If object not created.
+  # @return [Object] The BC created. Includes errors if failed.
   def self.update(params)
-    object = self.new 
-    object.errors.clear
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    #ConsoleLogger::log(C_CLASS_NAME,"update", "managed_item=" + managed_item.to_json.to_s)
-    bc = BiomedicalConcept.find(managed_item[:id], managed_item[:namespace])
-    ra = IsoRegistrationAuthority.owner
-    object = BiomedicalConcept.from_json(data)
-    sparql = object.to_sparql(ra)
-    bc.destroy # Destroys the old entry before the creation of the new item
-    ConsoleLogger::log(C_CLASS_NAME,"create","Object=#{sparql}")
-    response = CRUD.update(sparql.to_s)
-    if response.success?
-      object.errors.clear
-    else
-      object.errors.add(:base, "The Biomedical Concept was not updated in the database.")
+    operational_hash = params[:operation]
+    managed_item = params[:managed_item]
+    existing_bc = BiomedicalConcept.find(managed_item[:id], managed_item[:namespace])
+    object = BiomedicalConcept.from_json(managed_item)
+    object.from_operation(operational_hash, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
+    if object.valid? then
+      sparql = object.to_sparql_v2
+      existing_bc.destroy # Destroys the old entry before the creation of the new item
+      response = CRUD.update(sparql.to_s)
+      if !response.success?
+        ConsoleLogger.info(C_CLASS_NAME, "update", "Failed to update object.")
+        raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
+      end
     end
     return object
   end
 
+  # Upgrade an item
+  #
+  # @raise [UpdateError or CreateError] if object not updated/created.
+  # @return [Object] The BC created. Includes errors if failed.
   def upgrade
     term_map = Hash.new
     thesauri = Thesaurus.unique
     thesauri.each do |item|
       params = {:identifier => item[:identifier], :scope_id => item[:owner_id]}
       history = Thesaurus.history(params)
-      update_ns = ""
+      update_uri = nil?
       history.each do |item|
-        update_ns = item.namespace if item.current?
+        update_uri = item.uri if item.current?
       end
-      if update_ns != ""
+      if update_uri.nil?
         history.each do |item|
-          term_map[item.namespace] = {:update => !item.current?, :update_ns => update_ns}
+          term_map[item.uri.to_s] = {:update => !item.current?, :namespace => update_uri.namespace}
         end
       end
     end
     ConsoleLogger::log(C_CLASS_NAME,"upgrade","term_map=" + term_map.to_json.to_s)
-
-    bc_edit = self.to_edit
-    ConsoleLogger::log(C_CLASS_NAME,"upgrade","JSON=" + bc_edit.to_s)
-
+    
     proceed = true
-    mi = bc_edit[:managed_item]
-    op = bc_edit[:operation]
-    children = mi[:children]
-    children.each do |child|
-      term_refs = child[:values]
-      term_refs.each do |term_ref|
-        if term_map[term_ref[:uri_ns]][:update]
-          id = term_ref[:uri_id]
-          ns_old = term_ref[:uri_ns]
-          ns_new = term_map[term_ref[:uri_ns]][:update_ns]
+    operational_hash = self.to_operation
+    ConsoleLogger::log(C_CLASS_NAME,"upgrade","JSON=#{operational_hash}")
+    mi = operational_hash[:managed_item]
+    mi[:children].each do |child|
+      child[:tc_refs].each do |term_ref|
+        if term_map[term_ref[:namespace]][:update]
+          id = term_ref[:subject_ref][:id]
+          ns_old = term_ref[:subject_ref][:namespace]
+          ns_new = term_map[term_ref[:subject_ref][:namespace]][:namespace]
           old_cli = ThesaurusConcept.find(id, ns_old)
           new_cli = ThesaurusConcept.find(id, ns_new)
           ConsoleLogger::log(C_CLASS_NAME,"upgrade","Old CLI=" + old_cli.to_json.to_s)
@@ -197,28 +198,21 @@ class BiomedicalConcept < BiomedicalConceptCore
         end
       end
     end
-    ConsoleLogger::log(C_CLASS_NAME,"upgrade","Proceed=" + proceed.to_s)
-
+    
+    ConsoleLogger::log(C_CLASS_NAME,"upgrade","JSON=#{operational_hash}")
     if proceed
-      children.each do |child|
-        term_refs = child[:values]
-        term_refs.each do |term_ref|
-          if term_map[term_ref[:uri_ns]][:update]
-            id = term_ref[:uri_id]
-            ns_new = term_map[term_ref[:uri_ns]][:update_ns]
-            term_ref[:uri_ns] = ns_new
+      mi[:children].each do |child|
+        child[:tc_refs].each do |term_ref|
+          if term_map[term_ref[:namespace]][:update]
+            term_ref[:subject_ref][:uri_ns] = term_map[term_ref[:subject_ref][:namespace]][:namespace]
           end
         end
       end
-      ConsoleLogger::log(C_CLASS_NAME,"upgrade","JSON=" + bc_edit.to_s)
-      bc_json = bc_edit.to_json.to_s
-      ConsoleLogger::log(C_CLASS_NAME,"upgrade","JSON String=" + bc_json)
-      if op[:action] == "CREATE"
-        BiomedicalConcept.create({:data => bc_edit})
-        ConsoleLogger::log(C_CLASS_NAME,"upgrade","Create BC")
+      ConsoleLogger::log(C_CLASS_NAME,"upgrade","JSON=#{operational_hash}")
+      if operational_hash[:operation][:action] == "CREATE"
+        BiomedicalConcept.create(operational_hash)
       else
-        BiomedicalConcept.update({:id => self.id, :namespace => self.namespace, :data => bc_edit})
-        ConsoleLogger::log(C_CLASS_NAME,"upgrade","Update BC")
+        BiomedicalConcept.update(operational_hash)
       end
     end
   end

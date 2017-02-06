@@ -86,7 +86,7 @@ describe "ISO Managed JS", :type => :feature do
       click_button "Preview"
       div = page.find("#generic_markdown")
       expect(div.text(:all)).to eq("I am the origin")
-      fill_in "iso_managed_origin", with: "@@@@@"
+      fill_in "iso_managed_origin", with: "£±£±"
       expect(page).to have_content 'Please enter valid markdown.'
       #pause
       ui_set_focus("iso_managed_explanatoryComment")
@@ -116,7 +116,7 @@ describe "ISO Managed JS", :type => :feature do
       find(:xpath, "//table[@id='main']/tbody/tr/td/a", :text => 'Status').click
       expect(page).to have_content 'Status:'
       #pause
-      fill_in "iso_scoped_identifier_versionLabel", with: "@@@@@"
+      fill_in "iso_scoped_identifier_versionLabel", with: "£±£±"
       click_button "version_submit"
       expect(page).to have_content "Versionlabel contains invalid characters"
       fill_in "iso_scoped_identifier_versionLabel", with: "Draft 1"

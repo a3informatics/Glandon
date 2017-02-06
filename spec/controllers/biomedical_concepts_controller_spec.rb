@@ -70,18 +70,11 @@ describe BiomedicalConceptsController do
       expect(response).to redirect_to("/biomedical_concepts")
     end
 
-    it "initiates the creation of a new BC" do
-      item = BiomedicalConceptTemplate.find("BCT-Obs_PQR", "http://www.assero.co.uk/MDRBCTs/V1")
-      get :new_from_template, { :biomedical_concept => { :uri => item.uri.to_s }}
-      expect(assigns[:bct].to_json).to eq(item.to_json)
-      expect(response).to render_template("new_from_template")
-    end
-
     it "creates the new BC" do
       item = BiomedicalConceptTemplate.find("BCT-Obs_PQR", "http://www.assero.co.uk/MDRBCTs/V1")
       audit_count = AuditTrail.count
       bc_count = BiomedicalConcept.all.count
-      post :create, { :biomedical_concept => { :bct_id => item.id, :bct_namespace => item.namespace, :identifier => "NEW BC", :label => "New BC" }}
+      post :create, { :biomedical_concept => { :uri => item.uri.to_s, :identifier => "NEW BC", :label => "New BC" }}
       bc = assigns(:bc)
       expect(bc.errors.count).to eq(0)
       expect(BiomedicalConcept.all.count).to eq(bc_count + 1) 
@@ -201,11 +194,6 @@ describe BiomedicalConceptsController do
 
     def sub_dir
       return "controllers"
-    end
-
-    it "initiates the creation of a new BC" do
-      get :new_from_template, { :biomedical_concept => { :uri => "http://wwww.example.com" }}
-      expect(response).to redirect_to("/")
     end
 
     it "creates the new BC" do

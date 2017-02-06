@@ -45,7 +45,7 @@ describe Form::Item do
   it "does not validate an invalid object, completion" do
     result = Form::Item.new
     result.note = "OK"
-    result.completion = "Draft 123@"
+    result.completion = "Draft 123§"
     result.ordinal = 1
     expect(result.valid?).to eq(false)
   end

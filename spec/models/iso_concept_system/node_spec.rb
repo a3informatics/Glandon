@@ -84,7 +84,7 @@ describe IsoConceptSystem::Node do
         :namespace => "", 
         :label => "Node 3",
         :extension_properties => [],
-        :description => "Description 3@@",
+        :description => "Description 3±",
         :children => []
       }
     new_concept = concept.add(json)

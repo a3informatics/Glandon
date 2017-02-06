@@ -55,10 +55,10 @@ function getBcProperty(node, callback) {
   $.ajax({
     url: "/biomedical_concepts/properties/" + node.data.property_ref.subject_ref.id,
     type: "GET",
-    data: { "namespace": node.data.property_ref.subject_ref.namespace },
+    data: { "property": { "namespace": node.data.property_ref.subject_ref.namespace }},
     dataType: 'json',
     error: function (xhr, status, error) {
-      var html = alertError("An error has occurred loading a Biomedical Concept reference.");
+      var html = alertError("An error has occurred loading a Biomedical Concept Property reference.");
       displayAlerts(html);
     },
     success: function(result){
@@ -78,10 +78,10 @@ function getBcPropertyCommon(node, callback) {
   $.ajax({
     url: "/biomedical_concepts/properties/" + node.data.item_refs[0].id,
     type: "GET",
-    data: { "namespace": node.data.item_refs[0].namespace },
+    data: { "property": { "namespace": node.data.item_refs[0].namespace }},
     dataType: 'json',
     error: function (xhr, status, error) {
-      var html = alertError("An error has occurred loading a Biomedical Concept reference.");
+      var html = alertError("An error has occurred loading a Biomedical Concept Property common reference.");
       displayAlerts(html);
     },
     success: function(result){

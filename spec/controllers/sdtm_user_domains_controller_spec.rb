@@ -134,7 +134,7 @@ describe SdtmUserDomainsController do
     
     it "allows a domain to be updated, error" do
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
-      domain.notes = "@@@@@@@@"
+      domain.notes = "@@@£±£±"
       token = Token.obtain(domain, @user)
       data = domain.to_operation
       params = { :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}

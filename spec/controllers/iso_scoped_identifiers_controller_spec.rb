@@ -73,7 +73,7 @@ describe IsoScopedIdentifiersController do
       count = IsoScopedIdentifier.all.count
       @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
       scoped_identifier = IsoScopedIdentifier.all.first
-      patch :update, { id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label@@@@@@@@" }}
+      patch :update, { id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label@@@£±£±" }}
       updated_scoped_identifier = IsoScopedIdentifier.find(scoped_identifier.id)
       expect(IsoScopedIdentifier.all.count).to eq(count)
       expect(updated_scoped_identifier.versionLabel).to eq("update to label")

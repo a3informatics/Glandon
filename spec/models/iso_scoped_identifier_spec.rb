@@ -333,7 +333,7 @@ describe IsoScopedIdentifier do
   
   it "prevents an object to be updated if invalid version label" do
     object = IsoScopedIdentifier.find("SI-TEST_3-4")
-    object.update({versionLabel: "0.10@"})
+    object.update({versionLabel: "0.10±"})
     expect(object.errors.count).to eq(1)
   end
   

@@ -57,6 +57,22 @@ INSERT DATA
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1> cbc:collect "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1> cbc:bridg_path "PerformedClinicalResult.baselineIndicator.BL.value"^^xsd:string . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1> cbc:simple_datatype "boolean"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR1> rdfs:label "Thesaurus Concept Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR1> bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66742_C49487> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1> cbc:hasThesaurusConcept <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR1> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR2> rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR2> rdfs:label "Thesaurus Concept Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR2> bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66742_C49488> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1> cbc:hasThesaurusConcept <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1_TCR2> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1> cbc:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1_P1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9> cbc:hasDatatype <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9_DT1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> cbc:hasItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9> . 
@@ -157,29 +173,37 @@ INSERT DATA
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1> cbc:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1> cbc:alias ""^^xsd:string . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1> cbc:iso21090_datatype "CD"^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> rdfs:label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> cbc:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> cbc:alias "Name"^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype> . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1> rdfs:label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1> cbc:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1> cbc:alias ""^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1> cbc:iso21090_datatype "ED"^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> rdfs:label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> cbc:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> cbc:alias "Test Name (--TEST)"^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> cbc:question_text "Question text"^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> cbc:prompt_text "Prompt text"^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> cbc:format ""^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> cbc:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> cbc:collect "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> cbc:bridg_path "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> cbc:simple_datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1> cbc:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1_P1> . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> cbc:hasComplexDatatype <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_DT1> . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1> cbc:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2> cbc:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2> cbc:alias "Name"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1> cbc:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1> cbc:alias ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1> cbc:iso21090_datatype "ED"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:alias "Test Name (--TEST)"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:question_text "Question text"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:prompt_text "Prompt text"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:format ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:collect "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:bridg_path "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:simple_datatype "string"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1_TCR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1_TCR1> rdfs:label "Thesaurus Concept Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1_TCR1> bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C67153_C25206> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1_TCR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1_TCR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1_TCR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1_TCR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> cbc:hasThesaurusConcept <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1_TCR1> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1> cbc:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1_P1> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2> cbc:hasComplexDatatype <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2_DT1> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1> cbc:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P2> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> rdfs:label ""^^xsd:string . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> cbc:ordinal "1"^^xsd:positiveInteger . 
@@ -191,6 +215,14 @@ INSERT DATA
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> cbc:collect "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> cbc:bridg_path "DefinedObservation.nameCode.CD.code"^^xsd:string . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> cbc:simple_datatype "string"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_TCR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_TCR1> rdfs:label "Thesaurus Concept Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_TCR1> bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66741_C25206> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_TCR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_TCR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_TCR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_TCR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> cbc:hasThesaurusConcept <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1_TCR1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1> cbc:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1_P1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1> cbc:hasDatatype <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1_DT1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> cbc:hasItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I1> . 
@@ -290,6 +322,14 @@ INSERT DATA
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2> cbc:collect "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2> cbc:bridg_path "PerformedClinicalResult.value.PQR.code"^^xsd:string . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2> cbc:simple_datatype "string"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2_TCR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2_TCR1> rdfs:label "Thesaurus Concept Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2_TCR1> bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66770_C42559> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2_TCR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2_TCR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2_TCR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2_TCR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2> cbc:hasThesaurusConcept <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2_TCR1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1> cbc:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P2> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P1> rdfs:label ""^^xsd:string . 

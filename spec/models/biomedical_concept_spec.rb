@@ -21,6 +21,9 @@ describe BiomedicalConcept do
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("BCT.ttl")
     load_test_file_into_triple_store("BC.ttl")
+    load_test_file_into_triple_store("CT_V41.ttl")
+    load_test_file_into_triple_store("CT_V42.ttl")
+    load_test_file_into_triple_store("CT_V43.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -123,12 +126,39 @@ it "allows a BC to be found" do
     end
   end
 
-  it "finds all unique entries"
+  it "finds all unique entries" do
+    results = []
+    results[0] = {:id => "BC-ACME_BC_A00002", :scoped_identifier_version => 1}
+    results[1] = {:id => "BC-ACME_BC_A00003", :scoped_identifier_version => 1}
+    results[2] = {:id => "BC-ACME_BC_C16358", :scoped_identifier_version => 1}
+    results[3] = {:id => "BC-ACME_BC_C25206", :scoped_identifier_version => 1}
+    results[4] = {:id => "BC-ACME_BC_C25208", :scoped_identifier_version => 1}
+    results[5] = {:id => "BC-ACME_BC_C25298", :scoped_identifier_version => 1}
+    results[6] = {:id => "BC-ACME_BC_C25299", :scoped_identifier_version => 1}
+    results[7] = {:id => "BC-ACME_BC_C25347", :scoped_identifier_version => 1}
+    results[8] = {:id => "BC-ACME_BC_C49677", :scoped_identifier_version => 1}
+    results[9] = {:id => "BC-ACME_BC_C49678", :scoped_identifier_version => 1}
+    results[10] = {:id => "BC-ACME_BC_C81255", :scoped_identifier_version => 1}
+    results[11] = {:id => "BC-ACME_BC_C98785", :scoped_identifier_version => 1}
+    results[12] = {:id => "BC-ACME_BC_C98793", :scoped_identifier_version => 1}
+    results[13] = {:id => "", :scoped_identifier_version => 1}
+    results[14] = {:id => "", :scoped_identifier_version => 1}
+    results[15] = {:id => "", :scoped_identifier_version => 1}
+    results[16] = {:id => "", :scoped_identifier_version => 1}
+    results[17] = {:id => "", :scoped_identifier_version => 1}
+    results[18] = {:id => "", :scoped_identifier_version => 1}
+    results[19] = {:id => "", :scoped_identifier_version => 1}
+    items = BiomedicalConcept.list
+    items.each_with_index do |item, index|
+      expect(items[index].id).to eq(results[index][:id])
+      expect(items[index].scopedIdentifier.version).to eq(results[index][:scoped_identifier_version])
+    end
+  end
 
   it "allows the object to be exported as JSON" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_to_json.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "bc_to_json.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "bc_to_json.yaml")
+    expected = read_yaml_file(sub_dir, "bc_to_json.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -137,8 +167,8 @@ it "allows a BC to be found" do
     item = BiomedicalConcept.create_simple({:bct_id => bct.id, :bct_namespace => bct.namespace, :identifier => "NEW BC", :label => "New BC"})
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_simple.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "bc_simple.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "bc_simple.yaml")
+    expected = read_yaml_file(sub_dir, "bc_simple.yaml")
     expected[:creation_date] = date_check_now(item.creationDate).iso8601
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
     expect(item.to_json).to eq(expected)
@@ -149,24 +179,24 @@ it "allows a BC to be found" do
     item = BiomedicalConcept.create_clone({:bc_id => bc.id, :bc_namespace => bc.namespace, :identifier => "NEW BC TWO", :label => "New BC Two"})
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_clone.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "bc_clone.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "bc_clone.yaml")
+    expected = read_yaml_file(sub_dir, "bc_clone.yaml")
     expected[:creation_date] = date_check_now(item.creationDate).iso8601
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
     expect(item.to_json).to eq(expected)
   end
 
   it "creates an object based on the standard operation JSON" do
-    json = read_yaml_file_to_hash_2(sub_dir, "bc_operation.yaml")
+    json = read_yaml_file(sub_dir, "bc_operation.yaml")
     item = BiomedicalConcept.create(json)
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_create.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "bc_create.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "bc_create.yaml")
+    expected = read_yaml_file(sub_dir, "bc_create.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
     expect(item.to_json).to eq(expected)
   end
     
   it "allows the object to be created, create error" #do
-  #  json = read_yaml_file_to_hash_2(sub_dir, "bc_operation.yaml")
+  #  json = read_yaml_file(sub_dir, "bc_operation.yaml")
   #  item = BiomedicalConcept.create(json)
   #  puts item.errors.full_messages.to_sentence
   #  #response = Typhoeus::Response.new(code: 200, body: "")
@@ -175,15 +205,41 @@ it "allows a BC to be found" do
   #  #expect{BiomedicalConcept.create(json)}.to raise_error(Exceptions::CreateError)
   #end
 
-  it "update"
+  it "allows a BC to be updated, validation error" do
+    bc = BiomedicalConcept.find("BC-ACME_BC_C98793", "http://www.assero.co.uk/MDRBCs/V1")
+    op = read_yaml_file(sub_dir, "bc_update_change_errors.yaml")
+    updated_bc = BiomedicalConcept.update(op)
+    expect(updated_bc.errors.full_messages.to_sentence).to eq("Item error: Item error: Property, ordinal=2, error: Complex datatype, error: Property, ordinal=1, error: Question text contains invalid characters")
+    expect(updated_bc.errors.count).to eq(1)
+  end
 
-  it "upgrade"
+  it "allows a BC to be updated" do
+    bc = BiomedicalConcept.find("BC-ACME_BC_C98793", "http://www.assero.co.uk/MDRBCs/V1")
+    op = read_yaml_file(sub_dir, "bc_update_change.yaml")
+    updated_bc = BiomedicalConcept.update(op)
+    expect(updated_bc.errors.full_messages.to_sentence).to eq("")
+    expect(updated_bc.errors.count).to eq(0)
+    #write_yaml_file(updated_bc.to_json, sub_dir, "bc_update_result.yaml")
+    expected = read_yaml_file(sub_dir, "bc_update_result.yaml")
+    expected[:last_changed_date] = date_check_now(updated_bc.lastChangeDate).iso8601
+    expect(updated_bc.to_json).to eq(expected)
+    new_bc = BiomedicalConcept.find("BC-ACME_BCC98793", "http://www.assero.co.uk/MDRBCs/ACME/V2")
+  end
+
+  it "allows the terminology references to be upgraded" do
+    bc = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+    bc.upgrade
+    write_yaml_file(bc.to_json, sub_dir, "bc_upgrade_result.yaml")
+    expected = read_yaml_file(sub_dir, "bc_update_upgrade.yaml")
+    expected[:last_changed_date] = date_check_now(updated_bc.lastChangeDate).iso8601
+    expect(updated_bc.to_json).to eq(expected)
+  end
 
   it "allows the object to be created from JSON" do
-    json = read_yaml_file_to_hash_2(sub_dir, "bc_to_json.yaml")
+    json = read_yaml_file(sub_dir, "bc_to_json.yaml")
     item = BiomedicalConcept.from_json(json)
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_from_json.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "bc_from_json.yaml")
+    #write_yaml_file(item.to_json, sub_dir, "bc_from_json.yaml")
+    expected = read_yaml_file(sub_dir, "bc_from_json.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -195,9 +251,30 @@ it "allows a BC to be found" do
     expect(result.to_s).to eq(expected)
   end
 
-  it "get the properties"
-
-  it "get the unique references"
+  it "get the properties, no references" do
+    item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+    result = item.get_properties(false)
+    #write_yaml_file(result, sub_dir, "bc_properties_no_ref.yaml")
+    expected = read_yaml_file(sub_dir, "bc_properties_no_ref.yaml")
+    expect(result).to eq(expected)
+  end
+    
+  it "get the properties with references" do
+    item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+    result = item.get_properties(true)
+    #write_yaml_file(result, sub_dir, "bc_properties_with_refs.yaml")
+    expected = read_yaml_file(sub_dir, "bc_properties_with_refs.yaml")
+    expect(result).to eq(expected)
+  end
+    
+  it "get unique references" do
+    item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+    items = item.get_properties(true)
+    result = BiomedicalConcept.get_unique_references(items)
+    #write_yaml_file(result, sub_dir, "bc_unique_refs.yaml")
+    expected = read_yaml_file(sub_dir, "bc_unique_refs.yaml")
+    expect(result).to eq(expected)
+  end
 
 end
   

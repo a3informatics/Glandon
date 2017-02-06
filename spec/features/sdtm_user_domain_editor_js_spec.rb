@@ -142,14 +142,14 @@ describe "SDTM User Domain Editor", :type => :feature do
       fill_in 'variableName', with: "DMNEW"
       fill_in 'variableLabel', with: "New label"
       ui_click_node_name("ARM")
-      wait_for_ajax
+      #wait_for_ajax
       ui_click_node_name("DMNEW")
-      wait_for_ajax
+      #wait_for_ajax
       ui_check_input('variableName', "DMNEW")
       ui_check_input('variableLabel', "New label")
       fill_in 'variableLabel', with: "New label updated"
       ui_click_node_name("Demographics")      
-      wait_for_ajax
+      #wait_for_ajax
       ui_click_node_name("DMNEW")
       ui_check_input('variableLabel', "New label updated")    
       click_button 'variableDelete'
@@ -161,12 +161,12 @@ describe "SDTM User Domain Editor", :type => :feature do
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
       expect(key_1).not_to eq(-1)
       ui_click_node_name("Demographics")
-      wait_for_ajax
+      #wait_for_ajax
       click_button "V+"
       key_2 = ui_get_key_by_path('["Demographics", "DM000030"]')
       expect(key_2).not_to eq(-1)
       ui_click_node_key(key_2)
-      wait_for_ajax
+      #wait_for_ajax
       click_button 'variableUp'
       ui_check_node_ordinal(key_2, 29)
       ui_check_node_ordinal(key_1, 30)
@@ -179,7 +179,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       expect(page).to have_content 'You cannot move the node down.'
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
       ui_click_node_key(key_1)
-      wait_for_ajax
+      #wait_for_ajax
       click_button 'variableUp'
       expect(page).to have_content 'You cannot move the node up past a standard variable.'
     end

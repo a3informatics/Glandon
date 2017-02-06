@@ -57,8 +57,8 @@ describe BiomedicalConceptCore do
   it "allows the properties to be returned" do
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     json = item.get_properties
-    #write_hash_to_yaml_file_2(json, sub_dir, "bc_core_properties_find.yaml")
-    properties_json = read_yaml_file_to_hash_2(sub_dir, "bc_core_properties_find.yaml")
+    #write_yaml_file(json, sub_dir, "bc_core_properties_find.yaml")
+    properties_json = read_yaml_file(sub_dir, "bc_core_properties_find.yaml")
     expect(json).to eq(properties_json)
   end
 
@@ -68,16 +68,34 @@ describe BiomedicalConceptCore do
     json[:children][3][:question_text] = "Updated Question text"
     item.set_properties(json)
     json = item.get_properties
-    #write_hash_to_yaml_file_2(json, sub_dir, "bc_core_properties_update.yaml")
-    properties_json = read_yaml_file_to_hash_2(sub_dir, "bc_core_properties_update.yaml")
+    #write_yaml_file(json, sub_dir, "bc_core_properties_update.yaml")
+    properties_json = read_yaml_file(sub_dir, "bc_core_properties_update.yaml")
     expect(json).to eq(properties_json)
   end
 
-  it "allows the object to be exported as JSON" 
+  it "allows the object to be exported as JSON" do
+    item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+    #write_yaml_file(item.to_json, sub_dir, "bc_core_json.yaml")
+    expected = read_yaml_file(sub_dir, "bc_core_json.yaml")
+    expect(item.to_json).to eq(expected)
+  end
 
-  it "allows the object to be created from JSON" 
+  it "allows the object to be created from JSON" do
+    hash = read_yaml_file(sub_dir, "bc_core_json.yaml")
+    item = BiomedicalConceptCore.from_json(hash)
+    #write_yaml_file(item.to_json, sub_dir, "bc_core_from_json.yaml")
+    expected = read_yaml_file(sub_dir, "bc_core_from_json.yaml")
+    expect(item.to_json).to eq(expected)
+  end
 
-  it "allows an object to be exported as SPARQL" 
+  it "allows an object to be exported as SPARQL" do
+    item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+    sparql = SparqlUpdateV2.new
+    item.to_sparql_v2(sparql)
+    write_text_file_2(sparql.to_s, sub_dir, "bc_core_sparql.txt")
+    expected = read_text_file_2(sub_dir, "bc_core_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
   
 end
   

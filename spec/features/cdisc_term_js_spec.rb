@@ -61,31 +61,6 @@ describe "CDISC Terminology", :type => :feature do
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
-    
-    it "allows a search to be performed, add to notepad", js: true do
-      visit '/cdisc_terms/history'
-      expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
-      expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
-      wait_for_ajax(5) # Big load
-      expect(page).to have_content 'Showing 1 to 10 of 17,356 entries'
-      expect(page).to have_button('Notepad+')
-      ui_click_by_id('notepadAdd')
-      expect(page).to have_content 'You need to select an item.'
-      ui_table_row_click('searchTable', "QSCAT")
-      ui_click_by_id('notepadAdd')
-      wait_for_ajax
-      expect(page).to have_content 'Notepad+ 141'
-      fill_in 'searchTable_csearch_cl', with: 'C100129'
-      ui_hit_return('searchTable_csearch_cl')
-      wait_for_ajax
-      ui_table_row_click('searchTable', "C100761")
-      ui_click_by_id('notepadAdd')
-      wait_for_ajax
-      expect(page).to have_content 'Notepad+ 142'
-      click_link 'Close'
-      expect(page).to have_content 'History: CDISC Terminology'
-    end
 
     it "allows a search to be performed, searches", js: true do
       visit '/cdisc_terms/history'

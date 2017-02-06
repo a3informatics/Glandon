@@ -436,7 +436,7 @@ describe FieldValidation do
 
   it "checks an invalid label, @" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()@", object)).to eq(false)
+    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()±", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
@@ -622,7 +622,7 @@ describe FieldValidation do
   
   it "checks invalid mapping" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_mapping?(:test, "[NOT SUBMITTED]@", object)).to eq(false)
+    expect(FieldValidation.valid_mapping?(:test, "[NOT SUBMITTED]±", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
   

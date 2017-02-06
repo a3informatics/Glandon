@@ -35,7 +35,7 @@
   :identifier: BC C25206
   :version_label: '0.1'
   :version: 1
-  :semantic_version: '1.0.0'
+  :semantic_version: 1.0.0
   :namespace:
     :namespace: http://www.assero.co.uk/MDRItems
     :id: NS-ACME
@@ -49,6 +49,7 @@
   :extension_properties: []
   :ordinal: 1
   :alias: Baseline (--BLFL)
+  :coded: false
   :collect: true
   :enabled: false
   :question_text: Question text
@@ -88,6 +89,7 @@
   :extension_properties: []
   :ordinal: 1
   :alias: Location (--LOC)
+  :coded: true
   :collect: true
   :enabled: false
   :question_text: Location of test
@@ -103,6 +105,7 @@
   :extension_properties: []
   :ordinal: 1
   :alias: Date and Time (--DTC)
+  :coded: false
   :collect: true
   :enabled: true
   :question_text: Question text
@@ -118,6 +121,7 @@
   :extension_properties: []
   :ordinal: 1
   :alias: Body Position (--POS)
+  :coded: true
   :collect: true
   :enabled: false
   :question_text: Question text
@@ -133,6 +137,7 @@
   :extension_properties: []
   :ordinal: 1
   :alias: Test Name (--TEST)
+  :coded: true
   :collect: false
   :enabled: true
   :question_text: Question text
@@ -160,6 +165,7 @@
   :extension_properties: []
   :ordinal: 1
   :alias: Test Code (--TESTCD)
+  :coded: true
   :collect: false
   :enabled: true
   :question_text: Question text
@@ -187,6 +193,7 @@
   :extension_properties: []
   :ordinal: 1
   :alias: Laterality (--LAT)
+  :coded: true
   :collect: true
   :enabled: false
   :question_text: Question text
@@ -202,6 +209,7 @@
   :extension_properties: []
   :ordinal: 1
   :alias: Method Code (--METHOD)
+  :coded: true
   :collect: true
   :enabled: false
   :question_text: Question text
@@ -217,6 +225,7 @@
   :extension_properties: []
   :ordinal: 2
   :alias: Result Units (--ORRESU)
+  :coded: true
   :collect: true
   :enabled: true
   :question_text: Question text
@@ -244,6 +253,7 @@
   :extension_properties: []
   :ordinal: 1
   :alias: Result Value (--ORRES)
+  :coded: false
   :collect: true
   :enabled: true
   :question_text: Question text

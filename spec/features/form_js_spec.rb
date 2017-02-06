@@ -6,7 +6,8 @@ describe "Forms", :type => :feature do
   include UiHelpers
   include PauseHelpers
   include WaitForAjaxHelper
-
+  include ValidationHelpers
+  
   def sub_dir
     return "features"
   end
@@ -293,20 +294,20 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Index: Forms'
       click_link 'New Placeholder'
       expect(page).to have_content 'New Placeholder Form:'
-      fill_in 'form[identifier]', with: '@@@'
+      fill_in 'form[identifier]', with: '£££'
       fill_in 'form[label]', with: '€€€'
       fill_in 'form[freeText]', with: '±±±'
       click_button 'Create'
       expect(page).to have_content "Please enter a valid identifier. Upper and lower case alphanumeric and space characters only."
-      expect(page).to have_content "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
-      expect(page).to have_content "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&|<> special characters and return only."
+      expect(page).to have_content vh_label_error
+      expect(page).to have_content vh_markdown_error
       fill_in 'form[identifier]', with: 'BETTER'
       click_button 'Create'
-      expect(page).to have_content "Please enter a valid label. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*=:;&|<> special characters only."
-      expect(page).to have_content "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&|<> special characters and return only."
+      expect(page).to have_content vh_label_error
+      expect(page).to have_content vh_markdown_error
       fill_in 'form[label]', with: 'Nice Label'
       click_button 'Create'
-      expect(page).to have_content "Please enter valid markdown. Upper and lowercase alphanumeric, space, .!?,'\"_-/\\()[]~#*=:;&|<> special characters and return only."
+      expect(page).to have_content vh_markdown_error
       fill_in 'form[freeText]', with: '**Brilliant**'
       click_button 'Create'
       expect(page).to have_content "Form was successfully created."
@@ -317,7 +318,7 @@ describe "Forms", :type => :feature do
     it "allows a form to be created, field validation", js: true do
       visit '/forms/new'
       expect(page).to have_content 'New Form:'
-      fill_in 'form[identifier]', with: '@@@'
+      fill_in 'form[identifier]', with: '£££'
       fill_in 'form[label]', with: '€€€'
       click_button 'Create'
       expect(page).to have_content "Label contains invalid characters and Scoped Identifier error: Identifier contains invalid characters"

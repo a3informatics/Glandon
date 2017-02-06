@@ -157,7 +157,7 @@ describe "Breadcrumb", :type => :feature do
       next_link_crumb(3, 'Show:', "Forms", "CRF TEST 1", "Show: V0.0.0")
       next_link_crumb(2, 'History:', "Forms", "CRF TEST 1", "")
       next_link_table("CRF TEST 1", "View", "View: CRF Test Form", "Forms", "CRF TEST 1", "View: V0.0.0")
-      save_and_open_page
+      #save_and_open_page
       next_link('form_view_crf', 'CRF: CRF Test Form', "Forms", "CRF TEST 1", "View: V0.0.0", "CRF")
       next_link_crumb(3, 'View:', "Forms", "CRF TEST 1", "View: V0.0.0")
       next_link('form_view_acrf', 'Annotated CRF: CRF Test Form', "Forms", "CRF TEST 1", "View: V0.0.0", "aCRF")

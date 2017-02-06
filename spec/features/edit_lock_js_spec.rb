@@ -57,15 +57,15 @@ describe "Edit Locks", :type => :feature do
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       token = tokens[0]
       Capybara.ignore_hidden_elements = false
-      ui_button_disabled('token_timer')
-      page.find("#token_timer")[:class].include?("btn-success")
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
       sleep Token.get_timeout - @user1.edit_lock_warning.to_i - 2 # Needs to be tweaked to get in the 5 sec warnign window period
-      page.find("#token_timer")[:class].include?("btn-warning")
+      page.find("#token_timer_1")[:class].include?("btn-warning")
       sleep (@user1.edit_lock_warning.to_i / 2)
       expect(page).to have_content("The edit lock is about to timeout!")
       sleep 5
-      page.find("#token_timer")[:class].include?("btn-danger")
+      page.find("#token_timer_1")[:class].include?("btn-danger")
       sleep (@user1.edit_lock_warning.to_i / 2)
       expect(page).to have_content("00:00")
       expect(token.timed_out?).to eq(true)
@@ -79,24 +79,24 @@ describe "Edit Locks", :type => :feature do
       token = tokens[0]
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
       Capybara.ignore_hidden_elements = false
-      ui_button_disabled('token_timer')
-      page.find("#token_timer")[:class].include?("btn-success")
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
       sleep Token.get_timeout - @user1.edit_lock_warning.to_i + 2
-      page.find("#token_timer")[:class].include?("btn-warning")
+      page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button 'Save'
       wait_for_ajax
       Capybara.ignore_hidden_elements = false
-      ui_button_disabled('token_timer')
-      page.find("#token_timer")[:class].include?("btn-success")
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
       sleep Token.get_timeout - @user1.edit_lock_warning.to_i
       Capybara.ignore_hidden_elements = false
-      ui_button_disabled('token_timer')
-      page.find("#token_timer")[:class].include?("btn-success")
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
       sleep 11
-      page.find("#token_timer")[:class].include?("btn-warning")
+      page.find("#token_timer_1")[:class].include?("btn-warning")
     end
 
     it "domain edit timeout warnings and expiration", js: true do
@@ -106,15 +106,15 @@ describe "Edit Locks", :type => :feature do
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       token = tokens[0]
       Capybara.ignore_hidden_elements = false
-      ui_button_disabled('token_timer')
-      page.find("#token_timer")[:class].include?("btn-success")
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
       sleep Token.get_timeout - @user2.edit_lock_warning.to_i + 2
-      page.find("#token_timer")[:class].include?("btn-warning")
+      page.find("#token_timer_1")[:class].include?("btn-warning")
       sleep (@user2.edit_lock_warning.to_i / 2)
       expect(page).to have_content("The edit lock is about to timeout!")
       sleep 5
-      page.find("#token_timer")[:class].include?("btn-danger")
+      page.find("#token_timer_1")[:class].include?("btn-danger")
       sleep (@user2.edit_lock_warning.to_i / 2)
       expect(page).to have_content("00:00")
       expect(token.timed_out?).to eq(true)
@@ -127,24 +127,24 @@ describe "Edit Locks", :type => :feature do
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       token = tokens[0]
       Capybara.ignore_hidden_elements = false
-      ui_button_disabled('token_timer')
-      page.find("#token_timer")[:class].include?("btn-success")
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
       sleep Token.get_timeout - @user2.edit_lock_warning.to_i + 2
-      page.find("#token_timer")[:class].include?("btn-warning")
+      page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button 'Save'
       wait_for_ajax
       Capybara.ignore_hidden_elements = false
-      ui_button_disabled('token_timer')
-      page.find("#token_timer")[:class].include?("btn-success")
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
       sleep Token.get_timeout - @user2.edit_lock_warning.to_i
       Capybara.ignore_hidden_elements = false
-      ui_button_disabled('token_timer')
-      page.find("#token_timer")[:class].include?("btn-success")
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
       sleep 11
-      page.find("#token_timer")[:class].include?("btn-warning")
+      page.find("#token_timer_1")[:class].include?("btn-warning")
     end
 
   end

@@ -35,7 +35,7 @@
   :identifier: BC C25206
   :version_label: '0.1'
   :version: 1
-  :semantic_version: '1.0.0'
+  :semantic_version: 1.0.0
   :namespace:
     :namespace: http://www.assero.co.uk/MDRItems
     :id: NS-ACME
@@ -51,7 +51,6 @@
   :alias: Test
   :bridg_class: DefinedObservation
   :bridg_attribute: nameCode
-  :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
     :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD
@@ -67,7 +66,7 @@
       :namespace: http://www.assero.co.uk/MDRBCs/V1
       :label: ''
       :extension_properties: []
-      :ordinal: 1
+      :ordinal: 2
       :alias: Name
       :complex_datatype:
         :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
@@ -86,6 +85,7 @@
           :extension_properties: []
           :ordinal: 1
           :alias: Test Name (--TEST)
+          :coded: true
           :collect: false
           :enabled: true
           :question_text: Question text
@@ -113,6 +113,7 @@
       :extension_properties: []
       :ordinal: 1
       :alias: Test Code (--TESTCD)
+      :coded: true
       :collect: false
       :enabled: true
       :question_text: Question text
@@ -142,7 +143,6 @@
   :alias: SiteOfAdministration
   :bridg_class: DefinedObservation
   :bridg_attribute: targetAnatomicSiteCode
-  :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
     :id: BC-ACME_BC_C25206_DefinedObservation_targetAnatomicSiteCode_CD
@@ -160,6 +160,7 @@
       :extension_properties: []
       :ordinal: 1
       :alias: Location (--LOC)
+      :coded: true
       :collect: true
       :enabled: false
       :question_text: Location of test
@@ -177,7 +178,6 @@
   :alias: Method
   :bridg_class: DefinedObservation
   :bridg_attribute: methodCode
-  :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
     :id: BC-ACME_BC_C25206_DefinedObservation_methodCode_CD
@@ -195,6 +195,7 @@
       :extension_properties: []
       :ordinal: 1
       :alias: Method Code (--METHOD)
+      :coded: true
       :collect: true
       :enabled: false
       :question_text: Question text
@@ -212,7 +213,6 @@
   :alias: DateTime
   :bridg_class: PerformedObservation
   :bridg_attribute: dateRange
-  :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
     :id: BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME
@@ -247,6 +247,7 @@
           :extension_properties: []
           :ordinal: 1
           :alias: Date and Time (--DTC)
+          :coded: false
           :collect: true
           :enabled: true
           :question_text: Question text
@@ -264,7 +265,6 @@
   :alias: ReasonNotDone
   :bridg_class: PerformedObservation
   :bridg_attribute: negationReason
-  :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
     :id: BC-ACME_BC_C25206_PerformedObservation_negationReason_SC
@@ -301,7 +301,6 @@
   :alias: Position
   :bridg_class: PerformedObservation
   :bridg_attribute: bodyPositionCode
-  :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
     :id: BC-ACME_BC_C25206_PerformedObservation_bodyPositionCode_CD
@@ -319,6 +318,7 @@
       :extension_properties: []
       :ordinal: 1
       :alias: Body Position (--POS)
+      :coded: true
       :collect: true
       :enabled: false
       :question_text: Question text
@@ -336,7 +336,6 @@
   :alias: Laterality
   :bridg_class: PerformedObservation
   :bridg_attribute: targetAnatomicSiteLateralityCode
-  :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
     :id: BC-ACME_BC_C25206_PerformedObservation_targetAnatomicSiteLateralityCode_CD
@@ -354,6 +353,7 @@
       :extension_properties: []
       :ordinal: 1
       :alias: Laterality (--LAT)
+      :coded: true
       :collect: true
       :enabled: false
       :question_text: Question text
@@ -371,7 +371,6 @@
   :alias: Result
   :bridg_class: PerformedClinicalResult
   :bridg_attribute: value
-  :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
     :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR
@@ -389,6 +388,7 @@
       :extension_properties: []
       :ordinal: 2
       :alias: Result Units (--ORRESU)
+      :coded: true
       :collect: true
       :enabled: true
       :question_text: Question text
@@ -416,6 +416,7 @@
       :extension_properties: []
       :ordinal: 1
       :alias: Result Value (--ORRES)
+      :coded: false
       :collect: true
       :enabled: true
       :question_text: Question text
@@ -433,7 +434,6 @@
   :alias: Baseline
   :bridg_class: PerformedClinicalResult
   :bridg_attribute: baselineIndicator
-  :children: []
   :datatype:
     :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype
     :id: BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL
@@ -451,6 +451,7 @@
       :extension_properties: []
       :ordinal: 1
       :alias: Baseline (--BLFL)
+      :coded: false
       :collect: true
       :enabled: false
       :question_text: Question text

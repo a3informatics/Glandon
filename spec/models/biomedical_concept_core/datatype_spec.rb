@@ -19,6 +19,8 @@ describe BiomedicalConceptCore::Datatype do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    load_test_file_into_triple_store("BCT.ttl")
+    load_test_file_into_triple_store("BC.ttl")
     clear_iso_concept_object
   end
 
@@ -45,7 +47,7 @@ describe BiomedicalConceptCore::Datatype do
     property.question_text = "Draft 123±±±"
     datatype.children[0] = property
     expect(datatype.valid?).to eq(false)
-    expect(datatype.errors.full_messages[0]).to eq("Property, ordinal=1, error:Question text contains invalid characters")
+    expect(datatype.errors.full_messages[0]).to eq("Property, ordinal=1, error: Question text contains invalid characters")
   end
 
   it "allows object to be initialized from triples" do
@@ -72,11 +74,12 @@ describe BiomedicalConceptCore::Datatype do
     expect(item.to_json).to eq(result)    
   end
 
-  it "allows the object to be found"
-
-  it "will set coded for simple CD properties"
-
-  it "will not set coded for complex CD properties"
+  it "allows the object to be found" do
+    item = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_DefinedObservation_nameCode_CD", "http://www.assero.co.uk/MDRBCs/V1")
+    #write_yaml_file(item.to_json, sub_dir, "datatype_property.yaml")
+    expected = read_yaml_file(sub_dir, "datatype_property.yaml")
+    expect(item.to_json).to eq(expected)
+  end
 
   it "allows the object to be exported as JSON" do
     result = 
@@ -135,6 +138,7 @@ describe BiomedicalConceptCore::Datatype do
           :id=>"BCT-Obs_PQR_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value",
           :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
           :label=>"",
+          :coded => false,
           :extension_properties=>[],
           :ordinal=>1,
           :alias=>"Date Time (--DTC)",
@@ -173,7 +177,7 @@ describe BiomedicalConceptCore::Datatype do
           :extension_properties=>[],
           :ordinal=>1,
           :alias=>"Test Code (--TESTCD)",
-          :coded=>true,
+          :coded => false,
           :collect=>false,
           :enabled=>false,
           :question_text=>"",
@@ -211,7 +215,7 @@ describe BiomedicalConceptCore::Datatype do
                 :extension_properties=>[],
                 :ordinal=>1,
                 :alias=>"Test Name (--TEST)",
-                :coded=>true,
+                :coded => false,
                 :collect=>false,
                 :enabled=>false,
                 :question_text=>"",

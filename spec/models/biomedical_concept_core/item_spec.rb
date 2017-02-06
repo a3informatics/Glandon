@@ -5,7 +5,11 @@ describe BiomedicalConceptCore::Item do
   
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  def sub_dir
+    return "models/biomedical_concept_core"
+  end
+
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -15,6 +19,8 @@ describe BiomedicalConceptCore::Item do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    load_test_file_into_triple_store("BCT.ttl")
+    load_test_file_into_triple_store("BC.ttl")
     clear_iso_concept_object
   end
 
@@ -36,7 +42,6 @@ describe BiomedicalConceptCore::Item do
         :ordinal => 1,
         :bridg_class => "Class",
         :bridg_attribute => "Attribute",
-        :children => [],
         :type => "http://www.assero.co.uk/CDISCBiomedicalConcept#Node",
         :datatype =>
         {
@@ -63,7 +68,12 @@ describe BiomedicalConceptCore::Item do
     expect(item.to_json).to eq(result)    
   end
 
-  it "allows the object to be found"
+  it "allows the object to be found" do
+    item = BiomedicalConceptCore::Item.find("BC-ACME_BC_C16358_DefinedObservation_targetAnatomicSiteCode", "http://www.assero.co.uk/MDRBCs/V1")
+    write_yaml_file(item.to_json, sub_dir, "item_find.yaml")
+    expected = read_yaml_file(sub_dir, "item_find.yaml")
+    expect(item.to_json).to eq(expected)
+  end
 
   it "allows the object to be exported as JSON" do
     result = 
@@ -76,7 +86,6 @@ describe BiomedicalConceptCore::Item do
         :ordinal => 1,
         :bridg_class => "Class",
         :bridg_attribute => "Attribute",
-        :children => [],
         :type => "http://www.example.com/path#rdf_test_type",
         :datatype =>
         {
@@ -114,7 +123,6 @@ describe BiomedicalConceptCore::Item do
         :ordinal => 1,
         :bridg_class => "Class",
         :bridg_attribute => "Attribute",
-        :children => [],
         :type => "http://www.example.com/path#rdf_test_type",
         :datatype =>
         {

@@ -511,7 +511,7 @@ describe IsoRegistrationState do
       {
         registrationStatus: IsoRegistrationState::C_RETIRED, 
         previousState: IsoRegistrationState::C_STANDARD, 
-        administrativeNote: "@@@@@@", 
+        administrativeNote: "£±£±", 
         unresolvedIssue: "ok", 
         effectiveDate: "Wont Change" 
       })
@@ -525,7 +525,7 @@ describe IsoRegistrationState do
         registrationStatus: IsoRegistrationState::C_RETIRED, 
         previousState: IsoRegistrationState::C_STANDARD, 
         administrativeNote: "ok", 
-        unresolvedIssue: "@@@@@@", 
+        unresolvedIssue: "£±£±", 
         effectiveDate: "Wont Change" 
       })
     expect(object.errors.count).to eq(1)
@@ -538,7 +538,7 @@ describe IsoRegistrationState do
         registrationStatus: "X", 
         previousState: IsoRegistrationState::C_STANDARD, 
         administrativeNote: "ok", 
-        unresolvedIssue: "@@@@@@", 
+        unresolvedIssue: "£±£±", 
         effectiveDate: "Wont Change" 
       })
     expect(object.errors.count).to eq(1)
@@ -551,7 +551,7 @@ describe IsoRegistrationState do
         registrationStatus: IsoRegistrationState::C_STANDARD, 
         previousState: "D", 
         administrativeNote: "ok", 
-        unresolvedIssue: "@@@@@@", 
+        unresolvedIssue: "£±£±", 
         effectiveDate: "Wont Change" 
       })
     expect(object.errors.count).to eq(1)

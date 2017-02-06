@@ -3,7 +3,7 @@ module FieldValidation
   C_CLASS_NAME = "FieldValidation"
   C_ALPHA_NUMERICS = "a-zA-Z0-9"
   C_ALPHA_NUMERICS_SPACE = "#{C_ALPHA_NUMERICS} "
-  C_FREE_TEXT = "#{C_ALPHA_NUMERICS} .!?,'\"_\\-\\/\\\\()\\[\\]~#*=:;&|<>"
+  C_FREE_TEXT = "#{C_ALPHA_NUMERICS} .!?,'\"_\\-\\/\\\\()\\[\\]~#*+@=:;&|<>"
   C_TC_PART = "[#{C_ALPHA_NUMERICS}]+"
   C_IDENTIFIER = "[#{C_ALPHA_NUMERICS_SPACE}]+"
   C_MARKDOWN = "[#{C_FREE_TEXT}\r\n]*"

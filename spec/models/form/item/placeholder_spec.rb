@@ -38,7 +38,7 @@ describe Form::Item::Placeholder do
 
   it "does not validate an invalid object, text label" do
     item = Form::Item::Placeholder.new
-    item.free_text = "Draft 123@"
+    item.free_text = "Draft 123±"
     item.ordinal = 1
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Free text contains invalid markdown")
@@ -48,7 +48,7 @@ describe Form::Item::Placeholder do
 
   it "does not validate an invalid object, ordinal" do
     item = Form::Item::Placeholder.new
-    item.free_text = "Draft 123@"
+    item.free_text = "Draft 123"
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
     expect(item.errors.count).to eq(1)

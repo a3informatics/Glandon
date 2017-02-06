@@ -9,7 +9,7 @@ describe BiomedicalConceptCore::Property do
     return "models/biomedical_concept_core"
   end
 
-before :all do
+  before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -135,6 +135,7 @@ before :all do
         :format => "5.2",
         :simple_datatype => "string",
         :bridg_path => "a.b.c",
+        :coded => false,
         :type => "http://www.assero.co.uk/CDISCBiomedicalConcept#Node"
       }
     triples = {}
@@ -156,7 +157,7 @@ before :all do
 
   it "detects complex property" do
     property = BiomedicalConceptCore::Property.find("BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", "http://www.assero.co.uk/MDRBCTs/V1")
-    expect(property.complex?).to eq(true)
+    expect(property.is_complex?).to eq(true)
   end
 
   it "allows coded to be set" do
@@ -186,7 +187,7 @@ before :all do
         :extension_properties => [],
         :label => "",
         :alias => "Name",
-        :ordinal => 1,
+        :ordinal => 2,
         :complex_datatype => 
           {
             :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype", 
@@ -195,7 +196,7 @@ before :all do
             :label =>"", :extension_properties=>[], 
             :ordinal =>1, 
             :alias =>"", 
-            :iso21090_datatype =>"", 
+            :iso21090_datatype =>"ED", 
             :children =>
               [
                 { 
@@ -211,6 +212,7 @@ before :all do
                   :collect => false,
                   :enabled => false,
                   :format => "",
+                  :coded => true,
                   :simple_datatype => "string",
                   :bridg_path=>"DefinedObservation.nameCode.CD.originalText.ED.value",
                   :children => []
@@ -239,6 +241,7 @@ before :all do
         :question_text => "Result units?",
         :simple_datatype => "string",
         :bridg_path => "PerformedClinicalResult.value.PQR.code",
+        :coded => true,
         :children => 
         [ 
           {
@@ -328,6 +331,7 @@ before :all do
         :format => "10.1",
         :simple_datatype => "float",
         :bridg_path => "x.y.z",
+        :coded => false,
         :type => "http://www.example.com/path#rdf_test_type"
       }
     item = BiomedicalConceptCore::Property.new
@@ -365,7 +369,7 @@ before :all do
           :label =>"", :extension_properties=>[], 
           :ordinal =>1, 
           :alias =>"", 
-          :iso21090_datatype =>"", 
+          :iso21090_datatype =>"ED", 
           :children =>
             [
               { 
@@ -382,6 +386,7 @@ before :all do
                 :enabled => false,
                 :format => "",
                 :simple_datatype => "string",
+                :coded => false,
                 :bridg_path=>"DefinedObservation.nameCode.CD.originalText.ED.value",
                 :children => []
               }
@@ -408,6 +413,7 @@ before :all do
         :format => "10.1",
         :simple_datatype => "float",
         :bridg_path => "ddd.eee.fff",
+        :coded => false,
         :type => "http://www.example.com/path#rdf_test_type"
       }
     expect(BiomedicalConceptCore::Property.from_json(result).to_json).to eq(result)
@@ -483,6 +489,93 @@ before :all do
     #write_text_file_2(sparql.to_s, sub_dir, "property_sparql_complex.txt")
     expected = read_text_file_2(sub_dir, "property_sparql_complex.txt")
     expect(sparql.to_s).to eq(expected)
+  end
+
+  it "allows the property to be updated" do
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value", "http://www.assero.co.uk/MDRBCs/V1")
+    params = {}
+    params[:question_text] = "New Q"
+    params[:prompt_text] = "New P"
+    params[:enabled] = "true"
+    params[:collect]= "true"
+    params[:format] = "10.1"
+    property.update(params)
+    expect(property.errors.count).to eq(0)
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
+    write_yaml_file(property.to_json, sub_dir, "property_update.yaml")
+    expected = read_yaml_file(sub_dir, "property_update.yaml")
+    expect(property.to_json).to eq(expected)
+  end
+
+  it "prevents a property being updated with invalid data" do
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value", "http://www.assero.co.uk/MDRBCs/V1")
+    params = {}
+    params[:question_text] = "£££££££"
+    params[:prompt_text] = "New P"
+    params[:enabled] = "true"
+    params[:collect]= "true"
+    params[:format] = "10.1"
+    property.update(params)
+    expect(property.errors.full_messages.to_sentence).to eq("Question text contains invalid characters")
+    expect(property.errors.count).to eq(1)
+  end
+
+  it "handles errors during an update" do
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value", "http://www.assero.co.uk/MDRBCs/V1")
+    params = {}
+    params[:question_text] = "New Q"
+    params[:prompt_text] = "New P"
+    params[:enabled] = "true"
+    params[:collect]= "true"
+    params[:format] = "10.1"
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect(ConsoleLogger).to receive(:info)
+    expect{property.update(params)}.to raise_error(Exceptions::UpdateError)
+  end
+
+  it "allows term references to be added" do
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
+    refs = []
+    refs << { :subject_ref => {id: "new_1", namespace: "http://example.com/term" }, ordinal: 5}
+    refs << { :subject_ref => {id: "new_2", namespace: "http://example.com/term" }, ordinal: 6}
+    property.add({ tc_refs: refs })
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
+    #write_yaml_file(property.to_json, sub_dir, "property_add_term.yaml")
+    expected = read_yaml_file(sub_dir, "property_add_term.yaml")
+    expect(property.tc_refs.count).to eq(6)
+    expect(property.to_json).to eq(expected)
+  end
+
+  it "handles error adding term references" do
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
+    refs = []
+    refs << { :subject_ref => {id: "new_3", namespace: "http://example.com/term" }, ordinal: 7}
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect(ConsoleLogger).to receive(:info)
+    expect{property.add({ tc_refs: refs })}.to raise_error(Exceptions::UpdateError)
+  end
+
+  it "allows term refs to be removed" do
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
+    property.remove
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
+    #write_yaml_file(property.to_json, sub_dir, "property_remove_term.yaml")
+    expected = read_yaml_file(sub_dir, "property_remove_term.yaml")
+    expect(property.tc_refs.count).to eq(0)
+    expect(property.to_json).to eq(expected)
+  end
+
+  it "handles error removing term references" do
+    property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect(ConsoleLogger).to receive(:info)
+    expect{property.remove}.to raise_error(Exceptions::UpdateError)
   end
 
 end

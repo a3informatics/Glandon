@@ -33,7 +33,7 @@ describe IsoConceptSystemGeneric do
 
   it "does not validate an invalid object" do
     result = IsoConceptSystemGeneric.new
-    result.description = "Hello world@@"
+    result.description = "Hello world±"
     expect(result.valid?).to eq(false)
   end
 

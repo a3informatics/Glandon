@@ -333,7 +333,6 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Index: Terminology'
       click_link 'Search Current'
       expect(page).to have_content 'Search: All Current Terminology'
-      expect(page).to have_button('Notepad+')
       wait_for_ajax(5) # Big load
       expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
       click_link 'Close'

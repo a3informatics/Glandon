@@ -242,7 +242,7 @@ describe Form do
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     result = item.valid?
     expect(result).to eq(true)
-    item.label = "@@@@@@@"
+    item.label = "@@£±£±"
     result = item.valid?
     expect(result).to eq(false)
     expect(item.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
