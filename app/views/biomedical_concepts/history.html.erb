@@ -9,13 +9,18 @@
 			<tbody>
 				<% current_item = get_current_item(@bc) %>
 				<% @bc.each do |item| %>
-					<%= render partial: "shared/stdInstanceRow", :locals => {:item => item, 
-		  				:current_item => current_item, 
-		  				:showPath => biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }), 
-		  				:searchPath => "", 
-		  				:viewPath => "",
-		  				:editPath => edit_biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }),
-		  				:deletePath => biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }) } %>
+					<%= render partial: "shared/stdInstanceRow", 
+						:locals => 
+							{
+								:item => item, 
+		  					:current_item => current_item, 
+		  					:showPath => biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }), 
+		  					:searchPath => "", 
+		  					:viewPath => "",
+		  					:editPath => edit_biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }),
+		  					:deletePath => biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }),
+		  					:mi_class => BiomedicalConcept 
+		  				} %>
 				<% end %>				
 			</tbody>
 		</table>
@@ -31,7 +36,8 @@
     			<%= render partial: "shared/commentHistoryRow", 
 						:locals => { 
 							:item => item,
-							:editPath => edit_iso_managed_path(:id => item.id, :namespace => item.namespace) 
+							:editPath => edit_iso_managed_path(:id => item.id, :namespace => item.namespace),
+							:mi_class => BiomedicalConcept
 						} %>  
     		<% end %>
   		</tbody>

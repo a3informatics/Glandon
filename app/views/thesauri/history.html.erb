@@ -15,7 +15,8 @@
 		  				:searchPath => search_thesauri_index_path(:id => item.id, :namespace => item.namespace), 
 		  				:viewPath => view_thesauri_index_path(:id => item.id, :namespace => item.namespace),
 		  				:editPath => edit_thesauri_path(:id => item.id, :namespace => item.namespace),
-		  				:deletePath => thesauri_path(:id => item.id, :namespace => item.namespace) } %>
+		  				:deletePath => thesauri_path(:id => item.id, :namespace => item.namespace),
+		  				:mi_class => Thesaurus } %>
 				<% end %>				
 			</tbody>
 		</table>
@@ -31,7 +32,8 @@
     			<%= render partial: "shared/commentHistoryRow", 
 						:locals => { 
 							:item => item,
-							:editPath => edit_iso_managed_path(:id => item.id, :namespace => item.namespace) 
+							:editPath => edit_iso_managed_path(:id => item.id, :namespace => item.namespace),
+							:mi_class => Thesaurus
 						} %>  
     		<% end %>
   		</tbody>

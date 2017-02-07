@@ -62,6 +62,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Devise::Test::ControllerHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, :type => :view
   config.extend ControllerMacros, :type => :controller
   config.include(Capybara::DSL)
   config.include PauseHelpers, type: :feature

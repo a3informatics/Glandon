@@ -15,7 +15,8 @@
 		  				:searchPath => "", 
 		  				:viewPath => view_forms_path(:id => item.id, :namespace => item.namespace),
 		  				:editPath => edit_form_path(:id => item.id, :namespace => item.namespace),
-		  				:deletePath => form_path(:id => item.id, :namespace => item.namespace) } %>
+		  				:deletePath => form_path(:id => item.id, :namespace => item.namespace),
+		  				:mi_class => Form } %>
 				<% end %>				
 			</tbody>
 		</table>
@@ -31,7 +32,8 @@
     			<%= render partial: "shared/commentHistoryRow", 
 						:locals => { 
 							:item => item,
-							:editPath => edit_iso_managed_path(:id => item.id, :namespace => item.namespace) 
+							:editPath => edit_iso_managed_path(:id => item.id, :namespace => item.namespace),
+							:mi_class => Form
 						} %>  
     		<% end %>
   		</tbody>

@@ -5,7 +5,7 @@
   <td><%= raw MarkdownEngine::render(item.changeDescription) %></td>
   <td><%= raw MarkdownEngine::render(item.explanatoryComment) %></td>
   <td><%= raw MarkdownEngine::render(item.origin) %></td>
-  <% if editPath != "" %>
+  <% if policy(mi_class).edit? and editPath != "" %>
     <td><%= link_to "Edit", editPath, :class => "btn btn-primary btn-xs" %></td>
   <% else %>
     <td></td>
