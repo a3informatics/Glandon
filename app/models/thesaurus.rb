@@ -354,13 +354,15 @@ private
       query +=
         "      {\n" +
         "         #{uri.to_ref} iso25964:hasConcept ?x . \n" +
-        "         ?x iso25964:hasChild+ ?a . \n" +
-        "         ?x iso25964:identifier ?k .  \n" +
+        "         ?x iso25964:hasChild%2B ?a . \n" +
+        #"         ?x iso25964:identifier ?k .  \n" +
         "      }\n"
       query +=
         "      UNION\n" if uri != uri_set.last
     end
     query += 
+      "      ?y iso25964:hasChild ?a . \n" +
+      "      ?y iso25964:identifier ?k . \n" +
       "      ?a iso25964:identifier ?b . \n" +
       "      ?a iso25964:notation ?c . \n" +
       "      ?a iso25964:preferredTerm ?d . \n" +

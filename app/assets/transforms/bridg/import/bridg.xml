@@ -93,5 +93,9 @@
 		<BRIDGAttribute Name="comment" DataType="ST" Description="" Use="Optional"/>
 		<BRIDGRelationship Name="Extends" To="PerformedObservationResult" FromMultiplicity="1" ToMultiplicity="1"/>
 	</BRIDGClass>
+	<BRIDGClass Name="DefinedActivity" Description="">
+		<BRIDGAttribute Name="categoryCode" DataType="CD" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="subcategoryCode" DataType="CD" Description="" Use="Optional"/>
+	</BRIDGClass>
 </BRIDG>
 

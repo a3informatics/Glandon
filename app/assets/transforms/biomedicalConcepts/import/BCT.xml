@@ -1,5 +1,13 @@
 <BiomedicalConceptTemplates>
 	<BiomedicalConceptTemplate Id="Obs PQR" Name="Simple Observation PQR Biomedical Research Concept Template" >
+		<Class Name="DefinedActivity">
+			<Attribute Alias="Category" Name="categoryCode">
+				<Property Alias="Category (--CAT)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Subcategory" Name="subcategoryCode">
+				<Property Alias="Subcategory (--SCAT)" Name="code"/>
+			</Attribute>
+		</Class>
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code"/>
@@ -46,6 +54,14 @@
 		</Class>
 	</BiomedicalConceptTemplate>
 	<BiomedicalConceptTemplate Id="Obs CD" Name="Simple Observation CD Biomedical Research Concept Template" >
+		<Class Name="DefinedActivity">
+			<Attribute Alias="Category" Name="categoryCode">
+				<Property Alias="Category (--CAT)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Subcategory" Name="subcategoryCode">
+				<Property Alias="Subcategory (--SCAT)" Name="code"/>
+			</Attribute>
+		</Class>
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code"/>
