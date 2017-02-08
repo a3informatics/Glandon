@@ -3,6 +3,11 @@ require 'rails_helper'
 describe "Biomedical Concepts", :type => :feature do
   
   include DataHelpers
+  include DownloadHelpers
+
+  def sub_dir
+    return "features"
+  end
 
   describe "BCs", :type => :feature do
   
@@ -93,26 +98,22 @@ describe "Biomedical Concepts", :type => :feature do
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: BC C25206'
       find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'The editor is missing from this release. It will be restored shortly.'
-      click_link 'jumbotron_link'
+      expect(page).to have_content 'Edit: Temperature (BC C25206) BC C25206 (V1.1.0, 2, Incomplete)'
+      click_link 'main_nav_bc'
       expect(page).to have_content 'Index: Biomedical Concepts'
     end
 
     it "allows for a new BC to be created" do
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
-      select 'Obs CD', from: "biomedical_concept_uri"
-      click_button 'New'
+      click_link 'New'
       expect(page).to have_content 'New Biomedical Concept:'
       fill_in "biomedical_concept[identifier]", with: 'NEW NEW NEW BC'
       fill_in "biomedical_concept[label]", with: 'A very new new new BC'
+      select 'Obs CD', from: "biomedical_concept_uri"
       click_button 'Create'
       expect(page).to have_content("Biomedical Concept was successfully created.")   
     end
-
-    it "allows for a BC to be exported as JSON"
-
-    it "allows for a BC to be expoerted as TTL"
 
   end
 

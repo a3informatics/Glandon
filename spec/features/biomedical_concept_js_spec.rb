@@ -5,6 +5,8 @@ describe "Biomedical Concepts", :type => :feature do
   include DataHelpers
   include UiHelpers
   include PauseHelpers
+  include UserAccountHelpers
+  include DownloadHelpers
 
   def sub_dir
     return "features"
@@ -34,11 +36,11 @@ describe "Biomedical Concepts", :type => :feature do
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
       clear_cdisc_term_object
+      ua_create
     end
 
     after :all do
-      user = User.where(:email => "reader@example.com").first
-      user.destroy
+      ua_destroy
     end
 
     before :each do
@@ -48,7 +50,36 @@ describe "Biomedical Concepts", :type => :feature do
       click_button 'Log in'
     end
 
-    it "allows a form to be deleted"
+    it "allows for a BC to be exported as JSON", js: true do
+      clear_downloads
+      visit '/biomedical_concepts'
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: BC C25206'
+      #save_and_open_page
+      find(:xpath, "//tr[contains(.,'1.0.0')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
+      click_link 'Export JSON'
+      file = download_content
+      #write_text_file_2(file, sub_dir, "bc_json_export.json")
+      expected = read_text_file_2(sub_dir, "bc_json_export.json")
+      expect(file).to eq(expected)
+    end
+
+    it "allows for a BC to be exported as TTL", js: true do
+      clear_downloads
+      visit '/biomedical_concepts'
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: BC C25206'
+      find(:xpath, "//tr[contains(.,'1.0.0')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
+      click_link 'Export Turtle'
+      file = download_content
+      #write_text_file_2(file, sub_dir, "bc_json_export.ttl")
+      expected = read_text_file_2(sub_dir, "bc_json_export.ttl")
+      expect(file).to eq(expected)
+    end
 
   end
 
