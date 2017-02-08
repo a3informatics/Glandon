@@ -25,6 +25,12 @@ module UiHelpers
     end
   end
 
+  def ui_table_row_double_click(table, content)
+    within "##{table}" do
+      find('td', :text => "#{content}").double_click
+    end
+  end
+
   # Note: Won't work if field disabled
   def ui_check_input(id, value)
     expect(find_field("#{id}").value).to eq "#{value}"

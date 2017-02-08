@@ -33,12 +33,6 @@ describe "Form Editor", :type => :feature do
     load_test_file_into_triple_store("form_crf_test_2.ttl")
     @user = User.create :email => "form_edit@example.com", :password => "12345678" 
     @user.add_role :curator
-    Notepad.create :uri_id => "CLI-C66741_C25157", :uri_ns => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", :identifier => "C25157", 
-      :useful_1 =>"BSA", :useful_2 => "Body Surface Area", :user_id => @user.id, :note_type => 0
-    Notepad.create :uri_id => "CLI-C66741_C16358", :uri_ns => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", :identifier => "C16358", 
-      :useful_1 =>"BMI", :useful_2 => "Body Mass Index", :user_id => @user.id, :note_type => 0
-    Notepad.create :uri_id => "CLI-C66741_C49677", :uri_ns => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", :identifier => "C49677", 
-      :useful_1 =>"HR", :useful_2 => "Heart Rate", :user_id => @user.id, :note_type => 0
   end
 
   after :each do
@@ -46,7 +40,6 @@ describe "Form Editor", :type => :feature do
   end
 
   after :all do
-    Notepad.destroy_all
     user = User.where(:email => "form_edit@example.com").first
     user.destroy
   end
@@ -459,7 +452,7 @@ describe "Form Editor", :type => :feature do
       ui_check_input('commonLabel', "Common New 1")
     end
 
-    it "allows questions to be updated, check enable and disable on the panel", js: true do
+    it "allows questions to be updated, check enable and disable on the panel - WILL FAIL CURRENTLY ", js: true do
       create_form("TEST QUESTION 1", "Test", "Test Question 1")
       click_button 'formAddGroup'
       expect(page).to have_content 'Group Details'
@@ -487,34 +480,47 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Question Details' # Wait for page to settle
       choose 'form_datatype_i'
       ui_check_input('questionFormat', "3")
-      ui_button_disabled('notepad_add')
-      ui_button_disabled('deleteTerm')
+      ui_button_disabled('tfe_add_item')
+      ui_button_disabled('tfe_delete_item')
+      ui_button_disabled('tfe_delete_all_items')
+      #ui_button_disabled('deleteTerm')
       ui_field_enabled('questionFormat')
       choose 'form_datatype_s'
       ui_check_input('questionFormat', "20")
-      ui_button_enabled('notepad_add')
-      ui_button_enabled('deleteTerm')
+      ui_button_enabled('tfe_add_item')
+      ui_button_enabled('tfe_delete_item')
+      ui_button_enabled('tfe_delete_all_items')
       ui_field_enabled('questionFormat')
       choose 'form_datatype_f'
       ui_check_input('questionFormat', "6.2")
-      ui_button_disabled('notepad_add')
-      ui_button_disabled('deleteTerm')
+      ui_button_disabled('tfe_add_item')
+      ui_button_disabled('tfe_delete_item')
+      ui_button_disabled('tfe_delete_all_items')
+      #ui_button_disabled('deleteTerm')
       ui_field_enabled('questionFormat')
       choose 'form_datatype_b'
       ui_field_disabled('questionFormat')
-      ui_button_disabled('notepad_add')
-      ui_button_disabled('deleteTerm')
+      ui_button_disabled('tfe_add_item')
+      ui_button_disabled('tfe_delete_item')
+      ui_button_disabled('tfe_delete_all_items')
+      #ui_button_disabled('deleteTerm')
       choose 'form_datatype_d'
       ui_field_disabled('questionFormat')
-      ui_button_disabled('notepad_add')
-      ui_button_disabled('deleteTerm')
+      ui_button_disabled('tfe_add_item')
+      ui_button_disabled('tfe_delete_item')
+      ui_button_disabled('tfe_delete_all_items')
+      #ui_button_disabled('deleteTerm')
       ui_field_disabled('questionFormat')
-      ui_button_disabled('notepad_add')
-      ui_button_disabled('deleteTerm')
+      ui_button_disabled('tfe_add_item')
+      ui_button_disabled('tfe_delete_item')
+      ui_button_disabled('tfe_delete_all_items')
+      #ui_button_disabled('deleteTerm')
       choose 'form_datatype_d+t'
       ui_field_disabled('questionFormat')
-      ui_button_disabled('notepad_add')
-      ui_button_disabled('deleteTerm')
+      ui_button_disabled('tfe_add_item')
+      ui_button_disabled('tfe_delete_item')
+      ui_button_disabled('tfe_delete_all_items')
+      #ui_button_disabled('deleteTerm')
       choose 'form_datatype_i'
       fill_in 'questionFormat', with: "5"
       ui_click_node_key(2)
@@ -546,29 +552,28 @@ describe "Form Editor", :type => :feature do
       ui_click_node_key(3)
       ui_check_input('questionFormat', "50")  
       choose 'form_datatype_s'
-      click_button 'notepad_add'
-      #pause
-      expect(page).to have_content("You need to select a notepad item.")
-      ui_table_row_click('notepad_table', 'C16358')
-      click_button 'notepad_add'
+      click_button 'tfe_add_item'
+      expect(page).to have_content("You need to select an item.")
+      ui_table_row_double_click('searchTable', 'EQ-5D-3L TEST')
+      wait_for_ajax
+      ui_table_row_click('searchTable', 'C100394')
+      ui_click_by_id 'tfe_add_item'
       ui_click_node_key(4)
       ui_click_node_key(3)
       expect(page).to have_content 'Question Details' # Wait for page to settle
-      ui_table_row_click('notepad_table', 'C25157')
-      click_button 'notepad_add'
+      ui_table_row_click('searchTable', 'C100393')
+      ui_click_by_id 'tfe_add_item'
       ui_click_node_key(4)
       ui_click_node_key(3)
       expect(page).to have_content 'Question Details' # Wait for page to settle
-      #pause
-      ui_table_row_click('questionClTable', 'C25157')
-      #pause
-  #ui_table_row_click('questionClTable', 'C16358')
-      #pause
-      click_button 'deleteTerm'
-      click_button 'deleteTerm'
-      expect(page).to have_content("You need to select a code list item.")
+    
+    #pause
+
+      ui_table_row_click('tfe_item_table', 'C100394')
+      ui_click_by_id 'tfe_delete_item'
+      ui_click_by_id 'tfe_delete_item'
+      expect(page).to have_content("You need to select an item.")
       ui_click_node_name("Q 1")
-      #pause
       click_button "questionDelete"
       key = ui_get_key_by_name("Q 1")
       expect(key).to eq(-1)
@@ -611,14 +616,14 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content("You need to select a Biomedical Concept.")
       ui_table_row_click("bcTable", "(BC C25206)")
       click_button 'groupAddBc'
-      wait_for_ajax
+      wait_for_ajax(10)
       ui_click_node_name("Temperature (BC C25206)")
       expect(page).to have_content("Biomedical Concept Details")
       expect(page).to have_content("Temperature (BC C25206)")
       ui_click_node_name("Group 1")
       ui_table_row_click("bcTable", "(BC C25208)")
       click_button 'groupAddBc'
-      wait_for_ajax
+      wait_for_ajax(10)
       ui_click_node_name("Weight (BC C25208)")
       expect(page).to have_content("Biomedical Concept Details")
       expect(page).to have_content("Weight (BC C25208)")
@@ -644,11 +649,8 @@ describe "Form Editor", :type => :feature do
       ui_click_node_name("Group 1")
       ui_table_row_click("bcTable", "(BC C25208)")
       click_button 'groupAddBc'
+      wait_for_ajax(10) # Long wait for BC loading
       ui_click_node_name("Weight (BC C25208)")
-    
-    wait_for_ajax
-    #pause
-
       key = ui_get_key_by_path('["Test BC 2", "Group 1", "Temperature (BC C25206)", "Date and Time (--DTC)"]')
       ui_click_node_key(key)
       click_button "itemCommon"
@@ -775,7 +777,7 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content("STANDING")
     end      
 
-    it "allows the CL to be moved up and down for Questions, checks CL Item Panel", js: true do 
+    it "allows the CL to be moved up and down for Questions, checks CL Item Panel - WILL FAIL CURRENTLY", js: true do 
       load_form("CRF TEST 1") 
       wait_for_ajax(5)
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1"]')
@@ -908,12 +910,7 @@ describe "Form Editor", :type => :feature do
       ui_hit_return('searchTable_csearch_cl')
       wait_for_ajax
       expect(page).to have_content 'Showing 1 to 10 of 141 entries'
-      ui_table_row_click('searchTable', 'C100766')
-      ui_click_by_id('notepadAdd')
-      expect(page).to have_content 'Notepad+ 4'
     end
-
-    it "allows the notepad to be refreshed - SYSTEM TEST"
 
     it "allows the form to be saved", js: true do
       load_form("CRF TEST 1") 
