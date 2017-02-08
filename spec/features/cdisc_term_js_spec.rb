@@ -38,7 +38,7 @@ describe "CDISC Terminology", :type => :feature do
     end
 
     after :all do
-      Notepad.destroy_all
+      #Notepad.destroy_all
       user = User.where(:email => "curator@example.com").first
       user.destroy
     end
@@ -57,7 +57,7 @@ describe "CDISC Terminology", :type => :feature do
       expect(page).to have_content 'Search: CDISC Terminology 2015-09-25'
       wait_for_ajax(5) 
       expect(page).to have_content 'Showing 1 to 10 of 16,903 entries'
-      expect(page).not_to have_button('notepadAdd')
+      #expect(page).not_to have_button('notepadAdd')
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
@@ -160,7 +160,7 @@ describe "CDISC Terminology", :type => :feature do
     end
 
     after :all do
-      Notepad.destroy_all
+      #Notepad.destroy_all
       user = User.where(:email => "reader@example.com").first
       user.destroy
     end
@@ -179,7 +179,7 @@ describe "CDISC Terminology", :type => :feature do
       expect(page).to have_content 'Search: CDISC Terminology 2015-09-25'
       wait_for_ajax(120) # Big load
       expect(page).to have_content 'Showing 1 to 10 of 16,903 entries'
-      expect(page).not_to have_button('notepadAdd')
+      #expect(page).not_to have_button('notepadAdd')
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
@@ -191,7 +191,7 @@ describe "CDISC Terminology", :type => :feature do
       expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
       wait_for_ajax(120) # Big load
       expect(page).to have_content 'Showing 1 to 10 of 17,356 entries'
-      expect(page).not_to have_button('Notepad+')
+      #expect(page).not_to have_button('Notepad+')
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end

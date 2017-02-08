@@ -784,11 +784,11 @@ describe "Form Editor", :type => :feature do
       ui_click_node_key(key1)
       wait_for_ajax
       choose 'form_datatype_s'
-      ui_table_row_click('notepad_table', 'C16358')
-      click_button 'notepad_add'
+      #ui_table_row_click('notepad_table', 'C16358')
+      #click_button 'notepad_add'
       wait_for_ajax
-      ui_table_row_click('notepad_table', 'C25157')
-      click_button 'notepad_add'
+      #ui_table_row_click('notepad_table', 'C25157')
+      #click_button 'notepad_add'
       wait_for_ajax
       ui_click_node_key(key1)
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1", "Body Surface Area"]')

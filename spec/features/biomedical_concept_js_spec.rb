@@ -15,8 +15,6 @@ describe "Biomedical Concepts", :type => :feature do
   describe "BCs", :type => :feature do
   
     before :all do
-      user = User.create :email => "reader@example.com", :password => "12345678" 
-      user.add_role :curator
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -37,6 +35,7 @@ describe "Biomedical Concepts", :type => :feature do
       clear_iso_registration_state_object
       clear_cdisc_term_object
       ua_create
+      clear_downloads
     end
 
     after :all do
@@ -45,13 +44,12 @@ describe "Biomedical Concepts", :type => :feature do
 
     before :each do
       visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
+      fill_in 'Email', with: 'curator@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
     end
 
     it "allows for a BC to be exported as JSON", js: true do
-      clear_downloads
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
@@ -67,7 +65,6 @@ describe "Biomedical Concepts", :type => :feature do
     end
 
     it "allows for a BC to be exported as TTL", js: true do
-      clear_downloads
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click

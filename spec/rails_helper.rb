@@ -73,6 +73,7 @@ Capybara.register_driver :chrome do |app|
   profile = Selenium::WebDriver::Chrome::Profile.new
   profile["download.default_directory"] = DownloadHelpers::PATH
   Capybara::Selenium::Driver.new(app, :browser => :chrome, profile: profile)
+  #Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 
 Capybara.javascript_driver = :chrome

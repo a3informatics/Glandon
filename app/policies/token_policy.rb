@@ -5,7 +5,15 @@ class TokenPolicy < ApplicationPolicy
   end
 
 	def release?
-    system_admin?
+    curator? || system_admin?
   end
+
+  def status?
+    curator?
+  end
+
+  def extend_token?
+    curator?
+  end  	
 
 end

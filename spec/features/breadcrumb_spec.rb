@@ -91,7 +91,7 @@ describe "Breadcrumb", :type => :feature do
     end
 
     it "has Background Jobs breadcrumbs" do
-      next_link('Background Jobs', 'Show: Background Jobs', "Background", "", "")
+      next_link('Background', 'Index: Background Jobs', "Background", "", "")
     end
     
     it "has Audit Trail breadcrumbs" do

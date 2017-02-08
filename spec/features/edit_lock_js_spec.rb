@@ -102,6 +102,7 @@ describe "Edit Locks", :type => :feature do
     it "domain edit timeout warnings and expiration", js: true do
       Token.set_timeout(@user2.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
+      wait_for_ajax
       expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       token = tokens[0]
@@ -120,9 +121,10 @@ describe "Edit Locks", :type => :feature do
       expect(token.timed_out?).to eq(true)
     end
 
-    it "form edit timeout warnings and extend", js: true do
+    it "domain edit timeout warnings and extend", js: true do
       Token.set_timeout(@user2.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
+      wait_for_ajax
       expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       token = tokens[0]

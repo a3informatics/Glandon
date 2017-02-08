@@ -22,7 +22,7 @@ class TokensController < ApplicationController
   end
 
   def status
-    authorize Token, :show?
+    authorize Token
     if Token.exists?(params[:id])
       item = Token.find(params[:id])
       respond_to do |format|
@@ -36,7 +36,7 @@ class TokensController < ApplicationController
   end
 
   def extend_token
-    authorize Token, :show?
+    authorize Token
     if Token.exists?(params[:id])
       item = Token.find(params[:id])
       item.extend_token

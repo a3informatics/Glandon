@@ -3,7 +3,6 @@ var bcePanelIndexMap;
 var bceCurrentIndex;
 var bceFirstIndex;
 var bceWarningTimeout;
-var bceToken;
 var bceId;
 var bceNamespace;
 var bceMainTable;
@@ -156,7 +155,6 @@ function bceInit() {
   bcePanelIndexMap = {};
   bceCurrentIndex = C_NULL;
   bceWarningTimeout = $('#warning_timeout').val();
-  bceToken = $('#token').val();
   bceId = $('#bc_id').val();
   bceNamespace = $('#bc_namespace').val();
   bceMainTable = null;
@@ -232,6 +230,7 @@ function bceCloseBc(index) {
   var bcIndex = index;
   for (var i=0; i<bceBcs.length; i++) {
     ttRemoveToken(bceBcs[i].uiIndex);
+    bceClearToken(i)
   }
   bceHidePanels();
   bceHideTimers();
@@ -239,19 +238,25 @@ function bceCloseBc(index) {
   bceBcs.splice(bcIndex, 1);
   bcePanelIndexMap = {}
   if (bceBcs.length > 0) {
-    bceCurrentIndex = bceFirstIndex;
+    if (bceCurrentIndex >= bcIndex) {
+      bceCurrentIndex -= 1;
+    }
     for (var i=0; i<bceBcs.length; i++) {
       bceBcs[i].uiIndex = i + 1;
       bceBcs[i].panelId = C_NULL;
+      bceSetToken(i);
       ttAddToken(bceBcs[i].uiIndex);
       if (panelId <= C_PANEL_COUNT) {
         bceBcs[i].panelId = panelId;
         panelId += 1;
-        bceGetBc(i);
+        bceGetBc(i, false);
       }
     }
     bceShowCurrentBc();
     bceShowBcCount();
+  } else {
+    bceFirstIndex = 0;
+    bceCurrentIndex = C_NULL;
   }
 }
 
@@ -286,7 +291,7 @@ function bceShowCurrentBc() {
   }
   $(".bc-panel").removeClass("panel-success"); 
   $("#bc_panel_" + panelId).addClass("panel-success");
-  bceEditorTable.page.len(15);
+  bceEditorTable.page.len(15); // @todo This needs a better solution
 }
 
 function bceAddBc(id, namespace, lock) {
@@ -312,10 +317,8 @@ function bceAddBc(id, namespace, lock) {
     bcePanelMove();
   }
   if (ok) {    
-    bceGetBc(bcIndex);
-    if (lock) {
-      bceGetBcLock(bcIndex);
-    } else {
+    bceGetBc(bcIndex, lock);
+    if (!lock) {
       ttAddToken(uiIndex);
       bceBcs[bcIndex].token = bceGetToken(bcIndex);
     }
@@ -328,7 +331,7 @@ function bceCreateBcRecord(id, namespace, bcIndex, uiIndex, panelId) {
   bceBcs[bcIndex] = { "id": id, "namespace": namespace, "label": "", "identifier": "", "panelId": panelId, "uiIndex": uiIndex, "display": false};
 }
 
-function bceGetBc(index) {
+function bceGetBc(index, lock) {
   $.ajax({
     url: "/biomedical_concepts/" + bceBcs[index].id + "/show_full",
     type: "GET",
@@ -338,14 +341,15 @@ function bceGetBc(index) {
       displayError("An error has occurred loading a Biomedical Concept.");
     },
     success: function(result) {
+      if (lock) {
+        bceGetBcLock(index);
+      }
       bceBcs[index].display = true;
       bceBcs[index].json = result;
       bceBcs[index].label = result.label;
       bceBcs[index].identifier = result.identifier;
-      //if (bceBcs[index].panelId !== C_NULL) {
-        bceShowPanel(index) 
-        bceBcTree(index);
-      //}
+      bceShowPanel(index) 
+      bceBcTree(index);
     }
   });
 }
@@ -402,13 +406,6 @@ function bceEditorTableInit() {
     ]
   });
  
-  /*bceEditorTable = $('#editor_table').on('xhr.dt', function ( e, settings, json, xhr ) {
-    for ( var i=0, ien=json.children.length ; i<ien ; i++ ) {
-        json.children[i].terminology = "";
-    }
-    bceParseTable(json.children);
-    // Note no return - manipulate the data directly in the JSON object.
-  }).DataTable({*/
   bceEditorTable = $('#editor_table').DataTable({
     lengthChange: false,
     ajax: {
@@ -514,15 +511,10 @@ function bceEditorTableInit() {
     ttExtendLock(bceBcs[bceCurrentIndex].uiIndex);
   });
 
-
   // Submit error event. Route to the specified link.
   bceEditor.on('submitError', function (e, xhr, err, thrown, data) {
     window.location.href = xhr.responseJSON.link;
   });
-
-  //$('#editor_table').on( 'draw.dt', function () {
-  //  bceParseTable();
-  //});
 
   // Have a real table now, hide the temp empty one.
   bceHideTempTable();
@@ -585,6 +577,10 @@ function bceSetToken(index) {
   $('#token_' + bceBcs[index].uiIndex).val(bceBcs[index].token);
 }
 
+function bceClearToken(index) {
+  $('#token_' + bceBcs[index].uiIndex).val("");
+}
+
 function bceGetToken(index) {
   return $('#token_' + bceBcs[index].uiIndex).val();
 }
@@ -634,13 +630,9 @@ function bceSetD3(sourceNode, d3ParentNode) {
     newNode.name = "";
   }
   if (sourceNode.hasOwnProperty('children')) {
-    //if (sourceNode.children.length === 0) {
-      
-    //} else {
-      for (var i=0; i<sourceNode.children.length; i++) {
-        bceSetD3(sourceNode.children[i], newNode);
-      }
-    //}
+    for (var i=0; i<sourceNode.children.length; i++) {
+      bceSetD3(sourceNode.children[i], newNode);
+    }
   } else if (sourceNode.hasOwnProperty('complex_datatype')) {
     bceSetD3(sourceNode.complex_datatype, newNode);
   } else if (sourceNode.hasOwnProperty('datatype')) {

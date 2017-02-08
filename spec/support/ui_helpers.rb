@@ -190,6 +190,11 @@ module UiHelpers
     find("##{id}").native.send_keys(:backspace)
   end
 
+  # Scroll by
+  def ui_scroll_to_id(id)
+    page.execute_script("document.getElementById(#{id}).scrollTop += 100")
+  end
+
   # D3 Tree Functions
   # =================
 
