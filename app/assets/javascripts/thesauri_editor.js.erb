@@ -7,6 +7,9 @@ $(document).ready(function() {
   var sourceJson;
   var managedItem;
   
+  // Disable the saving spinner
+  $("#saving").prop("disabled", true);
+
   // Get the JSON structure. Set the namespace of the thesauri.
   sourceJson = $.parseJSON(html);
   managedItem = sourceJson;
@@ -24,17 +27,24 @@ $(document).ready(function() {
       "synonym": "", 
       "definition": ""
     };
+
+  // Start timeout timer
+  ttAddToken("1");
    
+  // Close button
   $('#close_button').click(function() {
+    keepToken = false;
     window.location.href = $('#close_path').val();
   });
 
-  // Null function for page unload. Nothing to do
-  function pageUnloadAction() {
-  }
+  // Save. Just extend the timeout
+  $('#save').click(function (event) {
+    ttExtendLock("1");
+  });
 
   $('#referer_button').click(function() {
-    keepToken = true;
+    ttExtendLock("1"); // Extend the token
+    keepToken = true; // Keep the token. Important
     window.location.href = $('#referer_path').val();
   });
 
@@ -112,7 +122,8 @@ $(document).ready(function() {
     var data = main.cell(this).data();
 
     if (col == 6) {
-      keepToken = true;
+      ttExtendLock("1"); // Extend the token
+      keepToken = true; // Keep the token. Important
       window.location.href = "/thesaurus_concepts/" + data.id + "/edit?namespace=" + data.namespace
     } else if (col == 7) {
       if(confirm("Are you sure?")) {
@@ -145,6 +156,11 @@ $(document).ready(function() {
   // Submit error event. Route to the specified link.
   editor.on('submitError', function (e, xhr, err, thrown, data) {
     window.location.href = xhr.responseJSON.link;
+  });
+
+  // Postsubmit event. Extend the timeout
+  editor.on('postSubmit', function ( e, json, data, type ) {
+    ttExtendLock("1");
   });
 
   // Set up the form validation
@@ -180,6 +196,7 @@ $(document).ready(function() {
         var html = alertSuccess("The concept has been saved.");
         displayAlerts(html);
         main.ajax.reload();
+        ttExtendLock("1");
       },
       error: function(xhr,status,error){
         handleAjaxError (xhr, status, error);
@@ -197,6 +214,7 @@ $(document).ready(function() {
         var html = alertSuccess("The concept has been deleted.");
         displayAlerts(html);
         main.ajax.reload();
+        ttExtendLock("1");
       },
       error: function(xhr,status,error){
         handleAjaxError (xhr, status, error);
@@ -220,3 +238,9 @@ $(document).ready(function() {
   }
 
 });
+
+// Null function for page unload. Nothing to do
+function pageUnloadAction() {
+}
+
+  

@@ -1,4 +1,5 @@
-<%= javascript_include_tag 'thesauri_editor', 'unload', 'field_validation' %>
+<%= stylesheet_link_tag    'spinner' %>
+<%= javascript_include_tag 'thesauri_editor', 'unload', 'field_validation', 'spinner', 'token_timer' %>
 <script id="json_data" type="text/json">
     <%= raw @thesaurus_concept.to_json.to_json %>
 </script>
@@ -35,6 +36,7 @@
 <input type="hidden" id="add_child_path" value="<%= add_child_thesaurus_concepts_path %>">
 <input type="hidden" id="children_path" value="<%= children_thesaurus_concepts_path %>">
 <input type="hidden" id="parameters_key" value="thesaurus_concept">
-<input type="hidden" id="token" value="<%= @token.id %>">
+<input type="hidden" id="token_1" value="<%= @token.id %>">
+<input type="hidden" id="warning_timeout" value="<%= current_user.edit_lock_warning %>">
 <input type="hidden" id="close_path" value="<%= @close_path %>">
 <input type="hidden" id="referer_path" value="<%= @referer_path %>">

@@ -26,8 +26,8 @@ describe "Thesaurus", :type => :feature do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
-      user = User.create :email => "curator@example.com", :password => "12345678" 
-      user.add_role :curator
+      @user = User.create :email => "curator@example.com", :password => "12345678" 
+      @user.add_role :curator
       Token.set_timeout(30)
     end
 
@@ -337,6 +337,152 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
       click_link 'Close'
       expect(page).to have_content 'Index: Terminology'
+    end  
+
+    it "edit timeout warnings and expiration", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
+      tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
+      token = tokens[0]
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      sleep (@user.edit_lock_warning.to_i / 2)
+      expect(page).to have_content("The edit lock is about to timeout!")
+      sleep 5
+      page.find("#token_timer_1")[:class].include?("btn-danger")
+      sleep (@user.edit_lock_warning.to_i / 2)
+      expect(page).to have_content("00:00")
+      click_button 'Close'
+    end
+
+    it "edit timeout warnings and extend", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
+      tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
+      token = tokens[0]
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      click_button 'Save'
+      wait_for_ajax
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep 11
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      click_button 'Close'
+    end
+
+    it "edit timeout warnings and child pages", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
+      tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
+      token = tokens[0]
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      find(:xpath, "//tr[contains(.,'RACE OTHER')]/td/button", :text => 'Edit').click
+      wait_for_ajax
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      click_button "referer_button"
+      wait_for_ajax
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      click_button 'Close'
+    end  
+
+    it "edit clears token on close", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
+      tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
+      token = tokens[0]
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      click_button 'Close'
+      tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
+      expect(tokens).to match_array([])
+    end  
+
+    it "edit clears token on back button", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
+      tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
+      token = tokens[0]
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      ui_click_back_button
+      tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
+      expect(tokens).to match_array([])
     end  
 
   end
