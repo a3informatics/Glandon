@@ -827,6 +827,92 @@ describe "Form Editor", :type => :feature do
       expect(key1).to eq(-1)
     end
 
+  
+    it "loads current terminology", js: true do
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      expect(page).to have_content 'Current Terminologies'
+      expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
+      fill_in 'searchTable_csearch_cl', with: 'C100129'
+      ui_hit_return('searchTable_csearch_cl')
+      wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 10 of 141 entries'
+    end
+
+    it "form edit timeout warnings and expiration", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
+      token = tokens[0]
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i - 2 # Needs to be tweaked to get in the 5 sec warnign window period
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      sleep (@user.edit_lock_warning.to_i / 2)
+      expect(page).to have_content("The edit lock is about to timeout!")
+      sleep 5
+      page.find("#token_timer_1")[:class].include?("btn-danger")
+      sleep (@user.edit_lock_warning.to_i / 2)
+      expect(page).to have_content("00:00")
+      expect(token.timed_out?).to eq(true)
+    end
+
+    it "form edit timeout warnings and extend", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
+      token = tokens[0]
+      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      click_button 'Save'
+      wait_for_ajax
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep 11
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+    end
+
+    it "edit clears token on close", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      click_button 'Close'
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
+      expect(tokens).to match_array([])
+    end  
+
+    it "edit clears token on back button", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      load_form("CRF TEST 1") 
+      wait_for_ajax
+      expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      ui_click_back_button
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
+      expect(tokens).to match_array([])
+    end  
+
     it "allows the fields to be valdated", js: true do
       load_form("CRF TEST 1") 
       wait_for_ajax
@@ -901,44 +987,38 @@ describe "Form Editor", :type => :feature do
       ui_check_validation_ok(key_bc_temp_item_cl, "clLocalLabel", "#{vh_all_chars}", key_bc_group)
     end
 
-    it "loads current terminology", js: true do
-      load_form("CRF TEST 1") 
-      wait_for_ajax
-      expect(page).to have_content 'Current Terminologies'
-      expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
-      fill_in 'searchTable_csearch_cl', with: 'C100129'
-      ui_hit_return('searchTable_csearch_cl')
-      wait_for_ajax
-      expect(page).to have_content 'Showing 1 to 10 of 141 entries'
-    end
-
     it "allows the form to be saved", js: true do
+      Token.set_timeout(100) # Just make sure
       load_form("CRF TEST 1") 
       wait_for_ajax
       fill_in 'formLabel', with: "Updated And Wonderful Label"
       ui_click_save
+      wait_for_ajax
       ui_click_close
       reload_form("CRF TEST 1")
       ui_check_input('formLabel', "Updated And Wonderful Label")
     end
 
     it "allows the edit session to be closed", js: true do
+      Token.set_timeout(100) # Just make sure
       load_form("CRF TEST 1") 
       wait_for_ajax
       fill_in 'formLabel', with: "Updated And Wonderful Label No. 2"
       ui_click_close
+      wait_for_ajax
       reload_form("CRF TEST 1") 
       ui_check_input('formLabel', "Updated And Wonderful Label No. 2")
     end
 
     it "allows the edit session to be closed indirectly, saves data", js: true do
+      set_screen_size(1500, 900)
+      Token.set_timeout(100) # Just make sure
       load_form("CRF TEST 1") 
       wait_for_ajax
       fill_in 'formLabel', with: "Updated And Wonderful Label No. 2, 2nd Time"
-      #pause
       ui_click_back_button
+      wait_for_ajax
       reload_form("CRF TEST 1") 
-      wait_for_ajax(5)
       ui_check_input('formLabel', "Updated And Wonderful Label No. 2, 2nd Time")
     end
 

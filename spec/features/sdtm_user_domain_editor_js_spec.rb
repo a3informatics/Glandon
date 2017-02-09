@@ -153,11 +153,13 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_click_node_name("DMNEW")
       ui_check_input('variableLabel', "New label updated")    
       click_button 'variableDelete'
+      ui_click_by_id 'close'
     end
 
     it "allows non-standard variable to be moved up and down and not pass a standard variable", js: true do
       load_domain("DM Domain")
       click_button "V+"
+      sleep 3
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
       expect(key_1).not_to eq(-1)
       ui_click_node_name("Demographics")
@@ -271,6 +273,80 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_click_node_key(key_1)
       ui_check_input('variableComment', "Some comments for the **STUDYID** varaible")
     end
+
+    it "domain edit timeout warnings and expiration", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      load_domain("DM Domain")
+      wait_for_ajax
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
+      token = tokens[0]
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      sleep (@user.edit_lock_warning.to_i / 2)
+      expect(page).to have_content("The edit lock is about to timeout!")
+      sleep 5
+      page.find("#token_timer_1")[:class].include?("btn-danger")
+      sleep (@user.edit_lock_warning.to_i / 2)
+      expect(page).to have_content("00:00")
+      expect(token.timed_out?).to eq(true)
+    end
+
+    it "domain edit timeout warnings and extend", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      load_domain("DM Domain")
+      wait_for_ajax
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
+      token = tokens[0]
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      click_button 'Save'
+      wait_for_ajax
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      sleep 11
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+    end
+
+    it "edit clears token on close", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      load_domain("DM Domain")
+      wait_for_ajax
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      click_button 'Close'
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
+      expect(tokens).to match_array([])
+    end  
+
+    it "edit clears token on back button", js: true do
+      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      load_domain("DM Domain")
+      wait_for_ajax
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
+      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      ui_click_back_button
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
+      expect(tokens).to match_array([])
+    end  
 
   end
 
