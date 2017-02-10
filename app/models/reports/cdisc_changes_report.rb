@@ -1,6 +1,8 @@
 class Reports::CdiscChangesReport
 
   C_CLASS_NAME = "Report::CdiscChangesReport"
+  C_FIRST_PAGE = 5
+  C_PER_PAGE = 9
 
   # Create the CDISC changes report
   #
@@ -34,17 +36,30 @@ private
     html += "<li><p>U = Code List was updated in some way</p></li>"
     html += "<li><p>'-' = There was no change to the Code List</p></li>"
     html += "<li><p>X = The Code List was deleted from teh CDISC Terminology</p></li></ul></p>"
-    html += "<h3>Changes</h3>"
-    html += "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
-    html += "<th>Identifier</th>"
-    html += "<th>Label</th>"
-    html += "<th>Submission Value</th>"
-    results.each do |result|
-      r = result[:results]
-      html += "<th>" + result[:date] + "</th>"
-    end
-    html += "</tr></thead><tbody>"
+    index = 0
+    page_count = C_FIRST_PAGE
     cls.each do |key, cl|
+      if index % page_count == 0
+        if index == 0
+          html += "<h3>Changes</h3>"
+        else
+          html += "</tbody></table>" 
+          @report.add_to_body(html)
+          @report.add_page_break
+          page_count = C_PER_PAGE
+          html = ""
+          index = 1
+        end
+        html += "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
+        html += "<th>Identifier</th>"
+        html += "<th>Label</th>"
+        html += "<th>Submission Value</th>"
+        results.each do |result|
+          r = result[:results]
+          html += "<th>" + result[:date] + "</th>"
+        end
+        html += "</tr></thead><tbody>"
+      end
       s = cl[:status]
       html += "<tr>"
       html += "<td>#{key}</td>"
@@ -66,8 +81,8 @@ private
         end
       end
       html += "</tr>"
+      index += 1
     end
-    html += "</tbody></table>"
     @report.add_to_body(html)
   end
 

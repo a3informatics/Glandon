@@ -1,7 +1,7 @@
 class Reports::CdiscSubmissionReport
 
   C_CLASS_NAME = "Report::CdiscChangesReport"
-  C_PER_PAGE = 10
+  C_PER_PAGE = 5
   C_DELETED = "[ *** Submission Value Deleted *** ]"
 
   # Create the domain report
@@ -37,7 +37,7 @@ private
     main_table = main_header_row(results[:versions])
     secondary_table = secondary_header_row
     html += "<h3>Conventions</h3>"
-    html += "<p>In the following table each page contains two tables. The first table indicates when a change took " +
+    html += "<p>In the following table each page contains two tables. The first table indicates when a change took "
     html += "place while the second table details the change. The changes are releated by the index thus [n].</p>"
     results[:children].each do |key, entry|
       if index % C_PER_PAGE == 0
@@ -70,7 +70,7 @@ private
   end
 
   def main_header_row(versions)
-    html = "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
+    html = "<table class=\"table table-striped table-bordered table-condensed\"><thead><tr>"
     html += "<th>Code</th>"
     html += "<th>Item</th>"
     html += "<th>Label</th>"
@@ -83,10 +83,11 @@ private
   end
 
   def secondary_header_row
-    html = "<table class=\"table table-striped table-bordered table-condensed\"><thead>"
+    html = "<table class=\"table table-striped table-bordered table-condensed\"><thead><tr>"
     html += "<th>Index</th>"
     html += "<th>From</th>"
     html += "<th>To</th>"
+    html += "</tr></thead><tbody>"
     return html
   end
 

@@ -92,11 +92,9 @@ private
     html += "<h3 class=\"text-center col-md-12\">#{name}</h3>"
     html += "<br>" * 10
     html += "<div class=\"text-center col-md-12\"><h1>#{doc_type}<br>#{title}</h1></div>"
-    html += "<br>" * 25
-    html += "<div class=\"text-center col-md-7\">&nbsp;</div>"
-    html += "<div class=\"text-center col-md-5\">"
-    html += "<table class=\"table table-striped\"><tr><td>Run at:</td><td>#{time_generated.strftime("%Y-%b-%d, %H:%M:%S")}</td></tr>"
-    html += "<tr><td>Run by:</td><td>#{user.email}</td></tr></table></div>"
+    html += "<br>" * 5
+    html += "<div class=\"text-center col-md-12\"><p>Run at: #{time_generated.strftime("%Y-%b-%d, %H:%M:%S")}</p></div>"
+    html += "<div class=\"text-center col-md-12\"><p>Run by: #{user.email}</p></div>"
     html += page_break
     return html
   end

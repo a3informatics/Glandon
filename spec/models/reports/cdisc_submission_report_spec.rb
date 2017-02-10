@@ -44,6 +44,7 @@ describe Reports::CdiscSubmissionReport do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+  #puts html
     expect(html).to eq(expected)
   end
 

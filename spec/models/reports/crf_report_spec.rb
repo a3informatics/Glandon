@@ -37,7 +37,7 @@ describe Reports::CrfReport do
     form = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => false, :full => false}, user)
-    #write_text_file_2(html, sub_dir, "crf_report_simple_non_annotated.txt")
+    write_text_file_2(html, sub_dir, "crf_report_simple_non_annotated.txt")
     expected = read_text_file_2(sub_dir, "crf_report_simple_non_annotated.txt")
     expect(html).to eq(expected)
   end
@@ -47,7 +47,7 @@ describe Reports::CrfReport do
     form = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => true, :full => false}, user)
-    #write_text_file_2(html, sub_dir, "crf_report_simple_annotated.txt")
+    write_text_file_2(html, sub_dir, "crf_report_simple_annotated.txt")
     expected = read_text_file_2(sub_dir, "crf_report_simple_annotated.txt")
     expect(html).to eq(expected)
   end
@@ -57,7 +57,7 @@ describe Reports::CrfReport do
     form = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => true, :full => true}, user)
-    #write_text_file_2(html, sub_dir, "crf_report_full_non_annotated.txt")
+    write_text_file_2(html, sub_dir, "crf_report_full_non_annotated.txt")
     expected = read_text_file_2(sub_dir, "crf_report_full_non_annotated.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -70,7 +70,7 @@ describe Reports::CrfReport do
     form = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => true, :full => true}, user)
-    #write_text_file_2(html, sub_dir, "crf_report_full_annotated.txt")
+    write_text_file_2(html, sub_dir, "crf_report_full_annotated.txt")
     expected = read_text_file_2(sub_dir, "crf_report_full_annotated.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -83,7 +83,7 @@ describe Reports::CrfReport do
     form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => true, :full => true}, user)
-    #write_text_file_2(html, sub_dir, "crf_report_full_annotated_all_features.txt")
+    write_text_file_2(html, sub_dir, "crf_report_full_annotated_all_features.txt")
     expected = read_text_file_2(sub_dir, "crf_report_full_annotated_all_features.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -96,7 +96,7 @@ describe Reports::CrfReport do
     form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => false, :full => false}, user)
-    #write_text_file_2(html, sub_dir, "crf_report_simple_non_annotated_all_features.txt")
+    write_text_file_2(html, sub_dir, "crf_report_simple_non_annotated_all_features.txt")
     expected = read_text_file_2(sub_dir, "crf_report_simple_non_annotated_all_features.txt")
     expect(html).to eq(expected)
   end
