@@ -182,7 +182,7 @@ Rails.application.routes.draw do
       get :edit_lock
     end
     collection do
-      get :test
+      get :editable
       get :history
       post :clone_create
       get :list

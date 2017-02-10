@@ -22,8 +22,7 @@ $(document).ready(function() {
   
   bceBcTable = $('#bc_table').DataTable( {
     "ajax": {
-      "url": "/biomedical_concepts/test",
-      //"url": "/biomedical_concepts",
+      "url": "/biomedical_concepts/editable",
       "dataSrc": "data",
       error: function (xhr, status, error) {
         displayError("An error has occurred loading the Add Biomedical Concepts table.");

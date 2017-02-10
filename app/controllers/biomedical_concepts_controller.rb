@@ -4,7 +4,7 @@ class BiomedicalConceptsController < ApplicationController
 
   before_action :authenticate_user!
   
-  def test
+  def editable
     authorize BiomedicalConcept, :index?
     results = {:data => []}
     bcs = BiomedicalConcept.unique
