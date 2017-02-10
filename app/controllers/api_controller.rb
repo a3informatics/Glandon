@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
   
-  http_basic_authenticate_with name: "admin", password: "admin"
+  http_basic_authenticate_with name: ENV["api_username"], password: ENV["api_password"]
 
   C_CLASS_NAME = "ApiController"
 

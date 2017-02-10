@@ -50,13 +50,13 @@ Rails.application.configure do
 
   # Email settings
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "www.assero.co.uk",
+    address: ENV["EMAIL_SMTP"],
+    port: ENV["EMAIL_PORT"].to_i,
+    domain: ENV["EMAIL_DOMAIN"],
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: ENV["EMAIL_USERNAME"],
+    password: ENV["EMAIL_PASSWORD"]
   }
   
 end
