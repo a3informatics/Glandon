@@ -23,6 +23,7 @@ $(document).ready(function() {
   bceBcTable = $('#bc_table').DataTable( {
     "ajax": {
       "url": "/biomedical_concepts/test",
+      //"url": "/biomedical_concepts",
       "dataSrc": "data",
       error: function (xhr, status, error) {
         displayError("An error has occurred loading the Add Biomedical Concepts table.");
@@ -41,6 +42,7 @@ $(document).ready(function() {
 
   bceInit();
   if (bceId !== "") {
+    // Initial BC, locked
     bceAddBc(bceId, bceNamespace, false);
   } else {
     bceTempTableInit();
@@ -65,12 +67,6 @@ $(document).ready(function() {
       displayWarning("The form is not valid. Please correct the errors.");
     }
   });
-
-  /*$('.bc-select').click(function (event) {
-    var panelId = this.id.replace("bc_select_", "");
-    var index = bcePanelIndexMap[panelId];
-    bceSelectBc(index);
-  });*/
 
   $('.bc-panel').click(function (event) {
     var panelId = this.id.replace("bc_panel_", "");
@@ -113,7 +109,12 @@ $(document).ready(function() {
     var text;
     if (bceBcRow !== null) {
       data = bceBcTable.row(bceBcRow).data();
-      bceAddBc(data.id, data.namespace, true);
+      if (!bceLoaded(data)) {
+        // Edit BC from within editor, needs locking
+        bceAddBc(data.id, data.namespace, true);
+      } else {
+        displayWarning("You have already loaded this Biomedical Concept.");
+      }
     } else {
       displayWarning("You need to select a notepad item.");
     }
@@ -145,6 +146,7 @@ function bceCreateRest() {
     contentType: 'application/json',
     success: function(result){
       displaySuccess("The Biomedical Concept was succesfully created.");
+      // Edit a new BC created in editor, needs locking
       bceAddBc(result.data.id, result.data.namespace, true);
       $('#biomedical_concept_identifier').val("");
       $('#biomedical_concept_label').val("");
@@ -219,6 +221,18 @@ function bceComplete(count, row) {
       bceGetBc(bceCurrentIndex, false);
     }
   });
+}
+
+function bceLoaded(data) {
+  var uri;
+  var new_uri = toUri(data.namespace, data.id);
+  for (var i=0; i<bceBcs.length; i++) {
+    uri = toUri(bceBcs[i].namespace, bceBcs[i].id);
+    if (new_uri === uri) {
+      return true;
+    }  
+  }
+  return false;
 }
 
 function bceCheckCurrent() {
@@ -304,7 +318,7 @@ function bceShowCurrentBc() {
   bceEditorTable.page.len(15); // @todo This needs a better solution
 }
 
-function bceAddBc(id, namespace, lock) {
+function bceAddBc(id, namespace, lockReqd) {
   var bcIndex = bceBcs.length;
   var uiIndex = bcIndex + 1;
   var panelId = C_NULL;
@@ -327,11 +341,7 @@ function bceAddBc(id, namespace, lock) {
     bcePanelMove();
   }
   if (ok) {    
-    bceGetBc(bcIndex, lock);
-    if (!lock) {
-      ttAddToken(uiIndex);
-      bceBcs[bcIndex].token = bceGetToken(bcIndex);
-    }
+    bceGetBc(bcIndex, lockReqd);
     bceShowBcCount();
     bceShowCurrentBc();
   }
@@ -341,9 +351,15 @@ function bceCreateBcRecord(id, namespace, bcIndex, uiIndex, panelId) {
   bceBcs[bcIndex] = { "id": id, "namespace": namespace, "label": "", "identifier": "", "panelId": panelId, "uiIndex": uiIndex, "display": false};
 }
 
-function bceGetBc(index, lock) {
+function bceGetBc(index, lockReqd) {
+  var url;
+  if (lockReqd) {
+    url = "/biomedical_concepts/" + bceBcs[index].id + "/edit_lock";    
+  } else {
+    url = "/biomedical_concepts/" + bceBcs[index].id + "/show_full";
+  }
   $.ajax({
-    url: "/biomedical_concepts/" + bceBcs[index].id + "/show_full",
+    url: url,
     type: "GET",
     data: { "biomedical_concept": { "namespace": bceBcs[index].namespace }},
     dataType: 'json',
@@ -351,32 +367,21 @@ function bceGetBc(index, lock) {
       displayError("An error has occurred loading a Biomedical Concept.");
     },
     success: function(result) {
-      if (lock) {
-        bceGetBcLock(index);
+      if (lockReqd) {
+        bc = result.bc;
+        bceBcs[index].token = result.token;
+      } else {
+        bc = result;
+        bceBcs[index].token = bceGetToken(index); // No lock reqd, so assume it is set
       }
       bceBcs[index].display = true;
-      bceBcs[index].json = result;
-      bceBcs[index].label = result.label;
-      bceBcs[index].identifier = result.identifier;
-      bceShowPanel(index) 
-      bceBcTree(index);
-    }
-  });
-}
-
-function bceGetBcLock(index) {
-  $.ajax({
-    url: "/biomedical_concepts/" + bceBcs[index].id + "/edit_lock",
-    type: "GET",
-    data: { "biomedical_concept": { "namespace": bceBcs[index].namespace }},
-    dataType: 'json',
-    error: function (xhr, status, error) {
-      displayError("An error has occurred locking a Biomedical Concept.");
-    },
-    success: function(result) {
-      bceBcs[index].token = result.token;
+      bceBcs[index].json = bc;
+      bceBcs[index].label = bc.label;
+      bceBcs[index].identifier = bc.identifier;
       bceSetToken(index);
       ttAddToken(bceBcs[index].uiIndex);
+      bceShowPanel(index) 
+      bceBcTree(index);
     }
   });
 }

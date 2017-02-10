@@ -6,11 +6,17 @@ class BiomedicalConceptsController < ApplicationController
   
   def test
     authorize BiomedicalConcept, :index?
-    @bcs = BiomedicalConcept.all
+    results = {:data => []}
+    bcs = BiomedicalConcept.unique
+    bcs.each do |bc|
+      bc[:scope_id] = bc[:owner_id]
+      history = BiomedicalConcept.history(bc)
+      if history.length > 0
+        results[:data] << history[0].to_json if history[0].edit?
+      end
+    end
     respond_to do |format|
       format.json do
-        results = {:data => []}
-        @bcs.each { |x| results[:data] << x.to_json }
         render json: results
       end
     end
@@ -108,12 +114,17 @@ class BiomedicalConceptsController < ApplicationController
 
   def edit_lock
     authorize BiomedicalConcept, :edit?
-    @bc = BiomedicalConcept.find(params[:id], the_params[:namespace], false)
+    @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
+    if @bc.new_version?
+      json = @bc.to_operation
+      new_bc = BiomedicalConcept.create(json)
+      @bc = BiomedicalConcept.find(new_bc.id, new_bc.namespace)
+    end
     @token = Token.obtain(@bc, current_user)
     if @token.nil?
       render :json => {}, :status => 422
     else
-      render :json => { token: @token.id }, :status => 200
+      render :json => { bc: @bc.to_json, token: @token.id }, :status => 200
     end
   end
 
@@ -185,7 +196,7 @@ class BiomedicalConceptsController < ApplicationController
   
   def export_json
     authorize BiomedicalConcept
-    @bc = IsoManaged.find(params[:id], the_params[:namespace])
+    @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
     send_data @bc.to_json, filename: "#{@bc.owner}_#{@bc.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
