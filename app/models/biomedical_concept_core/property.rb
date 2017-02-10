@@ -84,8 +84,8 @@ class BiomedicalConceptCore::Property < BiomedicalConceptCore::Node
         "}\n" +
         "INSERT \n" +
         "{ \n" +
-        "  :" + self.id + " cbc:question_text \"#{self.question_text}\"^^xsd:string . \n" +
-        "  :" + self.id + " cbc:prompt_text \"#{self.prompt_text}\"^^xsd:string . \n" +
+        "  :" + self.id + " cbc:question_text \"#{SparqlUtility.replace_special_chars(params[:question_text])}\"^^xsd:string . \n" +
+        "  :" + self.id + " cbc:prompt_text \"#{SparqlUtility.replace_special_chars(params[:prompt_text])}\"^^xsd:string . \n" +
         "  :" + self.id + " cbc:enabled \"#{self.enabled}\"^^xsd:boolean . \n" +
         "  :" + self.id + " cbc:collect \"#{self.collect}\"^^xsd:boolean . \n" +
         "  :" + self.id + " cbc:format \"#{self.format}\"^^xsd:string . \n" +

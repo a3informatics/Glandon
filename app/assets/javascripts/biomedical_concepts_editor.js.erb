@@ -66,8 +66,14 @@ $(document).ready(function() {
     }
   });
 
-  $('.bc-select').click(function (event) {
+  /*$('.bc-select').click(function (event) {
     var panelId = this.id.replace("bc_select_", "");
+    var index = bcePanelIndexMap[panelId];
+    bceSelectBc(index);
+  });*/
+
+  $('.bc-panel').click(function (event) {
+    var panelId = this.id.replace("bc_panel_", "");
     var index = bcePanelIndexMap[panelId];
     bceSelectBc(index);
   });
@@ -206,7 +212,7 @@ function bceComplete(count, row) {
     success: function(result) {
       bceEditorTable.row(row).data(result.data[0]);    
       bceEditorTable.draw();
-      // Redraw D3 tree here.
+      bceGetBc(bceCurrentIndex, false);
     }
   });
 }
@@ -479,8 +485,10 @@ function bceEditorTableInit() {
       cellData = !cellData;
       bceEditor.edit(row, false).set('collect', cellData).submit();
     } else if (col === 8) {
-      tfeEnable(rowData.alias, row);
-      tfeLoad(rowData.children);  
+      if (rowData.enabled && rowData.coded) {
+        tfeEnable(rowData.alias, row);
+        tfeLoad(rowData.children);  
+      }
     } else if (col === 5 || col === 7) {
     } else {
       bceEditor.inline(bceEditorTable.cell(this).index(), { submitOnBlur: true, submit: 'all' });
@@ -495,7 +503,7 @@ function bceEditorTableInit() {
   // Presubmit event. Format the data.
   bceEditor.on('preSubmit', function ( e, d, type ) {
     if ( type === 'edit' ) {
-      d.property = cloneProperty();
+      d.property = bceCloneProperty();
       d.property.namespace = bceNamespace;
       var columnObject = firstObject(d.data);
       $.each(columnObject, function(key, value) {
@@ -509,6 +517,7 @@ function bceEditorTableInit() {
   // Postsubmit event. Extend the timeout
   bceEditor.on('postSubmit', function ( e, json, data, type ) {
     ttExtendLock(bceBcs[bceCurrentIndex].uiIndex);
+    bceGetBc(bceCurrentIndex, false);
   });
 
   // Submit error event. Route to the specified link.
@@ -569,7 +578,7 @@ function firstObject(object) {
   return first;
 }
 
-function cloneProperty() {
+function bceCloneProperty() {
   return JSON.parse(JSON.stringify(bceEmptyProperty));
 }
 
@@ -621,23 +630,61 @@ function bceBcTree(index) {
 }
 
 function bceSetD3(sourceNode, d3ParentNode) {
-  var newNode = d3eAddNode(d3ParentNode, "", sourceNode.type, true, sourceNode, true);
-  if (sourceNode.type === C_BC_PROP) {
-    newNode.name = "";
-  } else if (sourceNode.type === C_TC_REF) {
-    getThesaurusConcept(newNode, bceTcCallBack);
-  } else {
-    newNode.name = "";
+  var newNode;
+  if (bceAddNode(sourceNode)) {
+    newNode = d3eAddNode(d3ParentNode, "", sourceNode.type, true, sourceNode, true);
+    if (sourceNode.type === C_BC_ITEM) {
+      bceSetD3(sourceNode.datatype, newNode);
+    } else if (sourceNode.type === C_BC_DATATYPE) {
+      for (var i=0; i<sourceNode.children.length; i++) {
+        bceSetD3(sourceNode.children[i], newNode);
+      }
+    } else if (sourceNode.type === C_BC_PROP) {
+      if (sourceNode.hasOwnProperty('complex_datatype')) {
+        bceSetD3(sourceNode.complex_datatype, newNode);
+      } else {
+        if (sourceNode.children.length === 0) {
+          newNode.name = "" //sourceNode.alias;
+        } else {
+          for (var i=0; i<sourceNode.children.length; i++) {
+            bceSetD3(sourceNode.children[i], newNode);
+          }
+        }
+      }
+    } else if (sourceNode.type === C_TC_REF) {
+      getThesaurusConcept(newNode, bceTcCallBack);
+    } 
   }
-  if (sourceNode.hasOwnProperty('children')) {
-    for (var i=0; i<sourceNode.children.length; i++) {
-      bceSetD3(sourceNode.children[i], newNode);
+}
+
+function bceAddNode(node) {
+  var result = false;
+  if (node.type === C_BC_ITEM) {
+    result = bceAddNode(node.datatype);
+  } else if (node.type === C_BC_DATATYPE) {
+    for (var i=0; i<node.children.length; i++) {
+      result = result || bceAddNode(node.children[i]);
     }
-  } else if (sourceNode.hasOwnProperty('complex_datatype')) {
-    bceSetD3(sourceNode.complex_datatype, newNode);
-  } else if (sourceNode.hasOwnProperty('datatype')) {
-    bceSetD3(sourceNode.datatype, newNode);
+  } else if (node.type === C_BC_PROP) {
+    if (node.hasOwnProperty('complex_datatype')) {
+      result = bceAddNode(node.complex_datatype);
+    } else {
+      if (node.enabled) {
+        if (node.children.length === 0) {
+          result = true;
+        } else {
+          for (var i=0; i<node.children.length; i++) {
+            result = result || bceAddNode(node.children[i]);
+          }
+        }
+      }
+    }
+  } else if (node.type === C_TC_REF) {
+    result = true;
+  } else {
+    result = false;
   }
+  return result;
 }
 
 function bceTcCallBack(node, result) {

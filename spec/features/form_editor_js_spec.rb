@@ -273,7 +273,7 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Mapping Details'
       fill_in 'mappingMapping', with: "Mapping text must be set"
       ui_click_node_key(2)
-      wait_for_ajax
+      wait_for_ajax(3)
       click_button 'groupAddLabelText'
       expect(page).to have_content 'Label Details'
       expect(page).to have_content 'Markdown Preview'
@@ -565,6 +565,7 @@ describe "Form Editor", :type => :feature do
       ui_click_by_id 'tfe_add_item'
       ui_click_node_key(4)
       ui_click_node_key(3)
+      wait_for_ajax
       expect(page).to have_content 'Question Details' # Wait for page to settle
     
     #pause
@@ -985,6 +986,7 @@ describe "Form Editor", :type => :feature do
       ui_check_validation_error(key_bc_temp_item_cl, "clLocalLabel", "", "This field is required.", key_bc_group)
       ui_check_validation_error(key_bc_temp_item_cl, "clLocalLabel", "±±±±", vh_label_error, key_bc_group)
       ui_check_validation_ok(key_bc_temp_item_cl, "clLocalLabel", "#{vh_all_chars}", key_bc_group)
+      ui_click_close
     end
 
     it "allows the form to be saved", js: true do
@@ -997,6 +999,7 @@ describe "Form Editor", :type => :feature do
       ui_click_close
       reload_form("CRF TEST 1")
       ui_check_input('formLabel', "Updated And Wonderful Label")
+      ui_click_close
     end
 
     it "allows the edit session to be closed", js: true do
@@ -1008,6 +1011,7 @@ describe "Form Editor", :type => :feature do
       wait_for_ajax
       reload_form("CRF TEST 1") 
       ui_check_input('formLabel', "Updated And Wonderful Label No. 2")
+      ui_click_close
     end
 
     it "allows the edit session to be closed indirectly, saves data", js: true do
@@ -1019,7 +1023,9 @@ describe "Form Editor", :type => :feature do
       ui_click_back_button
       wait_for_ajax
       reload_form("CRF TEST 1") 
+      wait_for_ajax(10)
       ui_check_input('formLabel', "Updated And Wonderful Label No. 2, 2nd Time")
+      ui_click_close
     end
 
   end
