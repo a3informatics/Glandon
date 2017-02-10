@@ -12,7 +12,6 @@ var bceEmptyProperty;
 var bceBcData;
 var bceBcRow;
 var bceBcTable;
-var bceRootNode;
 
 var C_PANEL_COUNT = 4;
 var C_MAX_COUNT = 8;
@@ -352,6 +351,7 @@ function bceAddBc(id, namespace, lockReqd) {
 
 function bceCreateBcRecord(id, namespace, bcIndex, uiIndex, panelId) {
   bceBcs[bcIndex] = { "id": id, "namespace": namespace, "label": "", "identifier": "", "panelId": panelId, "uiIndex": uiIndex, "display": false};
+  bceBcs[bcIndex].d3Editor = null;
 }
 
 function bceGetBc(index, lockReqd) {
@@ -632,34 +632,35 @@ function bceHideTimers() {
 function bceBcTree(index) {
   panelId = bceBcs[index].panelId;
   var div = "d3_" + panelId;
-  d3eInit(div, bceEmpty, bceEmpty, bceEmpty, bceEmpty);
-  bceRootNode = d3eRoot("", C_BC, bceBcs[index].json)
+  bceBcs[index].d3Editor = new D3Editor(div, bceEmpty, bceEmpty, bceEmpty, bceEmpty);
+  var rootNode = bceBcs[index].d3Editor.root("", C_BC, bceBcs[index].json)
   for (var i=0; i<bceBcs[index].json.children.length; i++) {
-    bceSetD3(bceBcs[index].json.children[i], bceRootNode);
+    bceSetD3(index, bceBcs[index].json.children[i], rootNode);
   }
-  d3eDisplayTree(bceRootNode.key)
-  bceBcs[index].bceRootNode = bceRootNode;
+  bceBcs[index].d3Editor.displayTree(rootNode.key)
+  bceBcs[index].d3RootNode = rootNode;
 }
 
-function bceSetD3(sourceNode, d3ParentNode) {
+function bceSetD3(index, sourceNode, d3ParentNode) {
   var newNode;
   if (bceAddNode(sourceNode)) {
-    newNode = d3eAddNode(d3ParentNode, "", sourceNode.type, true, sourceNode, true);
+    newNode = bceBcs[index].d3Editor.addNode(d3ParentNode, "", sourceNode.type, true, sourceNode, true);
+    newNode.bceIndex = index;
     if (sourceNode.type === C_BC_ITEM) {
-      bceSetD3(sourceNode.datatype, newNode);
+      bceSetD3(index, sourceNode.datatype, newNode);
     } else if (sourceNode.type === C_BC_DATATYPE) {
       for (var i=0; i<sourceNode.children.length; i++) {
-        bceSetD3(sourceNode.children[i], newNode);
+        bceSetD3(index, sourceNode.children[i], newNode);
       }
     } else if (sourceNode.type === C_BC_PROP) {
       if (sourceNode.hasOwnProperty('complex_datatype')) {
-        bceSetD3(sourceNode.complex_datatype, newNode);
+        bceSetD3(index, sourceNode.complex_datatype, newNode);
       } else {
         if (sourceNode.children.length === 0) {
           newNode.name = "" //sourceNode.alias;
         } else {
           for (var i=0; i<sourceNode.children.length; i++) {
-            bceSetD3(sourceNode.children[i], newNode);
+            bceSetD3(index, sourceNode.children[i], newNode);
           }
         }
       }
@@ -702,7 +703,8 @@ function bceAddNode(node) {
 function bceTcCallBack(node, result) {
   node.data.subject_data = result;
   node.name = node.data.subject_data.notation;
-  d3eDisplayTree(bceRootNode.key)
+  var rootNode = bceBcs[node.bceIndex].d3Editor.rootNode;
+  bceBcs[node.bceIndex].d3Editor.displayTree(rootNode.key)
 }
 
 function bceEmpty() {
