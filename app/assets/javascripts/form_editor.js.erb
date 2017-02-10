@@ -434,13 +434,13 @@ function clEnableDisable (value, coded) {
     $("#questionFormat").prop('disabled', true);
     //$("#notepad_add").prop('disabled', false);
     //$("#deleteTerm").prop('disabled', false);
-    tfeEnable(currentNode.label, currentNode);
+    tfeEnable(currentNode.data.label, currentNode);
   } else if (value === datatypeMap['string']['xsd_fragment']) {
     var currentNode = d3eGetCurrent();
     $("#questionFormat").prop('disabled', false);
     //$("#notepad_add").prop('disabled', false);
     //$("#deleteTerm").prop('disabled', false);
-    tfeEnable(currentNode.label, currentNode);
+    tfeEnable(currentNode.data.label, currentNode);
   } else if (value === datatypeMap['integer']['xsd_fragment'] || value === datatypeMap['float']['xsd_fragment']) {
     $("#questionFormat").prop('disabled', false);
     //$("#notepad_add").prop('disabled', true);
@@ -1279,6 +1279,17 @@ function feTermCallBack(count, node) {
   }  
 }
 
+function feMoveUp(node) {
+  feTermCallBack(1, node) 
+}
+
+function feMoveDown(node) {
+  feTermCallBack(1, node) 
+}
+
+function feEmpty(node) {
+}
+
 function initData () {
   var managedItem;
   // Get the JSON objects
@@ -1293,13 +1304,13 @@ function initData () {
   markdownType = "";
   bcCurrent = null;
   bcCurrentRow = null;
-  notepadTableReload = false;
-  notepadData = null;
-  notepadRow = null; 
-  varClCurrent = null;
-  varClCurrentRow = null;
+  //notepadTableReload = false;
+  //notepadData = null;
+  //notepadRow = null; 
+  //varClCurrent = null;
+  //varClCurrentRow = null;
   feInitializeTimeoutCount = 0;
-  d3eInit("d3", saveNode, displayNode, empty, validateNode);
+  d3eInit("d3", saveNode, displayNode, feEmpty, validateNode);
   //tsInit(notepadUpdated);
   rootNode = d3eRoot(managedItem.label, C_FORM, managedItem)
   idKeyMap = {};
@@ -1307,7 +1318,7 @@ function initData () {
     setD3(managedItem.children[i], rootNode);
   }
   tfeInit();
-  tfeSetCallBack(feTermCallBack);
+  tfeSetCallBacks(feTermCallBack, feMoveUp, feMoveDown);
   feUpdateSave();
 }
 
@@ -1329,16 +1340,12 @@ function feUpdateSave () {
   previousSave = JSON.stringify(formDefinition);
 }
 
-
-function empty(node) {
-}
-
 // Note pad callback
-function notepadUpdated() {
+/*function notepadUpdated() {
   if (notepadTableReload) {
     notepadTable.ajax.reload();
   }
-}
+}*/
 
 /*
 * Set the D3 Structures
@@ -1397,6 +1404,8 @@ function saveNode() {
 
 function displayNode(d3Node) {
   d3eDisplayTree(d3Node.key);
+  tfeDisable();
+  tfeClear();
   if (d3Node.type === C_FORM ) {
     selectForm();
     displayForm(d3Node);

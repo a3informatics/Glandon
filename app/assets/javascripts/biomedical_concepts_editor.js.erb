@@ -185,7 +185,11 @@ function bceInit() {
     "simple_datatype": ""      
   };
   tfeInit();
-  tfeSetCallBack(bceComplete);
+  tfeSetCallBacks(bceComplete, bceUpDown, bceUpDown);
+}
+
+function bceUpDown(row) {
+  bceComplete(1, row);
 }
 
 function bceComplete(count, row) {
