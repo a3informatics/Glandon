@@ -131,7 +131,7 @@ class CdiscTermsController < ApplicationController
     respond_to do |format|
       format.pdf do
         @html = Reports::CdiscChangesReport.new.create(results, cls, current_user)
-        render pdf: "cdisc_changes.pdf", page_size: current_user.paper_size
+        render pdf: "cdisc_changes.pdf", page_size: current_user.paper_size, orientation: 'Landscape'
       end
     end
   end
@@ -164,7 +164,7 @@ class CdiscTermsController < ApplicationController
     respond_to do |format|
       format.pdf do
         @html = Reports::CdiscSubmissionReport.new.create(results, current_user)
-        render pdf: 'cdisc_submission.pdf', page_size: current_user.paper_size
+        render pdf: 'cdisc_submission.pdf', page_size: current_user.paper_size, orientation: 'Landscape'
       end
     end
   end
