@@ -86,15 +86,17 @@ $(document).ready(function() {
       bcePanelMove();
       bceShowCurrentBc();
     }
+    bceEnableDisablePreviousNext();
   });
 
   $('#bc_next').click(function (event) {
-    if (bceFirstIndex <= (bceBcs.length - C_PANEL_COUNT) && bceBcs.length > C_PANEL_COUNT)  {
+    if (bceFirstIndex < (bceBcs.length - C_PANEL_COUNT) && bceBcs.length > C_PANEL_COUNT)  {
       bceFirstIndex += 1;
       bceCheckCurrent();
       bcePanelMove();
       bceShowCurrentBc();
     }
+    bceEnableDisablePreviousNext();
   });
 
   $('#bc_save').click(function (event) {
@@ -111,6 +113,7 @@ $(document).ready(function() {
       if (!bceLoaded(data)) {
         // Edit BC from within editor, needs locking
         bceAddBc(data.id, data.namespace, true);
+        bceEnableDisablePreviousNext();
       } else {
         displayWarning("You have already loaded this Biomedical Concept.");
       }
@@ -172,6 +175,7 @@ function bceInit() {
   bceHideTimers();
   bceHideTempTable();
   bceHideEditorTable();
+  bceEnableDisablePreviousNext();
   bceEmptyProperty = 
   {
     "type": C_BC_PROP, 
@@ -702,4 +706,15 @@ function bceTcCallBack(node, result) {
 }
 
 function bceEmpty() {
+}
+
+function bceEnableDisablePreviousNext() {
+  $("#bc_previous").prop("disabled", false);
+  $("#bc_next").prop("disabled", false);
+  if (bceFirstIndex === 0) {
+    $("#bc_previous").prop("disabled", true);
+  }
+  if ((bceBcs.length - bceFirstIndex) <= C_PANEL_COUNT) {
+    $("#bc_next").prop("disabled", true);
+  }
 }
