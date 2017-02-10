@@ -151,6 +151,7 @@ describe BiomedicalConcepts::PropertiesController do
       token = Token.obtain(bc, @user)
       audit_count = AuditTrail.count
       property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value", "http://www.assero.co.uk/MDRBCs/V1")
+    #byebug
       the_params = {}
       tc_refs = []
       tc_refs << { :subject_ref => {id: "CLI-C112450_C112714", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42" }, ordinal: 1}
@@ -164,6 +165,7 @@ describe BiomedicalConcepts::PropertiesController do
       expect(response.code).to eq("200")
       #write_text_file_2(response.body, sub_dir, "property_add_1.txt")
       expected = read_text_file_2(sub_dir, "property_add_1.txt")
+    #puts response.body
       expect(response.body).to eq(expected)
       expect(AuditTrail.count).to eq(audit_count + 1)
       bc = BiomedicalConceptCore.find("BC-ACME_BC_C25347", "http://www.assero.co.uk/MDRBCs/V1")
@@ -177,6 +179,7 @@ describe BiomedicalConcepts::PropertiesController do
       token = Token.obtain(bc, @user)
       audit_count = AuditTrail.count
       property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value", "http://www.assero.co.uk/MDRBCs/V1")
+    #byebug
       the_params = {}
       tc_refs = []
       tc_refs << { :subject_ref => {id: "CLI-C103476_C103696", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42" }, ordinal: 1}
@@ -189,11 +192,12 @@ describe BiomedicalConcepts::PropertiesController do
       post :add, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "property_add_2.txt")
+      write_text_file_2(response.body, sub_dir, "property_add_2.txt")
       expected = read_text_file_2(sub_dir, "property_add_2.txt")
+    #puts response.body
       expect(response.body).to eq(expected)
       bc = BiomedicalConceptCore.find("BC-ACME_BC_C25347", "http://www.assero.co.uk/MDRBCs/V1")
-      #write_yaml_file(bc.to_json, sub_dir, "property_add_2.yaml")
+      write_yaml_file(bc.to_json, sub_dir, "property_add_2.yaml")
       expected = read_yaml_file(sub_dir, "property_add_2.yaml")
       expect(bc.to_json).to eq(expected)      
       expect(AuditTrail.count).to eq(audit_count + 1)
@@ -231,12 +235,13 @@ describe BiomedicalConcepts::PropertiesController do
       post :remove, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "property_remove_1.txt")
+      write_text_file_2(response.body, sub_dir, "property_remove_1.txt")
       expected = read_text_file_2(sub_dir, "property_remove_1.txt")
+    #puts response.body
       expect(response.body).to eq(expected)
       expect(AuditTrail.count).to eq(audit_count + 1)
       bc = BiomedicalConceptCore.find("BC-ACME_BC_C25347", "http://www.assero.co.uk/MDRBCs/V1")
-      #write_yaml_file(bc.to_json, sub_dir, "property_remove_1.yaml")
+      write_yaml_file(bc.to_json, sub_dir, "property_remove_1.yaml")
       expected = read_yaml_file(sub_dir, "property_remove_1.yaml")
       expect(bc.to_json).to eq(expected)      
     end
@@ -256,12 +261,13 @@ describe BiomedicalConcepts::PropertiesController do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :remove, params
       expect(response.content_type).to eq("application/json")
+    #puts response.body
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "property_remove_2.txt")
+      write_text_file_2(response.body, sub_dir, "property_remove_2.txt")
       expected = read_text_file_2(sub_dir, "property_remove_2.txt")
       expect(response.body).to eq(expected)
       bc = BiomedicalConceptCore.find("BC-ACME_BC_C25347", "http://www.assero.co.uk/MDRBCs/V1")
-      #write_yaml_file(bc.to_json, sub_dir, "property_remove_2.yaml")
+      write_yaml_file(bc.to_json, sub_dir, "property_remove_2.yaml")
       expected = read_yaml_file(sub_dir, "property_remove_2.yaml")
       expect(bc.to_json).to eq(expected)   
       expect(AuditTrail.count).to eq(audit_count + 1)

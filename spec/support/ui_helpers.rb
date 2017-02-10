@@ -100,18 +100,16 @@ module UiHelpers
   # check table row
   def ui_check_table_row(table_id, row, data)
     page.all("table##{table_id} tbody tr:nth-child(#{row}) td").each_with_index do |td, index|
-      #puts "#{td.text} <-> #{data[index]}, for index #{index}"
       if index < data.length
-        expect(td.text).to eq(data[index])
+        expect(td.text).to eq(data[index]) if !data[index].nil?
       end
     end
   end
 
-   def ui_check_anon_table_row(row, data)
+  def ui_check_anon_table_row(row, data)
     page.all("table tbody tr:nth-child(#{row}) td").each_with_index do |td, index|
-      #puts "#{td.text} <-> #{data[index]}, for index #{index}"
       if index < data.length
-        expect(td.text).to eq(data[index])
+        expect(td.text).to eq(data[index]) if !data[index].nil?
       end
     end
   end
