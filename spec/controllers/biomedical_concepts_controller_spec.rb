@@ -51,12 +51,20 @@ describe BiomedicalConceptsController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "bc_controller_index.txt")
+    #write_text_file_2(response.body, sub_dir, "bc_controller_index.txt")
       expected = read_text_file_2(sub_dir, "bc_controller_index.txt")
       expect(response.body).to eq(expected)
     end
 
-    it "lists all released items"
+    it "lists all released items" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :list
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    #write_yaml_file(response.body, sub_dir, "bc_controller_list.yaml")
+      expected = read_yaml_file(sub_dir, "bc_controller_list.yaml")
+      expect(response.body).to eq(expected)
+    end
 
     it "shows the history" do
       ra = IsoRegistrationAuthority.find_by_short_name("ACME")
@@ -182,9 +190,13 @@ describe BiomedicalConceptsController do
       expect(response).to render_template("show")
     end
 
-    it "export_ttl"
+    it "export_ttl" do
+      get :export_ttl, { :id => "BC-ACME_BC_C49678", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
+    end
 
-    it "export_json"
+    it "export_json" do
+      get :export_json, { :id => "BC-ACME_BC_C49678", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
+    end
 
   end
 
@@ -221,8 +233,6 @@ describe BiomedicalConceptsController do
       expect(response).to redirect_to("/")
     end
     
-    it "update"
-
     it "destroy" do
       delete :destroy, { :id => "BC-ACME_BC_C49678", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
       expect(response).to redirect_to("/")

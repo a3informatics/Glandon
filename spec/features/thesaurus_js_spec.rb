@@ -6,6 +6,11 @@ describe "Thesaurus", :type => :feature do
   include DataHelpers
   include UiHelpers
   include WaitForAjaxHelper
+  include DownloadHelpers
+
+  def sub_dir
+    return "features"
+  end
 
   describe "Curator User", :type => :feature do
 
@@ -99,6 +104,25 @@ describe "Thesaurus", :type => :feature do
       ui_check_td_with_id("conceptLabel", "Male")
       ui_check_td_with_id("conceptId", "C20197")
       ui_check_td_with_id("conceptNotation", "M")
+    end
+
+    it "allows for a BC to be exported as TTL", js: true do
+      clear_downloads
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'curator@example.com'
+      fill_in 'Password', with: '12345678'
+      click_button 'Log in'
+      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: CDISC EXT'
+      find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show:'
+      click_link 'Export Turtle'
+      file = download_content
+    #write_text_file_2(file, sub_dir, "thesaurus_export.ttl")
+      expected = read_text_file_2(sub_dir, "thesaurus_export.ttl")
+      expect(file).to eq(expected)
     end
 
     it "allows terminology to be edited", js: true do
@@ -264,8 +288,6 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)'
     end
     
-    it "allows the edit session to be closed indirectly, saves data"
-
     it "allows a thesauri to be created, field validation", js: true do
       visit '/users/sign_in'
       fill_in 'Email', with: 'curator@example.com'
@@ -483,8 +505,8 @@ describe "Thesaurus", :type => :feature do
       ui_click_back_button
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
       expect(tokens).to match_array([])
-    end  
-
+    end 
+    
   end
 
 end

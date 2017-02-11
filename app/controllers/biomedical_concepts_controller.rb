@@ -197,7 +197,7 @@ class BiomedicalConceptsController < ApplicationController
   def export_json
     authorize BiomedicalConcept
     @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
-    send_data @bc.to_json, filename: "#{@bc.owner}_#{@bc.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+    send_data @bc.to_json.to_json, filename: "#{@bc.owner}_#{@bc.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
   def upgrade

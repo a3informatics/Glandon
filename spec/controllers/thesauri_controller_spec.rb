@@ -348,7 +348,10 @@ describe ThesauriController do
       expect(response.code).to eq("200")    
     end
 
-    it "def export_ttl"
+    it "export_ttl" do
+      params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
+      get :export_ttl, params
+    end
 
   end
 
