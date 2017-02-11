@@ -3,16 +3,17 @@ class AuditTrailController < ApplicationController
   before_action :authenticate_user!
 
   C_CLASS_NAME = "AuditTrailsController"
+  C_RECORDS = 2000
 
   def index
     authorize AuditTrail
-    @items = AuditTrail.last(1000)
+    @items = AuditTrail.last(C_RECORDS)
     @defaults = {:user => "", :identifier => "", :owner => "", :event => AuditTrail.event_types[:empty_action]}
     users_owners_events
   end
 
   def search
-    authorize AuditTrail, :view?
+    authorize AuditTrail
     param_set = the_params
     remove_key(param_set, :user, "")
     remove_key(param_set, :identifier, "")
@@ -24,24 +25,29 @@ class AuditTrailController < ApplicationController
     render "index"
   end
 
+  def export_csv
+    authorize AuditTrail
+    send_data AuditTrail.to_csv, filename: "audit_trail.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
+
 private
 
-    def the_params
-      params.require(:audit_trail).permit(:user, :identifier, :owner, :event)
-    end
+  def the_params
+    params.require(:audit_trail).permit(:user, :identifier, :owner, :event)
+  end
 
-    def users_owners_events
-      @users = User.all
-      @users.unshift(User.new)
-      @owners = IsoNamespace.all
-      @owners.unshift(IsoNamespace.new)
-      @events = AuditTrail.event_types
-    end
+  def users_owners_events
+    @users = User.all
+    @users.unshift(User.new)
+    @owners = IsoNamespace.all
+    @owners.unshift(IsoNamespace.new)
+    @events = AuditTrail.event_types
+  end
 
-    def remove_key(params, key, value)
-      if params[key] == value
-        params.delete key
-      end
+  def remove_key(params, key, value)
+    if params[key] == value
+      params.delete key
     end
+  end
 
 end

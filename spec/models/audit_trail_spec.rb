@@ -4,7 +4,11 @@ describe AuditTrail do
 
 	include DataHelpers
 
-	before :all do
+	def sub_dir
+    return "models"
+  end
+
+  before :all do
     clear_triple_store
     AuditTrail.delete_all
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -158,5 +162,66 @@ describe AuditTrail do
     items = AuditTrail.where({:user => "UserName4@example.com"})
     expect(items.count).to eq(10)
 	end
+
+  it "allows CSV export of the audit trail" do
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.scopedIdentifier.semantic_version = "1.2.3"
+    user = User.new
+    user.email = "UserName1@example.com"
+    20.times do |index|
+      AuditTrail.create_item_event(user, item, "Any old text#{index}")
+      AuditTrail.update_item_event(user, item, "Any old text#{index}")
+      AuditTrail.delete_item_event(user, item, "Any old text#{index}")
+    end
+    user.email = "UserName2@example.com"
+    20.times do |index|
+      AuditTrail.create_item_event(user, item, "Any old text#{index}")
+      AuditTrail.update_item_event(user, item, "Any old text#{index}")
+      AuditTrail.delete_item_event(user, item, "Any old text#{index}")
+    end
+    user.email = "UserName3@example.com"
+    20.times do |index|
+      AuditTrail.create_item_event(user, item, "Any old text#{index}")
+      AuditTrail.update_item_event(user, item, "Any old text#{index}")
+      AuditTrail.delete_item_event(user, item, "Any old text#{index}")
+    end
+    user.email = "UserName1@example.com"
+    10.times do |index|
+      AuditTrail.create_event(user, "Any old text#{index}")
+      AuditTrail.update_event(user, "Any old text#{index}")
+      AuditTrail.delete_event(user, "Any old text#{index}")
+    end
+    user.email = "UserName2@example.com"
+    10.times do |index|
+      AuditTrail.create_event(user, "Any old text#{index}")
+      AuditTrail.update_event(user, "Any old text#{index}")
+      AuditTrail.delete_event(user, "Any old text#{index}")
+    end
+    user.email = "UserName3@example.com"
+    10.times do |index|
+      AuditTrail.create_event(user, "Any old text#{index}")
+      AuditTrail.update_event(user, "Any old text#{index}")
+      AuditTrail.delete_event(user, "Any old text#{index}")
+    end
+    user.email = "UserName4@example.com"
+    10.times do |index|
+      AuditTrail.user_event(user, "Any old text#{index}")
+    end
+    items = AuditTrail.all
+    csv = AuditTrail.to_csv
+    write_text_file_2(csv, sub_dir, "audit_export.csv")
+    keys = ["datetime", "user", "owner", "identifier", "version", "event", "details"]
+    results = CSV.read(test_file_path(sub_dir, 'audit_export.csv')).map {|a| Hash[ keys.zip(a) ]}
+    items.each_with_index do |item, index|
+      expect(results[index + 1]["datetime"]).to eq(Timestamp.new(item.date_time).to_datetime)
+      expect(results[index + 1]["user"]).to eq(item.user)
+      expect(results[index + 1]["owner"]).to eq(item.owner)
+      expect(results[index + 1]["identifier"]).to eq(item.identifier)
+      expect(results[index + 1]["version"]).to eq(item.version)
+      expect(results[index + 1]["event"]).to eq(item.event_to_s)
+      expect(results[index + 1]["details"]).to eq(item.description)
+    end
+
+  end
 
 end

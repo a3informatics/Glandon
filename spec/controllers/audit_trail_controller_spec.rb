@@ -89,8 +89,29 @@ describe AuditTrailController do
       expect(response).to render_template("index")
     end
 
+    it "export_csv" do
+      get :export_csv
+    end
+
   end
 
+  describe "Reader User" do
+    
+    login_reader
+
+    it "index" do
+      get :index
+      expect(response).to redirect_to("/")
+    end
+
+    it 'search' do
+      user = User.create :email => "fred@example.com", :password => "changeme" 
+      put :search, {id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "T10", :event =>"0"}}
+      expect(response).to redirect_to("/")
+    end
+
+  end 
+    
   describe "Unauthorized User" do
     
     it "index" do

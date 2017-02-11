@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   resources :audit_trail, only: [:index] do
     collection do
       post :search
+      get :export_csv
     end
   end
   resources :tokens, only: [:index] do

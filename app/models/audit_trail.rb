@@ -86,10 +86,24 @@ class AuditTrail < ActiveRecord::Base
 		add_generic(user, event_types[:user_action], description)
 	end
 
+	# To CSV
+  #
+  # @return [Object] the CSV serialization
+  def self.to_csv
+  	items = AuditTrail.all
+    csv_data = CSV.generate do |csv|
+      csv << ["Date Time", "User", "Owner", "Identifier", "Version", "Event", "Details"]
+      items.each do |item|
+        csv << [Timestamp.new(item.date_time).to_datetime, item.user, item.owner, item.identifier, item.version, item.event_to_s, item.description]
+      end
+    end
+    return csv_data
+  end
+
 private
 
 	def self.add_item(user, item, event, description)
-		self.create(date_time: Time.now, user: user.email, owner: item.owner, identifier: item.identifier, version: item.version, event: event, description: description)
+		self.create(date_time: Time.now, user: user.email, owner: item.owner, identifier: item.identifier, version: item.semantic_version, event: event, description: description)
 	end
 
 	def self.add_generic(user, event, description)

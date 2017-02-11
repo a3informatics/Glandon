@@ -128,6 +128,10 @@ module DataHelpers
     Token.delete_all
   end
 
+  def test_file_path(sub_dir, filename)
+    return set_path(sub_dir, filename)
+  end
+  
 private
 
   def set_path(sub_dir, filename)
