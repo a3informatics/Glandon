@@ -95,6 +95,16 @@ RSpec.describe AdHocReport, type: :model do
     expect(item.errors.count).to eq(1)
   end
 
+  it "stops a report being created, syntax error" do
+    copy_file_to_public_files("models", "ad_hoc_report_test_err_6_sparql.yaml", "upload")
+    filename = public_path("upload", "ad_hoc_report_test_err_6_sparql.yaml")
+    files = []
+    files << filename
+    item = AdHocReport.create_report({files: files})
+    expect(item.errors.full_messages.to_sentence).to eq("Report was not created. The SPARQL file contained a syntax error")
+    expect(item.errors.count).to eq(1)
+  end
+
   it "will run a report" do
     report = AdHocReport.new
     report.sparql_file = "ad_hoc_report_1_sparql.yaml"

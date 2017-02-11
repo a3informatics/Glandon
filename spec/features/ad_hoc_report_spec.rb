@@ -115,6 +115,17 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content("Ad-Hoc Report Results: Report No. 3")
     end
 
+    it "should handle errors in import files" do
+      copy_file_to_public_files("models", "ad_hoc_report_test_err_6_sparql.yaml", "upload")
+      click_link 'Ad Hoc Reports'
+      expect(page).to have_content 'Index: Ad-Hoc Reports'
+      click_link 'New'
+      expect(page).to have_content 'New Ad-Hoc Report:'
+      select "/Users/daveih/Documents/rails/Glandon/public/upload/ad_hoc_report_test_err_6_sparql.yaml", :from => "ad_hoc_report_files_"
+      click_button 'Create'
+      expect(page).to have_content 'Report was not created. The SPARQL file contained a syntax error.'
+    end
+
   end
 
 end

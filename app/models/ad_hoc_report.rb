@@ -32,6 +32,9 @@ class AdHocReport < ActiveRecord::Base
   rescue Errno::ENOENT
     object.errors.add(:base, "Report was not created. The report definition file did not exist")
     return object
+  rescue Psych::SyntaxError 
+    object.errors.add(:base, "Report was not created. The SPARQL file contained a syntax error")
+    return object
   end
 
   # Destroy Report

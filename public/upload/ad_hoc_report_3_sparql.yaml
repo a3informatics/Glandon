@@ -1,0 +1,14 @@
+---
+:columns:
+  "?s":
+    :label: URI
+    :type: uri
+  "?n":
+    :label: Submission Value
+    :type: literal
+  "?i":
+    :label: Identifier
+    :type: literal
+:label: All Submission Values for December 2016 Terminology
+:query: "PREFIX : <http://www.assero.co.uk/MDRThesaurus/CDISC/V47#> PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#> PREFIX iso25964: <http://www.assero.co.uk/ISO25964#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> PREFIX skos: <http://www.w3.org/2004/02/skos/core#> SELECT ?s ?n ?i WHERE { ?s rdf:type iso25964:ThesaurusConcept . ?s iso25964:identifier ?i . ?s iso25964:notation ?n . FILTER(CONTAINS(STR(?s), \"http://www.assero.co.uk/MDRThesaurus/CDISC/V47\"))} ORDER BY (?n)"
+:type: Ad Hoc Report Definition
