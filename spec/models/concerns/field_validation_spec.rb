@@ -379,8 +379,8 @@ describe FieldValidation do
 
   it "checks a valid submission value, \"\"" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_submission_value?(:test, "", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
+    expect(FieldValidation.valid_submission_value?(:test, "", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
   end
 
   it "checks an valid submission value, !!" do

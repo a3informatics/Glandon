@@ -11,7 +11,7 @@ module FieldValidation
   C_TERM_PROPERTY = "[#{C_FREE_TEXT}]*"
   C_QUESTION = "[#{C_FREE_TEXT}]*"
   C_LABEL = "[#{C_FREE_TEXT}]*"
-  C_SUBMISSION = "[#{C_FREE_TEXT}^]+" # Free text plus ^
+  C_SUBMISSION = "[#{C_FREE_TEXT}^]*" # Free text plus ^
   C_SDTM_LABEL = "[#{C_FREE_TEXT}]{1,40}"
   C_SDTM_NAME = "[A-Z][A-Z0-9]{0,7}"
   C_MAPPING = "[#{C_FREE_TEXT}]*"
