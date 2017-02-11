@@ -293,7 +293,7 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Notepad'
       ui_set_focus('questionCompletion')
       expect(page).to have_content 'Markdown Preview'
-      ui_is_not_visible("#notepad_panel")
+    #ui_is_not_visible("#notepad_panel")
       fill_in 'questionCompletion', with: "*Hello* World! Also add soem single quotes 'like' this."
       click_button 'markdown_preview'
       ui_check_div_text('genericCompletion', "Hello World! Also add soem single quotes 'like' this.")
@@ -785,11 +785,11 @@ describe "Form Editor", :type => :feature do
       ui_click_node_key(key1)
       wait_for_ajax
       choose 'form_datatype_s'
-      #ui_table_row_click('notepad_table', 'C16358')
-      #click_button 'notepad_add'
+    #ui_table_row_click('notepad_table', 'C16358')
+    #click_button 'notepad_add'
       wait_for_ajax
-      #ui_table_row_click('notepad_table', 'C25157')
-      #click_button 'notepad_add'
+    #ui_table_row_click('notepad_table', 'C25157')
+    #click_button 'notepad_add'
       wait_for_ajax
       ui_click_node_key(key1)
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1", "Body Surface Area"]')

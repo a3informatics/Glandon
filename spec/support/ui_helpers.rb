@@ -74,19 +74,6 @@ module UiHelpers
     expect(page).to have_button("#{id}", disabled: false)
   end       
 
-  # Not sure this works!!!!
-  def ui_is_not_visible(field_id)
-    #expect(page).not_to have_selector("#{field_id}", visible: true)
-    #page.find("#{field_id}")[:class].include?("hidden")
-    expect(page).not_to have_selector(:xpath, "//div[@id='#{field_id}' and @class='panel panel-default']")
-  end
-
-  # Not sure this works!!!!
-  def ui_is_visible(field_id)
-    #expect(page).to have_selector("#{field_id}", visible: true)
-    expect(page).to have_selector(:xpath, "//div[@id='#{field_id}' and @class='panel panel-default']")
-  end
-
   # Datatables
   #
   def ui_main_show_all
