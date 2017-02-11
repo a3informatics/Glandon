@@ -36,4 +36,16 @@ module DownloadHelpers
     FileUtils.rm_f(downloads)
   end
 
+  def copy_file_to_db(filename)
+    source_file = PATH.join "#{filename}"
+    dest_file = Rails.root.join "db/load/test/#{filename}"
+    FileUtils.cp source_file, dest_file
+  end
+
+  def rename_file(filename, new_filename)
+    source_file = PATH.join "#{filename}"
+    dest_file = PATH.join "#{new_filename}"
+    File.rename(source_file, dest_file)
+  end
+
 end

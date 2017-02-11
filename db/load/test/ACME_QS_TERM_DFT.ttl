@@ -1,0 +1,192 @@
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#Thesaurus> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Questionnaire Terminology" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2017-02-11T18:50:16+00:00" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2017-02-11T18:50:16+00:00" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_QSTERM-1> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM> 			<http://www.assero.co.uk/ISO25964#hasConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"EQ5D 3-Level Terminology" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#notation> 			"EQ5D 3L EXTRA" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"EQ5D3L Extra Terminology" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#definition> 			"Extra terminology for the EQ5D 3-Level questionnaire." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Mobility Results" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.assero.co.uk/ISO25964#notation> 			"EQ5D3L MOBILITY" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"Mobility" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.assero.co.uk/ISO25964#definition> 			"The mobility results scale for EQ-5D-3L" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.MOBILITY" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_NONE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_SOME> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_CONFINED> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_NONE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_NONE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"No problems" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_NONE> 			<http://www.assero.co.uk/ISO25964#notation> 			"I have no problems in walking about" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_NONE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_NONE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I have no problems in walking about" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_NONE> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I have no problems in walking about\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_NONE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.MOBILITY.NONE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_SOME> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_SOME> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Some problems" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_SOME> 			<http://www.assero.co.uk/ISO25964#notation> 			"I have some problems in walking about" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_SOME> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_SOME> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I have some problems in walking about" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_SOME> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I have some problems in walking about\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_SOME> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.MOBILITY.SOME" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_CONFINED> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_CONFINED> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Confined to bed" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_CONFINED> 			<http://www.assero.co.uk/ISO25964#notation> 			"I am confined to bed" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_CONFINED> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_CONFINED> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I am confined to bed" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_CONFINED> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I am confined to bed\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_MOBILITY_CONFINED> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.MOBILITY.CONFINED" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Self-care Results" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.assero.co.uk/ISO25964#notation> 			"EQ5D3L SELF CARE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"Self Care" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.assero.co.uk/ISO25964#definition> 			"The self-care results scale for EQ-5D-3L" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.SELFCARE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_NONE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_SOME> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_UNABLE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_NONE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_NONE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"No problems" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_NONE> 			<http://www.assero.co.uk/ISO25964#notation> 			"I have no problems with self care" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_NONE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_NONE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I have no problems with self-care" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_NONE> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I have no problems with self-care\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_NONE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.SELFCARE.NONE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_SOME> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_SOME> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Some problems" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_SOME> 			<http://www.assero.co.uk/ISO25964#notation> 			"I have some problems washing or dressing myself" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_SOME> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_SOME> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I have some problems washing or dressing myself" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_SOME> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I have some problems washing or dressing myself\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_SOME> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.SELFCARE.SOME" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_UNABLE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_UNABLE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Unable to wash/dress" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_UNABLE> 			<http://www.assero.co.uk/ISO25964#notation> 			"I am unable to wash or dress myself" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_UNABLE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_UNABLE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I am unable to wash or dress myself" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_UNABLE> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I am unable to wash or dress myself\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_SELFCARE_UNABLE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.SELFCARE.UNABLE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Usual Activity Results" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.assero.co.uk/ISO25964#notation> 			"EQ5D3L USUAL ACTIVITY" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"Usual Activity" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.assero.co.uk/ISO25964#definition> 			"The usual activity results scale for EQ-5D-3L" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.ACTIVITY" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_NONE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_SOME> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_UNABLE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_NONE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_NONE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"No problems" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_NONE> 			<http://www.assero.co.uk/ISO25964#notation> 			"I have no problems with performing my usual activities" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_NONE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_NONE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I have no problems with performing my usual activities" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_NONE> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I have no problems with performing my usual activities\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_NONE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.ACTIVITY.NONE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_SOME> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_SOME> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Some problems" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_SOME> 			<http://www.assero.co.uk/ISO25964#notation> 			"I have some problems with performing my usual activities" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_SOME> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_SOME> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I have some problems with performing my usual activities" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_SOME> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I have some problems with performing my usual activities\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_SOME> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.ACTIVITY.SOME" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_UNABLE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_UNABLE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Unable to perform usual activities" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_UNABLE> 			<http://www.assero.co.uk/ISO25964#notation> 			"I am unable to perform my usual activities" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_UNABLE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_UNABLE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I am unable to perform my usual activities" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_UNABLE> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I am unable to perform my usual activities\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ACTIVITY_UNABLE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.ACTIVITY.UNABLE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Pain/Discomfort Results" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.assero.co.uk/ISO25964#notation> 			"EQ5D3L PAIN DISCOMFORT" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"Pain / Discomfort" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.assero.co.uk/ISO25964#definition> 			"The pain discomfort results scale for EQ-5D-3L" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.PAIN" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_NONE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_MODERATE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_EXTREME> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_NONE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_NONE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"No pain" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_NONE> 			<http://www.assero.co.uk/ISO25964#notation> 			"I have no pain or discomfort" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_NONE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_NONE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I have no pain or discomfort" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_NONE> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I have no pain or discomfort\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_NONE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.PAIN.NONE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_MODERATE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_MODERATE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Moderate" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_MODERATE> 			<http://www.assero.co.uk/ISO25964#notation> 			"I have moderate pain or discomfort" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_MODERATE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_MODERATE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"II have moderate pain or discomfort" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_MODERATE> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I have moderate pain or discomfort\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_MODERATE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.PAIN.MODERATE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_EXTREME> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_EXTREME> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Extreme" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_EXTREME> 			<http://www.assero.co.uk/ISO25964#notation> 			"I have extreme pain or discomfort" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_EXTREME> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_EXTREME> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I have extreme pain or discomfort" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_EXTREME> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I have extreme pain or discomfort\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_PAIN_EXTREME> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.PAIN.EXTREME" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Anxiety/Depression Results" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.assero.co.uk/ISO25964#notation> 			"EQ5D3L ANXIETY DEPRESSION" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"Anxiety / Depression" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.assero.co.uk/ISO25964#definition> 			"The anxiety / depression results scale for EQ-5D-3L" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.ANXIETY" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_NONE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_MODERATE> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY> 			<http://www.assero.co.uk/ISO25964#hasChild> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_EXTREME> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_NONE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_NONE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"No problems" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_NONE> 			<http://www.assero.co.uk/ISO25964#notation> 			"I am not anxious or depressed" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_NONE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_NONE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I am not anxious or depressed" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_NONE> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I am not anxious or depressed\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_NONE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.ANXIETY.NONE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_MODERATE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_MODERATE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Moderate" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_MODERATE> 			<http://www.assero.co.uk/ISO25964#notation> 			"I am moderately anxious or depressed" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_MODERATE> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_MODERATE> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I am moderately anxious or depressed" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_MODERATE> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"I am moderately anxious or depressed\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_MODERATE> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.ANXIETY.MODERATE" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_EXTREME> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_EXTREME> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Extreme" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_EXTREME> 			<http://www.assero.co.uk/ISO25964#notation> 			"I am extremely anxious or depressed" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_EXTREME> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_EXTREME> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"I am extremely anxious or depressed" . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_EXTREME> 			<http://www.assero.co.uk/ISO25964#definition> 			"\"II am extremely anxious or depressed\" results." . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_QSTERM_EQ5D3L_ANXIETY_EXTREME> 			<http://www.assero.co.uk/ISO25964#identifier> 			"EQ5D3L.ANXIETY.EXTREME" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_QSTERM-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Identification#semantic_version> 			"0.1.0" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/MDRItems#NS-ACME> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Identification#version> 			"1" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 			"QS TERM" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Incomplete" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 			"2016-01-01T00:00:00+00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"Incomplete" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeStatus> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeNote> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 			"2016-01-01T00:00:00+00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_QSTERM-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/MDRItems#RA-123456789> . 

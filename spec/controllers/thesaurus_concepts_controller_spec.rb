@@ -104,6 +104,7 @@ describe ThesaurusConceptsController do
         {
           :id => "", 
           :namespace => "" ,
+          :label => "",
           :identifier => "A00001", 
           :notation => "NEW NOTATION", 
           :synonym => "New syn", 
@@ -116,6 +117,8 @@ describe ThesaurusConceptsController do
       token = Token.obtain(th, @user)
       put :update, params
       tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      expect(tc.errors.count).to eq(0)
+      expect(tc.label).to eq("")
       expect(tc.identifier).to eq("A00001")
       expect(tc.notation).to eq("NEW NOTATION")
       expect(tc.definition).to eq("New def")
@@ -135,6 +138,7 @@ describe ThesaurusConceptsController do
         {
           :id => "", 
           :namespace => "" ,
+          :label => "New Notation with funnies ^%'\".><",
           :identifier => "A00001", 
           :notation => "NEW NOTATION", 
           :synonym => "New syn", 
@@ -148,6 +152,8 @@ describe ThesaurusConceptsController do
       token.refresh
       put :update, params
       tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      expect(tc.errors.count).to eq(0)
+      expect(tc.label).to eq("New Notation with funnies ^%'\".><")
       expect(tc.identifier).to eq("A00001")
       expect(tc.notation).to eq("NEW NOTATION")
       expect(tc.definition).to eq("New def plus stuff")
