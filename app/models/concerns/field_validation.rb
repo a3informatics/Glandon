@@ -11,6 +11,7 @@ module FieldValidation
   C_TERM_PROPERTY = "[#{C_FREE_TEXT}]*"
   C_QUESTION = "[#{C_FREE_TEXT}]*"
   C_LABEL = "[#{C_FREE_TEXT}]*"
+  C_SUBMISSION = "[#{C_FREE_TEXT}^]+" # Free text plus ^
   C_SDTM_LABEL = "[#{C_FREE_TEXT}]{1,40}"
   C_SDTM_NAME = "[A-Z][A-Z0-9]{0,7}"
   C_MAPPING = "[#{C_FREE_TEXT}]*"
@@ -172,8 +173,11 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_submission_value?(symbol, value, object)
-    result = value.match /^\A[A-Za-z0-9 ]*\z/ 
-    return true if result != nil
+    #result = value.match /^\A[A-Za-z0-9 ]*\z/ 
+    #return true if result != nil
+    #object.errors.add(symbol, "contains invalid characters")
+    #return false
+    return true if value =~ /\A#{C_SUBMISSION}\z/
     object.errors.add(symbol, "contains invalid characters")
     return false
   end

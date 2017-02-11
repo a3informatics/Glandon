@@ -116,11 +116,11 @@ class ThesaurusConcept < IsoConcept
         "}\n" +
         "INSERT \n" +
         "{ \n" +
-        "  :" + self.id + " rdfs:label \"#{self.label}\"^^xsd:string . \n" +
-        "  :" + self.id + " iso25964:notation \"#{self.notation}\"^^xsd:string . \n" +
-        "  :" + self.id + " iso25964:preferredTerm \"" + SparqlUtility::replace_special_chars("#{self.preferredTerm}") + "\"^^xsd:string . \n" +
-        "  :" + self.id + " iso25964:synonym \"" + SparqlUtility::replace_special_chars("#{self.synonym}") + "\"^^xsd:string . \n" +
-        "  :" + self.id + " iso25964:definition \"" + SparqlUtility::replace_special_chars("#{self.definition}") + "\"^^xsd:string . \n" +
+        "  :" + self.id + " rdfs:label \"#{SparqlUtility::replace_special_chars(params[:label])}\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:notation \"#{SparqlUtility::replace_special_chars(params[:notation])}\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:preferredTerm \"#{SparqlUtility::replace_special_chars(params[:preferredTerm])}\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:synonym \"#{SparqlUtility::replace_special_chars(params[:synonym])}\"^^xsd:string . \n" +
+        "  :" + self.id + " iso25964:definition \"#{SparqlUtility::replace_special_chars(params[:definition])}\"^^xsd:string . \n" +
         "} \n" +
         "WHERE \n" +
         "{\n" +

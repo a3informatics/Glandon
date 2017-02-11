@@ -3,6 +3,7 @@ require 'rails_helper'
 describe ThesaurusConcept do
 
   include DataHelpers
+  include ValidationHelpers
 
   it "clears triple store and loads test data" do
     clear_triple_store
@@ -301,24 +302,24 @@ describe ThesaurusConcept do
     new_tc = 
       {
         :identifier => "A00001.A00004",
-        :label => "New",
-        :notation => "NEWNEW AND",
-        :synonym => "THE BROWN FOX JUMPS OVER THE LAZY DOG. the brown fox jumps over the lazy dog. 0123456789 .!?,'\"_-/\\()[]~#*=:;&|",
-        :definition => "Other or 'mixed' race new",
-        :preferredTerm => "New Stuff \"and\" new stuff"
+        :label => vh_all_chars,
+        :notation => vh_all_chars + "^",
+        :synonym => vh_all_chars,
+        :definition => vh_all_chars,
+        :preferredTerm => vh_all_chars
       }
     result =
       {
         :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
         :id => "THC-A00001_A00004",
         :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :label => "New",
+        :label => vh_all_chars,
         :extension_properties => [],
         :identifier => "A00001.A00004",
-        :notation => "NEWNEW AND",
-        :synonym => "THE BROWN FOX JUMPS OVER THE LAZY DOG. the brown fox jumps over the lazy dog. 0123456789 .!?,'\"_-/\\()[]~#*=:;&|",
-        :definition => "Other or 'mixed' race new",
-        :preferredTerm => "New Stuff \"and\" new stuff",
+        :notation => vh_all_chars + "^",
+        :synonym => vh_all_chars,
+        :definition => vh_all_chars,
+        :preferredTerm => vh_all_chars,
         :topLevel => false,
         :parentIdentifier=>"",
         :children => []
@@ -334,7 +335,7 @@ describe ThesaurusConcept do
     new_tc = 
       {
         :identifier => "A00001.A00004",
-        :notation => "NEWNEW AND!@£$%^&*()",
+        :notation => "NEWNEW AND!@£$%^&*()+^ and then the bad char ±",
         :synonym => "And",
         :definition => "Other or mixed race new",
         :preferredTerm => "New Stuff and new stuff"

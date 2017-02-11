@@ -333,6 +333,26 @@ describe FieldValidation do
     expect(object.errors.count).to eq(0)
   end
 
+  it "checks a set of valid submission value, CDISC values" do
+    examples = 
+    [ 
+      "/wk", "1 TIME PER WEEK", "1, 25-Dihydroxyvitamin D", "1,5-Anhydroglucitol", "1/(s*kPa)", "10 LEAD STANDARD", 
+      "100 IU/mL", "10^10/L", "10^11/L", "10^12 IU/L", "10^12/L", "10^3 CFU", "10^3 CFU/g", "10^3 CFU/mL", "10^3 DNA copies/mL", 
+      "10^3 RNA copies/mL", "10^3 copies/mL", "10^3 ", "rganisms", "10^3 organisms/g", "10^3 organisms/mL", "10^3/L", "10^3/hpf", 
+      "10^4/L", "10^4/hpf", "10^5/L", "10^5/hpf", "10^6 CFU", "10^6 CFU/g", "10^6 CFU/mL", "10^6 DNA copies/mL", "10^6 IU", 
+      "10^6 IU/mL", "10^6 RNA copies/mL", "10^6 copies/mL", "10^6 organisms", "10^6 organisms/g", "10^6 organisms/mL", 
+      "10^6 ", "rganisms/mg", "10^6/Ejaculate U", "10^6/L", "10^6/g", "10^6/hpf", "10^7/L", "10^8/L", "10^9 CFU", "10^9 CFU/g", 
+      "10^9 CFU/mL", "10^9 organisms", "10^9 ", "rganisms/g", "10^9 organisms/mL", "10^9 organisms/mg", "10^9/L", "10^9/g", 
+      "11-Dehydro-Thromboxane B2", "12 LEAD 1 LEAD MISSING", "12 LEAD CABRERA", "12 LEAD CONTINUOUS ECG", 
+      "12 LEAD EASI DOWER TRANSFORMATION", "12 LEAD ECG EXTRACTED FROM 12 LEAD CONTINUOUS ECG RECORDING" 
+    ]
+    examples.each do |example|
+      object = IsoConcept.new
+      expect(FieldValidation.valid_submission_value?(:test, example, object)).to eq(true)
+      expect(object.errors.count).to eq(0)
+    end
+  end
+
   it "checks a valid submission value, \" \"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_submission_value?(:test, " ", object)).to eq(true)
@@ -359,20 +379,20 @@ describe FieldValidation do
 
   it "checks a valid submission value, \"\"" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_submission_value?(:test, "", object)).to eq(true)
+    expect(FieldValidation.valid_submission_value?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
+  end
+
+  it "checks an valid submission value, !!" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, "!!", object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
 
-  it "checks an invalid submission value, !!" do
+  it "checks an valid submission value, \"@ \"" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_submission_value?(:test, "!!", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
-  end
-
-  it "checks an invalid submission value, \"@ \"" do
-    object = IsoConcept.new
-    expect(FieldValidation.valid_submission_value?(:test, "@ ", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
+    expect(FieldValidation.valid_submission_value?(:test, "@ ", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
   end
 
   it "checks a valid SDTM format value, ISO 8601" do
