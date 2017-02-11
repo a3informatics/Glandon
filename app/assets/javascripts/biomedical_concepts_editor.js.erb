@@ -554,7 +554,8 @@ function bceFormatTerminology(items) {
 
 function bceTempTableInit() {
   bceTempTable = $('#temp_table').DataTable({
-    lengthChange: false
+    pageLength: 15,
+    lengthMenu: [[5, 10, 15, 20, 25, 50, -1], [5, 10, 15, 20, 25, 50, "All"]]
   });
   bceShowTempTable();
   bceHideEditorTable();

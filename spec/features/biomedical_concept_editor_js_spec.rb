@@ -56,30 +56,6 @@ describe "Biomedical Concept Editor", :type => :feature do
     wait_for_ajax(10)
   end
 
-  def load_bc(identifier)
-    #visit '/users/sign_in'
-    #expect(page).to have_content 'Log in'  
-    #fill_in 'Email', with: 'domain_edit@example.com'
-    #fill_in 'Password', with: '12345678'
-    #click_button 'Log in'
-    #expect(page).to have_content 'Signed in successfully'  
-    #click_link 'Domains'
-    #expect(page).to have_content 'Index: Domains'
-    #find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
-    #expect(page).to have_content 'History:'
-    #find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
-    #expect(page).to have_content 'Edit:'  
-  end
-
-  def reload_bc(identifier)
-    #click_link 'Domains'
-    #expect(page).to have_content 'Index: Domains'
-    #find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
-    #expect(page).to have_content 'History:'
-    #find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
-    #expect(page).to have_content 'Edit:'  
-  end
-
   def create_bc(identifier, label, template)
     #ui_scroll_to_id("biomedical_concept_identifier")
     fill_in "biomedical_concept_identifier", with: identifier
@@ -96,6 +72,10 @@ describe "Biomedical Concept Editor", :type => :feature do
 
   def scroll_to_bc_table
     page.execute_script("document.getElementById('bc_table').scrollIntoView(false);")
+  end
+
+  def scroll_to_all_bc_panel
+    page.execute_script("document.getElementById('all_bc_panel').scrollIntoView(false);")
   end
 
   def panel_current(panel_id)
@@ -162,12 +142,16 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("Template Identifier:")
       expect(page).to have_content("Add Biomedical Concept")
       expect(page).to have_content("Showing 1 to 10 of 17,363 entries")
+      ui_check_page_options("temp_table", { "5" => 5, "10" => 10, "15" => 15, "20" => 20, "25" => 25, "50" => 50, "All" => -1})
+      ui_button_disabled("bc_previous")
+      ui_button_disabled("bc_next")
     end
 
     it "allows a BC to be created", js: true do
       open_edit_multiple
       create_bc("TEST BC CD", "Test BC CD Label", "Obs CD")
       expect(page).to have_content("Test BC CD Label")
+      ui_check_page_options("editor_table", { "5" => 5, "10" => 10, "15" => 15, "20" => 20, "25" => 25, "50" => 50, "All" => -1})
     end
 
     it "allows 2 BCs being edited and visible, check current"
@@ -214,12 +198,15 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("Test BC No. 23")
       expect(page).to have_content("Test BC No. 24")
       expect(page).to have_content("Test BC No. 25")
+      scroll_to_all_bc_panel
       ui_click_by_id "bc_previous"
+      wait_for_ajax(5)
       expect(page).to have_content("Test BC No. 21")
       expect(page).to have_content("Test BC No. 22")
       expect(page).to have_content("Test BC No. 23")
       expect(page).to have_content("Test BC No. 24")
       ui_click_by_id "bc_next"
+      wait_for_ajax(5)
       expect(page).to have_content("Test BC No. 22")
       expect(page).to have_content("Test BC No. 23")
       expect(page).to have_content("Test BC No. 24")
@@ -232,10 +219,10 @@ describe "Biomedical Concept Editor", :type => :feature do
       create_bc("TEST BC 32", "Test BC No. 32", "Obs PQR")
       panel_current("2")
       panel_not_current("1")
-      ui_click_by_id 'bc_select_1'
+      ui_click_by_id 'bc_panel_1'
       panel_current("1")
       panel_not_current("2")
-      ui_click_by_id 'bc_select_2'
+      ui_click_by_id 'bc_panel_2'
       panel_current("2")
       panel_not_current("1")
     end
@@ -246,7 +233,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       create_bc("TEST BC 42", "Test BC No. 42", "Obs PQR")
       expect(page).to have_content("Test BC No. 41")
       expect(page).to have_content("Test BC No. 42")
-      ui_click_by_id 'bc_select_1'
+      ui_click_by_id 'bc_panel_1'
       ui_click_by_id 'bc_close_1'
       expect(page).to_not have_content("Test BC No. 41")
       expect(page).to have_content("Test BC No. 42")
@@ -276,10 +263,10 @@ describe "Biomedical Concept Editor", :type => :feature do
       scroll_to_editor_table
       fill_row(2, "62 QTEXT\t", "P2\n", true, true, "7.3\n")
       fill_row(3, "Q3\t", "P3\n", true, true, "8.4\n")
-      ui_click_by_id 'bc_select_1'
+      ui_click_by_id 'bc_panel_1'
       wait_for_ajax
       expect(page).to have_content("BC 61 Question Text")
-      ui_click_by_id 'bc_select_2'
+      ui_click_by_id 'bc_panel_2'
       wait_for_ajax
       expect(page).to have_content("62 QTEXT")
     end

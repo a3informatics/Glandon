@@ -120,6 +120,17 @@ module UiHelpers
     expect(td.text).to eq(text)
   end
 
+  def ui_check_page_options(table_id, options)
+    index = 1
+    options.each do |key, value|
+      expect(find(:xpath, "//*[@id='#{table_id}_length']/label/select/option[#{index}]")[:value]).to eq("#{value}")
+      expect(find(:xpath, "//*[@id='#{table_id}_length']/label/select/option[#{index}]").text).to eq(key)
+      index += 1
+    end
+  end
+
+  # Flash
+  # Not checked
   def ui_check_no_flash_message_present
     expect(page).not_to have_selector(:css, "alert")
   end
