@@ -82,7 +82,8 @@ $(document).ready(function() {
   } );
  
   var main = $('#editor_table').DataTable({
-      lengthChange: false,
+      pageLength: 15,
+      lengthMenu: [[5, 10, 15, 20, 25, 50, -1], [5, 10, 15, 20, 25, 50, "All"]],
       ajax: {
         url: childrenPath,
         data: {
