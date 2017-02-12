@@ -192,11 +192,6 @@ describe CdiscTermsController do
       expect(response.content_type).to eq("application/pdf")
     end
     
-    it "impact"
-    it "impact_graph"
-    it "impact_calc"
-    it "impact_report"
-
   end
 
   describe "Content Admin User" do
@@ -363,4 +358,5 @@ describe CdiscTermsController do
     end
 
   end
+  
 end

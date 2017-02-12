@@ -169,6 +169,7 @@ class CdiscTermsController < ApplicationController
     end
   end
 
+=begin
   def impact_calc
     authorize CdiscTerm, :view?
     if CdiscCtChanges.exists?(CdiscCtChanges::C_TWO_CT_IMPACT, params)
@@ -213,6 +214,7 @@ class CdiscTermsController < ApplicationController
     pdf = Reports::CdiscImpactReport.new(@results, current_user)
     send_data pdf.render, filename: 'cdisc_impact.pdf', type: 'application/pdf', disposition: 'inline'
   end
+=end
 
   def file
     authorize CdiscTerm, :import?
