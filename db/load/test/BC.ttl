@@ -2905,7 +2905,7 @@ mdrItems:RS-ACME_BC_A00003-1
 :BC-ACME_BC_A00003_DefinedObservation_nameCode_CD_code_TR_1
 	rdf:type bo:TcReference ;
 	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
-	bo:hasThesaurusConcept aCt:THC-A00003 ;
+	bo:hasThesaurusConcept aCt:TH-ACME_CDISCEXTENSION_VSTESTCD_MUAC ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
@@ -2938,7 +2938,7 @@ mdrItems:RS-ACME_BC_A00003-1
 :BC-ACME_BC_A00003_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
 	rdf:type bo:TcReference ;
 	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
-	bo:hasThesaurusConcept aCt:THC-A00003 ;
+	bo:hasThesaurusConcept aCt:TH-ACME_CDISCEXTENSION_VSTESTCD_MUAC ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
@@ -4870,7 +4870,7 @@ mdrItems:RS-ACME_BC_A00002-1
 :BC-ACME_BC_A00002_DefinedObservation_nameCode_CD_code_TR_1
 	rdf:type bo:TcReference ;
 	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
-	bo:hasThesaurusConcept aCt:THC-A00002 ;
+	bo:hasThesaurusConcept aCt:TH-ACME_CDISCEXTENSION_VSTESTCD_APGAR ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
@@ -4903,7 +4903,7 @@ mdrItems:RS-ACME_BC_A00002-1
 :BC-ACME_BC_A00002_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
 	rdf:type bo:TcReference ;
 	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
-	bo:hasThesaurusConcept aCt:THC-A00002 ;
+	bo:hasThesaurusConcept aCt:TH-ACME_CDISCEXTENSION_VSTESTCD_APGAR ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;

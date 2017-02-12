@@ -66,8 +66,9 @@ $(document).ready(function() {
     }
   });
 
-  $('.bc-panel').click(function (event) {
-    var panelId = this.id.replace("bc_panel_", "");
+  $('.bc-panel-select').click(function (event) {
+    var id = $(this).parent().attr("id");
+    var panelId = id.replace("bc_panel_", "");
     var index = bcePanelIndexMap[panelId];
     bceSelectBc(index);
   });
@@ -112,7 +113,6 @@ $(document).ready(function() {
       if (!bceLoaded(data)) {
         // Edit BC from within editor, needs locking
         bceAddBc(data.id, data.namespace, true);
-        bceEnableDisablePreviousNext();
       } else {
         displayWarning("You have already loaded this Biomedical Concept.");
       }
@@ -260,30 +260,45 @@ function bceCloseBc(index) {
   }
   bceHidePanels();
   bceHideTimers();
-  bceCurrentIndex = C_NULL; 
+  //bceCurrentIndex = C_NULL; 
   bceBcs.splice(bcIndex, 1);
   bcePanelIndexMap = {}
   if (bceBcs.length > 0) {
+    if (bceFirstIndex === bcIndex) {
+      bceFirstIndex -= 1;
+      if (bceFirstIndex < 0) {
+        bceFirstIndex = 0;
+      }
+    }
     if (bceCurrentIndex >= bcIndex) {
       bceCurrentIndex -= 1;
+      if (bceCurrentIndex < 0) {
+        bceCurrentIndex = 0;
+      }
     }
+    bceCheckCurrent();
     for (var i=0; i<bceBcs.length; i++) {
       bceBcs[i].uiIndex = i + 1;
       bceBcs[i].panelId = C_NULL;
       bceSetToken(i);
       ttAddToken(bceBcs[i].uiIndex);
+    }
+    for (var i=bceFirstIndex; i<bceBcs.length; i++) {
       if (panelId <= C_PANEL_COUNT) {
         bceBcs[i].panelId = panelId;
         panelId += 1;
         bceGetBc(i, false);
+      } else {
+        break;
       }
     }
     bceShowCurrentBc();
-    bceShowBcCount();
   } else {
     bceFirstIndex = 0;
     bceCurrentIndex = C_NULL;
   }
+  bceShowBcCount();
+  bceEnableDisablePreviousNext();
 }
 
 function bcePanelMove() {
@@ -317,7 +332,8 @@ function bceShowCurrentBc() {
   }
   $(".bc-panel").removeClass("panel-success"); 
   $("#bc_panel_" + panelId).addClass("panel-success");
-  bceEditorTable.page.len(15); // @todo This needs a better solution
+  tfeDisable();
+  tfeClear();  
 }
 
 function bceAddBc(id, namespace, lockReqd) {
@@ -346,6 +362,7 @@ function bceAddBc(id, namespace, lockReqd) {
     bceGetBc(bcIndex, lockReqd);
     bceShowBcCount();
     bceShowCurrentBc();
+    bceEnableDisablePreviousNext();
   }
 }
 
@@ -620,7 +637,7 @@ function bceShowPanel(index) {
   panelId = bceBcs[index].panelId;
   bcePanelIndexMap[panelId] = index;
   $("#bc_panel_" + panelId).show();
-  $("#bc_panel_title_" + panelId).text(bceBcs[index].label);
+  $("#bc_panel_title_" + panelId).text("[" + (index + 1) + "] " + bceBcs[index].label);
 }
 
 function bceHidePanels() {

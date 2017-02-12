@@ -8,6 +8,7 @@ describe "Biomedical Concept Editor", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
   include UserAccountHelpers
+  include ValidationHelpers
 
   before :all do
     clear_triple_store
@@ -76,6 +77,14 @@ describe "Biomedical Concept Editor", :type => :feature do
 
   def scroll_to_all_bc_panel
     page.execute_script("document.getElementById('all_bc_panel').scrollIntoView(false);")
+  end
+
+  def select_panel_header(panel_id)
+    find(:xpath, "//*[@id=\"bc_panel_#{panel_id}\"]/div[1]").click
+  end
+
+  def select_panel_body(panel_id)
+    find(:xpath, "//*[@id=\"bc_panel_#{panel_id}\"]/div[2]").click
   end
 
   def panel_current(panel_id)
@@ -154,8 +163,6 @@ describe "Biomedical Concept Editor", :type => :feature do
       ui_check_page_options("editor_table", { "5" => 5, "10" => 10, "15" => 15, "20" => 20, "25" => 25, "50" => 50, "All" => -1})
     end
 
-    it "allows 2 BCs being edited and visible, check current"
-
     it "allows 4 BCs being edited and visible", js: true do
       open_edit_multiple
       create_bc("TEST BC 1", "Test BC No. 1", "Obs PQR")
@@ -219,10 +226,11 @@ describe "Biomedical Concept Editor", :type => :feature do
       create_bc("TEST BC 32", "Test BC No. 32", "Obs PQR")
       panel_current("2")
       panel_not_current("1")
-      ui_click_by_id 'bc_panel_1'
+      scroll_to_all_bc_panel
+      select_panel_header(1)
       panel_current("1")
       panel_not_current("2")
-      ui_click_by_id 'bc_panel_2'
+      select_panel_body(2)
       panel_current("2")
       panel_not_current("1")
     end
@@ -239,8 +247,36 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("Test BC No. 42")
     end
 
-    it "allows BCs to be closed, greater than 4 - WILL CURRENTlY FAIL"
+    it "allows BCs to be closed, greater than 4", js: true do
+      open_edit_multiple
+      create_bc("TEST BC 43", "Test BC No. 43", "Obs PQR")
+      create_bc("TEST BC 44", "Test BC No. 44", "Obs PQR")
+      create_bc("TEST BC 45", "Test BC No. 45", "Obs CD")
+      create_bc("TEST BC 46", "Test BC No. 46", "Obs PQR")
+      create_bc("TEST BC 47", "Test BC No. 47", "Obs PQR")
+      create_bc("TEST BC 48", "Test BC No. 48", "Obs CD")
+      expect(page).to have_content("Test BC No. 45")
+      expect(page).to have_content("Test BC No. 46")
+      expect(page).to have_content("Test BC No. 47")
+      expect(page).to have_content("Test BC No. 48")
+      ui_click_by_id 'bc_close_2'
+      expect(page).to_not have_content("Test BC No. 46")
+      expect(page).to have_content("Test BC No. 45")
+      expect(page).to have_content("Test BC No. 47")
+      expect(page).to have_content("Test BC No. 48")
+      ui_click_by_id "bc_previous"
+      expect(page).to have_content("Test BC No. 44")
+      expect(page).to have_content("Test BC No. 45")
+      expect(page).to have_content("Test BC No. 47")
+      expect(page).to have_content("Test BC No. 48")
+      ui_click_by_id 'bc_close_4'
+      expect(page).to_not have_content("Test BC No. 48")
+      expect(page).to have_content("Test BC No. 44")
+      expect(page).to have_content("Test BC No. 45")
+      expect(page).to have_content("Test BC No. 47")
+    end
 
+    
     it "allows a property to be updated", js: true do
       set_screen_size(1500, 900)
       open_edit_multiple
@@ -263,32 +299,36 @@ describe "Biomedical Concept Editor", :type => :feature do
       scroll_to_editor_table
       fill_row(2, "62 QTEXT\t", "P2\n", true, true, "7.3\n")
       fill_row(3, "Q3\t", "P3\n", true, true, "8.4\n")
-      ui_click_by_id 'bc_panel_1'
+      scroll_to_all_bc_panel
+      select_panel_header(1)
       wait_for_ajax
       expect(page).to have_content("BC 61 Question Text")
-      ui_click_by_id 'bc_panel_2'
+      select_panel_header(2)
       wait_for_ajax
       expect(page).to have_content("62 QTEXT")
     end
 
-    it "selects the terminology panel - WILL CURRENTlY FAIL", js: true do
+    it "selects the terminology panel", js: true do
       set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 71", "Test BC No. 71", "Obs CD")
       scroll_to_editor_table
       fill_row(2, "Coded Question 1\t", "P2\n", true, true, "")
-      fill_row(4, "Coded Question 2\t", "P4\n", true, true, "")
+      fill_row(5, "Coded Question 2\t", "P4\n", true, true, "")
       ui_button_disabled('tfe_add_item')
       ui_button_disabled('tfe_delete_item')
       ui_button_disabled('tfe_delete_all_items')
-      select_terminology(4)
+      select_terminology(5)
+      wait_for_ajax
       expect(page).to have_content("Terminology: Laterality (--LAT)")
       ui_button_enabled('tfe_add_item')
       ui_button_enabled('tfe_delete_item')
       ui_button_enabled('tfe_delete_all_items')
       select_terminology(2)
+      wait_for_ajax
       expect(page).to have_content("Terminology: Body Position (--POS)")
       select_terminology(3)
+      wait_for_ajax
       ui_button_disabled('tfe_add_item')
       ui_button_disabled('tfe_delete_item')
       ui_button_disabled('tfe_delete_all_items')
@@ -301,6 +341,36 @@ describe "Biomedical Concept Editor", :type => :feature do
       scroll_to_editor_table
       fill_row(5, "Coded Question 1\t", "P1\n", true, true, "")
       select_terminology(5)
+      wait_for_ajax
+      expect(page).to have_content("Terminology: Laterality (--LAT)")
+      ui_button_enabled('tfe_add_item')
+      ui_button_enabled('tfe_delete_item')
+      ui_button_enabled('tfe_delete_all_items')
+      select_terminology(4)
+      expect(page).to have_content("Terminology: No Field Selected")
+      ui_button_disabled('tfe_add_item')
+      ui_button_disabled('tfe_delete_item')
+      ui_button_disabled('tfe_delete_all_items')
+      select_terminology(5)
+      wait_for_ajax
+      expect(page).to have_content("Terminology: Laterality (--LAT)")
+      ui_button_enabled('tfe_add_item')
+      ui_button_enabled('tfe_delete_item')
+      ui_button_enabled('tfe_delete_all_items')
+      select_terminology(6)
+      expect(page).to have_content("Terminology: No Field Selected")
+      ui_button_disabled('tfe_add_item')
+      ui_button_disabled('tfe_delete_item')
+      ui_button_disabled('tfe_delete_all_items')
+    end
+
+    it "does not allow terminology to be added for non-coded properties", js: true do
+      set_screen_size(1500, 900)
+      open_edit_multiple
+      create_bc("TEST BC 82", "Test BC No. 82", "Obs CD")
+      scroll_to_editor_table
+      fill_row(5, "Coded Question 1\t", "P1\n", true, true, "")
+      select_terminology(5)
       click_button 'tfe_add_item'
       expect(page).to have_content("You need to select an item.")
       ui_table_row_double_click('searchTable', 'EQ-5D-3L TEST')
@@ -310,15 +380,153 @@ describe "Biomedical Concept Editor", :type => :feature do
       wait_for_ajax
     end
 
-    it "does not allow terminology to be added for non-coded properties - WILL CURRENTLY FAIL"
+    it "allows BC creation, form validation", js: true do
+      open_edit_multiple
+      fill_in "biomedical_concept_identifier", with: ''
+      fill_in "biomedical_concept_label", with: 'Well this is not going well'
+      select "Obs PQR", from: "biomedical_concept_uri"
+      click_button 'Create'
+      expect(page).to have_content 'The form is not valid. Please correct the errors.'
+      expect(page).to have_content 'This field is required.'
+      
+      fill_in "biomedical_concept_identifier", with: 'A12345 XXX§'
+      fill_in "biomedical_concept_label", with: 'Well this is not going well'
+      select "Obs PQR", from: "biomedical_concept_uri"
+      click_button 'Create'
+      expect(page).to have_content 'The form is not valid. Please correct the errors.'
+      expect(page).to have_content 'Please enter a valid identifier. Upper and lower case alphanumeric and space characters only.'
+      
+      fill_in 'Identifier', with: 'A12345'
+      click_button 'Create'
+      expect(page).to have_content 'The Biomedical Concept was succesfully created.'
+      
+      fill_in "biomedical_concept_identifier", with: 'A12346'
+      fill_in "biomedical_concept_label", with: ''
+      select "Obs PQR", from: "biomedical_concept_uri"
+      click_button 'Create'
+      expect(page).to have_content 'This field is required.'
+      
+      fill_in "biomedical_concept_label", with: '±±±'
+      click_button 'Create'
+      expect(page).to have_content vh_label_error
+      
+      fill_in "biomedical_concept_label", with: vh_all_chars
+      click_button 'Create'
+      expect(page).to have_content "The Biomedical Concept was succesfully created."
+      
+      scroll_to_all_bc_panel
+      click_button 'close_button'
+    end
 
-    it "performs field validation"
+    it "allows BC creation, form validation", js: true do
+      open_edit_multiple
+      create_bc("TEST BC 91", "Test BC No. 91", "Obs CD")
+      scroll_to_editor_table
+      fill_question_text(2, "±±±±\n")
+      wait_for_ajax
+      expect(page).to have_content("contains invalid characters")
+      fill_in "DTE_Field_question_text", with: "good stuff\n"
+      wait_for_ajax
+      fill_prompt_text(2, "±±±±\t")
+      expect(page).to have_content("contains invalid characters")
+      fill_in "DTE_Field_prompt_text", with: "some really good stuff\n"
+      wait_for_ajax
+      fill_format(2, "1.0\n")
+      #fill_in "DTE_Field_format", with: "1.0\n"
+      wait_for_ajax
+      fill_format(4, "vv\t")
+      expect(page).to have_content("contains invalid characters")
+      fill_in "DTE_Field_format", with: "1.0\t"
+      wait_for_ajax
+    end
 
-    it "allows the edit session to be saved"
+    it "allows the edit session to be closed", js: true do
+      set_screen_size(1500, 900)
+      open_edit_multiple
+      create_bc("TEST BC 92", "Test BC No. 92", "Obs CD")
+      scroll_to_all_bc_panel
+      click_button 'close_button'
+      expect(page).to have_content("Index: Biomedical Concepts")
+    end
 
-    it "allows the edit session to be closed"
+    it "edit clears token on close", js: true do
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      set_screen_size(1500, 900)
+      open_edit_multiple
+      create_bc("TEST BC 101", "Test BC No. 101", "Obs CD")
+      create_bc("TEST BC 102", "Test BC No. 102", "Obs CD")
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC101")
+      token = tokens[0]
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      page.find("#token_timer_2")[:class].include?("btn-warning")
+      scroll_to_all_bc_panel
+      click_button 'close_button'
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC101")
+      expect(tokens).to match_array([])
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC102")
+      expect(tokens).to match_array([])
+    end  
 
-    it "allows the edit session to be closed indirectly, saves data"
+    it "edit clears token on back button", js: true do
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      set_screen_size(1500, 900)
+      open_edit_multiple
+      create_bc("TEST BC 103", "Test BC No. 103", "Obs CD")
+      create_bc("TEST BC 104", "Test BC No. 104", "Obs CD")
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC103")
+      token = tokens[0]
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      page.find("#token_timer_2")[:class].include?("btn-warning")
+      ui_click_back_button
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC103")
+      expect(tokens).to match_array([])
+      tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC104")
+      expect(tokens).to match_array([])
+    end 
+
+    it "edit timeout warnings", js: true do
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      set_screen_size(1500, 900)
+      open_edit_multiple
+      create_bc("TEST BC 105", "Test BC No. 105", "Obs CD")
+      create_bc("TEST BC 106", "Test BC No. 106", "Obs CD")
+      scroll_to_all_bc_panel
+      # Initial state
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      ui_button_disabled('token_timer_2')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      page.find("#token_timer_2")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      # Warning state
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      page.find("#token_timer_2")[:class].include?("btn-warning")
+      click_button 'bc_save'
+      # Initial state
+      Capybara.ignore_hidden_elements = false
+      ui_button_disabled('token_timer_1')
+      ui_button_disabled('token_timer_2')
+      page.find("#token_timer_1")[:class].include?("btn-success")
+      page.find("#token_timer_2")[:class].include?("btn-success")
+      Capybara.ignore_hidden_elements = true
+      # Warning state
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#token_timer_1")[:class].include?("btn-warning")
+      page.find("#token_timer_2")[:class].include?("btn-warning")
+      # Danger state
+      sleep (@user_c.edit_lock_warning.to_i / 2)
+      expect(page).to have_content("The edit lock is about to timeout!")
+      sleep 5
+      page.find("#token_timer_1")[:class].include?("btn-danger")
+      page.find("#token_timer_2")[:class].include?("btn-danger")
+      sleep (@user_c.edit_lock_warning.to_i / 2)
+      ui_button_label("token_timer_1", "00:00")
+      ui_button_label("token_timer_2", "00:00")
+      click_button 'close_button'
+    end  
     
   end
 

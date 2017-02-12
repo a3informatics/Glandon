@@ -74,6 +74,10 @@ module UiHelpers
     expect(page).to have_button("#{id}", disabled: false)
   end       
 
+  def ui_button_label(id, text)
+    expect(find("##{id}").text).to eq(text)
+  end
+
   # Datatables
   #
   def ui_main_show_all

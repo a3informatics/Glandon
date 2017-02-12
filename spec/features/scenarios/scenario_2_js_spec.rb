@@ -114,7 +114,7 @@ describe "Thesaurus", :type => :feature do
       expect_page 'History: QS TERM'
 
       csv = AuditTrail.to_csv
-      write_text_file_2(csv, sub_dir, "scenario_2_audit_trail.csv")
+    #write_text_file_2(csv, sub_dir, "scenario_2_audit_trail.csv")
       check_audit_trail("scenario_2_audit_trail.csv")
 
       click_navbar_terminology
