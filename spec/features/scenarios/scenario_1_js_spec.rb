@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Thesaurus", :type => :feature do
+describe "Scenario 1 - Terminology", :type => :feature do
 
   include PauseHelpers
   include DataHelpers

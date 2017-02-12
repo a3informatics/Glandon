@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Thesaurus", :type => :feature do
+describe "Secnario 2 - Life Cycle", :type => :feature do
 
   include PauseHelpers
   include DataHelpers
