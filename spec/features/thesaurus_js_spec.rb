@@ -7,6 +7,7 @@ describe "Thesaurus", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
   include DownloadHelpers
+  include TurtleHelpers
 
   def sub_dir
     return "features"
@@ -120,9 +121,10 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Show:'
       click_link 'Export Turtle'
       file = download_content
+      write_text_file_2(file, sub_dir, "thesaurus_export_results.ttl")
     #write_text_file_2(file, sub_dir, "thesaurus_export.ttl")
       expected = read_text_file_2(sub_dir, "thesaurus_export.ttl")
-      expect(file).to eq(expected)
+      check_ttl("thesaurus_export_results.ttl", "thesaurus_export.ttl")
     end
 
     it "allows terminology to be edited", js: true do

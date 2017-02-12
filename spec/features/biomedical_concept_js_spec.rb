@@ -7,6 +7,7 @@ describe "Biomedical Concepts", :type => :feature do
   include PauseHelpers
   include UserAccountHelpers
   include DownloadHelpers
+  include TurtleHelpers
 
   def sub_dir
     return "features"
@@ -75,8 +76,9 @@ describe "Biomedical Concepts", :type => :feature do
       click_link 'Export Turtle'
       file = download_content
     #write_text_file_2(file, sub_dir, "bc_export.ttl")
+      write_text_file_2(file, sub_dir, "bc_export_results.ttl")
       expected = read_text_file_2(sub_dir, "bc_export.ttl")
-      expect(file).to eq(expected)
+      check_ttl("bc_export_results.ttl", "bc_export.ttl")
     end
 
   end
