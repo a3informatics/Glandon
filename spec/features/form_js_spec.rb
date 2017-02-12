@@ -7,6 +7,8 @@ describe "Forms", :type => :feature do
   include PauseHelpers
   include WaitForAjaxHelper
   include ValidationHelpers
+  include DownloadHelpers
+  include TurtleHelpers
   
   def sub_dir
     return "features"
@@ -248,7 +250,7 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(2, ["Enabled:", "true"])
       ui_check_anon_table_row(3, ["Optional:", "false"])
       ui_check_anon_table_row(4, ["Question Text:", "Result units?"])
-      ui_check_anon_table_row(5, ["Datatype:", ""])
+      ui_check_anon_table_row(5, ["Datatype:", ""]) # @todo Need to test this further
       ui_check_anon_table_row(6, ["Format:", ""])
       ui_check_anon_table_row(7, ["Completion Instructions:", ""])
       ui_check_anon_table_row(8, ["Notes:", ""])
@@ -370,6 +372,39 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'A BRANCH FORM'
       find(:xpath, "//tr[contains(.,'A BRANCH FORM')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: Test Branch Form A BRANCH FORM (V0.1.0, 1, Incomplete)'
+    end
+
+    it "allows for a Form to be exported as JSON", js: true do
+      clear_downloads
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: DM1 01'
+      find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Demographics DM1 01 (V0.0.0, 1, Candidate)'
+      wait_for_ajax
+      click_link 'Export JSON'
+      file = download_content 
+    #write_text_file_2(file, sub_dir, "form_export.json")
+      expected = read_text_file_2(sub_dir, "form_export.json")
+      expect(file).to eq(expected)
+    end
+
+    it "allows for a Forms to be exported as TTL", js: true do
+      clear_downloads
+      visit '/forms'
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: DM1 01'
+      find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: Demographics DM1 01 (V0.0.0, 1, Candidate)'
+      wait_for_ajax
+      click_link 'Export Turtle'
+      file = download_content
+    #write_text_file_2(file, sub_dir, "form_export.ttl")
+      write_text_file_2(file, sub_dir, "form_export_results.ttl")
+      expected = read_text_file_2(sub_dir, "form_export.ttl")
+      check_ttl("bc_export_results.ttl", "form_export.ttl")
     end
     
   end

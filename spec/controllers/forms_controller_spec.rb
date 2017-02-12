@@ -213,8 +213,14 @@ describe FormsController do
       expect(response).to render_template("view")
     end
 
-    it "export_ttl"
-    it "export_json"
+    it "export_ttl" do
+      get :export_ttl, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+    end
+
+    it "export_json" do
+      get :export_json, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+    end
+
     it "export_odm"
     
     it "presents acrf as pdf" do
