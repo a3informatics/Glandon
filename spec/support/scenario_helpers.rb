@@ -86,19 +86,34 @@ module ScenarioHelpers
 
 
 
-  def bc_set_cat
+  def bc_scroll_to_editor_table
+    page.execute_script("document.getElementById('editor_table').scrollIntoView(false);")
+  end
+
+  def bc_scroll_to_bc_table
+    page.execute_script("document.getElementById('bc_table').scrollIntoView(false);")
+  end
+
+  def bc_scroll_to_all_bc_panel
+    page.execute_script("document.getElementById('all_bc_panel').scrollIntoView(false);")
+  end
+
+  def bc_set_cat(term_list)
     row = editor_get_row("Category (--CAT)")
     bc_editor_enabled(row)
+    bc_editor_add_terms(row, term_list)
   end
 
-  def bc_set_test_code
+  def bc_set_test_code(term_list)
     row = editor_get_row("Test Code (--TESTCD)")
     bc_editor_enabled(row)
+    bc_editor_add_terms(row, term_list)
   end
 
-  def bc_set_test_name
+  def bc_set_test_name(term_list)
     row = editor_get_row("Test Name (--TEST)")
     bc_editor_enabled(row)
+    bc_editor_add_terms(row, term_list)
   end
 
   def bc_set_date_and_time(question_text)
@@ -108,11 +123,20 @@ module ScenarioHelpers
     bc_editor_question_text(row, question_text)
   end
 
-  def bc_set_result_value(question_text)
+  def bc_set_result_value_coded(question_text, term_list)
     row = editor_get_row("Result Value (--ORRES)")
     bc_editor_enabled(row)
     bc_editor_collect(row)
     bc_editor_question_text(row, question_text)
+    bc_editor_add_terms(row, term_list)
+  end
+
+  def bc_set_result_value(question_text, format)
+    row = editor_get_row("Result Value (--ORRES)")
+    bc_editor_enabled(row)
+    bc_editor_collect(row)
+    bc_editor_question_text(row, question_text)
+    bc_editor_format(row, format)
   end
 
   def bc_editor_question_text(row, text)
@@ -143,6 +167,43 @@ module ScenarioHelpers
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click
     fill_in "DTE_Field_#{field_name}", with: text if !field_name.nil?
     wait_for_ajax
+  end
+
+  def bc_editor_add_terms(row, term_list)
+    bc_editor_select_terminology(row)
+    term_list.each do |term|
+      bc_editor_find_term(term)
+      ui_click_by_id 'tfe_add_item'
+      wait_for_ajax
+    end
+  end
+
+  def bc_editor_find_term(item_code)
+    fill_in 'searchTable_csearch_cl', with: item_code[:cl]
+    ui_hit_return('searchTable_csearch_cl')
+    wait_for_ajax
+    fill_in 'searchTable_csearch_item', with: item_code[:cli]
+    ui_hit_return('searchTable_csearch_item')
+    wait_for_ajax
+    ui_table_row_click('searchTable', item_code[:cli])
+  end
+
+  def bc_create(identifier, label, template)
+    fill_in "biomedical_concept_identifier", with: identifier
+    fill_in "biomedical_concept_label", with: label
+    select template, from: "biomedical_concept_uri"
+    click_button 'Create'
+    wait_for_ajax(3)
+  end
+
+  def bc_export_ttl(c_code)
+    click_navbar_bc
+    click_main_table_link "BC #{c_code}", 'History'
+    click_main_table_link "BC #{c_code}", 'Show'
+    click_link 'Export Turtle'
+    wait_for_download
+    rename_file("ACME_BC #{c_code}.ttl", "ACME_BC_#{c_code}_DFT.ttl")
+    copy_file_to_db("ACME_BC_#{c_code}_DFT.ttl")
   end
 
 end

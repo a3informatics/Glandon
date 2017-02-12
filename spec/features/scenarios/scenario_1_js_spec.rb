@@ -147,6 +147,7 @@ describe "Thesaurus", :type => :feature do
       click_table_link 'QS TERM', 'History'
       click_table_link 'QS TERM', 'Show'
       click_link 'Export Turtle'
+      wait_for_download
       rename_file("ACME_QS TERM.ttl", "ACME_QS_TERM_DFT.ttl")
       copy_file_to_db("ACME_QS_TERM_DFT.ttl")
 

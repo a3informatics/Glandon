@@ -308,7 +308,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("62 QTEXT")
     end
 
-    it "selects the terminology panel", js: true do
+    it "selects the terminology panel, I", js: true do
       set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 71", "Test BC No. 71", "Obs CD")
@@ -334,7 +334,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       ui_button_disabled('tfe_delete_all_items')
     end
 
-    it "allows terminology to be added", js: true do
+    it "selects the terminology panel, II", js: true do
       set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 81", "Test BC No. 81", "Obs CD")
@@ -364,7 +364,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       ui_button_disabled('tfe_delete_all_items')
     end
 
-    it "does not allow terminology to be added for non-coded properties", js: true do
+    it "allows terminology to be added", js: true do
       set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 82", "Test BC No. 82", "Obs CD")
@@ -378,6 +378,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       ui_table_row_click('searchTable', 'C100394')
       ui_click_by_id 'tfe_add_item'
       wait_for_ajax
+      
     end
 
     it "allows BC creation, form validation", js: true do
@@ -432,7 +433,6 @@ describe "Biomedical Concept Editor", :type => :feature do
       fill_in "DTE_Field_prompt_text", with: "some really good stuff\n"
       wait_for_ajax
       fill_format(2, "1.0\n")
-      #fill_in "DTE_Field_format", with: "1.0\n"
       wait_for_ajax
       fill_format(4, "vv\t")
       expect(page).to have_content("contains invalid characters")
