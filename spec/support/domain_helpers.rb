@@ -20,6 +20,7 @@ module DomainHelpers
     expect(page).to have_content 'History:'
     find(:xpath, "//tr[contains(.,'#{prefix} Domain')]/td/a", :text => 'Edit').click
     expect(page).to have_content 'Edit:'  
+    wait_for_ajax(5) 
   end
 
   def load_domain(identifier)
@@ -34,7 +35,8 @@ module DomainHelpers
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
     expect(page).to have_content 'History:'
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
-    expect(page).to have_content 'Edit:'  
+    expect(page).to have_content 'Edit:' 
+    wait_for_ajax(5) 
   end
 
   def reload_domain(identifier)
@@ -44,6 +46,7 @@ module DomainHelpers
     expect(page).to have_content 'History:'
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
     expect(page).to have_content 'Edit:'  
+    wait_for_ajax(5) 
   end
 
 end

@@ -72,59 +72,59 @@ describe "CDISC Terminology", :type => :feature do
 
       fill_in 'searchTable_csearch_cl', with: 'C100129'
       ui_hit_return('searchTable_csearch_cl')
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 1 to 10 of 141 entries'
 
       fill_in 'searchTable_csearch_definition', with: 'Hamilton'
       ui_hit_return('searchTable_csearch_definition')
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 1 to 3 of 3 entries'
 
       fill_in 'searchTable_csearch_notation', with: 'ADMINISTRATION'
       ui_hit_return('searchTable_csearch_notation')
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 1 to 2 of 2 entries'
 
       fill_in 'searchTable_csearch_notation', with: 'A' # In effect delete all bar one character
       ui_hit_backspace('searchTable_csearch_notation') # Delete last character so now empty
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 1 to 3 of 3 entries'
 
       fill_in 'searchTable_csearch_definition', with: 'H'
       ui_hit_backspace('searchTable_csearch_definition')
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 1 to 10 of 141 entries'
 
       input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
       input.set('Hamilton')
       input.native.send_keys(:return)
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 1 to 3 of 3 entries'
 
       input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
       input.set('H')
       input.native.send_keys(:backspace)
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 1 to 10 of 141 entries'
 
       link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[3]/a')
       link.click
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 11 to 20 of 141 entries'
 
       link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[4]/a')
       link.click
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 21 to 30 of 141 entries'
 
       link = find(:xpath, '//*[@id="searchTable_previous"]/a')
       link.click
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 11 to 20 of 141 entries'
       
       link = find(:xpath, '//*[@id="searchTable_next"]/a')
       link.click
-      wait_for_ajax
+      wait_for_ajax(5)
       expect(page).to have_content 'Showing 21 to 30 of 141 entries'
 
       click_link 'Close'

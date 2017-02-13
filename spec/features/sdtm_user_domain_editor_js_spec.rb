@@ -35,6 +35,7 @@ describe "SDTM User Domain Editor", :type => :feature do
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
     clear_cdisc_term_object
+    clear_token_object
     @user = User.create :email => "domain_edit@example.com", :password => "12345678" 
     @user.add_role :curator
   end
@@ -153,13 +154,13 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_click_node_name("DMNEW")
       ui_check_input('variableLabel', "New label updated")    
       click_button 'variableDelete'
+      ui_click_by_id 'save'
       ui_click_by_id 'close'
     end
 
     it "allows non-standard variable to be moved up and down and not pass a standard variable", js: true do
       load_domain("DM Domain")
       click_button "V+"
-      sleep 3
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
       expect(key_1).not_to eq(-1)
       ui_click_node_name("Demographics")
