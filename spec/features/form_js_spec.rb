@@ -404,7 +404,7 @@ describe "Forms", :type => :feature do
     #write_text_file_2(file, sub_dir, "form_export.ttl")
       write_text_file_2(file, sub_dir, "form_export_results.ttl")
       expected = read_text_file_2(sub_dir, "form_export.ttl")
-      check_ttl("bc_export_results.ttl", "form_export.ttl")
+      check_ttl("form_export_results.ttl", "form_export.ttl")
     end
     
   end

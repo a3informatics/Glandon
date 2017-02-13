@@ -46,7 +46,7 @@ class SdtmModelsController < ApplicationController
   def export_json
     authorize SdtmModel
     @sdtm_model = IsoManaged::find(params[:id], the_params[:namespace])
-    send_data @sdtm_model.to_json, filename: "#{@sdtm_model.owner}_#{@sdtm_model.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+    send_data @sdtm_model.to_json.to_json, filename: "#{@sdtm_model.owner}_#{@sdtm_model.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
 private

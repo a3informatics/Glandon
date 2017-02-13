@@ -29,7 +29,7 @@ describe SdtmModelDomainsController do
       clear_iso_registration_state_object
     end
 
-    it "show" do
+    it "presents the domain" do
       params = 
       { 
         :id => "M-CDISC_SDTMMODEL_TRIAL_DESIGN", 
@@ -42,9 +42,13 @@ describe SdtmModelDomainsController do
       expect(response).to render_template("show")
     end
 
-    it "allows for a SDTM Model to be exported as JSON"
+    it "allows for a SDTM Model Domain to be exported as JSON" do
+      get :export_json, { :id => "M-CDISC_SDTMMODEL_TRIAL_DESIGN", sdtm_model_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3" }}
+    end
 
-    it "allows for a SDTM Model to be expoerted as TTL"
+    it "allows for a SDTM Model Domain to be exported as TTL" do
+      get :export_ttl, { :id => "M-CDISC_SDTMMODEL_TRIAL_DESIGN", sdtm_model_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3" }}
+    end
 
   end
 

@@ -181,7 +181,7 @@ class FormsController < ApplicationController
   def export_json
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
-    send_data @form.to_json, filename: "#{@form.owner}_#{@form.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+    send_data @form.to_json.to_json, filename: "#{@form.owner}_#{@form.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
   def export_odm
