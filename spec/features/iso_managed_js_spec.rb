@@ -159,7 +159,8 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_content 'History: A NEW FORM'
       find(:xpath, "//tr[contains(.,'A NEW FORM')]/td/a", :text => 'Status').click
       ui_check_table_row("version_info", 1, ["Version:", "0.1.0"])
-      ui_check_table_row("version_info", 2, ["Internal Version:", "1"])
+      ui_check_table_row("version_info", 2, ["Version Label:", ""])
+      ui_check_table_row("version_info", 3, ["Internal Version:", "1"])
       fill_in "iso_scoped_identifier_versionLabel", with: "Draft Form"
       click_button "version_submit"
       ui_check_input("iso_scoped_identifier_versionLabel", "Draft Form")
@@ -174,7 +175,8 @@ describe "ISO Managed JS", :type => :feature do
       click_button "state_submit"
       expect(page).to have_content("Current Status: Standard")
       ui_check_table_row("version_info", 1, ["Version:", "1.0.0"])
-      ui_check_table_row("version_info", 2, ["Internal Version:", "1"])
+      ui_check_table_row("version_info", 2, ["Version Label:", "Draft Form"])
+      ui_check_table_row("version_info", 3, ["Internal Version:", "1"])
     end
 
   end
