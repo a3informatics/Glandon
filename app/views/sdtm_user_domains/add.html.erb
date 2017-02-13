@@ -10,8 +10,8 @@
 		    			<th>Identifer</th>
 							<th>Label</th>
 							<th>Owner</th>
-							<th>Internal Version</th>
 							<th>Version</th>
+							<th>Version Label</th>
 							<th>Select</th>
 		  			</tr>
 		  		</thead>
@@ -21,7 +21,7 @@
 			    			<td><%= bc.identifier %></td>
 								<td><%= bc.label %></td>
 								<td><%= bc.owner %></td>
-								<td><%= bc.version %></td>
+								<td><%= bc.semantic_version %></td>
 								<td><%= bc.versionLabel %></td>
 								<td><%= check_box_tag "sdtm_user_domain[bcs][]", [bc.uri] %></td>
 			  			</tr>
