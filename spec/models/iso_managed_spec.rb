@@ -107,6 +107,13 @@ describe IsoManaged do
     expect(item.to_json).to eq(expected)   
 	end
 
+  it "allows an item to be found, II" do
+    item = IsoManaged.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
+  write_yaml_file(item.to_json, sub_dir, "iso_managed_th.yaml")
+    expected = read_yaml_file(sub_dir, "iso_managed_th.yaml")
+    expect(item.to_json).to eq(expected)   
+  end
+
   it "allows the version, semantic_version, versionLabel and indentifier to be found" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(item.version).to eq(1)   

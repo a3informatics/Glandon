@@ -174,6 +174,7 @@ class BiomedicalConceptsController < ApplicationController
       format.html do
         @items = @bc.get_properties(true)
         @references = BiomedicalConcept.get_unique_references(@items)
+        @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.identifier, scope_id: @bc.owner_id })
       end
       format.json do
         @items = @bc.get_properties(true)

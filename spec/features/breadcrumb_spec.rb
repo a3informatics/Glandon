@@ -105,18 +105,19 @@ describe "Breadcrumb", :type => :feature do
       next_link_crumb(1, 'Index: Ad-Hoc Reports', "Ad-hoc Reports", "", "")
     end
 
-    it "has Classifications (tags) breadcrumbs ***** EXPECTED TO FAIL *****" do
+    it "has Classifications (tags) breadcrumbs" do
       next_link('Classifications (tags)', 'Classifications', "Classifications", "", "")
       next_link('New', 'New Classification', "Classifications", "New", "")
       next_link_crumb(1, 'Classifications', "Classifications", "", "")
       next_link('View', 'Tag Viewer', "Classifications", "View", "")
       next_link_crumb(1, 'Classifications', "Classifications", "", "")
-      expect(true).to eq(false)
     end
     
-    it "has Notepad breadcrumbs" do
-      next_link('Notepad', 'Index: Notepad', "Notepad", "", "")
-    end
+    it "has Classifications (tags) breadcrumbs - MORE TESTS"
+
+    #it "has Notepad breadcrumbs" do
+    #  next_link('Notepad', 'Index: Notepad', "Notepad", "", "")
+    #end
 
     it "has Markdown breadcrumbs" do
       next_link('Markdown', 'Markdown', "Markdown", "", "")
@@ -139,12 +140,20 @@ describe "Breadcrumb", :type => :feature do
 
     it "has CDISC Terminology breadcrumbs"
 
-    it "has Biomedical Concept Templates breadcrumbs"
+    it "has Biomedical Concept Templates breadcrumbs" do
+      next_link('main_nav_bct', 'Index: Biomedical Concept Templates', "Biomedical Concept Templates", "", "")
+      next_link_table("Obs CD", "History", "History: Obs CD", "BC Templates", "Obs CD", "")
+      next_link_table("Obs CD", "Show", "Show: Simple Observation CD Biomedical Research Concept Template", "BC Templates", "Obs CD", "Show: V1.0.0")
+      next_link_crumb(2, 'History', "BC Templates", "Obs CD", "")
+    end
     
     it "has Biomedical Concepts breadcrumbs" do
       next_link('main_nav_bc', 'Index: Biomedical Concepts', "Biomedical Concepts", "", "")
       next_link('New', 'New Biomedical Concept:', "Biomedical Concept", "New", "")
       next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")      
+      next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "BC C49677", "")
+      next_link_table("1.0.0", "Show", "Show: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Show: V1.0.0")
+      next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
     end
     
     it "has Forms breadcrumbs" do

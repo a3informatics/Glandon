@@ -117,7 +117,7 @@ describe "Form Editor", :type => :feature do
       ui_click_node_name("Group 1")
       click_button 'groupAddQuestion'
       expect(page).to have_content 'Question Details'
-      expect(page).to have_content 'Notepad'
+      #expect(page).to have_content 'Notepad'
       fill_in 'questionLabel', with: "Q 1"
       fill_in 'questionText', with: "What is?"
       check 'questionOptional'  
@@ -265,15 +265,15 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Biomedical Concept Selection'
       click_button 'groupAddQuestion'
       expect(page).to have_content 'Question Details'
-      expect(page).to have_content 'Notepad'
+      #expect(page).to have_content 'Notepad'
       fill_in 'questionText', with: "Question text must be set"
       ui_click_node_key(2)
-      wait_for_ajax
+      wait_for_ajax(5)
       click_button 'groupAddMapping'
       expect(page).to have_content 'Mapping Details'
       fill_in 'mappingMapping', with: "Mapping text must be set"
       ui_click_node_key(2)
-      wait_for_ajax(3)
+      wait_for_ajax(5)
       click_button 'groupAddLabelText'
       expect(page).to have_content 'Label Details'
       expect(page).to have_content 'Markdown Preview'
@@ -290,7 +290,7 @@ describe "Form Editor", :type => :feature do
       ui_click_node_key(3)
       wait_for_ajax
       expect(page).to have_content 'Question Details'
-      expect(page).to have_content 'Notepad'
+      #expect(page).to have_content 'Notepad'
       ui_set_focus('questionCompletion')
       expect(page).to have_content 'Markdown Preview'
     #ui_is_not_visible("#notepad_panel")
@@ -298,13 +298,13 @@ describe "Form Editor", :type => :feature do
       click_button 'markdown_preview'
       ui_check_div_text('genericCompletion', "Hello World! Also add soem single quotes 'like' this.")
       click_button 'markdown_hide'
-      expect(page).to have_content 'Notepad'
+      #expect(page).to have_content 'Notepad'
       expect(page).to have_no_content 'Markdown Preview'
       fill_in 'questionNote', with: 'And now for smething completely different ... and some double quotes "here".'
       click_button 'markdown_preview'
       ui_check_div_text('genericCompletion', "And now for smething completely different ... and some double quotes \"here\".")
       click_button 'markdown_hide'
-      expect(page).to have_content 'Notepad'
+      #expect(page).to have_content 'Notepad'
       expect(page).to have_no_content 'Markdown Preview'
       ui_click_node_key(4)
       wait_for_ajax
@@ -459,7 +459,7 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Biomedical Concept Selection'
       click_button 'groupAddQuestion'
       expect(page).to have_content 'Question Details'
-      expect(page).to have_content 'Notepad'
+      #expect(page).to have_content 'Notepad'
       ui_click_node_key(3)
       fill_in 'questionLabel', with: "Q 1"
       fill_in 'questionText', with: "What is?"
