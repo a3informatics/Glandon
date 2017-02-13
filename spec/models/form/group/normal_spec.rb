@@ -168,8 +168,34 @@ describe Form::Group::Normal do
   it "allows an object to be exported as JSON" do
     item = Form::Group::Normal.find("F-ACME_T2_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
     result = item.to_json
-    write_hash_to_yaml_file_2(result, sub_dir, "to_json.yaml")
+  #write_hash_to_yaml_file_2(result, sub_dir, "to_json.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "to_json.yaml")
+    expect(result).to eq(expected)
+  end
+
+  it "allows an object to be exported as JSON, ordering" do
+    group = Form::Group::Normal.new
+    item_1 = Form::Item::Question.new
+    item_1.ordinal = 1
+    sub_group_1 = Form::Group::Normal.new
+    sub_group_1.ordinal = 2
+    sub_group_2 = Form::Group::Normal.new
+    sub_group_2.ordinal = 3
+    label_1 = Form::Item::TextLabel.new
+    label_1.ordinal = 4
+    label_2 = Form::Item::TextLabel.new
+    label_2.ordinal = 5
+    sub_group_3 = Form::Group::Normal.new
+    sub_group_3.ordinal = 6
+    group.children << item_1
+    group.children << label_1
+    group.children << label_2
+    group.groups << sub_group_1
+    group.groups << sub_group_2
+    group.groups << sub_group_3
+    result = group.to_json
+  write_yaml_file(result, sub_dir, "to_json_order.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_order.yaml")
     expect(result).to eq(expected)
   end
 

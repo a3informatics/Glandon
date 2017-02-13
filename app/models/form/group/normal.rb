@@ -62,6 +62,7 @@ class Form::Group::Normal < Form::Group
     self.groups.each do |group|
       json[:children] << group.to_json
     end
+    json[:children] = json[:children].sort_by { |k| k[:ordinal] }
     return json
   end
 
