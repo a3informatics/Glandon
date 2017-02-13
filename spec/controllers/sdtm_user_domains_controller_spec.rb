@@ -300,9 +300,13 @@ describe SdtmUserDomainsController do
       expect(response.body).to eq(expected)
     end
     
-    it "export_ttl"
+    it "export_ttl" do
+      get :export_ttl, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+    end
     
-    it "export_json"
+    it "export_json" do
+      get :export_json, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+    end
     
     it "full_report"
 

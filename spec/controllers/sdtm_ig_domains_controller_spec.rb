@@ -29,7 +29,7 @@ describe SdtmIgDomainsController do
       clear_iso_registration_state_object
     end
 
-    it "show" do
+    it "presents a domain" do
       params = 
       { 
         :id => "IG-CDISC_SDTMIGRS", 
@@ -42,9 +42,13 @@ describe SdtmIgDomainsController do
       expect(response).to render_template("show")
     end
 
-    it "allows for a SDTM Model to be exported as JSON"
+    it "allows for a SDTM Model to be exported as JSON" do
+      get :export_json, { :id => "IG-CDISC_SDTMIGRS", sdtm_ig_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
+    end
 
-    it "allows for a SDTM Model to be expoerted as TTL"
+    it "allows for a SDTM Model to be exported as TTL" do
+      get :export_ttl, { :id => "IG-CDISC_SDTMIGRS", sdtm_ig_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
+    end
 
   end
 

@@ -47,9 +47,13 @@ describe SdtmIgsController do
       expect(response).to render_template("show")
     end
 
-    it "allows for a SDTM Model to be exported as JSON"
+    it "allows for a SDTM Model to be exported as JSON" do
+      get :export_json, { :id => "IG-CDISC_SDTMIG", sdtm_ig: { :namespace => "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3" }}
+    end
 
-    it "allows for a SDTM Model to be expoerted as TTL"
+    it "allows for a SDTM Model to be exported as TTL" do
+      get :export_ttl, { :id => "IG-CDISC_SDTMIG", sdtm_ig: { :namespace => "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3" }}
+    end
 
     it "prevents access to the import view"  do
       get :import

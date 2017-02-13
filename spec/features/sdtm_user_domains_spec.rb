@@ -132,10 +132,6 @@ describe "SDTM User Domains", :type => :feature do
       expect(page).to have_content 'Edit: VS Copy VS Domain (V0.0.0, 1, Incomplete)'
     end
 
-    it "allows for a domain to be exported as JSON"
-
-    it "allows for a domain to be exprted as TTL"
-
     it "allows for a report to be exported"
 
   end

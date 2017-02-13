@@ -47,10 +47,6 @@ describe "SDTM Model Domains", :type => :feature do
     end
 
     it "*** SDTM IMPORT SEMANTIC VERSION ***"
-    
-    it "allows for a SDTM Model to be exported as JSON"
-
-    it "allows for a SDTM Model to be expoerted as TTL"
 
   end
 

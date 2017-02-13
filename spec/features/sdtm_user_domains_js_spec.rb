@@ -4,6 +4,13 @@ describe "SDTM User Domains", :type => :feature do
   
   include DataHelpers
   include UiHelpers
+  include WaitForAjaxHelper
+  include DownloadHelpers
+  include TurtleHelpers
+
+  def sub_dir
+    return "features"
+  end
 
   describe "Users Domains", :type => :feature do
   
@@ -82,6 +89,37 @@ describe "SDTM User Domains", :type => :feature do
       expect(page).to have_content "SDTM Sponsor Domain was successfully created."
       expect(page).to have_content "XX"
       expect(page).to have_content "Nice Label"
+    end
+
+    it "allows for a IG Domain to be exported as JSON", js: true do
+      visit '/sdtm_user_domains'
+      expect(page).to have_content 'Index: Domains'
+      find(:xpath, "//tr[contains(.,'DM Domain')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History:'
+      find(:xpath, "//tr[contains(.,'DM Domain')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: '
+      wait_for_ajax
+      click_link 'Export JSON'
+      file = download_content 
+    write_text_file_2(file, sub_dir, "sdtm_user_domain_export.json")
+      expected = read_text_file_2(sub_dir, "sdtm_user_domain_export.json")
+      expect(file).to eq(expected)
+    end
+
+    it "allows for a IG Domain to be exported as TTL", js: true do
+      visit '/sdtm_user_domains'
+      expect(page).to have_content 'Index: Domains'
+      find(:xpath, "//tr[contains(.,'DM Domain')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History:'
+      find(:xpath, "//tr[contains(.,'DM Domain')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Show: '
+      wait_for_ajax
+      click_link 'Export Turtle'
+      file = download_content
+    write_text_file_2(file, sub_dir, "sdtm_user_domain_export.ttl")
+      write_text_file_2(file, sub_dir, "sdtm_user_domain_export_results.ttl")
+      expected = read_text_file_2(sub_dir, "sdtm_user_domain_export.ttl")
+      check_ttl("sdtm_user_domain_export_results.ttl", "sdtm_user_domain_export.ttl")
     end
 
     it "*** SDTM IMPORT SEMANTIC VERSION ***"

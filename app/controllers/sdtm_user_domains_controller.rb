@@ -193,7 +193,7 @@ class SdtmUserDomainsController < ApplicationController
   def export_json
     authorize SdtmUserDomain
     @sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace])
-    send_data @sdtm_user_domain.to_json, 
+    send_data @sdtm_user_domain.to_json.to_json, 
       filename: "#{@sdtm_user_domain.owner}_#{@sdtm_user_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 

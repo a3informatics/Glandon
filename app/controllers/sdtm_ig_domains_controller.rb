@@ -34,7 +34,7 @@ class SdtmIgDomainsController < ApplicationController
   def export_json
     authorize SdtmIgDomain
     @sdtm_ig_domain = SdtmIgDomain.find(params[:id], the_params[:namespace])
-    send_data @sdtm_ig_domain.to_json, filename: "#{@sdtm_ig_domain.owner}_#{@sdtm_ig_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+    send_data @sdtm_ig_domain.to_json.to_json, filename: "#{@sdtm_ig_domain.owner}_#{@sdtm_ig_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
   
 private

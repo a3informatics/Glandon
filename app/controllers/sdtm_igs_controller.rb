@@ -45,7 +45,7 @@ def export_ttl
   def export_json
     authorize SdtmIg
     @sdtm_ig = SdtmIg.find(params[:id], the_params[:namespace])
-    send_data @sdtm_ig.to_json, filename: "#{@sdtm_ig.owner}_#{@sdtm_ig.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+    send_data @sdtm_ig.to_json.to_json, filename: "#{@sdtm_ig.owner}_#{@sdtm_ig.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
 private
