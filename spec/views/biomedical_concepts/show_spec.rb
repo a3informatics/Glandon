@@ -58,7 +58,7 @@ describe 'biomedical_concepts/show.html.erb', :type => :view do
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(8)", text: 'N (C49487)')
 
     expect(rendered).to have_link "Clone"
-    expect(rendered).to have_link "Upgrade"
+    #expect(rendered).to have_link "Upgrade"
     
     expect(rendered).to have_selector("table#secondary tbody tr:nth-of-type(1) td:nth-of-type(1)", text: 'C49487')
     expect(rendered).to have_selector("table#secondary tbody tr:nth-of-type(1) td:nth-of-type(2)", text: 'N')
@@ -93,7 +93,7 @@ describe 'biomedical_concepts/show.html.erb', :type => :view do
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(2) td:nth-of-type(7)", text: '')
 
     expect(rendered).to_not have_link "Clone"
-    expect(rendered).to have_link "Upgrade"
+    #expect(rendered).to have_link "Upgrade"
     
     expect(rendered).to have_selector("table#secondary tbody tr:nth-of-type(3) td:nth-of-type(1)", text: 'C49668')
     expect(rendered).to have_selector("table#secondary tbody tr:nth-of-type(3) td:nth-of-type(2)", text: 'cm')

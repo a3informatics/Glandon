@@ -19,7 +19,7 @@ $(document).ready(function() {
       {"data" : "scoped_identifier.version", "width" : "10%"},
       {"data" : "scoped_identifier.version_label", "width" : "40%"},
       {"render" : function (data, type, row, meta) {
-        return '<a href="' + getPath(row.type) + row.id + '?namespace=' + row.namespace + '" class="btn btn-primary btn-xs">Show</a>';
+        return '<a href="' + getPathStrong(row.type, row.id, row.namespace) + '" class="btn btn-primary btn-xs">Show</a>';
       }}
     ],
     "pageLength": 5,

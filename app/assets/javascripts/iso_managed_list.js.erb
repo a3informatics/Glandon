@@ -38,7 +38,7 @@ function imlLoad () {
       {"data" : "scoped_identifier.version_label", "width" : "10%"},
       // Following replaces the old way of putting in a button. Use link styled as a button.
       {"render" : function (data, type, row, meta) {
-        return '<a href="' + getPath(row.type) + row.id + '?namespace=' + row.namespace + '" class="btn btn-primary btn-xs">Show</a>';
+        return '<a href="' + getPathStrong(row.type, row.id, row.namespace) + '" class="btn btn-primary btn-xs">Show</a>';
       }}
     ]
   });
