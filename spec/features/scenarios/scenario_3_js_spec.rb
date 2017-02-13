@@ -171,15 +171,15 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       expect_page "History: BC C100392"
 
       csv = AuditTrail.to_csv
-      write_text_file_2(csv, sub_dir, "scenario_3_audit_trail.csv")
+    #write_text_file_2(csv, sub_dir, "scenario_3_audit_trail.csv")
       check_audit_trail("scenario_3_audit_trail.csv")
 
-      bc_export_ttl("C100392")
-      bc_export_ttl("C100393")
-      bc_export_ttl("C100394")
-      bc_export_ttl("C100395")
-      bc_export_ttl("C100396")
-      bc_export_ttl("C100397")
+      bc_export_ttl("C100392", "DFT")
+      bc_export_ttl("C100393", "DFT")
+      bc_export_ttl("C100394", "DFT")
+      bc_export_ttl("C100395", "DFT")
+      bc_export_ttl("C100396", "DFT")
+      bc_export_ttl("C100397", "DFT")
 
     end
 

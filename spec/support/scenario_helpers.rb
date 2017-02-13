@@ -1,11 +1,34 @@
 module ScenarioHelpers
 
+  def curator_login
+    visit '/users/sign_in'
+    fill_in 'Email', with: 'curator@example.com'
+    fill_in 'Password', with: '12345678'
+    click_button 'Log in'
+  end
+
+  def scroll_to_navbar
+    page.execute_script("document.getElementById('sidebar').scrollIntoView(false);")
+  end
+
   def click_navbar_terminology
     click_link 'main_nav_te'
   end
 
   def click_navbar_bc
     click_link 'main_nav_bc'
+  end
+
+  def click_navbar_form
+    click_link 'main_nav_f'
+  end
+
+  def click_navbar_ig_domain
+    click_link 'main_nav_ig'
+  end
+
+  def click_navbar_sponsor_domain
+    click_link 'main_nav_sd'
   end
 
   def expect_page(text)
@@ -20,8 +43,20 @@ module ScenarioHelpers
     find(:xpath, "//table[@id='main']/tbody/tr[contains(.,'#{text}')]/td/a", :text => "#{link_text}").click
   end
 
+  def main_search(search_text)
+    input = find(:xpath, '//*[@id="main_filter"]/label/input')
+    input.set("#{search_text}")
+    input.native.send_keys(:return)
+  end
+
   def click_secondary_table_link(text, link_text)
     find(:xpath, "//table[@id='secondary']/tbody/tr[contains(.,'#{text}')]/td/a", :text => "#{link_text}").click
+  end
+
+  def secondary_search(search_text)
+    input = find(:xpath, '//*[@id="secondary_filter"]/label/input')
+    input.set("#{search_text}")
+    input.native.send_keys(:return)
   end
 
   def term_editor_row_label(row, text, exit_key)
@@ -64,7 +99,6 @@ module ScenarioHelpers
     fill_in 'Identifier', with: identifier
     click_button 'New'
     expect_page identifier
-  #byebug
     row = editor_get_row("#{prefix}.#{identifier}")
     term_editor_row_label(row, label, :tab)
     term_editor_notation(notation, :tab)
@@ -83,8 +117,6 @@ module ScenarioHelpers
     end
     return -1
   end
-
-
 
   def bc_scroll_to_editor_table
     page.execute_script("document.getElementById('editor_table').scrollIntoView(false);")
@@ -196,14 +228,41 @@ module ScenarioHelpers
     wait_for_ajax(3)
   end
 
-  def bc_export_ttl(c_code)
+  def bc_export_ttl(c_code, status)
+    scroll_to_navbar
     click_navbar_bc
+    main_search(c_code)
     click_main_table_link "BC #{c_code}", 'History'
     click_main_table_link "BC #{c_code}", 'Show'
     click_link 'Export Turtle'
-    wait_for_download
-    rename_file("ACME_BC #{c_code}.ttl", "ACME_BC_#{c_code}_DFT.ttl")
-    copy_file_to_db("ACME_BC_#{c_code}_DFT.ttl")
+    wait_for_specific_download("ACME_BC #{c_code}.ttl")
+    rename_file("ACME_BC #{c_code}.ttl", "ACME_BC_#{c_code}_#{status}.ttl")
+    copy_file_to_db("ACME_BC_#{c_code}_#{status}.ttl")
+  end
+
+  def form_create(identifier, label, new_label)
+    click_navbar_form
+    expect(page).to have_content 'Index: Forms'  
+    click_link 'New'
+    fill_in 'form_identifier', with: "#{identifier}"
+    fill_in 'form_label', with: "#{label}"
+    click_button 'Create'
+    expect(page).to have_content 'Form was successfully created.'
+    ui_main_show_all
+    ui_table_row_link_click("#{identifier}", "History")
+    expect(page).to have_content "History: #{identifier}"
+    ui_table_row_link_click("#{identifier}", "Edit")
+    fill_in 'formLabel', with: "#{new_label}"
+  end
+
+  def form_bc_search(search_text)
+    input = find(:xpath, '//*[@id="bcTable_filter"]/label/input')
+    input.set("#{search_text}")
+    input.native.send_keys(:return)
+  end
+
+  def form_bc_click
+    find(:xpath, "//*[@id=\"bcTable\"]/tbody/tr/td[2]").click
   end
 
 end

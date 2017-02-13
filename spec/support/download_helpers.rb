@@ -18,6 +18,12 @@ module DownloadHelpers
     File.read(download)
   end
 
+  def wait_for_specific_download(filename)
+    Timeout.timeout(TIMEOUT) do
+      sleep 0.1 until download_contains?(filename)
+    end
+  end
+
   def wait_for_download
     Timeout.timeout(TIMEOUT) do
       sleep 0.1 until downloaded?
@@ -30,6 +36,11 @@ module DownloadHelpers
 
   def downloading?
     downloads.grep(/\.crdownload$/).any?
+  end
+
+  def download_contains?(filename)
+    files = Dir.entries(PATH)
+    files.include?(filename)
   end
 
   def clear_downloads
