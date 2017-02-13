@@ -1,8 +1,8 @@
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#UserDomain> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Questionnaires" . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2017-02-13T09:36:50+00:00" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2017-02-13T18:14:21+00:00" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2017-02-13T09:36:50+00:00" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2017-02-13T18:14:21+00:00" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_QSDomain-1> . 
@@ -401,6 +401,11 @@
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#non_standard> 			"false" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#comment> 			"" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#hasProperty> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR7> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#hasProperty> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR2> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#hasProperty> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR3> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#hasProperty> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR4> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#hasProperty> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR5> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#hasProperty> 			<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR6> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#used> 			"true" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#length> 			"0" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11> 			<http://www.assero.co.uk/BusinessDomain#ct> 			"" . 
@@ -419,6 +424,41 @@
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR7> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR7> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR7> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"7" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR2> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC100392_I10_DT1_P1> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR3> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR3> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC100393_I10_DT1_P1> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR3> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR3> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR3> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR4> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR4> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC100394_I10_DT1_P1> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR4> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR4> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR4> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR5> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR5> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR5> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR5> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC100395_I10_DT1_P1> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR5> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR5> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR5> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"5" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR6> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR6> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR6> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR6> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC100396_I10_DT1_P1> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR6> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR6> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V11_PR6> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"6" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V12> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#UserVariable> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V12> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Original Units" . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_QSDomain_V12> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"12" . 

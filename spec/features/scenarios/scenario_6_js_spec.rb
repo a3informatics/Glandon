@@ -69,7 +69,7 @@ describe "Scenario 6 - CRF & aCRF", :type => :feature do
       # Login
       curator_login
 
-      # Clone Domain
+      # View the form
       click_navbar_form
       expect(page).to have_content 'Index: Forms'  
       click_main_table_link "EQ-5D-3L", 'History'
