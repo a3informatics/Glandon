@@ -202,8 +202,9 @@ class BiomedicalConceptsController < ApplicationController
 
   def upgrade
     authorize BiomedicalConcept
-    @bc = BiomedicalConcept.create(params)
-    @bc.upgrade
+    @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
+    #@bc.upgrade
+    flash[:error] = "The operation is currently disabled"
     redirect_to history_biomedical_concepts_path(:biomedical_concept => { :identifier => @bc.identifier, :scope_id => @bc.owner_id })
   end
   

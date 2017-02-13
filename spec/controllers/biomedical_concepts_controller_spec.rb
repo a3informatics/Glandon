@@ -101,7 +101,7 @@ describe BiomedicalConceptsController do
       expect(response).to render_template("edit")
     end
 
-    it "edit form, next version" do
+    it "edit BC, next version" do
       get :edit, { :id => "BC-ACME_BC_C25347", :biomedical_concept => {:namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
       result = assigns(:bc)
       token = assigns(:token)
@@ -111,7 +111,7 @@ describe BiomedicalConceptsController do
       expect(response).to render_template("edit")
     end
     
-    it "edits form, already locked" do
+    it "edits BC, already locked" do
       @request.env['HTTP_REFERER'] = 'http://test.host/biomedical_concepts'
       bc = BiomedicalConcept.find("BC-ACME_NEWBC", "http://www.assero.co.uk/MDRBCs/ACME/V1") 
       token = Token.obtain(bc, @lock_user)
@@ -169,8 +169,9 @@ describe BiomedicalConceptsController do
       expect(response).to redirect_to("/biomedical_concepts/BC-ACME_BC_C25347/clone?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRBCs%2FV1")
     end
 
-    it "create"
-    it "update"
+    it "edit lock"
+
+    it "edit multiple"
 
     it "destroy" do
       @request.env['HTTP_REFERER'] = 'http://test.host/biomedical_concepts'
@@ -183,7 +184,11 @@ describe BiomedicalConceptsController do
       expect(Token.count).to eq(token_count)
     end
     
-    it "upgrade"
+    it "upgrade" do
+      get :upgrade, { :id => "BC-ACME_BC_C49678", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/biomedical_concepts/history?biomedical_concept%5Bidentifier%5D=BC+C49678&biomedical_concept%5Bscope_id%5D=NS-ACME")
+    end
 
     it "allows the BC to be viewed" do
       get :show, { :id => "BC-ACME_BC_C49678", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
