@@ -94,7 +94,7 @@ describe "Scenario 6 - CRF & aCRF", :type => :feature do
       
       # Check audit trail
       csv = AuditTrail.to_csv
-    write_text_file_2(csv, sub_dir, "scenario_6_audit_trail.csv")
+    #write_text_file_2(csv, sub_dir, "scenario_6_audit_trail.csv")
       check_audit_trail("scenario_6_audit_trail.csv")
 
     end
