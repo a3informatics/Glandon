@@ -1,260 +1,42 @@
----
-:count: 17356
-:items:
-- !ruby/object:ThesaurusConcept
-  identifier: C100129
-  notation: QSCAT
-  synonym: Category of Questionnaire
-  definition: A grouping of observations within the Questionnaire domain.
-  preferredTerm: CDISC Questionnaire Category Terminology
-  topLevel: true
-  parentIdentifier: C100129
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100129
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100130
-  notation: RELSUB
-  synonym: Relationship to Subject
-  definition: The relationship of a person to a study subject.
-  preferredTerm: CDISC SDTM Relationship to Subject Terminology
-  topLevel: true
-  parentIdentifier: C100130
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100130
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100131
-  notation: ADAS-COG CDISC VERSION TEST
-  synonym: Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Name
-  definition: ADAS-Cog CDISC Version test name.
-  preferredTerm: CDISC Questionnaire ADAS-Cog CDISC Version Test Name Terminology
-  topLevel: true
-  parentIdentifier: C100131
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100131
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100132
-  notation: ADAS-COG CDISC VERSION TESTCD
-  synonym: Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Code
-  definition: ADAS-Cog CDISC Version test code.
-  preferredTerm: CDISC Questionnaire ADAS-Cog CDISC Version Test Code Terminology
-  topLevel: true
-  parentIdentifier: C100132
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100132
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100133
-  notation: BPRS-A TEST
-  synonym: Brief Psychiatric Rating Scale-A Test Name
-  definition: The Brief Psychiatric Rating Scale-A test name.
-  preferredTerm: CDISC Questionnaire BPRS-A Test Name Terminology
-  topLevel: true
-  parentIdentifier: C100133
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100133
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100134
-  notation: BPRS-A TESTCD
-  synonym: Brief Psychiatric Rating Scale-A Test Code
-  definition: The Brief Psychiatric Rating Scale-A test code.
-  preferredTerm: CDISC Questionnaire BPRS-A Test Code Terminology
-  topLevel: true
-  parentIdentifier: C100134
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100134
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100135
-  notation: EQ-5D-3L TEST
-  synonym: European Quality of Life Five Dimension Three Level Scale Test Name
-  definition: European Quality of Life Five Dimension Three Level Scale test name.
-  preferredTerm: CDISC Questionnaire EQ-5D-3L Test Name Terminology
-  topLevel: true
-  parentIdentifier: C100135
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100135
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100136
-  notation: EQ-5D-3L TESTCD
-  synonym: European Quality of Life Five Dimension Three Level Scale Test Code
-  definition: European Quality of Life Five Dimension Five Level Scale test code.
-  preferredTerm: CDISC Questionnaire EQ-5D-3L Test Code Terminology
-  topLevel: true
-  parentIdentifier: C100136
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100136
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100137
-  notation: HAMD 17 TEST
-  synonym: Hamilton Depression Rating Scale - 17 Item Test Name
-  definition: The Hamilton Depression Rating Scale - 17 Item test name.
-  preferredTerm: CDISC Questionnaire HAMD 17 Test Name Terminology
-  topLevel: true
-  parentIdentifier: C100137
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100137
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100138
-  notation: HAMD 17 TESTCD
-  synonym: Hamilton Depression Rating Scale - 17 Item Test Code
-  definition: The Hamilton Depression Rating Scale - 17 Item test code.
-  preferredTerm: CDISC Questionnaire HAMD 17 Test Code Terminology
-  topLevel: true
-  parentIdentifier: C100138
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100138
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100139
-  notation: MDS-UPDRS TEST
-  synonym: Movement Disorder Society UPDRS Test Name
-  definition: The Movement Disorder Society version of the Unified Parkinson's Disease
-    Rating Scale test name.
-  preferredTerm: CDISC Questionnaire MDS-UPDRS Test Name Terminology
-  topLevel: true
-  parentIdentifier: C100139
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100139
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100140
-  notation: MDS-UPDRS TESTCD
-  synonym: Movement Disorder Society UPDRS Test Code
-  definition: The Movement Disorder Society version of the Unified Parkinson's Disease
-    Rating Scale test code.
-  preferredTerm: CDISC Questionnaire MDS-UPDRS Test Code Terminology
-  topLevel: true
-  parentIdentifier: C100140
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100140
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100143
-  notation: NPI TEST
-  synonym: Neuropsychiatric Inventory Test Name
-  definition: The Neuropsychiatric Inventory test name.
-  preferredTerm: CDISC Questionnaire NPI Test Name Terminology
-  topLevel: true
-  parentIdentifier: C100143
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100143
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100144
-  notation: NPI TESTCD
-  synonym: Neuropsychiatric Inventory Test Code
-  definition: The Neuropsychiatric Inventory test code.
-  preferredTerm: CDISC Questionnaire NPI Test Code Terminology
-  topLevel: true
-  parentIdentifier: C100144
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100144
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C100147
-  notation: UPDRS TEST
-  synonym: Unified Parkinson's Disease Rating Scale Test Name
-  definition: Unified Parkinson's Disease Rating Scale test name.
-  preferredTerm: CDISC Questionnaire UPDRS Test Name Terminology
-  topLevel: true
-  parentIdentifier: C100147
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C100147
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
+--- '{"count":17356,"items":[{"identifier":"C100129","notation":"QSCAT","synonym":"Category
+  of Questionnaire","definition":"A grouping of observations within the Questionnaire
+  domain.","preferredTerm":"CDISC Questionnaire Category Terminology","topLevel":true,"parentIdentifier":"C100129","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100129","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100130","notation":"RELSUB","synonym":"Relationship
+  to Subject","definition":"The relationship of a person to a study subject.","preferredTerm":"CDISC
+  SDTM Relationship to Subject Terminology","topLevel":true,"parentIdentifier":"C100130","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100130","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100131","notation":"ADAS-COG
+  CDISC VERSION TEST","synonym":"Alzheimer''s Disease Assessment Scale - Cognitive
+  CDISC Version Test Name","definition":"ADAS-Cog CDISC Version test name.","preferredTerm":"CDISC
+  Questionnaire ADAS-Cog CDISC Version Test Name Terminology","topLevel":true,"parentIdentifier":"C100131","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100131","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100132","notation":"ADAS-COG
+  CDISC VERSION TESTCD","synonym":"Alzheimer''s Disease Assessment Scale - Cognitive
+  CDISC Version Test Code","definition":"ADAS-Cog CDISC Version test code.","preferredTerm":"CDISC
+  Questionnaire ADAS-Cog CDISC Version Test Code Terminology","topLevel":true,"parentIdentifier":"C100132","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100132","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100133","notation":"BPRS-A
+  TEST","synonym":"Brief Psychiatric Rating Scale-A Test Name","definition":"The Brief
+  Psychiatric Rating Scale-A test name.","preferredTerm":"CDISC Questionnaire BPRS-A
+  Test Name Terminology","topLevel":true,"parentIdentifier":"C100133","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100133","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100134","notation":"BPRS-A
+  TESTCD","synonym":"Brief Psychiatric Rating Scale-A Test Code","definition":"The
+  Brief Psychiatric Rating Scale-A test code.","preferredTerm":"CDISC Questionnaire
+  BPRS-A Test Code Terminology","topLevel":true,"parentIdentifier":"C100134","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100134","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100135","notation":"EQ-5D-3L
+  TEST","synonym":"European Quality of Life Five Dimension Three Level Scale Test
+  Name","definition":"European Quality of Life Five Dimension Three Level Scale test
+  name.","preferredTerm":"CDISC Questionnaire EQ-5D-3L Test Name Terminology","topLevel":true,"parentIdentifier":"C100135","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100135","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100136","notation":"EQ-5D-3L
+  TESTCD","synonym":"European Quality of Life Five Dimension Three Level Scale Test
+  Code","definition":"European Quality of Life Five Dimension Five Level Scale test
+  code.","preferredTerm":"CDISC Questionnaire EQ-5D-3L Test Code Terminology","topLevel":true,"parentIdentifier":"C100136","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100136","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100137","notation":"HAMD
+  17 TEST","synonym":"Hamilton Depression Rating Scale - 17 Item Test Name","definition":"The
+  Hamilton Depression Rating Scale - 17 Item test name.","preferredTerm":"CDISC Questionnaire
+  HAMD 17 Test Name Terminology","topLevel":true,"parentIdentifier":"C100137","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100137","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100138","notation":"HAMD
+  17 TESTCD","synonym":"Hamilton Depression Rating Scale - 17 Item Test Code","definition":"The
+  Hamilton Depression Rating Scale - 17 Item test code.","preferredTerm":"CDISC Questionnaire
+  HAMD 17 Test Code Terminology","topLevel":true,"parentIdentifier":"C100138","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100138","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100139","notation":"MDS-UPDRS
+  TEST","synonym":"Movement Disorder Society UPDRS Test Name","definition":"The Movement
+  Disorder Society version of the Unified Parkinson''s Disease Rating Scale test name.","preferredTerm":"CDISC
+  Questionnaire MDS-UPDRS Test Name Terminology","topLevel":true,"parentIdentifier":"C100139","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100139","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100140","notation":"MDS-UPDRS
+  TESTCD","synonym":"Movement Disorder Society UPDRS Test Code","definition":"The
+  Movement Disorder Society version of the Unified Parkinson''s Disease Rating Scale
+  test code.","preferredTerm":"CDISC Questionnaire MDS-UPDRS Test Code Terminology","topLevel":true,"parentIdentifier":"C100140","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100140","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100143","notation":"NPI
+  TEST","synonym":"Neuropsychiatric Inventory Test Name","definition":"The Neuropsychiatric
+  Inventory test name.","preferredTerm":"CDISC Questionnaire NPI Test Name Terminology","topLevel":true,"parentIdentifier":"C100143","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100143","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100144","notation":"NPI
+  TESTCD","synonym":"Neuropsychiatric Inventory Test Code","definition":"The Neuropsychiatric
+  Inventory test code.","preferredTerm":"CDISC Questionnaire NPI Test Code Terminology","topLevel":true,"parentIdentifier":"C100144","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100144","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100147","notation":"UPDRS
+  TEST","synonym":"Unified Parkinson''s Disease Rating Scale Test Name","definition":"Unified
+  Parkinson''s Disease Rating Scale test name.","preferredTerm":"CDISC Questionnaire
+  UPDRS Test Name Terminology","topLevel":true,"parentIdentifier":"C100147","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C100147","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}}]}'

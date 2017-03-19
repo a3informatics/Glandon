@@ -1,263 +1,41 @@
----
-:count: 14
-:items:
-- !ruby/object:ThesaurusConcept
-  identifier: C25613
-  notation: "%"
-  synonym: Percentage
-  definition: A fraction or ratio with 100 understood as the denominator. (NCI)
-  preferredTerm: Percentage
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C25613
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C28251
-  notation: mm
-  synonym: Millimeter
-  definition: A unit of measure equal to one thousandth of a meter. (NCI)
-  preferredTerm: Millimeter
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C28251
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C28252
-  notation: kg
-  synonym: Kilogram
-  definition: The basic SI unit of mass. It is defined as the mass of an international
-    prototype in the form of a platinum-iridium cylinder kept at Sevres in France.
-    It is the only basic unit still defined in terms of a material object, and also
-    the only one with a prefix [kilo] already in place. A kilogram is equal to 1,000
-    grams and 2.204 622 6 pounds. (NCI)
-  preferredTerm: Kilogram
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C28252
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C42559
-  notation: C
-  synonym: Degree Celsius
-  definition: A unit of temperature of the temperature scale designed so that the
-    freezing point of water is 0 degrees and the boiling point is 100 degrees at standard
-    atmospheric pressure. The current official definition of the Celsius sets 0.01
-    C to be at the triple point of water and a degree to be 1/273.16 of the difference
-    in temperature between the triple point of water and absolute zero. One degree
-    Celsius represents the same temperature difference as one Kelvin. (NCI)
-  preferredTerm: Degree Celsius
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C42559
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C42569
-  notation: m2
-  synonym: Square Meter
-  definition: The SI unit of area measurement equal to a square whose sides are one
-    meter long. Square meter is equal to 10,000 square centimeters; 0.01 ares; 1.196
-    square yards; 10.76 square feet; 1550 square inches. (NCI)
-  preferredTerm: Square Meter
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C42569
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C44277
-  notation: F
-  synonym: Degree Fahrenheit
-  definition: The Fahrenheit temperature scale is named after the German physicist
-    Gabriel Fahrenheit (1686-1736), who proposed it in 1724. In this scale, the freezing
-    point of water is 32 degrees Fahrenheit and the boiling point is 212 degrees,
-    placing the boiling and melting points of water 180 degrees apart. In this scale
-    a degree Fahrenheit is 5/9ths of a Kelvin (or of a degree Celsius), and minus
-    40 degrees Fahrenheit is equal to minus 40 degrees Celsius. (NCI)
-  preferredTerm: Degree Fahrenheit
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C44277
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C48155
-  notation: g
-  synonym: Gram
-  definition: A metric unit of mass equal to one one thousandth of a kilogram. (NCI)
-  preferredTerm: Gram
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C48155
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C48500
-  notation: in
-  synonym: Inch
-  definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
-  preferredTerm: Inch
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C48500
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C48531
-  notation: LB
-  synonym: Pound
-  definition: A traditional unit of mass. By international agreement, one avoirdupois
-    pound is equal to exactly 0.453 592 37 kilogram, 16 ounces, or 1.215 28 troy pounds.
-    (NCI)
-  preferredTerm: Pound
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C48531
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C49668
-  notation: cm
-  synonym: Centimeter
-  definition: A basic unit of length equal to one hundredth of a meter or approximately
-    0.393700787 inch.
-  preferredTerm: Centimeter
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C49668
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C49670
-  notation: mmHg
-  synonym: Millimeter of Mercury
-  definition: A unit of pressure equal to 0.001316 atmosphere and equal to the pressure
-    indicated by one millimeter rise of mercury in a barometer at the Earth's surface.
-    (NCI)
-  preferredTerm: Millimeter of Mercury
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C49670
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C49671
-  notation: kg/m2
-  synonym: Kilogram per Square Meter
-  definition: A unit expressed as kilogram of mass per square meter of area.(NCI)
-  preferredTerm: Kilogram per Square Meter
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C49671
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C49673
-  notation: beats/min
-  synonym: Beats per Minute
-  definition: The number of heartbeats measured per minute time. (NCI)
-  preferredTerm: Beats per Minute
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C49673
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C49674
-  notation: breaths/min
-  synonym: Breaths per Minute
-  definition: The number of breaths (inhalation and exhalation) taken per minute time.
-    (NCI)
-  preferredTerm: Breaths per Minute
-  topLevel: false
-  parentIdentifier: C66770
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66770_C49674
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
+--- '{"count":14,"items":[{"identifier":"C25613","notation":"%","synonym":"Percentage","definition":"A
+  fraction or ratio with 100 understood as the denominator. (NCI)","preferredTerm":"Percentage","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C25613","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C28251","notation":"mm","synonym":"Millimeter","definition":"A
+  unit of measure equal to one thousandth of a meter. (NCI)","preferredTerm":"Millimeter","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C28251","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C28252","notation":"kg","synonym":"Kilogram","definition":"The
+  basic SI unit of mass. It is defined as the mass of an international prototype in
+  the form of a platinum-iridium cylinder kept at Sevres in France. It is the only
+  basic unit still defined in terms of a material object, and also the only one with
+  a prefix [kilo] already in place. A kilogram is equal to 1,000 grams and 2.204 622
+  6 pounds. (NCI)","preferredTerm":"Kilogram","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C28252","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C42559","notation":"C","synonym":"Degree
+  Celsius","definition":"A unit of temperature of the temperature scale designed so
+  that the freezing point of water is 0 degrees and the boiling point is 100 degrees
+  at standard atmospheric pressure. The current official definition of the Celsius
+  sets 0.01 C to be at the triple point of water and a degree to be 1/273.16 of the
+  difference in temperature between the triple point of water and absolute zero. One
+  degree Celsius represents the same temperature difference as one Kelvin. (NCI)","preferredTerm":"Degree
+  Celsius","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C42559","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C42569","notation":"m2","synonym":"Square
+  Meter","definition":"The SI unit of area measurement equal to a square whose sides
+  are one meter long. Square meter is equal to 10,000 square centimeters; 0.01 ares;
+  1.196 square yards; 10.76 square feet; 1550 square inches. (NCI)","preferredTerm":"Square
+  Meter","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C42569","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C44277","notation":"F","synonym":"Degree
+  Fahrenheit","definition":"The Fahrenheit temperature scale is named after the German
+  physicist Gabriel Fahrenheit (1686-1736), who proposed it in 1724. In this scale,
+  the freezing point of water is 32 degrees Fahrenheit and the boiling point is 212
+  degrees, placing the boiling and melting points of water 180 degrees apart. In this
+  scale a degree Fahrenheit is 5/9ths of a Kelvin (or of a degree Celsius), and minus
+  40 degrees Fahrenheit is equal to minus 40 degrees Celsius. (NCI)","preferredTerm":"Degree
+  Fahrenheit","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C44277","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C48155","notation":"g","synonym":"Gram","definition":"A
+  metric unit of mass equal to one one thousandth of a kilogram. (NCI)","preferredTerm":"Gram","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C48155","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C48500","notation":"in","synonym":"Inch","definition":"A
+  traditional unit of length equal to 2.54 centimeters. (NCI)","preferredTerm":"Inch","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C48500","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C48531","notation":"LB","synonym":"Pound","definition":"A
+  traditional unit of mass. By international agreement, one avoirdupois pound is equal
+  to exactly 0.453 592 37 kilogram, 16 ounces, or 1.215 28 troy pounds. (NCI)","preferredTerm":"Pound","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C48531","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C49668","notation":"cm","synonym":"Centimeter","definition":"A
+  basic unit of length equal to one hundredth of a meter or approximately 0.393700787
+  inch.","preferredTerm":"Centimeter","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C49668","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C49670","notation":"mmHg","synonym":"Millimeter
+  of Mercury","definition":"A unit of pressure equal to 0.001316 atmosphere and equal
+  to the pressure indicated by one millimeter rise of mercury in a barometer at the
+  Earth''s surface. (NCI)","preferredTerm":"Millimeter of Mercury","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C49670","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C49671","notation":"kg/m2","synonym":"Kilogram
+  per Square Meter","definition":"A unit expressed as kilogram of mass per square
+  meter of area.(NCI)","preferredTerm":"Kilogram per Square Meter","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C49671","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C49673","notation":"beats/min","synonym":"Beats
+  per Minute","definition":"The number of heartbeats measured per minute time. (NCI)","preferredTerm":"Beats
+  per Minute","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C49673","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C49674","notation":"breaths/min","synonym":"Breaths
+  per Minute","definition":"The number of breaths (inhalation and exhalation) taken
+  per minute time. (NCI)","preferredTerm":"Breaths per Minute","topLevel":false,"parentIdentifier":"C66770","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66770_C49674","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}}]}'

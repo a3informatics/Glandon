@@ -1,277 +1,48 @@
----
-:count: 16
-:items:
-- !ruby/object:ThesaurusConcept
-  identifier: C95802
-  notation: ISCHEMIC STROKE
-  synonym: ''
-  definition: Ischemic stroke is defined as an acute episode of focal cerebral, spinal,
-    or retinal dysfunction caused by infarction of central nervous system tissue.
-  preferredTerm: Ischemic Cerebrovascular Accident
-  topLevel: false
-  parentIdentifier: C119016
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C119016_C95802
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C95803
-  notation: HEMORRHAGIC STROKE
-  synonym: ''
-  definition: An acute episode of focal or global cerebral or spinal dysfunction caused
-    by intraparenchymal, intraventricular, or subarachnoid hemorrhage.
-  preferredTerm: Hemorrhagic Cerebrovascular Accident
-  topLevel: false
-  parentIdentifier: C119016
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C119016_C95803
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C38267
-  notation: INTRATHECAL
-  synonym: ''
-  definition: Administration within the cerebrospinal fluid at any level of the cerebrospinal
-    axis, including injection into the cerebral ventricles. (FDA)
-  preferredTerm: Intrathecal Route of Administration
-  topLevel: false
-  parentIdentifier: C66729
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66729_C38267
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C12352
-  notation: FRONTAL LOBE
-  synonym: Frontal Lobe
-  definition: The part of the brain located anterior to the parietal lobes at the
-    front of each cerebral hemisphere. (NCI)
-  preferredTerm: Frontal Lobe
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C12352
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C12353
-  notation: TEMPORAL LOBE
-  synonym: ''
-  definition: Lower lateral part of the cerebral hemisphere. (MSH2001)
-  preferredTerm: Temporal Lobe
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C12353
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C12354
-  notation: PARIETAL LOBE
-  synonym: Parietal Lobe
-  definition: One of the lobes of the cerebral hemisphere located superiorly to the
-    occipital lobe and posteriorly to the frontal lobe. Cognition and visuospatial
-    processing are its main function. (NCI)
-  preferredTerm: Parietal Lobe
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C12354
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C12355
-  notation: OCCIPITAL LOBE
-  synonym: ''
-  definition: The posterior part of the cerebral hemisphere. (MeSH)
-  preferredTerm: Occipital Lobe
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C12355
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C12441
-  notation: BRAIN STEM
-  synonym: Brain Stem
-  definition: The part of the brain that connects the cerebral hemispheres with the
-    spinal cord. It consists of the mesencephalon, pons, and medulla oblongata. (NCI)
-  preferredTerm: Brain Stem
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C12441
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C12446
-  notation: CORPUS CALLOSUM
-  synonym: ''
-  definition: A white matter structure within the cleft that separates the left and
-    right cerebral hemispheres in the mammalian brain. It is composed of a wide, flat
-    bundle of 200-250 million axonal projections. (NCI)
-  preferredTerm: Corpus Callosum
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C12446
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C12459
-  notation: THALAMUS
-  synonym: Thalamus
-  definition: An ovoid mass composed predominantly of gray substance and associated
-    laminae of white substance. The thalamus is divided into anterior, medial, and
-    lateral parts. The function of the thalamus is to relay sensory impulses and cerebellar
-    and basal ganglia projections to the cerebral cortex. The thalamus is positioned
-    within the posterior part of the diencephalon forming most of each lateral wall
-    of the third ventricle. (NCI)
-  preferredTerm: Thalamus
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C12459
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C12510
-  notation: MIDBRAIN
-  synonym: Mesencephalon; Midbrain
-  definition: The uppermost portion of the brainstem located between the pons and
-    the diencephalon. The midbrain contains the cerebral peduncles, oculomotor, trochlear
-    and red nuclei, substantia nigra and various other nuclei and tracts. (NCI)
-  preferredTerm: Mesencephalon
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C12510
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C32252
-  notation: CALCARINE SULCUS
-  synonym: ''
-  definition: A cerebral fissure that originates near the occipital lobe and terminates
-    below the corpus callosum. (NCI)
-  preferredTerm: Calcarine Sulcus
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C32252
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C40185
-  notation: FOREBRAIN
-  synonym: ''
-  definition: The largest part of the brain composed of the cerebral hemispheres,
-    thalamus, hypothalamus, and the limbic system. (NCI)
-  preferredTerm: Forebrain
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C40185
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C52713
-  notation: CINGULATE CORTEX
-  synonym: ''
-  definition: Part of the medial aspect of the cerebral cortex. (NCI)
-  preferredTerm: Cingulate Cortex
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C52713
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C98712
-  notation: CEREBRAL SUBCORTEX
-  synonym: Cerebral Subcortex
-  definition: The layer located below the cerebral cortex that includes the forebrain,
-    midbrain and hindbrain. (NCI)
-  preferredTerm: Cerebral Subcortex
-  topLevel: false
-  parentIdentifier: C74456
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C74456_C98712
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
+--- '{"count":18,"items":[{"identifier":"C112617","notation":"KFSS1-Cerebral or Mental
+  Functions","synonym":"KFSS1-Cerebral or Mental Functions","definition":"Kurtzke
+  Functional Systems Scores - Cerebral (or mental) functions.","preferredTerm":"KFSS
+  - Cerebral (or Mental) Functions","topLevel":false,"parentIdentifier":"C112442","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C112442_C112617","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C112617","notation":"KFSS107","synonym":"KFSS1-Cerebral
+  or Mental Functions","definition":"Kurtzke Functional Systems Scores - Cerebral
+  (or mental) functions.","preferredTerm":"KFSS - Cerebral (or Mental) Functions","topLevel":false,"parentIdentifier":"C112443","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C112443_C112617","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C95802","notation":"ISCHEMIC
+  STROKE","synonym":"","definition":"Ischemic stroke is defined as an acute episode
+  of focal cerebral, spinal, or retinal dysfunction caused by infarction of central
+  nervous system tissue.","preferredTerm":"Ischemic Cerebrovascular Accident","topLevel":false,"parentIdentifier":"C119016","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C119016_C95802","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C95803","notation":"HEMORRHAGIC
+  STROKE","synonym":"","definition":"An acute episode of focal or global cerebral
+  or spinal dysfunction caused by intraparenchymal, intraventricular, or subarachnoid
+  hemorrhage.","preferredTerm":"Hemorrhagic Cerebrovascular Accident","topLevel":false,"parentIdentifier":"C119016","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C119016_C95803","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C38267","notation":"INTRATHECAL","synonym":"","definition":"Administration
+  within the cerebrospinal fluid at any level of the cerebrospinal axis, including
+  injection into the cerebral ventricles. (FDA)","preferredTerm":"Intrathecal Route
+  of Administration","topLevel":false,"parentIdentifier":"C66729","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66729_C38267","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C12352","notation":"FRONTAL
+  LOBE","synonym":"Frontal Lobe","definition":"The part of the brain located anterior
+  to the parietal lobes at the front of each cerebral hemisphere. (NCI)","preferredTerm":"Frontal
+  Lobe","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C12352","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C12353","notation":"TEMPORAL
+  LOBE","synonym":"","definition":"Lower lateral part of the cerebral hemisphere.
+  (MSH2001)","preferredTerm":"Temporal Lobe","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C12353","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C12354","notation":"PARIETAL
+  LOBE","synonym":"Parietal Lobe","definition":"One of the lobes of the cerebral hemisphere
+  located superiorly to the occipital lobe and posteriorly to the frontal lobe. Cognition
+  and visuospatial processing are its main function. (NCI)","preferredTerm":"Parietal
+  Lobe","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C12354","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C12355","notation":"OCCIPITAL
+  LOBE","synonym":"","definition":"The posterior part of the cerebral hemisphere.
+  (MeSH)","preferredTerm":"Occipital Lobe","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C12355","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C12441","notation":"BRAIN
+  STEM","synonym":"Brain Stem","definition":"The part of the brain that connects the
+  cerebral hemispheres with the spinal cord. It consists of the mesencephalon, pons,
+  and medulla oblongata. (NCI)","preferredTerm":"Brain Stem","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C12441","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C12446","notation":"CORPUS
+  CALLOSUM","synonym":"","definition":"A white matter structure within the cleft that
+  separates the left and right cerebral hemispheres in the mammalian brain. It is
+  composed of a wide, flat bundle of 200-250 million axonal projections. (NCI)","preferredTerm":"Corpus
+  Callosum","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C12446","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C12459","notation":"THALAMUS","synonym":"Thalamus","definition":"An
+  ovoid mass composed predominantly of gray substance and associated laminae of white
+  substance. The thalamus is divided into anterior, medial, and lateral parts. The
+  function of the thalamus is to relay sensory impulses and cerebellar and basal ganglia
+  projections to the cerebral cortex. The thalamus is positioned within the posterior
+  part of the diencephalon forming most of each lateral wall of the third ventricle.
+  (NCI)","preferredTerm":"Thalamus","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C12459","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C12510","notation":"MIDBRAIN","synonym":"Mesencephalon;
+  Midbrain","definition":"The uppermost portion of the brainstem located between the
+  pons and the diencephalon. The midbrain contains the cerebral peduncles, oculomotor,
+  trochlear and red nuclei, substantia nigra and various other nuclei and tracts.
+  (NCI)","preferredTerm":"Mesencephalon","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C12510","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C32252","notation":"CALCARINE
+  SULCUS","synonym":"","definition":"A cerebral fissure that originates near the occipital
+  lobe and terminates below the corpus callosum. (NCI)","preferredTerm":"Calcarine
+  Sulcus","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C32252","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C40185","notation":"FOREBRAIN","synonym":"","definition":"The
+  largest part of the brain composed of the cerebral hemispheres, thalamus, hypothalamus,
+  and the limbic system. (NCI)","preferredTerm":"Forebrain","topLevel":false,"parentIdentifier":"C74456","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C74456_C40185","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}}]}'

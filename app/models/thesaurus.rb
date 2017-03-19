@@ -376,10 +376,10 @@ private
       "    } \n"
     # Filter by search terms, columns and overall
     columns.each do |column|
-      query += "    FILTER regex(#{getOrderVariable(column[0])}, \"#{column[1][:search][:value]}\") . \n" if !column[1][:search][:value].blank?
+      query += "    FILTER regex(#{getOrderVariable(column[0])}, \"#{column[1][:search][:value]}\", 'i') . \n" if !column[1][:search][:value].blank?
     end
     query += "    ?a (iso25964:identifier|iso25964:notation|iso25964:preferredTerm|iso25964:synonym|iso25964:definition) ?i . FILTER regex(?i, \"" + 
-      search[:value] + "\") . \n" if !search[:value].blank?
+      search[:value] + "\", 'i') . \n" if !search[:value].blank?
     query += "  }"
     return query
   end

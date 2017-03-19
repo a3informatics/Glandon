@@ -1,144 +1,55 @@
----
-:count: 8
-:items:
-- !ruby/object:ThesaurusConcept
-  identifier: A00020
-  notation: RACE OTHER
-  synonym: ''
-  definition: Extension to Race Code List
-  preferredTerm: Race Extension
-  topLevel: true
-  parentIdentifier: A00020
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: THC-A00020
-  namespace: http://www.assero.co.uk/MDRThesaurus/ACME/V1
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C74457
-  notation: RACE
-  synonym: Race
-  definition: Terminology codelist used to identify the race of an individual within
-    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
-  preferredTerm: CDISC SDTM Race Terminology
-  topLevel: true
-  parentIdentifier: C74457
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CL-C74457
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C38232
-  notation: INTRACEREBRAL
-  synonym: ''
-  definition: Administration within the cerebrum. (FDA)
-  preferredTerm: Intracerebral Route of Administration
-  topLevel: false
-  parentIdentifier: C66729
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C66729_C38232
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C48547
-  notation: TRACE
-  synonym: Trace Dosing Unit
-  definition: An extremely small amount.(NCI)
-  preferredTerm: Trace Dosing Unit
-  topLevel: false
-  parentIdentifier: C71620
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C71620_C48547
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C86241
-  notation: CAPNOCYTOPHAGA OCHRACEA
-  synonym: ''
-  definition: Any bacterial organism that can be assigned to the species Capnocytophaga
-    ochracea.
-  preferredTerm: Capnocytophaga ochracea
-  topLevel: false
-  parentIdentifier: C85491
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C85491_C86241
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C91843
-  notation: MYCOBACTERIUM INTRACELLULARE
-  synonym: ''
-  definition: Any bacterial organism that can be assigned to the species Mycobacterium
-    intracellulare.
-  preferredTerm: Mycobacterium intracellulare
-  topLevel: false
-  parentIdentifier: C85491
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C85491_C91843
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C120681
-  notation: ANALYTICAL ULTRACENTRIFUGATION
-  synonym: ''
-  definition: A high-speed centrifugation-based method that uses an optical detection
-    system to monitor and record data during the centrifugation process.
-  preferredTerm: Analytical Ultracentrifugation
-  topLevel: false
-  parentIdentifier: C85492
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C85492_C120681
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
-- !ruby/object:ThesaurusConcept
-  identifier: C122164
-  notation: ENZYMATIC ULTRACENTRIFUGATION
-  synonym: ''
-  definition: A high-speed centrifugation-based method that uses enzymatic catalytic
-    reaction to quantify a substance.
-  preferredTerm: Enzymatic Ultracentrifugation
-  topLevel: false
-  parentIdentifier: C85492
-  children: []
-  rdf_type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  id: CLI-C85492_C122164
-  namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  label: ''
-  properties: []
-  links: []
-  extension_properties: []
-  triples: {}
+--- '{"count":37,"items":[{"identifier":"A00020","notation":"RACE OTHER","synonym":"","definition":"Extension
+  to Race Code List","preferredTerm":"Race Extension","topLevel":true,"parentIdentifier":"A00020","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"THC-A00020","namespace":"http://www.assero.co.uk/MDRThesaurus/ACME/V1","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C74457","notation":"RACE","synonym":"Race","definition":"Terminology
+  codelist used to identify the race of an individual within the Clinical Data Interchange
+  Standards Consortium Study Data Tabulation Model.","preferredTerm":"CDISC SDTM Race
+  Terminology","topLevel":true,"parentIdentifier":"C74457","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C74457","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"A00021","notation":"OTHER
+  OR MIXED","synonym":"","definition":"Other or mixed race","preferredTerm":"Other
+  / Mixed","topLevel":false,"parentIdentifier":"A00020","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"THC-A00021","namespace":"http://www.assero.co.uk/MDRThesaurus/ACME/V1","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C103371","notation":"BASIC
+  DATA STRUCTURE","synonym":"BDS","definition":"An ADaM BDS dataset contains one or
+  more records per subject, per analysis parameter, per analysis time point. Variables
+  include the value being analyzed (e.g., AVAL) and the description of the value being
+  analyzed (e.g., PARAM). Other variables in the dataset provide more information
+  about the value being analyzed (e.g., the subject identification) or describe and
+  trace the derivation of it (e.g., DTYPE) or support the analysis of it (e.g., treatment
+  variables, covariates).","preferredTerm":"CDISC Basic Data Structure Dataset","topLevel":false,"parentIdentifier":"C103329","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C103329_C103371","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C103723","notation":"PHQ02-Feeling
+  Your Heart Pound or Race","synonym":"PHQ02-Feeling Your Heart Pound or Race","definition":"Patient
+  Health Questionnaire - 15 - Feeling your heart pound or race.","preferredTerm":"PHQ-15
+  - Feeling Your Heart Pound or Race","topLevel":false,"parentIdentifier":"C103482","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C103482_C103723","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C103723","notation":"PHQ0209","synonym":"PHQ02-Feeling
+  Your Heart Pound or Race","definition":"Patient Health Questionnaire - 15 - Feeling
+  your heart pound or race.","preferredTerm":"PHQ-15 - Feeling Your Heart Pound or
+  Race","topLevel":false,"parentIdentifier":"C103483","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C103483_C103723","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C116127","notation":"Decay
+  Correction Indicator","synonym":"Decay Correction Indicator","definition":"An indication
+  as to whether the image reconstruction took into account the time-activity curve
+  during which the radiolabeled tracer decayed as it spread through the body during
+  the image acquisition.","preferredTerm":"Decay Correction Indicator","topLevel":false,"parentIdentifier":"C106482","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C106482_C116127","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C116127","notation":"DECCORR","synonym":"Decay
+  Correction Indicator","definition":"An indication as to whether the image reconstruction
+  took into account the time-activity curve during which the radiolabeled tracer decayed
+  as it spread through the body during the image acquisition.","preferredTerm":"Decay
+  Correction Indicator","topLevel":false,"parentIdentifier":"C106483","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C106483_C116127","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C124425","notation":"LCI","synonym":"Lung
+  Clearance Index","definition":"A representative measurement of the number of times
+  the volume of air in the lung at the start of the washout (the Functional Residual
+  Capacity) must be recycled to eliminate the tracer to the pre-defined endpoint.","preferredTerm":"Lung
+  Clearance Index","topLevel":false,"parentIdentifier":"C111106","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C111106_C124425","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C124425","notation":"Lung
+  Clearance Index","synonym":"Lung Clearance Index","definition":"A representative
+  measurement of the number of times the volume of air in the lung at the start of
+  the washout (the Functional Residual Capacity) must be recycled to eliminate the
+  tracer to the pre-defined endpoint.","preferredTerm":"Lung Clearance Index","topLevel":false,"parentIdentifier":"C111107","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C111107_C124425","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C28512","notation":"mtDNA","synonym":"Mitochondrial
+  DNA; mDNA","definition":"Typically small, circular, intronless, and maternally inherited,
+  mitochondrial DNA (mtDNA) is the multicopy deoxyribonucleic acid genome of mitochondria,
+  intracellular organelles responsible for vital respiratory chain and oxidative phosphorylation
+  reactions in higher eukaryotes. Replicated and transcribed by a separate enzymatic
+  machinery from that of nuclear DNA, mtDNA encodes only a subset of mitochondrial
+  functions.","preferredTerm":"Mitochondrial DNA","topLevel":false,"parentIdentifier":"C111114","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C111114_C28512","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C63637","notation":"RNA
+  Integrity Number","synonym":"RNA Integrity Number","definition":"A numerical assessment
+  of the integrity of RNA based on the entire electrophoretic trace of the RNA sample,
+  including the presence or absence of degradation products. (NCI)","preferredTerm":"RNA
+  Integrity Number","topLevel":false,"parentIdentifier":"C124299","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C124299_C63637","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C63637","notation":"RIN","synonym":"RNA
+  Integrity Number","definition":"A numerical assessment of the integrity of RNA based
+  on the entire electrophoretic trace of the RNA sample, including the presence or
+  absence of degradation products. (NCI)","preferredTerm":"RNA Integrity Number","topLevel":false,"parentIdentifier":"C124300","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C124300_C63637","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100426","notation":"BTP","synonym":"Beta-Trace
+  Protein","definition":"A measurement of the beta-trace protein in a biological specimen.","preferredTerm":"Beta-Trace
+  Protein Measurement","topLevel":false,"parentIdentifier":"C65047","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C65047_C100426","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C100449","notation":"GFRBSBTP","synonym":"GFR
+  from Beta-Trace Protein Adj for BSA","definition":"A measurement of the glomerular
+  filtration rate (GFR) based on the clearance of beta-trace protein after adjusting
+  it for the body surface area.","preferredTerm":"Glomerular Filtration Rate from
+  Beta-Trace Protein Adjusted for BSA Measurement","topLevel":false,"parentIdentifier":"C65047","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C65047_C100449","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}}]}'

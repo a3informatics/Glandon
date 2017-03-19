@@ -55,64 +55,72 @@ describe Thesaurus do
   it "allows a terminology to be searched, no search parameters" do
     params = standard_params
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_1.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_1.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_1.yaml")
+    expect(results.to_json).to eq(expected)
   end
 
   it "allows a terminology to be searched, code list identifier" do
     params = standard_params
     params[:columns]["0"][:search][:value] = "C66770"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_2.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_2.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_2.yaml")
+    expect(results.to_json).to eq(expected)
   end
 
   it "allows a terminology to be searched, item identifier" do
     params = standard_params
     params[:columns]["1"][:search][:value] = "C66770"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_3.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_3.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_3.yaml")
+    expect(results.to_json).to eq(expected)
   end
 
   it "allows a terminology to be searched, submission value" do
     params = standard_params
     params[:columns]["2"][:search][:value] = "TEMP"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_4.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_4.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_4.yaml")
+    expect(results.to_json).to eq(expected)
   end
 
   it "allows a terminology to be searched, preferred term"  do
     params = standard_params
     params[:columns]["3"][:search][:value] = "brain"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_5.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_5.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_5.yaml")
+    expect(results.to_json).to eq(expected)
   end
 
   it "allows a terminology to be searched, synonym" do
     params = standard_params
     params[:columns]["4"][:search][:value] = "Category"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_6.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_6.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_6.yaml")
+    expect(results.to_json).to eq(expected)
   end
 
   it "allows a terminology to be searched, definition" do
     params = standard_params
     params[:columns]["5"][:search][:value] = "cerebral"
     results = Thesaurus.search(params)
-    write_yaml_file(results, sub_dir, "thesaurus_search_7.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_7.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_7.yaml")
+    expect(results.to_json).to eq(expected)
   end 
 
   it "allows a terminology to be searched, overall" do
     params = standard_params
     params[:search][:value] = "nitrogen"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_8.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_8.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_8.yaml")
+    expect(results.to_json).to eq(expected)
   end 
 
   it "allows a terminology to be searched, combination column and overall" do
@@ -120,8 +128,9 @@ describe Thesaurus do
     params[:columns]["5"][:search][:value] = "cerebral"
     params[:search][:value] = "Temporal"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_9.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_9.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_9.yaml")
+    expect(results.to_json).to eq(expected)
   end  
 
   it "allows a terminology to be searched, combination columns" do
@@ -129,8 +138,9 @@ describe Thesaurus do
     params[:columns]["2"][:search][:value] = "VST"
     params[:columns]["3"][:search][:value] = "Test"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_10.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_10.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_10.yaml")
+    expect(results.to_json).to eq(expected)
   end  
 
   it "allows a terminology to be searched, overall, column order 2" do
@@ -139,27 +149,67 @@ describe Thesaurus do
     params[:order]["0"][:column] = "2"
     params[:order]["0"][:dir] = "desc"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_11.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_11.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_11.yaml")
+    expect(results.to_json).to eq(expected)
   end 
 
-  it "allows the current terminologies to be searched, initial" do
+  it "allows the current terminologies to be searched, initial search, no parameters" do
     params = standard_params
     params[:id] = ""
     params[:namespace] = ""
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_12.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_12.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_12.yaml")
+    expect(results.to_json).to eq(expected)
   end
 
-  it "allows the current terminologies to be searched, initial" do
+  it "allows the current terminologies to be searched, several terminologies returning results" do
     params = standard_params
     params[:id] = ""
     params[:namespace] = ""
     params[:search][:value] = "RACE"
     results = Thesaurus.search(params)
-    #write_yaml_file(results, sub_dir, "thesaurus_search_14.yaml")
+  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_14.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_14.yaml")
+    expect(results.to_json).to eq(expected)
   end
+
+  it "allows a terminology to be searched, overall, case sensitivity" do
+    params = standard_params
+    params[:search][:value] = "nitrogen"
+    results1 = Thesaurus.search(params)
+    params[:search][:value] = "NITROGEN"
+    results2 = Thesaurus.search(params)
+  #write_yaml_file(results1.to_json, sub_dir, "thesaurus_search_15.yaml")
+    expected = read_yaml_file(sub_dir, "thesaurus_search_15.yaml")
+    expect(results1.to_json).to eq(expected)
+    expect(results2.to_json).to eq(expected)
+  end 
+
+  it "allows a terminology to be searched, item identifier, case sensitivity" do
+    params = standard_params
+    params[:columns]["1"][:search][:value] = "c66770"
+    results = Thesaurus.search(params)
+    expected = read_yaml_file(sub_dir, "thesaurus_search_3.yaml")
+    expect(results.to_json).to eq(expected)
+  end
+
+  it "allows a terminology to be searched, submission value, case sensitivity" do
+    params = standard_params
+    params[:columns]["2"][:search][:value] = "temp"
+    results = Thesaurus.search(params)
+    expected = read_yaml_file(sub_dir, "thesaurus_search_4.yaml")
+    expect(results.to_json).to eq(expected)
+  end
+
+  it "allows a terminology to be searched, combination column and overall, case sensitivity" do
+    params = standard_params
+    params[:columns]["5"][:search][:value] = "cERebral"
+    params[:search][:value] = "TEMPoral"
+    results = Thesaurus.search(params)
+    expected = read_yaml_file(sub_dir, "thesaurus_search_9.yaml")
+    expect(results.to_json).to eq(expected)
+  end  
 
 end
