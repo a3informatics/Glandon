@@ -82,6 +82,7 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
       fill_in 'iso_managed_explanatoryComment', with: 'No difficulties encountered'
       fill_in 'iso_managed_origin', with: 'See the website http://www.euroqol.org'
       click_button 'Submit'
+    #pause
       expect_page 'History: QS TERM'
 
       click_main_table_link("0.1.0", "Edit")

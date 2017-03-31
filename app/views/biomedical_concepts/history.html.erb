@@ -1,5 +1,7 @@
 <%= javascript_include_tag 'standard_datatable' %>
-<% second_level_breadcrumb("Biomedical Concepts", biomedical_concepts_path, @identifier) %>
+<% index_label = "Biomedical Concepts" %>
+<% index_path = biomedical_concepts_path %>
+<% second_level_breadcrumb(index_label, index_path, @identifier) %>
 <h3>History: <%= @identifier %></h3>
 <div class="row">
 	<div class="col-md-12">
@@ -19,7 +21,9 @@
 		  					:viewPath => "",
 		  					:editPath => edit_biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }),
 		  					:deletePath => biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }),
-		  					:mi_class => BiomedicalConcept 
+		  					:index_label => index_label,
+								:index_path => index_path,
+								:mi_class => BiomedicalConcept 
 		  				} %>
 				<% end %>				
 			</tbody>
@@ -36,7 +40,8 @@
     			<%= render partial: "shared/commentHistoryRow", 
 						:locals => { 
 							:item => item,
-							:editPath => edit_iso_managed_path(:id => item.id, :namespace => item.namespace),
+							:index_label => index_label,
+							:index_path => index_path,
 							:mi_class => BiomedicalConcept
 						} %>  
     		<% end %>

@@ -16,11 +16,8 @@ class IsoConceptSystemsController < ApplicationController
   
   def create
     authorize IsoConceptSystem
-    ConsoleLogger.debug(C_CLASS_NAME, "show", "Params=#{the_params.to_json}")
     @conceptSystem = IsoConceptSystem.create(the_params)
-    ConsoleLogger.debug(C_CLASS_NAME, "show", "Concept System=#{@conceptSystem.to_json}")
     if @conceptSystem.errors.blank?
-      ConsoleLogger.debug(C_CLASS_NAME, "show", "No errors")
       flash[:success] = 'Concept system was successfully created.'
     else
       flash[:error] = "Concept system was not created. #{@conceptSystem.errors.full_messages.to_sentence}."
@@ -61,9 +58,7 @@ class IsoConceptSystemsController < ApplicationController
 
   def show
     authorize IsoConceptSystem
-    ConsoleLogger.debug(C_CLASS_NAME, "show", "Params=#{params.to_json}")
     @conceptSystem = IsoConceptSystem.find(params[:id], params[:namespace])
-    ConsoleLogger.debug(C_CLASS_NAME, "show", "Concept System=#{@conceptSystem.to_json}")
   end
   
   def view

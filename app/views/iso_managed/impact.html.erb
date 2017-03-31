@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag    'd3_graph' %>
 <%= javascript_include_tag 'd3_graph', 'iso_concept_impact', 'colour' %>
+<% fourth_level_managed_item_breadcrumb(@item, @index_label, @index_path, @history_path, "", @referer, "Impact") %>
 <h3>Impact Analysis: <%= @item.label %></h3>
 <script id="jsonData" type="text/json">
     <%= raw @results.to_json %>

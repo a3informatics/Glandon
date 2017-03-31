@@ -25,35 +25,6 @@ describe IsoConceptSystem::Node do
     clear_iso_registration_state_object
   end
 
-=begin
-  it "allows the object to be created from json" do
-    json =     
-      { 
-        :type => "",
-        :id => "", 
-        :namespace => "", 
-        :label => "Node 3",
-        :extension_properties => [],
-        :description => "Description 3",
-        :children => []
-      }
-    concept = IsoConceptSystem::Node.create(json)
-    result = concept.to_json
-    expected =     
-      { 
-        :type => "http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode",
-        :id => "", 
-        :namespace => "http://www.assero.co.uk/MDRConcepts", 
-        :label => "Node 3",
-        :extension_properties => [],
-        :description => "Description 3",
-        :children => []
-      }
-    expected[:id] = concept.id # Needed because contains a timestamp
-    expect(result).to eq(expected)
-  end
-=end
-
   it "allows a child object to be added" do
     concept = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
     json =     
@@ -73,6 +44,51 @@ describe IsoConceptSystem::Node do
     expect(new_concept.errors.count).to eq(0)
     new_concept = IsoConceptSystem::Node.find(new_concept.id, "http://www.assero.co.uk/MDRConcepts", false)
     expect(new_concept.to_json).to eq(json)
+  end
+
+  it "allows the system to be found, I" do
+    cs_uri = IsoConceptSystem::Node.find_system("GSC-C3_2", "http://www.assero.co.uk/MDRConcepts")
+    uri =  
+    { 
+      id: "GSC-C",
+      namespace: "http://www.assero.co.uk/MDRConcepts",
+    }
+    expect(cs_uri.to_json).to eq(uri)
+  end
+
+  it "allows the system to be found, II" do
+    cs_uri = IsoConceptSystem::Node.find_system("GSC-C2", "http://www.assero.co.uk/MDRConcepts")
+    uri =  
+    { 
+      id: "GSC-C",
+      namespace: "http://www.assero.co.uk/MDRConcepts",
+    }
+    expect(cs_uri.to_json).to eq(uri)
+  end
+
+  it "allows the system to be found, III" do
+    cs_uri = IsoConceptSystem::Node.find_system("GSC-C", "http://www.assero.co.uk/MDRConcepts")
+    uri =  
+    { 
+      id: "GSC-C",
+      namespace: "http://www.assero.co.uk/MDRConcepts",
+    }
+    expect(cs_uri.to_json).to eq(uri)
+  end
+
+  it "allows the parent to be found, I" do
+    csn_uri = IsoConceptSystem::Node.find_parent("GSC-C3_2", "http://www.assero.co.uk/MDRConcepts")
+    uri =  
+    { 
+      id: "GSC-C3",
+      namespace: "http://www.assero.co.uk/MDRConcepts",
+    }
+    expect(csn_uri.to_json).to eq(uri)
+  end
+
+  it "allows the parent to be found, II" do
+    csn_uri = IsoConceptSystem::Node.find_parent("GSC-C3", "http://www.assero.co.uk/MDRConcepts")
+    expect(csn_uri).to eq(nil)
   end
 
   it "prevents a child object being added from invalid json" do
@@ -132,26 +148,6 @@ describe IsoConceptSystem::Node do
     updated_expected = expected.gsub("NNNNNNNNNN", timestamps[0]) # Update the expected results with the timestamp
     expect(result.to_s).to eq(updated_expected)
   end
-
-=begin
-  it "handles a bad response error - create" do
-    response = Typhoeus::Response.new(code: 200, body: "")
-    expect(Rest).to receive(:sendRequest).and_return(response)
-    expect(response).to receive(:success?).and_return(false)
-    json =     
-      { 
-        :type => "",
-        :id => "", 
-        :namespace => "", 
-        :label => "Node 3",
-        :extension_properties => [],
-        :description => "Description 3",
-        :children => []
-      }
-    new_object = IsoConceptSystem::Node.create(json)
-    expect(new_object.errors.count).to eq(1)
-  end
-=end
 
   it "handles a bad response error - add" do
     concept = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)

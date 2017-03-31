@@ -75,7 +75,7 @@ module ApplicationHelper
 
   # Second Level Breadcrumb
   #
-  # @param parent_text [String] the parent-level breadcrumb link test
+  # @param parent_text [String] the parent-level breadcrumb link text
   # @param parent_link [String] the parent-level link
   # @param text [String] the second-level breadcrumb link text
   # @return [Null]
@@ -86,7 +86,22 @@ module ApplicationHelper
   # Third Level Breadcrumb
   #
   # @param managed_item [Object] the managed item
-  # @param parent_text [String] the parent-level breadcrumb link test
+  # @param parent_text [String] the parent-level breadcrumb link text
+  # @param parent_link [String] the parent-level link
+  # @param second_level_text [String] the second-level breadcrumb link text
+  # @param second_level_link [String] the second-level link
+  # @param third_level_action [String] the third-level prefix for the link text
+  # @return [Null]
+  def third_level_breadcrumb(parent_text, parent_link, second_level_text, second_level_link, third_level_text)
+    breadcrumb ([{link: parent_link, text: "#{parent_text}"}, 
+      {link: second_level_link, text: "#{second_level_text}"}, 
+      {link: "#", text: "#{third_level_text}"}])
+  end
+
+  # Third Level Managed-Item Breadcrumb
+  #
+  # @param managed_item [Object] the managed item
+  # @param parent_text [String] the parent-level breadcrumb link text
   # @param parent_link [String] the parent-level link
   # @param second_level_link [String] the second-level link
   # @param third_level_action [String] the third-level prefix for the link text
@@ -100,12 +115,30 @@ module ApplicationHelper
   # Fourth Level Breadcrumb
   #
   # @param managed_item [Object] the managed item
-  # @param parent_text [String] the parent-level breadcrumb link test
+  # @param parent_text [String] the parent-level breadcrumb link text
+  # @param parent_link [String] the parent-level link
+  # @param second_level_text [String] the second-level breadcrumb link text
+  # @param second_level_link [String] the second-level link
+  # @param third_level_action [String] the third-level prefix for the link text
+  # @param third_level_link [String] the third-level link
+  # @param fourth_level_text [String] the third-level link
+  # @return [Null]
+  def fourth_level_breadcrumb(parent_text, parent_link, second_level_text, second_level_link, third_level_text, third_level_link, fourth_level_text)
+    breadcrumb ([{link: parent_link, text: "#{parent_text}"}, 
+      {link: second_level_link, text: "#{second_level_text}"}, 
+      {link: third_level_link, text: "#{third_level_text}"},
+      {link: "#", text: "#{fourth_level_text}"}])
+  end
+
+  # Fourth Level Managed-Item Breadcrumb
+  #
+  # @param managed_item [Object] the managed item
+  # @param parent_text [String] the parent-level breadcrumb link text
   # @param parent_link [String] the parent-level link
   # @param second_level_link [String] the second-level link
   # @param third_level_action [String] the third-level prefix for the link text
   # @param third_level_link [String] the third-level link
-  # @param fourthe_level_text [String] the third-level link
+  # @param fourth_level_text [String] the third-level link
   # @return [Null]
   def fourth_level_managed_item_breadcrumb(managed_item, parent_text, parent_link, second_level_link, third_level_action, third_level_link, fourth_level_text)
     breadcrumb ([{link: parent_link, text: "#{parent_text}"}, 

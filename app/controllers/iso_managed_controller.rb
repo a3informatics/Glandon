@@ -13,18 +13,24 @@ class IsoManagedController < ApplicationController
 
   def status
     authorize IsoManaged
-    @referer = request.referer
-    @managed_item = IsoManaged.find(params[:id], params[:namespace], false)
+    @index_label = this_params[:index_label]
+    @index_path = this_params[:index_path]
+    @managed_item = IsoManaged.find(params[:id], this_params[:namespace], false)
     @registration_state = @managed_item.registrationState
     @scoped_identifier = @managed_item.scopedIdentifier
-    @current_id = params[:current_id]
+    @current_id = this_params[:current_id]
     @owner = IsoRegistrationAuthority.owner.shortName == @managed_item.owner
+    @referer = request.referer
+    @close_path = TypePathManagement.history_url(@managed_item.rdf_type, @managed_item.identifier, @managed_item.scopedIdentifier.namespace.id)
   end
 
   def edit
     authorize IsoManaged
-    @managed_item = IsoManaged.find(params[:id], params[:namespace], false)
+    @managed_item = IsoManaged.find(params[:id], this_params[:namespace], false)
+    @index_label = this_params[:index_label]
+    @index_path = this_params[:index_path]
     @referer = request.referer
+    @close_path = TypePathManagement.history_url(@managed_item.rdf_type, @managed_item.identifier, @managed_item.scopedIdentifier.namespace.id)
   end
 
   def edit_tags
@@ -128,7 +134,11 @@ class IsoManagedController < ApplicationController
   def impact
     authorize IsoManaged, :show?
     map = {}
+    @index_label = this_params[:index_label]
+    @index_path = this_params[:index_path]
     @item = IsoManaged.find(params[:id], params[:namespace], false)
+    @history_path = TypePathManagement.history_url(@item.rdf_type, @item.identifier, @item.scopedIdentifier.namespace.id)
+    @referer = request.referer
     managed_items = @item.find_links_from_to(from=false)
     managed_items.each do |result|
       result[:uri] = result[:uri].to_s
@@ -139,7 +149,7 @@ class IsoManagedController < ApplicationController
 private
 
   def this_params
-    params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer)
+    params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer, :index_path, :index_label, :current_id)
   end
 
 end

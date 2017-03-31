@@ -9,6 +9,11 @@
 	}
 
 </style>
+<% if @index_label == "" %>
+	<% second_level_breadcrumb(@managed_item.identifier, @close_path, "Status:") %>
+<% else %>
+	<% third_level_managed_item_breadcrumb(@managed_item, @index_label, @index_path, @close_path, "Status:") %>
+<% end %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Status:", :item => @managed_item} %>
 <div class="row">
 	<% state = @registration_state.registrationStatus %>
@@ -57,7 +62,7 @@
 				<% end %>
 			</div>
 		</div>
-		<%= link_to "Close", TypePathManagement.history_url(@managed_item.rdf_type, @managed_item.identifier, @scoped_identifier.namespace.id), :class => "btn btn-primary" %>
+		<%= link_to "Close", @close_path, :class => "btn btn-primary" %>  
 	</div>
 	<div class="col-md-4">
 		<div class="panel panel-default">

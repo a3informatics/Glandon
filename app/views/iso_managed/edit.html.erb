@@ -1,35 +1,43 @@
 <%= javascript_include_tag 'iso_managed_comment_edit', 'ajax_requests', 'field_validation' %>
+<% third_level_managed_item_breadcrumb(@managed_item, @index_label, @index_path, @close_path, "Comments:") %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Comments:", :item => @managed_item} %>
 <div class="row">
 	<div class="col-md-7">
-		<%= form_for @managed_item, :html=> {:id => 'main_form'} do |f| %>
-			<div class="form-group">
-			    <%= f.label :changeDescription, "Change Description:" %><br />
-			    <%= f.text_area :changeDescription, autofocus: true, class: "form-control", rows:5 %>
-			</div>
-			<div class="form-group">
-			    <%= f.label :explanatoryComment, "Comments:" %><br />
-			    <%= f.text_area :explanatoryComment, class: "form-control", rows:5 %>
-			</div>
-			<div class="form-group">
-			    <%= f.label :origin, "References / Supporting Information:" %><br />
-			    <%= f.text_area :origin, class: "form-control", rows:5 %>
-			</div>
-			<%= f.hidden_field :namespace, :value => @managed_item.namespace %>  
-			<%= f.hidden_field :referer, :value => @referer %>  
-      <%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
-		<% end %>
+		<div id="markdown_panel" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Comments</h3>
+      </div>
+      <div class="panel-body">
+				<%= form_for @managed_item, :html=> {:id => 'main_form'} do |f| %>
+					<div class="form-group">
+					    <%= f.label :changeDescription, "Change Description:" %><br />
+					    <%= f.text_area :changeDescription, autofocus: true, class: "form-control", rows: 8 %>
+					</div>
+					<div class="form-group">
+					    <%= f.label :explanatoryComment, "Comments:" %><br />
+					    <%= f.text_area :explanatoryComment, class: "form-control", rows: 8 %>
+					</div>
+					<div class="form-group">
+					    <%= f.label :origin, "References / Supporting Information:" %><br />
+					    <%= f.text_area :origin, class: "form-control", rows: 8 %>
+					</div>
+					<%= f.hidden_field :namespace, :value => @managed_item.namespace %>  
+					<%= f.hidden_field :referer, :value => @referer %>  
+		      <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+				<% end %>
+      </div>
+    </div>
+		<%= link_to "Close", @close_path, :class => "btn btn-primary" %>  
 	</div>
 	<div class="col-md-5" >
-    <br/>
     <div id="markdown_panel" class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Markdown Preview</h3>
-        </div>
-        <div class="panel-body">
-            <div id="generic_markdown"></div>
-            <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
-        </div>
+      <div class="panel-heading">
+        <h3 class="panel-title">Markdown Preview</h3>
+      </div>
+      <div class="panel-body">
+	      <div id="generic_markdown"></div>
+	      <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+      </div>
     </div>
 	</div>
 </div>

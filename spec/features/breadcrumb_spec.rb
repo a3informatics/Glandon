@@ -111,10 +111,29 @@ describe "Breadcrumb", :type => :feature do
       next_link_crumb(1, 'Classifications', "Classifications", "", "")
       next_link('View', 'Tag Viewer', "Classifications", "View", "")
       next_link_crumb(1, 'Classifications', "Classifications", "", "")
+      next_link('New', "New Classification", "Classifications", "New", "", "")
+      expect(page).to have_content("New Classification")
+      fill_in 'iso_concept_system_label', with: 'XXXX'
+      fill_in 'iso_concept_system_description', with: 'XXXX Description'
+      click_button 'Create'
+    #save_and_open_page
+      next_link_table("XXXX", "Show", "Classification:", "Classifications", "Show", "", "")
+      next_link('New', "New Tag", "Classifications", "New Tag", "", "")
+      expect(page).to have_content("New Tag")
+      fill_in 'iso_concept_system_label', with: 'XXXX_1'
+      fill_in 'iso_concept_system_description', with: 'XXXX_1 Description'
+      click_button 'Create'
+      next_link_table("XXXX_1", "Show", "Tag:", "Classifications", "XXXX", "Show", "")
+      next_link('New', 'New Tag', "Classifications", "XXXX", "", "")
+    sleep 1 # Not sure why this is required but without it get nasty error
+      expect(page).to have_content("New Tag")
+      fill_in 'iso_concept_system_label', with: 'XXXX_1_1'
+      fill_in 'iso_concept_system_description', with: 'XXXX_1_1 Description'
+      click_button 'Create'
+      next_link_table("XXXX_1_1", "Show", "Tag:", "Classifications", "XXXX", "XXXX_1", "Show")
+    #save_and_open_page
     end
     
-    it "has Classifications (tags) breadcrumbs - MORE TESTS"
-
     #it "has Notepad breadcrumbs" do
     #  next_link('Notepad', 'Index: Notepad', "Notepad", "", "")
     #end
@@ -154,6 +173,10 @@ describe "Breadcrumb", :type => :feature do
       next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "BC C49677", "")
       next_link_table("1.0.0", "Show", "Show: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Show: V1.0.0")
       next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
+      next_link_table("1.0.0", "Status", "Status: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Status: V1.0.0")
+      next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
+      next_link_table("2016-Jan-01, 00:00", "Edit", "Comments: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Comments: V1.0.0")
+      next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
     end
     
     it "has Forms breadcrumbs" do
@@ -174,6 +197,8 @@ describe "Breadcrumb", :type => :feature do
       #next_link_crumb(3, 'View:', "Forms", "CRF TEST 1", "View: V0.0.0")
       #next_link('form_view_acrf', 'Annotated CRF: CRF Test Form', "Forms", "CRF TEST 1", "View: V0.0.0", "aCRF")
       #next_link_crumb(3, 'View:', "Forms", "CRF TEST 1", "View: V0.0.0")
+      next_link_crumb(2, 'History:', "Forms", "CRF TEST 1", "")
+      next_link_table("CRF TEST 1", "Status", "Status: CRF Test Form", "Forms", "CRF TEST 1", "Status: V0.0.0")
       next_link_crumb(2, 'History:', "Forms", "CRF TEST 1", "")
     end
     

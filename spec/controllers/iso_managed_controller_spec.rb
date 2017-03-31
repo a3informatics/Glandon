@@ -61,22 +61,22 @@ describe IsoManagedController do
     it "return the status of a managed item" do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      get :status, { id: "F-ACME_TEST", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }
+      get :status, { id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }}
       expect(assigns(:managed_item).to_json).to eq(managed_item.to_json)
       expect(assigns(:registration_state).to_json).to eq(managed_item.registrationState.to_json)
       expect(assigns(:scoped_identifier).to_json).to eq(managed_item.scopedIdentifier.to_json)
       expect(assigns(:current_id)).to eq("test")
       expect(assigns(:owner)).to eq(true)
-      expect(assigns(:referer)).to eq("http://test.host/xxx")
+      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=NS-BBB")
       expect(response).to render_template("status")
     end
 
     it "allows a managed item to be edited" do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      get :edit, {id: "F-ACME_TEST", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
+      get :edit, {id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(assigns(:managed_item).to_json).to eq(managed_item.to_json)
-      expect(assigns(:referer)).to eq("http://test.host/xxx")
+      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=NS-BBB")
       expect(response).to render_template("edit")
     end
 
@@ -170,7 +170,7 @@ describe IsoManagedController do
     it "determines the change impact for managed item" do
       bc = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
       results = { item: bc.to_json, children: [{:uri=>"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1", :rdf_type=>"http://www.assero.co.uk/BusinessForm#Form"}] }
-      get :impact, {id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
+      get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" , iso_managed: { index_label: "LABEL", index_path: "/test" }}
       expect(assigns(:results)).to eq(results)
     end
 

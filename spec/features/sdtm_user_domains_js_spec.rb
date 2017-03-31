@@ -38,6 +38,7 @@ describe "SDTM User Domains", :type => :feature do
       user = User.create :email => "curator@example.com", :password => "12345678" 
       user.add_role :curator
       Token.set_timeout(60)
+      clear_downloads
     end
 
     after :all do
