@@ -118,10 +118,14 @@ class CdiscTermsController < ApplicationController
 
   def changes
     authorize CdiscTerm, :view?
+    version = get_version
     ct = CdiscTerm.current
     @identifier = ct.identifier
     @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-    @cls = CdiscTerm::Utility.transpose_results(@results)
+  	@trimmed_results = CdiscTerm::Utility.trim_results(@results, version, current_user.max_term_display.to_i)
+    @previous_version = CdiscTerm::Utility.previous_version(@results, @trimmed_results)
+    @next_version = CdiscTerm::Utility.next_version(@results, @trimmed_results)
+  	@cls = CdiscTerm::Utility.transpose_results(@trimmed_results)
   end
 
   def changes_report
@@ -169,53 +173,6 @@ class CdiscTermsController < ApplicationController
     end
   end
 
-=begin
-  def impact_calc
-    authorize CdiscTerm, :view?
-    if CdiscCtChanges.exists?(CdiscCtChanges::C_TWO_CT_IMPACT, params)
-      redirect_to impact_cdisc_terms_path(params)
-    else
-      hash = CdiscTerm.impact(params)
-      @cdiscTerm = hash[:object]
-      @job = hash[:job]
-      if @cdiscTerm.errors.empty?
-        redirect_to backgrounds_path
-      else
-        flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
-        redirect_to history_cdisc_terms_path
-      end
-    end
-  end
-
-  def impact
-    authorize CdiscTerm, :view?
-    @new_cdisc_term = CdiscTerm.find_only(params[:new_id], params[:new_ns])
-    @old_cdisc_term = CdiscTerm.find_only(params[:old_id], params[:old_ns])
-    @new_version = params[:new_version]
-    @old_version = params[:old_version]
-    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
-    @results = impact_flatten(results)
-  end
-
-  def impact_graph
-    authorize CdiscTerm, :view?
-    @new_cdisc_term = CdiscTerm.find_only(params[:new_id], params[:new_ns])
-    @old_cdisc_term = CdiscTerm.find_only(params[:old_id], params[:old_ns])
-    @new_version = params[:new_version]
-    @old_version = params[:old_version]
-    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
-    @graph = impact_graph_root(results) 
-  end
-
-  def impact_report
-    authorize CdiscTerm, :view?
-    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT_IMPACT, params)
-    @results = impact_flatten(results)
-    pdf = Reports::CdiscImpactReport.new(@results, current_user)
-    send_data pdf.render, filename: 'cdisc_impact.pdf', type: 'application/pdf', disposition: 'inline'
-  end
-=end
-
   def file
     authorize CdiscTerm, :import?
     @files = Dir.glob(CdiscCtChanges.dir_path + "*")
@@ -235,7 +192,13 @@ private
   def this_params
     params.require(:cdisc_term).permit(:version, :date, :term, :textSearch, :cCodeSearch, :files => [] )
   end
-  
+
+  def get_version
+  	return nil if params[:cdisc_term].blank? 
+  	return this_params[:version].to_i
+  end
+
+=begin 
   def impact_flatten(tree_array)
     results = Array.new
     tree_array.each do |tree|
@@ -361,5 +324,6 @@ private
     #ConsoleLogger::log(C_CLASS_NAME,"impact_node", "Result=#{result.to_json}")  
     return index
   end
+=end
 
 end

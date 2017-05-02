@@ -91,9 +91,50 @@ class CdiscTerm::Utility
     return { identifier: identifier, title: title, results: results }
   end
 
-  # Transpose result into array structure
+
+  # Trim result array structure
   #
-  # @param results [Hash] the results to be transposed
+  # @param results [Array] the results structure to be trimmed
+  # @param first_version [Integer] the first version to be seen
+  # @param length [Integer] the length
+  # @return [Array] the resulting structure
+  def self.trim_results(results, first_version, length)
+  	if first_version.blank?
+  		return results[-length .. -1] if results.length >= length
+  	else
+   		first = results.index {|x| x[:version] == first_version}
+  		return results[first .. (first + length - 1)] if !first.nil?
+  	end
+  	return results
+  end
+
+  # Previous version. Find the previous version to the trimmed results
+  #
+  # @param full_results [Array] the full results structure
+  # @param trimmed_results [Array] the trimmed results
+  # @return [String] the previous version, nil if none.
+  def self.previous_version(full_results, trimmed_results)
+  	first_version = trimmed_results.first[:version]
+  	index = full_results.index {|x| x[:version] == first_version}
+  	return nil if index == 0
+  	return full_results[index - 1][:version]
+  end
+
+  # Next version. Find the next version to the trimmed results
+  #
+  # @param full_results [Array] the full results structure
+  # @param trimmed_results [Array] the trimmed results
+  # @return [String] the next version, nil if none.
+  def self.next_version(full_results, trimmed_results)
+  	first_version = trimmed_results.first[:version]
+  	index = full_results.index {|x| x[:version] == first_version}
+  	return nil if (index + trimmed_results.length) >= full_results.length
+  	return full_results[index + 1][:version]
+  end
+
+  # Transpose result into hash structure
+  #
+  # @param results [Array] the results to be transposed
   # @return [Hash] the resulting structure
   def self.transpose_results(results)
     list = []
@@ -109,12 +150,12 @@ class CdiscTerm::Utility
     results.each do |result|
       result[:children].each do |key, child|
         new_results[key][:status][index] = child[:status]
-        if child[:status] == :created
+        #if child[:status] == :created
           new_results[key][:identifier] = child[:identifier]
           new_results[key][:preferred_term] = child[:preferred_term]
           new_results[key][:notation] = child[:notation]
           new_results[key][:id] = child[:id]
-        end
+        #end
       end
       index += 1
       result[:children] = {}

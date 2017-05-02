@@ -15,6 +15,7 @@ class CdiscClisController < ApplicationController
     @results = data[:results]
     @identifier = data[:identifier]
     @title = data[:title]
+    @close_path = request.referer
   end
     
 private

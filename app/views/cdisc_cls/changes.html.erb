@@ -68,7 +68,7 @@
 				<th>Identifier</th>
 				<th>Label</th>
 				<th>Submission Value</th>
-				<% @results.each do |result| %>
+				<% @trimmed_results.each do |result| %>
 			  	<% r = result[:results] %>
 			    <th class="text-center"><%= result[:date] %></th>
 			  <% end %>
@@ -102,4 +102,14 @@
 			<% end %>
 		</tbody>
 	</table>
+	<% button_class = "btn btn-primary" %>
+	<% previous_class = @previous_version.nil? ? button_class + " disabled" : button_class %>
+	<% next_class = @next_version.nil? ? button_class + " disabled" : button_class %>
+	<%= link_to changes_cdisc_cls_path(id: @id, cdisc_cl: { version: @previous_version }), class: "#{previous_class}" do %>
+  	<span class="glyphicon glyphicon-chevron-left"></span>
+	<% end %>
+	<%= link_to changes_cdisc_cls_path(id: @id, cdisc_cl: { version: @next_version }), class: "#{next_class}" do %>
+  	<span class="glyphicon glyphicon-chevron-right"></span>
+	<% end %>
+	<%= link_to "Close", changes_cdisc_terms_path, :class => "btn btn-primary" %>
 </div>

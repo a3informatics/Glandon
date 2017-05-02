@@ -9,6 +9,30 @@ describe CdiscTerm::Utility do
     return "models/cdisc_term"
   end
 
+  def trim_initial
+  	results = 
+  		[
+  			{version: 1, data: "Array Index 1"}, 
+  			{version: 2, data: "Array Index 2"}, 
+  			{version: 3, data: "Array Index 3"}, 
+  			{version: 4, data: "Array Index 4"},
+  			{version: 5, data: "Array Index 5"},
+  			{version: 6, data: "Array Index 6"},
+  			{version: 7, data: "Array Index 7"},
+  			{version: 8, data: "Array Index 8"},
+  			{version: 9, data: "Array Index 9"},
+  			{version: 10, data: "Array Index 10"},
+  			{version: 11, data: "Array Index 11"},
+  			{version: 12, data: "Array Index 12"},
+  			{version: 13, data: "Array Index 13"},
+  			{version: 14, data: "Array Index 14"},
+  			{version: 15, data: "Array Index 15"},
+  			{version: 16, data: "Array Index 16"},
+  			{version: 17, data: "Array Index 17"}
+  		]
+  	return results
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -170,6 +194,61 @@ describe CdiscTerm::Utility do
     #write_yaml_file(results, sub_dir, "cl_transpose.yaml")
     expected = read_yaml_file(sub_dir, "cl_transpose.yaml")
     expect(results).to eq(expected)
+  end
+
+  it "trims the result, 1" do
+  	results = trim_initial
+  	expected = trim_initial[3 .. 7]
+  	results = CdiscTerm::Utility.trim_results(results, 4, 5)
+    expect(results).to eq(expected)    	
+  end
+
+  it "trims the result, 2" do
+  	results = trim_initial
+  	expected = trim_initial
+  	results = CdiscTerm::Utility.trim_results(results, 0, 5)
+    expect(results).to eq(expected)    	
+  end
+
+  it "trims the result, 3" do
+  	results = trim_initial
+  	expected = trim_initial[14 .. 16]
+  	results = CdiscTerm::Utility.trim_results(results, 15, 5)
+    expect(results).to eq(expected)    	
+  end
+
+  it "trims the result, 4" do
+  	results = trim_initial
+  	expected = trim_initial[13 .. 16]
+  	results = CdiscTerm::Utility.trim_results(results, nil, 4)
+    expect(results).to eq(expected)    	
+  end
+
+  it "previous and next versions, 1" do
+  	full = trim_initial
+  	results = CdiscTerm::Utility.trim_results(full, 6, 4)
+  	previous_version = CdiscTerm::Utility.previous_version(full, results)
+  	next_version = CdiscTerm::Utility.next_version(full, results)
+    expect(previous_version).to eq(5)    	
+    expect(next_version).to eq(7)    	
+  end
+
+  it "previous and next versions, 2" do
+  	full = trim_initial
+  	results = CdiscTerm::Utility.trim_results(full, 1, 4)
+  	previous_version = CdiscTerm::Utility.previous_version(full, results)
+  	next_version = CdiscTerm::Utility.next_version(full, results)
+    expect(previous_version).to eq(nil)    	
+    expect(next_version).to eq(2)    	
+  end
+
+  it "previous and next versions, 3" do
+  	full = trim_initial
+  	results = CdiscTerm::Utility.trim_results(full, 14, 4)
+  	previous_version = CdiscTerm::Utility.previous_version(full, results)
+  	next_version = CdiscTerm::Utility.next_version(full, results)
+    expect(previous_version).to eq(13)    	
+    expect(next_version).to eq(nil)    	
   end
 
 end

@@ -11,7 +11,7 @@
 				<th>Identifier</th>
 				<th>Label</th>
 				<th>Submission Value</th>
-				<% @results.each do |result| %>
+				<% @trimmed_results.each do |result| %>
 			  	<% r = result[:results] %>
 			    <th class="text-center"><%= result[:date] %></th>
 			  <% end %>
@@ -45,5 +45,15 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "Report", changes_report_cdisc_terms_path(:format => :pdf) , :class => "btn btn-primary", :target => "_blank" %>
+	<% button_class = "btn btn-primary" %>
+	<% previous_class = @previous_version.nil? ? button_class + " disabled" : button_class %>
+	<% next_class = @next_version.nil? ? button_class + " disabled" : button_class %>
+	<%= link_to changes_cdisc_terms_path(cdisc_term: { version: @previous_version }), class: "#{previous_class}" do %>
+  	<span class="glyphicon glyphicon-chevron-left"></span>
+	<% end %>
+	<%= link_to changes_cdisc_terms_path(cdisc_term: { version: @next_version }), class: "#{next_class}" do %>
+  	<span class="glyphicon glyphicon-chevron-right"></span>
+	<% end %>
+	<%= link_to "Close", history_cdisc_terms_path, :class => "btn btn-primary" %>
+	<%= link_to "Report", changes_report_cdisc_terms_path(:format => :pdf), :class => "btn btn-primary", :target => "_blank" %>
 </div>
