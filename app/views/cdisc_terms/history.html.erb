@@ -20,8 +20,12 @@
 			<% end %>				
 		</tbody>
 	</table>
-	<%= link_to "Import", import_cdisc_terms_path, :class => "btn btn-success" %>
+	<% if policy(CdiscTerm).import? %>
+		<%= link_to "Import", import_cdisc_terms_path, :class => "btn btn-success" %>
+	<% end %>
 	<%= link_to "Changes", changes_calc_cdisc_terms_path, :class => "btn btn-primary" %>
 	<%= link_to "Submission", submission_calc_cdisc_terms_path() , :class => "btn btn-primary" %>
-	<%= link_to "Files", file_cdisc_terms_path, :class => "btn btn-primary" %>
+	<% if policy(CdiscTerm).import? %>
+		<%= link_to "Files", file_cdisc_terms_path, :class => "btn btn-primary" %>
+	<% end %>
 </div>
