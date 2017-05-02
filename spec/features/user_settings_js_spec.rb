@@ -16,11 +16,7 @@ describe "User Settings", :type => :feature do
   describe "amending settings", :type => :feature do
   
     it "allows paper size to be amended", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_curator_login
       click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       tr = page.find('#main tbody tr', text: 'Paper Size')
@@ -42,11 +38,7 @@ describe "User Settings", :type => :feature do
     end
 
     it "allows table rows to be amended", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_curator_login
       click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       tr = page.find('#main tbody tr', text: 'Table Rows')
@@ -69,11 +61,7 @@ describe "User Settings", :type => :feature do
     end
 
     it "allows edit lock timeout to be amended", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_reader_login
       click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       tr = page.find('#main tbody tr', text: 'Edit Lock Warning')
@@ -104,11 +92,7 @@ describe "User Settings", :type => :feature do
     end
 
     it "allows display user name to be amended", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_reader_login
       click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       expect(page).to have_content 'reader@example.com [Reader]'
@@ -129,11 +113,7 @@ describe "User Settings", :type => :feature do
     end
 
     it "allows display user role to be amended", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_reader_login
       click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       expect(page).to have_content 'reader@example.com [Reader]'
@@ -153,11 +133,7 @@ describe "User Settings", :type => :feature do
     end
 
     it "settings are user specific", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_curator_login
       click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       tr = page.find('#main tbody tr', text: 'Table Rows')
@@ -165,11 +141,7 @@ describe "User Settings", :type => :feature do
       click_link '50'
       expect(tr).to have_css("button", text: "50")
       click_link 'logoff_button'
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_reader_login
       click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       tr = page.find('#main tbody tr', text: 'Table Rows')
@@ -178,23 +150,36 @@ describe "User Settings", :type => :feature do
       click_link '25'
       expect(tr).to have_css("button", text: "25")
       click_link 'logoff_button'
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+      ua_curator_login
       expect(page).to have_content 'Signed in successfully'
       click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       tr = page.find('#main tbody tr', text: 'Table Rows')
       expect(tr).to have_css("button", text: "50")
       click_link 'logoff_button'
-      fill_in 'Email', with: 'reader@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_reader_login
       click_link 'settings_button'
       expect(page).to have_content 'User Settings:'
       expect(tr).to have_css("button", text: "25")
+    end
+
+    it "allows term display count to be amended", js: true do
+      ua_reader_login
+      click_link 'settings_button'
+      expect(page).to have_content 'User Settings:'
+      tr = page.find('#main tbody tr', text: 'Terminology Versions Displayed')
+      expect(tr).to have_css("button", text: "8")
+      expect(tr).to have_css("a", text: "4")
+      expect(tr).to have_css("a", text: "12")
+      click_link '4'
+      tr = page.find('#main tbody tr', text: 'Terminology Versions Displayed')
+      expect(tr).to have_css("button", text: "4")
+      click_link '12'
+      tr = page.find('#main tbody tr', text: 'Terminology Versions Displayed')
+      expect(tr).to have_css("button", text: "12")
+      click_link '8'
+      tr = page.find('#main tbody tr', text: 'Terminology Versions Displayed')
+      expect(tr).to have_css("button", text: "8")
     end
 
   end

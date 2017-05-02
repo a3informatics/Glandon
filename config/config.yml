@@ -56,6 +56,14 @@ defaults: &defaults
        - 'No'
       default_value: 'Yes'
       label: Display User Roles
+    max_term_display: # Maximum number of terminologies to be displayed
+      type: coded
+      values: 
+        '4': 4
+        '8': 8
+        '12': 12
+      default_value: 8
+      label: Terminology Versions Displayed
 development:
   <<: *defaults
 

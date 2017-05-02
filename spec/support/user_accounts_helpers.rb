@@ -24,4 +24,36 @@ module UserAccountHelpers
     user.destroy
   end
 
+  def ua_reader_login
+  	visit '/users/sign_in'
+    fill_in 'Email', with: 'reader@example.com'
+    fill_in 'Password', with: '12345678'
+    click_button 'Log in'
+    expect(page).to have_content 'Signed in successfully'
+  end  
+
+  def ua_curator_login
+  	visit '/users/sign_in'
+    fill_in 'Email', with: 'curator@example.com'
+    fill_in 'Password', with: '12345678'
+    click_button 'Log in'
+    expect(page).to have_content 'Signed in successfully'
+  end  
+
+  def ua_content_admin_login
+  	visit '/users/sign_in'
+    fill_in 'Email', with: 'content_admin@example.com'
+    fill_in 'Password', with: '12345678'
+    click_button 'Log in'
+    expect(page).to have_content 'Signed in successfully'
+  end  
+
+  def ua_sys_admin_login
+  	visit '/users/sign_in'
+    fill_in 'Email', with: 'sys_admin@example.com'
+    fill_in 'Password', with: '12345678'
+    click_button 'Log in'
+    expect(page).to have_content 'Signed in successfully'
+  end  
+
 end

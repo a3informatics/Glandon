@@ -19,7 +19,14 @@ module UserSettingsHelpers
       	:label=>"Table Rows"
       },
       :user_name_display => {:type=>"enum", :values=>["Yes", "No"], :default_value=>"Yes", :label=>"Display User Name"},
-      :user_role_display => {:type=>"enum", :values=>["Yes", "No"], :default_value=>"Yes", :label=>"Display User Roles"}
+      :user_role_display => {:type=>"enum", :values=>["Yes", "No"], :default_value=>"Yes", :label=>"Display User Roles"},
+      :max_term_display => 
+      {
+      	:type=>"coded", 
+      	:values=>{'4': 4, '8': 8, '12': 12}, 
+      	:default_value=>8, 
+      	:label=>"Terminology Versions Displayed"
+      }
     }
   end
 
