@@ -37,6 +37,8 @@
       		{:namespace => item.namespace, :index_label => index_label, :index_path => index_path, :current_id => ""}), 
       		:class => "btn btn-primary btn-xs" %></td>
 			<% end %>
+		<% else %>
+			<td></td>
 		<% end %>
 		<% if item.current? %>
 			<%= true_false_glyphicon(item.current?) %>
