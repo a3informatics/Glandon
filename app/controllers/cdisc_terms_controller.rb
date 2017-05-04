@@ -29,7 +29,7 @@ class CdiscTermsController < ApplicationController
   
   def import
     authorize CdiscTerm
-    @files = Dir.glob(Rails.root.join("public","upload") + "*")
+    @files = Dir.glob(Rails.root.join("public","upload") + "*.owl")
     @cdiscTerm = CdiscTerm.new
     all = CdiscTerm.all
     @next_version = all.last.next_version
@@ -94,8 +94,8 @@ class CdiscTermsController < ApplicationController
     new_cdisc_term = CdiscTerm.find(params[:newId], params[:newNamespace], false)
     version_hash = {:new_version => new_cdisc_term.version.to_s, :old_version => old_cdisc_term.version.to_s}
     @identifier = old_cdisc_term.identifier
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, version_hash)
-    @cls = CdiscTerm::Utility.transpose_results(@results)
+    @trimmed_results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, version_hash)
+    @cls = CdiscTerm::Utility.transpose_results(@trimmed_results)
     render "changes"
   end
   

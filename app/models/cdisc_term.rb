@@ -327,14 +327,15 @@ class CdiscTerm < Thesaurus
       current_index = Hash[current.children.map{|x| [x.identifier, x]}]
       previous_index = Hash[previous.children.map{|x| [x.identifier, x]}]
       current.children.each do |child|
-        diff = self.diff?(previous_index[child.identifier], child) 
-        if diff && previous_index[child.identifier].nil? 
+        status = :no_change
+        previous = previous_index[child.identifier]
+      	if previous.nil? 
           status = :created
-        elsif diff
-          status = :updated
         else
-          status = :no_change
-        end
+      		update_cl(child)
+    			update_cl(previous)
+        	status = :updated if CdiscCl.diff?(previous, child)
+    		end
         children[child.identifier.to_sym] = 
         { 
           status: status, 
@@ -386,6 +387,13 @@ class CdiscTerm < Thesaurus
   end
 
 private
+
+	def self.update_cl(cl)
+		if cl.children.empty?
+			new_cl = CdiscCl.find(cl.id, cl.namespace)
+			cl.children = new_cl.children
+		end
+	end
 
   def self.cdisc_namespace
     return cdisc_ra.namespace

@@ -327,13 +327,14 @@ private
     data << {:term => cdisc_term}
     counts[:cl_count] += cdisc_term.children.length
     counts[:ct_count] += 1
-    p = (counts[:ct_count].to_f / total_ct_count.to_f) * 80.0
-    self.update(status: "Loading release of #{ct.versionLabel}.", percentage: p.to_i)
+    p = (counts[:ct_count].to_f / total_ct_count.to_f) * 10.0
+    self.update(status: "Loaded release of #{ct.versionLabel}.", percentage: p.to_i)
     return counts
   end
 
   # Determine the changes across the terminologies.
   def term_changes(data, total_count)
+  	current_count = 0
     results = []
     prev_term = nil
     data.each_with_index do |curr, index|
@@ -341,13 +342,13 @@ private
       if index >= 1
         prev_term = data[index - 1][:term]
       end
-      result = CdiscTerm.difference(prev_term, curr_term) {
-        p = 80.0 + ((currentCount.to_f * 20.0)/total_count.to_f)
-        self.update(status: "Checking #{curr_term.versionLabel} [#{current_count} of #{total_count}].", percentage: p.to_i)
-      }
+      result = CdiscTerm.difference(prev_term, curr_term) 
       result[:version] = curr_term.version
       result[:date] = curr_term.versionLabel
       results << result
+      current_count += curr_term.children.length
+      p = 10.0 + ((current_count.to_f * 90.0)/total_count.to_f)
+      self.update(status: "Checked #{curr_term.versionLabel} [#{current_count} of #{total_count}].", percentage: p.to_i)
     end
     return results
   end

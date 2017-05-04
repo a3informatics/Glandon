@@ -269,7 +269,6 @@ class IsoConcept
   # @raise [CreateError] If object not created.
   # @return null
   def create(sparql)
-    ConsoleLogger.debug(C_CLASS_NAME, "create", "UPDATE=#{sparql.create}")
     response = CRUD.update(sparql.create)
     if !response.success?
       ConsoleLogger::log(C_CLASS_NAME, "create", "Failed to create object.")

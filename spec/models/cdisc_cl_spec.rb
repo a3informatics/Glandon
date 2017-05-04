@@ -23,6 +23,8 @@ describe CdiscCl do
     load_test_file_into_triple_store("CT_V40.ttl")
     load_test_file_into_triple_store("CT_V41.ttl")
     load_test_file_into_triple_store("CT_V42.ttl")
+    load_test_file_into_triple_store("CT_V47.ttl")
+    load_test_file_into_triple_store("CT_V48.ttl")
     clear_iso_concept_object
   end
 
@@ -103,9 +105,16 @@ describe CdiscCl do
     expect(result).to eq(false)    
   end
 
-  it "allows two CLs to be compared, different" do
+  it "allows two CLs to be compared, different, 1" do
     tc1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
     tc2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+    result = CdiscCl.diff?(tc1, tc2)
+    expect(result).to eq(true)    
+  end
+
+  it "allows two CLs to be compared, different, 2" do
+    tc1 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+    tc2 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
     result = CdiscCl.diff?(tc1, tc2)
     expect(result).to eq(true)    
   end
@@ -114,17 +123,26 @@ describe CdiscCl do
     tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     result = CdiscCl.difference(tc1, tc2)
-    #write_yaml_file(result, sub_dir, "cdisc_cl_differences_1.yaml")
+  #write_yaml_file(result, sub_dir, "cdisc_cl_differences_1.yaml")
     expected = read_yaml_file(sub_dir, "cdisc_cl_differences_1.yaml")
     expect(result).to eq(expected) 
   end
 
-  it "allows the difference between two CLs to be found, different" do
+  it "allows the difference between two CLs to be found, different 1" do
     tc1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
     tc2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
     result = CdiscCl.difference(tc1, tc2)
-    #write_yaml_file(result, sub_dir, "cdisc_cl_differences_2.yaml")
+  #write_yaml_file(result, sub_dir, "cdisc_cl_differences_2.yaml")
     expected = read_yaml_file(sub_dir, "cdisc_cl_differences_2.yaml")
+    expect(result).to eq(expected) 
+  end
+
+  it "allows the difference between two CLs to be found, different 2" do
+    tc1 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+    tc2 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
+    result = CdiscCl.difference(tc1, tc2)
+  #write_yaml_file(result, sub_dir, "cdisc_cl_differences_3.yaml")
+    expected = read_yaml_file(sub_dir, "cdisc_cl_differences_3.yaml")
     expect(result).to eq(expected) 
   end
 

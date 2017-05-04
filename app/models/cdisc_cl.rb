@@ -63,10 +63,10 @@ class CdiscCl < ThesaurusConcept
   def self.diff?(previous, current)
     return true if super(previous, current)
     return true if !current.child_match?(previous, "children", "identifier")
-    current_index = Hash[current.children.map{|x| [x.identifier, x]}]
+    #current_index = Hash[current.children.map{|x| [x.identifier, x]}]
     previous_index = Hash[previous.children.map{|x| [x.identifier, x]}]
     current.children.each do |current|
-      return true if self.diff?(previous_index[current.identifier], current)
+      return true if CdiscCli.diff?(previous_index[current.identifier], current)
     end
     return false
   end
