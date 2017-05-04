@@ -121,11 +121,12 @@ class CdiscTermsController < ApplicationController
     version = get_version
     ct = CdiscTerm.current
     @identifier = ct.identifier
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-  	@trimmed_results = CdiscTerm::Utility.trim_results(@results, version, current_user.max_term_display.to_i)
-    @previous_version = CdiscTerm::Utility.previous_version(@results, @trimmed_results)
-    @next_version = CdiscTerm::Utility.next_version(@results, @trimmed_results)
-  	@cls = CdiscTerm::Utility.transpose_results(@trimmed_results)
+    full_results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
+  	@results = CdiscTerm::Utility.trim_results(full_results, version, current_user.max_term_display.to_i)
+    @previous_version = CdiscTerm::Utility.previous_version(full_results, @results.first[:version])
+    @next_version = CdiscTerm::Utility.next_version(full_results, @results.first[:version], 
+    	current_user.max_term_display.to_i, @results.length)
+  	@cls = CdiscTerm::Utility.transpose_results(@results)
   end
 
   def changes_report
@@ -159,7 +160,12 @@ class CdiscTermsController < ApplicationController
 
   def submission
     authorize CdiscTerm, :view?
-    @results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+    version = get_version
+    full_results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+    @results = CdiscTerm::Utility.trim_submission_results(full_results, version, current_user.max_term_display.to_i)
+    @previous_version = CdiscTerm::Utility.previous_version(full_results[:versions], @results[:versions].first[:version])
+    @next_version = CdiscTerm::Utility.next_version(full_results[:versions], @results[:versions].first[:version], 
+    	current_user.max_term_display.to_i, full_results[:versions].length)
   end
 
   def submission_report

@@ -111,5 +111,6 @@
 	<%= link_to changes_cdisc_cls_path(id: @id, cdisc_cl: { version: @next_version }), class: "#{next_class}" do %>
   	<span class="glyphicon glyphicon-chevron-right"></span>
 	<% end %>
-	<%= link_to "Close", changes_cdisc_terms_path, :class => "btn btn-primary" %>
+	<!--<%= link_to "Close", changes_cdisc_terms_path, :class => "btn btn-primary" %>-->
+	<%= back_close_button %>
 </div>

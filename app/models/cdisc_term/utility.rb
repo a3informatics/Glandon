@@ -108,28 +108,54 @@ class CdiscTerm::Utility
   	return results
   end
 
+  # Trim submission result array structure
+  #
+  # @param results [Array] the results structure to be trimmed
+  # @param first_version [Integer] the first version to be seen
+  # @param length [Integer] the length
+  # @return [Array] the resulting structure
+  def self.trim_submission_results(results, first_version, length)
+  	if first_version.blank?
+  		if results[:versions].length >= length
+  			start_index = -length
+  			end_index = -1
+  			trim_results = process_submission_results(results, start_index, end_index)
+  			return trim_results
+  		end
+  	else
+   		first = results[:versions].index {|x| x[:version] == first_version}
+   		if !first.nil?
+  			start_index = first
+  			end_index = first + length - 1
+  			trim_results = process_submission_results(results, start_index, end_index)
+  			return trim_results
+  		end
+  	end
+  	return results
+  end
+
   # Previous version. Find the previous version to the trimmed results
   #
-  # @param full_results [Array] the full results structure
-  # @param trimmed_results [Array] the trimmed results
+  # @param version_array [Array] the array cotaining the versions
+  # @param first_version [Integer] the first version being displayed
   # @return [String] the previous version, nil if none.
-  def self.previous_version(full_results, trimmed_results)
-  	first_version = trimmed_results.first[:version]
-  	index = full_results.index {|x| x[:version] == first_version}
+  def self.previous_version(version_array, first_version)
+  	index = version_array.index {|x| x[:version] == first_version}
   	return nil if index == 0
-  	return full_results[index - 1][:version]
+  	return version_array[index - 1][:version]
   end
 
   # Next version. Find the next version to the trimmed results
   #
-  # @param full_results [Array] the full results structure
-  # @param trimmed_results [Array] the trimmed results
+  # @param version_array [Array] the array cotaining the versions
+  # @param first_version [Integer] the first version being displayed
+  # @param displayed_length [Integer] the length of results being displayed
+  # @param max_length [Integer] the length of the whole results
   # @return [String] the next version, nil if none.
-  def self.next_version(full_results, trimmed_results)
-  	first_version = trimmed_results.first[:version]
-  	index = full_results.index {|x| x[:version] == first_version}
-  	return nil if (index + trimmed_results.length) >= full_results.length
-  	return full_results[index + 1][:version]
+  def self.next_version(version_array, first_version, displayed_length, max_length)
+  	index = version_array.index {|x| x[:version] == first_version}
+  	return nil if (index + displayed_length) >= max_length
+  	return version_array[index + 1][:version]
   end
 
   # Transpose result into hash structure
@@ -162,5 +188,30 @@ class CdiscTerm::Utility
     end
     return new_results
   end
+
+private
+
+	# Process the submission results.
+	def self.process_submission_results(results, start_index, end_index)
+		trim_results = {}
+		trim_results[:versions] = results[:versions][start_index .. end_index]
+		trim_results[:children] = {}
+		results[:children].each do |key, child|
+			if submission_changed(child, start_index, end_index)
+				result = child.deep_dup
+				result[:result] = result[:result][start_index .. end_index]
+				trim_results[:children][key] = result
+			end
+		end
+		return trim_results
+	end
+
+	# Has submission value changed.
+  def self.submission_changed(child, start_index, end_index)
+		child[:result][start_index .. end_index].each do |result|
+			return true if result[:status] != :no_change
+		end
+		return false
+	end
 
 end

@@ -160,6 +160,17 @@ describe CdiscTermsController do
 
     it "obtains the change results" do
       get :changes
+      expect(assigns(:identifier)).to eq('CDISC Terminology')
+      expect(assigns(:previous_version)).to eq(nil)
+      expect(assigns(:next_version)).to eq(nil)
+      expect(response).to render_template("changes")
+    end
+
+    it "obtains the change results, version" do
+      get :changes, { cdisc_terms: {version: 40}}
+      expect(assigns(:identifier)).to eq('CDISC Terminology')
+      expect(assigns(:previous_version)).to eq(39)
+      expect(assigns(:next_version)).to eq(nil)
       expect(response).to render_template("changes")
     end
 
@@ -183,6 +194,8 @@ describe CdiscTermsController do
 
     it "obtains the submission change results" do
       get :submission
+      expect(assigns(:previous_version)).to eq(nil)
+      expect(assigns(:next_version)).to eq(nil)
       expect(response).to render_template("submission")
     end
 

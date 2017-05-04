@@ -16,8 +16,9 @@ class CdiscClsController < ApplicationController
     @results = data[:results]
     @id = params[:id]
     @trimmed_results = CdiscTerm::Utility.trim_results(@results, version, current_user.max_term_display.to_i)
-    @previous_version = CdiscTerm::Utility.previous_version(@results, @trimmed_results)
-    @next_version = CdiscTerm::Utility.next_version(@results, @trimmed_results)
+    @previous_version = CdiscTerm::Utility.previous_version(@results, @trimmed_results.first[:version])
+    @next_version = CdiscTerm::Utility.next_version(@results, @trimmed_results.first[:version], 
+    	current_user.max_term_display.to_i, @results.length)
     @clis = CdiscTerm::Utility.transpose_results(@trimmed_results)
     @identifier = data[:identifier]
     @title = data[:title]

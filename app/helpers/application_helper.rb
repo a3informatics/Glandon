@@ -65,6 +65,14 @@ module ApplicationHelper
     return "[[#{column}, 'asc']]"
   end
 
+	# Close button that performs a browser back function
+  #
+  # @param [Text] the text for the button. Defaults to "Close"
+  # @return [Null]
+  def back_close_button(text="Close")
+  	return raw("<a class=\"btn btn-primary\" href=\"javascript:history.back()\">#{text}</a>")
+  end
+
   # Top Level Breadcrumb
   #
   # @param text [String] the breadcrumb link text
