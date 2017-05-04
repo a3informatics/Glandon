@@ -89,7 +89,7 @@ describe CdiscTermsController do
       end
     end
 
-    it "calculates the bulk changes results" do
+    it "calculates the bulk changes results", :ct_bulk_test => true do
       file = CdiscCtChanges.dir_path + "CDISC_CT_Changes.yaml"
       File.delete(file) if File.exist?(file)
       get :changes_calc
@@ -100,7 +100,7 @@ describe CdiscTermsController do
       expect(results).to eq(expected)
     end
 
-    it "calculates the bulk submission change results" do
+    it "calculates the bulk submission change results", :ct_bulk_test => true do
       file = CdiscCtChanges.dir_path + "CDISC_CT_Submission_Changes.yaml"
       File.delete(file) if File.exist?(file)
       get :submission_calc
@@ -111,7 +111,7 @@ describe CdiscTermsController do
       expect(results).to eq(expected)
     end
 
-    it "allows comparison with CDISC reported changes" do
+    it "allows comparison with CDISC reported changes", :ct_bulk_test => true do
       results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
       # Created = :C, Update= :U, Deleted = :D, No change = :-, Not present = :~
       code_list_history(results, :C100143, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-])
@@ -135,7 +135,7 @@ describe CdiscTermsController do
       code_list_history(results, :C122006, [:~, :~, :~, :~, :~, :~, :C, :-, :-, :-, :-, :-, :-])
     end
 
-    it "allows comparison with CDISC reported changes" do
+    it "allows comparison with CDISC reported changes", :ct_bulk_test => true do
       results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
 
       # June 2014
