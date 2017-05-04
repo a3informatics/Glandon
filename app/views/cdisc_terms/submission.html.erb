@@ -9,8 +9,8 @@
 				<th>Item</th>
 				<th>Label</th>
 				<th>Original Submission Value</th>
-				<% @results[:versions].each do |label| %>
-		    	<th class="text-center"><%= label %></th>
+				<% @results[:versions].each do |version| %>
+		    	<th class="text-center"><%= version[:version_label] %></th>
 		  	<% end %>
 				<th></th>
 			</tr>
@@ -40,5 +40,15 @@
 			<% end %>
 		</tbody>
 	</table>
+	<% button_class = "btn btn-primary" %>
+	<% previous_class = @previous_version.nil? ? button_class + " disabled" : button_class %>
+	<% next_class = @next_version.nil? ? button_class + " disabled" : button_class %>
+	<%= link_to submission_cdisc_terms_path(cdisc_term: { version: @previous_version }), class: "#{previous_class}" do %>
+  	<span class="glyphicon glyphicon-chevron-left"></span>
+	<% end %>
+	<%= link_to submission_cdisc_terms_path(cdisc_term: { version: @next_version }), class: "#{next_class}" do %>
+  	<span class="glyphicon glyphicon-chevron-right"></span>
+	<% end %>
+	<%= link_to "Close", history_cdisc_terms_path, :class => "btn btn-primary" %>
 	<%= link_to "Report", submission_report_cdisc_terms_path(:format => :pdf) , :class => "btn btn-primary", :target => "_blank" %>
 </div>

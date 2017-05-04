@@ -195,7 +195,7 @@ class Background < ActiveRecord::Base
     results = []
     cdisc_terms = CdiscTerm.all()
     cdisc_terms.each_with_index do |ct, index|
-      results << { version_label: ct.versionLabel, children: {} }
+      results << { version_label: ct.versionLabel, version: ct.version, children: {} }
       if index != 0 
         results[index][:children] = CdiscTerm.submission_difference(prev_ct, ct)
       end
@@ -210,7 +210,7 @@ class Background < ActiveRecord::Base
     transformed_results = {}
     results.each do |result|
       list = list | result[:children].keys
-      versions << result[:version_label]
+      versions << { version_label: result[:version_label], version: result[:version] }
     end
     list.each do |key|
       transformed_results[key] = { parent_identifier: "", label: "", preferred_term: "", notation: "", result: Array.new(versions.length, { previous: "", current: "", status: :no_change }) }
