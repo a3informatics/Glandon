@@ -191,7 +191,7 @@ describe CdiscTerm::Utility do
   it "transposes the results" do
     changes = CdiscTerm::Utility.cl_changes("CL-C100129")
     results = CdiscTerm::Utility.transpose_results(changes[:results])
-    #write_yaml_file(results, sub_dir, "cl_transpose.yaml")
+  #write_yaml_file(results, sub_dir, "cl_transpose.yaml")
     expected = read_yaml_file(sub_dir, "cl_transpose.yaml")
     expect(results).to eq(expected)
   end
