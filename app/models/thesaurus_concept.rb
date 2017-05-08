@@ -185,6 +185,7 @@ class ThesaurusConcept < IsoConcept
     json[:topLevel] = self.topLevel
     json[:parentIdentifier] = self.parentIdentifier
     json[:children] = Array.new
+    self.children.sort_by! {|u| u.identifier}
     self.children.each do |child|
       json[:children] << child.to_json
     end

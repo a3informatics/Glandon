@@ -5,6 +5,10 @@ describe ThesaurusConcept do
   include DataHelpers
   include ValidationHelpers
 
+  def sub_dir
+    return "models"
+  end
+
   it "clears triple store and loads test data" do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -93,74 +97,13 @@ describe ThesaurusConcept do
         :topLevel => false,
         :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
       }
-    new_json =
-      {
-        :children  => 
-          [
-            {
-              :type=>"http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-              :id=>"THC-A00003",
-              :namespace=>"http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-              :label=>"Mid upper arm circumference",
-              :extension_properties=>[],
-              :identifier=>"A00003",
-              :notation=>"MUAC",
-              :synonym=>"",
-              :definition=>"The measurement of the mid upper arm circumference",
-              :preferredTerm=>"",
-              :topLevel=>false,
-              :parentIdentifier=>"A00001",
-              :children=>[]
-            },
-            {
-              :type=>"http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-              :id=>"THC-A00002",
-              :namespace=>"http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-              :label=>"APGAR Score",
-              :extension_properties=>[],
-              :identifier=>"A00002",
-              :notation=>"APGAR",
-              :synonym=>"",
-              :definition=>"An APGAR Score",
-              :preferredTerm=>"",
-              :topLevel=>false,
-              :parentIdentifier=>"A00001",
-              :children=>[]
-            },
-            {
-              :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-              :id => "THC-A00001_A00004",
-              :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-              :label => "New",
-              :extension_properties => [],
-              :identifier => "A00001.A00004",
-              :notation => "NEWNEW",
-              :synonym => "",
-              :definition => "Other or mixed race",
-              :preferredTerm => "New Stuff",
-              :topLevel => false,
-              :parentIdentifier=>"A00001",
-              :children => []
-            }
-          ],
-        :definition => "A set of additional Vital Sign Test Codes to extend the CDISC set.",
-        :extension_properties => [],
-        :id => "THC-A00001",
-        :identifier => "A00001",
-        :label => "Vital Sign Test Codes Extension",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :notation => "VSTEST",
-        :parentIdentifier => "",
-        :preferredTerm => "",
-        :synonym => "",
-        :topLevel => false,
-        :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
-      }
     tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     new_object = tc.add_child(json)
     expect(new_object.errors.count).to eq(0)
     tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(tc.to_json).to be_eql(new_json)
+	#write_yaml_file(tc.to_json, sub_dir, "thesaurus_concept_example_1.yaml")
+		expected = read_yaml_file(sub_dir, "thesaurus_concept_example_1.yaml")
+    expect(tc.to_json).to be_eql(expected)
   end
 
   it "prevents a duplicate TC being added" do

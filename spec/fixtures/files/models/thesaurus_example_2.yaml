@@ -35,7 +35,7 @@
   :identifier: CDISC EXT
   :version_label: '0.1'
   :version: 1
-  :semantic_version: "0.0.0"
+  :semantic_version: 0.0.0
   :namespace:
     :namespace: http://www.assero.co.uk/MDRItems
     :id: NS-ACME
@@ -56,19 +56,6 @@
   :parentIdentifier: ''
   :children:
   - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-    :id: THC-A00003
-    :namespace: http://www.assero.co.uk/MDRThesaurus/ACME/V1
-    :label: Mid upper arm circumference
-    :extension_properties: []
-    :identifier: A00003
-    :notation: MUAC
-    :synonym: ''
-    :definition: The measurement of the mid upper arm circumference
-    :preferredTerm: ''
-    :topLevel: false
-    :parentIdentifier: A00001
-    :children: []
-  - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
     :id: THC-A00002
     :namespace: http://www.assero.co.uk/MDRThesaurus/ACME/V1
     :label: APGAR Score
@@ -77,6 +64,19 @@
     :notation: APGAR
     :synonym: ''
     :definition: An APGAR Score
+    :preferredTerm: ''
+    :topLevel: false
+    :parentIdentifier: A00001
+    :children: []
+  - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: THC-A00003
+    :namespace: http://www.assero.co.uk/MDRThesaurus/ACME/V1
+    :label: Mid upper arm circumference
+    :extension_properties: []
+    :identifier: A00003
+    :notation: MUAC
+    :synonym: ''
+    :definition: The measurement of the mid upper arm circumference
     :preferredTerm: ''
     :topLevel: false
     :parentIdentifier: A00001

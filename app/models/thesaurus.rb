@@ -94,7 +94,6 @@ class Thesaurus <  IsoManaged
   def self.find_complete(id, ns)
     new_children = Array.new
     object = Thesaurus.find(id, ns)
-    ConsoleLogger::log(C_CLASS_NAME, "find_complete", "Th=#{object.to_json}")
     object.children.each do |child|
       new_children << ThesaurusConcept.find(child.id, child.namespace)
     end
@@ -221,6 +220,7 @@ class Thesaurus <  IsoManaged
   def to_json
     json = super
     json[:children] = Array.new
+    self.children.sort_by! {|u| u.identifier}
     self.children.each do |child|
       json[:children] << child.to_json
     end
