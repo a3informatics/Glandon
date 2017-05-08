@@ -38,6 +38,7 @@ describe DashboardController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       hash = JSON.parse(response.body, symbolize_names: true)
+      hash.sort_by! {|u| u[:predicate]}
     #write_yaml_file(hash, sub_dir, "dashboard_controller_example_1.yaml")
       results = read_yaml_file(sub_dir, "dashboard_controller_example_1.yaml")
       expect(hash).to be_eql(results)

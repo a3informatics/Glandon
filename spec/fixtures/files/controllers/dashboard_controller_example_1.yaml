@@ -2,16 +2,8 @@
 - :id: BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
   :namespace: http://www.assero.co.uk/MDRBCs/V1
   :subject: ":BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1"
-  :predicate: rdf:type
-  :object: bo:TcReference
-  :link_id: TcReference
-  :link_namespace: http://www.assero.co.uk/BusinessOperational
-  :link: true
-- :id: BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
-  :subject: ":BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1"
-  :predicate: rdfs:label
-  :object: Thesaurus Concept Reference
+  :predicate: bo:enabled
+  :object: 'true'
   :link_id: ''
   :link_namespace: ''
   :link: false
@@ -26,14 +18,6 @@
 - :id: BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
   :namespace: http://www.assero.co.uk/MDRBCs/V1
   :subject: ":BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1"
-  :predicate: bo:optional
-  :object: 'true'
-  :link_id: ''
-  :link_namespace: ''
-  :link: false
-- :id: BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
-  :namespace: http://www.assero.co.uk/MDRBCs/V1
-  :subject: ":BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1"
   :predicate: bo:local_label
   :object: ''
   :link_id: ''
@@ -42,7 +26,7 @@
 - :id: BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
   :namespace: http://www.assero.co.uk/MDRBCs/V1
   :subject: ":BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1"
-  :predicate: bo:enabled
+  :predicate: bo:optional
   :object: 'true'
   :link_id: ''
   :link_namespace: ''
@@ -52,6 +36,22 @@
   :subject: ":BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1"
   :predicate: bo:ordinal
   :object: '1'
+  :link_id: ''
+  :link_namespace: ''
+  :link: false
+- :id: BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :subject: ":BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1"
+  :predicate: rdf:type
+  :object: bo:TcReference
+  :link_id: TcReference
+  :link_namespace: http://www.assero.co.uk/BusinessOperational
+  :link: true
+- :id: BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :subject: ":BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1"
+  :predicate: rdfs:label
+  :object: Thesaurus Concept Reference
   :link_id: ''
   :link_namespace: ''
   :link: false
