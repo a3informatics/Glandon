@@ -39,7 +39,7 @@ describe Reports::CdiscChangesReport do
     report = Reports::CdiscChangesReport.new
     pdf = report.create(results, CdiscTerm::Utility.transpose_results(results), user)
     html = report.html
-    #write_text_file_2(html, sub_dir, "cdisc_changes_report.txt")
+  #write_text_file_2(html, sub_dir, "cdisc_changes_report.txt")
     expected = read_text_file_2(sub_dir, "cdisc_changes_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
