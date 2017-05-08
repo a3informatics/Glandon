@@ -176,8 +176,9 @@ describe Thesaurus do
   it "allows the Th to be exported as SPARQL" do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     sparql = th.to_sparql_v2
-    result_sparql = read_text_file_2(sub_dir, "thesaurus_example_7.txt")
-    expect(sparql.to_s).to be_eql(result_sparql)
+  #write_text_file_2(sparql.to_s, sub_dir, "thesaurus_example_7.txt")
+    expected = read_text_file_2(sub_dir, "thesaurus_example_7.txt")
+    expect(sparql.to_s).to eq(expected)
   end
 
   it "allows a child TC to be added" do

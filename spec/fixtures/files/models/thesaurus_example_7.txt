@@ -41,14 +41,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> iso25964:preferredTerm ""^^xsd:string . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> iso25964:synonym ""^^xsd:string . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> iso25964:definition "A set of additional Vital Sign Test Codes to extend the CDISC set."^^xsd:string . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> rdf:type <http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> rdfs:label "Mid upper arm circumference"^^xsd:string . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:identifier "A00003"^^xsd:string . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:notation "MUAC"^^xsd:string . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:preferredTerm ""^^xsd:string . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:synonym ""^^xsd:string . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:definition "The measurement of the mid upper arm circumference"^^xsd:string . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> iso25964:hasChild <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00002> rdf:type <http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00002> rdfs:label "APGAR Score"^^xsd:string . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00002> iso25964:identifier "A00002"^^xsd:string . 
@@ -57,6 +49,14 @@ INSERT DATA
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00002> iso25964:synonym ""^^xsd:string . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00002> iso25964:definition "An APGAR Score"^^xsd:string . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> iso25964:hasChild <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00002> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> rdf:type <http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> rdfs:label "Mid upper arm circumference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:identifier "A00003"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:notation "MUAC"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:preferredTerm ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:synonym ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> iso25964:definition "The measurement of the mid upper arm circumference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> iso25964:hasChild <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001_A00003> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> iso25964:hasConcept <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00010> rdf:type <http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00010> rdfs:label "Placeholder for Ethnic Subgroup"^^xsd:string . 

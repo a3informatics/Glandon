@@ -226,6 +226,7 @@ class ThesaurusConcept < IsoConcept
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "preferredTerm"}, {:literal => "#{self.preferredTerm}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "synonym"}, {:literal => "#{self.synonym}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "definition"}, {:literal => "#{self.definition}", :primitive_type => "string"})
+    self.children.sort_by! {|u| u.identifier}
     self.children.each do |child|
       ref_uri = child.to_sparql_v2(self.uri, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasChild"}, {:uri => ref_uri})
