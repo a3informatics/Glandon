@@ -167,7 +167,7 @@ describe CdiscTermsController do
     end
 
     it "obtains the change results, version" do
-      get :changes, { cdisc_terms: {version: 40}}
+      get :changes, { cdisc_term: {version: 40}}
       expect(assigns(:identifier)).to eq('CDISC Terminology')
       expect(assigns(:previous_version)).to eq(39)
       expect(assigns(:next_version)).to eq(nil)

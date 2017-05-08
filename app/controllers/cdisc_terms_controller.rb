@@ -64,7 +64,8 @@ class CdiscTermsController < ApplicationController
   def search_results
     authorize CdiscTerm, :view?
     results = Thesaurus.search(params)
-    render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+    render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, 
+    	:data => results[:items] }
   end
 
   def compare_calc
@@ -120,7 +121,7 @@ class CdiscTermsController < ApplicationController
     authorize CdiscTerm, :view?
     version = get_version
     ct = CdiscTerm.current
-    @identifier = ct.identifier
+    @identifier = ct.nil? ? CdiscTerm::C_IDENTIFIER : ct.identifier
     full_results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
   	@results = CdiscTerm::Utility.trim_results(full_results, version, current_user.max_term_display.to_i)
     @previous_version = CdiscTerm::Utility.previous_version(full_results, @results.first[:version])
