@@ -14,56 +14,15 @@
 :parentIdentifier: ''
 :children:
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C98785
+  :id: CLI-C66741_C100945
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Subscapular Skinfold Thickness
+  :label: Pulse Pressure
   :extension_properties: []
-  :identifier: C98785
-  :notation: SSSKNF
-  :synonym: Subscapular Skinfold Thickness
-  :definition: A measurement of the thickness of a pinch of skin situated below or
-    on the underside of the scapula. (NCI)
-  :preferredTerm: Subscapular Skinfold Thickness
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C81255
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Head Circumference
-  :extension_properties: []
-  :identifier: C81255
-  :notation: HDCIRC
-  :synonym: Head Circumference
-  :definition: A circumferential measurement of the head at the widest point.
-  :preferredTerm: Head Circumference
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C98793
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Triceps Skinfold Thickness
-  :extension_properties: []
-  :identifier: C98793
-  :notation: TRSKNF
-  :synonym: Triceps Skinfold Thickness
-  :definition: A measurement of the thickness of a pinch of skin on the triceps. (NCI)
-  :preferredTerm: Triceps Skinfold Thickness
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C49678
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Respiratory Rate
-  :extension_properties: []
-  :identifier: C49678
-  :notation: RESP
-  :synonym: Respiratory Rate
-  :definition: The rate of breathing (inhalation and exhalation) measured within in
-    a unit time, usually expressed as breaths per minute. (NCI)
-  :preferredTerm: Respiratory Rate
+  :identifier: C100945
+  :notation: PULSEPR
+  :synonym: Pulse Pressure
+  :definition: The change in systolic to diastolic pressure which produces a pulse.
+  :preferredTerm: Pulse Pressure
   :topLevel: false
   :parentIdentifier: C66741
   :children: []
@@ -81,34 +40,98 @@
   :parentIdentifier: C66741
   :children: []
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C49677
+  :id: CLI-C66741_C100947
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Heart Rate
+  :label: Hip Circumference
   :extension_properties: []
-  :identifier: C49677
-  :notation: HR
-  :synonym: Heart Rate
-  :definition: The number of heartbeats per unit of time, usually expressed as beats
-    per minute. (NCI)
-  :preferredTerm: Heart Rate
+  :identifier: C100947
+  :notation: HIPCIR
+  :synonym: Hip Circumference
+  :definition: The distance around an individual's pelvic area or hips.
+  :preferredTerm: Hip Circumference
   :topLevel: false
   :parentIdentifier: C66741
   :children: []
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C49679
+  :id: CLI-C66741_C100948
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Mean Arterial Pressure
+  :label: Waist Circumference
   :extension_properties: []
-  :identifier: C49679
-  :notation: MAP
-  :synonym: Mean Arterial Pressure
-  :definition: 'The mean pressure of the blood within the arterial circulation. The
-    arterial pressure may be directly measured by insertion of an intra-arterial catheter
-    connected to a transducer. The mean arterial pressure (MAP) can be calculated
-    by subsequent analysis of the waveform. MAP can be approximated without an invasive
-    procedure using the following formula: diastolic pressure plus 1/3 of the pulse
-    pressure, where pulse pressure is systolic pressure - diastolic pressure. (NCI)'
-  :preferredTerm: Mean Arterial Pressure
+  :identifier: C100948
+  :notation: WSTCIR
+  :synonym: Waist Circumference
+  :definition: The distance around an individual's midsection or waist.
+  :preferredTerm: Waist Circumference
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C103346
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Abdominal Skinfold Thickness
+  :extension_properties: []
+  :identifier: C103346
+  :notation: ABSKNF
+  :synonym: Abdominal Skinfold Thickness
+  :definition: A measurement for determining the subcutaneous fat layer thickness
+    whereby a pinch of skin approximately five centimeters to the right of the umbilicus
+    is measured using calipers. (NCI)
+  :preferredTerm: Abdominal Skinfold Thickness
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C104622
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Total Body Water Measurement
+  :extension_properties: []
+  :identifier: C104622
+  :notation: TBW
+  :synonym: Total Body Water
+  :definition: A measurement of the quantity of water within the body, including both
+    the intracellular and extracellular compartments.
+  :preferredTerm: Total Body Water Measurement
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C117976
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Ideal Body Weight
+  :extension_properties: []
+  :identifier: C117976
+  :notation: IDEALWT
+  :synonym: Ideal Body Weight
+  :definition: A person's optimum weight as calculated by a standard methodology.
+  :preferredTerm: Ideal Body Weight
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C12472
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Adipose Tissue
+  :extension_properties: []
+  :identifier: C12472
+  :notation: BODYFAT
+  :synonym: Adipose Tissue; Body Fat; Fat Tissue
+  :definition: A specialized form of connective tissue consisting primarily of adipocytes
+    (fat cells), surrounded by a meshwork of collagen fibers. (NCI)
+  :preferredTerm: Adipose Tissue
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C16358
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Body Mass Index
+  :extension_properties: []
+  :identifier: C16358
+  :notation: BMI
+  :synonym: Body Mass Index
+  :definition: A general indicator of the body fat an individual is carrying based
+    upon the ratio of weight to height. (NCI)
+  :preferredTerm: Body Mass Index
   :topLevel: false
   :parentIdentifier: C66741
   :children: []
@@ -125,34 +148,6 @@
     a chart that relates height to weight. BSA is often an important factor in dosing.
     (NCI)
   :preferredTerm: Body Surface Area
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C100947
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Hip Circumference
-  :extension_properties: []
-  :identifier: C100947
-  :notation: HIPCIR
-  :synonym: Hip Circumference
-  :definition: The distance around an individual's pelvic area or hips.
-  :preferredTerm: Hip Circumference
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C84372
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Knee to Heel Length Measurement
-  :extension_properties: []
-  :identifier: C84372
-  :notation: KNEEHEEL
-  :synonym: Knee to Heel Length; Lower Leg Length
-  :definition: A measurement of the length of the lower leg from the top of the knee
-    to the bottom of the heel. This measurement may be taken with a knemometer or
-    calipers. (NCI)
-  :preferredTerm: Knee to Heel Length Measurement
   :topLevel: false
   :parentIdentifier: C66741
   :children: []
@@ -189,98 +184,30 @@
   :parentIdentifier: C66741
   :children: []
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C49680
+  :id: CLI-C66741_C25298
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Body Frame Size
+  :label: Systolic Blood Pressure
   :extension_properties: []
-  :identifier: C49680
-  :notation: FRMSIZE
-  :synonym: Body Frame Size
-  :definition: The categorization of a person's body frame into small, medium and
-    large based on the measurement of wrist circumference or the breadth of the elbow.
-    (NCI)
-  :preferredTerm: Body Frame Size
+  :identifier: C25298
+  :notation: SYSBP
+  :synonym: Systolic Blood Pressure
+  :definition: The blood pressure during the contraction of the left ventricle of
+    the heart. (NCI)
+  :preferredTerm: Systolic Blood Pressure
   :topLevel: false
   :parentIdentifier: C66741
   :children: []
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C81298
+  :id: CLI-C66741_C25299
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Total Body Length
+  :label: Diastolic Blood Pressure
   :extension_properties: []
-  :identifier: C81298
-  :notation: BODLNGTH
-  :synonym: Body Length
-  :definition: The linear extent in space from one end of the body to the other end,
-    or the extent of the body from beginning to end.
-  :preferredTerm: Total Body Length
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C100948
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Waist Circumference
-  :extension_properties: []
-  :identifier: C100948
-  :notation: WSTCIR
-  :synonym: Waist Circumference
-  :definition: The distance around an individual's midsection or waist.
-  :preferredTerm: Waist Circumference
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C117976
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Ideal Body Weight
-  :extension_properties: []
-  :identifier: C117976
-  :notation: IDEALWT
-  :synonym: Ideal Body Weight
-  :definition: A person's optimum weight as calculated by a standard methodology.
-  :preferredTerm: Ideal Body Weight
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C60832
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Oxygen Saturation Measurement
-  :extension_properties: []
-  :identifier: C60832
-  :notation: OXYSAT
-  :synonym: Oxygen Saturation
-  :definition: A measurement of the oxygen-hemoglobin saturation of a volume of blood.
-  :preferredTerm: Oxygen Saturation Measurement
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C16358
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Body Mass Index
-  :extension_properties: []
-  :identifier: C16358
-  :notation: BMI
-  :synonym: Body Mass Index
-  :definition: A general indicator of the body fat an individual is carrying based
-    upon the ratio of weight to height. (NCI)
-  :preferredTerm: Body Mass Index
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C12472
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Adipose Tissue
-  :extension_properties: []
-  :identifier: C12472
-  :notation: BODYFAT
-  :synonym: Adipose Tissue; Body Fat; Fat Tissue
-  :definition: A specialized form of connective tissue consisting primarily of adipocytes
-    (fat cells), surrounded by a meshwork of collagen fibers. (NCI)
-  :preferredTerm: Adipose Tissue
+  :identifier: C25299
+  :notation: DIABP
+  :synonym: Diastolic Blood Pressure
+  :definition: The blood pressure after the contraction of the heart while the chambers
+    of the heart refill with blood. (NCI)
+  :preferredTerm: Diastolic Blood Pressure
   :topLevel: false
   :parentIdentifier: C66741
   :children: []
@@ -299,6 +226,95 @@
   :parentIdentifier: C66741
   :children: []
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C49676
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Pulse Rate
+  :extension_properties: []
+  :identifier: C49676
+  :notation: PULSE
+  :synonym: Pulse Rate
+  :definition: The rate of the pulse as observed in an artery, expressed as beats
+    per minute. It can be measured at several anatomical sites, including the wrist,
+    neck, temple, groin, behind the knees, or on top of the foot. (NCI)
+  :preferredTerm: Pulse Rate
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C49677
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Heart Rate
+  :extension_properties: []
+  :identifier: C49677
+  :notation: HR
+  :synonym: Heart Rate
+  :definition: The number of heartbeats per unit of time, usually expressed as beats
+    per minute. (NCI)
+  :preferredTerm: Heart Rate
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C49678
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Respiratory Rate
+  :extension_properties: []
+  :identifier: C49678
+  :notation: RESP
+  :synonym: Respiratory Rate
+  :definition: The rate of breathing (inhalation and exhalation) measured within in
+    a unit time, usually expressed as breaths per minute. (NCI)
+  :preferredTerm: Respiratory Rate
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C49679
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Mean Arterial Pressure
+  :extension_properties: []
+  :identifier: C49679
+  :notation: MAP
+  :synonym: Mean Arterial Pressure
+  :definition: 'The mean pressure of the blood within the arterial circulation. The
+    arterial pressure may be directly measured by insertion of an intra-arterial catheter
+    connected to a transducer. The mean arterial pressure (MAP) can be calculated
+    by subsequent analysis of the waveform. MAP can be approximated without an invasive
+    procedure using the following formula: diastolic pressure plus 1/3 of the pulse
+    pressure, where pulse pressure is systolic pressure - diastolic pressure. (NCI)'
+  :preferredTerm: Mean Arterial Pressure
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C49680
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Body Frame Size
+  :extension_properties: []
+  :identifier: C49680
+  :notation: FRMSIZE
+  :synonym: Body Frame Size
+  :definition: The categorization of a person's body frame into small, medium and
+    large based on the measurement of wrist circumference or the breadth of the elbow.
+    (NCI)
+  :preferredTerm: Body Frame Size
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C60832
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Oxygen Saturation Measurement
+  :extension_properties: []
+  :identifier: C60832
+  :notation: OXYSAT
+  :synonym: Oxygen Saturation
+  :definition: A measurement of the oxygen-hemoglobin saturation of a volume of blood.
+  :preferredTerm: Oxygen Saturation Measurement
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
   :id: CLI-C66741_C71258
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
   :label: Lean Body Mass
@@ -313,31 +329,44 @@
   :parentIdentifier: C66741
   :children: []
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C103346
+  :id: CLI-C66741_C81255
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Abdominal Skinfold Thickness
+  :label: Head Circumference
   :extension_properties: []
-  :identifier: C103346
-  :notation: ABSKNF
-  :synonym: Abdominal Skinfold Thickness
-  :definition: A measurement for determining the subcutaneous fat layer thickness
-    whereby a pinch of skin approximately five centimeters to the right of the umbilicus
-    is measured using calipers. (NCI)
-  :preferredTerm: Abdominal Skinfold Thickness
+  :identifier: C81255
+  :notation: HDCIRC
+  :synonym: Head Circumference
+  :definition: A circumferential measurement of the head at the widest point.
+  :preferredTerm: Head Circumference
   :topLevel: false
   :parentIdentifier: C66741
   :children: []
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C25299
+  :id: CLI-C66741_C81298
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Diastolic Blood Pressure
+  :label: Total Body Length
   :extension_properties: []
-  :identifier: C25299
-  :notation: DIABP
-  :synonym: Diastolic Blood Pressure
-  :definition: The blood pressure after the contraction of the heart while the chambers
-    of the heart refill with blood. (NCI)
-  :preferredTerm: Diastolic Blood Pressure
+  :identifier: C81298
+  :notation: BODLNGTH
+  :synonym: Body Length
+  :definition: The linear extent in space from one end of the body to the other end,
+    or the extent of the body from beginning to end.
+  :preferredTerm: Total Body Length
+  :topLevel: false
+  :parentIdentifier: C66741
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: CLI-C66741_C84372
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
+  :label: Knee to Heel Length Measurement
+  :extension_properties: []
+  :identifier: C84372
+  :notation: KNEEHEEL
+  :synonym: Knee to Heel Length; Lower Leg Length
+  :definition: A measurement of the length of the lower leg from the top of the knee
+    to the bottom of the heel. This measurement may be taken with a knemometer or
+    calipers. (NCI)
+  :preferredTerm: Knee to Heel Length Measurement
   :topLevel: false
   :parentIdentifier: C66741
   :children: []
@@ -358,58 +387,29 @@
   :parentIdentifier: C66741
   :children: []
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C100945
+  :id: CLI-C66741_C98785
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Pulse Pressure
+  :label: Subscapular Skinfold Thickness
   :extension_properties: []
-  :identifier: C100945
-  :notation: PULSEPR
-  :synonym: Pulse Pressure
-  :definition: The change in systolic to diastolic pressure which produces a pulse.
-  :preferredTerm: Pulse Pressure
+  :identifier: C98785
+  :notation: SSSKNF
+  :synonym: Subscapular Skinfold Thickness
+  :definition: A measurement of the thickness of a pinch of skin situated below or
+    on the underside of the scapula. (NCI)
+  :preferredTerm: Subscapular Skinfold Thickness
   :topLevel: false
   :parentIdentifier: C66741
   :children: []
 - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C104622
+  :id: CLI-C66741_C98793
   :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Total Body Water Measurement
+  :label: Triceps Skinfold Thickness
   :extension_properties: []
-  :identifier: C104622
-  :notation: TBW
-  :synonym: Total Body Water
-  :definition: A measurement of the quantity of water within the body, including both
-    the intracellular and extracellular compartments.
-  :preferredTerm: Total Body Water Measurement
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C49676
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Pulse Rate
-  :extension_properties: []
-  :identifier: C49676
-  :notation: PULSE
-  :synonym: Pulse Rate
-  :definition: The rate of the pulse as observed in an artery, expressed as beats
-    per minute. It can be measured at several anatomical sites, including the wrist,
-    neck, temple, groin, behind the knees, or on top of the foot. (NCI)
-  :preferredTerm: Pulse Rate
-  :topLevel: false
-  :parentIdentifier: C66741
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66741_C25298
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V39
-  :label: Systolic Blood Pressure
-  :extension_properties: []
-  :identifier: C25298
-  :notation: SYSBP
-  :synonym: Systolic Blood Pressure
-  :definition: The blood pressure during the contraction of the left ventricle of
-    the heart. (NCI)
-  :preferredTerm: Systolic Blood Pressure
+  :identifier: C98793
+  :notation: TRSKNF
+  :synonym: Triceps Skinfold Thickness
+  :definition: A measurement of the thickness of a pinch of skin on the triceps. (NCI)
+  :preferredTerm: Triceps Skinfold Thickness
   :topLevel: false
   :parentIdentifier: C66741
   :children: []

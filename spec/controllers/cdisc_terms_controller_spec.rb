@@ -72,7 +72,7 @@ describe CdiscTermsController do
       params = { :notation => "VSTESTCD" }
       get :find_submission, params
       results = assigns(:cdiscCl)
-      #write__yaml_file(results.to_json, sub_dir, "cdisc_term_controller_find_submission.yaml")
+    #write_yaml_file(results.to_json, sub_dir, "cdisc_term_controller_find_submission.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_term_controller_find_submission.yaml")
       expect(results.to_json).to eq(expected)
     end
