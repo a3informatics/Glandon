@@ -160,7 +160,7 @@ describe ThesaurusConcept do
     new_object = tc.add_child(json)
     expect(new_object.errors.count).to eq(0)
     tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(tc.to_json).to eq(new_json)
+    expect(tc.to_json).to be_eql(new_json)
   end
 
   it "prevents a duplicate TC being added" do

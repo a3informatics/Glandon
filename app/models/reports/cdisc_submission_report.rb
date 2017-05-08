@@ -76,7 +76,7 @@ private
     html += "<th>Label</th>"
     html += "<th>Original Submission Value</th>"
     versions.each do |label|
-      html += "<th>#{label}</th>"
+      html += "<th>#{label[:version_label]}</th>"
     end
     html += "</tr></thead><tbody>"
     return html

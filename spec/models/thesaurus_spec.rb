@@ -86,7 +86,7 @@ describe Thesaurus do
   it "allows the complete Th to be found" do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_2.yaml")
-    expect(th.to_json).to eq(result_th)    
+    expect(th.to_json).to be_eql(result_th)    
   end
 
   it "allows the thesaurus to be found from a concept" do
@@ -176,7 +176,7 @@ describe Thesaurus do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     sparql = th.to_sparql_v2
     result_sparql = read_text_file_2(sub_dir, "thesaurus_example_7.txt")
-    expect(sparql.to_s).to eq(result_sparql)
+    expect(sparql.to_s).to be_eql(result_sparql)
   end
 
   it "allows a child TC to be added" do
