@@ -36,7 +36,6 @@ describe Reports::CdiscSubmissionReport do
     job = Background.create
     job.submission_changes_cdisc_term()
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    results[:children].sort_by {|k,u| u[:identifier]} # Sort to ensure consistent answer
     report = Reports::CdiscSubmissionReport.new
     pdf = report.create(results, user)
     html = report.html

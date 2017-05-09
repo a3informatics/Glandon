@@ -233,6 +233,7 @@ class Background < ActiveRecord::Base
       index += 1
     end
     # Finish up.
+    transformed_results = transformed_results.sort.to_h
     CdiscCtChanges.save(CdiscCtChanges::C_ALL_SUB, { :versions => versions, :children => transformed_results })
     self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
   rescue => e
