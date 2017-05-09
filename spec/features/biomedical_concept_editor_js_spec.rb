@@ -399,6 +399,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       
       fill_in 'Identifier', with: 'A12345'
       click_button 'Create'
+      wait_for_ajax(3)
       expect(page).to have_content 'The Biomedical Concept was succesfully created.'
       
       fill_in "biomedical_concept_identifier", with: 'A12346'
@@ -413,6 +414,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       
       fill_in "biomedical_concept_label", with: vh_all_chars
       click_button 'Create'
+      wait_for_ajax(3)
       expect(page).to have_content "The Biomedical Concept was succesfully created."
       
       scroll_to_all_bc_panel
