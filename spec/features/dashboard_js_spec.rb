@@ -87,6 +87,8 @@ describe "Dashboard JS", :type => :feature do
       expect(find('#subjectId').value).to eq 'BC-ACME_BC_C16358'      
       click_button 'Gr+'
       expect(page).to have_content 'Metadata View:'
+      click_link 'logoff_button'
+      expect(page).to have_content 'Log in'
     end
 
     it "allows the dashboard to be viewed", js: true do

@@ -83,6 +83,7 @@ describe IsoConceptController do
       }
       get :impact, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
       expect(assigns(:results).to_json).to eq(results.to_json)
+      expect(assigns(:item).to_json).to eq(item.to_json)
     end
 
   end

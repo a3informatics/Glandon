@@ -174,6 +174,16 @@ describe IsoManagedController do
       expect(assigns(:results)).to eq(results)
     end
 
+    it "determines the change impact for managed item, JSON" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      bc = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
+      results = { item: bc.to_json, children: [{:uri=>"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1", :rdf_type=>"http://www.assero.co.uk/BusinessForm#Form"}] }
+      get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" , iso_managed: { index_label: "LABEL", index_path: "/test" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(response.body).to eq(results.to_json.to_s)
+    end
+
   end
 
   describe "Unauthorized User" do
