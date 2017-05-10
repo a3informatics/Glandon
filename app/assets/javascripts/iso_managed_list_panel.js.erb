@@ -1,0 +1,72 @@
+/*
+* Managed Item Panel
+* 
+* Requires:
+* 
+* managed_item_table [Table] the managed item table
+*/
+
+function IsoManagedListPanel(mode) {
+  var _this = this;
+  this.currentRow = null;
+	this.miTable = $('#managed_item_table').DataTable( {
+		"rowId": 'key',
+    "columns": [
+      {"data" : "scoped_identifier.identifier"},
+      {"data" : "label"},
+      {"data" : "scoped_identifier.semantic_version"},
+      {"data" : "scoped_identifier.version_label"},
+      {"render" : function (data, type, row, meta) {
+        return '<a href="' + getPathStrong(row.type, row.id, row.namespace) + '" class="btn btn-primary btn-xs">Show</a>';
+      }}
+    ],
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "scroller": true,
+    "language": {
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    }
+  });
+}
+
+IsoManagedListPanel.prototype.add = function (uri, key) {
+  var _this = this;
+  $.ajax({
+    url: "/iso_managed/" + getId(uri),
+    data: { "namespace": getNamespace(uri) },
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+    	result.key = key;
+      _this.miTable.row.add(result);
+      _this.miTable.draw();
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+    }
+  });
+}
+
+IsoManagedListPanel.prototype.highlight = function (key) {
+  if (this.currentRow !== null) {
+    $(this.currentRow).toggleClass('success');
+  }
+  var row = this.miTable.row('#' + key);
+  this.currentRow = row.nodes();
+  this.moveToPage(row);
+  $(this.currentRow).toggleClass('success')
+}
+
+IsoManagedListPanel.prototype.moveToPage = function (row) {
+	var page_info = this.miTable.page.info();
+  var new_row_index = row.index();
+  var row_position = this.miTable.rows()[0].indexOf(new_row_index);
+  if( row_position >= page_info.start && row_position < page_info.end ) {
+    return;
+  }
+  var page_to_display = Math.floor( row_position / this.miTable.page.len() );
+  this.miTable.page(page_to_display);
+  this.miTable.draw(false);
+  return;
+}

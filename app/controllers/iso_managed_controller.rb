@@ -134,16 +134,23 @@ class IsoManagedController < ApplicationController
   def impact
     authorize IsoManaged, :show?
     map = {}
-    @index_label = this_params[:index_label]
-    @index_path = this_params[:index_path]
     @item = IsoManaged.find(params[:id], params[:namespace], false)
-    @history_path = TypePathManagement.history_url(@item.rdf_type, @item.identifier, @item.scopedIdentifier.namespace.id)
-    @referer = request.referer
     managed_items = @item.find_links_from_to(from=false)
     managed_items.each do |result|
       result[:uri] = result[:uri].to_s
     end
     @results = {item: @item.to_json, children: managed_items}
+    respond_to do |format|
+      format.html do
+      	@index_label = this_params[:index_label]
+    		@index_path = this_params[:index_path]
+    		@history_path = TypePathManagement.history_url(@item.rdf_type, @item.identifier, @item.scopedIdentifier.namespace.id)
+    		@referer = request.referer
+      end
+      format.json do
+        render json: @results
+      end
+    end
   end
 
 private

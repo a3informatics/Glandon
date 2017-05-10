@@ -1,0 +1,65 @@
+/*
+* Impact Panel
+* 
+* Requires:
+* 
+* managed_item_table [Table] the managed item table
+*/
+
+function ImpactGraphPanel(clickCallBack) {
+  var _this = this;
+  // Create empty graph
+  this.graph = {};
+  this.graph.nodes = [];
+  this.graph.links = [];
+  this.currentNode = null;
+  this.currentGRef = null;
+  this.clickCallBack = clickCallBack;
+  this.nextKey = 1;
+  // Init D3
+  d3gInit(colours, 25);
+  // Set window resize.
+  window.addEventListener("resize", this.draw.bind(this));
+}
+
+ImpactGraphPanel.prototype.nodeClick = function (node) {
+  if (this.currentGRef !== null) {
+    d3gClearNode(this.currentNode, this.currentGRef);
+  }
+  this.currentGRef = d3gFindGRef(node.key);
+  if (this.currentGRef !== null) {
+	  this.currentNode = node;
+  	d3gMarkNode(this.currentGRef);
+  	this.clickCallBack(node);
+  }
+}
+
+
+ImpactGraphPanel.prototype.empty = function () {
+}
+
+ImpactGraphPanel.prototype.addNode = function (sourceNode) {
+  var uri = sourceNode.uri;    
+  var node = sourceNode;
+  node.name = "";
+  node.key = this.nextKey;
+  node.type = sourceNode.rdf_type;
+  this.nextKey++;
+  this.graph.nodes.push(node);
+  var index = this.graph.nodes.length - 1;
+  node.index = index;
+  return node;
+}
+
+ImpactGraphPanel.prototype.addLink = function (source, target) {
+  var link = {};
+  link["source"] = source;
+  link["target"] = target;
+  this.graph.links.push(link);
+  return true;
+}
+
+ImpactGraphPanel.prototype.draw = function () {
+  var json = JSON.parse(JSON.stringify(this.graph));
+  d3gDraw(json, this.nodeClick.bind(this), this.empty.bind(this));
+}

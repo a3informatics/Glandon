@@ -1,10 +1,24 @@
-<%= stylesheet_link_tag    'd3_graph' %>
-<%= javascript_include_tag 'd3_graph', 'iso_concept_impact', 'colour' %>
+<%= stylesheet_link_tag    'd3_graph', 'spinner' %>
+<%= javascript_include_tag 'd3_graph', 'iso_concept_impact', 'colour', 'iso_managed_list_panel', 'impact_graph_panel', 'spinner' %>
 <% fourth_level_managed_item_breadcrumb(@item, @index_label, @index_path, @history_path, "", @referer, "Impact") %>
 <h3>Impact Analysis: <%= @item.label %></h3>
 <script id="jsonData" type="text/json">
     <%= raw @results.to_json %>
 </script>
+<div id="max_hops">
+  <%= javascript_tag "var maxImpactHops = #{APP_CONFIG['max_impact_hops'].to_i};" %>
+</div>
 <div class="row">
-  <%= render partial: "shared/impact" %>
+	<div class="col-md-7">
+  	<%= render partial: "shared/iso_managed_list_panel", :locals => { :title => "Items Impacted" } %>
+  	<div class="btn-group" role="group" aria-label="First group">
+      <button id="processing" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-refresh"></span>
+      </button>
+      <button type="submit" id="close" class="btn btn-primary">Close</button>
+		</div>	
+  </div>
+  <div class="col-md-5">
+		<%= render partial: "shared/impact_graph_panel" %>
+	</div>
 </div>

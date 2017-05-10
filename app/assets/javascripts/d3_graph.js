@@ -101,6 +101,25 @@ function d3gMarkNode (ref) {
   d3.select(ref).style("fill", "gray");
 }
 
+/**
+ * Find the node element reference by key
+ *
+ * @param key [String] the key for the node
+ * @return [Object] the node element reference
+ */
+function d3gFindGRef(key) {
+  var gRef = null;
+  var nodes = d3.selectAll("circle");
+  for (var i=0; i<nodes[0].length; i++) {
+    var data = nodes[0][i].__data__;
+    if (data.key === key) {
+      gRef = nodes[0][i];
+      break;
+    }
+  }
+  return gRef;
+}
+
 function d3gClearNode (node, ref) {
   d3.select(ref).style("fill", nodeColour(node));
 }

@@ -14,7 +14,8 @@ Rails.application.config.assets.version = '1.0'
   field_validation
   iso_concept_system_viewer 
   iso_concept_graph iso_concept_impact
-  iso_managed_comment_edit iso_managed_list iso_managed_tag_edit iso_managed_tag_list iso_managed_graph
+  iso_managed_comment_edit iso_managed_list iso_managed_tag_edit iso_managed_tag_list 
+  iso_managed_graph iso_managed_list_panel impact_graph_panel
   sdtm_user_domain_editor
   domains domains/variables 
   dashboard_viewer dashboard_index 
