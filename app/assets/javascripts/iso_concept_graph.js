@@ -80,7 +80,7 @@ $(document).ready(function() {
 
   function nodeClick (node) {
     if (currentNode != null) {
-      d3gClearNode(currentNode, currentThis);
+      d3gClearNode(currentThis);
     }
     $('#node_details tbody').empty();
     info(node);

@@ -1,17 +1,36 @@
-//var html = $("#jsonData").html();
-//var graph = $.parseJSON(html);
+/**
+* A small interface to the D3 library for the creation of graphs in a 
+* standardised method.
+*
+*/
+
 var nodeColours;
 var d3Div;
 var linkDistance;
 var toggle;
 var linkedByIndex;
   
+/**
+ * D3 Graph Initialise: Init the package
+ *
+ * @param colours [Object] the structure containg the colours. Array of rdf_types.
+ * @param linkDist [Integer] the link distance value to be used in graph
+ * @return [Null]
+ */
 function d3gInit(colours, linkDist) {
   nodeColours = colours;
   d3Div = document.getElementById("d3");
   linkDistance = linkDist;
 }
 
+/**
+ * D3 Graph Draw
+ *
+ * @param graph [Object] the json object containing the nodes and links
+ * @param click [Function] the click call back function
+ * @param dblclick [Function] the click call back function
+ * @return [Null]
+ */
 function d3gDraw(graph, click, dblclick) {
   d3.select('svg').remove();
 
@@ -97,6 +116,12 @@ function d3gDraw(graph, click, dblclick) {
   }
 }
 
+/**
+ * Mark a node
+ *
+ * @param ref [Object] the ref to the node
+ * @return [Null]
+ */
 function d3gMarkNode (ref) {
   d3.select(ref).style("fill", "gray");
 }
@@ -120,10 +145,18 @@ function d3gFindGRef(key) {
   return gRef;
 }
 
-function d3gClearNode (node, ref) {
-  d3.select(ref).style("fill", nodeColour(node));
+/**
+ * Clear a node back to default colour
+ *
+ * @param node [Object] the node
+ * @param ref [Object] the node element reference
+ * @return [Null]
+ */
+function d3gClearNode (ref) {
+  d3.select(ref).style("fill", nodeColour(ref.__data__));
 }
 
+// Node colour
 function nodeColour (node) {
   if (node.type in nodeColours) {
     return nodeColours[node.type]

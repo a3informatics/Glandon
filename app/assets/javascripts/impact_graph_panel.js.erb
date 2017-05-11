@@ -24,7 +24,7 @@ function ImpactGraphPanel(clickCallBack) {
 
 ImpactGraphPanel.prototype.nodeClick = function (node) {
   if (this.currentGRef !== null) {
-    d3gClearNode(this.currentNode, this.currentGRef);
+    d3gClearNode(this.currentGRef);
   }
   this.currentGRef = d3gFindGRef(node.key);
   if (this.currentGRef !== null) {
