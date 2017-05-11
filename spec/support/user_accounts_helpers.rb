@@ -54,6 +54,10 @@ module UserAccountHelpers
     fill_in 'Password', with: '12345678'
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'
-  end  
+  end
+
+  def ua_logoff
+  	click_link 'logoff_button'
+  end
 
 end

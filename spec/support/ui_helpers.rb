@@ -3,6 +3,10 @@ module UiHelpers
 	# General UI helpers
   # ==================
   
+  def ui_check_page_has(text)
+  	expect(page).to have_content(text)
+  end
+
   def ui_click_ok(text="")
     a = page.driver.browser.switch_to.alert
     expect(a.text).to eq(text) if !text.empty?
@@ -84,10 +88,12 @@ module UiHelpers
     page.evaluate_script("dtMainTableAll()")
   end
 
-  def ui_cdisc_search_show_all
-    page.evaluate_script("csSearchTableAll()")
+  def ui_main_search(text)
+  	input = find(:xpath, '//*[@id="main_filter"]/label/input')
+    input.set(text)
+    input.native.send_keys(:return)
   end
-  
+
   # check table row
   def ui_check_table_row(table_id, row, data)
     page.all("table##{table_id} tbody tr:nth-child(#{row}) td").each_with_index do |td, index|

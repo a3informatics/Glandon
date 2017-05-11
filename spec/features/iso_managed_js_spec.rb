@@ -6,6 +6,7 @@ describe "ISO Managed JS", :type => :feature do
   include PauseHelpers
   include UiHelpers
   include WaitForAjaxHelper
+  include UserAccountHelpers
   
   before :all do
     user = User.create :email => "curator@example.com", :password => "12345678" 
@@ -36,11 +37,7 @@ describe "ISO Managed JS", :type => :feature do
   describe "Curator User", :type => :feature do
 
     it "allows the metadata graph to be viewed", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      #pause
+      ua_curator_login
       click_link 'Biomedical Concepts'
       #pause
       expect(page).to have_content 'Index: Biomedical Concepts'
@@ -54,17 +51,36 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_field('concept_label', disabled: true)
       click_button 'graph_stop'
       expect(page).to have_button('graph_focus', disabled: false)
-      #pause
+      ua_logoff
     end
 
-    it "allows a impact page to be displayed"
+    it "allows a impact page to be displayed", js: true do
+    	ua_curator_login
+      click_link 'Biomedical Concepts'
+      ui_check_page_has('Index: Biomedical Concepts')
+      ui_table_row_link_click('BC C25347', 'History')
+      ui_check_page_has('History: BC C25347')
+      ui_table_row_link_click('BC C25347', 'Show')
+      ui_check_page_has('Show: Height (BC C25347)')
+      ui_table_row_link_click('BC C25347', 'Impact')
+      ui_check_page_has('Impact Analysis: Height (BC C25347)')
+      ui_check_table_row('managed_item_table', 1, ["VS BASELINE", "Vital Signs Baseline", "0.0.0", ""])
+      click_button 'close'
+      ui_check_page_has('Show: Height (BC C25347)')
+      ui_table_row_link_click('BC C25347', 'Impact')
+      ui_check_page_has('Impact Analysis: Height (BC C25347)')
+    #pause
+      #ui_table_row_link_click('VS BASELINE', 'Show')
+      #ui_check_page_has("Show: Vital Signs Baseline")
+      ua_logoff
+    end
+
+    it "allows the show of an impact item, see above"
+
+    it "allows a impact graph to be clicked"
 
     it "allows the comments to be updated", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_curator_login
       click_link 'Forms'
       expect(page).to have_content 'Index: Forms'
       #pause
@@ -100,14 +116,11 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_content 'Hello world. This is a change description'   
       expect(page).to have_content 'I am a comment'   
       expect(page).to have_content 'Origin'   
+      ua_logoff
     end
 
     it "allows the status to be updated", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_curator_login
       click_link 'Forms'
       expect(page).to have_content 'Index: Forms'
       #pause
@@ -137,15 +150,11 @@ describe "ISO Managed JS", :type => :feature do
       click_button "state_submit"
       #pause
       expect(page).to have_content "Current Status: Superseded"
-      #pause
+      ua_logoff
     end
 
     it "allows the status to be updated, handles standard version", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_curator_login
       click_link 'Forms'
       expect(page).to have_content 'Index: Forms'
       click_link 'New'
@@ -177,6 +186,7 @@ describe "ISO Managed JS", :type => :feature do
       ui_check_table_row("version_info", 1, ["Version:", "1.0.0"])
       ui_check_table_row("version_info", 2, ["Version Label:", "Draft Form"])
       ui_check_table_row("version_info", 3, ["Internal Version:", "1"])
+      ua_logoff
     end
 
   end

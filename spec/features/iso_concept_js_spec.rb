@@ -4,7 +4,9 @@ describe "ISO Concept JS", :type => :feature do
   
   include DataHelpers
   include PauseHelpers
-  
+  include UiHelpers
+  include UserAccountHelpers
+
   before :all do
     user = User.create :email => "curator@example.com", :password => "12345678" 
     user.add_role :curator
@@ -35,11 +37,7 @@ describe "ISO Concept JS", :type => :feature do
 
     it "allows the metadata graph to be viewed", js: true do
       audit_count = AuditTrail.count
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      #pause
+      ua_curator_login
       click_link 'Biomedical Concepts'
       #pause
       expect(page).to have_content 'Index: Biomedical Concepts'
@@ -53,10 +51,34 @@ describe "ISO Concept JS", :type => :feature do
       expect(page).to have_field('concept_label', disabled: true)
       click_button 'graph_stop'
       expect(page).to have_button('graph_focus', disabled: false)
-      #pause
+      ua_logoff
     end
 
-    it "allows a impact page to be displayed"
+    it "allows a impact page to be displayed", js: true do
+    	ua_curator_login
+      click_link 'CDISC Terminology'
+      ui_check_page_has('History: CDISC Terminology')
+      ui_table_row_link_click('42.0.0', 'Show')
+      ui_check_page_has('Show: CDISC Terminology 2015-09-25')
+      ui_main_search("VSTESTCD")
+      ui_table_row_link_click('VSTESTCD', 'Show')
+      ui_check_page_has('Show: Vital Signs Test Code C66741')
+      ui_main_search("HR")
+      ui_table_row_link_click('C49677', 'Impact')
+      ui_check_page_has('Impact Analysis: Heart Rate')
+      ui_check_table_row('managed_item_table', 1, ["BC C49677", "Heart Rate (BC C49677)", "1.0.0", "0.1"])
+      ui_check_table_row('managed_item_table', 2, ["CDISC Terminology", "CDISC Terminology 2015-09-25", "42.0.0", "2015-09-25"])
+      click_button 'close'
+      ui_check_page_has('Show: Vital Signs Test Code C66741')
+      ui_main_search("HR")
+      ui_table_row_link_click('C49677', 'Impact')
+      ui_check_page_has('Impact Analysis: Heart Rate')
+      ui_table_row_link_click('BC C49677', 'Show')
+      ui_check_page_has("Show: Heart Rate (BC C49677)")
+      ua_logoff
+    end
+
+    it "allows a impact graph to be clicked"
 
   end
 

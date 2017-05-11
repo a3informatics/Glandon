@@ -2,10 +2,15 @@
 * Impact Panel
 * 
 * Requires:
-* 
-* managed_item_table [Table] the managed item table
+* d3 [Div] the d3 div
 */
 
+/**
+ * Impact Graph Panel Constructor
+ *
+ * @param clcikBackCall [Function] the callback function.
+ * @return [Null]
+ */
 function ImpactGraphPanel(clickCallBack) {
   var _this = this;
   // Create empty graph
@@ -22,6 +27,12 @@ function ImpactGraphPanel(clickCallBack) {
   window.addEventListener("resize", this.draw.bind(this));
 }
 
+/**
+ * Node Click
+ *
+ * @param node [Object] the node clicked on
+ * @return [Null]
+ */
 ImpactGraphPanel.prototype.nodeClick = function (node) {
   if (this.currentGRef !== null) {
     d3gClearNode(this.currentGRef);
@@ -34,10 +45,20 @@ ImpactGraphPanel.prototype.nodeClick = function (node) {
   }
 }
 
-
+/**
+ * Empty Function
+ *
+ * @return [Null]
+ */
 ImpactGraphPanel.prototype.empty = function () {
 }
 
+/**
+ * Add Node to the graph
+ *
+ * @param sourceNode [Object] the source data beign added
+ * @return [Object] the node added to the graph. Source node plus additonal properties.
+ */
 ImpactGraphPanel.prototype.addNode = function (sourceNode) {
   var uri = sourceNode.uri;    
   var node = sourceNode;
@@ -51,6 +72,13 @@ ImpactGraphPanel.prototype.addNode = function (sourceNode) {
   return node;
 }
 
+/**
+ * Link Nodes
+ *
+ * @param source [Integer] index of the source node
+ * @param target [Integer] index of the target node
+ * @return [Boolean] always returns true
+ */
 ImpactGraphPanel.prototype.addLink = function (source, target) {
   var link = {};
   link["source"] = source;
@@ -59,6 +87,11 @@ ImpactGraphPanel.prototype.addLink = function (source, target) {
   return true;
 }
 
+/**
+ * Draw the graph
+ *
+ * @return [Null]
+ */
 ImpactGraphPanel.prototype.draw = function () {
   var json = JSON.parse(JSON.stringify(this.graph));
   d3gDraw(json, this.nodeClick.bind(this), this.empty.bind(this));

@@ -95,15 +95,15 @@ describe("D3 Graph", function() {
  	it("allows a node to be marked by reference", function() {
  		var gRef = d3gFindGRef(2);
 		d3gMarkNode(gRef);
-		expect(gRef.style.fill).to.equal("gray");
+		expect(clickedNodeTest(gRef.style.fill).to.equal(true);
   });
 
  	it("allows a node to be cleared reference", function() {
  		var gRef = d3gFindGRef(4);
 		d3gMarkNode(gRef);
-		expect(gRef.style.fill).to.equal("gray");
+		expect(clickedNodeTest(gRef.style.fill).to.equal(true);
 		d3gClearNode (gRef);
-		expect(gRef.style.fill).to.equal("black");
+		expect(undefinedNodeTest(gRef.style.fill).to.equal(true);
   });
 
  	it("allows a node reference to be obtained by key", function() {

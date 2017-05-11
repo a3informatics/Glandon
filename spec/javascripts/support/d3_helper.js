@@ -17,3 +17,11 @@ function enabledNodeTest(fill) {
 function disabledNodeTest(fill) {
 	return (fill === '#ff4500' || fill === "orangered");
 }
+
+function clickedNodeTest(fill) {
+	return (fill === '#808080' || fill === "gray");
+}
+
+function undefinedNodeTest(fill) {
+	return (fill === '#ffffff' || fill === "black");
+}

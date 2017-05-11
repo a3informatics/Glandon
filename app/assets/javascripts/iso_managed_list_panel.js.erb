@@ -2,11 +2,15 @@
 * Managed Item Panel
 * 
 * Requires:
-* 
 * managed_item_table [Table] the managed item table
 */
 
-function IsoManagedListPanel(mode) {
+/**
+ * ISO Managed List Panel Constructor
+ *
+ * @return [Null]
+ */
+function IsoManagedListPanel() {
   var _this = this;
   this.currentRow = null;
 	this.miTable = $('#managed_item_table').DataTable( {
@@ -30,6 +34,13 @@ function IsoManagedListPanel(mode) {
   });
 }
 
+/**
+ * Add item to table
+ *
+ * @param uri [String] the uri of the item being added
+ * @param key [Integer] a unique reference
+ * @return [Null]
+ */
 IsoManagedListPanel.prototype.add = function (uri, key) {
   var _this = this;
   $.ajax({
@@ -48,6 +59,12 @@ IsoManagedListPanel.prototype.add = function (uri, key) {
   });
 }
 
+/**
+ * Highlight
+ *
+ * @param key [Integer] a unique reference
+ * @return [Null]
+ */
 IsoManagedListPanel.prototype.highlight = function (key) {
   if (this.currentRow !== null) {
     $(this.currentRow).toggleClass('success');
@@ -58,6 +75,12 @@ IsoManagedListPanel.prototype.highlight = function (key) {
   $(this.currentRow).toggleClass('success')
 }
 
+/**
+ * Move To Page
+ *
+ * @param row [Object] the datatables row object
+ * @return [Null]
+ */
 IsoManagedListPanel.prototype.moveToPage = function (row) {
 	var page_info = this.miTable.page.info();
   var new_row_index = row.index();
