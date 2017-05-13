@@ -51,8 +51,36 @@ describe SemanticVersion do
     expect(result.patch).to eq(0)
   end
 
-  it "allows the object to be initialized from a string, invalid 1" do
+  it "allows the object to be initialized from a string, no patch 1" do
     result = SemanticVersion.from_s("1.1.")
+    expect(result.major).to eq(1)
+    expect(result.minor).to eq(1)
+    expect(result.patch).to eq(0)
+  end
+
+  it "allows the object to be initialized from a string, no patch 2" do
+    result = SemanticVersion.from_s("1.1")
+    expect(result.major).to eq(1)
+    expect(result.minor).to eq(1)
+    expect(result.patch).to eq(0)
+  end
+
+  it "allows the object to be initialized from a string, no minor 1" do
+    result = SemanticVersion.from_s("1.")
+    expect(result.major).to eq(1)
+    expect(result.minor).to eq(0)
+    expect(result.patch).to eq(0)
+  end
+
+  it "allows the object to be initialized from a string, no minor 2" do
+    result = SemanticVersion.from_s("1")
+    expect(result.major).to eq(1)
+    expect(result.minor).to eq(0)
+    expect(result.patch).to eq(0)
+  end
+
+  it "allows the object to be initialized from a string, invalid" do
+    result = SemanticVersion.from_s("1.1.1.1")
     expect(result.major).to eq(0)
     expect(result.minor).to eq(0)
     expect(result.patch).to eq(0)

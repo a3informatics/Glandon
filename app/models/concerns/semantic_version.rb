@@ -27,6 +27,10 @@ class SemanticVersion
     parts = version.split('.')
     if parts.length == 3
       object = self.new(major: parts[0].to_i(10), minor: parts[1].to_i(10), patch: parts[2].to_i(10))
+    elsif parts.length == 2
+      object = self.new(major: parts[0].to_i(10), minor: parts[1].to_i(10), patch: 0)
+    elsif parts.length == 1
+      object = self.new(major: parts[0].to_i(10), minor: 0, patch: 0)
     end
     return object
   end
