@@ -668,6 +668,8 @@ describe "Form Editor", :type => :feature do
       expect(key).not_to eq(-1)
       ui_click_node_key(key)
       expect(page).to have_content("Common Item Details")
+      ui_scroll_to_id_2 "itemRestore"
+      #page.execute_script("document.getElementById('itemRestore').scrollIntoView(false);")
       click_button "itemRestore"
       key = ui_get_key_by_path('["Test BC 2", "Group 1", "Common Group", "Date and Time (--DTC)"]')
       expect(key).to eq(-1)

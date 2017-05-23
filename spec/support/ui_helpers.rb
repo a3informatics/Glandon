@@ -201,6 +201,10 @@ module UiHelpers
     page.execute_script("document.getElementById(#{id}).scrollTop += 100")
   end
 
+	def ui_scroll_to_id_2(id)
+  	page.execute_script("document.getElementById('#{id}').scrollIntoView(false);")
+  end
+
   # D3 Tree Functions
   # =================
 
