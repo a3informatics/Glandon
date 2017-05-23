@@ -143,6 +143,9 @@ describe CdiscTermsController do
         :newId => "TH-CDISC_CDISCTerminology", 
         :newNamespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V40" }
       get :compare, params
+      expect(assigns(:identifier)).not_to eq(nil)
+      expect(assigns(:trimmed_results)).not_to eq(nil)
+      expect(assigns(:cls)).not_to eq(nil)
       expect(response).to render_template("changes")
     end
 
@@ -163,6 +166,8 @@ describe CdiscTermsController do
       expect(assigns(:identifier)).to eq('CDISC Terminology')
       expect(assigns(:previous_version)).to eq(nil)
       expect(assigns(:next_version)).to eq(nil)
+      expect(assigns(:trimmed_results)).not_to eq(nil)
+      expect(assigns(:cls)).not_to eq(nil)
       expect(response).to render_template("changes")
     end
 

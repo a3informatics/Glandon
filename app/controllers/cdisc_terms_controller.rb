@@ -123,11 +123,11 @@ class CdiscTermsController < ApplicationController
     ct = CdiscTerm.current
     @identifier = ct.nil? ? CdiscTerm::C_IDENTIFIER : ct.identifier
     full_results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-  	@results = CdiscTerm::Utility.trim_results(full_results, version, current_user.max_term_display.to_i)
-    @previous_version = CdiscTerm::Utility.previous_version(full_results, @results.first[:version])
-    @next_version = CdiscTerm::Utility.next_version(full_results, @results.first[:version], 
-    	current_user.max_term_display.to_i, @results.length)
-  	@cls = CdiscTerm::Utility.transpose_results(@results)
+  	@trimmed_results = CdiscTerm::Utility.trim_results(full_results, version, current_user.max_term_display.to_i)
+    @previous_version = CdiscTerm::Utility.previous_version(full_results, @trimmed_results.first[:version])
+    @next_version = CdiscTerm::Utility.next_version(full_results, @trimmed_results.first[:version], 
+    	current_user.max_term_display.to_i, @trimmed_results.length)
+  	@cls = CdiscTerm::Utility.transpose_results(@trimmed_results)
   end
 
   def changes_report

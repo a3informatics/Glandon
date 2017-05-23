@@ -21,7 +21,7 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
 
     assign(:identifier, "CDISC Terminology")
-    assign(:results, results)
+    assign(:trimmed_results, results)
     assign(:cls, cls)
 		assign(:previous_version, 40)
     assign(:next_version, 49)
@@ -57,7 +57,7 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
 
     assign(:identifier, "CDISC Terminology")
-		assign(:results, results)
+		assign(:trimmed_results, results)
     assign(:cls, cls)
 		assign(:previous_version, nil)
     assign(:next_version, 49)
@@ -93,7 +93,7 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
 
     assign(:identifier, "CDISC Terminology")
-    assign(:results, results)
+    assign(:trimmed_results, results)
     assign(:cls, cls)
 		assign(:previous_version, 40)
     assign(:next_version, nil)

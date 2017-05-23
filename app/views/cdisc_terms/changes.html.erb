@@ -11,7 +11,7 @@
 				<th>Identifier</th>
 				<th>Label</th>
 				<th>Submission Value</th>
-				<% @results.each do |result| %>
+				<% @trimmed_results.each do |result| %>
 			  	<% r = result[:results] %>
 			    <th class="text-center"><%= result[:date] %></th>
 			  <% end %>
