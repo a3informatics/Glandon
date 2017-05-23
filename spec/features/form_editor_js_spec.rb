@@ -1020,10 +1020,10 @@ describe "Form Editor", :type => :feature do
       set_screen_size(1500, 900)
       Token.set_timeout(100) # Just make sure
       load_form("CRF TEST 1") 
-      wait_for_ajax
+      wait_for_ajax(10)
       fill_in 'formLabel', with: "Updated And Wonderful Label No. 2, 2nd Time"
       ui_click_back_button
-      wait_for_ajax
+      wait_for_ajax(10)
       reload_form("CRF TEST 1") 
       wait_for_ajax(10)
       ui_check_input('formLabel', "Updated And Wonderful Label No. 2, 2nd Time")

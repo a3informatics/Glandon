@@ -94,6 +94,25 @@ module UiHelpers
     input.native.send_keys(:return)
   end
 
+  # check table cell
+  def ui_check_table_cell(table_id, row, col, text)
+    cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
+    expect(cell).to eq(text)
+  end
+
+  # check table cell options
+  def ui_check_table_cell_options(table_id, row, col, options)
+    expect(check_table_cell_options(table_id, row, col, options)).to eq(true)
+  end
+
+  def check_table_cell_options(table_id, row, col, options)
+    cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
+    options.each do |text|
+    	return true if cell == text
+    end
+    return false
+  end
+
   # check table row
   def ui_check_table_row(table_id, row, data)
     page.all("table##{table_id} tbody tr:nth-child(#{row}) td").each_with_index do |td, index|
