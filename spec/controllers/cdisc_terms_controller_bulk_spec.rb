@@ -95,7 +95,7 @@ describe CdiscTermsController do
       get :changes_calc
       expect(response).to redirect_to("/backgrounds")
       results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-    write_yaml_file(results, sub_dir, "cdisc_terms_controller_bulk_all_changes.yaml")
+    #write_yaml_file(results, sub_dir, "cdisc_terms_controller_bulk_all_changes.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_terms_controller_bulk_all_changes.yaml")
       expect(results).to eq(expected)
     end
@@ -106,7 +106,7 @@ describe CdiscTermsController do
       get :submission_calc
       expect(response).to redirect_to("/backgrounds")
       results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    write_yaml_file(results, sub_dir, "cdisc_terms_controller_bulk_submission_changes.yaml")
+    #write_yaml_file(results, sub_dir, "cdisc_terms_controller_bulk_submission_changes.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_terms_controller_bulk_submission_changes.yaml")
       expect(results).to eq(expected)
     end
