@@ -179,6 +179,15 @@ describe CdiscTermsController do
       expect(response).to render_template("changes")
     end
 
+    it "obtains the change results, version" do
+			@user.write_setting("max_term_display", 2)
+      get :changes, { cdisc_term: {version: 39}}
+      expect(assigns(:identifier)).to eq('CDISC Terminology')
+      expect(assigns(:previous_version)).to eq(nil)
+      expect(assigns(:next_version)).to eq(40)
+      expect(response).to render_template("changes")
+    end
+
     it "changes_report" do
       request.env['HTTP_ACCEPT'] = "application/pdf"
       get :changes_report

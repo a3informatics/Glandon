@@ -55,6 +55,25 @@ describe CdiscTermsController do
       return dates
     end
 
+    def changes_comparison(results, expected)
+    	puts "All Changes"
+    	expect(results.length).to eq(expected.length)
+    	expected.each_with_index do |expected_version, index|
+	    	puts "Version: #{expected_version[:version]}"
+    		results_version = results.select {|x| x[:version] == expected_version[:version]}
+    		if results_version.length == 1
+	    		expect(results_version[0][:children].length).to eq(expected_version[:children].length)   
+	    		expected_version[:children].each do |key, expected_child|
+			    	puts "CL: #{key}"
+		    		results_child = results_version[0][:children][key]
+				    expect(results_child).to eq(expected_child)
+	    		end
+	      else
+	        expect(true).to eq(false)
+	      end
+    	end
+    end
+
     def submission_status(results, version_date, code_list_item, previous, current)
       term = results[:children].select {|key, item| key == code_list_item}
       if term.length == 1
@@ -84,7 +103,7 @@ describe CdiscTermsController do
     def code_list_history(results, code_list, status)
       status_map = {:~ => :not_present, :- => :no_change, :C => :created, :U => :updated, :D => :deleted}
       status.each_with_index do |s, index|
-        #puts "D=#{date[index]}, CL=#{code_list}, S=#{s}, SM=#{status_map[s]}" 
+        puts "D=#{date[index]}, CL=#{code_list}, S=#{s}, SM=#{status_map[s]}" 
         code_list_status(results, date[index], code_list, status_map[s])
       end
     end
@@ -97,7 +116,8 @@ describe CdiscTermsController do
       results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
     #write_yaml_file(results, sub_dir, "cdisc_terms_controller_bulk_all_changes.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_terms_controller_bulk_all_changes.yaml")
-      expect(results).to eq(expected)
+      #expect(results).to eq(expected) # Old Method
+      changes_comparison(results, expected) # New method
     end
 
     it "calculates the bulk submission change results", :ct_bulk_test => true do
@@ -125,14 +145,14 @@ describe CdiscTermsController do
       code_list_history(results, :C101860, [:C, :-, :-, :-, :U, :-, :-, :-, :-, :-, :-, :-, :-])
       code_list_history(results, :C101867, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
       code_list_history(results, :C102583, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
-      code_list_history(results, :C103460, [:C, :U, :-, :-, :-, :-, :-, :U, :U, :U, :-, :-, :-])
+      code_list_history(results, :C103460, [:C, :U, :U, :-, :-, :-, :-, :U, :U, :U, :-, :-, :-])
       code_list_history(results, :C103472, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-])
       code_list_history(results, :C105137, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-])
-      code_list_history(results, :C106480, [:C, :-, :-, :-, :-, :-, :U, :-, :-, :-, :-, :-, :-])
-      code_list_history(results, :C106658, [:C, :U, :-, :-, :U, :-, :-, :U, :U, :U, :-, :-, :-])
+      code_list_history(results, :C106480, [:C, :-, :-, :-, :U, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C106658, [:C, :U, :U, :-, :U, :-, :-, :U, :U, :U, :-, :-, :-])
       code_list_history(results, :C115406, [:~, :C, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-])
       code_list_history(results, :C120986, [:~, :~, :~, :~, :~, :C, :U, :-, :U, :U, :-, :-, :-])
-      code_list_history(results, :C122006, [:~, :~, :~, :~, :~, :~, :C, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C122006, [:~, :~, :~, :~, :~, :~, :C, :-, :U, :-, :-, :-, :-])
     end
 
     it "allows comparison with CDISC reported changes", :ct_bulk_test => true do

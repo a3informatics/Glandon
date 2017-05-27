@@ -126,7 +126,7 @@ class CdiscTermsController < ApplicationController
   	@trimmed_results = CdiscTerm::Utility.trim_results(full_results, version, current_user.max_term_display.to_i)
     @previous_version = CdiscTerm::Utility.previous_version(full_results, @trimmed_results.first[:version])
     @next_version = CdiscTerm::Utility.next_version(full_results, @trimmed_results.first[:version], 
-    	current_user.max_term_display.to_i, @trimmed_results.length)
+    	current_user.max_term_display.to_i, full_results.length)
   	@cls = CdiscTerm::Utility.transpose_results(@trimmed_results)
   end
 
