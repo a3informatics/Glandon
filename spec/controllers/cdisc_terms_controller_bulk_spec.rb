@@ -74,6 +74,16 @@ describe CdiscTermsController do
     	end
     end
 
+    def submission_comparison(results, expected)
+    	puts "Submission Changes"
+    	expect(results[:children].length).to eq(expected[:children].length)
+	    expected[:children].each do |key, expected_child|
+    		puts "CLI: #{key}"
+		    results_child = results[:children][key]
+    		expect(results_child).to eq(expected_child)
+    	end
+    end
+
     def submission_status(results, version_date, code_list_item, previous, current)
       term = results[:children].select {|key, item| key == code_list_item}
       if term.length == 1
@@ -122,13 +132,14 @@ describe CdiscTermsController do
 
     it "calculates the bulk submission change results", :ct_bulk_test => true do
       file = CdiscCtChanges.dir_path + "CDISC_CT_Submission_Changes.yaml"
-      File.delete(file) if File.exist?(file)
+     	File.delete(file) if File.exist?(file)
       get :submission_calc
       expect(response).to redirect_to("/backgrounds")
       results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
     #write_yaml_file(results, sub_dir, "cdisc_terms_controller_bulk_submission_changes.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_terms_controller_bulk_submission_changes.yaml")
-      expect(results).to eq(expected)
+      #expect(results).to eq(expected)
+      submission_comparison(results, expected) # New method
     end
 
     it "allows comparison with CDISC reported changes", :ct_bulk_test => true do
