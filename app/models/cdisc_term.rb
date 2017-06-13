@@ -137,14 +137,12 @@ class CdiscTerm < Thesaurus
   # @return [Hash] A hash containing any errors and the background job reference.
   def self.create(params)
     job = nil
-    files = params[:files]
-    version = params[:version]
-    date = params[:date]
     object = self.new
-    # Make sure we have valid version and date. 
-    if FieldValidation.valid_version?(:version, version, object) &&
-       FieldValidation.valid_date?(:date, date, object)
-      # Save the core info
+    if params_valid?(object, params)
+    	files = params[:files]
+    	version = params[:version]
+    	date = params[:date]
+    	# Save the core info
       object.label = "#{C_IDENTIFIER} #{params[:date]}"
       object.scopedIdentifier.identifier = C_IDENTIFIER
       object.scopedIdentifier.versionLabel = params[:date]
@@ -388,6 +386,16 @@ class CdiscTerm < Thesaurus
 
 private
 
+	# Check Params Valid
+  def self.params_valid?(object, params)
+    object.errors.clear
+    result = FieldValidation.valid_files?(:files, params[:files], object) &&
+    	FieldValidation.valid_version?(:version, params[:version], object) &&
+      FieldValidation.valid_date?(:date, params[:date], object)
+    return result
+  end
+
+  # Update the Code List
 	def self.update_cl(cl)
 		if cl.children.empty?
 			new_cl = CdiscCl.find(cl.id, cl.namespace)

@@ -527,6 +527,18 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
+  it "checks an invalid date, \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_date?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
+  it "checks an invalid date, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_date?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
   it "checks valid file, xxx" do
     object = IsoConcept.new
     expect(FieldValidation.valid_files?(:test, "xxx", object)).to eq(true)
@@ -536,13 +548,19 @@ describe FieldValidation do
   it "checks an invalid file, \"\"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_files?(:test, "", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty, at least one file is required")
   end
 
   it "checks an invalid file, nil" do
     object = IsoConcept.new
     expect(FieldValidation.valid_files?(:test, nil, object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty, at least one file is required")
+  end
+
+  it "checks an invalid file, []" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_files?(:test, [], object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty, at least one file is required")
   end
 
   it "checks a valid date time" do
@@ -567,6 +585,18 @@ describe FieldValidation do
     object = IsoConcept.new
     expect(FieldValidation.valid_date_time?(:test, "1960-11-01T12:01:£££", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid format date time")
+  end
+
+  it "checks an invalid date time, \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_date_time?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
+  it "checks an invalid date time, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_date_time?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
   end
 
   it "checks a valid markdown" do

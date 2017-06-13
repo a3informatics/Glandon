@@ -280,8 +280,8 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_date?(symbol, value, object)
-    if value.nil?
-      object.errors.add(symbol, "is empty.")
+    if value.blank?
+      object.errors.add(symbol, "is empty")
       return false
     else
       format="%Y-%m-%d"
@@ -300,8 +300,8 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_date_time?(symbol, value, object)
-    if value.nil?
-      object.errors.add(symbol, "is empty.")
+    if value.blank?
+      object.errors.add(symbol, "is empty")
       return false
     else
       DateTime.strptime(value, '%Y-%m-%dT%H:%M:%S%z')
@@ -380,7 +380,7 @@ module FieldValidation
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_files?(symbol, value, object)
     if value.blank? 
-      object.errors.add(symbol, "is empty")
+      object.errors.add(symbol, "is empty, at least one file is required")
       return false
     else
       return true

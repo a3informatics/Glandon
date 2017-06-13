@@ -193,6 +193,18 @@ describe CdiscTerm do
     expect(result[:object].errors.full_messages.to_sentence).to eq("Date contains invalid characters")    
   end
 
+  it "prevents a new version to be created (imported) if files are missing 1"  do
+    result = CdiscTerm.create({:date => "2016-12-12", :version => "12", :files => []})
+    expect(result[:object].errors.count).to eq(1)
+    expect(result[:object].errors.full_messages.to_sentence).to eq("Files is empty, at least one file is required")    
+  end
+
+  it "prevents a new version to be created (imported) if files are missing 2"  do
+    result = CdiscTerm.create({:date => "2016-12-12", :version => "12"})
+    expect(result[:object].errors.count).to eq(1)
+    expect(result[:object].errors.full_messages.to_sentence).to eq("Files is empty, at least one file is required")    
+  end
+
   it "initiates the CDISC Terminology changes background job" do
     result = CdiscTerm.changes
     expect(result[:object].errors.count).to eq(0)
@@ -263,5 +275,54 @@ describe CdiscTerm do
   end
 
   it "self.next(offset, limit, ns)"
+
+  it "checks params, missing files" do
+  	object = CdiscTerm.new
+  	params = { version: "48", date: "2017-06-05"}
+  	result = CdiscTerm.params_valid?(object, params)
+  	expect(result).to eq(false)
+  	expect(object.errors.full_messages.to_sentence).to eq("Files is empty, at least one file is required")    
+  end
+
+  it "checks params, missing version" do
+  	object = CdiscTerm.new
+  	params = { date: "2017-06-05", files: ["file1", "file2"]}
+  	result = CdiscTerm.params_valid?(object, params)
+  	expect(result).to eq(false)
+  	expect(object.errors.full_messages.to_sentence).to eq("Version is empty")    
+  end
+
+  it "checks params, missing date" do
+  	object = CdiscTerm.new
+  	params = { version: "48", files: ["file1", "file2"]}
+  	result = CdiscTerm.params_valid?(object, params)
+  	expect(result).to eq(false)
+  	expect(object.errors.full_messages.to_sentence).to eq("Date is empty")    
+  end
+
+  it "checks params, invalid version" do
+  	object = CdiscTerm.new
+  	params = { version: "48£££", date: "2017-06-05", files: ["file1", "file2"]}
+  	result = CdiscTerm.params_valid?(object, params)
+  	expect(result).to eq(false)
+  	expect(object.errors.full_messages.to_sentence).to eq("Version contains invalid characters, must be an integer")       
+  end
+
+  it "checks params, invalid date" do
+  	object = CdiscTerm.new
+  	params = { version: "48", date: "ABC", files: ["file1", "file2"]}
+  	result = CdiscTerm.params_valid?(object, params)
+  	expect(result).to eq(false)
+  	expect(object.errors.full_messages.to_sentence).to eq("Date contains invalid characters")    
+  end
+
+  it "checks params, all good" do
+  	object = CdiscTerm.new
+  	params = { version: "48", date: "2017-06-05", files: ["file1", "file2"]}
+  	result = CdiscTerm.params_valid?(object, params)
+  	puts object.errors.full_messages.to_sentence
+  	expect(result).to eq(true)
+  	expect(object.errors.count).to eq(0)    
+  end
 
 end
