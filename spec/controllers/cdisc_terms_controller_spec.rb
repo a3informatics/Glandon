@@ -250,7 +250,7 @@ describe CdiscTermsController do
       expect(response).to redirect_to("/backgrounds")
     end
     
-    it "allows a CDISC Terminology to be created, error" do
+    it "allows a CDISC Terminology to be created, error version" do
       filename = upload_path("background_term.owl")
       params = 
       {
@@ -259,6 +259,21 @@ describe CdiscTermsController do
           :version => "aa", 
           :date => "2016-12-13", 
           :files => ["#{filename}"]
+        }
+      }
+      post :create, params
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/cdisc_terms/import")
+    end
+
+    it "allows a CDISC Terminology to be created, error filename" do
+      filename = upload_path("background_term.owl")
+      params = 
+      {
+        :cdisc_term => 
+        { 
+          :version => "aa", 
+          :date => "2016-12-13"
         }
       }
       post :create, params
