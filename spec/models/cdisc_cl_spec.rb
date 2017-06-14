@@ -105,18 +105,48 @@ describe CdiscCl do
     expect(result).to eq(false)    
   end
 
-  it "allows two CLs to be compared, different, 1" do
+  it "allows two CLs to be compared, same, new" do
+    tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+    tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+    result = CdiscCl.new_diff?(tc1, tc2)
+    expect(result).to eq(false)    
+  end
+
+  it "allows two CLs to be compared, different 1" do
     tc1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
     tc2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
     result = CdiscCl.diff?(tc1, tc2)
     expect(result).to eq(true)    
   end
 
-  it "allows two CLs to be compared, different, 2" do
+  it "allows two CLs to be compared, different 1, new" do
+    tc1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+    tc2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+    result = CdiscCl.new_diff?(tc1, tc2)
+    expect(result).to eq(true)    
+  end
+
+  it "allows two CLs to be compared, different 2" do
     tc1 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
     tc2 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
     result = CdiscCl.diff?(tc1, tc2)
     expect(result).to eq(true)    
+  end
+
+  it "allows two CLs to be compared, different 2, new" do
+    tc1 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+    tc2 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
+    result = CdiscCl.new_diff?(tc1, tc2)
+    expect(result).to eq(true)    
+  end
+
+  it "allows two CLs to be compared, different 3" do
+    tc1 = CdiscCl.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+    tc2 = CdiscCl.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
+    result1 = CdiscCl.diff?(tc1, tc2)
+    result2 = CdiscCl.new_diff?(tc1, tc2)
+    expect(result1).to eq(true)    
+    expect(result2).to eq(true)    
   end
 
   it "allows the difference between two CLs to be found, same" do
@@ -144,6 +174,17 @@ describe CdiscCl do
   #write_yaml_file(result, sub_dir, "cdisc_cl_differences_3.yaml")
     expected = read_yaml_file(sub_dir, "cdisc_cl_differences_3.yaml")
     expect(result).to eq(expected) 
+  end
+
+  it "returns child identifiers" do
+  	cl = CdiscCl.find("CL-C74457", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47", false)
+  	result = CdiscCl.child_identifiers(cl)
+  	expected = ["C16352", "C41219", "C41259", "C41260", "C41261"] # RACE
+    expect(result).to match_array(expected) 
+    cl = CdiscCl.find("CL-C66731", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47", false)
+  	result = CdiscCl.child_identifiers(cl)
+  	expected = ["C16576", "C17998", "C20197", "C45908"] # SEX
+    expect(result).to match_array(expected) 
   end
 
 end

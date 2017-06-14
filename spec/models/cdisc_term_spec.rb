@@ -9,6 +9,16 @@ describe CdiscTerm do
     return "models"
   end
 
+  def check_term_differences(results, expected)
+    expect(results[:status]).to eq(expected[:status])
+    expect(results[:result]).to eq(expected[:result])
+    expect(results[:children].count).to eq(expected[:children].count)
+    results[:children].each do |key, result|
+      found = expected[:children][key]
+      expect(result).to eq(found)
+    end
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -252,7 +262,7 @@ describe CdiscTerm do
     results = CdiscTerm.difference(term1, term2)
   #write_yaml_file(results, sub_dir, "cdisc_term_example_difference.yaml")
     expected = read_yaml_file(sub_dir, "cdisc_term_example_difference.yaml")
-    expect(results).to eq(expected)
+    check_term_differences(results, expected)
   end
 
   it "determines the difference between two items, 2" do
@@ -261,7 +271,7 @@ describe CdiscTerm do
     results = CdiscTerm.difference(term1, term2)
   #write_yaml_file(results, sub_dir, "cdisc_term_example_difference_2.yaml")
     expected = read_yaml_file(sub_dir, "cdisc_term_example_difference_2.yaml")
-    expect(results).to eq(expected)
+    check_term_differences(results, expected)
   end
 
   it "determines the difference between two items, 3" do
@@ -271,7 +281,7 @@ describe CdiscTerm do
     results = CdiscTerm.difference(term1, term2)
   #write_yaml_file(results, sub_dir, "cdisc_term_example_difference_3.yaml")
     expected = read_yaml_file(sub_dir, "cdisc_term_example_difference_3.yaml")
-    expect(results).to eq(expected)
+    check_term_differences(results, expected)
   end
 
   it "self.next(offset, limit, ns)"

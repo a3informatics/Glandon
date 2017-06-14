@@ -71,6 +71,68 @@ class CdiscCl < ThesaurusConcept
     return false
   end
   
+  # Different? Are two code lists different. New version.
+  #
+  # @previous [Object] The previous object being compared
+  # @current [Object] The current object being compared
+  # @return [boolean] True if different, false otherwise.
+  def self.new_diff?(previous, current)
+    return true if ThesaurusConcept.diff?(previous, current)
+    previous_identifiers = self.child_identifiers(previous)
+    current_identifiers = self.child_identifiers(current)
+    return true if current_identifiers - previous_identifiers != [] || previous_identifiers - current_identifiers != []
+    query = UriManagement.buildPrefix("", ["iso25964"]) +
+      "SELECT DISTINCT ?cli1 ?cli2 WHERE \n" +
+      "  {\n" +
+      "    ?cl1 iso25964:hasChild ?cli1 . \n" +
+      "    ?cl1 iso25964:identifier \"#{current.identifier}\" . \n" +
+      "    ?cl1 iso25964:identifier ?id . \n" +
+      "    FILTER(STRSTARTS(STR(?cl1), \"#{previous.namespace}\")) . \n" + 
+      "    ?cl2 iso25964:identifier ?id . \n" +
+      "    ?cl2 iso25964:hasChild ?cli2 . \n" +   
+      "    FILTER(STRSTARTS(STR(?cl2), \"#{current.namespace}\")) . \n" +  
+      "    ?cli1 iso25964:identifier ?id1 . \n" +   
+      "    ?cli1 iso25964:notation ?n1 . \n" +   
+      "    ?cli1 iso25964:preferredTerm ?pt1 . \n" +   
+      "    ?cli1 iso25964:definition ?d1 . \n" +   
+      "    ?cli1 iso25964:synonym ?s1 . \n" +   
+      "    ?cli2 iso25964:identifier ?id1 . \n" +   
+      "    ?cli2 iso25964:notation ?n2 . \n" +   
+      "    ?cli2 iso25964:preferredTerm ?pt2 . \n" +   
+      "    ?cli2 iso25964:definition ?d2 . \n" +   
+      "    ?cli2 iso25964:synonym ?s2 . \n" +   
+      "    FILTER(?n1 != ?n2 || ?pt1 != ?pt2 || ?d1 != ?d2 || ?s1 != ?s2) . \n" +   
+      "  }"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    return true if xmlDoc.xpath("//result").count > 0
+    return false
+  end
+  
+  # Child Identifiers. Get list of child identifiers.
+  #
+  # @param cl [String] the code list
+  # @return [array] Array of identifiers
+  def self.child_identifiers(cl)
+    results = Array.new
+    query = UriManagement.buildPrefix("", ["iso25964"]) +
+      "SELECT ?id WHERE \n" +
+      "{ \n" +
+      "  ?cl iso25964:identifier \"#{cl.identifier}\" . \n" +
+      "  FILTER(STRSTARTS(STR(?cl), \"#{cl.namespace}\")) . \n" + 
+      "  ?cl iso25964:hasChild ?cli . \n" +   
+      "  ?cli iso25964:identifier ?id . \n" +   
+      "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      results << ModelUtility.getValue('id', false, node)
+    end
+    return results
+  end
+
   # Differences between this and another code list. Details for the code lists
   # and a staus on the children.
   #

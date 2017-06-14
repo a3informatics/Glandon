@@ -25,6 +25,8 @@ describe IsoConcept do
     load_test_file_into_triple_store("iso_concept_data.ttl")
     load_test_file_into_triple_store("iso_concept_data_2.ttl")
     load_test_file_into_triple_store("CT_V42.ttl")
+    load_test_file_into_triple_store("CT_V46.ttl")
+    load_test_file_into_triple_store("CT_V47.ttl")
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
     clear_iso_concept_object
@@ -814,16 +816,23 @@ describe IsoConcept do
     expect(result).to eq(expected)
   end
   
-  it "checks if the children are the same for two objects" do
+  it "checks if the children are the same for two objects, 1" do
     current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
     previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
     result = current.child_match?(previous, "children", "identifier")
     expect(result).to eq(true)
   end
 
-  it "checks if the children are different for two objects" do
+  it "checks if the children are different for two objects, 2" do
     current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
     previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+    result = current.child_match?(previous, "children", "identifier")
+    expect(result).to eq(false)
+  end
+
+  it "checks if the children are different for two objects, 3" do
+    current = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+    previous = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
     result = current.child_match?(previous, "children", "identifier")
     expect(result).to eq(false)
   end
@@ -911,7 +920,7 @@ describe IsoConcept do
     load_data_file_into_triple_store("ACME_DM1 01.ttl")
     concepts = IsoConcept.all("Question", "http://www.assero.co.uk/BusinessForm")
     concepts.each_with_index do |item, index|
-    	results.should include(concepts[index].to_json)
+    	expect(results).to include(concepts[index].to_json)
     end
 	end
 

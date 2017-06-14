@@ -330,9 +330,10 @@ class CdiscTerm < Thesaurus
       	if previous.nil? 
           status = :created
         else
-      		update_cl(child)
-    			update_cl(previous)
-        	status = :updated if CdiscCl.diff?(previous, child)
+      		#update_cl(child)
+    			#update_cl(previous)
+        	#status = :updated if CdiscCl.diff?(previous, child)
+        	status = :updated if CdiscCl.new_diff?(previous, child)
     		end
         children[child.identifier.to_sym] = 
         { 
