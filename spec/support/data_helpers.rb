@@ -91,6 +91,12 @@ module DataHelpers
     end
   end
 
+  def delete_data_file(sub_dir, filename)
+    full_path = set_path(sub_dir, filename)
+		File.delete(full_path)
+  rescue => e
+  end
+
   def date_check_now(item)
     expect(item).to be_within(2.second).of Time.now
     return item
