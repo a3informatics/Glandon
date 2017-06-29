@@ -28,7 +28,7 @@ describe SdtmModelDomain do
 
   it "allows a domain to be found" do
     item = SdtmModelDomain.find("M-CDISC_SDTMMODEL_INTERVENTIONS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-    write_yaml_file(item.to_json, sub_dir, "sdtm_model_domain_find.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "sdtm_model_domain_find.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_domain_find.yaml")
     expect(item.to_json).to eq(expected)
   end

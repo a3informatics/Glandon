@@ -6,8 +6,8 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2017-01-11T15:15:28+00:00'
-:last_changed_date: '2017-01-11T15:15:28+00:00'
+:creation_date: '2017-06-29T18:38:35+01:00'
+:last_changed_date: '2017-06-29T18:38:35+01:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -35,7 +35,7 @@
   :identifier: XX Domain
   :version_label: ''
   :version: 1
-  :semantic_version: '0.1.0'
+  :semantic_version: 0.1.0
   :namespace:
     :namespace: http://www.assero.co.uk/MDRItems
     :id: NS-ACME
@@ -121,6 +121,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_STUDYID
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V2
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -169,6 +170,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_DOMAIN
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V3
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -217,6 +219,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_USUBJID
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V4
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -265,6 +268,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSSEQ
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V5
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -313,6 +317,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSGRPID
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V6
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -361,6 +366,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSSPID
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V7
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -409,6 +415,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSTESTCD
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V8
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -462,6 +469,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSTEST
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V9
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -515,6 +523,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSCAT
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V10
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -568,6 +577,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSSCAT
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V11
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -621,6 +631,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSPOS
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V12
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -674,6 +685,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSORRES
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V13
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -727,6 +739,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSORRESU
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V14
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -780,6 +793,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSSTRESC
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V15
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -833,6 +847,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSSTRESN
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V16
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -886,6 +901,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSSTRESU
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V17
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -939,6 +955,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSSTAT
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V18
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -992,6 +1009,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSREASND
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V19
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1045,6 +1063,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSLOC
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V20
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1098,6 +1117,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSLAT
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V21
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1151,6 +1171,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSBLFL
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V22
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1204,6 +1225,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSDRVFL
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V23
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1252,6 +1274,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VISITNUM
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V24
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1300,6 +1323,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VISIT
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V25
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1348,6 +1372,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VISITDY
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V26
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1396,6 +1421,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSDTC
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V27
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1444,6 +1470,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSDY
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V28
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1492,6 +1519,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSTPT
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V29
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1540,6 +1568,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSTPTNUM
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V30
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1588,6 +1617,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSELTM
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V31
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1636,6 +1666,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSTPTREF
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_XXDomain_V32
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1684,4 +1715,5 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSRFTDTC
+  :property_refs: []
 :bc_refs: []
