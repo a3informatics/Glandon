@@ -116,6 +116,7 @@ RSpec.describe AdHocReport, type: :model do
     results = AdHocReportFiles.read(report.results_file)
     expected = {:columns=>[["URI"], ["Identifier"], ["Label"]], :data=>[]}
     expect(results).to eq(expected)
+    delete_public_file("reports", "ad_hoc_report_1_results.yaml")
   end
 
   it "determine if the report is running" do
