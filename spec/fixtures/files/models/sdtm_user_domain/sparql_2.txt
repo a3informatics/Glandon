@@ -1,0 +1,49 @@
+PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.example.com/path#parent_V0> rdf:type <http://www.example.com/path#rdf_test_type> . 
+<http://www.example.com/path#parent_V0> rdfs:label "test label"^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:ordinal "0"^^xsd:positiveInteger . 
+<http://www.example.com/path#parent_V0> bd:rule ""^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:name "XXXXX"^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:notes "Notes"^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:format "ISO 8601"^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:ct ""^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:non_standard "true"^^xsd:boolean . 
+<http://www.example.com/path#parent_V0> bd:comment "Comment"^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:length "20"^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:used "true"^^xsd:boolean . 
+<http://www.example.com/path#parent_V0> bd:key_ordinal "1"^^xsd:integer . 
+<http://www.example.com/path#parent_V0> bd:typedAs <http://www.example.com/path#datatype> . 
+<http://www.example.com/path#parent_V0> bd:compliance <http://www.example.com/path#compliance> . 
+<http://www.example.com/path#parent_V0> bd:classifiedAs <http://www.example.com/path#subClassification> . 
+<http://www.example.com/path#parent_V0_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.example.com/path#parent_V0_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
+<http://www.example.com/path#parent_V0_IGV1> bo:hasColumn <http://www.example.com/path#variableReference> . 
+<http://www.example.com/path#parent_V0_IGV1> bo:enabled "true"^^xsd:boolean . 
+<http://www.example.com/path#parent_V0_IGV1> bo:optional "false"^^xsd:boolean . 
+<http://www.example.com/path#parent_V0_IGV1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.example.com/path#parent_V0_IGV1> bo:local_label ""^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:basedOnVariable <http://www.example.com/path#parent_V0_IGV1> . 
+<http://www.example.com/path#parent_V0_PR1> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.example.com/path#parent_V0_PR1> rdfs:label "BC Property Reference"^^xsd:string . 
+<http://www.example.com/path#parent_V0_PR1> bo:hasProperty <http://www.example.com/path#propertyReference1> . 
+<http://www.example.com/path#parent_V0_PR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.example.com/path#parent_V0_PR1> bo:optional "false"^^xsd:boolean . 
+<http://www.example.com/path#parent_V0_PR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.example.com/path#parent_V0_PR1> bo:local_label ""^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:hasProperty <http://www.example.com/path#parent_V0_PR1> . 
+<http://www.example.com/path#parent_V0_PR2> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.example.com/path#parent_V0_PR2> rdfs:label "BC Property Reference"^^xsd:string . 
+<http://www.example.com/path#parent_V0_PR2> bo:hasProperty <http://www.example.com/path#propertyReference2> . 
+<http://www.example.com/path#parent_V0_PR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.example.com/path#parent_V0_PR2> bo:optional "false"^^xsd:boolean . 
+<http://www.example.com/path#parent_V0_PR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.example.com/path#parent_V0_PR2> bo:local_label ""^^xsd:string . 
+<http://www.example.com/path#parent_V0> bd:hasProperty <http://www.example.com/path#parent_V0_PR2> . 
+}

@@ -40,7 +40,7 @@ describe SdtmModelDomain do
   it "allows all domains to be found" do
     results = SdtmModelDomain.all 
     expect(results.count).to eq(6)
-    #write_yaml_file(results, sub_dir, "sdtm_model_domain_all.yaml")
+  #write_yaml_file(results, sub_dir, "sdtm_model_domain_all.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_domain_all.yaml")
     results.each do |result|
       found = expected.find { |x| x.identifier == result.identifier }
@@ -61,7 +61,7 @@ describe SdtmModelDomain do
   
   it "allows the domain to be exported as JSON" do
     item = SdtmModelDomain.find("M-CDISC_SDTMMODEL_INTERVENTIONS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-    #write_yaml_file(item.to_json, sub_dir, "sdtm_model_domain_to_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "sdtm_model_domain_to_json.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_domain_to_json.yaml")
     expect(item.to_json).to eq(expected)
   end
