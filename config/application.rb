@@ -39,6 +39,9 @@ module Glandon
         end
     end
 
+    # Other configurations
+    config.bridg_sdtm = config_for(:bridg_sdtm)
+
     # Rspec additions
     config.generators do |g|
         g.test_framework :rspec,
