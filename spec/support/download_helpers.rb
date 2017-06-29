@@ -49,7 +49,7 @@ module DownloadHelpers
 
   def copy_file_to_db(filename)
     source_file = PATH.join "#{filename}"
-    dest_file = Rails.root.join "db/load/test/#{filename}"
+    dest_file = Rails.root.join "db/load/tmp/#{filename}"
     FileUtils.cp source_file, dest_file
   end
 

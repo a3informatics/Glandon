@@ -38,7 +38,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       load_test_file_into_triple_store("CT_V43.ttl")
       load_test_file_into_triple_store("BCT.ttl")
       load_test_file_into_triple_store("BC.ttl")
-      load_test_file_into_triple_store("ACME_QS_TERM_STD.ttl")
+      load_test_temp_file_into_triple_store("ACME_QS_TERM_STD.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object

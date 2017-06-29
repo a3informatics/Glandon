@@ -38,7 +38,7 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
       load_test_file_into_triple_store("CT_V43.ttl")
       load_test_file_into_triple_store("BCT.ttl")
       load_test_file_into_triple_store("BC.ttl")
-      load_test_file_into_triple_store("ACME_QS_TERM_DFT.ttl")
+      load_test_temp_file_into_triple_store("ACME_QS_TERM_DFT.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -83,11 +83,16 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
       fill_in 'iso_managed_origin', with: 'See the website http://www.euroqol.org'
       click_button 'Submit'
     #pause
+    wait_for_ajax
       expect_page 'History: QS TERM'
 
       click_main_table_link("0.1.0", "Edit")
       term_editor_edit_children('EQ5D 3L EXTRA')
+    #pause
+    wait_for_ajax
       term_editor_update_notation("EQ5D3L.SELFCARE", "EQ5D3L SELF-CARE", :return)
+    #pause
+    wait_for_ajax
       click_button 'Close'
       expect_page "History: QS TERM"
 
@@ -95,13 +100,20 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
       fill_in 'iso_registration_state_administrativeNote', with: ''
       fill_in 'iso_registration_state_unresolvedIssue', with: ''
       click_button 'state_submit'
+    #pause
       click_link "Close"
       expect_page 'History: QS TERM'
       
       click_main_table_link("0.2.0", "Edit")
       term_editor_edit_children('EQ5D 3L EXTRA')
+    #pause
+    wait_for_ajax
       term_editor_edit_children('EQ5D3L.SELFCARE')
+    #pause
+    wait_for_ajax
       term_editor_update_notation("EQ5D3L.SELFCARE.NONE", "I have no problems with self-care", :return)
+    #pause
+    wait_for_ajax
       click_button 'Close'
       expect_page "History: QS TERM"
       click_main_table_link("0.3.0", "Status")
@@ -111,6 +123,7 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
       fill_in 'iso_scoped_identifier_versionLabel', with: '1st Release.'
       click_button 'version_submit'
       click_link 'Current'
+    #pause
       click_link "Close"
       expect_page 'History: QS TERM'
 

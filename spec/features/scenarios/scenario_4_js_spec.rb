@@ -38,13 +38,13 @@ describe "Scenario 4 - BC Form", :type => :feature do
       load_test_file_into_triple_store("CT_V43.ttl")
       load_test_file_into_triple_store("BCT.ttl")
       load_test_file_into_triple_store("BC.ttl")
-      load_test_file_into_triple_store("ACME_QS_TERM_STD.ttl")
-      load_test_file_into_triple_store("ACME_BC_C100392_DFT.ttl")
-      load_test_file_into_triple_store("ACME_BC_C100393_DFT.ttl")
-      load_test_file_into_triple_store("ACME_BC_C100394_DFT.ttl")
-      load_test_file_into_triple_store("ACME_BC_C100395_DFT.ttl")
-      load_test_file_into_triple_store("ACME_BC_C100396_DFT.ttl")
-      load_test_file_into_triple_store("ACME_BC_C100397_DFT.ttl")
+      load_test_temp_file_into_triple_store("ACME_QS_TERM_STD.ttl")
+      load_test_temp_file_into_triple_store("ACME_BC_C100392_DFT.ttl")
+      load_test_temp_file_into_triple_store("ACME_BC_C100393_DFT.ttl")
+      load_test_temp_file_into_triple_store("ACME_BC_C100394_DFT.ttl")
+      load_test_temp_file_into_triple_store("ACME_BC_C100395_DFT.ttl")
+      load_test_temp_file_into_triple_store("ACME_BC_C100396_DFT.ttl")
+      load_test_temp_file_into_triple_store("ACME_BC_C100397_DFT.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object

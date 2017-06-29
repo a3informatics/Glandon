@@ -12,6 +12,11 @@ module DataHelpers
   	CRUD.file(full_path)
   end
 
+  def load_test_temp_file_into_triple_store(filename)
+		full_path = Rails.root.join "db/load/tmp/#{filename}"
+  	CRUD.file(full_path)
+  end
+
   def load_schema_file_into_triple_store(filename)
     full_path = Rails.root.join "db/load/schema/#{filename}"
     CRUD.file(full_path)
