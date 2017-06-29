@@ -6,7 +6,7 @@ class SdtmUserDomain::Variable < Tabular::Column
   
   # Attributes
   attr_accessor :name, :notes, :ct, :format, :non_standard, :comment, :length, :used, :key_ordinal, :datatype, :compliance, 
-    :classification, :sub_classification, :variable_ref
+    :classification, :sub_classification, :variable_ref, :property_refs
 
   # Constants
   C_SCHEMA_PREFIX = SdtmUserDomain::C_SCHEMA_PREFIX
@@ -19,6 +19,7 @@ class SdtmUserDomain::Variable < Tabular::Column
   
   C_IGV_REF_PREFIX = "IGV"
   C_VARIABLE_PREFIX = "V"
+  C_BCP_REF_PREFIX = "PR"
   
   def initialize(triples=nil, id=nil)
     self.name = ""
@@ -35,6 +36,7 @@ class SdtmUserDomain::Variable < Tabular::Column
     self.classification = nil 
     self.sub_classification = nil 
     self.variable_ref = nil
+    self.property_refs = []
     if triples.nil?
       super
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
@@ -100,6 +102,8 @@ class SdtmUserDomain::Variable < Tabular::Column
     else
       json[:variable_ref] = {}
     end
+    json[:property_refs] = []
+    self.property_refs.each { |x| json[:property_refs] << x.to_json}
     return json
   end
 
@@ -128,6 +132,9 @@ class SdtmUserDomain::Variable < Tabular::Column
       object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
     else
       object.variable_ref = nil      
+    end
+    if !json[:property_refs].blank?
+    	json[:property_refs].each { |x| object.property_refs << OperationalReferenceV2.from_json(x) }
     end
     return object
   end
@@ -161,6 +168,12 @@ class SdtmUserDomain::Variable < Tabular::Column
     if !self.variable_ref.nil? 
       ref_uri = self.variable_ref.to_sparql_v2(self.uri, "basedOnVariable", C_IGV_REF_PREFIX, 1, sparql)
       sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "basedOnVariable"}, {:uri => ref_uri})
+    end
+    ordinal = 1
+    self.property_refs.each do |ref|
+      ref_uri = ref.to_sparql_v2(self.uri, "hasProperty", C_BCP_REF_PREFIX, ordinal, sparql)
+      sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "hasProperty"}, {:uri => ref_uri})
+      ordinal += 1
     end
     return self.uri
   end
@@ -212,6 +225,7 @@ private
         object.sub_classification = nil
       end
     end
+    object.property_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "hasProperty")) 
   end  
 
 end
