@@ -209,7 +209,7 @@ describe AuditTrail do
     end
     items = AuditTrail.all
     csv = AuditTrail.to_csv
-    write_text_file_2(csv, sub_dir, "audit_export.csv")
+  #write_text_file_2(csv, sub_dir, "audit_export.csv")
     keys = ["datetime", "user", "owner", "identifier", "version", "event", "details"]
     results = CSV.read(test_file_path(sub_dir, 'audit_export.csv')).map {|a| Hash[ keys.zip(a) ]}
     items.each_with_index do |item, index|
