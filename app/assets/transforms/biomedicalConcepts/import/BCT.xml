@@ -1,13 +1,5 @@
-<BiomedicalConceptTemplates>
-	<BiomedicalConceptTemplate Id="Obs PQR" Name="Simple Observation PQR Biomedical Research Concept Template" >
-		<Class Name="DefinedActivity">
-			<Attribute Alias="Category" Name="categoryCode">
-				<Property Alias="Category (--CAT)" Name="code"/>
-			</Attribute>
-			<Attribute Alias="Subcategory" Name="subcategoryCode">
-				<Property Alias="Subcategory (--SCAT)" Name="code"/>
-			</Attribute>
-		</Class>
+<BiomedicalConceptTemplates Version="2">
+	<BiomedicalConceptTemplate Id="Obs PQR" Name="Simple Observation PQR Biomedical Research Concept Template">
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code"/>
@@ -15,35 +7,41 @@
 					<Property Alias="Test Name (--TEST)" Name="value"/>
 				</Property>
 			</Attribute>
-			<!--<Attribute Alias="approachSite" Name="approachAnatomicSiteCode">
-				<Property Alias="Approach Site (TBD)" Name="code"/>
-			</Attribute>-->
-			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
-				<Property Alias="Site Of Administration (--LOC)" Name="code"/> 
+			<Attribute Alias="Category" Name="categoryCode">
+				<Property Alias="Category (--CAT)" Name="code"/>
 			</Attribute>
-			<Attribute Alias="Method" Name="methodCode">
-				<Property Alias="Method (--METHOD)" Name="code"/> 			
+			<Attribute Alias="Subcategory" Name="subcategoryCode">
+				<Property Alias="Subcategory (--SCAT)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedObservation"> 
 			<Attribute Alias="Position" Name="bodyPositionCode">
 				<Property Alias="Body Position (--POS)" Name="code"/>
 			</Attribute>
-			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+			<Attribute Alias="Site Of Administration" Name="approachAnatomicSiteCode">
+				<Property Alias="Site Of Administration (--LOC)" Name="code"/> 
+			</Attribute>
+			<Attribute Alias="Laterality" Name="approachAnatomicSiteLateralityCode">
 				<Property Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Alias="Method (--METHOD)" Name="code"/> 			
 			</Attribute>
 			<Attribute Alias="DateTime" Name="dateRange">
 				<Property Alias="Date" Name="low">
 					<Property Alias="Date Time (--DTC)" Name="value"></Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="ReasonNotDone" Name="negationReason">
+			<Attribute Alias="Not Done" Name="negationIndicator">
+				<Property Alias="Reason Not Done (--STAT)" Name="value"/>
+			</Attribute>
+			<Attribute Alias="Reason Not Done" Name="negationReason">
 				<Property Alias="Code"  Name="code">
 					<Property Alias="Reason Not Done (--REASND)" Name="code"/>
 				</Property>
 			</Attribute>
 		</Class>
-		<Class Name="PerformedClinicalResult"> 
+		<Class Name="PerformedObservationResult"> 
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
 				<Property Alias="Result Value (--ORRES)"  Name="value"/>
 				<Property Alias="Result Units (--ORRESU)"  Name="code"/>
@@ -54,14 +52,6 @@
 		</Class>
 	</BiomedicalConceptTemplate>
 	<BiomedicalConceptTemplate Id="Obs CD" Name="Simple Observation CD Biomedical Research Concept Template" >
-		<Class Name="DefinedActivity">
-			<Attribute Alias="Category" Name="categoryCode">
-				<Property Alias="Category (--CAT)" Name="code"/>
-			</Attribute>
-			<Attribute Alias="Subcategory" Name="subcategoryCode">
-				<Property Alias="Subcategory (--SCAT)" Name="code"/>
-			</Attribute>
-		</Class>
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code"/>
@@ -69,29 +59,35 @@
 					<Property Alias="Test Name (--TEST)" Name="value"/>
 				</Property>
 			</Attribute>
-			<!--<Attribute Alias="approachSite" Name="approachAnatomicSiteCode">
-				<Property Alias="Approach Site (TBD)" Name="code"/>
-			</Attribute>-->
-			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
-				<Property Alias="Site Of Administration (--LOC)" Name="code"/> 
+			<Attribute Alias="Category" Name="categoryCode">
+				<Property Alias="Category (--CAT)" Name="code"/>
 			</Attribute>
-			<Attribute Alias="Method" Name="methodCode">
-				<Property Alias="Method (--METHOD)" Name="code"/> 			
+			<Attribute Alias="Subcategory" Name="subcategoryCode">
+				<Property Alias="Subcategory (--SCAT)" Name="code"/>
 			</Attribute>
 		</Class>
 		<Class Name="PerformedObservation"> 
 			<Attribute Alias="Position" Name="bodyPositionCode">
 				<Property Alias="Body Position (--POS)" Name="code"/>
 			</Attribute>
-			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+			<Attribute Alias="Site Of Administration" Name="approachAnatomicSiteCode">
+				<Property Alias="Site Of Administration (--LOC)" Name="code"/> 
+			</Attribute>
+			<Attribute Alias="Laterality" Name="approachAnatomicSiteLateralityCode">
 				<Property Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Alias="Method (--METHOD)" Name="code"/> 			
 			</Attribute>
 			<Attribute Alias="DateTime" Name="dateRange">
 				<Property Alias="Date" Name="low">
 					<Property Alias="Date Time (--DTC)" Name="value"></Property>
 				</Property>
 			</Attribute>
-			<Attribute Alias="ReasonNotDone" Name="negationReason">
+			<Attribute Alias="Not Done" Name="negationIndicator">
+				<Property Alias="Reason Not Done (--STAT)" Name="value"/>
+			</Attribute>
+			<Attribute Alias="Reason Not Done" Name="negationReason">
 				<Property Alias="Code"  Name="code">
 					<Property Alias="Reason Not Done (--REASND)" Name="code"/>
 				</Property>

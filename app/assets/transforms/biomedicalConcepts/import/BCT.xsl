@@ -9,6 +9,7 @@
     <!-- Constants -->
     <xsl:variable name="LT">&lt;</xsl:variable>
     <xsl:variable name="GT">&gt;</xsl:variable>
+    <xsl:variable name="CR">&#xa;</xsl:variable>
     <xsl:variable name="apos">'</xsl:variable>
     <xsl:variable name="quote">"</xsl:variable>
     <xsl:variable name="MainSeparator">-</xsl:variable>
@@ -34,12 +35,16 @@
 
         <!-- Build the document header with all prefixes etc -->
         <!-- First the base URI and imports -->
-        <xsl:value-of select="concat('# baseURI: ','http://www.assero.co.uk/MDRBCTs/V1&#xa;')"/>
+        <xsl:variable name="BaseURI" select="concat('http://www.assero.co.uk/MDRBCTs/V',//./@Version)"/>
+        <xsl:value-of select="concat('# baseURI: ',$BaseURI,$CR)"/>
+        <xsl:text>&#xa;</xsl:text>
         <xsl:text># imports: http://www.assero.co.uk/ISO21090&#xa;</xsl:text>
         <xsl:text>&#xa;</xsl:text>
 
         <!-- Now the prefixes -->
-        <xsl:text disable-output-escaping="yes">@prefix : &lt;http://www.assero.co.uk/MDRBCTs/V1#&gt; .&#xa;</xsl:text>
+        <xsl:variable name="BasePrefix" select="concat('@prefix : ',$LT,$BaseURI,'#',$GT,' .')"/>
+        <xsl:value-of select="$BasePrefix"/>
+        <xsl:text>&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix cbc: &lt;http://www.assero.co.uk/CDISCBiomedicalConcept#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoR: &lt;http://www.assero.co.uk/ISO11179Registration#&gt; .&#xa;</xsl:text>
@@ -54,7 +59,9 @@
         <xsl:text>&#xa;</xsl:text>
 
         <!-- Header and imports-->
-        <xsl:text disable-output-escaping="yes">&lt;http://www.assero.co.uk/MDRBCTs/V1&gt;&#xa;</xsl:text>
+        <xsl:variable name="BasePrefix" select="concat($LT,$BaseURI,$GT)"/>
+        <xsl:value-of select="$BasePrefix"/>
+        <xsl:text>&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">&#009;rdf:type owl:Ontology ;&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">&#009;owl:imports &lt;http://www.assero.co.uk/CDISCBiomedicalConcept&gt; ;&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">.&#xa;</xsl:text>
@@ -69,6 +76,7 @@
 
         <xsl:variable name="BCTItemType" select="replace(@Id,' ','_')"/>
         <xsl:variable name="Prefix" select="concat($URIStart,$BCTItemType)"/>
+        <xsl:variable name="Version" select="//./@Version"/>
         
         <!-- Create the actual class -->
         <xsl:call-template name="Subject"> 
@@ -79,10 +87,11 @@
             <xsl:with-param name="pObjectName" select="concat($BCPrefix,':BiomedicalConceptTemplate')" /> 
         </xsl:call-template>
         <xsl:for-each select="Class">
+            <xsl:variable name="ClassName" select="./@Name"/>
             <xsl:for-each select="Attribute">
                 <xsl:call-template name="PredicateObject"> 
                     <xsl:with-param name="pPredicateName" select="concat($BCPrefix,':hasItem')" /> 
-                    <xsl:with-param name="pObjectName" select="concat(':',$Prefix,$MinorSeparator,@Name,$URIFinish)" /> 
+                    <xsl:with-param name="pObjectName" select="concat(':',$Prefix,$MinorSeparator,$ClassName,$MinorSeparator,@Name,$URIFinish)" /> 
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:for-each>
@@ -90,8 +99,8 @@
             <xsl:with-param name="pPredicateName" select="'rdfs:label'" /> 
             <xsl:with-param name="pObjectName" select="concat($quote,@Name,$quote,'^^xsd:string')" /> 
         </xsl:call-template>
-        <xsl:variable name="SIName" select="concat('SI',$MainSeparator,$BCTItemType,$URIFinish,$MainSeparator,'1')"/>
-        <xsl:variable name="RSName" select="concat('RS',$MainSeparator,$BCTItemType,$URIFinish,$MainSeparator,'1')"/>
+        <xsl:variable name="SIName" select="concat('SI',$MainSeparator,$BCTItemType,$URIFinish,$MainSeparator,$Version)"/>
+        <xsl:variable name="RSName" select="concat('RS',$MainSeparator,$BCTItemType,$URIFinish,$MainSeparator,$Version)"/>
         <xsl:call-template name="PredicateObject"> 
             <xsl:with-param name="pPredicateName" select="'isoI:hasIdentifier'" /> 
             <xsl:with-param name="pObjectName" select="concat('mdrItems:',$SIName)" /> 
@@ -109,9 +118,9 @@
         <xsl:call-template name="ScopedIdentifier">
             <xsl:with-param name="pCID" select="$SIName"/>
             <xsl:with-param name="pIdentifier" select="@Id"/>
-            <xsl:with-param name="pVersionLabel" select="'0.1'"/>
-            <xsl:with-param name="pVersion" select="'1'"/>
-            <xsl:with-param name="pSemanticVersion" select="'1.0.0'"/>
+            <xsl:with-param name="pVersionLabel" select="''"/>
+            <xsl:with-param name="pVersion" select="$Version"/>
+            <xsl:with-param name="pSemanticVersion" select="concat($Version,'.0.0')"/>
             <xsl:with-param name="pScope" select="'NS-CDISC'"/>
         </xsl:call-template>
 
@@ -135,10 +144,11 @@
         <xsl:param name="pPrefix"/>
         <xsl:variable name="BRIDGPath" select="@Name"/>
         <xsl:variable name="ACount" select="count(preceding-sibling::Class/Attribute)" />
+        <xsl:variable name="ClassName" select="@Name"/>
         
         <xsl:for-each select="Attribute">
             <xsl:call-template name="Subject"> 
-                <xsl:with-param name="pName" select="concat(':',$pPrefix,$MinorSeparator,@Name,$URIFinish)" /> 
+                <xsl:with-param name="pName" select="concat(':',$pPrefix,$MinorSeparator,$ClassName,$MinorSeparator,@Name,$URIFinish)" /> 
             </xsl:call-template>
             <xsl:call-template name="PredicateObject"> 
                 <xsl:with-param name="pPredicateName" select="'rdf:type'" /> 
@@ -255,18 +265,21 @@
             </xsl:call-template>    
         </xsl:for-each>   
         <xsl:call-template name="SubjectEnd"/>
-        <xsl:apply-templates select="./Property">
-            <xsl:with-param name="pNode" select="./Property" />
-            <xsl:with-param name="pClass" select="$pClass" />
-            <xsl:with-param name="pAttribute" select="@Name" />
-            <xsl:with-param name="pDatatype" select="$pDatatype" />
-            <xsl:with-param name="pRawDatatype" select="$pRawDatatype" />
-            <xsl:with-param name="pPrefix" select="$Prefix" /> 
-            <xsl:with-param name="pBRIDGPath" select="concat($pBRIDGPath,$PathSeparator,@Name,$PathSeparator,$pDatatype)" /> 
-        </xsl:apply-templates>
+        <xsl:variable name="BRIDGPath" select="concat($pBRIDGPath,$PathSeparator,./@Name,$PathSeparator,$pDatatype)"/>
+        <xsl:for-each select="Property">
+            <xsl:call-template name="Property">
+                <xsl:with-param name="pNode" select="." />
+                <xsl:with-param name="pClass" select="$pClass" />
+                <xsl:with-param name="pAttribute" select="@Name" />
+                <xsl:with-param name="pDatatype" select="$pDatatype" />
+                <xsl:with-param name="pRawDatatype" select="$pRawDatatype" />
+                <xsl:with-param name="pPrefix" select="$Prefix" /> 
+                <xsl:with-param name="pBRIDGPath" select="$BRIDGPath" />
+            </xsl:call-template>
+        </xsl:for-each>   
     </xsl:template>
     
-    <xsl:template match="Property">
+    <xsl:template name="Property">
         
         <xsl:param name="pNode"/>
         <xsl:param name="Level">1</xsl:param>
@@ -280,6 +293,8 @@
         <xsl:variable name="PropertyName" select="string(@Name)"/>
         <xsl:variable name="PropertyAlias" select="string(@Alias)"/>
         <xsl:variable name="PCount" select="count(preceding-sibling::Property)+1" />
+        <xsl:variable name="NodeChildren1" select="pNode/*" />
+        <xsl:variable name="NodeChildren2" select="pNode/Property" />
         
         <xsl:variable name="Datatype" select="$DatatypeDocument/ISO21090DataTypes/ISO21090DataType[@Name=$pDatatype]"/>
         <xsl:for-each select="$Datatype/ISO21090Property">
@@ -386,16 +401,18 @@
                             </xsl:for-each>   
                             <xsl:call-template name="SubjectEnd"/>
                             
-                            <xsl:apply-templates select="$pNode/Property">
-                                <xsl:with-param name="Level" select="$Level + 1" />
-                                <xsl:with-param name="pNode" select="./Property" />
-                                <xsl:with-param name="pClass" select="$pClass" />
-                                <xsl:with-param name="pAttribute" select="$pAttribute" />
-                                <xsl:with-param name="pDatatype" select="$PropertyDatatype" />
-                                <xsl:with-param name="pRawDatatype" select="$PropertyDatatype" />
-                                <xsl:with-param name="pPrefix" select="$NextPrefix" />
-                                <xsl:with-param name="pBRIDGPath" select="concat($pBRIDGPath,$PathSeparator,$PropertyName,$PathSeparator,$PropertyDatatype)"/>
-                            </xsl:apply-templates>
+                            <xsl:for-each select="$pNode/Property">
+                                <xsl:call-template name="Property">
+                                    <xsl:with-param name="Level" select="$Level + 1" />
+                                    <xsl:with-param name="pNode" select="." />
+                                    <xsl:with-param name="pClass" select="$pClass" />
+                                    <xsl:with-param name="pAttribute" select="$pAttribute" />
+                                    <xsl:with-param name="pDatatype" select="$PropertyDatatype" />
+                                    <xsl:with-param name="pRawDatatype" select="$PropertyDatatype" />
+                                    <xsl:with-param name="pPrefix" select="$NextPrefix" />
+                                    <xsl:with-param name="pBRIDGPath" select="concat($pBRIDGPath,$PathSeparator,$PropertyName,$PathSeparator,$PropertyDatatype)"/>
+                                </xsl:call-template>
+                            </xsl:for-each>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>

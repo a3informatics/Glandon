@@ -1,43 +1,38 @@
 defaults: &defaults
+  # Defined Observation
   DefinedObservation.nameCode.CD.code: "--TESTCD"
   DefinedObservation.nameCode.CD.originalText.ED.value: "--TEST"
+  DefinedObservation.targetAnatomicSiteCode.CD.code: "--LOC" # Deprecated
+  DefinedObservation.categoryCode.CD: "--CAT"
+  DefinedObservation.subcategoryCode.CD: "--SCAT"
+  DefinedObservation.methodCode.CD.code: "--METHOD" # Deprecated
+  # Defined Activity. Deprecated, use Defined Observation
   DefinedActivity.categoryCode.CD: "--CAT"
   DefinedActivity.subcategoryCode.CD: "--SCAT"
-  PerformedObservationResult.result.PQR.value: "--ORRES"
-  PerformedClinicalResult.value.PQR.value: "--ORRES"
-  PerformedClinicalResult.value.CD.code: "--ORRES"
-  PerformedClinicalResult.value.PQR.code: "--ORRESU"
-  PerformedClinicalResult.value.ANY: "--STRESC"
+  # Performed Observation 
   PerformedObservation.bodyPositionCode.CD.code: "--POS"
-  PerformedObservationResult.value.ANY.units: "--ORRESU"
-  PerformedObservationResult.result.PQR.code: "--ORRESU"
-  PerformedObservationResult.value.ANY: "--STRESN"
-  PerformedObservationResult.value.CD.code: "--REL"
+  PerformedObservation.negationIndicator.BL.value: "--STAT"
+  PerformedObservation.negationReason.DSET(SC).value: "--REASND"
+  PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value: "--DTC"
+  PerformedObservation.methodCode.CD.code: "--METHOD"
+  PerformedObservation.approachAnatomicSiteCode.CD.code: "--LOC"
+  PerformedObservation.approachAnatomicSiteLateralityCode.CD.code: "--LAT"
+  PerformedObservation.targetAnatomicSiteLateralityCode.CD.code: "--LAT" # Deprecated
+  # Performed Clinical Result. Deprecated, use Performed Observation Result
+  PerformedClinicalResult.value.CD.code: "--ORRES"
+  PerformedClinicalResult.value.PQR.value: "--ORRES"
+  PerformedClinicalResult.value.PQR.code: "--ORRESU"
+  PerformedClinicalResult.baselineIndicator.BL: "--BLFL"
+  # Performed Observation Result
+  PerformedObservationResult.value.CD.code: "--ORRES"
+  PerformedObservationResult.value.PQR.value: "--ORRES"
+  PerformedObservationResult.value.PQR.code: "--ORRESU"
   PerformedObservationResult2.value.ST.value: "--RELNST"
   PerformedObservationResult3.value.CD.code: "--SCAN"
   PerformedObservationResult4.value.CD.code: "--SDTH"
-  ReferenceResult.value.ANY: "--STNRLO"
-  PerformedClinicalResult.normalRangeComparisonCode.CD: "--NRIND"
-  PerformedObservation.negationIndicator.BL.value: "--STAT"
-  PerformedObservation.negationReason.DSET(SC).value: "--REASND"
-  Organization.name.DSET(EN.ON): "--NAM"
-  DefinedObservation.targetAnatomicSiteCode.CD.code: "--LOC"
-  DefinedObservation.nameCode.CD: "--LOINC"
-  Biologic.code.CD: "--SPEC"
-  Specimen.conditionCode.CD: "--SPCCND"
-  PerformedObservation.methodCode.CD.code: "--METHOD"
+  PerformedObservationResult5.value.CD.code: "--REL"
   PerformedObservationResult.baselineIndicator.BL: "--BLFL"
-  PerformedSpecimenCollection.fastingStatusIndicator.BL: "--FAST"
-  PerformedClinicalInterpretation.toxicityTermCode.CD: "--TOX"
-  PerformedClinicalInterpretation.toxicityGradeCode.CD: "--TOXGR"
-  PlannedSubjectActivityGroup.sequenceNumber.INT.NONNEG: "VISITNUM"
-  PlannedActivity.studyDayRange.IVL(INT): "VISITDY"
-  PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value: "--DTC"
-  PerformedSpecimenCollection.dateRange.IVL(TS.DATETIME): "--ENDTC"
-  PerformedObservation.studyDayRange.IVL(INT): "--DY"
-  PlannedContingentOnRelationship: "--ELTM"
-  DefinedActivity.nameCode.CD: "--TPTREF"
-  PerformedActivity.dateRange.IVL(TS.DATETIME): "--RFTDTC"
+  # Adverse Event
   AdverseEvent.value.ST.value: "--TERM"
   AdverseEvent.categoryCode.CD.code: "--CAT"
   AdverseEvent.subcategoryCode.CD.code: "--SCAT"
@@ -47,8 +42,10 @@ defaults: &defaults
   AdverseEvent.hospitalizationRequiredIndicator.BL.value: "--SHOSP"
   AdverseEvent.occuranceDateRange.IVL_TS_DATETIME.low.TS_DATETIME.value: "--STDTC"
   AdverseEvent.occuranceDateRange.IVL_TS_DATETIME.high.TS_DATETIME.value: "--ENDTC"
+  # Adverse Event Action Taken
   AdverseEventActionTaken.typeCode.CD.code: "--ACN"
   AdverseEventActionTaken2.typeCode.CD.code: "--ACNOTH"
+  # Adverse Event Outome Result
   AdverseEventOutcomeResult.value.CD.code: "--OUT"
 development:
   <<: *defaults

@@ -1,4 +1,4 @@
-<BRIDG>
+<BRIDG Version="3.0.3">
 	<BRIDGClass Name="DefinedObservation" Description="An activity defined at a global library level whose intention is to obtain a result by observing, monitoring, measuring or otherwise qualitatively or quantitatively gathering data or information about one or more aspects of a study subject's or experimental unit's physiologic or psychologic state.">
 		<BRIDGAttribute Name="approachAnatomicSiteCode" DataType="CD" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="bodyPositionCode" DataType="CD" Description="A coded value specifying the 3-dimensional spatial orientation of a subject during a particular observation." Use="Optional"/>
@@ -56,21 +56,31 @@
 		<BRIDGRelationship Name="ResultsIn" To="PerformedObservationResult" FromMultiplicity="1" ToMultiplicity="0..*"/>
 	</BRIDGClass>
 	<BRIDGClass Name="PerformedObservationResult" Description="The finding obtained by observing, monitoring, measuring or otherwise qualitatively or quantitatively recording one or more aspects of physiologic or psychologic processes.">
-		<BRIDGAttribute Name="baselineIndicator" DataType="BL" Description="Specifies whether the result is a starting point to which other results may be compared." Use="Optional"/>
-		<BRIDGAttribute Name="bodySystemCode" DataType="CD" Description="A coded value specifying the anatomical structure that consists of organs and organ subclasses responsible for certain body functions." Use="Optional"/>
-		<BRIDGAttribute Name="comment" DataType="ST" Description="Additional description of the observation result." Use="Optional"/>
-		<BRIDGAttribute Name="confidentialityCode" DataType="CD" Description="A coded value specifying the degree of privacy applicable for the observation result." Use="Optional"/>
 		<BRIDGAttribute Name="identifier" DataType="II" Description="The unique symbol that establishes identity of the observation result." Use="Optional"/>
-		<BRIDGAttribute Name="reportedDate" DataType="TS_DATETIME" Description="The date (and time) on which the result is reported." Use="Optional"/>
-		<BRIDGAttribute Name="result" DataType="ANY" Description="Data or information that is determined by an act of observation." Use="Optional"/>
-		<BRIDGAttribute Name="resultCodeModifiedText" DataType="ST" Description="A character string that is a revision of the original text observation result to enable the coding of the text." Use="Optional"/>
-		<BRIDGAttribute Name="targetAnatomicSiteCode" DataType="CD" Description="A coded value specifying the anatomic location that is the focus of an observation result." Use="Optional"/>
-		<BRIDGAttribute Name="targetAnatomicSiteLateralityCode" DataType="CD" Description="A coded value specifying the side of the body (or a paired organ) that is a target site for an observation result." Use="Optional"/>
 		<BRIDGAttribute Name="typeCode" DataType="CD" Description="A coded value specifying the kind of observation result." Use="Optional"/>
-		<BRIDGAttribute Name="uncertaintyCode" DataType="CD" Description="A coded value specifying whether and to what degree this evaluation or observation has been asserted to be in doubt in any way." Use="Optional"/>
 		<BRIDGAttribute Name="value" DataType="ANY" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="valueCodeModifiedText" DataType="ST" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="valueNullFlavorReason" DataType="ST" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="targetAnatomicSiteCode" DataType="CD" Description="A coded value specifying the anatomic location that is the focus of an observation result." Use="Optional"/>
+		<BRIDGAttribute Name="targetAnatomicSiteLateralityCode" DataType="CD" Description="A coded value specifying the side of the body (or a paired organ) that is a target site for an observation result." Use="Optional"/>
+		<BRIDGAttribute Name="bodySystemCode" DataType="CD" Description="A coded value specifying the anatomical structure that consists of organs and organ subclasses responsible for certain body functions." Use="Optional"/>
+		<BRIDGAttribute Name="baselineIndicator" DataType="BL" Description="Specifies whether the result is a starting point to which other results may be compared." Use="Optional"/>
+		<BRIDGAttribute Name="confidentialityCode" DataType="CD" Description="A coded value specifying the degree of privacy applicable for the observation result." Use="Optional"/>
+		<BRIDGAttribute Name="uncertaintyCode" DataType="CD" Description="A coded value specifying whether and to what degree this evaluation or observation has been asserted to be in doubt in any way." Use="Optional"/>
+		<BRIDGAttribute Name="reportedDate" DataType="TS_DATETIME" Description="The date (and time) on which the result is reported." Use="Optional"/>
+		<BRIDGAttribute Name="comment" DataType="ST" Description="Additional description of the observation result." Use="Optional"/>
+	</BRIDGClass>
+	<BRIDGClass Name="PerformedObservationResult2" Description="">
+		<BRIDGAttribute Name="value" DataType="ANY" Description="" Use="Optional"/>
+	</BRIDGClass>
+	<BRIDGClass Name="PerformedObservationResult3" Description="">
+		<BRIDGAttribute Name="value" DataType="ANY" Description="" Use="Optional"/>
+	</BRIDGClass>
+	<BRIDGClass Name="PerformedObservationResult4" Description="">
+		<BRIDGAttribute Name="value" DataType="ANY" Description="" Use="Optional"/>
+	</BRIDGClass>
+	<BRIDGClass Name="PerformedObservationResult5" Description="">
+		<BRIDGAttribute Name="value" DataType="ANY" Description="" Use="Optional"/>
 	</BRIDGClass>
 	<BRIDGClass Name="PerformedClinicalResult" Description="A result of a clinical observation, i.e. from an examination, test or direct observation performed on the subject.">
 		<BRIDGAttribute Name="asCollectedIndicator" DataType="BL" Description="Specifies whether the observation is represented in the units or values as originally collected." Use="Optional"/>
@@ -97,5 +107,39 @@
 		<BRIDGAttribute Name="categoryCode" DataType="CD" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="subcategoryCode" DataType="CD" Description="" Use="Optional"/>
 	</BRIDGClass>
+	<BRIDGClass Name="AdverseEvent" Description="">
+		<BRIDGAttribute Name="value" DataType="ANY" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="categoryCode" DataType="CD" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="subcategoryCode" DataType="CD" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="severityCode" DataType="CD" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="seriousnessCode" DataType="CD" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="occurrencepatternCode" DataType="CD" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="occurrenceDateRange" DataType="IVL_TS_DATETIME" Description="" Use="Optional"/>	
+		<BRIDGAttribute Name="hospitalizationRequiredIndicator" DataType="BL" Description="" Use="Optional"/>	
+	</BRIDGClass>
+	<BRIDGClass Name="AdverseEventActionTaken" Description="">
+		<BRIDGAttribute Name="typeCode" DataType="CD" Description="" Use="Optional"/>
+	</BRIDGClass>
+	<BRIDGClass Name="AdverseEventActionTaken2" Description="">
+		<BRIDGAttribute Name="typeCode" DataType="CD" Description="" Use="Optional"/>
+	</BRIDGClass>
+	<BRIDGClass Name="AdverseEventOutcomeResult" Description="">
+		<BRIDGAttribute Name="value" DataType="CD" Description="" Use="Optional"/>
+	</BRIDGClass>
+	<BRIDGClass Name="PerformedSubstanceAdministration" Description="">
+		<BRIDGAttribute Name="negationReason" DataType="DSET(SC)" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="negationIndicator" DataType="BL" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="activeIngredientDose" DataType="PQ" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="activeIngredientDoseDescription" DataType="ST" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="doseFrequencyCode" DataType="CD" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="productDoseDescription" DataType="ST" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="routeOfAdministrationCode" DataType="CD" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="dateRange" DataType="IVL_TS_DATETIME" Description="" Use="Optional"/>		
+	</BRIDGClass>
+	<BRIDGClass Name="Product">
+		<BRIDGAttribute Name="description" DataType="ST" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="formCode" DataType="CD" Description="" Use="Optional"/>		
+	</BRIDGClass>
+	
 </BRIDG>
 
