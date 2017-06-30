@@ -28,8 +28,8 @@ describe SdtmIgDomain do
 
   it "allows a domain to be found" do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-    write_yaml_file(item.to_json, sub_dir, "sdtm_model_domain_find.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_model_domain_find.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "sdtm_ig_domain_find.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_ig_domain_find.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -39,7 +39,7 @@ describe SdtmIgDomain do
 
   it "allows all domains to be found" do
     results = SdtmIgDomain.all
-    #write_yaml_file(results, sub_dir, "sdtm_ig_domain_all.yaml")
+  #write_yaml_file(results, sub_dir, "sdtm_ig_domain_all.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_ig_domain_all.yaml")
     expect(results.count).to eq(41)
     results.each do |result|
@@ -61,7 +61,7 @@ describe SdtmIgDomain do
   
   it "allows the domain to be exported as JSON" do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-    #write_yaml_file(item.to_json, sub_dir, "sdtm_ig_domain_to_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "sdtm_ig_domain_to_json.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_ig_domain_to_json.yaml")
     expect(item.to_json).to eq(expected)
   end
