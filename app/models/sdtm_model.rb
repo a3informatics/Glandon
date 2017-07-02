@@ -55,7 +55,7 @@ class SdtmModel < Tabular
   #
   # @return [Array] array of objects found
   def self.all()
-    results = IsoManaged.find_by_type(C_RDF_TYPE, C_SCHEMA_NS)
+    results = IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
     return results
   end
 

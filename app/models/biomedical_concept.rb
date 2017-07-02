@@ -47,7 +47,7 @@ class BiomedicalConcept < BiomedicalConceptCore
   #
   # @return [array] Array of objects found.
   def self.all
-    return IsoManaged.find_by_type(C_RDF_TYPE, C_SCHEMA_NS)
+    return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   # Find list of managed items of a given type.
