@@ -63,7 +63,7 @@ class SdtmModelDomain < Tabular
   #
   # @return [Array] array of objects found
   def self.all
-    super(C_RDF_TYPE, C_SCHEMA_NS)
+    return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   # Find all released model domains.

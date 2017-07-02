@@ -162,7 +162,7 @@ describe CdiscTerm do
   it "find all previous" do
     results = CdiscTerm.all_previous(36)
     results_json = results.map { |result| result = result.to_json }
-   #write_yaml_file(results_json, sub_dir, "cdisc_term_example_6.yaml")
+  #write_yaml_file(results_json, sub_dir, "cdisc_term_example_6.yaml")
     results_ct = read_yaml_file(sub_dir, "cdisc_term_example_6.yaml")
     expect(results_json).to eq(results_ct)
   end

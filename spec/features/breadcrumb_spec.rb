@@ -96,7 +96,6 @@ describe "Breadcrumb", :type => :feature do
     
     it "has Audit Trail breadcrumbs" do
       next_link('main_nav_at1', 'Index: Audit Trail', "Audit Trail", "", "") # Two links, use ids to get both
-      next_link('main_nav_at2', 'Index: Audit Trail', "Audit Trail", "", "")
     end
     
     it "has Ad Hoc Reports breadcrumbs" do

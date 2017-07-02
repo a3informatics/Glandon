@@ -99,7 +99,7 @@ describe Thesaurus do
   it "allows all records to be retrieved" do
     results = Thesaurus.all
     expect(results.count).to eq(4)
-    write_yaml_file(results, sub_dir, "thesaurus_all_1.yaml")
+  #write_yaml_file(results, sub_dir, "thesaurus_all_1.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_all_1.yaml")
     results.each do |result|
       found = expected.find { |x| x.id == result.id }
