@@ -53,12 +53,12 @@ describe IsoRegistrationStatesController do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       mi = IsoManaged.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
       post :update, { id: "#{mi.registrationState.id}", iso_registration_state: { mi_id: mi.id, mi_namespace: mi.namespace, 
-        registrationStatus: IsoRegistrationState::C_RETIRED, previousState: IsoRegistrationState::C_STANDARD, administrativeNote: "X1", unresolvedIssue: "X2"  }}
+        registrationStatus: "Retired"  , previousState: "Standard"  , administrativeNote: "X1", unresolvedIssue: "X2"  }}
       mi = IsoManaged.find(mi.id, mi.namespace)
       updated_rs = mi.registrationState
       rs = IsoRegistrationState.new
-      rs.registrationStatus = IsoRegistrationState::C_RETIRED 
-      rs.previousState = IsoRegistrationState::C_STANDARD 
+      rs.registrationStatus = "Retired"   
+      rs.previousState = "Standard"   
       rs.administrativeNote = "X1" 
       rs.unresolvedIssue = "X2" 
       rs.id = "RS-ACME_T2-1"
@@ -71,7 +71,7 @@ describe IsoRegistrationStatesController do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       mi = IsoManaged.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
       post :update, { id: "#{mi.registrationState.id}", iso_registration_state: { mi_id: mi.id, mi_namespace: mi.namespace,
-        registrationStatus: "X", previousState: IsoRegistrationState::C_STANDARD, administrativeNote: "X1", unresolvedIssue: "X2"  }}
+        registrationStatus: "X", previousState: "Standard"  , administrativeNote: "X1", unresolvedIssue: "X2"  }}
       new_mi = IsoManaged.find(mi.id, mi.namespace)
       new_rs = new_mi.registrationState
       expect(new_rs.to_json).to eq(mi.registrationState.to_json)

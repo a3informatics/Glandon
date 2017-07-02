@@ -1,0 +1,92 @@
+defaults: &defaults
+  :Not_Set:
+    :label: Not set
+    :definition: State has not beeen set
+    :delete_enabled: false
+    :edit_enabled: true
+    :edit_up_version: true
+    :state_on_edit: Incomplete
+    :can_be_current: false
+    :next_state: Incomplete
+  :Incomplete:
+    :label: Incomplete
+    :definition: Submitter wishes to make the community that uses this metadata register
+      aware of the existence of an Administered Item in their local domain.
+    :delete_enabled: true
+    :edit_enabled: true
+    :edit_up_version: false
+    :state_on_edit: Incomplete
+    :can_be_current: false
+    :next_state: Candidate
+  :Candidate:
+    :label: Candidate
+    :definition: The Administered Item has been proposed for progression through the
+      registration levels.
+    :delete_enabled: false
+    :edit_enabled: true
+    :edit_up_version: false
+    :state_on_edit: Candidate
+    :can_be_current: false
+    :next_state: Recorded
+  :Recorded:
+    :label: Recorded
+    :definition: 'The Registration Authority has confirmed that: a) all mandatory metadata
+      attributes have been completed.'
+    :delete_enabled: false
+    :edit_enabled: true
+    :edit_up_version: true
+    :state_on_edit: Recorded
+    :can_be_current: false
+    :next_state: Qualified
+  :Qualified:
+    :label: Qualified
+    :definition: 'The Registration Authority has confirmed that: a) the mandatory metadata
+      attributes are complete and b) the mandatory metadata attributes conform to applicable
+      quality requirements.'
+    :delete_enabled: false
+    :edit_enabled: true
+    :edit_up_version: true
+    :state_on_edit: Qualified
+    :can_be_current: false
+    :next_state: Standard
+  :Standard:
+    :label: Standard
+    :definition: 'The Registration Authority confirms that the Administered Item is:
+      a) of sufficient quality and b) of broad interest for use in the community that
+      uses this metadata register.'
+    :delete_enabled: false
+    :edit_enabled: true
+    :edit_up_version: true
+    :state_on_edit: Incomplete
+    :can_be_current: true
+    :next_state: Superseded
+  :Retired:
+    :label: Retired
+    :definition: 'The Registration Authority has approved the Administered Item as:
+      a) no longer recommended for use in the community that uses this metadata register
+      and b) should no longer be used.'
+    :delete_enabled: false
+    :edit_enabled: false
+    :edit_up_version: false
+    :state_on_edit: Retired
+    :can_be_current: false
+    :next_state: Retired
+  :Superseded:
+    :label: Superseded
+    :definition: 'The Registration Authority determined that the Administered Item is:
+      a) no longer recommended for use by the community that uses this metadata register,
+      and b) a successor Administered Item is now preferred for use.'
+    :delete_enabled: false
+    :edit_enabled: false
+    :edit_up_version: false
+    :state_on_edit: Superseded
+    :can_be_current: false
+    :next_state: Superseded
+development:
+  <<: *defaults
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults

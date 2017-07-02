@@ -41,6 +41,7 @@ module Glandon
 
     # Other configurations
     config.bridg_sdtm = config_for(:bridg_sdtm)
+    config.iso_registration_state = config_for(:iso_registration_state)
 
     # Rspec additions
     config.generators do |g|

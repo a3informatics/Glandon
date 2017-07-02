@@ -55,10 +55,10 @@ describe IsoManaged do
 
   it "allows the item to be exported as sparql including the branch parent" do
     branch = IsoManaged.find("F-ACME_BRANCH", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_yaml_file(branch.triples, sub_dir, "iso_managed_branch_triples.yaml")
+  #write_yaml_file(branch.triples, sub_dir, "iso_managed_branch_triples.yaml")
     sparql = SparqlUpdateV2.new
     result_uri = branch.to_sparql_v2(sparql, "bf")
-    #write_text_file_2(sparql.to_s, sub_dir, "iso_managed_branch_sparql_1.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "iso_managed_branch_sparql_1.txt")
     expected = read_text_file_2(sub_dir, "iso_managed_branch_sparql_1.txt")
     expect(sparql.to_s).to eq(expected)
     expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_BRANCH")
@@ -68,7 +68,7 @@ describe IsoManaged do
     triples = read_yaml_file(sub_dir, "iso_managed_branch_triples.yaml")
     item = IsoManaged.new(triples, "F-ACME_BRANCH")
     expect(item.is_a_branch?).to eq(true)
-    #write_yaml_file(item.to_json, sub_dir, "iso_managed_branch_from_triples.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "iso_managed_branch_from_triples.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_branch_from_triples.yaml") # Note the branch info is not included in the JSON export.
     expect(item.to_json).to eq(expected)
   end
@@ -83,7 +83,7 @@ describe IsoManaged do
     items = IsoManaged.branches("F-ACME_BRANCH", "http://www.assero.co.uk/MDRForms/ACME/V1")
     results = []
     items.each { |x| results << x.to_json}
-    #write_yaml_file(results, sub_dir, "iso_managed_branch_parents_2.yaml")
+  #write_yaml_file(results, sub_dir, "iso_managed_branch_parents_2.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_branch_parents_2.yaml")
     expect(results).to eq(expected)    
   end
@@ -91,19 +91,19 @@ describe IsoManaged do
   it "determines if an item can be branched" do
     branch = IsoManaged.find("F-ACME_BRANCH", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(branch.can_be_branched?).to eq(false)
-    branch.registrationState.registrationStatus = IsoRegistrationState::C_SUPERSEDED
+    branch.registrationState.registrationStatus = "Superseded"
     expect(branch.can_be_branched?).to eq(true)
-    branch.registrationState.registrationStatus = IsoRegistrationState::C_RETIRED
+    branch.registrationState.registrationStatus = "Retired"
     expect(branch.can_be_branched?).to eq(true)
-    branch.registrationState.registrationStatus = IsoRegistrationState::C_STANDARD
+    branch.registrationState.registrationStatus = "Standard"
     expect(branch.can_be_branched?).to eq(true)
-    branch.registrationState.registrationStatus = IsoRegistrationState::C_INCOMPLETE
+    branch.registrationState.registrationStatus = "Incomplete"
     expect(branch.can_be_branched?).to eq(false)
-    branch.registrationState.registrationStatus = IsoRegistrationState::C_CANDIDATE
+    branch.registrationState.registrationStatus = "Candidate"
     expect(branch.can_be_branched?).to eq(false)
-    branch.registrationState.registrationStatus = IsoRegistrationState::C_RECORDED
+    branch.registrationState.registrationStatus = "Recorded"
     expect(branch.can_be_branched?).to eq(false)
-    branch.registrationState.registrationStatus = IsoRegistrationState::C_QUALIFIED
+    branch.registrationState.registrationStatus = "Qualified"
     expect(branch.can_be_branched?).to eq(false)
   end
 end

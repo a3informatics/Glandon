@@ -17,123 +17,20 @@ class IsoRegistrationState
   C_CLASS_NAME = "IsoRegistrationState"
   C_INSTANCE_NS = UriManagement.getNs(C_NS_PREFIX)
 
-  C_NOTSET = ""
-  C_INCOMPLETE = "Incomplete"
-  C_CANDIDATE =  "Candidate"
-  C_RECORDED = "Recorded"
-  C_QUALIFIED = "Qualified"
-  C_STANDARD = "Standard"
-  C_RETIRED = "Retired"
-  C_SUPERSEDED = "Superseded"
-
   C_DEFAULT_DATETIME = "2016-01-01T00:00:00+00:00"
   C_UNTIL_DATETIME = "2100-01-01T00:00:00+00:00"
 
   # Class variables
-  @@stateInfo = {
-    C_NOTSET => 
-      { 
-        :key => C_NOTSET, 
-        :label => "Not set", 
-        :definition => "State has not beeen set",
-        :delete_enabled => false, 
-        :edit_enabled => true, 
-        :edit_up_version => true, # New items set to this state 
-        :state_on_edit => C_INCOMPLETE,
-        :can_be_current => false, 
-        :next_state => C_INCOMPLETE
-      },
-    C_INCOMPLETE  => 
-      { 
-        :key => C_INCOMPLETE, 
-        :label => "Incomplete", 
-        :definition => "Submitter wishes to make the community that uses this metadata register aware of the existence of an Administered Item in their local domain.",        
-        :delete_enabled => true, 
-        :edit_enabled  => true,
-        :edit_up_version => false,
-        :state_on_edit => C_INCOMPLETE,
-        :can_be_current => false, 
-        :next_state => C_CANDIDATE
-      },
-    C_CANDIDATE =>
-      { 
-        :key => C_CANDIDATE, 
-        :label => "Candidate", 
-        :definition => "The Administered Item has been proposed for progression through the registration levels.",
-        :delete_enabled => false, 
-        :edit_enabled  => true,
-        :edit_up_version => false,
-        :state_on_edit => C_CANDIDATE,
-        :can_be_current => false, 
-        :next_state => C_RECORDED
-      },
-    C_RECORDED =>
-      { 
-        :key => C_RECORDED, 
-        :label => "Recorded", 
-        :definition => "The Registration Authority has confirmed that: a) all mandatory metadata attributes have been completed.",
-        :delete_enabled => false, 
-        :edit_enabled  => true,
-        :edit_up_version => true,
-        :state_on_edit => C_RECORDED,
-        :can_be_current => false, 
-        :next_state => C_QUALIFIED
-      },
-    C_QUALIFIED =>
-      { 
-        :key => C_QUALIFIED, 
-        :label => "Qualified", 
-        :definition => "The Registration Authority has confirmed that: a) the mandatory metadata attributes are complete and b) the mandatory metadata attributes conform to applicable quality requirements.",
-        :delete_enabled => false, 
-        :edit_enabled  => true,
-        :edit_up_version => true,
-        :state_on_edit => C_QUALIFIED,
-        :can_be_current => false, 
-        :next_state => C_STANDARD
-      },
-    C_STANDARD =>
-      { 
-        :key => C_STANDARD, 
-        :label => "Standard", 
-        :definition => "The Registration Authority confirms that the Administered Item is: a) of sufficient quality and b) of broad interest for use in the community that uses this metadata register.",
-        :delete_enabled => false, 
-        :edit_enabled  => true,
-        :edit_up_version => true,
-        :state_on_edit => C_INCOMPLETE,
-        :can_be_current => true, 
-        :next_state => C_SUPERSEDED
-      },
-    C_RETIRED =>
-      { 
-        :key => C_RETIRED, 
-        :label => "Retired", 
-        :definition => "The Registration Authority has approved the Administered Item as: a) no longer recommended for use in the community that uses this metadata register and b) should no longer be used.",
-        :delete_enabled => false, 
-        :edit_enabled  => false,
-        :edit_up_version => false,
-        :state_on_edit => C_RETIRED,
-        :can_be_current => false, 
-        :next_state => C_RETIRED
-      },
-    C_SUPERSEDED =>
-      { 
-        :key => C_SUPERSEDED, 
-        :label => "Superseded", 
-        :definition => "The Registration Authority determined that the Administered Item is: a) no longer recommended for use by the community that uses this metadata register, and b) a successor Administered Item is now preferred for use.",
-        :delete_enabled => false, 
-        :edit_enabled => false, 
-        :edit_up_version => false, 
-        :state_on_edit => C_SUPERSEDED,
-        :can_be_current => false, 
-        :next_state => C_SUPERSEDED
-      }
-  }
   @@base_namespace
 
   def persisted?
     id.present?
   end
  
+ 	def self.table
+ 		return Rails.configuration.iso_registration_state.has_key?(bridg)
+ 	end
+
   # Initialize the object (new)
   # 
   # @param triples [hash] Hash of triples
@@ -145,13 +42,13 @@ class IsoRegistrationState
     if triples.nil?
       self.id = ""
       self.registrationAuthority = IsoRegistrationAuthority.new
-      self.registrationStatus = C_NOTSET
+      self.registrationStatus = :Not_Set.to_s
       self.administrativeNote = ""
       self.effective_date = Time.parse(C_DEFAULT_DATETIME)
       self.until_date = Time.parse(C_DEFAULT_DATETIME)
       self.unresolvedIssue = ""
       self.administrativeStatus = ""
-      self.previousState  = C_NOTSET
+      self.previousState = :Not_Set.to_s
       self.current = false
     else
       self.id = ModelUtility.extractCid(triples[0][:subject])
@@ -179,14 +76,16 @@ class IsoRegistrationState
   # 
   # @return [boolean] True if a registration state present
   def registered?()
-    return self.registrationStatus != C_NOTSET
+  	return false if self.registrationStatus == "" # Preserve backwards compatibility
+    return false if self.registrationStatus == :Not_Set.to_s
+    return true
   end
 
   # Get the No State status
   # 
   # @return [string] The no state string
   def self.no_state()
-    return C_NOTSET
+    return :Not_Set.to_s
   end
 
   # Get the next state
@@ -194,7 +93,7 @@ class IsoRegistrationState
   # @param state [string] The current state
   # @return [string] The next state
   def self.nextState(state)
-    info = @@stateInfo[state]
+    info = Rails.configuration.iso_registration_state[state.to_sym]
     nextState = info[:next_state]
     #ConsoleLogger::log(C_CLASS_NAME,"nextState","Old=" + state.to_s + ", New=" + nextState)
     return nextState
@@ -204,7 +103,7 @@ class IsoRegistrationState
   #
   # @return [string] The label
   def self.stateLabel(state)
-    info = @@stateInfo[state]
+    info = Rails.configuration.iso_registration_state[state.to_sym]
     return info[:label]
   end
 
@@ -212,7 +111,7 @@ class IsoRegistrationState
   #
   # @return [string] The definition
   def self.stateDefinition(state)
-    info = @@stateInfo[state]
+    info = Rails.configuration.iso_registration_state[state.to_sym]
     return info[:definition]
   end
 
@@ -220,28 +119,28 @@ class IsoRegistrationState
   #
   # @return [string] The released state
   def self.releasedState
-    return C_STANDARD
+    return :Standard.to_s
   end
   
   # Is the item at the released state
   #
   # @return [boolean] True if in the released state, false otherwise
   def released_state?
-    self.registrationStatus == C_STANDARD
+    self.registrationStatus == :Standard.to_s
   end
   
   # Has the item been at the released state
   #
   # @return [Boolean] true if it has been in the released state, false otherwise
   def has_been_released_state?
-    self.registrationStatus == C_RETIRED || self.registrationStatus == C_SUPERSEDED 
+    self.registrationStatus == :Retired.to_s || self.registrationStatus == :Superseded.to_s
   end
   
   # Can the item be edited
   #
   # @return [string] The next state
   def edit?
-    info = @@stateInfo[self.registrationStatus]
+    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
     return info[:edit_enabled]
   end
 
@@ -249,7 +148,7 @@ class IsoRegistrationState
   #
   # @return [string] The next state
   def delete?
-    info = @@stateInfo[self.registrationStatus]
+    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
     return info[:delete_enabled]
   end
 
@@ -257,7 +156,7 @@ class IsoRegistrationState
   #
   # @return [string] The next state
   def state_on_edit
-    info = @@stateInfo[self.registrationStatus]
+    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
     return info[:state_on_edit]
   end
 
@@ -265,7 +164,7 @@ class IsoRegistrationState
   #
   # @return [string] The next state
   def new_version?
-    info = @@stateInfo[self.registrationStatus]
+    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
     return info[:edit_up_version]
   end
 
@@ -273,7 +172,7 @@ class IsoRegistrationState
   #
   # @return [string] The next state
   def can_be_current?
-    info = @@stateInfo[self.registrationStatus]
+    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
     return info[:can_be_current]
   end
 
@@ -281,7 +180,7 @@ class IsoRegistrationState
   #
   # @return [string] The next state
   def can_be_changed?
-    info = @@stateInfo[self.registrationStatus]
+    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
     return info[:next_state] != self.registrationStatus
   end
 
@@ -581,11 +480,11 @@ class IsoRegistrationState
     uri = UriV2.new({:namespace => @@base_namespace, :prefix => C_CID_PREFIX, :org_name => ra.namespace.shortName, :identifier => identifier, :version => version})
     object = self.new
     object.id = uri.id
-    object.registrationStatus = C_INCOMPLETE
+    object.registrationStatus = :Incomplete.to_s
     object.administrativeNote = ""
     object.unresolvedIssue = ""
     object.administrativeStatus = ""
-    object.previousState  = C_INCOMPLETE 
+    object.previousState  = :Incomplete.to_s
     object.registrationAuthority = ra
     return object
   end
@@ -660,8 +559,8 @@ class IsoRegistrationState
       end
     end
     result = ra_valid &&
-      valid_registration_state?(:registrationStatus, self.registrationStatus) && 
-      valid_registration_state?(:previousState, self.previousState) && 
+      valid_registration_state?(:registrationStatus, self.registrationStatus.to_sym) && 
+      valid_registration_state?(:previousState, self.previousState.to_sym) && 
       FieldValidation.valid_label?(:administrativeNote, self.administrativeNote, self) &&
       FieldValidation.valid_label?(:unresolvedIssue, self.unresolvedIssue, self) &&
       FieldValidation.valid_label?(:administrativeStatus, self.administrativeStatus, self) 
@@ -671,7 +570,7 @@ class IsoRegistrationState
 private
 
   def valid_registration_state?(field, value)
-    return true if @@stateInfo.has_key?(value)
+    return true if Rails.configuration.iso_registration_state.has_key?(value)
     self.errors.add(field, "is invalid")
     return false  
   end

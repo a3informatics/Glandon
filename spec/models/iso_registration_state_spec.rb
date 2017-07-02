@@ -5,10 +5,37 @@ describe IsoRegistrationState do
   include DataHelpers
   include PauseHelpers
 
+  def sub_dir
+    return "models"
+  end
+
   before :all do
     clear_triple_store
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
     load_test_file_into_triple_store("iso_scoped_identifier.ttl")
+  end
+
+ 	it "check the state table" do
+ 		expected = %i(Not_Set Incomplete Candidate Recorded Qualified Standard Retired Superseded)
+ 		table = Rails.configuration.iso_registration_state
+ 		index = 0
+  	table.each do |key, item|
+  		expect(key).to eq(expected[index])
+  		index += 1
+  	end
+ 	end
+
+  it "creates a new object" do
+    object = IsoRegistrationState.new
+    expect(object.id).to eq("")
+    expect(object.registrationStatus).to eq("Not_Set")
+    expect(object.administrativeNote).to eq("")
+    expect(object.effective_date.to_s).to eq("2016-01-01 00:00:00 +0000")
+    expect(object.until_date.to_s).to eq("2016-01-01 00:00:00 +0000")
+    expect(object.unresolvedIssue).to eq("")
+    expect(object.administrativeStatus).to eq("")
+    expect(object.previousState).to eq("Not_Set")
+    expect(object.current).to eq(false)
   end
 
   it "validates a valid object" do
@@ -157,26 +184,40 @@ describe IsoRegistrationState do
     result = IsoRegistrationState.find("RS-TEST_1-1")
     result.registrationStatus = ""
     expect(result.registered?).to eq(false)
+    result.registrationStatus = "Not_Set"
+    expect(result.registered?).to eq(false)
   end
 
   it "returns the no state status" do
-    expect(IsoRegistrationState.no_state).to eq("")
+    expect(IsoRegistrationState.no_state).to eq("Not_Set")
   end
 
   it "allows the next state to be retrieved" do
-    expect(IsoRegistrationState.nextState(IsoRegistrationState::C_CANDIDATE)).to eq(IsoRegistrationState::C_RECORDED)
+  	table = Rails.configuration.iso_registration_state
+  	table.each do |key, item|
+  		expected = item[:next_state]
+	    expect(IsoRegistrationState.nextState(key)).to eq(expected)
+  	end
   end
   
   it "allows the state label to be retrieved" do
-    expect(IsoRegistrationState.stateLabel(IsoRegistrationState::C_RECORDED)).to eq("Recorded")
+  	table = Rails.configuration.iso_registration_state
+  	table.each do |key, item|
+  		expected = item[:label]
+	    expect(IsoRegistrationState.stateLabel(key)).to eq(expected)
+  	end
   end
   
   it "allows the state definition to be retrieved" do
-    expect(IsoRegistrationState.stateDefinition(IsoRegistrationState::C_RECORDED)).to eq("The Registration Authority has confirmed that: a) all mandatory metadata attributes have been completed.")
+  	table = Rails.configuration.iso_registration_state
+  	table.each do |key, item|
+  		expected = item[:definition]
+	    expect(IsoRegistrationState.stateDefinition(key)).to eq(expected)
+  	end
   end
   
   it "allows the released state to be retrieved" do
-    expect(IsoRegistrationState.releasedState).to eq(IsoRegistrationState::C_STANDARD)
+    expect(IsoRegistrationState.releasedState).to eq("Standard")
   end
   
   it "allows the item to be checked for a release state" do
@@ -186,25 +227,25 @@ describe IsoRegistrationState do
   
   it "allows the item state to be checked for release state" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
-    result.registrationStatus = IsoRegistrationState::C_RECORDED
+    result.registrationStatus = "Recorded"
     expect(result.released_state?).to eq(false)
   end
   
   it "allows the item state to be checked for has been in release state, superceeded" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
-    result.registrationStatus = IsoRegistrationState::C_SUPERSEDED 
+    result.registrationStatus = "Superseded"
     expect(result.has_been_released_state?).to eq(true)
   end
   
   it "allows the item state to be checked for has been in release state, retired" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
-    result.registrationStatus = IsoRegistrationState::C_RETIRED
+    result.registrationStatus = "Retired"
     expect(result.has_been_released_state?).to eq(true)
   end
   
   it "allows the item state to be checked for has been in release state, standard" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
-    result.registrationStatus = IsoRegistrationState::C_STANDARD
+    result.registrationStatus = "Standard"
     expect(result.has_been_released_state?).to eq(false)
   end
   
@@ -215,7 +256,7 @@ describe IsoRegistrationState do
   
   it "allows the edit state to be determined for a locked item" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
-    result.registrationStatus = IsoRegistrationState::C_RETIRED
+    result.registrationStatus = "Retired"
     expect(result.edit?).to eq(false)
   end
   
@@ -226,13 +267,13 @@ describe IsoRegistrationState do
   
   it "allows the edit state to be determined for a locked item" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
-    result.registrationStatus = IsoRegistrationState::C_INCOMPLETE
+    result.registrationStatus = "Incomplete"
     expect(result.delete?).to eq(true)
   end
   
   it "allows the state after edit to be determined" do
     result = IsoRegistrationState.find("RS-TEST_1-1")
-    expect(result.state_on_edit).to eq(IsoRegistrationState::C_INCOMPLETE)
+    expect(result.state_on_edit).to eq("Incomplete")
   end
   
   it "allows whether a new version is required after an edit to be determined" do
@@ -467,8 +508,8 @@ describe IsoRegistrationState do
   it "provides a count of registration status" do
     result = 
       {
-        IsoRegistrationState::C_STANDARD => "7",
-        IsoRegistrationState::C_INCOMPLETE => "1"
+        "Standard" => "7",
+        "Incomplete" => "1"
       }
     expect(IsoRegistrationState.count.to_json).to eq(result.to_json)
   end
@@ -477,8 +518,8 @@ describe IsoRegistrationState do
     object = IsoRegistrationState.find("RS-TEST_3-4")
     object.update( 
       {
-        registrationStatus: IsoRegistrationState::C_RETIRED, 
-        previousState: IsoRegistrationState::C_STANDARD, 
+        registrationStatus: "Retired", 
+        previousState: "Standard", 
         administrativeNote: "X1", 
         unresolvedIssue: "X2", 
         effectiveDate: "Wont Change" 
@@ -491,14 +532,14 @@ describe IsoRegistrationState do
     result = IsoRegistrationState.find("RS-TEST_3-4")
     object.update( 
       {
-        registrationStatus: IsoRegistrationState::C_RETIRED, 
-        previousState: IsoRegistrationState::C_STANDARD, 
+        registrationStatus: "Retired", 
+        previousState: "Standard", 
         administrativeNote: "X1", 
         unresolvedIssue: "X2", 
         effectiveDate: "Wont Change" 
       })
-    result.registrationStatus = IsoRegistrationState::C_RETIRED
-    result.previousState = IsoRegistrationState::C_STANDARD
+    result.registrationStatus = "Retired"
+    result.previousState = "Standard"
     result.administrativeNote = "X1"
     result.unresolvedIssue = "X2"
     expect(object.to_json).to eq(result.to_json)
@@ -509,8 +550,8 @@ describe IsoRegistrationState do
     object = IsoRegistrationState.find("RS-TEST_3-4")
     object.update( 
       {
-        registrationStatus: IsoRegistrationState::C_RETIRED, 
-        previousState: IsoRegistrationState::C_STANDARD, 
+        registrationStatus: "Retired", 
+        previousState: "Standard", 
         administrativeNote: "£±£±", 
         unresolvedIssue: "ok", 
         effectiveDate: "Wont Change" 
@@ -522,8 +563,8 @@ describe IsoRegistrationState do
     object = IsoRegistrationState.find("RS-TEST_3-4")
     object.update( 
       {
-        registrationStatus: IsoRegistrationState::C_RETIRED, 
-        previousState: IsoRegistrationState::C_STANDARD, 
+        registrationStatus: "Retired", 
+        previousState: "Standard", 
         administrativeNote: "ok", 
         unresolvedIssue: "£±£±", 
         effectiveDate: "Wont Change" 
@@ -536,7 +577,7 @@ describe IsoRegistrationState do
     object.update( 
       {
         registrationStatus: "X", 
-        previousState: IsoRegistrationState::C_STANDARD, 
+        previousState: "Standard", 
         administrativeNote: "ok", 
         unresolvedIssue: "£±£±", 
         effectiveDate: "Wont Change" 
@@ -548,7 +589,7 @@ describe IsoRegistrationState do
     object = IsoRegistrationState.find("RS-TEST_3-4")
     object.update( 
       {
-        registrationStatus: IsoRegistrationState::C_STANDARD, 
+        registrationStatus: "Standard", 
         previousState: "D", 
         administrativeNote: "ok", 
         unresolvedIssue: "£±£±", 
@@ -677,8 +718,8 @@ describe IsoRegistrationState do
     expect(response).to receive(:success?).and_return(false)
     expect{object.update( 
       {
-        registrationStatus: IsoRegistrationState::C_RETIRED, 
-        previousState: IsoRegistrationState::C_STANDARD, 
+        registrationStatus: "Retired", 
+        previousState: "Standard", 
         administrativeNote: "X1", 
         unresolvedIssue: "X2", 
         effectiveDate: "Wont Change" 
