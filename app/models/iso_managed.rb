@@ -7,7 +7,7 @@ class IsoManaged < IsoConcept
 
   # Constants
   C_CID_PREFIX = "ISOM"
-  C_CLASS_NAME = "IsoManaged"
+  C_CLASS_NAME = self.class.to_s
   C_SCHEMA_PREFIX = "isoC"
   C_INSTANCE_PREFIX = "mdrItems"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
@@ -351,7 +351,7 @@ class IsoManaged < IsoConcept
   # @rdfType [string] The RDF type
   # @ns [string] The namespace
   # @return [array] Array of objects found.
-  def self.all(rdfType, ns)
+  def self.all_by_type(rdfType, ns)
     results = Array.new
     # Create the query
     query = UriManagement.buildNs(ns, ["isoI", "isoT", "isoR"]) +
@@ -413,6 +413,52 @@ class IsoManaged < IsoConcept
           object.scopedIdentifier = nil
         end
         results << object
+      end
+    end
+    return results
+  end
+
+  # Find all managed items.
+  #
+  # @return [array] Array of objects found.
+  def self.all
+    results = Array.new
+    # Create the query
+    query = UriManagement.buildNs("", ["isoI", "isoT", "isoR"]) +
+      "SELECT ?a ?l ?i ?sv ?s ?ra WHERE \n" +
+      "{ \n" +
+      "  ?a rdfs:label ?l . \n" +
+      "  ?a isoI:hasIdentifier ?si . \n" +
+      "  ?a isoR:hasState ?rs . \n" +
+      "  ?si isoI:identifier ?i . \n" +
+      "  ?si isoI:semantic_version ?sv . \n" +
+      "  ?rs isoR:registrationStatus ?s . \n" +
+      "  ?rs isoR:byAuthority ?ra . \n" +
+      "}"
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('a', true, node)
+      if uri != ""
+      	label = ModelUtility.getValue('l', false, node)
+  	    identifier = ModelUtility.getValue('i', false, node)
+    	  semantic_version = ModelUtility.getValue('sv', false, node)
+      	status = ModelUtility.getValue('s', false, node)
+        ra_uri = UriV2.new({uri: ModelUtility.getValue('ra', true, node)})
+        ra = IsoRegistrationAuthority.find(ra_uri.id)
+        object_uri = UriV2.new({:uri => uri})
+        results << 
+        	{ id: object_uri.id, 
+        		namespace: object_uri.namespace, 
+        		label: label, 
+        		identifier: identifier, 
+        		semantic_version: semantic_version, 
+        		status: status, 
+        		owner: ra.shortName 
+        	}
       end
     end
     return results

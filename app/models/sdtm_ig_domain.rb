@@ -51,7 +51,7 @@ class SdtmIgDomain < Tabular
   #
   # @return [Array] array of objects found
   def self.all
-    super(C_RDF_TYPE, C_SCHEMA_NS)
+    return IsoManaged.find_by_type(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   # Find all released IG domains

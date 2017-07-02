@@ -271,16 +271,28 @@ describe IsoManaged do
     expect(IsoManaged.unique("Form", "http://www.assero.co.uk/BusinessForm")).to eq (result)
   end
 
+  it "finds all entries by type" do
+    results = []
+    results[0] = {:id => "F-ACME_TEST"}
+    results[1] = {:id => "F-BBB_VSB2"}
+    results[2] = {:id => "F-BBB_VSB1"}
+    results[3] = {:id => "F-BBB_VSW"}
+    items = IsoManaged.all_by_type("Form", "http://www.assero.co.uk/BusinessForm")
+    items.each_with_index do |item, index|
+      expect(results[index][:id]).to eq(items[index].id)
+    end
+  end
+
   it "finds all entries" do
     results = []
     results[0] = {:id => "F-ACME_TEST"}
     results[1] = {:id => "F-BBB_VSB2"}
     results[2] = {:id => "F-BBB_VSB1"}
     results[3] = {:id => "F-BBB_VSW"}
-    items = IsoManaged.all("Form", "http://www.assero.co.uk/BusinessForm")
-    items.each_with_index do |item, index|
-      expect(results[index][:id]).to eq(items[index].id)
-    end
+    items = IsoManaged.all
+  #write_yaml_file(items, sub_dir, "iso_managed_all.yaml")
+  	expected = read_yaml_file(sub_dir, "iso_managed_all.yaml")
+    expect(items).to match_array(expected)
   end
 
   it "finds history of an item entries" do
@@ -298,7 +310,7 @@ describe IsoManaged do
     results = []
     items = IsoManaged.list("Form", "http://www.assero.co.uk/BusinessForm")
     items.each { |x| results << x.to_json }
-    #write_yaml_file(results, sub_dir, "iso_managed_list.yaml")
+  #write_yaml_file(results, sub_dir, "iso_managed_list.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_list.yaml")
     i = items.find { |x| x.id == "F-BBB_VSW" } # We know this got edited in an above test, modify time
     e = expected.find { |x| x[:id] == "F-BBB_VSW" }

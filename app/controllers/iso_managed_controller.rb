@@ -2,8 +2,13 @@ class IsoManagedController < ApplicationController
   
   before_action :authenticate_user!
 
-  C_CLASS_NAME = "IsoManagedController"
+  C_CLASS_NAME = self.class.to_s
   
+  def index
+  	authorize IsoManaged
+  	@managed_items = IsoManaged.all
+  end
+
   def update
     authorize IsoManaged
     managed_item = IsoManaged.find(params[:id], this_params[:namespace])
@@ -151,6 +156,20 @@ class IsoManagedController < ApplicationController
         render json: @results
       end
     end
+  end
+
+  def destroy
+    authorize IsoManaged
+    item = IsoManaged.find(params[:id], this_params[:namespace], false)
+    token = Token.obtain(item, current_user)
+    if !token.nil?
+      item.destroy
+      AuditTrail.delete_item_event(current_user, item, "Item deleted.")
+      token.release
+    else
+      flash[:error] = "The item is locked for editing by another user."
+    end
+    redirect_to request.referer
   end
 
 private

@@ -38,6 +38,14 @@ describe IsoManagedController do
       clear_iso_registration_state_object
     end
 
+    it "index of items" do 
+      get :index
+    write_yaml_file(assigns(:managed_items), sub_dir, "iso_managed_index.yaml")
+    	expected = read_yaml_file(sub_dir, "iso_managed_index.yaml")
+      expect(assigns(:managed_items)).to match_array(expected)
+      expect(response).to render_template("index")
+    end
+
     it "updates a managed item" do 
       post :update, 
         { 
@@ -182,6 +190,17 @@ describe IsoManagedController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq(results.to_json.to_s)
+    end
+
+    it "destroy" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/managed_item'
+      audit_count = AuditTrail.count
+      mi_count = IsoManaged.all.count
+      token_count = Token.all.count
+      delete :destroy, { :id => "F-ACME_TEST", iso_managed: { :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      expect(IsoManaged.all.count).to eq(mi_count - 1)
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(Token.count).to eq(token_count)
     end
 
   end
