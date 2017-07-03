@@ -43,10 +43,7 @@ describe "Biomedical Concepts", :type => :feature do
     end
 
     before :each do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+      ua_curator_login
     end
 
     it "allows for a BC to be exported as JSON", js: true do
@@ -79,6 +76,62 @@ describe "Biomedical Concepts", :type => :feature do
       write_text_file_2(file, sub_dir, "bc_export_results.ttl")
       expected = read_text_file_2(sub_dir, "bc_export.ttl")
       check_ttl("bc_export_results.ttl", "bc_export.ttl")
+    end
+
+    it "allows for a new BC to be created, error", js: true do
+      visit '/biomedical_concepts'
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      click_link 'New'
+      expect(page).to have_content 'New: Biomedical Concept'
+      fill_in "biomedical_concept[identifier]", with: 'NEW NEW NEW BC'
+      fill_in "biomedical_concept[label]", with: 'A very new new new BC'
+      click_button 'Create'
+      expect(page).to have_content("A Biomedical Concept Template must be selected.")   
+    end
+
+    it "allows for a new BC to be created, I", js: true do
+      visit '/biomedical_concepts'
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      click_link 'New'
+      expect(page).to have_content 'New: Biomedical Concept'
+      fill_in "biomedical_concept[identifier]", with: 'NEW NEW NEW BC'
+      fill_in "biomedical_concept[label]", with: 'A very new new new BC'
+      ui_table_row_click("ims_list_table", "Obs CD")
+      ui_click_by_id("ims_add_button")
+      click_button 'Create'
+      expect(page).to have_content("Biomedical Concept was successfully created.")   
+    end
+
+    it "allows for a new BC to be created, II", js: true do
+      visit '/biomedical_concepts'
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      click_link 'New'
+      expect(page).to have_content 'New: Biomedical Concept'
+      fill_in "biomedical_concept[identifier]", with: 'NEW BC II'
+      fill_in "biomedical_concept[label]", with: 'A very new new new BC II'
+      ui_click_by_id("ims_list_all_button")
+      expect(page).to have_content 'You are now using unreleased forms.'
+      ui_table_row_click("ims_all_table", "Obs CD")
+      ui_click_by_id("ims_add_button")
+      ui_click_by_id("ims_list_all_button")
+      expect(page).to have_content 'You are now using released forms.'
+      click_button 'Create'
+      expect(page).to have_content("Biomedical Concept was successfully created.")   
+    end
+
+    it "allows for a new BC to be created, field validation", js: true do
+      visit '/biomedical_concepts'
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      click_link 'New'
+      expect(page).to have_content 'New: Biomedical Concept'
+      click_button 'Create'
+      expect(page).to have_content("This field is required.")
+      fill_in "biomedical_concept[identifier]", with: 'NEW BC III'  
+      click_button 'Create'
+      expect(page).to have_content("This field is required.")
+      fill_in "biomedical_concept[label]", with: 'A very new new new BC III'
+      click_button 'Create'
+      expect(page).to have_content("A Biomedical Concept Template must be selected.")
     end
 
   end

@@ -103,18 +103,6 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content 'Index: Biomedical Concepts'
     end
 
-    it "allows for a new BC to be created" do
-      visit '/biomedical_concepts'
-      expect(page).to have_content 'Index: Biomedical Concepts'
-      click_link 'New'
-      expect(page).to have_content 'New Biomedical Concept:'
-      fill_in "biomedical_concept[identifier]", with: 'NEW NEW NEW BC'
-      fill_in "biomedical_concept[label]", with: 'A very new new new BC'
-      select 'Obs CD', from: "biomedical_concept_uri"
-      click_button 'Create'
-      expect(page).to have_content("Biomedical Concept was successfully created.")   
-    end
-
   end
 
 end

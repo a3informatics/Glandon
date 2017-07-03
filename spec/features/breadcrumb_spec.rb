@@ -167,7 +167,7 @@ describe "Breadcrumb", :type => :feature do
     
     it "has Biomedical Concepts breadcrumbs" do
       next_link('main_nav_bc', 'Index: Biomedical Concepts', "Biomedical Concepts", "", "")
-      next_link('New', 'New Biomedical Concept:', "Biomedical Concept", "New", "")
+      next_link('New', 'New: Biomedical Concept', "Biomedical Concept", "New", "")
       next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")      
       next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "BC C49677", "")
       next_link_table("1.0.0", "Show", "Show: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Show: V1.0.0")

@@ -40,7 +40,7 @@ describe IsoManagedController do
 
     it "index of items" do 
       get :index
-    write_yaml_file(assigns(:managed_items), sub_dir, "iso_managed_index.yaml")
+    #write_yaml_file(assigns(:managed_items), sub_dir, "iso_managed_index.yaml")
     	expected = read_yaml_file(sub_dir, "iso_managed_index.yaml")
       expect(assigns(:managed_items)).to match_array(expected)
       expect(response).to render_template("index")
