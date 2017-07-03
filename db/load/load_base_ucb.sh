@@ -33,6 +33,8 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V44.
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V45.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V46.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V47.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V48.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V49.ttl" $FileEndPoint
 # Load SDTM
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_2008-11-12.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_2012-07-16.ttl" $FileEndPoint
