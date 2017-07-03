@@ -82,17 +82,23 @@ class BiomedicalConcept < BiomedicalConceptCore
   # @raise [CreateError] if an error is raised when the object is being created
   # @return [Object] the BC created that includes errors if the create fails
   def self.create_simple(params)
-    object = BiomedicalConceptTemplate.find(params[:bct_id], params[:bct_namespace])
-    ref = OperationalReferenceV2.new
-    ref.subject_ref = object.uri
-    operational_hash = object.to_clone
-    managed_item = operational_hash[:managed_item]
-    managed_item[:scoped_identifier][:identifier] = params[:identifier]
-    managed_item[:label] = params[:label]
-    managed_item[:template_ref] = ref.to_json
-    managed_item[:type] = "#{C_RDF_TYPE_URI}"
-    new_object = BiomedicalConcept.create(operational_hash)
-    return new_object
+  	if !params[:bct_id].blank? && !params[:bct_namespace].blank?
+	    object = BiomedicalConceptTemplate.find(params[:bct_id], params[:bct_namespace])
+	    ref = OperationalReferenceV2.new
+	    ref.subject_ref = object.uri
+	    operational_hash = object.to_clone
+	    managed_item = operational_hash[:managed_item]
+	    managed_item[:scoped_identifier][:identifier] = params[:identifier]
+	    managed_item[:label] = params[:label]
+	    managed_item[:template_ref] = ref.to_json
+	    managed_item[:type] = "#{C_RDF_TYPE_URI}"
+	    new_object = BiomedicalConcept.create(operational_hash)
+	    return new_object
+  	else
+  		new_object = BiomedicalConcept.new
+  		new_object.errors.add(:base, "No Biomedical Concept Template has been defined.")
+    	return new_object
+    end
   end
 
   # Create a new object based on another

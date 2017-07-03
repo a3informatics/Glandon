@@ -91,6 +91,14 @@ describe BiomedicalConceptsController do
       expect(response).to redirect_to("/biomedical_concepts")
     end
 
+    it "creates the new BC, error" do
+      item = BiomedicalConceptTemplate.find("BCT-Obs_PQR", "http://www.assero.co.uk/MDRBCTs/V1")
+      audit_count = AuditTrail.count
+      bc_count = BiomedicalConcept.all.count
+      post :create, { :biomedical_concept => { :uri => "", :identifier => "NEW BC", :label => "New BC" }}
+      expect(response).to redirect_to("/biomedical_concepts/new")
+    end
+
     it "edit, no next version" do
       get :edit, { :id => "BC-ACME_NEWBC", :biomedical_concept => {:namespace => "http://www.assero.co.uk/MDRBCs/ACME/V1" }}
       result = assigns(:bc)

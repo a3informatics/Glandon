@@ -21,6 +21,10 @@ class ApplicationPolicy
     reader?
   end
 
+  def all?
+    reader?
+  end
+
   def list?
     reader?
   end

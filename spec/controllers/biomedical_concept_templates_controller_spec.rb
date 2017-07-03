@@ -47,6 +47,26 @@ describe BiomedicalConceptTemplatesController do
       expect(response.body).to eq(expected)
     end
 
+    it "lists all released templates, JSON" do  
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :list
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    #write_text_file_2(response.body, sub_dir, "bct_controller_list.txt")
+      expected = read_text_file_2(sub_dir, "bct_controller_list.txt")
+      expect(response.body).to eq(expected)
+    end
+
+    it "lists all templates, JSON" do  
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :all
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    #write_text_file_2(response.body, sub_dir, "bct_controller_all.txt")
+      expected = read_text_file_2(sub_dir, "bct_controller_all.txt")
+      expect(response.body).to eq(expected)
+    end
+
     it "shows the history" do
       ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
       get :history, { :biomedical_concept_template => { :identifier => "Obs PQR", :scope_id => ra.namespace.id }}

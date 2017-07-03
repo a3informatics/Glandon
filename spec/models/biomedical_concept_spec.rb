@@ -174,6 +174,20 @@ it "allows a BC to be found" do
     expect(item.to_json).to eq(expected)
   end
 
+  it "creates an object based on a template, template missing, I" do
+    bct = BiomedicalConceptTemplate.find("BCT-Obs_PQR", "http://www.assero.co.uk/MDRBCTs/V1")
+    item = BiomedicalConcept.create_simple({:bct_id => "", :bct_namespace => bct.namespace, :identifier => "NEW BC", :label => "New BC"})
+    expect(item.errors.full_messages.to_sentence).to eq("No Biomedical Concept Template has been defined.")
+    expect(item.errors.count).to eq(1)
+  end
+
+  it "creates an object based on a template, template missing, II" do
+    bct = BiomedicalConceptTemplate.find("BCT-Obs_PQR", "http://www.assero.co.uk/MDRBCTs/V1")
+    item = BiomedicalConcept.create_simple({:bct_id => bct.id, :bct_namespace => nil, :identifier => "NEW BC", :label => "New BC"})
+    expect(item.errors.full_messages.to_sentence).to eq("No Biomedical Concept Template has been defined.")
+    expect(item.errors.count).to eq(1)
+  end
+
   it "creates an object based on another object" do
     bc = BiomedicalConcept.find("BC-ACME_BC_C98793", "http://www.assero.co.uk/MDRBCs/V1")
     item = BiomedicalConcept.create_clone({:bc_id => bc.id, :bc_namespace => bc.namespace, :identifier => "NEW BC TWO", :label => "New BC Two"})

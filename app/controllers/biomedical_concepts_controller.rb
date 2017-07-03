@@ -86,7 +86,7 @@ class BiomedicalConceptsController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:error] = @bc.errors.full_messages.to_sentence
-          redirect_to biomedical_concepts_path
+          redirect_to new_biomedical_concept_path
         end
         format.json do
           render :json => { errors: @bc.errors.full_messages }, :status => 422

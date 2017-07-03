@@ -21,10 +21,11 @@ describe 'biomedical_concepts/new.html.erb', :type => :view do
     assign(:bcts, bcts)
 
     render
-    expect(rendered).to have_content("New Biomedical Concept")
+    expect(rendered).to have_content("New: Biomedical Concept")
+    expect(rendered).to have_content("Details")
     expect(rendered).to have_content("Identifier:")
     expect(rendered).to have_content("Label:")
-    expect(rendered).to have_content("Template Identifier:")
+    expect(rendered).to have_content("Select Template")
 
   end
 

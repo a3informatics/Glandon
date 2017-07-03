@@ -160,6 +160,8 @@ Rails.application.routes.draw do
   resources :biomedical_concept_templates do
     collection do
       get :history
+      get :list
+      get :all
     end
   end
   namespace :biomedical_concepts do

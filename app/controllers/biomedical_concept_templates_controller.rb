@@ -8,9 +8,31 @@ class BiomedicalConceptTemplatesController < ApplicationController
     respond_to do |format|
       format.html 
       format.json do
-        results = {}
-        results[:data] = @bcts
-        render json: results
+        render json: { data: @bcts }
+      end
+    end
+  end
+  
+  def list
+    authorize BiomedicalConceptTemplate
+    @bcts = BiomedicalConceptTemplate.list
+    respond_to do |format|
+      format.json do
+      	results = []
+      	@bcts.each { |x| results << x.to_json}
+        render json: { data: results }
+      end
+    end
+  end
+  
+  def all
+    authorize BiomedicalConceptTemplate
+    @bcts = BiomedicalConceptTemplate.all
+    respond_to do |format|
+      format.json do
+      	results = []
+      	@bcts.each { |x| results << x.to_json}
+        render json: { data: results }
       end
     end
   end
@@ -19,7 +41,7 @@ class BiomedicalConceptTemplatesController < ApplicationController
     authorize BiomedicalConceptTemplate
     @identifier = the_params[:identifier]
     @bct = BiomedicalConceptTemplate.history(the_params)
-    redirect_to biomedical_concept_templates_path if @bct.count == 0
+		redirect_to biomedical_concept_templates_path if @bct.count == 0
   end
 
   def show 
