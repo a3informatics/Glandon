@@ -63,10 +63,11 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       click_navbar_bc
       expect_page 'Index: Biomedical Concepts'
       click_link 'New'
-      expect_page 'New Biomedical Concept:'
+      expect_page 'New: Biomedical Concept'
       fill_in 'biomedical_concept_identifier', with: 'BC C100392'
       fill_in 'biomedical_concept_label', with: 'EQ-5D-3L Mobility'
-      select "Obs CD", from: "biomedical_concept_uri"
+      ui_table_row_click("ims_list_table", "Obs CD")
+      ui_click_by_id("ims_add_button")
       click_button 'Create'
       expect_page "Biomedical Concept was successfully created."
       click_main_table_link 'BC C100392', 'History'
@@ -89,8 +90,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
           { cl: "EQ5D3L.MOBILITY", cli: "EQ5D3L.MOBILITY.CONFINED" }
         ])
 
-      bc_create("BC C100393", "EQ-5D-3L Self-Care", "Obs CD")
-
+      bc_create("BC C100393", "EQ-5D-3L Self-Care", "Obs CD (V1.0.0)")
       bc_scroll_to_editor_table
       bc_set_cat([{ cl: "C100129", cli: "C66957" }])
       bc_scroll_to_editor_table
@@ -106,7 +106,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
           { cl: "EQ5D3L.SELFCARE", cli: "EQ5D3L.SELFCARE.UNABLE" }
         ])
 
-      bc_create("BC C100394", "EQ-5D-3L Usual Activities", "Obs CD")
+      bc_create("BC C100394", "EQ-5D-3L Usual Activities", "Obs CD (V1.0.0)")
       bc_scroll_to_editor_table
       bc_set_cat([{ cl: "C100129", cli: "C66957" }])
       bc_scroll_to_editor_table
@@ -122,7 +122,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
           { cl: "EQ5D3L.ACTIVITY", cli: "EQ5D3L.ACTIVITY.UNABLE" }
         ])
 
-      bc_create("BC C100395", "EQ-5D-3L Pain/Discomfort", "Obs CD")
+      bc_create("BC C100395", "EQ-5D-3L Pain/Discomfort", "Obs CD (V1.0.0)")
       bc_scroll_to_editor_table
       bc_set_cat([{ cl: "C100129", cli: "C66957" }])
       bc_scroll_to_editor_table
@@ -138,7 +138,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
           { cl: "EQ5D3L.PAIN", cli: "EQ5D3L.PAIN.EXTREME" }
         ])
 
-      bc_create("BC C100396", "EQ-5D-3L Anxiety/Depression", "Obs CD")
+      bc_create("BC C100396", "EQ-5D-3L Anxiety/Depression", "Obs CD (V1.0.0)")
       bc_scroll_to_editor_table
       bc_set_cat([{ cl: "C100129", cli: "C66957" }])
       bc_scroll_to_editor_table
@@ -154,7 +154,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
           { cl: "EQ5D3L.ANXIETY", cli: "EQ5D3L.ANXIETY.EXTREME" }
         ])
 
-      bc_create("BC C100397", "EQ-5D-3L Visual Analogue Scale", "Obs PQR")
+      bc_create("BC C100397", "EQ-5D-3L Visual Analogue Scale", "Obs PQR (V1.0.0)")
       bc_scroll_to_editor_table
       bc_set_cat([{ cl: "C100129", cli: "C66957" }])
       bc_scroll_to_editor_table
