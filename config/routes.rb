@@ -20,6 +20,12 @@ Rails.application.routes.draw do
       get :bc_property
     end
   end
+  namespace :api do
+  	namespace :v2 do
+  		resources :thesaurus_concepts, only: [:index] do
+    	end
+  	end
+  end
   resources :markdown_engines, only: [:create, :index]
   resources :iso_namespaces
   resources :iso_registration_authorities

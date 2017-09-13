@@ -226,6 +226,30 @@ describe IsoConcept do
     expect(result).to eq(false)  
   end
 
+	it "find by properties, ThesaurusConcept identifier" do
+    results = IsoManaged.find_by_property({identifier: "C62122"}, "ThesaurusConcept", 
+    	"http://www.assero.co.uk/ISO25964", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+		expect(results[0].to_s).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62122")  
+  end
+
+	it "find by properties, ThesaurusConcept, notation" do
+    results = IsoManaged.find_by_property({notation: "BPI125"}, "ThesaurusConcept", 
+    	"http://www.assero.co.uk/ISO25964", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+		expect(results[0].to_s).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C100162_C100339")  
+  end
+
+	it "find by properties, ThesaurusConcept, notation and identifier" do
+    results = IsoManaged.find_by_property({notation: "BPI125", identifier: "C100339"}, "ThesaurusConcept", 
+    	"http://www.assero.co.uk/ISO25964", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+		expect(results[0].to_s).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C100162_C100339")  
+  end
+
+	it "find by properties, ThesaurusConcept, notation and identifier" do
+    results = IsoManaged.find_by_property({notation: "BPI125", identifier: "C100339x"}, "ThesaurusConcept", 
+    	"http://www.assero.co.uk/ISO25964", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+		expect(results.length).to eq(0)  
+  end
+
   it "allows the child links to be determined" do
     expected = 
       [ 

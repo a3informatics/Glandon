@@ -80,6 +80,18 @@ describe ThesaurusConcept do
     expect(tc.exists?).to eq(false)
   end
 
+  it "finds by properties, single" do
+  	tc = ThesaurusConcept.find("THC-A00021", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  	results = ThesaurusConcept.find_by_property({identifier: "A00021"}, "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  	expect(results[0].to_json).to eq(tc.to_json)
+	end
+
+  it "finds by properties, multiple" do
+  	tc = ThesaurusConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  	results = ThesaurusConcept.find_by_property({notation: "ETHNIC SUBGROUP", preferredTerm: "Ethnic Subgroup"}, "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  	expect(results[0].to_json).to eq(tc.to_json)
+	end
+
   it "allows a new child TC to be added" do
     json = 
       {

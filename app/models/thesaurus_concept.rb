@@ -59,6 +59,18 @@ class ThesaurusConcept < IsoConcept
     return IsoConcept.exists?("identifier", self.identifier, C_RDF_TYPE, C_SCHEMA_NS, self.namespace)
   end
 
+  # Find by Property values
+  #
+  # @param params [Hash] hash containing search parameters
+  # @param namespace [String] the namespace to be search within
+  # @return [Array] array of ThesaurusConcept objects
+  def self.find_by_property(params, namespace)
+    results = []
+    uris = IsoConcept.find_by_property(params, C_RDF_TYPE, C_SCHEMA_NS, namespace)
+    uris.each { |x| results << ThesaurusConcept.find(x.id, x.namespace)}
+    return results
+  end
+
   # Children?
   #
   # @return [boolean] True if there are children, false otherwise
@@ -91,7 +103,7 @@ class ThesaurusConcept < IsoConcept
     return object
   end
 
-  # Add a child concept
+  # Update
   #
   # @params params [Hash] The params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
   # @return [Boolean] true if the update is successful, false otherwise. 

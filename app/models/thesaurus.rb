@@ -144,6 +144,10 @@ class Thesaurus <  IsoManaged
     return super(C_RDF_TYPE, C_SCHEMA_NS, params)
   end
 
+  def self.current_set
+  	return super(C_RDF_TYPE, C_SCHEMA_NS)    
+  end
+
   # Create Simple
   #
   # @param params

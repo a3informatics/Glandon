@@ -161,6 +161,31 @@ class IsoConcept
     return result
   end
 
+  # Find by Property value
+  #
+  # @param params [Hash] name value pairs of search parameters
+  # @param rdf_type [string] The RDF type
+  # @param schema_namespace [string] The schema namespace
+  # @param instance_namespace [string] The instance namespace
+  # @return [Array] array of Uri objects
+  def self.find_by_property(params, rdf_type, schema_namespace, instance_namespace)
+    results = []
+    prefix = UriManagement.getPrefix(schema_namespace)
+    prefix_set = []
+    prefix_set << prefix
+    query = UriManagement.buildNs(instance_namespace, prefix_set) +
+      "SELECT ?a ?b WHERE \n{ \n  ?a rdf:type #{prefix}:#{rdf_type} . \n"
+    params.each { |name, value| query += "  ?a #{prefix}:#{name} \"#{value}\" . \n" }
+    query += "  FILTER(STRSTARTS(STR(?a), \"#{instance_namespace}\")) \n}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      results << UriV2.new(uri: ModelUtility.getValue('a', true, node))
+    end
+    return results
+  end
+
   # Find a given item given the id and namespace
   #
   # @param id [string] The id

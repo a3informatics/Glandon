@@ -225,4 +225,11 @@ describe Thesaurus do
     expect(th.children.count).to eq(1)      
   end
 
+  it "allows the current set to be found, terminology" do
+    result = Thesaurus.current_set
+  #write_yaml_file(result.to_json, sub_dir, "thesaurus_example_8.txt")
+    expected = read_yaml_file(sub_dir, "thesaurus_example_8.txt")
+    expect(result.to_json).to eq(expected)
+  end
+
 end
