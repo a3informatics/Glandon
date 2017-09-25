@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <%= favicon_link_tag %>
 
-  	<title>Glandon</title>
+  	<title><%= "#{APP_CONFIG['application_name']}" %></title>
     <% if !Rails.application.config.assets.precompile.include? "#{params[:controller]}.js" %>
       <%= stylesheet_link_tag    'application', media: 'all' %>
       <%= javascript_include_tag 'application' %>
@@ -85,9 +85,9 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img alt="Brand" src="<%= asset_path('glandon1.png') %>" height="25">
+              <img alt='Brand' src='<%= asset_path("#{APP_CONFIG['application_image']}") %>' height='25'>
             </a>
-            <a class="navbar-brand" href="/"><%= ENV['organization_navbar'] %><small>Glandon (v<%= Version::VERSION %>)</small></a>
+            <a class="navbar-brand" href="/"><%= ENV['organization_navbar'] %><small><%= "#{APP_CONFIG['application_name']}"%> (v<%= Version::VERSION %>)</small></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
