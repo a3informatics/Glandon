@@ -350,6 +350,7 @@ private
     end
     query += 
       "      ?a iso25964:identifier ?b . \n" +
+      "      ?a iso25964:identifier ?k . \n" +
       "      ?a iso25964:notation ?c . \n" +
       "      ?a iso25964:preferredTerm ?d . \n" +
       "      ?a iso25964:synonym ?e . \n" +

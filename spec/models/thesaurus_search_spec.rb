@@ -31,6 +31,14 @@ describe Thesaurus do
     return params
   end
 
+  def map_results(original_results)
+  	results = {}
+  	results[:count] = original_results[:count]
+    results[:items] = []
+    original_results[:items].each {|x| results[:items] << x.to_json}
+    return results
+  end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -51,22 +59,21 @@ describe Thesaurus do
     clear_iso_registration_state_object
   end
 
-
   it "allows a terminology to be searched, no search parameters" do
     params = standard_params
-    results = Thesaurus.search(params)
-  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_1.yaml")
+  	results = map_results(Thesaurus.search(params))
+  #write_yaml_file(results, sub_dir, "thesaurus_search_1.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_1.yaml")
-    expect(results.to_json).to eq(expected)
+    expect(results).to eq(expected)
   end
 
   it "allows a terminology to be searched, code list identifier" do
     params = standard_params
     params[:columns]["0"][:search][:value] = "C66770"
-    results = Thesaurus.search(params)
-  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_2.yaml")
+  	results = map_results(Thesaurus.search(params))
+  #write_yaml_file(results, sub_dir, "thesaurus_search_2.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_2.yaml")
-    expect(results.to_json).to eq(expected)
+    expect(results).to eq(expected)
   end
 
   it "allows a terminology to be searched, item identifier" do
@@ -99,10 +106,10 @@ describe Thesaurus do
   it "allows a terminology to be searched, synonym" do
     params = standard_params
     params[:columns]["4"][:search][:value] = "Category"
-    results = Thesaurus.search(params)
-  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_6.yaml")
+    results = map_results(Thesaurus.search(params))
+  write_yaml_file(results, sub_dir, "thesaurus_search_6.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_6.yaml")
-    expect(results.to_json).to eq(expected)
+    expect(results).to eq(expected)
   end
 
   it "allows a terminology to be searched, definition" do
@@ -158,10 +165,10 @@ describe Thesaurus do
     params = standard_params
     params[:id] = ""
     params[:namespace] = ""
-    results = Thesaurus.search(params)
-  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_12.yaml")
+    results = map_results(Thesaurus.search(params))
+  write_yaml_file(results, sub_dir, "thesaurus_search_12.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_12.yaml")
-    expect(results.to_json).to eq(expected)
+    expect(results).to eq(expected)
   end
 
   it "allows the current terminologies to be searched, several terminologies returning results" do
@@ -169,10 +176,10 @@ describe Thesaurus do
     params[:id] = ""
     params[:namespace] = ""
     params[:search][:value] = "RACE"
-    results = Thesaurus.search(params)
-  #write_yaml_file(results.to_json, sub_dir, "thesaurus_search_14.yaml")
+    results = map_results(Thesaurus.search(params))
+  write_yaml_file(results, sub_dir, "thesaurus_search_14.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_search_14.yaml")
-    expect(results.to_json).to eq(expected)
+    expect(results).to eq(expected)
   end
 
   it "allows a terminology to be searched, overall, case sensitivity" do

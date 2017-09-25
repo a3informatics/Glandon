@@ -103,6 +103,14 @@ $(document).ready( function() {
     tsCurrentRef = this;
     tsCurrentRow = row;
     var data = tsSearchTable.row(row).data();
+    // Clear search fields in UI and within datatables.
+    $("#searchTable_filter input").val("");
+    tsSearchTable.columns().every( function () {
+    	$( 'input', this.footer() ).val("");
+    });
+    tsSearchTable.search('');
+ 		tsSearchTable.columns().search('');
+ 		// Set our parent identifier search and trigger.
     $('#searchTable_csearch_cl').val(data.parentIdentifier);
     var e = jQuery.Event("keyup");
     e.which = 13; 
