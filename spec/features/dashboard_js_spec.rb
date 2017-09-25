@@ -118,8 +118,7 @@ describe "Dashboard JS", :type => :feature do
       fill_in 'Email', with: 'reader@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
-      org = ENV['organization_navbar']
-      expect(page).to have_content("#{org} Glandon (v")
+      expect(page).to have_content "#{APP_CONFIG['application_name']} (v#{Version::VERSION})"
     end
 
   end
