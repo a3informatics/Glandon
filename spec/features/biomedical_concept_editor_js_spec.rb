@@ -373,9 +373,9 @@ describe "Biomedical Concept Editor", :type => :feature do
       select_terminology(5)
       click_button 'tfe_add_item'
       expect(page).to have_content("You need to select an item.")
-      ui_table_row_double_click('searchTable', 'EQ-5D-3L TEST')
+      ui_table_row_double_click('searchTable', 'CDISC Questionnaire Category Terminology')
       wait_for_ajax
-      ui_table_row_click('searchTable', 'C100394')
+      ui_table_row_click('searchTable', 'C100760')
       ui_click_by_id 'tfe_add_item'
       wait_for_ajax
       
