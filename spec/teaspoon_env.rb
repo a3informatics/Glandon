@@ -99,7 +99,9 @@ Teaspoon.configure do |config|
   # BrowserStack Webdriver: https://github.com/modeset/teaspoon/wiki/Using-BrowserStack-WebDriver
   # Capybara Webkit: https://github.com/modeset/teaspoon/wiki/Using-Capybara-Webkit
   #config.driver = :phantomjs
-
+  config.driver = :selenium
+  config.driver_options = {client_driver: :chrome}
+	
   # Specify additional options for the driver.
   #
   # PhantomJS: https://github.com/modeset/teaspoon/wiki/Using-PhantomJS
@@ -134,7 +136,8 @@ Teaspoon.configure do |config|
   #
   # Available: :dot, :clean, :documentation, :json, :junit, :pride, :rspec_html, :snowday, :swayze_or_oprah, :tap, :tap_y, :teamcity
   #config.formatters = [:dot]
-
+  config.formatters = [:documentation]
+  
   # Specify if you want color output from the formatters.
   #config.color = true
 

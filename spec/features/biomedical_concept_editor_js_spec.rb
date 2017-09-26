@@ -79,6 +79,10 @@ describe "Biomedical Concept Editor", :type => :feature do
     page.execute_script("document.getElementById('all_bc_panel').scrollIntoView(false);")
   end
 
+  def scroll_to_terminology_table
+    page.execute_script("document.getElementById('searchTable').scrollIntoView(false);")
+  end
+
   def select_panel_header(panel_id)
     find(:xpath, "//*[@id=\"bc_panel_#{panel_id}\"]/div[1]").click
   end
@@ -371,6 +375,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       scroll_to_editor_table
       fill_row(5, "Coded Question 1\t", "P1\n", true, true, "")
       select_terminology(5)
+      scroll_to_terminology_table
       click_button 'tfe_add_item'
       expect(page).to have_content("You need to select an item.")
       ui_table_row_double_click('searchTable', 'CDISC Questionnaire Category Terminology')
