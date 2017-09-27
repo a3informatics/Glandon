@@ -28,6 +28,20 @@ class IsoConceptController < ApplicationController
 
   def impact
     authorize IsoConcept, :show?
+    @item = IsoConcept.find(params[:id], params[:namespace], false)
+    @start_path = impact_start_iso_concept_index_path
+  end
+
+  def impact_start
+    authorize IsoConcept, :show?
+    results = []
+    @item = IsoConcept.find(params[:id], params[:namespace], false)
+    results << @item.uri.to_s
+    render json: results
+  end
+
+  def impact_next
+    authorize IsoConcept, :show?
     managed_items = []
     map = {}
     @item = IsoConcept.find(params[:id], params[:namespace], false)
@@ -38,7 +52,7 @@ class IsoConceptController < ApplicationController
       managed_items << { uri: uri_s, rdf_type: managed_item[:rdf_type]} if !map.has_key?(uri_s)
       map[uri_s] = true
     end
-    @results = {item: @item.to_json, children: managed_items}
+    render json: { item: @item.to_json, children: managed_items }, status: 200
   end
 
 private

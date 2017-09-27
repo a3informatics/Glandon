@@ -15,7 +15,8 @@ Rails.application.config.assets.version = '1.0'
   iso_concept_system_viewer 
   iso_concept_graph iso_concept_impact
   iso_managed_comment_edit iso_managed_list iso_managed_tag_edit iso_managed_tag_list 
-  iso_managed_graph iso_managed_list_panel iso_managed_select_panel impact_graph_panel
+  iso_managed_graph iso_managed_list_panel iso_managed_select_panel 
+  impact_analysis_graph_panel impact_analysis
   sdtm_user_domain_editor
   domains domains/variables 
   dashboard_viewer dashboard_index 
@@ -23,7 +24,8 @@ Rails.application.config.assets.version = '1.0'
   markdown_editor
   background_index 
 	biomedical_concepts_editor biomedical_concept_template_new
-	thesauri_editor thesauri_viewer thesauri_search_new thesauri_field_editor
+	thesauri_editor thesauri_viewer thesauri_search_new thesauri_field_editor thesauri_impact
+	thesaurus_concept_list_panel
   form_placeholder_new form_editor form_viewer form_show form_utility
   d3_tree d3graph d3_graph d3_editor d3_editor_new
   standard_datatable ).each do |controller|

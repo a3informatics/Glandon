@@ -82,6 +82,7 @@ class ThesaurusConceptsController < ApplicationController
   def show
     authorize ThesaurusConcept
     @thesaurusConcept = ThesaurusConcept.find(params[:id], params[:namespace])
+    @thesaurusConcept.set_parent
     respond_to do |format|
       format.html
       format.json do

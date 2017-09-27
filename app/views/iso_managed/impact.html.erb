@@ -1,16 +1,17 @@
 <%= stylesheet_link_tag    'd3_graph', 'spinner' %>
-<%= javascript_include_tag 'd3_graph', 'iso_concept_impact', 'colour', 'iso_managed_list_panel', 'impact_graph_panel', 'spinner' %>
-<% fourth_level_managed_item_breadcrumb(@item, @index_label, @index_path, @history_path, "", @referer, "Impact") %>
+<%= javascript_include_tag 'd3_graph', 'colour', 'spinner' %>
+<%= javascript_include_tag 'iso_managed_list_panel', 'impact_analysis_graph_panel', 'impact_analysis', 'iso_concept_impact', 'thesaurus_concept_list_panel' %>
 <h3>Impact Analysis: <%= @item.label %></h3>
-<script id="jsonData" type="text/json">
-    <%= raw @results.to_json %>
-</script>
-<div id="max_hops">
-  <%= javascript_tag "var maxImpactHops = #{APP_CONFIG['max_impact_hops'].to_i};" %>
+<div>
+  <%= javascript_tag "var url = \"#{@start_path}\";" %>
+  <%= javascript_tag "var id = \"#{@item.id}\";" %>
+  <%= javascript_tag "var namespace = \"#{@item.namespace}\";" %>
+  <%= javascript_tag "var maxLevel = #{APP_CONFIG['max_impact_hops']};" %>
 </div>
 <div class="row">
 	<div class="col-md-7">
   	<%= render partial: "shared/iso_managed_list_panel", :locals => { :title => "Items Impacted" } %>
+  	<%= render partial: "shared/thesaurus_concept_list_panel", :locals => { :title => "Changed Terminology" } %>
   	<div class="btn-group" role="group" aria-label="First group">
       <button id="processing" type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-refresh"></span>

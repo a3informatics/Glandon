@@ -40,6 +40,8 @@ Rails.application.routes.draw do
       get :graph
       get :graph_links
       get :impact
+      get :impact_start
+      get :impact_next
     end
   end
   resources :iso_managed do
@@ -53,6 +55,8 @@ Rails.application.routes.draw do
       get :graph
       get :graph_links
       get :impact
+      get :impact_start
+      get :impact_next
     end
     member do
       get :branches
@@ -112,6 +116,9 @@ Rails.application.routes.draw do
       get :children
       post :add_child
       get :export_ttl
+      get :impact
+      get :impact_start
+      get :impact_next
     end
   end
   resources :thesaurus_concepts, :only => [:update, :show, :destroy, :edit] do
@@ -139,10 +146,10 @@ Rails.application.routes.draw do
       get :submission
       get :submission_calc
       get :submission_report
-      get :impact
-      get :impact_calc
-      get :impact_report
-      get :impact_graph
+      #get :impact
+      #get :impact_calc
+      #get :impact_report
+      #get :impact_graph
       get :history
       get :search
       get :search_results

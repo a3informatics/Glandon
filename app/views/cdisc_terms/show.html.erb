@@ -12,6 +12,7 @@
 	    <th>Status</th>
 	    <th>Version</th>
 	    <th>Version Label</th>
+	    <th></th>
 	  </tr>
 		</thead>
 		<tbody>
@@ -22,6 +23,7 @@
 	    <td><%= @cdiscTerm.registrationState.registrationStatus %></td>
 	    <td><%= @cdiscTerm.semantic_version %></td>
 	    <td><%= @cdiscTerm.versionLabel %></td>
+	    <td><%= link_to "Impact", impact_thesauri_index_path(id: @cdiscTerm.id, namespace: @cdiscTerm.namespace), :class => "btn btn-info btn-xs" %></td>
 	  </tr>
 	</tbody>
 	</table>
@@ -69,7 +71,7 @@
 			    	<td><%= ct.label %></td>
 						<td><%= ct.semantic_version %></td>
 						<td><%= ct.versionLabel %></td>
-						<td><%= link_to "Show", cdisc_term_path(:id => ct.id, :namespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
+						<td><%= link_to "Show", cdisc_term_path(id: ct.id, namespace: ct.namespace), :class => "btn btn-primary btn-xs" %></td>
 						<td><%= link_to "Compare", compare_calc_cdisc_terms_path(:newId => @cdiscTerm.id, :newNamespace => @cdiscTerm.namespace, :oldId => ct.id, :oldNamespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
 			  	</tr>
 			<% end %>

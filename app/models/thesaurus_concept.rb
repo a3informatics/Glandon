@@ -246,6 +246,24 @@ class ThesaurusConcept < IsoConcept
     return self.uri
   end
 
+  def set_parent
+  	results = ""
+  	query = UriManagement.buildNs(UriManagement.getNs(UriManagement::C_BO), [UriManagement::C_ISO_25964])
+  	query += %Q{
+  		SELECT DISTINCT ?i WHERE    
+			{     
+				?s iso25964:hasChild #{self.uri.to_ref} .
+  			?s iso25964:identifier ?i .
+			}
+		}
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      self.parentIdentifier  = ModelUtility.getValue('i', false, node)
+    end
+  end
+
   # Check Valid
   #
   # @return [boolean] Returns true if valid, false otherwise.

@@ -11,7 +11,7 @@
  * @param clcikBackCall [Function] the callback function.
  * @return [Null]
  */
-function ImpactGraphPanel(clickCallBack) {
+function ImpactAnalysisGraphPanel(clickCallBack) {
   var _this = this;
   // Create empty graph
   this.graph = {};
@@ -21,6 +21,7 @@ function ImpactGraphPanel(clickCallBack) {
   this.currentGRef = null;
   this.clickCallBack = clickCallBack;
   this.nextKey = 1;
+  this.map = {};
   // Init D3
   d3gInit(colours, 25);
   // Set window resize.
@@ -33,7 +34,7 @@ function ImpactGraphPanel(clickCallBack) {
  * @param node [Object] the node clicked on
  * @return [Null]
  */
-ImpactGraphPanel.prototype.nodeClick = function (node) {
+ImpactAnalysisGraphPanel.prototype.nodeClick = function (node) {
   if (this.currentGRef !== null) {
     d3gClearNode(this.currentGRef);
   }
@@ -50,7 +51,7 @@ ImpactGraphPanel.prototype.nodeClick = function (node) {
  *
  * @return [Null]
  */
-ImpactGraphPanel.prototype.empty = function () {
+ImpactAnalysisGraphPanel.prototype.empty = function () {
 }
 
 /**
@@ -59,17 +60,23 @@ ImpactGraphPanel.prototype.empty = function () {
  * @param sourceNode [Object] the source data beign added
  * @return [Object] the node added to the graph. Source node plus additonal properties.
  */
-ImpactGraphPanel.prototype.addNode = function (sourceNode) {
-  var uri = sourceNode.uri;    
-  var node = sourceNode;
-  node.name = "";
-  node.key = this.nextKey;
-  node.type = sourceNode.rdf_type;
-  this.nextKey++;
-  this.graph.nodes.push(node);
-  var index = this.graph.nodes.length - 1;
-  node.index = index;
-  return node;
+ImpactAnalysisGraphPanel.prototype.addNode = function (sourceNode) {
+	var uri = toUri(sourceNode.namespace, sourceNode.id);
+  if (this.map.hasOwnProperty(uri)) {
+  	return this.graph.nodes[this.map[uri]];
+  } else {
+	  var node = sourceNode;
+	  node.uri = uri;
+	  node.name = "";
+	  node.key = this.nextKey;
+	  node.type = sourceNode.rdf_type;
+	  this.nextKey++;
+	  this.graph.nodes.push(node);
+	  var index = this.graph.nodes.length - 1;
+	  node.index = index;
+	  this.map[uri] = index;
+	  return node;
+	}
 }
 
 /**
@@ -79,7 +86,7 @@ ImpactGraphPanel.prototype.addNode = function (sourceNode) {
  * @param target [Integer] index of the target node
  * @return [Boolean] always returns true
  */
-ImpactGraphPanel.prototype.addLink = function (source, target) {
+ImpactAnalysisGraphPanel.prototype.addLink = function (source, target) {
   var link = {};
   link["source"] = source;
   link["target"] = target;
@@ -92,7 +99,7 @@ ImpactGraphPanel.prototype.addLink = function (source, target) {
  *
  * @return [Null]
  */
-ImpactGraphPanel.prototype.draw = function () {
+ImpactAnalysisGraphPanel.prototype.draw = function () {
   var json = JSON.parse(JSON.stringify(this.graph));
   d3gDraw(json, this.nodeClick.bind(this), this.empty.bind(this));
 }

@@ -147,7 +147,19 @@ class ThesauriController < ApplicationController
     item = IsoManaged::find(params[:id], params[:namespace])
     send_data to_turtle(item.triples), filename: "#{item.owner}_#{item.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
-  
+
+  def impact
+  	authorize Thesaurus
+  	@thesaurus = Thesaurus.find(params[:id], params[:namespace])
+  	@start_path = impact_start_thesauri_index_path
+  end
+
+  def impact_start
+  	authorize Thesaurus, :impact?
+  	@thesaurus = Thesaurus.find(params[:id], params[:namespace])  	
+  	render json: @thesaurus.impact
+  end
+
 private
 
   def the_params

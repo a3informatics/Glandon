@@ -292,6 +292,53 @@ class Thesaurus <  IsoManaged
     return { count: count, items: results }
   end
   
+  # Impact. Determine what impact this version has.
+  # 
+  # @return [Array] of thesaurus concepts that have an impact
+  def impact()
+  	results = []
+  	query = UriManagement.buildNs(UriManagement.getNs(UriManagement::C_BO), [UriManagement::C_ISO_25964, UriManagement::C_ISO_I])
+  	query += %Q{
+  		SELECT DISTINCT ?ctc WHERE    
+			{     
+			  ?a rdf:type :TcReference .
+			  ?a :hasThesaurusConcept ?ctc .
+			  ?ctc iso25964:identifier ?i .
+			  ?ctc_p iso25964:hasChild ?ctc .
+			  ?ctc_p iso25964:identifier ?i_p .
+			  ?ntc iso25964:identifier ?i .
+			  ?ntc_p iso25964:hasChild ?ntc .
+			  ?ntc_p iso25964:identifier ?i_p .
+			  FILTER(CONTAINS(STR(?ntc), "#{self.namespace}"))
+			  ?ctc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ctc .
+			  ?ctc_t isoI:hasIdentifier ?csi .
+			  ?csi isoI:version ?cv .
+			  ?ntc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ntc .
+			  ?ntc_t isoI:hasIdentifier ?nsi .
+			  ?nsi isoI:version ?nv .
+			  FILTER(?nv > ?cv)
+  			?ntc iso25964:notation ?ntc_n .
+			  ?ctc iso25964:notation ?ctc_n .
+			  ?ntc iso25964:definition ?ntc_d .
+			  ?ctc iso25964:definition ?ctc_d .
+			  ?ntc iso25964:preferredTerm ?ntc_pt .
+			  ?ctc iso25964:preferredTerm ?ctc_pt .
+			  ?ntc iso25964:synonym ?ntc_s .
+			  ?ctc iso25964:synonym ?ctc_s .
+			  ?ntc rdfs:label ?ntc_l .
+			  ?ctc rdfs:label ?ctc_l .
+			  FILTER(?ntc_n != ?ctc_n || ?ntc_d != ?ctc_d || ?ntc_pt != ?ctc_pt || ?ntc_s != ?ctc_s || ?ntc_l != ?ctc_l)
+			}
+		}
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      results << UriV2.new({:uri => ModelUtility.getValue('ctc', true, node)}).to_s
+    end
+    return results
+  end
+
   # Check Valid
   #
   # @return [boolean] Returns true if valid, false otherwise.

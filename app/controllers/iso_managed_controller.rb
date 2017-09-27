@@ -158,6 +158,31 @@ class IsoManagedController < ApplicationController
     end
   end
 
+  def impact
+    authorize IsoManaged, :show?
+    @item = IsoManaged.find(params[:id], params[:namespace], false)
+    @start_path = impact_start_iso_managed_index_path
+  end
+
+  def impact_start
+    authorize IsoManaged, :show?
+    results = []
+    @item = IsoManaged.find(params[:id], params[:namespace], false)
+    results << @item.uri.to_s
+    render json: results
+  end
+
+  def impact_next
+    authorize IsoManaged, :show?
+    map = {}
+    @item = IsoManaged.find(params[:id], params[:namespace], false)
+    managed_items = @item.find_links_from_to(from=false)
+    managed_items.each do |result|
+      result[:uri] = result[:uri].to_s
+    end
+    render json: { item: @item.to_json, children: managed_items }, status: 200
+  end
+
   def destroy
     authorize IsoManaged
     item = IsoManaged.find(params[:id], this_params[:namespace], false)
