@@ -15,3 +15,12 @@
 .node.fixed {
   fill: #f00;
 }
+
+#d3_tooltip {
+  position: absolute;
+  pointer-events: none;
+}
+
+#d3_tooltip.hidden {
+  display: none;
+}

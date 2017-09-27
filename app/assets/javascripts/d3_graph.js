@@ -64,7 +64,9 @@ function d3gDraw(graph, click, dblclick) {
     .on("click", click)
     .style("fill", function(d) { return nodeColour(d); })
     .call(force.drag)
-    .on('dblclick', connectedNodes); // New
+    .on('dblclick', connectedNodes)
+    .on('mouseover', mouseOver)
+    .on('mouseout', mouseOut);
 
   force
     .nodes(graph.nodes)
@@ -114,6 +116,25 @@ function d3gDraw(graph, click, dblclick) {
       toggle = 0;
     }
   }
+
+  function mouseOver(d) {
+  	//Get this bar's x/y values, then augment for the tooltip
+		var xPosition = parseFloat(d3.select(this).attr("x"));
+		var yPosition = parseFloat(d3.select(this).attr("y"));
+		//Update the tooltip position and value
+		d3.select("#d3_tooltip")
+  		.style("left", xPosition + "px")
+  		.style("top", yPosition + "px")
+  		.html("<p>" + d.label + "</p>");
+		//Show the tooltip
+		d3.select("#d3_tooltip").classed("hidden", false);
+  }
+
+  function mouseOut() {
+		//Hide the tooltip
+		d3.select("#d3_tooltip").classed("hidden", true);
+  }
+
 }
 
 /**
