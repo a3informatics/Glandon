@@ -510,4 +510,12 @@ describe ThesaurusConcept do
     expect{object.destroy}.to raise_error(Exceptions::DestroyError)
   end
 
+  it "set parent" do
+    object = ThesaurusConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expect(object.parentIdentifier).to eq("")
+    object.set_parent
+		expect(object.parentIdentifier).to eq("A00001")
+  end
+
+
 end
