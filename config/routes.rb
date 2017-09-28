@@ -119,6 +119,7 @@ Rails.application.routes.draw do
       get :impact
       get :impact_start
       get :impact_next
+      get :impact_report
     end
   end
   resources :thesaurus_concepts, :only => [:update, :show, :destroy, :edit] do
@@ -146,14 +147,9 @@ Rails.application.routes.draw do
       get :submission
       get :submission_calc
       get :submission_report
-      #get :impact
-      #get :impact_calc
-      #get :impact_report
-      #get :impact_graph
       get :history
       get :search
       get :search_results
-      #get :next
       get :import
       get :load
       get :file
