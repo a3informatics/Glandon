@@ -17,7 +17,8 @@
         <span class="glyphicon glyphicon-refresh"></span>
       </button>
       <button type="button" id="close" class="btn btn-primary">Close</button>
-		</div>	
+		</div>
+		<%= link_to "Report", impact_report_thesauri_index_path(:id => @thesaurus.id, :namespace => @thesaurus.namespace, :format => 'pdf'), :class => "btn btn-primary", :target => "_blank" %>
   </div>
   <div class="col-md-5">
 		<%= render partial: "shared/impact_graph_panel" %>

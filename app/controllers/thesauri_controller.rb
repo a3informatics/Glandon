@@ -160,7 +160,65 @@ class ThesauriController < ApplicationController
   	render json: @thesaurus.impact
   end
 
+  def impact_report
+  	authorize Thesaurus, :impact?
+  	results = []
+  	thesaurus = Thesaurus.find(params[:id], params[:namespace])  	
+  	results = impact_report_start(thesaurus)
+  	respond_to do |format|
+      format.pdf do
+        @html =Reports::ThesaurusImpactReport.new.create(thesaurus, results, current_user)
+        render pdf: "impact_analysis.pdf", page_size: current_user.paper_size
+      end
+    end
+  end
+
 private
+
+	def impact_report_start(thesaurus)
+		initial_results = []
+		results = {}
+		thesaurus.impact.each do |x|
+  		uri = UriV2.new({uri: x})
+	  	initial_results += impact_report_node(uri.id, uri.namespace) { |a,b|
+  			item = ThesaurusConcept.find(a, b)  	
+  			item.set_parent
+  			item
+  		}
+  	end
+  	initial_results.each do |result|
+  		if results.has_key?(result[:root].uri)
+  			results[result[:root].uri.to_s][:children] += result[:children]
+  		else
+  			results[result[:root].uri.to_s] = { root: result[:root].to_json, children: result[:children] }
+  		end
+  	end
+  	results.each do |k,v|
+  		v[:children] = v[:children].inject([]) do |new_children, item| 
+  			new_children << { uri: item[:uri].to_s }
+  		end
+  	end
+  	return results
+  end
+
+	def impact_report_node(id, namespace)
+	  results = []
+	  result = {}
+	  item = yield(id, namespace)
+	  result[:root] = item
+	  result[:children] = []
+	  results << result
+    concepts = IsoConcept.links_to(id, namespace)
+    concepts.each do |concept|
+      managed_item = IsoManaged.find_managed(concept[:uri].id, concept[:uri].namespace)
+		  result[:children] << managed_item
+		  uri_s = managed_item[:uri].to_s
+      results += impact_report_node(managed_item[:uri].id, managed_item[:uri].namespace) { |a,b| 
+      	item = IsoManaged.find(a, b, false) 
+      }
+    end
+    return results
+	end
 
   def the_params
     params.require(:thesauri).permit(:id, :namespace, :label, :identifier, :notation, :synonym, :definition, :preferredTerm, :type)

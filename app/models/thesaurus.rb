@@ -301,33 +301,52 @@ class Thesaurus <  IsoManaged
   	query += %Q{
   		SELECT DISTINCT ?ctc WHERE    
 			{     
-			  ?a rdf:type :TcReference .
-			  ?a :hasThesaurusConcept ?ctc .
-			  ?ctc iso25964:identifier ?i .
-			  ?ctc_p iso25964:hasChild ?ctc .
-			  ?ctc_p iso25964:identifier ?i_p .
-			  ?ntc iso25964:identifier ?i .
-			  ?ntc_p iso25964:hasChild ?ntc .
-			  ?ntc_p iso25964:identifier ?i_p .
-			  FILTER(CONTAINS(STR(?ntc), "#{self.namespace}"))
-			  ?ctc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ctc .
-			  ?ctc_t isoI:hasIdentifier ?csi .
-			  ?csi isoI:version ?cv .
-			  ?ntc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ntc .
-			  ?ntc_t isoI:hasIdentifier ?nsi .
-			  ?nsi isoI:version ?nv .
-			  FILTER(?nv > ?cv)
-  			?ntc iso25964:notation ?ntc_n .
-			  ?ctc iso25964:notation ?ctc_n .
-			  ?ntc iso25964:definition ?ntc_d .
-			  ?ctc iso25964:definition ?ctc_d .
-			  ?ntc iso25964:preferredTerm ?ntc_pt .
-			  ?ctc iso25964:preferredTerm ?ctc_pt .
-			  ?ntc iso25964:synonym ?ntc_s .
-			  ?ctc iso25964:synonym ?ctc_s .
-			  ?ntc rdfs:label ?ntc_l .
-			  ?ctc rdfs:label ?ctc_l .
-			  FILTER(?ntc_n != ?ctc_n || ?ntc_d != ?ctc_d || ?ntc_pt != ?ctc_pt || ?ntc_s != ?ctc_s || ?ntc_l != ?ctc_l)
+			  {
+			  	?a rdf:type :TcReference .
+				  ?a :hasThesaurusConcept ?ctc .
+				  ?ctc iso25964:identifier ?i .
+				  ?ctc_p iso25964:hasChild ?ctc .
+				  ?ctc_p iso25964:identifier ?i_p .
+				  ?ntc iso25964:identifier ?i .
+				  ?ntc_p iso25964:hasChild ?ntc .
+				  ?ntc_p iso25964:identifier ?i_p .
+				  FILTER(CONTAINS(STR(?ntc), "#{self.namespace}"))
+				  ?ctc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ctc .
+				  ?ctc_t isoI:hasIdentifier ?csi .
+				  ?csi isoI:version ?cv .
+				  ?ntc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ntc .
+				  ?ntc_t isoI:hasIdentifier ?nsi .
+				  ?nsi isoI:version ?nv .
+				  FILTER(?nv > ?cv)
+	  			?ntc iso25964:notation ?ntc_n .
+				  ?ctc iso25964:notation ?ctc_n .
+				  ?ntc iso25964:definition ?ntc_d .
+				  ?ctc iso25964:definition ?ctc_d .
+				  ?ntc iso25964:preferredTerm ?ntc_pt .
+				  ?ctc iso25964:preferredTerm ?ctc_pt .
+				  ?ntc iso25964:synonym ?ntc_s .
+				  ?ctc iso25964:synonym ?ctc_s .
+				  ?ntc rdfs:label ?ntc_l .
+				  ?ctc rdfs:label ?ctc_l .
+				  FILTER(?ntc_n != ?ctc_n || ?ntc_d != ?ctc_d || ?ntc_pt != ?ctc_pt || ?ntc_s != ?ctc_s || ?ntc_l != ?ctc_l)
+				} UNION {
+			    ?a rdf:type :TcReference . 			  
+			    ?a :hasThesaurusConcept ?ctc . 			  
+			    ?ctc iso25964:identifier ?i . 			  
+			    ?ctc_p iso25964:hasChild ?ctc . 			  
+			    ?ctc_p iso25964:identifier ?i_p . 
+			    ?ctc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ctc .
+			    ?ctc_t isoI:hasIdentifier ?csi .
+			    ?csi isoI:identifier ?ci .
+			    FILTER (?ci = "#{self.identifier}")
+			    FILTER NOT EXISTS 
+			    {
+			      #{self.uri.to_ref} iso25964:hasConcept+ ?ntc_p .
+			    	?ntc_p iso25964:identifier ?i_p . 			  
+			        ?ntc_p iso25964:hasChild%2B ?ntc .
+			    	?ntc iso25964:identifier ?i . 			  
+			    } 
+			  }
 			}
 		}
     response = CRUD.query(query)
