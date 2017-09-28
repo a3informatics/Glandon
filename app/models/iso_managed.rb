@@ -61,10 +61,15 @@ class IsoManaged < IsoConcept
   # Version Label
   #
   # @return [string] The version label
-  def versionLabel
+  def version_label
     return self.scopedIdentifier.versionLabel
   end
 
+  # Version Label - Deprecated due to bad naming syntax
+  #
+  # @return [string] The version label
+  alias versionLabel version_label
+  
   # Semantic Version
   #
   # @return [SemanticVersion] The semantic version
