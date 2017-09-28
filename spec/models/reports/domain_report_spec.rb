@@ -34,10 +34,10 @@ describe Reports::CrfReport do
 
   it "creates simple report" do
     user = User.create email: "wicked@example.com", password: "12345678"
-    domain = Form.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
+    domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     report = Reports::DomainReport.new
     html = report.create(domain, {}, user)
-    #write_text_file_2(html, sub_dir, "domain_report_simple.txt")
+  #write_text_file_2(html, sub_dir, "domain_report_simple.txt")
     expected = read_text_file_2(sub_dir, "domain_report_simple.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)

@@ -11,7 +11,7 @@ class Reports::CrfReport
   def create(form, options, user)
     history = build_history(form)
     @report = Reports::WickedCore.new
-    @report.open("Case Report From", form, history, user) if options[:full]
+    @report.open("Case Report From", "#{form.identifier} #{form.version_label} (v#{form.semantic_version})", history, user) if options[:full]
     crf_title(form) if options[:full]
     crf_body(form, options)
     completion_notes_and_term(form) if options[:full]

@@ -11,7 +11,7 @@ class Reports::DomainReport
   def create(domain, options, user)
     history = build_history(domain)
     @report = Reports::WickedCore.new
-    @report.open("SDTM Domain", domain, history, user) #if options[:full]
+    @report.open("SDTM Domain", "#{domain.identifier} #{domain.version_label} (v#{domain.semantic_version})", history, user) #if options[:full]
     body(domain.to_json, options)
     @report.close
     return @report.html
