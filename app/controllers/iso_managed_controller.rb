@@ -136,27 +136,27 @@ class IsoManagedController < ApplicationController
     render :json => results, :status => 200
   end
 
-  def impact
-    authorize IsoManaged, :show?
-    map = {}
-    @item = IsoManaged.find(params[:id], params[:namespace], false)
-    managed_items = @item.find_links_from_to(from=false)
-    managed_items.each do |result|
-      result[:uri] = result[:uri].to_s
-    end
-    @results = {item: @item.to_json, children: managed_items}
-    respond_to do |format|
-      format.html do
-      	@index_label = this_params[:index_label]
-    		@index_path = this_params[:index_path]
-    		@history_path = TypePathManagement.history_url(@item.rdf_type, @item.identifier, @item.scopedIdentifier.namespace.id)
-    		@referer = request.referer
-      end
-      format.json do
-        render json: @results
-      end
-    end
-  end
+  #def impact
+  #  authorize IsoManaged, :show?
+  #  map = {}
+  #  @item = IsoManaged.find(params[:id], params[:namespace], false)
+  #  managed_items = @item.find_links_from_to(from=false)
+  #  managed_items.each do |result|
+  #    result[:uri] = result[:uri].to_s
+  #  end
+  #  @results = {item: @item.to_json, children: managed_items}
+  #  respond_to do |format|
+  #    format.html do
+  #    	@index_label = this_params[:index_label]
+  #  		@index_path = this_params[:index_path]
+  #  		@history_path = TypePathManagement.history_url(@item.rdf_type, @item.identifier, @item.scopedIdentifier.namespace.id)
+  #  		@referer = request.referer
+  #    end
+  #    format.json do
+  #      render json: @results
+  #    end
+  #  end
+  #end
 
   def impact
     authorize IsoManaged, :show?

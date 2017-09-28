@@ -175,21 +175,34 @@ describe IsoManagedController do
       expect(response.body).to eq(results.to_json.to_s)
     end
 
-    it "determines the change impact for managed item" do
-      bc = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
-      results = { item: bc.to_json, children: [{:uri=>"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1", :rdf_type=>"http://www.assero.co.uk/BusinessForm#Form"}] }
-      get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" , iso_managed: { index_label: "LABEL", index_path: "/test" }}
-      expect(assigns(:results)).to eq(results)
+    it "allows impact to be assessed" do
+      item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
+      get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
+      expect(assigns(:start_path)).to eq(impact_start_iso_managed_index_path)
+      expect(assigns(:item).to_json).to eq(item.to_json)
     end
 
-    it "determines the change impact for managed item, JSON" do
+    it "allows impact to be assessed, start" do
+    	item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
       request.env['HTTP_ACCEPT'] = "application/json"
-      bc = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
-      results = { item: bc.to_json, children: [{:uri=>"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1", :rdf_type=>"http://www.assero.co.uk/BusinessForm#Form"}] }
-      get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" , iso_managed: { index_label: "LABEL", index_path: "/test" }}
-      expect(response.content_type).to eq("application/json")
+      get :impact_start, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
       expect(response.code).to eq("200")
-      expect(response.body).to eq(results.to_json.to_s)
+      expect(response.content_type).to eq("application/json")
+      hash = JSON.parse(response.body, symbolize_names: true)
+      expect(hash.length).to eql(1)
+      expect(hash[0]).to eql(item.uri.to_s)
+    end
+
+    it "allows impact to be assessed, next" do
+      item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :impact_next, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
+      expect(response.code).to eq("200")
+      expect(response.content_type).to eq("application/json")
+      hash = JSON.parse(response.body, symbolize_names: true)
+    #write_yaml_file(hash, sub_dir, "iso_managed_impact_next.yaml")
+      results = read_yaml_file(sub_dir, "iso_managed_impact_next.yaml")
+      expect(hash).to match(results)
     end
 
     it "destroy" do

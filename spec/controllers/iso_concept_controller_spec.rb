@@ -62,28 +62,39 @@ describe IsoConceptController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       hash = JSON.parse(response.body, symbolize_names: true)
-      #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_1.yaml")
+    #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_1.yaml")
       results = read_yaml_file(sub_dir, "iso_concept_controller_example_1.yaml")
       expect(hash).to match(results)
     end
 
     it "allows impact to be assessed" do
       item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-      results =
-      { 
-        item: item.to_json,
-        children: 
-        [ 
-          { uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677", rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" },
-          { uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_A00003", rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" },
-          { uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299", rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" },
-          { uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298", rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" },
-          { uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1", rdf_type: "http://www.assero.co.uk/BusinessForm#Form" }
-        ]
-      }
       get :impact, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
-      expect(assigns(:results).to_json).to eq(results.to_json)
+      expect(assigns(:start_path)).to eq(impact_start_iso_concept_index_path)
       expect(assigns(:item).to_json).to eq(item.to_json)
+    end
+
+    it "allows impact to be assessed, start" do
+    	item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :impact_start, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
+      expect(response.code).to eq("200")
+      expect(response.content_type).to eq("application/json")
+      hash = JSON.parse(response.body, symbolize_names: true)
+      expect(hash.length).to eql(1)
+      expect(hash[0]).to eql(item.uri.to_s)
+    end
+
+    it "allows impact to be assessed, next" do
+      item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :impact_next, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
+      expect(response.code).to eq("200")
+      expect(response.content_type).to eq("application/json")
+      hash = JSON.parse(response.body, symbolize_names: true)
+    #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_2.yaml")
+      results = read_yaml_file(sub_dir, "iso_concept_controller_example_2.yaml")
+      expect(hash).to match(results)
     end
 
   end

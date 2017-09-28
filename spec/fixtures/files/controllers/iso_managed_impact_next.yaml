@@ -1,0 +1,47 @@
+---
+:item:
+  :type: http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance
+  :id: BC-ACME_BC_C25298
+  :namespace: http://www.assero.co.uk/MDRBCs/V1
+  :label: Systolic Blood Pressure (BC C25298)
+  :extension_properties: []
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_changed_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :registration_state:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: RS-ACME_BC_C25298-1
+    :registration_authority:
+      :id: RA-123456789
+      :number: '123456789'
+      :scheme: DUNS
+      :owner: true
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-BBB
+        :name: BBB Pharma
+        :shortName: BBB
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00Z'
+    :until_date: '2016-01-01T00:00:00Z'
+    :current: false
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Qualified
+  :scoped_identifier:
+    :id: SI-ACME_BC_C25298-1
+    :identifier: BC C25298
+    :version_label: '0.1'
+    :version: 1
+    :semantic_version: 1.0.0
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+:children:
+- :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Form
