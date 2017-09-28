@@ -32,7 +32,7 @@ describe Reports::WickedCore do
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
     html = report.html
-    #write_text_file_2(html, sub_dir, "wicked_core_simple_report.txt")
+  #write_text_file_2(html, sub_dir, "wicked_core_simple_report.txt")
     expected = read_text_file_2(sub_dir,"wicked_core_simple_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -62,7 +62,7 @@ describe Reports::WickedCore do
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", history, user)
     html = report.html
-    #write_text_file_2(html, sub_dir, "wicked_core_full_report.txt")
+  #write_text_file_2(html, sub_dir, "wicked_core_full_report.txt")
     expected = read_text_file_2(sub_dir, "wicked_core_full_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -77,7 +77,7 @@ describe Reports::WickedCore do
     report.add_to_body("<h1>THIS IS THE BODY ITEM 1</h1>")
     report.add_to_body("<h1>THIS IS THE BODY ITEM 2</h1>")
     html = report.html
-    #write_text_file_2(html, sub_dir, "wicked_core_body.txt")
+  #write_text_file_2(html, sub_dir, "wicked_core_body.txt")
     expected = read_text_file_2(sub_dir, "wicked_core_body.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -94,7 +94,7 @@ describe Reports::WickedCore do
     report.add_to_body("<h1>THIS IS MORE OF THE BODY</h1>")
     report.add_page_break
     html = report.html
-    #write_text_file_2(html, sub_dir, "wicked_core_break.txt")
+  #write_text_file_2(html, sub_dir, "wicked_core_break.txt")
     expected = read_text_file_2(sub_dir, "wicked_core_break.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -112,7 +112,7 @@ describe Reports::WickedCore do
     report.add_to_body(html)
     report.close
     html = report.html
-    #write_text_file_2(html, sub_dir, "wicked_core_closed.txt")
+  #write_text_file_2(html, sub_dir, "wicked_core_closed.txt")
     expected = read_text_file_2(sub_dir, "wicked_core_closed.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -130,7 +130,7 @@ describe Reports::WickedCore do
     report.add_to_body(html)
     report.close
     html = report.html
-    #write_text_file_2(html, sub_dir, "wicked_core_html.txt")
+  #write_text_file_2(html, sub_dir, "wicked_core_html.txt")
     expected = read_text_file_2(sub_dir, "wicked_core_html.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -150,7 +150,7 @@ describe Reports::WickedCore do
     report.close
     pdf = report.pdf
     html = report.html
-    #write_text_file_2(html, sub_dir, "wicked_core_report.txt")
+  #write_text_file_2(html, sub_dir, "wicked_core_report.txt")
     expected = read_text_file_2(sub_dir, "wicked_core_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)

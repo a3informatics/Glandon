@@ -79,7 +79,7 @@ private
 
   def title_page(doc_type, title,  user)
     html = ""
-    title = ""
+    #title = ""
     #name = APP_CONFIG['organization_title']
     #image_file = APP_CONFIG['organization_image_file']
     name = ENV['organization_title']
@@ -91,7 +91,7 @@ private
     html = "<div style=\"vertical-align:middle; text-align:center\"><img height=\"75\" src=\"#{file}\"></div>"
     html += "<h3 class=\"text-center col-md-12\">#{name}</h3>"
     html += "<br>" * 10
-    html += "<div class=\"text-center col-md-12\"><h1>#{doc_type}<br>#{title}</h1></div>"
+    html += "<div class=\"text-center col-md-12\"><h1>#{doc_type}<h1><h3>#{title}</h3></div>"
     html += "<br>" * 5
     html += "<div class=\"text-center col-md-12\"><p>Run at: #{time_generated.strftime("%Y-%b-%d, %H:%M:%S")}</p></div>"
     html += "<div class=\"text-center col-md-12\"><p>Run by: #{user.email}</p></div>"
