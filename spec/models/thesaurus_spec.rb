@@ -22,6 +22,8 @@ describe Thesaurus do
     load_test_file_into_triple_store("CT_V34.ttl")
     load_test_file_into_triple_store("CT_V35.ttl")
     load_test_file_into_triple_store("CT_V36.ttl")
+    load_test_file_into_triple_store("CT_V49.ttl")
+    load_test_file_into_triple_store("op_ref_1.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -98,7 +100,7 @@ describe Thesaurus do
 
   it "allows all records to be retrieved" do
     results = Thesaurus.all
-    expect(results.count).to eq(4)
+    expect(results.count).to eq(5) # Another added for new test
   #write_yaml_file(results, sub_dir, "thesaurus_all_1.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_all_1.yaml")
     results.each do |result|
@@ -109,19 +111,22 @@ describe Thesaurus do
 
   it "allows the list to be retrieved" do
     result = Thesaurus.list
-    expect(result.count).to eq(4)
-    expect(result[3].identifier).to eq("CDISC EXT")
-    expect(result[3].id).to eq("TH-SPONSOR_CT-1")
-    expect(result[3].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expect(result.count).to eq(5) # Another added for new test
+    expect(result[4].identifier).to eq("CDISC EXT")
+    expect(result[4].id).to eq("TH-SPONSOR_CT-1")
+    expect(result[4].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expect(result[3].identifier).to eq("CDISC Terminology")
+    expect(result[3].id).to eq("TH-CDISC_CDISCTerminology")
+    expect(result[3].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
     expect(result[2].identifier).to eq("CDISC Terminology")
     expect(result[2].id).to eq("TH-CDISC_CDISCTerminology")
-    expect(result[2].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    expect(result[2].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
     expect(result[1].identifier).to eq("CDISC Terminology")
     expect(result[1].id).to eq("TH-CDISC_CDISCTerminology")
-    expect(result[1].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    expect(result[1].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
     expect(result[0].identifier).to eq("CDISC Terminology")
     expect(result[0].id).to eq("TH-CDISC_CDISCTerminology")
-    expect(result[0].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+    expect(result[0].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
   end
 
   it "allows the unique item to be retrived" do
@@ -225,11 +230,12 @@ describe Thesaurus do
     expect(th.children.count).to eq(1)      
   end
 
-  it "allows the current set to be found, terminology" do
-    result = Thesaurus.current_set
-  #write_yaml_file(result.to_json, sub_dir, "thesaurus_example_8.txt")
-    expected = read_yaml_file(sub_dir, "thesaurus_example_8.txt")
-    expect(result.to_json).to eq(expected)
+  it "allows the impact to be assessed" do
+  	th = Thesaurus.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
+  	result = th.impact
+  #write_yaml_file(result, sub_dir, "thesaurus_impact.yaml")
+    expected = read_yaml_file(sub_dir, "thesaurus_impact.yaml")
+    expect(result).to eq(expected)
   end
 
 end
