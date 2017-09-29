@@ -86,7 +86,7 @@ describe "Dashboard JS", :type => :feature do
       expect(find('#subjectNs').value).to eq 'http://www.assero.co.uk/MDRBCs/V1'
       expect(find('#subjectId').value).to eq 'BC-ACME_BC_C16358'      
       click_button 'Gr+'
-      expect(page).to have_content 'Metadata View:'
+      expect(page).to have_content 'Graph:'
       click_link 'logoff_button'
       expect(page).to have_content 'Log in'
     end
