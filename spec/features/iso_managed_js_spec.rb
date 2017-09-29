@@ -45,7 +45,7 @@ describe "ISO Managed JS", :type => :feature do
       #pause
       expect(page).to have_content 'History: BC A00003'
       find(:xpath, "//tr[contains(.,'BC A00003')]/td/a", :text => 'Gr-').click
-      expect(page).to have_content 'Metadata View:'
+      expect(page).to have_content 'Graph:'
       expect(page).to have_button('graph_focus', disabled: true)
       expect(page).to have_field('concept_type', disabled: true)
       expect(page).to have_field('concept_label', disabled: true)
@@ -64,7 +64,10 @@ describe "ISO Managed JS", :type => :feature do
       ui_check_page_has('Show: Height (BC C25347)')
       ui_table_row_link_click('BC C25347', 'Impact')
       ui_check_page_has('Impact Analysis: Height (BC C25347)')
-      ui_check_table_row('managed_item_table', 1, ["VS BASELINE", "Vital Signs Baseline", "0.0.0", ""])
+      wait_for_ajax(10)
+    #pause
+      ui_check_table_row('managed_item_table', 1, ["BC C25347", "Height (BC C25347)", "1.0.0", "0.1"])
+      ui_check_table_row('managed_item_table', 2, ["VS BASELINE", "Vital Signs Baseline", "0.0.0", ""])
       click_button 'close'
       ui_check_page_has('Show: Height (BC C25347)')
       ui_table_row_link_click('BC C25347', 'Impact')
