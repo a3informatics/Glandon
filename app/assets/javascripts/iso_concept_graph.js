@@ -155,8 +155,8 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(result) {
         //$("#concept_type").show();
-        $("#concept_label").show();
-        $("#concept_type").val(getId(result.type));
+        //$("#concept_label").show();
+        $("#concept_type").val(typeToString[result.type]);
         $("#concept_label").val(result.label);
       },
       error: function(xhr,status,error){

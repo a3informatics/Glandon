@@ -1,0 +1,39 @@
+<div id="managed_item_panel" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= title %></h3>
+  </div>
+  <div class="panel-body">
+  	<div class="row">
+  		<div class="col-md-4">
+  		 	<div class="input-group">
+    			<span class="input-group-addon" id="sizing-addon1"><b>Type:</b></span>
+    			<input id="concept_type" type="text" class="form-control" aria-describedby="sizing-addon1">
+  			</div>
+		  </div>
+  		<div class="col-md-4">
+		  	<div class="input-group">
+    			<span class="input-group-addon" id="sizing-addon2"><b>Label:</b></span>
+    			<input id="concept_label" type="text" class="form-control" aria-describedby="sizing-addon2">
+    		</div>
+  		</div>
+			<div class="col-md-4">
+		  	<div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+			    <div class="btn-group" role="group" aria-label="First group">
+			      <button id="graph_running" type="button" class="btn btn-default">
+			        <span class="glyphicon glyphicon-refresh glyphicon-spin"></span>
+			      </button>
+			      <button id="graph_stop" type="button" class="btn btn-default btn-primary">
+			        <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+			      </button>
+			      <button id="graph_focus" type="button" class="btn btn-default btn-primary">
+			        <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+			      </button>
+			    </div>
+		  	</div>
+	  	</div>
+	  </div>
+  	<div class="d3-tree" id="d3">
+  		<!-- D3 Area -->
+		</div>
+	</div>
+</div>

@@ -125,7 +125,7 @@ function d3gDraw(graph, click, dblclick) {
 		d3.select("#d3_tooltip")
   		.style("left", xPosition + "px")
   		.style("top", yPosition + "px")
-  		.html("<p>" + d.label + "</p>");
+  		.html("<p><strong>" + typeToString[d.rdf_type] + "</strong></p><p>" + d.label + "</p>");
 		//Show the tooltip
 		d3.select("#d3_tooltip").classed("hidden", false);
   }
