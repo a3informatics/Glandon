@@ -207,12 +207,16 @@ module UiHelpers
 
   # Return
   def ui_hit_return(id)
-    find("##{id}").native.send_keys(:return)
+    # Amended to allow for spaces in id
+    field = find(:xpath, "//*[@id=\"#{id}\"]")
+    field.native.send_keys(:return)
   end
 
   # Backspace
   def ui_hit_backspace(id)
-    find("##{id}").native.send_keys(:backspace)
+    # Amended to allow for spaces in  id
+    field = find(:xpath, "//*[@id=\"#{id}\"]")
+    field.native.send_keys(:backspace)
   end
 
   # Scroll by

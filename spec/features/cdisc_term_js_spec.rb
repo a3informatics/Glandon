@@ -51,7 +51,7 @@ describe "CDISC Terminology", :type => :feature do
       clear_cdisc_term_object
       @column_input_map = 
 		  	{ 
-		  		notation: "searchTable_csearch_notation", 
+		  		notation: "searchTable_csearch_submission value", 
 		  		code_list: "searchTable_csearch_cl", 
 		  		definition: "searchTable_csearch_definition" 
 		  	}  
@@ -99,8 +99,8 @@ describe "CDISC Terminology", :type => :feature do
       column_search(:notation, 'ADMINISTRATION')
       expect(page).to have_content 'Showing 1 to 2 of 2 entries'
 
-      fill_in 'searchTable_csearch_notation', with: 'A' # In effect delete all bar one character
-      ui_hit_backspace('searchTable_csearch_notation') # Delete last character so now empty
+      fill_in 'searchTable_csearch_submission value', with: 'A' # In effect delete all bar one character
+      ui_hit_backspace('searchTable_csearch_submission value') # Delete last character so now empty
       wait_for_ajax(5)
       expect(page).to have_content 'Showing 1 to 3 of 3 entries'
 
