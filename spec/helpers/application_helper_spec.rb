@@ -18,7 +18,17 @@ describe ApplicationHelper do
   		return object
   	end
 
-  	it "bootstrap alert class" do
+  	it "build an instance title for a managed item" do
+  		item = Form.new
+  		item.scopedIdentifier.version = 10
+  		item.scopedIdentifier.semantic_version = "2.3.1"
+  		item.registrationState.registrationStatus = "Standard"
+  		item.label = "Blah"
+  		item.scopedIdentifier.identifier = "IDENT"
+	  	expect(instance_title("Title", item)).to eq("Title Blah <small>IDENT (V2.3.1, 10, Standard)</small>")
+	  end
+
+    it "bootstrap alert class" do
 	  	expect(bootstrap_class_for("success")).to eq("alert-success")
 	  	expect(bootstrap_class_for("error")).to eq("alert-danger")
 	  	expect(bootstrap_class_for("alert")).to eq("alert-warning")

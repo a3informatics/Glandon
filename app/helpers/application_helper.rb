@@ -1,5 +1,9 @@
 module ApplicationHelper
-	
+
+	def instance_title(title, item)
+		return raw("#{title} #{item.label} <small>#{item.identifier} (V#{item.semantic_version}, #{item.version}, #{item.registrationStatus})</small>")	
+	end
+
 	# Bootstrap Class
   #
   # @param flash_type [String] the flash type
