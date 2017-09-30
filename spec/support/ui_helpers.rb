@@ -110,6 +110,7 @@ module UiHelpers
     options.each do |text|
     	return true if cell == text
     end
+  puts "Cell: >#{cell}<"
     return false
   end
 

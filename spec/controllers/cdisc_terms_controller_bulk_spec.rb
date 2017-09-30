@@ -14,9 +14,16 @@ describe CdiscTermsController do
       return "controllers"
     end
 
+    def time_now(text)
+    	puts "#{Time.now()}: #{text}"
+    end
+
     before :all do
+    	time_now("Starting")
       clear_triple_store
+    	time_now("Load first file ...")
       load_schema_file_into_triple_store("ISO11179Types.ttl")
+    	time_now("First file loaded") # Queues the first file
       load_schema_file_into_triple_store("ISO11179Basic.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")

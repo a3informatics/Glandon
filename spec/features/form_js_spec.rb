@@ -122,11 +122,11 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'History: DM1 01'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: Demographics DM1 01 (V0.0.0, 1, Candidate)'
-      wait_for_ajax
+      wait_for_ajax(10)
       ui_check_table_row('main', 1, ["1", "Question Group", "", "", "", "", "", "", ""])
       #ui_check_table_row('main', 4, ["4", "Sex", "Sex:", "string", "", "SEX", "M [C20197] F [C16576]", "Indicate the appropriate sex.", ""])
       ui_check_table_row('main', 4, ["4", "Sex", "Sex:", "string", "", "SEX", nil, "Indicate the appropriate sex.", ""])
-      ui_check_table_cell_options('main', 4, 7, ["M [C20197] F [C16576]", "M [C20197] F [C16576]"])
+      ui_check_table_cell_options('main', 4, 7, ["M [C20197] F [C16576]", "F [C16576] M [C20197]"])
       ui_check_table_row('main', 6, ["6", "Race Other", "Race Other Mixed Specify:", "string", "20", "SUPPDM.QVAL when QNAM=RACEOTH", "", "", ""])
       ui_check_table_row('main', 8, ["8", "Ethnic Subgroup", "Ethnic Subgroup:", "string", "", "SUPPDM.QVAL when QNAM=RACESG", "ETHNIC SUBGROUP [1] [A00011]", "Tick the appropriate box to indicate the subject s ethnic subgroup. If the appropriate subgroup is not listed, tick Other", ""])
       #ui_check_table_row_class('main', 2, 'warning')
