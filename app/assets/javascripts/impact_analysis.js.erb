@@ -1,3 +1,13 @@
+/**
+ * Impact Analysis
+ *
+ * @param [String] url the start operaiton url
+ * @param [String] id the fragment of the uri of the initial start point
+ * @param [String] namepace the namespace of the uri of the initial start point
+ * @param [Integer] maxlevel the maximum number of hops in the analysis
+ * @param [Function] finishedCallback the function to be called on competion
+ * @return [void] 
+ */
 function ImpactAnalysis(url, id, namespace, maxLevel, finishedCallback) {
   this.url = url;
   this.id = id;
@@ -8,11 +18,16 @@ function ImpactAnalysis(url, id, namespace, maxLevel, finishedCallback) {
   this.graph = new ImpactAnalysisGraphPanel(this.callBack.bind(this));
   this.miTable = new IsoManagedListPanel();
   this.tcTable = new ThesaurusConceptListPanel();
-  
 }
 
 ImpactAnalysis.PARENT_NODE = -1;
 
+/**
+ * callBack
+ *
+ * @param [Object] node the D3 node
+ * @return [void] 
+ */
 ImpactAnalysis.prototype.callBack = function (node) {
 	if(node.type === C_THC) {
 		this.tcTable.highlight(node.key);

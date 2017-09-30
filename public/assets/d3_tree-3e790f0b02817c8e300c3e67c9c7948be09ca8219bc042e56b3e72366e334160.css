@@ -1,0 +1,22 @@
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  /*stroke: steelblue;*/
+  stroke: #000;
+  /*stroke-width: 1.5px;*/
+  stroke-width: 0px;
+}
+
+.node text {
+  font: 12px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.d3-tree { height:75vh; }

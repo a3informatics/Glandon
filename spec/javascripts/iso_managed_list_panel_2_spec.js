@@ -33,7 +33,7 @@ describe("ISO Managed List Panel, table", function() {
   	fixture.set(html);
   	server = sinon.fakeServer.create();
     server.autoRespond = true;
-    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology', 
+    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FCDISC%2FV40', 
     	[ 200, 
     		{ 'Content-Type': 'application/json' },
         '{ "label": "Item 1",' +
@@ -46,7 +46,7 @@ describe("ISO Managed List Panel, table", function() {
         '  }' + 
         '}'  
     	]);
-    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology', 
+    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FCDISC%2FV41', 
     	[ 200, 
     		{ 'Content-Type': 'application/json' },
         '{ "label": "Item 2",' +
@@ -59,7 +59,7 @@ describe("ISO Managed List Panel, table", function() {
         '  }' + 
         '}'  
     	]);
-    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology', 
+    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FCDISC%2FV42', 
     	[ 200, 
     		{ 'Content-Type': 'application/json' },
         '{ "label": "Item 3",' +
@@ -72,7 +72,7 @@ describe("ISO Managed List Panel, table", function() {
         '  }' + 
         '}'  
     	]);
-    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology', 
+    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FCDISC%2FV43', 
     	[ 200, 
     		{ 'Content-Type': 'application/json' },
         '{ "label": "Item 4",' +
@@ -85,7 +85,7 @@ describe("ISO Managed List Panel, table", function() {
         '  }' + 
         '}'  
     	]);
-    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology', 
+    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FCDISC%2FV44', 
     	[ 200, 
     		{ 'Content-Type': 'application/json' },
         '{ "label": "Item 5",' +
@@ -98,7 +98,7 @@ describe("ISO Managed List Panel, table", function() {
         '  }' + 
         '}'  
     	]);
-    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology', 
+    server.respondWith('GET', '/iso_managed/TH-CDISC_CDISCTerminology?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FCDISC%2FV45', 
     	[ 200, 
     		{ 'Content-Type': 'application/json' },
         '{ "label": "Item 6",' +

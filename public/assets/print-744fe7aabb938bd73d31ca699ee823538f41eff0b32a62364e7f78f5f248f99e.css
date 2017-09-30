@@ -1,0 +1,9 @@
+@media print {
+  div.info, div#sidebar {
+    display: none;
+  }
+
+  a[href]:after {
+    content: none;
+  }
+}

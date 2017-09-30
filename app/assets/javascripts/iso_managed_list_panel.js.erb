@@ -8,7 +8,7 @@
 /**
  * ISO Managed List Panel Constructor
  *
- * @return [Null]
+ * @return [void]
  */
 function IsoManagedListPanel() {
   var _this = this;
@@ -38,9 +38,9 @@ function IsoManagedListPanel() {
 /**
  * Add item to table
  *
- * @param uri [String] the uri of the item being added
- * @param key [Integer] a unique reference
- * @return [Null]
+ * @param [String] uri the uri of the item being added
+ * @param [Integer] key a unique reference
+ * @return [void]
  */
 IsoManagedListPanel.prototype.add = function (uri, key) {
   var _this = this;
@@ -66,8 +66,8 @@ IsoManagedListPanel.prototype.add = function (uri, key) {
 /**
  * Highlight
  *
- * @param key [Integer] a unique reference
- * @return [Null]
+ * @param [Integer] key a unique reference
+ * @return [void]
  */
 IsoManagedListPanel.prototype.highlight = function (key) {
   if (this.currentRow !== null) {
@@ -79,6 +79,11 @@ IsoManagedListPanel.prototype.highlight = function (key) {
   $(this.currentRow).toggleClass('success')
 }
 
+/**
+ * Clear the highlight
+ *
+ * @return [void]
+ */
 IsoManagedListPanel.prototype.clear = function () {
   if (this.currentRow !== null) {
     $(this.currentRow).toggleClass('success');
@@ -89,8 +94,8 @@ IsoManagedListPanel.prototype.clear = function () {
 /**
  * Move To Page
  *
- * @param row [Object] the datatables row object
- * @return [Null]
+ * @param [Object] row the datatables row object
+ * @return [void]
  */
 IsoManagedListPanel.prototype.moveToPage = function (row) {
 	var page_info = this.miTable.page.info();
