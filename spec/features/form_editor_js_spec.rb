@@ -839,7 +839,7 @@ describe "Form Editor", :type => :feature do
       fill_in 'searchTable_csearch_cl', with: 'C100129'
       ui_hit_return('searchTable_csearch_cl')
       wait_for_ajax
-      expect(page).to have_content 'Showing 1 to 10 of 141 entries'
+      expect(page).to have_content 'Showing 1 to 10 of 142 entries'
     end
 
     it "form edit timeout warnings and expiration", js: true do
