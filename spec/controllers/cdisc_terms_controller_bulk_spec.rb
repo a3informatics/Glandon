@@ -39,6 +39,7 @@ describe CdiscTermsController do
       load_data_file_into_triple_store("CT_V47.ttl")
       load_data_file_into_triple_store("CT_V48.ttl")
       load_data_file_into_triple_store("CT_V49.ttl")
+      load_data_file_into_triple_store("CT_V50.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -52,7 +53,7 @@ describe CdiscTermsController do
         "2014-03-28", "2014-06-27", "2014-09-24", "2014-10-06", 
         "2014-12-16", "2015-03-27", "2015-06-26", "2015-09-25", 
         "2015-12-18", "2016-03-25", "2016-06-24", "2016-09-30",
-        "2016-12-13", "2017-03-31", "2017-06-30"
+        "2016-12-13", "2017-03-31", "2017-06-30", "2017-09-29"
       ] 
       return dates
     end
@@ -145,28 +146,29 @@ describe CdiscTermsController do
     it "allows comparison with CDISC reported changes", :ct_bulk_test => true do
       results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
       # Created = :C, Update= :U, Deleted = :D, No change = :-, Not present = :~
-      code_list_history(results, :C100143, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C100150, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :D])
-      code_list_history(results, :C100151, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C100161, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C100169, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C101808, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C101832, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :D, :~, :~, :~])
-      code_list_history(results, :C101849, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
-      code_list_history(results, :C101860, [:C, :-, :-, :-, :U, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
-      code_list_history(results, :C101867, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
-      code_list_history(results, :C102583, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
-      code_list_history(results, :C103460, [:C, :U, :U, :-, :-, :-, :-, :U, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C103472, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C105137, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :U, :-])
-      code_list_history(results, :C106480, [:C, :-, :-, :-, :U, :U, :U, :-, :-, :-, :-, :-, :-, :U, :-])
-      code_list_history(results, :C106658, [:C, :U, :U, :-, :U, :-, :-, :U, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C115406, [:~, :C, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C120986, [:~, :~, :~, :~, :~, :C, :U, :-, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C122006, [:~, :~, :~, :~, :~, :~, :C, :-, :U, :-, :-, :-, :-, :-, :-])
-      code_list_history(results, :C66787,  [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :U, :-, :-])
-      code_list_history(results, :C117991, [:~, :~, :C, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-])
-      code_list_history(results, :C100142, [:~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :C])
+      code_list_history(results, :C100143, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C100150, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :D, :~])
+      code_list_history(results, :C100151, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C100161, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C100169, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C101808, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C101832, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :D, :~, :~, :~, :~])
+      code_list_history(results, :C101849, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C101860, [:C, :-, :-, :-, :U, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C101867, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C102583, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C103460, [:C, :U, :U, :-, :-, :-, :-, :U, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C103472, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C105137, [:C, :U, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :U, :-, :-])
+      code_list_history(results, :C106480, [:C, :-, :-, :-, :U, :U, :U, :-, :-, :-, :-, :-, :-, :U, :-, :-])
+      code_list_history(results, :C106658, [:C, :U, :U, :-, :U, :-, :-, :U, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C115406, [:~, :C, :-, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C120986, [:~, :~, :~, :~, :~, :C, :U, :-, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C122006, [:~, :~, :~, :~, :~, :~, :C, :-, :U, :-, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C66787,  [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :U, :-, :-, :-])
+      code_list_history(results, :C117991, [:~, :~, :C, :-, :-, :-, :-, :-, :U, :U, :-, :-, :-, :-, :-, :-])
+      code_list_history(results, :C100142, [:~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :~, :C, :-])
+      code_list_history(results, :C101848, [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :U])
     end
 
     it "allows comparison with CDISC reported changes", :ct_bulk_test => true do
@@ -204,6 +206,10 @@ describe CdiscTermsController do
       submission_status(results, "2017-06-30", :"C100129.C100763", "CGI", "CGI GUY")
       submission_status(results, "2017-06-30", :"C124298.C125992", "BRUGGERMAN MRD 2010", "BRUGGEMANN MRD 2010")
       submission_status(results, "2017-06-30", :"C124298.C126013", "HARTMANN PANCREATIC CANCER 2012", "HARTMAN PANCREATIC CANCER 2012")
+
+      # September 2017
+      submission_status(results, "2017-09-29", :"C74456.C12774", "ARTERY, PULMONARY", "PULMONARY ARTERY BRANCH")
+      submission_status(results, "2017-09-29", :"C120528.C128982", "Mycobacterium Tuberculosis", "Mycobacterium tuberculosis")
     end
 
   end
