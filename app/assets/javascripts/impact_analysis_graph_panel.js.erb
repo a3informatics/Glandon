@@ -8,8 +8,8 @@
 /**
  * Impact Graph Panel Constructor
  *
- * @param clcikBackCall [Function] the callback function.
- * @return [Null]
+ * @param [Function] clickCallBack the callback function.
+ * @return [void]
  */
 function ImpactAnalysisGraphPanel(clickCallBack) {
   var _this = this;
@@ -31,8 +31,8 @@ function ImpactAnalysisGraphPanel(clickCallBack) {
 /**
  * Node Click
  *
- * @param node [Object] the node clicked on
- * @return [Null]
+ * @param [Object] node the node clicked on
+ * @return [void]
  */
 ImpactAnalysisGraphPanel.prototype.nodeClick = function (node) {
   if (this.currentGRef !== null) {
@@ -57,7 +57,7 @@ ImpactAnalysisGraphPanel.prototype.empty = function () {
 /**
  * Add Node to the graph
  *
- * @param sourceNode [Object] the source data beign added
+ * @param [Object] sourceNode the source data beign added.
  * @return [Object] the node added to the graph. Source node plus additonal properties.
  */
 ImpactAnalysisGraphPanel.prototype.addNode = function (sourceNode) {
@@ -82,8 +82,8 @@ ImpactAnalysisGraphPanel.prototype.addNode = function (sourceNode) {
 /**
  * Link Nodes
  *
- * @param source [Integer] index of the source node
- * @param target [Integer] index of the target node
+ * @param [Integer] source index of the source node
+ * @param [Integer] target index of the target node
  * @return [Boolean] always returns true
  */
 ImpactAnalysisGraphPanel.prototype.addLink = function (source, target) {
@@ -97,7 +97,7 @@ ImpactAnalysisGraphPanel.prototype.addLink = function (source, target) {
 /**
  * Draw the graph
  *
- * @return [Null]
+ * @return [void]
  */
 ImpactAnalysisGraphPanel.prototype.draw = function () {
   var json = JSON.parse(JSON.stringify(this.graph));
