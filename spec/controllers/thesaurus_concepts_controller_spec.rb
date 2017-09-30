@@ -3,6 +3,10 @@ describe ThesaurusConceptsController do
 
   include DataHelpers
   
+  def sub_dir
+    return "controllers"
+  end
+
   describe "Authorized User" do
   	
     login_curator
@@ -320,7 +324,10 @@ describe ThesaurusConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show, params
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")    
+      expect(response.code).to eq("200")
+    #write_text_file_2(response.body, sub_dir, "thesauri_concepts_controller_show.txt")  
+      expected = read_text_file_2(sub_dir, "thesauri_concepts_controller_show.txt")
+      expect(response.body).to eq(expected)  
     end
 
     it "returns a concept as HTML" do

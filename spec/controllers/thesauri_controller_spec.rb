@@ -27,6 +27,10 @@ describe ThesauriController do
     return params
   end
 
+  def sub_dir
+    return "controllers"
+  end
+
   describe "Authorized User" do
   	
     login_curator
@@ -348,10 +352,40 @@ describe ThesauriController do
       expect(response.code).to eq("200")    
     end
 
-    it "export_ttl" do
+    it "export as TTL" do
       params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
       get :export_ttl, params
     end
+
+    it "initiates the impact operation" do
+      params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
+    	th = Thesaurus.find(params[:id], params[:namespace])  	
+      get :impact, params
+      expect(assigns(:thesaurus).to_json).to eq(th.to_json)
+      expect(assigns(:start_path)).to eq(impact_start_thesauri_index_path)
+      expect(response).to render_template("impact")
+    end
+
+    it "starts the impact operation" do
+      #params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
+      params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43" }
+    	th = Thesaurus.find(params[:id], params[:namespace])  	
+    	request.env['HTTP_ACCEPT'] = "application/json"
+      get :impact_start, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")   
+    #write_text_file_2(response.body, sub_dir, "thesauri_controller_impact_start.txt")
+      expected = read_text_file_2(sub_dir, "thesauri_controller_impact_start.txt")
+      expect(response.body).to eq(expected)
+	  end
+
+	  it "produces a pdf report" do
+      params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
+    	th = Thesaurus.find(params[:id], params[:namespace])  	
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      get :impact_report, params
+	  	expect(response.content_type).to eq("application/pdf")
+	  end
 
   end
 
