@@ -1,3 +1,4 @@
+//= require application
 //= require colour
 //= require d3_graph
 //= require rspec_helper
@@ -16,7 +17,7 @@ describe("D3 Graph", function() {
   }
   
   beforeEach(function() {
-  	fixture.set('<div id="d3"></div>');
+  	fixture.set('<div id="d3_tooltip" class="hidden"></div><div id="d3"></div>');
   	d3Div = document.getElementById("d3");
   	var graph = { "nodes": [], "links": []};
 		graph.nodes.push({"index": 0, "name": "node1", "key": 1, "rdf_type": "http://www.example.com/type1"});
@@ -29,6 +30,7 @@ describe("D3 Graph", function() {
 		graph.nodes.push({"index": 7, "name": "node8", "key": 8, "rdf_type": "http://www.example.com/type8"});
 		graph.nodes.push({"index": 8, "name": "node9", "key": 9, "rdf_type": "http://www.example.com/type9"});
 		graph.nodes.push({"index": 9, "name": "node10", "key": 10, "rdf_type": "http://www.example.com/type10"});
+		graph.nodes.push({"index": 10, "name": "node11", "key": 11, "label": "LABEL", "rdf_type": "http://www.assero.co.uk/BusinessForm#Form"});
 		graph.links.push({"source": 0, "target": 1});
 		graph.links.push({"source": 0, "target": 2});
 		graph.links.push({"source": 0, "target": 3});
@@ -95,21 +97,40 @@ describe("D3 Graph", function() {
  	it("allows a node to be marked by reference", function() {
  		var gRef = d3gFindGRef(2);
 		d3gMarkNode(gRef);
-		expect(clickedNodeTest(gRef.style.fill).to.equal(true);
+		expect(clickedNodeTest(gRef.style.fill)).to.equal(true);
   });
 
- 	it("allows a node to be cleared reference", function() {
+ 	it("allows a node to be cleared by reference", function() {
  		var gRef = d3gFindGRef(4);
 		d3gMarkNode(gRef);
-		expect(clickedNodeTest(gRef.style.fill).to.equal(true);
+		expect(clickedNodeTest(gRef.style.fill)).to.equal(true);
 		d3gClearNode (gRef);
-		expect(undefinedNodeTest(gRef.style.fill).to.equal(true);
+		expect(undefinedNodeTest(gRef.style.fill)).to.equal(true);
   });
 
  	it("allows a node reference to be obtained by key", function() {
  		var gRef = d3gFindGRef(2);
 		expect(gRef.__data__.key).to.equal(2); 		
   	expect(gRef.__data__.rdf_type).to.equal("http://www.example.com/type2");
+	});
+
+ 	it("displays info on mouse over", function() {
+ 		var gRef = d3gFindGRef(11);
+		//document.getElementById(gRef).dispatchEvent(new MouseEvent('mouseover'));
+		expect($('#d3_tooltip').hasClass('hidden')).to.equal(true);
+		gRef.__onmouseover();
+    var tooltip = document.getElementById('d3_tooltip');
+    expect($('#d3_tooltip').html()).to.equal("<p><strong>Form</strong></p><p>LABEL</p>");
+		expect($('#d3_tooltip').hasClass('hidden')).to.equal(false);
+		gRef.__onmouseout();
+		expect($('#d3_tooltip').hasClass('hidden')).to.equal(true);
+	});
+
+ 	it("returns the node colour", function() {
+ 		node1 = {type: "NotDefined"};
+ 		node2 = {type: "http://www.assero.co.uk/BusinessForm#Form"};
+		expect(nodeColour(node1)).to.equal("black");
+		expect(nodeColour(node2)).to.equal("gold");
 	});
 
 });
