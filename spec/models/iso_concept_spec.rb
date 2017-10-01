@@ -9,6 +9,17 @@ describe IsoConcept do
     return "models"
   end
 
+  def compare_link_to_results(results, expected)
+		expect(results.length).to eq(expected.length)
+		results.each do |r|
+			found = false
+			expected.each do |e|
+				found = true if e.to_json == r.to_json
+			end
+			expect(r.to_json).to eq(expected.to_json) if !found
+		end
+	end
+
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -743,7 +754,7 @@ describe IsoConcept do
         local: true
       }
     ]
-    expect(results.to_json).to eq(expected.to_json)
+    compare_link_to_results(results, expected)
   end
 
   it "allows the parent object to be determined, concept -> concept" do
