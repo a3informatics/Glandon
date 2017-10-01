@@ -121,10 +121,13 @@ private
 
   def to_xml_length(datatype, format)
     if datatype == BaseDatatype::C_STRING
+      format = "20" if format.blank? # @todo make sure this is set in BCs
       return format
     elsif datatype == BaseDatatype::C_INTEGER || datatype == BaseDatatype::C_POSITIVE_INTEGER
+    	format = "3" if format.blank? # @todo make sure this is set in BCs
       return format
     elsif datatype == BaseDatatype::C_FLOAT
+    	format = "5.1" if format.blank? # @todo make sure this is set in BCs
       parts = format.split('.')
       length = (parts[0].to_i) - 1
       return length
@@ -135,6 +138,7 @@ private
 
   def to_xml_significant_digits(datatype, format)
     if datatype == BaseDatatype::C_FLOAT
+    	format = "5.1" if format.blank? # @todo make sure this is set in BCs
       parts = format.split('.')
       digits = (parts[1].to_i)
       return digits

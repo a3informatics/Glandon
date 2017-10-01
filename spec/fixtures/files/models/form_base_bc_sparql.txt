@@ -448,8 +448,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1_G1_I1> bf:note ""^^xsd:string . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1_G1_I1> bf:completion ""^^xsd:string . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1_G1_I1> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1_G1_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1_G1_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1_G1_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1_G1> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1_G1_I1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1> bf:hasCommon <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1_G1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2_G1> . 

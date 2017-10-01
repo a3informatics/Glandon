@@ -18,10 +18,17 @@ describe Form do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
+    load_schema_file_into_triple_store("ISO25964.ttl")
+    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_dm1.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
     load_test_file_into_triple_store("form_example_general.ttl")
+    load_test_file_into_triple_store("CT_V42.ttl")
+    load_test_file_into_triple_store("CT_V43.ttl")
+    load_test_file_into_triple_store("CT_ACME_V1.ttl")
+    load_test_file_into_triple_store("BCT.ttl")
+    load_test_file_into_triple_store("BC.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -49,7 +56,7 @@ describe Form do
 
   it "allows a form to be found, BC based" do
     result = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "form_example_vs_baseline_new.yaml")
+  #write_hash_to_yaml_file_2(result.to_json, sub_dir, "form_example_vs_baseline_new.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "form_example_vs_baseline_new.yaml")
     expect(result.to_json).to eq(expected)
   end
@@ -216,7 +223,7 @@ describe Form do
 
   it "can serialize as json, BC form" do
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "form_base_bc_json.yaml")
+  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "form_base_bc_json.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "form_base_bc_json.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
     expect(item.to_json).to eq(expected)
@@ -225,7 +232,7 @@ describe Form do
   it "can create the sparql for core form" do
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item.lastChangeDate = "2016-12-23T15:14:09+00:00".to_time_with_default # Fix the time to match the test time
-    #write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "form_base_core_sparql.txt")
+  #write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "form_base_core_sparql.txt")
     expected = read_text_file_2(sub_dir, "form_base_core_sparql.txt")
     expect(item.to_sparql_v2.to_s).to eq(expected)
   end
@@ -233,13 +240,27 @@ describe Form do
   it "can create the sparql for BC form" do
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item.lastChangeDate = "2016-12-23T15:14:09+00:00".to_time_with_default # Fix the time to match the test time
-    #write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "form_base_bc_sparql.txt")
+  #write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "form_base_bc_sparql.txt")
     expected = read_text_file_2(sub_dir, "form_base_bc_sparql.txt")
     expect(item.to_sparql_v2.to_s).to eq(expected)
   end
 
-  it "to_xml"
+  it "to_xml, I" do
+  	item = Form.find("F-ACME_DM101", "http://www.assero.co.uk/MDRForms/ACME/V1")
+  	xml = item.to_xml
+  #write_text_file_2(xml, sub_dir, "form_to_xml_1.xml")
+    expected = read_text_file_2(sub_dir, "form_to_xml_1.xml")
+    expect(xml).to eq(expected)
+  end
   
+  it "to_xml, II" do
+  	item = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+  	xml = item.to_xml
+  #write_text_file_2(xml, sub_dir, "form_to_xml_2.xml")
+    expected = read_text_file_2(sub_dir, "form_to_xml_2.xml")
+    expect(xml).to eq(expected)
+  end
+
   it "checks if the form is valid?" do
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     result = item.valid?
