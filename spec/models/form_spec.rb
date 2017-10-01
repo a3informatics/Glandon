@@ -9,15 +9,6 @@ describe Form do
     return "models"
   end
 
-  def odm_fix_datetimes(results, expected)
-  	run_at_1 = extract_file_oid(expected)
-    run_at_2 = extract_file_oid(results)
-   	results.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    run_at_1 = extract_creation_datetime(expected)
-    run_at_2 = extract_creation_datetime(results)
-   	results.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-  end
-
   before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
