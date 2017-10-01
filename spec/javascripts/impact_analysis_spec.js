@@ -89,6 +89,7 @@ describe("Impact Analysis", function() {
  	});
 
  	it("starts the impact assessment, empty", function() {
+ 		finished = false;
  		iagp_d_stub = sinon.stub(ImpactAnalysisGraphPanel.prototype , "draw")
   	win_da_stub = sinon.stub(window, 'displayAlerts');
   	url = "/start";
@@ -103,8 +104,9 @@ describe("Impact Analysis", function() {
 		]);
   	ia.start();
   	server.respond();
-    expect(iagp_d_stub.calledOnce).to.be.true;
+    expect(iagp_d_stub.notCalled).to.be.true;
   	expect(win_da_stub.notCalled).to.be.true;
+  	expect(finished).to.equal(true); // Callback called
     iagp_d_stub.restore();
   	win_da_stub.restore();  
  	});

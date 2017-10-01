@@ -47,10 +47,14 @@ ImpactAnalysis.prototype.start = function () {
     type: 'GET',
     dataType: 'json',
     success: function(results) {
-    	for (var i=0; i<results.length; i++) {
-    		_this.child(results[i], ImpactAnalysis.PARENT_NODE, 1);
-  		}
-  		_this.graph.draw();
+    	if (results.length > 0) {
+	    	for (var i=0; i<results.length; i++) {
+  	  		_this.child(results[i], ImpactAnalysis.PARENT_NODE, 1);
+  			}
+  			_this.graph.draw();
+    	} else {
+    		_this.finishedCallback();
+    	}
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
