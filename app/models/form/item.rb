@@ -97,9 +97,10 @@ class Form::Item < IsoConcept
 
   # To XML
   #
-  # @param metadata_version [object] 
-  # @param form_def [object] 
-  # @param item_group_def [object]
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
   def to_xml(metadata_version, form_def, item_group_def)
     item_group_def.add_item_ref("#{self.id}", "#{self.ordinal}", "No", "", "", "", "", "")
   end

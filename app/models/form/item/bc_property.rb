@@ -122,10 +122,10 @@ class Form::Item::BcProperty < Form::Item
 
   # To XML
   #
-  # @param metadata_version [object] 
-  # @param form_def [object] 
-  # @param item_group_def [object]
-  # @return null
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
   def to_xml(metadata_version, form_def, item_group_def)
     super(metadata_version, form_def, item_group_def)
     bc_property = BiomedicalConceptCore::Property.find(property_ref.subject_ref.id, property_ref.subject_ref.namespace)
@@ -135,10 +135,10 @@ class Form::Item::BcProperty < Form::Item
     item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "#{xml_datatype}", "#{xml_length}", "#{xml_digits}", "", "", "", "")
     question = item_def.add_question()
     question.add_translated_text("#{bc_property.question_text}")
-    if bc_property.tc_refs.length > 0
+    if children.length > 0
       code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
       code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
-      bc_property.tc_refs.each do |tc_ref|
+      children.each do |tc_ref|
       	cli = ThesaurusConcept.find(tc_ref.subject_ref.id, tc_ref.subject_ref.namespace)
         code_list_item = code_list.add_code_list_item(cli.notation, "", "#{tc_ref.ordinal}")
         decode = code_list_item.add_decode()

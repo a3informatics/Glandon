@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Form::Item::TextLabel do
   
   include DataHelpers
+  include OdmHelpers
 
   def sub_dir
     return "models/form/item"
@@ -129,7 +130,25 @@ describe Form::Item::TextLabel do
     expect(sparql.to_s).to eq(result)
   end
   
-  it "allows an object to be exported as XML"
+  it "allows an object to be exported as XML" do
+  	odm = add_root
+    study = add_study(odm.root)
+    mdv = add_mdv(study)
+    form = add_form(mdv)
+    form.add_item_group_ref("G-TEST", "1", "No", "")
+    item_group = mdv.add_item_group_def("G-TEST", "test group", "No", "", "", "", "", "", "")
+    item = Form::Item::TextLabel.new
+    item.id = "THE-ID"
+    item.label = "Item"
+    item.label_text = "The Label"
+    item.ordinal = 34
+		item.to_xml(mdv, form, item_group)
+		xml = odm.to_xml
+  #write_text_file_2(xml, sub_dir, "text_label_to_xml_1.xml")
+    expected = read_text_file_2(sub_dir, "text_label_to_xml_1.xml")
+    odm_fix_datetimes(xml, expected)
+    expect(xml).to eq(expected)
+  end
 
 end
   

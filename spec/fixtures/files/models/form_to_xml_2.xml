@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="ODM-F-ACME_VSBASELINE1" FileType="Snapshot" Granularity="Metadata" FileOID="2017-10-01T11:26:27+01:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="2.12.0" CreationDateTime="2017-10-01T11:26:27+01:00">
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="ODM-F-ACME_VSBASELINE1" FileType="Snapshot" Granularity="Metadata" FileOID="2017-10-01T16:30:45+01:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="2.12.0" CreationDateTime="2017-10-01T16:30:45+01:00">
   <Study OID="S-F-ACME_VSBASELINE1">
     <GlobalVariables>
       <StudyName>Form Export Vital Signs Baseline (VS BASELINE)</StudyName>
@@ -19,38 +19,35 @@
         <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1_G3" OrderNumber="3" Mandatory="No"/>
         <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1_G4" OrderNumber="4" Mandatory="No"/>
         <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1_G1" OrderNumber="1" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1" OrderNumber="1" Mandatory="No"/>
       </FormDef>
       <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G2" Name="Height (BC_C25347)" Repeating="No">
         <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G2_I1" OrderNumber="1" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G2_I2" OrderNumber="2" Mandatory="No"/>
         <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G2_I3" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G2_I2" OrderNumber="2" Mandatory="No"/>
       </ItemGroupDef>
       <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G5" Name="Diastolic Blood Pressure (BC_C25299)" Repeating="No">
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I1" OrderNumber="1" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I2" OrderNumber="2" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I3" OrderNumber="3" Mandatory="No"/>
         <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I4" OrderNumber="4" Mandatory="No"/>
+        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I1" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I3" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I2" OrderNumber="2" Mandatory="No"/>
       </ItemGroupDef>
       <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G3" Name="Weight (BC_C25208)" Repeating="No">
         <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G3_I1" OrderNumber="1" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G3_I2" OrderNumber="2" Mandatory="No"/>
         <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G3_I3" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G3_I2" OrderNumber="2" Mandatory="No"/>
       </ItemGroupDef>
       <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G4" Name="Systolic Blood Pressure (BC_C25298)" Repeating="No">
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I1" OrderNumber="1" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I2" OrderNumber="2" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I3" OrderNumber="3" Mandatory="No"/>
         <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I4" OrderNumber="4" Mandatory="No"/>
+        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I1" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I3" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I2" OrderNumber="2" Mandatory="No"/>
       </ItemGroupDef>
       <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G1" Name="Common" Repeating="No"/>
+      <ItemGroupDef OID="F-ACME_VSBASELINE1_G1" Name="Group" Repeating="No"/>
       <ItemDef OID="F-ACME_VSBASELINE1_G1_G2_I1" Name="Date and Time (--DTC)" DataType="datetime">
         <Question>
           <TranslatedText xml:lang="en">Question text</TranslatedText>
-        </Question>
-      </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G2_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
-        <Question>
-          <TranslatedText xml:lang="en">Result value?</TranslatedText>
         </Question>
       </ItemDef>
       <ItemDef OID="F-ACME_VSBASELINE1_G1_G2_I3" Name="Result Units (--ORRESU)" DataType="text" Length="20">
@@ -59,14 +56,20 @@
         </Question>
         <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G2_I3-CL"/>
       </ItemDef>
+      <ItemDef OID="F-ACME_VSBASELINE1_G1_G2_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Result value?</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I4" Name="Body Position (--POS)" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Body position?</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G5_I4-CL"/>
+      </ItemDef>
       <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I1" Name="Date and Time (--DTC)" DataType="datetime">
         <Question>
           <TranslatedText xml:lang="en">Question text</TranslatedText>
-        </Question>
-      </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
-        <Question>
-          <TranslatedText xml:lang="en">Result value?</TranslatedText>
         </Question>
       </ItemDef>
       <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I3" Name="Result Units (--ORRESU)" DataType="text" Length="20">
@@ -75,20 +78,14 @@
         </Question>
         <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G5_I3-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I4" Name="Body Position (--POS)" DataType="text" Length="20">
+      <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
         <Question>
-          <TranslatedText xml:lang="en">Body position?</TranslatedText>
+          <TranslatedText xml:lang="en">Result value?</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G5_I4-CL"/>
       </ItemDef>
       <ItemDef OID="F-ACME_VSBASELINE1_G1_G3_I1" Name="Date and Time (--DTC)" DataType="datetime">
         <Question>
           <TranslatedText xml:lang="en">Question text</TranslatedText>
-        </Question>
-      </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G3_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
-        <Question>
-          <TranslatedText xml:lang="en">Result value?</TranslatedText>
         </Question>
       </ItemDef>
       <ItemDef OID="F-ACME_VSBASELINE1_G1_G3_I3" Name="Result Units (--ORRESU)" DataType="text" Length="20">
@@ -97,14 +94,20 @@
         </Question>
         <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G3_I3-CL"/>
       </ItemDef>
+      <ItemDef OID="F-ACME_VSBASELINE1_G1_G3_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Result value?</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I4" Name="Body Position (--POS)" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Body position?</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G4_I4-CL"/>
+      </ItemDef>
       <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I1" Name="Date and Time (--DTC)" DataType="datetime">
         <Question>
           <TranslatedText xml:lang="en">Question text</TranslatedText>
-        </Question>
-      </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
-        <Question>
-          <TranslatedText xml:lang="en">Result value?</TranslatedText>
         </Question>
       </ItemDef>
       <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I3" Name="Result Units (--ORRESU)" DataType="text" Length="20">
@@ -113,31 +116,47 @@
         </Question>
         <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G4_I3-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I4" Name="Body Position (--POS)" DataType="text" Length="20">
+      <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
         <Question>
-          <TranslatedText xml:lang="en">Body position?</TranslatedText>
+          <TranslatedText xml:lang="en">Result value?</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G4_I4-CL"/>
       </ItemDef>
       <CodeList OID="F-ACME_VSBASELINE1_G1_G2_I3-CL" Name="Code list for Result Units (--ORRESU)" DataType="text">
-        <CodeListItem CodedValue="cm" OrderNumber="1">
+        <CodeListItem CodedValue="ft" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">International Foot</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="cm" OrderNumber="4">
           <Decode>
             <TranslatedText xml:lang="en">Centimeter</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="in" OrderNumber="2">
+        <CodeListItem CodedValue="in" OrderNumber="3">
           <Decode>
             <TranslatedText xml:lang="en">Inch</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="m" OrderNumber="3">
+        <CodeListItem CodedValue="m" OrderNumber="2">
           <Decode>
             <TranslatedText xml:lang="en">Meter</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="ft" OrderNumber="4">
+      </CodeList>
+      <CodeList OID="F-ACME_VSBASELINE1_G1_G5_I4-CL" Name="Code list for Body Position (--POS)" DataType="text">
+        <CodeListItem CodedValue="STANDING" OrderNumber="2">
           <Decode>
-            <TranslatedText xml:lang="en">International Foot</TranslatedText>
+            <TranslatedText xml:lang="en">Standing</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="SITTING" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Sitting</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="SUPINE" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Supine Position</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>
@@ -148,13 +167,30 @@
           </Decode>
         </CodeListItem>
       </CodeList>
-      <CodeList OID="F-ACME_VSBASELINE1_G1_G5_I4-CL" Name="Code list for Body Position (--POS)" DataType="text">
-        <CodeListItem CodedValue="SUPINE" OrderNumber="3">
+      <CodeList OID="F-ACME_VSBASELINE1_G1_G3_I3-CL" Name="Code list for Result Units (--ORRESU)" DataType="text">
+        <CodeListItem CodedValue="g" OrderNumber="2">
           <Decode>
-            <TranslatedText xml:lang="en">Supine Position</TranslatedText>
+            <TranslatedText xml:lang="en">Gram</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="SITTING" OrderNumber="1">
+        <CodeListItem CodedValue="oz" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Ounce</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="LB" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Pound</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="kg" OrderNumber="4">
+          <Decode>
+            <TranslatedText xml:lang="en">Kilogram</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="F-ACME_VSBASELINE1_G1_G4_I4-CL" Name="Code list for Body Position (--POS)" DataType="text">
+        <CodeListItem CodedValue="SITTING" OrderNumber="3">
           <Decode>
             <TranslatedText xml:lang="en">Sitting</TranslatedText>
           </Decode>
@@ -164,26 +200,9 @@
             <TranslatedText xml:lang="en">Standing</TranslatedText>
           </Decode>
         </CodeListItem>
-      </CodeList>
-      <CodeList OID="F-ACME_VSBASELINE1_G1_G3_I3-CL" Name="Code list for Result Units (--ORRESU)" DataType="text">
-        <CodeListItem CodedValue="g" OrderNumber="3">
+        <CodeListItem CodedValue="SUPINE" OrderNumber="1">
           <Decode>
-            <TranslatedText xml:lang="en">Gram</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="oz" OrderNumber="4">
-          <Decode>
-            <TranslatedText xml:lang="en">Ounce</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="kg" OrderNumber="1">
-          <Decode>
-            <TranslatedText xml:lang="en">Kilogram</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="LB" OrderNumber="2">
-          <Decode>
-            <TranslatedText xml:lang="en">Pound</TranslatedText>
+            <TranslatedText xml:lang="en">Supine Position</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>
@@ -191,23 +210,6 @@
         <CodeListItem CodedValue="mmHg" OrderNumber="1">
           <Decode>
             <TranslatedText xml:lang="en">Millimeter of Mercury</TranslatedText>
-          </Decode>
-        </CodeListItem>
-      </CodeList>
-      <CodeList OID="F-ACME_VSBASELINE1_G1_G4_I4-CL" Name="Code list for Body Position (--POS)" DataType="text">
-        <CodeListItem CodedValue="SUPINE" OrderNumber="3">
-          <Decode>
-            <TranslatedText xml:lang="en">Supine Position</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="SITTING" OrderNumber="1">
-          <Decode>
-            <TranslatedText xml:lang="en">Sitting</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="STANDING" OrderNumber="2">
-          <Decode>
-            <TranslatedText xml:lang="en">Standing</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>

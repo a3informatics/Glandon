@@ -90,10 +90,10 @@ class Form::Item::Common < Form::Item
   
   # To XML
   #
-  # @param metadata_version [object] 
-  # @param form_def [object] 
-  # @param item_group_def [object]
-  # @return null
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
   def to_xml(metadata_version, form_def, item_group_def)
     # Do nothing currently
   end

@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Form::Item::BcProperty do
 
   include DataHelpers
+  include OdmHelpers
 
   def sub_dir
     return "models/form/item"
@@ -18,6 +19,7 @@ describe Form::Item::BcProperty do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
+    load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
@@ -74,7 +76,7 @@ describe Form::Item::BcProperty do
 
   it "allows the item to be found" do
     item = Form::Item::BcProperty.find("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_property_find.yaml")
+  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "bc_property_find.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "bc_property_find.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -82,7 +84,7 @@ describe Form::Item::BcProperty do
   it "allows the BC Property to be found" do
     item = Form::Item::BcProperty.find("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
     result = item.bc_property
-    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "bc_property_property.yaml")
+  #write_hash_to_yaml_file_2(result.to_json, sub_dir, "bc_property_property.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "bc_property_property.yaml")
     expect(result.to_json).to eq(expected)
   end
@@ -92,7 +94,7 @@ describe Form::Item::BcProperty do
     result = item.thesaurus_concepts
     json = []
     result.each {|tc| json << tc.to_json}
-    #write_hash_to_yaml_file_2(json, sub_dir, "bc_property_tcs.yaml")
+  #write_hash_to_yaml_file_2(json, sub_dir, "bc_property_tcs.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "bc_property_tcs.yaml")
     expect(json).to eq(expected)
   end 
@@ -212,7 +214,36 @@ describe Form::Item::BcProperty do
     expect(sparql.to_s).to eq(result)
   end
   
-  it "allows an object to be exported as XML"
+  it "allows an object to be exported as XML" do
+  	odm = add_root
+    study = add_study(odm.root)
+    mdv = add_mdv(study)
+    form = add_form(mdv)
+    form.add_item_group_ref("G-TEST", "1", "No", "")
+    item_group = mdv.add_item_group_def("G-TEST", "test group", "No", "", "", "", "", "", "")
+    item = Form::Item::BcProperty.new
+    item.id = "THE-ID"
+    item.label = "A label for the name attribute"
+    item.property_ref = OperationalReferenceV2.new
+    item.property_ref.subject_ref = UriV2.new({:id => "BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", 
+    	:namespace => "http://www.assero.co.uk/MDRBCs/V1"})
+    item.rdf_type = "http://www.example.com/path#rdf_test_type"
+    item.label = "label"
+    item.note = "Hello!"
+    item.ordinal = 1
+    item.is_common = false
+    tc_ref = OperationalReferenceV2.new
+    tc_ref.ordinal = 1
+    tc_ref.subject_ref = UriV2.new({:id => "CLI-C66770_C49668", 
+    	:namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"})
+    item.children << tc_ref
+ 		item.to_xml(mdv, form, item_group)
+		xml = odm.to_xml
+  #write_text_file_2(xml, sub_dir, "bc_property_to_xml_1.xml")
+    expected = read_text_file_2(sub_dir, "bc_property_to_xml_1.xml")
+    odm_fix_datetimes(xml, expected)
+    expect(xml).to eq(expected)
+  end
 
 end
   

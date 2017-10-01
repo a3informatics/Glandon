@@ -80,10 +80,10 @@ class Form::Item::Placeholder < Form::Item
   
   # To XML
   #
-  # @param metadata_version [object] 
-  # @param form_def [object] 
-  # @param item_group_def [object]
-  # @return null
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
   def to_xml(metadata_version, form_def, item_group_def)
     super(metadata_version, form_def, item_group_def)
     item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "", "", "", "", "", "", "")

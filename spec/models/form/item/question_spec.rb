@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Form::Item::Question do
   
   include DataHelpers
+  include OdmHelpers
 
   def sub_dir
     return "models/form/item"
@@ -123,8 +124,8 @@ describe Form::Item::Question do
   end
 
   it "allows an object to be found" do
-    item = Form::Item::Mapping.find("F-ACME_T2_G1_I4","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "question_find.yaml")
+    item = Form::Item::Question.find("F-ACME_T2_G1_I4","http://www.assero.co.uk/MDRForms/ACME/V1")
+  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "question_find.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "question_find.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -287,7 +288,28 @@ describe Form::Item::Question do
     expect(sparql.to_s).to eq(expected)
   end
 
-  it "allows an object to be exported as XML"
+  it "allows an object to be exported as XML" do
+  	odm = add_root
+    study = add_study(odm.root)
+    mdv = add_mdv(study)
+    form = add_form(mdv)
+    form.add_item_group_ref("G-TEST", "1", "No", "")
+    item_group = mdv.add_item_group_def("G-TEST", "test group", "No", "", "", "", "", "", "")
+    item = Form::Item::Question.new
+    item.id = "THE-ID"
+    item.label = "A label for the name attribute"
+    item.datatype = "string"
+    item.format = "20"
+    item.question_text = "Hello"
+    item.ordinal = 45
+    item.tc_refs = []
+		item.to_xml(mdv, form, item_group)
+		xml = odm.to_xml
+  #write_text_file_2(xml, sub_dir, "question_to_xml_1.xml")
+    expected = read_text_file_2(sub_dir, "question_to_xml_1.xml")
+    odm_fix_datetimes(xml, expected)
+    expect(xml).to eq(expected)
+  end
 
 end
   

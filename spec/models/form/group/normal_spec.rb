@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Form::Group::Normal do
   
   include DataHelpers
+  include OdmHelpers
 
   def sub_dir
     return "models/form/group"
@@ -228,7 +229,44 @@ describe Form::Group::Normal do
     expect(sparql.to_s).to eq(result)
   end
 
-  it "allows an object to be exported as XML"
+  it "allows an object to be exported as XML, no children" do
+  	odm = add_root
+    study = add_study(odm.root)
+    mdv = add_mdv(study)
+    form = add_form(mdv)
+    item = Form::Group::Normal.new
+    item.id = "G-TEST"
+    item.label = "test label"
+    item.ordinal = 119
+		item.to_xml(mdv, form)
+		xml = odm.to_xml
+  write_text_file_2(xml, sub_dir, "normal_to_xml_1.xml")
+    expected = read_text_file_2(sub_dir, "normal_to_xml_1.xml")
+    odm_fix_datetimes(xml, expected)
+    expect(xml).to eq(expected)
+  end
+  
+  it "allows an object to be exported as XML, children" do
+  	odm = add_root
+    study = add_study(odm.root)
+    mdv = add_mdv(study)
+    form = add_form(mdv)
+    item_c = Form::Group::Normal.new
+    item_c.id = "G-TEST-CHILD"
+    item_c.label = "test label child"
+    item_c.ordinal = 1
+		item = Form::Group::Normal.new
+    item.id = "G-TEST"
+    item.label = "test label"
+    item.ordinal = 119
+		item.groups << item_c
+		item.to_xml(mdv, form)
+		xml = odm.to_xml
+  write_text_file_2(xml, sub_dir, "normal_to_xml_2.xml")
+    expected = read_text_file_2(sub_dir, "normal_to_xml_2.xml")
+    odm_fix_datetimes(xml, expected)
+    expect(xml).to eq(expected)
+  end
   
 end
   

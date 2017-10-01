@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-describe Form::Group::Common::Common do
+describe Form::Group::Common do
   
   include DataHelpers
+  include OdmHelpers
 
   def sub_dir
     return "models/form/group"
@@ -130,7 +131,7 @@ describe Form::Group::Common::Common do
 
   it "allows an object to be found" do
     item = Form::Group::Common.find("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "common_find.yaml")
+  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "common_find.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "common_find.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -186,7 +187,22 @@ describe Form::Group::Common::Common do
     expect(sparql.to_s).to eq(result)
   end
 
-  it "allows an object to be exported as XML"
+  it "allows an object to be exported as XML" do
+  	odm = add_root
+    study = add_study(odm.root)
+    mdv = add_mdv(study)
+    form = add_form(mdv)
+    item = Form::Group::Common.new
+    item.id = "G-TEST"
+    item.label = "test label"
+    item.ordinal = 119
+		item.to_xml(mdv, form)
+		xml = odm.to_xml
+  #write_text_file_2(xml, sub_dir, "common_to_xml_1.xml")
+    expected = read_text_file_2(sub_dir, "common_to_xml_1.xml")
+    odm_fix_datetimes(xml, expected)
+    expect(xml).to eq(expected)
+  end
   
 end
   
