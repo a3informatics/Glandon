@@ -17,7 +17,7 @@ module BaseDatatype
 			C_INTEGER => { :xsd_fragment => "integer", :xsd => "http://www.w3.org/2001/XMLSchema#integer", :label => "Integer", :short_label => "I", :odm => "integer", :display => true},
 			C_POSITIVE_INTEGER => { :xsd_fragment => "positiveInteger", :xsd => "http://www.w3.org/2001/XMLSchema#positiveInteger", :label => "Integer", :short_label => "I", :odm => "integer", :display => false},
 			C_BOOLEAN => { :xsd_fragment => "boolean", :xsd => "http://www.w3.org/2001/XMLSchema#boolean", :label => "Boolean", :short_label => "B", :odm => "boolean", :display => true},
-			C_DATETIME => { :xsd_fragment => "dateTime", :xsd => "http://www.w3.org/2001/XMLSchema#dateTime", :label => "Datetime", :short_label => "D+T", :odm => "dataTime", :display => true},
+			C_DATETIME => { :xsd_fragment => "dateTime", :xsd => "http://www.w3.org/2001/XMLSchema#dateTime", :label => "Datetime", :short_label => "D+T", :odm => "datetime", :display => true},
 			C_DATE => { :xsd_fragment => "date", :xsd => "http://www.w3.org/2001/XMLSchema#date", :label => "Date", :short_label => "D", :odm => "date", :display => true},
 			C_TIME => { :xsd_fragment => "time", :xsd => "http://www.w3.org/2001/XMLSchema#time", :label => "Time", :short_label => "T", :odm => "time", :display => true},
 			C_FLOAT => { :xsd_fragment => "float", :xsd => "http://www.w3.org/2001/XMLSchema#float", :label => "Float", :short_label => "F", :odm => "float", :display => true}

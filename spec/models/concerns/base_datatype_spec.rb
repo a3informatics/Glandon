@@ -72,6 +72,10 @@ describe BaseDatatype do
     expect(BaseDatatype.to_odm("date")).to eq("date")
   end
 
+  it "obtain generic to ODM datatype - dateTime" do
+    expect(BaseDatatype.to_odm("dateTime")).to eq("datetime")
+  end
+
   it "obtain generic to ODM datatype - error" do
     expect(BaseDatatype.to_odm("datex")).to eq("")
   end
@@ -81,7 +85,7 @@ describe BaseDatatype do
       {
         "boolean" => {:xsd_fragment=>"boolean", :xsd=>"http://www.w3.org/2001/XMLSchema#boolean", :label=>"Boolean", :short_label=>"B", :odm=>"boolean", :display=>true},
         "date" => {:xsd_fragment=>"date", :xsd=>"http://www.w3.org/2001/XMLSchema#date", :label=>"Date", :short_label=>"D", :odm=>"date", :display=>true},
-        "dateTime" => {:xsd_fragment=>"dateTime", :xsd=>"http://www.w3.org/2001/XMLSchema#dateTime", :label=>"Datetime", :short_label=>"D+T", :odm=>"dataTime", :display=>true},
+        "dateTime" => {:xsd_fragment=>"dateTime", :xsd=>"http://www.w3.org/2001/XMLSchema#dateTime", :label=>"Datetime", :short_label=>"D+T", :odm=>"datetime", :display=>true},
         "float" => {:xsd_fragment=>"float", :xsd=>"http://www.w3.org/2001/XMLSchema#float", :label=>"Float", :short_label=>"F", :odm=>"float", :display=>true},
         "integer" => {:xsd_fragment=>"integer", :xsd=>"http://www.w3.org/2001/XMLSchema#integer", :label=>"Integer", :short_label=>"I", :odm=>"integer", :display=>true},
         "string" => {:xsd_fragment=>"string", :xsd=>"http://www.w3.org/2001/XMLSchema#string", :label=>"String", :short_label=>"S", :odm=>"text", :display=>true},
@@ -99,15 +103,9 @@ describe BaseDatatype do
   end
 
   it "allows the whole map to be exported as JSON" do
-    #write_text_file_2(BaseDatatype.to_json, sub_dir, "base_datatype_json.txt")
+  #write_text_file_2(BaseDatatype.to_json, sub_dir, "base_datatype_json.txt")
     result = read_text_file_2(sub_dir, "base_datatype_json.txt")
     expect(BaseDatatype.to_json).to eq(result)
   end
 
-  it "allows the whole map to be exported as JSON" do
-    #write_text_file_2(BaseDatatype.to_json, sub_dir, "base_datatype_json.txt")
-    result = read_text_file_2(sub_dir, "base_datatype_json.txt")
-    expect(BaseDatatype.to_json).to eq(result)
-  end
-  
 end
