@@ -240,7 +240,7 @@ describe Form::Group::Normal do
     item.ordinal = 119
 		item.to_xml(mdv, form)
 		xml = odm.to_xml
-  write_text_file_2(xml, sub_dir, "normal_to_xml_1.xml")
+  #write_text_file_2(xml, sub_dir, "normal_to_xml_1.xml")
     expected = read_text_file_2(sub_dir, "normal_to_xml_1.xml")
     odm_fix_datetimes(xml, expected)
     expect(xml).to eq(expected)
@@ -262,7 +262,7 @@ describe Form::Group::Normal do
 		item.groups << item_c
 		item.to_xml(mdv, form)
 		xml = odm.to_xml
-  write_text_file_2(xml, sub_dir, "normal_to_xml_2.xml")
+  #write_text_file_2(xml, sub_dir, "normal_to_xml_2.xml")
     expected = read_text_file_2(sub_dir, "normal_to_xml_2.xml")
     odm_fix_datetimes(xml, expected)
     expect(xml).to eq(expected)

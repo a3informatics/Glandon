@@ -74,15 +74,15 @@ describe SdtmIgDomain::Variable do
 
   it "allows an object to be found" do
     variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-    write_yaml_file(variable.triples, sub_dir, "variable_triples.yaml")
-    write_yaml_file(variable.to_json, sub_dir, "variable.yaml")
+  #write_yaml_file(variable.triples, sub_dir, "variable_triples.yaml")
+  #write_yaml_file(variable.to_json, sub_dir, "variable.yaml")
     expected = read_yaml_file(sub_dir, "variable.yaml")
     expect(variable.to_json).to eq(expected)
   end
 
   it "allows an object to be exported as JSON" do
     variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-    write_yaml_file(variable.to_json, sub_dir, "variable_to_json.yaml")
+  #write_yaml_file(variable.to_json, sub_dir, "variable_to_json.yaml")
     expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
     expect(variable.to_json).to eq(expected)
   end

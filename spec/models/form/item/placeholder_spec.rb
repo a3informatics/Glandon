@@ -160,7 +160,7 @@ it "allows an object to be exported as XML" do
     item.ordinal = 45
     item.to_xml(mdv, form, item_group)
 		xml = odm.to_xml
-  write_text_file_2(xml, sub_dir, "placeholder_to_xml_1.xml")
+  #write_text_file_2(xml, sub_dir, "placeholder_to_xml_1.xml")
     expected = read_text_file_2(sub_dir, "placeholder_to_xml_1.xml")
     odm_fix_datetimes(xml, expected)
     expect(xml).to eq(expected)

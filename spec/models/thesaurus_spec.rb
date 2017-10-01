@@ -87,7 +87,7 @@ describe Thesaurus do
 
   it "allows the complete Th to be found" do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-  write_yaml_file(th.to_json, sub_dir, "thesaurus_example_2.yaml")
+  #write_yaml_file(th.to_json, sub_dir, "thesaurus_example_2.yaml")
   	expected = read_yaml_file(sub_dir, "thesaurus_example_2.yaml")
     expect(th.to_json).to be_eql(expected)    
   end
