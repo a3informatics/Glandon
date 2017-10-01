@@ -3,9 +3,19 @@ require 'rails_helper'
 describe Form do
 
 	include DataHelpers
+	include OdmHelpers
 
   def sub_dir
     return "models"
+  end
+
+  def odm_fix_datetimes(results, expected)
+  	run_at_1 = extract_file_oid(expected)
+    run_at_2 = extract_file_oid(results)
+   	results.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    run_at_1 = extract_creation_datetime(expected)
+    run_at_2 = extract_creation_datetime(results)
+   	results.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
   end
 
   before :all do
@@ -250,6 +260,7 @@ describe Form do
   	xml = item.to_xml
   #write_text_file_2(xml, sub_dir, "form_to_xml_1.xml")
     expected = read_text_file_2(sub_dir, "form_to_xml_1.xml")
+    odm_fix_datetimes(xml, expected)
     expect(xml).to eq(expected)
   end
   
@@ -258,6 +269,7 @@ describe Form do
   	xml = item.to_xml
   #write_text_file_2(xml, sub_dir, "form_to_xml_2.xml")
     expected = read_text_file_2(sub_dir, "form_to_xml_2.xml")
+    odm_fix_datetimes(xml, expected)
     expect(xml).to eq(expected)
   end
 
