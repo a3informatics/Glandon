@@ -1,5 +1,5 @@
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Temperature (BC C25206)" . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2016-01-01" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2016-01-01" . 
@@ -39,15 +39,15 @@
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#collect> 			"true" . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66742_C49487> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"true" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66742_C49488> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"true" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
@@ -149,8 +149,8 @@
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#format> 			"" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#collect> 			"false" . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C67153_C25206> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"true" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
@@ -167,8 +167,8 @@
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#format> 			"" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code_TR_1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#collect> 			"false" . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code_TR_1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code_TR_1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code_TR_1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code_TR_1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66741_C25206> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code_TR_1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"true" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code_TR_1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
@@ -252,8 +252,8 @@
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#format> 			"" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#collect> 			"true" . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66770_C42559> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"true" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code_TR_1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
@@ -269,8 +269,8 @@
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#enabled> 			"true" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#format> 			"" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value> 			<http://www.assero.co.uk/CDISCBiomedicalConcept#collect> 			"true" . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BctReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Biomedical Concept Template Reference" . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BctReference> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR> 			<http://www.assero.co.uk/BusinessOperational#basedOnTemplate> 			<http://www.assero.co.uk/MDRBCTs/V1#BCT-Obs_PQR> . 
