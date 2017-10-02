@@ -114,8 +114,8 @@ module DataHelpers
   end
 
   def clear_iso_registration_authority_object
-    IsoRegistrationAuthority.class_variable_set(:@@idMap, Hash.new)
-    IsoRegistrationAuthority.class_variable_set(:@@nameMap, Hash.new) 
+    IsoRegistrationAuthority.class_variable_set(:@@id_map, Hash.new)
+    IsoRegistrationAuthority.class_variable_set(:@@name_map, Hash.new) 
     IsoRegistrationAuthority.class_variable_set(:@@repositoryOwner, nil) 
   end
 
