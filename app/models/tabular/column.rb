@@ -57,8 +57,8 @@ class Tabular::Column < IsoConcept
 
   # To SPARQL
   #
-  # @param parent_uri [UriV2] URI object
-  # @param sparql [SparqlUpdateV2] The SPARQL object
+  # @param [SparqlUpdateV2] sparql the SPARQL object
+  # @param [String] schema_prefix the schema prefix for the triples
   # @return [UriV2] The URI
   def to_sparql_v2(sparql, schema_prefix)
     super(sparql, schema_prefix)
