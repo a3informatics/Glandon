@@ -1,10 +1,14 @@
 class SdtmModelClassification < EnumeratedLabel
   
+  attr_accessor :children, :parent
+
   C_LINK_TYPE = "classifiedAs"
   C_SCHEMA_PREFIX = UriManagement::C_BD
   C_RDF_TYPE = "VariableClassification"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_DEFAULT = "QUALIFIER"
+  C_CID_SUFFIX_PARENT = "C"
+  C_CID_PARENT_CHILD = "SC"
 
   # Initialize
   #
@@ -12,6 +16,8 @@ class SdtmModelClassification < EnumeratedLabel
   # @params id [String] the id to be initialized
   # @return [Null]
   def initialize(triples=nil, id=nil)
+  	self.children = []
+    self.parent = nil
     if triples.nil?
       super
     else
@@ -143,9 +149,43 @@ class SdtmModelClassification < EnumeratedLabel
   # From JSON
   #
   # @param json [Hash] The hash of values for the object 
-  # @return [SdtmModelDatatype] The object
+  # @return [SdtmModelClassification] The object
   def self.from_json(json)
     return super(json)
+  end
+
+  # Add Child
+  #
+  # @param [SdtmModelClassification] object the object for the child
+  # @return [void] no return
+  def add_child(object)
+  	self.children << object
+  end
+
+  # Set Parent
+  #
+  # @return [void] no return
+  def set_parent
+  	self.parent = true
+  end
+
+  # To SPARQL
+  #
+  # @param [UriV2] parent_uri the parent URI
+	# @param [SparqlUpdateV2] sparql the SPARQL object
+  # @return [UriV2] The URI
+ 	def to_sparql_v2(parent_uri, sparql)
+ 		suffix = self.parent ? C_CID_SUFFIX_PARENT : C_CID_PARENT_CHILD 
+ 		self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{suffix}#{Uri::C_UID_SECTION_SEPARATOR}#{self.label.upcase.gsub(/\s+/, "")}"
+    self.namespace = parent_uri.namespace
+    uri = super(sparql, C_SCHEMA_PREFIX)
+  	subject = {uri: uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "parentClassification "}, {:uri => parent_uri}) if !self.parent
+    self.children.each do |child| 
+    	ref_uri = child.to_sparql_v2(uri, sparql)
+    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "childClassification "}, {:uri => ref_uri}) 
+    end
+    return uri
   end
 
 end

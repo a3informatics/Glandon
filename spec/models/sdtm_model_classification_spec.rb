@@ -118,4 +118,81 @@ describe SdtmModelClassification do
     expect(default.to_json).to eq(expected)
   end
 
+  it "allows addition of parent" do
+  	parent_uri = UriV2.new(id: "MODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+  	parent_classification_uri = UriV2.new(id: "MODEL_C_PARENT", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+		child_1_classification_uri = UriV2.new(id: "MODEL_SC_CHILD1", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+  	child_2_classification_uri = UriV2.new(id: "MODEL_SC_CHILD2", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    item = SdtmModelClassification.new
+    item.label = "CLASSIFICATION"
+		item.set_parent
+    expect(item.parent).to eq(true)
+  end
+
+  it "allows addition of children" do
+  	parent_uri = UriV2.new(id: "MODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+		child_1_classification = SdtmModelClassification.new
+  	child_2_classification = SdtmModelClassification.new
+  	child_3_classification = SdtmModelClassification.new
+		child_1_classification.id = "1"
+		child_2_classification.id = "2"
+		child_3_classification.id = "3"
+    item = SdtmModelClassification.new
+    item.label = "CLASSIFICATION"
+    expect(item.children.count).to eq(0)
+		item.add_child(child_1_classification)
+    expect(item.children.count).to eq(1)
+    expect(item.children[0].id).to eq("1")
+		item.add_child(child_2_classification)
+    expect(item.children.count).to eq(2)
+    expect(item.children[0].id).to eq("1")
+    expect(item.children[1].id).to eq("2")
+		item.add_child(child_3_classification)
+    expect(item.children.count).to eq(3)
+    expect(item.children[0].id).to eq("1")
+    expect(item.children[1].id).to eq("2")
+    expect(item.children[2].id).to eq("3")
+  end
+
+  it "allows object to be output as SPARQL, parent and no children" do
+  	sparql = SparqlUpdateV2.new
+  	parent_uri = UriV2.new(id: "MODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    item = SdtmModelClassification.new
+    item.label = "CLASSIFICATION"
+    item.set_parent
+    result = item.to_sparql_v2(parent_uri, sparql)
+  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_classification_sparql.txt")
+    expected = read_text_file_2(sub_dir, "sdtm_model_classification_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
+
+  it "allows object to be output as SPARQL, child" do
+  	sparql = SparqlUpdateV2.new
+  	parent_uri = UriV2.new(id: "MODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    item = SdtmModelClassification.new
+    item.label = "CLASSIFICATION"
+    result = item.to_sparql_v2(parent_uri, sparql)
+  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_classification_child_sparql.txt")
+    expected = read_text_file_2(sub_dir, "sdtm_model_classification_child_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
+
+  it "allows object to be output as SPARQL, parent" do
+  	sparql = SparqlUpdateV2.new
+  	parent_uri = UriV2.new(id: "MODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+  	child_1_classification = SdtmModelClassification.new
+  	child_2_classification = SdtmModelClassification.new
+  	child_1_classification.label = "Child 1"
+		child_2_classification.label = "Child 2"
+		item = SdtmModelClassification.new
+    item.label = "CLASSIFICATION"
+    item.set_parent
+    item.add_child(child_1_classification)
+		item.add_child(child_2_classification)
+    result = item.to_sparql_v2(parent_uri, sparql)
+  write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_classification_parent_sparql.txt")
+    expected = read_text_file_2(sub_dir, "sdtm_model_classification_parent_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
+
 end

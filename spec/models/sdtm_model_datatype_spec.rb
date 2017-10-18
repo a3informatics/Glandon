@@ -32,8 +32,6 @@ describe SdtmModelDatatype do
     expect(result.to_json).to eq(expected)
   end
 
-  it "allows the object to be validated"
-
   it "allows the object to be created from JSON" do
     json = 
     {
@@ -63,7 +61,7 @@ describe SdtmModelDatatype do
 
   it "allows all labels to be returned" do
     results = SdtmModelDatatype.all("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-    #write_yaml_file(results, sub_dir, "sdtm_model_datatype_all.yaml")
+  #write_yaml_file(results, sub_dir, "sdtm_model_datatype_all.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_datatype_all.yaml")
     results.each do |result|
       found = expected.find { |x| x.id == result.id }
@@ -84,5 +82,19 @@ describe SdtmModelDatatype do
     default = SdtmModelDatatype.default(result)
     expect(default.to_json).to eq(expected)
   end
+
+  it "allows object to be output as SPARQL" do
+  	sparql = SparqlUpdateV2.new
+  	parent_uri = UriV2.new(id: "MODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    item = SdtmModelDatatype.new
+    item.label = "NEW LABEL"
+    item.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}DT#{Uri::C_UID_SECTION_SEPARATOR}#{item.label.upcase.gsub(/\s+/, "")}"
+		item.namespace = parent_uri.namespace
+    result = item.to_sparql_v2(parent_uri, sparql)
+  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_datatype_sparql.txt")
+    expected = read_text_file_2(sub_dir, "sdtm_model_datatype_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
+
 
 end
