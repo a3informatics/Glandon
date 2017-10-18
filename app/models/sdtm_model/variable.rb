@@ -46,6 +46,7 @@ class SdtmModel::Variable < Tabular::Column
     self.sub_classification = EnumeratedLabel.new
     if triples.nil?
       super
+      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
@@ -85,24 +86,21 @@ class SdtmModel::Variable < Tabular::Column
     end
     return object
   end
-
-  def self.import_sparql(namespace, parent_id, sparql, json, datatypes, classifications)
-    id = parent_id + Uri::C_UID_SECTION_SEPARATOR + SdtmUtility.replace_prefix(json[:variable_name])  
-    super(namespace, id, sparql, C_SCHEMA_PREFIX, C_RDF_TYPE, json[:label])
-    subject = {:namespace => namespace, :id => id}
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ordinal"}, {:literal => json[:ordinal].to_s, :primitive_type => "positiveInteger"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => json[:variable_name], :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefixed"}, {:literal => json[:variable_prefixed].to_s, :primitive_type => "boolean"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "description"}, {:literal => json[:variable_notes], :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "rule"}, {:literal => "", :primitive_type => "string"})
-    if datatypes.has_key?(json[:variable_type])
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "typedAs"}, {:namespace => namespace, :id => datatypes[json[:variable_type]][:id]})  
-    end
-    key = "#{json[:variable_classification]}.#{json[:variable_sub_classification]}"
-    if classifications.has_key?(key)
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:namespace => namespace, :id => classifications[key][:id]})   
-    end
-    return id
+  
+  # To SPARQL
+  #
+  # @param [UriV2] parent_uri the parent URI
+	# @param [SparqlUpdateV2] sparql the SPARQL object
+	# @return [UriV2] The URI
+  def to_sparql_v2(parent_uri, sparql)
+    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{SdtmUtility.replace_prefix(self.name)}"
+    self.namespace = parent_uri.namespace
+    super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => self.uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefixed"}, {:literal => "#{self.prefixed}", :primitive_type => "boolean"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "description"}, {:literal => "#{self.description}", :primitive_type => "string"})
+		return self.uri
   end
 
   # To JSON
@@ -121,6 +119,39 @@ class SdtmModel::Variable < Tabular::Column
     return json
   end
 
+  # From JSON
+  #
+  # @param [Hash] json the hash of values for the object 
+  # @return [SdtmModel::Variable] the object created
+  def self.from_json(json)
+    object = super(json)
+    object.name = json[:name]
+    object.prefixed = json[:prefixed]
+    object.description = json[:description]
+    object.datatype = SdtmModelDatatype.from_json(json[:datatype])
+    object.classification = SdtmModelClassification.from_json(json[:classification])
+    object.sub_classification = nil
+    object.sub_classification = SdtmModelClassification.from_json(json[:sub_classification]) if !json[:sub_classification].blank? 
+    return object
+  end
+
+  # Update Datatype. Amend the reference. Done so references are made common
+  #
+  # @param [Hash] datatypes a hash of datatypes index by the datatype (label)
+  # @return [void] no return
+  def update_datatype(datatypes)
+  	self.datatype = datatypes[self.datatype.label] 
+  end
+
+  # Update Clasification. Amend the reference. Don so references are common
+  #
+  # @param [Hash] classifications a hash of classifications index by the datatype (label)
+  # @return [void] no return
+  def update_classification(classifications)
+  	self.classification = classifications[self.classification.label] 
+  	self.sub_classification = classifications[self.sub_classification.label] if !self.sub_classification.nil?
+  end
+  
 private
 
   def self.children_from_triples(object, triples, id, bc=nil)
