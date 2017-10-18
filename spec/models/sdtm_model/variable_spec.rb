@@ -29,6 +29,7 @@ describe SdtmModel::Variable do
     item = SdtmModel::Variable.new
     item.ordinal = 1
     result = item.valid?
+    expect(item.rdf_type).to eq("http://www.assero.co.uk/BusinessDomain#ModelVariable")
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(result).to eq(true)
   end

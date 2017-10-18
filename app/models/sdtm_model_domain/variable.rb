@@ -25,6 +25,7 @@ class SdtmModelDomain::Variable < Tabular::Column
     self.variable_ref = nil
     if triples.nil?
       super
+      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
