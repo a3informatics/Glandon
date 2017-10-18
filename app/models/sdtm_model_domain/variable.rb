@@ -44,22 +44,27 @@ class SdtmModelDomain::Variable < Tabular::Column
     return object
   end
 
-  def self.import_sparql(namespace, parent_id, sparql, json, map)
-    id = parent_id + Uri::C_UID_SECTION_SEPARATOR + SdtmUtility.replace_prefix(json[:variable_name])  
-    subject = {:namespace => namespace, :id => id}
-    super(namespace, id, sparql, UriManagement::C_BD, C_RDF_TYPE, json[:label])
-    sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "ordinal"}, {:literal => "#{json[:ordinal]}", :primitive_type => "positiveInteger"})
-    uri = map[json[:variable_name]]
-    # @todo this is an operation reference, could be coded better
-    ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'CR'
-    ref_subject = {:namespace => namespace, :id => ref_id}
-    sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "basedOnVariable"}, {:namespace => namespace, :id => ref_id.to_s})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id => "CReference"})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "hasColumn"}, {:uri => uri})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "#{json[:ordinal]}", :primitive_type => "positiveInteger"})
-    return id
+  # To SPARQL
+  #
+  # @param [SparqlUpdateV2] sparql the SPARQL object
+  # @param [String] schema_prefix the schema prefix for the triples
+	# @return [UriV2] The URI
+  def to_sparql_v2(sparql, schema_prefix)
+    super(sparql, schema_prefix)
+    subject = {:uri => self.uri}
+    ref_uri = self.variable_ref.to_sparql_v2(self.uri, OperationalReferenceV2::C_PARENT_LINK_C, 'CR', 1, sparql)
+    sparql.triple(subject, {:prefix => schema_prefix, :id => OperationalReferenceV2::C_PARENT_LINK_C}, {:uri => ref_uri})
+    return self.uri
+  end
+
+	# From JSON
+  #
+  # @param [Hash] json the hash of values for the object 
+  # @return [SdtmModelDomain::Variable] the object created
+  def self.from_json(json)
+    object = super(json)
+    object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
+    return object
   end
 
   # To JSON

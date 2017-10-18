@@ -70,7 +70,23 @@ describe SdtmModelDomain::Variable do
     expect(variable.to_json).to eq(expected)
   end
 
-  it "allows the object to be imported"
+  it "allows the object to be imported from JSON" do
+  	json = read_yaml_file(sub_dir, "variable.yaml")
+    item = SdtmModelDomain::Variable.from_json(json)
+    expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
+    expect(item.to_json).to eq(expected)
+	end
+
+  it "allows the object to be output as sparql" do
+  	sparql = SparqlUpdateV2.new
+  	json = read_yaml_file(sub_dir, "variable.yaml")
+    item = SdtmModelDomain::Variable.from_json(json)
+    result = item.to_sparql_v2(sparql, "bd")
+  #write_text_file_2(sparql.to_s, sub_dir, "variable_to_sparql.txt")
+    expected = read_text_file_2(sub_dir, "variable_to_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT")
+  end
 
 end
   
