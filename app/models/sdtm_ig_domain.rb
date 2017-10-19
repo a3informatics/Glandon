@@ -38,7 +38,7 @@ class SdtmIgDomain < Tabular
   # @param id [String] the id of the domain
   # @param namespace [String] the namespace of the domain
   # @param children [Boolean] find all child objects. Defaults to true.
-  # @return [SdtmModelDomain] the domain object.
+  # @return [SdtmIgDomain] the domain object.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -62,58 +62,50 @@ class SdtmIgDomain < Tabular
     return results
   end
 
-  def self.import_sparql(params, sparql, compliance_set, class_map)
-    # Init data
-    object = self.new 
-    object.errors.clear
-    # Get the Json structure
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-    uri = IsoManaged.create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-    id = uri.id
-    namespace = uri.namespace
-    # Set the map
-    map = class_map[managed_item[:domain_class]]
-    # Set the properties
-    subject = {:uri => uri}
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefix"}, {:literal => "#{managed_item[:prefix]}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "structure"}, {:literal => "#{managed_item[:structure]}", :primitive_type => "string"})
-    # Build the class reference
-    if !map.nil? 
-      ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'CLR'
-      subject_ref = {:namespace => namespace, :id => ref_id}
-      ref_uri = class_map[managed_item[:domain_class]][:uri]
-      sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "basedOnDomain"}, subject_ref)
-      sparql.triple(subject_ref, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id => "TReference"})
-      sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "hasTabulation"}, {:uri => ref_uri})
-      sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
-      sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
-      sparql.triple(subject_ref, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "1", :primitive_type => "positiveInteger"})
+	# Build the object from the operational hash.
+	#
+  # @param [Hash] params the operational hash
+  # @param [SdtmModel] model the sdtm model for the references.
+  # @return [SdtmIgDomain] The created object. Valid if no errors set.
+  def self.build(params, model)
+    cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    SdtmIgDomain.variable_references(params[:managed_item], model)
+    object = SdtmIgDomain.from_json(params[:managed_item])
+    object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+    object.lastChangeDate = object.creationDate # Make sure we don't set current time.
+    object.valid?
+    return object
+  end
+
+  # To SPARQL
+  #
+  # @param [SparqlUpdateV2] sparql the SPARQL object
+	# @return [UriV2] The URI
+  def to_sparql_v2(sparql)
+    super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => self.uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefix"}, {:literal => "#{self.prefix}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "structure"}, {:literal => "#{self.structure}", :primitive_type => "string"})
+    ref_uri = self.model_ref.to_sparql_v2(uri, OperationalReferenceV2::C_PARENT_LINK_DT, 'CLR', 1, sparql)
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => OperationalReferenceV2::C_PARENT_LINK_DT}, {:uri => ref_uri})
+		self.children.each do |child|
+    	ref_uri = child.to_sparql_v2(self.uri, sparql)
+    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:uri => ref_uri})
     end
-    # Build the compliance (core) triples
-    compliance_map = Hash.new
-    compliance_set.each do |key, core|
-      ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'C' + Uri::C_UID_SECTION_SEPARATOR + core.upcase.gsub(/\s+/, "")
-      compliance_map[core] = UriV2.new({:namespace => namespace, :id => ref_id})
-    end
-    compliance_map.each do |core, uri|
-      label = compliance_set[core] # Slightly odd but needed. TODO, something to do with frozen strings.
-      IsoConcept.import_sparql(uri.namespace, uri.id, sparql, C_SCHEMA_PREFIX, "VariableCompliance", label)
-    end
-    # Now deal with the children
-    if !managed_item[:children].blank?
-      managed_item[:children].each do |item|
-        if !map.nil?
-          ref_id = SdtmIgDomain::Variable.import_sparql(namespace, id, sparql, item, compliance_map, map[:children])
-        else
-          ref_id = SdtmIgDomain::Variable.import_sparql(namespace, id, sparql, item, compliance_map, nil)
-        end
-        sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:namespace => namespace, :id => ref_id})
-      end
-    end
-    return { :uri => uri, :map => map, :object => object }
+    return self.uri
+  end
+
+	# From JSON
+  #
+  # @param [Hash] json the hash of values for the object 
+  # @return [SdtmIgDomain] the object created
+  def self.from_json(json)
+    object = super(json)
+    object.prefix = json[:prefix]
+    object.structure = json[:structure]
+    object.model_ref = OperationalReferenceV2.from_json(json[:model_ref])
+    json[:children].each { |c| object.children << SdtmIgDomain::Variable.from_json(c) } if !json[:children].blank?
+    return object
   end
 
   # To JSON
@@ -131,6 +123,9 @@ class SdtmIgDomain < Tabular
     return json
   end
 
+  # Compliance
+  #
+  # @return [Array] set of compliances for the domain
   def compliance()
     results = Array.new
     # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
