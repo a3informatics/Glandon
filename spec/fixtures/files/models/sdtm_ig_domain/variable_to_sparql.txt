@@ -1,0 +1,25 @@
+PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> rdfs:label "Reproductive System Findings Test Name"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:ordinal "9"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:name "RPTEST"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:controlled_term_or_format "(RPTEST)"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:notes "Verbatim name of the test or examination used to obtain the measurement or finding. The value in RPTEST cannot be longer than 40 characters. Examples: Number of Live Births, Number of Pregnancies, Birth Control Method, etc."^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_C_REQUIRED> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> rdfs:label "Based on Variable Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_FINDINGS_xxTEST> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> . 
+}

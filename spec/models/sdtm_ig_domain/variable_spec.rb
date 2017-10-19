@@ -87,7 +87,61 @@ describe SdtmIgDomain::Variable do
     expect(variable.to_json).to eq(expected)
   end
 
-  it "allows the object to be imported"
+  it "allows the object to be imported from JSON" do
+  	json = read_yaml_file(sub_dir, "variable.yaml")
+    item = SdtmIgDomain::Variable.from_json(json)
+    expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
+    expect(item.to_json).to eq(expected)
+	end
+
+  it "allows the object to be output as sparql" do
+  	parent_uri = UriV2.new(id: "M-CDISC_SDTMMODEL_EVENTS", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+  	sparql = SparqlUpdateV2.new
+  	json = read_yaml_file(sub_dir, "variable.yaml")
+    item = SdtmIgDomain::Variable.from_json(json)
+    result = item.to_sparql_v2(parent_uri, sparql)
+  #write_text_file_2(sparql.to_s, sub_dir, "variable_to_sparql.txt")
+    expected = read_text_file_2(sub_dir, "variable_to_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST")
+  end
+
+  it "allows the compliance reference to be updated" do
+  	variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+  	compliance_1 = SdtmModelCompliance.new
+  	compliance_1.id = "EXP_NEW"
+  	compliance_1.label = "Expected"
+  	compliance_2 = SdtmModelCompliance.new
+  	compliance_2.id = "REQ_NEW"
+  	compliance_2.label = "Required"
+  	compliance_3 = SdtmModelCompliance.new
+  	compliance_3.id = "PERM_NEW"
+  	compliance_3.label = "Permissible"
+  	compliances = {}
+  	compliances["Expected"] = compliance_1
+  	compliances["Required"] = compliance_2
+  	compliances["Permissible"] = compliance_3
+  	variable.update_compliance(compliances)
+  	expect(variable.compliance.id).to eq("REQ_NEW")
+  end
+
+  it "allows the compliance reference to be updated, exception" do
+  	variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+  	compliance_1 = SdtmModelCompliance.new
+  	compliance_1.id = "EXP_NEW"
+  	compliance_1.label = "Expected"
+  	compliance_2 = SdtmModelCompliance.new
+  	compliance_2.id = "REQ_NEW"
+  	compliance_2.label = "Required"
+  	compliance_3 = SdtmModelCompliance.new
+  	compliance_3.id = "PERM_NEW"
+  	compliance_3.label = "Permissible"
+  	compliances = {}
+  	compliances["Expected1"] = compliance_1
+  	compliances["Required2"] = compliance_2
+  	compliances["Permissible3"] = compliance_3
+  	expect{variable.update_compliance(compliances)}.to raise_error(Exceptions::ApplicationLogicError)
+  end
 
 end
   
