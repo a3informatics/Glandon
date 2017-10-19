@@ -30,6 +30,8 @@ describe SdtmModelClassification do
     }
     result = SdtmModelClassification.new
     expect(result.to_json).to eq(expected)
+    expect(result.parent).to eq(false)
+    expect(result.children.count).to eq(0)
   end
 
   it "allows the object to be validated"
@@ -190,7 +192,7 @@ describe SdtmModelClassification do
     item.add_child(child_1_classification)
 		item.add_child(child_2_classification)
     result = item.to_sparql_v2(parent_uri, sparql)
-  write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_classification_parent_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_classification_parent_sparql.txt")
     expected = read_text_file_2(sub_dir, "sdtm_model_classification_parent_sparql.txt")
     expect(sparql.to_s).to eq(expected)
   end

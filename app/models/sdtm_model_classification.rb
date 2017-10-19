@@ -17,7 +17,7 @@ class SdtmModelClassification < EnumeratedLabel
   # @return [Null]
   def initialize(triples=nil, id=nil)
   	self.children = []
-    self.parent = nil
+    self.parent = false
     if triples.nil?
       super
     else
