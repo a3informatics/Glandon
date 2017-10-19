@@ -228,105 +228,97 @@ module SdtmExcel
   # Reads the excel file for SDTM IG.
   def SdtmExcel.read_ig (params, errors)
     filename = params[:files][0]
-    #ConsoleLogger::log(C_CLASS_NAME,"read_ig", "filename=#{filename}")
     workbook = open_workbook(filename)
     if !workbook.nil?
-        # Get the worksheet, assume first sheet.
-        worksheets = workbook.sheets
-        # Set up structures needed
-        domains = Hash.new
-        # Set up results structure
-        results = Array.new
-        # Create the instance for the IG itself
-        instance = create_model(params, SdtmIg::C_IDENTIFIER, "SDTM Implementation Guide #{params[:date]}")
-        results << { :type => "IG", :order=> 1, :instance => instance}
-        # Setup the domains from the Extra sheet.
-        select_extra(workbook, errors)
-        if errors.count > 0
-            return 
-        end
-        check_extra(workbook, errors)
-        if errors.count > 0 
-            return
-        end
-        ((workbook.first_row + 1) .. workbook.last_row).each do |row|
-            # obs_class = workbook.row(row)[headers['Observation Class']]
-            domain_prefix = workbook.cell(row, 1)
-            label = workbook.cell(row, 2)
-            structure = workbook.cell(row, 3)
-            domains[domain_prefix] = {:prefix => domain_prefix, :label => label, :structure => structure, :children => Array.new}
-        end
-        # Set the main worksheet and check it. Return if errors.
-        workbook.default_sheet = workbook.sheets[0]
-        check_main(workbook, errors)
-        if errors.count > 0 
-            return
-        end
-        # All ok, Read the rows.
-        ((workbook.first_row + 1) .. workbook.last_row).each do |row|
-            domain_prefix = workbook.cell(row, 3)
-            if !domain_prefix.blank?
-                if !C_DOMAIN_IGNORE.has_key?(domain_prefix)
-                    seq = check_cell(workbook, row, 1, errors)
-                    obs_class = check_cell(workbook, row, 2, errors)            
-                    name_minus = check_cell(workbook, row, 4, errors)
-                    name = check_cell(workbook, row, 5, errors)
-                    label = check_cell(workbook, row, 6, errors)
-                    var_type = check_cell(workbook, row, 7, errors)
-                    ct_or_format = check_cell(workbook, row, 8, errors, true)
-                    #ct_or_format = ct_or_format_read.gsub(/[^A-Za-z0-9 ]/, '')
-                    #if ct_or_format_read != ct_or_format
-                    #    ConsoleLogger::log(C_CLASS_NAME,"read_ig","CT modified: #{ct_or_format_read} -> #{ct_or_format}.")
-                    #end
-                    role = check_cell(workbook, row, 9, errors, true)
-                    if role.empty?
-                        role = C_ROLE_NONE
-                    end
-                    notes = check_cell(workbook, row, 10, errors, true)
-                    core = check_cell(workbook, row, 11, errors, true)
-                    # SDTM IG Processing
-                    if C_SDTM_MODEL_CLASS.has_key?(obs_class)
-                        role_hash = set_role(role)
-                        if domains.has_key?(domain_prefix)
-                            domain = domains[domain_prefix]
-                            domain[:children] << 
-                                {
-                                    :ordinal => seq, 
-                                    :label => label, 
-                                    :variable_class => C_SDTM_MODEL_CLASS[obs_class], #obs_class, 
-                                    :variable_domain_prefix => domain_prefix, 
-                                    :variable_name => name, 
-                                    :variable_name_minus => name_minus, 
-                                    :variable_type => var_type, 
-                                    :variable_ct_or_format => ct_or_format, 
-                                    :variable_classification => role_hash[:classification], 
-                                    :variable_sub_classification => role_hash[:sub_classification],
-                                    :variable_prefixed => SdtmUtility.prefixed?(name), 
-                                    :variable_notes => notes, 
-                                    :variable_core => C_CORE[core]
-                                }
-                        end
-                    else
-                        errors.add(:base, "Invalid observation class detected #{obs_class} in row #{row}")
-                        return 
-                    end
-                else
-                    #ConsoleLogger::log(C_CLASS_NAME,"read_ig","Ignoring entry for domain #{domain_prefix}.")
-                end
+      # Get the worksheet, assume first sheet.
+      worksheets = workbook.sheets
+      # Set up structures needed
+      domains = Hash.new
+      # Set up results structure
+      results = Array.new
+      # Create the instance for the IG itself
+      instance = create_model(params, SdtmIg::C_IDENTIFIER, "SDTM Implementation Guide #{params[:date]}")
+      results << { :type => "IG", :order=> 1, :instance => instance}
+      # Setup the domains from the Extra sheet.
+      select_extra(workbook, errors)
+      if errors.count > 0
+          return 
+      end
+      check_extra(workbook, errors)
+      if errors.count > 0 
+          return
+      end
+      ((workbook.first_row + 1) .. workbook.last_row).each do |row|
+        # obs_class = workbook.row(row)[headers['Observation Class']]
+        domain_prefix = workbook.cell(row, 1)
+        label = workbook.cell(row, 2)
+        structure = workbook.cell(row, 3)
+        domains[domain_prefix] = {:prefix => domain_prefix, :label => label, :structure => structure, :children => Array.new}
+      end
+      # Set the main worksheet and check it. Return if errors.
+      workbook.default_sheet = workbook.sheets[0]
+      check_main(workbook, errors)
+      if errors.count > 0 
+        return
+      end
+      # All ok, Read the rows.
+      ((workbook.first_row + 1) .. workbook.last_row).each do |row|
+        domain_prefix = workbook.cell(row, 3)
+        if !domain_prefix.blank?
+          if !C_DOMAIN_IGNORE.has_key?(domain_prefix)
+            seq = check_cell(workbook, row, 1, errors)
+            obs_class = check_cell(workbook, row, 2, errors)            
+            name_minus = check_cell(workbook, row, 4, errors)
+            name = check_cell(workbook, row, 5, errors)
+            label = check_cell(workbook, row, 6, errors)
+            var_type = check_cell(workbook, row, 7, errors)
+            ct_or_format = check_cell(workbook, row, 8, errors, true)
+            role = check_cell(workbook, row, 9, errors, true)
+            if role.empty?
+              role = C_ROLE_NONE
             end
+            notes = check_cell(workbook, row, 10, errors, true)
+            core = check_cell(workbook, row, 11, errors, true)
+            # SDTM IG Processing
+            if C_SDTM_MODEL_CLASS.has_key?(obs_class)
+              role_hash = set_role(role)
+              if domains.has_key?(domain_prefix)
+                domain = domains[domain_prefix]
+                variable = SdtmIgDomain::Variable.new
+                variable.ordinal = seq 
+                variable.label = label
+                variable.name = name
+                variable.controlled_term_or_format = ct_or_format
+                variable.notes = notes
+                temp = variable.to_json
+                temp[:variable_class] = C_SDTM_MODEL_CLASS[obs_class] #obs_class
+                temp[:variable_domain_prefix] = domain_prefix
+                temp[:variable_name_minus] = name_minus
+                temp[:variable_type] = var_type
+                temp[:variable_classification] = role_hash[:classification]
+                temp[:variable_sub_classification] = role_hash[:sub_classification]
+                temp[:variable_prefixed] = SdtmUtility.prefixed?(name)
+                temp[:core] = C_CORE[core]
+                domain[:children] << temp
+              end
+            else
+              errors.add(:base, "Invalid observation class detected #{obs_class} in row #{row}")
+              return 
+            end
+          end
         end
+      end
     else
-        errors.add(:base, "Could not open the import file.")
-        return 
+      errors.add(:base, "Could not open the import file.")
+      return 
     end
     domains.each do |key, domain|
-        if domain[:children].length > 0
-            child_instance = create_ig_domain(domain, instance)    
-            results << { :type => "IG_DOMAIN", :order=> 2, :instance => child_instance}
-        end
+      if domain[:children].length > 0
+        child_instance = create_ig_domain(domain, instance)    
+        results << { :type => "IG_DOMAIN", :order=> 2, :instance => child_instance}
+      end
     end
     results.sort{|k,v| v[:order]}
-    #ConsoleLogger::log(C_CLASS_NAME,"read_ig","Results=" + results.to_json.to_s)
     return results
   end
 
@@ -430,7 +422,7 @@ private
   end        
 
   def self.create_model_class (variable_set, identifier, label, model_instance)
-     # Create the instance for the model
+    # Create the instance for the model
     object = SdtmModelDomain.new
     object.label = label
     object.scopedIdentifier.identifier = identifier
@@ -460,22 +452,21 @@ private
   end        
   
   def self.create_ig_domain(domain, ig_instance)
-    ig_mi = ig_instance[:managed_item]
-    item = IsoManaged.new
-    instance = item.to_operation
-    domain_mi = instance[:managed_item]
-    domain_op = instance[:operation]
-    domain_mi[:identifier] = "SDTM IG #{domain[:prefix]}"
-    domain_mi[:version] = ig_mi[:version]
-    domain_mi[:creation_date] = ig_mi[:creation_date]
-    domain_mi[:last_changed_date] = ig_mi[:last_changed_date]
-    domain_mi[:version_label] = ig_mi[:version_label]
-    domain_mi[:label] = domain[:label]
-    domain_mi[:prefix] = domain[:prefix]
-    domain_mi[:structure] = domain[:structure]
-    domain_mi[:domain_class] = domain[:children][0][:variable_class]
-    domain_op[:new_version] = domain_mi[:version] # Make sure this is set. Sets the right version.
-    children = domain_mi[:children]
+    object = SdtmIgDomain.new
+    object.label = domain[:label]
+    object.scopedIdentifier.identifier = "SDTM IG #{domain[:prefix]}"
+    object.scopedIdentifier.versionLabel = ig_instance[:managed_item][:scoped_identifier][:version_label]
+    # Build the full object
+    operation = object.to_operation
+    operation[:operation][:new_version] = ig_instance[:operation][:new_version]
+    operation[:operation][:new_state] = IsoRegistrationState.releasedState
+		operation[:managed_item][:creation_date] = ig_instance[:managed_item][:creation_date]
+		operation[:managed_item][:ordinal] = 1
+    operation[:managed_item][:label] = domain[:label]
+    operation[:managed_item][:prefix] = domain[:prefix]
+    operation[:managed_item][:structure] = domain[:structure]
+    operation[:managed_item][:domain_class] = domain[:children][0][:variable_class]
+    children = operation[:managed_item][:children]
     # Add the children for each group of variables within the set
     ordinal = 1
     domain[:children].sort_by { |k, v| k[:seq] }
@@ -483,7 +474,7 @@ private
       children << variable
       ordinal += 1
     end
-    return instance
+    return operation
   end        
   
   def self.set_role(role)

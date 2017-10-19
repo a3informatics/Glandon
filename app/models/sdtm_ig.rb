@@ -5,7 +5,7 @@ class SdtmIg < Tabular
   include ActiveModel::Validations
   
   # Attributes
-  attr_accessor :domain_refs
+  attr_accessor :domain_refs, :compliance
   
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD
@@ -27,7 +27,8 @@ class SdtmIg < Tabular
   # @params id [String] the id to be initialized
   # @return [Null]
   def initialize(triples=nil, id=nil)
-    self.domain_refs = Array.new
+    self.domain_refs = []
+    self.compliance = {}
     if triples.nil?
       super
     else
@@ -40,7 +41,7 @@ class SdtmIg < Tabular
   # @param id [String] the id of the domain
   # @param namespace [String] the namespace of the domain
   # @param children [Boolean] find all child objects. Defaults to true.
-  # @return [SdtmModelDomain] the domain object.
+  # @return [SdtmIgDomain] the domain object.
   def self.find(id, ns, children=true)
     object = super(id, ns)
     if children
@@ -67,6 +68,7 @@ class SdtmIg < Tabular
     return results
   end
 
+=begin
   def self.import(params)
     object = self.new
     object.errors.clear
@@ -127,6 +129,68 @@ class SdtmIg < Tabular
     sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "#{ordinal}", :primitive_type => "positiveInteger"})
     return { :object => object }
   end
+=end
+
+	# NOT TESTED
+  # Create a new version. This is an import and runs in the background.
+  #
+  # @param [Hash] params the parameters
+  # @option params [String] :date The release date of the version being created
+  # @option params [String] :version The version being created
+  # @option params [String] :version_label The label for the version being created
+  # @option params [String] :files Array of files being used 
+  # @return [Hash] A hash containing the object with any errors and the background job reference.
+  def self.create(params)
+    job = nil
+    object = self.new
+    if import_params_valid?(params, object)
+      params[:files].reject!(&:blank?)
+			job = Background.create
+  	 	job.import_cdisc_sdtm_ig(params)
+    end
+    return { :object => object, :job => job }
+  end
+
+  # NOT TESTED
+  # Build the object from the operational hash.
+  #
+  # @param [Hash] params the operational hash
+  # @return [SdtmIg] The created object. Valid if no errors set.
+  def self.build(params, sparql)
+    cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    object = SdtmIg.from_json(params[:managed_item])
+    object.add_compliance(params[:managed_item])
+    object.update_variables
+    object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+    object.lastChangeDate = object.creationDate # Make sure we don't set current time.
+    object.valid?
+    return object
+  end
+
+  # To SPARQL
+  #
+  # @param [SparqlUpdateV2] sparql the SPARQL object
+  # @return [UriV2] The URI
+  def to_sparql_v2(sparql)
+    uri = super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => uri}
+    self.compliance.each { |k, c| c.to_sparql_v2(uri, sparql) }
+    self.domain_refs.each do |ref|
+    	ref_uri = ref.to_sparql_v2(uri, "includesTabulation", 'TR', ref.ordinal, sparql)
+    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, {:uri => ref_uri})
+    end
+    return self.uri
+  end
+
+	# From JSON
+  #
+  # @param [Hash] json the hash of values for the object 
+  # @return [SdtmIg] the object created
+  def self.from_json(json)
+    object = super(json)
+    json[:domain_refs].each { |ref| object.domain_refs << OperationalReferenceV2.from_json(ref) } if !json[:domain_refs].blank?
+    return object
+  end
 
   # To JSON
   #
@@ -138,6 +202,22 @@ class SdtmIg < Tabular
       json[:domain_refs] << ref.to_json
     end
     return json
+  end
+
+  # Add Compliance. Create the datatypes existing within the variables
+  #
+  # @param [Hash] json the managed item hash
+  # @return [void] no return
+  def add_compliance(json)
+  	return if json[:children].blank?
+    json[:children].each do |item|
+    	label = item[:compliance][:label]
+    	if !self.compliance.has_key?(label)
+    		object = SdtmModelCompliance.new
+    		object.label = label
+      	self.compliance[label] = object
+      end
+    end
   end
 
 private

@@ -50,9 +50,46 @@ describe SdtmIg do
   
   it "allows the model to be exported as JSON" do
     item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
-    #write_yaml_file(item.to_json, sub_dir, "sdtm_ig_to_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "sdtm_ig_to_json.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_ig_to_json.yaml")
     expect(item.to_json).to eq(expected)
   end
-  
+
+	it "allows the model to be created from JSON" do 
+		expected = read_yaml_file(sub_dir, "sdtm_ig_to_json.yaml")
+    item = SdtmIg.from_json(expected)
+    expect(item.to_json).to eq(expected)
+	end
+
+	it "allows the object to be output as sparql" do
+  	sparql = SparqlUpdateV2.new
+  	json = read_yaml_file(sub_dir, "sdtm_ig_to_json.yaml")
+    item = SdtmIg.from_json(json)
+    result = item.to_sparql_v2(sparql)
+  write_text_file_2(sparql.to_s, sub_dir, "sdtm_ig_to_sparql.txt")
+    expected = read_text_file_2(sub_dir, "sdtm_ig_to_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG")
+  end
+
+  it "allows the item to be built" do
+  	sparql = SparqlUpdateV2.new
+		json = read_yaml_file(sub_dir, "sdtm_ig_json_2.yaml")
+		result = SdtmIg.build(json, sparql)
+	write_yaml_file(result.to_json, sub_dir, "sdtm_ig_build.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_ig_build.yaml")
+		expect(result.to_json).to eq(expected)
+		expect(result.errors.count).to eq(0)
+  end
+
+  it "adds the compliance" do
+		json = read_yaml_file(sub_dir, "sdtm_ig_json_2.yaml")
+		item = SdtmIg.new
+		item.add_compliance(json[:managed_item])
+		expect(item.complaince.count).to eq(3)
+		expect(item.compliance.has_key?("Required")).to eq(true)
+		expect(item.compliance.has_key?("Expected")).to eq(true)
+		expect(item.compliance.has_key?("Permissible")).to eq(true)
+  end
+
 end

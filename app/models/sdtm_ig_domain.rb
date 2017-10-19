@@ -155,6 +155,17 @@ class SdtmIgDomain < Tabular
     return results
   end
 
+  # NOT TESTED
+  # Update Variables. Update the variables with common references
+  #
+  # @return [void] no return
+ 	def update_variables
+ 		self.children.each do |child|
+ 			child.update_datatype(self.datatypes)
+ 			child.update_classification(self.classifications)
+ 		end
+ 	end
+
 private
 
   def self.children_from_triples(object, triples, id)

@@ -156,6 +156,20 @@ describe SdtmModel::Variable do
   	expect(variable.datatype.id).to eq("CHAR_NEW")
   end
 
+  it "allows the datatype reference to be updated, exception" do
+  	variable = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxTPTREF", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+  	datatype_1 = SdtmModelDatatype.new
+  	datatype_1.id = "CHAR_NEW"
+  	datatype_1.label = "Char"
+  	datatype_2 = SdtmModelDatatype.new
+  	datatype_2.id = "NUM_NEW"
+  	datatype_2.label = "Num"
+  	datatypes = {}
+  	datatypes["Char1"] = datatype_1
+  	datatypes["Num2"] = datatype_2
+  	expect{variable.update_datatype(datatypes)}.to raise_error(Exceptions::ApplicationLogicError)
+  end
+
   it "allows the classification reference to be updated" do
   	variable = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxTPTREF", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
   	classification_1 = SdtmModelClassification.new
@@ -181,6 +195,30 @@ describe SdtmModel::Variable do
   	variable.update_classification(classifications)
   	expect(variable.classification.id).to eq("CLASS_3")
   	expect(variable.sub_classification.id).to eq("CLASS_4")
+  end
+
+  it "allows the classification reference to be updated, exception" do
+  	variable = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxTPTREF", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+  	classification_1 = SdtmModelClassification.new
+  	classification_1.id = "CLASS_1"
+  	classification_1.label = "Char"
+  	classification_2 = SdtmModelClassification.new
+  	classification_2.id = "CLASS_2"
+  	classification_2.label = "Timing"
+  	classification_3 = SdtmModelClassification.new
+  	classification_3.id = "CLASS_3"
+  	classification_3.label = "Qualifier"
+  	classification_4 = SdtmModelClassification.new
+  	classification_4.id = "CLASS_4"
+  	classification_4.label = "Record Qualifier"
+  	classifications = {}
+  	classifications["Char"] = classification_1
+  	classifications["Timing1"] = classification_2
+  	classifications["Qualifier"] = classification_3
+  	classifications["Record Qualifier4"] = classification_4
+  	expect{variable.update_classification(classifications)}.to raise_error(Exceptions::ApplicationLogicError)
+  	variable = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxMETHOD", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+  	expect{variable.update_classification(classifications)}.to raise_error(Exceptions::ApplicationLogicError)
   end
 
 end

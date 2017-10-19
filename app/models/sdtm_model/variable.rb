@@ -143,19 +143,35 @@ class SdtmModel::Variable < Tabular::Column
 
   # Update Datatype. Amend the reference. Done so references are made common
   #
+  # @raise [Exceptions::ApplicationLogicError] if datatype label not present in datatypes
   # @param [Hash] datatypes a hash of datatypes index by the datatype (label)
   # @return [void] no return
   def update_datatype(datatypes)
-  	self.datatype = datatypes[self.datatype.label] 
+  	if datatypes.has_key?(self.datatype.label)
+  		self.datatype = datatypes[self.datatype.label] 
+  	else
+  		raise Exceptions::ApplicationLogicError.new(message: "Datatype #{self.datatype.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object.")
+  	end
   end
 
   # Update Clasification. Amend the reference. Don so references are common
   #
+  # @raise [Exceptions::ApplicationLogicError] if classifications label not present in classifications
   # @param [Hash] classifications a hash of classifications index by the datatype (label)
   # @return [void] no return
   def update_classification(classifications)
-  	self.classification = classifications[self.classification.label] 
-  	self.sub_classification = classifications[self.sub_classification.label] if !self.sub_classification.nil?
+  	if classifications.has_key?(self.classification.label)
+  		self.classification = classifications[self.classification.label] 
+  		if !self.sub_classification.nil?
+  			if classifications.has_key?(self.sub_classification.label)
+  				self.sub_classification = classifications[self.sub_classification.label]
+		  	else
+  				raise Exceptions::ApplicationLogicError.new(message: "Classification #{self.sub_classification.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object.")
+  			end
+  		end
+  	else
+  		raise Exceptions::ApplicationLogicError.new(message: "Classification #{self.classification.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object.")
+  	end
   end
   
 private

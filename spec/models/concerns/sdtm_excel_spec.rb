@@ -32,7 +32,7 @@ describe SdtmExcel do
 		expect(object.errors.full_messages.to_sentence).to eq("Could not open the import file.")		
 	end
 
-	it "reads the excel fle" do
+	it "reads the excel fle, model" do
 		filename = test_file_path(sub_dir, "sdtm-3-2-excel.xlsx")
 		object = Background.new
 		params = {
@@ -44,6 +44,26 @@ describe SdtmExcel do
 		result = SdtmExcel.read_model(params, object.errors)
 	#write_yaml_file(result, sub_dir, "sdtm_excel_import_1.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_excel_import_1.yaml")
+    # Need to align the timestamps to allow simple comparison to work
+    expected.each_with_index do |x, index|
+    	x[:instance][:managed_item][:last_changed_date] = result[index][:instance][:managed_item][:last_changed_date]
+    end
+		expect(result).to eq(expected)
+		expect(object.errors.count).to eq(0)
+	end
+
+	it "reads the excel fle, implementation guide" do
+		filename = test_file_path(sub_dir, "sdtm-3-2-excel.xlsx")
+		object = Background.new
+		params = {
+			version: "1", 
+			version_label: "Version Label", 
+			date: "2017-01-01", 
+			:files => ["#{filename}"]
+		}
+		result = SdtmExcel.read_ig(params, object.errors)
+	#write_yaml_file(result, sub_dir, "sdtm_excel_import_2.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_excel_import_2.yaml")
     # Need to align the timestamps to allow simple comparison to work
     expected.each_with_index do |x, index|
     	x[:instance][:managed_item][:last_changed_date] = result[index][:instance][:managed_item][:last_changed_date]
@@ -64,6 +84,20 @@ describe SdtmExcel do
 		result = SdtmExcel.read_model(params, object.errors)
 		expect(object.errors.count).to eq(1)
 		expect(object.errors.full_messages.to_sentence).to eq("Main sheet in the excel file, incorrect 1st column name, indicates format error.")	
+	end
+
+	it "reads the excel fle, error 2" do
+		filename = test_file_path(sub_dir, "sdtmError2.xlsx")
+		object = Background.new
+		params = {
+			version: "1", 
+			version_label: "Version Label", 
+			date: "2017-01-01", 
+			:files => ["#{filename}"]
+		}
+		result = SdtmExcel.read_ig(params, object.errors)
+		expect(object.errors.count).to eq(1)
+		expect(object.errors.full_messages.to_sentence).to eq("Missing 'Extra' sheet in the excel file.")	
 	end
 
 	it "reads the excel fle, error 3" do
