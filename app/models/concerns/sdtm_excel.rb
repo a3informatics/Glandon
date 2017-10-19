@@ -96,7 +96,6 @@ module SdtmExcel
       results = Array.new
       # Create the instance for the model
       instance = create_model(params, SdtmModel::C_IDENTIFIER, "SDTM Model #{params[:date]}")
-      instance[:ordinal] = 1
       results << { :type => "MODEL", :order => 1, :instance => instance}
       # Set the main workbook and check it. Return if errors.
       workbook.default_sheet = workbook.sheets[0]
@@ -426,6 +425,7 @@ private
     operation[:operation][:new_version] = params[:version]
     operation[:operation][:new_state] = IsoRegistrationState.releasedState
 		operation[:managed_item][:creation_date] = params[:date]
+		operation[:managed_item][:ordinal] = 1
 		return operation
   end        
 
@@ -440,19 +440,19 @@ private
     operation[:operation][:new_version] = model_instance[:operation][:new_version]
     operation[:operation][:new_state] = IsoRegistrationState.releasedState
 		operation[:managed_item][:creation_date] = model_instance[:managed_item][:creation_date]
-    domain_mi = operation[:managed_item]
-    children = domain_mi[:children]
+		operation[:managed_item][:ordinal] = 1
+    children = operation[:managed_item][:children]
     # Add the children for each group of variables within the set
     ordinal = 1
     variable_set.each do |set|
       set.each do |variable|
         #role = variable[:role]
-        children <<
-        {
-          :ordinal => ordinal, 
-          :label => variable[:label], 
-          :variable_name => variable[:variable_name], 
-        }
+        new_variable = SdtmModelDomain::Variable.new
+        new_variable.ordinal = ordinal
+        new_variable.label = variable[:label]
+        json = new_variable.to_json
+        json[:variable_name] = variable[:variable_name]
+        children << json
         ordinal += 1
       end
     end

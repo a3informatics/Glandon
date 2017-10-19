@@ -99,8 +99,7 @@ class SdtmModel < Tabular
     return { :object => object, :job => job }
   end
 
-  # NOT TESTED
-	# Valididate and SPARQL. Build the object from the operational hash validate and 
+  # Valididate and SPARQL. Build the object from the operational hash validate and 
 	# generate the SPARQL if valid and object can be created.
   #
   # @param [Hash] params the operational hash

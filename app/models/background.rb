@@ -4,33 +4,37 @@ class Background < ActiveRecord::Base
   
   C_CLASS_NAME = "Background"
 
-	def importCdiscSdtmModel(params, files)
+	
+	# Import CDISC Model
+  #
+  # @param [Hash] params Parameters
+  # @option [String] :date The release date of the version being created
+  # @option [String] :version The version being created
+  # @option [String] :files Array of files being used 
+  # @return [void] no return
+  def import_cdisc_sdtm_model(params)
     sparql = SparqlUpdateV2.new
     self.errors.clear
     self.update(
-      description: "Import CDISC SDTM Model. Date: " + params[:date] + ", Internal Version: " + params[:version] + ".", 
+      description: "Import CDISC SDTM Model. Date: #{params[:date]}, Internal Version: #{params[:version]}.", 
       status: "Reading file.",
       started: Time.now())
     # Create manifest file
     results = SdtmExcel.read_model(params, self.errors)
     if self.errors.count == 0
       self.update(status: "File successfully read.", percentage: 50, complete: false, completed: Time.now())
-      map = nil
       models = results.select { |hash| hash[:type]=="MODEL" }
       if models.length == 1
-        # Add the model 
-        model = models[0]
-        model_result = SdtmModel.import_sparql({:data => model[:instance]}, sparql)
-        map = model_result[:map]
+        # Add the model
+        model = SdtmModel.build_and_sparql(models[0][:instance], sparql)
         # Add the class domains
         ordinal = 1
-        model_domains = results.select { |hash| hash[:type]=="MODEL_DOMAIN" }
-        model_domains.each do |domain|
-          class_result = SdtmModelDomain.import_sparql({:data => domain[:instance]}, sparql, map)
-          result = SdtmModel.add_class_sparql(model_result[:uri], class_result[:uri], ordinal, sparql)
+        domains = results.select { |hash| hash[:type]=="MODEL_DOMAIN" }
+        domains.each do |domain|
+          model_domain = SdtmModelDomain.build_and_sparql(domain[:instance], sparql, model)
           ordinal += 1
         end
-        PublicFile::save("upload", "SDTM_Model_#{params[:version_label].gsub('.', '-')}.txt", sparql.to_s)
+        PublicFile::save("test", "SDTM_Model_#{params[:version_label].gsub('.', '-')}.txt", sparql.to_s) if Rails.env.test?
         response = CRUD.update(sparql.to_s)
         if response.success?
           self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
@@ -38,7 +42,7 @@ class Background < ActiveRecord::Base
           self.update(status: "Complete. Unsuccessful import, SPARQL error.", percentage: 100, complete: true, completed: Time.now())
         end
       else
-        self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
+        self.update(status: "Complete. Unsuccessful import, multiple models. ", percentage: 100, complete: true, completed: Time.now())
       end
     else
       self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
@@ -46,7 +50,7 @@ class Background < ActiveRecord::Base
   rescue => e
     self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
   end
-  handle_asynchronously :importCdiscSdtmModel
+  handle_asynchronously :import_cdisc_sdtm_model unless Rails.env.test?
 
   def importCdiscSdtmIg(params, files)
     compliance_set = Hash.new

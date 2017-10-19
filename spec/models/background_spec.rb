@@ -104,4 +104,12 @@ describe Background do
     job.import_cdisc_term(params)
   end
 
+  it "imports sdtm model and classes" do
+  	job = Background.create
+  	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
+  	params = {version: "1", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"]}
+  	job.import_cdisc_sdtm_model(params)
+  	expect(job.errors.count).to eq(0)
+  end
+
 end
