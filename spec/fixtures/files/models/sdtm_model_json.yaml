@@ -1,0 +1,135 @@
+---
+:operation:
+  :action: CREATE
+  :new_version: 1
+  :new_semantic_version: 0.1.0
+  :new_state: Incomplete
+  :identifier_edit: true
+:managed_item:
+  :type: ''
+  :id: ''
+  :namespace: ''
+  :label: SDTM Model 2017-10-18
+  :extension_properties: []
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2017-10-18T18:30:16+01:00'
+  :last_changed_date: '2017-10-18T18:30:16+01:00'
+  :explanatory_comment: ''
+  :registration_state:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: ''
+    :registration_authority:
+      :id: ''
+      :number: \"<Not Set>\"
+      :scheme: DUNS
+      :owner: false
+      :namespace:
+        :namespace: ''
+        :id: ''
+        :name: ''
+        :shortName: ''
+    :registration_status: Not_Set
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :current: false
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Not_Set
+  :scoped_identifier:
+    :id: ''
+    :identifier: SDTM MODEL
+    :version_label: '1111111'
+    :version: 0
+    :semantic_version: 0.0.0
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :ordinal: 1
+  :rule: ''
+  :children:
+  - :ordinal: '1'
+    :label: Study Identifier
+    :variable_class: ALL
+    :variable_domain_prefix: ''
+    :name: STUDYID
+    :datatype: 
+      :label: Char
+    :classification: 
+      :label: Identifier
+    :sub_classification: 
+      :label: Not Applicable
+    :prefixed: false
+    :description: Unique identifier for a study.
+    :variable_core: ''
+    :rule: ''
+  - :ordinal: '2'
+    :label: Domain Abbreviation
+    :variable_class: ALL
+    :variable_domain_prefix: ''
+    :name: DOMAIN
+    :datatype: 
+      :label: Char
+    :classification: 
+      :label: Identifier
+    :sub_classification: 
+      :label: Not Applicable
+    :prefixed: false
+    :description: Two-character abbreviation for the domain most relevant to the
+      observation. The Domain abbreviation is also used as a prefix for variables
+      to ensure uniqueness when datasets are merged.
+    :variable_core: ''
+    :rule: ''
+  - :ordinal: '3'
+    :label: Unique Subject Identifier
+    :variable_class: ALL
+    :variable_domain_prefix: ''
+    :name: USUBJID
+    :datatype: 
+      :label: Char
+    :classification: 
+      :label: Identifier
+    :sub_classification: 
+      :label: Not Applicable
+    :prefixed: false
+    :description: Identifier used to uniquely identify a subject across all studies
+      for all applications or submissions involving the product.
+    :variable_core: ''
+    :rule: ''
+  - :ordinal: '4'
+    :label: Pool Identifier
+    :variable_class: ALL
+    :variable_domain_prefix: ''
+    :name: POOLID
+    :datatype: 
+      :label: Char
+    :classification: 
+      :label: Identifier
+    :sub_classification: 
+      :label: Not Applicable
+    :prefixed: false
+    :description: An identifier used to identify a result from a group of subjects
+      that is not assignable to a specific subject.
+    :variable_core: ''
+    :rule: ''
+  - :ordinal: '5'
+    :label: Sponsor Device Identifier
+    :variable_class: ALL
+    :variable_domain_prefix: ''
+    :name: SPDEVID
+    :datatype: 
+      :label: Num
+    :classification: 
+      :label: Identifier
+    :sub_classification: 
+      :label: Not Applicable
+    :prefixed: false
+    :description: Sponsor-defined identifier for a device
+    :variable_core: ''
+    :rule: ''
+  :class_refs: []
+:new_version: '12'
+:new_state: Standard

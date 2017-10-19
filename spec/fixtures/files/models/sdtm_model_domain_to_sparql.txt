@@ -1,0 +1,1028 @@
+PREFIX : <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#>
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
+PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
+PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassDomain> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> rdfs:label "Interventions"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> rdf:type isoR:RegistrationState . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> isoR:byAuthority mdrItems:RA-084433759 . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> isoR:registrationStatus "Standard"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> isoR:administrativeNote ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> isoR:effectiveDate "2016-01-01T00:00:00Z"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> isoR:untilDate "2016-01-01T00:00:00Z"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> isoR:unresolvedIssue ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> isoR:administrativeStatus ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> isoR:previousState "Standard"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL_INTERVENTIONS-3> isoI:identifier "SDTMMODEL_INTERVENTIONS"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL_INTERVENTIONS-3> rdf:type isoI:ScopedIdentifier . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL_INTERVENTIONS-3> isoI:version "3"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL_INTERVENTIONS-3> isoI:versionLabel "1.4"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL_INTERVENTIONS-3> isoI:semantic_version "0.0.0"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL_INTERVENTIONS-3> isoI:hasScope mdrItems:NS-CDISC . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL_INTERVENTIONS-3> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_INTERVENTIONS-3> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> isoT:creationDate "2013-11-26T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> isoT:lastChangeDate "2016-09-02T23:32:18%2B01:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> isoT:changeDescription ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> isoT:explanatoryComment ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> isoT:origin ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:ordinal "0"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE> rdfs:label "Route of Administration"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE> bd:ordinal "36"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxROUTE> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT> rdfs:label "End Relative to Reference Time Point"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT> bd:ordinal "72"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENRTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC> rdfs:label "Date/Time of Reference Time Point"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC> bd:ordinal "65"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxRFTDTC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC> rdfs:label "End Date/Time of Observation"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC> bd:ordinal "56"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENDTC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM> rdfs:label "Planned Time Point Number"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM> bd:ordinal "62"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTNUM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP> rdfs:label "Link Group ID"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP> bd:ordinal "11"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLNKGRP> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD> rdfs:label "Mood"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD> bd:ordinal "19"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxMOOD> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMOOD> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR> rdfs:label "Occurrence"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR> bd:ordinal "23"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxOCCUR> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ> rdfs:label "Dosing Frequency per Interval"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ> bd:ordinal "33"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDOSFRQ> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM> rdfs:label "Dose Form"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM> bd:ordinal "32"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDOSFRM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC> rdfs:label "Date/Time of Collection"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC> bd:ordinal "54"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDTC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDTC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE> rdfs:label "Dose"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE> bd:ordinal "29"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDOSE> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ> rdfs:label "Sequence Number"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ> bd:ordinal "6"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSEQ> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY> rdfs:label "Study Day of Start of Observation"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY> bd:ordinal "58"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTDY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR> rdfs:label "Duration"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR> bd:ordinal "60"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDUR> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT> rdfs:label "Planned Start of Assessment Interval"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT> bd:ordinal "74"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTINT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTINT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT> rdfs:label "Start Reference Time Point"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT> bd:ordinal "71"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID> rdfs:label "Unique Subject Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID> bd:ordinal "3"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_USUBJID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT> rdfs:label "Time in Days to Detection"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT> bd:ordinal "76"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDETECT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDETECT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT> rdfs:label "Planned Time Point Name"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT> bd:ordinal "61"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR> rdfs:label "Directionality"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR> bd:ordinal "40"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDIR> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID> rdfs:label "Sponsor-Defined Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID> bd:ordinal "9"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSPID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC> rdfs:label "Indication"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC> bd:ordinal "26"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxINDC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT> rdfs:label "Subcategory"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT> bd:ordinal "21"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCAT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID> rdfs:label "Reference ID"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID> bd:ordinal "8"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxREFID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREFID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT> rdfs:label "Total Daily Dose"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT> bd:ordinal "34"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDOSTOT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTOT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT> rdfs:label "Visit Name"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT> bd:ordinal "50"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_VISIT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY> rdfs:label "Study Day of Visit/Collection/Exam"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY> bd:ordinal "57"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL> rdfs:label "Subject, Device, or Study Relationship"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL> bd:ordinal "15"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SREL> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SREL> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS> rdfs:label "Class"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS> bd:ordinal "27"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxCLAS> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLAS> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT> rdfs:label "Evaluation Interval"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT> bd:ordinal "68"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxEVLINT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVLINT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID> rdfs:label "Link ID"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID> bd:ordinal "10"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLNKID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ> rdfs:label "Reason for Dose Adjustment"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ> bd:ordinal "48"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxADJ> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxADJ> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN> rdfs:label "Domain Abbreviation"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN> bd:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DOMAIN> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT> rdfs:label "Name of Treatment"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT> bd:ordinal "16"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTRT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF> rdfs:label "Start Relative to Reference Period"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF> bd:ordinal "66"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTRF> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRF> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT> rdfs:label "Completion Status"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT> bd:ordinal "24"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTAT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTAT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY> rdfs:label "Modified Treatment Name"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY> bd:ordinal "17"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxMODIFY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxMODIFY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU> rdfs:label "Dose Units"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU> bd:ordinal "31"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDOSU> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT> rdfs:label "Start Relative to Reference Time Point"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT> bd:ordinal "70"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTRTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD> rdfs:label "Standardized Treatment Name"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD> bd:ordinal "18"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDECOD> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID> rdfs:label "Group ID"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID> bd:ordinal "7"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxGRPID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF> rdfs:label "End Relative to Reference Period"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF> bd:ordinal "67"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENRF> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRF> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID> rdfs:label "Associated Persons Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID> bd:ordinal "12"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_APID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_APID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT> rdfs:label "Dose Description"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT> bd:ordinal "30"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDOSTXT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU> rdfs:label "Treatment Vehicle Amount Units"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU> bd:ordinal "47"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxVAMTU> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMTU> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD> rdfs:label "Class Code"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD> bd:ordinal "28"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxCLASCD> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCLASCD> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID> rdfs:label "Related Device"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID> bd:ordinal "14"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_RDEVID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RDEVID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID> rdfs:label "Pool Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID> bd:ordinal "4"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_POOLID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_POOLID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT> rdfs:label "Laterality"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT> bd:ordinal "39"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLAT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM> rdfs:label "Planned Elapsed Time from Time Point Ref"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM> bd:ordinal "63"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxELTM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD> rdfs:label "Planned Order of Element within Arm"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD> bd:ordinal "52"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TAETORD> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_TAETORD> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT> rdfs:label "Lot Number"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT> bd:ordinal "37"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLOT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY> rdfs:label "Study Day of End of Observation"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY> bd:ordinal "59"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENDY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC> rdfs:label "Start Date/Time of Observation"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC> bd:ordinal "55"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTDTC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM> rdfs:label "Visit Number"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM> bd:ordinal "49"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_VISITNUM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT> rdfs:label "End Reference Time Point"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT> bd:ordinal "73"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM> rdfs:label "Intended Dose Regimen"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM> bd:ordinal "35"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDOSRGM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT> rdfs:label "Category"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT> bd:ordinal "20"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxCAT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP> rdfs:label "Pre-specified"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP> bd:ordinal "22"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPRESP> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID> rdfs:label "Related Subject"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID> bd:ordinal "13"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_RSUBJID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_RSUBJID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH> rdfs:label "Epoch"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH> bd:ordinal "53"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EPOCH> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_EPOCH> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID> rdfs:label "Study Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_STUDYID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF> rdfs:label "Time Point Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF> bd:ordinal "64"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG> rdfs:label "Pharmaceutical Strength"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG> bd:ordinal "43"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPSTRG> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRG> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST> rdfs:label "Fasting Status"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST> bd:ordinal "42"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxFAST> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxFAST> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY> rdfs:label "Planned Study Day of Visit"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY> bd:ordinal "51"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_VISITDY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID> rdfs:label "Sponsor Device Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID> bd:ordinal "5"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SPDEVID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_SPDEVID> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT> rdfs:label "Treatment Vehicle Amount"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT> bd:ordinal "46"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxVAMT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxVAMT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU> rdfs:label "Pharmaceutical Strength Units"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU> bd:ordinal "44"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPSTRGU> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPSTRGU> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT> rdfs:label "Portion or Totality"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT> bd:ordinal "41"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPORTOT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT> rdfs:label "Planned End of Assessment Interval"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT> bd:ordinal "75"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENINT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxENINT> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC> rdfs:label "Location of Dose Administration"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC> bd:ordinal "38"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLOC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND> rdfs:label "Reason Not Done"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND> bd:ordinal "25"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxREASND> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxREASND> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX> rdfs:label "Evaluation Interval Text"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX> bd:ordinal "69"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxEVINTX> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxEVINTX> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV> rdfs:label "Treatment Vehicle"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV> bd:ordinal "45"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV_CR1> rdfs:label "Column Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTRTV> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV_CR1> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRTV> . 
+}

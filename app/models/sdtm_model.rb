@@ -5,7 +5,7 @@ class SdtmModel < Tabular
   include ActiveModel::Validations
   
   # Attributes
-  attr_accessor :children, :class_refs
+  attr_accessor :children, :class_refs, :datatypes, :classifications
   
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_BD
@@ -27,10 +27,13 @@ class SdtmModel < Tabular
   # @params id [String] the id to be initialized
   # @return [Null]
   def initialize(triples=nil, id=nil)
-    self.children = Array.new
-    self.class_refs = Array.new
+    self.children = []
+    self.class_refs = []
+    self.datatypes = {}
+    self.classifications = {}
     if triples.nil?
       super
+      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
@@ -76,137 +79,78 @@ class SdtmModel < Tabular
     return results
   end
 
-  def get_class_map
-    variable_map = Hash.new
-    class_map = Hash.new
-    self.children.each do |variable|
-      uri = UriV2.new({:namespace => variable.namespace, :id => variable.id})
-      variable_map["#{uri}"] = variable
-    end
-    self.class_refs.each do |model_ref|
-      model_class = SdtmModelDomain.find(model_ref.subject_ref.id, model_ref.subject_ref.namespace)
-      model_class_name = model_class.label
-      uri = UriV2.new({:namespace => model_class.namespace, :id => model_class.id})
-      class_map[model_class_name] = {:class => model_class.label, :uri => uri, :children => {}}
-      model_class.children.each do |variable|
-        class_variable = variable_map["#{variable.variable_ref.subject_ref}"]
-        class_map[model_class_name][:children][class_variable.name] = variable
-      end
-    end
-    return class_map
-  end
-
-  def self.import(params)
+  # NOT TESTED
+  # Create a new version. This is an import and runs in the background.
+  #
+  # @param [Hash] params the parameters
+  # @option params [String] :date The release date of the version being created
+  # @option params [String] :version The version being created
+  # @option params [String] :version_label The label for the version being created
+  # @option params [String] :files Array of files being used 
+  # @return [Hash] A hash containing the object with any errors and the background job reference.
+  def self.create(params)
+    job = nil
     object = self.new
-    object.errors.clear
     if import_params_valid?(params, object)
-      # Clean files
-      files = params[:files]
-      files.reject!(&:blank?)
-      # Check to ensure version does not exist
-      ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-      if !versionExists?(C_IDENTIFIER, params[:version], ra.namespace)
-        job = Background.create
-        job.importCdiscSdtmModel(params, files)
-      else
-        object.errors.add(:base, "The version (#{params[:version]}) has already been created.")
-        job = nil
-      end
-    else
-      job = nil
+      params[:files].reject!(&:blank?)
+			job = Background.create
+  	 	job.import_cdisc_sdtm_model(params)
     end
     return { :object => object, :job => job }
   end
 
-  def self.import_sparql(params, sparql)
-    # Init data
-    object = self.new 
-    object.errors.clear
-    classifications = Hash.new
-    classification_classes = Hash.new
-    datatypes = Hash.new
-    map = Hash.new
-    # Get the Json structure
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-    uri = IsoManaged.create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-    id = uri.id
-    namespace = uri.namespace
-    ConsoleLogger::log(C_CLASS_NAME,"import_sparql", "URI=#{uri}")
-    # Build the data type and classification info. Fill in the blank classification first. Explicitly set the label to "".
-    classification = SdtmModel::Variable::C_ROLE_NONE
-    sub_classification = SdtmModel::Variable::C_ROLE_Q_NA
-    classification_id = id + Uri::C_UID_SECTION_SEPARATOR + 'C' + Uri::C_UID_SECTION_SEPARATOR + classification.upcase.gsub(/\s+/, "")
-    classification_classes[classification] = { :id => classification_id, :label => "", :children => Array.new }
-    # Now from the data
-    if !managed_item[:children].blank?
-      managed_item[:children].each do |item|
-        classification = item[:variable_classification]
-        sub_classification = item[:variable_sub_classification]
-        datatype = item[:variable_type]
-        if !datatypes.has_key?(datatype)
-          datatypes[datatype] = { :id => id + Uri::C_UID_SECTION_SEPARATOR + 'DT' + Uri::C_UID_SECTION_SEPARATOR + datatype.upcase.gsub(/\s+/, ""), :label => datatype }
-        end
-        key = "#{classification}.#{sub_classification}"
-        classification_id = id + Uri::C_UID_SECTION_SEPARATOR + 'C' + Uri::C_UID_SECTION_SEPARATOR + classification.upcase.gsub(/\s+/, "")
-        sub_classification_id = id + Uri::C_UID_SECTION_SEPARATOR + 'SC' + Uri::C_UID_SECTION_SEPARATOR + sub_classification.upcase.gsub(/\s+/, "")
-        if !classifications.has_key?(key)
-          if sub_classification == "Not Applicable"
-            classifications[key] = { :id => classification_id, :label => classification }
-            if !classification_classes.has_key?(classification)
-              classification_classes[classification] = { :id => classification_id, :label => classification, :children => Array.new }
-            end
-          else
-            classifications[key] = { :id => sub_classification_id, :label => sub_classification }
-            if !classification_classes.has_key?(classification)
-              classification_classes[classification] = { :id => classification_id, :label => classification, :children => Array.new  }
-            end
-            entry = classification_classes[classification]
-            entry[:children] << { :id => sub_classification_id, :label => sub_classification, :children => Array.new  }
-          end
-        end
+  # NOT TESTED
+	# Valididate and SPARQL. Build the object from the operational hash validate and 
+	# generate the SPARQL if valid and object can be created.
+  #
+  # @param [Hash] params the operational hash
+  # @param [SparqlUpdateV2] sparql the SPARQL object to add triples to.
+  # @return [SdtmModel] The created object. Valid if no errors set.
+  def self.build_and_sparql(params, sparql)
+    cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    object = SdtmModel.from_json(params[:managed_item])
+    object.add_datatypes(params[:managed_item])
+    object.add_classifications(params[:managed_item])
+    object.update_variables
+    object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+    object.lastChangeDate = object.creationDate # Make sure we don't set current time.
+    if object.valid? then
+      if object.create_permitted?
+        object.to_sparql_v2(sparql)
       end
     end
-    # Build the variable triples
-    if !managed_item[:children].blank?
-      managed_item[:children].each do |item|
-        ref_id = SdtmModel::Variable.import_sparql(namespace, id, sparql, item, datatypes, classifications)
-        ref_uri = UriV2.new({:namespace=> namespace, :id => ref_id})
-        sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "includesVariable"}, {:uri => ref_uri})
-        map[item[:variable_name]] = ref_uri
-      end
-    end
-    # Build the datatype and classifier references triples
-    datatypes.each do |key, datatype|
-      IsoConcept.import_sparql(namespace, datatype[:id], sparql, C_SCHEMA_PREFIX, "VariableType", datatype[:label])
-    end
-    classification_classes.each do |key, parent|
-      IsoConcept.import_sparql(namespace, parent[:id], sparql, C_SCHEMA_PREFIX, "VariableClassification", parent[:label])
-      parent[:children].each do |child|
-        sparql.triple({:namespace => namespace, :id => parent[:id]}, {:prefix => C_SCHEMA_PREFIX, :id => "childClassification"}, {:prefix => "", :id => child[:id]})
-        sparql.triple({:namespace => namespace, :id => child[:id]}, {:prefix => C_SCHEMA_PREFIX, :id => "parentClassification"}, {:prefix => "", :id => parent[:id]})
-        IsoConcept.import_sparql(namespace, child[:id], sparql, C_SCHEMA_PREFIX, "VariableClassification", child[:label])  
-      end
-    end
-    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "classification_classes=" + classification_classes.to_json.to_s)
-    #ConsoleLogger::log(C_CLASS_NAME,"to_sparql", "classifications=" + classifications.to_json.to_s) 
-    return { :uri => uri, :map => map, :object => object }
+    return object
   end
 
-  def self.add_class_sparql(uri, ref_uri, ordinal, sparql)
-    object = self.new 
-    object.errors.clear
-    ref_id = "#{uri.id}#{Uri::C_UID_SECTION_SEPARATOR}TR#{ordinal}" 
-    ref_subject ={:namespace => uri.namespace, :id => ref_id}
-    sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, ref_subject)
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id => "TReference"})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "hasTabulation"}, {:uri => ref_uri})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "#{ordinal}", :primitive_type => "positiveInteger"})
-    return { :object => object }
+  # To SPARQL
+  #
+  # @param [SparqlUpdateV2] sparql the SPARQL object
+  # @return [UriV2] The URI
+  def to_sparql_v2(sparql)
+    uri = super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => uri}
+    self.datatypes.each { |k, dt| dt.to_sparql_v2(uri, sparql) }
+    self.classifications.each { |k, c| c.to_sparql_v2(uri, sparql) }
+    self.children.each do |child|
+    	ref_uri = child.to_sparql_v2(uri, sparql)
+    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:uri => ref_uri})
+    end
+    self.class_refs.each do |ref|
+    	ref_uri = ref.to_sparql_v2(uri, "includesTabulation", 'TR', ref.ordinal, sparql)
+    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, {:uri => ref_uri})
+    end
+    return self.uri
+  end
+
+	# From JSON
+  #
+  # @param [Hash] json the hash of values for the object 
+  # @return [SdtmModel] the object created
+  def self.from_json(json)
+    object = super(json)
+    json[:children].each { |c| object.children << SdtmModel::Variable.from_json(c) } if !json[:children].blank?
+    json[:class_refs].each { |ref| object.class_refs << OperationalReferenceV2.from_json(ref) } if !json[:class_refs].blank?
+    return object
   end
 
   # To JSON
@@ -214,18 +158,66 @@ class SdtmModel < Tabular
   # @return [Hash] the object hash 
   def to_json
     json = super
-    json[:children] = Array.new
-    json[:class_refs] = Array.new
-    self.children.each do |child|
-      json[:children] << child.to_json
-    end
-    self.class_refs.each do |ref|
-      json[:class_refs] << ref.to_json
-    end
+    json[:children] = []
+    json[:class_refs] = []
+    self.children.each { |c| json[:children] << c.to_json }
+    self.class_refs.each { |ref| json[:class_refs] << ref.to_json }
     return json
   end
 
+  # Add Datatypes. Create the datatypes existing within the variables
+  #
+  # @param [Hash] json the managed item hash
+  # @return [void] no return
+  def add_datatypes(json)
+  	return if json[:children].blank?
+    json[:children].each do |item|
+    	label = item[:datatype][:label]
+    	if !self.datatypes.has_key?(label)
+    		object = SdtmModelDatatype.new
+    		object.label = label
+      	self.datatypes[label] = object
+      end
+    end
+  end
+
+  # Add Classifications. Create the classifcations existing within the variables
+  #
+  # @param [Hash] json the managed item hash
+  # @return [void] no return
+  def add_classifications(json)
+  	return if json[:children].blank?
+    add_classification(SdtmModel::Variable::C_ROLE_NONE, SdtmModel::Variable::C_ROLE_Q_NA)
+    json[:children].each { |c| add_classification(c[:classification][:label], c[:sub_classification][:label]) }
+  end
+ 
+  # Update Variables. Update the variables with common references
+  #
+  # @return [void] no return
+ 	def update_variables
+ 		self.children.each do |child|
+ 			child.update_datatype(self.datatypes)
+ 			child.update_classification(self.classifications)
+ 		end
+ 	end
+
 private
+
+	def add_classification(classification, sub_classification)
+		if !self.classifications.has_key?(classification)
+			object = SdtmModelClassification.new
+			object.label = classification
+			object.set_parent
+			self.classifications[classification] = object
+		end
+		if !self.classifications.has_key?(sub_classification) && sub_classification != SdtmModel::Variable::C_ROLE_Q_NA
+			parent = self.classifications[classification] 
+			object = SdtmModelClassification.new
+			object.label = sub_classification
+			parent.add_child(object)
+			self.classifications[sub_classification] = object
+		end        
+	end
 
   def self.import_params_valid?(params, object)
     result1 = FieldValidation::valid_version?(:version, params[:version], object)
@@ -235,11 +227,11 @@ private
     return result1 && result2 && result3 && result4
   end
 
-  def self.create_params_valid?(params, object)
-    result1 = FieldValidation::valid_identifier?(:version, params[:identifier], object)
-    result2 = FieldValidation::valid_label?(:label, params[:label], object)
-    return result1 && result2 
-  end
+  #def self.create_params_valid?(params, object)
+  #  result1 = FieldValidation::valid_identifier?(:version, params[:identifier], object)
+  #  result2 = FieldValidation::valid_label?(:label, params[:label], object)
+  #  return result1 && result2 
+  #end
 
   def self.children_from_triples(object, triples, id, bc=nil)
     object.children =  SdtmModel::Variable.find_for_parent(object.triples, object.get_links(C_SCHEMA_PREFIX, "includesVariable"))

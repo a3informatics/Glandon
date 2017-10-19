@@ -1,0 +1,87 @@
+PREFIX : <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#>
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
+PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
+PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> rdf:type <http:///> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> rdfs:label "SDTM Model 2017-10-18"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> rdf:type isoR:RegistrationState . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:byAuthority mdrItems:RA-084433759 . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:registrationStatus "Incomplete"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:administrativeNote ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:untilDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:unresolvedIssue ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:administrativeStatus ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:previousState "Incomplete"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:identifier "SDTM MODEL"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> rdf:type isoI:ScopedIdentifier . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:version "6"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:versionLabel "1111111"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:semantic_version "0.1.0"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:hasScope mdrItems:NS-CDISC . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:creationDate "2017-10-01T00:00:00%2B01:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:lastChangeDate "2017-10-01T00:00:00%2B01:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:changeDescription ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:explanatoryComment ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:origin ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_CHAR> rdf:type <http://www.assero.co.uk/BusinessDomain#VariableType> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_CHAR> rdfs:label "Char"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_NUM> rdf:type <http://www.assero.co.uk/BusinessDomain#VariableType> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_NUM> rdfs:label "Num"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_C_NONE> rdf:type <http://www.assero.co.uk/BusinessDomain#VariableClassification> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_C_NONE> rdfs:label "None"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_C_IDENTIFIER> rdf:type <http://www.assero.co.uk/BusinessDomain#VariableClassification> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_C_IDENTIFIER> rdfs:label "Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> rdfs:label "Study Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:name "STUDYID"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:prefixed "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:description "Unique identifier for a study."^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> rdfs:label "Domain Abbreviation"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:name "DOMAIN"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:prefixed "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:description "Two-character abbreviation for the domain most relevant to the observation. The Domain abbreviation is also used as a prefix for variables to ensure uniqueness when datasets are merged."^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> rdfs:label "Unique Subject Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:ordinal "3"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:name "USUBJID"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:prefixed "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> rdfs:label "Pool Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:ordinal "4"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:name "POOLID"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:prefixed "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:description "An identifier used to identify a result from a group of subjects that is not assignable to a specific subject."^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> rdfs:label "Sponsor Device Identifier"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:ordinal "5"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:name "SPDEVID"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:prefixed "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:description "Sponsor-defined identifier for a device"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> . 
+}

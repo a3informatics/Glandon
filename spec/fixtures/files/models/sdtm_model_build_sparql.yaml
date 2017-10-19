@@ -1,0 +1,161 @@
+---
+:type: ''
+:id: M-CDISC_SDTMMODEL
+:namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+:label: SDTM Model 2017-10-18
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2017-10-01T00:00:00+01:00'
+:last_changed_date: '2017-10-01T00:00:00+01:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-CDISC_SDTMMODEL-6
+  :registration_authority:
+    :id: RA-084433759
+    :number: 084433759
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :shortName: CDISC
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+:scoped_identifier:
+  :id: SI-CDISC_SDTMMODEL-6
+  :identifier: SDTM MODEL
+  :version_label: '1111111'
+  :version: 6
+  :semantic_version: 0.1.0
+  :namespace:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: NS-CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :shortName: CDISC
+:ordinal: 1
+:rule: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_STUDYID
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Study Identifier
+  :extension_properties: []
+  :ordinal: '1'
+  :rule: ''
+  :name: STUDYID
+  :prefixed: false
+  :description: Unique identifier for a study.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Identifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_DOMAIN
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Domain Abbreviation
+  :extension_properties: []
+  :ordinal: '2'
+  :rule: ''
+  :name: DOMAIN
+  :prefixed: false
+  :description: Two-character abbreviation for the domain most relevant to the observation.
+    The Domain abbreviation is also used as a prefix for variables to ensure uniqueness
+    when datasets are merged.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Identifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_USUBJID
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Unique Subject Identifier
+  :extension_properties: []
+  :ordinal: '3'
+  :rule: ''
+  :name: USUBJID
+  :prefixed: false
+  :description: Identifier used to uniquely identify a subject across all studies
+    for all applications or submissions involving the product.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Identifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_POOLID
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Pool Identifier
+  :extension_properties: []
+  :ordinal: '4'
+  :rule: ''
+  :name: POOLID
+  :prefixed: false
+  :description: An identifier used to identify a result from a group of subjects that
+    is not assignable to a specific subject.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Identifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_SPDEVID
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Sponsor Device Identifier
+  :extension_properties: []
+  :ordinal: '5'
+  :rule: ''
+  :name: SPDEVID
+  :prefixed: false
+  :description: Sponsor-defined identifier for a device
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_NUM
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Num
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Identifier
+    :extension_properties: []
+:class_refs: []
