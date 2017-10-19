@@ -53,17 +53,30 @@ describe SdtmModelDomain do
     expect(result.count).to eq(6)    
   end
   
-  #it "allows an item's history to be found" do
-  #  owner = IsoRegistrationAuthority.find_by_short_name("CDISC")
-  #  result = SdtmModelDomain.history({:identifier => "SDTM IG PR", :scope_id => owner.namespace.id})
-  #  expect(result.count).to eq(1)
-  #end
-  
-  it "allows the domain to be exported as JSON" do
+  it "allows the domain class to be exported as JSON" do
     item = SdtmModelDomain.find("M-CDISC_SDTMMODEL_INTERVENTIONS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
   #write_yaml_file(item.to_json, sub_dir, "sdtm_model_domain_to_json.yaml")
     expected = read_yaml_file(sub_dir, "sdtm_model_domain_to_json.yaml")
     expect(item.to_json).to eq(expected)
   end
-  
+
+	it "allows the domain class to be created from JSON" do 
+		expected = read_yaml_file(sub_dir, "sdtm_model_domain_to_json.yaml")
+    item = SdtmModelDomain.from_json(expected)
+    expect(item.to_json).to eq(expected)
+	end
+
+	it "allows the object to be output as sparql" do
+  	sparql = SparqlUpdateV2.new
+  	json = read_yaml_file(sub_dir, "sdtm_model_domain_to_json.yaml")
+    item = SdtmModelDomain.from_json(json)
+    result = item.to_sparql_v2(sparql, "bd")
+  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_domain_to_sparql.txt")
+    expected = read_text_file_2(sub_dir, "sdtm_model_domain_to_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS")
+  end
+
+  it "allows the item to be created"
+
 end

@@ -74,31 +74,42 @@ class SdtmModelDomain < Tabular
     return results
   end
 
-  def self.import_sparql(params, sparql, model_map)
-    # Init data
-    object = self.new 
-    object.errors.clear
-    map = Hash.new
-    # Get the Json structure
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-    uri = IsoManaged.create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-    id = uri.id
-    namespace = uri.namespace
-    ConsoleLogger::log(C_CLASS_NAME,"import_sparql", "URI=#{uri}")
-    # Set the properties
-    sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "domain_class"}, {:literal => "#{managed_item[:domain_class]}", :primitive_type => "string"})
-    # Now deal with the children
-    if !managed_item[:children].blank?
-      managed_item[:children].each do |item|
-        ref_id = SdtmModelDomain::Variable.import_sparql(namespace, id, sparql, item, model_map)
-        sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:namespace => namespace, :id => ref_id})
-        map[item[:variable_name]] = ModelUtility.buildUri(namespace, ref_id)
+	def self.build_and_sparql(params, sparql, model)
+    cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    SdtmModelDomain.variable_references(params, model)
+    object = SdtmModelDomain.from_json(params[:managed_item])
+    object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+    if object.valid? then
+      if object.create_permitted?
+        object.to_sparql_v2(sparql)
       end
     end
-    return { :uri => uri, :map => map, :object => object }
+    return object
+  end
+
+  # To SPARQL
+  #
+  # @param [SparqlUpdateV2] sparql the SPARQL object
+  # @param [String] schema_prefix the schema prefix for the triples
+	# @return [UriV2] The URI
+  def to_sparql_v2(sparql, schema_prefix)
+    super(sparql, schema_prefix)
+    subject = {:uri => self.uri}
+    self.children.each do |child|
+    	ref_uri = child.to_sparql_v2(sparql, schema_prefix)
+    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:uri => ref_uri})
+    end
+    return self.uri
+  end
+
+	# From JSON
+  #
+  # @param [Hash] json the hash of values for the object 
+  # @return [SdtmModelDomain] the object created
+  def self.from_json(json)
+    object = super(json)
+    json[:children].each { |c| object.children << SdtmModelDomain::Variable.from_json(c) } if !json[:children].blank?
+    return object
   end
 
   # To JSON
@@ -114,6 +125,15 @@ class SdtmModelDomain < Tabular
   end
 
 private
+
+	def self.variable_references(params, model)
+		params[:children].each do |child|
+			new_child = model.children.select { |c| where c.name == child.name }
+			ref = OperationalReferenceV2.new
+			ref.subject_ref = new_child.uri
+			child[:variable_ref] = ref.to_json
+		end
+	end
 
   def self.children_from_triples(object, triples, id)
     object.children = SdtmModelDomain::Variable.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "includesColumn"))
