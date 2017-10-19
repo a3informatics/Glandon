@@ -79,14 +79,15 @@ describe SdtmModelDomain::Variable do
 	end
 
   it "allows the object to be output as sparql" do
+  	parent_uri = UriV2.new(id: "M-CDISC_SDTMMODEL_EVENTS", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
   	sparql = SparqlUpdateV2.new
   	json = read_yaml_file(sub_dir, "variable.yaml")
     item = SdtmModelDomain::Variable.from_json(json)
-    result = item.to_sparql_v2(sparql, "bd")
+    result = item.to_sparql_v2(parent_uri, sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "variable_to_sparql.txt")
     expected = read_text_file_2(sub_dir, "variable_to_sparql.txt")
     expect(sparql.to_s).to eq(expected)
-    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT")
+    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23")
   end
 
 end

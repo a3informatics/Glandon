@@ -50,11 +50,13 @@ class SdtmModelDomain::Variable < Tabular::Column
   # @param [SparqlUpdateV2] sparql the SPARQL object
   # @param [String] schema_prefix the schema prefix for the triples
 	# @return [UriV2] The URI
-  def to_sparql_v2(sparql, schema_prefix)
-    super(sparql, schema_prefix)
+  def to_sparql_v2(parent_uri, sparql)
+    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{self.ordinal}"
+    self.namespace = parent_uri.namespace
+    super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => self.uri}
     ref_uri = self.variable_ref.to_sparql_v2(self.uri, OperationalReferenceV2::C_PARENT_LINK_C, 'CR', 1, sparql)
-    sparql.triple(subject, {:prefix => schema_prefix, :id => OperationalReferenceV2::C_PARENT_LINK_C}, {:uri => ref_uri})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => OperationalReferenceV2::C_PARENT_LINK_C}, {:uri => ref_uri})
     return self.uri
   end
 
