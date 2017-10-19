@@ -123,8 +123,20 @@ describe SdtmModel::Variable do
   	json = read_yaml_file(sub_dir, "variable.yaml")
     item = SdtmModel::Variable.from_json(json)
     result = item.to_sparql_v2(parent_uri, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "variable_to_sparql.txt")
-    expected = read_text_file_2(sub_dir, "variable_to_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "variable_to_sparql_1.txt")
+    expected = read_text_file_2(sub_dir, "variable_to_sparql_1.txt")
+    expect(sparql.to_s).to eq(expected)
+    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF")
+  end
+
+  it "allows the object to be output as sparql, sub classification" do
+  	parent_uri = UriV2.new(id: "M-CDISC_SDTMMODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+  	sparql = SparqlUpdateV2.new
+  	json = read_yaml_file(sub_dir, "variable_2.yaml")
+    item = SdtmModel::Variable.from_json(json)
+    result = item.to_sparql_v2(parent_uri, sparql)
+  #write_text_file_2(sparql.to_s, sub_dir, "variable_to_sparql_2.txt")
+    expected = read_text_file_2(sub_dir, "variable_to_sparql_2.txt")
     expect(sparql.to_s).to eq(expected)
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF")
   end

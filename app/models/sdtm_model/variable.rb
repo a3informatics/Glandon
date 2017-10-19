@@ -100,6 +100,12 @@ class SdtmModel::Variable < Tabular::Column
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefixed"}, {:literal => "#{self.prefixed}", :primitive_type => "boolean"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "description"}, {:literal => "#{self.description}", :primitive_type => "string"})
+		sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "typedAs"}, {:uri => self.datatype.uri})
+		if self.sub_classification.nil? 
+			sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:uri => self.classification.uri})
+		else
+			sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:uri => self.sub_classification.uri})
+		end
 		return self.uri
   end
 
