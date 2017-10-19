@@ -70,13 +70,37 @@ describe SdtmModelDomain do
   	sparql = SparqlUpdateV2.new
   	json = read_yaml_file(sub_dir, "sdtm_model_domain_to_json.yaml")
     item = SdtmModelDomain.from_json(json)
-    result = item.to_sparql_v2(sparql, "bd")
+    result = item.to_sparql_v2(sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_domain_to_sparql.txt")
     expected = read_text_file_2(sub_dir, "sdtm_model_domain_to_sparql.txt")
     expect(sparql.to_s).to eq(expected)
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS")
   end
 
-  it "allows the item to be created"
+  it "allows the item to be built and sparql created" do
+  	clear_triple_store
+    load_schema_file_into_triple_store("ISO11179Types.ttl")
+    load_schema_file_into_triple_store("ISO11179Basic.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    load_schema_file_into_triple_store("ISO11179Data.ttl")
+    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    load_schema_file_into_triple_store("BusinessOperational.ttl")
+    load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+    sparql = SparqlUpdateV2.new
+		results = read_yaml_file(sub_dir, "sdtm_model_domain_import.yaml")
+		models = results.select { |hash| hash[:type]=="MODEL" }
+    model = SdtmModel.build_and_sparql(models[0][:instance], sparql)
+  	domains = results.select { |hash| hash[:type]=="MODEL_DOMAIN" }
+		result = SdtmModelDomain.build_and_sparql(domains[0][:instance], sparql, model)
+  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_domain_to_sparql_2.txt")
+    expected = read_text_file_2(sub_dir, "sdtm_model_domain_to_sparql_2.txt")
+    expect(sparql.to_s).to eq(expected)
+	#write_yaml_file(result.to_json, sub_dir, "sdtm_model_domain_build_sparql.yaml")
+    expected = read_yaml_file(sub_dir, "sdtm_model_domain_build_sparql.yaml")
+		expect(result.to_json).to eq(expected)
+		expect(result.errors.count).to eq(0)
+  end
 
 end

@@ -24,12 +24,12 @@ class SdtmModelDomain < Tabular
   C_RELATIONSHIP_LABEL = "Relationship"
   C_ASSOCIATED_PERSON_LABEL = "Associated Person"
   
-  C_EVENTS_IDENTIFIER = "SDTMMODEL_EVENTS"
-  C_FINDINGS_IDENTIFIER = "SDTMMODEL_FINDINGS"
-  C_INTERVENTIONS_IDENTIFIER = "SDTMMODEL_INTERVENTIONS"
-  C_SPECIAL_PURPOSE_IDENTIFIER = "SDTMMODEL_SPECIAL_PURPOSE"
-  C_TRIAL_DESIGN_IDENTIFIER = "SDTMMODEL_TRIAL_DESIGN"
-  C_RELATIONSHIP_IDENTIFIER = "SDTMMODEL_RELATIONSHIP"
+  C_EVENTS_IDENTIFIER = "SDTMMODEL EVENTS"
+  C_FINDINGS_IDENTIFIER = "SDTMMODEL FINDINGS"
+  C_INTERVENTIONS_IDENTIFIER = "SDTMMODEL INTERVENTIONS"
+  C_SPECIAL_PURPOSE_IDENTIFIER = "SDTMMODEL SPECIAL_PURPOSE"
+  C_TRIAL_DESIGN_IDENTIFIER = "SDTMMODEL TRIAL DESIGN"
+  C_RELATIONSHIP_IDENTIFIER = "SDTMMODEL RELATIONSHIP"
     
   # Initialize
   #
@@ -74,11 +74,19 @@ class SdtmModelDomain < Tabular
     return results
   end
 
-	def self.build_and_sparql(params, sparql, model)
+	# Valididate and SPARQL. Build the object from the operational hash. Validate and 
+	# generate the SPARQL if valid and object can be created.
+  #
+  # @param [Hash] params the operational hash
+  # @param [SparqlUpdateV2] sparql the SPARQL object to add triples to.
+  # @param [SdtmModel] model the sdtm model for the references.
+  # @return [SdtmModelDomain] The created object. Valid if no errors set.
+  def self.build_and_sparql(params, sparql, model)
     cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-    SdtmModelDomain.variable_references(params, model)
+    SdtmModelDomain.variable_references(params[:managed_item], model)
     object = SdtmModelDomain.from_json(params[:managed_item])
     object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+    object.lastChangeDate = object.creationDate # Make sure we don't set current time.
     if object.valid? then
       if object.create_permitted?
         object.to_sparql_v2(sparql)
@@ -90,13 +98,12 @@ class SdtmModelDomain < Tabular
   # To SPARQL
   #
   # @param [SparqlUpdateV2] sparql the SPARQL object
-  # @param [String] schema_prefix the schema prefix for the triples
 	# @return [UriV2] The URI
-  def to_sparql_v2(sparql, schema_prefix)
-    super(sparql, schema_prefix)
+  def to_sparql_v2(sparql)
+    super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => self.uri}
     self.children.each do |child|
-    	ref_uri = child.to_sparql_v2(sparql, schema_prefix)
+    	ref_uri = child.to_sparql_v2(self.uri, sparql)
     	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:uri => ref_uri})
     end
     return self.uri
@@ -128,9 +135,11 @@ private
 
 	def self.variable_references(params, model)
 		params[:children].each do |child|
-			new_child = model.children.select { |c| where c.name == child.name }
+			new_child = model.children.find { |c| c.name == child[:variable_name] }
+			raise Exceptions::ApplicationLogicError.new(message: "Failed to match variable #{child[:variable_name]} in #{C_CLASS_NAME} object.") if new_child.nil?
 			ref = OperationalReferenceV2.new
 			ref.subject_ref = new_child.uri
+			ref.ordinal = child[:ordinal]
 			child[:variable_ref] = ref.to_json
 		end
 	end
