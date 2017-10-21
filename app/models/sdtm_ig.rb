@@ -31,6 +31,7 @@ class SdtmIg < Tabular
     self.compliance = {}
     if triples.nil?
       super
+      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
@@ -68,77 +69,14 @@ class SdtmIg < Tabular
     return results
   end
 
-=begin
-  def self.import(params)
-    object = self.new
-    object.errors.clear
-    if import_params_valid?(params, object)
-      # Clean files
-      files = params[:files]
-      files.reject!(&:blank?)
-      # Check to ensure version does not exist
-      ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-      if !versionExists?(C_IDENTIFIER, params[:version], ra.namespace)
-        job = Background.create
-        job.importCdiscSdtmIg(params, files)
-      else
-        object.errors.add(:base, "The version (#{params[:version]}) has already been created.")
-        job = nil
-      end
-    else
-      job = nil
-    end
-    return { :object => object, :job => job }
-  end
-
-  def self.import_sparql(params, sparql, ig_domains, compliance_set)
-    # Init data
-    object = self.new 
-    object.errors.clear
-    # Get the Json structure
-    data = params[:data]
-    operation = data[:operation]
-    managed_item = data[:managed_item]
-    ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-    uri = IsoManaged.create_sparql(C_CID_PREFIX, data, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS, sparql, ra)
-    id = uri.id
-    namespace = uri.namespace
-    # Build the compliance (core) set
-    ig_domains.each do |result|
-      result[:instance][:managed_item][:children].each do |variable|
-        core = variable[:variable_core]
-        if !compliance_set.has_key?(core)
-          compliance_set[core] = core
-        end
-      end
-    end    
-    return { :uri => uri, :object => object }
-  end
-
-  def self.add_domain_sparql(uri, ref_uri, ordinal, sparql)
-    object = self.new 
-    object.errors.clear
-    subject = {:uri => uri}
-    ref_id = "#{uri.id}#{Uri::C_UID_SECTION_SEPARATOR}TR#{ordinal}" 
-    ref_subject ={:namespace => uri.namespace, :id => ref_id}
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, ref_subject)
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id => "TReference"})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "hasTabulation"}, {:uri => ref_uri})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
-    sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "#{ordinal}", :primitive_type => "positiveInteger"})
-    return { :object => object }
-  end
-=end
-
-	# NOT TESTED
-  # Create a new version. This is an import and runs in the background.
+	# Create a new version. This is an import and runs in the background.
   #
   # @param [Hash] params the parameters
   # @option params [String] :date The release date of the version being created
   # @option params [String] :version The version being created
   # @option params [String] :version_label The label for the version being created
   # @option params [String] :files Array of files being used 
+  # @option params [String] :model_uri The URI for the SDTM model
   # @return [Hash] A hash containing the object with any errors and the background job reference.
   def self.create(params)
     job = nil
@@ -151,33 +89,43 @@ class SdtmIg < Tabular
     return { :object => object, :job => job }
   end
 
-  # NOT TESTED
-  # Build the object from the operational hash.
+  # Build the object from a set of operational hash structures and generate the SPARQL.
   #
-  # @param [Hash] params the operational hash
+  # @param [Array] params an array of operational hash structures for the IG and Domains
   # @return [SdtmIg] The created object. Valid if no errors set.
   def self.build(params, sparql)
+  	ig_params = params.select { |x| x[:type] == "IG" } # At least one assumed to exist
     cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-    object = SdtmIg.from_json(params[:managed_item])
-    object.add_compliance(params[:managed_item])
-    object.update_variables
-    object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+    object = SdtmIg.from_json(ig_params.first[:instance][:managed_item])
+    object.from_operation(ig_params.first[:instance][:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+    build_compliance(object.compliance, params)
     object.lastChangeDate = object.creationDate # Make sure we don't set current time.
-    object.valid?
-    return object
+    if object.valid? && object.create_permitted?
+      object.to_sparql_v2(sparql, false)
+    end
+  	return object
   end
 
   # To SPARQL
   #
   # @param [SparqlUpdateV2] sparql the SPARQL object
-  # @return [UriV2] The URI
-  def to_sparql_v2(sparql)
-    uri = super(sparql, C_SCHEMA_PREFIX)
-    subject = {:uri => uri}
-    self.compliance.each { |k, c| c.to_sparql_v2(uri, sparql) }
+  # @param [Boolean] refs output the domain references if true, defaults to true
+  # @return [UriV2] The subject URI
+  def to_sparql_v2(sparql, refs=true)
+    super(sparql, C_SCHEMA_PREFIX)
+    self.compliance.each { |k, c| c.to_sparql_v2(self.uri, sparql) }
+    domain_refs_to_sparql(sparql) if refs
+    return self.uri
+  end
+
+  # Refs To SPARQL
+  #
+  # @param [SparqlUpdateV2] sparql the SPARQL object
+  # @return [UriV2] The subject URI
+  def domain_refs_to_sparql(sparql)
     self.domain_refs.each do |ref|
-    	ref_uri = ref.to_sparql_v2(uri, "includesTabulation", 'TR', ref.ordinal, sparql)
-    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, {:uri => ref_uri})
+    	ref_uri = ref.to_sparql_v2(self.uri, "includesTabulation", 'TR', ref.ordinal, sparql)
+    	sparql.triple({:uri => self.uri}, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, {:uri => ref_uri})
     end
     return self.uri
   end
@@ -204,30 +152,42 @@ class SdtmIg < Tabular
     return json
   end
 
-  # Add Compliance. Create the datatypes existing within the variables
+  # Add Domain
   #
-  # @param [Hash] json the managed item hash
+  # @param [SdtmIgDomain] domain the domain object
   # @return [void] no return
-  def add_compliance(json)
-  	return if json[:children].blank?
-    json[:children].each do |item|
-    	label = item[:compliance][:label]
-    	if !self.compliance.has_key?(label)
-    		object = SdtmModelCompliance.new
-    		object.label = label
-      	self.compliance[label] = object
-      end
-    end
+  def add_domain(domain)
+  	ref = OperationalReferenceV2.new
+  	ref.subject_ref = domain.uri
+  	self.domain_refs << ref
+  	ref.ordinal = self.domain_refs.count
   end
 
 private
+
+  # Build Compliance. Create the common compliance objects
+  def self.build_compliance(compliances, params)
+  	params.each do |item|
+  		if item[:type] == "IG_DOMAIN"
+  			item[:instance][:managed_item][:children].each do |child|
+  	  		label = child[:compliance][:label]
+    			if !compliances.has_key?(label)
+    				object = SdtmModelCompliance.new
+    				object.label = label
+      			compliances[label] = object
+      		end
+      	end
+      end
+    end
+  end
 
   def self.import_params_valid?(params, object)
     result1 = FieldValidation::valid_version?(:version, params[:version], object)
     result2 = FieldValidation::valid_date?(:date, params[:date], object)
     result3 = FieldValidation::valid_files?(:files, params[:files], object)
     result4 = FieldValidation::valid_label?(:version_label, params[:version_label], object)
-    return result1 && result2 && result3 && result4
+    result5 = FieldValidation::valid_uri?(:model_uri, params[:model_uri], object)
+    return result1 && result2 && result3 && result4 && result5
   end
 
   def self.children_from_triples(object, triples, id, bc=nil)

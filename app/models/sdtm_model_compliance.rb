@@ -5,6 +5,7 @@ class SdtmModelCompliance < EnumeratedLabel
   C_RDF_TYPE = "VariableCompliance"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_DEFAULT = "PERMISSIBLE"
+  C_CID_SUFFIX = "C"
 
   # Initialize
   #
@@ -14,10 +15,10 @@ class SdtmModelCompliance < EnumeratedLabel
   def initialize(triples=nil, id=nil)
     if triples.nil?
       super
+	    self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
-    self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
   end
 
   # Get all items
@@ -74,6 +75,17 @@ class SdtmModelCompliance < EnumeratedLabel
   # @return [SdtmModelDatatype] the object
   def self.from_json(json)
     return super(json)
+  end
+
+  # To SPARQL
+  #
+  # @param [UriV2] parent_uri the parent URI
+	# @param [SparqlUpdateV2] sparql the SPARQL object
+  # @return [UriV2] The URI
+ 	def to_sparql_v2(parent_uri, sparql)
+ 		self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{C_CID_SUFFIX}#{Uri::C_UID_SECTION_SEPARATOR}#{self.label.upcase.gsub(/\s+/, "")}"
+    self.namespace = parent_uri.namespace
+    return super(sparql, C_SCHEMA_PREFIX)
   end
 
 end

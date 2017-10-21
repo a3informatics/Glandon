@@ -27,6 +27,7 @@ class SdtmModel < Tabular
   # @params id [String] the id to be initialized
   # @return [Null]
   def initialize(triples=nil, id=nil)
+  	@class_map = nil
     self.children = []
     self.class_refs = []
     self.datatypes = {}
@@ -79,7 +80,6 @@ class SdtmModel < Tabular
     return results
   end
 
-  # NOT TESTED
   # Create a new version. This is an import and runs in the background.
   #
   # @param [Hash] params the parameters
@@ -99,24 +99,21 @@ class SdtmModel < Tabular
     return { :object => object, :job => job }
   end
 
-  # Valididate and SPARQL. Build the object from the operational hash validate and 
-	# generate the SPARQL if valid and object can be created.
-  #
+  # Build the object from the operational hash and gemnerate the SPARQL.
+	#
   # @param [Hash] params the operational hash
   # @param [SparqlUpdateV2] sparql the SPARQL object to add triples to.
   # @return [SdtmModel] The created object. Valid if no errors set.
-  def self.build_and_sparql(params, sparql)
+  def self.build(params, sparql)
     cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
     object = SdtmModel.from_json(params[:managed_item])
-    object.add_datatypes(params[:managed_item])
-    object.add_classifications(params[:managed_item])
-    object.update_variables
+    build_datatypes(object.datatypes, params[:managed_item])
+    build_classifications(object.classifications, params[:managed_item])
+    update_variables(object.children, object.datatypes, object.classifications)
     object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
     object.lastChangeDate = object.creationDate # Make sure we don't set current time.
-    if object.valid? then
-      if object.create_permitted?
-        object.to_sparql_v2(sparql)
-      end
+   	if object.valid? && object.create_permitted?
+			object.to_sparql_v2(sparql, false)
     end
     return object
   end
@@ -124,24 +121,34 @@ class SdtmModel < Tabular
   # To SPARQL
   #
   # @param [SparqlUpdateV2] sparql the SPARQL object
+  # @param [Boolean] refs output the domain references if true, defaults to true
   # @return [UriV2] The URI
-  def to_sparql_v2(sparql)
+  def to_sparql_v2(sparql, refs=true)
     uri = super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => uri}
     self.datatypes.each { |k, dt| dt.to_sparql_v2(uri, sparql) }
     self.classifications.each { |k, c| c.to_sparql_v2(uri, sparql) }
     self.children.each do |child|
     	ref_uri = child.to_sparql_v2(uri, sparql)
-    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:uri => ref_uri})
+    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesVariable"}, {:uri => ref_uri})
     end
+    domain_refs_to_sparql(sparql) if refs
+    return self.uri
+  end
+
+	# Refs To SPARQL
+  #
+  # @param [SparqlUpdateV2] sparql the SPARQL object
+  # @return [UriV2] The subject URI
+  def domain_refs_to_sparql(sparql)
     self.class_refs.each do |ref|
-    	ref_uri = ref.to_sparql_v2(uri, "includesTabulation", 'TR', ref.ordinal, sparql)
-    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, {:uri => ref_uri})
+    	ref_uri = ref.to_sparql_v2(self.uri, "includesTabulation", 'TR', ref.ordinal, sparql)
+    	sparql.triple({:uri => self.uri}, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, {:uri => ref_uri})
     end
     return self.uri
   end
 
-	# From JSON
+  # From JSON
   #
   # @param [Hash] json the hash of values for the object 
   # @return [SdtmModel] the object created
@@ -164,57 +171,78 @@ class SdtmModel < Tabular
     return json
   end
 
-  # Add Datatypes. Create the datatypes existing within the variables
+  # Add Domain
   #
-  # @param [Hash] json the managed item hash
+  # @param [SdtmIgDomain] domain the domain object
   # @return [void] no return
-  def add_datatypes(json)
+  def add_domain(domain)
+  	ref = OperationalReferenceV2.new
+  	ref.subject_ref = domain.uri
+  	self.class_refs << ref
+  	ref.ordinal = self.class_refs.count
+  end
+
+  # Classes. Get list of model classes and associated variables
+  #
+  # @return [Hash] hash of classes and the variables
+ 	def classes
+ 		return @class_map if !@class_map.nil?
+    result = {}
+    v_map = {}
+    self.children.each { |v| v_map["#{v.uri}"] = v.name}
+    self.class_refs.each do |model_ref|
+      model_class = SdtmModelDomain.find(model_ref.subject_ref.id, model_ref.subject_ref.namespace)
+      result[model_class.label] = { :class => model_class.label, :uri => model_class.uri, :children => {} }
+      model_class.children.each { |v| result[model_class.label][:children][v_map["#{v.variable_ref.subject_ref}"]] = v.uri }
+    end
+    @class_map = result
+    return result
+  end
+
+private
+
+  # Update Variables. Update the variables with common references
+  def self.update_variables(children, datatype_set, classification_set)
+ 		children.each do |child|
+ 			child.update_datatype(datatype_set)
+ 			child.update_classification(classification_set)
+ 		end
+ 	end
+
+  # Build Classifications. Create the common classifcations.
+  def self.build_classifications(classification_set, json)
+  	return if json[:children].blank?
+    build_classification(classification_set, SdtmModel::Variable::C_ROLE_NONE, SdtmModel::Variable::C_ROLE_Q_NA)
+    json[:children].each { |c| build_classification(classification_set, c[:classification][:label], c[:sub_classification][:label]) }
+  end
+ 
+  # Build Datatypes. Create the common datatypes.
+  def self.build_datatypes(datatype_set, json)
   	return if json[:children].blank?
     json[:children].each do |item|
     	label = item[:datatype][:label]
-    	if !self.datatypes.has_key?(label)
+    	if !datatype_set.has_key?(label)
     		object = SdtmModelDatatype.new
     		object.label = label
-      	self.datatypes[label] = object
+      	datatype_set[label] = object
       end
     end
   end
 
-  # Add Classifications. Create the classifcations existing within the variables
-  #
-  # @param [Hash] json the managed item hash
-  # @return [void] no return
-  def add_classifications(json)
-  	return if json[:children].blank?
-    add_classification(SdtmModel::Variable::C_ROLE_NONE, SdtmModel::Variable::C_ROLE_Q_NA)
-    json[:children].each { |c| add_classification(c[:classification][:label], c[:sub_classification][:label]) }
-  end
- 
-  # Update Variables. Update the variables with common references
-  #
-  # @return [void] no return
- 	def update_variables
- 		self.children.each do |child|
- 			child.update_datatype(self.datatypes)
- 			child.update_classification(self.classifications)
- 		end
- 	end
-
-private
-
-	def add_classification(classification, sub_classification)
-		if !self.classifications.has_key?(classification)
+  # Build classification
+	def self.build_classification(classification_set, classification, sub_classification)
+		if !classification_set.has_key?(classification)
 			object = SdtmModelClassification.new
 			object.label = classification
 			object.set_parent
-			self.classifications[classification] = object
+			classification_set[classification] = object
 		end
-		if !self.classifications.has_key?(sub_classification) && sub_classification != SdtmModel::Variable::C_ROLE_Q_NA
-			parent = self.classifications[classification] 
+		if !classification_set.has_key?(sub_classification) && sub_classification != SdtmModel::Variable::C_ROLE_Q_NA
+			parent = classification_set[classification] 
 			object = SdtmModelClassification.new
 			object.label = sub_classification
 			parent.add_child(object)
-			self.classifications[sub_classification] = object
+			classification_set[sub_classification] = object
 		end        
 	end
 

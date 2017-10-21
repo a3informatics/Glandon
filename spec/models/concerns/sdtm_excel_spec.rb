@@ -5,7 +5,7 @@ describe SdtmExcel do
 	include DataHelpers
 
 	def sub_dir
-    return "models/concerns"
+    return "models/concerns/sdtm_excel"
   end
 
 	before :all do
@@ -42,8 +42,8 @@ describe SdtmExcel do
 			:files => ["#{filename}"]
 		}
 		result = SdtmExcel.read_model(params, object.errors)
-	#write_yaml_file(result, sub_dir, "sdtm_excel_import_1.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_excel_import_1.yaml")
+	#write_yaml_file(result, sub_dir, "model_build_expected.yaml")
+    expected = read_yaml_file(sub_dir, "model_build_expected.yaml")
     # Need to align the timestamps to allow simple comparison to work
     expected.each_with_index do |x, index|
     	x[:instance][:managed_item][:last_changed_date] = result[index][:instance][:managed_item][:last_changed_date]
@@ -62,8 +62,8 @@ describe SdtmExcel do
 			:files => ["#{filename}"]
 		}
 		result = SdtmExcel.read_ig(params, object.errors)
-	#write_yaml_file(result, sub_dir, "sdtm_excel_import_2.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_excel_import_2.yaml")
+	write_yaml_file(result, sub_dir, "ig_build_expected.yaml")
+    expected = read_yaml_file(sub_dir, "ig_build_expected.yaml")
     # Need to align the timestamps to allow simple comparison to work
     expected.each_with_index do |x, index|
     	x[:instance][:managed_item][:last_changed_date] = result[index][:instance][:managed_item][:last_changed_date]

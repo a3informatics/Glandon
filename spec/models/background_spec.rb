@@ -6,7 +6,7 @@ describe Background do
   include PublicFileHelpers
 
   def sub_dir
-    return "models"
+    return "models/background"
   end
 
   before :all do
@@ -18,6 +18,8 @@ describe Background do
     load_schema_file_into_triple_store("ISO11179Data.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("ISO25964.ttl")
+    load_schema_file_into_triple_store("BusinessOperational.ttl")
+    load_schema_file_into_triple_store("BusinessDomain.ttl")
     load_schema_file_into_triple_store("CDISCTerm.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("CT_V34.ttl")
@@ -38,7 +40,7 @@ describe Background do
     terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
     job = Background.create
     job.compare_cdisc_term(terms)
-    expected = read_yaml_file_to_hash_2(sub_dir, "background_cdisc_compare_two.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_two_expected.yaml")
     results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, {new_version: 36, old_version: 35})
     expect(results).to eq(expected)
   end
@@ -46,7 +48,7 @@ describe Background do
   it "compares all CDISC terminology" do
     job = Background.create
     job.changes_cdisc_term()
-    expected = read_yaml_file_to_hash_2(sub_dir, "background_cdisc_compare_all.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_all_expected.yaml")
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
     expect(results).to eq(expected)
   end
@@ -54,7 +56,7 @@ describe Background do
   it "compares all CDISC terminology submission values" do
     job = Background.create
     job.submission_changes_cdisc_term()
-    expected = read_yaml_file_to_hash_2(sub_dir, "background_cdisc_submission_difference.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_submission_difference_expected.yaml")
     results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
     expect(results).to eq(expected)
   end
@@ -67,12 +69,10 @@ describe Background do
     report.results_file = "ad_hoc_report_test_1_results.yaml"
     job.ad_hoc_report(report)
     results = AdHocReportFiles.read("ad_hoc_report_test_1_results.yaml")
-    #write_yaml_file(results, sub_dir, "background_ad_hoc_report.yaml")
-    expected = read_yaml_file(sub_dir, "background_ad_hoc_report.yaml")
+  #write_yaml_file(results, sub_dir, "ad_hoc_report_expected.yaml")
+    expected = read_yaml_file(sub_dir, "ad_hoc_report_expected.yaml")
     expect(results).to eq(expected)
   end 
-
-  it "determines the impact of CDISC terminology submission value changes"
 
   it "imports a cdisc terminology" do
     job = Background.create
@@ -104,12 +104,23 @@ describe Background do
     job.import_cdisc_term(params)
   end
 
-  it "imports sdtm model and classes" do
+  it "imports sdtm model" do
   	job = Background.create
   	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
   	params = {version: "1", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"]}
   	job.import_cdisc_sdtm_model(params)
-  	expect(job.errors.count).to eq(0)
+  	expect(job.status).to eq("Complete. Successful import.")
+  end
+
+  it "imports sdtm ig" do
+  	models = SdtmModel.all
+  	model = models.first
+  	job = Background.create
+  	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
+  	params = {version: "1", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"], model_uri: model.uri.to_s}
+  	job.import_cdisc_sdtm_ig(params)
+  puts job.status
+  	expect(job.status).to eq("Complete. Successful import.")
   end
 
 end

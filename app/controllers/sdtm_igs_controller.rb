@@ -9,14 +9,15 @@ class SdtmIgsController < ApplicationController
   
   def import
     authorize SdtmIg
-    @files = Dir.glob(Rails.root.join("public","upload") + "*")
+    @files = Dir.glob(Rails.root.join("public","upload") + "*.xlsx")
     @sdtm_ig = SdtmIg.new
     @sdtm_models = SdtmModel.all
+    @next_version = SdtmIg.all.last.next_version
   end
   
   def create
     authorize SdtmIg, :import?
-    hash = SdtmIg.import(this_params)
+    hash = SdtmIg.create(the_params)
     @sdtm_ig = hash[:object]
     @job = hash[:job]
     if @sdtm_ig.errors.empty?

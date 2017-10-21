@@ -51,7 +51,9 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:name "STUDYID"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:prefixed "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:description "Unique identifier for a study."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_CHAR> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_STUDYID> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> rdfs:label "Domain Abbreviation"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:ordinal "2"^^xsd:positiveInteger . 
@@ -59,7 +61,9 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:name "DOMAIN"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:prefixed "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:description "Two-character abbreviation for the domain most relevant to the observation. The Domain abbreviation is also used as a prefix for variables to ensure uniqueness when datasets are merged."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_CHAR> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DOMAIN> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> rdfs:label "Unique Subject Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:ordinal "3"^^xsd:positiveInteger . 
@@ -67,7 +71,9 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:name "USUBJID"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:prefixed "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_CHAR> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_USUBJID> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> rdfs:label "Pool Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:ordinal "4"^^xsd:positiveInteger . 
@@ -75,7 +81,9 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:name "POOLID"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:prefixed "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:description "An identifier used to identify a result from a group of subjects that is not assignable to a specific subject."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_CHAR> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_POOLID> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> rdfs:label "Sponsor Device Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:ordinal "5"^^xsd:positiveInteger . 
@@ -83,5 +91,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:name "SPDEVID"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:prefixed "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:description "Sponsor-defined identifier for a device"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_NUM> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_SPDEVID> . 
 }

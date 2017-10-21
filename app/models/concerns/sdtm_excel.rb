@@ -237,7 +237,7 @@ module SdtmExcel
       # Set up results structure
       results = Array.new
       # Create the instance for the IG itself
-      instance = create_model(params, SdtmIg::C_IDENTIFIER, "SDTM Implementation Guide #{params[:date]}")
+      instance = create_ig(params, SdtmIg::C_IDENTIFIER, "SDTM Implementation Guide #{params[:date]}")
       results << { :type => "IG", :order=> 1, :instance => instance}
       # Setup the domains from the Extra sheet.
       select_extra(workbook, errors)
@@ -290,6 +290,9 @@ module SdtmExcel
                 variable.name = name
                 variable.controlled_term_or_format = ct_or_format
                 variable.notes = notes
+                variable.compliance = SdtmModelCompliance.new
+                variable.compliance.label = C_CORE[core]
+                variable.variable_ref = OperationalReferenceV2.new
                 temp = variable.to_json
                 temp[:variable_class] = C_SDTM_MODEL_CLASS[obs_class] #obs_class
                 temp[:variable_domain_prefix] = domain_prefix
@@ -298,7 +301,6 @@ module SdtmExcel
                 temp[:variable_classification] = role_hash[:classification]
                 temp[:variable_sub_classification] = role_hash[:sub_classification]
                 temp[:variable_prefixed] = SdtmUtility.prefixed?(name)
-                temp[:core] = C_CORE[core]
                 domain[:children] << temp
               end
             else
@@ -451,6 +453,21 @@ private
     return operation
   end        
   
+  def self.create_ig(params, identifier, label)
+  	# Create the instance for the model
+    object = SdtmIg.new
+    object.label = label
+    object.scopedIdentifier.identifier = identifier
+    object.scopedIdentifier.versionLabel = params[:version_label]
+    # Build the full object
+    operation = object.to_operation
+    operation[:operation][:new_version] = params[:version]
+    operation[:operation][:new_state] = IsoRegistrationState.releasedState
+		operation[:managed_item][:creation_date] = params[:date]
+		operation[:managed_item][:ordinal] = 1
+		return operation
+  end        
+
   def self.create_ig_domain(domain, ig_instance)
     object = SdtmIgDomain.new
     object.label = domain[:label]
@@ -466,14 +483,8 @@ private
     operation[:managed_item][:prefix] = domain[:prefix]
     operation[:managed_item][:structure] = domain[:structure]
     operation[:managed_item][:domain_class] = domain[:children][0][:variable_class]
-    children = operation[:managed_item][:children]
-    # Add the children for each group of variables within the set
-    ordinal = 1
-    domain[:children].sort_by { |k, v| k[:seq] }
-    domain[:children].each do |variable|
-      children << variable
-      ordinal += 1
-    end
+    domain[:children].sort_by { |k, v| k[:ordinal] }
+    domain[:children].each { |v| operation[:managed_item][:children] << v }
     return operation
   end        
   

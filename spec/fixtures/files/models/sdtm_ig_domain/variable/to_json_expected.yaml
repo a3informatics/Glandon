@@ -1,0 +1,32 @@
+---
+:type: http://www.assero.co.uk/BusinessDomain#IgVariable
+:id: IG-CDISC_SDTMIGRP_RPTEST
+:namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+:label: Reproductive System Findings Test Name
+:extension_properties: []
+:ordinal: 9
+:rule: ''
+:name: RPTEST
+:notes: 'Verbatim name of the test or examination used to obtain the measurement or
+  finding. The value in RPTEST cannot be longer than 40 characters. Examples: Number
+  of Live Births, Number of Pregnancies, Birth Control Method, etc.'
+:controlled_term_or_format: "(RPTEST)"
+:compliance:
+  :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+  :id: IG-CDISC_SDTMIGRP_C_REQUIRED
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Required
+  :extension_properties: []
+:variable_ref:
+  :type: http://www.assero.co.uk/BusinessOperational#CReference
+  :id: IG-CDISC_SDTMIGRP_RPTEST_VR
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: ''
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+    :id: M-CDISC_SDTMMODEL_FINDINGS_xxTEST

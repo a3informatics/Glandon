@@ -15,10 +15,10 @@ class SdtmModelDatatype < EnumeratedLabel
   def initialize(triples=nil, id=nil)
     if triples.nil?
       super
+	    self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
-    self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
   end
 
   # Get all items

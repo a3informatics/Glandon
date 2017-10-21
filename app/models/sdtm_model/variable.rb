@@ -162,11 +162,14 @@ class SdtmModel::Variable < Tabular::Column
   def update_classification(classifications)
   	if classifications.has_key?(self.classification.label)
   		self.classification = classifications[self.classification.label] 
-  		if !self.sub_classification.nil?
-  			if classifications.has_key?(self.sub_classification.label)
+  		if !self.sub_classification.nil? 
+  			if self.sub_classification.label == SdtmModel::Variable::C_ROLE_Q_NA
+  				self.sub_classification = nil
+  			elsif classifications.has_key?(self.sub_classification.label) 
   				self.sub_classification = classifications[self.sub_classification.label]
 		  	else
-  				raise Exceptions::ApplicationLogicError.new(message: "Classification #{self.sub_classification.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object.")
+		  		text = "Sub-classification #{self.sub_classification.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object."
+  				raise Exceptions::ApplicationLogicError.new(message: text)
   			end
   		end
   	else

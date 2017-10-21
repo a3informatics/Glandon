@@ -88,13 +88,10 @@ describe SdtmModelDatatype do
   	parent_uri = UriV2.new(id: "MODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
     item = SdtmModelDatatype.new
     item.label = "NEW LABEL"
-    item.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}DT#{Uri::C_UID_SECTION_SEPARATOR}#{item.label.upcase.gsub(/\s+/, "")}"
-		item.namespace = parent_uri.namespace
     result = item.to_sparql_v2(parent_uri, sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_datatype_sparql.txt")
     expected = read_text_file_2(sub_dir, "sdtm_model_datatype_sparql.txt")
     expect(sparql.to_s).to eq(expected)
   end
-
 
 end

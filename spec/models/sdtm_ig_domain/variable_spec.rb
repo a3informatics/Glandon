@@ -5,7 +5,7 @@ describe SdtmIgDomain::Variable do
   include DataHelpers
 
   def sub_dir
-    return "models/sdtm_ig_domain"
+    return "models/sdtm_ig_domain/variable"
   end
 
   before :all do
@@ -68,40 +68,39 @@ describe SdtmIgDomain::Variable do
         "of Pregnancies, Birth Control Method, etc.",
       :compliance => "null"
     }
-    triples = read_yaml_file(sub_dir, "variable_triples.yaml")
+    triples = read_yaml_file(sub_dir, "from_triples_input.yaml")
     expect(SdtmIgDomain::Variable.new(triples, "IG-CDISC_SDTMIGRP_RPTEST").to_json).to eq(result) 
   end 
 
   it "allows an object to be found" do
     variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  #write_yaml_file(variable.triples, sub_dir, "variable_triples.yaml")
-  #write_yaml_file(variable.to_json, sub_dir, "variable.yaml")
-    expected = read_yaml_file(sub_dir, "variable.yaml")
+  #write_yaml_file(variable.to_json, sub_dir, "find_expected.yaml")
+    expected = read_yaml_file(sub_dir, "find_expected.yaml")
     expect(variable.to_json).to eq(expected)
   end
 
   it "allows an object to be exported as JSON" do
     variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  #write_yaml_file(variable.to_json, sub_dir, "variable_to_json.yaml")
-    expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
+  #write_yaml_file(variable.to_json, sub_dir, "to_json_expected.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expect(variable.to_json).to eq(expected)
   end
 
   it "allows the object to be imported from JSON" do
-  	json = read_yaml_file(sub_dir, "variable.yaml")
+  	json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIgDomain::Variable.from_json(json)
-    expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expect(item.to_json).to eq(expected)
 	end
 
   it "allows the object to be output as sparql" do
   	parent_uri = UriV2.new(id: "M-CDISC_SDTMMODEL_EVENTS", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
   	sparql = SparqlUpdateV2.new
-  	json = read_yaml_file(sub_dir, "variable.yaml")
+  	json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIgDomain::Variable.from_json(json)
     result = item.to_sparql_v2(parent_uri, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "variable_to_sparql.txt")
-    expected = read_text_file_2(sub_dir, "variable_to_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_xpected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST")
   end

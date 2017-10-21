@@ -87,11 +87,46 @@ describe SdtmModelsController do
     
     login_content_admin
 
-    it "presents the import view" 
+    it "presents the import view"  do
+      get :import
+      expect(assigns(:next_version)).to eq(4)
+      expect(response).to render_template("import")
+    end
 
-    it "allows a SDTM Model to be created" 
+    it "allows a SDTM Model to be created" do
+      delete_public_file("upload", "")
+      copy_file_to_public_files("controllers/sdtm_models", "sdtm-3-1-2-excel.xlsx", "upload")
+      filename = upload_path("sdtm-3-1-2-excel.xlsx")
+      params = 
+      {
+        :sdtm_model => 
+        { 
+          :version => "4",
+          :version_label => "2.0",
+          :date => "2017-10-14", 
+          :files => ["#{filename}"]
+        }
+      }
+      post :create, params
+      expect(response).to redirect_to("/backgrounds")
+    end
     
-    it "allows a SDTM Model to be created, error"
+    it "allows a SDTm Model to be created, error version" do
+      filename = upload_path("sdtm-3-1-2-excel.xlsx")
+      params = 
+      {
+        :sdtm_model => 
+        { 
+          :version => "aa", 
+          :version_label => "2.0",
+          :date => "2016-12-13", 
+          :files => ["#{filename}"]
+        }
+      }
+      post :create, params
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/sdtm_models/history")
+    end
 
   end
 

@@ -73,4 +73,5 @@ describe UriV2 do
     uri.update_prefix("BBB")
     expect(uri.to_ref).to eq("<http://www.example.com/path1/path2#BBB-ORG_XXX_XXX-1>")
   end
+  
 end

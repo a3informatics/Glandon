@@ -8,111 +8,58 @@ class Background < ActiveRecord::Base
 	# Import CDISC SDTM Model
   #
   # @param [Hash] params Parameters
-  # @option [String] :date The release date of the version being created
-  # @option [String] :version The version being created
-  # @option [String] :files Array of files being used 
+  # @option params [String] :date The release date of the version being created
+  # @option params [String] :version The version
+  # @option params [String] :version_label The version label 
+  # @option params [String] :files Array of files being used 
   # @return [void] no return
   def import_cdisc_sdtm_model(params)
-    sparql = SparqlUpdateV2.new
-    self.errors.clear
-    self.update(
-      description: "Import CDISC SDTM Model. Date: #{params[:date]}, Internal Version: #{params[:version]}.", 
-      status: "Reading file.",
-      started: Time.now())
+    start_cdisc_sdtm_import("Import CDISC SDTM Model. Date: #{params[:date]}, Internal Version: #{params[:version]}.")
     results = SdtmExcel.read_model(params, self.errors)
-    if self.errors.count == 0
-      self.update(status: "File successfully read.", percentage: 50, complete: false, completed: Time.now())
-      models = results.select { |hash| hash[:type]=="MODEL" }
-      if models.length == 1
-        model = SdtmModel.build_and_sparql(models[0][:instance], sparql)
-        ordinal = 1
-        domains = results.select { |hash| hash[:type]=="MODEL_DOMAIN" }
-        domains.each do |domain|
-          model_domain = SdtmModelDomain.build_and_sparql(domain[:instance], sparql, model)
-          ordinal += 1
-        end
-        PublicFile::save("test", "SDTM_Model_#{params[:version_label].gsub('.', '-')}.txt", sparql.to_s) if Rails.env.test?
-        response = CRUD.update(sparql.to_s)
-        if response.success?
-          self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
-        else  
-          self.update(status: "Complete. Unsuccessful import, SPARQL error.", percentage: 100, complete: true, completed: Time.now())
-        end
-      else
-        self.update(status: "Complete. Unsuccessful import, multiple models. ", percentage: 100, complete: true, completed: Time.now())
-      end
+    if self.errors.empty?
+    	report_file_successfully_read
+      process_cdisc_sdtm_model_import(params, results)
     else
-      self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
+      report_cdisc_sdtm_import_excel_errors
     end
   rescue => e
-    self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
+		report_import_exception(e)
   end
   handle_asynchronously :import_cdisc_sdtm_model unless Rails.env.test?
 
   # Import CDISC SDTM Implementation Guide
   #
-  # @param [Hash] params Parameters
-  # @option [String] :date The release date of the version being created
-  # @option [String] :version The version being created
-  # @option [String] :files Array of files being used 
+  # @param [Hash] params The parameters
+  # @option params [String] :date The release date of the version being created
+  # @option params [String] :version The version being created
+  # @option params [String] :version_label The version label 
+  # @option params [String] :model_uri The URI for the model being used
+  # @option params [String] :files Array of files being used 
   # @return [void] no return
   def import_cdisc_sdtm_ig(params)
-    sparql = SparqlUpdateV2.new
-    self.errors.clear
-    self.update(
-      description: "Import CDISC SDTM Implementation Guide. Date: " + params[:date] + ", Internal Version: " + params[:version] + ".", 
-      status: "Reading file.",
-      started: Time.now())
+    start_cdisc_sdtm_import("Import CDISC SDTM Implementation Guide. Date: #{params[:date]} Internal Version: #{params[:version]}.")
     results = SdtmExcel.read_ig(params, self.errors)
     if self.errors.empty?
-      self.update(status: "File successfully read.", percentage: 50, complete: false, completed: Time.now())
-      uri = UriV2.new(uri: params[:model_uri])
-      model = SdtmModel.find(uri.id, uri.namespace)
-      ig_params = results.select { |hash| hash[:type]=="IG" }
-      domain_params = results.select { |hash| hash[:type]=="IG_DOMAIN" }
-      if !ig_params.empty?
-      	ig = SdtmIg.build(ig_params[0][:instance])
-      	if ig.create_permitted? && ig.errors.empty?
-      		ig.to_sparql_v2 
-        	domain_params.each do |domain|
-          	ig_domain = SdtmIgDomain.build(domain[:instance], model)
-        		if ig_domain.create_permitted? && ig_domain.errors.empty?
-        			ig_domain.to_sparql_v2
-        		else
-      		  	self.update(status: "Complete. Unsuccessful import, domain error: " + ig_domain.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
-        		end
-      		end
-        	PublicFile::save("upload", "SDTM_IG_#{params[:version_label].gsub('.', '-')}.txt", sparql.to_s) if Rails.env.test?
-        	response = CRUD.update(sparql.to_s)
-        	if response.success?
-          	self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
-        	else  
-          	self.update(status: "Complete. Unsuccessful import, SPARQL error.", percentage: 100, complete: true, completed: Time.now())
-        	end
-        else
-        	self.update(status: "Complete. Unsuccessful import, IG error: " + ig.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
-        end
-      else
-        self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
-      end
+    	report_file_successfully_read
+      process_cdisc_sdtm_ig_import(params, results)
     else
-      self.update(status: "Complete. Unsuccessful import. " + self.errors.full_messages.to_sentence, percentage: 100, complete: true, completed: Time.now())
+      report_cdisc_sdtm_import_excel_errors
     end
   rescue => e
-    self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
+		report_import_exception(e)
   end
   handle_asynchronously :import_cdisc_sdtm_ig unless Rails.env.test?
 
   # Import CDISC Terminology
   #
-  # @param params [Hash] Parameters
-  # @option opts [String] :date The release date of the version being created
-  # @option opts [String] :version The version being created
-  # @option opts [String] :files Array of files being used 
-  # @option opts [String] :ns The namespace into which the terminology is being placed
-  # @option opts [String] :cid The cid of the terminology
-  # @option opts [String] :si The CID of the scoped identifier
-  # @option opts [String] :rs The CID of the registration status
+  # @param [Hash] params The parameters
+  # @option params [String] :date The release date of the version being created
+  # @option params [String] :version The version being created
+  # @option params [String] :files Array of files being used 
+  # @option params [String] :ns The namespace into which the terminology is being placed
+  # @option params [String] :cid The cid of the terminology
+  # @option params [String] :si The CID of the scoped identifier
+  # @option params [String] :rs The CID of the registration status
   # @return null No return, kicks off the background job
   def import_cdisc_term(params)
     # Create the background job status
@@ -369,5 +316,102 @@ private
     end
     return items
   end
+
+  def start_cdisc_sdtm_import(log_text)
+    self.errors.clear
+    self.update( description: log_text, status: "Reading file.", started: Time.now())
+  end
+
+  def process_cdisc_sdtm_model_import(params, results)
+  	proceed = true
+  	sparql = SparqlUpdateV2.new
+   	models = results.select { |hash| hash[:type]=="MODEL" }
+    if models.length == 1
+      model = SdtmModel.build(models[0][:instance], sparql)
+      domains = results.select { |hash| hash[:type]=="MODEL_DOMAIN" }
+      domains.each do |domain|
+        model_domain = SdtmModelDomain.build(domain[:instance], model, sparql)
+  			if model_domain.errors.empty?
+  				model.add_domain(model_domain)
+  			else
+  				report_object_errors("Model Domain error", model_domain)
+  				proceed = false
+  			end
+      end
+      if proceed
+      	model.domain_refs_to_sparql(sparql) 
+      	load_sparql(sparql, "SDTM_Model_#{params[:version_label].gsub('.', '-')}.txt") 
+      end
+    else
+      report_general_error("Multiple SDTM Models detected")
+    end
+  end
+
+  def process_cdisc_sdtm_ig_import(params, results)
+  	proceed = true
+  	sparql = SparqlUpdateV2.new
+   	uri = UriV2.new(uri: params[:model_uri])
+    model = SdtmModel.find(uri.id, uri.namespace)
+    igs = results.select { |hash| hash[:type]=="IG" }
+    if igs.length == 1
+    	ig = SdtmIg.build(results, sparql)
+    	if ig.errors.empty?
+  			domain_params = results.select { |hash| hash[:type]=="IG_DOMAIN" }
+    		domain_params.each do |domain|
+      		ig_domain = SdtmIgDomain.build(domain[:instance], model, ig, sparql)
+    			if ig_domain.errors.empty?
+    				ig.add_domain(ig_domain)
+    			else
+    				report_object_errors("Implementation Guide Domain error", ig_domain)
+    				proceed = false
+    			end
+  			end
+  			if proceed
+  				ig.domain_refs_to_sparql(sparql) 
+    			load_sparql(sparql, "SDTM_IG_#{params[:version_label].gsub('.', '-')}.txt")
+    		end
+    	else
+    		report_object_errors("Implementation Guide error", ig_domain)
+    	end
+    else
+      report_general_error("Multiple SDTM Implementation Guides detected")
+    end
+  end
+
+  def load_sparql(sparql, log_file) 
+  	result = true
+    response = CRUD.update(sparql.to_s)
+  	if response.success?
+  		PublicFile::save("upload", log_file, sparql.to_s) if Rails.env.test?
+    	self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
+  	else  
+    	self.update(status: "Complete. Unsuccessful import, SPARQL error.", percentage: 100, complete: true, completed: Time.now())
+    	result = false
+  	end
+  	return result
+  end
+
+  def report_cdisc_sdtm_import_excel_errors
+    self.update(status: "Complete. Unsuccessful import. Excel errors: " + self.errors.full_messages.to_sentence, 
+    	percentage: 100, complete: true, completed: Time.now())
+  end
+
+	def report_import_exception(e)
+	  self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", 
+	  	percentage: 100, complete: true, completed: Time.now())
+	end
+
+	def report_file_successfully_read
+		self.update(status: "File successfully read.", percentage: 50, complete: false, completed: Time.now())
+  end
+
+  def report_object_errors(text, object)
+  	self.update(status: "Complete. Unsuccessful import, #{text}: " + object.errors.full_messages.to_sentence, 
+  		percentage: 100, complete: true, completed: Time.now())
+ 	end
+
+ 	def report_general_error(text)
+ 		self.update(status: "Complete. Unsuccessful import. #{text}.", percentage: 100, complete: true, completed: Time.now())
+ 	end
 
 end

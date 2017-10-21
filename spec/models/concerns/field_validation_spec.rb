@@ -830,4 +830,29 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid positive integer value")
   end
 
+  it "checks a valid uri" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_uri?(:test, "http://www.assero.co.uk", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a invalid uri, empty" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_uri?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
+  it "checks a invalid uri, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_uri?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
+  it "checks a invalid uri, exception" do
+    object = IsoConcept.new
+    expect(UriV2).to receive(:new).and_raise("boom")
+    expect(FieldValidation.valid_uri?(:test, "https://www.assero.co.uk", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
+  end
+
 end

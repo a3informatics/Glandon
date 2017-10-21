@@ -27,7 +27,7 @@ class SdtmModelDomain < Tabular
   C_EVENTS_IDENTIFIER = "SDTMMODEL EVENTS"
   C_FINDINGS_IDENTIFIER = "SDTMMODEL FINDINGS"
   C_INTERVENTIONS_IDENTIFIER = "SDTMMODEL INTERVENTIONS"
-  C_SPECIAL_PURPOSE_IDENTIFIER = "SDTMMODEL SPECIAL_PURPOSE"
+  C_SPECIAL_PURPOSE_IDENTIFIER = "SDTMMODEL SPECIAL PURPOSE"
   C_TRIAL_DESIGN_IDENTIFIER = "SDTMMODEL TRIAL DESIGN"
   C_RELATIONSHIP_IDENTIFIER = "SDTMMODEL RELATIONSHIP"
     
@@ -40,6 +40,7 @@ class SdtmModelDomain < Tabular
     self.children = Array.new
     if triples.nil?
       super
+      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
@@ -74,23 +75,20 @@ class SdtmModelDomain < Tabular
     return results
   end
 
-	# Valididate and SPARQL. Build the object from the operational hash. Validate and 
-	# generate the SPARQL if valid and object can be created.
+	# Build the object from the operational hash and gemnerate the SPARQL.
   #
   # @param [Hash] params the operational hash
-  # @param [SparqlUpdateV2] sparql the SPARQL object to add triples to.
   # @param [SdtmModel] model the sdtm model for the references.
+  # @param [SparqlUpdateV2] sparql the SPARQL object to add triples to.
   # @return [SdtmModelDomain] The created object. Valid if no errors set.
-  def self.build_and_sparql(params, sparql, model)
+  def self.build(params, model, sparql)
     cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
     SdtmModelDomain.variable_references(params[:managed_item], model)
     object = SdtmModelDomain.from_json(params[:managed_item])
     object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
     object.lastChangeDate = object.creationDate # Make sure we don't set current time.
-    if object.valid? then
-      if object.create_permitted?
-        object.to_sparql_v2(sparql)
-      end
+    if object.valid? && object.create_permitted?
+      object.to_sparql_v2(sparql)
     end
     return object
   end

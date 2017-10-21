@@ -1,17 +1,17 @@
 <% second_level_breadcrumb("CDISC SDTM Models", history_sdtm_models_path, "Import") %>
 <h3>Import CDISC SDTM Model Version</h3>
 <div class="col-md-6">
-  <%= form_for @sdtm_class_model, url: create_sdtm_models_path do |f| %>
+  <%= form_for @sdtm_class_model, url: sdtm_models_path do |f| %>
       <div class="form-group">
-          <%= label_tag :version, "Version (internal system):" %><br/>
-          <%= text_field_tag "sdtm_model[version]", "", class: "form-control" %>
+          <%= label_tag :version, "Version:" %><br/>
+          <%= text_field_tag "sdtm_model[version]", "#{@next_version}", class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag :version_label, "Version label:" %><br/>
+        <%= label_tag :version_label, "Version Label:" %><br/>
         <%= text_field_tag "sdtm_model[version_label]", "", class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag :date, "Model release date:" %><br/>
+        <%= label_tag :date, "Model Release Date:" %><br/>
         <%= date_field_tag "sdtm_model[date]", class: "form-control" %>
       </div>
       <div class="form-group">
@@ -20,5 +20,6 @@
       </div>
       <br/>
       <%= f.submit "Create", class: "btn btn-default btn-primary" %>
+      <%= link_to "Close", history_sdtm_models_path, :class => "btn btn-primary" %>
   <% end %>
 </div>

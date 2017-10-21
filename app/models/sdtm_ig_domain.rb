@@ -28,6 +28,7 @@ class SdtmIgDomain < Tabular
     self.model_ref = OperationalReferenceV2.new
     if triples.nil?
       super
+      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
     else
       super(triples, id)
     end
@@ -62,18 +63,24 @@ class SdtmIgDomain < Tabular
     return results
   end
 
-	# Build the object from the operational hash.
+	# Build the object from the operational hash and gemnerate the SPARQL.
 	#
   # @param [Hash] params the operational hash
-  # @param [SdtmModel] model the sdtm model for the references.
+  # @param [SdtmModel] model the SDTM Model.
+  # @param [SdtmIg] ig the SDTM IG.
   # @return [SdtmIgDomain] The created object. Valid if no errors set.
-  def self.build(params, model)
+  def self.build(params, model, ig, sparql)
     cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-    SdtmIgDomain.variable_references(params[:managed_item], model)
+    map = model.classes
+    build_class_reference(map, params[:managed_item])
+    build_variable_references(map, params[:managed_item])
+    build_compliance(ig, params[:managed_item])
     object = SdtmIgDomain.from_json(params[:managed_item])
     object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
     object.lastChangeDate = object.creationDate # Make sure we don't set current time.
-    object.valid?
+    if object.valid? && object.create_permitted?
+			object.to_sparql_v2(sparql)
+    end
     return object
   end
 
@@ -155,19 +162,43 @@ class SdtmIgDomain < Tabular
     return results
   end
 
-  # NOT TESTED
-  # Update Variables. Update the variables with common references
-  #
-  # @return [void] no return
- 	def update_variables
- 		self.children.each do |child|
- 			child.update_datatype(self.datatypes)
- 			child.update_classification(self.classifications)
- 		end
- 	end
-
 private
 
+  # Build Class Reference
+ 	def self.build_class_reference(map, params)
+ 		params[:model_ref][:subject_ref] = map[params[:domain_class]][:uri].to_json
+ 	end
+
+  # Build Variable References. Update the variables with their references
+ 	def self.build_variable_references(map, params)
+ 		domain_class = map[params[:domain_class]]
+ 		params[:children].each do |child|
+ 			if domain_class[:children][generic_variable_name(child[:name], child[:variable_name_minus])].nil?
+		  	raise Exceptions::ApplicationLogicError.new(message: "Reference for variable #{child[:name]} not found in #{C_CLASS_NAME}.")
+ 			end
+			child[:variable_ref][:subject_ref] = domain_class[:children][generic_variable_name(child[:name], child[:variable_name_minus])].to_json
+  	end
+ 	end
+
+  # Build Compliance. Update the variables with their references
+  def self.build_compliance(ig, params)
+ 		params[:children].each do |child|
+ 			if ig.compliance.has_key?(child[:compliance][:label])
+	 			object = ig.compliance[child[:compliance][:label]]
+				child[:compliance] = object.to_json
+	  	else
+  			raise Exceptions::ApplicationLogicError.new(message: "Compliance #{child[:compliance][:label]} not found. Variable #{child[:name]} in #{C_CLASS_NAME}.")
+  		end
+  	end
+ 	end
+
+ 	# Build generic variable reference.
+  def self.generic_variable_name(name, name_minus)
+    return name if name == name_minus
+    return SdtmUtility.add_prefix(name_minus)
+  end   
+
+  # Children from triples.
   def self.children_from_triples(object, triples, id)
     object.children = SdtmIgDomain::Variable.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "includesColumn"))
     model_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "basedOnDomain"))

@@ -1,0 +1,57 @@
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR6> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR6> rdfs:label "Tabulation Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR6> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_RELATIONSHIP> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR6> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR6> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR6> bo:ordinal "6"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR6> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR6> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR1> rdfs:label "Tabulation Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR1> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR4> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR4> rdfs:label "Tabulation Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR4> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_SPECIAL_PURPOSE> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR4> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR4> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR4> bo:ordinal "4"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR4> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR4> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR2> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR2> rdfs:label "Tabulation Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR2> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR2> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR5> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR5> rdfs:label "Tabulation Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR5> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_TRIAL_DESIGN> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR5> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR5> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR5> bo:ordinal "5"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR5> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR5> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR3> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR3> rdfs:label "Tabulation Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR3> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_FINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR3> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR3> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR3> bo:ordinal "3"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR3> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TR3> . 
+}

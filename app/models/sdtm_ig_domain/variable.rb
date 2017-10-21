@@ -87,42 +87,6 @@ class SdtmIgDomain::Variable < Tabular::Column
     return object
   end
 
-=begin
-  def self.import_sparql(namespace, parent_id, sparql, json, compliance_map, class_map)
-    id = parent_id + Uri::C_UID_SECTION_SEPARATOR + SdtmUtility.replace_prefix(json[:variable_name])  
-    super(namespace, id, sparql, C_SCHEMA_PREFIX, C_RDF_TYPE, json[:label])
-    subject = {:namespace => namespace, :id => id}
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ordinal"}, {:literal => "#{json[:ordinal]}", :primitive_type => "positiveInteger"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "controlled_term_or_format"}, {:literal => "#{json[:variable_ct_or_format]}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "notes"}, {:literal => "#{json[:variable_notes]}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{json[:variable_name]}", :primitive_type => "string"})
-    # Build the reference
-    if !class_map.nil?
-      var_name = generic_variable_name(json)
-      if !class_map[var_name].nil?
-        variable = class_map[var_name]
-        uri = UriV2.new({:namespace => variable.namespace, :id => variable.id})
-        ref_id = id + Uri::C_UID_SECTION_SEPARATOR + 'VR'
-        ref_subject = {:namespace => namespace, :id => ref_id}
-        sparql.triple(subject, {:prefix => UriManagement::C_BD, :id => "basedOnVariable"}, ref_subject)
-        sparql.triple(ref_subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_BO, :id =>"CReference"})
-        sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "hasColumn"}, {:uri => uri})
-        sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
-        sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
-        sparql.triple(ref_subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "1", :primitive_type => "positiveInteger"})
-      else
-        ConsoleLogger::log(C_CLASS_NAME,"import_sparql","No map for variable: #{var_name}")
-      end
-    else
-      ConsoleLogger::log(C_CLASS_NAME,"import_sparql","No map. Name=#{json[:variable_name]}")
-    end
-    if compliance_map.has_key?(json[:variable_core])
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "compliance"}, {:uri => compliance_map[json[:variable_core]]})  
-    end
-    return id
-  end
-=end
-
   # To SPARQL
   #
   # @param [UriV2] parent_uri the parent URI
@@ -168,8 +132,15 @@ class SdtmIgDomain::Variable < Tabular::Column
     object.notes = json[:notes]
     object.controlled_term_or_format = json[:controlled_term_or_format]
     object.compliance = SdtmModelCompliance.from_json(json[:compliance])
-    object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
+    if !json[:variable_ref].blank?
+    	object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
+    else
+    	ConsoleLogger.info(C_CLASS_NAME, "from_json", "Missing variable ref for: #{object.name}.")
+    end
     return object
+  rescue => e
+  	#byebug
+  	return object
   end
 
   # Update Compliance. Amend the reference. Done so references are made common
@@ -188,7 +159,7 @@ class SdtmIgDomain::Variable < Tabular::Column
 private
 
   def self.children_from_triples(object, triples, id)
-    variable_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "basedOnVariable"))
+    variable_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, OperationalReferenceV2::C_PARENT_LINK_VC))
     if variable_refs.length > 0
       object.variable_ref = variable_refs[0]
     end
@@ -198,13 +169,5 @@ private
     end
     
   end
-
-  def self.generic_variable_name(json)
-    if json[:variable_name] == json[:variable_name_minus]
-      return json[:variable_name]
-    else
-      return SdtmUtility.add_prefix(json[:variable_name_minus])
-    end
-  end    
 
 end

@@ -5,7 +5,7 @@ describe SdtmIgDomain do
   include DataHelpers
 
   def sub_dir
-    return "models"
+    return "models/sdtm_ig_domain"
   end
 
   before :all do
@@ -26,10 +26,19 @@ describe SdtmIgDomain do
     clear_iso_registration_state_object
   end
 
+  it "creates a new domain" do
+  	item = SdtmIgDomain.new
+  #write_yaml_file(item.to_json, sub_dir, "new_expected.yaml")
+    expected = read_yaml_file(sub_dir, "new_expected.yaml")
+    expected[:creation_date] = item.creationDate.iso8601 # Timestamps wont match
+    expected[:last_changed_date] = item.lastChangeDate.iso8601
+    expect(item.to_json).to eq(expected)  	
+  end
+
   it "allows a domain to be found" do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  #write_yaml_file(item.to_json, sub_dir, "sdtm_ig_domain_find.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_ig_domain_find.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "find_expected.yaml")
+    expected = read_yaml_file(sub_dir, "find_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -39,8 +48,8 @@ describe SdtmIgDomain do
 
   it "allows all domains to be found" do
     results = SdtmIgDomain.all
-  #write_yaml_file(results, sub_dir, "sdtm_ig_domain_all.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_ig_domain_all.yaml")
+  #write_yaml_file(results, sub_dir, "all_expected.yaml")
+    expected = read_yaml_file(sub_dir, "all_expected.yaml")
     expect(results.count).to eq(41)
     results.each do |result|
       found = expected.find { |x| x.identifier == result.identifier }
@@ -64,24 +73,24 @@ describe SdtmIgDomain do
   
   it "allows the domain to be exported as JSON" do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  #write_yaml_file(item.to_json, sub_dir, "sdtm_ig_domain_to_json.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_ig_domain_to_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
   	it "allows the domain class to be created from JSON" do 
-		expected = read_yaml_file(sub_dir, "sdtm_ig_domain_to_json.yaml")
+		expected = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIgDomain.from_json(expected)
     expect(item.to_json).to eq(expected)
 	end
 
 	it "allows the object to be output as sparql" do
   	sparql = SparqlUpdateV2.new
-  	json = read_yaml_file(sub_dir, "sdtm_ig_domain_to_json.yaml")
+  	json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIgDomain.from_json(json)
     result = item.to_sparql_v2(sparql)
-  write_text_file_2(sparql.to_s, sub_dir, "sdtm_ig_domain_to_sparql.txt")
-    expected = read_text_file_2(sub_dir, "sdtm_ig_domain_to_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR")
   end
@@ -97,17 +106,18 @@ describe SdtmIgDomain do
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-    sparql = SparqlUpdateV2.new
-		results = read_yaml_file(sub_dir, "sdtm_ig_domain_import.yaml")
-		models = results.select { |hash| hash[:type]=="MODEL" }
-    model = SdtmModel.build_and_sparql(models[0][:instance], sparql)
-  	domains = results.select { |hash| hash[:type]=="MODEL_DOMAIN" }
-		result = SdtmIgDomain.build_and_sparql(domains[0][:instance], sparql, model)
-  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_domain_to_sparql_2.txt")
-    expected = read_text_file_2(sub_dir, "sdtm_model_domain_to_sparql_2.txt")
+    load_test_file_into_triple_store("sdtm_model.ttl")
+    model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+		sparql = SparqlUpdateV2.new
+    results = read_yaml_file(sub_dir, "build_input.yaml")
+    ig = SdtmIg.build(results, sparql)
+  	domains = results.select { |hash| hash[:type]=="IG_DOMAIN" }
+		result = SdtmIgDomain.build(domains[0][:instance], model, ig, sparql)
+  #write_text_file_2(sparql.to_s, sub_dir, "build_sparql_expected.txt")
+    expected = read_text_file_2(sub_dir, "build_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
-	#write_yaml_file(result.to_json, sub_dir, "sdtm_model_domain_build_sparql.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_model_domain_build_sparql.yaml")
+	#write_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
+    expected = read_yaml_file(sub_dir, "build_expected.yaml")
 		expect(result.to_json).to eq(expected)
 		expect(result.errors.count).to eq(0)
   end

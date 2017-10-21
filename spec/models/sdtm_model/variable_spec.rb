@@ -5,7 +5,7 @@ describe SdtmModel::Variable do
   include DataHelpers
 
   def sub_dir
-    return "models/sdtm_model"
+    return "models/sdtm_model/variable"
   end
 
   before :all do
@@ -91,40 +91,39 @@ describe SdtmModel::Variable do
       :datatype => { :type=>"http://www.assero.co.uk/BusinessDomain#VariableType", :id=>"", :namespace=>"", :label=>"", :extension_properties=>[] },
       :sub_classification => {:type=>"", :id=>"", :namespace=>"", :label=>"", :extension_properties=>[]},
     }
-    triples = read_yaml_file(sub_dir, "variable_triples.yaml")
+    triples = read_yaml_file(sub_dir, "from_triples_input.yaml")
     expect(SdtmModel::Variable.new(triples, "M-CDISC_SDTMMODEL_xxTPTREF").to_json).to eq(result) 
   end 
 
   it "allows an object to be found" do
     variable = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxTPTREF", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-  #write_yaml_file(variable.triples, sub_dir, "variable_triples.yaml")
-  #write_yaml_file(variable.to_json, sub_dir, "variable.yaml")
-    expected = read_yaml_file(sub_dir, "variable.yaml")
+  #write_yaml_file(variable.to_json, sub_dir, "find_input.yaml")
+    expected = read_yaml_file(sub_dir, "find_input.yaml")
     expect(variable.to_json).to eq(expected)
   end
 
   it "allows an object to be exported as JSON" do
     variable = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxTPTREF", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-  #write_yaml_file(variable.to_json, sub_dir, "variable_to_json.yaml")
-    expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
+  #write_yaml_file(variable.to_json, sub_dir, "to_json_input.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_input.yaml")
     expect(variable.to_json).to eq(expected)
   end
 
   it "allows the object to be created from JSON" do
-  	json = read_yaml_file(sub_dir, "variable.yaml")
+  	json = read_yaml_file(sub_dir, "find_input.yaml")
     item = SdtmModel::Variable.from_json(json)
-    expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
+    expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
   it "allows the object to be output as sparql" do
   	parent_uri = UriV2.new(id: "M-CDISC_SDTMMODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
   	sparql = SparqlUpdateV2.new
-  	json = read_yaml_file(sub_dir, "variable.yaml")
+  	json = read_yaml_file(sub_dir, "find_input.yaml")
     item = SdtmModel::Variable.from_json(json)
     result = item.to_sparql_v2(parent_uri, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "variable_to_sparql_1.txt")
-    expected = read_text_file_2(sub_dir, "variable_to_sparql_1.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected_1.txt")
     expect(sparql.to_s).to eq(expected)
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF")
   end
@@ -132,11 +131,11 @@ describe SdtmModel::Variable do
   it "allows the object to be output as sparql, sub classification" do
   	parent_uri = UriV2.new(id: "M-CDISC_SDTMMODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
   	sparql = SparqlUpdateV2.new
-  	json = read_yaml_file(sub_dir, "variable_2.yaml")
+  	json = read_yaml_file(sub_dir, "to_sparql_input.yaml")
     item = SdtmModel::Variable.from_json(json)
     result = item.to_sparql_v2(parent_uri, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "variable_to_sparql_2.txt")
-    expected = read_text_file_2(sub_dir, "variable_to_sparql_2.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected_2.txt")
     expect(sparql.to_s).to eq(expected)
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF")
   end

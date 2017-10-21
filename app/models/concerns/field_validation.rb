@@ -387,4 +387,23 @@ module FieldValidation
     end
   end
 
+  # Valid URI
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_uri?(symbol, value, object)
+  	if value.blank? 
+	  	object.errors.add(symbol, "is empty")
+  		return false
+  	else
+  		uri = UriV2.new(uri: value)
+    	return true
+    end
+  rescue => e
+  	object.errors.add(symbol, "is invalid")
+  	return false
+  end
+
 end

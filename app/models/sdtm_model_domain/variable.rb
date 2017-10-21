@@ -55,8 +55,8 @@ class SdtmModelDomain::Variable < Tabular::Column
     self.namespace = parent_uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => self.uri}
-    ref_uri = self.variable_ref.to_sparql_v2(self.uri, OperationalReferenceV2::C_PARENT_LINK_C, 'CR', 1, sparql)
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => OperationalReferenceV2::C_PARENT_LINK_C}, {:uri => ref_uri})
+    ref_uri = self.variable_ref.to_sparql_v2(self.uri, OperationalReferenceV2::C_PARENT_LINK_VC, 'CR', 1, sparql)
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => OperationalReferenceV2::C_PARENT_LINK_VC}, {:uri => ref_uri})
     return self.uri
   end
 
@@ -84,7 +84,7 @@ class SdtmModelDomain::Variable < Tabular::Column
 private
 
   def self.children_from_triples(object, triples, id)
-    variable_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "basedOnVariable"))
+    variable_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, OperationalReferenceV2::C_PARENT_LINK_VC))
     if variable_refs.length > 0 
       object.variable_ref = variable_refs[0]
     end

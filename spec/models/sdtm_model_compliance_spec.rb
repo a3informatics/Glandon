@@ -83,4 +83,15 @@ describe SdtmModelCompliance do
     expect(default.to_json).to eq(expected)
   end
 
+  it "allows object to be output as SPARQL" do
+  	sparql = SparqlUpdateV2.new
+  	parent_uri = UriV2.new(id: "MODEL", namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+    item = SdtmModelCompliance.new
+    item.label = "NEW LABEL"
+    result = item.to_sparql_v2(parent_uri, sparql)
+  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_compliance_sparql.txt")
+    expected = read_text_file_2(sub_dir, "sdtm_model_compliance_sparql.txt")
+    expect(sparql.to_s).to eq(expected)
+  end
+
 end

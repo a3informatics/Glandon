@@ -1,0 +1,1587 @@
+---
+:type: ''
+:id: IG-CDISC_SDTMIGAE
+:namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+:label: Adverse Events
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2017-01-01T00:00:00+00:00'
+:last_changed_date: '2017-01-01T00:00:00+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-CDISC_SDTMIGAE-1
+  :registration_authority:
+    :id: RA-084433759
+    :number: 084433759
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :shortName: CDISC
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+:scoped_identifier:
+  :id: SI-CDISC_SDTMIGAE-1
+  :identifier: SDTM IG AE
+  :version_label: Version Label
+  :version: 1
+  :semantic_version: 0.1.0
+  :namespace:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: NS-CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :shortName: CDISC
+:ordinal: 1
+:rule: ''
+:prefix: AE
+:structure: One record per adverse event per subject
+:model_ref:
+  :type: http://www.assero.co.uk/BusinessOperational#TReference
+  :id: IG-CDISC_SDTMIGAE_CLR1
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Based on Domain Reference
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 0
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+    :id: M-CDISC_SDTMMODEL_EVENTS
+:children:
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_STUDYID
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Study Identifier
+  :extension_properties: []
+  :ordinal: '1'
+  :rule: ''
+  :name: STUDYID
+  :notes: Unique identifier for a study.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Required
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_STUDYID_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_STUDYID
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_DOMAIN
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Domain Abbreviation
+  :extension_properties: []
+  :ordinal: '2'
+  :rule: ''
+  :name: DOMAIN
+  :notes: Two-character abbreviation for the domain.
+  :controlled_term_or_format: "(DOMAIN)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Required
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_DOMAIN_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_DOMAIN
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_USUBJID
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Unique Subject Identifier
+  :extension_properties: []
+  :ordinal: '3'
+  :rule: ''
+  :name: USUBJID
+  :notes: Identifier used to uniquely identify a subject across all studies for all
+    applications or submissions involving the product.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Required
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_USUBJID_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_USUBJID
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESEQ
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Sequence Number
+  :extension_properties: []
+  :ordinal: '4'
+  :rule: ''
+  :name: AESEQ
+  :notes: Sequence Number given to ensure uniqueness of subject records within a domain.
+    May be any valid number.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Required
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESEQ_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSEQ
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEGRPID
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Group ID
+  :extension_properties: []
+  :ordinal: '5'
+  :rule: ''
+  :name: AEGRPID
+  :notes: Used to tie together a block of related records in a single domain for a
+    subject.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEGRPID_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxGRPID
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEREFID
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Reference ID
+  :extension_properties: []
+  :ordinal: '6'
+  :rule: ''
+  :name: AEREFID
+  :notes: Internal or external identifier such as a serial number on an SAE reporting
+    form.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEREFID_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxREFID
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESPID
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Sponsor-Defined Identifier
+  :extension_properties: []
+  :ordinal: '7'
+  :rule: ''
+  :name: AESPID
+  :notes: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an explicit
+    line identifier or defined in the sponsor’s operational database. Example: Line
+    number on an Adverse Events page.'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESPID_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSPID
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AETERM
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Reported Term for the Adverse Event
+  :extension_properties: []
+  :ordinal: '8'
+  :rule: ''
+  :name: AETERM
+  :notes: Verbatim name of the event.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Required
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AETERM_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxTERM
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEMODIFY
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Modified Reported Term
+  :extension_properties: []
+  :ordinal: '9'
+  :rule: ''
+  :name: AEMODIFY
+  :notes: If AETERM is modified to facilitate coding, then AEMODIFY will contain the
+    modified text.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEMODIFY_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxMODIFY
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AELLT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Lowest Level Term
+  :extension_properties: []
+  :ordinal: '10'
+  :rule: ''
+  :name: AELLT
+  :notes: Dictionary-derived text description of the Lowest Level Term.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AELLT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxLLT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AELLTCD
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Lowest Level Term Code
+  :extension_properties: []
+  :ordinal: '11'
+  :rule: ''
+  :name: AELLTCD
+  :notes: Dictionary-derived code for the Lowest Level Term.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AELLTCD_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxLLTCD
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEDECOD
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Dictionary-Derived Term
+  :extension_properties: []
+  :ordinal: '12'
+  :rule: ''
+  :name: AEDECOD
+  :notes: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to
+    the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
+    name and version used to map the terms utilizing the define.xml external codelist
+    attributes.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Required
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEDECOD_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxDECOD
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEPTCD
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Preferred Term Code
+  :extension_properties: []
+  :ordinal: '13'
+  :rule: ''
+  :name: AEPTCD
+  :notes: Dictionary-derived code for the Preferred Term.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEPTCD_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxPTCD
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEHLT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: High Level Term
+  :extension_properties: []
+  :ordinal: '14'
+  :rule: ''
+  :name: AEHLT
+  :notes: Dictionary-derived text description of the High Level Term for the primary
+    System Organ Class.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEHLT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxHLT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEHLTCD
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: High Level Term Code
+  :extension_properties: []
+  :ordinal: '15'
+  :rule: ''
+  :name: AEHLTCD
+  :notes: Dictionary-derived code for the High Level Term for the primary System Organ
+    Class.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEHLTCD_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxHLTCD
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEHLGT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: High Level Group Term
+  :extension_properties: []
+  :ordinal: '16'
+  :rule: ''
+  :name: AEHLGT
+  :notes: Dictionary-derived text description of the High Level Group Term for the
+    primary System Organ Class.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEHLGT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxHLGT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEHLGTCD
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: High Level Group Term Code
+  :extension_properties: []
+  :ordinal: '17'
+  :rule: ''
+  :name: AEHLGTCD
+  :notes: Dictionary-derived code for the High Level Group Term for the primary System
+    Organ Class.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEHLGTCD_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxHLGTCD
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AECAT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Category for Adverse Event
+  :extension_properties: []
+  :ordinal: '18'
+  :rule: ''
+  :name: AECAT
+  :notes: 'Used to define a category of related records. Example: BLEEDING, NEUROPSYCHIATRIC.'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AECAT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxCAT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESCAT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Subcategory for Adverse Event
+  :extension_properties: []
+  :ordinal: '19'
+  :rule: ''
+  :name: AESCAT
+  :notes: 'A further categorization of adverse event. Example: NEUROLOGIC.'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESCAT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSCAT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEPRESP
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Pre-Specified Adverse Event
+  :extension_properties: []
+  :ordinal: '20'
+  :rule: ''
+  :name: AEPRESP
+  :notes: A value of “Y” indicates that this adverse event was pre-specified on the
+    CRF. Values are null for spontaneously reported events (i.e., those collected
+    as free-text verbatim terms)
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEPRESP_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxPRESP
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEBODSYS
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Body System or Organ Class
+  :extension_properties: []
+  :ordinal: '21'
+  :rule: ''
+  :name: AEBODSYS
+  :notes: Dictionary derived. Body system or organ class used by the sponsor from
+    the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary such
+    as MedDRA, this should contain the SOC used for the sponsor’s analyses and summary
+    tables which may not necessarily be the primary SOC.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEBODSYS_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxBODSYS
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEBDSYCD
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Body System or Organ Class Code
+  :extension_properties: []
+  :ordinal: '22'
+  :rule: ''
+  :name: AEBDSYCD
+  :notes: Dictionary derived. Code for the body system or organ class used by the
+    sponsor. When using a multi-axial dictionary such as MedDRA, this should contain
+    the SOC used for the sponsor’s analyses and summary tables, which may not necessarily
+    be the primary SOC.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEBDSYCD_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxBDSYCD
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESOC
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Primary System Organ Class
+  :extension_properties: []
+  :ordinal: '23'
+  :rule: ''
+  :name: AESOC
+  :notes: Dictionary-derived text description of the primary System Organ Class. Will
+    be the same as AEBODSYS if the primary SOC was used for analysis.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESOC_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSOC
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESOCCD
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Primary System Organ Class Code
+  :extension_properties: []
+  :ordinal: '24'
+  :rule: ''
+  :name: AESOCCD
+  :notes: Dictionary-derived code for the primary System Organ Class. Will be the
+    same as AEBDSYCD if the primary SOC was used for analysis.
+  :controlled_term_or_format: MedDRA
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESOCCD_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSOCCD
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AELOC
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Location of Event
+  :extension_properties: []
+  :ordinal: '25'
+  :rule: ''
+  :name: AELOC
+  :notes: Describes anatomical location relevant for the event (e.g., ARM for skin
+    rash).
+  :controlled_term_or_format: "(LOC)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AELOC_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxLOC
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESEV
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Severity/Intensity
+  :extension_properties: []
+  :ordinal: '26'
+  :rule: ''
+  :name: AESEV
+  :notes: 'The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE.'
+  :controlled_term_or_format: "(AESEV)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESEV_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSEV
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESER
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Serious Event
+  :extension_properties: []
+  :ordinal: '27'
+  :rule: ''
+  :name: AESER
+  :notes: Is this a serious event?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESER_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSER
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEACN
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Action Taken with Study Treatment
+  :extension_properties: []
+  :ordinal: '28'
+  :rule: ''
+  :name: AEACN
+  :notes: 'Describes changes to the study treatment as a result of the event. AEACN
+    is specifically for the relationship to study treatment. AEACNOTH is for actions
+    unrelated to dose adjustments of study treatment. Examples of AEACN values include
+    ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT CHANGED,
+    UNKNOWN or NOT APPLICABLE.'
+  :controlled_term_or_format: "(ACN)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEACN_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxACN
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEACNOTH
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Other Action Taken
+  :extension_properties: []
+  :ordinal: '29'
+  :rule: ''
+  :name: AEACNOTH
+  :notes: 'Describes other actions taken as a result of the event that are unrelated
+    to dose adjustments of study treatment. Usually reported as free text. Example:
+    “TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.”'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEACNOTH_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxACNOTH
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEREL
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Causality
+  :extension_properties: []
+  :ordinal: '30'
+  :rule: ''
+  :name: AEREL
+  :notes: Records the investigator's opinion as to the causality of the event to the
+    treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY
+    RELATED, RELATED. Controlled Terminology may be defined in the future. Check with
+    regulatory authority for population of this variable.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEREL_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxREL
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AERELNST
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Relationship to Non-Study Treatment
+  :extension_properties: []
+  :ordinal: '31'
+  :rule: ''
+  :name: AERELNST
+  :notes: 'Records the investigator''s opinion as to whether the event may have been
+    due to a treatment other than study drug. May be reported as free text. Example:
+    "MORE LIKELY RELATED TO ASPIRIN USE.”.'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AERELNST_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxRELNST
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEPATT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Pattern of Adverse Event
+  :extension_properties: []
+  :ordinal: '32'
+  :rule: ''
+  :name: AEPATT
+  :notes: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
+    CONTINUOUS, SINGLE EVENT.'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEPATT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxPATT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEOUT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Outcome of Adverse Event
+  :extension_properties: []
+  :ordinal: '33'
+  :rule: ''
+  :name: AEOUT
+  :notes: Description of the outcome of an event.
+  :controlled_term_or_format: "(OUT)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEOUT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxOUT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESCAN
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Involves Cancer
+  :extension_properties: []
+  :ordinal: '34'
+  :rule: ''
+  :name: AESCAN
+  :notes: Was the serious event associated with the development of cancer?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESCAN_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSCAN
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESCONG
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Congenital Anomaly or Birth Defect
+  :extension_properties: []
+  :ordinal: '35'
+  :rule: ''
+  :name: AESCONG
+  :notes: Was the serious event associated with congenital anomaly or birth defect?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESCONG_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSCONG
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESDISAB
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Persist or Signif Disability/Incapacity
+  :extension_properties: []
+  :ordinal: '36'
+  :rule: ''
+  :name: AESDISAB
+  :notes: Did the serious event result in persistent or significant disability/incapacity?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESDISAB_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSDISAB
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESDTH
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Results in Death
+  :extension_properties: []
+  :ordinal: '37'
+  :rule: ''
+  :name: AESDTH
+  :notes: Did the serious event result in death?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESDTH_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSDTH
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESHOSP
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Requires or Prolongs Hospitalization
+  :extension_properties: []
+  :ordinal: '38'
+  :rule: ''
+  :name: AESHOSP
+  :notes: Did the serious event require or prolong hospitalization?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESHOSP_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSHOSP
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESLIFE
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Is Life Threatening
+  :extension_properties: []
+  :ordinal: '39'
+  :rule: ''
+  :name: AESLIFE
+  :notes: Was the serious event life threatening?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESLIFE_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSLIFE
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESOD
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Occurred with Overdose
+  :extension_properties: []
+  :ordinal: '40'
+  :rule: ''
+  :name: AESOD
+  :notes: Did the serious event occur with an overdose?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESOD_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSOD
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESMIE
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Other Medically Important Serious Event
+  :extension_properties: []
+  :ordinal: '41'
+  :rule: ''
+  :name: AESMIE
+  :notes: Do additional categories for seriousness apply?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESMIE_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSMIE
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AECONTRT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Concomitant or Additional Trtmnt Given
+  :extension_properties: []
+  :ordinal: '42'
+  :rule: ''
+  :name: AECONTRT
+  :notes: Was another treatment given because of the occurrence of the event?
+  :controlled_term_or_format: "(NY)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AECONTRT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxCONTRT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AETOXGR
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Standard Toxicity Grade
+  :extension_properties: []
+  :ordinal: '43'
+  :rule: ''
+  :name: AETOXGR
+  :notes: Toxicity grade according to a standard toxicity scale such as Common Terminology
+    Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name of the scale
+    and version used in the metadata (see Assumption 6d). If value is from a numeric
+    scale, represent only the number (e.g., “2” and not “Grade 2”).
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AETOXGR_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxTOXGR
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESTDTC
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Start Date/Time of Adverse Event
+  :extension_properties: []
+  :ordinal: '44'
+  :rule: ''
+  :name: AESTDTC
+  :notes: ''
+  :controlled_term_or_format: ISO 8601
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESTDTC_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSTDTC
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEENDTC
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: End Date/Time of Adverse Event
+  :extension_properties: []
+  :ordinal: '45'
+  :rule: ''
+  :name: AEENDTC
+  :notes: ''
+  :controlled_term_or_format: ISO 8601
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEENDTC_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxENDTC
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AESTDY
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Study Day of Start of Adverse Event
+  :extension_properties: []
+  :ordinal: '46'
+  :rule: ''
+  :name: AESTDY
+  :notes: Study day of start of adverse event relative to the sponsor-defined RFSTDTC.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AESTDY_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxSTDY
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEENDY
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Study Day of End of Adverse Event
+  :extension_properties: []
+  :ordinal: '47'
+  :rule: ''
+  :name: AEENDY
+  :notes: Study day of end of event relative to the sponsor-defined RFSTDTC.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEENDY_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxENDY
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEDUR
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: Duration of Adverse Event
+  :extension_properties: []
+  :ordinal: '48'
+  :rule: ''
+  :name: AEDUR
+  :notes: 'Collected duration and unit of an adverse event. Used only if collected
+    on the CRF and not derived from start and end date/times. Example: P1DT2H (for
+    1 day, 2 hours).'
+  :controlled_term_or_format: ISO 8601
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEDUR_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxDUR
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEENRF
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: End Relative to Reference Period
+  :extension_properties: []
+  :ordinal: '49'
+  :rule: ''
+  :name: AEENRF
+  :notes: Describes the end of the event relative to the sponsor-defined reference
+    period. The sponsor-defined reference period is a continuous period of time defined
+    by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
+    the trial.
+  :controlled_term_or_format: "(STENRF)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEENRF_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxENRF
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEENRTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: End Relative to Reference Time Point
+  :extension_properties: []
+  :ordinal: '50'
+  :rule: ''
+  :name: AEENRTPT
+  :notes: Identifies the end of the event as being before or after the reference time
+    point defined by variable AEENTPT.
+  :controlled_term_or_format: "(STENRF)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEENRTPT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxENRTPT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGAE_AEENTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+  :label: End Reference Time Point
+  :extension_properties: []
+  :ordinal: '51'
+  :rule: ''
+  :name: AEENTPT
+  :notes: 'Description of date/time in ISO 8601 character format of the reference
+    point referred to by AEENRTPT. Examples: "2003-12-25" or "VISIT 2".'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGAE_AEENTPT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 0
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODEL_EVENTS_xxENTPT
