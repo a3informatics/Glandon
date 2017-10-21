@@ -62,7 +62,7 @@ describe SdtmExcel do
 			:files => ["#{filename}"]
 		}
 		result = SdtmExcel.read_ig(params, object.errors)
-	write_yaml_file(result, sub_dir, "ig_build_expected.yaml")
+	#write_yaml_file(result, sub_dir, "ig_build_expected.yaml")
     expected = read_yaml_file(sub_dir, "ig_build_expected.yaml")
     # Need to align the timestamps to allow simple comparison to work
     expected.each_with_index do |x, index|

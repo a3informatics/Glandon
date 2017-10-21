@@ -718,36 +718,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTEST> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTEST> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTEST> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> rdfs:label "Modified Term"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:name "--MODIFY"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:description "If the value for --TRT is modified for coding purposes, then the modified text is placed here."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> rdfs:label "Category"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:ordinal "4"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:name "--CAT"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:description "Used to define a category of topic-variable values. Examples: HEMATOLOGY, URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> rdfs:label "Subcategory"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:ordinal "5"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:name "--SCAT"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:description "Used to define a further categorization of --CAT values."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPOS> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPOS> rdfs:label "Position of Subject During Observation"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPOS> bd:ordinal "6"^^xsd:positiveInteger . 
@@ -758,16 +728,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPOS> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPOS> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPOS> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> rdfs:label "Body System or Organ Class"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> bd:ordinal "7"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> bd:name "--BODSYS"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> bd:description "Body System or Organ Class that is involved for a finding from the standard hierarchy for dictionary-coded results. Example: MedDRA SOC."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBODSYS> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxORRES> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxORRES> rdfs:label "Result or Finding in Original Units"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxORRES> bd:ordinal "8"^^xsd:positiveInteger . 
@@ -888,26 +848,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxRESCAT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxRESCAT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxRESCAT> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> rdfs:label "Completion Status"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:ordinal "20"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:name "--STAT"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:description "Used to indicate when a question about the occurrence of a pre-specified event was not answered. Should be null or have a value of NOT DONE."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> rdfs:label "Reason Not Done"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:ordinal "21"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:name "--REASND"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxXFN> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxXFN> rdfs:label "External Filename"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxXFN> bd:ordinal "22"^^xsd:positiveInteger . 
@@ -958,16 +898,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSPCCND> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSPCCND> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSPCCND> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> rdfs:label "Location Used for the Measurement"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:ordinal "27"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:name "--LOC"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:description "Anatomical location of an intervention, such as an injection site. Example: RIGHT ARM for an injection."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMETHOD> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMETHOD> rdfs:label "Method of Test or Examination"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMETHOD> bd:ordinal "28"^^xsd:positiveInteger . 
@@ -1018,36 +948,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> rdfs:label "Toxicity"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> bd:ordinal "33"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> bd:name "--TOX"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> bd:description "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOX> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> rdfs:label "Toxicity Grade"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> bd:ordinal "34"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> bd:name "--TOXGR"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> bd:description "Records toxicity grade using a standard toxicity scale (such as the NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTOXGR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> rdfs:label "Severity"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> bd:ordinal "35"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> bd:name "--SEV"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> bd:description "Describes the severity or intensity of a particular finding. Examples: MILD, MODERATE, SEVERE."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSEV> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDTHREL> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDTHREL> rdfs:label "Relationship to Death"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDTHREL> bd:ordinal "36"^^xsd:positiveInteger . 
@@ -1088,86 +988,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTRT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTRT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_C_TOPIC> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTRT> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> rdfs:label "Modified Treatment Name"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:name "--MODIFY"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:description "If the value for --TRT is modified for coding purposes, then the modified text is placed here."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxMODIFY> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> rdfs:label "Standardized Treatment Name"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> bd:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> bd:name "--DECOD"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> bd:description "Standardized or dictionary-derived name of the topic variable, --TRT, or the modified topic variable (--MODIFY), if applicable. Equivalent to the generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published or sponsor-defined dictionaries."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxDECOD> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> rdfs:label "Category"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:ordinal "4"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:name "--CAT"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:description "Used to define a category of topic-variable values. Examples: HEMATOLOGY, URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxCAT> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> rdfs:label "Subcategory"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:ordinal "5"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:name "--SCAT"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:description "Used to define a further categorization of --CAT values."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSCAT> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> rdfs:label "Pre-specified"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> bd:ordinal "6"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> bd:name "--PRESP"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> bd:description "Used when a specific intervention is pre-specified on a CRF. Values should be 'Y' or null."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPRESP> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> rdfs:label "Occurrence"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> bd:ordinal "7"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> bd:name "--OCCUR"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> bd:description "Used to record whether a pre-specified event occurred when information about the occurrence of a specific event is solicited."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxOCCUR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> rdfs:label "Completion Status"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:ordinal "8"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:name "--STAT"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:description "Used to indicate when a question about the occurrence of a pre-specified event was not answered. Should be null or have a value of NOT DONE."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTAT> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> rdfs:label "Reason Not Done"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:ordinal "9"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:name "--REASND"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxREASND> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxINDC> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxINDC> rdfs:label "Indication"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxINDC> bd:ordinal "10"^^xsd:positiveInteger . 
@@ -1288,16 +1108,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOT> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> rdfs:label "Location of Dose Administration"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:ordinal "22"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:name "--LOC"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:description "Anatomical location of an intervention, such as an injection site. Example: RIGHT ARM for an injection."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxLOC> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTRTV> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTRTV> rdfs:label "Treatment Vehicle"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTRTV> bd:ordinal "23"^^xsd:positiveInteger . 
@@ -1538,16 +1348,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_C_TOPIC> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> rdfs:label "Evaluator"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> bd:ordinal "21"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> bd:name "--EVAL"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> bd:description "Used to describe the originator of the comment. Example: CENTRAL REVIEWER."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxEVAL> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> rdfs:label "Subject Element Code"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> bd:ordinal "22"^^xsd:positiveInteger . 
@@ -1575,16 +1375,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:name "--UPDES"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:prefixed "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:description "Description of what happened to the subject during an unplanned Element. Used only if ETCD has the value of “UNPLAN”."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> rdfs:label "Description of Unplanned Visit"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:ordinal "25"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:name "--UPDES"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:description "Description of what happened to the subject during an unplanned visit. Null for protocol-defined visits."^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxUPDES> . 
@@ -1638,26 +1428,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_QEVAL> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_QEVAL> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_QEVAL> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> rdfs:label "Element Code"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> bd:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> bd:name "ETCD"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> bd:prefixed "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> bd:description "ETCD (the companion to ELEMENT) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that ETCD will need to serve as a variable name."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ETCD> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> rdfs:label "Description of Element"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> bd:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> bd:name "ELEMENT"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> bd:prefixed "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> bd:description "The name of the Element."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ELEMENT> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> rdfs:label "Rule for Start of Element"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> bd:ordinal "3"^^xsd:positiveInteger . 
@@ -1678,26 +1448,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_C_RULE> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> rdfs:label "Planned Arm Code"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> bd:ordinal "5"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> bd:name "ARMCD"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> bd:prefixed "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> bd:description "ARMCD is limited to 20 characters and does not have special character restrictions."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARMCD> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> rdfs:label "Description of Planned Arm"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> bd:ordinal "6"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> bd:name "ARM"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> bd:prefixed "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> bd:description "Name given to Arm or treatment group."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_ARM> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBRANCH> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBRANCH> rdfs:label "Branch"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxBRANCH> bd:ordinal "7"^^xsd:positiveInteger . 
@@ -1718,26 +1468,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTRANS> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTRANS> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_C_RULE> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxTRANS> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> rdfs:label "Visit Start Rule"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> bd:ordinal "9"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> bd:name "--STRL"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> bd:description "Rule describing when the visit starts, in relation to the sequence of Elements."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_C_RULE> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxSTRL> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> rdfs:label "Visit End Rule"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> bd:ordinal "10"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> bd:name "--ENRL"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> bd:description "Rule describing when the visit ends, in relation to the sequence of Elements."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_C_RULE> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxENRL> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IETESTCD> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IETESTCD> rdfs:label "Inclusion/Exclusion Criterion Short Name"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IETESTCD> bd:ordinal "11"^^xsd:positiveInteger . 
@@ -1818,46 +1548,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPARM> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPARM> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxPARM> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> rdfs:label "Parameter Value"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> bd:ordinal "19"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> bd:name "--VAL"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> bd:prefixed "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> bd:description "Value of TSPARM. Example: “ASTHMA” when TSPARM value is “Trial Indications”. TSVAL cannot be null; a value is required for the record to be valid. Text over 200 characters can be added to additional columns TSVAL1-TSVALn."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_xxVAL> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> rdfs:label "Related Domain Abbreviation"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> bd:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> bd:name "RDOMAIN"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> bd:prefixed "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RDOMAIN> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> rdfs:label "Identifying Variable"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> bd:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> bd:name "IDVAR"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> bd:prefixed "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> bd:description "Name of the identifying variable in the general-observation-class dataset that identifies the related record(s). Examples include --SEQ and --GRPID."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> rdfs:label "Identifying Variable Value"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> bd:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> bd:name "IDVARVAL"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> bd:prefixed "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> bd:description "Value of identifying variable described in IDVAR. If --SEQ is the variable being used to describe this record, then the value of --SEQ would be entered here."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_IDVARVAL> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RELTYPE> rdf:type <http://www.assero.co.uk/BusinessDomain#ModelVariable> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RELTYPE> rdfs:label "Relationship Type"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V1#M-CDISC_SDTMMODEL_RELTYPE> bd:ordinal "4"^^xsd:positiveInteger . 

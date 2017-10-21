@@ -1,0 +1,330 @@
+---
+:type: http://www.assero.co.uk/BusinessDomain#Model
+:id: M-CDISC_SDTMMODEL
+:namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+:label: SDTM Model 2013-11-26
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2013-11-26T00:00:00+00:00'
+:last_changed_date: '2016-09-02T23:32:16+01:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-CDISC_SDTMMODEL-3
+  :registration_authority:
+    :id: RA-084433759
+    :number: 084433759
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :shortName: CDISC
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00Z'
+  :until_date: '2016-01-01T00:00:00Z'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Standard
+:scoped_identifier:
+  :id: SI-CDISC_SDTMMODEL-3
+  :identifier: SDTM MODEL
+  :version_label: '1.4'
+  :version: 3
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: NS-CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :shortName: CDISC
+:ordinal: 0
+:rule: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxSCONG
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Congenital Anomaly or Birth Defect
+  :extension_properties: []
+  :ordinal: 37
+  :rule: ''
+  :name: "--SCONG"
+  :prefixed: true
+  :description: Was the event associated with congenital anomaly or birth defect?
+    Valid values are “Y” and “N”.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Record Qualifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_IETEST
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Inclusion/Exclusion Criterion
+  :extension_properties: []
+  :ordinal: 14
+  :rule: ''
+  :name: IETEST
+  :prefixed: false
+  :description: Full text of the inclusion or exclusion criterion. The prefix “IE”
+    is used to ensure consistency with the IE domain.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Synonym Qualifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_IETEST
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Inclusion/Exclusion Criterion
+  :extension_properties: []
+  :ordinal: 14
+  :rule: ''
+  :name: IETEST
+  :prefixed: false
+  :description: Full text of the inclusion or exclusion criterion. The prefix “IE”
+    is used to ensure consistency with the IE domain.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Synonym Qualifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxTOXGR
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Toxicity Grade
+  :extension_properties: []
+  :ordinal: 46
+  :rule: ''
+  :name: "--TOXGR"
+  :prefixed: true
+  :description: 'Records toxicity grade using a standard toxicity scale (such as the
+    NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor
+    Comments column of the Define data definition document. Example: 2.'
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Record Qualifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxSPID
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Sponsor-Defined Identifier
+  :extension_properties: []
+  :ordinal: 9
+  :rule: ''
+  :name: "--SPID"
+  :prefixed: true
+  :description: 'Sponsor-defined identifier. Example: pre-printed line identifier
+    on a Concomitant Medications page.'
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Identifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxSPID
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Sponsor-Defined Identifier
+  :extension_properties: []
+  :ordinal: 9
+  :rule: ''
+  :name: "--SPID"
+  :prefixed: true
+  :description: 'Sponsor-defined identifier. Example: pre-printed line identifier
+    on a Concomitant Medications page.'
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Identifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxPARMCD
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Trial Summary Parameter Short Name
+  :extension_properties: []
+  :ordinal: 19
+  :rule: ''
+  :name: "--PARMCD"
+  :prefixed: true
+  :description: 'TSPARMCD (the companion to TSPARM) is limited to 8 characters and
+    does not have special character restrictions. These values should be short for
+    ease of use in programming, but it is not expected that TSPARMCD will need to
+    serve as variable names. Examples: AGEMIN, AGEMAX'
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TOPIC
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Topic
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_USUBJID
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Unique Subject Identifier
+  :extension_properties: []
+  :ordinal: 3
+  :rule: ''
+  :name: USUBJID
+  :prefixed: false
+  :description: Identifier used to uniquely identify a subject across all studies
+    for all applications or submissions involving the product.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+    :label: Identifier
+    :extension_properties: []
+:class_refs:
+- :type: http://www.assero.co.uk/BusinessOperational#TReference
+  :id: M-CDISC_SDTMMODEL_TR6
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: ''
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 6
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+    :id: M-CDISC_SDTMMODEL_RELATIONSHIP
+- :type: http://www.assero.co.uk/BusinessOperational#TReference
+  :id: M-CDISC_SDTMMODEL_TR1
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: ''
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+    :id: M-CDISC_SDTMMODEL_EVENTS
+- :type: http://www.assero.co.uk/BusinessOperational#TReference
+  :id: M-CDISC_SDTMMODEL_TR4
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: ''
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 4
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+    :id: M-CDISC_SDTMMODEL_SPECIAL_PURPOSE
+- :type: http://www.assero.co.uk/BusinessOperational#TReference
+  :id: M-CDISC_SDTMMODEL_TR2
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: ''
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 2
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+    :id: M-CDISC_SDTMMODEL_INTERVENTIONS
+- :type: http://www.assero.co.uk/BusinessOperational#TReference
+  :id: M-CDISC_SDTMMODEL_TR5
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: ''
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 5
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+    :id: M-CDISC_SDTMMODEL_TRIAL_DESIGN
+- :type: http://www.assero.co.uk/BusinessOperational#TReference
+  :id: M-CDISC_SDTMMODEL_TR3
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: ''
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 3
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+    :id: M-CDISC_SDTMMODEL_FINDINGS

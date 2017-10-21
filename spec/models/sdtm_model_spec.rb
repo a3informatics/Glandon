@@ -81,14 +81,22 @@ describe SdtmModel do
   end
 
 	it "allows the model to be created from JSON" do 
-		expected = read_yaml_file(sub_dir, "from_json_input.yaml")
+		expected = read_yaml_file(sub_dir, "from_json_input_1.yaml")
     item = SdtmModel.from_json(expected)
+    expect(item.to_json).to eq(expected)
+	end
+
+	it "allows the model to be created from JSON, prevent duplicates" do 
+		input = read_yaml_file(sub_dir, "from_json_input_2.yaml")
+    item = SdtmModel.from_json(input)
+  #write_yaml_file(item.to_json, sub_dir, "from_json_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "from_json_expected_2.yaml")
     expect(item.to_json).to eq(expected)
 	end
 
 	it "allows the object to be output as sparql" do
   	sparql = SparqlUpdateV2.new
-  	json = read_yaml_file(sub_dir, "from_json_input.yaml")
+  	json = read_yaml_file(sub_dir, "from_json_input_1.yaml")
     item = SdtmModel.from_json(json)
     result = item.to_sparql_v2(sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
@@ -99,7 +107,7 @@ describe SdtmModel do
 
 	it "allows the object to be domain references as sparql" do
   	sparql = SparqlUpdateV2.new
-  	json = read_yaml_file(sub_dir, "from_json_input.yaml")
+  	json = read_yaml_file(sub_dir, "from_json_input_1.yaml")
     item = SdtmModel.from_json(json)
     result = item.domain_refs_to_sparql(sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "class_refs_to_sparql_expected_1.txt")

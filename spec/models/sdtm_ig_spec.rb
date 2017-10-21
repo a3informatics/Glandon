@@ -72,10 +72,10 @@ describe SdtmIg do
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG")
   end
 
- 	it "allows the object to be domain references as sparql" do
+ 	it "allows the object domain references to be output as sparql" do
   	sparql = SparqlUpdateV2.new
   	json = read_yaml_file(sub_dir, "from_json_input.yaml")
-    item = SdtmModel.from_json(json)
+    item = SdtmIg.from_json(json)
     result = item.domain_refs_to_sparql(sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "domain_refs_to_sparql_expected_1.txt")
     expected = read_text_file_2(sub_dir, "domain_refs_to_sparql_expected_1.txt")

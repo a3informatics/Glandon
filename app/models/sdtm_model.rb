@@ -153,8 +153,14 @@ class SdtmModel < Tabular
   # @param [Hash] json the hash of values for the object 
   # @return [SdtmModel] the object created
   def self.from_json(json)
+  	variable_map = {}
     object = super(json)
-    json[:children].each { |c| object.children << SdtmModel::Variable.from_json(c) } if !json[:children].blank?
+    json[:children].each do |child|
+    	if !json[:children].blank? 
+    		object.children << SdtmModel::Variable.from_json(child) if !variable_map.has_key?(child[:name])
+    		variable_map[child[:name]] = true
+    	end
+    end
     json[:class_refs].each { |ref| object.class_refs << OperationalReferenceV2.from_json(ref) } if !json[:class_refs].blank?
     return object
   end
