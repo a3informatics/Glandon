@@ -168,12 +168,13 @@ class SdtmModel::Variable < Tabular::Column
   			elsif classifications.has_key?(self.sub_classification.label) 
   				self.sub_classification = classifications[self.sub_classification.label]
 		  	else
-		  		text = "Sub-classification #{self.sub_classification.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object."
-  				raise Exceptions::ApplicationLogicError.new(message: text)
+		  		msg = "Sub-classification #{self.sub_classification.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object."
+  				raise Exceptions::ApplicationLogicError.new(message: msg)
   			end
   		end
   	else
-  		raise Exceptions::ApplicationLogicError.new(message: "Classification #{self.classification.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object.")
+  		msg = "Classification #{self.classification.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object."
+  		raise Exceptions::ApplicationLogicError.new(message: msg)
   	end
   end
   

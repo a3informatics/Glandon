@@ -173,10 +173,13 @@ private
  	def self.build_variable_references(map, params)
  		domain_class = map[params[:domain_class]]
  		params[:children].each do |child|
- 			if domain_class[:children][generic_variable_name(child[:name], child[:variable_name_minus])].nil?
-		  	raise Exceptions::ApplicationLogicError.new(message: "Reference for variable #{child[:name]} not found in #{C_CLASS_NAME}.")
- 			end
-			child[:variable_ref][:subject_ref] = domain_class[:children][generic_variable_name(child[:name], child[:variable_name_minus])].to_json
+ 			generic_name = generic_variable_name(child[:name], child[:variable_name_minus])
+ 			if !domain_class[:children][generic_name].nil?
+				child[:variable_ref][:subject_ref] = domain_class[:children][generic_name].to_json
+			else
+				msg = "Reference for variable #{child[:name]} not found in #{C_CLASS_NAME}."
+	 			raise Exceptions::ApplicationLogicError.new(message: msg)
+			end
   	end
  	end
 
@@ -187,7 +190,8 @@ private
 	 			object = ig.compliance[child[:compliance][:label]]
 				child[:compliance] = object.to_json
 	  	else
-  			raise Exceptions::ApplicationLogicError.new(message: "Compliance #{child[:compliance][:label]} not found. Variable #{child[:name]} in #{C_CLASS_NAME}.")
+  			msg = "Compliance #{child[:compliance][:label]} not found. Variable #{child[:name]} in #{C_CLASS_NAME}."
+  			raise Exceptions::ApplicationLogicError.new(message: msg)
   		end
   	end
  	end

@@ -5,7 +5,7 @@ describe SdtmModelClassification do
   include DataHelpers
 
   def sub_dir
-    return "models"
+    return "models/sdtm_model_classification"
   end
 
   before :all do
@@ -65,8 +65,8 @@ describe SdtmModelClassification do
 
   it "allows all leaf labels to be returned" do
     results = SdtmModelClassification.all_leaf("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-    #write_yaml_file(results, sub_dir, "sdtm_model_classification_all_leaf.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_model_classification_all_leaf.yaml")
+  #write_yaml_file(results, sub_dir, "all_leaf_expected.yaml")
+    expected = read_yaml_file(sub_dir, "all_leaf_expected.yaml")
     results.each do |result|
       found = expected.find { |x| x.id == result.id }
       expect(result.id).to eq(found.id)
@@ -75,8 +75,8 @@ describe SdtmModelClassification do
 
   it "allows all parent labels to be returned" do
     results = SdtmModelClassification.all_parent("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-    #write_yaml_file(results, sub_dir, "sdtm_model_classification_all_parent.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_model_classification_all_parent.yaml")
+  #write_yaml_file(results, sub_dir, "all_parent.yaml")
+    expected = read_yaml_file(sub_dir, "all_parent.yaml")
     results.each do |result|
       found = expected.find { |x| x.id == result.id }
       expect(result.id).to eq(found.id)
@@ -87,8 +87,8 @@ describe SdtmModelClassification do
     result = SdtmModelClassification.all_children("M-CDISC_SDTMMODEL_C_QUALIFIER", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
     json = []
     result.each {|tc| json << tc.to_json}
-    #write_yaml_file(json, sub_dir, "sdtm_model_classification_all_child.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_model_classification_all_child.yaml")
+  #write_yaml_file(json, sub_dir, "all_child_expected.yaml")
+    expected = read_yaml_file(sub_dir, "all_child_expected.yaml")
     expect(json).to eq(expected)
   end
 
@@ -163,8 +163,8 @@ describe SdtmModelClassification do
     item.label = "CLASSIFICATION"
     item.set_parent
     result = item.to_sparql_v2(parent_uri, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_classification_sparql.txt")
-    expected = read_text_file_2(sub_dir, "sdtm_model_classification_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
   end
 
@@ -174,8 +174,8 @@ describe SdtmModelClassification do
     item = SdtmModelClassification.new
     item.label = "CLASSIFICATION"
     result = item.to_sparql_v2(parent_uri, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_classification_child_sparql.txt")
-    expected = read_text_file_2(sub_dir, "sdtm_model_classification_child_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_child_expected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_child_expected.txt")
     expect(sparql.to_s).to eq(expected)
   end
 
@@ -192,8 +192,8 @@ describe SdtmModelClassification do
     item.add_child(child_1_classification)
 		item.add_child(child_2_classification)
     result = item.to_sparql_v2(parent_uri, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_classification_parent_sparql.txt")
-    expected = read_text_file_2(sub_dir, "sdtm_model_classification_parent_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_parent_expected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_parent_expected.txt")
     expect(sparql.to_s).to eq(expected)
   end
 

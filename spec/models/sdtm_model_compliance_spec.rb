@@ -5,7 +5,7 @@ describe SdtmModelCompliance do
   include DataHelpers
 
   def sub_dir
-    return "models"
+    return "models/sdtm_model_compliance"
   end
 
   before :all do
@@ -61,8 +61,8 @@ describe SdtmModelCompliance do
 
   it "allows all labels to be returned" do
     results = SdtmModelCompliance.all("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-    #write_yaml_file(results, sub_dir, "sdtm_model_compliance_all.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_model_compliance_all.yaml")
+  #write_yaml_file(results, sub_dir, "all_expected.yaml")
+    expected = read_yaml_file(sub_dir, "all_expected.yaml")
     results.each do |result|
       found = expected.find { |x| x.id == result.id }
       expect(result.id).to eq(found.id)
@@ -89,8 +89,8 @@ describe SdtmModelCompliance do
     item = SdtmModelCompliance.new
     item.label = "NEW LABEL"
     result = item.to_sparql_v2(parent_uri, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_model_compliance_sparql.txt")
-    expected = read_text_file_2(sub_dir, "sdtm_model_compliance_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
   end
 
