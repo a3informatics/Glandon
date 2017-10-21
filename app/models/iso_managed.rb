@@ -237,6 +237,13 @@ class IsoManaged < IsoConcept
     self.scopedIdentifier.next_version
   end
 
+  # Return the next version
+  #
+  # @return [integer] the next version
+  def self.next_version(identifier, ra)
+    IsoScopedIdentifier.next_version(identifier, ra.namespace.id)
+  end
+
   # Return the next semantic version
   #
   # @return [SemanticVersion] the next semantic version
@@ -1015,6 +1022,14 @@ class IsoManaged < IsoConcept
     uri.extend_path("#{org_name}/V#{self.version}")
     self.namespace = uri.namespace
     self.id = uri.id
+  end
+
+  # Adjust Version. Update the version depending on what the next version should be.
+  # This is useful for impors where not everything is at the same version.
+  #
+  # @return [null]
+  def adjust_next_version
+  	self.scopedIdentifier.version = IsoScopedIdentifier.next_version(self.identifier, self.registrationState.registrationAuthority.namespace.id)
   end
 
   # Return the object as SPARQL

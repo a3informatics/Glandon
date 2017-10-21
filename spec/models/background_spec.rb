@@ -126,7 +126,7 @@ describe Background do
   	filename = db_load_file_path("cdisc", "sdtm-3-1-3-excel.xlsx")
   	params = {version: "2", version_label: "Second Version", date: "2017-10-18", files: ["#{filename}"]}
   	job.import_cdisc_sdtm_model(params)
-  puts job.status
+  #puts job.status
   	expect(job.status).to eq("Complete. Successful import.")
   end
 
@@ -136,7 +136,7 @@ describe Background do
   	filename = db_load_file_path("cdisc", "sdtm-3-1-3-excel.xlsx")
   	params = {version: "2", version_label: "Second Version", date: "2017-10-18", files: ["#{filename}"], model_uri: model.uri.to_s}
   	job.import_cdisc_sdtm_ig(params)
-  puts job.status
+  #puts job.status
   	expect(job.status).to eq("Complete. Successful import.")
   end
 
@@ -145,7 +145,7 @@ describe Background do
   	filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
   	params = {version: "3", version_label: "Third Version", date: "2017-10-18", files: ["#{filename}"]}
   	job.import_cdisc_sdtm_model(params)
-  puts job.status
+  #puts job.status
   	expect(job.status).to eq("Complete. Successful import.")
   end
 
@@ -155,7 +155,7 @@ describe Background do
   	filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
   	params = {version: "3", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"], model_uri: model.uri.to_s}
   	job.import_cdisc_sdtm_ig(params)
-  puts job.status
+  #puts job.status
   	expect(job.status).to eq("Complete. Successful import.")
   end
 

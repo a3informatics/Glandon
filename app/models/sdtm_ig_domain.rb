@@ -77,6 +77,7 @@ class SdtmIgDomain < Tabular
     build_compliance(ig, params[:managed_item])
     object = SdtmIgDomain.from_json(params[:managed_item])
     object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+    object.adjust_next_version # Versions are assumed, may not be so
     object.lastChangeDate = object.creationDate # Make sure we don't set current time.
     if object.valid? && object.create_permitted?
 			object.to_sparql_v2(sparql)

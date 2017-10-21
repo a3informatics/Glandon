@@ -168,6 +168,15 @@ describe IsoManaged do
     expect(item.first_version).to eq(1)   
   end
 
+  it "allows next version for an indentifier to be determned" do
+  	next_version = IsoManaged.next_version("TEST", IsoRegistrationAuthority.owner)
+  	expect(next_version).to eq(2)
+  	next_version = IsoManaged.next_version("TEST", IsoRegistrationAuthority.find_by_short_name("AAA"))
+  	expect(next_version).to eq(1)
+  	next_version = IsoManaged.next_version("TESTxxxxx", IsoRegistrationAuthority.owner)
+  	expect(next_version).to eq(1)
+  end
+
   it "allows existance to be determined with item" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(item.exists?).to eq(true)   
@@ -415,7 +424,14 @@ describe IsoManaged do
     expect(new_item.to_json).to eq(old_item.to_json)
   end
   
-  it "permits the item to be exported as SPARQL" do
+  it "allows the next version of an object to be adjusted" do
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    expected = item.version + 1
+    item.adjust_next_version
+    expect(item.version).to eq(expected)
+  end
+
+	it "permits the item to be exported as SPARQL" do
     result = "PREFIX : <http://www.assero.co.uk/MDRForms/ACME/V1#>\n" +
        "PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>\n" +
        "PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>\n" +

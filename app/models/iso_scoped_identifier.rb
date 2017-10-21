@@ -203,6 +203,31 @@ class IsoScopedIdentifier
     return C_FIRST_VERSION
   end
 
+  # Next Version. Obtain the next version for a given identifier within the specified scope (namespace).
+  #
+  # @param [String] identifier the identifer being checked.
+  # @param [String] scope_id the id of the scope namespace (IsoNamespace object).
+  # @return [Integer] the next version.
+  def self.next_version(identifier, scope_id)   
+    # Create the query
+    query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
+      "SELECT ?b WHERE \n" +
+      "{\n" +
+      "  ?a rdf:type isoI:ScopedIdentifier . \n" +
+      "  ?a isoI:identifier \"#{identifier}\" . \n" +
+      "  ?a isoI:version ?b . \n" +
+      "  ?a isoI:hasScope :#{scope_id} . \n" +
+      "} ORDER BY DESC(?b)"
+    # Send the request, wait the resonse
+    response = CRUD.query(query)
+    # Process the response
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    nodes = xmlDoc.xpath("//result")
+    return C_FIRST_VERSION if nodes.empty?
+    return ModelUtility.getValue('b', false, nodes.first).to_i + 1
+  end
+
   # Find the item gievn the id
   #
   # @id [string] The id to be found

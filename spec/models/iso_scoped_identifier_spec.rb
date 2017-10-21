@@ -367,13 +367,25 @@ describe IsoScopedIdentifier do
     expect{object.destroy}.to raise_error(Exceptions::DestroyError)
   end
 
-  it "clears triple store" do
-    clear_triple_store
-  end
-
   it "allIdentifier handles empty response" do
     results = Array.new
     expect(IsoScopedIdentifier.allIdentifier("BBB", "http://www.assero.co.uk/MDRItems")).to eq(results)
+  end
+
+  it "obtains the next version, does not exist" do
+  	org = IsoNamespace.find("NS-BBB")
+  	version = IsoScopedIdentifier.next_version("XXXXXTEST1", org.id)
+  	expect(version).to eq(1)
+  end
+
+  it "obtains the next version, exists" do
+  	org = IsoNamespace.find("NS-BBB")
+  	version = IsoScopedIdentifier.next_version("TEST1", org.id)
+  	expect(version).to eq(2)
+  	version = IsoScopedIdentifier.next_version("TEST2", org.id)
+  	expect(version).to eq(3)
+  	version = IsoScopedIdentifier.next_version("TEST3", org.id)
+  	expect(version).to eq(6)
   end
 
 end
