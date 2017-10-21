@@ -148,7 +148,7 @@ describe SdtmModel do
   end
 
 	it "creates a new version" do
-  	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
   	params = 
     { 
       :version => "4",
@@ -162,7 +162,7 @@ describe SdtmModel do
   end
 
   it "creates a new version, error I" do
-  	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
   	params = 
     { 
       :version => "1",
@@ -176,7 +176,7 @@ describe SdtmModel do
   end
 
   it "creates a new version, error II" do
-  	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
   	params = 
     { 
       :version => "NaN",
@@ -191,7 +191,7 @@ describe SdtmModel do
   end
 
   it "creates a new version, error III" do
-  	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
   	params = 
     { 
       :version_label => "2.0",
@@ -205,7 +205,7 @@ describe SdtmModel do
   end
 
   it "creates a new version, error IV" do
-  	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
   	params = 
     { 
       :version => "4",

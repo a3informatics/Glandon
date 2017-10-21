@@ -166,7 +166,12 @@ private
 
   # Build Class Reference
  	def self.build_class_reference(map, params)
- 		params[:model_ref][:subject_ref] = map[params[:domain_class]][:uri].to_json
+ 		if !map[params[:domain_class]].nil?
+ 			params[:model_ref][:subject_ref] = map[params[:domain_class]][:uri].to_json 
+ 		else
+ 			msg = "Reference for class #{params[:domain_class]} not found in #{C_CLASS_NAME}."
+	 		raise Exceptions::ApplicationLogicError.new(message: msg)
+ 		end
  	end
 
   # Build Variable References. Update the variables with their references

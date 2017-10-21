@@ -142,6 +142,10 @@ module DataHelpers
   def test_file_path(sub_dir, filename)
     return set_path(sub_dir, filename)
   end
+
+  def db_load_file_path(sub_dir, filename)
+    return Rails.root.join "db/load/#{sub_dir}/#{filename}"
+  end
   
 private
 

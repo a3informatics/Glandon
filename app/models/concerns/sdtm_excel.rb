@@ -190,6 +190,8 @@ module SdtmExcel
       events.sort_by { |k, v| k[:ordinal] }
       findings.sort_by { |k, v| k[:ordinal] }
       interventions.sort_by { |k, v| k[:ordinal] }
+      special_purpose.sort_by { |k, v| k[:ordinal] }
+      findings_about.sort_by { |k, v| k[:ordinal] }
       # Create the model class/domain instances.
       # @todo Other classes to be done.
       child_instance = create_model_class([identifiers, events, timing], SdtmModelDomain::C_EVENTS_IDENTIFIER, 
@@ -209,6 +211,9 @@ module SdtmExcel
       results << { :type => "MODEL_DOMAIN", :order=> 2, :instance => child_instance}
       child_instance = create_model_class([identifiers, relationship], SdtmModelDomain::C_RELATIONSHIP_IDENTIFIER, 
       	SdtmModelDomain::C_RELATIONSHIP_LABEL, instance) 
+      results << { :type => "MODEL_DOMAIN", :order=> 2, :instance => child_instance}
+      child_instance = create_model_class([identifiers, findings, findings_about, timing], SdtmModelDomain::C_FINDINGS_ABOUT_IDENTIFIER, 
+      	SdtmModelDomain::C_FINDINGS_ABOUT_LABEL, instance) 
       results << { :type => "MODEL_DOMAIN", :order=> 2, :instance => child_instance}
       # Add the variables for the model
       managed_item = instance[:managed_item]

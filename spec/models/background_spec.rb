@@ -106,17 +106,16 @@ describe Background do
 
   it "imports sdtm model, 3.1.2" do
   	job = Background.create
-  	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
   	params = {version: "1", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"]}
   	job.import_cdisc_sdtm_model(params)
   	expect(job.status).to eq("Complete. Successful import.")
   end
 
   it "imports sdtm ig, 3.1.2" do
-  	models = SdtmModel.all
-  	model = models.first
+  	model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
   	job = Background.create
-  	filename = test_file_path(sub_dir, "sdtm-3-1-2-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
   	params = {version: "1", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"], model_uri: model.uri.to_s}
   	job.import_cdisc_sdtm_ig(params)
   	expect(job.status).to eq("Complete. Successful import.")
@@ -124,7 +123,7 @@ describe Background do
 
   it "imports sdtm model, 3.1.3" do
   	job = Background.create
-  	filename = test_file_path(sub_dir, "sdtm-3-1-3-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-1-3-excel.xlsx")
   	params = {version: "2", version_label: "Second Version", date: "2017-10-18", files: ["#{filename}"]}
   	job.import_cdisc_sdtm_model(params)
   puts job.status
@@ -132,10 +131,9 @@ describe Background do
   end
 
   it "imports sdtm ig, 3.1.3" do
-  	models = SdtmModel.all
-  	model = models[1]
+  	model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
   	job = Background.create
-  	filename = test_file_path(sub_dir, "sdtm-3-1-3-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-1-3-excel.xlsx")
   	params = {version: "2", version_label: "Second Version", date: "2017-10-18", files: ["#{filename}"], model_uri: model.uri.to_s}
   	job.import_cdisc_sdtm_ig(params)
   puts job.status
@@ -144,7 +142,7 @@ describe Background do
 
   it "imports sdtm model, 3.2" do
   	job = Background.create
-  	filename = test_file_path(sub_dir, "sdtm-3-2-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
   	params = {version: "3", version_label: "Third Version", date: "2017-10-18", files: ["#{filename}"]}
   	job.import_cdisc_sdtm_model(params)
   puts job.status
@@ -152,10 +150,9 @@ describe Background do
   end
 
   it "imports sdtm ig, 3.2" do
-  	models = SdtmModel.all
-  	model = models[2]
+  	model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
   	job = Background.create
-  	filename = test_file_path(sub_dir, "sdtm-3-2-excel.xlsx")
+  	filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
   	params = {version: "3", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"], model_uri: model.uri.to_s}
   	job.import_cdisc_sdtm_ig(params)
   puts job.status

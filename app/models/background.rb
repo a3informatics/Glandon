@@ -382,7 +382,7 @@ private
   	result = true
     response = CRUD.update(sparql.to_s)
   	if response.success?
-  		PublicFile::save("upload", log_file, sparql.to_s) if Rails.env.test?
+  		PublicFile::save("test", log_file, sparql.to_s) if Rails.env.test?
     	self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
   	else  
     	self.update(status: "Complete. Unsuccessful import, SPARQL error.", percentage: 100, complete: true, completed: Time.now())

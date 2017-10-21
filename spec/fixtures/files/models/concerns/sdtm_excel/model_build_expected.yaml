@@ -17,7 +17,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-21T12:33:39+01:00'
+      :last_changed_date: '2017-10-21T14:47:21+01:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -7629,7 +7629,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-21T12:33:40+01:00'
+      :last_changed_date: '2017-10-21T14:47:22+01:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -8364,7 +8364,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-21T12:33:40+01:00'
+      :last_changed_date: '2017-10-21T14:47:22+01:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -9027,7 +9027,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-21T12:33:40+01:00'
+      :last_changed_date: '2017-10-21T14:47:22+01:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -9810,7 +9810,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-21T12:33:40+01:00'
+      :last_changed_date: '2017-10-21T14:47:22+01:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -10481,7 +10481,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-21T12:33:40+01:00'
+      :last_changed_date: '2017-10-21T14:47:22+01:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -11104,7 +11104,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-21T12:33:40+01:00'
+      :last_changed_date: '2017-10-21T14:47:22+01:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -11325,3 +11325,794 @@
         :ordinal: 23
         :rule: ''
         :variable_name: QEVAL
+- :type: MODEL_DOMAIN
+  :order: 2
+  :instance:
+    :operation:
+      :action: CREATE
+      :new_version: '1'
+      :new_semantic_version: 0.1.0
+      :new_state: Standard
+      :identifier_edit: true
+    :managed_item:
+      :type: http://www.assero.co.uk/BusinessDomain#ClassDomain
+      :id: ''
+      :namespace: ''
+      :label: Findings About
+      :extension_properties: []
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2017-01-01'
+      :last_changed_date: '2017-10-21T14:47:22+01:00'
+      :explanatory_comment: ''
+      :registration_state:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: ''
+        :registration_authority:
+          :id: ''
+          :number: "<Not Set>"
+          :scheme: DUNS
+          :owner: false
+          :namespace:
+            :namespace: ''
+            :id: ''
+            :name: ''
+            :shortName: ''
+        :registration_status: Not_Set
+        :administrative_note: ''
+        :effective_date: '2016-01-01T00:00:00+00:00'
+        :until_date: '2016-01-01T00:00:00+00:00'
+        :current: false
+        :unresolved_issue: ''
+        :administrative_status: ''
+        :previous_state: Not_Set
+      :scoped_identifier:
+        :id: ''
+        :identifier: SDTMMODEL FINDINGS ABOUT
+        :version_label: Version Label
+        :version: 0
+        :semantic_version: 0.0.0
+        :namespace:
+          :namespace: ''
+          :id: ''
+          :name: ''
+          :shortName: ''
+      :ordinal: 1
+      :rule: ''
+      :children:
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Study Identifier
+        :extension_properties: []
+        :ordinal: 1
+        :rule: ''
+        :variable_name: STUDYID
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Domain Abbreviation
+        :extension_properties: []
+        :ordinal: 2
+        :rule: ''
+        :variable_name: DOMAIN
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Unique Subject Identifier
+        :extension_properties: []
+        :ordinal: 3
+        :rule: ''
+        :variable_name: USUBJID
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Pool Identifier
+        :extension_properties: []
+        :ordinal: 4
+        :rule: ''
+        :variable_name: POOLID
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Sponsor Device Identifier
+        :extension_properties: []
+        :ordinal: 5
+        :rule: ''
+        :variable_name: SPDEVID
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Sequence Number
+        :extension_properties: []
+        :ordinal: 6
+        :rule: ''
+        :variable_name: "--SEQ"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Group ID
+        :extension_properties: []
+        :ordinal: 7
+        :rule: ''
+        :variable_name: "--GRPID"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Reference ID
+        :extension_properties: []
+        :ordinal: 8
+        :rule: ''
+        :variable_name: "--REFID"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Sponsor-Defined Identifier
+        :extension_properties: []
+        :ordinal: 9
+        :rule: ''
+        :variable_name: "--SPID"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Link ID
+        :extension_properties: []
+        :ordinal: 10
+        :rule: ''
+        :variable_name: "--LNKID"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Link Group ID
+        :extension_properties: []
+        :ordinal: 11
+        :rule: ''
+        :variable_name: "--LNKGRP"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Short Name of Measurement, Test or Examination
+        :extension_properties: []
+        :ordinal: 12
+        :rule: ''
+        :variable_name: "--TESTCD"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Name of Measurement, Test or Examination
+        :extension_properties: []
+        :ordinal: 13
+        :rule: ''
+        :variable_name: "--TEST"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Modified Term
+        :extension_properties: []
+        :ordinal: 14
+        :rule: ''
+        :variable_name: "--MODIFY"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Measurement, Test or Examination Detail
+        :extension_properties: []
+        :ordinal: 15
+        :rule: ''
+        :variable_name: "--TSTDTL"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Category
+        :extension_properties: []
+        :ordinal: 16
+        :rule: ''
+        :variable_name: "--CAT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Subcategory
+        :extension_properties: []
+        :ordinal: 17
+        :rule: ''
+        :variable_name: "--SCAT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Position of Subject During Observation
+        :extension_properties: []
+        :ordinal: 18
+        :rule: ''
+        :variable_name: "--POS"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Body System or Organ Class
+        :extension_properties: []
+        :ordinal: 19
+        :rule: ''
+        :variable_name: "--BODSYS"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Result or Finding in Original Units
+        :extension_properties: []
+        :ordinal: 20
+        :rule: ''
+        :variable_name: "--ORRES"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Original Units
+        :extension_properties: []
+        :ordinal: 21
+        :rule: ''
+        :variable_name: "--ORRESU"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Normal Range Lower Limit-Original Units
+        :extension_properties: []
+        :ordinal: 22
+        :rule: ''
+        :variable_name: "--ORNRLO"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Normal Range Upper Limit-Original Units
+        :extension_properties: []
+        :ordinal: 23
+        :rule: ''
+        :variable_name: "--ORNRHI"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Result or Finding in Standard Format
+        :extension_properties: []
+        :ordinal: 24
+        :rule: ''
+        :variable_name: "--STRESC"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Numeric Result/Finding in Standard Units
+        :extension_properties: []
+        :ordinal: 25
+        :rule: ''
+        :variable_name: "--STRESN"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Standard Units
+        :extension_properties: []
+        :ordinal: 26
+        :rule: ''
+        :variable_name: "--STRESU"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Normal Range Lower Limit-Standard Units
+        :extension_properties: []
+        :ordinal: 27
+        :rule: ''
+        :variable_name: "--STNRLO"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Normal Range Upper Limit-Standard Units
+        :extension_properties: []
+        :ordinal: 28
+        :rule: ''
+        :variable_name: "--STNRHI"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Normal Range for Character Results
+        :extension_properties: []
+        :ordinal: 29
+        :rule: ''
+        :variable_name: "--STNRC"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Normal/Reference Range Indicator
+        :extension_properties: []
+        :ordinal: 30
+        :rule: ''
+        :variable_name: "--NRIND"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Result Category
+        :extension_properties: []
+        :ordinal: 31
+        :rule: ''
+        :variable_name: "--RESCAT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Completion Status
+        :extension_properties: []
+        :ordinal: 32
+        :rule: ''
+        :variable_name: "--STAT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Reason Not Done
+        :extension_properties: []
+        :ordinal: 33
+        :rule: ''
+        :variable_name: "--REASND"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: External File Path
+        :extension_properties: []
+        :ordinal: 34
+        :rule: ''
+        :variable_name: "--XFN"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Laboratory/Vendor Name
+        :extension_properties: []
+        :ordinal: 35
+        :rule: ''
+        :variable_name: "--NAM"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: LOINC Code
+        :extension_properties: []
+        :ordinal: 36
+        :rule: ''
+        :variable_name: "--LOINC"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Specimen Material Type
+        :extension_properties: []
+        :ordinal: 37
+        :rule: ''
+        :variable_name: "--SPEC"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Anatomical Region
+        :extension_properties: []
+        :ordinal: 38
+        :rule: ''
+        :variable_name: "--ANTREG"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Specimen Condition
+        :extension_properties: []
+        :ordinal: 39
+        :rule: ''
+        :variable_name: "--SPCCND"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Specimen Usability for the Test
+        :extension_properties: []
+        :ordinal: 40
+        :rule: ''
+        :variable_name: "--SPCUFL"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Location Used for the Measurement
+        :extension_properties: []
+        :ordinal: 41
+        :rule: ''
+        :variable_name: "--LOC"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Laterality
+        :extension_properties: []
+        :ordinal: 42
+        :rule: ''
+        :variable_name: "--LAT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Directionality
+        :extension_properties: []
+        :ordinal: 43
+        :rule: ''
+        :variable_name: "--DIR"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Portion or Totality
+        :extension_properties: []
+        :ordinal: 44
+        :rule: ''
+        :variable_name: "--PORTOT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Method of Test or Examination
+        :extension_properties: []
+        :ordinal: 45
+        :rule: ''
+        :variable_name: "--METHOD"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Run ID
+        :extension_properties: []
+        :ordinal: 46
+        :rule: ''
+        :variable_name: "--RUNID"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Analysis Method
+        :extension_properties: []
+        :ordinal: 47
+        :rule: ''
+        :variable_name: "--ANMETH"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Lead Identified to Collect Measurements
+        :extension_properties: []
+        :ordinal: 48
+        :rule: ''
+        :variable_name: "--LEAD"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Consciousness State
+        :extension_properties: []
+        :ordinal: 49
+        :rule: ''
+        :variable_name: "--CSTATE"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Baseline Flag
+        :extension_properties: []
+        :ordinal: 50
+        :rule: ''
+        :variable_name: "--BLFL"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Fasting Status
+        :extension_properties: []
+        :ordinal: 51
+        :rule: ''
+        :variable_name: "--FAST"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Derived Flag
+        :extension_properties: []
+        :ordinal: 52
+        :rule: ''
+        :variable_name: "--DRVFL"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Evaluator
+        :extension_properties: []
+        :ordinal: 53
+        :rule: ''
+        :variable_name: "--EVAL"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Evaluator Identifier
+        :extension_properties: []
+        :ordinal: 54
+        :rule: ''
+        :variable_name: "--EVALID"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Accepted Record Flag
+        :extension_properties: []
+        :ordinal: 55
+        :rule: ''
+        :variable_name: "--ACPTFL"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Toxicity
+        :extension_properties: []
+        :ordinal: 56
+        :rule: ''
+        :variable_name: "--TOX"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Toxicity Grade
+        :extension_properties: []
+        :ordinal: 57
+        :rule: ''
+        :variable_name: "--TOXGR"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Severity
+        :extension_properties: []
+        :ordinal: 58
+        :rule: ''
+        :variable_name: "--SEV"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Relationship to Death
+        :extension_properties: []
+        :ordinal: 59
+        :rule: ''
+        :variable_name: "--DTHREL"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Lower Limit of Quantitation
+        :extension_properties: []
+        :ordinal: 60
+        :rule: ''
+        :variable_name: "--LLOQ"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Upper Limit of Quantitation
+        :extension_properties: []
+        :ordinal: 61
+        :rule: ''
+        :variable_name: "--ULOQ"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Exclude from Statistics
+        :extension_properties: []
+        :ordinal: 62
+        :rule: ''
+        :variable_name: "--EXCLFL"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Reason for Exclusion from Statistics
+        :extension_properties: []
+        :ordinal: 63
+        :rule: ''
+        :variable_name: "--REASEX"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Object of the Observation
+        :extension_properties: []
+        :ordinal: 64
+        :rule: ''
+        :variable_name: "--OBJ"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Visit Number
+        :extension_properties: []
+        :ordinal: 65
+        :rule: ''
+        :variable_name: VISITNUM
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Visit Name
+        :extension_properties: []
+        :ordinal: 66
+        :rule: ''
+        :variable_name: VISIT
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Planned Study Day of Visit
+        :extension_properties: []
+        :ordinal: 67
+        :rule: ''
+        :variable_name: VISITDY
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Planned Order of Element within Arm
+        :extension_properties: []
+        :ordinal: 68
+        :rule: ''
+        :variable_name: TAETORD
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Epoch
+        :extension_properties: []
+        :ordinal: 69
+        :rule: ''
+        :variable_name: EPOCH
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Date/Time of Collection
+        :extension_properties: []
+        :ordinal: 70
+        :rule: ''
+        :variable_name: "--DTC"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Start Date/Time of Observation
+        :extension_properties: []
+        :ordinal: 71
+        :rule: ''
+        :variable_name: "--STDTC"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: End Date/Time of Observation
+        :extension_properties: []
+        :ordinal: 72
+        :rule: ''
+        :variable_name: "--ENDTC"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Study Day of Visit/Collection/Exam
+        :extension_properties: []
+        :ordinal: 73
+        :rule: ''
+        :variable_name: "--DY"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Study Day of Start of Observation
+        :extension_properties: []
+        :ordinal: 74
+        :rule: ''
+        :variable_name: "--STDY"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Study Day of End of Observation
+        :extension_properties: []
+        :ordinal: 75
+        :rule: ''
+        :variable_name: "--ENDY"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Duration
+        :extension_properties: []
+        :ordinal: 76
+        :rule: ''
+        :variable_name: "--DUR"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Planned Time Point Name
+        :extension_properties: []
+        :ordinal: 77
+        :rule: ''
+        :variable_name: "--TPT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Planned Time Point Number
+        :extension_properties: []
+        :ordinal: 78
+        :rule: ''
+        :variable_name: "--TPTNUM"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Planned Elapsed Time from Time Point Ref
+        :extension_properties: []
+        :ordinal: 79
+        :rule: ''
+        :variable_name: "--ELTM"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Time Point Reference
+        :extension_properties: []
+        :ordinal: 80
+        :rule: ''
+        :variable_name: "--TPTREF"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Date/Time of Reference Time Point
+        :extension_properties: []
+        :ordinal: 81
+        :rule: ''
+        :variable_name: "--RFTDTC"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Start Relative to Reference Period
+        :extension_properties: []
+        :ordinal: 82
+        :rule: ''
+        :variable_name: "--STRF"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: End Relative to Reference Period
+        :extension_properties: []
+        :ordinal: 83
+        :rule: ''
+        :variable_name: "--ENRF"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Evaluation Interval
+        :extension_properties: []
+        :ordinal: 84
+        :rule: ''
+        :variable_name: "--EVLINT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Evaluation Interval Text
+        :extension_properties: []
+        :ordinal: 85
+        :rule: ''
+        :variable_name: "--EVINTX"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Start Relative to Reference Time Point
+        :extension_properties: []
+        :ordinal: 86
+        :rule: ''
+        :variable_name: "--STRTPT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Start Reference Time Point
+        :extension_properties: []
+        :ordinal: 87
+        :rule: ''
+        :variable_name: "--STTPT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: End Relative to Reference Time Point
+        :extension_properties: []
+        :ordinal: 88
+        :rule: ''
+        :variable_name: "--ENRTPT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: End Reference Time Point
+        :extension_properties: []
+        :ordinal: 89
+        :rule: ''
+        :variable_name: "--ENTPT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Planned Start of Assessment Interval
+        :extension_properties: []
+        :ordinal: 90
+        :rule: ''
+        :variable_name: "--STINT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Planned End of Assessment Interval
+        :extension_properties: []
+        :ordinal: 91
+        :rule: ''
+        :variable_name: "--ENINT"
+      - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+        :id: ''
+        :namespace: ''
+        :label: Time in Days to Detection
+        :extension_properties: []
+        :ordinal: 92
+        :rule: ''
+        :variable_name: "--DETECT"

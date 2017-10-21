@@ -33,7 +33,7 @@ describe SdtmExcel do
 	end
 
 	it "reads the excel fle, model" do
-		filename = test_file_path(sub_dir, "sdtm-3-2-excel.xlsx")
+		filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
 		object = Background.new
 		params = {
 			version: "1", 
@@ -53,7 +53,7 @@ describe SdtmExcel do
 	end
 
 	it "reads the excel fle, implementation guide" do
-		filename = test_file_path(sub_dir, "sdtm-3-2-excel.xlsx")
+		filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
 		object = Background.new
 		params = {
 			version: "1", 
