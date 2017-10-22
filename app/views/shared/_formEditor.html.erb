@@ -128,7 +128,15 @@
       <label for="bcNote">Notes:</label>
       <textarea class="form-control markdown-area collapse in" id="bcNote" name="BC Note" rows="5" style="font-family:monospace;"></textarea>
     </div>
-    <button type="button" id="bcDelete" class="btn btn-danger">Delete</button>
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" id="bcUp" class="btn btn-primary">
+        <span class="glyphicon glyphicon-arrow-up"></span>&nbsp;
+      </button>
+      <button type="button" id="bcDown" class="btn btn-primary node-down-action">
+        <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
+      </button> 
+	    <button type="button" id="bcDelete" class="btn btn-danger">Delete</button>
+    </div>
   </div>
 </div>
   <div id="questionInfo" class="panel panel-default panel-form">

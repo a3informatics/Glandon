@@ -257,6 +257,30 @@ describe "Form Editor", :type => :feature do
       ui_check_node_ordinal(key1, 3)
     end
 
+    it "allows for BCs to be moved up and down", js: true do
+    	load_form("CRF TEST 1") 
+      key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
+      ui_click_node_key(key1)
+			click_button "bcUp"
+			expect(page).to have_content("You cannot move the node up.")  
+			ui_check_node_ordinal(key1, 2)
+			click_button "bcDown"
+			ui_check_node_ordinal(key1, 3)
+			click_button "bcUp"
+			ui_check_node_ordinal(key1, 2)
+			key1 = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Weight (BC C25208)"]')
+      ui_click_node_key(key1)
+			click_button "bcUp"
+			ui_check_node_ordinal(key1, 1)
+			click_button "bcDown"
+			ui_check_node_ordinal(key1, 2)
+			click_button "bcDown"
+			ui_check_node_ordinal(key1, 3)
+			click_button "bcDown"
+			expect(page).to have_content("You cannot move the node down.")  
+			ui_check_node_ordinal(key1, 3)
+		end
+
     it "shows a preview markdown and the correct panels", js: true do
       create_form("TEST 8", "Test", "Test 8")
       expect(page).to have_content("Form Details")
@@ -676,6 +700,55 @@ describe "Form Editor", :type => :feature do
       key = ui_get_key_by_path('["Test BC 2", "Group 1", "Temperature (BC C25206)", "Date and Time (--DTC)"]')
       ui_check_node_is_common(key,"not common")
       key = ui_get_key_by_path('["Test BC 2", "Group 1", "Weight (BC C25208)", "Date and Time (--DTC)"]')
+      ui_check_node_is_common(key,"not common")
+    end
+    
+    it "allows items to be made common and restored, items moved", js: true do
+      create_form("TEST BC 2A", "Test", "Test BC 2A")
+      click_button 'formAddGroup'
+      fill_in 'groupLabel', with: "Group 1"
+      ui_click_node_name("Test BC 2A")
+      ui_click_node_name("Group 1")
+      click_button 'groupAddBc'
+      expect(page).to have_content("You need to select a Biomedical Concept.")
+      ui_table_row_click("bcTable", "(BC C25206)")
+      click_button 'groupAddBc'
+      ui_click_node_name("Temperature (BC C25206)")
+      ui_click_node_name("Group 1")
+      ui_table_row_click("bcTable", "(BC C25208)")
+      click_button 'groupAddBc'
+      wait_for_ajax(15) # Long wait for BC loading
+      ui_click_node_name("Weight (BC C25208)")
+      key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Temperature (BC C25206)", "Date and Time (--DTC)"]')
+      ui_click_node_key(key)
+      ui_scroll_to_id_2 "itemCommon"
+      click_button "itemCommon"
+      expect(page).to have_content("A common group was not found.")
+      ui_click_node_name("Group 1")
+      click_button "groupAddCommon"
+      ui_click_node_key(key)
+      click_button "itemCommon"
+      key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Temperature (BC C25206)", "Date and Time (--DTC)"]')
+      ui_check_node_is_common(key,"common")
+      key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Weight (BC C25208)", "Date and Time (--DTC)"]')
+      ui_check_node_is_common(key,"common")
+      key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Common Group", "Date and Time (--DTC)"]')
+      expect(key).not_to eq(-1)
+      ui_click_node_key(key)
+      expect(page).to have_content("Common Item Details")
+    	key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Temperature (BC C25206)"]')
+      ui_click_node_key(key)
+      click_button 'bcDown'
+      key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Common Group", "Date and Time (--DTC)"]')
+      ui_click_node_key(key)
+      ui_scroll_to_id_2 "itemRestore"
+      #page.execute_script("document.getElementById('itemRestore').scrollIntoView(false);")
+      click_button "itemRestore"
+      key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Common Group", "Date and Time (--DTC)"]')
+      expect(key).to eq(-1)
+      key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Temperature (BC C25206)", "Date and Time (--DTC)"]')
+      ui_check_node_is_common(key,"not common")
+      key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Weight (BC C25208)", "Date and Time (--DTC)"]')
       ui_check_node_is_common(key,"not common")
     end
     

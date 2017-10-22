@@ -272,6 +272,19 @@ $(document).ready(function() {
     treeNodeDelete(false);
   });
 
+  // Special up action for BCs. Check if common node there and prevent moving up past it.
+  $('#bcUp').click(function() {
+    var currentD3Node = d3eGetCurrent();
+    var parentNode = currentD3Node.parent;
+    if (currentD3Node === null) {
+      displayWarning("You need to select an item node.");
+    } else if (hasCommonGroup(parentNode) && currentD3Node.data.ordinal === 2) {
+      displayWarning("You cannot move the node up.");
+    } else {
+    	treeNodeUp();
+    }
+  });
+
   /*
   * Item Panel Actions
   */

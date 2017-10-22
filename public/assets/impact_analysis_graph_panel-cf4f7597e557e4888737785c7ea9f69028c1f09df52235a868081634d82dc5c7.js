@@ -6,14 +6,13 @@
 */
 
 /**
- * Impact Graph Panel Constructor
+ * Impact Analysis Graph Panel Constructor
  *
  * @param [Function] clickCallBack the callback function.
  * @return [void]
  */
 
 function ImpactAnalysisGraphPanel(clickCallBack) {
-  var _this = this;
   // Create empty graph
   this.graph = {};
   this.graph.nodes = [];
