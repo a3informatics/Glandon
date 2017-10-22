@@ -5,7 +5,7 @@ describe SdtmUserDomain::Variable do
   include DataHelpers
 
   def sub_dir
-    return "models/sdtm_user_domain"
+    return "models/sdtm_user_domain/variable"
   end
 
   before :all do
@@ -70,7 +70,7 @@ describe SdtmUserDomain::Variable do
         :datatype => "null",
         :variable_ref => {}
       }
-    triples = read_yaml_file(sub_dir, "variable_triples.yaml")
+    triples = read_yaml_file(sub_dir, "from_triples_input_1.yaml")
     expect(SdtmUserDomain::Variable.new(triples, "D-ACME_VSDomain_V5").to_json).to eq(result) 
   end 
 
@@ -100,49 +100,47 @@ describe SdtmUserDomain::Variable do
         :datatype => "null",
         :variable_ref => {}
       }
-    triples = read_yaml_file(sub_dir, "variable_triples_2.yaml")
+    triples = read_yaml_file(sub_dir, "from_triples_input_2.yaml")
     expect(SdtmUserDomain::Variable.new(triples, "D-ACME_VSDomain_V9").to_json).to eq(result) 
   end 
 
   it "allows an object to be found" do
     variable = SdtmUserDomain::Variable.find("D-ACME_VSDomain_V5", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-  #write_yaml_file(variable.triples, sub_dir, "variable_triples.yaml")
-  #write_yaml_file(variable.to_json, sub_dir, "variable.yaml")
-    expected = read_yaml_file(sub_dir, "variable.yaml")
+  #write_yaml_file(variable.to_json, sub_dir, "find_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "find_expected_1.yaml")
     expect(variable.to_json).to eq(expected)
   end
 
   it "allows an object to be found, classification and sub-classifcation" do
     variable = SdtmUserDomain::Variable.find("D-ACME_VSDomain_V9", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-    #write_yaml_file(variable.triples, sub_dir, "variable_triples_2.yaml")
-  #write_yaml_file(variable.to_json, sub_dir, "variable_2.yaml")
-    expected = read_yaml_file(sub_dir, "variable_2.yaml")
+  #write_yaml_file(variable.to_json, sub_dir, "find_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "find_expected_2.yaml")
     expect(variable.to_json).to eq(expected)
   end
 
   it "allows an object to be created from JSON" do
-    json = read_yaml_file(sub_dir, "variable.yaml")
+    json = read_yaml_file(sub_dir, "find_expected_1.yaml")
     item = SdtmUserDomain::Variable.from_json(json)
-  #write_yaml_file(item.to_json, sub_dir, "variable_from_json.yaml")
-    expected = read_yaml_file(sub_dir, "variable_from_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "from_json_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "from_json_expected_1.yaml")
     expect(item.to_json).to eq(expected)
   end
   
   it "allows an object to be created from JSON, comment" do
-    json = read_yaml_file(sub_dir, "variable.yaml")
+    json = read_yaml_file(sub_dir, "find_expected_1.yaml")
     json[:comment] = "NEW NEW NEW"
     item = SdtmUserDomain::Variable.from_json(json)
-  #write_yaml_file(item.to_json, sub_dir, "variable_from_json.yaml")
-    expected = read_yaml_file(sub_dir, "variable_from_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "from_json_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "from_json_expected_1.yaml")
     expected[:comment] = "NEW NEW NEW"
     expect(item.to_json).to eq(expected)
   end
   
   it "allows an object to be exported as JSON" do
-    json = read_yaml_file(sub_dir, "variable.yaml")
+    json = read_yaml_file(sub_dir, "find_expected_1.yaml")
     item = SdtmUserDomain::Variable.from_json(json)
-  #write_yaml_file(item.to_json, sub_dir, "variable_to_json.yaml")
-    expected = read_yaml_file(sub_dir, "variable_to_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "from_json_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "from_json_expected_2.yaml")
     expect(item.to_json).to eq(expected)
   end
   
@@ -175,8 +173,8 @@ describe SdtmUserDomain::Variable do
     item.variable_ref = OperationalReferenceV2.new
     item.variable_ref.subject_ref = UriV2.new({:id => "variableReference", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "sparql.txt")
-    expected = read_text_file_2(sub_dir, "sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_1.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_1.txt")
     expect(sparql.to_s).to eq(expected)
   end
 
@@ -206,7 +204,7 @@ describe SdtmUserDomain::Variable do
         :datatype => "null",
         :variable_ref => {}
       }
-    triples = read_yaml_file(sub_dir, "variable_triples_3.yaml")
+    triples = read_yaml_file(sub_dir, "from_triples_input_3.yaml")
     expect(SdtmUserDomain::Variable.new(triples, "D-ACME_VSDomain_V5").to_json).to eq(result) 
   end
 
@@ -243,19 +241,17 @@ describe SdtmUserDomain::Variable do
     item.property_refs << OperationalReferenceV2.new
     item.property_refs[1].subject_ref = UriV2.new({:id => "propertyReference2", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "sparql_2.txt")
-    expected = read_text_file_2(sub_dir, "sparql_2.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_2.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_2.txt")
     expect(sparql.to_s).to eq(expected)
   end
 
   it "allows an object to be found, PR" do
     variable = SdtmUserDomain::Variable.find("D-ACME_VSDomain_V7", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-  write_yaml_file(variable.to_json, sub_dir, "variable_3.yaml")
-    expected = read_yaml_file(sub_dir, "variable_3.yaml")
+  #write_yaml_file(variable.to_json, sub_dir, "find_expected_3.yaml")
+    expected = read_yaml_file(sub_dir, "find_expected_3.yaml")
     expect(variable.to_json).to eq(expected)
   end
-
-  
 
 end
   

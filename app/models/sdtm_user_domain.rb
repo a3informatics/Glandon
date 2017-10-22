@@ -260,7 +260,7 @@ class SdtmUserDomain < Tabular
     end
     ordinal = 1
     self.bc_refs.each do |item|
-      ref_uri = item.to_sparql_v2(subject, "hasBiomedicalConcept", C_BCP_REF_PREFIX, ordinal, sparql)
+      ref_uri = item.to_sparql_v2(uri, "hasBiomedicalConcept", C_BCP_REF_PREFIX, ordinal, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasBiomedicalConcept"}, {uri: ref_uri})
       ordinal += 1
     end

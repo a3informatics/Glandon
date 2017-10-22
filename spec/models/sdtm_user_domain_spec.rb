@@ -5,7 +5,7 @@ describe SdtmUserDomain do
   include DataHelpers
 
   def sub_dir
-    return "models"
+    return "models/sdtm_user_domain"
   end
 
   before :all do
@@ -34,8 +34,8 @@ describe SdtmUserDomain do
 
   it "allows a domain to be found" do
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-  #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_find.yaml")  
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_find.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "find_expected.yaml")  
+    expected = read_yaml_file(sub_dir, "find_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -74,30 +74,27 @@ describe SdtmUserDomain do
     ig_domain = SdtmIgDomain.find("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     new_domain = SdtmUserDomain.create_clone_ig({:prefix => "XX", :label => "Clone VS as XX"}, ig_domain)
     expect(new_domain.errors.count).to eq(0)
-  #write_yaml_file(new_domain.to_json, sub_dir, "sdtm_user_domain_clone_ig.yaml")  
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_clone_ig.yaml")
+  #write_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected.yaml")  
+    expected = read_yaml_file(sub_dir, "clone_ig_expected.yaml")
     expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
     expected[:creation_date] = date_check_now(new_domain.creationDate).iso8601
     expect(new_domain.to_json).to eq(expected)
   end
   
   it "allows a domain to be created" do
-    params = read_yaml_file(sub_dir, "sdtm_user_domain_2.yaml")
+    params = read_yaml_file(sub_dir, "create_input.yaml")
     new_domain = SdtmUserDomain.create(params[:data])
-  #write_yaml_file(new_domain.to_json, sub_dir, "sdtm_user_domain_create.yaml")  
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_create.yaml")
+  #write_yaml_file(new_domain.to_json, sub_dir, "create_expected.yaml")  
+    expected = read_yaml_file(sub_dir, "create_expected.yaml")
     expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
     expect(new_domain.to_json).to eq(expected)
   end      
   
   it "allows a domain to be updated" do
-    #text = read_text_file_2(sub_dir, "sdtm_user_domain_update.txt")
-    #hash = JSON.parse(text)
-    #write_hash_to_yaml_file_2(hash.deep_symbolize_keys, sub_dir, "sdtm_user_domain_2.yaml")
-    params = read_yaml_file(sub_dir, "sdtm_user_domain_2.yaml")
+    params = read_yaml_file(sub_dir, "create_input.yaml")
     new_domain = SdtmUserDomain.update(params[:data])
-  #write_yaml_file(new_domain.to_json, sub_dir, "sdtm_user_domain_update.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_update.yaml")
+  #write_yaml_file(new_domain.to_json, sub_dir, "update_expected.yaml")
+    expected = read_yaml_file(sub_dir, "update_expected.yaml")
     expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
     expect(new_domain.to_json).to eq(expected)
   end      
@@ -113,25 +110,24 @@ describe SdtmUserDomain do
   
   it "allows the domain to be exported as JSON" do
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-  #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_to_json.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_to_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
   
   it "allows a domain to be created from JSON" do
     json = read_yaml_file(sub_dir, "sdtm_user_domain.yaml")
     item = SdtmUserDomain.from_json(json)
-  #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_from_json.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_from_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "from_json_expected.yaml")
+    expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
   
   it "allows the domain to be exported as SPARQL" do
-    json = read_yaml_file(sub_dir, "sdtm_user_domain.yaml")
-    item = SdtmUserDomain.from_json(json)
+    item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     sparql = item.to_sparql_v2
-  #write_text_file_2(sparql.to_s, sub_dir, "sdtm_user_domain_sparql.txt")
-    expected = read_text_file_2(sub_dir, "sdtm_user_domain_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
   end
   
@@ -142,8 +138,8 @@ describe SdtmUserDomain do
     item.add(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count + 2)
-  #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_1.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_bc_1.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "add_1_expected.yaml")
+    expected = read_yaml_file(sub_dir, "add_1_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -154,8 +150,8 @@ describe SdtmUserDomain do
     item.add(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count)
-  #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_2.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_bc_2.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "add_2_expected.yaml")
+    expected = read_yaml_file(sub_dir, "add_2_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -166,8 +162,8 @@ describe SdtmUserDomain do
     item.remove(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count - 2)
-  #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_3.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_bc_3.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "add_3_expected.yaml")
+    expected = read_yaml_file(sub_dir, "add_3_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
   
@@ -178,8 +174,8 @@ describe SdtmUserDomain do
     item.remove(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count - 1)
-  #write_yaml_file(item.to_json, sub_dir, "sdtm_user_domain_bc_4.yaml")
-    expected = read_yaml_file(sub_dir, "sdtm_user_domain_bc_4.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "add_4_expected.yaml")
+    expected = read_yaml_file(sub_dir, "add_4_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
   
