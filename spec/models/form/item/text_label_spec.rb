@@ -147,6 +147,7 @@ describe Form::Item::TextLabel do
   #write_text_file_2(xml, sub_dir, "text_label_to_xml_1.xml")
     expected = read_text_file_2(sub_dir, "text_label_to_xml_1.xml")
     odm_fix_datetimes(xml, expected)
+    odm_fix_system_version(xml, expected)
     expect(xml).to eq(expected)
   end
 

@@ -25,12 +25,23 @@ module OdmHelpers
    	results.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
   end
 
+  def odm_fix_system_version(results, expected)
+  	expected_system_version = extract_system_version(expected)
+  	results_system_version = extract_system_version(results)
+  	expect(results_system_version).to eq("SourceSystemVersion=\"#{Version::VERSION}\"")
+   	results.sub!(results_system_version, expected_system_version) # Need to fix the system version. Set to current version
+	end    
+
   def extract_file_oid(text)
     return text[/FileOID=\"\d\d\d\d\-\d\d-\d\dT\d\d:\d\d:\d\d[+|-]\d\d:\d\d\"/]
   end
 
   def extract_creation_datetime(text)
     return text[/CreationDateTime=\"\d\d\d\d\-\d\d-\d\dT\d\d:\d\d:\d\d[+|-]\d\d:\d\d\"/]
+  end
+
+  def extract_system_version(text)
+    return text[/SourceSystemVersion=\"\d+.\d+.\d+\"/]
   end
 
 end
