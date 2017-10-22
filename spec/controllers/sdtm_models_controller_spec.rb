@@ -94,9 +94,7 @@ describe SdtmModelsController do
     end
 
     it "allows a SDTM Model to be created" do
-      delete_public_file("upload", "")
-      copy_file_to_public_files("controllers/sdtm_models", "sdtm-3-1-2-excel.xlsx", "upload")
-      filename = upload_path("sdtm-3-1-2-excel.xlsx")
+      filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
       params = 
       {
         :sdtm_model => 
@@ -112,7 +110,7 @@ describe SdtmModelsController do
     end
     
     it "allows a SDTm Model to be created, error version" do
-      filename = upload_path("sdtm-3-1-2-excel.xlsx")
+      filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
       params = 
       {
         :sdtm_model => 

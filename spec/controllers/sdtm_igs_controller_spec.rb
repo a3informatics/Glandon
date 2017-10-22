@@ -94,9 +94,7 @@ describe SdtmIgsController do
     end
 
     it "allows a SDTM IG to be created" do
-      delete_public_file("upload", "")
-      copy_file_to_public_files("controllers/sdtm_igs", "sdtm-3-1-2-excel.xlsx", "upload")
-      filename = upload_path("sdtm-3-1-2-excel.xlsx")
+      filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
       params = 
       {
         :sdtm_ig => 
@@ -104,15 +102,16 @@ describe SdtmIgsController do
           :version => "4",
           :version_label => "2.0",
           :date => "2017-10-14", 
-          :files => ["#{filename}"]
+          :files => ["#{filename}"],
+          :model_uri => "http://www.model.com/sdtm"
         }
       }
       post :create, params
       expect(response).to redirect_to("/backgrounds")
     end
     
-    it "allows a SDTm Model to be created, error version" do
-      filename = upload_path("sdtm-3-1-2-excel.xlsx")
+    it "allows a SDTM Model to be created, error version" do
+      filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
       params = 
       {
         :sdtm_ig => 
@@ -120,7 +119,8 @@ describe SdtmIgsController do
           :version => "aa", 
           :version_label => "2.0",
           :date => "2016-12-13", 
-          :files => ["#{filename}"]
+          :files => ["#{filename}"],
+          :model_uri => "http://www.model.com/sdtm"
         }
       }
       post :create, params
