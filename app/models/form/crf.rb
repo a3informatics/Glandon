@@ -12,7 +12,7 @@ class Form::Crf
 	# @param annotations [] The form's annotations
 	# @return [Null]
 	def self.create(node, annotations, options)
-    ConsoleLogger::log(C_CLASS_NAME, "create", "node=#{node}")
+    #ConsoleLogger::debug(C_CLASS_NAME, "create", "node=#{node}\nannotations: #{annotations}\n options: #{options}")
     html = "<style>"
     html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
     html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; " 
@@ -41,7 +41,7 @@ private
 
   def self.crf_node(node, annotations, options)
   	html = ""
-    #ConsoleLogger::log(C_CLASS_NAME, "crf_node", "Node=#{node}")
+    #ConsoleLogger::debug(C_CLASS_NAME, "crf_node", "node=#{node}\nannotations: #{annotations}\n options: #{options}")
     if node[:type] == Form::C_RDF_TYPE_URI.to_s
       html += '<table class="table table-striped table-bordered table-condensed">'
       html += '<tr>'

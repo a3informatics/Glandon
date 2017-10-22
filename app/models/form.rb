@@ -353,45 +353,78 @@ private
 
   def bc_annotations()
     results = Array.new
-    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoI", "iso25964"])  +
-      "SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE \n" +
-      "{ \n " +
-      "  ?topic_var bd:hasProperty ?op_ref3 . \n " +
-      "  ?op_ref3 bo:hasProperty ?bc_topic_property . \n " +     
-      "  ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bc_topic_property . \n " +
-      "  ?bc_topic_property cbc:hasThesaurusConcept ?valueRef . \n " +
-      "  ?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj . \n " +     
-      "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +     
-      "  {\n " +
-      "    SELECT ?form ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName ?topic_var WHERE \n " +
-      "    { \n " + 
-      "      ?var bd:name ?sdtmVarName . \n " +              
-      "      ?dataset bd:includesColumn ?var . \n " +              
-      "      ?dataset bd:prefix ?domain . \n " +              
-      "      ?dataset bd:includesColumn ?topic_var . \n " +              
-      "      ?topic_var bd:classifiedAs ?classification . \n " +              
-      "      ?classification rdfs:label \"Topic\"^^xsd:string . \n " +              
-      "      ?topic_var bd:name ?sdtmTopicName . \n " +              
-      "      { \n " +
-      "        SELECT ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?dataset ?var ?gord ?pord WHERE \n " + 
-      "        { \n " +    
-      "          :" + self.id + " (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group . \n " +     
-      "          ?group bf:ordinal ?gord . \n " +      
-      "          ?group (bf:hasItem|bf:hasCommonItem)%2B ?item . \n " +        
-      "          ?item bf:hasProperty ?op_ref1 . \n " +
-      "          ?op_ref1 bo:hasProperty ?bcProperty  . \n " +             
-      "          ?op_ref2 bo:hasProperty ?bcProperty . \n " +
-      "          ?var bd:hasProperty ?op_ref2 . \n " +
-      "          ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bcProperty . \n" +
-      "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
-      "          ?bcProperty cbc:ordinal ?pord . \n " +     
-      "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
-      "          ?si isoI:identifier ?bcIdent . \n " +     
-      "        }  \n " + 
-      "      } \n " +
-      "    } \n " +
-      "  } \n " +
-      "} ORDER BY ?gord ?pord \n " 
+    #query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoI", "iso25964"])  +
+    #  "SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE \n" +
+    #  "{ \n " +
+    #  "  ?topic_var bd:hasProperty ?op_ref3 . \n " +
+    #  "  ?op_ref3 bo:hasProperty ?bc_topic_property . \n " +     
+    #  "  ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bc_topic_property . \n " +
+    #  "  ?bc_topic_property cbc:hasThesaurusConcept ?valueRef . \n " +
+    #  "  ?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj . \n " +     
+    #  "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +     
+    #  "  {\n " +
+    #  "    SELECT ?form ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName ?topic_var WHERE \n " +
+    #  "    { \n " + 
+    #  "      ?var bd:name ?sdtmVarName . \n " +              
+    #  "      ?dataset bd:includesColumn ?var . \n " +              
+    #  "      ?dataset bd:prefix ?domain . \n " +              
+    #  "      ?dataset bd:includesColumn ?topic_var . \n " +              
+    #  "      ?topic_var bd:classifiedAs ?classification . \n " +              
+    #  "      ?classification rdfs:label \"Topic\"^^xsd:string . \n " +              
+    #  "      ?topic_var bd:name ?sdtmTopicName . \n " +              
+    #  "      { \n " +
+    #  "        SELECT ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?dataset ?var ?gord ?pord WHERE \n " + 
+    #  "        { \n " +    
+    #  "          :" + self.id + " (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group . \n " +     
+    #  "          ?group bf:ordinal ?gord . \n " +      
+    #  "          ?group (bf:hasItem|bf:hasCommonItem)%2B ?item . \n " +        
+    #  "          ?item bf:hasProperty ?op_ref1 . \n " +
+    #  "          ?op_ref1 bo:hasProperty ?bcProperty  . \n " +             
+    #  "          ?op_ref2 bo:hasProperty ?bcProperty . \n " +
+    #  "          ?var bd:hasProperty ?op_ref2 . \n " +
+    #  "          ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bcProperty . \n" +
+    #  "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
+    #  "          ?bcProperty cbc:ordinal ?pord . \n " +     
+    #  "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
+    #  "          ?si isoI:identifier ?bcIdent . \n " +     
+    #  "        }  \n " + 
+    #  "      } \n " +
+    #  "    } \n " +
+    #  "  } \n " +
+    #  "} ORDER BY ?gord ?pord \n " 
+
+    # New faster query
+    query = %Q(
+    	#{query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoI", "iso25964"])} 
+    	SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE 
+    	{ 
+	      :#{self.id} (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group .     
+        ?group bf:ordinal ?gord .      
+        ?group (bf:hasItem|bf:hasCommonItem)%2B ?item .        
+        ?item bf:hasProperty ?op_ref1 .
+        ?op_ref1 bo:hasProperty ?bcProperty  .             
+        ?op_ref2 bo:hasProperty ?bcProperty .
+        ?var bd:hasProperty ?op_ref2 .
+        ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bcProperty .
+        ?bcRoot rdf:type cbc:BiomedicalConceptInstance .
+        ?bcProperty cbc:ordinal ?pord .     
+        ?bcRoot isoI:hasIdentifier ?si .     
+        ?si isoI:identifier ?bcIdent .     
+        ?var bd:name ?sdtmVarName .              
+        ?dataset bd:includesColumn ?var .              
+        ?dataset bd:prefix ?domain .              
+        ?dataset bd:includesColumn ?topic_var .              
+        ?topic_var bd:classifiedAs ?classification .              
+        ?classification rdfs:label "Topic"^^xsd:string .              
+        ?topic_var bd:name ?sdtmTopicName .              
+      	?topic_var bd:hasProperty ?op_ref3 .
+      	?op_ref3 bo:hasProperty ?bc_topic_property .     
+      	?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bc_topic_property .
+      	?bc_topic_property cbc:hasThesaurusConcept ?valueRef .
+      	?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj .     
+      	?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub .     
+    	} ORDER BY ?gord ?pord
+    )
     response = CRUD.query(query)
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
