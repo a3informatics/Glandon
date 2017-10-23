@@ -7,7 +7,6 @@
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL_EVENTS-3> . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL_EVENTS-3> . 
-<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/BusinessDomain#domain_class> 			"Events" . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSOD> . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxGRPID> . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxCAT> . 
@@ -93,6 +92,7 @@
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_VISIT> . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxACNOTH> . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxACNDEV> . 
+<http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS> 			<http://www.assero.co.uk/BusinessDomain#domain_class> 			"Events" . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSOD> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Occurred with Overdose" . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSOD> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
 <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSOD> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"53" . 

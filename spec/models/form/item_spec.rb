@@ -6,7 +6,7 @@ describe Form::Item do
   include OdmHelpers
 
   def sub_dir
-    return "models/form"
+    return "models/form/item"
   end
 
   before :all do
@@ -97,13 +97,23 @@ describe Form::Item do
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#label_text", object: "XXXXX" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
     triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
-    expect(Form::Item.new(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)    
+    expect(Form::Item.new(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)   
   end
 
-  it "allows an object to be created from JSON" 
+  it "allows an object to be created from JSON" do
+    input = read_yaml_file(sub_dir, "from_json_input.yaml")
+    item = Form::Item.from_json(input)
+    expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
+    expect(item.to_json).to eq(expected)
+  end	
   
-  it "allows an object to be exported as JSON"
-  
+  it "allows an object to be exported as JSON" do
+    input = read_yaml_file(sub_dir, "from_json_input.yaml")
+    item = Form::Item.from_json(input)
+    expected = read_yaml_file_to_hash_2(sub_dir, "to_json_expected.yaml")
+    expect(item.to_json).to eq(expected)
+  end	
+
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new
     result = 
@@ -143,8 +153,8 @@ describe Form::Item do
     item.ordinal = 14
 		item.to_xml(mdv, form, item_group)
 		xml = odm.to_xml
-  #write_text_file_2(xml, sub_dir, "item_to_xml_1.xml")
-    expected = read_text_file_2(sub_dir, "item_to_xml_1.xml")
+  #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
+    expected = read_text_file_2(sub_dir, "to_xml_expected_1.xml")
     odm_fix_datetimes(xml, expected)
     odm_fix_system_version(xml, expected)
     expect(xml).to eq(expected)

@@ -6,7 +6,7 @@ describe Form::Group::Normal do
   include OdmHelpers
 
   def sub_dir
-    return "models/form/group"
+    return "models/form/group/normal"
   end
 
   before :all do
@@ -126,8 +126,8 @@ describe Form::Group::Normal do
 
   it "allows an object to be found" do
     item = Form::Group::Normal.find("F-ACME_T2_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "normal_find.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "normal_find.yaml")
+  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -161,16 +161,16 @@ describe Form::Group::Normal do
       ]
     }
     result = Form::Group::Normal.from_json(json)
-    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "from_json.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "from_json.yaml")
+    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "from_json_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "from_json_expected.yaml")
     expect(result.to_json).to eq(expected)
   end
   
   it "allows an object to be exported as JSON" do
     item = Form::Group::Normal.find("F-ACME_T2_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
     result = item.to_json
-  #write_hash_to_yaml_file_2(result, sub_dir, "to_json.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "to_json.yaml")
+  #write_hash_to_yaml_file_2(result, sub_dir, "to_json_expected_1.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "to_json_expected_1.yaml")
     expect(result).to eq(expected)
   end
 
@@ -195,8 +195,8 @@ describe Form::Group::Normal do
     group.groups << sub_group_2
     group.groups << sub_group_3
     result = group.to_json
-  write_yaml_file(result, sub_dir, "to_json_order.yaml")
-    expected = read_yaml_file(sub_dir, "to_json_order.yaml")
+  #write_yaml_file(result, sub_dir, "to_json_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_expected_2.yaml")
     expect(result).to eq(expected)
   end
 
@@ -240,8 +240,8 @@ describe Form::Group::Normal do
     item.ordinal = 119
 		item.to_xml(mdv, form)
 		xml = odm.to_xml
-  #write_text_file_2(xml, sub_dir, "normal_to_xml_1.xml")
-    expected = read_text_file_2(sub_dir, "normal_to_xml_1.xml")
+  #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
+    expected = read_text_file_2(sub_dir, "to_xml_expected_1.xml")
     odm_fix_datetimes(xml, expected)
     odm_fix_system_version(xml, expected)
     expect(xml).to eq(expected)
@@ -263,8 +263,8 @@ describe Form::Group::Normal do
 		item.groups << item_c
 		item.to_xml(mdv, form)
 		xml = odm.to_xml
-  #write_text_file_2(xml, sub_dir, "normal_to_xml_2.xml")
-    expected = read_text_file_2(sub_dir, "normal_to_xml_2.xml")
+  #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
+    expected = read_text_file_2(sub_dir, "to_xml_expected_2.xml")
     odm_fix_datetimes(xml, expected)
     odm_fix_system_version(xml, expected)
     expect(xml).to eq(expected)

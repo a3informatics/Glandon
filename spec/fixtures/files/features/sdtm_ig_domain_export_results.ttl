@@ -7,7 +7,6 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIGAE-3> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIGAE-3> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/BusinessDomain#prefix> 			"AE" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> . 
@@ -60,14 +59,15 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/BusinessDomain#includesColumn> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/BusinessDomain#structure> 			"One record per adverse event per subject" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/BusinessDomain#prefix> 			"AE" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> 			<http://www.assero.co.uk/BusinessDomain#basedOnDomain> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Results in Death" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"37" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESDTH" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Did the serious event result in death?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Did the serious event result in death?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESDTH" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -79,10 +79,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Serious Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"27" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESER" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Is this a serious event?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Is this a serious event?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESER" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -94,10 +94,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Other Action Taken" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"29" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEACNOTH" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Describes other actions taken as a result of the event that are unrelated to dose adjustments of study treatment. Usually reported as free text. Example: “TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.”" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Describes other actions taken as a result of the event that are unrelated to dose adjustments of study treatment. Usually reported as free text. Example: “TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.”" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEACNOTH" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -107,10 +107,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Persist or Signif Disability/Incapacity" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"36" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESDISAB" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Did the serious event result in persistent or significant disability/incapacity?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Did the serious event result in persistent or significant disability/incapacity?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESDISAB" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -120,10 +120,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Primary System Organ Class Code" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"24" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESOCCD" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the primary System Organ Class. Will be the same as AEBDSYCD if the primary SOC was used for analysis." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the primary System Organ Class. Will be the same as AEBDSYCD if the primary SOC was used for analysis." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESOCCD" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -133,10 +133,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Primary System Organ Class" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"23" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESOC" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of the primary System Organ Class. Will be the same as AEBODSYS if the primary SOC was used for analysis." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of the primary System Organ Class. Will be the same as AEBODSYS if the primary SOC was used for analysis." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESOC" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -146,10 +146,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Other Medically Important Serious Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"41" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESMIE" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Do additional categories for seriousness apply?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Do additional categories for seriousness apply?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESMIE" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -159,10 +159,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Location of Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"25" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(LOC)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AELOC" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Describes anatomical location relevant for the event (e.g., ARM for skin rash)." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(LOC)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Describes anatomical location relevant for the event (e.g., ARM for skin rash)." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AELOC" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -172,10 +172,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Category for Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"18" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AECAT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Used to define a category of related records. Example: BLEEDING, NEUROPSYCHIATRIC." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Used to define a category of related records. Example: BLEEDING, NEUROPSYCHIATRIC." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AECAT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -185,10 +185,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"High Level Group Term" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"16" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEHLGT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of the High Level Group Term for the primary System Organ Class." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of the High Level Group Term for the primary System Organ Class." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEHLGT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -198,10 +198,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Congenital Anomaly or Birth Defect" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"35" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESCONG" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Was the serious event associated with congenital anomaly or birth defect?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Was the serious event associated with congenital anomaly or birth defect?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESCONG" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -211,10 +211,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Concomitant or Additional Trtmnt Given" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"42" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AECONTRT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Was another treatment given because of the occurrence of the event?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Was another treatment given because of the occurrence of the event?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AECONTRT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -224,10 +224,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"End Relative to Reference Period" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"49" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(STENRF)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENRF" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Describes the end of the event relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of the trial." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(STENRF)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Describes the end of the event relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of the trial." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENRF" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -237,10 +237,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Dictionary-Derived Term" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"12" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEDECOD" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEDECOD" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -252,10 +252,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Study Identifier" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"1" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"STUDYID" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Unique identifier for a study." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Unique identifier for a study." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"STUDYID" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -265,10 +265,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Reference ID" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"6" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEREFID" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Internal or external identifier such as a serial number on an SAE reporting form." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Internal or external identifier such as a serial number on an SAE reporting form." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEREFID" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -278,10 +278,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Body System or Organ Class" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"21" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEBODSYS" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary derived. Body system or organ class used by the sponsor from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary such as MedDRA, this should contain the SOC used for the sponsor’s analyses and summary tables which may not necessarily be the primary SOC." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary derived. Body system or organ class used by the sponsor from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary such as MedDRA, this should contain the SOC used for the sponsor’s analyses and summary tables which may not necessarily be the primary SOC." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEBODSYS" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -291,10 +291,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Causality" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"30" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEREL" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future. Check with regulatory authority for population of this variable." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future. Check with regulatory authority for population of this variable." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEREL" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -304,10 +304,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Relationship to Non-Study Treatment" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"31" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AERELNST" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Records the investigator's opinion as to whether the event may have been due to a treatment other than study drug. May be reported as free text. Example: \"MORE LIKELY RELATED TO ASPIRIN USE.”." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Records the investigator's opinion as to whether the event may have been due to a treatment other than study drug. May be reported as free text. Example: \"MORE LIKELY RELATED TO ASPIRIN USE.”." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AERELNST" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -317,10 +317,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Involves Cancer" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"34" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESCAN" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Was the serious event associated with the development of cancer?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Was the serious event associated with the development of cancer?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESCAN" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -330,10 +330,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"End Relative to Reference Time Point" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"50" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(STENRF)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENRTPT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Identifies the end of the event as being before or after the reference time point defined by variable AEENTPT." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(STENRF)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Identifies the end of the event as being before or after the reference time point defined by variable AEENTPT." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENRTPT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -343,10 +343,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Occurred with Overdose" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"40" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESOD" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Did the serious event occur with an overdose?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Did the serious event occur with an overdose?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESOD" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -356,10 +356,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Outcome of Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"33" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(OUT)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEOUT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Description of the outcome of an event." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(OUT)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Description of the outcome of an event." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEOUT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -369,10 +369,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Sponsor-Defined Identifier" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"7" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESPID" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Sponsor-defined identifier. It may be pre-printed on the CRF as an explicit line identifier or defined in the sponsor’s operational database. Example: Line number on an Adverse Events page." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Sponsor-defined identifier. It may be pre-printed on the CRF as an explicit line identifier or defined in the sponsor’s operational database. Example: Line number on an Adverse Events page." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESPID" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -382,10 +382,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"End Date/Time of Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"45" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"ISO 8601" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENDTC" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"ISO 8601" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENDTC" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -395,10 +395,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Action Taken with Study Treatment" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"28" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(ACN)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEACN" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Describes changes to the study treatment as a result of the event. AEACN is specifically for the relationship to study treatment. AEACNOTH is for actions unrelated to dose adjustments of study treatment. Examples of AEACN values include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT CHANGED, UNKNOWN or NOT APPLICABLE." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(ACN)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Describes changes to the study treatment as a result of the event. AEACN is specifically for the relationship to study treatment. AEACNOTH is for actions unrelated to dose adjustments of study treatment. Examples of AEACN values include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT CHANGED, UNKNOWN or NOT APPLICABLE." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEACN" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -408,10 +408,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"End Reference Time Point" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"51" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENTPT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Description of date/time in ISO 8601 character format of the reference point referred to by AEENRTPT. Examples: \"2003-12-25\" or \"VISIT 2\"." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Description of date/time in ISO 8601 character format of the reference point referred to by AEENRTPT. Examples: \"2003-12-25\" or \"VISIT 2\"." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENTPT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -421,10 +421,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"High Level Group Term Code" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"17" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEHLGTCD" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the High Level Group Term for the primary System Organ Class." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the High Level Group Term for the primary System Organ Class." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEHLGTCD" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -434,10 +434,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Duration of Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"48" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"ISO 8601" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEDUR" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Collected duration and unit of an adverse event. Used only if collected on the CRF and not derived from start and end date/times. Example: P1DT2H (for 1 day, 2 hours)." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"ISO 8601" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Collected duration and unit of an adverse event. Used only if collected on the CRF and not derived from start and end date/times. Example: P1DT2H (for 1 day, 2 hours)." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEDUR" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -447,10 +447,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Study Day of End of Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"47" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENDY" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Study day of end of event relative to the sponsor-defined RFSTDTC." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Study day of end of event relative to the sponsor-defined RFSTDTC." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEENDY" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -460,10 +460,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Severity/Intensity" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"26" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(AESEV)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESEV" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(AESEV)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESEV" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -473,10 +473,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Domain Abbreviation" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"2" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(DOMAIN)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.assero.co.uk/BusinessDomain#name> 			"DOMAIN" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Two-character abbreviation for the domain." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(DOMAIN)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Two-character abbreviation for the domain." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.assero.co.uk/BusinessDomain#name> 			"DOMAIN" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -486,10 +486,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Pre-Specified Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"20" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEPRESP" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"A value of “Y” indicates that this adverse event was pre-specified on the CRF. Values are null for spontaneously reported events (i.e., those collected as free-text verbatim terms)" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"A value of “Y” indicates that this adverse event was pre-specified on the CRF. Values are null for spontaneously reported events (i.e., those collected as free-text verbatim terms)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEPRESP" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -499,10 +499,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Sequence Number" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"4" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESEQ" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Sequence Number given to ensure uniqueness of subject records within a domain. May be any valid number." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Sequence Number given to ensure uniqueness of subject records within a domain. May be any valid number." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESEQ" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -512,10 +512,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Body System or Organ Class Code" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"22" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEBDSYCD" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary derived. Code for the body system or organ class used by the sponsor. When using a multi-axial dictionary such as MedDRA, this should contain the SOC used for the sponsor’s analyses and summary tables, which may not necessarily be the primary SOC." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary derived. Code for the body system or organ class used by the sponsor. When using a multi-axial dictionary such as MedDRA, this should contain the SOC used for the sponsor’s analyses and summary tables, which may not necessarily be the primary SOC." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEBDSYCD" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -525,10 +525,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Lowest Level Term Code" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"11" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AELLTCD" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the Lowest Level Term." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the Lowest Level Term." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AELLTCD" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -538,10 +538,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Reported Term for the Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"8" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AETERM" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Verbatim name of the event." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Verbatim name of the event." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AETERM" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -551,10 +551,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Preferred Term Code" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"13" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEPTCD" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the Preferred Term." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the Preferred Term." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEPTCD" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -564,10 +564,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Unique Subject Identifier" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"3" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"USUBJID" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"USUBJID" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -577,10 +577,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Study Day of Start of Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"46" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESTDY" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Study day of start of adverse event relative to the sponsor-defined RFSTDTC." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Study day of start of adverse event relative to the sponsor-defined RFSTDTC." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESTDY" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -590,10 +590,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Pattern of Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"32" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEPATT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Used to indicate the pattern of the event over time. Examples: INTERMITTENT, CONTINUOUS, SINGLE EVENT." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Used to indicate the pattern of the event over time. Examples: INTERMITTENT, CONTINUOUS, SINGLE EVENT." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEPATT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -603,10 +603,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Modified Reported Term" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"9" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEMODIFY" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"If AETERM is modified to facilitate coding, then AEMODIFY will contain the modified text." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"If AETERM is modified to facilitate coding, then AEMODIFY will contain the modified text." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEMODIFY" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -616,10 +616,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Standard Toxicity Grade" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"43" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AETOXGR" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Toxicity grade according to a standard toxicity scale such as Common Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name of the scale and version used in the metadata (see Assumption 6d). If value is from a numeric scale, represent only the number (e.g., “2” and not “Grade 2”)." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Toxicity grade according to a standard toxicity scale such as Common Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name of the scale and version used in the metadata (see Assumption 6d). If value is from a numeric scale, represent only the number (e.g., “2” and not “Grade 2”)." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AETOXGR" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -629,10 +629,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Subcategory for Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"19" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESCAT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"A further categorization of adverse event. Example: NEUROLOGIC." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"A further categorization of adverse event. Example: NEUROLOGIC." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESCAT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -642,10 +642,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"High Level Term" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"14" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEHLT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of the High Level Term for the primary System Organ Class." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of the High Level Term for the primary System Organ Class." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEHLT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -655,10 +655,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Group ID" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"5" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEGRPID" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Used to tie together a block of related records in a single domain for a subject." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Used to tie together a block of related records in a single domain for a subject." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEGRPID" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -668,10 +668,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"High Level Term Code" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"15" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEHLTCD" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the High Level Term for the primary System Organ Class." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived code for the High Level Term for the primary System Organ Class." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AEHLTCD" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -681,10 +681,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Is Life Threatening" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"39" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESLIFE" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Was the serious event life threatening?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Was the serious event life threatening?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESLIFE" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -694,10 +694,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Requires or Prolongs Hospitalization" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"38" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESHOSP" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Did the serious event require or prolong hospitalization?" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"(NY)" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Did the serious event require or prolong hospitalization?" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESHOSP" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -707,10 +707,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Start Date/Time of Adverse Event" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"44" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"ISO 8601" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESTDTC" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"ISO 8601" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AESTDTC" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
@@ -720,10 +720,10 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Lowest Level Term" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessDomain#IgVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.assero.co.uk/BusinessDomain#ordinal> 			"10" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AELLT" . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of the Lowest Level Term." . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.assero.co.uk/BusinessDomain#basedOnVariable> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.assero.co.uk/BusinessDomain#controlled_term_or_format> 			"MedDRA" . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.assero.co.uk/BusinessDomain#notes> 			"Dictionary-derived text description of the Lowest Level Term." . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.assero.co.uk/BusinessDomain#name> 			"AELLT" . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> 			<http://www.assero.co.uk/BusinessDomain#compliance> 			<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 

@@ -1,0 +1,43 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#CommonGroup
+:id: F-ACME_VSBASELINE1_G1_G1
+:namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+:label: Common
+:extension_properties: []
+:ordinal: 1
+:optional: false
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#CommonItem
+  :id: F-ACME_VSBASELINE1_G1_G1_I1
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Common Item
+  :extension_properties: []
+  :ordinal: 1
+  :note: ''
+  :completion: ''
+  :optional: false
+  :item_refs:
+  - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :id: F-ACME_VSBASELINE1_G1_G2_I1
+  - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :id: F-ACME_VSBASELINE1_G1_G5_I1
+  - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :id: F-ACME_VSBASELINE1_G1_G4_I1
+  - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :id: F-ACME_VSBASELINE1_G1_G3_I1
+- :type: http://www.assero.co.uk/BusinessForm#CommonItem
+  :id: F-ACME_VSBASELINE1_G1_G1_I2
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Common Item
+  :extension_properties: []
+  :ordinal: 2
+  :note: ''
+  :completion: ''
+  :optional: false
+  :item_refs:
+  - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :id: F-ACME_VSBASELINE1_G1_G5_I4
+  - :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :id: F-ACME_VSBASELINE1_G1_G4_I4

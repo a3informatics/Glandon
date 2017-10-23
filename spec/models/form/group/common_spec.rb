@@ -6,7 +6,7 @@ describe Form::Group::Common do
   include OdmHelpers
 
   def sub_dir
-    return "models/form/group"
+    return "models/form/group/common"
   end
 
   before :all do
@@ -131,14 +131,23 @@ describe Form::Group::Common do
 
   it "allows an object to be found" do
     item = Form::Group::Common.find("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
-  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "common_find.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "common_find.yaml")
+  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
-  it "allows an object to be created from JSON"
+  it "allows an object to be created from JSON" do
+    input = read_yaml_file_to_hash_2(sub_dir, "from_json_input.yaml")
+    item = Form::Group::Common.from_json(input)
+    expected = read_yaml_file_to_hash_2(sub_dir, "from_json_expected.yaml")
+    expect(item.to_json).to eq(expected)
+  end
   
-  it "allows an object to be exported as JSON"
+  it "allows an object to be exported as JSON" do
+    item = Form::Group::Common.find("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
+    expected = read_yaml_file_to_hash_2(sub_dir, "to_json_expected.yaml")
+    expect(item.to_json).to eq(expected)
+  end
 
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new
@@ -198,8 +207,8 @@ describe Form::Group::Common do
     item.ordinal = 119
 		item.to_xml(mdv, form)
 		xml = odm.to_xml
-  #write_text_file_2(xml, sub_dir, "common_to_xml_1.xml")
-    expected = read_text_file_2(sub_dir, "common_to_xml_1.xml")
+  #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
+    expected = read_text_file_2(sub_dir, "to_xml_expected_1.xml")
     odm_fix_datetimes(xml, expected)
     odm_fix_system_version(xml, expected)
     expect(xml).to eq(expected)

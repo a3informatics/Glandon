@@ -5,7 +5,7 @@ describe Form::Item::Mapping do
   include DataHelpers
 
   def sub_dir
-    return "models/form/item"
+    return "models/form/item/mapping"
   end
 
   before :all do
@@ -83,8 +83,8 @@ describe Form::Item::Mapping do
 
   it "allows an object to be found" do
     item = Form::Item::Mapping.find("F-ACME_T2_G1_I2","http://www.assero.co.uk/MDRForms/ACME/V1")
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "mapping_find.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "mapping_find.yaml")
+  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -114,9 +114,18 @@ describe Form::Item::Mapping do
     expect(Form::Item::Mapping.find_from_triples(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)   
   end
 
-  it "allows an object to be created from JSON"
+  it "allows an object to be created from JSON" do
+    input = read_yaml_file(sub_dir, "from_json_input.yaml")
+    item = Form::Item::Mapping.from_json(input)
+    expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
+    expect(item.to_json).to eq(expected)
+  end	
   
-  it "allows an object to be exported as JSON"
+  it "allows an object to be exported as JSON" do
+    item = Form::Item::Mapping.find("F-ACME_T2_G1_I2","http://www.assero.co.uk/MDRForms/ACME/V1")
+    expected = read_yaml_file_to_hash_2(sub_dir, "to_json_expected.yaml")
+    expect(item.to_json).to eq(expected)
+  end	
 
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new

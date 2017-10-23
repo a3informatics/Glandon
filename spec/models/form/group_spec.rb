@@ -6,7 +6,7 @@ describe Form::Group do
   include OdmHelpers
 
   def sub_dir
-    return "models/form"
+    return "models/form/group"
   end
 
   before :all do
@@ -77,20 +77,60 @@ describe Form::Group do
       }
     triples = {}
     triples ["F-ACME_TEST_G1_I1"] = []
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#NormalGroup" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "My Group" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasItem", object: "<http://www.assero.co.uk/MDRForms/UCB/V2#F-UCB_AEPI103_G1_I1>" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#label_text", object: "XXXXX" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", 
+    	object: "http://www.assero.co.uk/BusinessForm#NormalGroup" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", 
+    	object: "My Group" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasItem", 
+    	object: "<http://www.assero.co.uk/MDRForms/UCB/V2#F-UCB_AEPI103_G1_I1>" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", 
+    	object: "xxxxx" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", 
+    	object: "false" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#label_text", 
+    	object: "XXXXX" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", 
+    	object: "1" }
+    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#completion", 
+    	object: "" }
     expect(Form::Group.new(triples, "F-ACME_TEST_G1_I1").to_json).to eq(result)    
   end
 
-  it "allows an object to be created from JSON"
+  it "allows an object to be created from JSON" do
+  	input = 
+      {
+        :id => "F-ACME_TEST_G1_I1", 
+        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
+        :completion => "",
+        :extension_properties => [],
+        :label => "My Group",
+        :note => "xxxxx",
+        :optional => false,
+        :ordinal => 1,
+        :type => "http://www.assero.co.uk/BusinessForm#NormalGroup",
+        :children => []
+      }
+    result = Form::Group.from_json(input)
+    expect(result.to_json).to eq(input)
+  end 
   
-  it "allows an object to be exported as JSON"
+  it "allows an object to be exported as JSON" do
+  	input = 
+      {
+        :id => "F-ACME_TEST_G1_I1", 
+        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
+        :completion => "",
+        :extension_properties => [],
+        :label => "My Group",
+        :note => "This is a real note!",
+        :optional => true,
+        :ordinal => 1,
+        :type => "http://www.assero.co.uk/BusinessForm#NormalGroup",
+        :children => []
+      }
+    result = Form::Group.from_json(input)
+    expect(result.to_json).to eq(input)
+  end 
   
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new
@@ -130,8 +170,8 @@ describe Form::Group do
     item.ordinal = 119
 		item.to_xml(mdv, form)
 		xml = odm.to_xml
-  #write_text_file_2(xml, sub_dir, "group_to_xml_1.xml")
-    expected = read_text_file_2(sub_dir, "group_to_xml_1.xml")
+  #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
+    expected = read_text_file_2(sub_dir, "to_xml_expected_1.xml")
     odm_fix_datetimes(xml, expected)
     odm_fix_system_version(xml, expected)
     expect(xml).to eq(expected)

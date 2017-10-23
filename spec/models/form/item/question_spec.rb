@@ -6,7 +6,7 @@ describe Form::Item::Question do
   include OdmHelpers
 
   def sub_dir
-    return "models/form/item"
+    return "models/form/item/question"
   end
 
   before :all do
@@ -125,8 +125,8 @@ describe Form::Item::Question do
 
   it "allows an object to be found" do
     item = Form::Item::Question.find("F-ACME_T2_G1_I4","http://www.assero.co.uk/MDRForms/ACME/V1")
-  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "question_find.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "question_find.yaml")
+  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
 
@@ -201,14 +201,19 @@ describe Form::Item::Question do
       ]
     }
     result = Form::Item::Question.from_json(json)
-    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "question_from_json.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "question_from_json.yaml")
+  #write_hash_to_yaml_file_2(result.to_json, sub_dir, "from_json_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "from_json_expected.yaml")
     expect(result.to_json).to eq(expected)
     sparql = SparqlUpdateV2.new
     result.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
   end
   
-  it "allows an object to be exported as JSON"
+  it "allows an object to be exported as JSON" do
+    item = Form::Item::Question.find("F-ACME_T2_G1_I4","http://www.assero.co.uk/MDRForms/ACME/V1")
+  #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
+    expect(item.to_json).to eq(expected)
+  end	
 
   it "allows an object to be exported as SPARQL" do
     sparql = SparqlUpdateV2.new
@@ -283,8 +288,8 @@ describe Form::Item::Question do
     result = Form::Item::Question.from_json(json)
     sparql = SparqlUpdateV2.new
     result.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
-    #write_text_file_2(sparql.to_s, sub_dir, "question_sparql.txt")
-    expected = read_text_file_2(sub_dir, "question_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
   end
 
@@ -305,8 +310,8 @@ describe Form::Item::Question do
     item.tc_refs = []
 		item.to_xml(mdv, form, item_group)
 		xml = odm.to_xml
-  #write_text_file_2(xml, sub_dir, "question_to_xml_1.xml")
-    expected = read_text_file_2(sub_dir, "question_to_xml_1.xml")
+  #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
+    expected = read_text_file_2(sub_dir, "to_xml_expected_1.xml")
     odm_fix_datetimes(xml, expected)
     odm_fix_system_version(xml, expected)
     expect(xml).to eq(expected)
