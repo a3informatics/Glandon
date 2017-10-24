@@ -1,9 +1,10 @@
 module DataHelpers
 
-		def clear_triple_store
-		sparql_query = "PREFIX tst: <http://www.assero.co.uk/test/>\n" +
-      "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
-      "DELETE { ?a ?b ?c } WHERE { ?a ?b ?c }"
+	def clear_triple_store
+		#sparql_query = "PREFIX tst: <http://www.assero.co.uk/test/>\n" +
+    #  "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
+    #  "DELETE { ?a ?b ?c } WHERE { ?a ?b ?c }"
+    sparql_query = "CLEAR DEFAULT"
   	CRUD.update(sparql_query)
   end
 
