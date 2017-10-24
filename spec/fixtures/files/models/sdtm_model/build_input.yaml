@@ -51,90 +51,355 @@
   :ordinal: 1
   :rule: ''
   :children:
-  - :ordinal: '1'
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
     :label: Study Identifier
-    :variable_class: ALL
-    :variable_domain_prefix: ''
+    :extension_properties: []
+    :ordinal: '1'
+    :rule: ''
     :name: STUDYID
-    :datatype: 
-      :label: Char
-    :classification: 
-      :label: Identifier
-    :sub_classification: 
-      :label: Not Applicable
     :prefixed: false
     :description: Unique identifier for a study.
-    :variable_core: ''
-    :rule: ''
-    :type: "http://www.assero.co.uk/BusinessDomain#ModelVariable"
-  - :ordinal: '2'
-    :label: Domain Abbreviation
-    :variable_class: ALL
-    :variable_domain_prefix: ''
-    :name: DOMAIN
-    :datatype: 
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
       :label: Char
-    :classification: 
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
       :label: Identifier
-    :sub_classification: 
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
       :label: Not Applicable
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Domain Abbreviation
+    :extension_properties: []
+    :ordinal: '2'
+    :rule: ''
+    :name: DOMAIN
     :prefixed: false
     :description: Two-character abbreviation for the domain most relevant to the
       observation. The Domain abbreviation is also used as a prefix for variables
       to ensure uniqueness when datasets are merged.
-    :variable_core: ''
-    :rule: ''
-    :type: "http://www.assero.co.uk/BusinessDomain#ModelVariable"
-  - :ordinal: '3'
-    :label: Unique Subject Identifier
-    :variable_class: ALL
-    :variable_domain_prefix: ''
-    :name: USUBJID
-    :datatype: 
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
       :label: Char
-    :classification: 
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
       :label: Identifier
-    :sub_classification: 
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
       :label: Not Applicable
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Unique Subject Identifier
+    :extension_properties: []
+    :ordinal: '3'
+    :rule: ''
+    :name: USUBJID
     :prefixed: false
     :description: Identifier used to uniquely identify a subject across all studies
       for all applications or submissions involving the product.
-    :variable_core: ''
-    :rule: ''
-    :type: "http://www.assero.co.uk/BusinessDomain#ModelVariable"
-  - :ordinal: '4'
-    :label: Pool Identifier
-    :variable_class: ALL
-    :variable_domain_prefix: ''
-    :name: POOLID
-    :datatype: 
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
       :label: Char
-    :classification: 
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
       :label: Identifier
-    :sub_classification: 
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
       :label: Not Applicable
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Pool Identifier
+    :extension_properties: []
+    :ordinal: '4'
+    :rule: ''
+    :name: POOLID
     :prefixed: false
     :description: An identifier used to identify a result from a group of subjects
       that is not assignable to a specific subject.
-    :variable_core: ''
-    :rule: ''
-    :type: "http://www.assero.co.uk/BusinessDomain#ModelVariable"
-  - :ordinal: '5'
-    :label: Sponsor Device Identifier
-    :variable_class: ALL
-    :variable_domain_prefix: ''
-    :name: SPDEVID
-    :datatype: 
-      :label: Num
-    :classification: 
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
+      :label: Char
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
       :label: Identifier
-    :sub_classification: 
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
       :label: Not Applicable
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Sponsor Device Identifier
+    :extension_properties: []
+    :ordinal: '5'
+    :rule: ''
+    :name: SPDEVID
     :prefixed: false
     :description: Sponsor-defined identifier for a device
-    :variable_core: ''
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
+      :label: Num
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Identifier
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Not Applicable
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Duration
+    :extension_properties: []
+    :ordinal: '23'
     :rule: ''
-    :type: "http://www.assero.co.uk/BusinessDomain#ModelVariable"
+    :name: "--DUR"
+    :prefixed: true
+    :description: Collected duration of an event, intervention, or finding represented
+      in ISO 8601 character format. Used only if collected on the CRF and not
+      derived.
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
+      :label: Char
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Timing
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Not Applicable
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Start Reference Time Point
+    :extension_properties: []
+    :ordinal: '34'
+    :rule: ''
+    :name: "--STTPT"
+    :prefixed: true
+    :description: 'Description or date/time in ISO 8601 or other character format
+      of the sponsor-defined reference point referred to by --STRTPT. Examples:
+      "2003-12-15" or "VISIT 1".'
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
+      :label: Char
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Timing
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Not Applicable
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Related Subject
+    :extension_properties: []
+    :ordinal: '2'
+    :rule: ''
+    :name: RSUBJID
+    :prefixed: false
+    :description: |-
+      Identifier for a related study subject or pool of study subjects. The subject(s) may be human or animal. RSUBJID will be populated with the USUBJID of the related subject or the POOLID of the related pool.
+      RSUBJID will be null for data about associated persons who are related to the study but not to any of the study subjects.
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
+      :label: Char
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Identifier
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Not Applicable
+      :extension_properties: []
+
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: High Level Group Term Code
+    :extension_properties: []
+    :ordinal: '10'
+    :rule: ''
+    :name: "--HLGTCD"
+    :prefixed: true
+    :description: MedDRA High Level Group Term code from the primary path.
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
+      :label: Num
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Qualifier
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Variable Qualifier
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Category
+    :extension_properties: []
+    :ordinal: '11'
+    :rule: ''
+    :name: "--CAT"
+    :prefixed: true
+    :description: Used to define a category of topic-variable values.
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
+      :label: Char
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Qualifier
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Grouping Qualifier
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Subcategory
+    :extension_properties: []
+    :ordinal: '12'
+    :rule: ''
+    :name: "--SCAT"
+    :prefixed: true
+    :description: Used to define a further categorization of --CAT values.
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
+      :label: Char
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Qualifier
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Grouping Qualifier
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+    :id: ''
+    :namespace: ''
+    :label: Pre-specified
+    :extension_properties: []
+    :ordinal: '13'
+    :rule: ''
+    :name: "--PRESP"
+    :prefixed: true
+    :description: Used to indicate whether the event described by --TERM was pre-specified
+      on a CRF. Value is Y for pre-specified events, null for spontaneously reported
+      events.
+    :datatype:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableType
+      :id: ''
+      :namespace: ''
+      :label: Char
+      :extension_properties: []
+    :classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Qualifier
+      :extension_properties: []
+    :sub_classification:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+      :id: ''
+      :namespace: ''
+      :label: Variable Qualifier
+      :extension_properties: []
   :class_refs: []
 :new_version: '12'
 :new_state: Standard

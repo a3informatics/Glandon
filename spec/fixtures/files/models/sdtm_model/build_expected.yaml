@@ -158,4 +158,189 @@
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
     :label: Identifier
     :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxDUR
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Duration
+  :extension_properties: []
+  :ordinal: '23'
+  :rule: ''
+  :name: "--DUR"
+  :prefixed: true
+  :description: Collected duration of an event, intervention, or finding represented
+    in ISO 8601 character format. Used only if collected on the CRF and not derived.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Timing
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxSTTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Start Reference Time Point
+  :extension_properties: []
+  :ordinal: '34'
+  :rule: ''
+  :name: "--STTPT"
+  :prefixed: true
+  :description: 'Description or date/time in ISO 8601 or other character format of
+    the sponsor-defined reference point referred to by --STRTPT. Examples: "2003-12-15"
+    or "VISIT 1".'
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_TIMING
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Timing
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_RSUBJID
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Related Subject
+  :extension_properties: []
+  :ordinal: '2'
+  :rule: ''
+  :name: RSUBJID
+  :prefixed: false
+  :description: |-
+    Identifier for a related study subject or pool of study subjects. The subject(s) may be human or animal. RSUBJID will be populated with the USUBJID of the related subject or the POOLID of the related pool.
+    RSUBJID will be null for data about associated persons who are related to the study but not to any of the study subjects.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_IDENTIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Identifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxHLGTCD
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: High Level Group Term Code
+  :extension_properties: []
+  :ordinal: '10'
+  :rule: ''
+  :name: "--HLGTCD"
+  :prefixed: true
+  :description: MedDRA High Level Group Term code from the primary path.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_NUM
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Num
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Variable Qualifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxCAT
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Category
+  :extension_properties: []
+  :ordinal: '11'
+  :rule: ''
+  :name: "--CAT"
+  :prefixed: true
+  :description: Used to define a category of topic-variable values.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Grouping Qualifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxSCAT
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Subcategory
+  :extension_properties: []
+  :ordinal: '12'
+  :rule: ''
+  :name: "--SCAT"
+  :prefixed: true
+  :description: Used to define a further categorization of --CAT values.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Grouping Qualifier
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+  :id: M-CDISC_SDTMMODEL_xxPRESP
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+  :label: Pre-specified
+  :extension_properties: []
+  :ordinal: '13'
+  :rule: ''
+  :name: "--PRESP"
+  :prefixed: true
+  :description: Used to indicate whether the event described by --TERM was pre-specified
+    on a CRF. Value is Y for pre-specified events, null for spontaneously reported
+    events.
+  :datatype:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableType
+    :id: M-CDISC_SDTMMODEL_DT_CHAR
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Char
+    :extension_properties: []
+  :classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Qualifier
+    :extension_properties: []
+  :sub_classification:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
+    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V6
+    :label: Variable Qualifier
+    :extension_properties: []
 :class_refs: []

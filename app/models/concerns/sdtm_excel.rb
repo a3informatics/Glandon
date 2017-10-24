@@ -422,6 +422,7 @@ private
     # Build the full object
     operation = object.to_operation
     operation[:operation][:new_version] = params[:version]
+    operation[:operation][:new_semantic_version] = SemanticVersion.from_s(params[:version_label]).to_s
     operation[:operation][:new_state] = IsoRegistrationState.releasedState
 		operation[:managed_item][:creation_date] = params[:date]
 		operation[:managed_item][:ordinal] = 1
@@ -437,6 +438,7 @@ private
     # Build the full object
     operation = object.to_operation
     operation[:operation][:new_version] = model_instance[:operation][:new_version]
+    operation[:operation][:new_semantic_version] = SemanticVersion.from_s(model_instance[:managed_item][:scoped_identifier][:version_label]).to_s
     operation[:operation][:new_state] = IsoRegistrationState.releasedState
 		operation[:managed_item][:creation_date] = model_instance[:managed_item][:creation_date]
 		operation[:managed_item][:ordinal] = 1
@@ -467,6 +469,7 @@ private
     # Build the full object
     operation = object.to_operation
     operation[:operation][:new_version] = params[:version]
+    operation[:operation][:new_semantic_version] = SemanticVersion.from_s(params[:version_label]).to_s
     operation[:operation][:new_state] = IsoRegistrationState.releasedState
 		operation[:managed_item][:creation_date] = params[:date]
 		operation[:managed_item][:ordinal] = 1
@@ -481,6 +484,7 @@ private
     # Build the full object
     operation = object.to_operation
     operation[:operation][:new_version] = ig_instance[:operation][:new_version]
+    operation[:operation][:new_semantic_version] = SemanticVersion.from_s(ig_instance[:managed_item][:scoped_identifier][:version_label]).to_s
     operation[:operation][:new_state] = IsoRegistrationState.releasedState
 		operation[:managed_item][:creation_date] = ig_instance[:managed_item][:creation_date]
 		operation[:managed_item][:ordinal] = 1

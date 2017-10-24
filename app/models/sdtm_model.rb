@@ -127,7 +127,7 @@ class SdtmModel < Tabular
     uri = super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => uri}
     self.datatypes.each { |k, dt| dt.to_sparql_v2(uri, sparql) }
-    self.classifications.each { |k, c| c.to_sparql_v2(uri, sparql) }
+    self.classifications.each { |k, c| c.to_sparql_v2(uri, sparql) if c.parent } # Note the if statement. Important only process the parents!
     self.children.each do |child|
     	ref_uri = child.to_sparql_v2(uri, sparql)
     	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesVariable"}, {:uri => ref_uri})

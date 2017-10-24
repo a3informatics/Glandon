@@ -57,13 +57,33 @@ describe SdtmExcel do
 		object = Background.new
 		params = {
 			version: "1", 
-			version_label: "Version Label", 
+			version_label: "1.0", 
 			date: "2017-01-01", 
 			:files => ["#{filename}"]
 		}
 		result = SdtmExcel.read_ig(params, object.errors)
 	#write_yaml_file(result, sub_dir, "ig_build_expected.yaml")
     expected = read_yaml_file(sub_dir, "ig_build_expected.yaml")
+    # Need to align the timestamps to allow simple comparison to work
+    expected.each_with_index do |x, index|
+    	x[:instance][:managed_item][:last_changed_date] = result[index][:instance][:managed_item][:last_changed_date]
+    end
+		expect(result).to eq(expected)
+		expect(object.errors.count).to eq(0)
+	end
+
+	it "reads the excel fle, implementation guide, semantic version check" do
+		filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
+		object = Background.new
+		params = {
+			version: "2", 
+			version_label: "2.1.3", 
+			date: "2017-01-01", 
+			:files => ["#{filename}"]
+		}
+		result = SdtmExcel.read_ig(params, object.errors)
+	#write_yaml_file(result, sub_dir, "ig_build_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "ig_build_expected_2.yaml")
     # Need to align the timestamps to allow simple comparison to work
     expected.each_with_index do |x, index|
     	x[:instance][:managed_item][:last_changed_date] = result[index][:instance][:managed_item][:last_changed_date]
