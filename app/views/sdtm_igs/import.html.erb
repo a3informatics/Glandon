@@ -1,7 +1,7 @@
 <% second_level_breadcrumb("CDISC SDTM IGs", history_sdtm_igs_path, "Import") %>
 <h3>Import CDISC SDTM Implementation Guide Version</h3>
 <div class="col-md-6">
-  <%= form_for @sdtm_ig, url: import_sdtm_igs_path do |f| %>
+  <%= form_for @sdtm_ig, url: sdtm_igs_path do |f| %>
       <div class="form-group">
           <%= label_tag :version, "Version:" %><br/>
           <%= text_field_tag "sdtm_ig[version]", "#{@next_version}", class: "form-control" %>

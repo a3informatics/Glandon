@@ -100,6 +100,12 @@ module UiHelpers
     expect(cell).to eq(text)
   end
 
+  # check table cell, start with text
+  def ui_check_table_cell_starts_with(table_id, row, col, text)
+    cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
+    expect(text.start_with?(text)).to eq(true)
+  end
+
   # check table cell options
   def ui_check_table_cell_options(table_id, row, col, options)
     expect(check_table_cell_options(table_id, row, col, options)).to eq(true)

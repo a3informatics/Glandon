@@ -3,8 +3,10 @@ require 'rails_helper'
 describe "SDTM Models", :type => :feature do
   
   include DataHelpers
-
-  describe "Basic Operations", :type => :feature do
+  include UserAccountHelpers
+  include UiHelpers
+  
+  describe "Basic Operations, curator", :type => :feature do
   
     before :all do
       clear_triple_store
@@ -26,15 +28,15 @@ describe "SDTM Models", :type => :feature do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
+      ua_create
+    end
+
+    after :all do
+      ua_destroy
     end
 
     before :each do
-      user = FactoryGirl.create(:user)
-      user.add_role :curator
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'example1234'
-      click_button 'Log in'
+      ua_curator_login
     end
 
     it "allows the history page to be viewed" do
@@ -58,8 +60,6 @@ describe "SDTM Models", :type => :feature do
       click_link 'Close'
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
     end
-    
-    it "*** SDTM IMPORT SEMANTIC VERSION ***"
 
   end
 
