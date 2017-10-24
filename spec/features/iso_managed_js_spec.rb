@@ -122,6 +122,23 @@ describe "ISO Managed JS", :type => :feature do
       ua_logoff
     end
 
+    it "allows the comments to be updated, cdisc term", js: true do
+      ua_curator_login
+      click_link 'Terminology'
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-09-25')]/td/a", :text => 'History').click
+      find(:xpath, "//table[@id='secondary']/tbody/tr/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Comments:'
+      fill_in "iso_managed_changeDescription", with: "Hello world. This is a change description."
+      fill_in "iso_managed_explanatoryComment", with: "I am a comment"
+      fill_in "iso_managed_origin", with: "I am the origin"
+      click_button 'Submit'
+      expect(page).to have_content 'Hello world. This is a change description.'   
+      expect(page).to have_content 'I am a comment'   
+      expect(page).to have_content 'I am the origin'   
+      ua_logoff
+    end
+
     it "allows the status to be updated", js: true do
       ua_curator_login
       click_link 'Forms'
