@@ -53,6 +53,15 @@ describe "Users", :type => :feature do
       click_button 'Send me reset password instructions'
       expect(page).to have_content 'Log in'
       expect(ActionMailer::Base.deliveries.count).to eq(email_count + 1)
+    	expect(ActionMailer::Base.deliveries[0].from).to eq([ENV['EMAIL_USERNAME']])
+    	expect(ActionMailer::Base.deliveries[0].to).to eq(['reader@example.com'])
+			expect(ActionMailer::Base.deliveries[0].subject).to eq('Reset password instructions')
+    	expect(ActionMailer::Base.smtp_settings[:address]).to eq(ENV['EMAIL_SMTP'])
+			expect(ActionMailer::Base.smtp_settings[:port]).to eq(ENV['EMAIL_PORT'].to_i)
+			expect(ActionMailer::Base.smtp_settings[:domain]).to eq(ENV['EMAIL_DOMAIN'])
+			expect(ActionMailer::Base.smtp_settings[:authentication]).to eq(ENV['EMAIL_AUTHENTICATION'])
+			expect(ActionMailer::Base.smtp_settings[:user_name]).to eq(ENV['EMAIL_USERNAME'])
+			expect(ActionMailer::Base.smtp_settings[:password]).to eq(ENV['EMAIL_PASSWORD'])
     end
 
   end

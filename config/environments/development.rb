@@ -49,7 +49,7 @@ Rails.application.configure do
     address: ENV["EMAIL_SMTP"],
     port: ENV["EMAIL_PORT"].to_i,
     domain: ENV["EMAIL_DOMAIN"],
-    authentication: "plain",
+    authentication: ENV["EMAIL_AUTHENTICATION"],
     enable_starttls_auto: true,
     user_name: ENV["EMAIL_USERNAME"],
     password: ENV["EMAIL_PASSWORD"]
