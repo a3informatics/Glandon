@@ -1,0 +1,23 @@
+defaults: &defaults
+  roles:
+    sys_admin:
+      display_text: "System Admin"
+    term_reader:
+      display_text: "Terminology Reader"
+    term_curator:
+      display_text: "Terminology Curator"
+    reader:
+      display_text: "Reader"
+    curator:
+      display_text: "Curator"
+    content_admin:
+      display_text: "Content Admin"
+
+development:
+  <<: *defaults
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults

@@ -10,30 +10,46 @@ class Role < ActiveRecord::Base
             :allow_nil => true
 
   C_CLASS_NAME = "Role"
-  C_SYS_ADMIN = :sys_admin
-  C_CONTENT_ADMIN = :content_admin
-  C_CURATOR = :curator
-  C_READER = :reader
-  C_ROLES = [C_SYS_ADMIN, C_CONTENT_ADMIN, C_CURATOR, C_READER]
+  
+  class << self
 
-  @@map_to_s = {C_SYS_ADMIN => "System Admin", C_CONTENT_ADMIN => "Content Admin", C_CURATOR => "Curator", C_READER => "Reader"}
+  	# Build enabled/disabled helper methods
+  	Rails.configuration.roles["roles"].each do |k, v| 
+			
+			# <role>_enabled?. Determines if the <role> is enabled.
+  		#
+  		# @return [Boolean] returns True if enabled, false otherwise
+  		define_method :"#{k}_enabled?" do 
+      	return ENV["#{k}"].to_bool
+    	end
 
-  # Return role as a human readable string
+			# <role>_disbled?. Determines if the <role> is disabled.
+  		#
+  		# @return [Boolean] returns True if disabled, false otherwise
+			define_method :"#{k}_disabled?" do
+      	return ENV["#{k}"].to_bool
+    	end
+
+    end
+  end
+
+  # To Display. Return role as a human readable string 
   #
-  # @param role [Symbol] The role
+  # @param [Symbol] role the role
   # @return [String] The role string if found, otherwise empty
-  def self.role_to_s(role_name)
-  	return @@map_to_s[role_name.to_sym] if @@map_to_s.has_key?(role_name.to_sym)
+  def self.to_display(role)
+  	return Rails.configuration.roles["roles"][role.to_s]["display_text"] if Rails.configuration.roles["roles"].has_key?(role.to_s)
   	return ""
   end
 
-  # Get the roles to DB id map
+  # List. Get a list of roles
   #
   # @return [Hash] hash of ids for the role names
-  def self.roles_to_id
+  def self.list
     results = {}
-    roles = Role.all
-    roles.each { |x| results[x.name.to_sym] = x.id }
+    Role.all.each do |x|
+     results[x.name.to_sym] = { id: x.id, display_text: Rails.configuration.roles["roles"][x.name]["display_text"] }
+    end
     return results
   end
 
