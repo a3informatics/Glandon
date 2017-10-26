@@ -1,15 +1,15 @@
 class AuditTrailPolicy < ApplicationPolicy
 
-	def index?
-    curator? || system_admin?
+	C_CLASS_NAME = self.name
+  
+	# Initialize. Add in the extra methods
+	#
+	# @param [User] user the user
+	# @param [Object] record the record being accessed
+	# @return [void] no return
+  def initialize(user, record)
+    super
+    create_methods(Rails.configuration.policy[C_CLASS_NAME])
   end
-
-	def search?
-    curator? || system_admin?
-  end
-
-	def export_csv?
-    curator? || system_admin?
-  end
-
+	
 end

@@ -1,0 +1,166 @@
+defaults: &defaults
+  ApplicationPolicy:
+    index:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: true
+      curator: true
+      content_admin: true
+    show:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: true
+      curator: true
+      content_admin: true
+    view:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: true
+      curator: true
+      content_admin: true
+    all:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: true
+      curator: true
+      content_admin: true
+    list:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: true
+      curator: true
+      content_admin: true
+    history:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: true
+      curator: true
+      content_admin: true
+    create:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    new:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    update:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    edit:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    clone:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    branch:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    upgrade:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    impact:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: true
+      curator: true
+      content_admin: true
+    import:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    destroy:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    export_json:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    export_ttl:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    export_csv:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+  AuditTrailPolicy:
+    index:
+      sys_admin: true
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    search:
+      sys_admin: true
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+    export_csv:
+      sys_admin: true
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: true
+      content_admin: true
+
+development:
+  <<: *defaults
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults

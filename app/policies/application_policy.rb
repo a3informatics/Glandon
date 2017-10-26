@@ -1,94 +1,36 @@
 class ApplicationPolicy
   
-  C_CLASS_NAME = "ApplicationPolicy"
+  C_CLASS_NAME = self.name
   
   attr_reader :user, :record
 
+  # Required by pundit
   def initialize(user, record)
     @user = user
     @record = record
-  end
-
-  def index?
-    reader?
-  end
-
-  def show?
-    reader?
-  end
-
-  def view?
-    reader?
-  end
-
-  def all?
-    reader?
-  end
-
-  def list?
-    reader?
-  end
-
-  def history?
-    reader?
-  end
-
-  def create?
-    curator?
-  end
-
-  def new?
-    curator?
-  end
-
-  def update?
-    curator?
-  end
-
-  def edit?
-    curator?
-  end
-
-  def clone?
-    curator?
-  end
-
-  def branch?
-    curator?
-  end
-
-  def upgrade?
-    curator?
+    create_methods(Rails.configuration.policy[C_CLASS_NAME])
   end
   
-  def impact?
-    curator?
+	def create_methods(list)
+		list.each do |action, role_permission| 
+			# <action>?. Determines if the <action> is permitted.
+			#
+			# @return [Boolean] returns True if permitted, false otherwise
+			define_singleton_method :"#{action}?" do 
+				Rails.configuration.roles["roles"].each do |key, value| 
+	    		return true if role_permission["#{key}"].to_bool && @user.has_role?(key.to_sym)
+	    	end
+	    	return false
+	  	end
+  	end
   end
 
-  def import?
-    content_admin?
-  end
-
-  def destroy?
-    curator?
-  end
-
-  def export_json?
-    curator?
-  end
-
-  def export_ttl?
-    curator?
-  end
-  
-  def export_csv?
-    curator?
-  end
-  
+  # Require by pundit
   def scope
     Pundit.policy_scope!(user, record.class)
   end
 
+  # Required by pundit
   class Scope
     attr_reader :user, :scope
 
@@ -100,28 +42,6 @@ class ApplicationPolicy
     def resolve
       scope
     end
-  end
-
-private
-
-  def reader?
-    #@user.has_role? Role::C_READER or @user.has_role? Role::C_CURATOR or @user.has_role? Role::C_CONTENT_ADMIN
-    return @user.is_a_reader?
-  end
-
-  def curator?
-    #@user.has_role? Role::C_CURATOR or @user.has_role? Role::C_CONTENT_ADMIN
-    return @user.is_a_curator?
-  end
-
-  def content_admin?
-    #@user.has_role? Role::C_CONTENT_ADMIN
-    return @user.is_a_content_admin?
-  end
-
-  def system_admin?
-    #@user.has_role? Role::C_SYS_ADMIN
-    return @user.is_a_system_admin?
   end
 
 end
