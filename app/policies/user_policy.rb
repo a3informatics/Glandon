@@ -1,31 +1,15 @@
 class UserPolicy < ApplicationPolicy
 
-	def index?
-    system_admin?
-  end
-
-  def show?
-    system_admin?
-  end
-
-  def new?
-    system_admin?
-  end
-
-  def update?
-    system_admin?
-  end
-
-  def create?
-    system_admin?
-  end
-
-  def edit?
-    system_admin?
-  end
-
-  def destroy?
-    system_admin?
+	C_CLASS_NAME = self.name
+  
+	# Initialize. Add in the extra methods
+	#
+	# @param [User] user the user
+	# @param [Object] record the record being accessed
+	# @return [void] no return
+  def initialize(user, record)
+    super
+    create_methods(Rails.configuration.policy[C_CLASS_NAME])
   end
 
 end

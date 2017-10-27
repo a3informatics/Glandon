@@ -1,2 +1,2 @@
-class IsoNamespacePolicy < IsoPolicy
+class IsoNamespacePolicy < ApplicationPolicy
 end

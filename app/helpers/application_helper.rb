@@ -23,6 +23,11 @@ module ApplicationHelper
 	  end
 	end
 
+	def link_group_on_role(klasses)
+		klasses.each { |klass| return false if !policy(klass).index? }
+		return true
+	end
+
 	# Get Current Item
   #
   # @param items [Array] array of items one of which is the current item

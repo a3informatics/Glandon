@@ -4,13 +4,20 @@ class ApplicationPolicy
   
   attr_reader :user, :record
 
-  # Required by pundit
+	# Initialize. This is required by pundit.
+	#
+	# @param [User] user the user
+	# @param [Object] record the record being accessed
+	# @return [void] no return
   def initialize(user, record)
     @user = user
     @record = record
     create_methods(Rails.configuration.policy[C_CLASS_NAME])
   end
   
+	# Create Methods. Create the <action>? methods based on the configuration file
+	#
+	# @return [void] no return
 	def create_methods(list)
 		list.each do |action, role_permission| 
 			# <action>?. Determines if the <action> is permitted.

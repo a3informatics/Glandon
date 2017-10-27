@@ -16,7 +16,27 @@ describe IsoManagedPolicy do
     ua_destroy
   end
   
-  context "for a reader" do
+  context "for a term reader" do
+
+    let (:user) { @user_tr }
+
+    it "denies access" do
+      deny_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :status]
+    end
+
+  end
+
+  context "for a term curator" do
+
+    let (:user) { @user_tc }
+
+    it "denies access" do
+      deny_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :status]
+    end
+
+  end
+
+	context "for a reader" do
 
     let (:user) { @user_r }
 

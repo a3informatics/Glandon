@@ -10,59 +10,29 @@ describe BiomedicalConceptTemplatePolicy do
 
   before :all do
     ua_create
+  	@role_to_user = construct_roles_to_user
+  	@list = contruct_default_list  
   end
 
   after :all do
     ua_destroy
   end
-  
-  context "for a reader" do
 
-    let (:user) { @user_r }
+	["sys_admin", "term_reader", "term_curator", "reader", "curator", "content_admin"].each do |role|
+	
+		context "#{role}" do
 
-    it "allows access" do
-      allow_list [:index, :show, :view, :list, :history]
-    end
+			let (:user) { @role_to_user[role] }
 
-    it "denies access" do
-      deny_list [:create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import]
-    end
+  		it "allows access" do
+	  		allow_list @list[role][:allow]
+  		end
 
-  end
+  		it "denies access" do
+   			deny_list @list[role][:deny]
+  		end
 
-  context "for a curator" do
-
-    let (:user) { @user_c }
-
-    it "allows access" do
-      allow_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl]
-    end
-
-    it "denies access" do
-      deny_list [:import]
-    end
-
-  end
-
-  context "for a content admin" do
-
-    let (:user) { @user_ca }
-
-    it "allows access" do
-      allow_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import]
-    end
-
-  end
-
-  describe "for a system admin" do
-
-    let (:user) { @user_sa }
-
-    it "denies access" do
-      @user_sa.remove_role :reader # Just for this test
-      deny_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import]
-      @user_sa.add_role :reader
-    end
+  	end
 
   end
 

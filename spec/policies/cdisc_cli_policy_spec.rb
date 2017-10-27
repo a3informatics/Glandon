@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe ThesaurusPolicy do
+describe CdiscCliPolicy do
 
   include UserAccountHelpers
   include PermissionsHelpers
 
-  subject { described_class.new(user, thesaurus) }
-  let (:thesaurus) { Thesaurus.new }
+  subject { described_class.new(user, cdisc_cli) }
+  let (:cdisc_cli) { CdiscCli.new }
 
   before :all do
     ua_create

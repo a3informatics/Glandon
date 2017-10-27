@@ -1,0 +1,3 @@
+<% if policy(klass).index? %>
+		<li><a id="<%= link_id %>" href="<%= link_path %>"><%= link_text %></a></li>
+<% end %>

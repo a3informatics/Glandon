@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe ThesaurusPolicy do
+describe SdtmModelPolicy do
 
   include UserAccountHelpers
   include PermissionsHelpers
 
-  subject { described_class.new(user, thesaurus) }
-  let (:thesaurus) { Thesaurus.new }
+  subject { described_class.new(user, sdtm_model) }
+  let (:sdtm_model) { SdtmModel.new }
 
   before :all do
     ua_create

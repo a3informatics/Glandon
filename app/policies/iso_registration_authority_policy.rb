@@ -1,2 +1,2 @@
-class IsoRegistrationAuthorityPolicy < IsoPolicy
+class IsoRegistrationAuthorityPolicy < ApplicationPolicy
 end

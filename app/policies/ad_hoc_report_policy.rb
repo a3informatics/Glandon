@@ -1,39 +1,15 @@
 class AdHocReportPolicy < ApplicationPolicy
 
-	def index?
-    curator?
-  end
-
-  def new?
-    content_admin?
-  end
-
-  def create?
-    content_admin?
-  end
-
-  def run_start?
-    curator?
-  end
-
-  def run_progress?
-    curator?
-  end
-
-  def run_results?
-    curator?
-  end
-
-  def results?
-    curator?
-  end
-
-  def show?
-    curator?
-  end
-
-  def destroy?
-    content_admin?
+	C_CLASS_NAME = self.name
+  
+	# Initialize. Add in the extra methods
+	#
+	# @param [User] user the user
+	# @param [Object] record the record being accessed
+	# @return [void] no return
+  def initialize(user, record)
+    super
+    create_methods(Rails.configuration.policy[C_CLASS_NAME])
   end
 
 end

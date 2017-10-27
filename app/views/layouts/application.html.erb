@@ -99,7 +99,7 @@
                   <%= "[#{current_user.role_list_stripped}]"%>
                 <% end %>
               </p>
-              <% if current_user.is_a_system_admin? %>
+              <% if policy(User).index? %>
                 <li><a id="users_button" href="/users"><span class="glyphicon glyphicon-user"></span>&nbsp;</a></li>
               <% end %>
               <li>
@@ -127,7 +127,7 @@
             <ul class="nav"> 
               <li><a id="main_nav_d" href="/">Dashboard</a></li>
             </ul>
-            <% if current_user.is_a_system_admin? %>
+            <% if current_user.has_role?(:sys_admin) %>
               <ul class="nav"> 
                 <li><a id="main_nav_in" href="/iso_namespaces">Namespaces</a></li>
                 <li><a id="main_nav_ira" href="/iso_registration_authorities">Registration Authorities</a></li>
@@ -136,22 +136,22 @@
                 <li><a id="main_nav_at1" href="/audit_trail">Audit Trail</a></li>
   	 		      </ul>
             <% end %>
-            <% if current_user.is_a_curator? %>
+            <% if current_user.has_role?(:curator) || current_user.has_role?(:content_admin) %>
               <ul class="nav"> 
-                <% if current_user.is_a_content_admin? %>
+                <% if current_user.has_role?(:content_admin) %>
                   <li><a id="main_nav_u" href="/uploads">Upload</a></li>
                   <li><a id="main_nav_bj" href="/backgrounds">Background Jobs</a></li>
-	                <% if !current_user.is_a_system_admin? %>
+	                <% if !current_user.has_role?(:sys_admin) %>
 		                <li><a id="main_nav_im2" href="/iso_managed">Managed Items</a></li>
 	      					<% end %>
       					<% end %>
-	              <% if !current_user.is_a_system_admin? %>
+	              <% if !current_user.has_role?(:sys_admin) %>
                 	<li><a id="main_nav_at2" href="/audit_trail">Audit Trail</a></li>
       					<% end %>
                 <li><a id="main_nav_ahr" href="/ad_hoc_reports">Ad Hoc Reports</a></li>
               </ul>
             <% end %>
-            <% if current_user.is_a_reader? %>
+            <% if current_user.has_role?(:reader) || current_user.has_role?(:curator) || current_user.has_role?(:content_admin) %>
               <ul class="nav"> 
                 <li><a id="main_nav_ics" href="/iso_concept_systems">Classifications (tags)</a></li>
                 <li><a id="main_nav_ma" href="/markdown_engines">Markdown</a></li>

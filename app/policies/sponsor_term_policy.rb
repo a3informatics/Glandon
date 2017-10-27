@@ -1,2 +1,0 @@
-class SponsorTermPolicy < ApplicationPolicy
-end

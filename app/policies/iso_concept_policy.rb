@@ -1,3 +1,2 @@
 class IsoConceptPolicy < ApplicationPolicy
-
 end

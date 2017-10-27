@@ -1,19 +1,15 @@
 class TokenPolicy < ApplicationPolicy
 
-	def index?
-    system_admin?
+	C_CLASS_NAME = self.name
+  
+	# Initialize. Add in the extra methods
+	#
+	# @param [User] user the user
+	# @param [Object] record the record being accessed
+	# @return [void] no return
+  def initialize(user, record)
+    super
+    create_methods(Rails.configuration.policy[C_CLASS_NAME])
   end
-
-	def release?
-    curator? || system_admin?
-  end
-
-  def status?
-    curator?
-  end
-
-  def extend_token?
-    curator?
-  end  	
 
 end
