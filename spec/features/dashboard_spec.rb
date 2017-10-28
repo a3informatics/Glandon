@@ -15,13 +15,27 @@ describe "Dashboard", :type => :feature do
     ua_destroy
   end
 
+  it "displays the menu, terminology reader" do
+    ua_term_reader_login
+  #save_and_open_page
+    expect(page).to have_link("main_nav_te")
+    expect(page).to have_link("main_nav_ct")
+  end
+
+  it "displays the menu, sys admin" do
+    ua_term_curator_login
+  #save_and_open_page
+    expect(page).to have_link("main_nav_te")
+    expect(page).to have_link("main_nav_ct")
+  end
+
   it "displays the menu, sys admin" do
     ua_sys_admin_login
   #save_and_open_page
     expect(page).to have_link("main_nav_d")
     expect(page).to have_link("main_nav_in")
 		expect(page).to have_link("main_nav_ira")
-		expect(page).to have_link("main_nav_im1")
+		expect(page).to have_link("main_nav_im")
 		expect(page).to have_link("main_nav_el")
 		expect(page).to have_link("main_nav_at1")
     expect(page).to have_link("main_nav_ma")
@@ -40,8 +54,8 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_link("main_nav_d")
 		expect(page).to have_link("main_nav_u")
 		expect(page).to have_link("main_nav_bj")
-		expect(page).to have_link("main_nav_im2")
-		expect(page).to have_link("main_nav_at2")
+		expect(page).to have_link("main_nav_im")
+		expect(page).to have_link("main_nav_at")
 		expect(page).to have_link("main_nav_ahr")
     expect(page).to have_link("main_nav_ics")
     expect(page).to have_link("main_nav_ma")

@@ -248,9 +248,9 @@ defaults: &defaults
       reader: false
       curator: false
       content_admin: true
-  DashbaordPolicy:
+  DashboardPolicy:
     index:
-      sys_admin: false
+      sys_admin: true
       term_reader: true
       term_curator: true
       reader: true

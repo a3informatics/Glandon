@@ -20,8 +20,8 @@ describe DashboardPolicy do
 
     let (:user) { @user_r }
 
-		it "denies access" do
-      deny_list [:index, :new, :create, :run_start, :run_progress, :run_results, :results, :show, :destroy]
+    it "allows access" do
+      allow_list [:index]
     end
 
   end
@@ -30,8 +30,8 @@ describe DashboardPolicy do
 
     let (:user) { @user_tr }
 
-    it "denies access" do
-      deny_list [:index, :new, :create, :run_start, :run_progress, :run_results, :results, :show, :destroy]
+    it "allows access" do
+      allow_list [:index]
     end
 
   end
@@ -40,8 +40,8 @@ describe DashboardPolicy do
 
     let (:user) { @user_tc }
 
-    it "denies access" do
-      deny_list [:index, :new, :create, :run_start, :run_progress, :run_results, :results, :show, :destroy]
+    it "allows access" do
+      allow_list [:index]
     end
 
   end
@@ -50,12 +50,8 @@ describe DashboardPolicy do
 
     let (:user) { @user_c }
 
-    it "deny access" do
-      deny_list [:new, :create, :destroy]
-    end
-
     it "allows access" do
-      allow_list [:index, :run_start, :run_progress, :run_results, :results, :show]
+      allow_list [:index]
     end
 
   end
@@ -65,7 +61,7 @@ describe DashboardPolicy do
     let (:user) { @user_ca }
 
     it "allows access" do
-      allow_list [:index, :new, :create, :run_start, :run_progress, :run_results, :results, :show, :destroy]
+      allow_list [:index]
     end
 
   end
@@ -75,7 +71,7 @@ describe DashboardPolicy do
     let (:user) { @user_sa }
 
     it "allows access" do
-      deny_list [:index, :new, :create, :run_start, :run_progress, :run_results, :results, :show, :destroy]
+      allow_list [:index]
     end
 
   end

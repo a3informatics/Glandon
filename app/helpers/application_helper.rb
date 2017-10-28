@@ -24,8 +24,8 @@ module ApplicationHelper
 	end
 
 	def link_group_on_role(klasses)
-		klasses.each { |klass| return false if !policy(klass).index? }
-		return true
+		klasses.each { |klass| return true if policy(klass).index? }
+		return false
 	end
 
 	# Get Current Item

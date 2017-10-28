@@ -71,7 +71,7 @@ module UserAccountHelpers
   	click_link "logoff_button"
   end
 
-  def generic_login(email, password)
+  def ua_generic_login(email, password)
   	visit "/users/sign_in"
     fill_in "Email", with: email
     fill_in "Password", with: password

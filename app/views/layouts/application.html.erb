@@ -107,7 +107,9 @@
                   <span class="glyphicon glyphicon-print"></span>
                 <% end %>
               </li>
-              <li><a id="settings_button" href="<%= user_settings_path %>"><span class="glyphicon glyphicon-cog"></span>&nbsp;</a></li>
+              <% if policy(UserSetting).index? %>
+              	<li><a id="settings_button" href="<%= user_settings_path %>"><span class="glyphicon glyphicon-cog"></span>&nbsp;</a></li>
+              <% end %>
               <li><a id="home_button" href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;</a></li>
               <li>
                 <%= link_to destroy_user_session_path, :method => :delete, id: 'logoff_button' do %>
@@ -124,53 +126,74 @@
             <div>
               <%= session[:breadcrumbs].html_safe %>
             </div>
-            <ul class="nav"> 
-              <li><a id="main_nav_d" href="/">Dashboard</a></li>
-            </ul>
-            <% if current_user.has_role?(:sys_admin) %>
+            <% if link_group_on_role([Dashboard]) %>
+            	<ul class="nav"> 
+              	<%= render partial: "shared/link_on_user_role", :locals => {:klass => Dashboard, link_id: "main_nav_d", 
+         					link_path: dashboard_index_path, link_text: "Dashboard"} %>
+            	</ul>
+            <% end %>
+            <% if link_group_on_role([IsoNamespace, IsoRegistrationAuthority, IsoManaged, Token, AuditTrail]) %>
               <ul class="nav"> 
-                <li><a id="main_nav_in" href="/iso_namespaces">Namespaces</a></li>
-                <li><a id="main_nav_ira" href="/iso_registration_authorities">Registration Authorities</a></li>
-                <li><a id="main_nav_im1" href="/iso_managed">Managed Items</a></li>
-                <li><a id="main_nav_el" href="/tokens">Edit Locks</a></li>
-                <li><a id="main_nav_at1" href="/audit_trail">Audit Trail</a></li>
+         				<%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoNamespace, link_id: "main_nav_in", 
+         					link_path: iso_namespaces_path, link_text: "Namespaces"} %>
+         				<%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoRegistrationAuthority, link_id: "main_nav_ira", 
+         					link_path: iso_registration_authorities_path, link_text: "Registration Authorities"} %>
+         				<%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoManaged, link_id: "main_nav_im", 
+         					link_path: iso_managed_index_path, link_text: "Managed Items"} %>
+         				<%= render partial: "shared/link_on_user_role", :locals => {:klass => Token, link_id: "main_nav_el", 
+         					link_path: tokens_path, link_text: "Edit Locks"} %>
+         				<%= render partial: "shared/link_on_user_role", :locals => {:klass => AuditTrail, link_id: "main_nav_at", 
+         					link_path: audit_trail_index_path, link_text: "Audit Trail"} %>
   	 		      </ul>
             <% end %>
-            <% if current_user.has_role?(:curator) || current_user.has_role?(:content_admin) %>
+            <% if link_group_on_role([Upload, Background, AdHocReport]) %>
               <ul class="nav"> 
-                <% if current_user.has_role?(:content_admin) %>
-                  <li><a id="main_nav_u" href="/uploads">Upload</a></li>
-                  <li><a id="main_nav_bj" href="/backgrounds">Background Jobs</a></li>
-	                <% if !current_user.has_role?(:sys_admin) %>
-		                <li><a id="main_nav_im2" href="/iso_managed">Managed Items</a></li>
-	      					<% end %>
-      					<% end %>
-	              <% if !current_user.has_role?(:sys_admin) %>
-                	<li><a id="main_nav_at2" href="/audit_trail">Audit Trail</a></li>
-      					<% end %>
-                <li><a id="main_nav_ahr" href="/ad_hoc_reports">Ad Hoc Reports</a></li>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => Upload, link_id: "main_nav_u", 
+         					link_path: uploads_path, link_text: "Upload"} %>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => Background, link_id: "main_nav_bj", 
+         					link_path: backgrounds_path, link_text: "Background Jobs"} %>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => AdHocReport, link_id: "main_nav_ahr", 
+         					link_path: ad_hoc_reports_path, link_text: "Ad Hoc Reports"} %>
               </ul>
             <% end %>
-            <% if current_user.has_role?(:reader) || current_user.has_role?(:curator) || current_user.has_role?(:content_admin) %>
+            <% if link_group_on_role([IsoConceptSystem, MarkdownEngine]) %>
               <ul class="nav"> 
-                <li><a id="main_nav_ics" href="/iso_concept_systems">Classifications (tags)</a></li>
-                <li><a id="main_nav_ma" href="/markdown_engines">Markdown</a></li>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoConceptSystem, link_id: "main_nav_ics", 
+         					link_path: iso_concept_systems_path, link_text: "Tags"} %>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => MarkdownEngine, link_id: "main_nav_ma", 
+         					link_path: markdown_engines_path, link_text: "Markdown"} %>
               </ul>
+            <% end %>
+            <% if link_group_on_role([Thesaurus, CdiscTerm]) %>
               <ul class="nav"> 
-                <li><a id="main_nav_te" href="/thesauri">Terminology</a></li>
-                <li><a id="main_nav_ct" href="/cdisc_terms/history">CDISC Terminology</a></li>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_te", 
+         					link_path: thesauri_index_path, link_text: "Terminology"} %>
+         				<%= render partial: "shared/link_on_user_role", :locals => {:klass => CdiscTerm, link_id: "main_nav_ct", 
+         					link_path: history_cdisc_terms_path, link_text: "CDISC Terminology"} %>
               </ul>
+            <% end %>
+            <% if link_group_on_role([BiomedicalConceptTemplate, BiomedicalConcept]) %>
               <ul class="nav"> 
-                <li><a id="main_nav_bct" href="/biomedical_concept_templates">Biomedical Concept Templates</a></li>
-                <li><a id="main_nav_bc" href="/biomedical_concepts">Biomedical Concepts</a></li>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => BiomedicalConceptTemplate, link_id: "main_nav_bct", 
+         					link_path: biomedical_concept_templates_path, link_text: "Biomedical Concept Templates"} %>
+         				<%= render partial: "shared/link_on_user_role", :locals => {:klass => BiomedicalConcept, link_id: "main_nav_bc", 
+         					link_path: biomedical_concepts_path, link_text: "Biomedical Concepts"} %>
               </ul>
+            <% end %>
+            <% if link_group_on_role([Form]) %>
               <ul class="nav"> 
-                <li><a id="main_nav_f" href="/forms">Forms</a></li>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => Form, link_id: "main_nav_f", 
+         					link_path: forms_path, link_text: "Form"} %>
               </ul>
+            <% end %>
+            <% if link_group_on_role([SdtmModel, SdtmIg, SdtmUserDomain]) %>
               <ul class="nav"> 
-                <li><a id="main_nav_sm" href="/sdtm_models/history">CDISC SDTM Model</a></li>
-                <li><a id="main_nav_ig" href="/sdtm_igs/history">CDISC SDTM IGs</a></li>
-                <li><a id="main_nav_sd" href="/sdtm_user_domains">Domains</a></li>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmModel, link_id: "main_nav_sm", 
+         					link_path: history_sdtm_models_path, link_text: "CDISC SDTM Model"} %>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmIg, link_id: "main_nav_ig", 
+         					link_path: history_sdtm_igs_path, link_text: "CDISC SDTM IGs"} %>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmUserDomain, link_id: "main_nav_sd", 
+         					link_path: sdtm_user_domains_path, link_text: "Domains"} %>
               </ul>
             <% end %>  
           </div>
