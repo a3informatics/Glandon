@@ -31,13 +31,21 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Is Only System Admin
+  #
+  # @return [Boolean] returns true if user only has sys admin role
+  def is_only_sys_admin
+  	return true if self.role_ids.count == 1 && self.has_role?(:sys_admin)
+  	return false
+  end
+
   # User roles as an array of strings
   #
   # @return [array] Array of roles (strings)
   def role_list
     result = []
     Role.all.each do |role|
-      result << Role.to_display(role.name) if self.role_ids.include?(role.id)
+      result << Role.to_display(role.name.to_sym) if self.role_ids.include?(role.id)
     end
     return result 
   end

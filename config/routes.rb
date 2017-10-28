@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     collection do
       get :view
       get :database
+      get :admin
     end
   end
   resources :iso_concept_systems do

@@ -4,10 +4,14 @@ class DashboardController < ApplicationController
   
   def index
   	authorize Dashboard
-    results = IsoRegistrationState.count()
-    @statusCounts = []
-    results.each do |key, value|
-      @statusCounts << {:y => key, :a => value}
+  	if current_user.is_only_sys_admin
+  		redirect_to admin_dashboard_index_path
+  	else
+    	results = IsoRegistrationState.count()
+    	@statusCounts = []
+    	results.each do |key, value|
+      	@statusCounts << {:y => key, :a => value}
+    	end
     end
   end
 
@@ -19,9 +23,13 @@ class DashboardController < ApplicationController
   end
 
   def database
-  	authorize Dashboard, :view?
+  	authorize Dashboard
     @triples = Dashboard.find(params[:id], params[:namespace])
     render json: @triples
+  end
+
+  def admin
+  	authorize Dashboard
   end
 
 private

@@ -24,7 +24,7 @@ class ApplicationPolicy
 			#
 			# @return [Boolean] returns True if permitted, false otherwise
 			define_singleton_method :"#{action}?" do 
-				Rails.configuration.roles["roles"].each do |key, value| 
+				Rails.configuration.roles[:roles].each do |key, value| 
 	    		return true if role_permission["#{key}"].to_bool && @user.has_role?(key.to_sym)
 	    	end
 	    	return false

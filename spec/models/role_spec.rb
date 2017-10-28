@@ -25,11 +25,27 @@ describe Role do
 	end
 
 	it "returns a role as a string" do
-    expect(Role.to_display(:sys_admin)).to eq("System Admin")
+    expect(Role.to_display(:sys_admin)).to eq(Rails.configuration.roles[:roles][:sys_admin][:display_text])
   end
 
 	it "returns a role as a string for an invalid role" do
     expect(Role.to_display(:not_used)).to eq("")
+  end
+
+	it "provides a role description" do
+    expect(Role.description(:reader)).to eq(Rails.configuration.roles[:roles][:reader][:description])
+  end
+
+	it "provides a role description, invalid role" do
+    expect(Role.description(:reader_x)).to eq("")
+  end
+
+	it "detects if role can be combined with sys admin, no" do
+    expect(Role.with_sys_admin(:reader)).to eq(false)
+  end
+
+	it "detects if role can be combined with sys admin, yes" do
+    expect(Role.with_sys_admin(:content_admin)).to eq(true)
   end
 
 end

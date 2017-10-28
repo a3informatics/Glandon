@@ -14,7 +14,7 @@ class Role < ActiveRecord::Base
   class << self
 
   	# Build enabled/disabled helper methods
-  	Rails.configuration.roles["roles"].each do |k, v| 
+  	Rails.configuration.roles[:roles].each do |k, v| 
 			
 			# <role>_enabled?. Determines if the <role> is enabled.
   		#
@@ -33,12 +33,28 @@ class Role < ActiveRecord::Base
     end
   end
 
+  # With System Admin
+  #
+  # @return [Boolean] return true if role can be combined with the system admin role.
+  def self.with_sys_admin(role)
+  	return Rails.configuration.roles[:roles][role][:with_sys_admin] if Rails.configuration.roles[:roles].has_key?(role) 
+  	return ""
+  end
+
+  # Description
+  #
+  # @return [String] returns the role description if role valid else blank.
+  def self.description(role)
+  	return Rails.configuration.roles[:roles][role][:description] if Rails.configuration.roles[:roles].has_key?(role) 
+  	return ""
+  end
+
   # To Display. Return role as a human readable string 
   #
   # @param [Symbol] role the role
   # @return [String] The role string if found, otherwise empty
   def self.to_display(role)
-  	return Rails.configuration.roles["roles"][role.to_s]["display_text"] if Rails.configuration.roles["roles"].has_key?(role.to_s)
+  	return Rails.configuration.roles[:roles][role][:display_text] if Rails.configuration.roles[:roles].has_key?(role)
   	return ""
   end
 
@@ -48,7 +64,7 @@ class Role < ActiveRecord::Base
   def self.list
     results = {}
     Role.all.each do |x|
-     results[x.name.to_sym] = { id: x.id, display_text: Rails.configuration.roles["roles"][x.name]["display_text"] }
+     results[x.name.to_sym] = { id: x.id, display_text: Rails.configuration.roles[:roles][x.name.to_sym][:display_text] }
     end
     return results
   end

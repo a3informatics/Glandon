@@ -9,6 +9,15 @@ describe User do
     AuditTrail.delete_all
   end
 
+  it "determines if user is only a system admin" do
+  	user = User.create email: "fred@fred.com", password: "12345678"
+  	user.add_role :sys_admin
+  	expect(user.is_only_sys_admin).to eq(false)
+  	user.remove_role :reader
+  	expect(user.is_only_sys_admin).to eq(true)
+  	user.destroy
+  end
+
   it "allows a user's roles to be listed" do
     user = User.new
     user.add_role :reader
