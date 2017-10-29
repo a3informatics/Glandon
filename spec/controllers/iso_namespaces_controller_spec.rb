@@ -6,9 +6,9 @@ describe IsoNamespacesController do
   
   describe "Authrorized User" do
   	
-    login_sys_admin
+    login_curator
 
-    it "sets database" do
+    before :each do
       clear_triple_store
       load_test_file_into_triple_store("iso_namespace_fake.ttl")
     end
@@ -28,13 +28,17 @@ describe IsoNamespacesController do
     end
 
     it 'creates namespace' do
+      expect(IsoNamespace.all.count).to eq(2)
       post :create, iso_namespace: { name: "XXX Pharma", shortName: "XXX" }
       expect(IsoNamespace.all.count).to eq(3)
       expect(response).to redirect_to("/iso_namespaces")
     end
 
     it 'fails to create an existing namespace' do
-      post :create, iso_namespace: { name: "XXX Pharma", shortName: "AAA" }
+      expect(IsoNamespace.all.count).to eq(2)
+      post :create, iso_namespace: { name: "YYY Pharma", shortName: "YYY" }
+      expect(IsoNamespace.all.count).to eq(3)
+      post :create, iso_namespace: { name: "YYY Pharma", shortName: "YYY" }
       expect(IsoNamespace.all.count).to eq(3)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/iso_namespaces/new")
