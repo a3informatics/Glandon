@@ -124,23 +124,40 @@ describe TokensController do
 
     end
 
-    it "status" do
-      get :status, :id => 6
-      expect(response).to redirect_to("/")
+    it "provides the token status" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      remaining = @token1.remaining
+      post :status, :id => @token1.id
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")  
+      result = JSON.parse(response.body)
+      expect(result["running"]).to eq(true)
+      expect(result["remaining"]).to eq(remaining)
     end
 
   end
 
-  describe "Unauthorized User" do
+  describe "Not logged in" do
     
     it "index" do
       get :index
       expect(response).to redirect_to("/users/sign_in")
     end
 
+    it "status" do
+      post :status, :id => 6
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "extend token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :extend_token, :id => 6
+      expect(response.status).to eq(401)
+    end
+
   end
 
-  describe "Not Sys Admin User" do
+  describe "Curator User" do
     
     login_curator
    
@@ -179,7 +196,7 @@ describe TokensController do
 
     it "index" do
       get :index
-      expect(response).to redirect_to("/")
+      expect(response).to render_template("index") # Tested above so don't repeat
     end
 
     it "allows the staus of a token to be obtained" do

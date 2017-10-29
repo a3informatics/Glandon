@@ -72,7 +72,7 @@ defaults: &defaults
         '12': 12
       default_value: 8
       label: Terminology Versions Displayed
-      description: Number of terminologies to be displayed in change tables
+      description: Number of terminologies to be displayed in change tables.
 
 development:
   <<: *defaults

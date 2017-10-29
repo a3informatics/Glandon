@@ -4,20 +4,24 @@ describe "ISO Registration Authority", :type => :feature do
   
   include PauseHelpers
   include DataHelpers
+  include UserAccountHelpers
 
   before :all do
     clear_triple_store
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    ua_create
+  end 
+
+  after :all do
+    ua_destroy
   end 
 
   before :each do
-    user = FactoryGirl.create(:user)
-    user.add_role :sys_admin
-    visit '/users/sign_in'
-    fill_in 'Email', with: 'user@example.com'
-    fill_in 'Password', with: 'example1234'
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully'  
+    ua_content_admin_login
+  end
+
+  after :each do
+    ua_logoff
   end
 
   describe "View", :type => :feature do

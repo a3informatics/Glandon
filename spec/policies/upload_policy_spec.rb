@@ -74,8 +74,8 @@ describe UploadPolicy do
 
     let (:user) { @user_sa }
 
-    it "allows access" do
-      allow_list [:index, :create]
+    it "deny access" do
+      deny_list [:index, :create]
     end
 
   end

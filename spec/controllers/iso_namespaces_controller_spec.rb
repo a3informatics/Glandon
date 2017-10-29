@@ -54,6 +54,33 @@ describe IsoNamespacesController do
 
   describe "Unauthorized User" do
     
+    login_sys_admin
+
+    it "index registration state" do
+      get :index
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it 'makes a registration state current' do
+      post :new
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it 'creates namespace' do
+      post :create, iso_namespace: { name: "XXX Pharma", shortName: "XXX" }
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+  end
+
+  describe "Not logged in" do
+    
     it "index namespace" do
       get :index
       expect(response).to redirect_to("/users/sign_in")

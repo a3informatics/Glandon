@@ -32,7 +32,7 @@ describe "Tags", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  
-      click_link 'Classifications (tags)'
+      click_link 'Tags'
       expect(page).to have_content 'Classifications'  
       click_link 'New'
       fill_in 'iso_concept_system_label', with: 'A New tag System'
@@ -51,7 +51,7 @@ describe "Tags", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  
-      click_link 'Classifications (tags)'
+      click_link 'Tags'
       expect(page).to have_content 'Classifications'  
       find(:xpath, "//tr[contains(.,'A New tag System')]/td/a", :text => 'Show').click
       expect(page).to have_content 'A New tag System'
@@ -73,7 +73,7 @@ describe "Tags", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  
-      click_link 'Classifications (tags)'
+      click_link 'Tags'
       expect(page).to have_content 'Classifications'  
       find(:xpath, "//tr[contains(.,'A New tag System')]/td/a", :text => 'Show').click
       expect(page).to have_content 'A New tag System'
@@ -95,7 +95,7 @@ describe "Tags", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  
-      click_link 'Classifications (tags)'
+      click_link 'Tags'
       expect(page).to have_content 'Classifications'  
       find(:xpath, "//tr[contains(.,'A New tag System')]/td/a", :text => 'Show').click
       expect(page).to have_content 'A New tag System'
@@ -112,7 +112,7 @@ describe "Tags", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  
-      click_link 'Classifications (tags)'
+      click_link 'Tags'
       expect(page).to have_content 'Classifications'  
       find(:xpath, "//tr[contains(.,'A New tag System')]/td/a", :text => 'Show').click
       expect(page).to have_content 'A New tag System'
@@ -129,7 +129,7 @@ describe "Tags", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  
-      click_link 'Classifications (tags)'
+      click_link 'Tags'
       expect(page).to have_content 'Classifications'  
       find(:xpath, "//tr[contains(.,'A New tag System')]/td/a", :text => 'Show').click
       expect(page).to have_content 'A New tag System'
@@ -144,7 +144,7 @@ describe "Tags", :type => :feature do
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'  
-      click_link 'Classifications (tags)'
+      click_link 'Tags'
       expect(page).to have_content 'Classifications'  
       find(:xpath, "//tr[contains(.,'A New tag System')]/td/a", :text => 'Delete').click
       ui_click_ok("Are you sure?")

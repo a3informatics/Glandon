@@ -31,11 +31,11 @@ describe TokenPolicy do
     let (:user) { @user_c }
 
     it "allows access" do
-      allow_list [:release, :status, :extend_token]
+      allow_list [:index, :release, :status, :extend_token]
     end
 
     it "denies access" do
-      deny_list [:index]
+      deny_list []
     end
 
   end
@@ -45,11 +45,11 @@ describe TokenPolicy do
     let (:user) { @user_ca }
 
     it "allows access" do
-      allow_list [:release, :status, :extend_token]
+      allow_list [:index, :release, :status, :extend_token]
     end
 
     it "denies access" do
-      deny_list [:index]
+      deny_list []
     end
 
   end
@@ -59,11 +59,11 @@ describe TokenPolicy do
     let (:user) { @user_sa }
 
     it "allows access" do
-      allow_list [:index, :release]
+      allow_list [:index, :release, :status]
     end
 
     it "denies access" do
-      deny_list [:status, :extend_token]
+      deny_list [:extend_token]
     end
 
   end

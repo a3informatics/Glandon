@@ -11,7 +11,7 @@ describe IsoRegistrationAuthoritiesController do
   
   describe "Authrorized User" do
   	
-    login_sys_admin
+    login_curator
 
     it "index registration authorities" do
       ras = IsoRegistrationAuthority.all
@@ -49,6 +49,34 @@ describe IsoRegistrationAuthoritiesController do
   end
 
   describe "Unauthorized User" do
+    
+    login_sys_admin
+
+    it "index registration authority" do
+      get :index
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it "new registration authority" do
+      get :new
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it 'creates namespace' do
+      namespaces = IsoNamespace.all
+      post :create, iso_registration_authority: { :namespaceId => namespaces[0].id, :number => "222233334" }
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+  end
+
+  describe "Not logged in" do
     
     it "index registration authority" do
       get :index

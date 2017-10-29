@@ -95,7 +95,7 @@ describe "Breadcrumb", :type => :feature do
     end
     
     it "has Audit Trail breadcrumbs" do
-      next_link('main_nav_at1', 'Index: Audit Trail', "Audit Trail", "", "") # Two links, use ids to get both
+      next_link('main_nav_at', 'Index: Audit Trail', "Audit Trail", "", "") # Two links, use ids to get both
     end
     
     it "has Ad Hoc Reports breadcrumbs" do
@@ -104,8 +104,8 @@ describe "Breadcrumb", :type => :feature do
       next_link_crumb(1, 'Index: Ad-Hoc Reports', "Ad-hoc Reports", "", "")
     end
 
-    it "has Classifications (tags) breadcrumbs" do
-      next_link('Classifications (tags)', 'Classifications', "Classifications", "", "")
+    it "has Tags breadcrumbs" do
+      next_link('Tags', 'Classifications', "Classifications", "", "")
       next_link('New', 'New Classification', "Classifications", "New", "")
       next_link_crumb(1, 'Classifications', "Classifications", "", "")
       next_link('View', 'Tag Viewer', "Classifications", "View", "")
@@ -224,9 +224,10 @@ describe "Breadcrumb", :type => :feature do
 
     it "has users breadcrumbs" do
       next_link('users_button', 'Users', "Users", "", "")
+    save_and_open_page
       next_link('New', 'New: User', "Users", "New", "")
       next_link_crumb(1, 'Users', "Users", "", "")
-      #save_and_open_page
+    #save_and_open_page
       next_link_table("curator@example.com", "Edit", "Edit User:", "Users", "", "")
     end
 

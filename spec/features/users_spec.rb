@@ -16,11 +16,7 @@ describe "Users", :type => :feature do
 
     it "allows valid credentials and logs" do
       audit_count = AuditTrail.count
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
+      ua_reader_login
       expect(AuditTrail.count).to eq(audit_count + 1)
     end
 
@@ -36,12 +32,8 @@ describe "Users", :type => :feature do
 
     it "allows logout and logs" do
       audit_count = AuditTrail.count
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
-      click_link 'logoff_button'
+      ua_reader_login
+      ua_logoff
       expect(AuditTrail.count).to eq(audit_count + 2)
     end
 
@@ -77,40 +69,17 @@ describe "Users", :type => :feature do
     end
 
     it "allows correct reader access" do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
-      expect(page).to have_link 'settings_button'
-      expect(page).to have_no_link 'users_button'
-      expect(page).to have_no_link 'Registration Authorities'
-      expect(page).to have_no_link 'Namespaces'
-      #expect(page).to have_no_link 'Scoped Identifiers'
-      #expect(page).to have_no_link 'Registration States'
-      expect(page).to have_no_link 'Audit Trail'
-      expect(page).to have_no_link 'Upload'
-      expect(page).to have_no_link 'Background Jobs'
-      expect(page).to have_link 'Classifications (tags)'
-      expect(page).to have_content 'reader@example.com [Reader]'
+    	@user_r.name = "Mr Reader"
+    	@user_r.save
+      ua_reader_login
+      expect(page).to have_content 'Mr Reader [Reader]'
     end
 
     it "allows correct sys admin access" do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_link 'settings_button'
-      expect(page).to have_link 'users_button'
-      expect(page).to have_link 'Registration Authorities'
-      expect(page).to have_link 'Namespaces'
-      #expect(page).to have_link 'Scoped Identifiers'
-      #expect(page).to have_link 'Registration States'
-      expect(page).to have_link 'Audit Trail'
-      expect(page).to have_no_link 'Upload'
-      expect(page).to have_no_link 'Background Jobs'
-      expect(page).to have_link 'Classifications (tags)'
-      expect(page).to have_content 'sys_admin@example.com [System Admin, Reader]' # This combination is possible from seed mechanism only!
+      @user_sa.name = "God!"
+    	@user_sa.save
+      ua_sys_admin_login
+      expect(page).to have_content 'God! [System Admin]'
       click_link 'users_button'
       expect(page).to have_content 'Index: Users'
       expect(page).to have_content 'sys_admin@example.com'      
@@ -122,10 +91,7 @@ describe "Users", :type => :feature do
 
     it "allows new user to be created" do
       audit_count = AuditTrail.count
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+      ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
       click_link 'New'
@@ -140,10 +106,7 @@ describe "Users", :type => :feature do
     end
 
     it "prevents a new user with short password being created" do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+      ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
       click_link 'New'
@@ -157,10 +120,7 @@ describe "Users", :type => :feature do
 
     it "allows a user's role to be modified" do
       audit_count = AuditTrail.count
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+      ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
       find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
@@ -204,10 +164,7 @@ describe "Users", :type => :feature do
       audit_count = AuditTrail.count
       user = User.create :email => "delete@example.com", :password => "changeme" 
       user.add_role :reader
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+      ua_sys_admin_login
       expect(AuditTrail.count).to eq(audit_count + 2)
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
@@ -225,12 +182,12 @@ describe "Users", :type => :feature do
       fill_in 'Password', with: 'changeme'
       click_button 'Log in'
       click_link 'settings_button'
-      click_link 'Password'
-      expect(page).to have_content 'Edit: edit@example.com'
+      #click_link 'Password'
+      #expect(page).to have_content 'Edit: edit@example.com'
       fill_in 'user_password', with: 'newpassword'
       fill_in 'user_password_confirmation', with: 'newpassword'
       fill_in 'Current Password', with: 'changeme'
-      click_button 'Update'
+      click_button 'password_update_button'
       expect(page).to have_content 'Your account has been updated successfully.'
       expect(AuditTrail.count).to eq(audit_count + 3)
     end
@@ -244,12 +201,12 @@ describe "Users", :type => :feature do
       fill_in 'Password', with: 'changeme'
       click_button 'Log in'
       click_link 'settings_button'
-      click_link 'Password'
-      expect(page).to have_content 'Edit: edit@example.com'
+      #click_link 'Password'
+      #expect(page).to have_content 'Edit: edit@example.com'
       fill_in 'user_password', with: 'newpassword'
       fill_in 'user_password_confirmation', with: 'newpassword'
       fill_in 'Current Password', with: 'newpassword'
-      click_button 'Update'
+      click_button 'password_update_button'
       expect(page).to have_content 'Edit: edit@example.com'
       expect(AuditTrail.count).to eq(audit_count + 2)
     end

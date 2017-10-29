@@ -40,7 +40,7 @@ describe IsoRegistrationStatePolicy do
 
     let (:user) { @user_tc }
 
-    it "denies access" do
+		it "denies access" do
       deny_list [:create, :update]
     end
 
@@ -50,8 +50,8 @@ describe IsoRegistrationStatePolicy do
 
     let (:user) { @user_c }
 
-    it "deny access" do
-      deny_list [:current, :update]
+    it "allows access" do
+	    allow_list [:current, :update]
     end
 
   end
@@ -60,8 +60,8 @@ describe IsoRegistrationStatePolicy do
 
     let (:user) { @user_ca }
 
-    it "deny access" do
-      deny_list [:current, :update]
+    it "allows access" do
+	    allow_list [:current, :update]
     end
 
   end
@@ -70,8 +70,8 @@ describe IsoRegistrationStatePolicy do
 
     let (:user) { @user_sa }
 
-    it "allows access" do
-	    allow_list [:current, :update]
+    it "denies access" do
+      deny_list [:create, :update]
     end
 
   end

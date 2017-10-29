@@ -12,6 +12,7 @@ module ControllerMacros
       @request.env["devise.mapping"] = Devise.mappings[:user]
       @user = FactoryGirl.create(:user)
       @user.add_role :sys_admin
+      @user.remove_role :reader
       #user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
       sign_in @user
     end

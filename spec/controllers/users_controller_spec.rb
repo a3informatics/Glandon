@@ -90,18 +90,81 @@ describe UsersController do
 
   describe "Unauthorized User" do
     
-    it "index user" do
+    login_reader
+
+    it "index registration authority" do
+      get :index
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it "new registration authority" do
+      get :new
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it 'creates namespace' do
+      post :create, user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567" }
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it 'deletes user' do
+      delete :destroy, :id => User.all.last.id
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it "edits user" do
+      get :edit, :id => User.all.last.id
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it "updates user" do
+      put :update, {id: User.all.last.id, :user => {role_ids: ["1", "2", "3", "4"]}}
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+  end
+
+  describe "Not logged in" do
+    
+    it "index scoped identifier" do
       get :index
       expect(response).to redirect_to("/users/sign_in")
     end
 
-    it "new user" do
+    it "new scoped identifier" do
       get :new
       expect(response).to redirect_to("/users/sign_in")
     end
 
-    it 'creates user' do
-      post :create, iso_user: { name: "XXX Pharma", shortName: "XXX" }
+    it 'creates scoped_identifier' do
+      post :create, user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567" }
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it 'deletes user' do
+      delete :destroy, :id => User.all.last.id
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "edits user" do
+      get :edit, :id => User.all.last.id
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "updates user" do
+      put :update, {id: User.all.last.id, :user => {role_ids: ["1", "2", "3", "4"]}}
       expect(response).to redirect_to("/users/sign_in")
     end
 

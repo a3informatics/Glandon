@@ -24,8 +24,8 @@ describe "Thesauri Search", :type => :feature do
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
       click_link 'settings_button'
-      expect(page).to have_content 'User Settings:'
-      tr = page.find('#main tbody tr', text: 'Table Rows')
+      expect(page).to have_content 'Current Settings:'
+      tr = page.find('#user_settings tbody tr', text: 'Table Rows')
       click_link '25'
       visit '/thesauri/search_current'
       wait_for_ajax(15)

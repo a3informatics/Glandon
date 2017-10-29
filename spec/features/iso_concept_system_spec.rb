@@ -4,6 +4,7 @@ describe "ISO Concept System", :type => :feature do
   
   include PauseHelpers
   include DataHelpers
+  include UserAccountHelpers
 
   describe "General", :type => :feature do
   
@@ -24,26 +25,29 @@ describe "ISO Concept System", :type => :feature do
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
       clear_cdisc_term_object
+	    ua_create
     end
 
-    before :each do
-      user = FactoryGirl.create(:user)
-      user.add_role :curator
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'example1234'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'  
-    end
+	  after :all do
+	    ua_destroy
+	  end 
+
+	  before :each do
+	    ua_content_admin_login
+	  end
+
+	  after :each do
+	    ua_logoff
+	  end
 
     it "allows concept systems to be displayed" do
-      click_link 'Classifications (tags)'
+      click_link 'Tags'
       expect(page).to have_content 'Classifications'
       expect(page).to have_content 'Tags'
     end
 
     it "allows a new system to be added" do
-      click_link 'Classifications (tags)'
+      click_link 'Tags'
       click_link 'New'
       expect(page).to have_content 'New Classification'
       fill_in 'iso_concept_system_label', with: 'XXXX'

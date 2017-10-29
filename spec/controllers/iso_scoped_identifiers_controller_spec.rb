@@ -6,7 +6,7 @@ describe IsoScopedIdentifiersController do
   
   describe "Authrorized User" do
   	
-    login_sys_admin
+    login_curator
 
     it "sets database" do
       clear_triple_store
@@ -52,12 +52,6 @@ describe IsoScopedIdentifiersController do
       expect(IsoScopedIdentifier.all.count).to eq(count - 1)
     end
 
-  end
-
-  describe "Curator" do
-    
-    login_curator
-
     it 'updates a scoped identifier' do
       count = IsoScopedIdentifier.all.count
       @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
@@ -83,6 +77,33 @@ describe IsoScopedIdentifiersController do
   end
 
   describe "Unauthorized User" do
+    
+    login_sys_admin
+
+    it "index registration authority" do
+      get :index
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it "new registration authority" do
+      get :new
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it 'creates namespace' do
+      post :create, iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+  end
+
+  describe "Not logged in" do
     
     it "index scoped identifier" do
       get :index

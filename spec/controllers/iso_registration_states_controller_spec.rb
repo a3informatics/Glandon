@@ -4,9 +4,9 @@ describe IsoRegistrationStatesController do
 
   include DataHelpers
   
-  describe "Authrorized User" do
+  describe "Authorized User" do
   	
-    login_sys_admin
+    login_content_admin
 
     before :all do
       clear_triple_store
@@ -22,9 +22,12 @@ describe IsoRegistrationStatesController do
     end
 
     it 'makes an item current' do
+      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       rs = IsoRegistrationState.all.first
       post :current, { old_id: "", new_id: rs.id}
-      expect(response).to redirect_to("/")
+      rs = IsoRegistrationState.all.first
+      expect(rs.current).to eq(true)
+      expect(response).to redirect_to("/registration_states")
     end
 
   end
@@ -106,6 +109,26 @@ describe IsoRegistrationStatesController do
   end
 
   describe "Unauthorized User" do
+    
+    login_sys_admin
+
+    it "index registration state" do
+      get :index
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it 'makes a registration state current' do
+      post :current, { old_id: "", new_id: "X"}
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+  end
+
+  describe "Not logged in" do
     
     it "index registration state" do
       get :index

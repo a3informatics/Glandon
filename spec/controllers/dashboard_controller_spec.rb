@@ -49,6 +49,8 @@ describe DashboardController do
     it "prevents access admin action" do
       put :admin
       expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
 	end
@@ -57,31 +59,33 @@ describe DashboardController do
     
     login_sys_admin
 
-    it "prevents access, index" do
+    it "prevents access, index, redirects to admin" do
       get :index
-      expect(response).to render_template("index")
+      expect(response).to redirect_to("/dashboard/admin")
     end
 
     it "prevents access, view" do
       get :view, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
-      assert_response :forbidden
-      expect(response).to redirect_to(root_path)
-      expect(page).to have_content("You do not have the access rights to that operation.")
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
     it "prevents access database action" do
       get :database, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
-      expect(response).to render_template("index")
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
-    it "prevents access admin action" do
+    it "allows access admin action" do
       put :admin
       expect(response).to render_template("admin")
     end
 
   end
 
-  describe "Unauthorized User" do
+  describe "Not logged in" do
     
     it "prevents access, index" do
       get :index
