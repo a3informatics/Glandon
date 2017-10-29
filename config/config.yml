@@ -21,6 +21,7 @@ defaults: &defaults
        - Letter
       default_value: A4
       label: Paper Size
+      description: The paper size to be used for PDF reports exported by the system.
     table_rows: # Table rows length settings 
       type: coded
       values: 
@@ -33,6 +34,7 @@ defaults: &defaults
         All: -1
       default_value: 10
       label: Table Rows
+      description: The number of rows to be used within table displays.
     edit_lock_warning: # Time for edit lock warning
       type: coded
       values: 
@@ -44,6 +46,8 @@ defaults: &defaults
         '5m': 300
       default_value: 60
       label: Edit Lock Warning
+      description: The time at which a warning will be issued before an edit lock is lost. Half way to the lock being lost a second warning will be issued. 
+        Times are expressed in minutes and seconds.
     user_name_display: # Display user name in nav bar
       type: enum
       values: 
@@ -51,6 +55,7 @@ defaults: &defaults
        - 'No'
       default_value: 'Yes'
       label: Display User Name
+      description: Display the user name in the top navigation bar.
     user_role_display: # Display user roles in nav bar
       type: enum
       values: 
@@ -58,6 +63,7 @@ defaults: &defaults
        - 'No'
       default_value: 'Yes'
       label: Display User Roles
+      description: Display the user roles in the top navigation bar.
     max_term_display: # Maximum number of terminologies to be displayed
       type: coded
       values: 
@@ -66,6 +72,8 @@ defaults: &defaults
         '12': 12
       default_value: 8
       label: Terminology Versions Displayed
+      description: Number of terminologies to be displayed in change tables
+
 development:
   <<: *defaults
 

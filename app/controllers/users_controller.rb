@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :update_name]
 
   C_CLASS_NAME = "UsersController"
   
@@ -34,6 +34,16 @@ class UsersController < ApplicationController
 
   def edit
     authorize User
+  end
+
+  def update_name
+    authorize User
+    if @user.update(user_params)
+      flash[:success] = "User display name sucessfully updated."
+    else
+      flash[:error] = "Failed to update user display name."
+    end
+    redirect_to user_settings_path
   end
 
   def update
@@ -71,7 +81,7 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, {role_ids: []})
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, {role_ids: []})
   end
 
 end

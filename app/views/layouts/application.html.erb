@@ -93,7 +93,7 @@
             <ul class="nav navbar-nav navbar-right">
               <p class="navbar-text">
                 <% if current_user.user_name_display == "Yes" %>
-                  <%= "#{current_user.email} "%>
+                  <%= "#{current_user.name} "%>
                 <% end %>
                 <% if current_user.user_role_display == "Yes" %>
                   <%= "[#{current_user.role_list_stripped}]"%>
@@ -183,7 +183,7 @@
             <% if link_group_on_role([Form]) %>
               <ul class="nav"> 
                 <%= render partial: "shared/link_on_user_role", :locals => {:klass => Form, link_id: "main_nav_f", 
-         					link_path: forms_path, link_text: "Form"} %>
+         					link_path: forms_path, link_text: "Forms"} %>
               </ul>
             <% end %>
             <% if link_group_on_role([SdtmModel, SdtmIg, SdtmUserDomain]) %>

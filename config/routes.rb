@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   
   #devise_for :users
   devise_for :users, controllers: {sessions: "users/sessions"}#, :path_names => { :sign_in => "login", :sign_out => "logout" }
-  resources :users, except: :create
+  resources :users, except: :create do
+    member do
+      put :update_name
+    end
+  end
   post 'create_user' => 'users#create', as: :create_user
   resources :user_settings
   

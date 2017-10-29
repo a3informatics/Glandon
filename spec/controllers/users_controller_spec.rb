@@ -76,6 +76,16 @@ describe UsersController do
       expect(response).to redirect_to("/users")
     end
 
+    it "updates user name" do
+      user1 = User.create :email => "fred@example.com", :password => "changeme", name: "x"
+      user = User.find_by(:email => "fred@example.com")
+      expect(user.name).to eq("x")
+      put :update_name, {id: user.id, :user => {name: "Updated Name"}}
+      user = User.find_by(:email => "fred@example.com")
+      expect(user.name).to eq("Updated Name")
+      expect(response).to redirect_to("/user_settings")
+    end
+
   end
 
   describe "Unauthorized User" do

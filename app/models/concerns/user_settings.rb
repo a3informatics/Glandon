@@ -56,6 +56,26 @@ module UserSettings
     return "[[#{values}], [#{labels}]]"
   end
 
+  # Clear and reset the settings metadata. Only used for testing
+  #
+  # @return [Null]
+  if Rails.env == "test"
+    
+    def self.clear_settings_metadata
+      @@settings_metadata = {}
+    end
+
+    def self.reset_settings_metadata
+      user_hash = APP_CONFIG['user_settings']
+      @@settings_metadata = user_hash.deep_symbolize_keys
+      @@settings = {}
+      @@settings_metadata.each do |key, hash|
+        @@settings[key.to_sym] = hash[:default_value]
+      end 
+    end
+
+  end
+
   # Clear the settings metadata. Only used for testing
   #
   # @return [Null]
@@ -97,7 +117,7 @@ module UserSettings
   def method_missing(method, *args)
     if @@settings.keys.any?{|k| method =~ /#{k}/}
       if method =~ /=/
-        self.write_setting(method.gsub('=', ''), *args)
+        self.write_setting(method.to_s.gsub('=', ''), *args)
       else
         p = self.read_setting(method)
         return p.value
