@@ -4,20 +4,23 @@
 	<div class="col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Current User: <%= @user.email %></h3>
+				<h3 class="panel-title">Roles For: <%= @user.name %> (<%= @user.email %>)</h3>
 			</div>
   		<div class="panel-body">
     		<p>There are set number of role combinations. They can be set using the buttons to the right.</p>
     		<table id="version_info" class="table table-striped table-condensed">
       		<tbody>
 		      	<tr>
-		          <td><strong>User Email:</strong></td><td><%= @user.email %></td>
+		          <th>User Email:</th><td><%= @user.email %></td>
 		        </tr>
 		        <tr>
-		          <td><strong>Current Roles:</strong></td><td><%= @user.role_list_stripped %></td>
+							<th>Display Name:</th><td><%= @user.name %></td>
+						</tr>
+						<tr>
+		          <th>Current Roles:</th><td><%= @user.role_list_stripped %></td>
 		        </tr>
 		        <tr>
-		          <td><strong>Login Count:</strong></td><td><%= @user.sign_in_count %></td>
+		          <th>Login Count:</th><td><%= @user.sign_in_count %></td>
 		        </tr>
 		      </tbody>
     		</table>
@@ -39,7 +42,6 @@
 			</div>
 		<% end %>
 	</div>
-
 	<div class="col-md-4">
 		<% roles_bar.each do |role, info| %>
 			<% display_text = info[:display_text] %>

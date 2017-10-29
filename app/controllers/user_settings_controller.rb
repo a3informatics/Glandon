@@ -8,6 +8,7 @@ class UserSettingsController < ApplicationController
   def index
     authorize UserSetting
     @settings_metadata = @user.settings_metadata
+    @minimum_password_length = Rails.configuration.devise.password_length.first
   end
 
   def update
