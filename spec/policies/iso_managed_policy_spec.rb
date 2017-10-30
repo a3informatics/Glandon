@@ -20,8 +20,12 @@ describe IsoManagedPolicy do
 
     let (:user) { @user_tr }
 
+    it "allows access" do
+      allow_list [], true
+    end
+
     it "denies access" do
-      deny_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :status]
+      deny_list [:show, :view, :list, :history, :index, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :status]
     end
 
   end
@@ -30,8 +34,12 @@ describe IsoManagedPolicy do
 
     let (:user) { @user_tc }
 
+		it "allows access" do
+      allow_list [:index, :status], true
+    end
+
     it "denies access" do
-      deny_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :status]
+      deny_list [:show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl,:import]
     end
 
   end
@@ -41,11 +49,11 @@ describe IsoManagedPolicy do
     let (:user) { @user_r }
 
     it "allows access" do
-      allow_list [:index, :show, :view, :list, :history]
+      allow_list [:show, :view, :list, :history]
     end
 
     it "denies access" do
-      deny_list [:create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :status]
+      deny_list [:index, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :status]
     end
 
   end

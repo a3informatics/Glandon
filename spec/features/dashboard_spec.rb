@@ -103,13 +103,13 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_link("main_nav_d")
     expect(page).to have_link("main_nav_te")
     expect(page).to have_link("main_nav_ct")
-
-		expect(page).to_not have_link("main_nav_bj")
+    
+		expect(page).to_not have_link("main_nav_ics")
+		expect(page).to_not have_link("main_nav_ma")
+    expect(page).to_not have_link("main_nav_bj")
     expect(page).to_not have_link("main_nav_u")
 		expect(page).to_not have_link("main_nav_im")
 		expect(page).to_not have_link("main_nav_ahr")
-    expect(page).to_not have_link("main_nav_ics")
-    expect(page).to_not have_link("main_nav_ma")
     expect(page).to_not have_link("main_nav_bct")
     expect(page).to_not have_link("main_nav_bc")
     expect(page).to_not have_link("main_nav_f")
@@ -121,15 +121,15 @@ describe "Dashboard", :type => :feature do
   it "displays the menu, terminology curator" do
     ua_term_curator_login
     expect(page).to have_link("main_nav_d")
-    expect(page).to have_link("main_nav_te")
+    expect(page).to have_link("main_nav_im")
+		expect(page).to have_link("main_nav_te")
     expect(page).to have_link("main_nav_ct")
-
-		expect(page).to_not have_link("main_nav_bj")
+		
+		expect(page).to_not have_link("main_nav_ics")
+		expect(page).to_not have_link("main_nav_ma")
+    expect(page).to_not have_link("main_nav_bj")
     expect(page).to_not have_link("main_nav_u")
-		expect(page).to_not have_link("main_nav_im")
 		expect(page).to_not have_link("main_nav_ahr")
-    expect(page).to_not have_link("main_nav_ics")
-    expect(page).to_not have_link("main_nav_ma")
     expect(page).to_not have_link("main_nav_bct")
     expect(page).to_not have_link("main_nav_bc")
     expect(page).to_not have_link("main_nav_f")
