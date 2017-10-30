@@ -20,14 +20,14 @@ class Role < ActiveRecord::Base
   		#
   		# @return [Boolean] returns True if enabled, false otherwise
   		define_method :"#{k}_enabled?" do 
-      	return ENV["#{k}"].to_bool
+      	return v[:enabled] 
     	end
 
 			# <role>_disbled?. Determines if the <role> is disabled.
   		#
   		# @return [Boolean] returns True if disabled, false otherwise
 			define_method :"#{k}_disabled?" do
-      	return ENV["#{k}"].to_bool
+      	return !v[:enabled]
     	end
 
     end
