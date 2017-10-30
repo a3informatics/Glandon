@@ -4,27 +4,33 @@ defaults: &defaults
       :display_text: "System Admin"
       :description: "System administration rights. This role has no access to MDR content."
       :with_sys_admin: false
+      :enabled: true
     :term_reader:
       :display_text: "Terminology Reader"
       :description: "The lowest level of access. A Terminology Reader access permits the user to have read-only access to the MDR's terminology content."
       :with_sys_admin: false
+      :enabled: true
     :term_curator:
       :display_text: "Terminology Curator"
       :description: "Terminology Curator access permits the user to have read and write access to the MDR's terminology content."
       :with_sys_admin: false
+      :enabled: true
     :reader:
       :display_text: "Reader"
       :description: "Reader access permits the user to have read-only access to all of the MDR's content."
       :with_sys_admin: false
+      :enabled: true
     :curator:
       :display_text: "Curator"
       :description: "Curator access permits the user to have view access to the MDR's content while also being able to edit the content."
       :with_sys_admin: false
+      :enabled: true
     :content_admin:
       :display_text: "Content Admin"
       :description: "The highest level of access. Content administration access permits the user to have view access to the MDR's content, 
         allows for the editing of the content and permits new content to be imported."
       :with_sys_admin: true
+      :enabled: true
 
 development:
   <<: *defaults

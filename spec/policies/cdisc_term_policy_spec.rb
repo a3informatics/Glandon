@@ -10,29 +10,93 @@ describe CdiscTermPolicy do
 
   before :all do
     ua_create
-  	@role_to_user = construct_roles_to_user
-  	@list = contruct_default_list  
   end
 
   after :all do
     ua_destroy
   end
+  
+  context "for a reader" do
 
-	["sys_admin", "term_reader", "term_curator", "reader", "curator", "content_admin"].each do |role|
-	
-		context "#{role}" do
+    let (:user) { @user_r }
 
-			let (:user) { @role_to_user[role] }
+		it "allows access" do
+      allow_list [:index, :show, :view, :history]
+    end
 
-  		it "allows access" do
-	  		allow_list @list[role][:allow]
-  		end
+		it "denies access" do
+      deny_list [:import]
+    end
 
-  		it "denies access" do
-   			deny_list @list[role][:deny]
-  		end
+  end
 
-  	end
+  context "for a term reader" do
+
+    let (:user) { @user_tr }
+
+		it "allows access" do
+      allow_list [:index, :show, :view, :history]
+    end
+
+		it "denies access" do
+      deny_list [:import]
+    end
+
+  end
+
+  context "for a term curator" do
+
+    let (:user) { @user_tc }
+
+		it "allows access" do
+      allow_list [:index, :show, :view, :history]
+    end
+
+		it "denies access" do
+      deny_list [:import]
+    end
+
+  end
+
+  context "for a curator" do
+
+    let (:user) { @user_c }
+
+		it "allows access" do
+      allow_list [:index, :show, :view, :history]
+    end
+
+		it "denies access" do
+      deny_list [:import]
+    end
+
+  end
+
+  context "for a content admin" do
+
+    let (:user) { @user_ca }
+
+		it "allows access" do
+      allow_list [:index, :show, :view, :history, :import]
+    end
+
+		it "denies access" do
+      deny_list []
+    end
+
+  end
+
+  describe "for a system admin" do
+
+    let (:user) { @user_sa }
+
+		it "allows access" do
+      allow_list []
+    end
+
+		it "denies access" do
+      deny_list [:index, :show, :view, :history, :import]
+    end
 
   end
 

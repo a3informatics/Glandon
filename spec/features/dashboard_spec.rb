@@ -15,23 +15,27 @@ describe "Dashboard", :type => :feature do
     ua_destroy
   end
 
-  it "displays the menu, terminology reader" #do
-    #ua_term_reader_login
-  #save_and_open_page
-  #end
-
-  it "displays the menu, terminology curator" #do
-    #ua_term_curator_login
-  #save_and_open_page
-  #end
-
   it "displays the menu, sys admin" do
     ua_sys_admin_login
-  save_and_open_page
+  #save_and_open_page
     expect(page).to have_link("main_nav_d")
 		expect(page).to have_link("main_nav_el")
 		expect(page).to have_link("main_nav_at")
     expect(page).to have_link("main_nav_bj")
+
+		expect(page).to_not have_link("main_nav_u")
+		expect(page).to_not have_link("main_nav_im")
+		expect(page).to_not have_link("main_nav_ahr")
+    expect(page).to_not have_link("main_nav_ics")
+    expect(page).to_not have_link("main_nav_ma")
+    expect(page).to_not have_link("main_nav_te")
+    expect(page).to_not have_link("main_nav_ct")
+    expect(page).to_not have_link("main_nav_bct")
+    expect(page).to_not have_link("main_nav_bc")
+    expect(page).to_not have_link("main_nav_f")
+    expect(page).to_not have_link("main_nav_sm")
+    expect(page).to_not have_link("main_nav_ig")
+    expect(page).to_not have_link("main_nav_sd")
   end
 
   it "displays the menu, content admin" do
@@ -57,7 +61,9 @@ describe "Dashboard", :type => :feature do
   it "displays the menu, curator" do
     ua_curator_login
     expect(page).to have_link("main_nav_d")
-    expect(page).to have_link("main_nav_ics")
+		expect(page).to have_link("main_nav_im")
+		expect(page).to have_link("main_nav_ahr")
+		expect(page).to have_link("main_nav_ics")
     expect(page).to have_link("main_nav_ma")
     expect(page).to have_link("main_nav_te")
     expect(page).to have_link("main_nav_ct")
@@ -67,6 +73,9 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_link("main_nav_sm")
     expect(page).to have_link("main_nav_ig")
     expect(page).to have_link("main_nav_sd")
+
+		expect(page).to_not have_link("main_nav_bj")
+    expect(page).to_not have_link("main_nav_u")
   end
 
   it "displays the menu, reader" do
@@ -82,6 +91,51 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_link("main_nav_sm")
     expect(page).to have_link("main_nav_ig")
     expect(page).to have_link("main_nav_sd")
+
+		expect(page).to_not have_link("main_nav_bj")
+    expect(page).to_not have_link("main_nav_u")
+		expect(page).to_not have_link("main_nav_im")
+		expect(page).to_not have_link("main_nav_ahr")
+  end
+
+  it "displays the menu, terminology reader" do
+    ua_term_reader_login
+    expect(page).to have_link("main_nav_d")
+    expect(page).to have_link("main_nav_te")
+    expect(page).to have_link("main_nav_ct")
+
+		expect(page).to_not have_link("main_nav_bj")
+    expect(page).to_not have_link("main_nav_u")
+		expect(page).to_not have_link("main_nav_im")
+		expect(page).to_not have_link("main_nav_ahr")
+    expect(page).to_not have_link("main_nav_ics")
+    expect(page).to_not have_link("main_nav_ma")
+    expect(page).to_not have_link("main_nav_bct")
+    expect(page).to_not have_link("main_nav_bc")
+    expect(page).to_not have_link("main_nav_f")
+    expect(page).to_not have_link("main_nav_sm")
+    expect(page).to_not have_link("main_nav_ig")
+    expect(page).to_not have_link("main_nav_sd")
+  end
+
+  it "displays the menu, terminology curator" do
+    ua_term_curator_login
+    expect(page).to have_link("main_nav_d")
+    expect(page).to have_link("main_nav_te")
+    expect(page).to have_link("main_nav_ct")
+
+		expect(page).to_not have_link("main_nav_bj")
+    expect(page).to_not have_link("main_nav_u")
+		expect(page).to_not have_link("main_nav_im")
+		expect(page).to_not have_link("main_nav_ahr")
+    expect(page).to_not have_link("main_nav_ics")
+    expect(page).to_not have_link("main_nav_ma")
+    expect(page).to_not have_link("main_nav_bct")
+    expect(page).to_not have_link("main_nav_bc")
+    expect(page).to_not have_link("main_nav_f")
+    expect(page).to_not have_link("main_nav_sm")
+    expect(page).to_not have_link("main_nav_ig")
+    expect(page).to_not have_link("main_nav_sd")
   end
 
 end

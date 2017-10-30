@@ -15,13 +15,14 @@ describe Role do
 	end
 
 	it "detects if a role is enabled" do
-		expect(ENV).to receive(:[]).with(:sys_admin.to_s).and_return("true")
 		expect(Role.sys_admin_enabled?).to eq(true)
+		expect(Role.sys_admin_disabled?).to eq(false)
 	end
 
 	it "detects if a role is disabled" do
-		expect(ENV).to receive(:[]).with(:sys_admin.to_s).and_return("false")
+		Rails.configuration.roles[:roles][:sys_admin][:enabled] = false
 		expect(Role.sys_admin_enabled?).to eq(false)
+		expect(Role.sys_admin_disabled?).to eq(true)
 	end
 
 	it "returns a role as a string" do
