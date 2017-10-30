@@ -4,6 +4,19 @@ describe "Users", :type => :feature do
   
   include UserAccountHelpers
   
+  def check_user_role(email, audit_count, roles)    
+    expect(page).to have_content 'Index: User'
+    edit_user(email)
+    expect(page).to have_content "User Email:#{email}"
+    expect(AuditTrail.count).to eq(audit_count)
+    expect(page).to have_content "Current Roles:#{roles}"
+  end
+
+  def edit_user(email)
+  	tr = page.find(:xpath, "//tr[td='#{email}']")
+    tr.find(:xpath, "td[3]/a").click
+  end
+
   describe "Login and Logout", :type => :feature do
   
     before :all do
@@ -122,41 +135,15 @@ describe "Users", :type => :feature do
       audit_count = AuditTrail.count
       ua_sys_admin_login
       click_link 'users_button'
-      expect(page).to have_content 'Index: User'
-      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit User: reader@example.com'
-      expect(AuditTrail.count).to eq(audit_count + 1)
-      expect(page).to have_content 'Current Roles:Reader'
+      check_user_role("reader@example.com", audit_count+1, "Reader")
       click_link 'Set Curator Role'
-      expect(page).to have_content 'Index: User'
-      expect(AuditTrail.count).to eq(audit_count + 2)
-      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit User: reader@example.com'
-      expect(page).to have_content 'Current Roles:Curator'
+      check_user_role("reader@example.com", audit_count+2, "Curator")
       click_link 'Set Content Admin Role'
-      expect(page).to have_content 'Index: User'
-      expect(AuditTrail.count).to eq(audit_count + 3)
-      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit User: reader@example.com'
-      expect(page).to have_content 'Current Roles:Content Admin'
-      click_link 'Set Content Admin Role'
-      expect(page).to have_content 'Index: User'
-      expect(AuditTrail.count).to eq(audit_count + 4)
-      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit User: reader@example.com'
-      expect(page).to have_content 'Current Roles:Content Admin'
-      click_link 'Set Curator & System Admin Role'
-      expect(page).to have_content 'Index: User'
-      expect(AuditTrail.count).to eq(audit_count + 5)
-      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit User: reader@example.com'
-      expect(page).to have_content 'Current Roles:System Admin, Curator'
-      click_link 'Set Content & System Admin Role'
-      expect(page).to have_content 'Index: User'
-      expect(AuditTrail.count).to eq(audit_count + 6)
-      find(:xpath, "//tr[contains(.,'reader@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit User: reader@example.com'
-      expect(page).to have_content 'Current Roles:System Admin, Content Admin'      
+      check_user_role("reader@example.com", audit_count+3, "Content Admin")
+      click_link 'Set Curator Role'
+      check_user_role("reader@example.com", audit_count+4, "Curator")
+      click_link 'Set Content Admin & System Admin Role'
+      check_user_role("reader@example.com", audit_count+5, "System Admin, Content Admin")
       click_link 'Set Reader Role'
     end
 

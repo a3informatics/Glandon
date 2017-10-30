@@ -224,11 +224,9 @@ describe "Breadcrumb", :type => :feature do
 
     it "has users breadcrumbs" do
       next_link('users_button', 'Users', "Users", "", "")
-    save_and_open_page
       next_link('New', 'New: User', "Users", "New", "")
       next_link_crumb(1, 'Users', "Users", "", "")
-    #save_and_open_page
-      next_link_table("curator@example.com", "Edit", "Edit User:", "Users", "", "")
+      next_link_table("content_admin@example.com", "Edit", "Roles For: ", "Users", "", "")
     end
 
   end

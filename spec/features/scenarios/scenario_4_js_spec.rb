@@ -173,6 +173,7 @@ describe "Scenario 4 - BC Form", :type => :feature do
       click_main_table_link 'EQ5D3L', 'History'
 
       click_main_table_link '0.1.0', 'Show'
+      wait_for_ajax
       click_link 'Export Turtle'
       wait_for_specific_download("ACME_EQ5D3L.ttl")
       rename_file("ACME_EQ5D3L.ttl", "ACME_EQ5D3L_DFT.ttl")
