@@ -145,7 +145,7 @@ describe "Users", :type => :feature do
       click_link 'Set Curator Role'
       check_user_role("reader@example.com", audit_count+4, "Curator")
       click_link 'Set Content Admin & System Admin Role'
-      check_user_role("reader@example.com", audit_count+5, "System Admin, Content Admin")
+      check_user_role("reader@example.com", audit_count+5, "Content Admin, System Admin")
       click_link 'Set Terminology Reader Role'
       check_user_role("reader@example.com", audit_count+6, "Terminology Reader")
       click_link 'Set Terminology Curator Role'
