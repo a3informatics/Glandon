@@ -1,0 +1,14 @@
+<% top_level_breadcrumb ("Dashboard") %>
+<div class="row">
+	<div class="col-md-4">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title">Invalid Roles Detected</h3>
+			</div>
+  		<div class="panel-body">
+    		<p>There has been an error setting up the roles for your account. Talk to your system administrator to resolve the problem.</p>
+    		<p><strong>Current role list is:</strong> <%= "#{current_user.role_list_stripped}" %></p>
+  		</div>
+		</div>
+	</div>
+</div>
