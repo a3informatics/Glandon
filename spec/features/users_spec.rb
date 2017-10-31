@@ -110,6 +110,7 @@ describe "Users", :type => :feature do
       click_link 'New'
       expect(page).to have_content 'New: User'
       fill_in 'Email', with: 'new_user@example.com'
+      fill_in 'Name', with: 'New user'
       fill_in 'Password', with: '12345678'
       fill_in 'Password confirmation', with: '12345678'
       click_button 'Create'

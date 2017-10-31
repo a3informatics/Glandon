@@ -28,7 +28,7 @@ describe UsersController do
       user1 = User.create :email => "fred@example.com", :password => "changeme" 
       user2 = User.create :email => "sid@example.com", :password => "changeme" 
       user3 = User.create :email => "boris@example.com", :password => "changeme" 
-      post :create, user: { email: "new1@example.com", password: "12345678", password_confirmation: "12345678" }
+      post :create, user: { email: "new1@example.com", password: "12345678", password_confirmation: "12345678", name: "New" }
       expect(User.all.count).to eq(6) # 1 in DB by default, 1 x Admin user, 3 x seeded and 1 created
       expect(flash[:success]).to be_present
       expect(response).to redirect_to("/users")
@@ -38,7 +38,7 @@ describe UsersController do
       user1 = User.create :email => "fred@example.com", :password => "changeme" 
       user2 = User.create :email => "sid@example.com", :password => "changeme" 
       user3 = User.create :email => "boris@example.com", :password => "changeme" 
-      post :create, user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567" }
+      post :create, user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567", name: "New"  }
       expect(User.all.count).to eq(5)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/users")
