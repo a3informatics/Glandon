@@ -4,9 +4,7 @@
 
 # Common Setup
 # 1. Create roles for Rolify
-Role::C_ROLES.each do |role|
-  Role.create( name: role )
-end
+Rails.configuration.roles[:roles].each { |k, v| Role.create(name: k) }
 
 # Enviornment-specific Setup
 # 1. Create sys admin user.
