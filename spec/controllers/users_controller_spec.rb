@@ -63,11 +63,15 @@ describe UsersController do
     end
 
     it "updates user" do
+    	role_sa = Role.where(name: "sys_admin").first
+      role_r = Role.where(name: "reader").first
+      role_cr = Role.where(name: "curator").first
+      role_ca = Role.where(name: "content_admin").first
       user1 = User.create :email => "fred@example.com", :password => "changeme" 
       user2 = User.create :email => "sid@example.com", :password => "changeme" 
       user3 = User.create :email => "boris@example.com", :password => "changeme" 
       user = User.find_by(:email => "sid@example.com")
-      put :update, {id: user.id, :user => {role_ids: ["1", "2", "3", "4"]}}
+      put :update, {id: user.id, :user => {role_ids: ["#{role_sa.id}", "#{role_r.id}", "#{role_cr.id}", "#{role_ca.id}"]}}
       user = User.find_by(:email => "sid@example.com")
       expect(user.has_role? :sys_admin).to eq(true)
       expect(user.has_role? :reader).to eq(true)
