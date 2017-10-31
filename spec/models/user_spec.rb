@@ -19,21 +19,23 @@ describe User do
   end
 
   it "allows a user's roles to be listed" do
-    user = User.new
+    user = User.create email: "fred@fred.com", password: "12345678"
     user.add_role :reader
     expect(user.role_list.to_s).to eq("[\"Reader\"]")
     user.add_role :curator
     expect(user.role_list.to_s).to eq("[\"Curator\", \"Reader\"]")
+    user.destroy
   end
 
   it "allows a user's roles to be listed as a string" do
-    user = User.new
+    user = User.create email: "fred@fred.com", password: "12345678"
     user.add_role :reader
     expect(user.role_list_stripped).to eq("Reader")
     user.add_role :curator
     expect(user.role_list_stripped).to eq("Curator, Reader")
     user.add_role :content_admin
     expect(user.role_list_stripped).to eq("Content Admin, Curator, Reader")
+    user.destroy
   end
 
   it "sets the reader role when a user is created" do

@@ -44,8 +44,10 @@ class User < ActiveRecord::Base
   # @return [array] Array of roles (strings)
   def role_list
     result = []
-    Role.all.each do |role|
-      result << Role.to_display(role.name.to_sym) if self.role_ids.include?(role.id)
+    ids = self.role_ids
+    roles Role.order('name ASC').all
+    roles.each do |role|
+      result << Role.to_display(role.name.to_sym) if ids.include?(role.id)
     end
     return result 
   end
