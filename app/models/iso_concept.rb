@@ -3,7 +3,8 @@ class IsoConcept
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
-    
+  include ModelHelpers
+
   attr_accessor :id, :namespace, :rdf_type, :label, :links, :properties, :extension_properties, :triples
   
   # Constants
@@ -113,11 +114,12 @@ class IsoConcept
         "{ \n" +
         "  :" + id + " rdf:type ?o .\n" + 
         "}"
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uri = UriV2.new({:uri => ModelUtility.getValue('o', true, node)})
+    #response = CRUD.query(query)
+    #xmlDoc = Nokogiri::XML(response.body)
+    #xmlDoc.remove_namespaces!
+    #xmlDoc.xpath("//result").each do |node|
+    self.query_and_result(query).each do |node|
+      uri = UriV2.new({:uri => self.node_value('o', true, node)})
     end
     return uri
   end

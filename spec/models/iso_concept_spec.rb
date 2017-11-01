@@ -968,4 +968,9 @@ describe IsoConcept do
 		expect(object_2.errors.full_messages[0]).to eq("Child errors: Label contains invalid characters")
 	end
 
+
+	it "allows the cross references from the object to be determined"
+
+	it "allows the cross references to the object to be determined"
+
 end
