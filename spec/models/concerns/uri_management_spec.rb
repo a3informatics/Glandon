@@ -9,6 +9,7 @@ describe UriManagement do
   C_ISO_T = "isoT"
   C_CBC = "cbc"
   C_BO = "bo"
+  C_BCR = "bcr"
   C_BF = "bf"
   C_BD = "bd"
   C_ISO_25964 = "iso25964"
@@ -40,6 +41,7 @@ describe UriManagement do
         C_ISO_21090 => "http://www.assero.co.uk/ISO21090" ,
         C_CBC => "http://www.assero.co.uk/CDISCBiomedicalConcept",
         C_BO => "http://www.assero.co.uk/BusinessOperational" ,
+        C_BCR => "http://www.assero.co.uk/BusinessCrossReference" ,
         C_BF => "http://www.assero.co.uk/BusinessForm" ,
         C_BD => "http://www.assero.co.uk/BusinessDomain" ,
         C_MDR_ITEMS => "http://www.assero.co.uk/MDRItems" ,
@@ -62,6 +64,7 @@ describe UriManagement do
 
   it "allows the prefix to be obtained for a namespace" do
     expect(UriManagement.getPrefix("http://www.assero.co.uk/BusinessDomain")).to eq("bd")
+    expect(UriManagement.getPrefix("http://www.assero.co.uk/BusinessCrossReference")).to eq("bcr")
   end
 
   it "handles the error for namespace that does not exist" do

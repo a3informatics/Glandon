@@ -11,6 +11,7 @@ module UriManagement
   C_ISO_T = "isoT"
   C_CBC = "cbc"
   C_BO = "bo"
+  C_BCR = "bcr"
   C_BF = "bf"
   C_BD = "bd"
   C_ISO_25964 = "iso25964"
@@ -47,6 +48,7 @@ module UriManagement
       C_ISO_21090 => "http://www.assero.co.uk/ISO21090" ,
       C_CBC => "http://www.assero.co.uk/CDISCBiomedicalConcept",
       C_BO => "http://www.assero.co.uk/BusinessOperational" ,
+      C_BCR => "http://www.assero.co.uk/BusinessCrossReference" ,
       C_BF => "http://www.assero.co.uk/BusinessForm" ,
       C_BD => "http://www.assero.co.uk/BusinessDomain" ,
       C_MDR_ITEMS => "http://www.assero.co.uk/MDRItems" ,

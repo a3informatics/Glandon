@@ -14,6 +14,7 @@ describe OperationalReferenceV2 do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("business_operational_extension.ttl")
+    load_schema_file_into_triple_store("business_cross_reference.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_dm1.ttl")
@@ -487,7 +488,7 @@ describe OperationalReferenceV2 do
         },
         {
           :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_XR",
-          :predicate => "http://www.assero.co.uk/BusinessOperational#crossReference",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#hasCrossReference",
           :object => "http://www.assero.co.uk/MDRBCTs/V1#BC-ACME_C123456"
         },
         {
@@ -540,7 +541,7 @@ end
       "{ \n" + 
       "<http://www.example.com/path#parent_XXX1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . \n" +
       "<http://www.example.com/path#parent_XXX1> rdfs:label \"Cross Reference\"^^xsd:string . \n" +
-      "<http://www.example.com/path#parent_XXX1> bo:crossReference <http://www.example.com/path#fragement> . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:hasCrossReference <http://www.example.com/path#fragement> . \n" +
       "<http://www.example.com/path#parent_XXX1> bo:enabled \"true\"^^xsd:boolean . \n" +
       "<http://www.example.com/path#parent_XXX1> bo:optional \"false\"^^xsd:boolean . \n" +
       "<http://www.example.com/path#parent_XXX1> bo:ordinal \"1\"^^xsd:positiveInteger . \n" +
@@ -551,7 +552,7 @@ end
     item.label = "label"
     item.local_label = "****local****"
     item.subject_ref = UriV2.new({:id => "fragement", :namespace => "http://www.example.com/path"})
-    item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), "crossReference", "XXX", 1, sparql)
+    item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), "hasCrossReference", "XXX", 1, sparql)
     expect(sparql.to_s).to eq(result)
   end
 

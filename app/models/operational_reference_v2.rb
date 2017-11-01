@@ -5,7 +5,7 @@ class OperationalReferenceV2 < IsoConcept
   # Constants
   C_NONE = "None"
   
-  C_PARENT_LINK_X = "crossReference"
+  C_PARENT_LINK_X = "hasCrossReference"
   C_PARENT_LINK_BF = "branchedFrom"
   C_PARENT_LINK_BC = "hasBiomedicalConcept"
   C_PARENT_LINK_BCT = "basedOnTemplate"
@@ -25,7 +25,7 @@ class OperationalReferenceV2 < IsoConcept
   C_T_TYPE = "TReference"
   C_C_TYPE = "CReference"
   
-  C_X_LINK = "crossReference"
+  C_X_LINK = "hasCrossReference"
   C_B_LINK = "branchedFrom"
   C_BC_LINK = "hasBiomedicalConcept"
   C_BCT_LINK = "basedOnTemplate"
