@@ -25,8 +25,13 @@
 .DS_Store
 public/upload/cdiscImportManifest.xml
 
-# Ignore results dir
+# Ignore results but ensure directory kept
 /public/results
+!/public/results/.keep
+
+# Ignore reports but ensure directory kept
+/public/reports
+!/public/reports/.keep
 
 # Ignore test dir
 /public/test
