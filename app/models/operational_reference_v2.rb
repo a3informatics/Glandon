@@ -5,6 +5,7 @@ class OperationalReferenceV2 < IsoConcept
   # Constants
   C_NONE = "None"
   
+  C_PARENT_LINK_X = "crossReference"
   C_PARENT_LINK_BF = "branchedFrom"
   C_PARENT_LINK_BC = "hasBiomedicalConcept"
   C_PARENT_LINK_BCT = "basedOnTemplate"
@@ -15,6 +16,7 @@ class OperationalReferenceV2 < IsoConcept
   C_PARENT_LINK_C = "includesColumn"
   C_PARENT_LINK_VC = "basedOnVariable"
   
+  C_X_TYPE = "XReference"
   C_B_TYPE = "BReference"
   C_BC_TYPE = "BcReference"
   C_BCT_TYPE = "BctReference"
@@ -23,6 +25,7 @@ class OperationalReferenceV2 < IsoConcept
   C_T_TYPE = "TReference"
   C_C_TYPE = "CReference"
   
+  C_X_LINK = "crossReference"
   C_B_LINK = "branchedFrom"
   C_BC_LINK = "hasBiomedicalConcept"
   C_BCT_LINK = "basedOnTemplate"
@@ -35,6 +38,7 @@ class OperationalReferenceV2 < IsoConcept
   C_CLASS_NAME = "OperationalReferenceV2"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_RDF_TYPE = "Reference"
+  C_X_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_X_TYPE})
   C_B_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_B_TYPE})
   C_BC_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_BC_TYPE})
   C_BCT_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_BCT_TYPE})
@@ -45,6 +49,7 @@ class OperationalReferenceV2 < IsoConcept
   
   C_TO_TYPE_MAP = 
     {
+      C_PARENT_LINK_X => C_X_TYPE,
       C_PARENT_LINK_BF => C_B_TYPE,
       C_PARENT_LINK_BC => C_BC_TYPE,
       C_PARENT_LINK_P => C_P_TYPE,
@@ -58,6 +63,7 @@ class OperationalReferenceV2 < IsoConcept
     
   C_TO_LABEL_MAP = 
     {
+      C_PARENT_LINK_X => "Cross Reference",
       C_PARENT_LINK_BF => "Branched From Reference",
       C_PARENT_LINK_BC => "BC Reference",
       C_PARENT_LINK_P => "BC Property Reference",
@@ -71,6 +77,7 @@ class OperationalReferenceV2 < IsoConcept
     
   C_TO_LINK_MAP = 
     {
+      C_PARENT_LINK_X => C_X_LINK,
       C_PARENT_LINK_BF => C_B_LINK,
       C_PARENT_LINK_BC => C_BC_LINK,
       C_PARENT_LINK_P => C_P_LINK,
@@ -84,6 +91,7 @@ class OperationalReferenceV2 < IsoConcept
     
   C_FROM_TYPE_MAP = 
     {
+      C_X_RDF_TYPE_URI.to_s => C_X_LINK,
       C_B_RDF_TYPE_URI.to_s => C_B_LINK,
       C_BC_RDF_TYPE_URI.to_s => C_BC_LINK,
       C_P_RDF_TYPE_URI.to_s => C_P_LINK,

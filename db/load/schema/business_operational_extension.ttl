@@ -21,11 +21,11 @@
   rdfs:subClassOf :Reference ;
   skos:definition "Holds a cross reference to another item."^^xsd:string ;
 .
-:hasCrossReference
+:crossReference
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :XReference ;
   rdfs:label "Cross Reference relationship."^^xsd:string ;
-  rdfs:range IsoC:Concept ;
+  rdfs:range isoC:Concept ;
   skos:definition "A cross reference relationship between managed items."^^xsd:string ;
 .

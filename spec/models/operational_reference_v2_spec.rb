@@ -13,6 +13,7 @@ describe OperationalReferenceV2 do
     load_schema_file_into_triple_store("ISO11179Data.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
+    load_schema_file_into_triple_store("business_operational_extension.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_dm1.ttl")
@@ -468,8 +469,90 @@ describe OperationalReferenceV2 do
     expect(item.to_json).to eq(result)
   end
 
-  it "allows an object to be found from triples, Cross Reference"
+  it "allows an object to be found from triples, Cross Reference" do
+  	id = "BC-ACME_BC_C25347_XR"
+    triples = {}
+    triples [id] = []
+    triples [id] = 
+      [
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_XR",
+          :predicate => "http://www.w3.org/2000/01/rdf-schema#label",
+          :object => "Cross Reference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_XR",
+          :predicate => "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+          :object => "http://www.assero.co.uk/BusinessOperational#XReference"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_XR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#crossReference",
+          :object => "http://www.assero.co.uk/MDRBCTs/V1#BC-ACME_C123456"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_XR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#ordinal",
+          :object => "1"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_XR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#enabled",
+          :object => "true"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_XR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#optional",
+          :object => "true"
+        },
+        {
+          :subject => "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_XR",
+          :predicate => "http://www.assero.co.uk/BusinessOperational#local_label",
+          :object => "Other Label Text"
+        }        
+      ]
+    result = 
+      {
+        :id => "BC-ACME_BC_C25347_XR", 
+        :namespace => "http://www.assero.co.uk/MDRBCs/V1", 
+        :label => "Cross Reference",
+        :extension_properties => [],
+        :subject_ref => UriV2.new({:id => "BC-ACME_C123456", :namespace => "http://www.assero.co.uk/MDRBCTs/V1"}).to_json,
+        :optional => true,
+        :ordinal => 1,
+        :enabled => true,
+        :local_label => "Other Label Text",
+        :type => "http://www.assero.co.uk/BusinessOperational#XReference"
+      }
+    object = OperationalReferenceV2.find_from_triples(triples, id)
+    expect(object.to_json).to eq(result)
+end
 
-  it "allows an object to be exported as SPARQL, Cross Reference"
+  it "allows an object to be exported as SPARQL, Cross Reference" do
+    sparql = SparqlUpdateV2.new
+    result = 
+      "PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "INSERT DATA \n" +
+      "{ \n" + 
+      "<http://www.example.com/path#parent_XXX1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . \n" +
+      "<http://www.example.com/path#parent_XXX1> rdfs:label \"Cross Reference\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:crossReference <http://www.example.com/path#fragement> . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:enabled \"true\"^^xsd:boolean . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:optional \"false\"^^xsd:boolean . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:ordinal \"1\"^^xsd:positiveInteger . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:local_label \"****local****\"^^xsd:string . \n" + 
+      "}"
+    item = OperationalReferenceV2.new
+    item.rdf_type = "http://www.example.com/path#rdf_test_type"
+    item.label = "label"
+    item.local_label = "****local****"
+    item.subject_ref = UriV2.new({:id => "fragement", :namespace => "http://www.example.com/path"})
+    item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), "crossReference", "XXX", 1, sparql)
+    expect(sparql.to_s).to eq(result)
+  end
 
 end
