@@ -468,8 +468,8 @@ describe OperationalReferenceV2 do
     expect(item.to_json).to eq(result)
   end
 
-	it "clears triple store" do
-    clear_triple_store
-  end
+  it "allows an object to be found from triples, Cross Reference"
+
+  it "allows an object to be exported as SPARQL, Cross Reference"
 
 end

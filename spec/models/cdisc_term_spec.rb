@@ -335,4 +335,8 @@ describe CdiscTerm do
   	expect(object.errors.count).to eq(0)    
   end
 
+  it "determines the references from this terminology"
+
+  it "determines the references to this terminology"
+
 end

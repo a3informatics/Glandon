@@ -352,6 +352,10 @@ describe CdiscTermsController do
       expect(response).to redirect_to("/")
     end
 
+    it "displays the forward cross references"
+
+    it "displays the backward cross references"
+
   end
 
   describe "Curator User" do
