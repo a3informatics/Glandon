@@ -615,6 +615,114 @@ class IsoConcept
     return results
   end
   
+  # Cross References. Find the cross refs from/to the concept and its child concepts.
+  #
+  # @param [String] id the id of the concept
+  # @param [String] namespace the namespace of the concept
+  # @param [Symbol] direction the direction of the check (:from or :to)
+  # @return [Array] Array of hash, each hash containing the URI and the RDF type for the item found
+  def self.cross_references(id, namespace, direction)
+    results = []
+    namespace_set = [UriManagement::C_BO, UriManagement::C_BCR, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]
+		query = %Q{
+    	#{UriManagement.buildNs(namespace, namespace_set)}
+      SELECT ?s ?t WHERE
+	  }
+    if direction == :from
+			query += %Q{
+	      {
+	        ?s bcr:crossReference ?cr .
+	      	{
+				    ?s (^iso25964:hasConcept|^iso25964:hasChild)* :#{id} . 
+				  } 
+				  UNION
+				  {
+				    ?s (^bf:hasGroup|^bf:hasSubGroup|^bf:hasItem|^bf:hasCommon|^bf:hasCommonItem)* :#{id} . 
+				  } 
+				  UNION 
+				  {
+				    ?s (^cbc:hasItem|^cbc:hasDatatype|^cbc:hasProperty)* :#{id} .   
+				  } 
+				  UNION 
+				  {
+				    ?s (^bd:includesColumn)* :#{id} .    
+				  }
+  				?s rdf:type ?t .
+	        FILTER(STRSTARTS(STR(?s), \"#{namespace}\"))
+	      }
+	    }
+	  else
+			query += %Q{ 
+		    {
+	        ?or bo:hasCrossReference ?s . 	      	
+				  {
+				    ?s (^iso25964:hasConcept|^iso25964:hasChild)* :#{id} . 
+				  } 
+				  UNION
+				  {
+				    ?s (^bf:hasGroup|^bf:hasSubGroup|^bf:hasItem|^bf:hasCommon|^bf:hasCommonItem)* :#{id} . 
+				  } 
+				  UNION 
+				  {
+				    ?s (^cbc:hasItem|^cbc:hasDatatype|^cbc:hasProperty)* :#{id} .   
+				  } 
+				  UNION 
+				  {
+				    ?s (^bd:includesColumn)* :#{id} .    
+				  }
+  				?s rdf:type ?t .
+	      }
+    	}
+	  end
+		self.query_and_result(query).each do |node|
+      subject_s = self.node_value('s', true, node)
+      type_s = self.node_value('t', true, node)
+      results << { uri: UriV2.new({uri: subject_s}), rdf_type: type_s}
+    end
+    return results
+  end
+
+  # Cross Reference Details. Find the cross ref details from/to the concept.
+  #
+  # @param [Symbol] direction the direction of the check (:from or :to)
+  # @return [Array] Array of hash, each hash containing the URI and the RDF type for the item found
+  def cross_reference_details(direction)
+    results = []
+    namespace_set = [UriManagement::C_BO, UriManagement::C_BCR, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]
+		query = %Q{
+    	#{UriManagement.buildNs(self.namespace, namespace_set)}
+      SELECT ?s ?c ?ic WHERE
+	  }
+    if direction == :from
+			query += %Q{
+	      {
+	        :#{self.id} bcr:crossReference ?cr .
+	        BIND ( :#{self.id} as ?s ) .
+	        ?cr bcr:comments ?c .
+	      	?cr bcr:hasCrossReference ?or .
+	      	?or bo:hasCrossReference ?ic .
+	      }
+	    }
+	  else
+			query += %Q{ 
+		    {
+	        ?or bo:hasCrossReference :#{self.id}.
+	        BIND ( :#{self.id} as ?s ) .
+	        ?cr bcr:hasCrossReference ?or .
+	      	?cr bcr:comments ?c .
+	      	?ic bcr:crossReference ?cr .
+	      }
+    	}
+	  end
+		query_and_result(query).each do |node|
+      subject_s = self.node_value('s', true, node)
+      reference = self.node_value('ic', true, node)
+      comments = self.node_value('c', false, node)
+      results << { uri: UriV2.new({uri: subject_s}), comments: comments, reference: UriV2.new({uri: reference}) }
+    end
+    return results
+  end
+
   # Parent. Get the parent object depending on the specififed link type.
   #
   # @param uri [Object] URI of the child concept.
@@ -638,14 +746,11 @@ class IsoConcept
       "    ?s rdf:type ?o . \n" +      
       "  }\n" +   
       "}"
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    nodes = xmlDoc.xpath("//result")
-    if nodes.length == 1
-      uri = UriV2.new({uri: ModelUtility.getValue('s', true, nodes[0] )})
-      rdf_type = ModelUtility.getValue('o', true, nodes[0])
-      result = { uri: uri, rdf_type: rdf_type }
+		nodes = self.query_and_result(query)
+		if nodes.length == 1
+      subject_s = self.node_value('s', true, nodes.first)
+      rdf_type = self.node_value('o', true, nodes.first)
+      result = { uri: UriV2.new(uri: subject_s), rdf_type: rdf_type }
     end
     return result
   end
@@ -826,7 +931,8 @@ private
           results[current_prop[:label].to_sym] = {status: :no_change, previous: previous_value, current: current_value, difference: "" }
         else
           changes = true
-          results[current_prop[:label].to_sym] = {status: :updated, previous: previous_value, current: current_value, difference: Diffy::Diff.new(previous_value, current_value).to_s(:html) }
+          results[current_prop[:label].to_sym] = {status: :updated, previous: previous_value, current: current_value, 
+          	difference: Diffy::Diff.new(previous_value, current_value).to_s(:html) }
         end
       end
       check[current_prop[:instance_variable]] = true
