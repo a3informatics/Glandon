@@ -26,6 +26,14 @@
   rdfs:range xsd:string ;
   skos:definition "The comments regarding the cross references."^^xsd:string
 .
+:ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Ordinal"^^xsd:string ;
+  rdfs:domain :CrossReference ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "The ordering of the cross references within the collection."^^xsd:string
+.
 :crossReference
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;

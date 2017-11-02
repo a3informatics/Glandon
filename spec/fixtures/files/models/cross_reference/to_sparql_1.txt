@@ -1,0 +1,29 @@
+PREFIX bcr: <http://www.assero.co.uk/BusinessCrossReference#>
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://example.com/A#base_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://example.com/A#base_XR1> rdfs:label ""^^xsd:string . 
+<http://example.com/A#base_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://example.com/A#base_XR1> bcr:comments "This is the comment"^^xsd:string . 
+<http://example.com/A#base_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://example.com/A#base_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://example.com/A#base_XR1_XR1> bo:hasCrossReference <http://example.com/A1> . 
+<http://example.com/A#base_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://example.com/A#base_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://example.com/A#base_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://example.com/A#base_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://example.com/A#base_XR1> bcr:hasCrossReference <http://example.com/A#base_XR1_XR1> . 
+<http://example.com/A#base_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://example.com/A#base_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://example.com/A#base_XR1_XR2> bo:hasCrossReference <http://example.com/A2> . 
+<http://example.com/A#base_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://example.com/A#base_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://example.com/A#base_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://example.com/A#base_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://example.com/A#base_XR1> bcr:hasCrossReference <http://example.com/A#base_XR1_XR2> . 
+}
