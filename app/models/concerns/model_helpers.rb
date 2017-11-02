@@ -88,42 +88,42 @@ module ModelHelpers
   #
   # See class version for details
 	def uri(namespace, id)
-		klass.class.uri(namespace, id)
+		self.class.uri(namespace, id)
   end
 
   # URI Reference Helper
   #
   # See class version for details
 	def uri_ref(namespace, id)
-		klass.class.uri_ref(namespace, id)
+		self.class.uri_ref(namespace, id)
   end
 
   # Extract Id Helper
   #
   # See class version for details
 	def extract_id(uri)
-		klass.class.extract_cid(uri)
+		self.class.extract_cid(uri)
   end	
 
   # Extract Namespace Helper
   #
   # See class version for details
 	def extract_namespace(uri)
-		klass.class.extract_namespace(uri)
+		self.class.extract_namespace(uri)
   end	
 
   # Node Value Helper
   #
   # See class version for details
 	def node_value(name, uri, node)
-  	klass.node_value(name, uri, node)
+  	self.class.node_value(name, uri, node)
   end
 
   # Query and Result Helper
   #
   # See class version for details
   def query_and_result(query)
-  	klass.query_and_result(query)
+  	self.class.query_and_result(query)
   end
 
 end

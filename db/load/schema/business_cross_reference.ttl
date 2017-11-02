@@ -1,4 +1,5 @@
 @prefix : <http://www.assero.co.uk/BusinessCrossReference#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -15,7 +16,7 @@
 :CrossReference
   rdf:type owl:Class ;
   rdfs:label "Cross Reference"^^xsd:string ;
-  rdfs:subClassOf ioC:Concept ;
+  rdfs:subClassOf isoC:Concept ;
   skos:definition "Holds the set of cross references."^^xsd:string ;
 .
 :comments
