@@ -97,6 +97,10 @@ describe IsoConceptController do
       expect(hash).to match(results)
     end
 
+    it "allows cross references to be found" do
+      item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
+    end
+    
   end
 
   describe "Unauthorized User" do
