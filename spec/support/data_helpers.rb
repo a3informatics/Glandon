@@ -92,6 +92,15 @@ module DataHelpers
     end
   end
 
+  def read_public_text_file(sub_dir, filename)
+    text = ""
+    full_path = Rails.root.join "public/#{sub_dir}/#{filename}"
+    File.open(full_path, "r") do |f|
+      text = f.read
+    end
+    return text
+  end
+
   def delete_data_file(sub_dir, filename)
     full_path = set_path(sub_dir, filename)
 		File.delete(full_path)

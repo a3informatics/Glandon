@@ -5,6 +5,26 @@ class Background < ActiveRecord::Base
   C_CLASS_NAME = "Background"
 
 	
+	# Import CDISC Terminology Changes
+  #
+  # @param [Hash] params Parameters
+  # @option params [String] :version The version to which the changes relate
+  # @option params [String] :files Array of files being used 
+  # @return [void] no return
+  def import_cdisc_term_changes(params)
+    start_cdisc_import("Import CDISC terminology change information. Internal Version: #{params[:version]}.")
+    results = TermChangeExcel.read_changes(params, errors)
+    if self.errors.empty?
+    	report_file_successfully_read
+      process_cdisc_term_changes_import(params, results)
+    else
+      report_excel_errors
+    end
+  rescue => e
+		report_import_exception(e)
+  end
+  handle_asynchronously :import_cdisc_term_changes unless Rails.env.test?
+
 	# Import CDISC SDTM Model
   #
   # @param [Hash] params Parameters
@@ -14,13 +34,13 @@ class Background < ActiveRecord::Base
   # @option params [String] :files Array of files being used 
   # @return [void] no return
   def import_cdisc_sdtm_model(params)
-    start_cdisc_sdtm_import("Import CDISC SDTM Model. Date: #{params[:date]}, Internal Version: #{params[:version]}.")
+    start_cdisc_import("Import CDISC SDTM Model. Date: #{params[:date]}, Internal Version: #{params[:version]}.")
     results = SdtmExcel.read_model(params, self.errors)
     if self.errors.empty?
     	report_file_successfully_read
       process_cdisc_sdtm_model_import(params, results)
     else
-      report_cdisc_sdtm_import_excel_errors
+      report_excel_errors
     end
   rescue => e
 		report_import_exception(e)
@@ -37,13 +57,13 @@ class Background < ActiveRecord::Base
   # @option params [String] :files Array of files being used 
   # @return [void] no return
   def import_cdisc_sdtm_ig(params)
-    start_cdisc_sdtm_import("Import CDISC SDTM Implementation Guide. Date: #{params[:date]} Internal Version: #{params[:version]}.")
+    start_cdisc_import("Import CDISC SDTM Implementation Guide. Date: #{params[:date]} Internal Version: #{params[:version]}.")
     results = SdtmExcel.read_ig(params, self.errors)
     if self.errors.empty?
     	report_file_successfully_read
       process_cdisc_sdtm_ig_import(params, results)
     else
-      report_cdisc_sdtm_import_excel_errors
+      report_excel_errors
     end
   rescue => e
 		report_import_exception(e)
@@ -317,9 +337,68 @@ private
     return items
   end
 
-  def start_cdisc_sdtm_import(log_text)
+  def start_cdisc_import(log_text)
     self.errors.clear
     self.update( description: log_text, status: "Reading file.", started: Time.now())
+  end
+
+  def process_cdisc_term_changes_import(params, results)
+  	ordinals = {}
+  	uri = UriV2.new(uri: params[:term_uri])
+    current_ct = CdiscTerm.find(uri.id, uri.namespace)
+    previous = CdiscTerm.all_previous(current_ct.version)
+    previous_ct = previous.last
+  	sparql = SparqlUpdateV2.new
+  	results.each do |result|
+  		child = nil
+  		current_parent = find_terminology({notation: result[:source_cl_notation]}, current_ct.namespace)
+  		if current_parent.nil?
+  			previous_parent = find_terminology({notation: result[:source_cl_notation]}, previous_ct.namespace)
+  			if !previous_parent.nil? && !result[:source_cl_identifier].empty?
+  				result[:references].each do |ref|
+			  		current_parent = find_terminology({identifier: ref}, current_ct.namespace)
+			  		if !current_parent.nil?
+
+							cr = CrossReference.new
+							cr.comments = result[:instructions]
+							cr.ordinal = get_ordinal(current_parent, ordinals)
+							
+								oref = OperationalReferenceV2.new
+								oref.ordinal = 1
+								oref.subject_ref = previous_parent.uri
+								cr.children << oref
+
+				  		ref_uri = cr.to_sparql_v2(current_parent.uri, sparql)
+							sparql.triple({uri: current_parent.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
+
+			  		end
+  				end
+  			end
+  		else
+	  		if !result[:source_cli_identifier].empty?
+	  			current_parent = current_parent.children.find { |c| c.identifier == result[:source_cli_identifier] }
+	  		end
+	  		if !current_parent.nil?
+					cr = CrossReference.new
+					cr.comments = result[:instructions]
+					cr.ordinal = get_ordinal(current_parent, ordinals)
+					ordinal = 1
+					result[:references].each do |c_code|
+						term = find_terminology({identifier: result[:source_cli_identifier]}, uri.namespace)
+						if !term.nil?
+		  				oref = OperationalReferenceV2.new
+							oref.ordinal = ordinal
+							oref.subject_ref = 
+							cr.children << oref
+							ordinal += 1
+						end
+		  		end
+		  		ref_uri = cr.to_sparql_v2(current_parent.uri, sparql)
+					sparql.triple({uri: current_parent.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
+				end
+			end
+		end			
+		load_sparql(sparql, "term_changes_#{current_ct.version}.txt") 
   end
 
   def process_cdisc_sdtm_model_import(params, results)
@@ -391,7 +470,7 @@ private
   	return result
   end
 
-  def report_cdisc_sdtm_import_excel_errors
+  def report_excel_errors
     self.update(status: "Complete. Unsuccessful import. Excel errors: " + self.errors.full_messages.to_sentence, 
     	percentage: 100, complete: true, completed: Time.now())
   end
@@ -413,5 +492,18 @@ private
  	def report_general_error(text)
  		self.update(status: "Complete. Unsuccessful import. #{text}.", percentage: 100, complete: true, completed: Time.now())
  	end
+
+ 	def find_terminology(params, namespace)
+ 		tcs = ThesaurusConcept.find_by_property(params, namespace)
+    return tcs[0] if tcs.length == 1
+    return nil
+  end
+
+  def get_ordinal(tc, ordinals)
+  	uri = tc.uri.to_s
+  	ordinals[uri] = 0 if !ordinals.has_key?(uri)
+  	ordinals[uri] += 1
+		return ordinals[uri]
+	end
 
 end

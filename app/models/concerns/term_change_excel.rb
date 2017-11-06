@@ -26,11 +26,11 @@ module TermChangeExcel
       		if type == "CDISC Codelist" 
 	      		result[:source_cl_identifier] = c_code
 	      		result[:source_cl_notation] = short_name
-	        	result[:source_cli_identifir] = ""
+	        	result[:source_cli_identifier] = ""
 	      	else
 	      		result[:source_cl_identifier] = ""
 	      		result[:source_cl_notation] = short_name
-	        	result[:source_cli_identifir] = c_code
+	        	result[:source_cli_identifier] = c_code
 	      	end
 	      	result[:instructions] = instructions
 	      	result[:references] = instructions.scan(/C\d{4,6}/)

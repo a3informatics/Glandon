@@ -26,7 +26,7 @@ describe TermChangeExcel do
 			:files => ["#{filename}"]
 		}
 		result = TermChangeExcel.read_changes(params, object.errors)
-	write_yaml_file(result, sub_dir, "change_expected_1.yaml")
+	#write_yaml_file(result, sub_dir, "change_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "change_expected_1.yaml")
 		expect(result).to match_array(expected)
 		expect(object.errors.count).to eq(0)
@@ -40,7 +40,7 @@ describe TermChangeExcel do
 			:files => ["#{filename}"]
 		}
 		result = TermChangeExcel.read_changes(params, object.errors)
-	write_yaml_file(result, sub_dir, "change_expected_2.yaml")
+	#write_yaml_file(result, sub_dir, "change_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "change_expected_2.yaml")
 		expect(result).to match_array(expected)
 		expect(object.errors.count).to eq(0)

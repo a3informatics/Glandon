@@ -1,0 +1,498 @@
+PREFIX bcr: <http://www.assero.co.uk/BusinessCrossReference#>
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100150> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100150> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100150> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100150> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100149> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100149> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100149> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100149> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C99524_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C99524_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C99524_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C99524_XR1> bcr:comments "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C99524> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C99524_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C99524_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C99524_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C99524_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C99524_XR1> bcr:comments "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C99524> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C99524_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103329_C132359_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103329_C132359_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103329_C132359_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103329_C132359_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103329_C132359> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103329_C132359_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR1> bcr:comments "Change not picked up by program. Additional rows added post-processing."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR2> bcr:comments "Change not picked up by program. Additional rows added post-processing."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C120622_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132360_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132360_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132360_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132360_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132360> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132360_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132361_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132361_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132361_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132361_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132361> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132361_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132362_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132362_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132362_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132362_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132362> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120526_C132362_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR1> bcr:comments "Change not picked up by program. Additional rows added post-processing."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR2> bcr:comments "Change not picked up by program. Additional rows added post-processing."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C120622_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132360_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132360_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132360_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132360_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132360> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132360_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132361_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132361_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132361_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132361_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132361> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132361_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132362_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132362_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132362_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132362_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132362> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120525_C132362_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C116210_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C116210_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C116210_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C116210_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C116210> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C116210_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132364_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132364_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132364_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132364_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132364> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132364_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132365_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132365_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132365_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132365_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132365> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132365_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132367_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132367_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132367_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132367_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132367> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132367_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132374_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132374_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132374_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132374_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132374> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132374_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132378_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132378_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132378_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132378_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132378> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132378_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132379_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132379_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132379_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132379_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132379> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132379_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132382_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132382_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132382_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132382_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132382> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132382_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132383_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132383_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132383_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132383_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132383> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132383_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132384_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132384_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132384_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132384_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132384> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132384_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132385_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132385_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132385_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132385_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132385> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C132385_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C116210_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C116210_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C116210_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C116210_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C116210> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C116210_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132364_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132364_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132364_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132364_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132364> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132364_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132365_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132365_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132365_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132365_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132365> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132365_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132367_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132367_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132367_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132367_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132367> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132367_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132374_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132374_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132374_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132374_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132374> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132374_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132378_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132378_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132378_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132378_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132378> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132378_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132379_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132379_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132379_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132379_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132379> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132379_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132382_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132382_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132382_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132382_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132382> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132382_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132383_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132383_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132383_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132383_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132383> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132383_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132384_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132384_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132384_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132384_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132384> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132384_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132385_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132385_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132385_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132385_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132385> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C132385_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132417_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132417_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132417_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132417_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132417> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132417_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132418_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132418_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132418_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132418_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132418> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120528_C132418_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132417_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132417_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132417_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132417_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132417> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132417_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132418_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132418_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132418_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132418_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132418> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C120527_C132418_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132421_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132421_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132421_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132421_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132421> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132421_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132422_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132422_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132422_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132422_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132422> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132422_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132423_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132423_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132423_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132423_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132423> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96777_C132423_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132427_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132427_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132427_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132427_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132427> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132427_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132428_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132428_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132428_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132428_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132428> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85492_C132428_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112031_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112031_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112031_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112031_XR1> bcr:comments "Swap submission value and synonym. The current CDISC submission values and synonyms are outdated and no longer recognized by NCBI taxonomy and ICTV (International Committee on Taxonomy of Viruses). This change is also requested so that the submission values of the older terms are consistent with the submission values for the newer family level microorg terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112031> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112031_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112231_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112231_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112231_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112231_XR1> bcr:comments "Change submission value, remove synonym. The current CDISC submission values and synonyms are outdated and no longer recognized by NCBI taxonomy and ICTV (International Committee on Taxonomy of Viruses). This change is also requested so that the submission values of the older terms are consistent with the submission values for the newer family level microorg terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112231> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C112231_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C113205_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C113205_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C113205_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C113205_XR1> bcr:comments "Change submission value, remove synonym. The current CDISC submission values and synonyms are outdated and no longer recognized by NCBI taxonomy and ICTV (International Committee on Taxonomy of Viruses). This change is also requested so that the submission values of the older terms are consistent with the submission values for the newer family level microorg terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C113205> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C113205_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14179_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14179_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14179_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14179_XR1> bcr:comments "Change submission value, remove synonym. The current CDISC submission values and synonyms are outdated and no longer recognized by NCBI taxonomy and ICTV (International Committee on Taxonomy of Viruses). This change is also requested so that the submission values of the older terms are consistent with the submission values for the newer family level microorg terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14179> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14179_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14304_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14304_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14304_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14304_XR1> bcr:comments "Change submission value, remove synonym. The current CDISC submission values and synonyms are outdated and no longer recognized by NCBI taxonomy and ICTV (International Committee on Taxonomy of Viruses). This change is also requested so that the submission values of the older terms are consistent with the submission values for the newer family level microorg terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14304> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C85491_C14304_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48602_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48602_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48602_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48602_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48602> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48602_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48603_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48603_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48603_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48603_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48603> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48603_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48604_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48604_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48604_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48604_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48604> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C125922_C48604_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132364_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132364_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132364_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132364_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132364> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132364_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132431_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132431_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132431_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132431_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132431> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132262_C132431_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132364_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132364_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132364_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132364_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132364> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132364_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132431_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132431_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132431_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132431_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132431> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132263_C132431_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132517_C132553_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132517_C132553_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132517_C132553_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132517_C132553_XR1> bcr:comments "Microsoft ellipsis character replaced with three periods."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132517_C132553> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132517_C132553_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132516_C132553_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132516_C132553_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132516_C132553_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132516_C132553_XR1> bcr:comments "Microsoft ellipsis character replaced with three periods."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132516_C132553> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C132516_C132553_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> bcr:comments "Term being added into correct codelist, ONCRSCAT. This term was incorrectly published in the wrong codelist (ONCRSR)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132455_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132455_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132455_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132455_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132455> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132455_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132457_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132457_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132457_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132457_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132457> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C132457_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132455_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132455_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132455_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132455_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132455> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132455_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132457_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132457_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132457_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132457_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132457> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C132457_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116105_C132434_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116105_C132434_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116105_C132434_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116105_C132434_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116105_C132434> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116105_C132434_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116106_C132434_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116106_C132434_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116106_C132434_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116106_C132434_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116106_C132434> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C116106_C132434_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119093_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119093_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119093_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119093_XR1> bcr:comments "@ sign not supported."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119093> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119093_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119094_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119094_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119094_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119094_XR1> bcr:comments "@ sign not supported."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119094> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C119094_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C132533_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C132533_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C132533_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C132533_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C132533> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C100129_C132533_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103330_C132460_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103330_C132460_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103330_C132460_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103330_C132460_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103330_C132460> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C103330_C132460_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74559_C132460_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74559_C132460_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74559_C132460_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74559_C132460_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74559_C132460> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74559_C132460_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96778_C132464_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96778_C132464_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96778_C132464_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96778_C132464_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96778_C132464> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96778_C132464_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96779_C132464_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96779_C132464_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96779_C132464_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96779_C132464_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96779_C132464> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96779_C132464_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C123650_C132467_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C123650_C132467_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C123650_C132467_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C123650_C132467_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C123650_C132467> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C123650_C132467_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132472_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132472_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132472_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132472_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132472> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132472_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132473_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132473_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132473_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132473_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132473> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132473_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132474_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132474_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132474_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132474_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132474> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132474_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132475_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132475_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132475_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132475_XR1> bcr:comments "Non-breaking spaces replaced with regular spaces."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132475> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C71620_C132475_XR1> . 
+}
