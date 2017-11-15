@@ -69,6 +69,7 @@ gem 'roo', '~> 2.4.0'
 
 # ODM support
 gem 'odm', '~> 1.0.3', :git => 'https://github.com/daveih/odm.git'
+gem "font-awesome-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

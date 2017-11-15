@@ -159,7 +159,7 @@ describe Background do
   	expect(job.status).to eq("Complete. Successful import.")
   end
 
-  it "import cdisc term changes" do
+  it "import cdisc term changes, June 2017" do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -177,19 +177,50 @@ describe Background do
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
-    delete_all_public_files
+    #delete_all_public_files
   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
   	job = Background.create
   	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2017-06-30.xlsx")
   	params = {files: ["#{filename}"], term_uri: ct.uri.to_s}
   	job.import_cdisc_term_changes(params)
-  #puts job.status
   	expect(job.status).to eq("Complete. Successful import.")  
   	results = read_public_text_file("test", "term_changes_49.txt")
-  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected.txt")
-  	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected.txt")
+  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_1.txt")
+  	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_1.txt")
   	expect(results).to eq(expected)	
-    delete_all_public_files
+  #delete_all_public_files
+  end
+
+  it "import cdisc term changes, March 2016" do
+    clear_triple_store
+    load_schema_file_into_triple_store("ISO11179Types.ttl")
+    load_schema_file_into_triple_store("ISO11179Basic.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    load_schema_file_into_triple_store("ISO11179Data.ttl")
+    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    load_schema_file_into_triple_store("ISO25964.ttl")
+    load_schema_file_into_triple_store("BusinessOperational.ttl")
+    load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+		load_test_file_into_triple_store("CT_V43.ttl")
+		load_test_file_into_triple_store("CT_V44.ttl")
+    clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
+    #delete_all_public_files
+  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V44")
+  	job = Background.create
+  	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2016-03-25.xlsx")
+  	params = {files: ["#{filename}"], term_uri: ct.uri.to_s}
+  	job.import_cdisc_term_changes(params)
+  	expect(job.status).to eq("Complete. Successful import.")  
+  	results = read_public_text_file("test", "term_changes_44.txt")
+  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_2.txt")
+  	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_2.txt")
+  	expect(results).to eq(expected)	
+  #delete_all_public_files
   end
 
 end

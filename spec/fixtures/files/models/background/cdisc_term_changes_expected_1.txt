@@ -1,0 +1,256 @@
+PREFIX bcr: <http://www.assero.co.uk/BusinessCrossReference#>
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100150> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100150> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100150> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100150> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100149> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135683_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100149> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135684_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100149> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135685_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> bcr:comments "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CL-C100149> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CL-C135686_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1> bcr:comments "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101846_C99524> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135374_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1> bcr:comments "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101846_C99524> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135375_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1> bcr:comments "Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM. This measurement is also typically performed with an echocardiography view of \"apical 4-chamber view\"."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101846_C99970> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C135377_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1> bcr:comments "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD with a LOC = HEART, LEFT VENTRICLE."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101846_C99976> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127575_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1> bcr:comments "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT VENTRICLE."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101846_C99977> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C127576_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1> bcr:comments "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101847_C99524> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135374_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1> bcr:comments "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101847_C99524> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135375_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1> bcr:comments "Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM. This measurement is also typically performed with an echocardiography view of \"apical 4-chamber view\"."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101847_C99970> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C135377_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1> bcr:comments "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD with a LOC = HEART, LEFT VENTRICLE."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101847_C99976> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127575_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1> bcr:comments "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT VENTRICLE."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C101847_C99977> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C127576_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> bcr:comments "Term being added into correct codelist, ONCRSCAT. This term was incorrectly published in the wrong codelist (ONCRSR)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V48#CLI-C96785_C132454> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C124298_C132454_XR1> . 
+}

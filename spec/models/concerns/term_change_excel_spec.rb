@@ -18,7 +18,7 @@ describe TermChangeExcel do
 		expect(object.errors.full_messages.to_sentence).to eq("Could not open the import file.")		
 	end
 
-	it "reads the change file" do
+	it "reads the change file, March 2016" do
 		filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2016-03-25.xlsx")
 		object = Background.new
 		params = {
@@ -32,7 +32,7 @@ describe TermChangeExcel do
 		expect(object.errors.count).to eq(0)
 	end
 
-	it "reads the change file" do
+	it "reads the change file, June 2017" do
 		filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2017-06-30.xlsx")
 		object = Background.new
 		params = {
@@ -82,7 +82,7 @@ describe TermChangeExcel do
 		expect(object.errors.full_messages.to_sentence).to eq("Main sheet in the excel file, incorrect column count, indicates format error.")	
 	end
    
-	it "reads the excel fle, missing data" do
+	it "reads the excel fle, missing data, previous codelist" do
 		filename = test_file_path(sub_dir, "change_input_3.xlsx")
 		object = Background.new
 		params = {
@@ -91,10 +91,10 @@ describe TermChangeExcel do
 		}
 		result = TermChangeExcel.read_changes(params, object.errors)
 		expect(object.errors.count).to eq(1)
-		expect(object.errors.full_messages.to_sentence).to eq("Empty cell detected in row 2, column 4.")	
+		expect(object.errors.full_messages.to_sentence).to eq("Empty cell detected in row 2, column 13.")	
 	end
 
-	it "reads the excel fle, missing data" do
+	it "reads the excel fle, missing data, new codelist" do
 		filename = test_file_path(sub_dir, "change_input_4.xlsx")
 		object = Background.new
 		params = {
@@ -103,7 +103,43 @@ describe TermChangeExcel do
 		}
 		result = TermChangeExcel.read_changes(params, object.errors)
 		expect(object.errors.count).to eq(1)
-		expect(object.errors.full_messages.to_sentence).to eq("Empty cell detected in row 2, column 6.")	
+		expect(object.errors.full_messages.to_sentence).to eq("Empty cell detected in row 2, column 15.")	
+	end
+
+	it "reads the excel fle, missing data, comment" do
+		filename = test_file_path(sub_dir, "change_input_5.xlsx")
+		object = Background.new
+		params = {
+			version: "31", 
+			:files => ["#{filename}"]
+		}
+		result = TermChangeExcel.read_changes(params, object.errors)
+		expect(object.errors.count).to eq(1)
+		expect(object.errors.full_messages.to_sentence).to eq("Empty cell detected in row 2, column 17.")	
+	end
+
+	it "reads the excel fle, missing data, multiple new" do
+		filename = test_file_path(sub_dir, "change_input_6.xlsx")
+		object = Background.new
+		params = {
+			version: "31", 
+			:files => ["#{filename}"]
+		}
+		result = TermChangeExcel.read_changes(params, object.errors)
+		expect(object.errors.count).to eq(1)
+		expect(object.errors.full_messages.to_sentence).to eq("Multiple new Code Lists and Code List Items.")	
+	end
+
+	it "reads the excel fle, missing data, multiple mappings" do
+		filename = test_file_path(sub_dir, "change_input_7.xlsx")
+		object = Background.new
+		params = {
+			version: "31", 
+			:files => ["#{filename}"]
+		}
+		result = TermChangeExcel.read_changes(params, object.errors)
+		expect(object.errors.count).to eq(1)
+		expect(object.errors.full_messages.to_sentence).to eq("Multiple previous to new mappings.")	
 	end
 
 end

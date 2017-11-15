@@ -626,7 +626,7 @@ class IsoConcept
     namespace_set = [UriManagement::C_BO, UriManagement::C_BCR, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]
 		query = %Q{
     	#{UriManagement.buildNs(namespace, namespace_set)}
-      SELECT ?s ?t WHERE
+      SELECT DISTINCT ?s ?t WHERE
 	  }
     if direction == :from
 			query += %Q{
@@ -691,7 +691,7 @@ class IsoConcept
     namespace_set = [UriManagement::C_BO, UriManagement::C_BCR, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]
 		query = %Q{
     	#{UriManagement.buildNs(self.namespace, namespace_set)}
-      SELECT ?s ?c ?ic WHERE
+      SELECT DISTINCT ?s ?c ?ic WHERE
 	  }
     if direction == :from
 			query += %Q{

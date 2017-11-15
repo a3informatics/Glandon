@@ -17,24 +17,25 @@ module TermChangeExcel
       return if !errors.empty?
       ((workbook.first_row + 1) .. workbook.last_row).each do |row|
       	result = {}
-        c_code = check_cell(workbook, row, 4, errors)
-        type = check_cell(workbook, row, 5, errors)
-        short_name = check_cell(workbook, row, 6, errors)
-        instructions = check_cell(workbook, row, 11, errors, true)
-        return if !errors.empty?
-      	if !instructions.empty?
-      		if type == "CDISC Codelist" 
-	      		result[:source_cl_identifier] = c_code
-	      		result[:source_cl_notation] = short_name
-	        	result[:source_cli_identifier] = ""
-	      	else
-	      		result[:source_cl_identifier] = ""
-	      		result[:source_cl_notation] = short_name
-	        	result[:source_cli_identifier] = c_code
-	      	end
+        cell = check_cell(workbook, row, 12, errors, true)
+        process = cell.blank? ? false : cell.to_bool
+        if process
+      		prev_cl = check_cell(workbook, row, 13, errors)
+        	prev_cli = check_cell(workbook, row, 14, errors, true)
+        	new_cl = check_cell(workbook, row, 15, errors)
+        	new_cli = check_cell(workbook, row, 16, errors, true)
+        	instructions = check_cell(workbook, row, 17, errors)
+        	return if !errors.empty?
+      		result[:previous_cl] = prev_cl
+	      	result[:previous_cli] = prev_cli.scan(/C\d{4,6}/)
+	      	result[:new_cl] = new_cl.scan(/C\d{4,6}/)
+	      	result[:new_cli] = new_cli.scan(/C\d{4,6}/)
 	      	result[:instructions] = instructions
-	      	result[:references] = instructions.scan(/C\d{4,6}/)
-	      	results << result
+	      	errors.add(:base, "Multiple new Code Lists with Code List Items.") if result[:new_cl].count > 1 && result[:new_cli].count > 0
+    			errors.add(:base, "Multiple previous to new mappings.") if result[:previous_cli].count > 1 && result[:new_cl].count > 1
+    			errors.add(:base, "Multiple previous to new mappings.") if result[:previous_cli].count > 1 && result[:new_cli].count > 1
+    			return if !errors.empty?
+      		results << result
 	      end
       end
     else
@@ -66,12 +67,11 @@ private
               
   def self.check_main(workbook, errors)
     columns = ["Release Date", "Request Code", "Change Type", "NCI Code", "CDISC Term Type", "CDISC Codelist (Short Name)", "CDISC Codelist (Long Name)", 
-    	"Change Summary", "Original", "New", "Change Implementation Instructions"]
+    	"Change Summary", "Original", "New", "Change Implementation Instructions", "Use", "Prev Codelist", "Prev Term", "New Codelists", "New Terms", "Comment"]
   	if workbook.nil?
       errors.add(:base, "Missing Main sheet in the excel file.")
       return 
     end
-#byebug
     if workbook.row(1).count != columns.count
       errors.add(:base, "Main sheet in the excel file, incorrect column count, indicates format error.")
       return 

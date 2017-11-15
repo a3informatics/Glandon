@@ -350,51 +350,38 @@ private
     previous_ct = previous.last
   	sparql = SparqlUpdateV2.new
   	results.each do |result|
-  		child = nil
-  		current_parent = find_terminology({notation: result[:source_cl_notation]}, current_ct.namespace)
-  		if current_parent.nil?
-  			previous_parent = find_terminology({notation: result[:source_cl_notation]}, previous_ct.namespace)
-  			if !previous_parent.nil? && !result[:source_cl_identifier].empty?
-  				result[:references].each do |ref|
-			  		current_parent = find_terminology({identifier: ref}, current_ct.namespace)
-			  		if !current_parent.nil?
-
-							cr = CrossReference.new
-							cr.comments = result[:instructions]
-							cr.ordinal = get_ordinal(current_parent, ordinals)
-							
-								oref = OperationalReferenceV2.new
-								oref.ordinal = 1
-								oref.subject_ref = previous_parent.uri
-								cr.children << oref
-
-				  		ref_uri = cr.to_sparql_v2(current_parent.uri, sparql)
-							sparql.triple({uri: current_parent.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
-
-			  		end
-  				end
-  			end
-  		else
-	  		if !result[:source_cli_identifier].empty?
-	  			current_parent = current_parent.children.find { |c| c.identifier == result[:source_cli_identifier] }
-	  		end
-	  		if !current_parent.nil?
-					cr = CrossReference.new
-					cr.comments = result[:instructions]
-					cr.ordinal = get_ordinal(current_parent, ordinals)
-					ordinal = 1
-					result[:references].each do |c_code|
-						term = find_terminology({identifier: result[:source_cli_identifier]}, uri.namespace)
-						if !term.nil?
-		  				oref = OperationalReferenceV2.new
-							oref.ordinal = ordinal
-							oref.subject_ref = 
-							cr.children << oref
-							ordinal += 1
+  		result[:new_cl].each do |cl|
+	  		sources = []
+  			parent = find_terminology({identifier: cl}, current_ct.namespace)
+	  		if !parent.nil?
+		  		if result[:new_cli].empty?
+		  			sources << parent
+		  		else
+		  			result[:new_cli].each do |cli|
+		  				child = find_terminology_child(parent, cli)
+		  				sources << child if !child.nil?
 						end
-		  		end
-		  		ref_uri = cr.to_sparql_v2(current_parent.uri, sparql)
-					sparql.triple({uri: current_parent.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
+					end			
+		  		sources.each do |source|
+						ordinal = 1
+		  			cr = CrossReference.new
+						cr.comments = result[:instructions]
+						cr.ordinal = get_ordinal(source, ordinals)
+						previous = find_terminology({identifier: result[:previous_cl]}, previous_ct.namespace)
+						if result[:previous_cli].empty?
+			  			cr.children << create_operational_ref(previous, source, ordinal)
+			  		else
+			  			result[:previous_cli].each do |cli|
+			  				child = find_terminology_child(previous, cli)
+			  				if !child.nil?
+									cr.children << create_operational_ref(child, source, ordinal)
+			  					ordinal += 1
+			  				end
+							end
+						end	
+			  		ref_uri = cr.to_sparql_v2(source.uri, sparql)
+						sparql.triple({uri: source.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
+					end
 				end
 			end
 		end			
@@ -504,6 +491,19 @@ private
   	ordinals[uri] = 0 if !ordinals.has_key?(uri)
   	ordinals[uri] += 1
 		return ordinals[uri]
+	end
+
+	def create_operational_ref(term, cross_ref, ordinal)
+	byebug
+		return if term.nil?
+		oref = OperationalReferenceV2.new
+		oref.ordinal = ordinal
+		oref.subject_ref = term.uri
+		return oref
+	end
+
+	def find_terminology_child(parent, identifier)
+		return parent.children.find { |c| c.identifier == identifier }
 	end
 
 end
