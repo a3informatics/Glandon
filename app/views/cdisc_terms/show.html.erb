@@ -1,5 +1,8 @@
 <%= javascript_include_tag 'standard_datatable' %>
 <% second_level_breadcrumb("CDISC Terminology", history_cdisc_terms_path, "Show") %>
+<style>
+
+</style>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @cdiscTerm} %>
 <div class="col-md-12">
 	<h4>Details</h4>
@@ -12,7 +15,7 @@
 	    <th>Status</th>
 	    <th>Version</th>
 	    <th>Version Label</th>
-	    <th></th>
+	    <th class="fit"></th>
 	  </tr>
 		</thead>
 		<tbody>
@@ -23,7 +26,12 @@
 	    <td><%= @cdiscTerm.registrationState.registrationStatus %></td>
 	    <td><%= @cdiscTerm.semantic_version %></td>
 	    <td><%= @cdiscTerm.versionLabel %></td>
-	    <td><%= link_to "Impact", impact_thesauri_index_path(id: @cdiscTerm.id, namespace: @cdiscTerm.namespace), :class => "btn btn-info btn-xs" %></td>
+	    <td class="fit">
+	    	<%= link_to "Impact", impact_thesauri_index_path(id: @cdiscTerm.id, namespace: @cdiscTerm.namespace), :class => "btn btn-info btn-xs" %>
+	    	<%= link_to cross_reference_cdisc_term_path(id: @cdiscTerm.id, cdisc_term: {namespace: @cdiscTerm.namespace, direction: :from}), :class => "btn btn-primary btn-xs" do %>
+	    		<i class="fa fa-exclamation-triangle"></i> Change Instructions
+	    	<% end %>
+	    </td>
 	  </tr>
 	</tbody>
 	</table>
@@ -61,8 +69,8 @@
 			    <th>Label</th>
 			    <th>Version</th>
 			    <th>Version Label</th>
-			    <th></th>
-			    <th></th>
+			    <th class="fit"></th>
+			    <th class="fit"></th>
 			</tr>
 		<thead>
 		<tbody>
@@ -71,12 +79,15 @@
 			    	<td><%= ct.label %></td>
 						<td><%= ct.semantic_version %></td>
 						<td><%= ct.versionLabel %></td>
-						<td><%= link_to "Show", cdisc_term_path(id: ct.id, namespace: ct.namespace), :class => "btn btn-primary btn-xs" %></td>
-						<td><%= link_to "Compare", compare_calc_cdisc_terms_path(:newId => @cdiscTerm.id, :newNamespace => @cdiscTerm.namespace, :oldId => ct.id, :oldNamespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
+						<td class="fit"><%= link_to "Show", cdisc_term_path(id: ct.id, namespace: ct.namespace), :class => "btn btn-primary btn-xs" %></td>
+						<td class="fit"><%= link_to "Compare", compare_calc_cdisc_terms_path(:newId => @cdiscTerm.id, :newNamespace => @cdiscTerm.namespace, :oldId => ct.id, :oldNamespace => ct.namespace), :class => "btn btn-primary btn-xs" %></td>
 			  	</tr>
 			<% end %>
 		</tbody>
 	</table>
+	<% if policy(CdiscTerm).import? %>
+		<%= link_to "Import Change Instructions", import_cross_reference_cdisc_term_path(id: @cdiscTerm.id, cdisc_term: { namespace: @cdiscTerm.namespace }), :class => "btn btn-success" %>
+	<% end %>
 	<%= link_to "Close", history_cdisc_terms_path, :class => "btn btn-primary" %>
 </div>
 
