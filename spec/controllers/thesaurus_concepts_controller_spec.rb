@@ -4,7 +4,7 @@ describe ThesaurusConceptsController do
   include DataHelpers
   
   def sub_dir
-    return "controllers"
+    return "controllers/thesaurus_concepts"
   end
 
   describe "Authorized User" do
@@ -325,9 +325,10 @@ describe ThesaurusConceptsController do
       get :show, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    #write_text_file_2(response.body, sub_dir, "thesauri_concepts_controller_show.txt")  
-      expected = read_text_file_2(sub_dir, "thesauri_concepts_controller_show.txt")
-      expect(response.body).to eq(expected)  
+      result = JSON.parse(response.body)
+    #write_yaml_file(result, sub_dir, "show_expected_1.yml")  
+      expected = read_yaml_file(sub_dir, "show_expected_1.yml")
+      expect(result).to eq(expected)  
     end
 
     it "returns a concept as HTML" do
@@ -335,6 +336,42 @@ describe ThesaurusConceptsController do
       get :show, params
       expect(response.content_type).to eq("text/html")
       expect(response.code).to eq("200")    
+    end
+
+    it "returns the cross references" do
+    	# Set up references
+		  tc_1 = ThesaurusConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+		  tc_2 = ThesaurusConcept.find("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      or_1 = OperationalReferenceV2.new
+			or_1.ordinal = 1
+			or_1.subject_ref = tc_1.uri
+			cr_1 = CrossReference.new
+			cr_1.comments = "Linking two TCs" 
+			cr_1.ordinal = 1
+			cr_1.children << or_1		
+			sparql = SparqlUpdateV2.new
+			uri = cr_1.to_sparql_v2(tc_2.uri, sparql)
+			sparql.triple({uri: tc_2.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => uri})
+			result = CRUD.update(sparql.to_s)
+	    expect(result.success?).to eq(true)	
+	    params = { id: tc_2.id, thesaurus_concept: {namespace: tc_2.namespace, direction: :from }}
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :cross_reference_start, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(response.body).to eq("[\"http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00011\"]")
+    end
+
+    it "returns the cross reference detail" do
+    	params = { id: "THC-A00011", thesaurus_concept: {namespace: "http://www.assero.co.uk/MDRThesaurus/ACME/V1", direction: :from }}
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :cross_reference_details, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    	result = JSON.parse(response.body)
+    #write_yaml_file(result, sub_dir, "cross_reference_details_expected_1.yml")  
+    	expected = read_yaml_file(sub_dir, "cross_reference_details_expected_1.yml")
+      expect(result).to eq(expected)
     end
 
   end

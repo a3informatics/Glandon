@@ -91,6 +91,32 @@ class ThesaurusConceptsController < ApplicationController
     end
   end
   
+  def cross_reference_start
+  	authorize ThesaurusConcept, :show?
+  	results = []
+  	direction = the_params[:direction].to_sym
+    refs = ThesaurusConcept.cross_references(params[:id], the_params[:namespace], direction)
+    refs.each { |x| results << x[:uri].to_s }
+    render json: results
+  end
+
+  def cross_reference_details
+  	authorize ThesaurusConcept, :show?
+  	results = []
+  	direction = the_params[:direction].to_sym
+    item = ThesaurusConcept.find(params[:id], the_params[:namespace])
+    item.set_parent
+    item.parentIdentifier = item.identifier if item.parentIdentifier.empty?
+    item.cross_reference_details(direction).each do |detail|
+    	cr_items = []
+    	detail[:cross_references].each do |uri|
+    		cr_items << ThesaurusConcept.find(uri.id, uri.namespace).to_json
+    	end
+    	results << { item: item.to_json, comments: detail[:comments], cross_references: cr_items }
+    end
+    render json: results
+  end
+
 private
 
   def edit_lock_lost_link(thesaurus)
@@ -128,7 +154,7 @@ private
   end
 
   def the_params
-    params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :definition, :preferredTerm, :namespace, :label, :type)
+    params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :definition, :preferredTerm, :namespace, :label, :type, :direction)
   end
     
 end
