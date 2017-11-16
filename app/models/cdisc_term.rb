@@ -171,6 +171,21 @@ class CdiscTerm < Thesaurus
     return { :object => object, :job => job }
   end
   
+  # Initiate background job to create cross references
+  #
+  # @param params [Hash] The parameters
+  # @option [String] :version The version to whcih the xrefs refer
+  # @option [String] :files Array of files, should be single entry
+  # @return [Hash] A hash containing any errors and the job reference.
+  def create_cross_reference(params)
+    object = CdiscTerm.new
+    object.errors.clear
+    job = Background.create
+    job.import_cdisc_term_changes(params)
+    return { :object => object, :job => job }
+  end
+
+  
   # Initiate background job to detect all changes
   #
   # @return [Hash] A hash containing any errors and the job reference.

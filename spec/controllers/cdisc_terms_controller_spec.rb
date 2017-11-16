@@ -6,13 +6,13 @@ describe CdiscTermsController do
   include PauseHelpers
   include PublicFileHelpers
   
+  def sub_dir
+    return "controllers/cdisc_terms"
+  end
+    
   describe "Curator User" do
   	
     login_curator
-
-    def sub_dir
-      return "controllers"
-    end
 
     def standard_params
       params = 
@@ -54,7 +54,7 @@ describe CdiscTermsController do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
-      delete_all_public_files
+      delete_all_public_test_files
     end
 
     it "returns an error when it cannot find a code list, no current version" do
@@ -72,8 +72,8 @@ describe CdiscTermsController do
       params = { :notation => "VSTESTCD" }
       get :find_submission, params
       results = assigns(:cdiscCl)
-    #write_yaml_file(results.to_json, sub_dir, "cdisc_term_controller_find_submission.yaml")
-      expected = read_yaml_file(sub_dir, "cdisc_term_controller_find_submission.yaml")
+    #write_yaml_file(results.to_json, sub_dir, "controller_find_submission.yaml")
+      expected = read_yaml_file(sub_dir, "controller_find_submission.yaml")
       expect(results.to_json).to eq(expected)
     end
     
@@ -234,7 +234,7 @@ describe CdiscTermsController do
     it "allows a CDISC Terminology to be created" do
       delete_public_file("upload", "background_term.owl")
       copy_file_to_public_files("controllers", "background_term.owl", "upload")
-      filename = upload_path("background_term.owl")
+      filename = public_path("upload", "background_term.owl")
       params = 
       {
         :cdisc_term => 
@@ -251,7 +251,7 @@ describe CdiscTermsController do
     end
     
     it "allows a CDISC Terminology to be created, error version" do
-      filename = upload_path("background_term.owl")
+      filename = public_path("upload", "background_term.owl")
       params = 
       {
         :cdisc_term => 
@@ -267,7 +267,7 @@ describe CdiscTermsController do
     end
 
     it "allows a CDISC Terminology to be created, error filename" do
-      filename = upload_path("background_term.owl")
+      filename = public_path("upload", "background_term.owl")
       params = 
       {
         :cdisc_term => 
@@ -305,6 +305,76 @@ describe CdiscTermsController do
       expect(files).to eq(expected)
     end
 
+    it "presents the import cross reference view" do
+      copy_file_to_public_files(sub_dir, "import_cross_reference_1.xlsx", "upload")
+      copy_file_to_public_files(sub_dir, "import_cross_reference_2.xlsx", "upload")
+      expected_files = 
+      [
+        public_path("upload", "import_cross_reference_1.xlsx").to_s, 
+        public_path("upload", "import_cross_reference_2.xlsx").to_s
+      ]
+    	params = 
+      {
+        id: "TH-CDISC_CDISCTerminology", 
+        cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V41" }
+      }
+      get :import_cross_reference, params
+      expect(assigns(:cdisc_term).version).to eq(41)
+      expected_files.each do |file|
+      	expect(assigns(:files).include?(file)).to eq(true)
+      end
+      expect(response).to render_template("import_cross_reference")
+      delete_public_file("upload", "import_cross_reference_1.xlsx")
+      delete_public_file("upload", "import_cross_reference_2.xlsx")
+    end
+
+    it "allows a cross reference to be created" do
+      delete_public_file("upload", "create_cross_reference_1.xlsx")
+      copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "upload")
+      filename = public_path("upload", "create_cross_reference_1.xlsx")
+      params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39", 
+      	uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39#TH-CDISC_CDISCTerminology", 
+      	version: "39", files: ["#{filename}"] }}
+      post :create_cross_reference, params
+      public_file_exists?("test", "CDISC_CT_Instructions_V39.txt")
+      delete_public_file("test", "CDISC_CT_Instructions_V39.txt")
+      expect(response).to redirect_to("/backgrounds")
+      delete_public_file("upload", "create_cross_reference_1.xlsx")
+    end
+
+    it "allows a cross reference to be created, error filename" do
+      filename = public_path("upload", "missing.xlsx")
+      params = 
+      {
+        :cdisc_term => 
+        { 
+          :version => "41", 
+          :files => ["#{filename}"]
+        }
+      }
+      post :create, params
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/cdisc_terms/import")
+    end
+
+    it "allows a cross reference to be created, error version" do
+      delete_public_file("upload", "create_cross_reference_1.xlsx")
+      copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "upload")
+      filename = public_path("upload", "create_cross_reference_1.xlsx")
+      params = 
+      {
+        :cdisc_term => 
+        { 
+          :version => "1", 
+          :files => ["#{filename}"]
+        }
+      }
+      post :create, params
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/cdisc_terms/import")
+      delete_public_file("upload", "create_cross_reference_1.xlsx")
+    end
+
   end
 
   describe "Reader User" do
@@ -316,17 +386,22 @@ describe CdiscTermsController do
       expect(response).to redirect_to("/")
     end
 
+    it "prevents access to the import cross reference view"  do
+    	params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }}
+      get :import_cross_reference, params
+      expect(response).to redirect_to("/")
+    end
+
     it "prevents access to creation of a CDISC Terminology" do
-      params = 
-      {
-        :cdisc_term => 
-        { 
-          :version => "12", 
-          :date => "2016-12-13", 
-          :files => ["xxx.txt"]
-        }
-      }
+      params = { cdisc_term: { version: "12", date: "2016-12-13", files: ["xxx.txt"] }}
       post :create, params
+      expect(response).to redirect_to("/")
+    end
+    
+    it "prevents access to creation of a cross reference" do
+      params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39", uri: "", 
+      	version: "39", files: ["xxx.txt"] }}
+      post :create_cross_reference, params
       expect(response).to redirect_to("/")
     end
     
@@ -352,9 +427,7 @@ describe CdiscTermsController do
       expect(response).to redirect_to("/")
     end
 
-    it "displays the forward cross references"
-
-    it "displays the backward cross references"
+    it "displays the cross references"
 
   end
 

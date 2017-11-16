@@ -29,10 +29,16 @@ class CdiscTermsController < ApplicationController
   
   def import
     authorize CdiscTerm
-    @files = Dir.glob(Rails.root.join("public","upload") + "*.owl")
+    @files = Dir.glob(Rails.root.join("public", "upload") + "*.owl")
     @cdiscTerm = CdiscTerm.new
     all = CdiscTerm.all
     @next_version = all.last.next_version
+  end
+  
+  def import_cross_reference
+    authorize CdiscTerm, :import?
+    @files = Dir.glob(Rails.root.join("public", "upload") + "*.xlsx")
+    @cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
   end
   
   def create
@@ -44,6 +50,18 @@ class CdiscTermsController < ApplicationController
       redirect_to backgrounds_path
     else
       flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
+      redirect_to import_cdisc_terms_path
+    end
+  end
+  
+  def create_cross_reference
+    authorize CdiscTerm, :import?
+    cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
+    hash = cdisc_term.create_cross_reference(this_params)
+    if hash[:object].errors.empty?
+      redirect_to backgrounds_path
+    else
+      flash[:error] = hash[:object].errors.full_messages.to_sentence
       redirect_to import_cdisc_terms_path
     end
   end
@@ -194,10 +212,17 @@ class CdiscTermsController < ApplicationController
     redirect_to file_cdisc_terms_path
   end
 
+  def cross_reference
+  	authorize CdiscTerm, :show?
+  	@direction = this_params[:direction].to_sym
+  	@id = params[:id]
+  	@namespace = this_params[:namespace]
+  end
+
 private
 
   def this_params
-    params.require(:cdisc_term).permit(:version, :date, :term, :textSearch, :cCodeSearch, :files => [] )
+    params.require(:cdisc_term).permit(:version, :date, :term, :textSearch, :namespace, :uri, :direction, :cCodeSearch, :files => [] )
   end
 
   def get_version

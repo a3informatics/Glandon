@@ -6,7 +6,7 @@ describe CdiscTerm do
   include PublicFileHelpers
 
   def sub_dir
-    return "models"
+    return "models/cdisc_term"
   end
 
   def check_term_differences(results, expected)
@@ -97,8 +97,8 @@ describe CdiscTerm do
 
   it "allows a CDISC Term to be found" do
     th =CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-  #write_yaml_file(th.to_json, sub_dir, "cdisc_term_example_1.yaml")
-    result_th = read_yaml_file(sub_dir, "cdisc_term_example_1.yaml")
+  #write_yaml_file(th.to_json, sub_dir, "find_expected_1.yaml")
+    result_th = read_yaml_file(sub_dir, "find_expected_1.yaml")
     expect(th.to_json).to eq(result_th)
   end
 
@@ -109,16 +109,16 @@ describe CdiscTerm do
 
   it "Find only the root object" do
     th =CdiscTerm.find_only("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-  #write_yaml_file(th.to_json, sub_dir, "cdisc_term_example_2.yaml")
-    result_th = read_yaml_file(sub_dir, "cdisc_term_example_2.yaml")
+  #write_yaml_file(th.to_json, sub_dir, "find_only_expected_1.yaml")
+    result_th = read_yaml_file(sub_dir, "find_only_expected_1.yaml")
     expect(th.to_json).to eq(result_th)
   end
 
   it "Find the CL with a submission value" do
     th =CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
     cl = th.find_submission("SKINTYP")
-  #write_yaml_file(cl.to_json, sub_dir, "cdisc_term_example_3.yaml")
-    result_cl = read_yaml_file(sub_dir, "cdisc_term_example_3.yaml")
+  #write_yaml_file(cl.to_json, sub_dir, "find_submission_expected_1.yaml")
+    result_cl = read_yaml_file(sub_dir, "find_submission_expected_1.yaml")
     expect(cl.to_json).to eq(result_cl)
   end
 
@@ -131,8 +131,8 @@ describe CdiscTerm do
   it "finds all items" do
     results = CdiscTerm.all
     results_json = results.map { |result| result = result.to_json }
-  #write_yaml_file(results_json, sub_dir, "cdisc_term_example_4.yaml")
-    results_ct = read_yaml_file(sub_dir, "cdisc_term_example_4.yaml")
+  #write_yaml_file(results_json, sub_dir, "all_expected_1.yaml")
+    results_ct = read_yaml_file(sub_dir, "all_expected_1.yaml")
     expect(results_json).to eq(results_ct)
   end
 
@@ -154,16 +154,16 @@ describe CdiscTerm do
   it "finds all except" do
     results = CdiscTerm.all_except(34)
     results_json = results.map { |result| result = result.to_json }
-  #write_yaml_file(results_json, sub_dir, "cdisc_term_example_5.yaml")
-    results_ct = read_yaml_file(sub_dir, "cdisc_term_example_5.yaml")
+  #write_yaml_file(results_json, sub_dir, "all_except_expected_1.yaml")
+    results_ct = read_yaml_file(sub_dir, "all_except_expected_1.yaml")
     expect(results_json).to eq(results_ct)
   end
 
   it "find all previous" do
     results = CdiscTerm.all_previous(36)
     results_json = results.map { |result| result = result.to_json }
-  #write_yaml_file(results_json, sub_dir, "cdisc_term_example_6.yaml")
-    results_ct = read_yaml_file(sub_dir, "cdisc_term_example_6.yaml")
+  #write_yaml_file(results_json, sub_dir, "all_previous_expected_1.yaml")
+    results_ct = read_yaml_file(sub_dir, "all_previous_expected_1.yaml")
     expect(results_json).to eq(results_ct)
   end
 
@@ -236,8 +236,8 @@ describe CdiscTerm do
     old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
     new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
     results = CdiscTerm.submission_difference(old_ct, new_ct)
-  #write_yaml_file(results, sub_dir, "cdisc_term_submission_difference_1.yaml")
-    expected = read_yaml_file(sub_dir, "cdisc_term_submission_difference_1.yaml")
+  #write_yaml_file(results, sub_dir, "submission_difference_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "submission_difference_expected_1.yaml")
     results.each do |key, result|
       found = expected[key]
       expect(result.to_json).to eq(found.to_json)
@@ -248,8 +248,8 @@ describe CdiscTerm do
     old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
     new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
     results = CdiscTerm.submission_difference(old_ct, new_ct)
-  #write_yaml_file(results, sub_dir, "cdisc_term_submission_difference_2.yaml")
-    expected = read_yaml_file(sub_dir, "cdisc_term_submission_difference_2.yaml")
+  #write_yaml_file(results, sub_dir, "submission_difference_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "submission_difference_expected_2.yaml")
     results.each do |key, result|
       found = expected[key]
       expect(result.to_json).to eq(found.to_json)
@@ -260,8 +260,8 @@ describe CdiscTerm do
     term1 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
     term2 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
     results = CdiscTerm.difference(term1, term2)
-  #write_yaml_file(results, sub_dir, "cdisc_term_example_difference.yaml")
-    expected = read_yaml_file(sub_dir, "cdisc_term_example_difference.yaml")
+  #write_yaml_file(results, sub_dir, "difference_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "difference_expected_1.yaml")
     check_term_differences(results, expected)
   end
 
@@ -269,8 +269,8 @@ describe CdiscTerm do
     term1 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
     term2 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
     results = CdiscTerm.difference(term1, term2)
-  #write_yaml_file(results, sub_dir, "cdisc_term_example_difference_2.yaml")
-    expected = read_yaml_file(sub_dir, "cdisc_term_example_difference_2.yaml")
+  #write_yaml_file(results, sub_dir, "difference_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "difference_expected_2.yaml")
     check_term_differences(results, expected)
   end
 
@@ -279,8 +279,8 @@ describe CdiscTerm do
     term1 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
     term2 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
     results = CdiscTerm.difference(term1, term2)
-  #write_yaml_file(results, sub_dir, "cdisc_term_example_difference_3.yaml")
-    expected = read_yaml_file(sub_dir, "cdisc_term_example_difference_3.yaml")
+  #write_yaml_file(results, sub_dir, "difference_expected_3.yaml")
+    expected = read_yaml_file(sub_dir, "difference_expected_3.yaml")
     check_term_differences(results, expected)
   end
 
@@ -335,8 +335,18 @@ describe CdiscTerm do
   	expect(object.errors.count).to eq(0)    
   end
 
-  it "determines the references from this terminology"
-
-  it "determines the references to this terminology"
+  it "initiates the cross reference background job" do
+    delete_public_file("text", "create_cross_reference_1.xlsx")
+    copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "test")
+    filename = public_path("test", "create_cross_reference_1.xlsx")
+    params = { uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V48#TH-CDISC_CDISCTerminology", 
+    	version: "48", files: ["#{filename}"] }
+    ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
+    result = ct.create_cross_reference(params)
+    expect(result[:object].errors.count).to eq(0)
+    public_file_exists?("test", "CDISC_CT_Instructions_V48.txt")
+    delete_public_file("test", "CDISC_CT_Instructions_V48.txt")
+    delete_public_file("test", "create_cross_reference_1.xlsx")
+  end
 
 end

@@ -132,6 +132,10 @@ Rails.application.routes.draw do
       get :children
       post :add_child
     end
+    member do
+      get :cross_reference_start
+      get :cross_reference_details
+    end
   end
   resources :uploads
   resources :notepads do
@@ -159,6 +163,11 @@ Rails.application.routes.draw do
       get :load
       get :file
       delete :file_delete
+    end
+    member do
+      get :cross_reference
+      get :import_cross_reference
+      post :create_cross_reference
     end
   end
   resources :cdisc_cls, :only => [:show] do
