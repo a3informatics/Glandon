@@ -94,8 +94,8 @@ class ThesaurusConceptsController < ApplicationController
   def cross_reference_start
   	authorize ThesaurusConcept, :show?
   	results = []
-  	direction = the_params[:direction].to_sym
-    refs = ThesaurusConcept.cross_references(params[:id], the_params[:namespace], direction)
+  	@direction = the_params[:direction].to_sym
+    refs = ThesaurusConcept.cross_references(params[:id], the_params[:namespace], @direction)
     refs.each { |x| results << x[:uri].to_s }
     render json: results
   end

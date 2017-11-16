@@ -620,7 +620,7 @@ class IsoConcept
   # @param [String] id the id of the concept
   # @param [String] namespace the namespace of the concept
   # @param [Symbol] direction the direction of the check (:from or :to)
-  # @return [Array] Array of hash, each hash containing the URI and the RDF type for the item found
+  # @return [Array] Array of hash, each hash containing the URI and the RDF type for the item found to have cross references
   def self.cross_references(id, namespace, direction)
     results = []
     namespace_set = [UriManagement::C_BO, UriManagement::C_BCR, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]
@@ -685,13 +685,13 @@ class IsoConcept
   # Cross Reference Details. Find the cross ref details from/to the concept.
   #
   # @param [Symbol] direction the direction of the check (:from or :to)
-  # @return [Array] Array of hash, each hash containing the URI and the RDF type for the item found
+  # @return [Array] Array of hash, each hash containing the URI, the comment and the cross references
   def cross_reference_details(direction)
     results = []
     namespace_set = [UriManagement::C_BO, UriManagement::C_BCR, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]
 		query = %Q{
     	#{UriManagement.buildNs(self.namespace, namespace_set)}
-      SELECT DISTINCT ?s ?c ?ic WHERE
+      SELECT DISTINCT ?s ?cr ?c ?ic WHERE
 	  }
     if direction == :from
 			query += %Q{
@@ -714,12 +714,20 @@ class IsoConcept
 	      }
     	}
 	  end
+	  keys = {}
 		query_and_result(query).each do |node|
       subject_s = self.node_value('s', true, node)
-      reference = self.node_value('ic', true, node)
+      key = self.node_value('cr', true, node)
       comments = self.node_value('c', false, node)
-      results << { uri: UriV2.new({uri: subject_s}), comments: comments, reference: UriV2.new({uri: reference}) }
+      reference = self.node_value('ic', true, node)
+      if !keys.has_key?(key)
+      	keys[key] = { uri: UriV2.new({uri: subject_s}), comments: comments, cross_references: [UriV2.new({uri: reference})] }
+      else
+      	keys[key][:cross_references] << UriV2.new({uri: reference})
+      end
+      #results << { uri: UriV2.new({uri: subject_s}), comments: comments, reference: UriV2.new({uri: reference}) }
     end
+    keys.each { |k,v| results << v }
     return results
   end
 

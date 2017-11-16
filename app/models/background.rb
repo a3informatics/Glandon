@@ -8,7 +8,8 @@ class Background < ActiveRecord::Base
 	# Import CDISC Terminology Changes
   #
   # @param [Hash] params Parameters
-  # @option params [String] :version The version to which the changes relate
+  # @option params [String] :uri The uri of the term to which the changes relate
+  # @option params [String] :version The version of the term to which the changes relate
   # @option params [String] :files Array of files being used 
   # @return [void] no return
   def import_cdisc_term_changes(params)
@@ -344,7 +345,7 @@ private
 
   def process_cdisc_term_changes_import(params, results)
   	ordinals = {}
-  	uri = UriV2.new(uri: params[:term_uri])
+  	uri = UriV2.new(uri: params[:uri])
     current_ct = CdiscTerm.find(uri.id, uri.namespace)
     previous = CdiscTerm.all_previous(current_ct.version)
     previous_ct = previous.last
@@ -385,7 +386,7 @@ private
 				end
 			end
 		end			
-		load_sparql(sparql, "term_changes_#{current_ct.version}.txt") 
+		load_sparql(sparql, "CDISC_CT_Instructions_V#{current_ct.version}.txt") 
   end
 
   def process_cdisc_sdtm_model_import(params, results)
@@ -494,7 +495,6 @@ private
 	end
 
 	def create_operational_ref(term, cross_ref, ordinal)
-	byebug
 		return if term.nil?
 		oref = OperationalReferenceV2.new
 		oref.ordinal = ordinal

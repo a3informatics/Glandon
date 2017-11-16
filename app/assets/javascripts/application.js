@@ -199,7 +199,13 @@ function handleAjaxError (xhr, status, error) {
     try {
       // Populate errorText with the comment errors
       json = $.parseJSON(xhr.responseText);
-      errors = json['errors'];
+      if (json.hasOwnProperty('errors')) {
+      	errors = json['errors'];
+      } else if (json.hasOwnProperty('error')) {
+	      errors[0] = json['error'];
+      } else {
+	      errors[0] = "Error communicating with the server.";
+      }
     } catch(err) {
       // If the responseText is not valid JSON (like if a 500 exception was thrown), populate errors with a generic error message.
       errors = [];

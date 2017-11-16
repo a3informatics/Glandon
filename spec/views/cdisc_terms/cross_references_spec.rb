@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'cdisc_terms/cross_references.html.erb', :type => :view do
+describe 'cdisc_terms/cross_reference.html.erb', :type => :view do
 
   include UiHelpers
   include UserAccountHelpers
@@ -23,7 +23,6 @@ describe 'cdisc_terms/cross_references.html.erb', :type => :view do
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("CT_V47.ttl")
     load_test_file_into_triple_store("CT_V48.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
@@ -32,8 +31,17 @@ describe 'cdisc_terms/cross_references.html.erb', :type => :view do
     clear_cdisc_term_object
   end
 
-  it 'displays the forward references'
+  it 'displays the cross reference table' do 
 
-  it 'displays the backward references'
+    cdisc_term = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48", false)
+    assign(:cdisc_term, cdisc_term)
+    @request.env['HTTP_REFERER'] = root_path
+
+    render
+
+    expect(rendered).to have_content("Change Instructions: CDISC Terminology 2017-03-31 CDISC Terminology (V48.0.0, 48, Standard)")
+    expect(rendered).to have_link "Close"
+    
+  end
 
 end

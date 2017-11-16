@@ -427,7 +427,13 @@ describe CdiscTermsController do
       expect(response).to redirect_to("/")
     end
 
-    it "displays the cross references"
+    it "displays the cross reference" do
+    	params = { :id => "TH-CDISC_CDISCTerminology", cdisc_term: { direction: :to, namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }}
+      get :cross_reference, params
+      expect(response).to render_template("cross_reference")
+      expect(assigns(:cdisc_term).version).to eq(39)
+      expect(assigns(:direction).version).to eq(:to)
+    end
 
   end
 

@@ -10,7 +10,10 @@ class Api::V2::ThesaurusConceptsController < ActionController::Base
     if params.length > 0
     	ths.each do |th|
     		thcs = ThesaurusConcept.find_by_property(the_params, th.namespace)
-    		thcs.each {|x| results << x.to_json}
+    		thcs.each do |tc|
+    			tc.set_parent
+    			results << tc.to_json
+    		end
     	end	
     	if !results.empty?
 	    	render json: results, status: 200

@@ -1,0 +1,92 @@
+/*
+* CDISC Cross Ref Panel
+* 
+* Requires:
+* 
+* cr_table [Table] the table
+*/
+
+function CdiscCrossRefPanel(id, namespace, direction) {
+	this.id = id;
+	this.namespace = namespace;
+	this.direction = direction;
+	this.table = $('#cr_table').DataTable( {
+    "columns": [
+      {"data" : "item.parentIdentifier"},
+      {"data" : "item.identifier"},
+      {"data" : "item.notation"},
+      {"data" : "comments"},
+      {"render" : function (data, type, row, meta) {
+      	var i;
+      	var text = '';
+      	for (i=0; i<row.cross_references.length; i++) {
+      		var item = row.cross_references[i];
+      		if (item.parentIdentifier === "") {
+  	    		text += '<a href="/cdisc_clis/' + item.id + '?namespace=' + item.namespace + 
+  	    			'" class="btn btn-primary btn-xs">' + item.identifier + ', ' + item.notation + '</a><br/><br/>';
+      		} else {
+  	    		text += '<a href="/cdisc_cls/' + item.id + '?namespace=' + item.namespace + 
+  	    			'" class="btn btn-primary btn-xs">' + item.identifier + ', ' + item.notation + '</a><br/><br/>';
+      		}
+      	}
+      	return text;
+      }}   
+    ],
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "language": {
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    }
+  });
+}
+
+/**
+ * Start the process
+ *
+ * @return [Null]
+ */
+CdiscCrossRefPanel.prototype.start = function () {
+  var _this = this;
+	$.ajax({
+    url: "/thesaurus_concepts/" + _this.id + "/cross_reference_start",
+    type: "GET",
+    data: { thesaurus_concept: { namespace: _this.namespace, direction: _this.direction }},
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+    },
+    success: function(results) {
+      var i;
+      for (i=0; i<results.length; i++) {
+	  		_this.details(results[i]);
+      }
+    }
+	});
+}
+
+/**
+ * Details
+ *
+ * @param uri [String] the uri of the item to get details of
+ * @return [Null]
+ */
+CdiscCrossRefPanel.prototype.details = function (uri) {
+  var _this = this;
+	$.ajax({
+    url: "/thesaurus_concepts/" + getId(uri) + "/cross_reference_details",
+    type: "GET",
+    data: { thesaurus_concept: { namespace: getNamespace(uri), direction: _this.direction }},
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+    },
+    success: function(results) {
+      var i;
+      for (i=0; i<results.length; i++) {
+	      _this.table.row.add(results[i]);
+      }
+      _this.table.draw();
+    }
+  });
+}

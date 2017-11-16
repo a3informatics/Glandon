@@ -214,9 +214,8 @@ class CdiscTermsController < ApplicationController
 
   def cross_reference
   	authorize CdiscTerm, :show?
-  	@direction = this_params[:direction].to_sym
-  	@id = params[:id]
-  	@namespace = this_params[:namespace]
+  	@direction = this_params[:direction]
+  	@cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
   end
 
 private

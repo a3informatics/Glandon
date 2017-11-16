@@ -17,6 +17,7 @@ Rails.application.config.assets.version = '1.0'
   iso_managed_comment_edit iso_managed_list iso_managed_tag_edit iso_managed_tag_list 
   iso_managed_graph iso_managed_list_panel iso_managed_select_panel 
   impact_analysis_graph_panel impact_analysis
+  cdisc_cross_ref_panel cdisc_cross_ref
   sdtm_user_domain_editor
   domains domains/variables 
   dashboard_viewer dashboard_index 
