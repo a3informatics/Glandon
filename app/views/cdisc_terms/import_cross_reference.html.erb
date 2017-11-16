@@ -1,0 +1,16 @@
+<% close_path = cdisc_term_path(:id => @cdisc_term.id, :namespace => @cdisc_term.namespace) %>
+<% third_level_breadcrumb("CDISC History", history_cdisc_terms_path, @cdisc_term.label, close_path, "Import Change Instructions") %>
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Import Change Instructions:", :item => @cdisc_term} %>
+<div class="col-md-6">
+  <%= form_for @cdisc_term, method: :post, url: create_cross_reference_cdisc_term_path(@cdisc_term) do |f| %>
+    <%= hidden_field_tag 'cdisc_term[namespace]', @cdisc_term.uri.namespace %>
+    <%= hidden_field_tag 'cdisc_term[version]', @cdisc_term.version %>
+    <%= hidden_field_tag 'cdisc_term[uri]', @cdisc_term.uri.to_s %>
+    <div class="form-group">
+      <%= label_tag :files, "Select Change Instruction Spreadsheet File:" %><br/>
+      <%= select_tag("cdisc_term[files][]", options_for_select(@files), class: "form-control", multiple: true, size: 20 ) %>
+    </div>
+    <%= f.submit "Import", class: "btn btn-default btn-primary" %>
+    <%= link_to "Close", close_path, :class => "btn btn-primary" %>
+  <% end %>
+</div>
