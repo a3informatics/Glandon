@@ -41,6 +41,7 @@ describe Api::V2::ThesaurusConceptsController, type: :controller do
 
   	it "find a thesaurus concept based on identifier" do
   		tc = ThesaurusConcept.find("THC-A00021", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  		tc.set_parent # API will do this
       set_http_request
       get :index, {identifier: "A00021"}
       #expected_hash = {"errors"=>["Failed to find study version with identifier 1"]}
