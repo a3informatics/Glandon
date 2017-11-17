@@ -127,7 +127,7 @@ describe TermChangeExcel do
 		}
 		result = TermChangeExcel.read_changes(params, object.errors)
 		expect(object.errors.count).to eq(1)
-		expect(object.errors.full_messages.to_sentence).to eq("Multiple new Code Lists and Code List Items.")	
+		expect(object.errors.full_messages.to_sentence).to eq("Multiple new Code Lists with Code List Items.")	
 	end
 
 	it "reads the excel fle, missing data, multiple mappings" do
