@@ -432,7 +432,7 @@ describe CdiscTermsController do
       get :cross_reference, params
       expect(response).to render_template("cross_reference")
       expect(assigns(:cdisc_term).version).to eq(39)
-      expect(assigns(:direction).version).to eq(:to)
+      expect(assigns(:direction)).to eq(:to.to_s)
     end
 
   end
