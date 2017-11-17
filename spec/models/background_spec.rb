@@ -181,10 +181,11 @@ describe Background do
   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
   	job = Background.create
   	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2017-06-30.xlsx")
-  	params = {files: ["#{filename}"], term_uri: ct.uri.to_s}
+  	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
   	job.import_cdisc_term_changes(params)
+	#puts job.status
   	expect(job.status).to eq("Complete. Successful import.")  
-  	results = read_public_text_file("test", "term_changes_49.txt")
+  	results = read_public_text_file("test", "CDISC_CT_Instructions_V49.txt")
   #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_1.txt")
   	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_1.txt")
   	expect(results).to eq(expected)	
@@ -213,10 +214,11 @@ describe Background do
   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V44")
   	job = Background.create
   	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2016-03-25.xlsx")
-  	params = {files: ["#{filename}"], term_uri: ct.uri.to_s}
+  	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
   	job.import_cdisc_term_changes(params)
+	#puts job.status
   	expect(job.status).to eq("Complete. Successful import.")  
-  	results = read_public_text_file("test", "term_changes_44.txt")
+  	results = read_public_text_file("test", "CDISC_CT_Instructions_V44.txt")
   #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_2.txt")
   	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_2.txt")
   	expect(results).to eq(expected)	
