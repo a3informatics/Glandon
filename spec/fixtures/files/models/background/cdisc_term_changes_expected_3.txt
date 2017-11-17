@@ -1,0 +1,630 @@
+PREFIX bcr: <http://www.assero.co.uk/BusinessCrossReference#>
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1> bcr:comments "Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium (or other chambers of the heart)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101846_C130056> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101846_C135376_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1> bcr:comments "Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium (or other chambers of the heart)."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C101847_C130056> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C101847_C135376_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1> bcr:comments "Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab test. The advia machine doesn't calculate it and we are unaware of anyone else that is using it."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C117855> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C138970_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1> bcr:comments "Replacing C114218 in this codelist."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C67154_C114218> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C67154_C139074_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1> bcr:comments "Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab test. The advia machine doesn't calculate it and we are unaware of anyone else that is using it."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C117855> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C138970_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1> bcr:comments "Replacing C114218 in this codelist."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C65047_C114218> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C65047_C139074_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1> bcr:comments "Replaces C33794 in this codelist."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74456_C33794> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C74456_C12506_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116250> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116254> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139114_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116249> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116253> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139115_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116248> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116252> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139116_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116247> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116251> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139117_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116250> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116254> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139118_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116249> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116253> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139119_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116248> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116252> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139120_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116247> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116251> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139121_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116250> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116254> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139122_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116249> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116253> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139123_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116248> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116252> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139124_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116247> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128687_C116251> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128687_C139125_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116250> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116254> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139114_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116249> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116253> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139115_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116248> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116252> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139116_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116247> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116251> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139117_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116250> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116254> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139118_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116249> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116253> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139119_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116248> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116252> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139120_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116247> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116251> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139121_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116250> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116254> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139122_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116249> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116253> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139123_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116248> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116252> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139124_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1> bcr:comments "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116247> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C128688_C116251> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C128688_C139125_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1> bcr:comments "C123628 has been retired. Please use the existing term Tumor Marker Response (C132458)"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96781_C123628> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96781_C132458_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1> bcr:comments "C123628 has been retired. Please use the existing term TMRESP (C132458)"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C96782_C123628> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V50#CLI-C96782_C132458_XR1> . 
+}

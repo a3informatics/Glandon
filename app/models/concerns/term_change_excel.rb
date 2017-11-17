@@ -26,10 +26,10 @@ module TermChangeExcel
         	new_cli = check_cell(workbook, row, 16, errors, true)
         	instructions = check_cell(workbook, row, 17, errors)
         	return if !errors.empty?
-      		result[:previous_cl] = prev_cl
-	      	result[:previous_cli] = prev_cli.scan(/C\d{4,6}/)
-	      	result[:new_cl] = new_cl.scan(/C\d{4,6}/)
-	      	result[:new_cli] = new_cli.scan(/C\d{4,6}/)
+      		result[:previous_cl] = prev_cl.scan(/C\d{1,}/).first
+	      	result[:previous_cli] = prev_cli.scan(/C\d{1,}/)
+	      	result[:new_cl] = new_cl.scan(/C\d{1,}/)
+	      	result[:new_cli] = new_cli.scan(/C\d{1,}/)
 	      	result[:instructions] = instructions
 	      	errors.add(:base, "Multiple new Code Lists with Code List Items.") if result[:new_cl].count > 1 && result[:new_cli].count > 0
     			errors.add(:base, "Multiple previous to new mappings.") if result[:previous_cli].count > 1 && result[:new_cl].count > 1
@@ -44,7 +44,6 @@ module TermChangeExcel
     end
     return results
   end
-
 
 private
 

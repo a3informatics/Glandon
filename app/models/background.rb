@@ -360,7 +360,12 @@ private
 		  		else
 		  			result[:new_cli].each do |cli|
 		  				child = find_terminology_child(parent, cli)
-		  				sources << child if !child.nil?
+		  				if !child.nil?
+								sources << child if !child.nil?
+							else
+								report_general_error("Failed to find child terminology item [1] with identifier: #{cli}")
+								return
+							end
 						end
 					end			
 		  		sources.each do |source|
@@ -369,20 +374,31 @@ private
 						cr.comments = result[:instructions]
 						cr.ordinal = get_ordinal(source, ordinals)
 						previous = find_terminology({identifier: result[:previous_cl]}, previous_ct.namespace)
-						if result[:previous_cli].empty?
-			  			cr.children << create_operational_ref(previous, source, ordinal)
-			  		else
-			  			result[:previous_cli].each do |cli|
-			  				child = find_terminology_child(previous, cli)
-			  				if !child.nil?
-									cr.children << create_operational_ref(child, source, ordinal)
-			  					ordinal += 1
-			  				end
-							end
-						end	
-			  		ref_uri = cr.to_sparql_v2(source.uri, sparql)
-						sparql.triple({uri: source.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
+						if !previous.nil?	
+							if result[:previous_cli].empty?
+				  			cr.children << create_operational_ref(previous, source, ordinal)
+				  		else
+				  			result[:previous_cli].each do |cli|
+				  				child = find_terminology_child(previous, cli)
+		  					if !child.nil?
+										cr.children << create_operational_ref(child, source, ordinal)
+				  					ordinal += 1
+				  				else
+										report_general_error("Failed to child find terminology item [2] with identifier: #{cli}")
+										return
+				  				end
+								end
+							end	
+				  		ref_uri = cr.to_sparql_v2(source.uri, sparql)
+							sparql.triple({uri: source.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
+						else
+							report_general_error("Failed to find terminology item [3] with identifier: #{result[:previous_cl]}")
+							return
+						end
 					end
+				else
+					report_general_error("Failed to find terminology item [4] with identifier: #{cl}")
+					return
 				end
 			end
 		end			

@@ -1,0 +1,435 @@
+@prefix bcr: <http://www.assero.co.uk/BusinessCrossReference#>
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#>
+@prefix isoB: <http://www.assero.co.uk/ISO11179Basic#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix iso25964: <http://www.assero.co.uk/ISO25964#> .
+@prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1> bcr:comments "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C61019."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C67154_C61019> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1> bcr:comments "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C74753."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C67154_C74753> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2> bcr:comments "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C61019."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C65047_C61019> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125949_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2> bcr:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2> bcr:comments "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C74753."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C65047_C74753> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C67154_C125950_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1> bcr:comments "The nomenclature has been updated and now the original mapping is obsolete. This concept will replace C27477."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C27477> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C121932_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1> bcr:comments "This concept will replace C72074 and C3773, which have been removed with the 2016-03-25 publication."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C72074> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3773> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126087_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1> bcr:comments "This concept will replace C64118, which has been removed with the 2016-03-25 publication."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C64118> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C88025_C126088_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:comments "The FDA requires non-clinical sponsors to identify Benign or Malignant so these concepts would never have been used. [Updated Comment]"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C27477> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR2> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR2> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR2> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C2858> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR2> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR2> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR2> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR2> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR3> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR3> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR3> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C2915> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR3> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR3> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR3> bo:ordinal "3"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR3> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR3> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR4> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR4> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR4> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C2932> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR4> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR4> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR4> bo:ordinal "4"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR4> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR4> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR5> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR5> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR5> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3017> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR5> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR5> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR5> bo:ordinal "5"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR5> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR5> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR6> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR6> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR6> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3055> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR6> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR6> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR6> bo:ordinal "6"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR6> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR6> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR7> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR7> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR7> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3059> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR7> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR7> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR7> bo:ordinal "7"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR7> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR7> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR8> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR8> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR8> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3070> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR8> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR8> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR8> bo:ordinal "8"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR8> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR8> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR9> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR9> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR9> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3087> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR9> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR9> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR9> bo:ordinal "9"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR9> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR9> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR10> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR10> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR10> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3146> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR10> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR10> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR10> bo:ordinal "10"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR10> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR10> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR11> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR11> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR11> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3188> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR11> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR11> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR11> bo:ordinal "11"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR11> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR11> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR12> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR12> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR12> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3230> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR12> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR12> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR12> bo:ordinal "12"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR12> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR12> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR13> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR13> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR13> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3234> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR13> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR13> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR13> bo:ordinal "13"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR13> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR13> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR14> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR14> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR14> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3262> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR14> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR14> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR14> bo:ordinal "14"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR14> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR14> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR15> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR15> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR15> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3286> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR15> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR15> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR15> bo:ordinal "15"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR15> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR15> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR16> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR16> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR16> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3288> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR16> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR16> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR16> bo:ordinal "16"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR16> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR16> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR17> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR17> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR17> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3308> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR17> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR17> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR17> bo:ordinal "17"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR17> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR17> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR18> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR18> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR18> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3326> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR18> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR18> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR18> bo:ordinal "18"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR18> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR18> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR19> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR19> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR19> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3340> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR19> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR19> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR19> bo:ordinal "19"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR19> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR19> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR20> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR20> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR20> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3403> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR20> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR20> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR20> bo:ordinal "20"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR20> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR20> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR21> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR21> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR21> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3411> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR21> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR21> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR21> bo:ordinal "21"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR21> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR21> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR22> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR22> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR22> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3486> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR22> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR22> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR22> bo:ordinal "22"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR22> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR22> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR23> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR23> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR23> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C35765> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR23> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR23> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR23> bo:ordinal "23"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR23> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR23> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR24> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR24> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR24> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3738> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR24> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR24> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR24> bo:ordinal "24"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR24> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR24> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR25> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR25> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR25> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3764> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR25> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR25> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR25> bo:ordinal "25"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR25> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR25> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR26> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR26> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR26> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3788> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR26> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR26> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR26> bo:ordinal "26"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR26> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR26> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR27> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR27> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR27> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C3794> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR27> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR27> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR27> bo:ordinal "27"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR27> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR27> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR28> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR28> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR28> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C4313> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR28> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR28> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR28> bo:ordinal "28"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR28> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR28> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR29> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR29> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR29> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C48306> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR29> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR29> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR29> bo:ordinal "29"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR29> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR29> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR30> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR30> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR30> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C4858> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR30> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR30> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR30> bo:ordinal "30"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR30> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR30> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR31> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR31> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR31> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C60781> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR31> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR31> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR31> bo:ordinal "31"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR31> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR31> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR32> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR32> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR32> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C6930> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR32> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR32> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR32> bo:ordinal "32"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR32> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR32> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR33> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR33> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR33> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C6963> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR33> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR33> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR33> bo:ordinal "33"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR33> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR33> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR34> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR34> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR34> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C7367> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR34> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR34> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR34> bo:ordinal "34"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR34> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR34> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR35> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR35> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR35> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C82973> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR35> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR35> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR35> bo:ordinal "35"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR35> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR35> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR36> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR36> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR36> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C8402> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR36> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR36> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR36> bo:ordinal "36"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR36> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR36> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR37> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR37> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR37> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C9295> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR37> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR37> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR37> bo:ordinal "37"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR37> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR37> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR38> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR38> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR38> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C88025_C98794> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR38> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR38> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR38> bo:ordinal "38"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR38> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1_XR38> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CL-C88025_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1> rdf:type <http://www.assero.co.uk/BusinessCrossReference#CrossReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1> rdfs:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1> bcr:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1> bcr:comments "Creatinine belongs in test/parm name. Please use pg/mg (C67396) in its place."^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1_XR1> rdf:type <http://www.assero.co.uk/BusinessOperational#XReference> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1_XR1> rdfs:label "Cross Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1_XR1> bo:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C85494_C85780> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1_XR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1_XR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1_XR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1_XR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1> bcr:hasCrossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1_XR1> . 
+<http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396> bcr:crossReference <http://www.assero.co.uk/MDRThesaurus/CDISC/V44#CLI-C85494_C67396_XR1> . 
