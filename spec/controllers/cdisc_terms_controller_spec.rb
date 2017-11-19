@@ -329,17 +329,15 @@ describe CdiscTermsController do
     end
 
     it "allows a cross reference to be created" do
+    	load_test_file_into_triple_store("CT_V44.ttl")
       delete_public_file("upload", "create_cross_reference_1.xlsx")
       copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "upload")
       filename = public_path("upload", "create_cross_reference_1.xlsx")
-      params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39", 
-      	uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39#TH-CDISC_CDISCTerminology", 
-      	version: "39", files: ["#{filename}"] }}
+      params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V44", 
+      	uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V44#TH-CDISC_CDISCTerminology", 
+      	version: "44", files: ["#{filename}"] }}
       post :create_cross_reference, params
-      public_file_exists?("test", "CDISC_CT_Instructions_V39.txt")
-      delete_public_file("test", "CDISC_CT_Instructions_V39.txt")
       expect(response).to redirect_to("/backgrounds")
-      delete_public_file("upload", "create_cross_reference_1.xlsx")
     end
 
     it "allows a cross reference to be created, error filename" do

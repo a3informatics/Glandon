@@ -336,16 +336,18 @@ describe CdiscTerm do
   end
 
   it "initiates the cross reference background job" do
-    delete_public_file("text", "create_cross_reference_1.xlsx")
+    load_test_file_into_triple_store("CT_V44.ttl")
+  	delete_public_file("text", "create_cross_reference_1.xlsx")
     copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "test")
     filename = public_path("test", "create_cross_reference_1.xlsx")
-    params = { uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V48#TH-CDISC_CDISCTerminology", 
-    	version: "48", files: ["#{filename}"] }
-    ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
+    params = { uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V44#TH-CDISC_CDISCTerminology", 
+    	version: "44", files: ["#{filename}"] }
+    ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V44")
     result = ct.create_cross_reference(params)
     expect(result[:object].errors.count).to eq(0)
-    public_file_exists?("test", "CDISC_CT_Instructions_V48.txt")
-    delete_public_file("test", "CDISC_CT_Instructions_V48.txt")
+    expect(result[:job]).to be_a Background
+    public_file_exists?("test", "CDISC_CT_Instructions_V44.txt")
+    delete_public_file("test", "CDISC_CT_Instructions_V44.txt")
     delete_public_file("test", "create_cross_reference_1.xlsx")
   end
 
