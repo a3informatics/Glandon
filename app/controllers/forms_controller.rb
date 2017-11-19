@@ -53,18 +53,17 @@ class FormsController < ApplicationController
   def edit
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
+    @token = get_token(@form)
     if @form.new_version?
-      json = @form.to_operation
-      new_form = Form.create(json)
-      @form = Form.find(new_form.id, new_form.namespace)
-    end
-    @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.owner_id)
-    @token = Token.obtain(@form, current_user)
-    if @token.nil?
-      flash[:error] = "The item is locked for editing by another user."
-      redirect_to request.referer
-    end
-    @items = Notepad.where(user_id: current_user).find_each
+	    new_form = Form.create(@form.to_operation)
+    	@form = Form.find(new_form.id, new_form.namespace)
+    	@token.release
+	    @token = get_token(@form)
+  		@operation = @form.update_operation
+  	else
+  		@operation = @form.to_operation
+  	end
+  	@close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.owner_id)
   end
 
   def clone

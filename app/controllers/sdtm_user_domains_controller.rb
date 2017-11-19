@@ -82,17 +82,18 @@ class SdtmUserDomainsController < ApplicationController
   def edit
     authorize SdtmUserDomain
     @sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace])
+    @token = get_token(@sdtm_user_domain)
     if @sdtm_user_domain.new_version?
-      json = @sdtm_user_domain.to_operation
-      new_domain = SdtmUserDomain.create(json)
+      new_domain = SdtmUserDomain.create(@sdtm_user_domain.to_operation)
       @sdtm_user_domain = SdtmUserDomain.find(new_domain.id, new_domain.namespace)
+    	@token.release
+	    @token = get_token(@sdtm_user_domain)
+  		@operation = @sdtm_user_domain.update_operation
+  	else
+  		@operation = @sdtm_user_domain.to_operation
     end
     @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.owner_id })
-    @token = Token.obtain(@sdtm_user_domain, current_user)
-    if @token.nil?
-      flash[:error] = "The item is locked for editing by another user."
-      redirect_to request.referer
-    elsif @sdtm_user_domain.children.length > 0
+		if @sdtm_user_domain.children.length > 0
       @defaults = {}
       variable = @sdtm_user_domain.children[0]   
       @datatypes = SdtmModelDatatype.all(variable.datatype.namespace)

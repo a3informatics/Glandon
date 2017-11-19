@@ -1073,9 +1073,9 @@ class IsoManaged < IsoConcept
     return json
   end
 
-  # To Operation. Build the combination of managed item JSON and the controlling operation JSON
+  # To Operation. Build the combination of managed item and the controlling operation structure
   # 
-  # @return [hash] The JSON structure
+  # @return [hash] The operational structure
   def to_operation
     managed_item = to_json
     # Set the operation. Based on if a new version is required.
@@ -1100,6 +1100,27 @@ class IsoManaged < IsoConcept
           :identifier_edit => false 
         }
     end
+    result = 
+    {
+      :operation => operation,
+      :managed_item => managed_item
+    }
+    return result
+  end
+
+  # Update Operation. Build the operational structure so as to only update the item.
+  # 
+  # @return [hash] The operational structure
+  def update_operation
+    managed_item = to_json
+    managed_item[:creation_date] = Time.now.iso8601
+    operation = 
+      { :action => "UPDATE", 
+        :new_version => self.version, 
+        :new_semantic_version => self.semantic_version.to_s,
+        :new_state => self.state_on_edit, 
+        :identifier_edit => false 
+      }
     result = 
     {
       :operation => operation,

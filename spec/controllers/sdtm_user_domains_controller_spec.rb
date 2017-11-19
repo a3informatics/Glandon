@@ -32,6 +32,7 @@ describe SdtmUserDomainsController do
       load_test_file_into_triple_store("sdtm_user_domain_dm.ttl")
       load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")
       load_test_file_into_triple_store("sdtm_user_domain_ds.ttl")
+      load_test_file_into_triple_store("sdtm_user_domain_pe.ttl")
       load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -46,7 +47,7 @@ describe SdtmUserDomainsController do
 
     it "lists all unique user domains, HTML" do
       get :index
-      expect(assigns[:sdtm_user_domains].count).to eq(3)
+      expect(assigns[:sdtm_user_domains].count).to eq(4)
       expect(response).to render_template("index")
     end
     
@@ -55,7 +56,7 @@ describe SdtmUserDomainsController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
+    write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
       expected = read_text_file_2(sub_dir, "sdtm_user_domain_controller_index.txt")
       expect(response.body).to eq(expected)
     end
@@ -167,21 +168,33 @@ describe SdtmUserDomainsController do
       expect(response).to render_template("edit")
     end
 
-    it "edit domain, next version" #do
-      #get :edit, { "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
-      #result = assigns(:bc)
-      #token = assigns(:token)
-      #expect(token.user_id).to eq(@user.id)
-      #expect(token.item_uri).to eq("http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC25347") # Note no new version, no copy.
-      #expect(result.identifier).to eq("BC C25347")
-      #expect(response).to render_template("edit")
-    #end
+    it "edit domain, next version" do
+      get :edit, { id: "D-ACME_PEDomain", sdtm_user_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      result = assigns(:sdtm_user_domain)
+      token = assigns(:token)
+      expect(token.user_id).to eq(@user.id)
+      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRSdtmUD/ACME/V2#D-ACME_PEDomain") # Note new version, copy.
+      expect(result.identifier).to eq("PE Domain")
+      expect(response).to render_template("edit")
+    end
     
     it "edits domain, already locked" do
       @request.env['HTTP_REFERER'] = 'http://test.host/sdtm_user_domains'
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @lock_user)
       get :edit, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/sdtm_user_domains")
+    end
+
+    it "edits domain, copy, already locked" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/sdtm_user_domains'
+      # Lock the new form
+      new_form = SdtmUserDomain.new
+      new_form.id = "D-ACME_PEDomain"
+      new_form.namespace = "http://www.assero.co.uk/MDRSdtmUD/ACME/V2" # Note the V4, the expected new version.
+      new_token = Token.obtain(new_form, @lock_user)
+      get :edit, { id: "D-ACME_PEDomain", sdtm_user_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/sdtm_user_domains")
     end

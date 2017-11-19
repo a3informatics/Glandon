@@ -130,7 +130,8 @@ describe ThesauriController do
       result = assigns(:thesaurus)
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_CDISCEXT") # Note we get a new version, the edit causes the copy.
+      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_CDISCEXT") # Note we get a new version, 
+      																																															# the edit causes the copy.
       expect(result.identifier).to eq("CDISC EXT")
       expect(response).to render_template("edit")
     end
@@ -149,6 +150,24 @@ describe ThesauriController do
       expect(response).to redirect_to("/thesauri")
     end
     
+    it "edits thesaurus, copy, already locked" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
+      # Lock the new thesaurus
+      new_th = Form.new
+      new_th.id = "TH-ACME_CDISCEXT" # Note the change of fragment, uses the identifier and thus changes
+      new_th.namespace = "http://www.assero.co.uk/MDRThesaurus/ACME/V2" # Note the V2, the expected new version.
+      new_token = Token.obtain(new_th, @lock_user)
+      # Attempt to edit
+      params = 
+      {
+        :id => "TH-SPONSOR_CT-1", 
+        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
+      }
+      get :edit, params
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/thesauri")
+    end
+
     it 'adds a child thesaurus concept' do
       params = 
       {

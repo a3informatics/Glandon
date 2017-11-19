@@ -481,15 +481,58 @@ describe IsoManaged do
     expect(item.to_json).to eq(expected)
   end
 
-  it "permits the item to be exported as Operation JSON" do
+  it "permits the item to be exported as operational hash, same version" do
     form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
     result = 
       { 
-        :operation => { :action => "UPDATE", :new_version => 1, :new_semantic_version=>"1.2.3", :new_state => "Incomplete", :identifier_edit => false }, 
+        :operation => 
+        { 
+        	:action => "UPDATE", :new_version => 1, :new_semantic_version=>"1.2.3", 
+        	:new_state => "Incomplete", :identifier_edit => false 
+        }, 
         :managed_item => form
       }
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expect(item.to_operation).to eq(result)
+  end
+
+  it "permits the item to be exported as the operational hash, new version" do
+    form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
+    form[:registration_state][:registration_status] = "Qualified"
+    expected = 
+      { 
+        :operation => 
+        { 
+        	:action => "CREATE", :new_version => 2, :new_semantic_version=>"1.3.0", 
+        	:new_state => "Qualified", :identifier_edit => false 
+        }, 
+        :managed_item => form
+      }
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.registrationState.registrationStatus = "Qualified"
+    result = item.to_operation
+    expected[:managed_item][:creation_date] = result[:managed_item][:creation_date] # Fix the date for comparison
+    expect(result).to eq(expected)
+  end
+
+  it "permits the item to be exported as the operational hash, update" do
+    form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
+    form[:registration_state][:registration_status] = "Qualified"
+    expected = 
+      { 
+        :operation => 
+        { 
+        	:action => "UPDATE", :new_version => 1, 
+        	:new_semantic_version=>"1.2.3", :new_state => "Qualified", 
+        	:identifier_edit => false 
+        }, 
+        :managed_item => form
+      }
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item.registrationState.registrationStatus = "Qualified"
+    result = item.update_operation
+    expected[:managed_item][:creation_date] = result[:managed_item][:creation_date] # Fix the date for comparison
+    expect(result).to eq(expected)
   end
 
   it "permits the item to be cloned" do

@@ -48,19 +48,16 @@ class ThesauriController < ApplicationController
   def edit
     authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
+    @token = get_token(@thesaurus)
     if @thesaurus.new_version?
       th = Thesaurus.find_complete(params[:id], params[:namespace])
-      json = th.to_operation
-      new_th = Thesaurus.create(json)
+      new_th = Thesaurus.create(th.to_operation)
       @thesaurus = Thesaurus.find(new_th.id, new_th.namespace, false)
-    end
-    @token = Token.obtain(@thesaurus, current_user)
-    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
+      @token.release
+	    @token = get_token(@thesaurus)
+	  end
+  	@close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
     @tc_identifier_prefix = ""
-    if @token.nil?
-      flash[:error] = "The item is locked for editing by another user."
-      redirect_to request.referer
-    end
   end
 
   def children

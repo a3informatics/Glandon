@@ -6,7 +6,7 @@
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
 <script id="formJson" type="text/json">
-  <%= raw @form.to_operation.to_json %>
+  <%= raw @operation.to_json %>
 </script>
 <script id="datatype_map" type="text/json">
   <%= raw BaseDatatype.to_json %>

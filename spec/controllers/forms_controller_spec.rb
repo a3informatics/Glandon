@@ -114,7 +114,7 @@ describe FormsController do
       result = assigns(:form)
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_VSBASELINE") # Note no new version, no copy.
+      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_VSBASELINE") # Note new version, copy.
       expect(result.identifier).to eq("VS BASELINE")
       expect(response).to render_template("edit")
     end
@@ -124,6 +124,19 @@ describe FormsController do
       form = Form.find("F-ACME_NEWTH", "http://www.assero.co.uk/MDRForms/ACME/V1") 
       token = Token.obtain(form, @lock_user)
       get :edit, { :id => "F-ACME_NEWTH", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/forms")
+    end
+
+    it "edits form, copy, already locked" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/forms'
+      # Lock the new form
+      new_form = Form.new
+      new_form.id = "F-ACME_VSBASELINE"
+      new_form.namespace = "http://www.assero.co.uk/MDRForms/ACME/V2" # Note the V2, the expected new version.
+      new_token = Token.obtain(new_form, @lock_user)
+      # Attempt to edit
+      get :edit, { :id => "F-ACME_VSBASELINE1", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/forms")
     end

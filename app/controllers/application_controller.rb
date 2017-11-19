@@ -61,4 +61,15 @@ class ApplicationController < ActionController::Base
     session[:breadcrumbs] = ""
   end
 
+  # Get Token for a Managed Item.
+  def get_token(mi)
+  	token = Token.obtain(mi, current_user)
+    if token.nil?
+      flash[:error] = "The item is locked for editing by another user."
+      redirect_to request.referer
+    end
+    return token
+  end
+
+
 end

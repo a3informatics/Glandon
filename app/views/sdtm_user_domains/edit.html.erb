@@ -5,7 +5,7 @@
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
 <script id="domainJson" type="text/json">
-  <%= raw @sdtm_user_domain.to_operation.to_json %>
+  <%= raw @operation.to_json %>
 </script>
 <script id="defaultsJson" type="text/json">
   <%= raw @defaults.to_json %>
