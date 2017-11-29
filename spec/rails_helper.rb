@@ -70,9 +70,15 @@ RSpec.configure do |config|
 end
 
 Capybara.register_driver :chrome do |app|
-  profile = Selenium::WebDriver::Chrome::Profile.new
-  profile["download.default_directory"] = DownloadHelpers::PATH
-  Capybara::Selenium::Driver.new(app, :browser => :chrome, profile: profile)
+	# New configuration method
+	prefs = {download: {default_directory: DownloadHelpers::PATH}}
+	options = Selenium::WebDriver::Chrome::Options.new
+	options.add_preference(:download, prefs)
+	Capybara::Selenium::Driver.new(app, :browser => :chrome, options: options)
+	# Old configuration method
+  #profile = Selenium::WebDriver::Chrome::Profile.new
+  #profile["download.default_directory"] = DownloadHelpers::PATH
+  #Capybara::Selenium::Driver.new(app, :browser => :chrome, profile: profile)
   #Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 

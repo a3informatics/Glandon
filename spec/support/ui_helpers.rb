@@ -191,7 +191,9 @@ module UiHelpers
   # Screen Size
   # ===========
   def set_screen_size(width=1200, height=786)
-    page.driver.browser.manage.window.resize_to(width, height)
+    #page.driver.browser.manage.window.resize_to(width, height)
+    window = Capybara.current_session.current_window
+  	window.resize_to(width, height)
   end
 
   # Buttons etc
