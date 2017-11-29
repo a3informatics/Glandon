@@ -71,10 +71,18 @@ end
 
 Capybara.register_driver :chrome do |app|
 	# New configuration method
-	prefs = {download: {default_directory: DownloadHelpers::PATH}}
-	options = Selenium::WebDriver::Chrome::Options.new
-	options.add_preference(:download, prefs)
-	Capybara::Selenium::Driver.new(app, :browser => :chrome, options: options)
+	Capybara::Selenium::Driver.new(app,
+    :browser => :chrome,
+    :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.chrome(
+      'chromeOptions' => {
+        'args' => [ "--window-size=1800,1000" ],
+        'prefs' => {
+          'download.default_directory' => DownloadHelpers::PATH,
+          'download.prompt_for_download' => false
+        }
+      }
+    )
+  )
 	# Old configuration method
   #profile = Selenium::WebDriver::Chrome::Profile.new
   #profile["download.default_directory"] = DownloadHelpers::PATH
