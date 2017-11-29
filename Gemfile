@@ -56,6 +56,7 @@ gem 'delayed_job_active_record'
 gem 'prawn'
 gem 'prawn-table'
 gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # Rolify role management and Pundit authorization
 gem 'rolify'
