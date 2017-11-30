@@ -96,7 +96,7 @@ describe "Scenario 5 - Domain Clone & BC", :type => :feature do
       click_button 'Add'
       
       # Check audit trail
-      csv = AuditTrail.to_csv
+    #csv = AuditTrail.to_csv
     #write_text_file_2(csv, sub_dir, "scenario_5_audit_trail.csv")
       check_audit_trail("scenario_5_audit_trail.csv")
 

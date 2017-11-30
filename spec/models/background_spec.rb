@@ -36,8 +36,12 @@ describe Background do
 	    delete_all_public_files
 	  end
 
+	  after :all do
+	    delete_all_public_files
+	  end
+
 	  it "compares CDISC terminology" do
-	    terms = []
+	  	terms = []
 	    terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
 	    terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
 	    job = Background.create

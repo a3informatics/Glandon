@@ -206,7 +206,7 @@ module ScenarioHelpers
     term_list.each do |term|
       bc_editor_find_term(term)
       ui_click_by_id 'tfe_add_item'
-      wait_for_ajax
+      wait_for_ajax(3)
     end
   end
 

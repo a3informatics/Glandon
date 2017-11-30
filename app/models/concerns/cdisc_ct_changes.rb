@@ -60,8 +60,8 @@ class CdiscCtChanges
 
 private
 
-	def self.file_path(type, params)
-  	publicDir = Rails.root.join(dir_path())
+  def self.file_path(type, params)
+    publicDir = Rails.root.join(dir_path())
   	if type == C_ALL_CT
   		filename = "CDISC_CT_Changes.#{C_EXTENSION}"
   		outputFile = File.join(publicDir, filename)

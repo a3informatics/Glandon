@@ -127,7 +127,7 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
       click_link "Close"
       expect_page 'History: QS TERM'
 
-      csv = AuditTrail.to_csv
+    #csv = AuditTrail.to_csv
     #write_text_file_2(csv, sub_dir, "scenario_2_audit_trail.csv")
       check_audit_trail("scenario_2_audit_trail.csv")
 
