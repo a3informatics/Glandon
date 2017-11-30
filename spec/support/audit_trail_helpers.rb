@@ -1,7 +1,7 @@
 module AuditTrailHelpers
   
   def check_audit_trail(filename)
-    Audit.order(:id)
+    AuditTrail.order(:id)
     items = AuditTrail.all
     items.each_with_index { |x,i| puts "i=#{i}, item=#{x.to_json}" }
     keys = ["datetime", "user", "owner", "identifier", "version", "event", "details"]
