@@ -395,6 +395,12 @@ describe FieldValidation do
     expect(object.errors.count).to eq(0)
   end
 
+  it "checks a valid SDTM format value, MedDRA" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_format_value?(:test, "MedDRA", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
   it "checks a valid SDTM format value, ISO 8601" do
     object = IsoConcept.new
     expect(FieldValidation.valid_sdtm_format_value?(:test, "ISO 8601", object)).to eq(true)
@@ -410,7 +416,13 @@ describe FieldValidation do
   it "checks an invalid SDTM format value, ISO 8602" do
     object = IsoConcept.new
     expect(FieldValidation.valid_sdtm_format_value?(:test, "ISO 8602", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid value")
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid value: ISO 8602")
+  end
+
+  it "checks an invalid SDTM format value, meddra" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_format_value?(:test, "meddra", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid value: meddra")
   end
 
   it "checks an invalid SDTM format value, nil" do

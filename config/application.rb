@@ -40,6 +40,7 @@ module Glandon
     end
 
     # Other configurations
+    config.metadata = config_for(:metadata).deep_symbolize_keys
     config.bridg_sdtm = config_for(:bridg_sdtm)
     config.iso_registration_state = config_for(:iso_registration_state)
     config.roles = config_for(:roles)

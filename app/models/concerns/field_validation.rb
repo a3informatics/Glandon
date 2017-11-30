@@ -190,8 +190,8 @@ module FieldValidation
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_sdtm_format_value?(symbol, value, object)
     if !value.nil?
-      return true if ['ISO 8601', 'ISO 3166', ''].include? value
-      object.errors.add(symbol, "contains an invalid value")
+    	return true if Rails.configuration.metadata[:sdtm_format_values].include? value
+      object.errors.add(symbol, "contains an invalid value: #{value}")
       return false
     else
       object.errors.add(symbol, "is not set")
