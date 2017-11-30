@@ -85,7 +85,7 @@ class AdHocReportFiles
 private
 
 	def self.file_path(filename)
-  	return File.join(dir_path(), filename)
+  	return Rails.root.join(dir_path(), filename)
   end
 
   def self.label_to_filename(label)
