@@ -205,7 +205,7 @@ describe "Scenario 7 - Mixed Form", :type => :feature do
       expect(page).to have_content 'View:'
       wait_for_ajax
 
-      csv = AuditTrail.to_csv
+    #csv = AuditTrail.to_csv
     #write_text_file_2(csv, sub_dir, "scenario_7_audit_trail.csv")
       check_audit_trail("scenario_7_audit_trail.csv")
 
