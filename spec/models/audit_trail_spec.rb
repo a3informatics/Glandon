@@ -207,8 +207,8 @@ describe AuditTrail do
     10.times do |index|
       AuditTrail.user_event(user, "Any old text#{index}")
     end
-    items = AuditTrail.all
-    csv = AuditTrail.to_csv
+    items = AuditTrail.order(:id)
+  #csv = AuditTrail.to_csv
   #write_text_file_2(csv, sub_dir, "audit_export.csv")
     keys = ["datetime", "user", "owner", "identifier", "version", "event", "details"]
     results = CSV.read(test_file_path(sub_dir, 'audit_export.csv')).map {|a| Hash[ keys.zip(a) ]}

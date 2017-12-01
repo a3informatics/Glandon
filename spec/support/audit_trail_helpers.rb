@@ -1,8 +1,7 @@
 module AuditTrailHelpers
   
   def check_audit_trail(filename)
-    AuditTrail.order(:id)
-    items = AuditTrail.all
+    items = AuditTrail.order(:id)
     items.each_with_index { |x,i| puts "i=#{i}, item=#{x.to_json}" }
     keys = ["datetime", "user", "owner", "identifier", "version", "event", "details"]
     expected = CSV.read(test_file_path(sub_dir, filename)).map {|a| Hash[ keys.zip(a) ]}

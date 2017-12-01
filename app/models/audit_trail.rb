@@ -90,7 +90,7 @@ class AuditTrail < ActiveRecord::Base
   #
   # @return [Object] the CSV serialization
   def self.to_csv
-  	items = AuditTrail.all
+  	items = AuditTrail.order(:id)
     csv_data = CSV.generate do |csv|
       csv << ["Date Time", "User", "Owner", "Identifier", "Version", "Event", "Details"]
       items.each do |item|
