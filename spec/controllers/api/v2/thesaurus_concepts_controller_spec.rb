@@ -69,6 +69,54 @@ describe Api::V2::ThesaurusConceptsController, type: :controller do
       expect(response.status).to eq 404
     end
 
+    it "find a thesaurus concept's parent, thesaurus concept" do
+      set_http_request
+      tc_p = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      tc_c = ThesaurusConcept.find("THC-A00002", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      get :parent, id: Base64.strict_encode64(tc_c.uri.to_s)
+      result_hash = JSON.parse(response.body)
+      expect(result_hash.deep_symbolize_keys!).to eq(tc_p.to_json)
+      expect(response.status).to eq 200
+    end
+
+    it "find a thesaurus concept's parent, thesaurus" do
+      set_http_request
+      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      tc_c = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      get :parent, id: Base64.strict_encode64(tc_c.uri.to_s)
+      result_hash = JSON.parse(response.body)
+      expect(result_hash.deep_symbolize_keys!).to eq(th.to_json)
+      expect(response.status).to eq 200
+    end
+    
+    it "find a thesaurus concept's parent, not found" do
+      set_http_request
+      get :parent, id: Base64.strict_encode64("http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00002xxx")
+      expected_hash = {"errors"=>["Failed to find parent of thesaurus concept http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00002xxx"]}
+      result_hash = JSON.parse(response.body)
+      expect(result_hash).to eq(expected_hash)
+      expect(response.status).to eq 404
+    end
+
+    it "returns a given thesaurus concept" do
+      set_http_request
+      tc = ThesaurusConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      get :show, id: Base64.strict_encode64(tc.uri.to_s)
+      result_hash = JSON.parse(response.body)
+      expect(result_hash.deep_symbolize_keys!).to eq(tc.to_json)
+      expect(response.status).to eq 200
+    end
+
+    it "returns a given thesaurus concept, not found" do
+      set_http_request
+      tc = ThesaurusConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      get :show, id: Base64.strict_encode64("http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00010xxx")
+      expected_hash = {"errors"=>["Failed to find thesaurus concept http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00010xxx"]}
+      result_hash = JSON.parse(response.body)
+      expect(result_hash).to eq(expected_hash)
+      expect(response.status).to eq 404
+    end
+
   end
 
   describe "Unauthorized User" do

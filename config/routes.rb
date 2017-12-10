@@ -26,7 +26,10 @@ Rails.application.routes.draw do
   end
   namespace :api do
   	namespace :v2 do
-  		resources :thesaurus_concepts, only: [:index] do
+  		resources :thesaurus_concepts, only: [:index, :show] do
+        member do
+          get :parent
+        end
     	end
   	end
   end
