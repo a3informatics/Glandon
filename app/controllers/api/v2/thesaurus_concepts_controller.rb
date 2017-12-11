@@ -24,7 +24,8 @@ class Api::V2::ThesaurusConceptsController < Api::V2::BaseController
   end
 
   def show
-    tc_find_and_render(UriV2.new(uri: id_to_uri(params[:id])))
+    uri = UriV2.new(uri: id_to_uri(params[:id]))
+    item_find_and_render(ThesaurusConcept, uri, "Thesaurus Concept") { |item| item.to_json }
   end
 
   def parent
@@ -32,9 +33,9 @@ class Api::V2::ThesaurusConceptsController < Api::V2::BaseController
     result = ThesaurusConcept.find_parent(UriV2.new(uri: uri))
     if !result.nil?
       if (result[:rdf_type] == Thesaurus::C_RDF_TYPE_URI.to_s)
-        th_find_and_render(result[:uri])
+        item_find_and_render(Thesaurus, result[:uri], "Thesaurus Concept") { |item| item.to_json }
       else
-        tc_find_and_render(result[:uri])
+        item_find_and_render(ThesaurusConcept, result[:uri], "Thesaurus Concept") { |item| item.to_json }
       end
     else
       render json: {errors: thesaurus_concept_parent_not_found_error(uri)}, status: 404
@@ -43,53 +44,19 @@ class Api::V2::ThesaurusConceptsController < Api::V2::BaseController
 
 private 
 
-  def tc_find_and_render(uri)
-    tc = tc_find(uri)
-    if tc.errors.empty?
-      render json: tc.to_json, status: 200
-    else
-      render json: {errors: tc.errors.full_messages}, status: 404
-    end
-  end
-
-  def th_find_and_render(uri)
-    th = th_find(uri)
-    if th.errors.empty?
-      render json: th.to_json, status: 200
-    else
-      render json: {errors: th.errors.full_messages}, status: 404
-    end
-  end
-
-  def tc_find(uri)
-    return ThesaurusConcept.find(uri.id, uri.namespace)
-  rescue => e
-    tc = ThesaurusConcept.new
-    tc.errors.add(:base, "Failed to find thesaurus concept #{uri}")
-    return tc
-  end
-
-  def th_find(uri)
-    return Thesaurus.find(uri.id, uri.namespace)
-  rescue => e
-    th = Thesaurus.new
-    th.errors.add(:base, "Failed to find thesaurus #{uri}")
-    return th
-  end
-
   def the_params
     params.permit(:notation, :identifier)
   end  
 
   def thesaurus_concept_not_found_error
 		tc = ThesaurusConcept.new
-    tc.errors.add(:base, "Failed to find thesaurus concept with #{the_params}")
+    tc.errors.add(:base, "Failed to find Thesaurus Concept with #{the_params}")
     return tc.errors.full_messages
   end
 
   def thesaurus_concept_parent_not_found_error(uri)
     tc = ThesaurusConcept.new
-    tc.errors.add(:base, "Failed to find parent of thesaurus concept #{uri}")
+    tc.errors.add(:base, "Failed to find parent of Thesaurus Concept #{uri}")
     return tc.errors.full_messages
   end
 

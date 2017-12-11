@@ -31,6 +31,8 @@ Rails.application.routes.draw do
           get :parent
         end
     	end
+      resources :sdtm_user_domains, only: [:show]
+      resources :sdtm_ig_domains, only: [:show]
   	end
   end
   resources :markdown_engines, only: [:create, :index]

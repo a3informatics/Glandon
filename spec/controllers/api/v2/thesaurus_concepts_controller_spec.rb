@@ -6,7 +6,7 @@ describe Api::V2::ThesaurusConceptsController, type: :controller do
   include ValidationHelpers
 
   def sub_dir
-    return "controllers/api/v2"
+    return "controllers/api/v2/thesaurus_concepts"
   end
 
   def set_http_request
@@ -63,7 +63,7 @@ describe Api::V2::ThesaurusConceptsController, type: :controller do
   	it "find a thesaurus concept based on identifier and preferredTerm, error" do
       set_http_request
       get :index, {notation: "ETHNIC SUBGROUPxxx", preferredTerm: "Ethnic Subgroup"}
-      expected_hash = {"errors"=>["Failed to find thesaurus concept with {\"notation\"=>\"ETHNIC SUBGROUPxxx\"}"]}
+      expected_hash = {"errors"=>["Failed to find Thesaurus Concept with {\"notation\"=>\"ETHNIC SUBGROUPxxx\"}"]}
       result_hash = JSON.parse(response.body)
       expect(result_hash).to eq(expected_hash)
       expect(response.status).to eq 404
@@ -92,7 +92,7 @@ describe Api::V2::ThesaurusConceptsController, type: :controller do
     it "find a thesaurus concept's parent, not found" do
       set_http_request
       get :parent, id: Base64.strict_encode64("http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00002xxx")
-      expected_hash = {"errors"=>["Failed to find parent of thesaurus concept http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00002xxx"]}
+      expected_hash = {"errors"=>["Failed to find parent of Thesaurus Concept http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00002xxx"]}
       result_hash = JSON.parse(response.body)
       expect(result_hash).to eq(expected_hash)
       expect(response.status).to eq 404
@@ -111,7 +111,7 @@ describe Api::V2::ThesaurusConceptsController, type: :controller do
       set_http_request
       tc = ThesaurusConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
       get :show, id: Base64.strict_encode64("http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00010xxx")
-      expected_hash = {"errors"=>["Failed to find thesaurus concept http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00010xxx"]}
+      expected_hash = {"errors"=>["Failed to find Thesaurus Concept http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00010xxx"]}
       result_hash = JSON.parse(response.body)
       expect(result_hash).to eq(expected_hash)
       expect(response.status).to eq 404
@@ -121,9 +121,21 @@ describe Api::V2::ThesaurusConceptsController, type: :controller do
 
   describe "Unauthorized User" do
     
-    it "rejects unauthorised user" do
+    it "rejects unauthorised user, index" do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :index
+      expect(response.status).to eq 401
+    end
+
+    it "rejects unauthorised user, show" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :show, id: "aaa"
+      expect(response.status).to eq 401
+    end
+
+    it "rejects unauthorised user, parent" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :parent, id: "aaa"
       expect(response.status).to eq 401
     end
 

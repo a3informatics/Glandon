@@ -12,4 +12,23 @@ private
     return Base64.strict_encode64(uri)
   end
 
+  def item_find_and_render(klass, uri, error_text)
+    item = item_find(klass, uri, error_text)
+    if item.errors.empty?
+      response = yield(item)
+      render json: response, status: 200
+    else
+      render json: {errors: item.errors.full_messages}, status: 404
+    end
+  rescue => e
+  end
+
+  def item_find(klass, uri, error_text)
+    return klass.find(uri.id, uri.namespace)
+  rescue => e
+    item = klass.new
+    item.errors.add(:base, "Failed to find #{error_text} #{uri}")
+    return item
+  end
+
 end
