@@ -17,6 +17,8 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/CDISC
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessOperational.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessForm.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessDomain.ttl" $FileEndPoint	
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/business_cross_reference.ttl" $FileEndPoint  
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/business_operational_extension.ttl" $FileEndPoint  
 # Load Identification
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/MDRIdentificationACME.ttl" $FileEndPoint
 # Load Terminology
@@ -36,6 +38,9 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V47.
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V48.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V49.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V50.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CDISC_CT_Instructions_V44.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CDISC_CT_Instructions_V49.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CDISC_CT_Instructions_V50.ttl" $FileEndPoint
 # Load SDTM
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_2008-11-12.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_2012-07-16.ttl" $FileEndPoint

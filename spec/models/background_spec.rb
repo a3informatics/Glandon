@@ -185,12 +185,16 @@ describe Background do
 	    clear_iso_namespace_object
 	    clear_iso_registration_authority_object
 	    clear_iso_registration_state_object
+      delete_all_public_files
 	  end
 
-	  it "import cdisc term changes, March 2016" do
+	  after :all do
+      delete_all_public_files
+    end
+
+    it "import cdisc term changes, March 2016" do
 	  	load_test_file_into_triple_store("CT_V43.ttl")
 			load_test_file_into_triple_store("CT_V44.ttl")
-	  #delete_all_public_files
 	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V44")
 	  	job = Background.create
 	  	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2016-03-25.xlsx")
@@ -202,13 +206,11 @@ describe Background do
 	  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_2.txt")
 	  	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_2.txt")
 	  	expect(results).to eq(expected)	
-	  #delete_all_public_files
 	  end
 
 	  it "import cdisc term changes, June 2017" do
 	    load_test_file_into_triple_store("CT_V48.ttl")
 	    load_test_file_into_triple_store("CT_V49.ttl")
-	  #delete_all_public_files
 	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
 	  	job = Background.create
 	  	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2017-06-30.xlsx")
@@ -220,13 +222,11 @@ describe Background do
 	  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_1.txt")
 	  	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_1.txt")
 	  	expect(results).to eq(expected)	
-	  #delete_all_public_files
 	  end
 
 	  it "import cdisc term changes, September 2017" do
 	    load_test_file_into_triple_store("CT_V49.ttl")
 			load_test_file_into_triple_store("CT_V50.ttl")
-	  #delete_all_public_files
 	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
 	  	job = Background.create
 	  	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2017-09-29.xlsx")
@@ -235,10 +235,9 @@ describe Background do
 		#puts job.status
 	  	expect(job.status).to eq("Complete. Successful import.")  
 	  	results = read_public_text_file("test", "CDISC_CT_Instructions_V50.txt")
-	  write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_3.txt")
+	  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_3.txt")
 	  	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_3.txt")
 	  	expect(results).to eq(expected)	
-	  #delete_all_public_files
 	  end
 
 	  it "import cdisc term changes, errors 1" do
