@@ -1381,39 +1381,42 @@ describe IsoConcept do
       expect(result).to eq(expected)
     end
 
-    it "SDTM Model Class Variable difference, no change" do
-      i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_10", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
-      i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_4", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+    it "SDTM Model Class Variable difference, change" do
+      i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_72", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_80", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
       result = ConceptDifference.difference(i_1, i_2, {ignore: ["ordinal"]})
     #write_yaml_file(result, sub_dir, "difference_expected_30.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_30.yaml")
       expect(result).to eq(expected)
     end
 
-
-
-
-
-
-
     it "IG Domain difference with children, different" do
       i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
       i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
-      time_now("Start IG Domain diff with children")
       result = ConceptDifference.difference_with_children(i_1, i_2, "name")
-      time_now("End")
-      #puts result
-      #expect(result).to eq("")    
+    #write_yaml_file(result, sub_dir, "difference_expected_31.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_31.yaml")
+      expect(result).to eq(expected)
     end
 
     it "IG Domain difference with children, different, ignore ordinal" do
       i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
       i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
-      time_now("Start IG Domain diff with children")
       result = ConceptDifference.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
-      time_now("End")
-      #puts result
-      #expect(result).to eq("")    
+    #write_yaml_file(result, sub_dir, "difference_expected_32.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_32.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "IG Domain difference with children, different, ignore ordinal" do
+      i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+      timer_start
+      result = ConceptDifference.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_33.yaml")
+      timer_stop("SDTM IG DM Domain 3.1.3 to 3.2 difference, ignore ordinal")
+      expected = read_yaml_file(sub_dir, "difference_expected_33.yaml")
+      expect(result).to eq(expected)
     end
 
   end

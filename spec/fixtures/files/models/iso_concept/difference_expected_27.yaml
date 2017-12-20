@@ -50,7 +50,7 @@
     :difference: <div class="diff"></div>
 :children:
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_1:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -72,7 +72,7 @@
       when datasets are merged.
     :prefixed: false
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_3:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -83,7 +83,7 @@
       for all applications or submissions involving the product.
     :prefixed: false
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_4:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -140,7 +140,7 @@
       on a Concomitant Medications page.'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_9:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -154,7 +154,7 @@
       at each study visit.'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_10:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -168,7 +168,7 @@
       response to therapy determination record.'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_11:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
@@ -179,7 +179,7 @@
       pre-specified name of the event.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_12:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
@@ -190,7 +190,7 @@
       modified text is placed here.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_13:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -200,7 +200,7 @@
     :description: MedDRA Lowest Level Term.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_14:
-    :status: :updated
+    :status: :deleted
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -210,7 +210,7 @@
     :description: MedDRA Lowest Level Term code.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_15:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
@@ -223,7 +223,7 @@
       or sponsor-defined dictionaries.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_16:
-    :status: :updated
+    :status: :deleted
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -233,7 +233,7 @@
     :description: MedDRA Preferred Term code.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_17:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -243,7 +243,7 @@
     :description: MedDRA High Level Term from the primary path.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_18:
-    :status: :updated
+    :status: :deleted
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -253,7 +253,7 @@
     :description: MedDRA High Level Term code from the primary path.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_19:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -263,7 +263,7 @@
     :description: MedDRA High Level Group Term from the primary path.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_20:
-    :status: :updated
+    :status: :deleted
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -283,7 +283,7 @@
     :description: Used to define a category of topic-variable values.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_22:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Grouping Qualifier
@@ -326,7 +326,7 @@
       intervention was not answered. Should be null or have a value of NOT DONE.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_26:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
@@ -349,7 +349,7 @@
       DISORDERS.'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_28:
-    :status: :updated
+    :status: :deleted
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -360,7 +360,7 @@
       for analysis.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_29:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -370,7 +370,7 @@
     :description: MedDRA primary System Organ Class associated with the event.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_30:
-    :status: :updated
+    :status: :deleted
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -872,7 +872,7 @@
       or "VISIT 2".'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_75:
-    :status: :updated
+    :status: :deleted
     :datatype: Num
     :classification: Timing
     :sub_classification: ''

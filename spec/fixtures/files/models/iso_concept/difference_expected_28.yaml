@@ -50,7 +50,7 @@
     :difference: <div class="diff"></div>
 :children:
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_1:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -60,7 +60,7 @@
     :description: Unique identifier for a study.
     :prefixed: false
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_2:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -72,7 +72,7 @@
       when datasets are merged.
     :prefixed: false
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_3:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -83,7 +83,7 @@
       for all applications or submissions involving the product.
     :prefixed: false
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_4:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -94,7 +94,7 @@
       that is not assignable to a specific subject.
     :prefixed: false
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_5:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
@@ -174,7 +174,7 @@
       will contribute to a single response to therapy determination record.'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_12:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
@@ -196,7 +196,7 @@
       modified text is placed here.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_14:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -206,7 +206,7 @@
     :description: MedDRA Lowest Level Term.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_15:
-    :status: :updated
+    :status: :no_change
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -228,7 +228,7 @@
       Equivalent to the Preferred Term (PT in MedDRA).
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_17:
-    :status: :updated
+    :status: :no_change
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -238,7 +238,7 @@
     :description: MedDRA Preferred Term code.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_18:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -248,7 +248,7 @@
     :description: MedDRA High Level Term from the primary path.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_19:
-    :status: :updated
+    :status: :no_change
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -258,7 +258,7 @@
     :description: MedDRA High Level Term code from the primary path.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_20:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -268,7 +268,7 @@
     :description: MedDRA High Level Group Term from the primary path.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_21:
-    :status: :updated
+    :status: :no_change
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -343,7 +343,7 @@
       is NOT DONE.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_28:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
@@ -355,7 +355,7 @@
       DISORDERS.'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_29:
-    :status: :updated
+    :status: :no_change
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -366,7 +366,7 @@
       for analysis.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_30:
-    :status: :updated
+    :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -376,7 +376,7 @@
     :description: MedDRA primary System Organ Class associated with the event.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_31:
-    :status: :updated
+    :status: :no_change
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -397,7 +397,7 @@
       ARM for skin rash.'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_33:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -408,7 +408,7 @@
       Examples: RIGHT, LEFT, BILATERAL'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_34:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -419,7 +419,7 @@
       Examples: ANTERIOR, LOWER, PROXIMAL'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_35:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
@@ -431,7 +431,7 @@
       MANY.'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_36:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
@@ -446,7 +446,7 @@
       variable.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_37:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
@@ -501,7 +501,7 @@
       unrelated to dose adjustments of study treatment.
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_42:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
@@ -910,7 +910,7 @@
       a questionnaire such as SF-36.'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_78:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
@@ -968,7 +968,7 @@
       or "VISIT 2".'
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_83:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
@@ -979,7 +979,7 @@
       8601 character format relative to the Time Point Reference (--TPTREF).
     :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_84:
-    :status: :updated
+    :status: :deleted
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
