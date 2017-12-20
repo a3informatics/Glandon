@@ -110,7 +110,7 @@ describe SdtmModelClassification do
     expected = 
     {
       :type => "http://www.assero.co.uk/BusinessDomain#VariableClassification", 
-      :id => "M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER", 
+      :id => "M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER", 
       :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3", 
       :label => "Record Qualifier", 
       :extension_properties => []

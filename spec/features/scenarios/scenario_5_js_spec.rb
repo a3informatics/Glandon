@@ -70,12 +70,12 @@ describe "Scenario 5 - Domain Clone & BC", :type => :feature do
       # Clone Domain
       click_navbar_ig_domain
       click_main_table_link "SDTM Implementation Guide 2013-11-26", 'Show'
-      expect(page).to have_content 'Show: SDTM Implementation Guide 2013-11-26 SDTM IG (V0.0.0, 3, Standard)'
+      expect(page).to have_content 'Show: SDTM Implementation Guide 2013-11-26 SDTM IG (V3.2.0, 3, Standard)'
       secondary_search "QS"
       click_secondary_table_link "SDTM IG QS", 'Show'
-      expect(page).to have_content 'Show: Questionnaires SDTM IG QS (V0.0.0, 3, Standard)'
+      expect(page).to have_content 'Show: Questionnaires SDTM IG QS (V3.2.0, 3, Standard)'
       click_link 'Clone'
-      expect(page).to have_content 'Cloning: Questionnaires SDTM IG QS (V0.0.0, 3, Standard)'
+      expect(page).to have_content 'Cloning: Questionnaires SDTM IG QS (V3.2.0, 3, Standard)'
       ui_check_input('sdtm_user_domain_prefix', 'QS')
       fill_in 'sdtm_user_domain_label', with: 'Questionnaires'
       click_button 'Clone'   

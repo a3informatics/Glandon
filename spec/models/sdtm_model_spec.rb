@@ -3,6 +3,7 @@ require 'rails_helper'
 describe SdtmModel do
 
   include DataHelpers
+  include HashHelpers
 
   def sub_dir
     return "models/sdtm_model"
@@ -47,7 +48,8 @@ describe SdtmModel do
     item = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
   #write_yaml_file(item.to_json, sub_dir, "find_input.yaml")
     expected = read_yaml_file(sub_dir, "find_input.yaml")
-    expect(item.to_json).to eq(expected)
+  hash_diff(item.to_json, expected)
+    #expect(item.to_json).to match_hash(expected)
   end
 
   it "allows a model to be found, not found error" do

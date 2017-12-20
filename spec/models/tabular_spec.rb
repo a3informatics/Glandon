@@ -5,7 +5,7 @@ describe Tabular do
   include DataHelpers
 
   def sub_dir
-    return "models"
+    return "models/tabular"
   end
 
   before :all do
@@ -46,35 +46,35 @@ describe Tabular do
   it "does not validate an invalid object, rule"
 
   it "allows object to be initialized from triples" do
-    triples = read_yaml_file(sub_dir, "tabular_triples.yaml")
+    triples = read_yaml_file(sub_dir, "from_triples_input.yaml")
     result = Tabular.new(triples, "D-ACME_VSDomain")
-    #write_yaml_file(result.to_json, sub_dir, "tabular_from_triples.yaml")
-    expected = read_yaml_file(sub_dir, "tabular_from_triples.yaml")
+  #write_yaml_file(result.to_json, sub_dir, "from_triples_expected.yaml")
+    expected = read_yaml_file(sub_dir, "from_triples_expected.yaml")
     expect(result.to_json).to eq(expected) 
   end  
 
   it "allows an object to be found" do
     tabular = Tabular.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-    #write_yaml_file(tabular.to_json, sub_dir, "tabular.yaml")
-    expected = read_yaml_file(sub_dir, "tabular.yaml")
-    #write_yaml_file(tabular.triples, sub_dir, "tabular_triples.yaml")
+  #write_yaml_file(tabular.to_json, sub_dir, "find_expected.yaml")
+    expected = read_yaml_file(sub_dir, "find_expected.yaml")
+  #write_yaml_file(tabular.triples, sub_dir, "from_triples_input.yaml")
     expect(tabular.to_json).to eq(expected)
   end
 
   it "allows an object to be created from JSON" do
-    json = read_yaml_file(sub_dir, "tabular.yaml")
+    json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = Tabular.from_json(json)
     expect(item.to_json).to eq(json)
   end
   
   it "allows an object to be exported as JSON" do
-    json = read_yaml_file(sub_dir, "tabular.yaml")
+    json = read_yaml_file(sub_dir, "to_json_input.yaml")
     item = Tabular.from_json(json)
     item.label = "test label"
     item.ordinal = 12
     item.rule = ""
-    #write_yaml_file(item.to_json, sub_dir, "tabular_json.yaml")
-    expected = read_yaml_file(sub_dir, "tabular_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "tabular_json.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
   
@@ -82,8 +82,8 @@ describe Tabular do
     sparql = SparqlUpdateV2.new
     item = Tabular.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     uri = item.to_sparql_v2(sparql, "bd")
-    #write_text_file_2(sparql.to_s, sub_dir, "tabular_sparql.txt")
-    expected = read_text_file_2(sub_dir, "tabular_sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
     expect(uri.to_s).to eq("http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain")
   end

@@ -1,0 +1,57 @@
+---
+:status: :updated
+:results:
+  :Datatype:
+    :status: :no_change
+    :previous: Char
+    :current: Char
+    :difference: <div class="diff"></div>
+  :Classification:
+    :status: :no_change
+    :previous: Qualifier
+    :current: Qualifier
+    :difference: <div class="diff"></div>
+  :Sub Classification:
+    :status: :no_change
+    :previous: Variable Qualifier
+    :current: Variable Qualifier
+    :difference: <div class="diff"></div>
+  :Ordinal:
+    :status: :no_change
+    :previous: 19
+    :current: 20
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del><strong>19</strong></del></li>
+          <li class="ins"><ins><strong>20</strong></ins></li>
+        </ul>
+      </div>
+  :Variable name:
+    :status: :no_change
+    :previous: "--DOSRGM"
+    :current: "--DOSRGM"
+    :difference: <div class="diff"></div>
+  :Rule:
+    :status: :no_change
+    :previous: ''
+    :current: ''
+    :difference: <div class="diff"></div>
+  :Variable description.:
+    :status: :updated
+    :previous: 'Text description of the (intended) schedule or regimen for the Intervention.
+      Examples: TWO WEEKS ON, TWO WEEKS OFF.'
+    :current: 'Text description of the (intended) schedule or regimen for the Intervention.
+      Example: TWO WEEKS ON, TWO WEEKS OFF.'
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del>Text description of the (intended) schedule or regimen for the Intervention. Example<strong>s</strong>: TWO WEEKS ON, TWO WEEKS OFF.</del></li>
+          <li class="ins"><ins>Text description of the (intended) schedule or regimen for the Intervention. Example: TWO WEEKS ON, TWO WEEKS OFF.</ins></li>
+        </ul>
+      </div>
+  :Variable prefixed.:
+    :status: :no_change
+    :previous: true
+    :current: true
+    :difference: <div class="diff"></div>

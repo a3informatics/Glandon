@@ -1,0 +1,86 @@
+---
+:status: :updated
+:results:
+  :Datatype:
+    :status: :no_change
+    :previous: Char
+    :current: Char
+    :difference: <div class="diff"></div>
+  :Classification:
+    :status: :no_change
+    :previous: Qualifier
+    :current: Qualifier
+    :difference: <div class="diff"></div>
+  :Sub Classification:
+    :status: :no_change
+    :previous: Synonym Qualifier
+    :current: Synonym Qualifier
+    :difference: <div class="diff"></div>
+  :Ordinal:
+    :status: :no_change
+    :previous: 12
+    :current: 12
+    :difference: <div class="diff"></div>
+  :Variable name:
+    :status: :no_change
+    :previous: AEDECOD
+    :current: AEDECOD
+    :difference: <div class="diff"></div>
+  :Rule:
+    :status: :no_change
+    :previous: ''
+    :current: ''
+    :difference: <div class="diff"></div>
+  :Variable description.:
+    :status: :updated
+    :previous: Standardized or dictionary-derived name of the topic variable, --TRT,
+      or the modified topic variable (--MODIFY), if applicable. Equivalent to the
+      generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published
+      or sponsor-defined dictionaries.
+    :current: Dictionary or sponsor-defined derived text description of the topic
+      variable, --TERM, or the modified topic variable (--MODIFY), if applicable.
+      Equivalent to the Preferred Term (PT in MedDRA).
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del><strong>Standardized</strong> or <strong>dictionary-de</strong>rived <strong>name</strong> of the topic variable, --T<strong>RT</strong>, or the modified topic variable (--MODIFY), if applicable. Equivalent to the <strong>generic drug name in WHO Drug, or a t</strong>erm <strong>in SNOMED, ICD9, or other published or sponsor-defined dictionaries</strong>.</del></li>
+          <li class="ins"><ins><strong>Dictionary</strong> or <strong>sponsor-defined de</strong>rived <strong>text description</strong> of the topic variable, --T<strong>ERM</strong>, or the modified topic variable (--MODIFY), if applicable. Equivalent to the <strong>Preferred T</strong>erm <strong>(PT in MedDRA)</strong>.</ins></li>
+        </ul>
+      </div>
+  :Variable prefixed.:
+    :status: :no_change
+    :previous: true
+    :current: true
+    :difference: <div class="diff"></div>
+  :Compliance:
+    :status: :no_change
+    :previous: Required
+    :current: Required
+    :difference: <div class="diff"></div>
+  :Controlled Terms or Format:
+    :status: :updated
+    :previous: ''
+    :current: MedDRA
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="ins"><ins>MedDRA</ins></li>
+        </ul>
+      </div>
+  :Notes:
+    :status: :updated
+    :previous: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent
+      to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the
+      dictionary name and version used to map the terms utilizing the define.xml external
+      codelist attributes
+    :current: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent
+      to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the
+      dictionary name and version used to map the terms utilizing the define.xml external
+      codelist attributes.
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del>Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes</del></li>
+          <li class="ins"><ins>Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes<strong>.</strong></ins></li>
+        </ul>
+      </div>

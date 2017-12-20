@@ -6,8 +6,8 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2017-11-30T11:41:27+00:00'
-:last_changed_date: '2017-11-30T11:41:27+00:00'
+:creation_date: '2017-12-16T11:36:12+00:00'
+:last_changed_date: '2017-12-16T11:36:12+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -58,7 +58,7 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_EVENTS
+    :id: M-CDISC_SDTMMODELEVENTS
 :ig_ref:
   :type: http://www.assero.co.uk/BusinessOperational#TReference
   :id: D-ACME_XYDomain_IGD1
@@ -97,8 +97,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -146,8 +146,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -195,8 +195,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -244,8 +244,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -293,8 +293,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -342,8 +342,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -391,8 +391,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -440,8 +440,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -489,8 +489,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -501,7 +501,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Synonym Qualifier
     :extension_properties: []
@@ -543,8 +543,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -555,7 +555,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -597,8 +597,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -609,7 +609,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -651,8 +651,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -663,7 +663,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Synonym Qualifier
     :extension_properties: []
@@ -705,8 +705,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -717,7 +717,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -759,8 +759,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -771,7 +771,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -813,8 +813,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -825,7 +825,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -867,8 +867,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -879,7 +879,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -921,8 +921,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -933,7 +933,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -975,8 +975,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -987,7 +987,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Grouping Qualifier
     :extension_properties: []
@@ -1029,8 +1029,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1041,7 +1041,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Grouping Qualifier
     :extension_properties: []
@@ -1083,8 +1083,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1095,7 +1095,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1137,8 +1137,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1149,7 +1149,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1191,8 +1191,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1203,7 +1203,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1245,8 +1245,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1257,7 +1257,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1299,8 +1299,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1311,7 +1311,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1353,8 +1353,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1365,7 +1365,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1407,8 +1407,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1419,7 +1419,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1461,8 +1461,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1473,7 +1473,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1515,8 +1515,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1527,7 +1527,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1569,8 +1569,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1581,7 +1581,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1623,8 +1623,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1635,7 +1635,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1677,8 +1677,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1689,7 +1689,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1731,8 +1731,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1743,7 +1743,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1785,8 +1785,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1797,7 +1797,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1839,8 +1839,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1851,7 +1851,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1893,8 +1893,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1905,7 +1905,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1947,8 +1947,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1959,7 +1959,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2001,8 +2001,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2013,7 +2013,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2055,8 +2055,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2067,7 +2067,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2109,8 +2109,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2121,7 +2121,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2163,8 +2163,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2175,7 +2175,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2217,8 +2217,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2229,7 +2229,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2271,8 +2271,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2283,7 +2283,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2325,8 +2325,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2337,7 +2337,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2379,8 +2379,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -2428,8 +2428,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -2477,8 +2477,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2526,8 +2526,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2575,8 +2575,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2624,8 +2624,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2673,8 +2673,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -2722,8 +2722,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGAE_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:

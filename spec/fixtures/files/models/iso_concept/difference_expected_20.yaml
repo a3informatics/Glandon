@@ -1,0 +1,72 @@
+---
+:status: :updated
+:results:
+  :Datatype:
+    :status: :no_change
+    :previous: Char
+    :current: Char
+    :difference: <div class="diff"></div>
+  :Classification:
+    :status: :no_change
+    :previous: Qualifier
+    :current: Qualifier
+    :difference: <div class="diff"></div>
+  :Sub Classification:
+    :status: :no_change
+    :previous: Grouping Qualifier
+    :current: Grouping Qualifier
+    :difference: <div class="diff"></div>
+  :Ordinal:
+    :status: :no_change
+    :previous: 9
+    :current: 9
+    :difference: <div class="diff"></div>
+  :Variable name:
+    :status: :no_change
+    :previous: QSCAT
+    :current: QSCAT
+    :difference: <div class="diff"></div>
+  :Rule:
+    :status: :no_change
+    :previous: ''
+    :current: ''
+    :difference: <div class="diff"></div>
+  :Variable description.:
+    :status: :no_change
+    :previous: Used to define a category of topic-variable values.
+    :current: Used to define a category of topic-variable values.
+    :difference: <div class="diff"></div>
+  :Variable prefixed.:
+    :status: :no_change
+    :previous: true
+    :current: true
+    :difference: <div class="diff"></div>
+  :Compliance:
+    :status: :no_change
+    :previous: Required
+    :current: Required
+    :difference: <div class="diff"></div>
+  :Controlled Terms or Format:
+    :status: :updated
+    :previous: ''
+    :current: "(QSCAT)"
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="ins"><ins>(QSCAT)</ins></li>
+        </ul>
+      </div>
+  :Notes:
+    :status: :updated
+    :previous: 'Used to define a category of related records that will be meaningful
+      to the Reviewer. Examples: HAMILTON DEPRESSION SCALE, SF36, ADAS.'
+    :current: 'Used to define a category of related records that will be meaningful
+      to the Reviewer. See QS Terminology Spreadsheet for specific text for QSCAT.
+      Examples: ADAS-COG, MDS-UPDRS.'
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del>Used to define a category of related records that will be meaningful to the Reviewer. Examples: <strong>HAMILTON DEPRESSION SCALE, SF36, ADA</strong>S.</del></li>
+          <li class="ins"><ins>Used to define a category of related records that will be meaningful to the Reviewer. <strong>See QS Terminology Spreadsheet for specific text for QSCAT. </strong>Examples: <strong>ADAS-COG, MDS-UPDR</strong>S.</ins></li>
+        </ul>
+      </div>

@@ -5,17 +5,14 @@ describe CdiscTermsController do
   include DataHelpers
   include PauseHelpers
   include PublicFileHelpers
-  
+  include TimeHelpers
+
   describe "Bulk CDISC Terminology Changes" do
   	
     login_curator
 
     def sub_dir
       return "controllers/cdisc_terms"
-    end
-
-    def time_now(text)
-    	puts "#{Time.now()}: #{text}"
     end
 
     before :all do

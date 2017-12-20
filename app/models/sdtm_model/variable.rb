@@ -154,7 +154,7 @@ class SdtmModel::Variable < Tabular::Column
   	end
   end
 
-  # Update Clasification. Amend the reference. Don so references are common
+  # Update Clasification. Amend the reference. Done so references are common
   #
   # @raise [Exceptions::ApplicationLogicError] if classifications label not present in classifications
   # @param [Hash] classifications a hash of classifications index by the datatype (label)
@@ -177,7 +177,16 @@ class SdtmModel::Variable < Tabular::Column
   		raise Exceptions::ApplicationLogicError.new(message: msg)
   	end
   end
-  
+ 
+  def additional_properties
+    sub_classification = (self.sub_classification.nil? ? "" : self.sub_classification.label)
+    [ 
+      { instance_variable: "datatype", label: "Datatype", value: self.datatype.label },
+      { instance_variable: "classification", label: "Classification", value: self.classification.label },
+      { instance_variable: "sub_classification", label: "Sub Classification", value: sub_classification }
+    ]
+  end
+
 private
 
   def self.children_from_triples(object, triples, id, bc=nil)

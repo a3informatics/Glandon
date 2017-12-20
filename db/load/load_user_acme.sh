@@ -28,6 +28,6 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_CD
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_MIXED_DFT.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_EQ5D3L_DFT.ttl" $FileEndPoint
 # Domains
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_QS_Domain.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_VS_Domain.ttl" $FileEndPoint
+#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_QS_Domain.ttl" $FileEndPoint
+#curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_VS_Domain.ttl" $FileEndPoint
 set +x

@@ -210,7 +210,7 @@ describe "Breadcrumb", :type => :feature do
     it "has CDISC SDTM IGs breadcrumbs" do 
       next_link('CDISC SDTM IGs', 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
       #save_and_open_page
-      next_link_table("SDTM Implementation Guide 2013-11-26", "Show", "Show:", "CDISC SDTM IGs", "V0.0.0", "")
+      next_link_table("SDTM Implementation Guide 2013-11-26", "Show", "Show:", "CDISC SDTM IGs", "V3.2.0", "")
       next_link_crumb(1, 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
       next_link('Import', 'Import CDISC SDTM Implementation Guide Version', "CDISC SDTM IGs", "Import", "")
       next_link_crumb(1, 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")

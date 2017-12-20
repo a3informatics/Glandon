@@ -32,7 +32,7 @@ describe SdtmModelDomainsController do
     it "presents the domain" do
       params = 
       { 
-        :id => "M-CDISC_SDTMMODEL_TRIAL_DESIGN", 
+        :id => "M-CDISC_SDTMMODELTRIALDESIGN", 
         sdtm_model_domain: 
         {
           :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3" 

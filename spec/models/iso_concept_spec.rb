@@ -4,6 +4,7 @@ describe IsoConcept do
 
 	include DataHelpers
   include PauseHelpers
+  include TimeHelpers
 
 	def sub_dir
     return "models/iso_concept"
@@ -794,100 +795,6 @@ describe IsoConcept do
 			expect{IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")}.to raise_error(Exceptions::NotFoundError)
 		end
 
-	  it "detects two different objects" do
-	    previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = IsoConcept.diff?(previous, current)
-	    expect(result).to eq(true)
-	  end
-
-	  it "detects if two objects are the same" do
-	    previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    current = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = IsoConcept.diff?(previous, current)
-	    expect(result).to eq(false)
-	  end
-
-	  it "shows differences between two different objects" do
-	    previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = IsoConcept.difference(previous, current)
-	  #write_yaml_file(result, sub_dir, "difference_expected_1.yaml")
-	    expected = read_yaml_file(sub_dir, "difference_expected_1.yaml")
-	    expect(result).to eq(expected)
-	  end
-
-	  it "shows differences between two different objects, no previous" do
-	    previous = nil
-	    current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = IsoConcept.difference(previous, current)
-	  #write_yaml_file(result, sub_dir, "difference_expected_2.yaml")
-	    expected = read_yaml_file(sub_dir, "difference_expected_2.yaml")
-	    expect(result).to eq(expected)
-	  end
-	  
-	  it "shows differences between two different objects, no current" do
-	    current = nil
-	    previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = IsoConcept.difference(previous, current)
-	  #write_yaml_file(result, sub_dir, "difference_expected_3.yaml")
-	    expected = read_yaml_file(sub_dir, "difference_expected_3.yaml")
-	    expect(result).to eq(expected)
-	  end
-	  
-	  it "shows differences between same objects" do
-	    previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = IsoConcept.difference(previous, current)
-	  #write_yaml_file(result, sub_dir, "difference_expected_4.yaml")
-	    expected = read_yaml_file(sub_dir, "difference_expected_4.yaml")
-	    expect(result).to eq(expected)
-	  end
-	 
-	  it "shows differences between two different objects, no previous or current" do
-	    current = nil
-	    previous = nil
-	    result = IsoConcept.difference(previous, current)
-	  #write_yaml_file(result, sub_dir, "difference_expected_5.yaml")
-	    expected = read_yaml_file(sub_dir, "difference_expected_5.yaml")
-	    expect(result).to eq(expected)
-	  end
-	  
-	  it "checks if the children are the same for two objects, 1" do
-	    current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = current.child_match?(previous, "children", "identifier")
-	    expect(result).to eq(true)
-	  end
-
-	  it "checks if the children are different for two objects, 2" do
-	    current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = current.child_match?(previous, "children", "identifier")
-	    expect(result).to eq(false)
-	  end
-
-	  it "checks if the children are different for two objects, 3" do
-	    current = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
-	    previous = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
-	    result = current.child_match?(previous, "children", "identifier")
-	    expect(result).to eq(false)
-	  end
-
-	  it "determines the items deleted from the previous objects, same" do
-	    current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = current.deleted_set(previous, "children", "identifier")
-	    expect(result).to eq([])
-	  end
-
-	  it "determines the items deleted from the previous objects, different" do
-	    current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    result = current.deleted_set(previous, "children", "identifier")
-	    expect(result).to eq(["C85563", "C102633", "C17745"])
-	  end
-
 	end
 
 	context "Find Tests" do
@@ -1074,5 +981,433 @@ describe IsoConcept do
 		end
 
 	end
+
+  context "Terminology Tests" do
+
+    before :all do
+      clear_triple_store
+      load_schema_file_into_triple_store("ISO11179Types.ttl")
+      load_schema_file_into_triple_store("ISO11179Basic.ttl")
+      load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      load_schema_file_into_triple_store("ISO11179Data.ttl")
+      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      load_schema_file_into_triple_store("ISO25964.ttl")
+      load_schema_file_into_triple_store("CDISCTerm.ttl")
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("CT_V39.ttl")
+      load_test_file_into_triple_store("CT_V40.ttl")
+      load_test_file_into_triple_store("CT_V41.ttl")
+      load_test_file_into_triple_store("CT_V42.ttl")
+      load_test_file_into_triple_store("CT_V43.ttl")
+      load_test_file_into_triple_store("CT_V44.ttl")
+      load_test_file_into_triple_store("CT_V45.ttl")
+      load_test_file_into_triple_store("CT_V46.ttl")
+      load_test_file_into_triple_store("CT_V47.ttl")
+      clear_iso_concept_object
+    end
+
+    it "detects two different objects" do
+      previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = IsoConcept.diff?(previous, current)
+      expect(result).to eq(true)
+    end
+
+    it "detects if two objects are the same" do
+      previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      current = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = IsoConcept.diff?(previous, current)
+      expect(result).to eq(false)
+    end
+
+    it "shows differences between two different objects" do
+      previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = IsoConcept.difference(previous, current)
+    #write_yaml_file(result, sub_dir, "difference_expected_1.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_1.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "shows differences between two different objects, no previous" do
+      previous = nil
+      current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = IsoConcept.difference(previous, current)
+    #write_yaml_file(result, sub_dir, "difference_expected_2.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_2.yaml")
+      expect(result).to eq(expected)
+    end
+    
+    it "shows differences between two different objects, no current" do
+      current = nil
+      previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = IsoConcept.difference(previous, current)
+    #write_yaml_file(result, sub_dir, "difference_expected_3.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_3.yaml")
+      expect(result).to eq(expected)
+    end
+    
+    it "shows differences between same objects" do
+      previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = IsoConcept.difference(previous, current)
+    #write_yaml_file(result, sub_dir, "difference_expected_4.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_4.yaml")
+      expect(result).to eq(expected)
+    end
+   
+    it "shows differences between two different objects, no previous or current" do
+      current = nil
+      previous = nil
+      result = IsoConcept.difference(previous, current)
+    #write_yaml_file(result, sub_dir, "difference_expected_5.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_5.yaml")
+      expect(result).to eq(expected)
+    end  
+
+    it "checks if the children are the same for two objects, 1" do
+      current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = current.child_match?(previous, "children", "identifier")
+      expect(result).to eq(true)
+    end
+
+    it "checks if the children are different for two objects, 2" do
+      current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = current.child_match?(previous, "children", "identifier")
+      expect(result).to eq(false)
+    end
+
+    it "checks if the children are different for two objects, 3" do
+      current = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+      previous = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
+      result = current.child_match?(previous, "children", "identifier")
+      expect(result).to eq(false)
+    end
+
+    it "determines the items deleted from the previous objects, same" do
+      current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = current.deleted_set(previous, "children", "identifier")
+      expect(result).to eq([])
+    end
+
+    it "determines the items deleted from the previous objects, different" do
+      current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      result = current.deleted_set(previous, "children", "identifier")
+      expect(result).to eq(["C85563", "C102633", "C17745"])
+    end
+
+    it "CLs different object, different" do
+      cl_1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+      cl_2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+      result = ConceptDifference.diff?(cl_1, cl_2)
+      expect(result).to eq(true)    
+    end
+
+    it "CLs different object, same" do
+      cl_1 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+      cl_2 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+      result = ConceptDifference.difference(cl_1, cl_2, {ignore: ["synonym"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_6.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_6.yaml")
+      expect(result).to eq(expected)
+    end
+    
+    it "CLs different object, same" do
+      cl_1 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+      cl_2 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+      result = ConceptDifference.difference(cl_1, cl_2, {ignore: ["synonym"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_7.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_7.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "CLs different object with children, same" do
+      cl_1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+      cl_2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+      result = ConceptDifference.diff_with_children?(cl_1, cl_2, "identifier")
+      expect(result).to eq(false)    
+    end
+    
+    it "CL difference object, same" do
+      cl_1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+      cl_2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+      result = ConceptDifference.difference(cl_1, cl_2)
+    #write_yaml_file(result, sub_dir, "difference_expected_8.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_8.yaml")
+      expect(result).to eq(expected)
+    end
+    
+    it "CL difference object with children, same" do
+      cl_1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+      cl_2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+      result = ConceptDifference.difference_with_children(cl_1, cl_2, "identifier")
+    #write_yaml_file(result, sub_dir, "difference_expected_9.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_9.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "CLs different object, different" do
+      cl_1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+      cl_2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+      result = ConceptDifference.difference_with_children(cl_1, cl_2, "identifier")
+    #write_yaml_file(result, sub_dir, "difference_expected_10.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_10.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "CLs different object with children, different" do
+      cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+      cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+      result = ConceptDifference.diff_with_children?(cl_1, cl_2, "identifier")
+      expect(result).to eq(true)    
+    end
+    
+    it "CL difference object, different" do
+      cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+      cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+      result = ConceptDifference.difference(cl_1, cl_2)
+    #write_yaml_file(result, sub_dir, "difference_expected_11.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_11.yaml")
+      expect(result).to eq(expected)
+    end
+    
+    it "CL difference object with children, different" do
+      cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+      cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+      result = ConceptDifference.difference_with_children(cl_1, cl_2, "identifier")
+    #write_yaml_file(result, sub_dir, "difference_expected_12.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_12.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "CL difference object, different" do
+      cl_1 = CdiscCl.find("CL-65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+      cl_2 = CdiscCl.find("CL-65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+      result = ConceptDifference.difference(cl_1, cl_2)
+    #write_yaml_file(result, sub_dir, "difference_expected_14.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_14.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "CL difference object with children, different" do
+      cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+      cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+      result = ConceptDifference.difference_with_children(cl_1, cl_2, "identifier")
+    #write_yaml_file(result, sub_dir, "difference_expected_15.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_15.yaml")
+      expect(result).to eq(expected)
+    end
+
+  end
+
+  context "SDTM Difference Tests" do
+  
+    before :all do
+      clear_triple_store
+      load_schema_file_into_triple_store("ISO11179Types.ttl")
+      load_schema_file_into_triple_store("ISO11179Basic.ttl")
+      load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      load_schema_file_into_triple_store("ISO11179Data.ttl")
+      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      load_schema_file_into_triple_store("BusinessOperational.ttl")
+      load_schema_file_into_triple_store("BusinessDomain.ttl")
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_data_file_into_triple_store("SDTM_Model_1-2.ttl")
+      load_data_file_into_triple_store("SDTM_Model_1-3.ttl")
+      load_data_file_into_triple_store("SDTM_Model_1-4.ttl")
+      load_data_file_into_triple_store("SDTM_IG_3-1-2.ttl")
+      load_data_file_into_triple_store("SDTM_IG_3-1-3.ttl")
+      load_data_file_into_triple_store("SDTM_IG_3-2.ttl")
+      clear_iso_concept_object
+      @uri_link = UriV2.new(uri: "http://www.assero.co.uk/BusinessDomain#includesVariable")
+      @uri_identifier = UriV2.new(uri: "http://www.assero.co.uk/BusinessDomain#name")
+    end
+
+    it "Model Variable diff?, no change" do
+      i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_STUDYID", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_STUDYID", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      result = ConceptDifference.diff?(i_1, i_2)
+      expect(result).to eq(false)
+    end
+
+    it "Model Variable difference, no change" do
+      i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_STUDYID", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_STUDYID", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      result = ConceptDifference.difference(i_1, i_2)
+    #write_yaml_file(result, sub_dir, "difference_expected_16.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_16.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM IG Variable diff?, change" do
+      i_1 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
+      i_2 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      result = ConceptDifference.diff?(i_1, i_2)
+      expect(result).to eq(true)
+    end
+
+    it "SDTM IG Variable difference, change" do
+      i_1 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
+      i_2 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      result = ConceptDifference.difference(i_1, i_2)
+    #write_yaml_file(result, sub_dir, "difference_expected_17.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_17.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM IG Variable difference, no change" do
+      i_1 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
+      i_2 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      result = ConceptDifference.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_18.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_18.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM IG Variable difference, change" do
+      i_1 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      i_2 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+      result = ConceptDifference.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_19.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_19.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM IG Variable difference, change" do
+      i_1 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGQS_QSCAT", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      i_2 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGQS_QSCAT", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+      result = ConceptDifference.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_20.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_20.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Model difference with children, different" do
+      i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      timer_start
+      result = ConceptDifference.difference_with_children(i_1, i_2, "name")
+      timer_stop("SDTM Model 1.2 to 1.3 difference, no options")
+    #write_yaml_file(result, sub_dir, "difference_expected_21.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_21.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Model difference with children, different" do
+      i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+      timer_start
+      result = ConceptDifference.difference_with_children(i_1, i_2, "name")
+      timer_stop("SDTM Model 1.3 to 1.4 difference, no options")
+    #write_yaml_file(result, sub_dir, "difference_expected_22.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_22.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Model difference with children, different, ignore ordinal" do
+      i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      timer_start
+      result = ConceptDifference.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model 1.2 to 1.3 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_23.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_23.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Model difference with children, different, ignore ordinal" do
+      i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+      timer_start
+      result = ConceptDifference.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model 1.3 to 1.4 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_24.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_24.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Variable difference, change" do
+      i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+      result = ConceptDifference.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_25.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_25.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Variable difference, change" do
+      i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      result = ConceptDifference.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_26.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_26.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class difference with children, different" do
+      i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
+      i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      timer_start
+      result = ConceptDifference.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model Events 1.2 to 1.3 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_27.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_27.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class difference with children, different" do
+      i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+      timer_start
+      result = ConceptDifference.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model Events 1.3 to 1.4 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_28.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_28.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class Variable difference, change" do
+      i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_10", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
+      i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_15", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      result = ConceptDifference.difference(i_1, i_2, {ignore: ["ordinal"]})
+    write_yaml_file(result, sub_dir, "difference_expected_29.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_29.yaml")
+      expect(result).to eq(expected)
+    end
+
+
+
+
+
+
+
+
+    it "IG Domain difference with children, different" do
+      i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
+      i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      time_now("Start IG Domain diff with children")
+      result = ConceptDifference.difference_with_children(i_1, i_2, "name")
+      time_now("End")
+      #puts result
+      #expect(result).to eq("")    
+    end
+
+    it "IG Domain difference with children, different, ignore ordinal" do
+      i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
+      i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      time_now("Start IG Domain diff with children")
+      result = ConceptDifference.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      time_now("End")
+      #puts result
+      #expect(result).to eq("")    
+    end
+
+  end
 
 end

@@ -60,7 +60,7 @@ describe SdtmModelCompliance do
   end
 
   it "allows all labels to be returned" do
-    results = SdtmModelCompliance.all("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+    results = SdtmModelCompliance.all("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
   #write_yaml_file(results, sub_dir, "all_expected.yaml")
     expected = read_yaml_file(sub_dir, "all_expected.yaml")
     results.each do |result|
@@ -73,8 +73,8 @@ describe SdtmModelCompliance do
     expected = 
     {
       :type => "http://www.assero.co.uk/BusinessDomain#VariableCompliance", 
-      :id => "IG-CDISC_SDTMIGVS_C_PERMISSIBLE", 
-      :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3", 
+      :id => "IG-CDISC_SDTMIG_C_PERMISSIBLE", 
+      :namespace => "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3", 
       :label => "Permissible", 
       :extension_properties => []
     }

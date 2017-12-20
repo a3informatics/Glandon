@@ -1,0 +1,55 @@
+---
+:status: :no_change
+:results:
+  :Datatype:
+    :status: :no_change
+    :previous: Char
+    :current: Char
+    :difference: <div class="diff"></div>
+  :Classification:
+    :status: :no_change
+    :previous: Qualifier
+    :current: Qualifier
+    :difference: <div class="diff"></div>
+  :Sub Classification:
+    :status: :no_change
+    :previous: Synonym Qualifier
+    :current: Synonym Qualifier
+    :difference: <div class="diff"></div>
+  :Ordinal:
+    :status: :no_change
+    :previous: 10
+    :current: 15
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del>1<strong>0</strong></del></li>
+          <li class="ins"><ins>1<strong>5</strong></ins></li>
+        </ul>
+      </div>
+  :Variable name:
+    :status: :no_change
+    :previous: "--DECOD"
+    :current: "--DECOD"
+    :difference: <div class="diff"></div>
+  :Rule:
+    :status: :no_change
+    :previous: ''
+    :current: ''
+    :difference: <div class="diff"></div>
+  :Variable description.:
+    :status: :no_change
+    :previous: Standardized or dictionary-derived name of the topic variable, --TRT,
+      or the modified topic variable (--MODIFY), if applicable. Equivalent to the
+      generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published
+      or sponsor-defined dictionaries.
+    :current: Standardized or dictionary-derived name of the topic variable, --TRT,
+      or the modified topic variable (--MODIFY), if applicable. Equivalent to the
+      generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published
+      or sponsor-defined dictionaries.
+    :difference: <div class="diff"></div>
+  :Variable prefixed.:
+    :status: :no_change
+    :previous: true
+    :current: true
+    :difference: <div class="diff"></div>

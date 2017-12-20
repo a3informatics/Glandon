@@ -1,0 +1,80 @@
+---
+:status: :no_change
+:results:
+  :Definition:
+    :status: :no_change
+    :previous: A terminology codelist associated with coronary artery disease presentation.
+    :current: A terminology codelist associated with coronary artery disease presentation.
+    :difference: <div class="diff"></div>
+  :Preferred Term:
+    :status: :no_change
+    :previous: CDISC SDTM Coronary Artery Disease Presentation Terminology
+    :current: CDISC SDTM Coronary Artery Disease Presentation Terminology
+    :difference: <div class="diff"></div>
+  :Notation:
+    :status: :no_change
+    :previous: CADPRSN
+    :current: CADPRSN
+    :difference: <div class="diff"></div>
+  :Identifier:
+    :status: :no_change
+    :previous: C101843
+    :current: C101843
+    :difference: <div class="diff"></div>
+  :Synonym:
+    :status: :no_change
+    :previous: Coronary Artery Disease Presentation
+    :current: Coronary Artery Disease Presentation
+    :difference: <div class="diff"></div>
+  :Extensible:
+    :status: :no_change
+    :previous: false
+    :current: false
+    :difference: <div class="diff"></div>
+:children:
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V39#CLI-C101843_C66914:
+    :status: :no_change
+    :definition: Angina pectoris which has not recently changed in frequency, duration
+      or intensity. Stable angina pectoris is relieved by rest or administration of
+      oral, sublingual or transdermal antianginal medications.
+    :preferredTerm: Stable Angina
+    :notation: STABLE ANGINA
+    :identifier: C66914
+    :synonym: ''
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V39#CLI-C101843_C66915:
+    :status: :no_change
+    :definition: A variant form of angina pectoris caused by coronary artery vasospasm,
+      usually occurring spontaneously and frequently associated with ST segment elevation.
+    :preferredTerm: Variant Angina
+    :notation: VARIANT ANGINA
+    :identifier: C66915
+    :synonym: ''
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V39#CLI-C101843_C80383:
+    :status: :no_change
+    :definition: A myocardial infarction that does not produce elevation in the ST
+      segments of the ECG.
+    :preferredTerm: Non-ST Elevation Myocardial Infarction by ECG Finding
+    :notation: NON-ST ELEVATION MYOCARDIAL INFARCTION
+    :identifier: C80383
+    :synonym: NON-STEMI; NSTEMI
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V39#CLI-C101843_C101888:
+    :status: :no_change
+    :definition: A myocardial infarction that produces elevation in the ST segments
+      of the ECG.
+    :preferredTerm: ST Elevation Myocardial Infarction by ECG Finding
+    :notation: ST ELEVATION MYOCARDIAL INFARCTION
+    :identifier: C101888
+    :synonym: STEMI
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V39#CLI-C101843_C66911:
+    :status: :no_change
+    :definition: Angina pectoris (or equivalent type of ischemic discomfort) which
+      has recently changed in frequency, duration, intensity, or occurs at rest.
+    :preferredTerm: Unstable Angina
+    :notation: UNSTABLE ANGINA
+    :identifier: C66911
+    :synonym: ''
+    :extensible: ''

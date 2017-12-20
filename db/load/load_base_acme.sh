@@ -42,7 +42,10 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CDISC_C
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CDISC_CT_Instructions_V49.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CDISC_CT_Instructions_V50.ttl" $FileEndPoint
 # Load SDTM
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_2008-11-12.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_2012-07-16.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_2013-11-26.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_Model_1-2.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_IG_3-1-2.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_Model_1-3.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_IG_3-1-3.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_Model_1-4.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/SDTM_IG_3-2.ttl" $FileEndPoint
 set +x

@@ -110,59 +110,79 @@ describe Background do
 	    job.import_cdisc_term(params)
 	  end
 
-	  it "imports sdtm model, 3.1.2" do
+	  it "imports sdtm model, 1.2" do
 	  	job = Background.create
 	  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
-	  	params = {version: "1", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"]}
+	  	params = {version: "1", version_label: "1.2", date: "2008-11-12", files: ["#{filename}"]}
 	  	job.import_cdisc_sdtm_model(params)
-	  	expect(job.status).to eq("Complete. Successful import.")
+      results = read_public_text_file("test", "SDTM_Model_1-2.txt")
+    #write_text_file_2(results, sub_dir, "SDTM_Model_V1.txt")
+      expected = read_text_file_2(sub_dir, "SDTM_Model_V1.txt")
+      expect(results).to eq(expected) 
+      expect(job.status).to eq("Complete. Successful import.")
 	  end
 
 	  it "imports sdtm ig, 3.1.2" do
 	  	model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
 	  	job = Background.create
 	  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
-	  	params = {version: "1", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"], model_uri: model.uri.to_s}
+	  	params = {version: "1", version_label: "3.1.2", date: "2008-11-12", files: ["#{filename}"], model_uri: model.uri.to_s}
 	  	job.import_cdisc_sdtm_ig(params)
-	  	expect(job.status).to eq("Complete. Successful import.")
+      results = read_public_text_file("test", "SDTM_IG_3-1-2.txt")
+    #write_text_file_2(results, sub_dir, "SDTM_IG_V1.txt")
+      expected = read_text_file_2(sub_dir, "SDTM_IG_V1.txt")
+      expect(results).to eq(expected) 
+      expect(job.status).to eq("Complete. Successful import.")
 	  end
 
-	  it "imports sdtm model, 3.1.3" do
+	  it "imports sdtm model, 1.3" do
 	  	job = Background.create
 	  	filename = db_load_file_path("cdisc", "sdtm-3-1-3-excel.xlsx")
-	  	params = {version: "2", version_label: "Second Version", date: "2017-10-18", files: ["#{filename}"]}
+	  	params = {version: "2", version_label: "1.3", date: "2012-07-16", files: ["#{filename}"]}
 	  	job.import_cdisc_sdtm_model(params)
-	  #puts job.status
-	  	expect(job.status).to eq("Complete. Successful import.")
+      results = read_public_text_file("test", "SDTM_Model_1-3.txt")
+    #write_text_file_2(results, sub_dir, "SDTM_Model_V2.txt")
+      expected = read_text_file_2(sub_dir, "SDTM_Model_V2.txt")
+      expect(results).to eq(expected) 
+      expect(job.status).to eq("Complete. Successful import.")
 	  end
 
 	  it "imports sdtm ig, 3.1.3" do
 	  	model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
 	  	job = Background.create
 	  	filename = db_load_file_path("cdisc", "sdtm-3-1-3-excel.xlsx")
-	  	params = {version: "2", version_label: "Second Version", date: "2017-10-18", files: ["#{filename}"], model_uri: model.uri.to_s}
+	  	params = {version: "2", version_label: "3.1.3", date: "2012-07-16", files: ["#{filename}"], model_uri: model.uri.to_s}
 	  	job.import_cdisc_sdtm_ig(params)
-	  #puts job.status
-	  	expect(job.status).to eq("Complete. Successful import.")
+      results = read_public_text_file("test", "SDTM_IG_3-1-3.txt")
+    #write_text_file_2(results, sub_dir, "SDTM_IG_V2.txt")
+      expected = read_text_file_2(sub_dir, "SDTM_IG_V2.txt")
+      expect(results).to eq(expected) 
+      expect(job.status).to eq("Complete. Successful import.")
 	  end
 
-	  it "imports sdtm model, 3.2" do
+	  it "imports sdtm model, 1.4" do
 	  	job = Background.create
 	  	filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
-	  	params = {version: "3", version_label: "Third Version", date: "2017-10-18", files: ["#{filename}"]}
+	  	params = {version: "3", version_label: "1.4", date: "2013-11-26", files: ["#{filename}"]}
 	  	job.import_cdisc_sdtm_model(params)
-	  #puts job.status
-	  	expect(job.status).to eq("Complete. Successful import.")
+      results = read_public_text_file("test", "SDTM_Model_1-4.txt")
+    #write_text_file_2(results, sub_dir, "SDTM_Model_V3.txt")
+	  	expected = read_text_file_2(sub_dir, "SDTM_Model_V3.txt")
+      expect(results).to eq(expected) 
+      expect(job.status).to eq("Complete. Successful import.")
 	  end
 
 	  it "imports sdtm ig, 3.2" do
 	  	model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
 	  	job = Background.create
 	  	filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
-	  	params = {version: "3", version_label: "Initial Version", date: "2017-10-18", files: ["#{filename}"], model_uri: model.uri.to_s}
+	  	params = {version: "3", version_label: "3.2", date: "2013-11-26", files: ["#{filename}"], model_uri: model.uri.to_s}
 	  	job.import_cdisc_sdtm_ig(params)
-	  #puts job.status
-	  	expect(job.status).to eq("Complete. Successful import.")
+      results = read_public_text_file("test", "SDTM_IG_3-2.txt")
+    #write_text_file_2(results, sub_dir, "SDTM_IG_V3.txt")
+      expected = read_text_file_2(sub_dir, "SDTM_IG_V3.txt")
+      expect(results).to eq(expected) 
+      expect(job.status).to eq("Complete. Successful import.")
 	  end
 
 	end
@@ -185,10 +205,9 @@ describe Background do
 	    clear_iso_namespace_object
 	    clear_iso_registration_authority_object
 	    clear_iso_registration_state_object
-      delete_all_public_files
 	  end
 
-	  after :all do
+	  after :each do
       delete_all_public_files
     end
 

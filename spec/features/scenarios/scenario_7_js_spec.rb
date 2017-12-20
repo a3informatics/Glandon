@@ -95,7 +95,7 @@ describe "Scenario 7 - Mixed Form", :type => :feature do
     def domain_clone(domain_code, label)
       click_navbar_ig_domain
       click_main_table_link "SDTM Implementation Guide 2013-11-26", 'Show'
-      expect(page).to have_content 'Show: SDTM Implementation Guide 2013-11-26 SDTM IG (V0.0.0, 3, Standard)'
+      expect(page).to have_content 'Show: SDTM Implementation Guide 2013-11-26 SDTM IG (V3.2.0, 3, Standard)'
       secondary_search domain_code
       click_secondary_table_link "SDTM IG #{domain_code}", 'Show'
       expect(page).to have_content 'Show:'

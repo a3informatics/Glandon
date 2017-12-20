@@ -1,0 +1,304 @@
+---
+:status: :updated
+:results:
+  :Definition:
+    :status: :no_change
+    :previous: The test code given to the test that analyzes a particular set of vital
+      signs including temperature, respiratory rate, heart rate, and blood pressure.
+    :current: The test code given to the test that analyzes a particular set of vital
+      signs including temperature, respiratory rate, heart rate, and blood pressure.
+    :difference: <div class="diff"></div>
+  :Preferred Term:
+    :status: :updated
+    :previous: CDISC SDTM Vital Sign Terminology by Code
+    :current: CDISC SDTM Vital Sign Test Code Terminology
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del>CDISC SDTM Vital Sign Terminology<strong> by Code</strong></del></li>
+          <li class="ins"><ins>CDISC SDTM Vital Sign Te<strong>st Code Te</strong>rminology</ins></li>
+        </ul>
+      </div>
+  :Notation:
+    :status: :no_change
+    :previous: VSTESTCD
+    :current: VSTESTCD
+    :difference: <div class="diff"></div>
+  :Identifier:
+    :status: :no_change
+    :previous: C66741
+    :current: C66741
+    :difference: <div class="diff"></div>
+  :Synonym:
+    :status: :no_change
+    :previous: Vital Signs Test Code
+    :current: Vital Signs Test Code
+    :difference: <div class="diff"></div>
+  :Extensible:
+    :status: :no_change
+    :previous: true
+    :current: true
+    :difference: <div class="diff"></div>
+:children:
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C49677:
+    :status: :no_change
+    :definition: The number of heartbeats per unit of time, usually expressed as beats
+      per minute. (NCI)
+    :preferredTerm: Heart Rate
+    :notation: HR
+    :identifier: C49677
+    :synonym: Heart Rate
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C25347:
+    :status: :no_change
+    :definition: The vertical measurement or distance from the base to the top of
+      an object; the vertical dimension of extension. (NCI)
+    :preferredTerm: Height
+    :notation: HEIGHT
+    :identifier: C25347
+    :synonym: Height
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C122232:
+    :status: :deleted
+    :definition: A measurement of the total fat mass within the subject's body. (NCI)
+    :preferredTerm: Body Fat Measurement
+    :notation: BODYFATM
+    :identifier: C122232
+    :synonym: Body Fat Measurement
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C60832:
+    :status: :no_change
+    :definition: A measurement of the oxygen-hemoglobin saturation of a volume of
+      blood.
+    :preferredTerm: Oxygen Saturation Measurement
+    :notation: OXYSAT
+    :identifier: C60832
+    :synonym: Oxygen Saturation
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C84372:
+    :status: :updated
+    :definition: A measurement of the length of the lower leg from the top of the
+      knee to the bottom of the heel. This measurement may be taken with a knemometer
+      or calipers. (NCI)
+    :preferredTerm: Knee to Heel Length Measurement
+    :notation: KNEEHEEL
+    :identifier: C84372
+    :synonym: Knee to Heel Length
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C49678:
+    :status: :no_change
+    :definition: The rate of breathing (inhalation and exhalation) measured within
+      in a unit time, usually expressed as breaths per minute. (NCI)
+    :preferredTerm: Respiratory Rate
+    :notation: RESP
+    :identifier: C49678
+    :synonym: Respiratory Rate
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C25206:
+    :status: :no_change
+    :definition: 'The property of a body or region of space that determines whether
+      or not there will be a net flow of heat into it or out of it from a neighboring
+      body or region and in which direction (if any) the heat will flow, perceptible
+      by living organism as a somatic sensation of cold or heat. It is a measure of
+      the average translational kinetic energy associated with the disordered microscopic
+      motion of atoms and molecules. Temperature is measured in one of the three standard
+      temperature scales: Celsius, Kelvin, and Fahrenheit. (NCI)'
+    :preferredTerm: Temperature
+    :notation: TEMP
+    :identifier: C25206
+    :synonym: Temperature
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C49679:
+    :status: :no_change
+    :definition: 'The mean pressure of the blood within the arterial circulation.
+      The arterial pressure may be directly measured by insertion of an intra-arterial
+      catheter connected to a transducer. The mean arterial pressure (MAP) can be
+      calculated by subsequent analysis of the waveform. MAP can be approximated without
+      an invasive procedure using the following formula: diastolic pressure plus 1/3
+      of the pulse pressure, where pulse pressure is systolic pressure - diastolic
+      pressure. (NCI)'
+    :preferredTerm: Mean Arterial Pressure
+    :notation: MAP
+    :identifier: C49679
+    :synonym: Mean Arterial Pressure
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C98785:
+    :status: :no_change
+    :definition: A measurement of the thickness of a pinch of skin situated below
+      or on the underside of the scapula. (NCI)
+    :preferredTerm: Subscapular Skinfold Thickness
+    :notation: SSSKNF
+    :identifier: C98785
+    :synonym: Subscapular Skinfold Thickness
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C100946:
+    :status: :no_change
+    :definition: The distance around an individual's forearm.
+    :preferredTerm: Forearm Circumference
+    :notation: FARMCIR
+    :identifier: C100946
+    :synonym: Forearm Circumference
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C71258:
+    :status: :no_change
+    :definition: The weight of all organs and tissue in an individual less the weight
+      of the individual's body fat.
+    :preferredTerm: Lean Body Mass
+    :notation: LBM
+    :identifier: C71258
+    :synonym: Lean Body Mass
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C103346:
+    :status: :no_change
+    :definition: A measurement for determining the subcutaneous fat layer thickness
+      whereby a pinch of skin approximately five centimeters to the right of the umbilicus
+      is measured using calipers. (NCI)
+    :preferredTerm: Abdominal Skinfold Thickness
+    :notation: ABSKNF
+    :identifier: C103346
+    :synonym: Abdominal Skinfold Thickness
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C100947:
+    :status: :no_change
+    :definition: The distance around an individual's pelvic area or hips.
+    :preferredTerm: Hip Circumference
+    :notation: HIPCIR
+    :identifier: C100947
+    :synonym: Hip Circumference
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C81255:
+    :status: :no_change
+    :definition: A circumferential measurement of the head at the widest point.
+    :preferredTerm: Head Circumference
+    :notation: HDCIRC
+    :identifier: C81255
+    :synonym: Head Circumference
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C98793:
+    :status: :no_change
+    :definition: A measurement of the thickness of a pinch of skin on the triceps.
+      (NCI)
+    :preferredTerm: Triceps Skinfold Thickness
+    :notation: TRSKNF
+    :identifier: C98793
+    :synonym: Triceps Skinfold Thickness
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C87054:
+    :status: :no_change
+    :definition: A standard measure of visceral obesity, or abdominal fat, which is
+      measured from the patient's back to upper abdomen between the bottom of the
+      rib cage and the top of the pelvic area. This measurement may be taken with
+      the patient standing or in the supine position. (NCI)
+    :preferredTerm: Sagittal Abdominal Diameter
+    :notation: SAD
+    :identifier: C87054
+    :synonym: Sagittal Abdominal Diameter
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C25208:
+    :status: :no_change
+    :definition: The vertical force exerted by a mass as a result of gravity. (NCI)
+    :preferredTerm: Weight
+    :notation: WEIGHT
+    :identifier: C25208
+    :synonym: Weight
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C81298:
+    :status: :no_change
+    :definition: The linear extent in space from one end of the body to the other
+      end, or the extent of the body from beginning to end.
+    :preferredTerm: Total Body Length
+    :notation: BODLNGTH
+    :identifier: C81298
+    :synonym: Body Length
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C117976:
+    :status: :no_change
+    :definition: A person's optimum weight as calculated by a standard methodology.
+    :preferredTerm: Ideal Body Weight
+    :notation: IDEALWT
+    :identifier: C117976
+    :synonym: Ideal Body Weight
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C25298:
+    :status: :no_change
+    :definition: The blood pressure during the contraction of the left ventricle of
+      the heart. (NCI)
+    :preferredTerm: Systolic Blood Pressure
+    :notation: SYSBP
+    :identifier: C25298
+    :synonym: Systolic Blood Pressure
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C49680:
+    :status: :no_change
+    :definition: The categorization of a person's body frame into small, medium and
+      large based on the measurement of wrist circumference or the breadth of the
+      elbow. (NCI)
+    :preferredTerm: Body Frame Size
+    :notation: FRMSIZE
+    :identifier: C49680
+    :synonym: Body Frame Size
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C100948:
+    :status: :no_change
+    :definition: The distance around an individual's midsection or waist.
+    :preferredTerm: Waist Circumference
+    :notation: WSTCIR
+    :identifier: C100948
+    :synonym: Waist Circumference
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C25299:
+    :status: :no_change
+    :definition: The blood pressure after the contraction of the heart while the chambers
+      of the heart refill with blood. (NCI)
+    :preferredTerm: Diastolic Blood Pressure
+    :notation: DIABP
+    :identifier: C25299
+    :synonym: Diastolic Blood Pressure
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C104622:
+    :status: :no_change
+    :definition: A measurement of the quantity of water within the body, including
+      both the intracellular and extracellular compartments.
+    :preferredTerm: Total Body Water Measurement
+    :notation: TBW
+    :identifier: C104622
+    :synonym: Total Body Water
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C49676:
+    :status: :no_change
+    :definition: The rate of the pulse as observed in an artery, expressed as beats
+      per minute. It can be measured at several anatomical sites, including the wrist,
+      neck, temple, groin, behind the knees, or on top of the foot. (NCI)
+    :preferredTerm: Pulse Rate
+    :notation: PULSE
+    :identifier: C49676
+    :synonym: Pulse Rate
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C25157:
+    :status: :no_change
+    :definition: A measure of the 2-dimensional extent of the body surface (i.e.,
+      the skin). Body surface area (BSA) can be calculated by mathematical formula
+      or from a chart that relates height to weight. BSA is often an important factor
+      in dosing. (NCI)
+    :preferredTerm: Body Surface Area
+    :notation: BSA
+    :identifier: C25157
+    :synonym: Body Surface Area
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C100945:
+    :status: :no_change
+    :definition: The change in systolic to diastolic pressure which produces a pulse.
+    :preferredTerm: Pulse Pressure
+    :notation: PULSEPR
+    :identifier: C100945
+    :synonym: Pulse Pressure
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C16358:
+    :status: :no_change
+    :definition: A general indicator of the body fat an individual is carrying based
+      upon the ratio of weight to height. (NCI)
+    :preferredTerm: Body Mass Index
+    :notation: BMI
+    :identifier: C16358
+    :synonym: Body Mass Index
+    :extensible: ''

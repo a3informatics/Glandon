@@ -249,9 +249,8 @@
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf ( :ModelVariable :UserVariable :IGVariable)
+    owl:unionOf (:ModelVariable :ClassVariable :UserVariable :IGVariable)
     ] ;
-  rdfs:range :VariableCompliance ;
   rdfs:range xsd:string ;
   skos:definition "The variable name."^^xsd:string ;
 .
@@ -272,7 +271,6 @@
   rdfs:domain  [ a owl:Class ;
     owl:unionOf  ( :UserVariable :ModelVariable)
     ] ;
-  rdfs:range :VariableCompliance ;
   rdfs:range xsd:string ;
   skos:definition "Description of the variable."^^xsd:string ;
 .
@@ -284,7 +282,6 @@
   rdfs:domain  [ a owl:Class ;
     owl:unionOf  ( :UserVariable :IGVariable)
     ] ;
-  rdfs:range :VariableCompliance ;
   rdfs:range xsd:string ;
   skos:definition "Notes on the variable."^^xsd:string ;
 .

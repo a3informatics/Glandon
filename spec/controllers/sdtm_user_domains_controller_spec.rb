@@ -298,7 +298,7 @@ describe SdtmUserDomainsController do
       get :sub_classifications, { sdtm_user_domain: { classification_id: "M-CDISC_SDTMMODEL_C_QUALIFIER", classification_namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_sub_classifications_1.txt")
+    #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_sub_classifications_1.txt")
       expected = read_text_file_2(sub_dir, "sdtm_user_domain_controller_sub_classifications_1.txt")
       expect(response.body).to eq(expected)
     end

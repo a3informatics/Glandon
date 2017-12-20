@@ -156,6 +156,17 @@ class SdtmIgDomain::Variable < Tabular::Column
   	end
   end
   
+  def reference
+    mv = SdtmModelDomain::Variable.find(self.variable_ref.subject_ref.id, self.variable_ref.subject_ref.namespace)
+    return mv.reference
+  end
+
+  def additional_properties
+    [ 
+      { instance_variable: "compliance", label: "Compliance", value: self.compliance.label }
+    ]
+  end
+
 private
 
   def self.children_from_triples(object, triples, id)
@@ -163,11 +174,14 @@ private
     if variable_refs.length > 0
       object.variable_ref = variable_refs[0]
     end
-    compliance = EnumeratedLabel.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "compliance"))
-    if compliance.length > 0
-      object.compliance = compliance[0]
+    links = object.get_links_v2(C_SCHEMA_PREFIX, "compliance")
+    if links.length > 0
+      object.compliance = SdtmModelCompliance.find(links[0].id, links[0].namespace)
     end
-    
+    #compliance = EnumeratedLabel.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "compliance"))
+    #if compliance.length > 0
+    #  object.compliance = compliance[0]
+    #end
   end
 
 end

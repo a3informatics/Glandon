@@ -1,0 +1,57 @@
+---
+:status: :updated
+:results:
+  :Datatype:
+    :status: :no_change
+    :previous: Char
+    :current: Char
+    :difference: <div class="diff"></div>
+  :Classification:
+    :status: :no_change
+    :previous: Qualifier
+    :current: Qualifier
+    :difference: <div class="diff"></div>
+  :Sub Classification:
+    :status: :no_change
+    :previous: Record Qualifier
+    :current: Record Qualifier
+    :difference: <div class="diff"></div>
+  :Ordinal:
+    :status: :no_change
+    :previous: 11
+    :current: 22
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del><strong>11</strong></del></li>
+          <li class="ins"><ins><strong>22</strong></ins></li>
+        </ul>
+      </div>
+  :Variable name:
+    :status: :no_change
+    :previous: "--LOC"
+    :current: "--LOC"
+    :difference: <div class="diff"></div>
+  :Rule:
+    :status: :no_change
+    :previous: ''
+    :current: ''
+    :difference: <div class="diff"></div>
+  :Variable description.:
+    :status: :updated
+    :previous: 'Anatomical location of an intervention, such as an injection site.
+      Example: RIGHT ARM for an injection.'
+    :current: 'Anatomical location of an intervention, such as an injection site.
+      Example: ARM for an injection.'
+    :difference: |
+      <div class="diff">
+        <ul>
+          <li class="del"><del>Anatomical location of an intervention, such as an injection site. Example: <strong>RIGHT </strong>ARM for an injection.</del></li>
+          <li class="ins"><ins>Anatomical location of an intervention, such as an injection site. Example: ARM for an injection.</ins></li>
+        </ul>
+      </div>
+  :Variable prefixed.:
+    :status: :no_change
+    :previous: true
+    :current: true
+    :difference: <div class="diff"></div>

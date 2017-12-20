@@ -133,6 +133,7 @@ class CdiscCl < ThesaurusConcept
     return results
   end
 
+
   # Differences between this and another code list. Details for the code lists
   # and a staus on the children.
   #

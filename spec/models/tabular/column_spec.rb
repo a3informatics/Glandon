@@ -5,7 +5,7 @@ describe Tabular::Column do
   include DataHelpers
 
   def sub_dir
-    return "models/tabular"
+    return "models/tabular/column"
   end
 
   before :all do
@@ -49,20 +49,19 @@ describe Tabular::Column do
         :rule => "",
         :type => "http://www.assero.co.uk/BusinessDomain#UserVariable"
       }
-    triples = read_yaml_file(sub_dir, "column_triples.yaml")
+    triples = read_yaml_file(sub_dir, "from_triples_input.yaml")
     expect(Tabular::Column.new(triples, "D-ACME_VSDomain_V5").to_json).to eq(result) 
   end  
 
   it "allows an object to be found" do
     column = Tabular::Column.find("D-ACME_VSDomain_V5", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-    #write_yaml_file(column.to_json, sub_dir, "column.yaml")
-    expected = read_yaml_file(sub_dir, "column.yaml")
-    #write_yaml_file(column.triples, sub_dir, "column_triples.yaml")
+  #write_yaml_file(column.to_json, sub_dir, "find_expected.yaml")
+    expected = read_yaml_file(sub_dir, "find_expected.yaml")
     expect(column.to_json).to eq(expected)
   end
 
   it "allows an object to be created from JSON" do
-    json = read_yaml_file(sub_dir, "column_json.yaml")
+    json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = Tabular::Column.from_json(json)
     expect(item.to_json).to eq(json)
   end
@@ -73,8 +72,8 @@ describe Tabular::Column do
     item.label = "test label"
     item.ordinal = 12
     item.rule = ""
-    #write_yaml_file(item.to_json, sub_dir, "column_json.yaml")
-    expected = read_yaml_file(sub_dir, "column_json.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
+    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
   
@@ -88,8 +87,8 @@ describe Tabular::Column do
     item.ordinal = 12
     item.rule = ""
     item.to_sparql_v2(sparql, "bd")
-    #write_text_file_2(sparql.to_s, sub_dir, "sparql.txt")
-    expected = read_text_file_2(sub_dir, "sparql.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
+    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
   end
 
