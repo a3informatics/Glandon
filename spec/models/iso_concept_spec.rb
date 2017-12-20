@@ -1372,15 +1372,23 @@ describe IsoConcept do
       expect(result).to eq(expected)
     end
 
-    it "SDTM Model Class Variable difference, change" do
+    it "SDTM Model Class Variable difference, no change" do
       i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_10", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
       i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_15", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       result = ConceptDifference.difference(i_1, i_2, {ignore: ["ordinal"]})
-    write_yaml_file(result, sub_dir, "difference_expected_29.yaml")
+    #write_yaml_file(result, sub_dir, "difference_expected_29.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_29.yaml")
       expect(result).to eq(expected)
     end
 
+    it "SDTM Model Class Variable difference, no change" do
+      i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_10", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
+      i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_4", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      result = ConceptDifference.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_30.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_30.yaml")
+      expect(result).to eq(expected)
+    end
 
 
 
