@@ -3,8 +3,7 @@ require 'rails_helper'
 describe SdtmModelDomain do
 
   include DataHelpers
-  include HashHelpers
-
+  
   def sub_dir
     return "models/sdtm_model_domain"
   end
@@ -40,8 +39,7 @@ describe SdtmModelDomain do
     item = SdtmModelDomain.find("M-CDISC_SDTMMODELINTERVENTIONS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
   #write_yaml_file(item.to_json, sub_dir, "find_expected.yaml")
     expected = read_yaml_file(sub_dir, "find_expected.yaml")
-  hash_diff(item.to_json, expected)
-    #expect(item.to_json).to eq(expected)
+    expect(item.to_json).to eq(expected)
   end
 
   it "allows a domain to be found, not found error" do
@@ -82,10 +80,10 @@ describe SdtmModelDomain do
   	json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmModelDomain.from_json(json)
     result = item.to_sparql_v2(sparql)
-  write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
     expected = read_text_file_2(sub_dir, "to_sparql_expected_1.txt")
     expect(sparql.to_s).to eq(expected)
-    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_INTERVENTIONS")
+    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS")
   end
 
   it "allows the item to be built and sparql created" do

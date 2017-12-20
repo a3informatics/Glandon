@@ -75,7 +75,7 @@ describe "SDTM User Domains", :type => :feature do
 
     it "allows a domain to be created, field validation", js: true do
       visit '/sdtm_user_domains/clone_ig?sdtm_user_domain[sdtm_ig_domain_id]=IG-CDISC_SDTMIGEG&sdtm_user_domain[sdtm_ig_domain_namespace]=http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3'
-      expect(page).to have_content 'Cloning: Electrocardiogram SDTM IG EG (V0.0.0, 3, Standard)'
+      expect(page).to have_content 'Cloning: Electrocardiogram SDTM IG EG (V3.2.0, 3, Standard)'
       fill_in 'sdtm_user_domain[prefix]', with: '@@@'
       fill_in 'sdtm_user_domain[label]', with: '€€€'
       click_button 'Clone'

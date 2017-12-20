@@ -12,7 +12,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 INSERT DATA 
 { 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> rdf:type <http://www.assero.co.uk/BusinessDomain#UserDomain> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> rdfs:label "VS Copy"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> rdfs:label "Vital Signs"^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> rdf:type isoR:RegistrationState . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:byAuthority mdrItems:RA-123456789 . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> isoR:registrationStatus "Incomplete"^^xsd:string . 
@@ -26,12 +26,12 @@ INSERT DATA
 <http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> rdf:type isoI:ScopedIdentifier . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> isoI:version "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> isoI:versionLabel ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> isoI:semantic_version "0.0.0"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> isoI:semantic_version "0.1.0"^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> isoI:hasScope mdrItems:NS-ACME . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_VSDomain-1> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_VSDomain-1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:creationDate "2016-12-31T06:28:17%2B00:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:lastChangeDate "2016-12-31T06:28:17%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:creationDate "2017-12-14T19:45:16%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:lastChangeDate "2017-12-14T19:45:16%2B00:00"^^xsd:dateTime . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:changeDescription ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:explanatoryComment ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> isoT:origin ""^^xsd:string . 
@@ -49,7 +49,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_IGD1> bo:local_label ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_MD1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_MD1> rdfs:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_MD1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_FINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_MD1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_MD1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_MD1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_MD1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -70,7 +70,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V6> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V6> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V6> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V6> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V6> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V6> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V6_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V6_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -95,8 +95,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_EXPECTED> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSORRES> . 
@@ -105,38 +105,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_IGV1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_IGV1> bo:local_label ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_IGV1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR1> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR1> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR1> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR2> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR2> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR2> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR2> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR2> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR2> bo:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR2> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR2> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR3> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR3> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR3> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR3> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR3> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR3> bo:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR3> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR3> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR4> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR4> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR4> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR4> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR4> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR4> bo:ordinal "4"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR4> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12_PR4> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:includesColumn <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V12> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28> rdf:type <http://www.assero.co.uk/BusinessDomain#UserVariable> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28> rdfs:label "Planned Time Point Name"^^xsd:string . 
@@ -152,7 +120,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V28_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -177,7 +145,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V2> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V2> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V2> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V2> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_REQUIRED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V2> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V2> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V2_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V2_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -202,7 +170,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V1> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V1> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V1> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V1> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_REQUIRED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V1> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V1> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V1_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V1_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -227,8 +195,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSPOS> . 
@@ -237,30 +205,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_IGV1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_IGV1> bo:local_label ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_IGV1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR1> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR1> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR1> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR2> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR2> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR2> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR2> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR2> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR2> bo:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR2> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR2> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR3> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR3> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR3> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_PerformedObservation_bodyPositionCode_CD_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR3> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR3> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR3> bo:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR3> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11_PR3> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:includesColumn <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V11> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17> rdf:type <http://www.assero.co.uk/BusinessDomain#UserVariable> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17> rdfs:label "Completion Status"^^xsd:string . 
@@ -276,8 +220,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V17_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSSTAT> . 
@@ -301,8 +245,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V10_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSSCAT> . 
@@ -326,8 +270,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_EXPECTED> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V16_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSSTRESU> . 
@@ -351,7 +295,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V4> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V4> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V4> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V4> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_REQUIRED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V4> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V4> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V4_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V4_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -376,8 +320,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V20_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSLAT> . 
@@ -401,7 +345,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_EXPECTED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -411,38 +355,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_IGV1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_IGV1> bo:local_label ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_IGV1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR1> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR1> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR1> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR2> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR2> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR2> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR2> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR2> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR2> bo:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR2> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR2> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR3> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR3> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR3> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR3> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR3> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR3> bo:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR3> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR3> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR4> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR4> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR4> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR4> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR4> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR4> bo:ordinal "4"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR4> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26_PR4> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:includesColumn <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V26> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9> rdf:type <http://www.assero.co.uk/BusinessDomain#UserVariable> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9> rdfs:label "Category for Vital Signs"^^xsd:string . 
@@ -458,8 +370,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V9_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSCAT> . 
@@ -483,7 +395,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V25> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V25> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V25> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V25> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V25> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V25> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V25_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V25_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -508,7 +420,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V31> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V31> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V31> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V31> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V31> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V31> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V31_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V31_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -533,7 +445,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V30> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V30> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V30> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V30> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V30> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V30> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V30_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V30_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -558,7 +470,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_REQUIRED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TOPIC> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -568,38 +480,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_IGV1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_IGV1> bo:local_label ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_IGV1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR1> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR1> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR1> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_DefinedObservation_nameCode_CD_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR2> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR2> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR2> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_DefinedObservation_nameCode_CD_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR2> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR2> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR2> bo:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR2> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR2> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR3> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR3> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR3> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR3> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR3> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR3> bo:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR3> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR3> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR4> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR4> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR4> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_DefinedObservation_nameCode_CD_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR4> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR4> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR4> bo:ordinal "4"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR4> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7_PR4> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:includesColumn <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V7> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23> rdf:type <http://www.assero.co.uk/BusinessDomain#UserVariable> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23> rdfs:label "Visit Number"^^xsd:string . 
@@ -615,7 +495,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_EXPECTED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V23_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -640,8 +520,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_EXPECTED> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V15_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSSTRESN> . 
@@ -665,8 +545,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_EXPECTED> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V14_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSSTRESC> . 
@@ -690,8 +570,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_REQUIRED> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSTEST> . 
@@ -700,38 +580,6 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_IGV1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_IGV1> bo:local_label ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_IGV1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR1> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR1> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR1> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_DefinedObservation_nameCode_CD_originalText_ED_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR2> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR2> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR2> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_DefinedObservation_nameCode_CD_originalText_ED_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR2> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR2> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR2> bo:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR2> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR2> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR3> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR3> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR3> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_DefinedObservation_nameCode_CD_originalText_ED_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR3> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR3> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR3> bo:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR3> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR3> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR4> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR4> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR4> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR4> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR4> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR4> bo:ordinal "4"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR4> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8_PR4> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:includesColumn <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V8> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24> rdf:type <http://www.assero.co.uk/BusinessDomain#UserVariable> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24> rdfs:label "Visit Name"^^xsd:string . 
@@ -747,7 +595,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V24_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -772,7 +620,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V29> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V29> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V29> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V29> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V29> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V29> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V29_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V29_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -797,7 +645,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V3> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V3> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V3> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V3> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_REQUIRED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V3> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V3> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V3_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V3_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -822,8 +670,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V19_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSLOC> . 
@@ -847,7 +695,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V32> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V32> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V32> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V32> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V32> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V32> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V32_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V32_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -872,8 +720,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V18_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSREASND> . 
@@ -897,8 +745,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V22_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSDRVFL> . 
@@ -922,7 +770,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V5> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V5> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V5> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V5> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V5> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V5> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_IDENTIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V5_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V5_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -947,8 +795,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_EXPECTED> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V21_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSBLFL> . 
@@ -972,7 +820,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V27> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V27> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V27> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V27> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_PERMISSIBLE> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V27> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V27> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V27_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V27_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
@@ -997,8 +845,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:used "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:key_ordinal "0"^^xsd:integer . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:typedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_CHAR> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_C_EXPECTED> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
+<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:classifiedAs <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_IGV1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_IGV1> rdfs:label "Based on Variable Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_IGV1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSORRESU> . 
@@ -1007,69 +855,5 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_IGV1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_IGV1> bo:local_label ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_IGV1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR1> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR1> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR1> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR2> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR2> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR2> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR2> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR2> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR2> bo:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR2> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR2> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR3> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR3> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR3> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR3> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR3> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR3> bo:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR3> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR3> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR4> rdf:type <http://www.assero.co.uk/BusinessOperational#PReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR4> rdfs:label "BC Property Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR4> bo:hasProperty <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR4> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR4> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR4> bo:ordinal "4"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR4> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> bd:hasProperty <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13_PR4> . 
 <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:includesColumn <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_V13> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR1> rdf:type <http://www.assero.co.uk/BusinessOperational#BcReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR1> rdfs:label "BC Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR1> bo:hasBiomedicalConcept <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:hasBiomedicalConcept <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR1> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR2> rdf:type <http://www.assero.co.uk/BusinessOperational#BcReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR2> rdfs:label "BC Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR2> bo:hasBiomedicalConcept <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR2> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR2> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR2> bo:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR2> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:hasBiomedicalConcept <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR2> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR3> rdf:type <http://www.assero.co.uk/BusinessOperational#BcReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR3> rdfs:label "BC Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR3> bo:hasBiomedicalConcept <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR3> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR3> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR3> bo:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR3> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:hasBiomedicalConcept <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR3> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR4> rdf:type <http://www.assero.co.uk/BusinessOperational#BcReference> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR4> rdfs:label "BC Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR4> bo:hasBiomedicalConcept <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299> . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR4> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR4> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR4> bo:ordinal "4"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR4> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain> bd:hasBiomedicalConcept <http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain_PR4> . 
 }

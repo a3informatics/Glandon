@@ -180,6 +180,9 @@ describe SdtmUserDomain do
   
   it "allows the BC association to be deleted, single" do
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
+    params = { :bcs => ["http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347"] }
+    item.add(params)
+    item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     bc_count = item.bc_refs.count
     params = { :bcs => ["http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347"] }
     item.remove(params)

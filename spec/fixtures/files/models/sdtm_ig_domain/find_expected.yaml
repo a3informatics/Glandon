@@ -7,7 +7,7 @@
 :origin: ''
 :change_description: ''
 :creation_date: '2013-11-26T00:00:00+00:00'
-:last_changed_date: '2016-09-02T23:34:00+01:00'
+:last_changed_date: '2013-11-26T00:00:00+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -24,32 +24,32 @@
       :shortName: CDISC
   :registration_status: Standard
   :administrative_note: ''
-  :effective_date: '2016-01-01T00:00:00Z'
-  :until_date: '2016-01-01T00:00:00Z'
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
   :current: false
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Standard
+  :previous_state: Incomplete
 :scoped_identifier:
   :id: SI-CDISC_SDTMIGPR-3
   :identifier: SDTM IG PR
   :version_label: '3.2'
-  :version: 3
-  :semantic_version: 0.0.0
+  :version: 1
+  :semantic_version: 3.2.0
   :namespace:
     :namespace: http://www.assero.co.uk/MDRItems
     :id: NS-CDISC
     :name: Clinical Data Interchange Standards Consortium
     :shortName: CDISC
-:ordinal: 0
+:ordinal: 1
 :rule: ''
 :prefix: PR
 :structure: ''
 :model_ref:
   :type: http://www.assero.co.uk/BusinessOperational#TReference
-  :id: IG-CDISC_SDTMIGPR_CLR
+  :id: IG-CDISC_SDTMIGPR_CLR1
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: ''
+  :label: Based on Domain Reference
   :extension_properties: []
   :enabled: true
   :optional: false
@@ -57,7 +57,7 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_INTERVENTIONS
+    :id: M-CDISC_SDTMMODELINTERVENTIONS
 :children:
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDIR
@@ -71,15 +71,15 @@
   :controlled_term_or_format: "(DIR)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDIR_VR
+    :id: IG-CDISC_SDTMIGPR_PRDIR_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -87,7 +87,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxDIR
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_40
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRSTDY
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -101,15 +101,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSTDY_VR
+    :id: IG-CDISC_SDTMIGPR_PRSTDY_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -117,7 +117,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDY
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_58
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRSPID
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -131,15 +131,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSPID_VR
+    :id: IG-CDISC_SDTMIGPR_PRSPID_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -147,7 +147,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxSPID
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_9
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRSTDTC
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -160,15 +160,15 @@
   :controlled_term_or_format: ISO 8601
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSTDTC_VR
+    :id: IG-CDISC_SDTMIGPR_PRSTDTC_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -176,7 +176,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTDTC
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_55
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRINDC
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -189,15 +189,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRINDC_VR
+    :id: IG-CDISC_SDTMIGPR_PRINDC_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -205,7 +205,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxINDC
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_26
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDOSTXT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -219,15 +219,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSTXT_VR
+    :id: IG-CDISC_SDTMIGPR_PRDOSTXT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -235,7 +235,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSTXT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_30
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRLOC
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -248,15 +248,15 @@
   :controlled_term_or_format: "(LOC)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRLOC_VR
+    :id: IG-CDISC_SDTMIGPR_PRLOC_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -264,7 +264,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxLOC
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_38
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRSTTPT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -278,15 +278,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSTTPT_VR
+    :id: IG-CDISC_SDTMIGPR_PRSTTPT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -294,7 +294,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTTPT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_71
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRSTRTPT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -308,15 +308,15 @@
   :controlled_term_or_format: "(STRTPT)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSTRTPT_VR
+    :id: IG-CDISC_SDTMIGPR_PRSTRTPT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -324,7 +324,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxSTRTPT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_70
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_VISITNUM
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -337,15 +337,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_VISITNUM_VR
+    :id: IG-CDISC_SDTMIGPR_VISITNUM_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -353,7 +353,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_VISITNUM
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_49
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRTPTREF
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -367,15 +367,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRTPTREF_VR
+    :id: IG-CDISC_SDTMIGPR_PRTPTREF_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -383,7 +383,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTREF
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_64
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRCAT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -396,15 +396,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRCAT_VR
+    :id: IG-CDISC_SDTMIGPR_PRCAT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -412,7 +412,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxCAT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_20
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRLNKGRP
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -425,15 +425,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRLNKGRP_VR
+    :id: IG-CDISC_SDTMIGPR_PRLNKGRP_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -441,7 +441,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKGRP
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_11
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDOSFRQ
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -454,15 +454,15 @@
   :controlled_term_or_format: "(FRQ)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSFRQ_VR
+    :id: IG-CDISC_SDTMIGPR_PRDOSFRQ_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -470,7 +470,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRQ
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_33
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRPORTOT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -484,15 +484,15 @@
   :controlled_term_or_format: "(PORTOT)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRPORTOT_VR
+    :id: IG-CDISC_SDTMIGPR_PRPORTOT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -500,7 +500,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxPORTOT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_41
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRGRPID
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -513,15 +513,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRGRPID_VR
+    :id: IG-CDISC_SDTMIGPR_PRGRPID_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -529,7 +529,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxGRPID
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_7
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_STUDYID
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -542,15 +542,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_STUDYID_VR
+    :id: IG-CDISC_SDTMIGPR_STUDYID_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -558,7 +558,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_STUDYID
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_1
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDOSU
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -571,15 +571,15 @@
   :controlled_term_or_format: "(UNIT)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSU_VR
+    :id: IG-CDISC_SDTMIGPR_PRDOSU_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -587,7 +587,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSU
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_31
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRSCAT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -600,15 +600,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSCAT_VR
+    :id: IG-CDISC_SDTMIGPR_PRSCAT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -616,7 +616,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxSCAT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_21
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRELTM
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -631,15 +631,15 @@
   :controlled_term_or_format: ISO 8601
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRELTM_VR
+    :id: IG-CDISC_SDTMIGPR_PRELTM_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -647,7 +647,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxELTM
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_63
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PROCCUR
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -661,15 +661,15 @@
   :controlled_term_or_format: "(NY)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PROCCUR_VR
+    :id: IG-CDISC_SDTMIGPR_PROCCUR_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -677,7 +677,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxOCCUR
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_23
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRTPT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -692,15 +692,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRTPT_VR
+    :id: IG-CDISC_SDTMIGPR_PRTPT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -708,7 +708,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_61
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_VISIT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -721,15 +721,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_VISIT_VR
+    :id: IG-CDISC_SDTMIGPR_VISIT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -737,7 +737,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_VISIT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_50
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDUR
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -751,15 +751,15 @@
   :controlled_term_or_format: ISO 8601
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDUR_VR
+    :id: IG-CDISC_SDTMIGPR_PRDUR_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -767,7 +767,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxDUR
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_60
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRTRT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -780,15 +780,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRTRT_VR
+    :id: IG-CDISC_SDTMIGPR_PRTRT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -796,7 +796,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxTRT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_16
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRRFTDTC
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -810,15 +810,15 @@
   :controlled_term_or_format: ISO 8601
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRRFTDTC_VR
+    :id: IG-CDISC_SDTMIGPR_PRRFTDTC_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -826,7 +826,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxRFTDTC
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_65
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDECOD
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -842,15 +842,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDECOD_VR
+    :id: IG-CDISC_SDTMIGPR_PRDECOD_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -858,7 +858,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxDECOD
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_18
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRENDY
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -872,15 +872,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRENDY_VR
+    :id: IG-CDISC_SDTMIGPR_PRENDY_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -888,7 +888,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDY
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_59
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRROUTE
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -901,15 +901,15 @@
   :controlled_term_or_format: "(ROUTE)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRROUTE_VR
+    :id: IG-CDISC_SDTMIGPR_PRROUTE_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -917,7 +917,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxROUTE
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_36
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDOSE
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -930,15 +930,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSE_VR
+    :id: IG-CDISC_SDTMIGPR_PRDOSE_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -946,7 +946,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSE
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_29
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRTPTNUM
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -959,15 +959,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRTPTNUM_VR
+    :id: IG-CDISC_SDTMIGPR_PRTPTNUM_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -975,7 +975,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxTPTNUM
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_62
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRSEQ
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -989,15 +989,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSEQ_VR
+    :id: IG-CDISC_SDTMIGPR_PRSEQ_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1005,7 +1005,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxSEQ
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_6
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_USUBJID
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1019,15 +1019,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_USUBJID_VR
+    :id: IG-CDISC_SDTMIGPR_USUBJID_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1035,7 +1035,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_USUBJID
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_3
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRENTPT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1049,15 +1049,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRENTPT_VR
+    :id: IG-CDISC_SDTMIGPR_PRENTPT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1065,7 +1065,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxENTPT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_73
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDOSRGM
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1078,15 +1078,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSRGM_VR
+    :id: IG-CDISC_SDTMIGPR_PRDOSRGM_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1094,7 +1094,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSRGM
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_35
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRENDTC
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1107,15 +1107,15 @@
   :controlled_term_or_format: ISO 8601
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRENDTC_VR
+    :id: IG-CDISC_SDTMIGPR_PRENDTC_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1123,7 +1123,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxENDTC
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_56
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRLNKID
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1136,15 +1136,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRLNKID_VR
+    :id: IG-CDISC_SDTMIGPR_PRLNKID_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1152,7 +1152,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxLNKID
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_10
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRENRTPT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1166,15 +1166,15 @@
   :controlled_term_or_format: "(ENRTPT)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRENRTPT_VR
+    :id: IG-CDISC_SDTMIGPR_PRENRTPT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1182,7 +1182,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxENRTPT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_72
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRLAT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1195,15 +1195,15 @@
   :controlled_term_or_format: "(LAT)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRLAT_VR
+    :id: IG-CDISC_SDTMIGPR_PRLAT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1211,7 +1211,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxLAT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_39
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRPRESP
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1225,15 +1225,15 @@
   :controlled_term_or_format: "(NY)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRPRESP_VR
+    :id: IG-CDISC_SDTMIGPR_PRPRESP_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1241,7 +1241,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxPRESP
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_22
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_VISITDY
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1254,15 +1254,15 @@
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_VISITDY_VR
+    :id: IG-CDISC_SDTMIGPR_VISITDY_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1270,7 +1270,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_VISITDY
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_51
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDOSFRM
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1283,15 +1283,15 @@
   :controlled_term_or_format: "(FRM)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSFRM_VR
+    :id: IG-CDISC_SDTMIGPR_PRDOSFRM_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1299,7 +1299,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_xxDOSFRM
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_32
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_DOMAIN
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1312,15 +1312,15 @@
   :controlled_term_or_format: "(DOMAIN)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGPR_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_DOMAIN_VR
+    :id: IG-CDISC_SDTMIGPR_DOMAIN_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: ''
+    :label: Based on Variable Reference
     :extension_properties: []
     :enabled: true
     :optional: false
@@ -1328,4 +1328,4 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODEL_INTERVENTIONS_DOMAIN
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_2

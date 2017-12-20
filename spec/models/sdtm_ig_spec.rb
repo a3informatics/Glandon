@@ -28,7 +28,7 @@ describe SdtmIg do
 
   it "allows a IG to be found" do
     item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
-    #write_yaml_file(item.to_json, sub_dir, "find_input.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "find_input.yaml")
     expected = read_yaml_file(sub_dir, "find_input.yaml")
     expect(item.to_json).to eq(expected)
   end

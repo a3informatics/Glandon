@@ -2,12 +2,12 @@
 :type: http://www.assero.co.uk/BusinessDomain#UserDomain
 :id: D-ACME_VSDomain
 :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-:label: VS Copy
+:label: Vital Signs
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2016-12-31T06:28:17+00:00'
-:last_changed_date: '2016-12-31T06:28:17+00:00'
+:creation_date: '2017-12-14T19:45:16+00:00'
+:last_changed_date: '2017-12-14T19:45:16+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -35,7 +35,7 @@
   :identifier: VS Domain
   :version_label: ''
   :version: 1
-  :semantic_version: 0.0.0
+  :semantic_version: 0.1.0
   :namespace:
     :namespace: http://www.assero.co.uk/MDRItems
     :id: NS-ACME
@@ -58,7 +58,7 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_FINDINGS
+    :id: M-CDISC_SDTMMODELFINDINGS
 :ig_ref:
   :type: http://www.assero.co.uk/BusinessOperational#TReference
   :id: D-ACME_VSDomain_IGD1
@@ -97,8 +97,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -146,8 +146,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -195,8 +195,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -244,8 +244,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -293,8 +293,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -342,8 +342,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -391,8 +391,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -415,55 +415,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSTESTCD
-  :property_refs:
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V7_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25298_DefinedObservation_nameCode_CD_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V7_PR2
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25208_DefinedObservation_nameCode_CD_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V7_PR5
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 5
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V7_PR4
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 4
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25299_DefinedObservation_nameCode_CD_code
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V8
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -488,8 +440,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Required
     :extension_properties: []
   :classification:
@@ -500,7 +452,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Synonym Qualifier
     :extension_properties: []
@@ -517,55 +469,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSTEST
-  :property_refs:
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V8_PR4
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 4
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25299_DefinedObservation_nameCode_CD_originalText_ED_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V8_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25298_DefinedObservation_nameCode_CD_originalText_ED_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V8_PR2
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25208_DefinedObservation_nameCode_CD_originalText_ED_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V8_PR5
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 5
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V9
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -590,8 +494,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -602,7 +506,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Grouping Qualifier
     :extension_properties: []
@@ -644,8 +548,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -656,7 +560,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Grouping Qualifier
     :extension_properties: []
@@ -698,8 +602,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -710,7 +614,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -727,43 +631,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSPOS
-  :property_refs:
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V11_PR4
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 4
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V11_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V11_PR2
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25208_PerformedObservation_bodyPositionCode_CD_code
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V12
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -788,8 +656,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -800,7 +668,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -817,55 +685,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSORRES
-  :property_refs:
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V12_PR4
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 4
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V12_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V12_PR5
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 5
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V12_PR2
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_value
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V13
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -890,8 +710,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -902,7 +722,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -919,55 +739,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSORRESU
-  :property_refs:
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V13_PR5
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 5
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V13_PR4
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 4
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V13_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V13_PR2
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V14
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -992,8 +764,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1004,7 +776,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -1046,8 +818,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1058,7 +830,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -1100,8 +872,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1112,7 +884,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1154,8 +926,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1166,7 +938,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1208,8 +980,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1220,7 +992,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1262,8 +1034,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1274,7 +1046,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1316,8 +1088,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1328,7 +1100,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1370,8 +1142,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1382,7 +1154,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1424,8 +1196,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1436,7 +1208,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1478,8 +1250,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1527,8 +1299,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1576,8 +1348,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1625,8 +1397,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Expected
     :extension_properties: []
   :classification:
@@ -1649,55 +1421,7 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSDTC
-  :property_refs:
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V26_PR5
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 5
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V26_PR4
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 4
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V26_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V26_PR2
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C25208_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+  :property_refs: []
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V27
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1722,8 +1446,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1771,8 +1495,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1820,8 +1544,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1869,8 +1593,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1918,8 +1642,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1967,8 +1691,8 @@
     :extension_properties: []
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIGVS_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
     :label: Permissible
     :extension_properties: []
   :classification:
@@ -1992,52 +1716,4 @@
       :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
       :id: IG-CDISC_SDTMIGVS_VSRFTDTC
   :property_refs: []
-:bc_refs:
-- :type: http://www.assero.co.uk/BusinessOperational#BcReference
-  :id: D-ACME_VSDomain_BCR3
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: BC Reference
-  :extension_properties: []
-  :enabled: true
-  :optional: false
-  :ordinal: 3
-  :local_label: ''
-  :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
-    :id: BC-ACME_BC_C25298
-- :type: http://www.assero.co.uk/BusinessOperational#BcReference
-  :id: D-ACME_VSDomain_BCR5
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: BC Reference
-  :extension_properties: []
-  :enabled: true
-  :optional: false
-  :ordinal: 5
-  :local_label: ''
-  :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
-    :id: BC-ACME_BC_C25347
-- :type: http://www.assero.co.uk/BusinessOperational#BcReference
-  :id: D-ACME_VSDomain_BCR2
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: BC Reference
-  :extension_properties: []
-  :enabled: true
-  :optional: false
-  :ordinal: 2
-  :local_label: ''
-  :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
-    :id: BC-ACME_BC_C25208
-- :type: http://www.assero.co.uk/BusinessOperational#BcReference
-  :id: D-ACME_VSDomain_BCR4
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: BC Reference
-  :extension_properties: []
-  :enabled: true
-  :optional: false
-  :ordinal: 4
-  :local_label: ''
-  :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
-    :id: BC-ACME_BC_C25299
+:bc_refs: []

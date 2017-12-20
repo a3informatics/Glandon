@@ -7,7 +7,7 @@
 :origin: ''
 :change_description: ''
 :creation_date: '2013-11-26T00:00:00+00:00'
-:last_changed_date: '2016-09-02T23:32:16+01:00'
+:last_changed_date: '2013-11-26T00:00:00+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -24,24 +24,24 @@
       :shortName: CDISC
   :registration_status: Standard
   :administrative_note: ''
-  :effective_date: '2016-01-01T00:00:00Z'
-  :until_date: '2016-01-01T00:00:00Z'
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
   :current: false
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Standard
+  :previous_state: Incomplete
 :scoped_identifier:
   :id: SI-CDISC_SDTMMODEL-3
   :identifier: SDTM MODEL
   :version_label: '1.4'
   :version: 3
-  :semantic_version: 0.0.0
+  :semantic_version: 1.4.0
   :namespace:
     :namespace: http://www.assero.co.uk/MDRItems
     :id: NS-CDISC
     :name: Clinical Data Interchange Standards Consortium
     :shortName: CDISC
-:ordinal: 0
+:ordinal: 1
 :rule: ''
 :children:
 - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
@@ -69,7 +69,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -98,7 +98,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Synonym Qualifier
     :extension_properties: []
@@ -111,9 +111,9 @@
   :rule: ''
   :name: "--TOXGR"
   :prefixed: true
-  :description: 'Records toxicity grade using a standard toxicity scale (such as the
+  :description: Records toxicity grade using a standard toxicity scale (such as the
     NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor
-    Comments column of the Define data definition document. Example: 2.'
+    Comments column of the Define-XML document.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -128,7 +128,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -251,7 +251,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -281,7 +281,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -310,7 +310,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -341,7 +341,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -373,7 +373,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -402,7 +402,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -453,7 +453,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -506,7 +506,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -535,7 +535,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -610,7 +610,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -639,7 +639,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -714,7 +714,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -723,7 +723,7 @@
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
   :label: Reason Not Done
   :extension_properties: []
-  :ordinal: 22
+  :ordinal: 16
   :rule: ''
   :name: "--REASND"
   :prefixed: true
@@ -743,7 +743,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -772,7 +772,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -801,7 +801,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -881,7 +881,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -957,7 +957,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -966,7 +966,7 @@
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
   :label: Laterality
   :extension_properties: []
-  :ordinal: 31
+  :ordinal: 22
   :rule: ''
   :name: "--LAT"
   :prefixed: true
@@ -986,21 +986,21 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
 - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
   :id: M-CDISC_SDTMMODEL_xxMODIFY
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: Modified Term
+  :label: Modified Reported Term
   :extension_properties: []
-  :ordinal: 3
+  :ordinal: 2
   :rule: ''
   :name: "--MODIFY"
   :prefixed: true
-  :description: If the value for --TRT is modified for coding purposes, then the modified
-    text is placed here.
+  :description: If the value for --TERM is modified for coding purposes, then the
+    modified text is placed here.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -1015,7 +1015,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Synonym Qualifier
     :extension_properties: []
@@ -1040,15 +1040,9 @@
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_TOPIC
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Record Qualifier
+    :label: Topic
     :extension_properties: []
 - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
   :id: M-CDISC_SDTMMODEL_xxENDTC
@@ -1100,7 +1094,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1129,7 +1123,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1183,7 +1177,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1211,7 +1205,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1239,7 +1233,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1270,7 +1264,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1298,7 +1292,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1351,7 +1345,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -1405,7 +1399,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1456,7 +1450,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1485,7 +1479,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1518,7 +1512,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1595,7 +1589,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Synonym Qualifier
     :extension_properties: []
@@ -1623,7 +1617,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1675,7 +1669,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1708,7 +1702,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1737,7 +1731,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1789,7 +1783,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1840,7 +1834,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1871,7 +1865,7 @@
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
   :label: Rule for Start of Element
   :extension_properties: []
-  :ordinal: 9
+  :ordinal: 3
   :rule: ''
   :name: "--STRL"
   :prefixed: true
@@ -1913,7 +1907,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -1941,7 +1935,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -1954,7 +1948,7 @@
   :rule: ''
   :name: "--VAMT"
   :prefixed: true
-  :description: 'Amount of the prepared product (treatment   vehicle) administered
+  :description: 'Amount of the prepared product (treatment %2B vehicle) administered
     or given. Note: should not be diluent amount alone.'
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
@@ -1970,7 +1964,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2094,7 +2088,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Grouping Qualifier
     :extension_properties: []
@@ -2126,7 +2120,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2154,7 +2148,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2183,7 +2177,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2212,7 +2206,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2264,7 +2258,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -2315,7 +2309,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2344,7 +2338,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -2373,7 +2367,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -2427,7 +2421,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Grouping Qualifier
     :extension_properties: []
@@ -2436,13 +2430,13 @@
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
   :label: Associated Persons Identifier
   :extension_properties: []
-  :ordinal: 28
+  :ordinal: 1
   :rule: ''
   :name: APID
   :prefixed: false
   :description: Identifier for a single associated person, a group of associated persons,
     or a pool of associated persons. If APID identifies a pool, POOLDEF records must
-    exist for each associated person. (See Section 5 for Associated Persons data)
+    exist for each associated person.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -2480,7 +2474,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2510,7 +2504,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Synonym Qualifier
     :extension_properties: []
@@ -2635,7 +2629,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2664,7 +2658,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2693,7 +2687,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -2722,7 +2716,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2772,7 +2766,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -2825,7 +2819,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2855,7 +2849,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2885,7 +2879,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2914,7 +2908,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2944,7 +2938,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -2972,7 +2966,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3025,7 +3019,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -3038,8 +3032,10 @@
   :rule: ''
   :name: IDVAR
   :prefixed: false
-  :description: Name of the identifying variable in the general-observation-class
-    dataset that identifies the related record(s). Examples include --SEQ and --GRPID.
+  :description: Identifying variable in the parent dataset that identifies the record(s)
+    to which the comment applies. Examples AESEQ or CMGRPID. Used only when individual
+    comments are related to domain records. Null for comments collected on separate
+    CRFs.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -3054,7 +3050,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3105,7 +3101,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Grouping Qualifier
     :extension_properties: []
@@ -3133,7 +3129,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -3188,7 +3184,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3223,15 +3219,14 @@
 - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
   :id: M-CDISC_SDTMMODEL_xxVAL
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: Parameter Value
+  :label: Comment
   :extension_properties: []
   :ordinal: 33
   :rule: ''
   :name: "--VAL"
   :prefixed: true
-  :description: 'Value of TSPARM. Example: “ASTHMA” when TSPARM value is “Trial Indications”.
-    TSVAL cannot be null; a value is required for the record to be valid. Text over
-    200 characters can be added to additional columns TSVAL1-TSVALn.'
+  :description: The text of the comment. Text over 200 characters can be added to
+    additional columns COVAL1-COVALn.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -3240,15 +3235,9 @@
     :extension_properties: []
   :classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_C_QUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_TOPIC
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Qualifier
-    :extension_properties: []
-  :sub_classification:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :label: Result Qualifier
+    :label: Topic
     :extension_properties: []
 - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
   :id: M-CDISC_SDTMMODEL_xxREF
@@ -3276,7 +3265,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3305,7 +3294,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3335,16 +3324,16 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
 - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
   :id: M-CDISC_SDTMMODEL_xxUPDES
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: Description of Unplanned Visit
+  :label: Description of Unplanned Element
   :extension_properties: []
-  :ordinal: 38
+  :ordinal: 37
   :rule: ''
   :name: "--UPDES"
   :prefixed: true
@@ -3364,7 +3353,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3397,12 +3386,12 @@
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
   :label: Pool Identifier
   :extension_properties: []
-  :ordinal: 29
+  :ordinal: 4
   :rule: ''
   :name: POOLID
   :prefixed: false
-  :description: Identifier used for pooling subjects to assign a single finding to
-    multiple subjects.
+  :description: An identifier used to identify a result from a group of subjects that
+    is not assignable to a specific subject.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -3443,11 +3432,11 @@
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
   :label: Directionality
   :extension_properties: []
-  :ordinal: 32
+  :ordinal: 23
   :rule: ''
   :name: "--DIR"
   :prefixed: true
-  :description: 'Qualifier for anatomical location or specimen further detailing directionality.
+  :description: 'Qualifier for anatomical location further detailing directionality.
     Examples: ANTERIOR, LOWER, PROXIMAL'
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
@@ -3463,7 +3452,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -3516,7 +3505,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3545,7 +3534,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3574,7 +3563,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3602,7 +3591,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -3630,7 +3619,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3659,7 +3648,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -3687,7 +3676,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3700,9 +3689,7 @@
   :rule: ''
   :name: "--CAT"
   :prefixed: true
-  :description: 'Used to define a category of topic-variable values. Examples: HEMATOLOGY,
-    URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36, MICRO ARRAY, EGFR MUTATION
-    ANALYSIS'
+  :description: Used to define a category of topic-variable values.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -3717,7 +3704,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_GROUPINGQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Grouping Qualifier
     :extension_properties: []
@@ -3773,7 +3760,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -3804,7 +3791,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3832,7 +3819,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3860,7 +3847,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3873,8 +3860,9 @@
   :rule: ''
   :name: SETCD
   :prefixed: false
-  :description: Short name of a specific Trial Set, as defined by the sponsor. Maximum
-    8 characters. This represents the Trial Set for which parameters are being submitted.
+  :description: Short name of a specific Trial Set (see Table 3.2.4), as defined by
+    the sponsor. Maximum of 8 characters. This represents the code for the Trial Set
+    for which parameters are being submitted.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -3889,7 +3877,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -3917,7 +3905,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -3953,8 +3941,8 @@
   :rule: ''
   :name: "--VAMTU"
   :prefixed: true
-  :description: 'Units for the prepared product (treatment   vehicle). Examples: mL,
-    mg.'
+  :description: 'Units for the prepared product (treatment %2B vehicle). Examples:
+    mL, mg.'
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -3969,7 +3957,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -3998,7 +3986,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4050,7 +4038,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4078,7 +4066,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4107,7 +4095,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4136,7 +4124,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4165,7 +4153,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4195,21 +4183,21 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
 - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
   :id: M-CDISC_SDTMMODEL_xxLOC
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: Location Used for the Measurement
+  :label: Location of Event
   :extension_properties: []
-  :ordinal: 30
+  :ordinal: 21
   :rule: ''
   :name: "--LOC"
   :prefixed: true
-  :description: 'Anatomical location of an intervention, such as an injection site.
-    Example: ARM for an injection.'
+  :description: 'Describes anatomical location relevant for the event. Example: ARM
+    for skin rash.'
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -4224,7 +4212,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4275,7 +4263,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4304,7 +4292,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -4357,7 +4345,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4370,7 +4358,7 @@
   :rule: ''
   :name: ARM
   :prefixed: false
-  :description: Name given to Arm or treatment group.
+  :description: Name of the Arm to which the subject was assigned.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -4385,7 +4373,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4413,7 +4401,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -4441,7 +4429,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -4469,7 +4457,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4478,7 +4466,7 @@
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
   :label: Completion Status
   :extension_properties: []
-  :ordinal: 21
+  :ordinal: 15
   :rule: ''
   :name: "--STAT"
   :prefixed: true
@@ -4498,7 +4486,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4526,7 +4514,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4555,7 +4543,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4568,9 +4556,8 @@
   :rule: ''
   :name: IDVARVAL
   :prefixed: false
-  :description: Value of identifying variable described in IDVAR. If --SEQ is the
-    variable being used to describe this record, then the value of --SEQ would be
-    entered here.
+  :description: Value of identifying variable of the parent record(s). Null for comments
+    collected on separate CRFs.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -4585,7 +4572,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4598,8 +4585,8 @@
   :rule: ''
   :name: "--OCCUR"
   :prefixed: true
-  :description: Used to record whether a pre-specified intervention occurred when
-    information about the occurrence of a specific intervention is solicited.
+  :description: Used to record whether a pre-specified event occurred when information
+    about the occurrence of a specific event is solicited.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -4614,7 +4601,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4643,7 +4630,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -4672,7 +4659,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4700,7 +4687,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -4754,7 +4741,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4785,7 +4772,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -4815,7 +4802,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -4843,7 +4830,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -4873,7 +4860,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -4902,7 +4889,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -4931,14 +4918,14 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Synonym Qualifier
     :extension_properties: []
 - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
   :id: M-CDISC_SDTMMODEL_xxDECOD
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: Standardized Treatment Name
+  :label: Dictionary-Derived Term
   :extension_properties: []
   :ordinal: 5
   :rule: ''
@@ -4961,7 +4948,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_SYNONYMQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_SYNONYMQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Synonym Qualifier
     :extension_properties: []
@@ -4990,7 +4977,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5019,7 +5006,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5047,7 +5034,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -5077,7 +5064,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5106,7 +5093,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5134,7 +5121,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -5163,7 +5150,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5191,7 +5178,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -5219,7 +5206,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5249,7 +5236,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5279,7 +5266,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5307,7 +5294,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5338,7 +5325,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5351,8 +5338,9 @@
   :rule: ''
   :name: "--PRESP"
   :prefixed: true
-  :description: Used when a specific intervention is pre-specified on a CRF. Values
-    should be “Y” or null.
+  :description: Used to indicate whether the event described by --TERM was pre-specified
+    on a CRF. Value is Y for pre-specified events, null for spontaneously reported
+    events.
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -5367,7 +5355,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -5396,7 +5384,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -5425,7 +5413,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5439,7 +5427,7 @@
   :name: "--TSTDTL"
   :prefixed: true
   :description: 'Further description of --TESTCD and --TEST. Example: “The percentage
-    of cells with  1 intensity of staining” when MITESTCD = TTF1.'
+    of cells with %2B1 intensity of staining” when MITESTCD = TTF1.'
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -5454,21 +5442,21 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
 - :type: http://www.assero.co.uk/BusinessDomain#ModelVariable
   :id: M-CDISC_SDTMMODEL_xxSEV
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: Severity
+  :label: Severity/Intensity
   :extension_properties: []
-  :ordinal: 47
+  :ordinal: 27
   :rule: ''
   :name: "--SEV"
   :prefixed: true
-  :description: 'Describes the severity or intensity of a particular finding. Examples:
-    MILD, MODERATE, SEVERE.'
+  :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
+    SEVERE.'
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -5483,7 +5471,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5534,7 +5522,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5563,7 +5551,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5595,7 +5583,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5624,7 +5612,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RESULTQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RESULTQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Result Qualifier
     :extension_properties: []
@@ -5677,7 +5665,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -5706,7 +5694,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -5715,7 +5703,7 @@
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
   :label: Rule for End of Element
   :extension_properties: []
-  :ordinal: 10
+  :ordinal: 4
   :rule: ''
   :name: "--ENRL"
   :prefixed: true
@@ -5758,7 +5746,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5810,7 +5798,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5838,7 +5826,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -5867,7 +5855,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5876,13 +5864,13 @@
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
   :label: Portion or Totality
   :extension_properties: []
-  :ordinal: 33
+  :ordinal: 24
   :rule: ''
   :name: "--PORTOT"
   :prefixed: true
-  :description: 'Qualifier for anatomical location or specimen further detailing the
-    distribution, which means arrangement of, apportioning of. . Examples: ENTIRE,
-    SINGLE, SEGMENT, MANY.'
+  :description: 'Qualifier for anatomical location further detailing the distribution,
+    which means arrangement of, apportioning of. Examples: ENTIRE, SINGLE, SEGMENT,
+    MANY.'
   :datatype:
     :type: http://www.assero.co.uk/BusinessDomain#VariableType
     :id: M-CDISC_SDTMMODEL_DT_CHAR
@@ -5897,7 +5885,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_VARIABLEQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_VARIABLEQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Variable Qualifier
     :extension_properties: []
@@ -5926,7 +5914,7 @@
     :extension_properties: []
   :sub_classification:
     :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
-    :id: M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER
+    :id: M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
     :label: Record Qualifier
     :extension_properties: []
@@ -5957,7 +5945,7 @@
 - :type: http://www.assero.co.uk/BusinessOperational#TReference
   :id: M-CDISC_SDTMMODEL_TR6
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: ''
+  :label: Tabulation Reference
   :extension_properties: []
   :enabled: true
   :optional: false
@@ -5965,11 +5953,11 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_RELATIONSHIP
+    :id: M-CDISC_SDTMMODELRELATIONSHIP
 - :type: http://www.assero.co.uk/BusinessOperational#TReference
   :id: M-CDISC_SDTMMODEL_TR1
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: ''
+  :label: Tabulation Reference
   :extension_properties: []
   :enabled: true
   :optional: false
@@ -5977,11 +5965,11 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_EVENTS
+    :id: M-CDISC_SDTMMODELEVENTS
 - :type: http://www.assero.co.uk/BusinessOperational#TReference
   :id: M-CDISC_SDTMMODEL_TR4
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: ''
+  :label: Tabulation Reference
   :extension_properties: []
   :enabled: true
   :optional: false
@@ -5989,11 +5977,11 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_SPECIAL_PURPOSE
+    :id: M-CDISC_SDTMMODELSPECIALPURPOSE
 - :type: http://www.assero.co.uk/BusinessOperational#TReference
   :id: M-CDISC_SDTMMODEL_TR2
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: ''
+  :label: Tabulation Reference
   :extension_properties: []
   :enabled: true
   :optional: false
@@ -6001,11 +5989,11 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_INTERVENTIONS
+    :id: M-CDISC_SDTMMODELINTERVENTIONS
 - :type: http://www.assero.co.uk/BusinessOperational#TReference
   :id: M-CDISC_SDTMMODEL_TR5
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: ''
+  :label: Tabulation Reference
   :extension_properties: []
   :enabled: true
   :optional: false
@@ -6013,11 +6001,11 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_TRIAL_DESIGN
+    :id: M-CDISC_SDTMMODELTRIALDESIGN
 - :type: http://www.assero.co.uk/BusinessOperational#TReference
   :id: M-CDISC_SDTMMODEL_TR3
   :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  :label: ''
+  :label: Tabulation Reference
   :extension_properties: []
   :enabled: true
   :optional: false
@@ -6025,4 +6013,16 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_FINDINGS
+    :id: M-CDISC_SDTMMODELFINDINGS
+- :type: http://www.assero.co.uk/BusinessOperational#TReference
+  :id: M-CDISC_SDTMMODEL_TR7
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Tabulation Reference
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 7
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+    :id: M-CDISC_SDTMMODELFINDINGSABOUT
