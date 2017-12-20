@@ -34,7 +34,7 @@ describe SdtmModelDomain::Variable do
     expect(result).to eq(true)
   end
 
-  it "does not validate an invalid object, name" do
+  it "does not validate an invalid object, ordinal" do
     item = SdtmModelDomain::Variable.new
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
@@ -50,6 +50,7 @@ describe SdtmModelDomain::Variable do
       :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3",
       :ordinal => 23,
       :rule => "",
+      :name => "xxSCAT",
       :type => "http://www.assero.co.uk/BusinessDomain#ClassVariable"
     }
     triples = read_yaml_file(sub_dir, "from_triples_expected.yaml")

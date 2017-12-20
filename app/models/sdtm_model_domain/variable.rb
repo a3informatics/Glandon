@@ -5,7 +5,7 @@ class SdtmModelDomain::Variable < Tabular::Column
   include ActiveModel::Validations
   
   # Attributes
-  attr_accessor :variable_ref
+  attr_accessor :name, :variable_ref
 
   # Constants
   C_SCHEMA_PREFIX = SdtmModelDomain::C_SCHEMA_PREFIX
@@ -55,6 +55,7 @@ class SdtmModelDomain::Variable < Tabular::Column
     self.namespace = parent_uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => self.uri}
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
     ref_uri = self.variable_ref.to_sparql_v2(self.uri, OperationalReferenceV2::C_PARENT_LINK_VC, 'CR', 1, sparql)
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => OperationalReferenceV2::C_PARENT_LINK_VC}, {:uri => ref_uri})
     return self.uri
@@ -66,6 +67,7 @@ class SdtmModelDomain::Variable < Tabular::Column
   # @return [SdtmModelDomain::Variable] the object created
   def self.from_json(json)
     object = super(json)
+    object.name = json[:name]
     object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
     return object
   end
@@ -75,6 +77,7 @@ class SdtmModelDomain::Variable < Tabular::Column
   # @return [Hash] the object hash.
   def to_json
     json = super
+    json[:name] = self.name
     if !self.variable_ref.nil? 
       json[:variable_ref] = self.variable_ref.to_json
     end
