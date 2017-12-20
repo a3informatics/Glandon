@@ -1,0 +1,70 @@
+---
+:version: 2
+:domain_refs: 33
+:domains:
+- :domain: AE
+  :variables:
+    :count: 51
+    :content:
+    - :name: AEGRPID
+      :properties:
+      - :label: Group ID
+        :controlled_term_or_format: ""
+        :notes: Used to tie together a block of related records in a single
+          domain for a subject.
+      :references:
+      - :compliance: Permissible
+    - :name: AEREL
+      :properties:
+      - :label: Causality
+        :controlled_term_or_format: ""
+        :notes: Records the investigator's opinion as to the causality of the
+          event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY
+          RELATED, POSSIBLY RELATED, RELATED. Controlled Terminology may be defined
+          in the future. Check with regulatory authority for population of this variable
+      :references:
+      - :compliance: Expected
+- :domain: DV
+  :variables: 
+    :count: 13
+    :content:
+    - :name: DVTERM
+      :properties:
+      - :label: Protocol Deviation Term
+        :controlled_term_or_format: ""
+        :notes: "Verbatim name of the protocol deviation criterion. Example: IVRS PROCESS DEVIATION - 
+          NO DOSE CALL PERFORMED. The DVTERM values will map to the controlled terminology in DVDECOD, such as TREATMENT DEVIATION."
+      :references:
+      - :compliance: Required
+- :domain: IE
+  :variables: 
+    :count: 16
+    :content: []
+- :domain: MH
+  :variables: 
+    :count: 24
+    :content: []
+- :domain: QS
+  :variables: 
+    :count: 30
+    :content: []
+- :domain: DA
+  :variables: 
+    :count: 23
+    :content: []
+- :domain: EX
+  :variables: 
+    :count: 34
+    :content: []
+- :domain: CO
+  :variables: 
+    :count: 11
+    :content: []
+- :domain: DM
+  :variables: 
+    :count: 28
+    :content: []
+- :domain: TS
+  :variables:
+    :count: 11
+    :content: []

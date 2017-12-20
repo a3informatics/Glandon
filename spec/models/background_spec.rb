@@ -9,6 +9,49 @@ describe Background do
     return "models/background"
   end
 
+  def check_model(results)
+    model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V#{results[:version]}")
+    expect(model.class_refs.count).to eq(results[:class_refs])
+    expect(model.children.count).to eq(results[:variables][:count])
+    results[:variables][:content].each do |c|
+      variable = model.children.find { |x| x.name == c[:name]}
+      expect(variable.nil?).to eq(false)
+      c[:properties].each do |v|
+        v.each do |k, i|
+          expect(variable.instance_variable_get("@#{k}")).to eq(i)
+        end
+      end
+      c[:references].each do |v|
+        v.each do |k, i|
+          expect(variable.instance_variable_get("@#{k}").label).to eq(i)
+        end
+      end
+    end
+  end
+
+  def check_ig(results)
+    ig = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V#{results[:version]}")
+    expect(ig.domain_refs.count).to eq(results[:domain_refs])
+    results[:domains].each do |d|
+      domain = SdtmIgDomain.find("IG-CDISC_SDTMIG#{d[:domain]}", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V#{results[:version]}")
+      expect(domain.children.count).to eq(d[:variables][:count])
+        d[:variables][:content].each do |c|
+          variable = domain.children.find { |x| x.name == c[:name]}
+          expect(variable.nil?).to eq(false)
+          c[:properties].each do |v|
+            v.each do |k, i|
+              expect(variable.instance_variable_get("@#{k}")).to eq(i)
+            end
+          c[:references].each do |v|
+            v.each do |k, i|
+              expect(variable.instance_variable_get("@#{k}").label).to eq(i)
+            end
+          end
+        end
+      end
+    end
+  end
+
   describe "Background Jobs" do
 
 	  before :all do
@@ -120,6 +163,9 @@ describe Background do
       expected = read_text_file_2(sub_dir, "SDTM_Model_V1.txt")
       expect(results).to eq(expected) 
       expect(job.status).to eq("Complete. Successful import.")
+      model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      check = read_yaml_file(sub_dir, "sdtm_model_v1_check.yaml")
+      check_model(check)
 	  end
 
 	  it "imports sdtm ig, 3.1.2" do
@@ -133,6 +179,8 @@ describe Background do
       expected = read_text_file_2(sub_dir, "SDTM_IG_V1.txt")
       expect(results).to eq(expected) 
       expect(job.status).to eq("Complete. Successful import.")
+      check = read_yaml_file(sub_dir, "sdtm_ig_v1_check.yaml")
+      check_ig(check)
 	  end
 
 	  it "imports sdtm model, 1.3" do
@@ -145,6 +193,8 @@ describe Background do
       expected = read_text_file_2(sub_dir, "SDTM_Model_V2.txt")
       expect(results).to eq(expected) 
       expect(job.status).to eq("Complete. Successful import.")
+      check = read_yaml_file(sub_dir, "sdtm_model_v2_check.yaml")
+      check_model(check)
 	  end
 
 	  it "imports sdtm ig, 3.1.3" do
@@ -158,6 +208,8 @@ describe Background do
       expected = read_text_file_2(sub_dir, "SDTM_IG_V2.txt")
       expect(results).to eq(expected) 
       expect(job.status).to eq("Complete. Successful import.")
+      check = read_yaml_file(sub_dir, "sdtm_ig_v2_check.yaml")
+      check_ig(check)
 	  end
 
 	  it "imports sdtm model, 1.4" do
@@ -170,6 +222,8 @@ describe Background do
 	  	expected = read_text_file_2(sub_dir, "SDTM_Model_V3.txt")
       expect(results).to eq(expected) 
       expect(job.status).to eq("Complete. Successful import.")
+      check = read_yaml_file(sub_dir, "sdtm_model_v3_check.yaml")
+      check_model(check)
 	  end
 
 	  it "imports sdtm ig, 3.2" do
@@ -183,6 +237,8 @@ describe Background do
       expected = read_text_file_2(sub_dir, "SDTM_IG_V3.txt")
       expect(results).to eq(expected) 
       expect(job.status).to eq("Complete. Successful import.")
+      check = read_yaml_file(sub_dir, "sdtm_ig_v3_check.yaml")
+      check_ig(check)
 	  end
 
 	end
