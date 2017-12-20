@@ -53,7 +53,7 @@ describe "SDTM User Domain Editor", :type => :feature do
   
     it "has correct initial state", js: true do
       load_domain("DM Domain")
-      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
       expect(page).to have_content("Domain Details")
       expect(page).to have_content("V+")
       expect(page).to have_content("Save")
@@ -78,16 +78,16 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_check_disabled_input('variableName', "AGE")
       ui_check_disabled_input('variableLabel', "Age")
       ui_check_disabled_input('variableDatatype', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM")
-      ui_check_disabled_input('variableCompliance', "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_C_EXPECTED")
+      ui_check_disabled_input('variableCompliance', "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED")
       ui_check_disabled_input('variableClassification', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER")
-      ui_check_disabled_input('variableSubClassification', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER")
+      ui_check_disabled_input('variableSubClassification', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER")
     end
 
     it "displays the classification and sub-classifications", js: true do
       load_domain("DM Domain")
       ui_click_node_name("AGE")
       ui_check_disabled_input('variableClassification', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER")
-      ui_check_disabled_input('variableSubClassification', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SC_RECORDQUALIFIER")
+      ui_check_disabled_input('variableSubClassification', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER")
       ui_click_node_name("DMDTC")
       ui_check_disabled_input('variableClassification', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_C_TIMING")
       ui_check_disabled_input('variableSubClassification', "")
@@ -279,7 +279,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
       wait_for_ajax
-      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       token = tokens[0]
       Capybara.ignore_hidden_elements = false
@@ -301,7 +301,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
       wait_for_ajax
-      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       token = tokens[0]
       Capybara.ignore_hidden_elements = false
@@ -329,7 +329,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
       wait_for_ajax
-      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button 'Close'
@@ -341,7 +341,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
       wait_for_ajax
-      expect(page).to have_content("Edit: Demographics DM Domain (V0.0.0, 1, Incomplete)")
+      expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       ui_click_back_button
