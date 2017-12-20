@@ -2,7 +2,7 @@ module TurtleHelpers
   
   def check_ttl(results_filename, expected_filename)
     keys = ["subject", "predicate", "object"]
-    results = read_ttl_file(test_file_path(sub_dir, expected_filename))
+    results = read_ttl_file(test_file_path(sub_dir, results_filename))
     raw_expected = read_ttl_file(test_file_path(sub_dir, expected_filename))
     expect(results.count).to eq(raw_expected.count)
     expected = {}

@@ -85,7 +85,7 @@ describe SdtmUserDomain do
     ig_domain = SdtmIgDomain.find("IG-CDISC_SDTMIGAE", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     new_domain = SdtmUserDomain.create_clone_ig({:prefix => "XY", :label => "Clone AE as XY"}, ig_domain)
     expect(new_domain.errors.count).to eq(0)
-  write_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected_2.yaml")  
+  #write_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected_2.yaml")  
     expected = read_yaml_file(sub_dir, "clone_ig_expected_2.yaml")
     expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
     expected[:creation_date] = date_check_now(new_domain.creationDate).iso8601

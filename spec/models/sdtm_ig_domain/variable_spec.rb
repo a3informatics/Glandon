@@ -74,7 +74,7 @@ describe SdtmIgDomain::Variable do
 
   it "allows an object to be found" do
     variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  #write_yaml_file(variable.to_json, sub_dir, "find_expected.yaml")
+  write_yaml_file(variable.to_json, sub_dir, "find_expected.yaml")
     expected = read_yaml_file(sub_dir, "find_expected.yaml")
     expect(variable.to_json).to eq(expected)
   end
@@ -99,7 +99,7 @@ describe SdtmIgDomain::Variable do
   	json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIgDomain::Variable.from_json(json)
     result = item.to_sparql_v2(parent_uri, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_xpected.txt")
+  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
     expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST")

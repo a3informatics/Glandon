@@ -41,9 +41,9 @@ describe "SDTM Model Domains", :type => :feature do
       visit '/sdtm_igs/history'
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
       find(:xpath, "//tr[contains(.,'SDTM Implementation Guide 2013-11-26')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: SDTM Implementation Guide 2013-11-26 SDTM IG (V0.0.0, 3, Standard)'
+      expect(page).to have_content 'Show: SDTM Implementation Guide 2013-11-26 SDTM IG (V3.2.0, 3, Standard)'
       find(:xpath, "//tr[contains(.,'SDTM IG DS')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Disposition SDTM IG DS (V0.0.0, 3, Standard)'  
+      expect(page).to have_content 'Show: Disposition SDTM IG DS (V3.2.0, 3, Standard)'  
     end
 
     it "*** SDTM IMPORT SEMANTIC VERSION ***"

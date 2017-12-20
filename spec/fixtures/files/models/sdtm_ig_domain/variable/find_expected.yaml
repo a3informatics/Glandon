@@ -13,15 +13,15 @@
 :controlled_term_or_format: "(RPTEST)"
 :compliance:
   :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-  :id: IG-CDISC_SDTMIGRP_C_REQUIRED
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :id: IG-CDISC_SDTMIG_C_REQUIRED
+  :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
   :label: Required
   :extension_properties: []
 :variable_ref:
   :type: http://www.assero.co.uk/BusinessOperational#CReference
-  :id: IG-CDISC_SDTMIGRP_RPTEST_VR
+  :id: IG-CDISC_SDTMIGRP_RPTEST_VR1
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: ''
+  :label: Based on Variable Reference
   :extension_properties: []
   :enabled: true
   :optional: false
@@ -29,4 +29,4 @@
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_FINDINGS_xxTEST
+    :id: M-CDISC_SDTMMODELFINDINGS_13

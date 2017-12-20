@@ -70,11 +70,12 @@ describe "SDTM Model Domains", :type => :feature do
       find(:xpath, "//tr[contains(.,'1.4')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: '
       wait_for_ajax
-      find(:xpath, "//tr[contains(.,'SDTMMODEL_FINDINGS')]/td/a", :text => 'Show').click
+    pause
+      find(:xpath, "//tr[.//text()=SDTMMODEL FINDINGS']/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: '
       click_link 'Export JSON'
       file = download_content 
-    #write_text_file_2(file, sub_dir, "sdtm_model_domain_export.json")
+    write_text_file_2(file, sub_dir, "sdtm_model_domain_export.json")
       expected = read_text_file_2(sub_dir, "sdtm_model_domain_export.json")
       expect(file).to eq(expected)
     end
@@ -86,7 +87,7 @@ describe "SDTM Model Domains", :type => :feature do
       find(:xpath, "//tr[contains(.,'1.4')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: '
       wait_for_ajax
-      find(:xpath, "//tr[contains(.,'SDTMMODEL_EVENTS')]/td/a", :text => 'Show').click
+      find(:xpath, "//tr[contains(.,'SDTMMODEL EVENTS')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: '
       click_link 'Export Turtle'
       file = download_content

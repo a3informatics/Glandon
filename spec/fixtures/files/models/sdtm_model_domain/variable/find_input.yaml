@@ -1,21 +1,21 @@
 ---
 :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-:id: M-CDISC_SDTMMODEL_EVENTS_xxSCAT
+:id: M-CDISC_SDTMMODELEVENTS_23
 :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
 :label: Subcategory
 :extension_properties: []
 :ordinal: 23
 :rule: ''
-:name: xxSCAT
+:name: "--SCAT"
 :variable_ref:
   :type: http://www.assero.co.uk/BusinessOperational#CReference
-  :id: M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR
+  :id: M-CDISC_SDTMMODELEVENTS_23_CR1
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-  :label: ''
+  :label: Based on Variable Reference
   :extension_properties: []
   :enabled: true
   :optional: false
-  :ordinal: 23
+  :ordinal: 1
   :local_label: ''
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3

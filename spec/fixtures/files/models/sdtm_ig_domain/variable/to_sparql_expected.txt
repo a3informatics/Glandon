@@ -13,10 +13,10 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:name "RPTEST"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:controlled_term_or_format "(RPTEST)"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:notes "Verbatim name of the test or examination used to obtain the measurement or finding. The value in RPTEST cannot be longer than 40 characters. Examples: Number of Live Births, Number of Pregnancies, Birth Control Method, etc."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:compliance <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_C_REQUIRED> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> rdfs:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODEL_FINDINGS_xxTEST> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS_13> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_RPTEST_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
