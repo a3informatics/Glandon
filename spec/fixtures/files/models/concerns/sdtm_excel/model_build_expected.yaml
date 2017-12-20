@@ -17,7 +17,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:24+01:00'
+      :last_changed_date: '2017-12-20T14:51:24+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -7629,7 +7629,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:25+01:00'
+      :last_changed_date: '2017-12-20T14:51:25+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -7673,6 +7673,7 @@
         :extension_properties: []
         :ordinal: 1
         :rule: ''
+        :name: STUDYID
         :variable_name: STUDYID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7681,6 +7682,7 @@
         :extension_properties: []
         :ordinal: 2
         :rule: ''
+        :name: DOMAIN
         :variable_name: DOMAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7689,6 +7691,7 @@
         :extension_properties: []
         :ordinal: 3
         :rule: ''
+        :name: USUBJID
         :variable_name: USUBJID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7697,6 +7700,7 @@
         :extension_properties: []
         :ordinal: 4
         :rule: ''
+        :name: POOLID
         :variable_name: POOLID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7705,6 +7709,7 @@
         :extension_properties: []
         :ordinal: 5
         :rule: ''
+        :name: SPDEVID
         :variable_name: SPDEVID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7713,6 +7718,7 @@
         :extension_properties: []
         :ordinal: 6
         :rule: ''
+        :name: "--SEQ"
         :variable_name: "--SEQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7721,6 +7727,7 @@
         :extension_properties: []
         :ordinal: 7
         :rule: ''
+        :name: "--GRPID"
         :variable_name: "--GRPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7729,6 +7736,7 @@
         :extension_properties: []
         :ordinal: 8
         :rule: ''
+        :name: "--REFID"
         :variable_name: "--REFID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7737,6 +7745,7 @@
         :extension_properties: []
         :ordinal: 9
         :rule: ''
+        :name: "--SPID"
         :variable_name: "--SPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7745,6 +7754,7 @@
         :extension_properties: []
         :ordinal: 10
         :rule: ''
+        :name: "--LNKID"
         :variable_name: "--LNKID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7753,6 +7763,7 @@
         :extension_properties: []
         :ordinal: 11
         :rule: ''
+        :name: "--LNKGRP"
         :variable_name: "--LNKGRP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7761,6 +7772,7 @@
         :extension_properties: []
         :ordinal: 12
         :rule: ''
+        :name: "--TERM"
         :variable_name: "--TERM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7769,6 +7781,7 @@
         :extension_properties: []
         :ordinal: 13
         :rule: ''
+        :name: "--MODIFY"
         :variable_name: "--MODIFY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7777,6 +7790,7 @@
         :extension_properties: []
         :ordinal: 14
         :rule: ''
+        :name: "--LLT"
         :variable_name: "--LLT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7785,6 +7799,7 @@
         :extension_properties: []
         :ordinal: 15
         :rule: ''
+        :name: "--LLTCD"
         :variable_name: "--LLTCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7793,6 +7808,7 @@
         :extension_properties: []
         :ordinal: 16
         :rule: ''
+        :name: "--DECOD"
         :variable_name: "--DECOD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7801,6 +7817,7 @@
         :extension_properties: []
         :ordinal: 17
         :rule: ''
+        :name: "--PTCD"
         :variable_name: "--PTCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7809,6 +7826,7 @@
         :extension_properties: []
         :ordinal: 18
         :rule: ''
+        :name: "--HLT"
         :variable_name: "--HLT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7817,6 +7835,7 @@
         :extension_properties: []
         :ordinal: 19
         :rule: ''
+        :name: "--HLTCD"
         :variable_name: "--HLTCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7825,6 +7844,7 @@
         :extension_properties: []
         :ordinal: 20
         :rule: ''
+        :name: "--HLGT"
         :variable_name: "--HLGT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7833,6 +7853,7 @@
         :extension_properties: []
         :ordinal: 21
         :rule: ''
+        :name: "--HLGTCD"
         :variable_name: "--HLGTCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7841,6 +7862,7 @@
         :extension_properties: []
         :ordinal: 22
         :rule: ''
+        :name: "--CAT"
         :variable_name: "--CAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7849,6 +7871,7 @@
         :extension_properties: []
         :ordinal: 23
         :rule: ''
+        :name: "--SCAT"
         :variable_name: "--SCAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7857,6 +7880,7 @@
         :extension_properties: []
         :ordinal: 24
         :rule: ''
+        :name: "--PRESP"
         :variable_name: "--PRESP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7865,6 +7889,7 @@
         :extension_properties: []
         :ordinal: 25
         :rule: ''
+        :name: "--OCCUR"
         :variable_name: "--OCCUR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7873,6 +7898,7 @@
         :extension_properties: []
         :ordinal: 26
         :rule: ''
+        :name: "--STAT"
         :variable_name: "--STAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7881,6 +7907,7 @@
         :extension_properties: []
         :ordinal: 27
         :rule: ''
+        :name: "--REASND"
         :variable_name: "--REASND"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7889,6 +7916,7 @@
         :extension_properties: []
         :ordinal: 28
         :rule: ''
+        :name: "--BODSYS"
         :variable_name: "--BODSYS"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7897,6 +7925,7 @@
         :extension_properties: []
         :ordinal: 29
         :rule: ''
+        :name: "--BDSYCD"
         :variable_name: "--BDSYCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7905,6 +7934,7 @@
         :extension_properties: []
         :ordinal: 30
         :rule: ''
+        :name: "--SOC"
         :variable_name: "--SOC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7913,6 +7943,7 @@
         :extension_properties: []
         :ordinal: 31
         :rule: ''
+        :name: "--SOCCD"
         :variable_name: "--SOCCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7921,6 +7952,7 @@
         :extension_properties: []
         :ordinal: 32
         :rule: ''
+        :name: "--LOC"
         :variable_name: "--LOC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7929,6 +7961,7 @@
         :extension_properties: []
         :ordinal: 33
         :rule: ''
+        :name: "--LAT"
         :variable_name: "--LAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7937,6 +7970,7 @@
         :extension_properties: []
         :ordinal: 34
         :rule: ''
+        :name: "--DIR"
         :variable_name: "--DIR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7945,6 +7979,7 @@
         :extension_properties: []
         :ordinal: 35
         :rule: ''
+        :name: "--PORTOT"
         :variable_name: "--PORTOT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7953,6 +7988,7 @@
         :extension_properties: []
         :ordinal: 36
         :rule: ''
+        :name: "--PARTY"
         :variable_name: "--PARTY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7961,6 +7997,7 @@
         :extension_properties: []
         :ordinal: 37
         :rule: ''
+        :name: "--PRTYID"
         :variable_name: "--PRTYID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7969,6 +8006,7 @@
         :extension_properties: []
         :ordinal: 38
         :rule: ''
+        :name: "--SEV"
         :variable_name: "--SEV"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7977,6 +8015,7 @@
         :extension_properties: []
         :ordinal: 39
         :rule: ''
+        :name: "--SER"
         :variable_name: "--SER"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7985,6 +8024,7 @@
         :extension_properties: []
         :ordinal: 40
         :rule: ''
+        :name: "--ACN"
         :variable_name: "--ACN"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -7993,6 +8033,7 @@
         :extension_properties: []
         :ordinal: 41
         :rule: ''
+        :name: "--ACNOTH"
         :variable_name: "--ACNOTH"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8001,6 +8042,7 @@
         :extension_properties: []
         :ordinal: 42
         :rule: ''
+        :name: "--ACNDEV"
         :variable_name: "--ACNDEV"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8009,6 +8051,7 @@
         :extension_properties: []
         :ordinal: 43
         :rule: ''
+        :name: "--REL"
         :variable_name: "--REL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8017,6 +8060,7 @@
         :extension_properties: []
         :ordinal: 44
         :rule: ''
+        :name: "--RELNST"
         :variable_name: "--RELNST"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8025,6 +8069,7 @@
         :extension_properties: []
         :ordinal: 45
         :rule: ''
+        :name: "--PATT"
         :variable_name: "--PATT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8033,6 +8078,7 @@
         :extension_properties: []
         :ordinal: 46
         :rule: ''
+        :name: "--OUT"
         :variable_name: "--OUT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8041,6 +8087,7 @@
         :extension_properties: []
         :ordinal: 47
         :rule: ''
+        :name: "--SCAN"
         :variable_name: "--SCAN"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8049,6 +8096,7 @@
         :extension_properties: []
         :ordinal: 48
         :rule: ''
+        :name: "--SCONG"
         :variable_name: "--SCONG"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8057,6 +8105,7 @@
         :extension_properties: []
         :ordinal: 49
         :rule: ''
+        :name: "--SDISAB"
         :variable_name: "--SDISAB"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8065,6 +8114,7 @@
         :extension_properties: []
         :ordinal: 50
         :rule: ''
+        :name: "--SDTH"
         :variable_name: "--SDTH"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8073,6 +8123,7 @@
         :extension_properties: []
         :ordinal: 51
         :rule: ''
+        :name: "--SHOSP"
         :variable_name: "--SHOSP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8081,6 +8132,7 @@
         :extension_properties: []
         :ordinal: 52
         :rule: ''
+        :name: "--SLIFE"
         :variable_name: "--SLIFE"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8089,6 +8141,7 @@
         :extension_properties: []
         :ordinal: 53
         :rule: ''
+        :name: "--SOD"
         :variable_name: "--SOD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8097,6 +8150,7 @@
         :extension_properties: []
         :ordinal: 54
         :rule: ''
+        :name: "--SMIE"
         :variable_name: "--SMIE"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8105,6 +8159,7 @@
         :extension_properties: []
         :ordinal: 55
         :rule: ''
+        :name: "--CONTRT"
         :variable_name: "--CONTRT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8113,6 +8168,7 @@
         :extension_properties: []
         :ordinal: 56
         :rule: ''
+        :name: "--TOX"
         :variable_name: "--TOX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8121,6 +8177,7 @@
         :extension_properties: []
         :ordinal: 57
         :rule: ''
+        :name: "--TOXGR"
         :variable_name: "--TOXGR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8129,6 +8186,7 @@
         :extension_properties: []
         :ordinal: 58
         :rule: ''
+        :name: VISITNUM
         :variable_name: VISITNUM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8137,6 +8195,7 @@
         :extension_properties: []
         :ordinal: 59
         :rule: ''
+        :name: VISIT
         :variable_name: VISIT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8145,6 +8204,7 @@
         :extension_properties: []
         :ordinal: 60
         :rule: ''
+        :name: VISITDY
         :variable_name: VISITDY
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8153,6 +8213,7 @@
         :extension_properties: []
         :ordinal: 61
         :rule: ''
+        :name: TAETORD
         :variable_name: TAETORD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8161,6 +8222,7 @@
         :extension_properties: []
         :ordinal: 62
         :rule: ''
+        :name: EPOCH
         :variable_name: EPOCH
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8169,6 +8231,7 @@
         :extension_properties: []
         :ordinal: 63
         :rule: ''
+        :name: "--DTC"
         :variable_name: "--DTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8177,6 +8240,7 @@
         :extension_properties: []
         :ordinal: 64
         :rule: ''
+        :name: "--STDTC"
         :variable_name: "--STDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8185,6 +8249,7 @@
         :extension_properties: []
         :ordinal: 65
         :rule: ''
+        :name: "--ENDTC"
         :variable_name: "--ENDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8193,6 +8258,7 @@
         :extension_properties: []
         :ordinal: 66
         :rule: ''
+        :name: "--DY"
         :variable_name: "--DY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8201,6 +8267,7 @@
         :extension_properties: []
         :ordinal: 67
         :rule: ''
+        :name: "--STDY"
         :variable_name: "--STDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8209,6 +8276,7 @@
         :extension_properties: []
         :ordinal: 68
         :rule: ''
+        :name: "--ENDY"
         :variable_name: "--ENDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8217,6 +8285,7 @@
         :extension_properties: []
         :ordinal: 69
         :rule: ''
+        :name: "--DUR"
         :variable_name: "--DUR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8225,6 +8294,7 @@
         :extension_properties: []
         :ordinal: 70
         :rule: ''
+        :name: "--TPT"
         :variable_name: "--TPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8233,6 +8303,7 @@
         :extension_properties: []
         :ordinal: 71
         :rule: ''
+        :name: "--TPTNUM"
         :variable_name: "--TPTNUM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8241,6 +8312,7 @@
         :extension_properties: []
         :ordinal: 72
         :rule: ''
+        :name: "--ELTM"
         :variable_name: "--ELTM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8249,6 +8321,7 @@
         :extension_properties: []
         :ordinal: 73
         :rule: ''
+        :name: "--TPTREF"
         :variable_name: "--TPTREF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8257,6 +8330,7 @@
         :extension_properties: []
         :ordinal: 74
         :rule: ''
+        :name: "--RFTDTC"
         :variable_name: "--RFTDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8265,6 +8339,7 @@
         :extension_properties: []
         :ordinal: 75
         :rule: ''
+        :name: "--STRF"
         :variable_name: "--STRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8273,6 +8348,7 @@
         :extension_properties: []
         :ordinal: 76
         :rule: ''
+        :name: "--ENRF"
         :variable_name: "--ENRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8281,6 +8357,7 @@
         :extension_properties: []
         :ordinal: 77
         :rule: ''
+        :name: "--EVLINT"
         :variable_name: "--EVLINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8289,6 +8366,7 @@
         :extension_properties: []
         :ordinal: 78
         :rule: ''
+        :name: "--EVINTX"
         :variable_name: "--EVINTX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8297,6 +8375,7 @@
         :extension_properties: []
         :ordinal: 79
         :rule: ''
+        :name: "--STRTPT"
         :variable_name: "--STRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8305,6 +8384,7 @@
         :extension_properties: []
         :ordinal: 80
         :rule: ''
+        :name: "--STTPT"
         :variable_name: "--STTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8313,6 +8393,7 @@
         :extension_properties: []
         :ordinal: 81
         :rule: ''
+        :name: "--ENRTPT"
         :variable_name: "--ENRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8321,6 +8402,7 @@
         :extension_properties: []
         :ordinal: 82
         :rule: ''
+        :name: "--ENTPT"
         :variable_name: "--ENTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8329,6 +8411,7 @@
         :extension_properties: []
         :ordinal: 83
         :rule: ''
+        :name: "--STINT"
         :variable_name: "--STINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8337,6 +8420,7 @@
         :extension_properties: []
         :ordinal: 84
         :rule: ''
+        :name: "--ENINT"
         :variable_name: "--ENINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8345,6 +8429,7 @@
         :extension_properties: []
         :ordinal: 85
         :rule: ''
+        :name: "--DETECT"
         :variable_name: "--DETECT"
 - :type: MODEL_DOMAIN
   :order: 2
@@ -8364,7 +8449,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:25+01:00'
+      :last_changed_date: '2017-12-20T14:51:25+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -8408,6 +8493,7 @@
         :extension_properties: []
         :ordinal: 1
         :rule: ''
+        :name: STUDYID
         :variable_name: STUDYID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8416,6 +8502,7 @@
         :extension_properties: []
         :ordinal: 2
         :rule: ''
+        :name: DOMAIN
         :variable_name: DOMAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8424,6 +8511,7 @@
         :extension_properties: []
         :ordinal: 3
         :rule: ''
+        :name: USUBJID
         :variable_name: USUBJID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8432,6 +8520,7 @@
         :extension_properties: []
         :ordinal: 4
         :rule: ''
+        :name: POOLID
         :variable_name: POOLID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8440,6 +8529,7 @@
         :extension_properties: []
         :ordinal: 5
         :rule: ''
+        :name: SPDEVID
         :variable_name: SPDEVID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8448,6 +8538,7 @@
         :extension_properties: []
         :ordinal: 6
         :rule: ''
+        :name: "--SEQ"
         :variable_name: "--SEQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8456,6 +8547,7 @@
         :extension_properties: []
         :ordinal: 7
         :rule: ''
+        :name: "--GRPID"
         :variable_name: "--GRPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8464,6 +8556,7 @@
         :extension_properties: []
         :ordinal: 8
         :rule: ''
+        :name: "--REFID"
         :variable_name: "--REFID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8472,6 +8565,7 @@
         :extension_properties: []
         :ordinal: 9
         :rule: ''
+        :name: "--SPID"
         :variable_name: "--SPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8480,6 +8574,7 @@
         :extension_properties: []
         :ordinal: 10
         :rule: ''
+        :name: "--LNKID"
         :variable_name: "--LNKID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8488,6 +8583,7 @@
         :extension_properties: []
         :ordinal: 11
         :rule: ''
+        :name: "--LNKGRP"
         :variable_name: "--LNKGRP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8496,6 +8592,7 @@
         :extension_properties: []
         :ordinal: 12
         :rule: ''
+        :name: APID
         :variable_name: APID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8504,6 +8601,7 @@
         :extension_properties: []
         :ordinal: 13
         :rule: ''
+        :name: RSUBJID
         :variable_name: RSUBJID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8512,6 +8610,7 @@
         :extension_properties: []
         :ordinal: 14
         :rule: ''
+        :name: RDEVID
         :variable_name: RDEVID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8520,6 +8619,7 @@
         :extension_properties: []
         :ordinal: 15
         :rule: ''
+        :name: SREL
         :variable_name: SREL
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8528,6 +8628,7 @@
         :extension_properties: []
         :ordinal: 16
         :rule: ''
+        :name: "--TRT"
         :variable_name: "--TRT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8536,6 +8637,7 @@
         :extension_properties: []
         :ordinal: 17
         :rule: ''
+        :name: "--MODIFY"
         :variable_name: "--MODIFY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8544,6 +8646,7 @@
         :extension_properties: []
         :ordinal: 18
         :rule: ''
+        :name: "--DECOD"
         :variable_name: "--DECOD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8552,6 +8655,7 @@
         :extension_properties: []
         :ordinal: 19
         :rule: ''
+        :name: "--MOOD"
         :variable_name: "--MOOD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8560,6 +8664,7 @@
         :extension_properties: []
         :ordinal: 20
         :rule: ''
+        :name: "--CAT"
         :variable_name: "--CAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8568,6 +8673,7 @@
         :extension_properties: []
         :ordinal: 21
         :rule: ''
+        :name: "--SCAT"
         :variable_name: "--SCAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8576,6 +8682,7 @@
         :extension_properties: []
         :ordinal: 22
         :rule: ''
+        :name: "--PRESP"
         :variable_name: "--PRESP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8584,6 +8691,7 @@
         :extension_properties: []
         :ordinal: 23
         :rule: ''
+        :name: "--OCCUR"
         :variable_name: "--OCCUR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8592,6 +8700,7 @@
         :extension_properties: []
         :ordinal: 24
         :rule: ''
+        :name: "--STAT"
         :variable_name: "--STAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8600,6 +8709,7 @@
         :extension_properties: []
         :ordinal: 25
         :rule: ''
+        :name: "--REASND"
         :variable_name: "--REASND"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8608,6 +8718,7 @@
         :extension_properties: []
         :ordinal: 26
         :rule: ''
+        :name: "--INDC"
         :variable_name: "--INDC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8616,6 +8727,7 @@
         :extension_properties: []
         :ordinal: 27
         :rule: ''
+        :name: "--CLAS"
         :variable_name: "--CLAS"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8624,6 +8736,7 @@
         :extension_properties: []
         :ordinal: 28
         :rule: ''
+        :name: "--CLASCD"
         :variable_name: "--CLASCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8632,6 +8745,7 @@
         :extension_properties: []
         :ordinal: 29
         :rule: ''
+        :name: "--DOSE"
         :variable_name: "--DOSE"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8640,6 +8754,7 @@
         :extension_properties: []
         :ordinal: 30
         :rule: ''
+        :name: "--DOSTXT"
         :variable_name: "--DOSTXT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8648,6 +8763,7 @@
         :extension_properties: []
         :ordinal: 31
         :rule: ''
+        :name: "--DOSU"
         :variable_name: "--DOSU"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8656,6 +8772,7 @@
         :extension_properties: []
         :ordinal: 32
         :rule: ''
+        :name: "--DOSFRM"
         :variable_name: "--DOSFRM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8664,6 +8781,7 @@
         :extension_properties: []
         :ordinal: 33
         :rule: ''
+        :name: "--DOSFRQ"
         :variable_name: "--DOSFRQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8672,6 +8790,7 @@
         :extension_properties: []
         :ordinal: 34
         :rule: ''
+        :name: "--DOSTOT"
         :variable_name: "--DOSTOT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8680,6 +8799,7 @@
         :extension_properties: []
         :ordinal: 35
         :rule: ''
+        :name: "--DOSRGM"
         :variable_name: "--DOSRGM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8688,6 +8808,7 @@
         :extension_properties: []
         :ordinal: 36
         :rule: ''
+        :name: "--ROUTE"
         :variable_name: "--ROUTE"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8696,6 +8817,7 @@
         :extension_properties: []
         :ordinal: 37
         :rule: ''
+        :name: "--LOT"
         :variable_name: "--LOT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8704,6 +8826,7 @@
         :extension_properties: []
         :ordinal: 38
         :rule: ''
+        :name: "--LOC"
         :variable_name: "--LOC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8712,6 +8835,7 @@
         :extension_properties: []
         :ordinal: 39
         :rule: ''
+        :name: "--LAT"
         :variable_name: "--LAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8720,6 +8844,7 @@
         :extension_properties: []
         :ordinal: 40
         :rule: ''
+        :name: "--DIR"
         :variable_name: "--DIR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8728,6 +8853,7 @@
         :extension_properties: []
         :ordinal: 41
         :rule: ''
+        :name: "--PORTOT"
         :variable_name: "--PORTOT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8736,6 +8862,7 @@
         :extension_properties: []
         :ordinal: 42
         :rule: ''
+        :name: "--FAST"
         :variable_name: "--FAST"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8744,6 +8871,7 @@
         :extension_properties: []
         :ordinal: 43
         :rule: ''
+        :name: "--PSTRG"
         :variable_name: "--PSTRG"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8752,6 +8880,7 @@
         :extension_properties: []
         :ordinal: 44
         :rule: ''
+        :name: "--PSTRGU"
         :variable_name: "--PSTRGU"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8760,6 +8889,7 @@
         :extension_properties: []
         :ordinal: 45
         :rule: ''
+        :name: "--TRTV"
         :variable_name: "--TRTV"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8768,6 +8898,7 @@
         :extension_properties: []
         :ordinal: 46
         :rule: ''
+        :name: "--VAMT"
         :variable_name: "--VAMT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8776,6 +8907,7 @@
         :extension_properties: []
         :ordinal: 47
         :rule: ''
+        :name: "--VAMTU"
         :variable_name: "--VAMTU"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8784,6 +8916,7 @@
         :extension_properties: []
         :ordinal: 48
         :rule: ''
+        :name: "--ADJ"
         :variable_name: "--ADJ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8792,6 +8925,7 @@
         :extension_properties: []
         :ordinal: 49
         :rule: ''
+        :name: VISITNUM
         :variable_name: VISITNUM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8800,6 +8934,7 @@
         :extension_properties: []
         :ordinal: 50
         :rule: ''
+        :name: VISIT
         :variable_name: VISIT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8808,6 +8943,7 @@
         :extension_properties: []
         :ordinal: 51
         :rule: ''
+        :name: VISITDY
         :variable_name: VISITDY
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8816,6 +8952,7 @@
         :extension_properties: []
         :ordinal: 52
         :rule: ''
+        :name: TAETORD
         :variable_name: TAETORD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8824,6 +8961,7 @@
         :extension_properties: []
         :ordinal: 53
         :rule: ''
+        :name: EPOCH
         :variable_name: EPOCH
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8832,6 +8970,7 @@
         :extension_properties: []
         :ordinal: 54
         :rule: ''
+        :name: "--DTC"
         :variable_name: "--DTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8840,6 +8979,7 @@
         :extension_properties: []
         :ordinal: 55
         :rule: ''
+        :name: "--STDTC"
         :variable_name: "--STDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8848,6 +8988,7 @@
         :extension_properties: []
         :ordinal: 56
         :rule: ''
+        :name: "--ENDTC"
         :variable_name: "--ENDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8856,6 +8997,7 @@
         :extension_properties: []
         :ordinal: 57
         :rule: ''
+        :name: "--DY"
         :variable_name: "--DY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8864,6 +9006,7 @@
         :extension_properties: []
         :ordinal: 58
         :rule: ''
+        :name: "--STDY"
         :variable_name: "--STDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8872,6 +9015,7 @@
         :extension_properties: []
         :ordinal: 59
         :rule: ''
+        :name: "--ENDY"
         :variable_name: "--ENDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8880,6 +9024,7 @@
         :extension_properties: []
         :ordinal: 60
         :rule: ''
+        :name: "--DUR"
         :variable_name: "--DUR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8888,6 +9033,7 @@
         :extension_properties: []
         :ordinal: 61
         :rule: ''
+        :name: "--TPT"
         :variable_name: "--TPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8896,6 +9042,7 @@
         :extension_properties: []
         :ordinal: 62
         :rule: ''
+        :name: "--TPTNUM"
         :variable_name: "--TPTNUM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8904,6 +9051,7 @@
         :extension_properties: []
         :ordinal: 63
         :rule: ''
+        :name: "--ELTM"
         :variable_name: "--ELTM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8912,6 +9060,7 @@
         :extension_properties: []
         :ordinal: 64
         :rule: ''
+        :name: "--TPTREF"
         :variable_name: "--TPTREF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8920,6 +9069,7 @@
         :extension_properties: []
         :ordinal: 65
         :rule: ''
+        :name: "--RFTDTC"
         :variable_name: "--RFTDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8928,6 +9078,7 @@
         :extension_properties: []
         :ordinal: 66
         :rule: ''
+        :name: "--STRF"
         :variable_name: "--STRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8936,6 +9087,7 @@
         :extension_properties: []
         :ordinal: 67
         :rule: ''
+        :name: "--ENRF"
         :variable_name: "--ENRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8944,6 +9096,7 @@
         :extension_properties: []
         :ordinal: 68
         :rule: ''
+        :name: "--EVLINT"
         :variable_name: "--EVLINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8952,6 +9105,7 @@
         :extension_properties: []
         :ordinal: 69
         :rule: ''
+        :name: "--EVINTX"
         :variable_name: "--EVINTX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8960,6 +9114,7 @@
         :extension_properties: []
         :ordinal: 70
         :rule: ''
+        :name: "--STRTPT"
         :variable_name: "--STRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8968,6 +9123,7 @@
         :extension_properties: []
         :ordinal: 71
         :rule: ''
+        :name: "--STTPT"
         :variable_name: "--STTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8976,6 +9132,7 @@
         :extension_properties: []
         :ordinal: 72
         :rule: ''
+        :name: "--ENRTPT"
         :variable_name: "--ENRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8984,6 +9141,7 @@
         :extension_properties: []
         :ordinal: 73
         :rule: ''
+        :name: "--ENTPT"
         :variable_name: "--ENTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -8992,6 +9150,7 @@
         :extension_properties: []
         :ordinal: 74
         :rule: ''
+        :name: "--STINT"
         :variable_name: "--STINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9000,6 +9159,7 @@
         :extension_properties: []
         :ordinal: 75
         :rule: ''
+        :name: "--ENINT"
         :variable_name: "--ENINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9008,6 +9168,7 @@
         :extension_properties: []
         :ordinal: 76
         :rule: ''
+        :name: "--DETECT"
         :variable_name: "--DETECT"
 - :type: MODEL_DOMAIN
   :order: 2
@@ -9027,7 +9188,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:25+01:00'
+      :last_changed_date: '2017-12-20T14:51:25+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -9071,6 +9232,7 @@
         :extension_properties: []
         :ordinal: 1
         :rule: ''
+        :name: STUDYID
         :variable_name: STUDYID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9079,6 +9241,7 @@
         :extension_properties: []
         :ordinal: 2
         :rule: ''
+        :name: DOMAIN
         :variable_name: DOMAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9087,6 +9250,7 @@
         :extension_properties: []
         :ordinal: 3
         :rule: ''
+        :name: USUBJID
         :variable_name: USUBJID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9095,6 +9259,7 @@
         :extension_properties: []
         :ordinal: 4
         :rule: ''
+        :name: POOLID
         :variable_name: POOLID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9103,6 +9268,7 @@
         :extension_properties: []
         :ordinal: 5
         :rule: ''
+        :name: SPDEVID
         :variable_name: SPDEVID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9111,6 +9277,7 @@
         :extension_properties: []
         :ordinal: 6
         :rule: ''
+        :name: "--SEQ"
         :variable_name: "--SEQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9119,6 +9286,7 @@
         :extension_properties: []
         :ordinal: 7
         :rule: ''
+        :name: "--GRPID"
         :variable_name: "--GRPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9127,6 +9295,7 @@
         :extension_properties: []
         :ordinal: 8
         :rule: ''
+        :name: "--REFID"
         :variable_name: "--REFID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9135,6 +9304,7 @@
         :extension_properties: []
         :ordinal: 9
         :rule: ''
+        :name: "--SPID"
         :variable_name: "--SPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9143,6 +9313,7 @@
         :extension_properties: []
         :ordinal: 10
         :rule: ''
+        :name: "--LNKID"
         :variable_name: "--LNKID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9151,6 +9322,7 @@
         :extension_properties: []
         :ordinal: 11
         :rule: ''
+        :name: "--LNKGRP"
         :variable_name: "--LNKGRP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9159,6 +9331,7 @@
         :extension_properties: []
         :ordinal: 12
         :rule: ''
+        :name: "--TESTCD"
         :variable_name: "--TESTCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9167,6 +9340,7 @@
         :extension_properties: []
         :ordinal: 13
         :rule: ''
+        :name: "--TEST"
         :variable_name: "--TEST"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9175,6 +9349,7 @@
         :extension_properties: []
         :ordinal: 14
         :rule: ''
+        :name: "--MODIFY"
         :variable_name: "--MODIFY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9183,6 +9358,7 @@
         :extension_properties: []
         :ordinal: 15
         :rule: ''
+        :name: "--TSTDTL"
         :variable_name: "--TSTDTL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9191,6 +9367,7 @@
         :extension_properties: []
         :ordinal: 16
         :rule: ''
+        :name: "--CAT"
         :variable_name: "--CAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9199,6 +9376,7 @@
         :extension_properties: []
         :ordinal: 17
         :rule: ''
+        :name: "--SCAT"
         :variable_name: "--SCAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9207,6 +9385,7 @@
         :extension_properties: []
         :ordinal: 18
         :rule: ''
+        :name: "--POS"
         :variable_name: "--POS"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9215,6 +9394,7 @@
         :extension_properties: []
         :ordinal: 19
         :rule: ''
+        :name: "--BODSYS"
         :variable_name: "--BODSYS"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9223,6 +9403,7 @@
         :extension_properties: []
         :ordinal: 20
         :rule: ''
+        :name: "--ORRES"
         :variable_name: "--ORRES"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9231,6 +9412,7 @@
         :extension_properties: []
         :ordinal: 21
         :rule: ''
+        :name: "--ORRESU"
         :variable_name: "--ORRESU"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9239,6 +9421,7 @@
         :extension_properties: []
         :ordinal: 22
         :rule: ''
+        :name: "--ORNRLO"
         :variable_name: "--ORNRLO"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9247,6 +9430,7 @@
         :extension_properties: []
         :ordinal: 23
         :rule: ''
+        :name: "--ORNRHI"
         :variable_name: "--ORNRHI"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9255,6 +9439,7 @@
         :extension_properties: []
         :ordinal: 24
         :rule: ''
+        :name: "--STRESC"
         :variable_name: "--STRESC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9263,6 +9448,7 @@
         :extension_properties: []
         :ordinal: 25
         :rule: ''
+        :name: "--STRESN"
         :variable_name: "--STRESN"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9271,6 +9457,7 @@
         :extension_properties: []
         :ordinal: 26
         :rule: ''
+        :name: "--STRESU"
         :variable_name: "--STRESU"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9279,6 +9466,7 @@
         :extension_properties: []
         :ordinal: 27
         :rule: ''
+        :name: "--STNRLO"
         :variable_name: "--STNRLO"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9287,6 +9475,7 @@
         :extension_properties: []
         :ordinal: 28
         :rule: ''
+        :name: "--STNRHI"
         :variable_name: "--STNRHI"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9295,6 +9484,7 @@
         :extension_properties: []
         :ordinal: 29
         :rule: ''
+        :name: "--STNRC"
         :variable_name: "--STNRC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9303,6 +9493,7 @@
         :extension_properties: []
         :ordinal: 30
         :rule: ''
+        :name: "--NRIND"
         :variable_name: "--NRIND"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9311,6 +9502,7 @@
         :extension_properties: []
         :ordinal: 31
         :rule: ''
+        :name: "--RESCAT"
         :variable_name: "--RESCAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9319,6 +9511,7 @@
         :extension_properties: []
         :ordinal: 32
         :rule: ''
+        :name: "--STAT"
         :variable_name: "--STAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9327,6 +9520,7 @@
         :extension_properties: []
         :ordinal: 33
         :rule: ''
+        :name: "--REASND"
         :variable_name: "--REASND"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9335,6 +9529,7 @@
         :extension_properties: []
         :ordinal: 34
         :rule: ''
+        :name: "--XFN"
         :variable_name: "--XFN"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9343,6 +9538,7 @@
         :extension_properties: []
         :ordinal: 35
         :rule: ''
+        :name: "--NAM"
         :variable_name: "--NAM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9351,6 +9547,7 @@
         :extension_properties: []
         :ordinal: 36
         :rule: ''
+        :name: "--LOINC"
         :variable_name: "--LOINC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9359,6 +9556,7 @@
         :extension_properties: []
         :ordinal: 37
         :rule: ''
+        :name: "--SPEC"
         :variable_name: "--SPEC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9367,6 +9565,7 @@
         :extension_properties: []
         :ordinal: 38
         :rule: ''
+        :name: "--ANTREG"
         :variable_name: "--ANTREG"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9375,6 +9574,7 @@
         :extension_properties: []
         :ordinal: 39
         :rule: ''
+        :name: "--SPCCND"
         :variable_name: "--SPCCND"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9383,6 +9583,7 @@
         :extension_properties: []
         :ordinal: 40
         :rule: ''
+        :name: "--SPCUFL"
         :variable_name: "--SPCUFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9391,6 +9592,7 @@
         :extension_properties: []
         :ordinal: 41
         :rule: ''
+        :name: "--LOC"
         :variable_name: "--LOC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9399,6 +9601,7 @@
         :extension_properties: []
         :ordinal: 42
         :rule: ''
+        :name: "--LAT"
         :variable_name: "--LAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9407,6 +9610,7 @@
         :extension_properties: []
         :ordinal: 43
         :rule: ''
+        :name: "--DIR"
         :variable_name: "--DIR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9415,6 +9619,7 @@
         :extension_properties: []
         :ordinal: 44
         :rule: ''
+        :name: "--PORTOT"
         :variable_name: "--PORTOT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9423,6 +9628,7 @@
         :extension_properties: []
         :ordinal: 45
         :rule: ''
+        :name: "--METHOD"
         :variable_name: "--METHOD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9431,6 +9637,7 @@
         :extension_properties: []
         :ordinal: 46
         :rule: ''
+        :name: "--RUNID"
         :variable_name: "--RUNID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9439,6 +9646,7 @@
         :extension_properties: []
         :ordinal: 47
         :rule: ''
+        :name: "--ANMETH"
         :variable_name: "--ANMETH"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9447,6 +9655,7 @@
         :extension_properties: []
         :ordinal: 48
         :rule: ''
+        :name: "--LEAD"
         :variable_name: "--LEAD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9455,6 +9664,7 @@
         :extension_properties: []
         :ordinal: 49
         :rule: ''
+        :name: "--CSTATE"
         :variable_name: "--CSTATE"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9463,6 +9673,7 @@
         :extension_properties: []
         :ordinal: 50
         :rule: ''
+        :name: "--BLFL"
         :variable_name: "--BLFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9471,6 +9682,7 @@
         :extension_properties: []
         :ordinal: 51
         :rule: ''
+        :name: "--FAST"
         :variable_name: "--FAST"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9479,6 +9691,7 @@
         :extension_properties: []
         :ordinal: 52
         :rule: ''
+        :name: "--DRVFL"
         :variable_name: "--DRVFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9487,6 +9700,7 @@
         :extension_properties: []
         :ordinal: 53
         :rule: ''
+        :name: "--EVAL"
         :variable_name: "--EVAL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9495,6 +9709,7 @@
         :extension_properties: []
         :ordinal: 54
         :rule: ''
+        :name: "--EVALID"
         :variable_name: "--EVALID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9503,6 +9718,7 @@
         :extension_properties: []
         :ordinal: 55
         :rule: ''
+        :name: "--ACPTFL"
         :variable_name: "--ACPTFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9511,6 +9727,7 @@
         :extension_properties: []
         :ordinal: 56
         :rule: ''
+        :name: "--TOX"
         :variable_name: "--TOX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9519,6 +9736,7 @@
         :extension_properties: []
         :ordinal: 57
         :rule: ''
+        :name: "--TOXGR"
         :variable_name: "--TOXGR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9527,6 +9745,7 @@
         :extension_properties: []
         :ordinal: 58
         :rule: ''
+        :name: "--SEV"
         :variable_name: "--SEV"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9535,6 +9754,7 @@
         :extension_properties: []
         :ordinal: 59
         :rule: ''
+        :name: "--DTHREL"
         :variable_name: "--DTHREL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9543,6 +9763,7 @@
         :extension_properties: []
         :ordinal: 60
         :rule: ''
+        :name: "--LLOQ"
         :variable_name: "--LLOQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9551,6 +9772,7 @@
         :extension_properties: []
         :ordinal: 61
         :rule: ''
+        :name: "--ULOQ"
         :variable_name: "--ULOQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9559,6 +9781,7 @@
         :extension_properties: []
         :ordinal: 62
         :rule: ''
+        :name: "--EXCLFL"
         :variable_name: "--EXCLFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9567,6 +9790,7 @@
         :extension_properties: []
         :ordinal: 63
         :rule: ''
+        :name: "--REASEX"
         :variable_name: "--REASEX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9575,6 +9799,7 @@
         :extension_properties: []
         :ordinal: 64
         :rule: ''
+        :name: VISITNUM
         :variable_name: VISITNUM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9583,6 +9808,7 @@
         :extension_properties: []
         :ordinal: 65
         :rule: ''
+        :name: VISIT
         :variable_name: VISIT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9591,6 +9817,7 @@
         :extension_properties: []
         :ordinal: 66
         :rule: ''
+        :name: VISITDY
         :variable_name: VISITDY
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9599,6 +9826,7 @@
         :extension_properties: []
         :ordinal: 67
         :rule: ''
+        :name: TAETORD
         :variable_name: TAETORD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9607,6 +9835,7 @@
         :extension_properties: []
         :ordinal: 68
         :rule: ''
+        :name: EPOCH
         :variable_name: EPOCH
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9615,6 +9844,7 @@
         :extension_properties: []
         :ordinal: 69
         :rule: ''
+        :name: "--DTC"
         :variable_name: "--DTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9623,6 +9853,7 @@
         :extension_properties: []
         :ordinal: 70
         :rule: ''
+        :name: "--STDTC"
         :variable_name: "--STDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9631,6 +9862,7 @@
         :extension_properties: []
         :ordinal: 71
         :rule: ''
+        :name: "--ENDTC"
         :variable_name: "--ENDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9639,6 +9871,7 @@
         :extension_properties: []
         :ordinal: 72
         :rule: ''
+        :name: "--DY"
         :variable_name: "--DY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9647,6 +9880,7 @@
         :extension_properties: []
         :ordinal: 73
         :rule: ''
+        :name: "--STDY"
         :variable_name: "--STDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9655,6 +9889,7 @@
         :extension_properties: []
         :ordinal: 74
         :rule: ''
+        :name: "--ENDY"
         :variable_name: "--ENDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9663,6 +9898,7 @@
         :extension_properties: []
         :ordinal: 75
         :rule: ''
+        :name: "--DUR"
         :variable_name: "--DUR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9671,6 +9907,7 @@
         :extension_properties: []
         :ordinal: 76
         :rule: ''
+        :name: "--TPT"
         :variable_name: "--TPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9679,6 +9916,7 @@
         :extension_properties: []
         :ordinal: 77
         :rule: ''
+        :name: "--TPTNUM"
         :variable_name: "--TPTNUM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9687,6 +9925,7 @@
         :extension_properties: []
         :ordinal: 78
         :rule: ''
+        :name: "--ELTM"
         :variable_name: "--ELTM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9695,6 +9934,7 @@
         :extension_properties: []
         :ordinal: 79
         :rule: ''
+        :name: "--TPTREF"
         :variable_name: "--TPTREF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9703,6 +9943,7 @@
         :extension_properties: []
         :ordinal: 80
         :rule: ''
+        :name: "--RFTDTC"
         :variable_name: "--RFTDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9711,6 +9952,7 @@
         :extension_properties: []
         :ordinal: 81
         :rule: ''
+        :name: "--STRF"
         :variable_name: "--STRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9719,6 +9961,7 @@
         :extension_properties: []
         :ordinal: 82
         :rule: ''
+        :name: "--ENRF"
         :variable_name: "--ENRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9727,6 +9970,7 @@
         :extension_properties: []
         :ordinal: 83
         :rule: ''
+        :name: "--EVLINT"
         :variable_name: "--EVLINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9735,6 +9979,7 @@
         :extension_properties: []
         :ordinal: 84
         :rule: ''
+        :name: "--EVINTX"
         :variable_name: "--EVINTX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9743,6 +9988,7 @@
         :extension_properties: []
         :ordinal: 85
         :rule: ''
+        :name: "--STRTPT"
         :variable_name: "--STRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9751,6 +9997,7 @@
         :extension_properties: []
         :ordinal: 86
         :rule: ''
+        :name: "--STTPT"
         :variable_name: "--STTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9759,6 +10006,7 @@
         :extension_properties: []
         :ordinal: 87
         :rule: ''
+        :name: "--ENRTPT"
         :variable_name: "--ENRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9767,6 +10015,7 @@
         :extension_properties: []
         :ordinal: 88
         :rule: ''
+        :name: "--ENTPT"
         :variable_name: "--ENTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9775,6 +10024,7 @@
         :extension_properties: []
         :ordinal: 89
         :rule: ''
+        :name: "--STINT"
         :variable_name: "--STINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9783,6 +10033,7 @@
         :extension_properties: []
         :ordinal: 90
         :rule: ''
+        :name: "--ENINT"
         :variable_name: "--ENINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9791,6 +10042,7 @@
         :extension_properties: []
         :ordinal: 91
         :rule: ''
+        :name: "--DETECT"
         :variable_name: "--DETECT"
 - :type: MODEL_DOMAIN
   :order: 2
@@ -9810,7 +10062,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:25+01:00'
+      :last_changed_date: '2017-12-20T14:51:25+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -9854,6 +10106,7 @@
         :extension_properties: []
         :ordinal: 1
         :rule: ''
+        :name: STUDYID
         :variable_name: STUDYID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9862,6 +10115,7 @@
         :extension_properties: []
         :ordinal: 2
         :rule: ''
+        :name: DOMAIN
         :variable_name: DOMAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9870,6 +10124,7 @@
         :extension_properties: []
         :ordinal: 3
         :rule: ''
+        :name: USUBJID
         :variable_name: USUBJID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9878,6 +10133,7 @@
         :extension_properties: []
         :ordinal: 4
         :rule: ''
+        :name: POOLID
         :variable_name: POOLID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9886,6 +10142,7 @@
         :extension_properties: []
         :ordinal: 5
         :rule: ''
+        :name: SPDEVID
         :variable_name: SPDEVID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9894,6 +10151,7 @@
         :extension_properties: []
         :ordinal: 6
         :rule: ''
+        :name: "--SEQ"
         :variable_name: "--SEQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9902,6 +10160,7 @@
         :extension_properties: []
         :ordinal: 7
         :rule: ''
+        :name: "--GRPID"
         :variable_name: "--GRPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9910,6 +10169,7 @@
         :extension_properties: []
         :ordinal: 8
         :rule: ''
+        :name: "--REFID"
         :variable_name: "--REFID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9918,6 +10178,7 @@
         :extension_properties: []
         :ordinal: 9
         :rule: ''
+        :name: "--SPID"
         :variable_name: "--SPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9926,6 +10187,7 @@
         :extension_properties: []
         :ordinal: 10
         :rule: ''
+        :name: "--LNKID"
         :variable_name: "--LNKID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9934,6 +10196,7 @@
         :extension_properties: []
         :ordinal: 11
         :rule: ''
+        :name: "--LNKGRP"
         :variable_name: "--LNKGRP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9942,6 +10205,7 @@
         :extension_properties: []
         :ordinal: 12
         :rule: ''
+        :name: SUBJID
         :variable_name: SUBJID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9950,6 +10214,7 @@
         :extension_properties: []
         :ordinal: 13
         :rule: ''
+        :name: RFSTDTC
         :variable_name: RFSTDTC
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9958,6 +10223,7 @@
         :extension_properties: []
         :ordinal: 14
         :rule: ''
+        :name: RFENDTC
         :variable_name: RFENDTC
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9966,6 +10232,7 @@
         :extension_properties: []
         :ordinal: 15
         :rule: ''
+        :name: RFXSTDTC
         :variable_name: RFXSTDTC
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9974,6 +10241,7 @@
         :extension_properties: []
         :ordinal: 16
         :rule: ''
+        :name: RFXENDTC
         :variable_name: RFXENDTC
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9982,6 +10250,7 @@
         :extension_properties: []
         :ordinal: 17
         :rule: ''
+        :name: RFICDTC
         :variable_name: RFICDTC
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9990,6 +10259,7 @@
         :extension_properties: []
         :ordinal: 18
         :rule: ''
+        :name: RFPENDTC
         :variable_name: RFPENDTC
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -9998,6 +10268,7 @@
         :extension_properties: []
         :ordinal: 19
         :rule: ''
+        :name: DTHDTC
         :variable_name: DTHDTC
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10006,6 +10277,7 @@
         :extension_properties: []
         :ordinal: 20
         :rule: ''
+        :name: DTHFL
         :variable_name: DTHFL
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10014,6 +10286,7 @@
         :extension_properties: []
         :ordinal: 21
         :rule: ''
+        :name: SITEID
         :variable_name: SITEID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10022,6 +10295,7 @@
         :extension_properties: []
         :ordinal: 22
         :rule: ''
+        :name: INVID
         :variable_name: INVID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10030,6 +10304,7 @@
         :extension_properties: []
         :ordinal: 23
         :rule: ''
+        :name: INVNAM
         :variable_name: INVNAM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10038,6 +10313,7 @@
         :extension_properties: []
         :ordinal: 24
         :rule: ''
+        :name: BRTHDTC
         :variable_name: BRTHDTC
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10046,6 +10322,7 @@
         :extension_properties: []
         :ordinal: 25
         :rule: ''
+        :name: AGE
         :variable_name: AGE
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10054,6 +10331,7 @@
         :extension_properties: []
         :ordinal: 26
         :rule: ''
+        :name: AGEU
         :variable_name: AGEU
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10062,6 +10340,7 @@
         :extension_properties: []
         :ordinal: 27
         :rule: ''
+        :name: SEX
         :variable_name: SEX
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10070,6 +10349,7 @@
         :extension_properties: []
         :ordinal: 28
         :rule: ''
+        :name: RACE
         :variable_name: RACE
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10078,6 +10358,7 @@
         :extension_properties: []
         :ordinal: 29
         :rule: ''
+        :name: ETHNIC
         :variable_name: ETHNIC
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10086,6 +10367,7 @@
         :extension_properties: []
         :ordinal: 30
         :rule: ''
+        :name: SPECIES
         :variable_name: SPECIES
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10094,6 +10376,7 @@
         :extension_properties: []
         :ordinal: 31
         :rule: ''
+        :name: STRAIN
         :variable_name: STRAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10102,6 +10385,7 @@
         :extension_properties: []
         :ordinal: 32
         :rule: ''
+        :name: ARMCD
         :variable_name: ARMCD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10110,6 +10394,7 @@
         :extension_properties: []
         :ordinal: 33
         :rule: ''
+        :name: ARM
         :variable_name: ARM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10118,6 +10403,7 @@
         :extension_properties: []
         :ordinal: 34
         :rule: ''
+        :name: ACTARMCD
         :variable_name: ACTARMCD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10126,6 +10412,7 @@
         :extension_properties: []
         :ordinal: 35
         :rule: ''
+        :name: ACTARM
         :variable_name: ACTARM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10134,6 +10421,7 @@
         :extension_properties: []
         :ordinal: 36
         :rule: ''
+        :name: SETCD
         :variable_name: SETCD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10142,6 +10430,7 @@
         :extension_properties: []
         :ordinal: 37
         :rule: ''
+        :name: COUNTRY
         :variable_name: COUNTRY
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10150,6 +10439,7 @@
         :extension_properties: []
         :ordinal: 38
         :rule: ''
+        :name: RDOMAIN
         :variable_name: RDOMAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10158,6 +10448,7 @@
         :extension_properties: []
         :ordinal: 39
         :rule: ''
+        :name: APID
         :variable_name: APID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10166,6 +10457,7 @@
         :extension_properties: []
         :ordinal: 40
         :rule: ''
+        :name: POOLID
         :variable_name: POOLID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10174,6 +10466,7 @@
         :extension_properties: []
         :ordinal: 41
         :rule: ''
+        :name: IDVAR
         :variable_name: IDVAR
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10182,6 +10475,7 @@
         :extension_properties: []
         :ordinal: 42
         :rule: ''
+        :name: IDVARVAL
         :variable_name: IDVARVAL
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10190,6 +10484,7 @@
         :extension_properties: []
         :ordinal: 43
         :rule: ''
+        :name: "--REF"
         :variable_name: "--REF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10198,6 +10493,7 @@
         :extension_properties: []
         :ordinal: 44
         :rule: ''
+        :name: "--VAL"
         :variable_name: "--VAL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10206,6 +10502,7 @@
         :extension_properties: []
         :ordinal: 45
         :rule: ''
+        :name: "--EVAL"
         :variable_name: "--EVAL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10214,6 +10511,7 @@
         :extension_properties: []
         :ordinal: 46
         :rule: ''
+        :name: ETCD
         :variable_name: ETCD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10222,6 +10520,7 @@
         :extension_properties: []
         :ordinal: 47
         :rule: ''
+        :name: ELEMENT
         :variable_name: ELEMENT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10230,6 +10529,7 @@
         :extension_properties: []
         :ordinal: 48
         :rule: ''
+        :name: "--UPDES"
         :variable_name: "--UPDES"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10238,6 +10538,7 @@
         :extension_properties: []
         :ordinal: 49
         :rule: ''
+        :name: "--UPDES"
         :variable_name: "--UPDES"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10246,6 +10547,7 @@
         :extension_properties: []
         :ordinal: 50
         :rule: ''
+        :name: VISITNUM
         :variable_name: VISITNUM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10254,6 +10556,7 @@
         :extension_properties: []
         :ordinal: 51
         :rule: ''
+        :name: VISIT
         :variable_name: VISIT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10262,6 +10565,7 @@
         :extension_properties: []
         :ordinal: 52
         :rule: ''
+        :name: VISITDY
         :variable_name: VISITDY
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10270,6 +10574,7 @@
         :extension_properties: []
         :ordinal: 53
         :rule: ''
+        :name: TAETORD
         :variable_name: TAETORD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10278,6 +10583,7 @@
         :extension_properties: []
         :ordinal: 54
         :rule: ''
+        :name: EPOCH
         :variable_name: EPOCH
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10286,6 +10592,7 @@
         :extension_properties: []
         :ordinal: 55
         :rule: ''
+        :name: "--DTC"
         :variable_name: "--DTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10294,6 +10601,7 @@
         :extension_properties: []
         :ordinal: 56
         :rule: ''
+        :name: "--STDTC"
         :variable_name: "--STDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10302,6 +10610,7 @@
         :extension_properties: []
         :ordinal: 57
         :rule: ''
+        :name: "--ENDTC"
         :variable_name: "--ENDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10310,6 +10619,7 @@
         :extension_properties: []
         :ordinal: 58
         :rule: ''
+        :name: "--DY"
         :variable_name: "--DY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10318,6 +10628,7 @@
         :extension_properties: []
         :ordinal: 59
         :rule: ''
+        :name: "--STDY"
         :variable_name: "--STDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10326,6 +10637,7 @@
         :extension_properties: []
         :ordinal: 60
         :rule: ''
+        :name: "--ENDY"
         :variable_name: "--ENDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10334,6 +10646,7 @@
         :extension_properties: []
         :ordinal: 61
         :rule: ''
+        :name: "--DUR"
         :variable_name: "--DUR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10342,6 +10655,7 @@
         :extension_properties: []
         :ordinal: 62
         :rule: ''
+        :name: "--TPT"
         :variable_name: "--TPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10350,6 +10664,7 @@
         :extension_properties: []
         :ordinal: 63
         :rule: ''
+        :name: "--TPTNUM"
         :variable_name: "--TPTNUM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10358,6 +10673,7 @@
         :extension_properties: []
         :ordinal: 64
         :rule: ''
+        :name: "--ELTM"
         :variable_name: "--ELTM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10366,6 +10682,7 @@
         :extension_properties: []
         :ordinal: 65
         :rule: ''
+        :name: "--TPTREF"
         :variable_name: "--TPTREF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10374,6 +10691,7 @@
         :extension_properties: []
         :ordinal: 66
         :rule: ''
+        :name: "--RFTDTC"
         :variable_name: "--RFTDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10382,6 +10700,7 @@
         :extension_properties: []
         :ordinal: 67
         :rule: ''
+        :name: "--STRF"
         :variable_name: "--STRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10390,6 +10709,7 @@
         :extension_properties: []
         :ordinal: 68
         :rule: ''
+        :name: "--ENRF"
         :variable_name: "--ENRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10398,6 +10718,7 @@
         :extension_properties: []
         :ordinal: 69
         :rule: ''
+        :name: "--EVLINT"
         :variable_name: "--EVLINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10406,6 +10727,7 @@
         :extension_properties: []
         :ordinal: 70
         :rule: ''
+        :name: "--EVINTX"
         :variable_name: "--EVINTX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10414,6 +10736,7 @@
         :extension_properties: []
         :ordinal: 71
         :rule: ''
+        :name: "--STRTPT"
         :variable_name: "--STRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10422,6 +10745,7 @@
         :extension_properties: []
         :ordinal: 72
         :rule: ''
+        :name: "--STTPT"
         :variable_name: "--STTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10430,6 +10754,7 @@
         :extension_properties: []
         :ordinal: 73
         :rule: ''
+        :name: "--ENRTPT"
         :variable_name: "--ENRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10438,6 +10763,7 @@
         :extension_properties: []
         :ordinal: 74
         :rule: ''
+        :name: "--ENTPT"
         :variable_name: "--ENTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10446,6 +10772,7 @@
         :extension_properties: []
         :ordinal: 75
         :rule: ''
+        :name: "--STINT"
         :variable_name: "--STINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10454,6 +10781,7 @@
         :extension_properties: []
         :ordinal: 76
         :rule: ''
+        :name: "--ENINT"
         :variable_name: "--ENINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10462,6 +10790,7 @@
         :extension_properties: []
         :ordinal: 77
         :rule: ''
+        :name: "--DETECT"
         :variable_name: "--DETECT"
 - :type: MODEL_DOMAIN
   :order: 2
@@ -10481,7 +10810,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:25+01:00'
+      :last_changed_date: '2017-12-20T14:51:25+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -10525,6 +10854,7 @@
         :extension_properties: []
         :ordinal: 1
         :rule: ''
+        :name: STUDYID
         :variable_name: STUDYID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10533,6 +10863,7 @@
         :extension_properties: []
         :ordinal: 2
         :rule: ''
+        :name: DOMAIN
         :variable_name: DOMAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10541,6 +10872,7 @@
         :extension_properties: []
         :ordinal: 3
         :rule: ''
+        :name: USUBJID
         :variable_name: USUBJID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10549,6 +10881,7 @@
         :extension_properties: []
         :ordinal: 4
         :rule: ''
+        :name: POOLID
         :variable_name: POOLID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10557,6 +10890,7 @@
         :extension_properties: []
         :ordinal: 5
         :rule: ''
+        :name: SPDEVID
         :variable_name: SPDEVID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10565,6 +10899,7 @@
         :extension_properties: []
         :ordinal: 6
         :rule: ''
+        :name: "--SEQ"
         :variable_name: "--SEQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10573,6 +10908,7 @@
         :extension_properties: []
         :ordinal: 7
         :rule: ''
+        :name: "--GRPID"
         :variable_name: "--GRPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10581,6 +10917,7 @@
         :extension_properties: []
         :ordinal: 8
         :rule: ''
+        :name: "--REFID"
         :variable_name: "--REFID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10589,6 +10926,7 @@
         :extension_properties: []
         :ordinal: 9
         :rule: ''
+        :name: "--SPID"
         :variable_name: "--SPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10597,6 +10935,7 @@
         :extension_properties: []
         :ordinal: 10
         :rule: ''
+        :name: "--LNKID"
         :variable_name: "--LNKID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10605,6 +10944,7 @@
         :extension_properties: []
         :ordinal: 11
         :rule: ''
+        :name: "--LNKGRP"
         :variable_name: "--LNKGRP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10613,6 +10953,7 @@
         :extension_properties: []
         :ordinal: 12
         :rule: ''
+        :name: ETCD
         :variable_name: ETCD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10621,6 +10962,7 @@
         :extension_properties: []
         :ordinal: 13
         :rule: ''
+        :name: ELEMENT
         :variable_name: ELEMENT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10629,6 +10971,7 @@
         :extension_properties: []
         :ordinal: 14
         :rule: ''
+        :name: "--STRL"
         :variable_name: "--STRL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10637,6 +10980,7 @@
         :extension_properties: []
         :ordinal: 15
         :rule: ''
+        :name: "--ENRL"
         :variable_name: "--ENRL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10645,6 +10989,7 @@
         :extension_properties: []
         :ordinal: 16
         :rule: ''
+        :name: ARMCD
         :variable_name: ARMCD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10653,6 +10998,7 @@
         :extension_properties: []
         :ordinal: 17
         :rule: ''
+        :name: ARM
         :variable_name: ARM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10661,6 +11007,7 @@
         :extension_properties: []
         :ordinal: 18
         :rule: ''
+        :name: "--BRANCH"
         :variable_name: "--BRANCH"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10669,6 +11016,7 @@
         :extension_properties: []
         :ordinal: 19
         :rule: ''
+        :name: "--TRANS"
         :variable_name: "--TRANS"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10677,6 +11025,7 @@
         :extension_properties: []
         :ordinal: 20
         :rule: ''
+        :name: "--STRL"
         :variable_name: "--STRL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10685,6 +11034,7 @@
         :extension_properties: []
         :ordinal: 21
         :rule: ''
+        :name: "--ENRL"
         :variable_name: "--ENRL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10693,6 +11043,7 @@
         :extension_properties: []
         :ordinal: 22
         :rule: ''
+        :name: SETCD
         :variable_name: SETCD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10701,6 +11052,7 @@
         :extension_properties: []
         :ordinal: 23
         :rule: ''
+        :name: SET
         :variable_name: SET
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10709,6 +11061,7 @@
         :extension_properties: []
         :ordinal: 24
         :rule: ''
+        :name: IETESTCD
         :variable_name: IETESTCD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10717,6 +11070,7 @@
         :extension_properties: []
         :ordinal: 25
         :rule: ''
+        :name: IETEST
         :variable_name: IETEST
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10725,6 +11079,7 @@
         :extension_properties: []
         :ordinal: 26
         :rule: ''
+        :name: IECAT
         :variable_name: IECAT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10733,6 +11088,7 @@
         :extension_properties: []
         :ordinal: 27
         :rule: ''
+        :name: IESCAT
         :variable_name: IESCAT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10741,6 +11097,7 @@
         :extension_properties: []
         :ordinal: 28
         :rule: ''
+        :name: "--RL"
         :variable_name: "--RL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10749,6 +11106,7 @@
         :extension_properties: []
         :ordinal: 29
         :rule: ''
+        :name: "--VERS"
         :variable_name: "--VERS"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10757,6 +11115,7 @@
         :extension_properties: []
         :ordinal: 30
         :rule: ''
+        :name: "--PARMCD"
         :variable_name: "--PARMCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10765,6 +11124,7 @@
         :extension_properties: []
         :ordinal: 31
         :rule: ''
+        :name: "--PARM"
         :variable_name: "--PARM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10773,6 +11133,7 @@
         :extension_properties: []
         :ordinal: 32
         :rule: ''
+        :name: "--VAL"
         :variable_name: "--VAL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10781,6 +11142,7 @@
         :extension_properties: []
         :ordinal: 33
         :rule: ''
+        :name: "--VALNF"
         :variable_name: "--VALNF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10789,6 +11151,7 @@
         :extension_properties: []
         :ordinal: 34
         :rule: ''
+        :name: "--VALCD"
         :variable_name: "--VALCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10797,6 +11160,7 @@
         :extension_properties: []
         :ordinal: 35
         :rule: ''
+        :name: "--VCDREF"
         :variable_name: "--VCDREF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10805,6 +11169,7 @@
         :extension_properties: []
         :ordinal: 36
         :rule: ''
+        :name: "--VCDVER"
         :variable_name: "--VCDVER"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10813,6 +11178,7 @@
         :extension_properties: []
         :ordinal: 37
         :rule: ''
+        :name: "--ORDER"
         :variable_name: "--ORDER"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10821,6 +11187,7 @@
         :extension_properties: []
         :ordinal: 38
         :rule: ''
+        :name: "--ANCVAR"
         :variable_name: "--ANCVAR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10829,6 +11196,7 @@
         :extension_properties: []
         :ordinal: 39
         :rule: ''
+        :name: "--STOFF"
         :variable_name: "--STOFF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10837,6 +11205,7 @@
         :extension_properties: []
         :ordinal: 40
         :rule: ''
+        :name: "--TGTPAI"
         :variable_name: "--TGTPAI"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10845,6 +11214,7 @@
         :extension_properties: []
         :ordinal: 41
         :rule: ''
+        :name: "--MINPAI"
         :variable_name: "--MINPAI"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10853,6 +11223,7 @@
         :extension_properties: []
         :ordinal: 42
         :rule: ''
+        :name: "--MAXPAI"
         :variable_name: "--MAXPAI"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10861,6 +11232,7 @@
         :extension_properties: []
         :ordinal: 43
         :rule: ''
+        :name: "--NUMRPT"
         :variable_name: "--NUMRPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10869,6 +11241,7 @@
         :extension_properties: []
         :ordinal: 44
         :rule: ''
+        :name: VISITNUM
         :variable_name: VISITNUM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10877,6 +11250,7 @@
         :extension_properties: []
         :ordinal: 45
         :rule: ''
+        :name: VISIT
         :variable_name: VISIT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10885,6 +11259,7 @@
         :extension_properties: []
         :ordinal: 46
         :rule: ''
+        :name: VISITDY
         :variable_name: VISITDY
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10893,6 +11268,7 @@
         :extension_properties: []
         :ordinal: 47
         :rule: ''
+        :name: TAETORD
         :variable_name: TAETORD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10901,6 +11277,7 @@
         :extension_properties: []
         :ordinal: 48
         :rule: ''
+        :name: EPOCH
         :variable_name: EPOCH
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10909,6 +11286,7 @@
         :extension_properties: []
         :ordinal: 49
         :rule: ''
+        :name: "--DTC"
         :variable_name: "--DTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10917,6 +11295,7 @@
         :extension_properties: []
         :ordinal: 50
         :rule: ''
+        :name: "--STDTC"
         :variable_name: "--STDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10925,6 +11304,7 @@
         :extension_properties: []
         :ordinal: 51
         :rule: ''
+        :name: "--ENDTC"
         :variable_name: "--ENDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10933,6 +11313,7 @@
         :extension_properties: []
         :ordinal: 52
         :rule: ''
+        :name: "--DY"
         :variable_name: "--DY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10941,6 +11322,7 @@
         :extension_properties: []
         :ordinal: 53
         :rule: ''
+        :name: "--STDY"
         :variable_name: "--STDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10949,6 +11331,7 @@
         :extension_properties: []
         :ordinal: 54
         :rule: ''
+        :name: "--ENDY"
         :variable_name: "--ENDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10957,6 +11340,7 @@
         :extension_properties: []
         :ordinal: 55
         :rule: ''
+        :name: "--DUR"
         :variable_name: "--DUR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10965,6 +11349,7 @@
         :extension_properties: []
         :ordinal: 56
         :rule: ''
+        :name: "--TPT"
         :variable_name: "--TPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10973,6 +11358,7 @@
         :extension_properties: []
         :ordinal: 57
         :rule: ''
+        :name: "--TPTNUM"
         :variable_name: "--TPTNUM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10981,6 +11367,7 @@
         :extension_properties: []
         :ordinal: 58
         :rule: ''
+        :name: "--ELTM"
         :variable_name: "--ELTM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10989,6 +11376,7 @@
         :extension_properties: []
         :ordinal: 59
         :rule: ''
+        :name: "--TPTREF"
         :variable_name: "--TPTREF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -10997,6 +11385,7 @@
         :extension_properties: []
         :ordinal: 60
         :rule: ''
+        :name: "--RFTDTC"
         :variable_name: "--RFTDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11005,6 +11394,7 @@
         :extension_properties: []
         :ordinal: 61
         :rule: ''
+        :name: "--STRF"
         :variable_name: "--STRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11013,6 +11403,7 @@
         :extension_properties: []
         :ordinal: 62
         :rule: ''
+        :name: "--ENRF"
         :variable_name: "--ENRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11021,6 +11412,7 @@
         :extension_properties: []
         :ordinal: 63
         :rule: ''
+        :name: "--EVLINT"
         :variable_name: "--EVLINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11029,6 +11421,7 @@
         :extension_properties: []
         :ordinal: 64
         :rule: ''
+        :name: "--EVINTX"
         :variable_name: "--EVINTX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11037,6 +11430,7 @@
         :extension_properties: []
         :ordinal: 65
         :rule: ''
+        :name: "--STRTPT"
         :variable_name: "--STRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11045,6 +11439,7 @@
         :extension_properties: []
         :ordinal: 66
         :rule: ''
+        :name: "--STTPT"
         :variable_name: "--STTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11053,6 +11448,7 @@
         :extension_properties: []
         :ordinal: 67
         :rule: ''
+        :name: "--ENRTPT"
         :variable_name: "--ENRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11061,6 +11457,7 @@
         :extension_properties: []
         :ordinal: 68
         :rule: ''
+        :name: "--ENTPT"
         :variable_name: "--ENTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11069,6 +11466,7 @@
         :extension_properties: []
         :ordinal: 69
         :rule: ''
+        :name: "--STINT"
         :variable_name: "--STINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11077,6 +11475,7 @@
         :extension_properties: []
         :ordinal: 70
         :rule: ''
+        :name: "--ENINT"
         :variable_name: "--ENINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11085,6 +11484,7 @@
         :extension_properties: []
         :ordinal: 71
         :rule: ''
+        :name: "--DETECT"
         :variable_name: "--DETECT"
 - :type: MODEL_DOMAIN
   :order: 2
@@ -11104,7 +11504,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:25+01:00'
+      :last_changed_date: '2017-12-20T14:51:25+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -11148,6 +11548,7 @@
         :extension_properties: []
         :ordinal: 1
         :rule: ''
+        :name: STUDYID
         :variable_name: STUDYID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11156,6 +11557,7 @@
         :extension_properties: []
         :ordinal: 2
         :rule: ''
+        :name: DOMAIN
         :variable_name: DOMAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11164,6 +11566,7 @@
         :extension_properties: []
         :ordinal: 3
         :rule: ''
+        :name: USUBJID
         :variable_name: USUBJID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11172,6 +11575,7 @@
         :extension_properties: []
         :ordinal: 4
         :rule: ''
+        :name: POOLID
         :variable_name: POOLID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11180,6 +11584,7 @@
         :extension_properties: []
         :ordinal: 5
         :rule: ''
+        :name: SPDEVID
         :variable_name: SPDEVID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11188,6 +11593,7 @@
         :extension_properties: []
         :ordinal: 6
         :rule: ''
+        :name: "--SEQ"
         :variable_name: "--SEQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11196,6 +11602,7 @@
         :extension_properties: []
         :ordinal: 7
         :rule: ''
+        :name: "--GRPID"
         :variable_name: "--GRPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11204,6 +11611,7 @@
         :extension_properties: []
         :ordinal: 8
         :rule: ''
+        :name: "--REFID"
         :variable_name: "--REFID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11212,6 +11620,7 @@
         :extension_properties: []
         :ordinal: 9
         :rule: ''
+        :name: "--SPID"
         :variable_name: "--SPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11220,6 +11629,7 @@
         :extension_properties: []
         :ordinal: 10
         :rule: ''
+        :name: "--LNKID"
         :variable_name: "--LNKID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11228,6 +11638,7 @@
         :extension_properties: []
         :ordinal: 11
         :rule: ''
+        :name: "--LNKGRP"
         :variable_name: "--LNKGRP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11236,6 +11647,7 @@
         :extension_properties: []
         :ordinal: 12
         :rule: ''
+        :name: RDOMAIN
         :variable_name: RDOMAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11244,6 +11656,7 @@
         :extension_properties: []
         :ordinal: 13
         :rule: ''
+        :name: APID
         :variable_name: APID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11252,6 +11665,7 @@
         :extension_properties: []
         :ordinal: 14
         :rule: ''
+        :name: POOLID
         :variable_name: POOLID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11260,6 +11674,7 @@
         :extension_properties: []
         :ordinal: 15
         :rule: ''
+        :name: IDVAR
         :variable_name: IDVAR
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11268,6 +11683,7 @@
         :extension_properties: []
         :ordinal: 16
         :rule: ''
+        :name: IDVARVAL
         :variable_name: IDVARVAL
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11276,6 +11692,7 @@
         :extension_properties: []
         :ordinal: 17
         :rule: ''
+        :name: RELTYPE
         :variable_name: RELTYPE
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11284,6 +11701,7 @@
         :extension_properties: []
         :ordinal: 18
         :rule: ''
+        :name: RELID
         :variable_name: RELID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11292,6 +11710,7 @@
         :extension_properties: []
         :ordinal: 19
         :rule: ''
+        :name: QNAM
         :variable_name: QNAM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11300,6 +11719,7 @@
         :extension_properties: []
         :ordinal: 20
         :rule: ''
+        :name: QLABEL
         :variable_name: QLABEL
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11308,6 +11728,7 @@
         :extension_properties: []
         :ordinal: 21
         :rule: ''
+        :name: QVAL
         :variable_name: QVAL
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11316,6 +11737,7 @@
         :extension_properties: []
         :ordinal: 22
         :rule: ''
+        :name: QORIG
         :variable_name: QORIG
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11324,6 +11746,7 @@
         :extension_properties: []
         :ordinal: 23
         :rule: ''
+        :name: QEVAL
         :variable_name: QEVAL
 - :type: MODEL_DOMAIN
   :order: 2
@@ -11343,7 +11766,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:25+01:00'
+      :last_changed_date: '2017-12-20T14:51:25+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -11387,6 +11810,7 @@
         :extension_properties: []
         :ordinal: 1
         :rule: ''
+        :name: STUDYID
         :variable_name: STUDYID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11395,6 +11819,7 @@
         :extension_properties: []
         :ordinal: 2
         :rule: ''
+        :name: DOMAIN
         :variable_name: DOMAIN
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11403,6 +11828,7 @@
         :extension_properties: []
         :ordinal: 3
         :rule: ''
+        :name: USUBJID
         :variable_name: USUBJID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11411,6 +11837,7 @@
         :extension_properties: []
         :ordinal: 4
         :rule: ''
+        :name: POOLID
         :variable_name: POOLID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11419,6 +11846,7 @@
         :extension_properties: []
         :ordinal: 5
         :rule: ''
+        :name: SPDEVID
         :variable_name: SPDEVID
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11427,6 +11855,7 @@
         :extension_properties: []
         :ordinal: 6
         :rule: ''
+        :name: "--SEQ"
         :variable_name: "--SEQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11435,6 +11864,7 @@
         :extension_properties: []
         :ordinal: 7
         :rule: ''
+        :name: "--GRPID"
         :variable_name: "--GRPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11443,6 +11873,7 @@
         :extension_properties: []
         :ordinal: 8
         :rule: ''
+        :name: "--REFID"
         :variable_name: "--REFID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11451,6 +11882,7 @@
         :extension_properties: []
         :ordinal: 9
         :rule: ''
+        :name: "--SPID"
         :variable_name: "--SPID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11459,6 +11891,7 @@
         :extension_properties: []
         :ordinal: 10
         :rule: ''
+        :name: "--LNKID"
         :variable_name: "--LNKID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11467,6 +11900,7 @@
         :extension_properties: []
         :ordinal: 11
         :rule: ''
+        :name: "--LNKGRP"
         :variable_name: "--LNKGRP"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11475,6 +11909,7 @@
         :extension_properties: []
         :ordinal: 12
         :rule: ''
+        :name: "--TESTCD"
         :variable_name: "--TESTCD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11483,6 +11918,7 @@
         :extension_properties: []
         :ordinal: 13
         :rule: ''
+        :name: "--TEST"
         :variable_name: "--TEST"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11491,6 +11927,7 @@
         :extension_properties: []
         :ordinal: 14
         :rule: ''
+        :name: "--MODIFY"
         :variable_name: "--MODIFY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11499,6 +11936,7 @@
         :extension_properties: []
         :ordinal: 15
         :rule: ''
+        :name: "--TSTDTL"
         :variable_name: "--TSTDTL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11507,6 +11945,7 @@
         :extension_properties: []
         :ordinal: 16
         :rule: ''
+        :name: "--CAT"
         :variable_name: "--CAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11515,6 +11954,7 @@
         :extension_properties: []
         :ordinal: 17
         :rule: ''
+        :name: "--SCAT"
         :variable_name: "--SCAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11523,6 +11963,7 @@
         :extension_properties: []
         :ordinal: 18
         :rule: ''
+        :name: "--POS"
         :variable_name: "--POS"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11531,6 +11972,7 @@
         :extension_properties: []
         :ordinal: 19
         :rule: ''
+        :name: "--BODSYS"
         :variable_name: "--BODSYS"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11539,6 +11981,7 @@
         :extension_properties: []
         :ordinal: 20
         :rule: ''
+        :name: "--ORRES"
         :variable_name: "--ORRES"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11547,6 +11990,7 @@
         :extension_properties: []
         :ordinal: 21
         :rule: ''
+        :name: "--ORRESU"
         :variable_name: "--ORRESU"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11555,6 +11999,7 @@
         :extension_properties: []
         :ordinal: 22
         :rule: ''
+        :name: "--ORNRLO"
         :variable_name: "--ORNRLO"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11563,6 +12008,7 @@
         :extension_properties: []
         :ordinal: 23
         :rule: ''
+        :name: "--ORNRHI"
         :variable_name: "--ORNRHI"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11571,6 +12017,7 @@
         :extension_properties: []
         :ordinal: 24
         :rule: ''
+        :name: "--STRESC"
         :variable_name: "--STRESC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11579,6 +12026,7 @@
         :extension_properties: []
         :ordinal: 25
         :rule: ''
+        :name: "--STRESN"
         :variable_name: "--STRESN"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11587,6 +12035,7 @@
         :extension_properties: []
         :ordinal: 26
         :rule: ''
+        :name: "--STRESU"
         :variable_name: "--STRESU"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11595,6 +12044,7 @@
         :extension_properties: []
         :ordinal: 27
         :rule: ''
+        :name: "--STNRLO"
         :variable_name: "--STNRLO"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11603,6 +12053,7 @@
         :extension_properties: []
         :ordinal: 28
         :rule: ''
+        :name: "--STNRHI"
         :variable_name: "--STNRHI"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11611,6 +12062,7 @@
         :extension_properties: []
         :ordinal: 29
         :rule: ''
+        :name: "--STNRC"
         :variable_name: "--STNRC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11619,6 +12071,7 @@
         :extension_properties: []
         :ordinal: 30
         :rule: ''
+        :name: "--NRIND"
         :variable_name: "--NRIND"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11627,6 +12080,7 @@
         :extension_properties: []
         :ordinal: 31
         :rule: ''
+        :name: "--RESCAT"
         :variable_name: "--RESCAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11635,6 +12089,7 @@
         :extension_properties: []
         :ordinal: 32
         :rule: ''
+        :name: "--STAT"
         :variable_name: "--STAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11643,6 +12098,7 @@
         :extension_properties: []
         :ordinal: 33
         :rule: ''
+        :name: "--REASND"
         :variable_name: "--REASND"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11651,6 +12107,7 @@
         :extension_properties: []
         :ordinal: 34
         :rule: ''
+        :name: "--XFN"
         :variable_name: "--XFN"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11659,6 +12116,7 @@
         :extension_properties: []
         :ordinal: 35
         :rule: ''
+        :name: "--NAM"
         :variable_name: "--NAM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11667,6 +12125,7 @@
         :extension_properties: []
         :ordinal: 36
         :rule: ''
+        :name: "--LOINC"
         :variable_name: "--LOINC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11675,6 +12134,7 @@
         :extension_properties: []
         :ordinal: 37
         :rule: ''
+        :name: "--SPEC"
         :variable_name: "--SPEC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11683,6 +12143,7 @@
         :extension_properties: []
         :ordinal: 38
         :rule: ''
+        :name: "--ANTREG"
         :variable_name: "--ANTREG"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11691,6 +12152,7 @@
         :extension_properties: []
         :ordinal: 39
         :rule: ''
+        :name: "--SPCCND"
         :variable_name: "--SPCCND"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11699,6 +12161,7 @@
         :extension_properties: []
         :ordinal: 40
         :rule: ''
+        :name: "--SPCUFL"
         :variable_name: "--SPCUFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11707,6 +12170,7 @@
         :extension_properties: []
         :ordinal: 41
         :rule: ''
+        :name: "--LOC"
         :variable_name: "--LOC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11715,6 +12179,7 @@
         :extension_properties: []
         :ordinal: 42
         :rule: ''
+        :name: "--LAT"
         :variable_name: "--LAT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11723,6 +12188,7 @@
         :extension_properties: []
         :ordinal: 43
         :rule: ''
+        :name: "--DIR"
         :variable_name: "--DIR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11731,6 +12197,7 @@
         :extension_properties: []
         :ordinal: 44
         :rule: ''
+        :name: "--PORTOT"
         :variable_name: "--PORTOT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11739,6 +12206,7 @@
         :extension_properties: []
         :ordinal: 45
         :rule: ''
+        :name: "--METHOD"
         :variable_name: "--METHOD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11747,6 +12215,7 @@
         :extension_properties: []
         :ordinal: 46
         :rule: ''
+        :name: "--RUNID"
         :variable_name: "--RUNID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11755,6 +12224,7 @@
         :extension_properties: []
         :ordinal: 47
         :rule: ''
+        :name: "--ANMETH"
         :variable_name: "--ANMETH"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11763,6 +12233,7 @@
         :extension_properties: []
         :ordinal: 48
         :rule: ''
+        :name: "--LEAD"
         :variable_name: "--LEAD"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11771,6 +12242,7 @@
         :extension_properties: []
         :ordinal: 49
         :rule: ''
+        :name: "--CSTATE"
         :variable_name: "--CSTATE"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11779,6 +12251,7 @@
         :extension_properties: []
         :ordinal: 50
         :rule: ''
+        :name: "--BLFL"
         :variable_name: "--BLFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11787,6 +12260,7 @@
         :extension_properties: []
         :ordinal: 51
         :rule: ''
+        :name: "--FAST"
         :variable_name: "--FAST"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11795,6 +12269,7 @@
         :extension_properties: []
         :ordinal: 52
         :rule: ''
+        :name: "--DRVFL"
         :variable_name: "--DRVFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11803,6 +12278,7 @@
         :extension_properties: []
         :ordinal: 53
         :rule: ''
+        :name: "--EVAL"
         :variable_name: "--EVAL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11811,6 +12287,7 @@
         :extension_properties: []
         :ordinal: 54
         :rule: ''
+        :name: "--EVALID"
         :variable_name: "--EVALID"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11819,6 +12296,7 @@
         :extension_properties: []
         :ordinal: 55
         :rule: ''
+        :name: "--ACPTFL"
         :variable_name: "--ACPTFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11827,6 +12305,7 @@
         :extension_properties: []
         :ordinal: 56
         :rule: ''
+        :name: "--TOX"
         :variable_name: "--TOX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11835,6 +12314,7 @@
         :extension_properties: []
         :ordinal: 57
         :rule: ''
+        :name: "--TOXGR"
         :variable_name: "--TOXGR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11843,6 +12323,7 @@
         :extension_properties: []
         :ordinal: 58
         :rule: ''
+        :name: "--SEV"
         :variable_name: "--SEV"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11851,6 +12332,7 @@
         :extension_properties: []
         :ordinal: 59
         :rule: ''
+        :name: "--DTHREL"
         :variable_name: "--DTHREL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11859,6 +12341,7 @@
         :extension_properties: []
         :ordinal: 60
         :rule: ''
+        :name: "--LLOQ"
         :variable_name: "--LLOQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11867,6 +12350,7 @@
         :extension_properties: []
         :ordinal: 61
         :rule: ''
+        :name: "--ULOQ"
         :variable_name: "--ULOQ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11875,6 +12359,7 @@
         :extension_properties: []
         :ordinal: 62
         :rule: ''
+        :name: "--EXCLFL"
         :variable_name: "--EXCLFL"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11883,6 +12368,7 @@
         :extension_properties: []
         :ordinal: 63
         :rule: ''
+        :name: "--REASEX"
         :variable_name: "--REASEX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11891,6 +12377,7 @@
         :extension_properties: []
         :ordinal: 64
         :rule: ''
+        :name: "--OBJ"
         :variable_name: "--OBJ"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11899,6 +12386,7 @@
         :extension_properties: []
         :ordinal: 65
         :rule: ''
+        :name: VISITNUM
         :variable_name: VISITNUM
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11907,6 +12395,7 @@
         :extension_properties: []
         :ordinal: 66
         :rule: ''
+        :name: VISIT
         :variable_name: VISIT
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11915,6 +12404,7 @@
         :extension_properties: []
         :ordinal: 67
         :rule: ''
+        :name: VISITDY
         :variable_name: VISITDY
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11923,6 +12413,7 @@
         :extension_properties: []
         :ordinal: 68
         :rule: ''
+        :name: TAETORD
         :variable_name: TAETORD
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11931,6 +12422,7 @@
         :extension_properties: []
         :ordinal: 69
         :rule: ''
+        :name: EPOCH
         :variable_name: EPOCH
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11939,6 +12431,7 @@
         :extension_properties: []
         :ordinal: 70
         :rule: ''
+        :name: "--DTC"
         :variable_name: "--DTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11947,6 +12440,7 @@
         :extension_properties: []
         :ordinal: 71
         :rule: ''
+        :name: "--STDTC"
         :variable_name: "--STDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11955,6 +12449,7 @@
         :extension_properties: []
         :ordinal: 72
         :rule: ''
+        :name: "--ENDTC"
         :variable_name: "--ENDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11963,6 +12458,7 @@
         :extension_properties: []
         :ordinal: 73
         :rule: ''
+        :name: "--DY"
         :variable_name: "--DY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11971,6 +12467,7 @@
         :extension_properties: []
         :ordinal: 74
         :rule: ''
+        :name: "--STDY"
         :variable_name: "--STDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11979,6 +12476,7 @@
         :extension_properties: []
         :ordinal: 75
         :rule: ''
+        :name: "--ENDY"
         :variable_name: "--ENDY"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11987,6 +12485,7 @@
         :extension_properties: []
         :ordinal: 76
         :rule: ''
+        :name: "--DUR"
         :variable_name: "--DUR"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -11995,6 +12494,7 @@
         :extension_properties: []
         :ordinal: 77
         :rule: ''
+        :name: "--TPT"
         :variable_name: "--TPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12003,6 +12503,7 @@
         :extension_properties: []
         :ordinal: 78
         :rule: ''
+        :name: "--TPTNUM"
         :variable_name: "--TPTNUM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12011,6 +12512,7 @@
         :extension_properties: []
         :ordinal: 79
         :rule: ''
+        :name: "--ELTM"
         :variable_name: "--ELTM"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12019,6 +12521,7 @@
         :extension_properties: []
         :ordinal: 80
         :rule: ''
+        :name: "--TPTREF"
         :variable_name: "--TPTREF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12027,6 +12530,7 @@
         :extension_properties: []
         :ordinal: 81
         :rule: ''
+        :name: "--RFTDTC"
         :variable_name: "--RFTDTC"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12035,6 +12539,7 @@
         :extension_properties: []
         :ordinal: 82
         :rule: ''
+        :name: "--STRF"
         :variable_name: "--STRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12043,6 +12548,7 @@
         :extension_properties: []
         :ordinal: 83
         :rule: ''
+        :name: "--ENRF"
         :variable_name: "--ENRF"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12051,6 +12557,7 @@
         :extension_properties: []
         :ordinal: 84
         :rule: ''
+        :name: "--EVLINT"
         :variable_name: "--EVLINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12059,6 +12566,7 @@
         :extension_properties: []
         :ordinal: 85
         :rule: ''
+        :name: "--EVINTX"
         :variable_name: "--EVINTX"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12067,6 +12575,7 @@
         :extension_properties: []
         :ordinal: 86
         :rule: ''
+        :name: "--STRTPT"
         :variable_name: "--STRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12075,6 +12584,7 @@
         :extension_properties: []
         :ordinal: 87
         :rule: ''
+        :name: "--STTPT"
         :variable_name: "--STTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12083,6 +12593,7 @@
         :extension_properties: []
         :ordinal: 88
         :rule: ''
+        :name: "--ENRTPT"
         :variable_name: "--ENRTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12091,6 +12602,7 @@
         :extension_properties: []
         :ordinal: 89
         :rule: ''
+        :name: "--ENTPT"
         :variable_name: "--ENTPT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12099,6 +12611,7 @@
         :extension_properties: []
         :ordinal: 90
         :rule: ''
+        :name: "--STINT"
         :variable_name: "--STINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12107,6 +12620,7 @@
         :extension_properties: []
         :ordinal: 91
         :rule: ''
+        :name: "--ENINT"
         :variable_name: "--ENINT"
       - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
         :id: ''
@@ -12115,4 +12629,5 @@
         :extension_properties: []
         :ordinal: 92
         :rule: ''
+        :name: "--DETECT"
         :variable_name: "--DETECT"

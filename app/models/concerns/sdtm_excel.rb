@@ -451,6 +451,7 @@ private
         new_variable = SdtmModelDomain::Variable.new
         new_variable.ordinal = ordinal
         new_variable.label = variable[:label]
+        new_variable.name = variable[:variable_name]
         json = new_variable.to_json
         json[:variable_name] = variable[:variable_name]
         children << json
