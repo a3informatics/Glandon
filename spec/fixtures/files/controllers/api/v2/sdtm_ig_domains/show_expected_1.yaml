@@ -88,10 +88,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_68
+      id: M-CDISC_SDTMMODELFINDINGS_EPOCH
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_68
+      id: M-CDISC_SDTMMODELFINDINGS_EPOCH
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Epoch
       extension_properties: []
@@ -100,7 +100,7 @@ children:
       name: EPOCH
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_68_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_EPOCH_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -167,10 +167,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_69
+      id: M-CDISC_SDTMMODELFINDINGS_xxDTC
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_69
+      id: M-CDISC_SDTMMODELFINDINGS_xxDTC
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Date/Time of Collection
       extension_properties: []
@@ -179,7 +179,7 @@ children:
       name: "--DTC"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_69_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxDTC_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -244,10 +244,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_55
+      id: M-CDISC_SDTMMODELFINDINGS_xxACPTFL
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_55
+      id: M-CDISC_SDTMMODELFINDINGS_xxACPTFL
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Accepted Record Flag
       extension_properties: []
@@ -256,7 +256,7 @@ children:
       name: "--ACPTFL"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_55_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxACPTFL_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -327,10 +327,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_20
+      id: M-CDISC_SDTMMODELFINDINGS_xxORRES
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_20
+      id: M-CDISC_SDTMMODELFINDINGS_xxORRES
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Result or Finding in Original Units
       extension_properties: []
@@ -339,7 +339,7 @@ children:
       name: "--ORRES"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_20_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxORRES_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -410,10 +410,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_35
+      id: M-CDISC_SDTMMODELFINDINGS_xxNAM
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_35
+      id: M-CDISC_SDTMMODELFINDINGS_xxNAM
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Laboratory/Vendor Name
       extension_properties: []
@@ -422,7 +422,7 @@ children:
       name: "--NAM"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_35_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxNAM_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -493,10 +493,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_24
+      id: M-CDISC_SDTMMODELFINDINGS_xxSTRESC
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_24
+      id: M-CDISC_SDTMMODELFINDINGS_xxSTRESC
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Result or Finding in Standard Format
       extension_properties: []
@@ -505,7 +505,7 @@ children:
       name: "--STRESC"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_24_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxSTRESC_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -580,10 +580,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_72
+      id: M-CDISC_SDTMMODELFINDINGS_xxDY
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_72
+      id: M-CDISC_SDTMMODELFINDINGS_xxDY
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Study Day of Visit/Collection/Exam
       extension_properties: []
@@ -592,7 +592,7 @@ children:
       name: "--DY"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_72_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxDY_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -655,10 +655,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_8
+      id: M-CDISC_SDTMMODELFINDINGS_xxREFID
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_8
+      id: M-CDISC_SDTMMODELFINDINGS_xxREFID
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Reference ID
       extension_properties: []
@@ -667,7 +667,7 @@ children:
       name: "--REFID"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_8_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxREFID_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -731,10 +731,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_65
+      id: M-CDISC_SDTMMODELFINDINGS_VISIT
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_65
+      id: M-CDISC_SDTMMODELFINDINGS_VISIT
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Visit Name
       extension_properties: []
@@ -743,7 +743,7 @@ children:
       name: VISIT
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_65_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_VISIT_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -805,10 +805,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_64
+      id: M-CDISC_SDTMMODELFINDINGS_VISITNUM
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_64
+      id: M-CDISC_SDTMMODELFINDINGS_VISITNUM
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Visit Number
       extension_properties: []
@@ -817,7 +817,7 @@ children:
       name: VISITNUM
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_64_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_VISITNUM_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -881,10 +881,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_10
+      id: M-CDISC_SDTMMODELFINDINGS_xxLNKID
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_10
+      id: M-CDISC_SDTMMODELFINDINGS_xxLNKID
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Link ID
       extension_properties: []
@@ -893,7 +893,7 @@ children:
       name: "--LNKID"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_10_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxLNKID_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -959,10 +959,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_11
+      id: M-CDISC_SDTMMODELFINDINGS_xxLNKGRP
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_11
+      id: M-CDISC_SDTMMODELFINDINGS_xxLNKGRP
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Link Group ID
       extension_properties: []
@@ -971,7 +971,7 @@ children:
       name: "--LNKGRP"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_11_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxLNKGRP_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1037,10 +1037,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_3
+      id: M-CDISC_SDTMMODELFINDINGS_USUBJID
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_3
+      id: M-CDISC_SDTMMODELFINDINGS_USUBJID
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Unique Subject Identifier
       extension_properties: []
@@ -1049,7 +1049,7 @@ children:
       name: USUBJID
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_3_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_USUBJID_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1113,10 +1113,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_6
+      id: M-CDISC_SDTMMODELFINDINGS_xxSEQ
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_6
+      id: M-CDISC_SDTMMODELFINDINGS_xxSEQ
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Sequence Number
       extension_properties: []
@@ -1125,7 +1125,7 @@ children:
       name: "--SEQ"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_6_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxSEQ_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1191,10 +1191,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_32
+      id: M-CDISC_SDTMMODELFINDINGS_xxSTAT
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_32
+      id: M-CDISC_SDTMMODELFINDINGS_xxSTAT
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Completion Status
       extension_properties: []
@@ -1203,7 +1203,7 @@ children:
       name: "--STAT"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_32_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxSTAT_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1275,10 +1275,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_12
+      id: M-CDISC_SDTMMODELFINDINGS_xxTESTCD
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_12
+      id: M-CDISC_SDTMMODELFINDINGS_xxTESTCD
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Short Name of Measurement, Test or Examination
       extension_properties: []
@@ -1287,7 +1287,7 @@ children:
       name: "--TESTCD"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_12_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxTESTCD_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1353,10 +1353,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_33
+      id: M-CDISC_SDTMMODELFINDINGS_xxREASND
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_33
+      id: M-CDISC_SDTMMODELFINDINGS_xxREASND
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Reason Not Done
       extension_properties: []
@@ -1365,7 +1365,7 @@ children:
       name: "--REASND"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_33_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxREASND_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1435,10 +1435,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_16
+      id: M-CDISC_SDTMMODELFINDINGS_xxCAT
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_16
+      id: M-CDISC_SDTMMODELFINDINGS_xxCAT
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Category
       extension_properties: []
@@ -1447,7 +1447,7 @@ children:
       name: "--CAT"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_16_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxCAT_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1520,10 +1520,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_54
+      id: M-CDISC_SDTMMODELFINDINGS_xxEVALID
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_54
+      id: M-CDISC_SDTMMODELFINDINGS_xxEVALID
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Evaluator Identifier
       extension_properties: []
@@ -1532,7 +1532,7 @@ children:
       name: "--EVALID"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_54_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxEVALID_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1603,10 +1603,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_53
+      id: M-CDISC_SDTMMODELFINDINGS_xxEVAL
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_53
+      id: M-CDISC_SDTMMODELFINDINGS_xxEVAL
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Evaluator
       extension_properties: []
@@ -1615,7 +1615,7 @@ children:
       name: "--EVAL"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_53_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxEVAL_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1685,10 +1685,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_9
+      id: M-CDISC_SDTMMODELFINDINGS_xxSPID
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_9
+      id: M-CDISC_SDTMMODELFINDINGS_xxSPID
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Sponsor-Defined Identifier
       extension_properties: []
@@ -1697,7 +1697,7 @@ children:
       name: "--SPID"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_9_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxSPID_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1760,10 +1760,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_2
+      id: M-CDISC_SDTMMODELFINDINGS_DOMAIN
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_2
+      id: M-CDISC_SDTMMODELFINDINGS_DOMAIN
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Domain Abbreviation
       extension_properties: []
@@ -1772,7 +1772,7 @@ children:
       name: DOMAIN
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_2_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_DOMAIN_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1836,10 +1836,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_1
+      id: M-CDISC_SDTMMODELFINDINGS_STUDYID
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_1
+      id: M-CDISC_SDTMMODELFINDINGS_STUDYID
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Study Identifier
       extension_properties: []
@@ -1848,7 +1848,7 @@ children:
       name: STUDYID
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_1_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_STUDYID_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1910,10 +1910,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_7
+      id: M-CDISC_SDTMMODELFINDINGS_xxGRPID
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_7
+      id: M-CDISC_SDTMMODELFINDINGS_xxGRPID
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Group ID
       extension_properties: []
@@ -1922,7 +1922,7 @@ children:
       name: "--GRPID"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_7_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxGRPID_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -1986,10 +1986,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_66
+      id: M-CDISC_SDTMMODELFINDINGS_VISITDY
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_66
+      id: M-CDISC_SDTMMODELFINDINGS_VISITDY
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Planned Study Day of Visit
       extension_properties: []
@@ -1998,7 +1998,7 @@ children:
       name: VISITDY
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_66_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_VISITDY_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
@@ -2063,10 +2063,10 @@ children:
     local_label: ''
     subject_ref:
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      id: M-CDISC_SDTMMODELFINDINGS_13
+      id: M-CDISC_SDTMMODELFINDINGS_xxTEST
     subject_data:
       type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-      id: M-CDISC_SDTMMODELFINDINGS_13
+      id: M-CDISC_SDTMMODELFINDINGS_xxTEST
       namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       label: Name of Measurement, Test or Examination
       extension_properties: []
@@ -2075,7 +2075,7 @@ children:
       name: "--TEST"
       variable_ref:
         type: http://www.assero.co.uk/BusinessOperational#CReference
-        id: M-CDISC_SDTMMODELFINDINGS_13_CR1
+        id: M-CDISC_SDTMMODELFINDINGS_xxTEST_CR1
         namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
         label: Based on Variable Reference
         extension_properties: []
