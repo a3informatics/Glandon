@@ -1,13 +1,13 @@
 ---
-:type: ''
+:type: http://www.assero.co.uk/BusinessDomain#ClassDomain
 :id: M-CDISC_SDTMMODELEVENTS
 :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
 :label: Events
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2017-10-18T00:00:00+01:00'
-:last_changed_date: '2017-10-18T00:00:00+01:00'
+:creation_date: '2017-01-01T00:00:00+00:00'
+:last_changed_date: '2017-01-01T00:00:00+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -33,9 +33,9 @@
 :scoped_identifier:
   :id: SI-CDISC_SDTMMODELEVENTS-1
   :identifier: SDTMMODEL EVENTS
-  :version_label: Initial Version
+  :version_label: Version Label
   :version: 1
-  :semantic_version: 0.1.0
+  :semantic_version: 0.0.0
   :namespace:
     :namespace: http://www.assero.co.uk/MDRItems
     :id: NS-CDISC
@@ -45,16 +45,16 @@
 :rule: ''
 :children:
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_1
+  :id: M-CDISC_SDTMMODELEVENTS_STUDYID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
   :label: Study Identifier
   :extension_properties: []
   :ordinal: 1
   :rule: ''
-  :name: 
+  :name: STUDYID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_1_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_STUDYID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -66,16 +66,16 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
       :id: M-CDISC_SDTMMODEL_STUDYID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_2
+  :id: M-CDISC_SDTMMODELEVENTS_DOMAIN
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
   :label: Domain Abbreviation
   :extension_properties: []
   :ordinal: 2
   :rule: ''
-  :name: 
+  :name: DOMAIN
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_2_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_DOMAIN_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -87,16 +87,16 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
       :id: M-CDISC_SDTMMODEL_DOMAIN
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_3
+  :id: M-CDISC_SDTMMODELEVENTS_USUBJID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
   :label: Unique Subject Identifier
   :extension_properties: []
   :ordinal: 3
   :rule: ''
-  :name: 
+  :name: USUBJID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_3_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_USUBJID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -108,16 +108,16 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
       :id: M-CDISC_SDTMMODEL_USUBJID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_4
+  :id: M-CDISC_SDTMMODELEVENTS_POOLID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Sequence Number
+  :label: Pool Identifier
   :extension_properties: []
   :ordinal: 4
   :rule: ''
-  :name: 
+  :name: POOLID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_4_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_POOLID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -127,18 +127,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSEQ
+      :id: M-CDISC_SDTMMODEL_POOLID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_5
+  :id: M-CDISC_SDTMMODELEVENTS_SPDEVID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Group ID
+  :label: Sponsor Device Identifier
   :extension_properties: []
   :ordinal: 5
   :rule: ''
-  :name: 
+  :name: SPDEVID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_5_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_SPDEVID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -148,18 +148,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxGRPID
+      :id: M-CDISC_SDTMMODEL_SPDEVID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_6
+  :id: M-CDISC_SDTMMODELEVENTS_xxSEQ
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Reference ID
+  :label: Sequence Number
   :extension_properties: []
   :ordinal: 6
   :rule: ''
-  :name: 
+  :name: "--SEQ"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_6_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSEQ_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -169,18 +169,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxREFID
+      :id: M-CDISC_SDTMMODEL_xxSEQ
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_7
+  :id: M-CDISC_SDTMMODELEVENTS_xxGRPID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Sponsor ID
+  :label: Group ID
   :extension_properties: []
   :ordinal: 7
   :rule: ''
-  :name: 
+  :name: "--GRPID"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_7_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxGRPID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -190,18 +190,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSPID
+      :id: M-CDISC_SDTMMODEL_xxGRPID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_8
+  :id: M-CDISC_SDTMMODELEVENTS_xxREFID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Reported Term
+  :label: Reference ID
   :extension_properties: []
   :ordinal: 8
   :rule: ''
-  :name: 
+  :name: "--REFID"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_8_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxREFID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -211,18 +211,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxTERM
+      :id: M-CDISC_SDTMMODEL_xxREFID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_9
+  :id: M-CDISC_SDTMMODELEVENTS_xxSPID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Modified Reported Term
+  :label: Sponsor-Defined Identifier
   :extension_properties: []
   :ordinal: 9
   :rule: ''
-  :name: 
+  :name: "--SPID"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_9_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSPID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -232,18 +232,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxMODIFY
+      :id: M-CDISC_SDTMMODEL_xxSPID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_10
+  :id: M-CDISC_SDTMMODELEVENTS_xxLNKID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Dictionary-Derived Term
+  :label: Link ID
   :extension_properties: []
   :ordinal: 10
   :rule: ''
-  :name: 
+  :name: "--LNKID"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_10_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxLNKID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -253,18 +253,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxDECOD
+      :id: M-CDISC_SDTMMODEL_xxLNKID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_11
+  :id: M-CDISC_SDTMMODELEVENTS_xxLNKGRP
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Category
+  :label: Link Group ID
   :extension_properties: []
   :ordinal: 11
   :rule: ''
-  :name: 
+  :name: "--LNKGRP"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_11_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxLNKGRP_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -274,18 +274,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxCAT
+      :id: M-CDISC_SDTMMODEL_xxLNKGRP
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_12
+  :id: M-CDISC_SDTMMODELEVENTS_xxTERM
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Subcategory
+  :label: Reported Term
   :extension_properties: []
   :ordinal: 12
   :rule: ''
-  :name: 
+  :name: "--TERM"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_12_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxTERM_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -295,18 +295,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSCAT
+      :id: M-CDISC_SDTMMODEL_xxTERM
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_13
+  :id: M-CDISC_SDTMMODELEVENTS_xxMODIFY
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Pre-specified
+  :label: Modified Reported Term
   :extension_properties: []
   :ordinal: 13
   :rule: ''
-  :name: 
+  :name: "--MODIFY"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_13_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxMODIFY_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -316,18 +316,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxPRESP
+      :id: M-CDISC_SDTMMODEL_xxMODIFY
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_14
+  :id: M-CDISC_SDTMMODELEVENTS_xxLLT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Occurrence
+  :label: Lowest Level Term
   :extension_properties: []
   :ordinal: 14
   :rule: ''
-  :name: 
+  :name: "--LLT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_14_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxLLT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -337,18 +337,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxOCCUR
+      :id: M-CDISC_SDTMMODEL_xxLLT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_15
+  :id: M-CDISC_SDTMMODELEVENTS_xxLLTCD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Completion Status
+  :label: Lowest Level Term Code
   :extension_properties: []
   :ordinal: 15
   :rule: ''
-  :name: 
+  :name: "--LLTCD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_15_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxLLTCD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -358,18 +358,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSTAT
+      :id: M-CDISC_SDTMMODEL_xxLLTCD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_16
+  :id: M-CDISC_SDTMMODELEVENTS_xxDECOD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Reason Not Done
+  :label: Dictionary-Derived Term
   :extension_properties: []
   :ordinal: 16
   :rule: ''
-  :name: 
+  :name: "--DECOD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_16_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxDECOD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -379,18 +379,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxREASND
+      :id: M-CDISC_SDTMMODEL_xxDECOD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_17
+  :id: M-CDISC_SDTMMODELEVENTS_xxPTCD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Body System or Organ Class
+  :label: Preferred Term Code
   :extension_properties: []
   :ordinal: 17
   :rule: ''
-  :name: 
+  :name: "--PTCD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_17_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxPTCD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -400,18 +400,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxBODSYS
+      :id: M-CDISC_SDTMMODEL_xxPTCD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_18
+  :id: M-CDISC_SDTMMODELEVENTS_xxHLT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Location of Event
+  :label: High Level Term
   :extension_properties: []
   :ordinal: 18
   :rule: ''
-  :name: 
+  :name: "--HLT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_18_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxHLT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -421,18 +421,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxLOC
+      :id: M-CDISC_SDTMMODEL_xxHLT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_19
+  :id: M-CDISC_SDTMMODELEVENTS_xxHLTCD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Severity/Intensity
+  :label: High Level Term Code
   :extension_properties: []
   :ordinal: 19
   :rule: ''
-  :name: 
+  :name: "--HLTCD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_19_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxHLTCD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -442,18 +442,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSEV
+      :id: M-CDISC_SDTMMODEL_xxHLTCD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_20
+  :id: M-CDISC_SDTMMODELEVENTS_xxHLGT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Serious Event
+  :label: High Level Group Term
   :extension_properties: []
   :ordinal: 20
   :rule: ''
-  :name: 
+  :name: "--HLGT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_20_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxHLGT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -463,18 +463,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSER
+      :id: M-CDISC_SDTMMODEL_xxHLGT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_21
+  :id: M-CDISC_SDTMMODELEVENTS_xxHLGTCD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Action Taken with Study Treatment
+  :label: High Level Group Term Code
   :extension_properties: []
   :ordinal: 21
   :rule: ''
-  :name: 
+  :name: "--HLGTCD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_21_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxHLGTCD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -484,18 +484,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxACN
+      :id: M-CDISC_SDTMMODEL_xxHLGTCD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_22
+  :id: M-CDISC_SDTMMODELEVENTS_xxCAT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Other Action Taken
+  :label: Category
   :extension_properties: []
   :ordinal: 22
   :rule: ''
-  :name: 
+  :name: "--CAT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_22_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxCAT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -505,18 +505,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxACNOTH
+      :id: M-CDISC_SDTMMODEL_xxCAT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_23
+  :id: M-CDISC_SDTMMODELEVENTS_xxSCAT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Causality
+  :label: Subcategory
   :extension_properties: []
   :ordinal: 23
   :rule: ''
-  :name: 
+  :name: "--SCAT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_23_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSCAT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -526,18 +526,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxREL
+      :id: M-CDISC_SDTMMODEL_xxSCAT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_24
+  :id: M-CDISC_SDTMMODELEVENTS_xxPRESP
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Relationship to Non-Study Treatment
+  :label: Pre-specified
   :extension_properties: []
   :ordinal: 24
   :rule: ''
-  :name: 
+  :name: "--PRESP"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_24_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxPRESP_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -547,18 +547,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxRELNST
+      :id: M-CDISC_SDTMMODEL_xxPRESP
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_25
+  :id: M-CDISC_SDTMMODELEVENTS_xxOCCUR
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Pattern of Event
+  :label: Occurrence
   :extension_properties: []
   :ordinal: 25
   :rule: ''
-  :name: 
+  :name: "--OCCUR"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_25_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxOCCUR_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -568,18 +568,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxPATT
+      :id: M-CDISC_SDTMMODEL_xxOCCUR
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_26
+  :id: M-CDISC_SDTMMODELEVENTS_xxSTAT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Outcome of Event
+  :label: Completion Status
   :extension_properties: []
   :ordinal: 26
   :rule: ''
-  :name: 
+  :name: "--STAT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_26_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSTAT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -589,18 +589,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxOUT
+      :id: M-CDISC_SDTMMODEL_xxSTAT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_27
+  :id: M-CDISC_SDTMMODELEVENTS_xxREASND
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Involves Cancer
+  :label: Reason Not Done
   :extension_properties: []
   :ordinal: 27
   :rule: ''
-  :name: 
+  :name: "--REASND"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_27_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxREASND_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -610,18 +610,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSCAN
+      :id: M-CDISC_SDTMMODEL_xxREASND
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_28
+  :id: M-CDISC_SDTMMODELEVENTS_xxBODSYS
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Congenital Anomaly or Birth Defect
+  :label: Body System or Organ Class
   :extension_properties: []
   :ordinal: 28
   :rule: ''
-  :name: 
+  :name: "--BODSYS"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_28_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxBODSYS_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -631,18 +631,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSCONG
+      :id: M-CDISC_SDTMMODEL_xxBODSYS
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_29
+  :id: M-CDISC_SDTMMODELEVENTS_xxBDSYCD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Persist or Signif Disability/Incapacity
+  :label: Body System or Organ Class Code
   :extension_properties: []
   :ordinal: 29
   :rule: ''
-  :name: 
+  :name: "--BDSYCD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_29_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxBDSYCD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -652,18 +652,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSDISAB
+      :id: M-CDISC_SDTMMODEL_xxBDSYCD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_30
+  :id: M-CDISC_SDTMMODELEVENTS_xxSOC
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Results in Death
+  :label: Primary System Organ Class
   :extension_properties: []
   :ordinal: 30
   :rule: ''
-  :name: 
+  :name: "--SOC"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_30_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSOC_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -673,18 +673,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSDTH
+      :id: M-CDISC_SDTMMODEL_xxSOC
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_31
+  :id: M-CDISC_SDTMMODELEVENTS_xxSOCCD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Requires or Prolongs Hospitalization
+  :label: Primary System Organ Class Code
   :extension_properties: []
   :ordinal: 31
   :rule: ''
-  :name: 
+  :name: "--SOCCD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_31_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSOCCD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -694,18 +694,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSHOSP
+      :id: M-CDISC_SDTMMODEL_xxSOCCD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_32
+  :id: M-CDISC_SDTMMODELEVENTS_xxLOC
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Is Life Threatening
+  :label: Location of Event
   :extension_properties: []
   :ordinal: 32
   :rule: ''
-  :name: 
+  :name: "--LOC"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_32_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxLOC_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -715,18 +715,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSLIFE
+      :id: M-CDISC_SDTMMODEL_xxLOC
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_33
+  :id: M-CDISC_SDTMMODELEVENTS_xxLAT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Occurred with Overdose
+  :label: Laterality
   :extension_properties: []
   :ordinal: 33
   :rule: ''
-  :name: 
+  :name: "--LAT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_33_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxLAT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -736,18 +736,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSOD
+      :id: M-CDISC_SDTMMODEL_xxLAT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_34
+  :id: M-CDISC_SDTMMODELEVENTS_xxDIR
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Other Medically Important Serious Event
+  :label: Directionality
   :extension_properties: []
   :ordinal: 34
   :rule: ''
-  :name: 
+  :name: "--DIR"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_34_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxDIR_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -757,18 +757,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSMIE
+      :id: M-CDISC_SDTMMODEL_xxDIR
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_35
+  :id: M-CDISC_SDTMMODELEVENTS_xxPORTOT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Concomitant or Additional Trtmnt Given
+  :label: Portion or Totality
   :extension_properties: []
   :ordinal: 35
   :rule: ''
-  :name: 
+  :name: "--PORTOT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_35_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxPORTOT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -778,18 +778,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxCONTRT
+      :id: M-CDISC_SDTMMODEL_xxPORTOT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_36
+  :id: M-CDISC_SDTMMODELEVENTS_xxPARTY
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Toxicity
+  :label: Accountable Party
   :extension_properties: []
   :ordinal: 36
   :rule: ''
-  :name: 
+  :name: "--PARTY"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_36_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxPARTY_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -799,18 +799,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxTOX
+      :id: M-CDISC_SDTMMODEL_xxPARTY
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_37
+  :id: M-CDISC_SDTMMODELEVENTS_xxPRTYID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Toxicity Grade
+  :label: Identification of Accountable Party
   :extension_properties: []
   :ordinal: 37
   :rule: ''
-  :name: 
+  :name: "--PRTYID"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_37_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxPRTYID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -820,18 +820,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxTOXGR
+      :id: M-CDISC_SDTMMODEL_xxPRTYID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_38
+  :id: M-CDISC_SDTMMODELEVENTS_xxSEV
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Visit Number
+  :label: Severity/Intensity
   :extension_properties: []
   :ordinal: 38
   :rule: ''
-  :name: 
+  :name: "--SEV"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_38_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSEV_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -841,18 +841,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_VISITNUM
+      :id: M-CDISC_SDTMMODEL_xxSEV
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_39
+  :id: M-CDISC_SDTMMODELEVENTS_xxSER
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Visit Name
+  :label: Serious Event
   :extension_properties: []
   :ordinal: 39
   :rule: ''
-  :name: 
+  :name: "--SER"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_39_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSER_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -862,18 +862,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_VISIT
+      :id: M-CDISC_SDTMMODEL_xxSER
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_40
+  :id: M-CDISC_SDTMMODELEVENTS_xxACN
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Planned Study Day of Visit
+  :label: Action Taken with Study Treatment
   :extension_properties: []
   :ordinal: 40
   :rule: ''
-  :name: 
+  :name: "--ACN"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_40_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxACN_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -883,18 +883,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_VISITDY
+      :id: M-CDISC_SDTMMODEL_xxACN
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_41
+  :id: M-CDISC_SDTMMODELEVENTS_xxACNOTH
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Planned Order of Elements within Arm
+  :label: Other Action Taken
   :extension_properties: []
   :ordinal: 41
   :rule: ''
-  :name: 
+  :name: "--ACNOTH"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_41_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxACNOTH_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -904,18 +904,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_TAETORD
+      :id: M-CDISC_SDTMMODEL_xxACNOTH
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_42
+  :id: M-CDISC_SDTMMODELEVENTS_xxACNDEV
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Epoch
+  :label: Action Taken with Device
   :extension_properties: []
   :ordinal: 42
   :rule: ''
-  :name: 
+  :name: "--ACNDEV"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_42_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxACNDEV_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -925,18 +925,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_EPOCH
+      :id: M-CDISC_SDTMMODEL_xxACNDEV
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_43
+  :id: M-CDISC_SDTMMODELEVENTS_xxREL
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Date/Time of Collection
+  :label: Causality
   :extension_properties: []
   :ordinal: 43
   :rule: ''
-  :name: 
+  :name: "--REL"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_43_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxREL_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -946,18 +946,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxDTC
+      :id: M-CDISC_SDTMMODEL_xxREL
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_44
+  :id: M-CDISC_SDTMMODELEVENTS_xxRELNST
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Start Date/Time of Observation
+  :label: Relationship to Non-Study Treatment
   :extension_properties: []
   :ordinal: 44
   :rule: ''
-  :name: 
+  :name: "--RELNST"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_44_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxRELNST_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -967,18 +967,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSTDTC
+      :id: M-CDISC_SDTMMODEL_xxRELNST
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_45
+  :id: M-CDISC_SDTMMODELEVENTS_xxPATT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: End Date/Time of Observation
+  :label: Pattern of Event
   :extension_properties: []
   :ordinal: 45
   :rule: ''
-  :name: 
+  :name: "--PATT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_45_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxPATT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -988,18 +988,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxENDTC
+      :id: M-CDISC_SDTMMODEL_xxPATT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_46
+  :id: M-CDISC_SDTMMODELEVENTS_xxOUT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Study Day of Visit/Collection/Exam
+  :label: Outcome of Event
   :extension_properties: []
   :ordinal: 46
   :rule: ''
-  :name: 
+  :name: "--OUT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_46_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxOUT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1009,18 +1009,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxDY
+      :id: M-CDISC_SDTMMODEL_xxOUT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_47
+  :id: M-CDISC_SDTMMODELEVENTS_xxSCAN
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Study Day of Start of Observation
+  :label: Involves Cancer
   :extension_properties: []
   :ordinal: 47
   :rule: ''
-  :name: 
+  :name: "--SCAN"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_47_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSCAN_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1030,18 +1030,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSTDY
+      :id: M-CDISC_SDTMMODEL_xxSCAN
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_48
+  :id: M-CDISC_SDTMMODELEVENTS_xxSCONG
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Study Day of End of Observation
+  :label: Congenital Anomaly or Birth Defect
   :extension_properties: []
   :ordinal: 48
   :rule: ''
-  :name: 
+  :name: "--SCONG"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_48_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSCONG_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1051,18 +1051,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxENDY
+      :id: M-CDISC_SDTMMODEL_xxSCONG
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_49
+  :id: M-CDISC_SDTMMODELEVENTS_xxSDISAB
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Duration
+  :label: Persist or Signif Disability/Incapacity
   :extension_properties: []
   :ordinal: 49
   :rule: ''
-  :name: 
+  :name: "--SDISAB"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_49_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSDISAB_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1072,18 +1072,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxDUR
+      :id: M-CDISC_SDTMMODEL_xxSDISAB
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_50
+  :id: M-CDISC_SDTMMODELEVENTS_xxSDTH
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Planned Time Point Name
+  :label: Results in Death
   :extension_properties: []
   :ordinal: 50
   :rule: ''
-  :name: 
+  :name: "--SDTH"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_50_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSDTH_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1093,18 +1093,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxTPT
+      :id: M-CDISC_SDTMMODEL_xxSDTH
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_51
+  :id: M-CDISC_SDTMMODELEVENTS_xxSHOSP
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Planned Time Point Number
+  :label: Requires or Prolongs Hospitalization
   :extension_properties: []
   :ordinal: 51
   :rule: ''
-  :name: 
+  :name: "--SHOSP"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_51_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSHOSP_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1114,18 +1114,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxTPTNUM
+      :id: M-CDISC_SDTMMODEL_xxSHOSP
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_52
+  :id: M-CDISC_SDTMMODELEVENTS_xxSLIFE
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Planned Elapsed Time from Time Point Ref
+  :label: Is Life Threatening
   :extension_properties: []
   :ordinal: 52
   :rule: ''
-  :name: 
+  :name: "--SLIFE"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_52_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSLIFE_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1135,18 +1135,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxELTM
+      :id: M-CDISC_SDTMMODEL_xxSLIFE
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_53
+  :id: M-CDISC_SDTMMODELEVENTS_xxSOD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Time Point Reference
+  :label: Occurred with Overdose
   :extension_properties: []
   :ordinal: 53
   :rule: ''
-  :name: 
+  :name: "--SOD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_53_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSOD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1156,18 +1156,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxTPTREF
+      :id: M-CDISC_SDTMMODEL_xxSOD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_54
+  :id: M-CDISC_SDTMMODELEVENTS_xxSMIE
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Date/Time of Reference Time Point
+  :label: Other Medically Important Serious Event
   :extension_properties: []
   :ordinal: 54
   :rule: ''
-  :name: 
+  :name: "--SMIE"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_54_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxSMIE_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1177,18 +1177,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxRFTDTC
+      :id: M-CDISC_SDTMMODEL_xxSMIE
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_55
+  :id: M-CDISC_SDTMMODELEVENTS_xxCONTRT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Start Relative to Reference Period
+  :label: Concomitant or Additional Trtmnt Given
   :extension_properties: []
   :ordinal: 55
   :rule: ''
-  :name: 
+  :name: "--CONTRT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_55_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxCONTRT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1198,18 +1198,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSTRF
+      :id: M-CDISC_SDTMMODEL_xxCONTRT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_56
+  :id: M-CDISC_SDTMMODELEVENTS_xxTOX
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: End Relative to Reference Period
+  :label: Toxicity
   :extension_properties: []
   :ordinal: 56
   :rule: ''
-  :name: 
+  :name: "--TOX"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_56_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxTOX_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1219,18 +1219,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxENRF
+      :id: M-CDISC_SDTMMODEL_xxTOX
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_57
+  :id: M-CDISC_SDTMMODELEVENTS_xxTOXGR
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Evaluation Interval
+  :label: Toxicity Grade
   :extension_properties: []
   :ordinal: 57
   :rule: ''
-  :name: 
+  :name: "--TOXGR"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_57_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_xxTOXGR_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1240,18 +1240,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxEVLINT
+      :id: M-CDISC_SDTMMODEL_xxTOXGR
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_58
+  :id: M-CDISC_SDTMMODELEVENTS_VISITNUM
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Start Relative to Reference Time Point
+  :label: Visit Number
   :extension_properties: []
   :ordinal: 58
   :rule: ''
-  :name: 
+  :name: VISITNUM
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_58_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_VISITNUM_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1261,18 +1261,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSTRTPT
+      :id: M-CDISC_SDTMMODEL_VISITNUM
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_59
+  :id: M-CDISC_SDTMMODELEVENTS_VISIT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: Start Reference Time Point
+  :label: Visit Name
   :extension_properties: []
   :ordinal: 59
   :rule: ''
-  :name: 
+  :name: VISIT
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_59_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_VISIT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1282,18 +1282,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxSTTPT
+      :id: M-CDISC_SDTMMODEL_VISIT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_60
+  :id: M-CDISC_SDTMMODELEVENTS_VISITDY
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: End Relative to Reference Time Point
+  :label: Planned Study Day of Visit
   :extension_properties: []
   :ordinal: 60
   :rule: ''
-  :name: 
+  :name: VISITDY
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_60_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_VISITDY_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1303,18 +1303,18 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
-      :id: M-CDISC_SDTMMODEL_xxENRTPT
+      :id: M-CDISC_SDTMMODEL_VISITDY
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELEVENTS_61
+  :id: M-CDISC_SDTMMODELEVENTS_TAETORD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
-  :label: End Reference Time Point
+  :label: Planned Order of Element within Arm
   :extension_properties: []
   :ordinal: 61
   :rule: ''
-  :name: 
+  :name: TAETORD
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELEVENTS_61_CR1
+    :id: M-CDISC_SDTMMODELEVENTS_TAETORD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1324,4 +1324,508 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_TAETORD
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_EPOCH
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Epoch
+  :extension_properties: []
+  :ordinal: 62
+  :rule: ''
+  :name: EPOCH
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_EPOCH_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 62
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_EPOCH
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxDTC
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Date/Time of Collection
+  :extension_properties: []
+  :ordinal: 63
+  :rule: ''
+  :name: "--DTC"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxDTC_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 63
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxDTC
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxSTDTC
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Start Date/Time of Observation
+  :extension_properties: []
+  :ordinal: 64
+  :rule: ''
+  :name: "--STDTC"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxSTDTC_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 64
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxSTDTC
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxENDTC
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: End Date/Time of Observation
+  :extension_properties: []
+  :ordinal: 65
+  :rule: ''
+  :name: "--ENDTC"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxENDTC_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 65
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxENDTC
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxDY
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Study Day of Visit/Collection/Exam
+  :extension_properties: []
+  :ordinal: 66
+  :rule: ''
+  :name: "--DY"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxDY_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 66
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxDY
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxSTDY
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Study Day of Start of Observation
+  :extension_properties: []
+  :ordinal: 67
+  :rule: ''
+  :name: "--STDY"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxSTDY_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 67
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxSTDY
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxENDY
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Study Day of End of Observation
+  :extension_properties: []
+  :ordinal: 68
+  :rule: ''
+  :name: "--ENDY"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxENDY_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 68
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxENDY
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxDUR
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Duration
+  :extension_properties: []
+  :ordinal: 69
+  :rule: ''
+  :name: "--DUR"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxDUR_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 69
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxDUR
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Planned Time Point Name
+  :extension_properties: []
+  :ordinal: 70
+  :rule: ''
+  :name: "--TPT"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxTPT_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 70
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxTPT
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxTPTNUM
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Planned Time Point Number
+  :extension_properties: []
+  :ordinal: 71
+  :rule: ''
+  :name: "--TPTNUM"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxTPTNUM_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 71
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxTPTNUM
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxELTM
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Planned Elapsed Time from Time Point Ref
+  :extension_properties: []
+  :ordinal: 72
+  :rule: ''
+  :name: "--ELTM"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxELTM_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 72
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxELTM
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxTPTREF
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Time Point Reference
+  :extension_properties: []
+  :ordinal: 73
+  :rule: ''
+  :name: "--TPTREF"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxTPTREF_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 73
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxTPTREF
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxRFTDTC
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Date/Time of Reference Time Point
+  :extension_properties: []
+  :ordinal: 74
+  :rule: ''
+  :name: "--RFTDTC"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxRFTDTC_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 74
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxRFTDTC
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxSTRF
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Start Relative to Reference Period
+  :extension_properties: []
+  :ordinal: 75
+  :rule: ''
+  :name: "--STRF"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxSTRF_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 75
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxSTRF
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxENRF
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: End Relative to Reference Period
+  :extension_properties: []
+  :ordinal: 76
+  :rule: ''
+  :name: "--ENRF"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxENRF_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 76
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxENRF
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxEVLINT
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Evaluation Interval
+  :extension_properties: []
+  :ordinal: 77
+  :rule: ''
+  :name: "--EVLINT"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxEVLINT_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 77
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxEVLINT
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxEVINTX
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Evaluation Interval Text
+  :extension_properties: []
+  :ordinal: 78
+  :rule: ''
+  :name: "--EVINTX"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxEVINTX_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 78
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxEVINTX
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxSTRTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Start Relative to Reference Time Point
+  :extension_properties: []
+  :ordinal: 79
+  :rule: ''
+  :name: "--STRTPT"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxSTRTPT_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 79
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxSTRTPT
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxSTTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Start Reference Time Point
+  :extension_properties: []
+  :ordinal: 80
+  :rule: ''
+  :name: "--STTPT"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxSTTPT_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 80
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxSTTPT
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxENRTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: End Relative to Reference Time Point
+  :extension_properties: []
+  :ordinal: 81
+  :rule: ''
+  :name: "--ENRTPT"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxENRTPT_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 81
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxENRTPT
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxENTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: End Reference Time Point
+  :extension_properties: []
+  :ordinal: 82
+  :rule: ''
+  :name: "--ENTPT"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxENTPT_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 82
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
       :id: M-CDISC_SDTMMODEL_xxENTPT
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxSTINT
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Planned Start of Assessment Interval
+  :extension_properties: []
+  :ordinal: 83
+  :rule: ''
+  :name: "--STINT"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxSTINT_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 83
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxSTINT
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxENINT
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Planned End of Assessment Interval
+  :extension_properties: []
+  :ordinal: 84
+  :rule: ''
+  :name: "--ENINT"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxENINT_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 84
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxENINT
+- :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
+  :id: M-CDISC_SDTMMODELEVENTS_xxDETECT
+  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+  :label: Time in Days to Detection
+  :extension_properties: []
+  :ordinal: 85
+  :rule: ''
+  :name: "--DETECT"
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: M-CDISC_SDTMMODELEVENTS_xxDETECT_CR1
+    :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V1
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 85
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V1
+      :id: M-CDISC_SDTMMODEL_xxDETECT
