@@ -22,8 +22,6 @@ describe 'cdisc_terms/file.html.erb', :type => :view do
     
     render
 
-  puts response.body
-
     expect(rendered).to have_content("Files:")
     expect(rendered).to have_xpath("//input[@id = 'cb_1' and @value = 'a.yaml']")
     expect(rendered).to have_xpath("//input[@id = 'cb_2' and @value = 'b.yaml']")

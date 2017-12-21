@@ -6,17 +6,17 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 INSERT DATA 
 { 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23> rdfs:label "Subcategory"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23> bd:ordinal "23"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23> bd:rule ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23> bd:name "--SCAT"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23_CR1> rdfs:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCAT> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23_CR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23_CR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23_CR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23_CR1> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT> rdf:type <http://www.assero.co.uk/BusinessDomain#ClassVariable> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT> rdfs:label "Subcategory"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT> bd:ordinal "23"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT> bd:name "--SCAT"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR1> rdfs:label "Based on Variable Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCAT> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR1> bo:local_label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT_CR1> . 
 }

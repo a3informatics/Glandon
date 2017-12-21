@@ -88,7 +88,7 @@ describe SdtmModelDomain::Variable do
   #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
     expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
-    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_23")
+    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EVENTS_xxSCAT")
   end
 
 end

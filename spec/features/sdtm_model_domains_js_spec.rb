@@ -70,7 +70,6 @@ describe "SDTM Model Domains", :type => :feature do
       find(:xpath, "//tr[contains(.,'1.4')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: '
       wait_for_ajax
-    pause
       find(:xpath, "//tr[.//text()=SDTMMODEL FINDINGS']/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: '
       click_link 'Export JSON'
