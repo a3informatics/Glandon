@@ -58,14 +58,14 @@ describe SdtmModelDomain::Variable do
   end 
 
   it "allows an object to be found" do
-    variable = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_23", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+    variable = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSCAT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
   #write_yaml_file(variable.to_json, sub_dir, "find_input.yaml")
     expected = read_yaml_file(sub_dir, "find_input.yaml")
     expect(variable.to_json).to eq(expected)
   end
 
   it "allows an object to be exported as JSON" do
-    variable = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_23", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+    variable = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSCAT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
   #write_yaml_file(variable.to_json, sub_dir, "to_json_expected.yaml")
     expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expect(variable.to_json).to eq(expected)
