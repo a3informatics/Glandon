@@ -2,7 +2,7 @@ module ValidUserRequestHelper
   
   # Define a method which signs in as a valid user.
   def sign_in_as_admin_user
-    @user ||= FactoryGirl.create :user
+    @user ||= User.create :email => UserAccountHelpers::C_READER, :password => serAccountHelpers::C_PASSWORD 
     @user.add_role :sys_admin 
     # We action the login request using the parameters before we begin.
     # The login requests will match these to the user we just created in the factory, and authenticate us.

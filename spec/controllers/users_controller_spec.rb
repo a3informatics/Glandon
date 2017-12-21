@@ -28,8 +28,9 @@ describe UsersController do
       user1 = User.create :email => "fred@example.com", :password => "changeme" 
       user2 = User.create :email => "sid@example.com", :password => "changeme" 
       user3 = User.create :email => "boris@example.com", :password => "changeme" 
+      count = User.all.count
       post :create, user: { email: "new1@example.com", password: "12345678", password_confirmation: "12345678", name: "New" }
-      expect(User.all.count).to eq(6) # 1 in DB by default, 1 x Admin user, 3 x seeded and 1 created
+      expect(User.all.count).to eq(count + 1)
       expect(flash[:success]).to be_present
       expect(response).to redirect_to("/users")
     end
@@ -38,8 +39,9 @@ describe UsersController do
       user1 = User.create :email => "fred@example.com", :password => "changeme" 
       user2 = User.create :email => "sid@example.com", :password => "changeme" 
       user3 = User.create :email => "boris@example.com", :password => "changeme" 
+      count = User.all.count
       post :create, user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567", name: "New"  }
-      expect(User.all.count).to eq(5)
+      expect(User.all.count).to eq(count)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/users")
     end
@@ -49,8 +51,9 @@ describe UsersController do
       user2 = User.create :email => "sid@example.com", :password => "changeme" 
       user3 = User.create :email => "boris@example.com", :password => "changeme" 
       user4 = User.create :email => "new@example.com", :password => "changeme" 
+      count = User.all.count
       delete :destroy, :id => user4.id
-      expect(User.all.count).to eq(5)
+      expect(User.all.count).to eq(count - 1)
     end
 
     it "edits user" do
@@ -64,14 +67,14 @@ describe UsersController do
 
     it "updates user" do
     	role_sa = Role.where(name: "sys_admin").first
-      role_r = Role.where(name: "reader").first
+      #role_r = Role.where(name: "reader").first
+      role_r = Role.find_by(name: "reader")
       role_cr = Role.where(name: "curator").first
       role_ca = Role.where(name: "content_admin").first
       user1 = User.create :email => "fred@example.com", :password => "changeme" 
       user2 = User.create :email => "sid@example.com", :password => "changeme" 
       user3 = User.create :email => "boris@example.com", :password => "changeme" 
-      user = User.find_by(:email => "sid@example.com")
-      put :update, {id: user.id, :user => {role_ids: ["#{role_sa.id}", "#{role_r.id}", "#{role_cr.id}", "#{role_ca.id}"]}}
+      put :update, {id: user2.id, :user => {role_ids: ["#{role_sa.id}", "#{role_r.id}", "#{role_cr.id}", "#{role_ca.id}"]}}
       user = User.find_by(:email => "sid@example.com")
       expect(user.has_role? :sys_admin).to eq(true)
       expect(user.has_role? :reader).to eq(true)
@@ -118,21 +121,23 @@ describe UsersController do
     end
 
     it 'deletes user' do
-      delete :destroy, :id => User.all.last.id
+      delete :destroy, :id => 1
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
     it "edits user" do
-      get :edit, :id => User.all.last.id
+      user1 = User.create :email => "fred@example.com", :password => "changeme" 
+      get :edit, :id => user1.id
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
     it "updates user" do
-      put :update, {id: User.all.last.id, :user => {role_ids: ["1", "2", "3", "4"]}}
+      user1 = User.create :email => "fred@example.com", :password => "changeme" 
+      put :update, {id: user1.id, :user => {role_ids: ["1", "2", "3", "4"]}}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -158,17 +163,17 @@ describe UsersController do
     end
 
     it 'deletes user' do
-      delete :destroy, :id => User.all.last.id
+      delete :destroy, :id => 1
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "edits user" do
-      get :edit, :id => User.all.last.id
+      get :edit, :id => 1
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "updates user" do
-      put :update, {id: User.all.last.id, :user => {role_ids: ["1", "2", "3", "4"]}}
+      put :update, {id: 1, :user => {role_ids: ["1", "2", "3", "4"]}}
       expect(response).to redirect_to("/users/sign_in")
     end
 

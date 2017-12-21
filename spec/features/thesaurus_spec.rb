@@ -3,7 +3,8 @@ require 'rails_helper'
 describe "Thesaurus", :type => :feature do
   
   include DataHelpers
-
+  include UserAccountHelpers
+  
   describe "Sponsor Terminology", :type => :feature do
   
     before :all do
@@ -22,15 +23,15 @@ describe "Thesaurus", :type => :feature do
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
       clear_all_edit_locks
+      ua_create
+    end
+
+    after :all do
+      ua_destroy
     end
 
     before :each do
-      user = FactoryGirl.create(:user)
-      user.add_role :curator
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'example1234'
-      click_button 'Log in'
+      ua_curator_login
     end
 
     it "allows access to index page" do

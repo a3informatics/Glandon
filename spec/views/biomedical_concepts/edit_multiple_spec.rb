@@ -3,18 +3,10 @@ require 'rails_helper'
 describe 'biomedical_concepts/edit_multiple.html.erb', :type => :view do
 
   include UiHelpers
-  include UserAccountHelpers
 
-  def login_curator
-    @request.env["devise.mapping"] = Devise.mappings[:user]
-    @user = FactoryGirl.create(:user)
-    @user.add_role :curator
-    sign_in @user
-  end
+  login_curator
 
   it 'displays the form' do
-
-    login_curator # Need this becuase current_user is used.
 
     bcts = []
     bct = BiomedicalConceptTemplate.new

@@ -62,13 +62,13 @@ describe "Scenario 6 - CRF & aCRF", :type => :feature do
     after :all do
       ua_destroy
     end
+    
+    before :each do
+      set_screen_size(1500, 900)
+      ua_curator_login
+    end
 
     it "allows an annotated CRF to be produced", scenario: true, js: true do
-      set_screen_size(1500, 900)
-
-      # Login
-      curator_login
-
       # View the form
       click_navbar_form
       expect(page).to have_content 'Index: Forms'  

@@ -61,6 +61,11 @@ describe "Scenario 7 - Mixed Form", :type => :feature do
     after :all do
       ua_destroy
     end
+    
+    before :each do
+      set_screen_size(1500, 900)
+      ua_curator_login
+    end
 
     def to_standard(item)
       click_navbar_bc
@@ -118,16 +123,7 @@ describe "Scenario 7 - Mixed Form", :type => :feature do
       click_button 'Add'
     end
 
-    INSTRUCTION_TEXT = "You need to fill this in!"
-
     it "allows Forms to be created", scenario: true, js: true do
-      set_screen_size(1500, 900)
-      
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-
       form_create("MIXED", "start", "Mixed Form")
       
       click_button 'formAddGroup'
@@ -148,7 +144,7 @@ describe "Scenario 7 - Mixed Form", :type => :feature do
       ui_click_node_key(key1)
       click_button 'groupAddLabelText'
       fill_in 'labelTextLabel', with: "General Instructions"
-      fill_in 'labelTextText', with: INSTRUCTION_TEXT 
+      fill_in 'labelTextText', with: "You need to fill this in!"
 
       ui_click_node_key(key1)
       form_bc_search("C25208")

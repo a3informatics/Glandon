@@ -60,13 +60,13 @@ describe "Scenario 5 - Domain Clone & BC", :type => :feature do
     after :all do
       ua_destroy
     end
+    
+    before :each do
+      set_screen_size(1500, 900)
+      ua_curator_login
+    end
 
     it "allows a Sponsor Domain to be created and BCs associated", scenario: true, js: true do
-      set_screen_size(1500, 900)
-
-      # Login
-      curator_login
-
       # Clone Domain
       click_navbar_ig_domain
       click_main_table_link "SDTM Implementation Guide 2013-11-26", 'Show'

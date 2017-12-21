@@ -52,13 +52,12 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
     after :all do
       ua_destroy
     end
+    
+    before :each do
+      ua_curator_login
+    end
 
     it "allows an item to move through the lifecyle", scenario: true, js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-
       click_navbar_terminology
       expect_page 'Index: Terminology'
       click_table_link 'QS TERM', 'History'

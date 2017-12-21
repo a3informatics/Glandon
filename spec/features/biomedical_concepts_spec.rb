@@ -4,6 +4,7 @@ describe "Biomedical Concepts", :type => :feature do
   
   include DataHelpers
   include DownloadHelpers
+  include UserAccountHelpers
 
   def sub_dir
     return "features"
@@ -31,15 +32,15 @@ describe "Biomedical Concepts", :type => :feature do
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
       clear_cdisc_term_object
+      ua_create
+    end
+
+    after :all do
+      ua_destroy
     end
 
     before :each do
-      user = FactoryGirl.create(:user)
-      user.add_role :curator
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'example1234'
-      click_button 'Log in'
+      ua_curator_login
     end
 
     it "allows access to index page" do

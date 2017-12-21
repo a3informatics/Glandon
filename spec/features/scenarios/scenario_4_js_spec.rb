@@ -58,6 +58,11 @@ describe "Scenario 4 - BC Form", :type => :feature do
     after :all do
       ua_destroy
     end
+    
+    before :each do
+      set_screen_size(1500, 900)
+      ua_curator_login
+    end
 
     def to_standard(item)
       click_navbar_bc
@@ -75,22 +80,7 @@ describe "Scenario 4 - BC Form", :type => :feature do
       expect_page 'History:'
     end
 
-    INSTRUCTION_TEXT = "By placing a tick in one box in each group below, please indicate which " + 
-      "statements best describe your own health state today."
-    VAS_TEXT = "To help people say how good or bad a health state is, we have drawn a scale (rather like a thermometer) " +
-      "on which the best state you can imagine is marked 100 and the worst state you can imagine is marked 0. \n\n" +
-      "We would like you to indicate on this scale how good or bad your own health is today, in your opinion. " +
-      " Please do this by drawing a line from the box below to whichever point on the scale indicates how good or " + 
-      " bad your health state is today."
-
     it "allows Forms to be created", scenario: true, js: true do
-      set_screen_size(1500, 900)
-      
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-
       to_standard("C100392")
       to_standard("C100393")
       to_standard("C100394")
@@ -113,7 +103,7 @@ describe "Scenario 4 - BC Form", :type => :feature do
       ui_click_node_key(key1)
       click_button 'groupAddLabelText'
       fill_in 'labelTextLabel', with: "General Instructions"
-      fill_in 'labelTextText', with: INSTRUCTION_TEXT 
+      fill_in 'labelTextText', with: instruction_text 
 
       ui_click_node_key(key1)
       form_bc_search("C100392")
@@ -148,7 +138,7 @@ describe "Scenario 4 - BC Form", :type => :feature do
       ui_click_node_key(key1)
       click_button 'groupAddLabelText'
       fill_in 'labelTextLabel', with: "VAS Instructions"
-      fill_in 'labelTextText', with: VAS_TEXT 
+      fill_in 'labelTextText', with: vas_text 
 
       ui_click_node_key(key1)
       form_bc_search("C100397")

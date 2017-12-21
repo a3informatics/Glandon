@@ -96,7 +96,6 @@ describe "Users", :type => :feature do
       click_link 'users_button'
       expect(page).to have_content 'Index: Users'
       expect(page).to have_content 'sys_admin@example.com'      
-      expect(page).to have_content 'test_seed@example.com'      
       expect(page).to have_content 'reader@example.com'      
       expect(page).to have_content 'curator@example.com'      
       expect(page).to have_content 'content_admin@example.com'      

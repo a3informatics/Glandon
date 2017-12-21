@@ -1,10 +1,16 @@
 module ScenarioHelpers
 
-  def curator_login
-    visit '/users/sign_in'
-    fill_in 'Email', with: 'curator@example.com'
-    fill_in 'Password', with: '12345678'
-    click_button 'Log in'
+  def instruction_text
+    return "By placing a tick in one box in each group below, please indicate which " + 
+      "statements best describe your own health state today."
+  end
+
+  def vas_text
+    return "To help people say how good or bad a health state is, we have drawn a scale (rather like a thermometer) " +
+      "on which the best state you can imagine is marked 100 and the worst state you can imagine is marked 0. \n\n" +
+      "We would like you to indicate on this scale how good or bad your own health is today, in your opinion. " +
+      " Please do this by drawing a line from the box below to whichever point on the scale indicates how good or " + 
+      " bad your health state is today."
   end
 
   def scroll_to_navbar

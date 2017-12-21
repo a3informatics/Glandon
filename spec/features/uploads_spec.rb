@@ -1,12 +1,21 @@
 require 'rails_helper'
 
 describe "Upload Files", :type => :feature do
+
+  include UserAccountHelpers
   
-  before :each do
-    user = FactoryGirl.create(:user)
-    user.add_role :content_admin
+  before :all do
+    ua_create
   end
 
+  after :all do
+    ua_destroy
+  end
+
+  before :each do
+    ua_content_admin_login
+  end
+    
   def sub_dir
     return "controllers"
   end
@@ -14,11 +23,6 @@ describe "Upload Files", :type => :feature do
   describe "valid user", :type => :feature do
   
     it "allows file upload" do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'example1234'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'
       click_link 'Upload'
       expect(page).to have_content 'File Upload'
       attach_file('upload_datafile', Rails.root.join("spec/fixtures/files/features/upload.txt"))

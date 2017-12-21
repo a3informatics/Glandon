@@ -52,14 +52,13 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
     after :all do
       ua_destroy
     end
+    
+    before :each do
+      set_screen_size(1500, 900)
+      ua_curator_login
+    end
 
     it "allows Biomedical Concepts to be created", scenario: true, js: true do
-      set_screen_size(1500, 900)
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-
       click_navbar_bc
       expect_page 'Index: Biomedical Concepts'
       click_link 'New'

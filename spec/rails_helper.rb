@@ -7,7 +7,6 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'devise'
-require 'factory_girl_rails'
 require "pundit/rspec"
 require 'capybara/rspec'
 
@@ -64,6 +63,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, :type => :controller
   config.include Devise::Test::ControllerHelpers, :type => :view
   config.extend ControllerMacros, :type => :controller
+  config.extend ControllerMacros, :type => :view
   config.include(Capybara::DSL)
   config.include PauseHelpers, type: :feature
   
