@@ -35,11 +35,11 @@ describe CdiscClsController do
       params = { :id => "CL-C66741" }
       get :changes, params
       results = assigns(:results)
-    ##write_yaml_file(results, sub_dir, "cdisc_cl_controller_changes_1.yaml")
+    #write_yaml_file(results, sub_dir, "cdisc_cl_controller_changes_1.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_cl_controller_changes_1.yaml")
       expect(results).to eq(expected)
       clis = assigns(:clis)
-    ##write_yaml_file(clis, sub_dir, "cdisc_cl_controller_changes_2.yaml")
+    #write_yaml_file(clis, sub_dir, "cdisc_cl_controller_changes_2.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_cl_controller_changes_2.yaml")
       expect(clis).to eq(expected)
     end

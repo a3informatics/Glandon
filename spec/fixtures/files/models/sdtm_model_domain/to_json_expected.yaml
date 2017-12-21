@@ -45,7 +45,7 @@
 :rule: ''
 :children:
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_1
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_STUDYID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Study Identifier
   :extension_properties: []
@@ -54,7 +54,7 @@
   :name: STUDYID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_1_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_STUDYID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -66,7 +66,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_STUDYID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_2
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_DOMAIN
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Domain Abbreviation
   :extension_properties: []
@@ -75,7 +75,7 @@
   :name: DOMAIN
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_2_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_DOMAIN_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -87,7 +87,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_DOMAIN
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_3
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_USUBJID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Unique Subject Identifier
   :extension_properties: []
@@ -96,7 +96,7 @@
   :name: USUBJID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_3_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_USUBJID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -108,7 +108,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_USUBJID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_4
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_POOLID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Pool Identifier
   :extension_properties: []
@@ -117,7 +117,7 @@
   :name: POOLID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_4_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_POOLID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -129,7 +129,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_POOLID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_5
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_SPDEVID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Sponsor Device Identifier
   :extension_properties: []
@@ -138,7 +138,7 @@
   :name: SPDEVID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_5_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_SPDEVID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -150,7 +150,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_SPDEVID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_6
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSEQ
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Sequence Number
   :extension_properties: []
@@ -159,7 +159,7 @@
   :name: "--SEQ"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_6_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSEQ_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -171,7 +171,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSEQ
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_7
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxGRPID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Group ID
   :extension_properties: []
@@ -180,7 +180,7 @@
   :name: "--GRPID"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_7_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxGRPID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -192,7 +192,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxGRPID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_8
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxREFID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Reference ID
   :extension_properties: []
@@ -201,7 +201,7 @@
   :name: "--REFID"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_8_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxREFID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -213,7 +213,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxREFID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_9
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSPID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Sponsor-Defined Identifier
   :extension_properties: []
@@ -222,7 +222,7 @@
   :name: "--SPID"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_9_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSPID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -234,7 +234,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSPID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_10
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLNKID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Link ID
   :extension_properties: []
@@ -243,7 +243,7 @@
   :name: "--LNKID"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_10_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLNKID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -255,7 +255,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxLNKID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_11
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLNKGRP
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Link Group ID
   :extension_properties: []
@@ -264,7 +264,7 @@
   :name: "--LNKGRP"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_11_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLNKGRP_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -276,7 +276,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxLNKGRP
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_12
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_APID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Associated Persons Identifier
   :extension_properties: []
@@ -285,7 +285,7 @@
   :name: APID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_12_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_APID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -297,7 +297,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_APID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_13
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_RSUBJID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Related Subject
   :extension_properties: []
@@ -306,7 +306,7 @@
   :name: RSUBJID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_13_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_RSUBJID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -318,7 +318,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_RSUBJID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_14
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_RDEVID
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Related Device
   :extension_properties: []
@@ -327,7 +327,7 @@
   :name: RDEVID
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_14_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_RDEVID_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -339,7 +339,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_RDEVID
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_15
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_SREL
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Subject, Device, or Study Relationship
   :extension_properties: []
@@ -348,7 +348,7 @@
   :name: SREL
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_15_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_SREL_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -360,7 +360,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_SREL
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_16
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTRT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Name of Treatment
   :extension_properties: []
@@ -369,7 +369,7 @@
   :name: "--TRT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_16_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTRT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -381,7 +381,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxTRT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_17
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxMODIFY
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Modified Treatment Name
   :extension_properties: []
@@ -390,7 +390,7 @@
   :name: "--MODIFY"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_17_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxMODIFY_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -402,7 +402,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxMODIFY
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_18
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDECOD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Standardized Treatment Name
   :extension_properties: []
@@ -411,7 +411,7 @@
   :name: "--DECOD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_18_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDECOD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -423,7 +423,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDECOD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_19
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxMOOD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Mood
   :extension_properties: []
@@ -432,7 +432,7 @@
   :name: "--MOOD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_19_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxMOOD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -444,7 +444,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxMOOD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_20
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxCAT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Category
   :extension_properties: []
@@ -453,7 +453,7 @@
   :name: "--CAT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_20_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxCAT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -465,7 +465,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxCAT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_21
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSCAT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Subcategory
   :extension_properties: []
@@ -474,7 +474,7 @@
   :name: "--SCAT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_21_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSCAT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -486,7 +486,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSCAT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_22
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPRESP
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Pre-specified
   :extension_properties: []
@@ -495,7 +495,7 @@
   :name: "--PRESP"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_22_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPRESP_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -507,7 +507,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxPRESP
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_23
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxOCCUR
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Occurrence
   :extension_properties: []
@@ -516,7 +516,7 @@
   :name: "--OCCUR"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_23_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxOCCUR_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -528,7 +528,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxOCCUR
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_24
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTAT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Completion Status
   :extension_properties: []
@@ -537,7 +537,7 @@
   :name: "--STAT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_24_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTAT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -549,7 +549,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSTAT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_25
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxREASND
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Reason Not Done
   :extension_properties: []
@@ -558,7 +558,7 @@
   :name: "--REASND"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_25_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxREASND_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -570,7 +570,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxREASND
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_26
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxINDC
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Indication
   :extension_properties: []
@@ -579,7 +579,7 @@
   :name: "--INDC"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_26_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxINDC_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -591,7 +591,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxINDC
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_27
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxCLAS
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Class
   :extension_properties: []
@@ -600,7 +600,7 @@
   :name: "--CLAS"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_27_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxCLAS_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -612,7 +612,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxCLAS
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_28
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxCLASCD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Class Code
   :extension_properties: []
@@ -621,7 +621,7 @@
   :name: "--CLASCD"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_28_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxCLASCD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -633,7 +633,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxCLASCD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_29
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSE
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Dose
   :extension_properties: []
@@ -642,7 +642,7 @@
   :name: "--DOSE"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_29_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSE_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -654,7 +654,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDOSE
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_30
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSTXT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Dose Description
   :extension_properties: []
@@ -663,7 +663,7 @@
   :name: "--DOSTXT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_30_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSTXT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -675,7 +675,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDOSTXT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_31
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSU
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Dose Units
   :extension_properties: []
@@ -684,7 +684,7 @@
   :name: "--DOSU"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_31_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSU_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -696,7 +696,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDOSU
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_32
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSFRM
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Dose Form
   :extension_properties: []
@@ -705,7 +705,7 @@
   :name: "--DOSFRM"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_32_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSFRM_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -717,7 +717,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDOSFRM
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_33
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSFRQ
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Dosing Frequency per Interval
   :extension_properties: []
@@ -726,7 +726,7 @@
   :name: "--DOSFRQ"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_33_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSFRQ_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -738,7 +738,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDOSFRQ
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_34
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSTOT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Total Daily Dose
   :extension_properties: []
@@ -747,7 +747,7 @@
   :name: "--DOSTOT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_34_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSTOT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -759,7 +759,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDOSTOT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_35
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSRGM
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Intended Dose Regimen
   :extension_properties: []
@@ -768,7 +768,7 @@
   :name: "--DOSRGM"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_35_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSRGM_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -780,7 +780,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDOSRGM
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_36
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxROUTE
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Route of Administration
   :extension_properties: []
@@ -789,7 +789,7 @@
   :name: "--ROUTE"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_36_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxROUTE_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -801,7 +801,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxROUTE
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_37
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLOT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Lot Number
   :extension_properties: []
@@ -810,7 +810,7 @@
   :name: "--LOT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_37_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLOT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -822,7 +822,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxLOT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_38
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLOC
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Location of Dose Administration
   :extension_properties: []
@@ -831,7 +831,7 @@
   :name: "--LOC"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_38_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLOC_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -843,7 +843,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxLOC
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_39
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLAT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Laterality
   :extension_properties: []
@@ -852,7 +852,7 @@
   :name: "--LAT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_39_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLAT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -864,7 +864,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxLAT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_40
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDIR
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Directionality
   :extension_properties: []
@@ -873,7 +873,7 @@
   :name: "--DIR"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_40_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDIR_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -885,7 +885,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDIR
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_41
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPORTOT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Portion or Totality
   :extension_properties: []
@@ -894,7 +894,7 @@
   :name: "--PORTOT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_41_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPORTOT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -906,7 +906,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxPORTOT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_42
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxFAST
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Fasting Status
   :extension_properties: []
@@ -915,7 +915,7 @@
   :name: "--FAST"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_42_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxFAST_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -927,7 +927,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxFAST
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_43
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPSTRG
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Pharmaceutical Strength
   :extension_properties: []
@@ -936,7 +936,7 @@
   :name: "--PSTRG"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_43_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPSTRG_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -948,7 +948,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxPSTRG
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_44
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPSTRGU
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Pharmaceutical Strength Units
   :extension_properties: []
@@ -957,7 +957,7 @@
   :name: "--PSTRGU"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_44_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPSTRGU_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -969,7 +969,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxPSTRGU
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_45
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTRTV
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Treatment Vehicle
   :extension_properties: []
@@ -978,7 +978,7 @@
   :name: "--TRTV"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_45_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTRTV_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -990,7 +990,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxTRTV
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_46
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxVAMT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Treatment Vehicle Amount
   :extension_properties: []
@@ -999,7 +999,7 @@
   :name: "--VAMT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_46_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxVAMT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1011,7 +1011,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxVAMT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_47
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxVAMTU
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Treatment Vehicle Amount Units
   :extension_properties: []
@@ -1020,7 +1020,7 @@
   :name: "--VAMTU"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_47_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxVAMTU_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1032,7 +1032,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxVAMTU
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_48
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxADJ
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Reason for Dose Adjustment
   :extension_properties: []
@@ -1041,7 +1041,7 @@
   :name: "--ADJ"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_48_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxADJ_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1053,7 +1053,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxADJ
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_49
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_VISITNUM
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Visit Number
   :extension_properties: []
@@ -1062,7 +1062,7 @@
   :name: VISITNUM
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_49_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_VISITNUM_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1074,7 +1074,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_VISITNUM
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_50
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_VISIT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Visit Name
   :extension_properties: []
@@ -1083,7 +1083,7 @@
   :name: VISIT
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_50_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_VISIT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1095,7 +1095,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_VISIT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_51
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_VISITDY
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Planned Study Day of Visit
   :extension_properties: []
@@ -1104,7 +1104,7 @@
   :name: VISITDY
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_51_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_VISITDY_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1116,7 +1116,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_VISITDY
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_52
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_TAETORD
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Planned Order of Element within Arm
   :extension_properties: []
@@ -1125,7 +1125,7 @@
   :name: TAETORD
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_52_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_TAETORD_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1137,7 +1137,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_TAETORD
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_53
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_EPOCH
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Epoch
   :extension_properties: []
@@ -1146,7 +1146,7 @@
   :name: EPOCH
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_53_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_EPOCH_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1158,7 +1158,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_EPOCH
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_54
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDTC
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Date/Time of Collection
   :extension_properties: []
@@ -1167,7 +1167,7 @@
   :name: "--DTC"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_54_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDTC_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1179,7 +1179,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDTC
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_55
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTDTC
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Start Date/Time of Observation
   :extension_properties: []
@@ -1188,7 +1188,7 @@
   :name: "--STDTC"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_55_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTDTC_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1200,7 +1200,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSTDTC
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_56
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENDTC
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: End Date/Time of Observation
   :extension_properties: []
@@ -1209,7 +1209,7 @@
   :name: "--ENDTC"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_56_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENDTC_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1221,7 +1221,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxENDTC
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_57
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDY
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Study Day of Visit/Collection/Exam
   :extension_properties: []
@@ -1230,7 +1230,7 @@
   :name: "--DY"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_57_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDY_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1242,7 +1242,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDY
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_58
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTDY
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Study Day of Start of Observation
   :extension_properties: []
@@ -1251,7 +1251,7 @@
   :name: "--STDY"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_58_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTDY_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1263,7 +1263,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSTDY
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_59
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENDY
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Study Day of End of Observation
   :extension_properties: []
@@ -1272,7 +1272,7 @@
   :name: "--ENDY"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_59_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENDY_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1284,7 +1284,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxENDY
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_60
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDUR
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Duration
   :extension_properties: []
@@ -1293,7 +1293,7 @@
   :name: "--DUR"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_60_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDUR_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1305,7 +1305,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxDUR
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_61
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Planned Time Point Name
   :extension_properties: []
@@ -1314,7 +1314,7 @@
   :name: "--TPT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_61_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1326,7 +1326,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxTPT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_62
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPTNUM
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Planned Time Point Number
   :extension_properties: []
@@ -1335,7 +1335,7 @@
   :name: "--TPTNUM"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_62_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPTNUM_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1347,7 +1347,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxTPTNUM
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_63
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxELTM
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Planned Elapsed Time from Time Point Ref
   :extension_properties: []
@@ -1356,7 +1356,7 @@
   :name: "--ELTM"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_63_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxELTM_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1368,7 +1368,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxELTM
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_64
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPTREF
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Time Point Reference
   :extension_properties: []
@@ -1377,7 +1377,7 @@
   :name: "--TPTREF"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_64_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPTREF_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1389,7 +1389,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxTPTREF
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_65
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxRFTDTC
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Date/Time of Reference Time Point
   :extension_properties: []
@@ -1398,7 +1398,7 @@
   :name: "--RFTDTC"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_65_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxRFTDTC_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1410,7 +1410,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxRFTDTC
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_66
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTRF
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Start Relative to Reference Period
   :extension_properties: []
@@ -1419,7 +1419,7 @@
   :name: "--STRF"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_66_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTRF_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1431,7 +1431,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSTRF
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_67
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENRF
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: End Relative to Reference Period
   :extension_properties: []
@@ -1440,7 +1440,7 @@
   :name: "--ENRF"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_67_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENRF_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1452,7 +1452,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxENRF
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_68
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxEVLINT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Evaluation Interval
   :extension_properties: []
@@ -1461,7 +1461,7 @@
   :name: "--EVLINT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_68_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxEVLINT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1473,7 +1473,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxEVLINT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_69
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxEVINTX
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Evaluation Interval Text
   :extension_properties: []
@@ -1482,7 +1482,7 @@
   :name: "--EVINTX"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_69_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxEVINTX_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1494,7 +1494,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxEVINTX
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_70
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTRTPT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Start Relative to Reference Time Point
   :extension_properties: []
@@ -1503,7 +1503,7 @@
   :name: "--STRTPT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_70_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTRTPT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1515,7 +1515,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSTRTPT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_71
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTTPT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Start Reference Time Point
   :extension_properties: []
@@ -1524,7 +1524,7 @@
   :name: "--STTPT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_71_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTTPT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1536,7 +1536,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSTTPT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_72
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENRTPT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: End Relative to Reference Time Point
   :extension_properties: []
@@ -1545,7 +1545,7 @@
   :name: "--ENRTPT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_72_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENRTPT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1557,7 +1557,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxENRTPT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_73
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENTPT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: End Reference Time Point
   :extension_properties: []
@@ -1566,7 +1566,7 @@
   :name: "--ENTPT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_73_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENTPT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1578,7 +1578,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxENTPT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_74
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTINT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Planned Start of Assessment Interval
   :extension_properties: []
@@ -1587,7 +1587,7 @@
   :name: "--STINT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_74_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTINT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1599,7 +1599,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxSTINT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_75
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENINT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Planned End of Assessment Interval
   :extension_properties: []
@@ -1608,7 +1608,7 @@
   :name: "--ENINT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_75_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENINT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1620,7 +1620,7 @@
       :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
       :id: M-CDISC_SDTMMODEL_xxENINT
 - :type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-  :id: M-CDISC_SDTMMODELINTERVENTIONS_76
+  :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDETECT
   :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
   :label: Time in Days to Detection
   :extension_properties: []
@@ -1629,7 +1629,7 @@
   :name: "--DETECT"
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: M-CDISC_SDTMMODELINTERVENTIONS_76_CR1
+    :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDETECT_CR1
     :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []

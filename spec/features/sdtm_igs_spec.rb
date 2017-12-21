@@ -49,14 +49,14 @@ describe "SDTM Models", :type => :feature do
       visit '/sdtm_igs/history'
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
       find(:xpath, "//tr[contains(.,'SDTM Implementation Guide 2013-11-26')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: SDTM Implementation Guide 2013-11-26 SDTM IG (V0.0.0, 3, Standard)'
+      expect(page).to have_content 'Show: SDTM Implementation Guide 2013-11-26 SDTM IG (V3.2.0, 3, Standard)'
     end
 
     it "history allows the status page to be viewed" do
       visit '/sdtm_igs/history'
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
       find(:xpath, "//tr[contains(.,'SDTM Implementation Guide 2013-11-26')]/td/a", :text => 'Status').click
-      expect(page).to have_content 'Status: SDTM Implementation Guide 2013-11-26 SDTM IG (V0.0.0, 3, Standard)'
+      expect(page).to have_content 'Status: SDTM Implementation Guide 2013-11-26 SDTM IG (V3.2.0, 3, Standard)'
       click_link 'Close'
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
     end

@@ -113,7 +113,7 @@ describe SdtmIgDomain do
     ig = SdtmIg.build(results, sparql)
   	domains = results.select { |hash| hash[:type]=="IG_DOMAIN" }
 		result = SdtmIgDomain.build(domains[0][:instance], model, ig, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "build_sparql_expected.txt")
+  #(sparql.to_s, sub_dir, "build_sparql_expected.txt")
     expected = read_text_file_2(sub_dir, "build_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
 	#write_yaml_file(result.to_json, sub_dir, "build_expected.yaml")

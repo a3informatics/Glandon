@@ -37,7 +37,7 @@ describe CdiscClisController do
       params = { :id => "CLI-C66741_C12472" }
       get :changes, params
       results = assigns(:results)
-      #write__yaml_file(results, sub_dir, "cdisc_cli_controller_changes_1.yaml")
+    #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_1.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_cli_controller_changes_1.yaml")
       expect(results).to eq(expected)
     end
@@ -46,7 +46,7 @@ describe CdiscClisController do
       params = { :id => "CLI-C120521_C120601" }
       get :changes, params
       results = assigns(:results)
-      #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_2.yaml")
+    #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_2.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_cli_controller_changes_2.yaml")
       expect(results).to eq(expected)
     end
@@ -55,7 +55,7 @@ describe CdiscClisController do
       params = { :id => "CLI-C100145_C120601" }
       get :changes, params
       results = assigns(:results)
-      #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_3.yaml")
+    #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_3.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_cli_controller_changes_3.yaml")
       expect(results).to eq(expected)
     end
@@ -64,7 +64,7 @@ describe CdiscClisController do
       params = {:id => "CLI-C66741_C12472", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V40"}
       get :show, params
       results = assigns(:cdiscCli)
-      #write_yaml_file(results.to_json, sub_dir, "cdisc_cli_controller_show.yaml")
+    #write_yaml_file(results.to_json, sub_dir, "cdisc_cli_controller_show.yaml")
       expected = read_yaml_file(sub_dir, "cdisc_cli_controller_show.yaml")
       expect(results.to_json).to eq(expected)
     end
