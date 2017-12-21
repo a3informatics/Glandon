@@ -32,3 +32,15 @@
     - :datatype: Char
       :classification: Qualifier
       :sub_classification: Record Qualifier
+  - :name: --PARTY
+    :properties:
+    - :label: Accountable Party
+      :prefixed: true
+      :description: "Party accountable for the transferable object (e.g. device, specimen) as a result of the activity 
+        performed in the associated --TERM variable. The party could be an individual (e.g., subject), an organization 
+        (e.g., sponsor), or a location that is a proxy for an individual or organization (e.g., site). It is 
+        usually a somewhat general term that is further identified in the --PRTYID variable."
+    :references:
+    - :datatype: Char
+      :classification: Qualifier
+      :sub_classification: Record Qualifier

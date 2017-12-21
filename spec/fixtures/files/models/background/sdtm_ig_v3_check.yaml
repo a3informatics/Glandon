@@ -39,32 +39,96 @@
 - :domain: IE
   :variables: 
     :count: 16
-    :content: []
+    :content: 
+    - :name: IETESTCD
+      :properties:
+      - :label: Inclusion/Exclusion Criterion Short Name
+        :controlled_term_or_format: ""
+        :notes: "Short name of the criterion described in IETEST. The value in IETESTCD cannot be longer than 8 characters, 
+          nor can it start with a number (e.g.”1TEST”). IETESTCD cannot contain characters other than letters, numbers, 
+          or underscores. Examples: IN01, EX01."
+      :references:
+      - :compliance: Required
 - :domain: MH
   :variables: 
     :count: 24
-    :content: []
+    :content:
+    :content: 
+    - :name: MHOCCUR
+      :properties:
+      - :label: Medical History Occurrence
+        :controlled_term_or_format: (NY)
+        :notes: "Used when the occurrence of specific medical history conditions is solicited to indicate whether or not 
+          (Y/N) a medical condition (MHTERM) had ever occurred. Values are null for spontaneously reported events."
+      :references:
+      - :compliance: Permissible
 - :domain: QS
   :variables: 
     :count: 31
-    :content: []
+    :content: 
+    - :name: QSTPT
+      :properties:
+      - :label: Planned Time Point Name
+        :controlled_term_or_format: ''
+        :notes: "1. Text Description of time when questionnaire should be administered.\n2. This may be represented 
+          as an elapsed time relative to a fixed reference point, such as time of last dose. See QSTPTNUM and QSTPTREF."
+      :references:
+      - :compliance: Permissible
 - :domain: DA
   :variables: 
     :count: 23
-    :content: []
+    :content: 
+    - :name: DASPID
+      :properties:
+      - :label: Sponsor-Defined Identifier
+        :controlled_term_or_format: ''
+        :notes: "Sponsor-defined reference number. Perhaps pre-printed on the CRF as an explicit line identifier or defined in 
+         the sponsor’s operational database. Examples: Line number on the Drug Accountability page, drug label code."
+      :references:
+      - :compliance: Permissible
 - :domain: EX
   :variables: 
     :count: 36
-    :content: []
+    :content: 
+    - :name: EPOCH
+      :properties:
+      - :label: Epoch
+        :controlled_term_or_format: '(EPOCH)'
+        :notes: "Trial Epoch of the Exposure record. Examples: RUN-IN, TREATMENT."
+      :references:
+      - :compliance: Permissible
 - :domain: CO
   :variables: 
     :count: 11
-    :content: []
+    :content: 
+    - :name: COREF
+      :properties:
+      - :label: Comment Reference
+        :controlled_term_or_format: ''
+        :notes: "Sponsor-defined reference associated with the comment. May be the CRF page number (e.g. 650), or a 
+          module name (e.g. DEMOG), or a combination of information that identifies the reference (e.g. 650-VITALS-VISIT 2)."
+      :references:
+      - :compliance: Permissible
 - :domain: DM
   :variables: 
     :count: 28
-    :content: []
+    :content: 
+    - :name: SEX
+      :properties:
+      - :label: Sex
+        :controlled_term_or_format: '(SEX)'
+        :notes: "Sex of the subject."
+      :references:
+      - :compliance: Required
 - :domain: TS
   :variables:
     :count: 11
-    :content: []
+    :content: 
+    - :name: TSSEQ
+      :properties:
+      - :label: Sequence Number
+        :controlled_term_or_format: ''
+        :notes: "Sequence number given to ensure uniqueness within a dataset. Allows inclusion of multiple records for the same 
+          TSPARMCD, and can be used to join related records."
+      :references:
+      - :compliance: Required
