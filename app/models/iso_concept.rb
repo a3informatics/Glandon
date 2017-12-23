@@ -1035,7 +1035,7 @@ private
 
   def self.property_result(object, results, status, options)
     changes = false
-    changes = property_result(object.reference, results, options) if object.respond_to? :reference
+    changes = property_result(object.reference, results, status, options) if object.respond_to? :reference
     set = property_set(object)
     set.each do |k, v|
       a = b = ""
