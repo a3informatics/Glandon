@@ -122,7 +122,7 @@ class IsoManagedController < ApplicationController
   def graph
     authorize IsoManaged, :show?
     @item = IsoManaged.find(params[:id], params[:namespace])
-    @result = { uri: @item.uri.to_s, rdf_type: @item.rdf_type }
+    @result = { uri: @item.uri.to_s, rdf_type: @item.rdf_type, label: @item.label }
   end
 
   def graph_links

@@ -13,7 +13,7 @@ class IsoConceptController < ApplicationController
   def graph
     authorize IsoConcept, :show?
     concept = IsoConcept.find(params[:id], params[:namespace])
-    @result = { uri: concept.uri.to_s, rdf_type: concept.rdf_type }
+    @result = { uri: concept.uri.to_s, rdf_type: concept.rdf_type, label: concept.label }
   end
 
   def graph_links

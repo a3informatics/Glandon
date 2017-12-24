@@ -123,7 +123,7 @@ function d3gDraw(graph, click, dblclick) {
 		var yPosition = parseFloat(d3.select(this).attr("y"));
 		//Update the tooltip position and value
 		d3.select("#d3_tooltip")
-  		.style("left", xPosition + "px")
+  		.style("left", (xPosition + 50) + "px")
   		.style("top", yPosition + "px")
   		.html("<p><strong>" + typeToString[d.rdf_type] + "</strong></p><p>" + d.label + "</p>");
 		//Show the tooltip

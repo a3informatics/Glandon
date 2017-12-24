@@ -540,17 +540,19 @@ class IsoConcept
   def self.links_from(id, namespace)
     results = Array.new
     query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C, UriManagement::C_BO]) +
-      "SELECT DISTINCT ?o ?o_type ?ref_o ?ref_o_type WHERE \n" +
+      "SELECT DISTINCT ?o ?o_type ?ref_o ?ref_o_type ?o_label ?ref_o_label WHERE \n" +
       "{ \n" + 
       "  :#{id} ?p ?o . \n" +
       "  ?p rdfs:subPropertyOf isoC:link . \n" +
       "  ?o rdf:type ?o_type . \n" +
+      "  OPTIONAL { ?o rdfs:label ?o_label }\n" +
       "  OPTIONAL \n" + 
       "  { \n" +  
       "    ?o_type rdfs:subClassOf bo:Reference . \n" + 
       "    ?o ?ref_p ?ref_o . \n" +
       "    ?ref_p rdfs:subPropertyOf isoC:link . \n" + 
       "    ?ref_o rdf:type ?ref_o_type . \n" +
+      "    OPTIONAL { ?ref_o rdfs:label ?ref_o_label }\n" +
       "  } \n" +
       "}"
     #ConsoleLogger::log(C_CLASS_NAME, "links_from", "Query=#{query}")
@@ -561,13 +563,14 @@ class IsoConcept
     xmlDoc.xpath("//result").each do |node|
       i_object = ModelUtility.getValue('o', true, node)
       i_type = ModelUtility.getValue('o_type', true, node)
+      i_label = ModelUtility.getValue('o_label', false, node)
       ref_object = ModelUtility.getValue('ref_o', true, node)
       ref_type = ModelUtility.getValue('ref_o_type', true, node)
-      #ConsoleLogger::log(C_CLASS_NAME, "links_from", "Query={#{i_object}, #{i_type}, #{ref_object}, #{ref_type}}")
+      ref_label = ModelUtility.getValue('ref_o_label', false, node)
       if ref_object.empty?
-        results << { uri: UriV2.new({uri: i_object}), rdf_type: i_type, local: true}
+        results << { uri: UriV2.new({uri: i_object}), rdf_type: i_type, label: i_label, local: true}
       else
-        results << { uri: UriV2.new({uri: ref_object}), rdf_type: ref_type, local: false}
+        results << { uri: UriV2.new({uri: ref_object}), rdf_type: ref_type, label: ref_label, local: false}
       end
     end
     #ConsoleLogger::log(C_CLASS_NAME, "links_from", "Results={#{results.to_json}}.")
@@ -583,17 +586,19 @@ class IsoConcept
   def self.links_to(id, namespace)
     results = Array.new
     query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C, UriManagement::C_BO]) +
-      "SELECT DISTINCT ?s ?s_type ?ref_s ?ref_s_type WHERE \n" +
+      "SELECT DISTINCT ?s ?s_type ?ref_s ?ref_s_type ?s_label ?ref_s_label WHERE \n" +
       "{\n" +
       "  ?s ?p :#{id} .\n" + 
       "  ?s rdf:type ?s_type .\n" +
       "  ?p rdfs:subPropertyOf isoC:link .\n" +
+      "  OPTIONAL { ?s rdfs:label ?s_label }\n" +
       "  OPTIONAL\n" + 
       "  {\n" +
       "    ?s rdf:type ?c .\n" +
       "    ?c rdfs:subClassOf bo:Reference .\n" + 
       "    ?ref_s ?ref_p ?s .\n" +
       "    ?ref_s rdf:type ?ref_s_type .\n" +
+      "    OPTIONAL { ?ref_s rdfs:label ?ref_s_label } \n" +
       "  }\n" +
       "}"
     response = CRUD.query(query) 
@@ -603,13 +608,15 @@ class IsoConcept
     xmlDoc.xpath("//result").each do |node|
       s_object = ModelUtility.getValue('s', true, node)
       s_type = ModelUtility.getValue('s_type', true, node)
+      s_label = ModelUtility.getValue('s_label', false, node)
       ref_object = ModelUtility.getValue('ref_s', true, node)
       ref_type = ModelUtility.getValue('ref_s_type', true, node)
+      ref_label = ModelUtility.getValue('ref_s_label', false, node)
       #ConsoleLogger::log(C_CLASS_NAME, "links_to", "Query={#{s_object}, #{s_type}, #{ref_object}, #{ref_type}}")
       if ref_object.empty?
-        results << { uri: UriV2.new({uri: s_object}), rdf_type: s_type, local: true}
+        results << { uri: UriV2.new({uri: s_object}), rdf_type: s_type, label: s_label, local: true}
       else
-        results << { uri: UriV2.new({uri: ref_object}), rdf_type: ref_type, local: false}
+        results << { uri: UriV2.new({uri: ref_object}), rdf_type: ref_type, label: ref_label, local: false}
       end
     end
     #ConsoleLogger::log(C_CLASS_NAME, "links_to", "Results={#{results.to_json}}.")

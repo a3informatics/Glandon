@@ -176,6 +176,7 @@ $(document).ready(function() {
       node = sourceNode;
       node.name = "";
       node.type = sourceNode.rdf_type;
+      node.label = sourceNode.label;
       graph.nodes.push(node);
       index = graph.nodes.length - 1;
       nodeMap[uri] = index;

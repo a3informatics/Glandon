@@ -1220,7 +1220,7 @@ private
             if !mi_uri.nil? 
               if !map.has_key?(mi_uri.to_s)
                 managed_item = IsoManaged.find(mi_uri.id, mi_uri.namespace, false)
-                results << { uri: mi_uri, rdf_type: managed_item.rdf_type }
+                results << { uri: mi_uri, rdf_type: managed_item.rdf_type, label: managed_item.label }
                 map[mi_uri.to_s] = true
               end
             else
