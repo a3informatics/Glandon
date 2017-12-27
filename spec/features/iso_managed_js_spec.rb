@@ -47,8 +47,8 @@ describe "ISO Managed JS", :type => :feature do
       find(:xpath, "//tr[contains(.,'BC A00003')]/td/a", :text => 'Gr-').click
       expect(page).to have_content 'Graph:'
       expect(page).to have_button('graph_focus', disabled: true)
-      expect(page).to have_field('concept_type', disabled: true)
-      expect(page).to have_field('concept_label', disabled: true)
+      #expect(page).to have_field('concept_type', disabled: true) # No longer part of view
+      #expect(page).to have_field('concept_label', disabled: true) # No longer part of view
       click_button 'graph_stop'
       expect(page).to have_button('graph_focus', disabled: false)
       ua_logoff
