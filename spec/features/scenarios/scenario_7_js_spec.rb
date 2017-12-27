@@ -206,9 +206,11 @@ describe "Scenario 7 - Mixed Form", :type => :feature do
       check_audit_trail("scenario_7_audit_trail.csv")
 
       click_navbar_form
+      expect(page).to have_content 'Index: Forms'
       click_main_table_link 'MIXED', 'History'
-
+      expect(page).to have_content 'History: MIXED'
       click_main_table_link '0.1.0', 'Show'
+      expect(page).to have_content 'Show: Mixed Form'
       click_link 'Export Turtle'
       wait_for_specific_download("ACME_MIXED.ttl")
       rename_file("ACME_MIXED.ttl", "ACME_MIXED_DFT.ttl")
