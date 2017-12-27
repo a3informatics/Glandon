@@ -581,15 +581,20 @@ describe IsoManaged do
   it "finds the links to and from the managed object" do
     # Assumes data load from previous test
     mi = IsoManaged.find("BC-ACME_BC_C25347", "http://www.assero.co.uk/MDRBCs/V1")
-    expected = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}), rdf_type: "http://www.assero.co.uk/BusinessForm#Form" }
+    expected = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}), 
+      rdf_type: "http://www.assero.co.uk/BusinessForm#Form", label: "Vital Signs Baseline" }
     results = mi.find_links_from_to(from=false)
     expect(results.count).to eq(1)
     expect(results[0].to_json).to eq(expected.to_json)
     expected = []
-    expected[0] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347"}), rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" }
-    expected[1] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299"}), rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" }
-    expected[2] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208"}), rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" }
-    expected[3] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298"}), rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance" }
+    expected[0] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347"}), 
+      rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance", label: "Height (BC C25347)" }
+    expected[1] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299"}), 
+      rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance", label: "Diastolic Blood Pressure (BC C25299)" }
+    expected[2] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208"}), 
+      rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance", label: "Weight (BC C25208)" }
+    expected[3] = { uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298"}), 
+      rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance", label: "Systolic Blood Pressure (BC C25298)" }
     mi = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     results = mi.find_links_from_to()
     expect(results.count).to eq(4)

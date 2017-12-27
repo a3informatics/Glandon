@@ -51,7 +51,8 @@ describe IsoConceptController do
       result = 
       { 
         uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2",
-        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup"
+        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
+        label: "Height (BC_C25347)"
       }
       get :graph, {id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
       expect(assigns(:result)).to eq(result)

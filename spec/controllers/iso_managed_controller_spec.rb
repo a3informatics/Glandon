@@ -116,7 +116,8 @@ describe IsoManagedController do
       result = 
       { 
         uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1",
-        rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
+        rdf_type: "http://www.assero.co.uk/BusinessForm#Form",
+        label: "Vital Signs Baseline"
       }
       get :graph, {id: "F-ACME_VSBASELINE1", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
       expect(assigns(:result)).to eq(result)
@@ -127,7 +128,8 @@ describe IsoManagedController do
       [
         {
           uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347",
-          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance"
+          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance",
+          label: "Height (BC C25347)"
         },
         # Terminologies not found anymore.
         #{
@@ -136,15 +138,18 @@ describe IsoManagedController do
         #},
         {
           uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299",
-          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance"
+          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance",
+          label: "Diastolic Blood Pressure (BC C25299)"
         },
         {
           uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208",
-          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance"
+          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance",
+          label: "Weight (BC C25208)"
         },
         {
           uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298",
-          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance"
+          rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance",
+          label: "Systolic Blood Pressure (BC C25298)"
         }
       ]
       get :graph_links, {id: "F-ACME_VSBASELINE1", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
