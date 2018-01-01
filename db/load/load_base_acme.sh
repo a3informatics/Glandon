@@ -38,6 +38,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V47.
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V48.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V49.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V50.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CT_V51.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CDISC_CT_Instructions_V44.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CDISC_CT_Instructions_V49.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/CDISC_CT_Instructions_V50.ttl" $FileEndPoint
