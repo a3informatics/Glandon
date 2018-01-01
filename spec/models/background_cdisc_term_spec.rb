@@ -6,6 +6,29 @@ describe Background do
   include PauseHelpers
   include PublicFileHelpers
   include TimeHelpers
+  include BackgroundHelpers
+
+  def all_properties
+    return [ :Notation, :Definition, :"Preferred Term", :Synonym, :Identifier ] 
+  end
+
+  def extra_output
+    return false
+  end
+
+  def versions
+    return ["40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51"]
+  end
+
+  def cli(version, name)
+    return CdiscCli.find("CLI-#{name}", "http://www.assero.co.uk/MDRThesaurus/CDISC/V#{version}")
+  rescue => e
+    return nil
+  end
+
+  def cli_difference(checks)
+    item_difference(checks) { |version, name| cli(version, name) }
+  end
 
   describe "Bulk CDISC Terminology Changes" do
   	
@@ -232,6 +255,42 @@ describe Background do
 
       # December 2017
       submission_status(results, "2017-12-22", :"C120528.C128983", "Mycobacterium Tuberculosis Complex", "Mycobacterium tuberculosis Complex")
+    end
+
+    it "allows for change details to be reported" do
+      checks = 
+      [ 
+        { name: "C66734_C95101", 
+          result: [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :U], 
+          properties: [ [], [], [], [], [], [], [], [], [], [], [], [:Definition, :Synonym] ] 
+        },
+        { name: "C71150_C62256", 
+          result: [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :U], 
+          properties: [[], [], [], [], [], [], [], [], [], [], [], [:Definition, :Synonym]] 
+        },
+        { name: "C120522_C102652", 
+          result: [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :U], 
+          properties: [[], [], [], [], [], [], [], [], [], [], [], [:Definition, :Synonym]] 
+        },
+        { name: "C120522_C62259", 
+          result: [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :U], 
+          properties: [[], [], [], [], [], [], [], [], [], [], [], [:Definition, :Synonym]] 
+        },
+        { name: "C74456_C102334", 
+          result: [:C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :-, :U], 
+          properties: [[], [], [], [], [], [], [], [], [], [], [], [:Definition]] 
+        },
+        { name: "C120528_C128983", 
+          result: [:~, :~, :~, :~, :~, :~, :C, :U, :-, :-, :-, :U], 
+          properties: [[], [], [], [], [], [], [:Notation, :Definition, :"Preferred Term", :Identifier, :Synonym], [:Synonym], 
+            [], [], [], [:Notation, :"Preferred Term", :Synonym]] 
+        },
+        { name: "C71620_C48491", 
+          result: [:~, :C, :-, :-, :-, :-, :-, :-, :-, :-, :-, :U], 
+          properties: [[], all_properties, [], [], [], [], [], [], [], [], [], [:Synonym]] 
+        }
+      ]
+      cli_difference(checks)      
     end
 
   end
