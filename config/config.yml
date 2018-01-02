@@ -3,7 +3,7 @@ defaults: &defaults
   application_name: "Glandon MDR"
   application_image: "glandon.png"
   self_registration: false # Self registration enabled
-  rest_timeout: 5 # REST timeout period
+  rest_timeout: 10 # REST timeout period
   cdisc_ct_files: public/results/  # CDISC CT file directory
   ad_hoc_report_files: public/reports/  # Ad Hoc Reports directory
   max_impact_hops: 3 # Maximum hops for impact assesment
