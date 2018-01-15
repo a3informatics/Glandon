@@ -69,6 +69,15 @@ describe Api::V2::ThesaurusConceptsController, type: :controller do
       expect(response.status).to eq 404
     end
 
+    it "find a thesaurus concept empty request, error" do
+      set_http_request
+      get :index, {notationX: "ETHNIC SUBGROUP"} # Should be stripped out, key invalid
+      expected_hash = {"errors"=>["Failed to find Thesaurus Concept with {}"]}
+      result_hash = JSON.parse(response.body)
+      expect(result_hash).to eq(expected_hash)
+      expect(response.status).to eq 404
+    end
+
     it "find a thesaurus concept's parent, thesaurus concept" do
       set_http_request
       tc_p = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
