@@ -26,22 +26,17 @@ describe Form::Crf do
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("CT_V42.ttl")
     load_test_file_into_triple_store("form_crf_test_1.ttl")
+    load_test_file_into_triple_store("form_example_fields.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
   end
 
-  #it "save data as YAML" do
-  #  form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #  write_hash_to_yaml_file_2(form.to_json, sub_dir, "example_crf.yaml")
-  #end
-
   it "displays a CRF as HTML" do
     form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
     result = Form::Crf.create(form.to_json, nil, {:annotate => false})
-    #write_yaml_file(form.to_json, sub_dir, "example_crf.yaml")
-    #write_text_file_2(result, sub_dir, "example_crf.txt")
+  #write_text_file_2(result, sub_dir, "example_crf.txt")
     expected = read_text_file_2(sub_dir, "example_crf.txt")
     expect(result).to eq(expected)
   end
@@ -49,9 +44,16 @@ describe Form::Crf do
   it "displays a aCRF as HTML" do
     form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
     result = Form::Crf.create(form.to_json, form.annotations, {:annotate => true})
-    #write_yaml_file(form.to_json, sub_dir, "example_acrf.yaml")
-    #write_text_file_2(result, sub_dir, "example_acrf.txt")
-    expected = read_text_file_2(sub_dir, "example_acrf.txt")
+  #write_text_file_2(result, sub_dir, "example_acrf_1.txt")
+    expected = read_text_file_2(sub_dir, "example_acrf_1.txt")
+    expect(result).to eq(expected)
+  end
+
+  it "displays a aCRF as HTML, all field types" do
+    form = Form.find("F-ACME_TEST" , "http://www.assero.co.uk/MDRForms/ACME/V1")
+    result = Form::Crf.create(form.to_json, form.annotations, {:annotate => true})
+  #write_text_file_2(result, sub_dir, "example_acrf_2.txt")
+    expected = read_text_file_2(sub_dir, "example_acrf_2.txt")
     expect(result).to eq(expected)
   end
 

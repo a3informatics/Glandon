@@ -181,6 +181,8 @@ private
     elsif node[:datatype] == BaseDatatype::C_STRING
       length = node[:format].scan /\w/
       html += field_table([" "]*5 + ["S"] + length + [""]*5)
+    elsif node[:datatype] == BaseDatatype::C_BOOLEAN
+      html += '<input type="checkbox">'
     else
       html += field_table(["?", "?", "?"])
     end
