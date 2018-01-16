@@ -154,10 +154,12 @@
          					link_path: audit_trail_index_path, link_text: "Audit Trail"} %>
   	 		      </ul>
             <% end %>
-            <% if link_group_on_role([Upload, Background, AdHocReport]) %>
+            <% if link_group_on_role([Upload, Import, Background, AdHocReport]) %>
               <ul class="nav"> 
                 <%= render partial: "shared/link_on_user_role", :locals => {:klass => Upload, link_id: "main_nav_u", 
          					link_path: uploads_path, link_text: "Upload"} %>
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => Import, link_id: "main_nav_i", 
+                  link_path: imports_path, link_text: "Import"} %>
                 <%= render partial: "shared/link_on_user_role", :locals => {:klass => Background, link_id: "main_nav_bj", 
          					link_path: backgrounds_path, link_text: "Background Jobs"} %>
                 <%= render partial: "shared/link_on_user_role", :locals => {:klass => AdHocReport, link_id: "main_nav_ahr", 
