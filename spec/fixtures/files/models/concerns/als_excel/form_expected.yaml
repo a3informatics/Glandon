@@ -1,0 +1,396 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: ''
+:namespace: ''
+:label: Demographics Library
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2018-01-16T14:02:37+00:00'
+:last_changed_date: '2018-01-16T14:02:37+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: ''
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Not_Set
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Not_Set
+:scoped_identifier:
+  :id: ''
+  :identifier: DM ALL
+  :version_label: ''
+  :version: 0
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Main Group
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: BRTHDAT
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: ''
+    :question_text: Date of Birth
+    :mapping: BRTHDAT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: BRTHTIM
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: time
+    :format: ''
+    :question_text: Time of Birth
+    :mapping: BRTHTIM
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AGE
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '5'
+    :question_text: Age
+    :mapping: AGE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AGEU
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '6'
+    :question_text: Unit
+    :mapping: AGEU
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66781_C25529
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66781_C25301
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66781_C29844
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 4
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66781_C29846
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 5
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66781_C29848
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: SEX
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Sex
+    :mapping: SEX
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66731_C20197
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66731_C16576
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: ETHNIC
+    :extension_properties: []
+    :ordinal: 6
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '22'
+    :question_text: Ethnicity
+    :mapping: ETHNIC
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66790_C17459
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66790_C41222
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66790_C17998
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 4
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66790_C43234
+  - :type: http://www.assero.co.uk/BusinessForm#TextLabel
+    :id: ''
+    :namespace: ''
+    :label: Prompt_RACE
+    :extension_properties: []
+    :ordinal: 7
+    :note: ''
+    :completion: ''
+    :optional: false
+    :label_text: "<html><i>Race (Check all that apply):</i></html>"
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RAIAN
+    :extension_properties: []
+    :ordinal: 8
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: American Indian or Alaska Native
+    :mapping: RAIAN
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RASIAN
+    :extension_properties: []
+    :ordinal: 9
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Asian
+    :mapping: RASIAN
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RBLACK
+    :extension_properties: []
+    :ordinal: 10
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: "\\Black/Black or African American\\"
+    :mapping: RBLACK
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RNHOPI
+    :extension_properties: []
+    :ordinal: 11
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Native Hawaiian or Other Pacific Islander
+    :mapping: RNHOPI
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RWHITE
+    :extension_properties: []
+    :ordinal: 12
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: White
+    :mapping: RWHITE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RJAPAN
+    :extension_properties: []
+    :ordinal: 13
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Japanese
+    :mapping: RJAPAN
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RNREP
+    :extension_properties: []
+    :ordinal: 14
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Not Reported
+    :mapping: RNREP
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RUNK
+    :extension_properties: []
+    :ordinal: 15
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Unknown
+    :mapping: RUNK
+    :children: []
+  :repeating: false
+  :bc_ref: {}

@@ -143,6 +143,13 @@ Rails.application.routes.draw do
     end
   end
   resources :uploads
+
+  # Imports
+  resources :imports, :only => [:index]
+  namespace :imports do
+    resources :als, :only => [:new, :index, :create]
+  end
+
   resources :notepads do
     collection do
       get :index_term
