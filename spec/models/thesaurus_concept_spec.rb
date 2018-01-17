@@ -81,15 +81,17 @@ describe ThesaurusConcept do
   end
 
   it "finds by properties, single" do
-  	tc = ThesaurusConcept.find("THC-A00021", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-  	results = ThesaurusConcept.find_by_property({identifier: "A00021"}, "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-  	expect(results[0].to_json).to eq(tc.to_json)
+  	tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expected = ThesaurusConcept.find("THC-A00002", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  	results = tc.find_by_property({identifier: "A00002"})
+  	expect(results[0].to_json).to eq(expected.to_json)
 	end
 
   it "finds by properties, multiple" do
-  	tc = ThesaurusConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-  	results = ThesaurusConcept.find_by_property({notation: "ETHNIC SUBGROUP", preferredTerm: "Ethnic Subgroup"}, "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-  	expect(results[0].to_json).to eq(tc.to_json)
+    tc = ThesaurusConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  	expected = ThesaurusConcept.find("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  	results = tc.find_by_property({notation: "ETHNIC SUBGROUP [1]", preferredTerm: "Ethnic Subgroup 1"})
+  	expect(results[0].to_json).to eq(expected.to_json)
 	end
 
   it "allows a new child TC to be added" do

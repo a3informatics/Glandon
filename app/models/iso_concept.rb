@@ -166,25 +166,28 @@ class IsoConcept
   # Find by Property value
   #
   # @param params [Hash] name value pairs of search parameters
+  # @param relationships [String] array of relationship names from source uri to children
   # @param rdf_type [string] The RDF type
   # @param schema_namespace [string] The schema namespace
-  # @param instance_namespace [string] The instance namespace
   # @return [Array] array of Uri objects
-  def self.find_by_property(params, rdf_type, schema_namespace, instance_namespace)
+  def find_by_property(params, relationships, rdf_type, schema_namespace)
     results = []
-    prefix = UriManagement.getPrefix(schema_namespace)
-    prefix_set = []
-    prefix_set << prefix
-    query = UriManagement.buildNs(instance_namespace, prefix_set) +
-      "SELECT ?a ?b WHERE \n{ \n  ?a rdf:type #{prefix}:#{rdf_type} . \n"
-    params.each { |name, value| query += "  ?a #{prefix}:#{name} \"#{value}\" . \n" }
-    query += "  FILTER(STRSTARTS(STR(?a), \"#{instance_namespace}\")) \n}"
+    properties = ""
+    params.each { |name, value| properties += "  ?s :#{name} \"#{value}\" ." }
+    path = relationships.map { |r| "^:#{r}" }.join('|')
+    query = %Q{ 
+      #{UriManagement.buildNs(schema_namespace, [])}
+      SELECT ?s WHERE
+      {
+        #{properties}
+        ?s rdf:type :#{rdf_type} .
+        ?s (#{path})* #{self.uri.to_ref} .
+      }
+    }    
     response = CRUD.query(query)
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      results << UriV2.new(uri: ModelUtility.getValue('a', true, node))
-    end
+    xmlDoc.xpath("//result").each { |node| results << UriV2.new(uri: ModelUtility.getValue('s', true, node)) }
     return results
   end
 

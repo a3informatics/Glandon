@@ -62,11 +62,10 @@ class ThesaurusConcept < IsoConcept
   # Find by Property values
   #
   # @param params [Hash] hash containing search parameters
-  # @param namespace [String] the namespace to be search within
   # @return [Array] array of ThesaurusConcept objects
-  def self.find_by_property(params, namespace)
+  def find_by_property(params)
     results = []
-    uris = IsoConcept.find_by_property(params, C_RDF_TYPE, C_SCHEMA_NS, namespace)
+    uris = super(params, ["hasChild"], C_RDF_TYPE, C_SCHEMA_NS)
     uris.each { |x| results << ThesaurusConcept.find(x.id, x.namespace)}
     return results
   end

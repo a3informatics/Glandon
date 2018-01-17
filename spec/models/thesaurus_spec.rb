@@ -98,6 +98,20 @@ describe Thesaurus do
     expect(th.to_json).to eq(result_th)
   end
 
+  it "finds by properties, single" do
+    th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expected = ThesaurusConcept.find("THC-A00002", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    results = th.find_by_property({identifier: "A00002"})
+    expect(results[0].to_json).to eq(expected.to_json)
+  end
+
+  it "finds by properties, multiple" do
+    th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expected = ThesaurusConcept.find("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    results = th.find_by_property({notation: "ETHNIC SUBGROUP [1]", preferredTerm: "Ethnic Subgroup 1"})
+    expect(results[0].to_json).to eq(expected.to_json)
+  end
+
   it "allows all records to be retrieved" do
     results = Thesaurus.all
     expect(results.count).to eq(5) # Another added for new test

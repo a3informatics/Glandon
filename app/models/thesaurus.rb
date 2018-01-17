@@ -124,6 +124,17 @@ class Thesaurus <  IsoManaged
     return result
   end
 
+  # Find by Property values
+  #
+  # @param params [Hash] hash containing search parameters
+  # @return [Array] array of ThesaurusConcept objects
+  def find_by_property(params)
+    results = []
+    uris = super(params, ["hasConcept", "hasChild"], ThesaurusConcept::C_RDF_TYPE, C_SCHEMA_NS)
+    uris.each { |x| results << ThesaurusConcept.find(x.id, x.namespace)}
+    return results
+  end
+
   def self.all
     return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
   end
