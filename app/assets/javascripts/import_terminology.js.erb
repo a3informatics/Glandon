@@ -1,0 +1,93 @@
+var itUri = "";
+var itFilename = "";
+
+// Import Terminology view
+$(document).ready( function() {
+  var itp = new ImportTermPanel();
+});
+
+// Import Term Panel
+function ImportTermPanel() {
+  this.iclp = new ImportCodeListPanel();
+
+  var _this = this;
+  
+  $('#list_button').click(function() {
+    var uri = $('#thesaurus').val();
+    var filename = $('#filename').val();
+    if (uri === "" || filename === null) {
+      displayError("You need to seelct a terminology and a file.");
+    } else {
+      _this.iclp.refresh(uri, filename);
+    }
+  });
+ 
+}
+
+// Import Code List Panel
+function ImportCodeListPanel() {
+  var _this = this;
+  this.uri = "";
+  this.filename = "";
+  this.table = $('#list_table').DataTable( {
+    "columns": [
+      {"data" : "identifier"},
+      {"data" : "label"}
+    ],
+    ajax: {
+      url: "/imports/terms",
+      data: function (d) {
+        d.imports = {};
+        d.imports.filename = itFilename;
+        d.imports.uri = itUri;
+      },
+      error: function (xhr, status, error) {
+        var html = alertError("An error has occurred loading the Code List table.");
+        displayAlerts(html);
+      }
+    },
+    select: {
+      style: 'multi'
+    },
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "language": {
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    }
+  });
+
+  $('#import_button').click(function() {
+    identifiers = [];
+    data = _this.table.rows({selected: true}).data();
+    for (i=0; i<data.length; i++) {
+      identifiers.push(data[i].identifier);
+    }
+    _this.import(identifiers);
+  });
+
+}
+ 
+ImportCodeListPanel.prototype.refresh = function(uri, filename) {
+  itUri = uri;
+  itFilename = filename;
+  this.table.ajax.reload();
+}
+
+ImportCodeListPanel.prototype.import = function(identifiers) {
+  identifier = identifiers.pop();
+  $.ajax({
+    url: "/imports/terms",
+    data: { imports: { "filename": itFilename, "uri": itUri, "identifier": identifier} },
+    type: 'POST',
+    dataType: 'json',
+    success: function(result) {
+      if (identifiers.length > 0) {
+        _this.import(identifiers);
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+    }
+  });
+}

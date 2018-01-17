@@ -195,12 +195,14 @@ private
     thcs = []
     ths ||= Thesaurus.current_set
     ths.each { |th| thcs += ThesaurusConcept.find_by_property({notation: notation}, th.namespace) }
+byebug
     if thcs.empty?
-      return {cl: nil, note: "No entries for code list #{notation}."}
+      return {cl: nil, note: "No entries found for code list #{notation}."}
     elsif thcs.count == 1
       return {cl: thcs.first, note: ""}
     else
-      return {cl: nil, note: "Multiple entries found code list #{notation}, ignored." }
+      entries = thcs.map { |tc| tc.identifier }.join(',')
+      return {cl: nil, note: "Multiple entries [#{entries}] found for code list #{notation}, ignored." }
     end
   end
 

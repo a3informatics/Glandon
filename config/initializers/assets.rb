@@ -24,6 +24,7 @@ Rails.application.config.assets.version = '1.0'
   ad_hoc_report_results
   markdown_editor
   background_index 
+  import_terminology
 	biomedical_concepts_editor biomedical_concept_template_new
 	thesauri_editor thesauri_viewer thesauri_search_new thesauri_field_editor thesauri_impact
 	thesaurus_concept_list_panel

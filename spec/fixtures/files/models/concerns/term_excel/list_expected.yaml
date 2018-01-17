@@ -1,0 +1,611 @@
+---
+- :identifier: SN000067
+  :label: Duration of Symptoms
+  :notation: CEDURATI
+- :identifier: SN000716
+  :label: Primary Cause of Death
+  :notation: DDPRCS
+- :identifier: SN000730
+  :label: Action Taken with Study Treatment Collected
+  :notation: ACNC
+- :identifier: SN000005
+  :label: Action Taken with Study Treatment Numeric
+  :notation: ACNN
+- :identifier: SN000004
+  :label: Antibody Test Code
+  :notation: ABTESTCD
+- :identifier: SN000003
+  :label: Antibody Test Name
+  :notation: ABTEST
+- :identifier: SN000583
+  :label: Reason for Treatment
+  :notation: TRTRSN
+- :identifier: SN000006
+  :label: Reason Adjustment of Treatment
+  :notation: ADJRSN
+- :identifier: SN000014
+  :label: Subcategory of Adverse Event
+  :notation: AESCATEG
+- :identifier: SN000008
+  :label: Category of Adverse Event
+  :notation: AECATEG
+- :identifier: SN000636
+  :label: Setting Hospitalization
+  :notation: HOSP
+- :identifier: SN000066
+  :label: Category of Clinical Event
+  :notation: CECAT
+- :identifier: SN000011
+  :label: Event Dictionary Version
+  :notation: AEDICTV
+- :identifier: SN000012
+  :label: Relationship to Study Treatment
+  :notation: AERELA
+- :identifier: SN000013
+  :label: Relationship to Study Treatment Numeric
+  :notation: AERELAN
+- :identifier: SN000015
+  :label: Severity/Intensity Scale for Adverse Events Numeric
+  :notation: AESEVN
+- :identifier: SN000016
+  :label: Proposed Adverse Event Term
+  :notation: AETERM
+- :identifier: SN000018
+  :label: Age Group (EudraCT)
+  :notation: AGEGRPE
+- :identifier: SN000019
+  :label: Age Group (EudraCT) Numeric
+  :notation: AGEGRPEN
+- :identifier: SN000021
+  :label: Age Group (Pediatric) Numeric
+  :notation: AGEGRPPN
+- :identifier: SN001929
+  :label: Reporting Vital Signs Parameter Label
+  :notation: VSLPARM
+- :identifier: SN000020
+  :label: Age Group (Pediatric)
+  :notation: AGEGRPP
+- :identifier: SN000306
+  :label: Type of Reference Ranges
+  :notation: RANGTYPE
+- :identifier: SN000024
+  :label: Baseline Type
+  :notation: BASETYPE
+- :identifier: SN000025
+  :label: BCLC Staging System
+  :notation: BCLCSTG
+- :identifier: SN000058
+  :label: M Staging
+  :notation: CDMSTAGE
+- :identifier: SN000059
+  :label: N Staging
+  :notation: CDNSTAGE
+- :identifier: SN001923
+  :label: Reporting Laboratory Paremeter Label
+  :notation: LBLPARM
+- :identifier: SN000193
+  :label: Eastern Cooperative Oncology Group Performance Status Questionnaire Results
+  :notation: ECOG1R
+- :identifier: SN000190
+  :label: Asthma Control  - 6 Item Questionnaire Results for Question Type 4
+  :notation: ACQ6094R
+- :identifier: SN000481
+  :label: Obstetrical History
+  :notation: PV_OBS
+- :identifier: SN000517
+  :label: Race Numeric
+  :notation: RACEN
+- :identifier: SN000556
+  :label: SMQ Search Strategy Numeric
+  :notation: SMQSCPN
+- :identifier: SN000555
+  :label: SMQ Search Strategy
+  :notation: SMQSCOPE
+- :identifier: SN000550
+  :label: Shift of Normality from Baseline Numeric
+  :notation: SHIFT2N
+- :identifier: SN000549
+  :label: Shift of Normality from Baseline
+  :notation: SHIFT2
+- :identifier: SN000551
+  :label: Shift from Baseline Numeric
+  :notation: SHIFTN
+- :identifier: SN000082
+  :label: Child Pugh - Ascites
+  :notation: CHPUGH2
+- :identifier: SN000081
+  :label: Child Pugh - Encephalopathy Grade
+  :notation: CHPUGH1
+- :identifier: SN000086
+  :label: Child Pugh Score for INR
+  :notation: CHPUGH6
+- :identifier: SN000085
+  :label: Child Pugh - Prothrombin Time
+  :notation: CHPUGH5
+- :identifier: SN000084
+  :label: Child Pugh - Serum Albumin
+  :notation: CHPUGH4
+- :identifier: SN000083
+  :label: Child Pugh - Serum Bilirubin
+  :notation: CHPUGH3
+- :identifier: SN000062
+  :label: External Data Type
+  :notation: CDTYP
+- :identifier: SN001915
+  :label: Diagnosis of Cerebrovascular Event
+  :notation: CECEDIAG
+- :identifier: SN001910
+  :label: Subcategory of Medical History
+  :notation: HISSCAT
+- :identifier: SN001907
+  :label: Dengue Serotype
+  :notation: DGSERO
+- :identifier: SN000712
+  :label: Reason for Code Breaking
+  :notation: DSCBBRKR
+- :identifier: SN000710
+  :label: Code Breaker
+  :notation: DSCBWHOR
+- :identifier: SN000705
+  :label: Disease Status
+  :notation: DSTAT
+- :identifier: SN000701
+  :label: Duration of Time Unit
+  :notation: DURU
+- :identifier: SN000699
+  :label: Deviation Classification
+  :notation: DVCLAS
+- :identifier: SN000691
+  :label: Alteration Type
+  :notation: ALTTYP
+- :identifier: SN000688
+  :label: Subject or Representant Withdrawal Reason
+  :notation: SUBWREA
+- :identifier: SN000646
+  :label: Glasgow Scale Total Score
+  :notation: GLASGWTS
+- :identifier: SN000644
+  :label: IDMC Severity Assessment
+  :notation: IDMCSEV
+- :identifier: SN000640
+  :label: Subcategory for Disposition Event
+  :notation: DSSCAT
+- :identifier: SN000637
+  :label: Diagnosis of Cardiac Ischemic Event
+  :notation: CEIEDIAG
+- :identifier: SN000633
+  :label: Relationship to Abnormality
+  :notation: ABNREL
+- :identifier: SN000415
+  :label: Pharmacokinetic Test Code
+  :notation: PCTESTCD
+- :identifier: SN000414
+  :label: Pharmacokinetic Test Short Name
+  :notation: PCTEST
+- :identifier: SN000601
+  :label: Physical Examination Test Code
+  :notation: PETESTCD
+- :identifier: SN000600
+  :label: Physical Examination Test
+  :notation: PETEST
+- :identifier: SN000450
+  :label: Body Systems of Physical Examination Test Code
+  :notation: PHYTSTCD
+- :identifier: SN000449
+  :label: Body Systems of Physical Examination Test
+  :notation: PHYTEST
+- :identifier: SN000612
+  :label: Severity and Intensity Scale for Adverse Events
+  :notation: AESEVMD
+- :identifier: SN000522
+  :label: Rhythm and Conduction Test Code
+  :notation: RCTESTCD
+- :identifier: SN000521
+  :label: Rhythm and Conduction Test Name
+  :notation: RCTEST
+- :identifier: SN000588
+  :label: Therapy Type
+  :notation: TXTYPE
+- :identifier: SN000080
+  :label: Childhood Health Assessment Questionnaire Test Name
+  :notation: CHAQ01TN
+- :identifier: SN000079
+  :label: Childhood Health Assessment Questionnaire Test Code
+  :notation: CHAQ01TC
+- :identifier: SN000577
+  :label: Common Terminology Criteria for Adverse Events V4.0 Abbreviated
+  :notation: TOXGRV4A
+- :identifier: SN000231
+  :label: Findings About Category
+  :notation: FACAT
+- :identifier: SN000009
+  :label: Laboratory Category
+  :notation: LBCATEG
+- :identifier: SN000339
+  :label: Laboratory Test Method
+  :notation: LBMETHOD
+- :identifier: SN000092
+  :label: Method of Collection
+  :notation: COLMETH
+- :identifier: SN000563
+  :label: Start Relative to Reference Time Point
+  :notation: STRTPT
+- :identifier: SN000185
+  :label: Contact Method
+  :notation: DSMETHOD
+- :identifier: SN000536
+  :label: Type of Sample
+  :notation: SAMTYPE
+- :identifier: SN000711
+  :label: Method of Code Breaking
+  :notation: DSCBMETH
+- :identifier: SN000350
+  :label: Measurement Method
+  :notation: MEASMETH
+- :identifier: SN000528
+  :label: Reporting Reference Range Indicator
+  :notation: RNRIND
+- :identifier: SN000527
+  :label: Relation to Reference Period Subset (BEFORE, DURING, DURING/AFTER, AFTER,
+    and U)
+  :notation: RF
+- :identifier: SN000523
+  :label: Randomization
+  :notation: RDM
+- :identifier: SN000341
+  :label: Subcategory of Laboratory
+  :notation: LBSCATEG
+- :identifier: SN000566
+  :label: Amount of Substance
+  :notation: SUAM
+- :identifier: SN000292
+  :label: Category of Medical History
+  :notation: HISCAT
+- :identifier: SN000367
+  :label: Proposed Medical History Term
+  :notation: MHTERM
+- :identifier: SN000053
+  :label: Clinical Case Definition of Diarrhea Episode
+  :notation: CCDDE
+- :identifier: SN000330
+  :label: Informed Consent
+  :notation: INFCST
+- :identifier: SN000469
+  :label: Overall Stage Grouping
+  :notation: PROGSTG
+- :identifier: SN000061
+  :label: T Staging
+  :notation: CDTSTAGE
+- :identifier: SN000351
+  :label: Category of Medication
+  :notation: MEDCAT
+- :identifier: SN000352
+  :label: Subcategory of Medication
+  :notation: MEDSCAT
+- :identifier: SN000377
+  :label: Multiple Myeloma Hematologic Cancer Subtype
+  :notation: MMHCTYP
+- :identifier: SN000524
+  :label: Category of Respiratory System Findings
+  :notation: RECAT
+- :identifier: SN000406
+  :label: Origin of the Data
+  :notation: ORIGIN
+- :identifier: SN000617
+  :label: Medication Dictionary Version
+  :notation: CMDICTV
+- :identifier: SN000391
+  :label: Not Done/Normal/Abnormal Status
+  :notation: NDNORABN
+- :identifier: SN000388
+  :label: Not Applicable/Normal/Abnormal Status
+  :notation: NANORABN
+- :identifier: SN000387
+  :label: Medication Time Classification
+  :notation: MTC
+- :identifier: SN000101
+  :label: Category for Comments
+  :notation: COCOMCAT
+- :identifier: SN000280
+  :label: Group
+  :notation: GROUP
+- :identifier: SN000452
+  :label: Predicted Phenotype
+  :notation: PPTYP
+- :identifier: SN000348
+  :label: Localization
+  :notation: LOCAL
+- :identifier: SN000714
+  :label: Diagnosis Confirmation Method
+  :notation: DGCONFRM
+- :identifier: SN000713
+  :label: Disease Staging
+  :notation: DISSTG
+- :identifier: SN000195
+  :label: Deviation Category
+  :notation: DVCAT
+- :identifier: SN000698
+  :label: Duplicate Information
+  :notation: DVDUP
+- :identifier: SN000696
+  :label: Review Flag
+  :notation: DVFL
+- :identifier: SN000349
+  :label: Anatomical Location Code
+  :notation: LOCCD
+- :identifier: SN000199
+  :label: Final Status of the Deviation
+  :notation: DVFSTAT
+- :identifier: SN000200
+  :label: Deviation Sub-Category
+  :notation: DVSCAT
+- :identifier: SN000201
+  :label: Deviation Source
+  :notation: DVSOURCE
+- :identifier: SN000205
+  :label: SC Education Level
+  :notation: EDUCATE
+- :identifier: SN000690
+  :label: ECG Category (Clinical)
+  :notation: EGCAT
+- :identifier: SN000211
+  :label: ECG Subcategory (Clinical)
+  :notation: EGSCAT
+- :identifier: SN000208
+  :label: ECG Category
+  :notation: EGCATEG
+- :identifier: SN000209
+  :label: ECG Complex
+  :notation: EGCOMP
+- :identifier: SN000210
+  :label: ECG Reading Method
+  :notation: EGREAMET
+- :identifier: SN000212
+  :label: ECG Source
+  :notation: EGSOURCE
+- :identifier: SN000213
+  :label: Treatment Emergent Period
+  :notation: EMERP
+- :identifier: SN000340
+  :label: Laboratory Qualitative Results
+  :notation: LBQUAL
+- :identifier: SN000229
+  :label: Cancer Diagnosis Extent
+  :notation: EXTENT
+- :identifier: SN000237
+  :label: Tumor Complete Metabolic Response by PET
+  :notation: FDGPETSC
+- :identifier: SN000279
+  :label: Grading
+  :notation: GRADSTG
+- :identifier: SN000288
+  :label: Healthcare Type
+  :notation: HEALTYPE
+- :identifier: SN000332
+  :label: Initial Prolonged
+  :notation: INIPROL
+- :identifier: SN000293
+  :label: Histopathology
+  :notation: HISTOL
+- :identifier: SN000304
+  :label: Hypoglycemia Period
+  :notation: HYPOPER
+- :identifier: SN000325
+  :label: Inclusion Exclusion Criterion Number
+  :notation: IECRITNO
+- :identifier: SN000337
+  :label: Karnofsky Score Definition
+  :notation: KARNOFDF
+- :identifier: SN000336
+  :label: Karnofsky Score
+  :notation: KARNOF
+- :identifier: SN000310
+  :label: Description Inclusion/Exclusion Criteria
+  :notation: IE_TI
+- :identifier: SN000342
+  :label: Lab Type
+  :notation: LBTYPE
+- :identifier: SN000345
+  :label: Type of Lesion
+  :notation: LESTYPE
+- :identifier: SN000375
+  :label: Meal Amount
+  :notation: MLAMT
+- :identifier: SN000376
+  :label: Meal Type
+  :notation: MLTYPE
+- :identifier: SN000383
+  :label: Mood
+  :notation: MOOD
+- :identifier: SN000394
+  :label: Normalized Identifier Numeric
+  :notation: NORMEDN
+- :identifier: SN000393
+  :label: Normalized Identifier
+  :notation: NORMED
+- :identifier: SN000397
+  :label: Null Flavor
+  :notation: NULLFLAV
+- :identifier: SN000407
+  :label: Outcome of Event Numeric
+  :notation: OUTN
+- :identifier: SN000408
+  :label: Pregnancy Outcome
+  :notation: OUTPRG
+- :identifier: SN000410
+  :label: Pharmacokinetic Concentrations Category
+  :notation: PCCATEG
+- :identifier: SN000412
+  :label: PCSA Direction of Criteria
+  :notation: PCSAHLO
+- :identifier: SN000413
+  :label: PCSA Criteria Version
+  :notation: PCSAV
+- :identifier: SN001932
+  :label: Subcategory of Physical Examination
+  :notation: PESCAT
+- :identifier: SN000423
+  :label: Category of Examination
+  :notation: PECATEG
+- :identifier: SN000470
+  :label: Protocol Version
+  :notation: PROTVER
+- :identifier: SN000474
+  :label: Reason for Procedure
+  :notation: PRRSN
+- :identifier: SN000476
+  :label: Subcategory of Procedures (Clinical)
+  :notation: PRSCATEG
+- :identifier: SN000121
+  :label: Subcategory of Procedures
+  :notation: PRSCAT
+- :identifier: SN000479
+  :label: Delivery Mode
+  :notation: PV_DELMODE
+- :identifier: SN000480
+  :label: Child/Fetus Outcome
+  :notation: PV_OUTCOME
+- :identifier: SN000525
+  :label: Regimen
+  :notation: REGMEN
+- :identifier: SN000533
+  :label: Tumor Response Original Result
+  :notation: RSORRES
+- :identifier: SN000535
+  :label: SC Salary
+  :notation: SALARY
+- :identifier: SN000548
+  :label: Shift from Baseline
+  :notation: SHIFT
+- :identifier: SN000564
+  :label: Study Period
+  :notation: STUDP
+- :identifier: SN000569
+  :label: Category of Substance Use
+  :notation: SUUSECAT
+- :identifier: SN000568
+  :label: Category for Substance Use
+  :notation: SUCAT
+- :identifier: SN000625
+  :label: Type of Substance Use
+  :notation: SUUSETYP
+- :identifier: SN000572
+  :label: Transplant Type
+  :notation: TRANSTYP
+- :identifier: SN000573
+  :label: Treatment Administration
+  :notation: TRTADM
+- :identifier: SN000582
+  :label: Treatment Emergent Classification
+  :notation: TRTEM
+- :identifier: SN000465
+  :label: Category for Procedures
+  :notation: PRCAT
+- :identifier: SN000643
+  :label: White Blood Cell Count
+  :notation: WBCC
+- :identifier: SN000506
+  :label: Subcategory of Questionnaire
+  :notation: QSSCAT
+- :identifier: SN000214
+  :label: End Relative to Reference Time Point
+  :notation: ENRTPT
+- :identifier: SN000721
+  :label: Asthma Control  - 6 Item Questionnaire Results for Question Type 2
+  :notation: ACQ6092R
+- :identifier: SN000116
+  :label: Subcategory of Antibodies
+  :notation: ABSCAT
+- :identifier: SN000642
+  :label: Category of Physical Examination
+  :notation: PECAT
+- :identifier: SN000424
+  :label: Physical Exam Category
+  :notation: PECATEGO
+- :identifier: SN000307
+  :label: Version of Controlled Terminology
+  :notation: CTVERS
+- :identifier: SN000631
+  :label: Subcategory of External Data Type
+  :notation: CDSTYP
+- :identifier: SN000234
+  :label: Findings About Subcategory
+  :notation: FASCAT
+- :identifier: SN000124
+  :label: Subcategory for Disease Status
+  :notation: TTSCAT
+- :identifier: SN000645
+  :label: Localization of Rash
+  :notation: RASHLOC
+- :identifier: SN000707
+  :label: Asthma Control Questionnaire - 6 Item Questionnaire Test Name
+  :notation: ACQ609TN
+- :identifier: SN000186
+  :label: Asthma Control Questionnaire - 6 Item Questionnaire Test Code
+  :notation: ACQ609TC
+- :identifier: SN001909
+  :label: Age Range
+  :notation: AGERANG
+- :identifier: SN000206
+  :label: Category of Exposure
+  :notation: EXCAT
+- :identifier: SN001911
+  :label: Category of Meal
+  :notation: MLCAT
+- :identifier: SN000692
+  :label: Category of Ophthalmic Examination
+  :notation: OECAT
+- :identifier: SN000720
+  :label: Subcategory of Ophtalmological Examination
+  :notation: OESCAT
+- :identifier: SN001912
+  :label: Category for Agent
+  :notation: AGCAT
+- :identifier: SN000148
+  :label: Category for Reproductive System Findings
+  :notation: RPCAT
+- :identifier: SN001916
+  :label: Menarchal Status
+  :notation: MENARCHE
+- :identifier: SN001918
+  :label: Child Health Assessment Questionnaire Abilities to Function in Daily Life
+  :notation: CHAQABIL
+- :identifier: SN001922
+  :label: Laboratory Parameter Code - United States
+  :notation: LBPARUCD
+- :identifier: SN001921
+  :label: Laboratory Parameter - United States
+  :notation: LBPARMUS
+- :identifier: SN001920
+  :label: Laboratory Parameters Code
+  :notation: LBPARMCD
+- :identifier: SN001919
+  :label: Laboratory Parameter
+  :notation: LBPARM
+- :identifier: SN001924
+  :label: Potentially Clinically Significant Abnormalities High Low Category
+  :notation: PCSACAT
+- :identifier: SN001926
+  :label: Vital Signs Parameter Code
+  :notation: VSPARMCD
+- :identifier: SN001925
+  :label: Vital Signs Parameter
+  :notation: VSPARM
+- :identifier: SN001890
+  :label: Asthma Control  - 6 Item Questionnaire Results for Question Type 3
+  :notation: ACQ6093R
+- :identifier: SN000192
+  :label: Asthma Control - 6 Item Questionnaire Results for Question Type 6
+  :notation: ACQ6096R
+- :identifier: SN000187
+  :label: Asthma Control  - 6 Item Questionnaire Results for Question Type 1
+  :notation: ACQ6091R
+- :identifier: SN000578
+  :label: Common Terminology Criteria for Adverse Events V4.0 Numeric
+  :notation: TOXGRV4N
+- :identifier: SN000128
+  :label: Category of Cancer Diagnosis
+  :notation: CGCAT
+- :identifier: SN000123
+  :label: Category for Disease Status
+  :notation: TTCAT
