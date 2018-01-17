@@ -4,14 +4,12 @@ class Imports::AlsController < ApplicationController
   before_action :files, only: [:new, :index]
   
   def new
-    @upload = Upload.new
     @als = Import::Als.new
     @forms = []
     render "index"
   end
 
   def index
-    @upload = Upload.new
     @als = Import::Als.new
     if params[:imports].blank?
       flash[:error] = "A file must be selected."
