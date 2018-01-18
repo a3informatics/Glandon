@@ -241,25 +241,25 @@ describe IsoConcept do
 	  end
 
 		it "find by properties, ThesaurusConcept identifier" do
-      concept = Thesaurus.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      concept = IsoConcept.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
 	    results = concept.find_by_property({identifier: "C62122"}, ["hasConcept", "hasChild"], "ThesaurusConcept", "http://www.assero.co.uk/ISO25964")
 			expect(results[0].to_s).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62122")  
 	  end
 
 		it "find by properties, ThesaurusConcept, notation" do
-	    concept = Thesaurus.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      concept = IsoConcept.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
       results = concept.find_by_property({notation: "BPI125"}, ["hasConcept", "hasChild"], "ThesaurusConcept", "http://www.assero.co.uk/ISO25964")
       expect(results[0].to_s).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C100162_C100339")  
 	  end
 
 		it "find by properties, ThesaurusConcept, notation and identifier" do
-	    concept = Thesaurus.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+      concept = IsoConcept.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
       results = concept.find_by_property({notation: "BPI125", identifier: "C100339"}, ["hasConcept", "hasChild"], "ThesaurusConcept", "http://www.assero.co.uk/ISO25964")
       expect(results[0].to_s).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C100162_C100339")  
 	  end
 
-		it "find by properties, ThesaurusConcept, notation and identifier" do
-	    concept = Thesaurus.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+		it "find by properties, ThesaurusConcept, notation and identifier, fail" do
+      concept = IsoConcept.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
       results = concept.find_by_property({notation: "BPI125", identifier: "C100339x"}, ["hasConcept", "hasChild"], "ThesaurusConcept", "http://www.assero.co.uk/ISO25964")
       expect(results.length).to eq(0)  
 	  end
