@@ -172,6 +172,8 @@ class SdtmModel < Tabular
     json = super
     json[:children] = []
     json[:class_refs] = []
+    self.children.sort_by! {|u| u.ordinal}
+    self.class_refs.sort_by! {|u| u.ordinal}
     self.children.each { |c| json[:children] << c.to_json }
     self.class_refs.each { |ref| json[:class_refs] << ref.to_json }
     return json

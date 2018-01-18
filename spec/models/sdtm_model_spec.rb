@@ -47,6 +47,8 @@ describe SdtmModel do
     item = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
   #write_yaml_file(item.to_json, sub_dir, "find_input.yaml")
     expected = read_yaml_file(sub_dir, "find_input.yaml")
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
+    expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
   end
 
@@ -77,12 +79,16 @@ describe SdtmModel do
     item = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
   #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
     expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
+    expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
   end
 
 	it "allows the model to be created from JSON" do 
 		expected = read_yaml_file(sub_dir, "from_json_input_1.yaml")
     item = SdtmModel.from_json(expected)
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
+    expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
 	end
 
@@ -91,6 +97,8 @@ describe SdtmModel do
     item = SdtmModel.from_json(input)
   #write_yaml_file(item.to_json, sub_dir, "from_json_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "from_json_expected_2.yaml")
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
+    expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
 	end
 
@@ -125,7 +133,9 @@ describe SdtmModel do
     expect(sparql.to_s).to eq(expected)
 	#write_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
     expected = read_yaml_file(sub_dir, "build_expected.yaml")
-		expect(result.to_json).to eq(expected)
+		expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
+    expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
+    expect(result.to_json).to eq(expected)
 		expect(result.errors.full_messages.to_sentence).to eq("")
 		expect(result.errors.count).to eq(0)
   end

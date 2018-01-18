@@ -124,7 +124,8 @@ class SdtmModelDomain < Tabular
   # @return [Hash] the object hash 
   def to_json
     json = super
-    json[:children] = Array.new
+    json[:children] = []
+    self.children.sort_by! {|u| u.ordinal}
     self.children.each do |child|
       json[:children] << child.to_json
     end
