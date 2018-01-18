@@ -195,7 +195,6 @@ private
     thcs = []
     ths ||= Thesaurus.current_set
     ths.each { |th| thcs += ThesaurusConcept.find_by_property({notation: notation}, th.namespace) }
-byebug
     if thcs.empty?
       return {cl: nil, note: "No entries found for code list #{notation}."}
     elsif thcs.count == 1
