@@ -39,6 +39,10 @@ class AlsExcel
   end
 
   def form(identifier)
+    # Get the set of current terminologies
+    thesauri = []
+    Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find(uri.id, uri.namespace, false) }
+    # Process form
     label = get_label(identifier)
     return if !@errors.empty?
     result = new_form(identifier, label)
@@ -60,7 +64,7 @@ class AlsExcel
         question.ordinal = item[:ordinal]
         question.note = ""
         if !item[:code_list].empty? 
-          cl_result = get_cl(item[:code_list])
+          cl_result = get_cl(item[:code_list], thesauri)
           if !cl_result[:cl].nil?
             read_data_dictionary_entries_sheet(item[:code_list]).each do |entry|
               cli = cl_result[:cl].children.find { |x| x.notation == entry[:code]}
@@ -191,10 +195,9 @@ private
     return results
   end
   
-  def get_cl(notation)
+  def get_cl(notation, thesauri)   
     thcs = []
-    ths ||= Thesaurus.current_set
-    ths.each { |th| thcs += ThesaurusConcept.find_by_property({notation: notation}, th.namespace) }
+    thesauri.each { |th| thcs += th.find_by_property({notation: notation}) }
     if thcs.empty?
       return {cl: nil, note: "No entries found for code list #{notation}."}
     elsif thcs.count == 1
