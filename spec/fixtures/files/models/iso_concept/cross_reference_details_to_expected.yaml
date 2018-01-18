@@ -1,2 +1,17 @@
---- '[{"uri":{"scheme":"http","authority":"www.assero.co.uk","path":"MDRThesaurus/CDISC/V42","prefix":"CLI","uid":"C100144_C103635","version":""},"comments":"Linking
-  v46 to v42 for some reason","cross_references":[{"scheme":"http","authority":"www.assero.co.uk","path":"MDRThesaurus/CDISC/V46","prefix":"CLI","uid":"C71148_C62122","version":""}]}]'
+---
+- :uri: !ruby/object:UriV2
+    scheme: http
+    authority: www.assero.co.uk
+    path: MDRThesaurus/CDISC/V42
+    prefix: CLI
+    uid: C100144_C103635
+    version: ''
+  :comments: Linking v46 to v42 for some reason
+  :cross_references:
+  - !ruby/object:UriV2
+    scheme: http
+    authority: www.assero.co.uk
+    path: MDRThesaurus/CDISC/V46
+    prefix: CLI
+    uid: C71148_C62122
+    version: ''

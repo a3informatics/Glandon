@@ -21,6 +21,29 @@ describe IsoConcept do
 		end
 	end
 
+  def compare_cross_references(result, expected)
+    expect(result.count).to eq(expected.count)
+    result.each do |r|
+      item = expected.find { |e| e[:uri].to_s == r[:uri].to_s }
+      expect(item).to_not be_nil
+    puts "#{item[:uri].to_s} == #{r[:uri].to_s}"
+      expect(item[:rdf_type]).to eq(r[:rdf_type])
+    puts "#{item[:rdf_type]} == #{r[:rdf_type].to_s}"
+    end
+  end
+
+  def compare_cross_reference_details(result, expected)
+    expect(result.count).to eq(expected.count)
+    result.each do |r|
+      item = expected.find { |e| e[:uri].to_s == r[:uri].to_s }
+      expect(item).to_not be_nil
+    puts "#{item[:uri].to_s} == #{r[:uri].to_s}"
+      expect(item[:comments]).to eq(r[:comments])
+    puts "#{item[:comments]} == #{r[:comments].to_s}"
+      expect(item[:cross_references].map { |m| m.to_s }).to match_array(r[:cross_references].map { |m| m.to_s })
+    end
+  end
+
 	context "Main Tests" do
 
 	  before :all do
@@ -970,32 +993,32 @@ describe IsoConcept do
 
 		it "allows the cross references from the object and children to be determined" do
 	    result = IsoConcept.cross_references("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46", :from)
-	  #write_yaml_file(result.to_json, sub_dir, "cross_references_from_expected.yaml")
+	  #write_yaml_file(result, sub_dir, "cross_references_from_expected.yaml")
 	    expected = read_yaml_file(sub_dir, "cross_references_from_expected.yaml")
-	    expect(result.to_json).to eq(expected)
+	    compare_cross_references(result, expected)
 		end
 	    
 		it "allows the cross references to the object and children to be determined" do
 	  	result = IsoConcept.cross_references("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", :to)
-	  #write_yaml_file(result.to_json, sub_dir, "cross_references_to_expected.yaml")
+	  #write_yaml_file(result, sub_dir, "cross_references_to_expected.yaml")
 	    expected = read_yaml_file(sub_dir, "cross_references_to_expected.yaml")
-	    expect(result.to_json).to eq(expected)
+      compare_cross_references(result, expected)
 	  end
 
 		it "allows the cross references from the object to be determined" do
 			ic = IsoConcept.find("CLI-C71148_C62122", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
 			result = ic.cross_reference_details(:from)
-	  #write_yaml_file(result.to_json, sub_dir, "cross_references_details_from_expected.yaml")
+	  #write_yaml_file(result, sub_dir, "cross_references_details_from_expected.yaml")
 	    expected = read_yaml_file(sub_dir, "cross_references_details_from_expected.yaml")
-	    expect(result.to_json).to eq(expected)
+      compare_cross_reference_details(result, expected)
 		end
 
 		it "allows the cross references to the object to be determined" do
 			ic = IsoConcept.find("CLI-C100144_C103635", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
 			result = ic.cross_reference_details(:to)
-	  #write_yaml_file(result.to_json, sub_dir, "cross_reference_details_to_expected.yaml")
+	  #write_yaml_file(result, sub_dir, "cross_reference_details_to_expected.yaml")
 	    expected = read_yaml_file(sub_dir, "cross_reference_details_to_expected.yaml")
-	    expect(result.to_json).to eq(expected)
+	    compare_cross_reference_details(result, expected)
 		end
 
 	end
