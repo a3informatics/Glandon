@@ -136,7 +136,7 @@ class Thesaurus <  IsoManaged
   end
 
   def self.all
-    return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
+    return all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
   end
 
   def self.list

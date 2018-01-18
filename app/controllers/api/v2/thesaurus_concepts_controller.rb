@@ -6,8 +6,9 @@ class Api::V2::ThesaurusConceptsController < Api::V2::BaseController
     results = []
     ths = Thesaurus.current_set
     if the_params.length > 0
-    	ths.each do |th|
-    		thcs = ThesaurusConcept.find_by_property(the_params, th.namespace)
+    	ths.each do |uri|
+        th = Thesaurus.find(uri.id, uri.namespace, false)
+    		thcs = th.find_by_property(the_params)
     		thcs.each do |tc|
     			tc.set_parent
     			results << tc.to_json

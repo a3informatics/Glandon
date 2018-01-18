@@ -353,7 +353,7 @@ private
   	results.each do |result|
   		result[:new_cl].each do |cl|
 	  		sources = []
-  			parent = find_terminology({identifier: cl}, current_ct.namespace)
+  			parent = find_terminology({identifier: cl}, current_ct)
 	  		if !parent.nil?
 		  		if result[:new_cli].empty?
 		  			sources << parent
@@ -373,7 +373,7 @@ private
 		  			cr = CrossReference.new
 						cr.comments = result[:instructions]
 						cr.ordinal = get_ordinal(source, ordinals)
-						previous = find_terminology({identifier: result[:previous_cl]}, previous_ct.namespace)
+						previous = find_terminology({identifier: result[:previous_cl]}, previous_ct)
 						if !previous.nil?	
 							if result[:previous_cli].empty?
 				  			cr.children << create_operational_ref(previous, source, ordinal)
@@ -497,8 +497,8 @@ private
  		self.update(status: "Complete. Unsuccessful import. #{text}.", percentage: 100, complete: true, completed: Time.now())
  	end
 
- 	def find_terminology(params, namespace)
- 		tcs = ThesaurusConcept.find_by_property(params, namespace)
+ 	def find_terminology(params, in_object)
+ 		tcs = in_object.find_by_property(params)
     return tcs[0] if tcs.length == 1
     return nil
   end
