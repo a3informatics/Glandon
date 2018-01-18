@@ -202,12 +202,13 @@ class SdtmUserDomain < Tabular
     json[:notes] = self.notes
     json[:model_ref] = self.model_ref.to_json
     json[:ig_ref] = self.ig_ref.to_json
-    json[:children] = Array.new
-    json[:bc_refs] = Array.new
+    json[:children] = []
+    json[:bc_refs] = []
+    self.children.sort_by! {|u| u.ordinal}
+    self.bc_refs.sort_by! {|u| u.ordinal}
     self.children.each do |child|
       json[:children] << child.to_json
     end
-    json[:children] = json[:children].sort_by {|item| item[:ordinal]}
     self.bc_refs.each do |child|
       json[:bc_refs] << child.to_json
     end

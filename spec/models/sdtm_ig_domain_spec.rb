@@ -39,6 +39,7 @@ describe SdtmIgDomain do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
   #write_yaml_file(item.to_json, sub_dir, "find_expected.yaml")
     expected = read_yaml_file(sub_dir, "find_expected.yaml")
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
   end
 
@@ -75,12 +76,14 @@ describe SdtmIgDomain do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
   #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
     expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
   end
 
   	it "allows the domain class to be created from JSON" do 
 		expected = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIgDomain.from_json(expected)
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
 	end
 
@@ -118,6 +121,7 @@ describe SdtmIgDomain do
     expect(sparql.to_s).to eq(expected)
 	#write_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
     expected = read_yaml_file(sub_dir, "build_expected.yaml")
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
 		expect(result.to_json).to eq(expected)
 		expect(result.errors.count).to eq(0)
   end

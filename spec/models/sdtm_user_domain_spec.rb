@@ -46,9 +46,7 @@ describe SdtmUserDomain do
   it "allows all domains to be found" do
     result = SdtmUserDomain.all 
     expect(result.count).to eq(3)
-    expect(result[0].identifier).to eq("DM Domain")
-    expect(result[1].identifier).to eq("VS Domain")
-    expect(result[2].identifier).to eq("DS Domain")
+    expect(result.map{ |x| x.identifier }).to match_array(["DM Domain", "VS Domain", "DS Domain"])
   end
   
   it "allows all unique domains to be found" do
@@ -175,6 +173,7 @@ describe SdtmUserDomain do
     expect(item.bc_refs.count).to eq(bc_count - 2)
   #write_yaml_file(item.to_json, sub_dir, "add_3_expected.yaml")
     expected = read_yaml_file(sub_dir, "add_3_expected.yaml")
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
   end
   
@@ -190,6 +189,7 @@ describe SdtmUserDomain do
     expect(item.bc_refs.count).to eq(bc_count - 1)
   #write_yaml_file(item.to_json, sub_dir, "add_4_expected.yaml")
     expected = read_yaml_file(sub_dir, "add_4_expected.yaml")
+    expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
   end
   

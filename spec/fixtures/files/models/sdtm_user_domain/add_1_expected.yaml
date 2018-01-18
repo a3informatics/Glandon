@@ -1862,18 +1862,6 @@
   :property_refs: []
 :bc_refs:
 - :type: http://www.assero.co.uk/BusinessOperational#BcReference
-  :id: D-ACME_VSDomain_BCR3
-  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-  :label: BC Reference
-  :extension_properties: []
-  :enabled: true
-  :optional: false
-  :ordinal: 3
-  :local_label: ''
-  :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRBCs/V1
-    :id: BC-ACME_BC_C16358
-- :type: http://www.assero.co.uk/BusinessOperational#BcReference
   :id: D-ACME_VSDomain_BCR2
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
   :label: BC Reference
@@ -1885,3 +1873,15 @@
   :subject_ref:
     :namespace: http://www.assero.co.uk/MDRBCs/V1
     :id: BC-ACME_BC_C49677
+- :type: http://www.assero.co.uk/BusinessOperational#BcReference
+  :id: D-ACME_VSDomain_BCR3
+  :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+  :label: BC Reference
+  :extension_properties: []
+  :enabled: true
+  :optional: false
+  :ordinal: 3
+  :local_label: ''
+  :subject_ref:
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :id: BC-ACME_BC_C16358

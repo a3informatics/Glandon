@@ -124,7 +124,8 @@ class SdtmIgDomain < Tabular
     json[:prefix] = self.prefix
     json[:structure] = self.structure
     json[:model_ref] = self.model_ref.to_json
-    json[:children] = Array.new
+    json[:children] = []
+    self.children.sort_by! {|u| u.ordinal}
     self.children.each do |child|
       json[:children] << child.to_json
     end
