@@ -8,7 +8,7 @@ $(document).ready( function() {
 
 // Import Term Panel
 function ImportTermPanel() {
-  this.iclp = new ImportCodeListPanel();
+  this.iclp = new ImportCodeListPanel(this.status);
 
   var _this = this;
   
@@ -24,11 +24,17 @@ function ImportTermPanel() {
  
 }
 
+ImportTermPanel.prototype.status = function(operating) {
+  $('#list_button').prop('disabled', operating);
+}
+
 // Import Code List Panel
-function ImportCodeListPanel() {
+function ImportCodeListPanel(callback) {
   var _this = this;
+  this.callback = callback;
   this.uri = "";
   this.filename = "";
+  $('#import_spinner').prop('disabled', true);
   this.table = $('#list_table').DataTable( {
     "columns": [
       {"data" : "identifier"},
@@ -46,9 +52,7 @@ function ImportCodeListPanel() {
         displayAlerts(html);
       }
     },
-    select: {
-      style: 'multi'
-    },
+    select: { style: 'multi' },
     "pageLength": pageLength, // Gloabl setting
     "lengthMenu": pageSettings, // Gloabl setting
     "processing": true,
@@ -63,6 +67,8 @@ function ImportCodeListPanel() {
     for (i=0; i<data.length; i++) {
       identifiers.push(data[i].identifier);
     }
+    _this.table.rows({ selected: true }).deselect();
+    _this.status(true);
     _this.import(identifiers);
   });
 
@@ -71,10 +77,12 @@ function ImportCodeListPanel() {
 ImportCodeListPanel.prototype.refresh = function(uri, filename) {
   itUri = uri;
   itFilename = filename;
+  this.table.clear().draw();
   this.table.ajax.reload();
 }
 
 ImportCodeListPanel.prototype.import = function(identifiers) {
+  var _this = this;
   identifier = identifiers.pop();
   $.ajax({
     url: "/imports/terms",
@@ -84,10 +92,25 @@ ImportCodeListPanel.prototype.import = function(identifiers) {
     success: function(result) {
       if (identifiers.length > 0) {
         _this.import(identifiers);
+      } else {
+        _this.status(false);
       }
     },
     error: function(xhr,status,error){
+      _this.status(false);
       handleAjaxError(xhr, status, error);
     }
   });
+}
+
+ImportCodeListPanel.prototype.status = function(operating) {
+  this.callback(operating);
+  $('#import_button').prop('disabled', operating);
+  if (operating) {
+    spAddSpinner("#import_spinner");
+    this.table.select.style('api'); // Disables selection
+  } else {
+    spRemoveSpinner("#import_spinner");
+    this.table.select.style('multi');
+  }
 }

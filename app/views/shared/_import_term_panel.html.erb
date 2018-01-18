@@ -5,7 +5,7 @@
   <div class="panel-body">
     <%= form_for @term, url: imports_terms_path, method: :get do |f| %>
       <div class="form-group">
-        <%= label_tag :thesaurus, "Files:" %><br/>
+        <%= label_tag :thesaurus, "Import to Terminology (Status = 'Incomplete'):" %><br/>
         <%= select_tag(:thesaurus, options_for_select(@th.map{ |t| [t.label, t.uri] }), class: "form-control" ) %>
       </div>
       <div class="form-group">

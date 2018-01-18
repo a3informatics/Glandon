@@ -107,8 +107,9 @@ private
       next if cl_identifier != identifier
       code_list = { label: check_cell(row, 1), synonym: "", identifier: identifier, definition: check_cell(row, 8), 
         notation: check_cell(row, 2), preferredTerm: C_NOT_SET } if !cl_set
-      items << { label: C_NOT_SET, synonym: "", identifier: check_cell(row, 10), definition: check_cell(row, 11), 
-        notation: check_cell(row, 12), preferredTerm: preferred_term(row) }
+      pt_and_label = preferred_term(row)
+      items << { label: pt_and_label, synonym: "", identifier: check_cell(row, 10), definition: check_cell(row, 11), 
+        notation: check_cell(row, 12), preferredTerm: pt_and_label }
       cl_set = true
     end
     return {code_list: code_list, items: items}

@@ -24,7 +24,6 @@ class Import::Term
     add_params(results[:code_list], th.namespace)
     cl = th.add_child(results[:code_list])
     return cl if !cl.errors.empty?
-byebug
     results[:items].each do |cli| 
       add_params(cli, th.namespace)
       cli = cl.add_child(cli)

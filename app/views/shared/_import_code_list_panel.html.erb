@@ -1,4 +1,5 @@
-<%= javascript_include_tag 'standard_datatable' %>
+<%= stylesheet_link_tag    'spinner' %>
+<%= javascript_include_tag 'standard_datatable', 'spinner' %>
 <style>
   #list_table_processing {
     border: none;
@@ -19,6 +20,11 @@
       <tbody>
       </tbody>
     </table>
-    <button type="button" id="import_button" class="btn btn-success">Import</button>
+    <div class="btn-group" role="group" aria-label="First group">
+      <button id="import_spinner" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-refresh"></span>
+      </button>
+      <button type="button" id="import_button" class="btn btn-success">Import</button>
+    </div>
   </div>
 </div>
