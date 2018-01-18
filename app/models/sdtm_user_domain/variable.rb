@@ -103,6 +103,7 @@ class SdtmUserDomain::Variable < Tabular::Column
       json[:variable_ref] = {}
     end
     json[:property_refs] = []
+    self.property_refs.sort_by! {|u| u.ordinal}
     self.property_refs.each { |x| json[:property_refs] << x.to_json}
     return json
   end

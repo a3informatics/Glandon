@@ -417,18 +417,6 @@
       :id: IG-CDISC_SDTMIGVS_VSTESTCD
   :property_refs:
   - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V7_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C16358_DefinedObservation_nameCode_CD_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
     :id: D-ACME_VSDomain_V7_PR2
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: BC Property Reference
@@ -440,6 +428,18 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRBCs/V1
       :id: BC-ACME_BC_C49677_DefinedObservation_nameCode_CD_code
+  - :type: http://www.assero.co.uk/BusinessOperational#PReference
+    :id: D-ACME_VSDomain_V7_PR3
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: BC Property Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 3
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_BC_C16358_DefinedObservation_nameCode_CD_code
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V8
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -495,18 +495,6 @@
       :id: IG-CDISC_SDTMIGVS_VSTEST
   :property_refs:
   - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V8_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C16358_DefinedObservation_nameCode_CD_originalText_ED_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
     :id: D-ACME_VSDomain_V8_PR2
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: BC Property Reference
@@ -518,6 +506,18 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRBCs/V1
       :id: BC-ACME_BC_C49677_DefinedObservation_nameCode_CD_originalText_ED_value
+  - :type: http://www.assero.co.uk/BusinessOperational#PReference
+    :id: D-ACME_VSDomain_V8_PR3
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: BC Property Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 3
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_BC_C16358_DefinedObservation_nameCode_CD_originalText_ED_value
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V9
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -681,18 +681,6 @@
       :id: IG-CDISC_SDTMIGVS_VSPOS
   :property_refs:
   - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V11_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C16358_PerformedObservation_bodyPositionCode_CD_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
     :id: D-ACME_VSDomain_V11_PR2
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: BC Property Reference
@@ -704,6 +692,18 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRBCs/V1
       :id: BC-ACME_BC_C49677_PerformedObservation_bodyPositionCode_CD_code
+  - :type: http://www.assero.co.uk/BusinessOperational#PReference
+    :id: D-ACME_VSDomain_V11_PR3
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: BC Property Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 3
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_BC_C16358_PerformedObservation_bodyPositionCode_CD_code
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V12
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -759,18 +759,6 @@
       :id: IG-CDISC_SDTMIGVS_VSORRES
   :property_refs:
   - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V12_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C16358_PerformedClinicalResult_value_PQR_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
     :id: D-ACME_VSDomain_V12_PR2
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: BC Property Reference
@@ -782,6 +770,18 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRBCs/V1
       :id: BC-ACME_BC_C49677_PerformedClinicalResult_value_PQR_value
+  - :type: http://www.assero.co.uk/BusinessOperational#PReference
+    :id: D-ACME_VSDomain_V12_PR3
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: BC Property Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 3
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_BC_C16358_PerformedClinicalResult_value_PQR_value
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V13
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -837,18 +837,6 @@
       :id: IG-CDISC_SDTMIGVS_VSORRESU
   :property_refs:
   - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V13_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C16358_PerformedClinicalResult_value_PQR_code
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
     :id: D-ACME_VSDomain_V13_PR2
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: BC Property Reference
@@ -860,6 +848,18 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRBCs/V1
       :id: BC-ACME_BC_C49677_PerformedClinicalResult_value_PQR_code
+  - :type: http://www.assero.co.uk/BusinessOperational#PReference
+    :id: D-ACME_VSDomain_V13_PR3
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: BC Property Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 3
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_BC_C16358_PerformedClinicalResult_value_PQR_code
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V14
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
@@ -1543,18 +1543,6 @@
       :id: IG-CDISC_SDTMIGVS_VSDTC
   :property_refs:
   - :type: http://www.assero.co.uk/BusinessOperational#PReference
-    :id: D-ACME_VSDomain_V26_PR3
-    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
-    :label: BC Property Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRBCs/V1
-      :id: BC-ACME_BC_C16358_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
-  - :type: http://www.assero.co.uk/BusinessOperational#PReference
     :id: D-ACME_VSDomain_V26_PR2
     :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
     :label: BC Property Reference
@@ -1566,6 +1554,18 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRBCs/V1
       :id: BC-ACME_BC_C49677_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
+  - :type: http://www.assero.co.uk/BusinessOperational#PReference
+    :id: D-ACME_VSDomain_V26_PR3
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: BC Property Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 3
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRBCs/V1
+      :id: BC-ACME_BC_C16358_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value
 - :type: http://www.assero.co.uk/BusinessDomain#UserVariable
   :id: D-ACME_VSDomain_V27
   :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
