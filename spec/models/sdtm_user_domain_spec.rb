@@ -147,7 +147,7 @@ describe SdtmUserDomain do
     item.add(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count + 2)
-  write_yaml_file(item.to_json, sub_dir, "add_1_expected.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "add_1_expected.yaml")
     expected = read_yaml_file(sub_dir, "add_1_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -171,7 +171,7 @@ describe SdtmUserDomain do
     item.remove(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count - 2)
-  write_yaml_file(item.to_json, sub_dir, "add_3_expected.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "add_3_expected.yaml")
     expected = read_yaml_file(sub_dir, "add_3_expected.yaml")
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
@@ -187,7 +187,7 @@ describe SdtmUserDomain do
     item.remove(params)
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     expect(item.bc_refs.count).to eq(bc_count - 1)
-  write_yaml_file(item.to_json, sub_dir, "add_4_expected.yaml")
+  #write_yaml_file(item.to_json, sub_dir, "add_4_expected.yaml")
     expected = read_yaml_file(sub_dir, "add_4_expected.yaml")
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
