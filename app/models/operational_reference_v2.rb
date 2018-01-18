@@ -163,10 +163,10 @@ class OperationalReferenceV2 < IsoConcept
     uri = super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => uri}
     sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "#{C_TO_LINK_MAP[ref_type]}"}, {:uri => self.subject_ref })
-    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "true", :primitive_type => "boolean"})
-    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "false", :primitive_type => "boolean"})
+    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "enabled"}, {:literal => "#{self.enabled}", :primitive_type => "boolean"})
+    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "optional"}, {:literal => "#{self.optional}", :primitive_type => "boolean"})
     sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "ordinal"}, {:literal => "#{ordinal}", :primitive_type => "positiveInteger"})
-    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "local_label"}, {:literal => "#{local_label}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "local_label"}, {:literal => "#{self.local_label}", :primitive_type => "string"})
     return uri
   end
 

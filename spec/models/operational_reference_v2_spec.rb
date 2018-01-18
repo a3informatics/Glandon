@@ -443,6 +443,35 @@ describe OperationalReferenceV2 do
     expect(sparql.to_s).to eq(result)
   end
 
+  it "allows an object to be exported as SPARQL, Branched From Reference, Optional True, Enabled False" do
+    sparql = SparqlUpdateV2.new
+    result = 
+      "PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "INSERT DATA \n" +
+      "{ \n" + 
+      "<http://www.example.com/path#parent_XXX1> rdf:type <http://www.assero.co.uk/BusinessOperational#BReference> . \n" +
+      "<http://www.example.com/path#parent_XXX1> rdfs:label \"Branched From Reference\"^^xsd:string . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:branchedFrom <http://www.example.com/path#fragement> . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:enabled \"false\"^^xsd:boolean . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:optional \"true\"^^xsd:boolean . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:ordinal \"1\"^^xsd:positiveInteger . \n" +
+      "<http://www.example.com/path#parent_XXX1> bo:local_label \"****local****\"^^xsd:string . \n" + 
+      "}"
+    item = OperationalReferenceV2.new
+    item.rdf_type = "http://www.example.com/path#rdf_test_type"
+    item.label = "label"
+    item.enabled = false
+    item.optional = true
+    item.local_label = "****local****"
+    item.subject_ref = UriV2.new({:id => "fragement", :namespace => "http://www.example.com/path"})
+    item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), "branchedFrom", "XXX", 1, sparql)
+    expect(sparql.to_s).to eq(result)
+  end
+
   it "allows an object to be exported as JSON" do
     result = 
       {
