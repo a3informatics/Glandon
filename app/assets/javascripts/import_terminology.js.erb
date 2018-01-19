@@ -34,8 +34,10 @@ function ImportCodeListPanel(callback) {
   this.callback = callback;
   this.uri = "";
   this.filename = "";
+  this.error_count = 0;
   $('#import_spinner').prop('disabled', true);
-  this.table = $('#list_table').DataTable( {
+  $('#error_table_div').hide();
+  this.listTable = $('#list_table').DataTable( {
     "columns": [
       {"data" : "identifier"},
       {"data" : "label"}
@@ -60,14 +62,22 @@ function ImportCodeListPanel(callback) {
       "processing": "<img src='<%= asset_path('processing.gif') %>'>"
     }
   });
+  this.errorTable = $('#error_table').DataTable( {
+    "columns": [
+      {"data" : "index"},
+      {"data" : "error"}
+    ],
+    "pageLength": pageLength, // Global setting
+    "lengthMenu": pageSettings, // Global setting
+  });
 
   $('#import_button').click(function() {
     identifiers = [];
-    data = _this.table.rows({selected: true}).data();
+    data = _this.listTable.rows({selected: true}).data();
     for (i=0; i<data.length; i++) {
       identifiers.push(data[i].identifier);
     }
-    _this.table.rows({ selected: true }).deselect();
+    _this.listTable.rows({ selected: true }).deselect();
     _this.status(true);
     _this.import(identifiers);
   });
@@ -77,8 +87,11 @@ function ImportCodeListPanel(callback) {
 ImportCodeListPanel.prototype.refresh = function(uri, filename) {
   itUri = uri;
   itFilename = filename;
-  this.table.clear().draw();
-  this.table.ajax.reload();
+  this.listTable.clear().draw();
+  this.listTable.ajax.reload();
+  this.errorTable.clear().draw();
+  this.error_count = 0;
+  $('#error_table_div').hide();
 }
 
 ImportCodeListPanel.prototype.import = function(identifiers) {
@@ -90,6 +103,11 @@ ImportCodeListPanel.prototype.import = function(identifiers) {
     type: 'POST',
     dataType: 'json',
     success: function(result) {
+      for (var i=0; i<result.errors.length; i++) {
+        _this.error_count += 1;
+        _this.errorTable.row.add({ "index": _this.error_count, "error": result.errors[i]});
+      }
+      _this.errorTable.draw();
       if (identifiers.length > 0) {
         _this.import(identifiers);
       } else {
@@ -108,9 +126,15 @@ ImportCodeListPanel.prototype.status = function(operating) {
   $('#import_button').prop('disabled', operating);
   if (operating) {
     spAddSpinner("#import_spinner");
-    this.table.select.style('api'); // Disables selection
+    this.listTable.select.style('api'); // Disables selection
+    this.errorTable.clear().draw();
+    this.error_count = 0;
+    $('#error_table_div').hide();
   } else {
     spRemoveSpinner("#import_spinner");
-    this.table.select.style('multi');
+    this.listTable.select.style('multi');
+    if (this.error_count > 0) {
+      $('#error_table_div').show();
+    }
   }
 }

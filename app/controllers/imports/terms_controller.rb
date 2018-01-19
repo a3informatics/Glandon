@@ -24,11 +24,7 @@ class Imports::TermsController < ApplicationController
   def create
     term = Import::Term.new
     object = term.import(the_params)
-    if !object.errors.empty?
-      render :json => { errors: object.errors.full_messages }, :status => 422
-    else
-      render :json => { errors: [] }, :status => 200
-    end
+    render :json => { errors: object.errors.full_messages }, :status => 200
   end
   
 private
