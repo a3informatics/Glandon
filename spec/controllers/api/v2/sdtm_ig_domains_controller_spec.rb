@@ -51,6 +51,7 @@ describe Api::V2::SdtmIgDomainsController, type: :controller do
       result_hash = JSON.parse(response.body)
     #write_yaml_file(result_hash, sub_dir, "show_expected_1.yaml")  
       expected = read_yaml_file(sub_dir, "show_expected_1.yaml")
+      expected["children"].sort_by! {|u| u["ordinal"]} # Use old results file, re-order before comparison
       expect(result_hash).to eq(expected)
       expect(response.status).to eq 200
     end

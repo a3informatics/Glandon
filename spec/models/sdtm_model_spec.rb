@@ -26,6 +26,15 @@ describe SdtmModel do
     clear_iso_registration_state_object
   end
 
+  def check_model(result, expected)
+    expect(result[:children].count).to eq(expected[:children].count)
+    result[:children].each do |r|
+      item = expected[:children].find { |e| e[:id] == r[:id] }
+      expect(item).to_not be_nil
+      expect(r).to eq(item)
+    end
+  end
+
   it "validates a valid object" do
     item = SdtmModel.new
     ra = IsoRegistrationAuthority.new
@@ -49,7 +58,8 @@ describe SdtmModel do
     expected = read_yaml_file(sub_dir, "find_input.yaml")
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
-    expect(item.to_json).to eq(expected)
+    #expect(item.to_json).to eq(expected)
+    check_model(item.to_json, expected)
   end
 
   it "allows a model to be found, not found error" do
@@ -81,7 +91,7 @@ describe SdtmModel do
     expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
-    expect(item.to_json).to eq(expected)
+    check_model(item.to_json, expected)
   end
 
 	it "allows the model to be created from JSON" do 
@@ -89,7 +99,7 @@ describe SdtmModel do
     item = SdtmModel.from_json(expected)
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
-    expect(item.to_json).to eq(expected)
+    check_model(item.to_json, expected)
 	end
 
 	it "allows the model to be created from JSON, prevent duplicates" do 
@@ -99,7 +109,7 @@ describe SdtmModel do
     expected = read_yaml_file(sub_dir, "from_json_expected_2.yaml")
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
-    expect(item.to_json).to eq(expected)
+    check_model(item.to_json, expected)
 	end
 
 	it "allows the object to be output as sparql" do
