@@ -138,7 +138,7 @@ describe "SDTM IG", :type => :feature do
     it "allows an IG to be imported", js: true do
       visit '/sdtm_igs/history'
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
-      click_link 'Import'
+      click_link 'import_button'
       expect(page).to have_content 'Import CDISC SDTM Implementation Guide Version'
       ui_check_input("sdtm_ig_version", 4)
       fill_in 'sdtm_ig_version_label', with: '4.0'

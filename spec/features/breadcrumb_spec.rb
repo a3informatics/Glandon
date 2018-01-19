@@ -203,16 +203,17 @@ describe "Breadcrumb", :type => :feature do
     
     it "has CDISC SDTM Model breadcrumbs" do 
       next_link('CDISC SDTM Model', 'History: CDISC SDTM Model', "CDISC SDTM Models", "", "")
-      #save_and_open_page
+    #save_and_open_page
       #next_link_table("SDTM Model 2012-07-16", "Show", "Show: SDTM Model 2012-07-16", "CDISC SDTM Model", "V0.0.0", "")
     end
     
     it "has CDISC SDTM IGs breadcrumbs" do 
       next_link('CDISC SDTM IGs', 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
-      #save_and_open_page
+    #save_and_open_page
       next_link_table("SDTM Implementation Guide 2013-11-26", "Show", "Show:", "CDISC SDTM IGs", "V3.2.0", "")
       next_link_crumb(1, 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
-      next_link('Import', 'Import CDISC SDTM Implementation Guide Version', "CDISC SDTM IGs", "Import", "")
+    #save_and_open_page
+      next_link('import_button', 'Import CDISC SDTM Implementation Guide Version', "CDISC SDTM IGs", "Import", "")
       next_link_crumb(1, 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
     end
 
