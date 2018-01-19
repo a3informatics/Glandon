@@ -1,0 +1,599 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: ''
+:namespace: ''
+:label: Adverse Events
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2018-01-19T10:02:44+00:00'
+:last_changed_date: '2018-01-19T10:02:44+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: ''
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Not_Set
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Not_Set
+:scoped_identifier:
+  :id: ''
+  :identifier: AE
+  :version_label: ''
+  :version: 0
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Main Group
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AECAT
+    :extension_properties: []
+    :ordinal: 1
+    :note: "* No entries found for code list AECATEG.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Category of Adverse Event
+    :mapping: AECAT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESPID
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '6'
+    :question_text: Unique ID
+    :mapping: AESPID
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AETERM
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Adverse Event
+    :mapping: AETERM
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESIIN
+    :extension_properties: []
+    :ordinal: 4
+    :note: "* No entries found for code list NY_YN.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Is the event an AESI?
+    :mapping: AESIIN
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESTDAT
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Start Date/ Date of Worsening/Date Event Became Serious
+    :mapping: AESTDAT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESTTIM
+    :extension_properties: []
+    :ordinal: 6
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: time
+    :format: ''
+    :question_text: Time
+    :mapping: AESTTIM
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESEV
+    :extension_properties: []
+    :ordinal: 7
+    :note: "* No entries found for code list AESEVMD_03.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Intensity
+    :mapping: AESEV
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AECONTRT
+    :extension_properties: []
+    :ordinal: 8
+    :note: "* No entries found for code list NY_YN.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Corrective Treatment/Therapy
+    :mapping: AECONTRT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEACNC
+    :extension_properties: []
+    :ordinal: 9
+    :note: "* No entries found for code list ACN_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '24'
+    :question_text: Action Taken with \Study Treatment 1\
+    :mapping: AEACNC_ACN_01
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEACNC2
+    :extension_properties: []
+    :ordinal: 10
+    :note: "* No entries found for code list ACN_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '24'
+    :question_text: Action Taken with \Study Treatment 2\
+    :mapping: AEACNC2_ACN_01
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEACNC3
+    :extension_properties: []
+    :ordinal: 11
+    :note: "* No entries found for code list ACN_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '24'
+    :question_text: Action Taken with \Study Treatment 3\
+    :mapping: AEACNC3_ACN_01
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEACNC4
+    :extension_properties: []
+    :ordinal: 12
+    :note: "* No entries found for code list ACN_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '24'
+    :question_text: Action Taken with \Study Treatment 4\
+    :mapping: AEACNC4_ACN_01
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEREL
+    :extension_properties: []
+    :ordinal: 13
+    :note: "* No entries found for code list AERELA_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '16'
+    :question_text: Relationship to \Study Treatment 1\
+    :mapping: AEREL
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEREL2
+    :extension_properties: []
+    :ordinal: 14
+    :note: "* No entries found for code list AERELA_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '16'
+    :question_text: Relationship to \Study Treatment 2\
+    :mapping: AEREL2
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEREL3
+    :extension_properties: []
+    :ordinal: 15
+    :note: "* No entries found for code list AERELA_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '16'
+    :question_text: Relationship to \Study Treatment 3\
+    :mapping: AEREL3
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEREL4
+    :extension_properties: []
+    :ordinal: 16
+    :note: "* No entries found for code list AERELA_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '16'
+    :question_text: Relationship to \Study Treatment 4\
+    :mapping: AEREL4
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AERELNST
+    :extension_properties: []
+    :ordinal: 17
+    :note: "* No entries found for code list AERELA_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '16'
+    :question_text: Relationship to NIMP
+    :mapping: AERELNST_01
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AERELPR
+    :extension_properties: []
+    :ordinal: 18
+    :note: "* No entries found for code list AERELA_01.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '16'
+    :question_text: Relationship to Study Procedures
+    :mapping: AEREL_01
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESER
+    :extension_properties: []
+    :ordinal: 19
+    :note: "* No entries found for code list NY_YN.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Serious
+    :mapping: AESER
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESCONG
+    :extension_properties: []
+    :ordinal: 20
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Congenital Anomaly or Birth Defect
+    :mapping: AESCONG
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESDISAB
+    :extension_properties: []
+    :ordinal: 21
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Significant Disability
+    :mapping: AESDISAB
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESDTH
+    :extension_properties: []
+    :ordinal: 22
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Death
+    :mapping: AESDTH
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESHOSP
+    :extension_properties: []
+    :ordinal: 23
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Hospitalization
+    :mapping: AESHOSP
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESLIFE
+    :extension_properties: []
+    :ordinal: 24
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Life Threatening
+    :mapping: AESLIFE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESMIE
+    :extension_properties: []
+    :ordinal: 25
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Other Medically Important Event
+    :mapping: AESMIE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEOUT
+    :extension_properties: []
+    :ordinal: 26
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '50'
+    :question_text: Outcome
+    :mapping: AEOUT
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66768_C49498
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66768_C49495
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66768_C49496
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 4
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66768_C49494
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 5
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66768_C48275
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 6
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66768_C17998
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESTABLE
+    :extension_properties: []
+    :ordinal: 27
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: If Not Recovered or Not Resolved, check if Stabilized.
+    :mapping: AESTABLE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#TextLabel
+    :id: ''
+    :namespace: ''
+    :label: Prompt_AEENDAT
+    :extension_properties: []
+    :ordinal: 28
+    :note: ''
+    :completion: ''
+    :optional: false
+    :label_text: "<html><i>If Recovered or Resolved with or without Sequelae, enter
+      the End Date and Time.</i></html>"
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEENDAT
+    :extension_properties: []
+    :ordinal: 29
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: End Date
+    :mapping: AEENDAT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEENTIM
+    :extension_properties: []
+    :ordinal: 30
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: time
+    :format: ''
+    :question_text: End Time
+    :mapping: AEENTIM
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESEQUCM
+    :extension_properties: []
+    :ordinal: 31
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '120'
+    :question_text: If Recovered or Resolved with Sequelae, specify Sequelae.
+    :mapping: AESEQUCM
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#TextLabel
+    :id: ''
+    :namespace: ''
+    :label: Prompt_AEDDDAT
+    :extension_properties: []
+    :ordinal: 32
+    :note: ''
+    :completion: ''
+    :optional: false
+    :label_text: "<html><i>If the Subject died, enter the Date and Time of Death.</i></html>"
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEDDDAT
+    :extension_properties: []
+    :ordinal: 33
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of Death
+    :mapping: AEDDDAT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEDDTIM
+    :extension_properties: []
+    :ordinal: 34
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: time
+    :format: ''
+    :question_text: Time of Death
+    :mapping: AEDDTIM
+    :children: []
+  :repeating: false
+  :bc_ref: {}

@@ -1,0 +1,170 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: ''
+:namespace: ''
+:label: Demography
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2018-01-19T10:02:59+00:00'
+:last_changed_date: '2018-01-19T10:02:59+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: ''
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Not_Set
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Not_Set
+:scoped_identifier:
+  :id: ''
+  :identifier: DMOG
+  :version_label: ''
+  :version: 0
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Main Group
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: SEX
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '6'
+    :question_text: Sex
+    :mapping: SEX
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: BIRTHYEAR
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '4'
+    :question_text: Year of birth
+    :mapping: BIRTHYEAR
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AGE
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '3'
+    :question_text: Age
+    :mapping: AGE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RACE
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '3'
+    :question_text: Racial group
+    :mapping: RACE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RACEOTH
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '60'
+    :question_text: If Racial group is OTHER, specify
+    :mapping: RACEOTH
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: BIRTHDT
+    :extension_properties: []
+    :ordinal: 8
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Derived incomplete date of birth
+    :mapping: BIRTHDT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: D_LBDOB
+    :extension_properties: []
+    :ordinal: 23
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Derived birth date for labs
+    :mapping: D_LBDOB
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: D_LBAGE
+    :extension_properties: []
+    :ordinal: 24
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '3'
+    :question_text: Derived age for labs
+    :mapping: D_LBAGE
+    :children: []
+  :repeating: false
+  :bc_ref: {}

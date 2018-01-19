@@ -1,0 +1,515 @@
+---
+- :identifier: SUB_ID
+  :label: Subject Identifier
+- :identifier: DM_ALL
+  :label: Demographics Library
+- :identifier: DM_DAT
+  :label: Demographics Date Of Birth
+- :identifier: DM_AGE
+  :label: Demographics Age
+- :identifier: MH_ALL
+  :label: Medical History Library
+- :identifier: MH_PR
+  :label: Medical History Pre-Specified
+- :identifier: MH_NPR
+  :label: Medical History
+- :identifier: MH_NPR_01
+  :label: Medical History Limited
+- :identifier: EG_DN_ALL
+  :label: Electrocardiogram Library 2
+- :identifier: EG_CR
+  :label: Electrocardiogram Central Reading
+- :identifier: EG_LR
+  :label: Electrocardiogram Local Reading
+- :identifier: EG_LR_QUAL
+  :label: Electrocardiogram Local Reading Qualitative Collection
+- :identifier: EG_DN
+  :label: Electrocardiogram Local Reading 01
+- :identifier: PE_ALL
+  :label: Physical Examination Library
+- :identifier: PE_BP
+  :label: Physical Examination
+- :identifier: IE_ALL
+  :label: Inclusion/Exclusion Library
+- :identifier: IE_NC
+  :label: Inclusion/Exclusion
+- :identifier: CO_ALL
+  :label: Comments Library
+- :identifier: CO_02
+  :label: Comments Per Visit
+- :identifier: CO_03
+  :label: Comments Per Category
+- :identifier: SV_ALL
+  :label: Visit Library
+- :identifier: SV_01
+  :label: Visit Date
+- :identifier: DS_C_ALL
+  :label: Completion Library
+- :identifier: DS_C_ED2
+  :label: Completion at End of Study
+- :identifier: DS_C_SCR
+  :label: Completion of Screening and Run-In Phase
+- :identifier: DS_C_ED1
+  :label: End of Phase Status
+- :identifier: DS_C_FP2
+  :label: Completion of 6 Months Follow-up
+- :identifier: DS_C_ED3
+  :label: Completion of End of Study/Follow-up
+- :identifier: DS_CB_ALL
+  :label: Code Breaking Library
+- :identifier: DS_IC_ALL
+  :label: Informed Consent Library
+- :identifier: DS_IC_DAT
+  :label: Informed Consent Date
+- :identifier: DS_RD_GRP
+  :label: Group
+- :identifier: DS_TS_ALL
+  :label: Treatment Status Library
+- :identifier: SU_ALL
+  :label: Substance Use Library
+- :identifier: SU_SMK
+  :label: Tobacco Smoking Habit
+- :identifier: SU_ALC
+  :label: Alcohol Habit
+- :identifier: SC_ALL
+  :label: Subjects Characteristics Library
+- :identifier: LB_LC_ALL
+  :label: Local Laboratory Library
+- :identifier: LB_LC_01
+  :label: Local Laboratory results
+- :identifier: LB_LC_03
+  :label: Local Laboratory Hematology
+- :identifier: LB_LC_04
+  :label: Local Laboratory Chemistry
+- :identifier: LB_LC_05
+  :label: Local Laboratory Urinalysis
+- :identifier: LB_LC_06
+  :label: Local Laboratory 06
+- :identifier: LB_LC_07
+  :label: Local Laboratory 07
+- :identifier: LB_UNPL_01
+  :label: Local Laboratory Unplanned
+- :identifier: AE_YN
+  :label: Adverse Events YesNo
+- :identifier: AE_ALL
+  :label: Adverse Event Library
+- :identifier: AE_UISR
+  :label: Unsolicited Injection Site Reactions
+- :identifier: AE_USE
+  :label: Unsolicited Systemic Events
+- :identifier: AE
+  :label: Adverse Events
+- :identifier: AE_OVERDOSE
+  :label: Overdose
+- :identifier: AE_01
+  :label: Adverse Events 01
+- :identifier: AE_02
+  :label: Adverse Events 02
+- :identifier: CM_ALL
+  :label: Medications Library
+- :identifier: CM_PR
+  :label: Medications Pre-Specified
+- :identifier: CM_NPR
+  :label: Medications
+- :identifier: CM_02
+  :label: Medications 02
+- :identifier: CM_REPORT
+  :label: Reportable Medications
+- :identifier: VS_NORM_01
+  :label: Vital Signs
+- :identifier: VS_NORM_02
+  :label: Temperature
+- :identifier: VS_NON_NORM_02
+  :label: Vital Signs 01
+- :identifier: VS_NON_NORM_ALL
+  :label: Vital Signs Library 1
+- :identifier: VS_NORM_ALL
+  :label: Vital Signs Library 2
+- :identifier: DA_ALL
+  :label: Drug Accountability Library
+- :identifier: LB_CD_ALL
+  :label: Central Laboratory Library
+- :identifier: LB_CD_01
+  :label: Central Laboratory 01
+- :identifier: LB_CD_02
+  :label: Central Laboratory 02
+- :identifier: LB_CD_03
+  :label: Central Laboratory 03
+- :identifier: LB_CD_04
+  :label: Central Laboratory 04
+- :identifier: EX_ALL
+  :label: Exposure Library
+- :identifier: EX_08
+  :label: Vaccination
+- :identifier: EX_01
+  :label: Exposure_Daily Dose Period
+- :identifier: EX_02
+  :label: Exposure_Dose Modified
+- :identifier: EX_03
+  :label: Exposure_Single_Dose
+- :identifier: EX_04
+  :label: Exposure Dose Administration Over Time
+- :identifier: EX_05
+  :label: Exposure Non Investigational Product Administration (CEP)
+- :identifier: EX_06
+  :label: Exposure_infusion
+- :identifier: EX_07
+  :label: Exposure_details
+- :identifier: FA_VAC_SOL_ALL
+  :label: Solicited Reactions Library
+- :identifier: FA_VAC_TENDERNESS
+  :label: Injection Site Tenderness
+- :identifier: FA_VAC_PAIN
+  :label: Injection Site Pain
+- :identifier: FA_VAC_ERYTHEMA
+  :label: Injection Site Erythema
+- :identifier: FA_VAC_SWELLING
+  :label: Injection Site Swelling
+- :identifier: FA_VAC_INDURATION
+  :label: Injection Site Induration
+- :identifier: FA_VAC_ECCHYMOSIS
+  :label: Injection Site Ecchymosis
+- :identifier: FA_VAC_PRURITUS
+  :label: Injection Site Pruritus
+- :identifier: FA_VAC_TEMPERATURE
+  :label: Systemic Reaction Temperature
+- :identifier: FA_VAC_VOMITING
+  :label: Vomiting
+- :identifier: FA_VAC_CRYING
+  :label: Crying Abnormal
+- :identifier: FA_VAC_DROWSINESS
+  :label: Drowsiness
+- :identifier: FA_VAC_APPETITE
+  :label: Appetite Lost
+- :identifier: FA_VAC_IRRITABILITY
+  :label: Irritability
+- :identifier: FA_VAC_HEADACHE
+  :label: Headache
+- :identifier: FA_VAC_MALAISE
+  :label: Malaise
+- :identifier: FA_VAC_MYALGIA
+  :label: Myalgia
+- :identifier: FA_VAC_SHIVERING
+  :label: Shivering
+- :identifier: FA_VAC_ASTHENIA
+  :label: Asthenia
+- :identifier: DV_VAC_CIND
+  :label: Contraindications
+- :identifier: FA_ONC_DLT_ALL
+  :label: Dose Limiting Toxicities Library
+- :identifier: FA_ONC_DLT
+  :label: Dose Limiting Toxicities
+- :identifier: QS_ONC_PST_ALL
+  :label: Performance Status Library
+- :identifier: QS_ONC_PST_ECOG
+  :label: Performance Status ECOG
+- :identifier: QS_ONC_PST_KARN
+  :label: Performance Status KARNOFSKY
+- :identifier: PR_ONC_TUW
+  :label: Tumor Workup
+- :identifier: PR_ONC_TUW_ALL
+  :label: Tumor Workup Library
+- :identifier: PR_ONC_RTX_ALL
+  :label: Radiation therapies Library
+- :identifier: PR_ONC_RTX_EXT
+  :label: Radiation therapies external beam
+- :identifier: PRW_ONC_RTX_SYS
+  :label: Radiation therapies systemic
+- :identifier: PRW_ONC_RTX_INT
+  :label: Radiation therapies internal
+- :identifier: DD_ONC_ALL
+  :label: Death Library
+- :identifier: DD_ONC
+  :label: Death
+- :identifier: CM_ONC_CTX_PRIOR
+  :label: Prior Anti-cancer therapies
+- :identifier: CM_ONC_CTX
+  :label: Anti-cancer therapies
+- :identifier: CM_ONC_CTX_ALL
+  :label: Anti-cancer therapies Library
+- :identifier: RS_ONC_ALL
+  :label: Disease Response Library
+- :identifier: RS_ONC_NRP
+  :label: Non radiological progression
+- :identifier: RS_ONC_NTARGET
+  :label: Overall response of non-target lesions
+- :identifier: RS_ONC_OBJECTIVE
+  :label: Overall Objective response
+- :identifier: TR_ONC_ALL
+  :label: Tumor response Library
+- :identifier: TR_ONC_YN
+  :label: Tumor assessment - YesNo
+- :identifier: TR_ONC_TARGET
+  :label: Baseline - Target Lesions
+- :identifier: TR_ONC_LESION
+  :label: Baseline - Lesion (bidimensional)
+- :identifier: TR_ONC_PREV_UNI
+  :label: Target Lesion assessment
+- :identifier: TR_ONC_PREV_BI
+  :label: Lesion assessment (bidimensional)
+- :identifier: TR_ONC_NON_TL
+  :label: Baseline - Non target Lesions
+- :identifier: TR_ONC_NEW_L
+  :label: New Lesion
+- :identifier: SAE_ALL
+  :label: Safety Complementary Information
+- :identifier: DD_PV_ALL
+  :label: Death Complementary Information
+- :identifier: MH_SAE
+  :label: Safety Medical History
+- :identifier: MH_DYN_SAE
+  :label: Dynamic Safety Medical History
+- :identifier: CM_SAE
+  :label: Safety Concomitant Medication
+- :identifier: CM_DYN_SAE
+  :label: Dynamic Safety Concomitant Medication
+- :identifier: LB_SAE
+  :label: Safety Laboratory Test Results
+- :identifier: LB2_SAE
+  :label: Other Safety Examination
+- :identifier: NUL_SAE
+  :label: Nullification Reason
+- :identifier: INVVAL_SAE
+  :label: Investigator Validation
+- :identifier: FA_ALT_SYMPTOM
+  :label: ALT Increase - Associated Signs and Symptoms
+- :identifier: FA_ALT_TRIGGER
+  :label: ALT Increase - Trigger Factors
+- :identifier: ML_ALL
+  :label: Meal Library
+- :identifier: ML_01
+  :label: Meal
+- :identifier: PC_ALL
+  :label: Pharmacokinetics Library
+- :identifier: PC_BL
+  :label: Pharmacokinetics Blood
+- :identifier: PC_UR
+  :label: Pharmacokinetics Urine
+- :identifier: PC_SN
+  :label: Pharmacokinetics Sample Number
+- :identifier: PC_BL_ADD
+  :label: Additional Pharmacokinetics Blood
+- :identifier: PC_SN_ADD
+  :label: Additional Pharmacokinetics Sample Number
+- :identifier: PR_OP_ALL
+  :label: Other Procedures Library
+- :identifier: PR_OP_NPR
+  :label: Other Procedures
+- :identifier: PR_OP_PR
+  :label: Other Procedures Pre-Specified
+- :identifier: PR_SG_ALL
+  :label: Surgery Library
+- :identifier: PR_SG_NPR
+  :label: Surgery
+- :identifier: PR_SG_PR
+  :label: Surgery Pre-Specified
+- :identifier: PR_SG_NPR_ADD
+  :label: Additional Surgery
+- :identifier: PR_SG_PR_ADD
+  :label: Additional Surgery Pre-Specified
+- :identifier: CD_ALL
+  :label: Central Data Library
+- :identifier: CD_SN
+  :label: Central Data Sample Number
+- :identifier: CD_TUM
+  :label: Central Data Tumor Biopsy
+- :identifier: CD_SER
+  :label: Blood Sampling
+- :identifier: CD_EXAM_01
+  :label: Central Data Examination 01
+- :identifier: CD_EXAM_02
+  :label: Central Data Examination 02
+- :identifier: AE_VAC_IMUSE
+  :label: Immediate Unsolicited Systemic Events
+- :identifier: TT_ONC_ALL
+  :label: Disease status Library
+- :identifier: TT_ONC_ENTRY
+  :label: Disease status at study entry
+- :identifier: TT_ONC_ONG
+  :label: Disease status during study
+- :identifier: CG_ONC_ALL
+  :label: Cancer Diagnosis Library
+- :identifier: CG_ONC_ST
+  :label: Cancer Diagnosis (Solid Tumors)
+- :identifier: PV_PARENT
+  :label: Parent Information
+- :identifier: PV_IMMU_GYN
+  :label: Immunization Status and Gynecological Details
+- :identifier: PV_PREG
+  :label: Pregnancy Information
+- :identifier: PV_MAT_PAT_HIST
+  :label: Maternal/Paternal/Relative History
+- :identifier: PV_MED_PREG
+  :label: Medications linked to Pregnancy
+- :identifier: PV_PRENATAL
+  :label: Prenatal Testing
+- :identifier: PV_OUTCOME
+  :label: Pregnancy Outcome
+- :identifier: PV_NSAE_PREG
+  :label: Non Serious Adverse Events occurring during Pregnancy
+- :identifier: PV_NEWBORN
+  :label: Newborn Condition
+- :identifier: PV_MONTH_FOLLOWUP
+  :label: 6 Month Follow-up
+- :identifier: ADD_ASS
+  :label: Additional Assessment
+- :identifier: EG_CR_ADD
+  :label: Additional Electrocardiogram Central Reading
+- :identifier: EG_LR_ADD
+  :label: Additional Electrocardiogram Local Reading
+- :identifier: EG_LR_QUAL_ADD
+  :label: Additional Electrocardiogram Local Reading Qualitative Collection
+- :identifier: EG_DN_ADD
+  :label: Additional Electrocardiogram Local Reading 01
+- :identifier: LB_CD_ADD_01
+  :label: Additional Central Laboratory 01
+- :identifier: LB_CD_ADD_02
+  :label: Additional Central Laboratory 02
+- :identifier: LB_CD_ADD_03
+  :label: Additional Central Laboratory 03
+- :identifier: LB_LC_ADD_01
+  :label: Additional Local Laboratory results
+- :identifier: LB_LC_ADD_03
+  :label: Additional Local Laboratory Hematology
+- :identifier: LB_LC_ADD_04
+  :label: Additional Local Laboratory Chemistry
+- :identifier: LB_LC_ADD_05
+  :label: Additional Local Laboratory Urinalysis
+- :identifier: LB_LC_ADD_07
+  :label: Additional Local Laboratory 07
+- :identifier: VS_NORM_ADD_01
+  :label: Additional Vital Signs
+- :identifier: VS_NON_NORM_ADD_02
+  :label: Additional Vital Signs 01
+- :identifier: CD_SN_ADD
+  :label: Additional Central Data Sample Number
+- :identifier: CD_TUM_ADD
+  :label: Additional Central Data Tumor Biopsy
+- :identifier: CD_EXAM_ADD_01
+  :label: Additional Central Data Examination 01
+- :identifier: CD_EXAM_ADD_02
+  :label: Additional Central Data Examination 02
+- :identifier: AE_PREG_ALL
+  :label: Pregnancy All Items
+- :identifier: AE_PREG_YN
+  :label: Pregnancy YesNo
+- :identifier: AE_PREG_VAC
+  :label: Pregnancy for Vaccine Studies
+- :identifier: AE_PREG_PH
+  :label: Pregnancy
+- :identifier: CD_IMAG_01
+  :label: Central Data Imaging 01
+- :identifier: CD_IMAG_ADD_01
+  :label: Additional Central Data Imaging 01
+- :identifier: CD_IMAG_02
+  :label: Central Data Imaging 02
+- :identifier: CD_IMAG_ADD_02
+  :label: Additional Central Data Imaging 02
+- :identifier: IVRS_ALL
+  :label: IVRS Library
+- :identifier: SS_ALL
+  :label: Subject Status Library
+- :identifier: HP_DIA_ALL
+  :label: Hypoglycemic Event Information Library
+- :identifier: HP_DIA
+  :label: Hypoglycemic Event Information
+- :identifier: MH_DIA_ALL
+  :label: Diabetes and Complication History Information Library
+- :identifier: MH_DIA_HISTORY
+  :label: Diabetes History Information
+- :identifier: MH_DIA_COMPLICATION
+  :label: Diabetes Complication History
+- :identifier: LB_DIA_SMPG_ALL
+  :label: Self Monitoring Plasma Glucose Library
+- :identifier: LB_DIA_SMPG_PROFILE
+  :label: Self Monitoring Plasma Glucose Profile
+- :identifier: LB_DIA_SMPG_FASTING
+  :label: Self Monitoring Fasting Plasma Glucose
+- :identifier: LB_DIA_SMPG_UNIT
+  :label: SMPG Device Unit
+- :identifier: AG_ALL
+  :label: Procedural Agent Library
+- :identifier: AG_MEAL_TEST
+  :label: Procedural Agent for Meal Challenge Test
+- :identifier: CG_ONC_NST
+  :label: Cancer Diagnosis (Non-Solid Tumors)
+- :identifier: PE_ONC_SOA_ALL
+  :label: Specific Organ Assessment Library
+- :identifier: PE_ONC_SOA
+  :label: Specific Organ Quantitative Assessment
+- :identifier: PE_ONC_SOA_ADD
+  :label: Additional Specific Organ Quantitative Assessment
+- :identifier: PE_ONC_SOA_QUAL
+  :label: Specific Organ Assessment Qualitative
+- :identifier: PE_ONC_SOA_QUAL_ADD
+  :label: Additional Specific Organ Assessment Qualitative
+- :identifier: PE_ONC_SOA_QUAL_QUANT
+  :label: Specific Organs Qualitative And Quantitative Assessment
+- :identifier: PE_ONC_SOA_QUAL_QUANT_ADD
+  :label: Additional Qualitative And Quantitative Assessment Of Specific Organs
+- :identifier: LB_ONC_BM_ALL
+  :label: Bone Marrow Results Library
+- :identifier: LB_ONC_BM
+  :label: Bone Marrow Results
+- :identifier: LB_ONC_BM_ADD
+  :label: Additional Bone Marrow Results
+- :identifier: PR_ONC_TSP_ALL
+  :label: Transplant Library
+- :identifier: PR_ONC_TSP
+  :label: Transplant
+- :identifier: TR_ONC_FDG_ALL
+  :label: FDG-PET Library
+- :identifier: TR_ONC_FDG_RES
+  :label: FDG-PET results
+- :identifier: TR_ONC_FDG_SC
+  :label: FDG-PET Score
+- :identifier: FA_ONC_BSY_ALL
+  :label: B-Symptoms Library
+- :identifier: FA_ONC_BSY
+  :label: B-Symptoms
+- :identifier: CM_DIA_RESCUE_ALL
+  :label: Rescue Therapy Library
+- :identifier: CM_DIA_RESCUE
+  :label: Rescue Therapy
+- :identifier: CD_GT
+  :label: Central Data Genotyping
+- :identifier: PC_CEP_URBEX
+  :label: Pharmacokinetics Urine BEX
+- :identifier: PC_CEP_AIR
+  :label: Pharmacokinetics Expired Air
+- :identifier: PC_CEP_FEC
+  :label: Pharmacokinetics Feces
+- :identifier: PC_CEP_SAL
+  :label: Pharmacokinetics Salivary
+- :identifier: PC_CEP_SAL_ADD
+  :label: Additional Pharmacokinetics Salivary
+- :identifier: QS_CHPUGH_ALL
+  :label: Child Pugh Library
+- :identifier: QS_VAS_ALL
+  :label: Visual Analog Scale Library
+- :identifier: QS_VAS
+  :label: Visual Analog Scale
+- :identifier: QS_VAS_ADD
+  :label: Additional Visual Analog Scale
+- :identifier: QS_VAS_TEST
+  :label: Visual Analog Scale with Questions
+- :identifier: QS_VAS_TEST_ADD
+  :label: Additional Visual Analog Scale with Questions
+- :identifier: OE_ALL
+  :label: Ophthalmological Examination Library
+- :identifier: OE_OVERALL
+  :label: Ophthalmological Examination Overall
+- :identifier: OE_OVERALL_ADD
+  :label: Additional Ophthalmological Examination Overall
+- :identifier: OE_TESTS
+  :label: Ophthalmological Examination Tests
+- :identifier: OE_TESTS_ADD
+  :label: Additional Ophthalmological Examination Tests
+- :identifier: TT_ONC_ENTRY_NST
+  :label: Disease Status At Study Entry (Non-Solid Tumors)
+- :identifier: TR_ONC_FDG_RES_BASELINE
+  :label: Baseline FDG-PET results
+- :identifier: TR_ONC_FDG_SC_BASELINE
+  :label: Baseline FDG-PET Score
+- :identifier: SUBJSTAT
+  :label: Subject Status Technical Form
