@@ -1,21 +1,29 @@
 <% top_level_breadcrumb ("Import") %>
-<h3>Import Centre</h3>
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-12">
     <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Import Form From ALS</h3></div>
+      <div class="panel-heading"><h3 class="panel-title">Import Centre</h3></div>
       <div class="panel-body">
-        <p>This is a <strong>test facility</strong> to allow for a form to be loaded from an ALS file.</p>
-        <%= link_to "Load Form", new_imports_al_path, :class => "btn btn-primary btn-block" %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Import Term From Excel</h3></div>
-      <div class="panel-body">
-        <p>This is a <strong>test facility</strong> to allow for terminology to be loaded from an ALS file.</p>
-        <%= link_to "Load Term", new_imports_term_path, :class => "btn btn-primary btn-block" %>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3 class="panel-title">Import Form From ALS</h3></div>
+              <div class="panel-body">
+                <p>This is a <strong>test facility</strong> to allow for a form to be imported from an ALS file.</p>
+                <%= link_to "Import Form", new_imports_al_path, :class => "btn btn-success btn-block" %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3 class="panel-title">Import Term From Excel</h3></div>
+              <div class="panel-body">
+                <p>This is a <strong>test facility</strong> to allow for terminology to be imported from an ALS file.</p>
+                <%= link_to "Import Terminology", new_imports_term_path, :class => "btn btn-success btn-block" %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

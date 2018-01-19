@@ -56,9 +56,9 @@ class AlsExcel
       else
         question = Form::Item::Question.new
         question.label = item[:label]
-        dt_and_l = get_datatype_and_length(item)
-        question.datatype = dt_and_l[:datatype]
-        question.format = dt_and_l[:length]
+        dt_and_format = get_datatype_and_format(item)
+        question.datatype = dt_and_format[:datatype]
+        question.format = dt_and_format[:format]
         question.mapping = item[:mapping]
         question.question_text = item[:question_text]
         question.ordinal = item[:ordinal]
@@ -100,7 +100,7 @@ private
     forms = self.list
     form = forms.find { |f| f[:identifier] == identifier }
     return form[:label] if !form.nil?
-    @errors.add(:base, "Failed to find the form label.")
+    @errors.add(:base, "Failed to find the form label, possible identifier mismatch.")
     return ""
   end
 
@@ -208,14 +208,44 @@ private
     end
   end
 
-  def get_datatype_and_length(params)
+  def get_datatype_and_format(params)
     length = get_length(params)
-    return {datatype: BaseDatatype::C_STRING, length: length} if !params[:code_list].blank?
-    return {datatype: BaseDatatype::C_BOOLEAN, length: ""} if params[:control_type] == "CheckBox"
-    return {datatype: BaseDatatype::C_TIME, length: ""} if params[:data_format] == "HH:nn"
-    return {datatype: BaseDatatype::C_DATE, length: ""} if params[:data_format].delete(' ') == "dd-MMM-yyyy"
-    return {datatype: BaseDatatype::C_STRING, length: length} if params[:control_type] == "Text"
-    return {datatype: BaseDatatype::C_STRING, length: length}
+    return {datatype: BaseDatatype::C_STRING, format: length} if !params[:code_list].blank?
+    return {datatype: BaseDatatype::C_BOOLEAN, format: ""} if params[:control_type] == "CheckBox"
+    return {datatype: BaseDatatype::C_TIME, format: ""} if time_format?(params[:data_format])
+    return {datatype: BaseDatatype::C_DATE, format: ""} if date_format?(params[:data_format])
+    return {datatype: BaseDatatype::C_INTEGER, format: length} if integer_format?(params[:data_format])
+    return {datatype: BaseDatatype::C_FLOAT, format: params[:data_format]} if float_format?(params[:data_format])
+    return {datatype: BaseDatatype::C_STRING, format: length} if string_format?(params[:data_format])
+    return {datatype: BaseDatatype::C_STRING, format: length}
+  end
+
+  def integer_format?(format)
+    return get_format(format) == :integer
+  end
+
+  def float_format?(format)
+    return get_format(format) == :float
+  end
+
+  def string_format?(format)
+    return get_format(format) == :string
+  end
+
+  def date_format?(format)
+    return get_format(format.delete(' ')) == :date
+  end
+
+  def time_format?(format)
+    return get_format(format) == :time
+  end
+
+  def get_format(format)
+    return :time if format == "HH:nn"
+    return :date if format == "dd-MMM-yyyy" || format == "ddMMMyyyy" 
+    return :string if format.start_with?('$')
+    return :float if format.include?('.')
+    return :integer
   end
 
   def get_length(params)
