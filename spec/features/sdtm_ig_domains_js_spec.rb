@@ -74,8 +74,8 @@ describe "SDTM IG Domains", :type => :feature do
       wait_for_ajax
       click_link 'Export JSON'
       file = download_content 
-    #write_text_file_2(file, sub_dir, "sdtm_ig_domain_export.json")
-      expected = read_text_file_2(sub_dir, "sdtm_ig_domain_export.json")
+    #write_yaml_file(file, sub_dir, "sdtm_ig_domain_export.json")
+      expected = read_yaml_file(sub_dir, "sdtm_ig_domain_export.json")
       expect(file).to eq(expected)
     end
 

@@ -87,8 +87,10 @@ describe SdtmModelClassification do
     result = SdtmModelClassification.all_children("M-CDISC_SDTMMODEL_C_QUALIFIER", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
     json = []
     result.each {|tc| json << tc.to_json}
+    json.sort_by! {|u| u[:id]}
   #write_yaml_file(json, sub_dir, "all_child_expected.yaml")
     expected = read_yaml_file(sub_dir, "all_child_expected.yaml")
+    expected.sort_by! {|u| u[:id]}
     expect(json).to eq(expected)
   end
 

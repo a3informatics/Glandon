@@ -80,9 +80,16 @@ describe SdtmModel do
   it "allows a list of classes and variables to be found" do
     item = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
     result = item.classes
-  #write_yaml_file(result.to_json, sub_dir, "classes_expected.yaml")
+  #write_yaml_file(result, sub_dir, "classes_expected.yaml")
     expected = read_yaml_file(sub_dir, "classes_expected.yaml")
-    expect(result.to_json).to eq(expected)
+    result.each do |klass, r_entry|
+      e_entry = expected.find { |k,v| k == klass }
+      expect(e_entry).to_not be_nil
+      expect(r_entry[:uri].to_s).to eq(e_entry[1][:uri].to_s)
+      r = r_entry[:children].map {|k,v| [k,v.to_s] }
+      e = e_entry[1][:children].map {|k,v| [k,v.to_s] }
+      expect(r).to match_array(e)
+    end
   end
 
   it "allows the model to be exported as JSON" do
