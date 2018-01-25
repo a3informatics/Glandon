@@ -1,4 +1,4 @@
-class ApiController < ApplicationController
+class ApiController < ActionController::Base
   
   http_basic_authenticate_with name: ENV["api_username"], password: ENV["api_password"]
 
@@ -31,7 +31,7 @@ class ApiController < ApplicationController
   C_SDTM_MV_TYPE =  UriV2.new({:namespace => SdtmModel::Variable::C_SCHEMA_NS, :id => SdtmModel::Variable::C_RDF_TYPE}) 
   
   # Types
-  # TODO This could be improved. May be a single startup query.
+  # @todo This could be improved. May be a single startup query.
   @@discoverable_labels =
     {
       C_FORM => { 
@@ -136,15 +136,8 @@ class ApiController < ApplicationController
       }
     }
   
-  def pundit_user
-    # TODO: Temporary fix to get around pundit authorisation. Need proper API user or someother solution
-    User.find(1)
-  end
-
   def discover
-    authorize IsoManaged, :view?
     results = @@discoverable_labels.map{|key, value| value[:label]}
-    #ConsoleLogger::log(C_CLASS_NAME,"types", "Results=#{results}")
     respond_to do |format|
       format.json do
         render json: results
@@ -154,8 +147,6 @@ class ApiController < ApplicationController
 
   # Get all items of a given types
   def index
-    authorize IsoManaged, :view?
-    #ConsoleLogger::log(C_CLASS_NAME,"index", "API Types=#{@@discoverable_labels}")
     if @@discoverable_labels.has_key?(params[:label])
       info = @@discoverable_labels[params[:label]]
       object = info[:class].constantize
@@ -177,8 +168,6 @@ class ApiController < ApplicationController
 
   # Get all released items of a given type
   def list
-    authorize IsoManaged, :view?
-    #ConsoleLogger::log(C_CLASS_NAME,"index", "API Types=#{@@discoverable_labels}")
     if @@discoverable_labels.has_key?(params[:label])
       info = @@discoverable_labels[params[:label]]
       object = info[:class].constantize
@@ -199,9 +188,7 @@ class ApiController < ApplicationController
   end
 
   def show
-    authorize IsoManaged, :view?
     rdf_type = IsoConcept.get_type(params[:id], params[:namespace])
-    #ConsoleLogger::log(C_CLASS_NAME,"show", "RDF Type=#{rdf_type}")
     if !rdf_type.nil?
       if @@find_types.has_key?(rdf_type.to_s)
         info = @@find_types[rdf_type.to_s]
@@ -223,7 +210,6 @@ class ApiController < ApplicationController
 
   # Deprecated, use show
   def form
-    authorize Form, :view?
     id = params[:id]
     ns = params[:namespace]
     @form = Form.find(id, ns)
@@ -237,7 +223,6 @@ class ApiController < ApplicationController
   end
 
   def form_annotations
-    authorize Form, :view?
     id = params[:id]
     ns = params[:namespace]
     @form = Form.find(id, ns)
@@ -252,7 +237,6 @@ class ApiController < ApplicationController
 
   # Deprecated, use show
   def domain
-    authorize SdtmUserDomain, :view?
     id = params[:id]
     ns = params[:namespace]
     @domain = SdtmUserDomain.find(id, ns)
@@ -267,7 +251,6 @@ class ApiController < ApplicationController
 
   # Deprecated, use show
   def thesaurus_concept
-    authorize ThesaurusConcept, :view?
     id = params[:id]
     ns = params[:namespace]
     @item = ThesaurusConcept.find(id, ns)
@@ -282,7 +265,6 @@ class ApiController < ApplicationController
 
   # Deprecated, use show
   def bc_property
-    authorize BiomedicalConcept, :view?
     id = params[:id]
     ns = params[:namespace]
     @item = BiomedicalConceptCore::Property.find(id, ns)

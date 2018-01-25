@@ -1,0 +1,46 @@
+---
+- type: http://www.assero.co.uk/BusinessForm#Form
+  id: F-ACME_VSBASELINE1
+  namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  label: Vital Signs Baseline
+  extension_properties: []
+  origin: ''
+  change_description: ''
+  creation_date: '2016-08-08T12:45:01+02:00'
+  last_changed_date: '2016-08-08T12:46:42+02:00'
+  explanatory_comment: ''
+  registration_state:
+    namespace: http://www.assero.co.uk/MDRItems
+    id: RS-ACME_VSBASELINE1-1
+    registration_authority:
+      id: RA-123456789
+      number: '123456789'
+      scheme: DUNS
+      owner: true
+      namespace:
+        namespace: http://www.assero.co.uk/MDRItems
+        id: NS-ACME
+        name: ACME Pharma
+        shortName: ACME
+    registration_status: Standard
+    administrative_note: ''
+    effective_date: '2016-01-01T00:00:00Z'
+    until_date: '2016-01-01T00:00:00Z'
+    current: false
+    unresolved_issue: ''
+    administrative_status: ''
+    previous_state: Qualified
+  scoped_identifier:
+    id: SI-ACME_VSBASELINE1-1
+    identifier: VS BASELINE
+    version_label: ''
+    version: 1
+    semantic_version: 0.0.0
+    namespace:
+      namespace: http://www.assero.co.uk/MDRItems
+      id: NS-ACME
+      name: ACME Pharma
+      shortName: ACME
+  completion: ''
+  note: ''
+  children: []
