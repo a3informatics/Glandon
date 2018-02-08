@@ -1,11 +1,18 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+#johannes ruby '2.3.1'
+ruby '2.2.3'
+
+#johannes
+gem 'ruby_dep', '~> 1.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 
 # Use PG as the database for Active Record
-gem 'pg'
+#johannes
+# gem 'pg'
+# gem 'pg', '~> 0.9.0'
+gem 'pg', '~> 0.19.0'
 
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
@@ -21,7 +28,14 @@ gem 'typhoeus'
 gem 'diffy'
 
 # XML
-gem 'nokogiri', '~> 1.6.6.2'
+#johannes gem 'nokogiri', '~> 1.6.6.2'
+gem 'nokogiri', '1.6.6.2'
+
+#johannes
+gem 'tzinfo-data'
+
+#johannes
+gem'coffee-script-source','1.8.0'
 
 # CORS
 gem 'rack-cors', :require => 'rack/cors'
