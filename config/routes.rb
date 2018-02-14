@@ -311,7 +311,7 @@ Rails.application.routes.draw do
       get :export_json
       get :export_ttl
       get :full_report
-      get :export_xpt
+      get :export_xpt_metadata
     end
     collection do
       get :history
