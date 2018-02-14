@@ -1,3 +1,5 @@
+require 'xpt'
+
 class SdtmUserDomainsController < ApplicationController
   
   before_action :authenticate_user!
@@ -197,6 +199,50 @@ class SdtmUserDomainsController < ApplicationController
     send_data @sdtm_user_domain.to_json.to_json, 
       filename: "#{@sdtm_user_domain.owner}_#{@sdtm_user_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
+
+  def export_xpt
+    authorize SdtmUserDomain
+    @sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace])
+    metadata = []
+    @sdtm_user_domain.children.each do |child|
+      if child.used then # Only select variables in use
+        variable = {}
+        variable[:name] = child.name              # Mandatory
+        variable[:label] = "Need to set"          # Mandatory
+        variable[:type] = "char"                  # Mandatory
+        # variable[:datatype] = child.datatype
+        variable[:length] = 10                    # Mandatory
+        # variable[:length] = child.length
+        variable[:non_standard] = child.non_standard # Needs to be handled. SUPP--?
+        # variable[:format] = child.format
+        variable[:used] = 
+        variable[:key_ordinal] = child.key_ordinal
+        # variable[:ct] = child.ct
+        # variable[:comment] = child.comment
+        # variable[:notes] = child.notes
+        # variable[:compliance] = child.compliance
+        # variable[:classification] = child.classification 
+        # variable[:sub_classification] = child.sub_classification 
+        # variable[:variable_ref] = child.variable_ref
+        metadata << variable
+      end
+    end
+
+    xpt = Xpt.new("public/","test")
+
+    cres = xpt.create_meta("dataset label",metadata)
+    STDERR.puts "################# "+cres.to_s
+
+    if (cres[:status] < 0)
+            flash[:error] = "this is wrong"
+    end
+    # send_data "public/test.xpt", 
+    #   filename: "#{@sdtm_user_domain.owner}_#{@sdtm_user_domain.identifier}.xpt", :type => 'application/octet-stream', disposition: "attachment"
+    filename = xpt.directory+xpt.filename
+    STDERR.puts filename
+    send_file(filename, :filename => "test.xpt")
+  end
+
 
   def full_report
     authorize SdtmUserDomain, :view?

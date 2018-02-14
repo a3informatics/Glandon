@@ -119,6 +119,13 @@ defaults: &defaults
       reader: false
       curator: true
       content_admin: true
+    export_xpt:
+      sys_admin: false
+      term_reader: true
+      term_curator: true
+      reader: true
+      curator: true
+      content_admin: true
     export_ttl:
       sys_admin: false
       term_reader: false
