@@ -55,10 +55,24 @@ class IsoConceptController < ApplicationController
     render json: { item: @item.to_json, children: managed_items }, status: 200
   end
 
+  def changes
+    authorize IsoConcept
+    items = []
+    this_params[:concepts].each do |id| 
+      uri = UriV3.new(id: id)
+      concept = IsoConcept.find(uri.fragment, uri.namespace, false) 
+      items << TypePathManagement.type_to_class(concept.rdf_type).find(uri.fragment, uri.namespace)
+    end
+    @results = IsoConcept.changes(items, this_params[:child_property], {include: [:label], ignore: [:extensible]})
+    @results[:versions] = this_params[:versions]
+    @results[:identifier] = this_params[:identifier]
+    @close_path = request.referrer
+  end
+
 private
 
   def this_params
-    params.require(:iso_concept).permit(:namespace)
+    params.require(:iso_concept).permit(:namespace, :child_property, :rdf_type, :identifier, :concepts => [], :versions => [])
   end
 
 end

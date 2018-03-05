@@ -42,6 +42,13 @@ defaults: &defaults
       reader: true
       curator: true
       content_admin: true
+    changes:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: true
+      curator: true
+      content_admin: true
     create:
       sys_admin: false
       term_reader: false

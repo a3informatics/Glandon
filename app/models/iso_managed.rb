@@ -589,6 +589,15 @@ class IsoManaged < IsoConcept
     return results  
   end
 
+  def self.changes(klass, params, options={})
+    items = []
+    klass.history(params).each { |i| items << klass.find(i.id, i.namespace)}
+    result = IsoConcept.changes(items, params[:child_property], options)
+    result[:versions] = []
+    result[:changes].each { |r| result[:versions] << r[:scoped_identifier][:semantic_version] }
+    return result
+  end
+
   # Find all released item for all identifiers of a given type.
   #
   # @rdfType [string] The RDF type

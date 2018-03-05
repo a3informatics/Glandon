@@ -81,6 +81,11 @@ describe FormsController do
       expect(response).to redirect_to("/forms")
     end
 
+    it "shows the changes" do
+      get :changes, { form: { :identifier => "DM1 01", :scope_id => IsoRegistrationAuthority.owner.namespace.id }}
+      expect(response).to render_template("changes")
+    end
+
     it "initiates the creation of a new placeholder form" do
       get :placeholder_new
       expect(assigns[:form].to_json).to eq(Form.new.to_json)
@@ -234,7 +239,9 @@ describe FormsController do
       get :export_json, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
     end
 
-    it "export_odm"
+    it "export_odm" do
+      get :export_odm, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
+    end
     
     it "presents acrf as pdf" do
       request.env['HTTP_ACCEPT'] = "application/pdf"

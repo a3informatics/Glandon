@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       get :impact
       get :impact_start
       get :impact_next
+      get :changes
     end
   end
   resources :iso_managed do
@@ -66,6 +67,7 @@ Rails.application.routes.draw do
       get :impact
       get :impact_start
       get :impact_next
+      get :changes
     end
     member do
       get :branches

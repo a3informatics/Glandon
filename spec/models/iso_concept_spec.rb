@@ -26,9 +26,9 @@ describe IsoConcept do
     result.each do |r|
       item = expected.find { |e| e[:uri].to_s == r[:uri].to_s }
       expect(item).to_not be_nil
-    puts "#{item[:uri].to_s} == #{r[:uri].to_s}"
+    #puts "#{item[:uri].to_s} == #{r[:uri].to_s}"
       expect(item[:rdf_type]).to eq(r[:rdf_type])
-    puts "#{item[:rdf_type]} == #{r[:rdf_type].to_s}"
+    #puts "#{item[:rdf_type]} == #{r[:rdf_type].to_s}"
     end
   end
 
@@ -37,9 +37,9 @@ describe IsoConcept do
     result.each do |r|
       item = expected.find { |e| e[:uri].to_s == r[:uri].to_s }
       expect(item).to_not be_nil
-    puts "#{item[:uri].to_s} == #{r[:uri].to_s}"
+    #puts "#{item[:uri].to_s} == #{r[:uri].to_s}"
       expect(item[:comments]).to eq(r[:comments])
-    puts "#{item[:comments]} == #{r[:comments].to_s}"
+    #puts "#{item[:comments]} == #{r[:comments].to_s}"
       expect(item[:cross_references].map { |m| m.to_s }).to match_array(r[:cross_references].map { |m| m.to_s })
     end
   end
@@ -1462,4 +1462,397 @@ describe IsoConcept do
 
   end
 
+  context "Form Difference Tests" do
+  
+    before :all do
+      clear_triple_store
+      load_schema_file_into_triple_store("ISO11179Types.ttl")
+      load_schema_file_into_triple_store("ISO11179Basic.ttl")
+      load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      load_schema_file_into_triple_store("ISO11179Data.ttl")
+      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      load_schema_file_into_triple_store("BusinessOperational.ttl")
+      load_schema_file_into_triple_store("BusinessForm.ttl")
+      load_schema_file_into_triple_store("ISO25964.ttl")
+      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("form_example_dm1.ttl")
+      load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
+      load_test_file_into_triple_store("form_example_general.ttl")
+      load_test_file_into_triple_store("CT_V42.ttl")
+      load_test_file_into_triple_store("CT_V43.ttl")
+      load_test_file_into_triple_store("CT_ACME_V1.ttl")
+      load_test_file_into_triple_store("BCT.ttl")
+      load_test_file_into_triple_store("BC.ttl")
+      clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
+    end
+
+    it "Form diff?, no change" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      result = IsoConcept.diff?(i_1, i_2)
+      expect(result).to eq(false)
+    end
+
+    it "Form difference, no change" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      result = IsoConcept.difference(i_1, i_2)
+    #write_yaml_file(result, sub_dir, "difference_expected_34.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_34.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Form diff?, change" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2.note = "Updated ha ha!"
+      result = IsoConcept.diff?(i_1, i_2)
+      expect(result).to eq(true)
+    end
+
+    it "Form difference, change" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2.note = "Updated ha ha!"
+      result = IsoConcept.difference(i_1, i_2)
+    #write_yaml_file(result, sub_dir, "difference_expected_35.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_35.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Form difference with children, no difference" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      result = IsoConcept.difference_with_children(i_1, i_2, "ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_36.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_36.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Form difference with children, different" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2.note = "Updated ha ha once more!"
+      i_2.children[0].note = "Group updated ha ha!"
+      result = IsoConcept.difference_with_children(i_1, i_2, "ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_37.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_37.yaml")
+      expect(result).to eq(expected)
+    end
+
+=begin
+    it "Model difference with children, different, ignore ordinal" do
+      i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model 1.2 to 1.3 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_23.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_23.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Model difference with children, different, ignore ordinal" do
+      i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model 1.3 to 1.4 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_24.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_24.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Variable difference, change" do
+      i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_25.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_25.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Variable difference, change" do
+      i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_26.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_26.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class difference with children, different" do
+      i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
+      i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model Events 1.2 to 1.3 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_27.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_27.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class difference with children, different" do
+      i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model Events 1.3 to 1.4 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_28.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_28.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class Variable difference, no change" do
+      i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
+      i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_29.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_29.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class Variable difference, change" do
+      i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_30.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_30.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "IG Domain difference with children, different" do
+      i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
+      i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      result = IsoConcept.difference_with_children(i_1, i_2, "name")
+    #write_yaml_file(result, sub_dir, "difference_expected_31.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_31.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "IG Domain difference with children, different, ignore ordinal" do
+      i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
+      i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_32.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_32.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "IG Domain difference with children, different, ignore ordinal" do
+      i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_33.yaml")
+      timer_stop("SDTM IG DM Domain 3.1.3 to 3.2 difference, ignore ordinal")
+      expected = read_yaml_file(sub_dir, "difference_expected_33.yaml")
+      expect(result).to eq(expected)
+    end
+=end
+
+  end
+
+  context "Sponsor Terminology Difference Tests" do
+  
+    before :all do
+      clear_triple_store
+      load_schema_file_into_triple_store("ISO11179Types.ttl")
+      load_schema_file_into_triple_store("ISO11179Basic.ttl")
+      load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      load_schema_file_into_triple_store("ISO11179Data.ttl")
+      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      load_schema_file_into_triple_store("BusinessOperational.ttl")
+      load_schema_file_into_triple_store("ISO25964.ttl")
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("ACME_AE_V1.ttl")
+      load_test_file_into_triple_store("ACME_AE_V1-1.ttl")
+      clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
+    end
+
+    it "Thesaurus diff?, no change" do
+      i_1 = Thesaurus.find("TH-ACME_SANOFIAE", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      i_2 = Thesaurus.find("TH-ACME_SANOFIAE", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      result = IsoConcept.diff?(i_1, i_2)
+      expect(result).to eq(false)
+    end
+
+    it "Thesaurus difference, no previous" do
+      i_1 = nil
+      i_2 = Thesaurus.find("TH-ACME_SANOFIAE", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      result = IsoConcept.difference(i_1, i_2)
+    write_yaml_file(result, sub_dir, "difference_expected_100.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_100.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Thesaurus difference, no change" do
+      i_1 = Thesaurus.find("TH-ACME_SANOFIAE", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      i_2 = Thesaurus.find("TH-ACME_SANOFIAE", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      result = IsoConcept.difference(i_1, i_2)
+    write_yaml_file(result, sub_dir, "difference_expected_101.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_101.yaml")
+      expect(result).to eq(expected)
+    end
+
+=begin
+    it "Form diff?, change" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2.note = "Updated ha ha!"
+      result = IsoConcept.diff?(i_1, i_2)
+      expect(result).to eq(true)
+    end
+
+    it "Form difference, change" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2.note = "Updated ha ha!"
+      result = IsoConcept.difference(i_1, i_2)
+    #write_yaml_file(result, sub_dir, "difference_expected_35.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_35.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Form difference with children, no difference" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      result = IsoConcept.difference_with_children(i_1, i_2, "ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_36.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_36.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Form difference with children, different" do
+      i_1 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2 = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      i_2.note = "Updated ha ha once more!"
+      i_2.children[0].note = "Group updated ha ha!"
+      result = IsoConcept.difference_with_children(i_1, i_2, "ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_37.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_37.yaml")
+      expect(result).to eq(expected)
+    end
+
+=begin
+    it "Model difference with children, different, ignore ordinal" do
+      i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model 1.2 to 1.3 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_23.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_23.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "Model difference with children, different, ignore ordinal" do
+      i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model 1.3 to 1.4 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_24.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_24.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Variable difference, change" do
+      i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
+      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_25.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_25.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Variable difference, change" do
+      i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
+      i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
+      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_26.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_26.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class difference with children, different" do
+      i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
+      i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model Events 1.2 to 1.3 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_27.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_27.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class difference with children, different" do
+      i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      timer_stop("SDTM Model Events 1.3 to 1.4 difference, ignore ordinal")
+    #write_yaml_file(result, sub_dir, "difference_expected_28.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_28.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class Variable difference, no change" do
+      i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
+      i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_29.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_29.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "SDTM Model Class Variable difference, change" do
+      i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
+      i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
+      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_30.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_30.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "IG Domain difference with children, different" do
+      i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
+      i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      result = IsoConcept.difference_with_children(i_1, i_2, "name")
+    #write_yaml_file(result, sub_dir, "difference_expected_31.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_31.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "IG Domain difference with children, different, ignore ordinal" do
+      i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
+      i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_32.yaml")
+      expected = read_yaml_file(sub_dir, "difference_expected_32.yaml")
+      expect(result).to eq(expected)
+    end
+
+    it "IG Domain difference with children, different, ignore ordinal" do
+      i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
+      i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+      timer_start
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+    #write_yaml_file(result, sub_dir, "difference_expected_33.yaml")
+      timer_stop("SDTM IG DM Domain 3.1.3 to 3.2 difference, ignore ordinal")
+      expected = read_yaml_file(sub_dir, "difference_expected_33.yaml")
+      expect(result).to eq(expected)
+    end
+=end
+
+  end
 end

@@ -29,6 +29,14 @@ class IsoManagedController < ApplicationController
     @close_path = TypePathManagement.history_url(@managed_item.rdf_type, @managed_item.identifier, @managed_item.scopedIdentifier.namespace.id)
   end
 
+  def changes
+    authorize IsoManaged
+    klass = TypePathManagement.type_to_class(changes_params[:rdf_type])
+    @results = IsoManaged.changes(klass, changes_params, {include: [:label], ignore: [:extensible]})
+    @results[:identifier] = changes_params[:identifier]
+    @close_path = TypePathManagement.history_url(changes_params[:rdf_type], changes_params[:identifier], changes_params[:scope_id])
+  end
+
   def edit
     authorize IsoManaged
     @managed_item = IsoManaged.find(params[:id], this_params[:namespace], false)
@@ -201,6 +209,10 @@ private
 
   def this_params
     params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer, :index_path, :index_label, :current_id)
+  end
+
+  def changes_params
+    params.require(:iso_managed).permit(:rdf_type, :child_property, :identifier, :scope_id)
   end
 
 end

@@ -3,6 +3,23 @@ module TypePathManagement
   # Constants
   C_CLASS_NAME = "TypePathManagement"
   
+  @@type_to_class = 
+  { 
+    Thesaurus::C_RDF_TYPE_URI.to_s => { klass: Thesaurus },
+    ThesaurusConcept::C_RDF_TYPE_URI.to_s => { klass: ThesaurusConcept },
+    Form::C_RDF_TYPE_URI.to_s => { klass: Form },
+    Form::Group::Normal::C_RDF_TYPE_URI.to_s => { klass: Form::Group::Normal },
+    Form::Group::Common::C_RDF_TYPE_URI.to_s => { klass: Form::Group::Common },
+    Form::Item::BcProperty::C_RDF_TYPE_URI.to_s => { klass: Form::Item::BcProperty },
+    Form::Item::Common::C_RDF_TYPE_URI.to_s => { klass: Form::Item::Common },
+    Form::Item::Mapping::C_RDF_TYPE_URI.to_s => { klass: Form::Item::Mapping },
+    Form::Item::Placeholder::C_RDF_TYPE_URI.to_s => { klass: Form::Item::Placeholder },
+    Form::Item::Question::C_RDF_TYPE_URI.to_s => { klass: Form::Item::Question },
+    Form::Item::TextLabel::C_RDF_TYPE_URI.to_s => { klass: Form::Item::TextLabel },
+    SdtmUserDomain::C_RDF_TYPE_URI.to_s => { klass: SdtmUserDomain },
+    SdtmUserDomain::Variable::C_RDF_TYPE_URI.to_s => { klass: SdtmUserDomain::Variable }
+  }
+
   @@mi_history_path = 
     { Thesaurus::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_thesauri_index_path, strong: "" },
       BiomedicalConceptTemplate::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_biomedical_concept_templates_path, strong: "biomedical_concept_template" },
@@ -13,6 +30,16 @@ module TypePathManagement
       #SdtmIgDomain::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_ig_domains_path, strong: "sdtm_ig_domain" },
       SdtmUserDomain::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_user_domains_path, strong: "sdtm_user_domain" }
     }
+
+  # Method returns class for a given rdf type
+  #
+  # @param rdf_type [String] the RDF type
+  # @return [String] the class
+  def self.type_to_class(rdf_type)
+    return @@type_to_class[rdf_type][:klass] if @@type_to_class.has_key?(rdf_type)
+  byebug
+    raise Exceptions::ApplicationLogicError.new(message: "Class for #{rdf_type} not found in #{C_CLASS_NAME} object.")
+  end
 
   # Method returns the history path for a given rdf type
   #

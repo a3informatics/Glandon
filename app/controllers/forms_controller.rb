@@ -28,6 +28,7 @@ class FormsController < ApplicationController
   def history
     authorize Form
     @identifier = params[:identifier]
+    @scope_id = params[:scope_id]
     @forms = Form.history(params)
     redirect_to forms_path if @forms.count == 0
   end

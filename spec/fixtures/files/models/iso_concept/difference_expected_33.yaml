@@ -38,11 +38,6 @@
     :previous: ''
     :current: ''
     :difference: <div class="diff"></div>
-  :Ordinal:
-    :status: :no_change
-    :previous: 1
-    :current: 1
-    :difference: <div class="diff"></div>
   :Rule:
     :status: :no_change
     :previous: ''
@@ -64,7 +59,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 24
     :name: ACTARMCD
     :rule: ''
     :description: Short name for the actual Arm in which the subject participated
@@ -81,7 +75,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 28
     :name: DMDY
     :rule: ''
     :description: Actual study day of visit/collection/exam expressed in integer days
@@ -95,7 +88,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 7
     :name: RFXSTDTC
     :rule: ''
     :description: First date/time of exposure to any protocol-specified treatment
@@ -110,7 +102,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 1
     :name: STUDYID
     :rule: ''
     :description: Unique identifier for a study.
@@ -123,7 +114,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 22
     :name: ARMCD
     :rule: ''
     :description: ARMCD is limited to 20 characters and does not have special character
@@ -142,7 +132,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 16
     :name: BRTHDTC
     :rule: ''
     :description: Date/time of birth of the subject in ISO 8601 character format.
@@ -155,7 +144,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 9
     :name: RFICDTC
     :rule: ''
     :description: Date/time of informed consent in ISO 8601 character format.
@@ -171,7 +159,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 12
     :name: DTHFL
     :rule: ''
     :description: A value of ‘Y’ indicates the subject died. Should be Y or null.
@@ -186,7 +173,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 4
     :name: SUBJID
     :rule: ''
     :description: Subject identifier, which must be unique within the study. Often
@@ -201,7 +187,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 23
     :name: ARM
     :rule: ''
     :description: Name of the Arm to which the subject was assigned.
@@ -214,7 +199,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 21
     :name: ETHNIC
     :rule: ''
     :description: The ethnicity of the subject. Sponsors should refer to “Collection
@@ -231,7 +215,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 13
     :name: SITEID
     :rule: ''
     :description: Unique identifier for a site within a study.
@@ -244,7 +227,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 14
     :name: INVID
     :rule: ''
     :description: An identifier to describe the Investigator for the study. May be
@@ -259,7 +241,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 6
     :name: RFENDTC
     :rule: ''
     :description: Reference End Date/time for the subject in ISO 8601 character format.
@@ -280,7 +261,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 27
     :name: DMDTC
     :rule: ''
     :description: Collection date and time of an observation represented in IS0 8601
@@ -294,7 +274,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 10
     :name: RFPENDTC
     :rule: ''
     :description: Date/time when subject ended participation or follow-up in a trial,
@@ -311,7 +290,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 8
     :name: RFXENDTC
     :rule: ''
     :description: Last date/time of exposure to any protocol-specified treatment or
@@ -327,7 +305,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 25
     :name: ACTARM
     :rule: ''
     :description: Description of the actual Arm in which the subject participated
@@ -345,7 +322,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 26
     :name: COUNTRY
     :rule: ''
     :description: Country of the investigational site at which the subject participated
@@ -360,7 +336,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 3
     :name: USUBJID
     :rule: ''
     :description: Identifier used to uniquely identify a subject across all studies
@@ -376,7 +351,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 5
     :name: RFSTDTC
     :rule: ''
     :description: Reference Start Date/time for the subject in ISO 8601 character
@@ -397,7 +371,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 17
     :name: AGE
     :rule: ''
     :description: Age expressed in AGEU
@@ -411,7 +384,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 19
     :name: SEX
     :rule: ''
     :description: Sex of the subject.
@@ -424,7 +396,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 15
     :name: INVNAM
     :rule: ''
     :description: Name of the investigator for a site.
@@ -437,7 +408,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 20
     :name: RACE
     :rule: ''
     :description: Race of the subject. Sponsors should refer to “Collection of Race
@@ -455,7 +425,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 18
     :name: AGEU
     :rule: ''
     :description: Units associated with AGE.
@@ -468,7 +437,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 2
     :name: DOMAIN
     :rule: ''
     :description: Two-character abbreviation for the domain most relevant to the observation.
@@ -483,7 +451,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 11
     :name: DTHDTC
     :rule: ''
     :description: Date/time of death for any subject who died, in ISO 8601 format.

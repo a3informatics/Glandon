@@ -38,11 +38,6 @@
     :previous: ''
     :current: ''
     :difference: <div class="diff"></div>
-  :Ordinal:
-    :status: :no_change
-    :previous: 1
-    :current: 1
-    :difference: <div class="diff"></div>
   :Rule:
     :status: :no_change
     :previous: ''
@@ -54,7 +49,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 1
     :name: "--TRT"
     :rule: ''
     :description: The topic for the intervention observation, usually the verbatim
@@ -66,7 +60,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
-    :ordinal: 2
     :name: "--MODIFY"
     :rule: ''
     :description: If the value for --TRT is modified for coding purposes, then the
@@ -77,7 +70,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
-    :ordinal: 3
     :name: "--DECOD"
     :rule: ''
     :description: Standardized or dictionary-derived name of the topic variable, --TRT,
@@ -90,7 +82,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Grouping Qualifier
-    :ordinal: 4
     :name: "--CAT"
     :rule: ''
     :description: Used to define a category of topic-variable values.
@@ -100,7 +91,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Grouping Qualifier
-    :ordinal: 5
     :name: "--SCAT"
     :rule: ''
     :description: Used to define a further categorization of --CAT values.
@@ -110,7 +100,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 6
     :name: "--PRESP"
     :rule: ''
     :description: Used when a specific intervention is pre-specified on a CRF. Values
@@ -121,7 +110,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 7
     :name: "--OCCUR"
     :rule: ''
     :description: Used to record whether a pre-specified intervention occurred when
@@ -132,7 +120,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 8
     :name: "--STAT"
     :rule: ''
     :description: Used to indicate when a question about the occurrence of a pre-specified
@@ -143,7 +130,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 9
     :name: "--REASND"
     :rule: ''
     :description: Reason not done. Used in conjunction with --STAT when value is NOT
@@ -154,7 +140,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 10
     :name: "--INDC"
     :rule: ''
     :description: Denotes the indication for the intervention (e.g., why the therapy
@@ -165,7 +150,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 11
     :name: "--CLAS"
     :rule: ''
     :description: Class for a medication or treatment, often obtained from a coding
@@ -176,7 +160,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 12
     :name: "--CLASCD"
     :rule: ''
     :description: Used to represent code for --CLAS.
@@ -186,7 +169,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 13
     :name: "--DOSE"
     :rule: ''
     :description: Amount of --TRT given. Not populated when --DOSTXT is populated.
@@ -196,7 +178,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 14
     :name: "--DOSTXT"
     :rule: ''
     :description: 'Dosing information collected in text form. Examples: <1 per day,
@@ -207,7 +188,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 15
     :name: "--DOSU"
     :rule: ''
     :description: 'Units for --DOSE, --DOSTOT, or --DOSTXT (Examples: ng, mg, mg/kg).'
@@ -217,7 +197,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 16
     :name: "--DOSFRM"
     :rule: ''
     :description: 'Dose form for the treatment. Examples: TABLET, CAPSULE.'
@@ -227,7 +206,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 17
     :name: "--DOSFRQ"
     :rule: ''
     :description: 'Usually expressed as the number of doses given per a specific interval.
@@ -238,7 +216,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 18
     :name: "--DOSTOT"
     :rule: ''
     :description: Total daily dose of --TRT using the units in --DOSU. Used when dosing
@@ -249,7 +226,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 19
     :name: "--DOSRGM"
     :rule: ''
     :description: 'Text description of the (intended) schedule or regimen for the
@@ -260,7 +236,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 20
     :name: "--ROUTE"
     :rule: ''
     :description: 'Route of administration for the intervention. Examples: ORAL, INTRAVENOUS.'
@@ -270,7 +245,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 21
     :name: "--LOT"
     :rule: ''
     :description: Lot number for the intervention described in --TRT.
@@ -280,7 +254,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 22
     :name: "--LOC"
     :rule: ''
     :description: 'Anatomical location of an intervention, such as an injection site.
@@ -291,7 +264,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 23
     :name: "--TRTV"
     :rule: ''
     :description: 'Vehicle for administration of treatment, such as a liquid in which
@@ -302,7 +274,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 24
     :name: "--VAMT"
     :rule: ''
     :description: Amount of the treatment vehicle administered or given.
@@ -312,7 +283,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 25
     :name: "--VAMTU"
     :rule: ''
     :description: 'Units for the treatment vehicle. Examples: mL, mg.'
@@ -322,7 +292,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 26
     :name: "--ADJ"
     :rule: ''
     :description: Describes reason or explanation of why a dose is adjusted. Examples
@@ -333,7 +302,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 1
     :name: "--TERM"
     :rule: ''
     :description: Topic variable for an event observation, which is the verbatim or
@@ -344,7 +312,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 3
     :name: "--LLT"
     :rule: ''
     :description: MedDRA Lowest Level Term.
@@ -354,7 +321,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 4
     :name: "--LLTCD"
     :rule: ''
     :description: MedDRA Lowest Level Term code.
@@ -364,7 +330,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 6
     :name: "--PTCD"
     :rule: ''
     :description: MedDRA Preferred Term code.
@@ -374,7 +339,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 7
     :name: "--HLT"
     :rule: ''
     :description: MedDRA High Level Term from the primary path.
@@ -384,7 +348,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 8
     :name: "--HLTCD"
     :rule: ''
     :description: MedDRA High Level Term code from the primary path.
@@ -394,7 +357,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 9
     :name: "--HLGT"
     :rule: ''
     :description: MedDRA High Level Group Term from the primary path.
@@ -404,7 +366,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 10
     :name: "--HLGTCD"
     :rule: ''
     :description: MedDRA High Level Group Term code from the primary path.
@@ -414,7 +375,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 17
     :name: "--BODSYS"
     :rule: ''
     :description: 'Body system or system organ class assigned for analysis from a
@@ -426,7 +386,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 18
     :name: "--BDSYCD"
     :rule: ''
     :description: MedDRA System Organ Class code corresponding to --BODSYS assigned
@@ -437,7 +396,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 19
     :name: "--SOC"
     :rule: ''
     :description: MedDRA primary System Organ Class associated with the event.
@@ -447,7 +405,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 20
     :name: "--SOCCD"
     :rule: ''
     :description: MedDRA primary System Organ Class code.
@@ -457,7 +414,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 22
     :name: "--SEV"
     :rule: ''
     :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
@@ -468,7 +424,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 23
     :name: "--SER"
     :rule: ''
     :description: Is this is a serious event? Valid values are "Y" and "N".
@@ -478,7 +433,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 24
     :name: "--ACN"
     :rule: ''
     :description: 'Describes changes made to the study treatment as a result of the
@@ -489,7 +443,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 25
     :name: "--ACNOTH"
     :rule: ''
     :description: Describes other actions taken as a result of the event that are
@@ -500,7 +453,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 26
     :name: "--REL"
     :rule: ''
     :description: Records the investigator's opinion as to the causality of the event
@@ -512,7 +464,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 27
     :name: "--RELNST"
     :rule: ''
     :description: 'An opinion as to whether the event may have been due to a treatment
@@ -523,7 +474,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 28
     :name: "--PATT"
     :rule: ''
     :description: 'Used to indicate the pattern of the event over time. Examples:
@@ -534,7 +484,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 29
     :name: "--OUT"
     :rule: ''
     :description: 'Description of the outcome of an event. Examples: RECOVERED/RESOLVED,
@@ -545,7 +494,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 30
     :name: "--SCAN"
     :rule: ''
     :description: Was the event associated with the development of cancer? Valid values
@@ -556,7 +504,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 31
     :name: "--SCONG"
     :rule: ''
     :description: Was the event associated with congenital anomaly or birth defect?
@@ -567,7 +514,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 32
     :name: "--SDISAB"
     :rule: ''
     :description: Did the event result in persistent or significant disability/incapacity?
@@ -578,7 +524,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 33
     :name: "--SDTH"
     :rule: ''
     :description: Did the event result in death? Valid values are "Y" and "N".
@@ -588,7 +533,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 34
     :name: "--SHOSP"
     :rule: ''
     :description: Did the event require or prolong hospitalization? Valid values are
@@ -599,7 +543,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 35
     :name: "--SLIFE"
     :rule: ''
     :description: Was the event life threatening? Valid values are "Y" and "N".
@@ -609,7 +552,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 36
     :name: "--SOD"
     :rule: ''
     :description: Did the event occur with an overdose? Valid values are "Y" and "N".
@@ -619,7 +561,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 37
     :name: "--SMIE"
     :rule: ''
     :description: Do additional categories for seriousness apply? Valid values are
@@ -630,7 +571,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 38
     :name: "--CONTRT"
     :rule: ''
     :description: Was another treatment given because of the occurrence of the event?
@@ -641,7 +581,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 39
     :name: "--TOX"
     :rule: ''
     :description: 'Description of toxicity quantified by --TOXGR such as NCI CTCAE
@@ -653,7 +592,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 40
     :name: "--TOXGR"
     :rule: ''
     :description: Records toxicity grade using a standard toxicity scale (such as
@@ -665,7 +603,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 1
     :name: "--TESTCD"
     :rule: ''
     :description: 'Short character value for --TEST used as a column name when converting
@@ -677,7 +614,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
-    :ordinal: 2
     :name: "--TEST"
     :rule: ''
     :description: 'Long name For --TESTCD. Examples: Platelet, Systolic Blood Pressure,
@@ -688,7 +624,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 6
     :name: "--POS"
     :rule: ''
     :description: 'Position of the subject during a measurement or examination. Examples:
@@ -699,7 +634,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Result Qualifier
-    :ordinal: 8
     :name: "--ORRES"
     :rule: ''
     :description: 'Result of the measurement or finding as originally received or
@@ -710,7 +644,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 9
     :name: "--ORRESU"
     :rule: ''
     :description: 'Unit for --ORRES. Examples: IN, LB, kg/L.'
@@ -720,7 +653,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 10
     :name: "--ORNRLO"
     :rule: ''
     :description: Lower end of normal range or reference range for results stored
@@ -731,7 +663,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 11
     :name: "--ORNRHI"
     :rule: ''
     :description: Upper end of normal range or reference range for results stored
@@ -742,7 +673,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Result Qualifier
-    :ordinal: 12
     :name: "--STRESC"
     :rule: ''
     :description: Contains the result value for all findings, copied or derived from
@@ -758,7 +688,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Result Qualifier
-    :ordinal: 13
     :name: "--STRESN"
     :rule: ''
     :description: Used for continuous or numeric results or findings in standard format;
@@ -770,7 +699,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 14
     :name: "--STRESU"
     :rule: ''
     :description: 'Standardized units used for --STRESC and --STRESN. Example: mol/L.'
@@ -780,7 +708,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 15
     :name: "--STNRLO"
     :rule: ''
     :description: Lower end of normal range or reference range for standardized results
@@ -791,7 +718,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 16
     :name: "--STNRHI"
     :rule: ''
     :description: Upper end of normal range or reference range for standardized results
@@ -802,7 +728,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 17
     :name: "--STNRC"
     :rule: ''
     :description: 'Normal range or reference range for results stored in --STRESC
@@ -813,7 +738,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 18
     :name: "--NRIND"
     :rule: ''
     :description: 'Used to indicate the value is outside the normal range or reference
@@ -825,7 +749,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 19
     :name: "--RESCAT"
     :rule: ''
     :description: 'Used to categorize the result of a finding. Example: MALIGNANT
@@ -836,7 +759,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 22
     :name: "--XFN"
     :rule: ''
     :description: Filename for an external file, such as one for an ECG waveform or
@@ -847,7 +769,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 23
     :name: "--NAM"
     :rule: ''
     :description: Name or identifier of the vendor (e.g., laboratory) that provided
@@ -858,7 +779,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
-    :ordinal: 24
     :name: "--LOINC"
     :rule: ''
     :description: Logical Observation Identifiers Names and Codes (LOINC) code for
@@ -869,7 +789,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 25
     :name: "--SPEC"
     :rule: ''
     :description: 'Defines the type of specimen used for a measurement. Examples:
@@ -880,7 +799,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 26
     :name: "--ANTREG"
     :rule: ''
     :description: 'Defines the specific anatomical or biological region of a tissue,
@@ -893,7 +811,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 27
     :name: "--SPCCND"
     :rule: ''
     :description: 'Defines the condition of the specimen. Example: CLOUDY.'
@@ -903,7 +820,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 28
     :name: "--SPCUFL"
     :rule: ''
     :description: Describes the usability of the specimen for the test. The value
@@ -914,7 +830,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 30
     :name: "--LAT"
     :rule: ''
     :description: 'Qualifier for anatomical location or specimen further detailing
@@ -925,7 +840,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 31
     :name: "--DIR"
     :rule: ''
     :description: 'Qualifier for anatomical location or specimen further detailing
@@ -936,7 +850,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 32
     :name: "--PORTOT"
     :rule: ''
     :description: 'Qualifier for anatomical location or specimen further detailing
@@ -948,7 +861,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 33
     :name: "--METHOD"
     :rule: ''
     :description: 'Method of the test or examination. Examples: EIA (Enzyme Immunoassay),
@@ -959,7 +871,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 34
     :name: "--LEAD"
     :rule: ''
     :description: 'Lead or leads identified to capture the measurement for a test
@@ -970,7 +881,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 35
     :name: "--CSTATE"
     :rule: ''
     :description: 'The consciousness state of the subject at the time of measurement.
@@ -981,7 +891,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 36
     :name: "--BLFL"
     :rule: ''
     :description: Indicator used to identify a baseline value. Should be Y or null.
@@ -991,7 +900,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 37
     :name: "--FAST"
     :rule: ''
     :description: Indicator used to identify fasting status. Valid values include
@@ -1002,7 +910,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 38
     :name: "--DRVFL"
     :rule: ''
     :description: Used to indicate a derived record (e.g., a record that represents
@@ -1013,7 +920,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 39
     :name: "--EVAL"
     :rule: ''
     :description: 'Role of the person who provided the evaluation. Used only for results
@@ -1025,7 +931,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 40
     :name: "--EVALID"
     :rule: ''
     :description: 'Used to distinguish multiple evaluators with the same role recorded
@@ -1036,7 +941,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 41
     :name: "--ACPTFL"
     :rule: ''
     :description: In cases where more than one assessor provides an evaluation of
@@ -1049,7 +953,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 45
     :name: "--DTHREL"
     :rule: ''
     :description: Describes the relationship of a particular finding to the death
@@ -1060,7 +963,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 46
     :name: "--LLOQ"
     :rule: ''
     :description: Indicates the lower limit of quantitation for an assay. Units will
@@ -1071,7 +973,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 47
     :name: "--EXCLFL"
     :rule: ''
     :description: Indicates whether the values in the result variables for this record
@@ -1084,7 +985,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 48
     :name: "--REASEX"
     :rule: ''
     :description: Reason excluded from statistics. Used in conjunction with --EXCLFL
@@ -1095,7 +995,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 1
     :name: "--OBJ"
     :rule: ''
     :description: 'Used in domains modeled as Findings About Events or Findings About
@@ -1108,7 +1007,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 1
     :name: STUDYID
     :rule: ''
     :description: Unique identifier for a study.
@@ -1118,7 +1016,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 2
     :name: DOMAIN
     :rule: ''
     :description: Two-character abbreviation for the domain most relevant to the observation.
@@ -1130,7 +1027,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 3
     :name: USUBJID
     :rule: ''
     :description: Identifier used to uniquely identify a subject across all studies
@@ -1141,7 +1037,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 4
     :name: POOLID
     :rule: ''
     :description: An identifier used to identify a result from a group of subjects
@@ -1152,7 +1047,6 @@
     :datatype: Num
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 5
     :name: "--SEQ"
     :rule: ''
     :description: Sequence number to ensure uniqueness of records within a dataset
@@ -1164,7 +1058,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 6
     :name: "--GRPID"
     :rule: ''
     :description: Optional group identifier, used to link together a block of related
@@ -1176,7 +1069,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 7
     :name: "--REFID"
     :rule: ''
     :description: Optional internal or external identifier such as lab specimen ID,
@@ -1187,7 +1079,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 8
     :name: "--SPID"
     :rule: ''
     :description: 'Sponsor-defined identifier. Example: pre-printed line identifier
@@ -1198,7 +1089,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 9
     :name: "--LNKID"
     :rule: ''
     :description: 'Identifier used to link a feature (such as a tumor) initially recorded
@@ -1212,7 +1102,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 10
     :name: "--LNKGRP"
     :rule: ''
     :description: 'A grouping identifier used to identify a group of assessment results
@@ -1226,7 +1115,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 11
     :name: VISITNUM
     :rule: ''
     :description: Clinical encounter number. Numeric version of VISIT, used for sorting.
@@ -1236,7 +1124,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 12
     :name: VISIT
     :rule: ''
     :description: Protocol-defined description of a clinical encounter.
@@ -1246,7 +1133,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 13
     :name: VISITDY
     :rule: ''
     :description: Planned study day of VISIT. Should be an integer.
@@ -1256,7 +1142,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 14
     :name: TAETORD
     :rule: ''
     :description: "<html>Number that gives the planned order of the Element within
@@ -1267,7 +1152,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 15
     :name: EPOCH
     :rule: ''
     :description: Epoch associated with the start date/time of the observation, or
@@ -1279,7 +1163,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 16
     :name: "--DTC"
     :rule: ''
     :description: Collection date and time of an observation represented in IS0 8601
@@ -1290,7 +1173,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 17
     :name: "--STDTC"
     :rule: ''
     :description: Start date/time of an observation represented in IS0 8601 character
@@ -1301,7 +1183,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 18
     :name: "--ENDTC"
     :rule: ''
     :description: End date/time of the observation represented in IS0 8601 character
@@ -1312,7 +1193,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 19
     :name: "--DY"
     :rule: ''
     :description: Actual study day of visit/collection/exam expressed in integer days
@@ -1323,7 +1203,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 20
     :name: "--STDY"
     :rule: ''
     :description: Actual study day of start of observation expressed in integer days
@@ -1334,7 +1213,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 21
     :name: "--ENDY"
     :rule: ''
     :description: Actual study day of end of observation expressed in integer days
@@ -1345,7 +1223,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 22
     :name: "--DUR"
     :rule: ''
     :description: Collected duration of an event, intervention, or finding represented
@@ -1356,7 +1233,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 23
     :name: "--TPT"
     :rule: ''
     :description: Text description of time when a measurement or observation should
@@ -1369,7 +1245,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 24
     :name: "--TPTNUM"
     :rule: ''
     :description: Numeric version of planned time point used in sorting.
@@ -1379,7 +1254,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 25
     :name: "--ELTM"
     :rule: ''
     :description: Planned Elapsed time in ISO 8601 character format relative to a
@@ -1392,7 +1266,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 26
     :name: "--TPTREF"
     :rule: ''
     :description: 'Description of the fixed reference point referred to by --ELTM,
@@ -1403,7 +1276,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 27
     :name: "--RFTDTC"
     :rule: ''
     :description: Date/time for a fixed reference time point defined by --TPTREF in
@@ -1414,7 +1286,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 28
     :name: "--STRF"
     :rule: ''
     :description: Identifies the start of the observation as being before, during,
@@ -1427,7 +1298,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 29
     :name: "--ENRF"
     :rule: ''
     :description: Identifies the end of the observation as being before, during or
@@ -1440,7 +1310,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 30
     :name: "--EVLINT"
     :rule: ''
     :description: 'Duration of  interval associated with an observation such as a
@@ -1453,7 +1322,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 31
     :name: "--STRTPT"
     :rule: ''
     :description: Identifies the start of the observation as being before or after
@@ -1464,7 +1332,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 32
     :name: "--STTPT"
     :rule: ''
     :description: 'Description or date/time in ISO 8601 or other character format
@@ -1476,7 +1343,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 33
     :name: "--ENRTPT"
     :rule: ''
     :description: Identifies the end of the observation as being before or after the
@@ -1487,7 +1353,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 34
     :name: "--ENTPT"
     :rule: ''
     :description: 'Description or date/time in ISO 8601 or other character format
@@ -1499,7 +1364,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 35
     :name: "--DETECT"
     :rule: ''
     :description: The number of days from the start of dosing to the earliest detection
@@ -1510,7 +1374,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 1
     :name: SUBJID
     :rule: ''
     :description: Subject identifier, which must be unique within the study. Often
@@ -1521,7 +1384,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 2
     :name: RFSTDTC
     :rule: ''
     :description: Reference Start Date/time for the subject in ISO 8601 character
@@ -1535,7 +1397,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 3
     :name: RFENDTC
     :rule: ''
     :description: Reference End Date/time for the subject in ISO 8601 character format.
@@ -1549,7 +1410,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 4
     :name: RFXSTDTC
     :rule: ''
     :description: First date/time of exposure to any protocol-specified treatment
@@ -1560,7 +1420,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 5
     :name: RFXENDTC
     :rule: ''
     :description: Last date/time of exposure to any protocol-specified treatment or
@@ -1571,7 +1430,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 6
     :name: RFICDTC
     :rule: ''
     :description: Date/time of informed consent in ISO 8601 character format.
@@ -1581,7 +1439,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 7
     :name: RFPENDTC
     :rule: ''
     :description: Date/time when subject ended participation or follow-up in a trial,
@@ -1592,7 +1449,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 8
     :name: DTHDTC
     :rule: ''
     :description: Date/time of death for any subject who died, in ISO 8601 format.
@@ -1603,7 +1459,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 9
     :name: DTHFL
     :rule: ''
     :description: A value of ‘Y’ indicates the subject died. Should be Y or null.
@@ -1614,7 +1469,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 10
     :name: SITEID
     :rule: ''
     :description: Unique identifier for a site within a study.
@@ -1624,7 +1478,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 11
     :name: INVID
     :rule: ''
     :description: An identifier to describe the Investigator for the study. May be
@@ -1635,7 +1488,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 12
     :name: INVNAM
     :rule: ''
     :description: Name of the investigator for a site.
@@ -1645,7 +1497,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 13
     :name: BRTHDTC
     :rule: ''
     :description: Date/time of birth of the subject in ISO 8601 character format.
@@ -1655,7 +1506,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 14
     :name: AGE
     :rule: ''
     :description: Age expressed in AGEU
@@ -1665,7 +1515,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 15
     :name: AGEU
     :rule: ''
     :description: Units associated with AGE.
@@ -1675,7 +1524,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 16
     :name: SEX
     :rule: ''
     :description: Sex of the subject.
@@ -1685,7 +1533,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 17
     :name: RACE
     :rule: ''
     :description: Race of the subject. Sponsors should refer to “Collection of Race
@@ -1697,7 +1544,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 18
     :name: ETHNIC
     :rule: ''
     :description: The ethnicity of the subject. Sponsors should refer to “Collection
@@ -1709,7 +1555,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 19
     :name: SPECIES
     :rule: ''
     :description: Used to identify the common species name of the subject (i.e., test
@@ -1720,7 +1565,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 20
     :name: STRAIN
     :rule: ''
     :description: Used to identify the vendor-supplied strain/substrain designation
@@ -1734,7 +1578,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 21
     :name: ARMCD
     :rule: ''
     :description: ARMCD is limited to 20 characters and does not have special character
@@ -1745,7 +1588,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 22
     :name: ARM
     :rule: ''
     :description: Name of the Arm to which the subject was assigned.
@@ -1755,7 +1597,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 23
     :name: ACTARMCD
     :rule: ''
     :description: Short name for the actual Arm in which the subject participated
@@ -1766,7 +1607,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 24
     :name: ACTARM
     :rule: ''
     :description: Description of the actual Arm in which the subject participated
@@ -1777,7 +1617,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 25
     :name: SETCD
     :rule: ''
     :description: Short name of a specific Trial Set (see Table 3.2.4), as defined
@@ -1789,7 +1628,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 26
     :name: COUNTRY
     :rule: ''
     :description: Country of the investigational site at which the subject participated
@@ -1800,7 +1638,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 27
     :name: RDOMAIN
     :rule: ''
     :description: Domain Abbreviation of the parent record(s). Null for records collected
@@ -1811,7 +1648,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 29
     :name: IDVAR
     :rule: ''
     :description: Identifying variable in the parent dataset that identifies the record(s)
@@ -1824,7 +1660,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 30
     :name: IDVARVAL
     :rule: ''
     :description: Value of identifying variable of the parent record(s). Null for
@@ -1835,7 +1670,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 31
     :name: "--REF"
     :rule: ''
     :description: Sponsor-defined reference associated with the comment. May be the
@@ -1847,7 +1681,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 32
     :name: "--VAL"
     :rule: ''
     :description: The text of the comment. Text over 200 characters can be added to
@@ -1858,7 +1691,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 34
     :name: ETCD
     :rule: ''
     :description: ETCD (the companion to ELEMENT) is limited to 8 characters and does
@@ -1871,7 +1703,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 35
     :name: ELEMENT
     :rule: ''
     :description: The name of the Element. If ETCD has a value of “UNPLAN” then ELEMENT
@@ -1882,7 +1713,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 36
     :name: "--UPDES"
     :rule: ''
     :description: Description of what happened to the subject during an unplanned
@@ -1893,7 +1723,6 @@
     :datatype: Char
     :classification: Rule
     :sub_classification: ''
-    :ordinal: 3
     :name: "--STRL"
     :rule: ''
     :description: Expresses rule for beginning the Element.
@@ -1903,7 +1732,6 @@
     :datatype: Char
     :classification: Rule
     :sub_classification: ''
-    :ordinal: 4
     :name: "--ENRL"
     :rule: ''
     :description: Expresses rule for ending the Element. Either TEENRL or TEDUR must
@@ -1914,7 +1742,6 @@
     :datatype: Char
     :classification: Rule
     :sub_classification: ''
-    :ordinal: 7
     :name: "--BRANCH"
     :rule: ''
     :description: 'Condition subjects meet, at a “branch” in the Trial Design at the
@@ -1926,7 +1753,6 @@
     :datatype: Char
     :classification: Rule
     :sub_classification: ''
-    :ordinal: 8
     :name: "--TRANS"
     :rule: ''
     :description: If the trial design allows a subject to transition to an Element
@@ -1939,7 +1765,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 12
     :name: SET
     :rule: ''
     :description: Long description of a specific Trial Set, as defined by the sponsor.
@@ -1949,7 +1774,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 13
     :name: IETESTCD
     :rule: ''
     :description: Short name IETEST. It can be used as a column name when converting
@@ -1963,7 +1787,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
-    :ordinal: 14
     :name: IETEST
     :rule: ''
     :description: Full text of the inclusion or exclusion criterion. The prefix “IE”
@@ -1974,7 +1797,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Grouping Qualifier
-    :ordinal: 15
     :name: IECAT
     :rule: ''
     :description: 'Used for categorization of the Inclusion/Exclusion Criterion: INCLUSION,
@@ -1985,7 +1807,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Grouping Qualifier
-    :ordinal: 16
     :name: IESCAT
     :rule: ''
     :description: 'A further categorization of the exception criterion. Can be used
@@ -1997,7 +1818,6 @@
     :datatype: Char
     :classification: Rule
     :sub_classification: ''
-    :ordinal: 17
     :name: "--RL"
     :rule: ''
     :description: Rule that expresses the inclusion/exclusion criterion.
@@ -2007,7 +1827,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 18
     :name: "--VERS"
     :rule: ''
     :description: The number of this version of the Inclusion/Exclusion criteria.
@@ -2018,7 +1837,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 19
     :name: "--PARMCD"
     :rule: ''
     :description: 'TSPARMCD (the companion to TSPARM) is limited to 8 characters and
@@ -2031,7 +1849,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
-    :ordinal: 20
     :name: "--PARM"
     :rule: ''
     :description: Term for the Trial Summary Parameter. The value in TSPARM cannot
@@ -2043,7 +1860,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Result Qualifier
-    :ordinal: 22
     :name: "--VALNF"
     :rule: ''
     :description: Null flavor for the value of TSVAL describing the reason the value
@@ -2054,7 +1870,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Result Qualifier
-    :ordinal: 23
     :name: "--VALCD"
     :rule: ''
     :description: Code of the term in TSVAL from Reference Terminology cited in TSVCDREF.
@@ -2064,7 +1879,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Result Qualifier
-    :ordinal: 24
     :name: "--VCDREF"
     :rule: ''
     :description: The name of the Reference Terminology from which TSVALCD is taken.
@@ -2075,7 +1889,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Result Qualifier
-    :ordinal: 25
     :name: "--VCDVER"
     :rule: ''
     :description: The version number of the Reference Terminology cited in TSVCDREF,
@@ -2086,7 +1899,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 4
     :name: RELTYPE
     :rule: ''
     :description: Identifies the hierarchical level of the records in the relationship.
@@ -2098,7 +1910,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 5
     :name: RELID
     :rule: ''
     :description: Unique value within USUBJID that identifies the relationship. All
@@ -2111,7 +1922,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 6
     :name: QNAM
     :rule: ''
     :description: The short name of the Qualifier variable, which is used as a column
@@ -2125,7 +1935,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 7
     :name: QLABEL
     :rule: ''
     :description: This is the long name or label associated with QNAM. The value in
@@ -2137,7 +1946,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 8
     :name: QVAL
     :rule: ''
     :description: Result of, response to, or value associated with QNAM. A value for
@@ -2148,7 +1956,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 9
     :name: QORIG
     :rule: ''
     :description: Since QVAL can represent a mixture of collected (on a CRF), derived,
@@ -2160,7 +1967,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 10
     :name: QEVAL
     :rule: ''
     :description: Used only for results that are subjective (e.g., assigned by a person

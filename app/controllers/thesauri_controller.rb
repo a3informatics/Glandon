@@ -28,6 +28,7 @@ class ThesauriController < ApplicationController
   def history
     authorize Thesaurus
     @identifier = params[:identifier]
+    @scope_id = params[:scope_id]
     @thesauri = Thesaurus.history(params)
     redirect_to thesauri_index_path if @thesauri.count == 0
   end

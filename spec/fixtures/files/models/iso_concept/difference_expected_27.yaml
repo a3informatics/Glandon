@@ -38,11 +38,6 @@
     :previous: ''
     :current: ''
     :difference: <div class="diff"></div>
-  :Ordinal:
-    :status: :no_change
-    :previous: 1
-    :current: 1
-    :difference: <div class="diff"></div>
   :Rule:
     :status: :no_change
     :previous: ''
@@ -54,7 +49,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 1
     :name: STUDYID
     :rule: ''
     :description: Unique identifier for a study.
@@ -64,7 +58,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 2
     :name: DOMAIN
     :rule: ''
     :description: Two-character abbreviation for the domain most relevant to the observation.
@@ -76,7 +69,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 3
     :name: USUBJID
     :rule: ''
     :description: Identifier used to uniquely identify a subject across all studies
@@ -87,7 +79,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 4
     :name: POOLID
     :rule: ''
     :description: An identifier used to identify a result from a group of subjects
@@ -98,7 +89,6 @@
     :datatype: Num
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 5
     :name: "--SEQ"
     :rule: ''
     :description: Sequence number to ensure uniqueness of records within a dataset
@@ -110,7 +100,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 6
     :name: "--GRPID"
     :rule: ''
     :description: Optional group identifier, used to link together a block of related
@@ -122,7 +111,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 7
     :name: "--REFID"
     :rule: ''
     :description: Optional internal or external identifier such as lab specimen ID,
@@ -133,7 +121,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 8
     :name: "--SPID"
     :rule: ''
     :description: 'Sponsor-defined identifier. Example: pre-printed line identifier
@@ -144,7 +131,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 9
     :name: "--LNKID"
     :rule: ''
     :description: 'Identifier used to link a feature (such as a tumor) initially recorded
@@ -158,7 +144,6 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 10
     :name: "--LNKGRP"
     :rule: ''
     :description: 'A grouping identifier used to identify a group of assessment results
@@ -172,7 +157,6 @@
     :datatype: Char
     :classification: Topic
     :sub_classification: ''
-    :ordinal: 11
     :name: "--TERM"
     :rule: ''
     :description: Topic variable for an event observation, which is the verbatim or
@@ -183,7 +167,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
-    :ordinal: 12
     :name: "--MODIFY"
     :rule: ''
     :description: If the value for --TRT is modified for coding purposes, then the
@@ -194,7 +177,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 13
     :name: "--LLT"
     :rule: ''
     :description: MedDRA Lowest Level Term.
@@ -204,7 +186,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 14
     :name: "--LLTCD"
     :rule: ''
     :description: MedDRA Lowest Level Term code.
@@ -214,7 +195,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Synonym Qualifier
-    :ordinal: 15
     :name: "--DECOD"
     :rule: ''
     :description: Standardized or dictionary-derived name of the topic variable, --TRT,
@@ -227,7 +207,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 16
     :name: "--PTCD"
     :rule: ''
     :description: MedDRA Preferred Term code.
@@ -237,7 +216,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 17
     :name: "--HLT"
     :rule: ''
     :description: MedDRA High Level Term from the primary path.
@@ -247,7 +225,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 18
     :name: "--HLTCD"
     :rule: ''
     :description: MedDRA High Level Term code from the primary path.
@@ -257,7 +234,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 19
     :name: "--HLGT"
     :rule: ''
     :description: MedDRA High Level Group Term from the primary path.
@@ -267,7 +243,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 20
     :name: "--HLGTCD"
     :rule: ''
     :description: MedDRA High Level Group Term code from the primary path.
@@ -277,7 +252,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Grouping Qualifier
-    :ordinal: 21
     :name: "--CAT"
     :rule: ''
     :description: Used to define a category of topic-variable values.
@@ -287,7 +261,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Grouping Qualifier
-    :ordinal: 22
     :name: "--SCAT"
     :rule: ''
     :description: Used to define a further categorization of --CAT values.
@@ -297,7 +270,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 23
     :name: "--PRESP"
     :rule: ''
     :description: Used when a specific intervention is pre-specified on a CRF. Values
@@ -308,7 +280,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 24
     :name: "--OCCUR"
     :rule: ''
     :description: Used to record whether a pre-specified intervention occurred when
@@ -319,7 +290,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 25
     :name: "--STAT"
     :rule: ''
     :description: Used to indicate when a question about the occurrence of a pre-specified
@@ -330,7 +300,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 26
     :name: "--REASND"
     :rule: ''
     :description: Reason not done. Used in conjunction with --STAT when value is NOT
@@ -341,7 +310,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 27
     :name: "--BODSYS"
     :rule: ''
     :description: 'Body system or system organ class assigned for analysis from a
@@ -353,7 +321,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 28
     :name: "--BDSYCD"
     :rule: ''
     :description: MedDRA System Organ Class code corresponding to --BODSYS assigned
@@ -364,7 +331,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 29
     :name: "--SOC"
     :rule: ''
     :description: MedDRA primary System Organ Class associated with the event.
@@ -374,7 +340,6 @@
     :datatype: Num
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 30
     :name: "--SOCCD"
     :rule: ''
     :description: MedDRA primary System Organ Class code.
@@ -384,7 +349,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 31
     :name: "--LOC"
     :rule: ''
     :description: 'Anatomical location of an intervention, such as an injection site.
@@ -395,7 +359,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 32
     :name: "--SEV"
     :rule: ''
     :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
@@ -406,7 +369,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 33
     :name: "--SER"
     :rule: ''
     :description: Is this is a serious event? Valid values are "Y" and "N".
@@ -416,7 +378,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 34
     :name: "--ACN"
     :rule: ''
     :description: 'Describes changes made to the study treatment as a result of the
@@ -427,7 +388,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 35
     :name: "--ACNOTH"
     :rule: ''
     :description: Describes other actions taken as a result of the event that are
@@ -438,7 +398,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 36
     :name: "--REL"
     :rule: ''
     :description: Records the investigator's opinion as to the causality of the event
@@ -450,7 +409,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 37
     :name: "--RELNST"
     :rule: ''
     :description: 'An opinion as to whether the event may have been due to a treatment
@@ -461,7 +419,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 38
     :name: "--PATT"
     :rule: ''
     :description: 'Used to indicate the pattern of the event over time. Examples:
@@ -472,7 +429,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 39
     :name: "--OUT"
     :rule: ''
     :description: 'Description of the outcome of an event. Examples: RECOVERED/RESOLVED,
@@ -483,7 +439,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 40
     :name: "--SCAN"
     :rule: ''
     :description: Was the event associated with the development of cancer? Valid values
@@ -494,7 +449,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 41
     :name: "--SCONG"
     :rule: ''
     :description: Was the event associated with congenital anomaly or birth defect?
@@ -505,7 +459,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 42
     :name: "--SDISAB"
     :rule: ''
     :description: Did the event result in persistent or significant disability/incapacity?
@@ -516,7 +469,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 43
     :name: "--SDTH"
     :rule: ''
     :description: Did the event result in death? Valid values are "Y" and "N".
@@ -526,7 +478,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 44
     :name: "--SHOSP"
     :rule: ''
     :description: Did the event require or prolong hospitalization? Valid values are
@@ -537,7 +488,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 45
     :name: "--SLIFE"
     :rule: ''
     :description: Was the event life threatening? Valid values are "Y" and "N".
@@ -547,7 +497,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 46
     :name: "--SOD"
     :rule: ''
     :description: Did the event occur with an overdose? Valid values are "Y" and "N".
@@ -557,7 +506,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 47
     :name: "--SMIE"
     :rule: ''
     :description: Do additional categories for seriousness apply? Valid values are
@@ -568,7 +516,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 48
     :name: "--CONTRT"
     :rule: ''
     :description: Was another treatment given because of the occurrence of the event?
@@ -579,7 +526,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Variable Qualifier
-    :ordinal: 49
     :name: "--TOX"
     :rule: ''
     :description: 'Description of toxicity quantified by --TOXGR such as NCI CTCAE
@@ -591,7 +537,6 @@
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 50
     :name: "--TOXGR"
     :rule: ''
     :description: Records toxicity grade using a standard toxicity scale (such as
@@ -603,7 +548,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 51
     :name: VISITNUM
     :rule: ''
     :description: Clinical encounter number. Numeric version of VISIT, used for sorting.
@@ -613,7 +557,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 52
     :name: VISIT
     :rule: ''
     :description: Protocol-defined description of a clinical encounter.
@@ -623,7 +566,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 53
     :name: VISITDY
     :rule: ''
     :description: Planned study day of VISIT. Should be an integer.
@@ -633,7 +575,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 54
     :name: TAETORD
     :rule: ''
     :description: "<html>Number that gives the planned order of the Element within
@@ -644,7 +585,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 55
     :name: EPOCH
     :rule: ''
     :description: Epoch associated with the start date/time of the observation, or
@@ -656,7 +596,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 56
     :name: "--DTC"
     :rule: ''
     :description: Collection date and time of an observation represented in IS0 8601
@@ -667,7 +606,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 57
     :name: "--STDTC"
     :rule: ''
     :description: Start date/time of an observation represented in IS0 8601 character
@@ -678,7 +616,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 58
     :name: "--ENDTC"
     :rule: ''
     :description: End date/time of the observation represented in IS0 8601 character
@@ -689,7 +626,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 59
     :name: "--DY"
     :rule: ''
     :description: Actual study day of visit/collection/exam expressed in integer days
@@ -700,7 +636,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 60
     :name: "--STDY"
     :rule: ''
     :description: Actual study day of start of observation expressed in integer days
@@ -711,7 +646,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 61
     :name: "--ENDY"
     :rule: ''
     :description: Actual study day of end of observation expressed in integer days
@@ -722,7 +656,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 62
     :name: "--DUR"
     :rule: ''
     :description: Collected duration of an event, intervention, or finding represented
@@ -733,7 +666,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 63
     :name: "--TPT"
     :rule: ''
     :description: Text description of time when a measurement or observation should
@@ -746,7 +678,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 64
     :name: "--TPTNUM"
     :rule: ''
     :description: Numeric version of planned time point used in sorting.
@@ -756,7 +687,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 65
     :name: "--ELTM"
     :rule: ''
     :description: Planned Elapsed time in ISO 8601 character format relative to a
@@ -769,7 +699,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 66
     :name: "--TPTREF"
     :rule: ''
     :description: 'Description of the fixed reference point referred to by --ELTM,
@@ -780,7 +709,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 67
     :name: "--RFTDTC"
     :rule: ''
     :description: Date/time for a fixed reference time point defined by --TPTREF in
@@ -791,7 +719,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 68
     :name: "--STRF"
     :rule: ''
     :description: Identifies the start of the observation as being before, during,
@@ -804,7 +731,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 69
     :name: "--ENRF"
     :rule: ''
     :description: Identifies the end of the observation as being before, during or
@@ -817,7 +743,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 70
     :name: "--EVLINT"
     :rule: ''
     :description: 'Duration of  interval associated with an observation such as a
@@ -830,7 +755,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 71
     :name: "--STRTPT"
     :rule: ''
     :description: Identifies the start of the observation as being before or after
@@ -841,7 +765,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 72
     :name: "--STTPT"
     :rule: ''
     :description: 'Description or date/time in ISO 8601 or other character format
@@ -853,7 +776,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 73
     :name: "--ENRTPT"
     :rule: ''
     :description: Identifies the end of the observation as being before or after the
@@ -864,7 +786,6 @@
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 74
     :name: "--ENTPT"
     :rule: ''
     :description: 'Description or date/time in ISO 8601 or other character format
@@ -876,7 +797,6 @@
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :ordinal: 75
     :name: "--DETECT"
     :rule: ''
     :description: The number of days from the start of dosing to the earliest detection

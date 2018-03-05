@@ -45,3 +45,5 @@
 		</table>
 	</div>
 </div>
+<%= link_to "Changes", changes_iso_managed_index_path({iso_managed: {rdf_type: @forms.first.rdf_type, child_property: "label", identifier: @identifier, scope_id: @scope_id}}), :class => "btn btn-primary" %>
+  
