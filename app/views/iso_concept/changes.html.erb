@@ -18,53 +18,56 @@
 		<tbody>
       <% @results[:changes].each_with_index do |result, index| %>
         <tr>
-          <td><%=  @results[:versions][index] %></td>
-          <% result[:differences][:results].each do |k, v| %>
-            <%= diff_glyphicon(v) %>
+          <td><%= @results[:versions][index] %></td>
+          <% @results[:changes].first[:differences][:results].each do |k, v| %>
+            <% entry = result[:differences][:results][k] %>
+            <%= diff_glyphicon(entry) %>
           <% end %>
         </tr>
       <% end %>
 		</tbody>
 	</table>
-  <h4>Child Changes</h4>  
-  <table id="secondary" class="table table-striped table-bordered table-condensed">
-    <thead>
-      <tr>
-        <% if @results[:child_property].upcase != "ORDINAL" %>
-          <th class="fit">Ordinal</th>
-        <% end %>
-        <th class="fit"><%= @results[:child_property] %></th>
-        <% if @results[:child_property].upcase != "LABEL" %>
-          <th class="fit">Label</th>
-        <% end %>
-        <% @results[:versions].each do |v| %>
-          <th><%= v %></th>
-        <% end %>
-        <th class="fit"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @results[:child_keys].each do |k, x| %>
+  <% if !@results[:child_keys].blank? %>
+    <h4>Child Changes</h4>  
+    <table id="secondary" class="table table-striped table-bordered table-condensed">
+      <thead>
         <tr>
-          <% if @results[:child_property].upcase != "ORDINAL" %>
-            <td><%= x[:ordinal] %></th>
+          <% if @results[:child_property].upcase != "ORDINAL" && !@results[:child_keys].first.last[:ordinal].blank? %>
+            <th class="fit">Ordinal</th>
           <% end %>
-          <td><%= k %></td>
+          <th class="fit"><%= @results[:child_property] %></th>
           <% if @results[:child_property].upcase != "LABEL" %>
-            <td><%= x[:label] %></td>
+            <th class="fit">Label</th>
           <% end %>
-          <% @results[:changes].each do |result| %>
-            <% entry = result[:differences][:children].find { |c, v| v[@results[:child_property].to_sym] == k } %>
-            <% if !entry.nil? %>
-              <%= render partial: "shared/change_status", locals: {status: entry.last[:status]} %>
-            <% else %>
-              <td>&nbsp;</td>
-            <% end %>            
+          <% @results[:versions].each do |v| %>
+            <th><%= v %></th>
           <% end %>
-           <td><%= link_to "Changes", changes_iso_concept_index_path(iso_concept: {concepts: x[:children], versions: @results[:versions], child_property: @results[:child_property], identifier: @results[:identifier]}), :class => "btn btn-primary btn-xs" %></td>
+          <th class="fit"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @results[:child_keys].each do |k, x| %>
+          <tr>
+            <% if @results[:child_property].upcase != "ORDINAL" && !@results[:child_keys].first.last[:ordinal].blank? %>
+              <td><%= x[:ordinal] %></th>
+            <% end %>
+            <td><%= k %></td>
+            <% if @results[:child_property].upcase != "LABEL" %>
+              <td><%= x[:label] %></td>
+            <% end %>
+            <% @results[:changes].each do |result| %>
+              <% entry = result[:differences][:children].find { |c, v| v[@results[:child_property].to_sym] == k } %>
+              <% if !entry.nil? %>
+                <%= render partial: "shared/change_status", locals: {status: entry.last[:status]} %>
+              <% else %>
+                <td>&nbsp;</td>
+              <% end %>            
+            <% end %>
+             <td><%= link_to "Changes", changes_iso_concept_index_path(iso_concept: {concepts: x[:children], versions: @results[:versions], child_property: @results[:child_property], identifier: @results[:identifier]}), :class => "btn btn-primary btn-xs" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
   <%= link_to "Close", @close_path, :class => "btn btn-primary" %>
 </div>
