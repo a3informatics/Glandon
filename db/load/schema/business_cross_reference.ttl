@@ -1,3 +1,6 @@
+# baseURI: http://www.assero.co.uk/BusinessCrossReference
+# imports: http://www.assero.co.uk/ISO11179Concepts
+
 @prefix : <http://www.assero.co.uk/BusinessCrossReference#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
@@ -50,3 +53,4 @@
   rdfs:domain :CrossReference ;
   rdfs:range bo:Xreference ;
   skos:definition "A cross reference relationship between managed items."^^xsd:string ;
+.

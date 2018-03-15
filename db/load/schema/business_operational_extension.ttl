@@ -1,3 +1,6 @@
+# baseURI: http://www.assero.co.uk/BusinessCrossReference
+# imports: http://www.assero.co.uk/ISO11179Concepts
+
 @prefix : <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -28,3 +31,4 @@
   rdfs:domain :XReference ;
   rdfs:range isoC:Concept ;
   skos:definition "A cross reference relationship between managed items."^^xsd:string ;
+.
