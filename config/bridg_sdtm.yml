@@ -47,6 +47,9 @@ defaults: &defaults
   AdverseEventActionTaken2.typeCode.CD.code: "--ACNOTH"
   # Adverse Event Outome Result
   AdverseEventOutcomeResult.value.CD.code: "--OUT"
+  # Laboratory Specimen
+  Material.formCode.CD.code: "--SPEC"
+
 development:
   <<: *defaults
 
