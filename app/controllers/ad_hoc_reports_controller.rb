@@ -7,7 +7,7 @@ class AdHocReportsController < ApplicationController
   def new
     authorize AdHocReport
     @item = AdHocReport.new
-    @files = Dir.glob(Rails.root.join("public","upload") + "*")
+    @files = Dir.glob(Rails.root.join("public","upload") + "*.yaml")
   end
 
   def index

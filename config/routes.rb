@@ -32,7 +32,11 @@ Rails.application.routes.draw do
         end
     	end
       resources :sdtm_user_domains, only: [:show]
-      resources :sdtm_ig_domains, only: [:show]
+      resources :sdtm_ig_domains, only: [:show] do
+        member do
+          get :clones
+        end
+      end
   	end
   end
   resources :markdown_engines, only: [:create, :index]

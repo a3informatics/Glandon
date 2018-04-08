@@ -65,6 +65,25 @@ describe Api::V2::SdtmIgDomainsController, type: :controller do
       expect(response.status).to eq 404
     end
 
+    it "returns a given domain cloned items" do
+      set_http_request
+      item = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+      get :clones, id: Base64.strict_encode64(item.uri.to_s)
+      result_hash = JSON.parse(response.body)
+    #write_yaml_file(result_hash, sub_dir, "clones_expected_1.yaml")  
+      expected = read_yaml_file(sub_dir, "clones_expected_1.yaml")
+      expect(response.status).to eq 200
+    end
+
+    it "returns a given domain cloned items, not found" do
+      set_http_request
+      get :clones, id: Base64.strict_encode64("http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#D-ACME_VSDomain")
+      expected_hash = {"errors"=>["Failed to find SDTM IG Domain http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#D-ACME_VSDomain"]}
+      result_hash = JSON.parse(response.body)
+      expect(result_hash).to eq(expected_hash)
+      expect(response.status).to eq 404
+    end
+
   end
 
   describe "Unauthorized User" do
