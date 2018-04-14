@@ -81,7 +81,8 @@ describe Form::Item::Common do
     item = Form::Item::Common.find("F-ACME_VSBASELINE1_G1_G1_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
   #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
-    expect(item.to_json).to eq(expected)
+    #expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
   end
 
   it "allows an object to be found from triples"  do

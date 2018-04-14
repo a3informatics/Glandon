@@ -59,7 +59,7 @@
     :synonym: Height
     :extensible: ''
   http://www.assero.co.uk/MDRThesaurus/CDISC/V41#CLI-C66741_C122232:
-    :status: :deleted
+    :status: :created
     :definition: A measurement of the total fat mass within the subject's body. (NCI)
     :preferredTerm: Body Fat Measurement
     :notation: BODYFATM
@@ -301,4 +301,13 @@
     :notation: BMI
     :identifier: C16358
     :synonym: Body Mass Index
+    :extensible: ''
+  http://www.assero.co.uk/MDRThesaurus/CDISC/V40#CLI-C66741_C12472:
+    :status: :deleted
+    :definition: A specialized form of connective tissue consisting primarily of adipocytes
+      (fat cells), surrounded by a meshwork of collagen fibers. (NCI)
+    :preferredTerm: Adipose Tissue
+    :notation: BODYFAT
+    :identifier: C12472
+    :synonym: Adipose Tissue; Body Fat; Fat Tissue
     :extensible: ''

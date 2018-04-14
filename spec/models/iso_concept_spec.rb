@@ -1152,7 +1152,7 @@ describe IsoConcept do
     it "CLs different object, same" do
       cl_1 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
       cl_2 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.difference(cl_1, cl_2, {ignore: ["synonym"]})
+      result = IsoConcept.difference(cl_1, cl_2, {ignore: [:synonym]})
     #write_yaml_file(result, sub_dir, "difference_expected_6.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_6.yaml")
       expect(result).to eq(expected)
@@ -1161,7 +1161,7 @@ describe IsoConcept do
     it "CLs different object, same" do
       cl_1 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
       cl_2 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.difference(cl_1, cl_2, {ignore: ["synonym"]})
+      result = IsoConcept.difference(cl_1, cl_2, {ignore: [:synonym]})
     #write_yaml_file(result, sub_dir, "difference_expected_7.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_7.yaml")
       expect(result).to eq(expected)
@@ -1221,7 +1221,7 @@ describe IsoConcept do
       cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
       cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
       result = IsoConcept.difference_with_children(cl_1, cl_2, "identifier")
-    #write_yaml_file(result, sub_dir, "difference_expected_12.yaml")
+    write_yaml_file(result, sub_dir, "difference_expected_12.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_12.yaml")
       expect(result).to eq(expected)
     end
@@ -1305,7 +1305,7 @@ describe IsoConcept do
     it "SDTM IG Variable difference, no change" do
       i_1 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
       i_2 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_18.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_18.yaml")
       expect(result).to eq(expected)
@@ -1314,7 +1314,7 @@ describe IsoConcept do
     it "SDTM IG Variable difference, change" do
       i_1 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
       i_2 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGAE_AEDECOD", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_19.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_19.yaml")
       expect(result).to eq(expected)
@@ -1323,7 +1323,7 @@ describe IsoConcept do
     it "SDTM IG Variable difference, change" do
       i_1 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGQS_QSCAT", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
       i_2 = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGQS_QSCAT", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_20.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_20.yaml")
       expect(result).to eq(expected)
@@ -1355,7 +1355,7 @@ describe IsoConcept do
       i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
       i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model 1.2 to 1.3 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_23.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_23.yaml")
@@ -1366,7 +1366,7 @@ describe IsoConcept do
       i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
       i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model 1.3 to 1.4 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_24.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_24.yaml")
@@ -1376,7 +1376,7 @@ describe IsoConcept do
     it "SDTM Model Variable difference, change" do
       i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
       i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_25.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_25.yaml")
       expect(result).to eq(expected)
@@ -1385,7 +1385,7 @@ describe IsoConcept do
     it "SDTM Model Variable difference, change" do
       i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
       i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_26.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_26.yaml")
       expect(result).to eq(expected)
@@ -1395,7 +1395,7 @@ describe IsoConcept do
       i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
       i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model Events 1.2 to 1.3 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_27.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_27.yaml")
@@ -1406,7 +1406,7 @@ describe IsoConcept do
       i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model Events 1.3 to 1.4 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_28.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_28.yaml")
@@ -1416,7 +1416,7 @@ describe IsoConcept do
     it "SDTM Model Class Variable difference, no change" do
       i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
       i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_29.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_29.yaml")
       expect(result).to eq(expected)
@@ -1425,7 +1425,7 @@ describe IsoConcept do
     it "SDTM Model Class Variable difference, change" do
       i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_30.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_30.yaml")
       expect(result).to eq(expected)
@@ -1443,7 +1443,7 @@ describe IsoConcept do
     it "IG Domain difference with children, different, ignore ordinal" do
       i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
       i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_32.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_32.yaml")
       expect(result).to eq(expected)
@@ -1453,7 +1453,7 @@ describe IsoConcept do
       i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
       i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_33.yaml")
       timer_stop("SDTM IG DM Domain 3.1.3 to 3.2 difference, ignore ordinal")
       expected = read_yaml_file(sub_dir, "difference_expected_33.yaml")
@@ -1550,7 +1550,7 @@ describe IsoConcept do
       i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
       i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model 1.2 to 1.3 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_23.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_23.yaml")
@@ -1561,7 +1561,7 @@ describe IsoConcept do
       i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
       i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model 1.3 to 1.4 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_24.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_24.yaml")
@@ -1571,7 +1571,7 @@ describe IsoConcept do
     it "SDTM Model Variable difference, change" do
       i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
       i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_25.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_25.yaml")
       expect(result).to eq(expected)
@@ -1580,7 +1580,7 @@ describe IsoConcept do
     it "SDTM Model Variable difference, change" do
       i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
       i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_26.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_26.yaml")
       expect(result).to eq(expected)
@@ -1590,7 +1590,7 @@ describe IsoConcept do
       i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
       i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model Events 1.2 to 1.3 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_27.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_27.yaml")
@@ -1601,7 +1601,7 @@ describe IsoConcept do
       i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model Events 1.3 to 1.4 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_28.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_28.yaml")
@@ -1611,7 +1611,7 @@ describe IsoConcept do
     it "SDTM Model Class Variable difference, no change" do
       i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
       i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_29.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_29.yaml")
       expect(result).to eq(expected)
@@ -1620,7 +1620,7 @@ describe IsoConcept do
     it "SDTM Model Class Variable difference, change" do
       i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_30.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_30.yaml")
       expect(result).to eq(expected)
@@ -1638,7 +1638,7 @@ describe IsoConcept do
     it "IG Domain difference with children, different, ignore ordinal" do
       i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
       i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_32.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_32.yaml")
       expect(result).to eq(expected)
@@ -1648,7 +1648,7 @@ describe IsoConcept do
       i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
       i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_33.yaml")
       timer_stop("SDTM IG DM Domain 3.1.3 to 3.2 difference, ignore ordinal")
       expected = read_yaml_file(sub_dir, "difference_expected_33.yaml")
@@ -1748,7 +1748,7 @@ describe IsoConcept do
       i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
       i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model 1.2 to 1.3 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_23.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_23.yaml")
@@ -1759,7 +1759,7 @@ describe IsoConcept do
       i_1 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
       i_2 = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model 1.3 to 1.4 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_24.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_24.yaml")
@@ -1769,7 +1769,7 @@ describe IsoConcept do
     it "SDTM Model Variable difference, change" do
       i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
       i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxDOSRGM", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_25.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_25.yaml")
       expect(result).to eq(expected)
@@ -1778,7 +1778,7 @@ describe IsoConcept do
     it "SDTM Model Variable difference, change" do
       i_1 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
       i_2 = SdtmModel::Variable.find("M-CDISC_SDTMMODEL_xxLOC", "http://www.assero.co.uk/MDRSdtmM/CDISC/V2")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_26.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_26.yaml")
       expect(result).to eq(expected)
@@ -1788,7 +1788,7 @@ describe IsoConcept do
       i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
       i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model Events 1.2 to 1.3 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_27.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_27.yaml")
@@ -1799,7 +1799,7 @@ describe IsoConcept do
       i_1 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       i_2 = SdtmModelDomain.find("M-CDISC_SDTMMODELEVENTS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
       timer_stop("SDTM Model Events 1.3 to 1.4 difference, ignore ordinal")
     #write_yaml_file(result, sub_dir, "difference_expected_28.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_28.yaml")
@@ -1809,7 +1809,7 @@ describe IsoConcept do
     it "SDTM Model Class Variable difference, no change" do
       i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V1")
       i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxDECOD", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_29.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_29.yaml")
       expect(result).to eq(expected)
@@ -1818,7 +1818,7 @@ describe IsoConcept do
     it "SDTM Model Class Variable difference, change" do
       i_1 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V2")
       i_2 = SdtmModelDomain::Variable.find("M-CDISC_SDTMMODELEVENTS_xxSTTPT", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-      result = IsoConcept.difference(i_1, i_2, {ignore: ["ordinal"]})
+      result = IsoConcept.difference(i_1, i_2, {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_30.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_30.yaml")
       expect(result).to eq(expected)
@@ -1836,7 +1836,7 @@ describe IsoConcept do
     it "IG Domain difference with children, different, ignore ordinal" do
       i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1")
       i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_32.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_32.yaml")
       expect(result).to eq(expected)
@@ -1846,7 +1846,7 @@ describe IsoConcept do
       i_1 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2")
       i_2 = SdtmIgDomain.find("IG-CDISC_SDTMIGDM", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
       timer_start
-      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: ["ordinal"]})
+      result = IsoConcept.difference_with_children(i_1, i_2, "name", {ignore: [:ordinal]})
     #write_yaml_file(result, sub_dir, "difference_expected_33.yaml")
       timer_stop("SDTM IG DM Domain 3.1.3 to 3.2 difference, ignore ordinal")
       expected = read_yaml_file(sub_dir, "difference_expected_33.yaml")

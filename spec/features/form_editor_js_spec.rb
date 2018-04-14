@@ -1056,6 +1056,7 @@ describe "Form Editor", :type => :feature do
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       ui_click_back_button
+      wait_for_ajax
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       expect(tokens).to match_array([])
     end  
@@ -1161,7 +1162,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows the edit session to be closed indirectly, saves data", js: true do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       Token.set_timeout(100) # Just make sure
       load_form("CRF TEST 1") 
       wait_for_ajax(10)

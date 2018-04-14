@@ -81,11 +81,6 @@ describe FormsController do
       expect(response).to redirect_to("/forms")
     end
 
-    it "shows the changes" do
-      get :changes, { form: { :identifier => "DM1 01", :scope_id => IsoRegistrationAuthority.owner.namespace.id }}
-      expect(response).to render_template("changes")
-    end
-
     it "initiates the creation of a new placeholder form" do
       get :placeholder_new
       expect(assigns[:form].to_json).to eq(Form.new.to_json)

@@ -1,18 +1,18 @@
 ---
 - !ruby/object:SdtmModelDatatype
   rdf_type: http://www.assero.co.uk/BusinessDomain#VariableType
-  id: M-CDISC_SDTMMODEL_DT_NUM
+  id: M-CDISC_SDTMMODEL_DT_CHAR
   namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  label: Num
+  label: Char
   properties: []
   links: []
   extension_properties: []
   triples: {}
 - !ruby/object:SdtmModelDatatype
   rdf_type: http://www.assero.co.uk/BusinessDomain#VariableType
-  id: M-CDISC_SDTMMODEL_DT_CHAR
+  id: M-CDISC_SDTMMODEL_DT_NUM
   namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-  label: Char
+  label: Num
   properties: []
   links: []
   extension_properties: []

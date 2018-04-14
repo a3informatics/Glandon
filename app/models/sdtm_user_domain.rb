@@ -339,7 +339,7 @@ class SdtmUserDomain < Tabular
         "    :" + self.id + " bd:includesColumn ?col . \n" + 
         "    ?col bd:hasProperty ?s . \n" + 
         "    ?s bo:hasProperty ?property . \n" +  
-        "    #{uri.to_ref} (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem)%2B ?property . \n" +
+        "    #{uri.to_ref} (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?property . \n" +
         "    ?s ?p ?o . \n" +
         "  }\n" +
         "}"

@@ -44,761 +44,761 @@
     :current: ''
     :difference: <div class="diff"></div>
 :children:
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_STUDYID:
-    :status: :no_change
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :name: STUDYID
-    :rule: ''
-    :description: Unique identifier for a study.
-    :prefixed: false
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_DOMAIN:
-    :status: :updated
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :name: DOMAIN
-    :rule: ''
-    :description: Two-character abbreviation for the domain most relevant to the observation.
-      The Domain abbreviation is also used as a prefix for variables to ensure uniqueness
-      when datasets are merged.
-    :prefixed: false
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_USUBJID:
-    :status: :no_change
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :name: USUBJID
-    :rule: ''
-    :description: Identifier used to uniquely identify a subject across all studies
-      for all applications or submissions involving the product.
-    :prefixed: false
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_POOLID:
-    :status: :deleted
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :name: POOLID
-    :rule: ''
-    :description: An identifier used to identify a result from a group of subjects
-      that is not assignable to a specific subject.
-    :prefixed: false
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSEQ:
-    :status: :updated
-    :datatype: Num
-    :classification: Identifier
-    :sub_classification: ''
-    :name: "--SEQ"
-    :rule: ''
-    :description: Sequence number to ensure uniqueness of records within a dataset
-      for a subject (or within a parameter, in the case of the Trial Summary domain).
-      May be any valid number (including decimals) and does not have to start at 1.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxGRPID:
-    :status: :updated
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :name: "--GRPID"
-    :rule: ''
-    :description: Optional group identifier, used to link together a block of related
-      records within a subject in a domain. Also used to link together a block of
-      related records in the Trial Summary dataset (Section 3.4).
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxREFID:
-    :status: :updated
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :name: "--REFID"
-    :rule: ''
-    :description: Optional internal or external identifier such as lab specimen ID,
-      or UUID for an ECG waveform or a medical image.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSPID:
-    :status: :updated
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :name: "--SPID"
-    :rule: ''
-    :description: 'Sponsor-defined identifier. Example: pre-printed line identifier
-      on a Concomitant Medications page.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLNKID:
-    :status: :deleted
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :name: "--LNKID"
-    :rule: ''
-    :description: 'Identifier used to link a feature (such as a tumor) initially recorded
-      as a result in one findings domain to assessments of that feature in another
-      findings domain. This may be a one-to-one or a one-to-many relationship. For
-      Example: A single tumor may have multiple measurements/assessment performed
-      at each study visit.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLNKGRP:
-    :status: :deleted
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :name: "--LNKGRP"
-    :rule: ''
-    :description: 'A grouping identifier used to identify a group of assessment results
-      in one domain that are evaluated, as a group, and contribute to a (summary)
-      result in another domain. This will usually be a many-to-one relationship. For
-      example: Multiple tumor measurements/assessments will contribute to a single
-      response to therapy determination record.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTERM:
-    :status: :no_change
-    :datatype: Char
-    :classification: Topic
-    :sub_classification: ''
-    :name: "--TERM"
-    :rule: ''
-    :description: Topic variable for an event observation, which is the verbatim or
-      pre-specified name of the event.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxMODIFY:
-    :status: :no_change
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Synonym Qualifier
-    :name: "--MODIFY"
-    :rule: ''
-    :description: If the value for --TRT is modified for coding purposes, then the
-      modified text is placed here.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLLT:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--LLT"
-    :rule: ''
-    :description: MedDRA Lowest Level Term.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLLTCD:
-    :status: :deleted
-    :datatype: Num
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--LLTCD"
-    :rule: ''
-    :description: MedDRA Lowest Level Term code.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxDECOD:
-    :status: :no_change
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Synonym Qualifier
-    :name: "--DECOD"
-    :rule: ''
-    :description: Standardized or dictionary-derived name of the topic variable, --TRT,
-      or the modified topic variable (--MODIFY), if applicable. Equivalent to the
-      generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published
-      or sponsor-defined dictionaries.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxPTCD:
-    :status: :deleted
-    :datatype: Num
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--PTCD"
-    :rule: ''
-    :description: MedDRA Preferred Term code.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxHLT:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--HLT"
-    :rule: ''
-    :description: MedDRA High Level Term from the primary path.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxHLTCD:
-    :status: :deleted
-    :datatype: Num
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--HLTCD"
-    :rule: ''
-    :description: MedDRA High Level Term code from the primary path.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxHLGT:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--HLGT"
-    :rule: ''
-    :description: MedDRA High Level Group Term from the primary path.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxHLGTCD:
-    :status: :deleted
-    :datatype: Num
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--HLGTCD"
-    :rule: ''
-    :description: MedDRA High Level Group Term code from the primary path.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxCAT:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Grouping Qualifier
-    :name: "--CAT"
-    :rule: ''
-    :description: Used to define a category of topic-variable values.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSCAT:
-    :status: :no_change
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Grouping Qualifier
-    :name: "--SCAT"
-    :rule: ''
-    :description: Used to define a further categorization of --CAT values.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxPRESP:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--PRESP"
-    :rule: ''
-    :description: Used when a specific intervention is pre-specified on a CRF. Values
-      should be "Y" or null
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxOCCUR:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--OCCUR"
-    :rule: ''
-    :description: Used to record whether a pre-specified intervention occurred when
-      information about the occurrence of a specific intervention is solicited.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTAT:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--STAT"
-    :rule: ''
-    :description: Used to indicate when a question about the occurrence of a pre-specified
-      intervention was not answered. Should be null or have a value of NOT DONE.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxREASND:
-    :status: :no_change
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--REASND"
-    :rule: ''
-    :description: Reason not done. Used in conjunction with --STAT when value is NOT
-      DONE.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxBODSYS:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--BODSYS"
-    :rule: ''
-    :description: 'Body system or system organ class assigned for analysis from a
-      standard hierarchy (e.g. MedDRA) associated with an event. Example: GASTROINTESTINAL
-      DISORDERS.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxBDSYCD:
-    :status: :deleted
-    :datatype: Num
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--BDSYCD"
-    :rule: ''
-    :description: MedDRA System Organ Class code corresponding to --BODSYS assigned
-      for analysis.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSOC:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--SOC"
-    :rule: ''
-    :description: MedDRA primary System Organ Class associated with the event.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSOCCD:
-    :status: :deleted
-    :datatype: Num
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--SOCCD"
-    :rule: ''
-    :description: MedDRA primary System Organ Class code.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLOC:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--LOC"
-    :rule: ''
-    :description: 'Anatomical location of an intervention, such as an injection site.
-      Example: ARM for an injection.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSEV:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SEV"
-    :rule: ''
-    :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
-      SEVERE.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSER:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SER"
-    :rule: ''
-    :description: Is this is a serious event? Valid values are "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxACN:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--ACN"
-    :rule: ''
-    :description: 'Describes changes made to the study treatment as a result of the
-      event. Examples: DOSE INCREASED, DOSE NOT CHANGED.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxACNOTH:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--ACNOTH"
-    :rule: ''
-    :description: Describes other actions taken as a result of the event that are
-      unrelated to dose adjustments of study treatment.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxREL:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--REL"
-    :rule: ''
-    :description: Records the investigator's opinion as to the causality of the event
-      to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
-      POSSIBLY RELATED, RELATED.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxRELNST:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--RELNST"
-    :rule: ''
-    :description: 'An opinion as to whether the event may have been due to a treatment
-      other than study drug. Example: "MORE LIKELY RELATED TO ASPIRIN USE."'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxPATT:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--PATT"
-    :rule: ''
-    :description: 'Used to indicate the pattern of the event over time. Examples:
-      INTERMITTENT, CONTINUOUS, SINGLE EVENT.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxOUT:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--OUT"
-    :rule: ''
-    :description: 'Description of the outcome of an event. Examples: RECOVERED/RESOLVED,
-      FATAL.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSCAN:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SCAN"
-    :rule: ''
-    :description: Was the event associated with the development of cancer? Valid values
-      are "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSCONG:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SCONG"
-    :rule: ''
-    :description: Was the event associated with congenital anomaly or birth defect?
-      Valid values are "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSDISAB:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SDISAB"
-    :rule: ''
-    :description: Did the event result in persistent or significant disability/incapacity?
-      Valid values are "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSDTH:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SDTH"
-    :rule: ''
-    :description: Did the event result in death? Valid values are "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSHOSP:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SHOSP"
-    :rule: ''
-    :description: Did the event require or prolong hospitalization? Valid values are
-      "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSLIFE:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SLIFE"
-    :rule: ''
-    :description: Was the event life threatening? Valid values are "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSOD:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SOD"
-    :rule: ''
-    :description: Did the event occur with an overdose? Valid values are "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSMIE:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--SMIE"
-    :rule: ''
-    :description: Do additional categories for seriousness apply? Valid values are
-      "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxCONTRT:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--CONTRT"
-    :rule: ''
-    :description: Was another treatment given because of the occurrence of the event?
-      Valid values are "Y" and "N".
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTOX:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Variable Qualifier
-    :name: "--TOX"
-    :rule: ''
-    :description: 'Description of toxicity quantified by --TOXGR such as NCI CTCAE
-      Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which
-      scale and version is used in the Sponsor Comments column of the Define.xml document.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTOXGR:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :name: "--TOXGR"
-    :rule: ''
-    :description: Records toxicity grade using a standard toxicity scale (such as
-      the NCI CTCAE). Sponsor should specify which scale and version is used in the
-      Sponsor Comments column of the Define.xml document.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_VISITNUM:
-    :status: :updated
-    :datatype: Num
-    :classification: Timing
-    :sub_classification: ''
-    :name: VISITNUM
-    :rule: ''
-    :description: Clinical encounter number. Numeric version of VISIT, used for sorting.
-    :prefixed: false
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_VISIT:
-    :status: :updated
-    :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: VISIT
-    :rule: ''
-    :description: Protocol-defined description of a clinical encounter.
-    :prefixed: false
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_VISITDY:
-    :status: :updated
-    :datatype: Num
-    :classification: Timing
-    :sub_classification: ''
-    :name: VISITDY
-    :rule: ''
-    :description: Planned study day of VISIT. Should be an integer.
-    :prefixed: false
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_TAETORD:
-    :status: :updated
-    :datatype: Num
-    :classification: Timing
-    :sub_classification: ''
-    :name: TAETORD
-    :rule: ''
-    :description: "<html>Number that gives the planned order of the Element within
-      the Arm (see Trial Arms, <u>Section 3.2.2 </u>).</html>"
-    :prefixed: false
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_EPOCH:
-    :status: :updated
-    :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: EPOCH
-    :rule: ''
-    :description: Epoch associated with the start date/time of the observation, or
-      the date/time of collection if start date/time is not collected. (See Section
-      3.2.2).
-    :prefixed: false
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxDTC:
-    :status: :updated
-    :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--DTC"
-    :rule: ''
-    :description: Collection date and time of an observation represented in IS0 8601
-      character format.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTDTC:
-    :status: :updated
-    :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--STDTC"
-    :rule: ''
-    :description: Start date/time of an observation represented in IS0 8601 character
-      format.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxENDTC:
-    :status: :updated
-    :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--ENDTC"
-    :rule: ''
-    :description: End date/time of the observation represented in IS0 8601 character
-      format.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxDY:
-    :status: :updated
-    :datatype: Num
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--DY"
-    :rule: ''
-    :description: Actual study day of visit/collection/exam expressed in integer days
-      relative to the sponsor-defined RFSTDTC in Demographics.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTDY:
-    :status: :updated
-    :datatype: Num
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--STDY"
-    :rule: ''
-    :description: Actual study day of start of observation expressed in integer days
-      relative to the sponsor-defined RFSTDTC in Demographics.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxENDY:
-    :status: :updated
-    :datatype: Num
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--ENDY"
-    :rule: ''
-    :description: Actual study day of end of observation expressed in integer days
-      relative to the sponsor-defined RFSTDTC in Demographics.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxDUR:
-    :status: :updated
-    :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--DUR"
-    :rule: ''
-    :description: Collected duration of an event, intervention, or finding represented
-      in ISO 8601 character format. Used only if collected on the CRF and not derived.
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTPT:
-    :status: :updated
-    :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--TPT"
-    :rule: ''
-    :description: Text description of time when a measurement or observation should
-      be taken as defined in the protocol. This may be represented as an elapsed time
-      relative to a fixed reference point, such as time of last dose. See --TPTNUM
-      and --TPTREF.
-    :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTPTNUM:
     :status: :updated
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
     :name: "--TPTNUM"
-    :rule: ''
-    :description: Numeric version of planned time point used in sorting.
     :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxELTM:
+    :description: Numeric version of planned time point used in sorting.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTDTC:
     :status: :updated
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :name: "--ELTM"
-    :rule: ''
-    :description: Planned Elapsed time in ISO 8601 character format relative to a
-      planned fixed reference (--TPTREF) such as "Previous Dose" or "Previous Meal".
-      This variable is useful where there are repetitive measures. Not a clock time
-      or a date/time variable, but an interval, represented as ISO duration.
+    :name: "--STDTC"
     :prefixed: true
+    :description: Start date/time of an observation represented in IS0 8601 character
+      format.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxDY:
+    :status: :updated
+    :datatype: Num
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--DY"
+    :prefixed: true
+    :description: Actual study day of visit/collection/exam expressed in integer days
+      relative to the sponsor-defined RFSTDTC in Demographics.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxDUR:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--DUR"
+    :prefixed: true
+    :description: Collected duration of an event, intervention, or finding represented
+      in ISO 8601 character format. Used only if collected on the CRF and not derived.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTAT:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--STAT"
+    :prefixed: true
+    :description: Used to indicate when a question about the occurrence of a pre-specified
+      intervention was not answered. Should be null or have a value of NOT DONE.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSPID:
+    :status: :updated
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: "--SPID"
+    :prefixed: true
+    :description: 'Sponsor-defined identifier. Example: pre-printed line identifier
+      on a Concomitant Medications page.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLOC:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--LOC"
+    :prefixed: true
+    :description: 'Anatomical location of an intervention, such as an injection site.
+      Example: ARM for an injection.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxOCCUR:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--OCCUR"
+    :prefixed: true
+    :description: Used to record whether a pre-specified intervention occurred when
+      information about the occurrence of a specific intervention is solicited.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxBODSYS:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--BODSYS"
+    :prefixed: true
+    :description: 'Body system or system organ class assigned for analysis from a
+      standard hierarchy (e.g. MedDRA) associated with an event. Example: GASTROINTESTINAL
+      DISORDERS.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_POOLID:
+    :status: :created
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: POOLID
+    :prefixed: false
+    :description: An identifier used to identify a result from a group of subjects
+      that is not assignable to a specific subject.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSOC:
+    :status: :created
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--SOC"
+    :prefixed: true
+    :description: MedDRA primary System Organ Class associated with the event.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSCAN:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SCAN"
+    :prefixed: true
+    :description: Was the event associated with the development of cancer? Valid values
+      are "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_EPOCH:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: EPOCH
+    :prefixed: false
+    :description: Epoch associated with the start date/time of the observation, or
+      the date/time of collection if start date/time is not collected. (See Section
+      3.2.2).
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSDTH:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SDTH"
+    :prefixed: true
+    :description: Did the event result in death? Valid values are "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxACNOTH:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--ACNOTH"
+    :prefixed: true
+    :description: Describes other actions taken as a result of the event that are
+      unrelated to dose adjustments of study treatment.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSER:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SER"
+    :prefixed: true
+    :description: Is this is a serious event? Valid values are "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxREASND:
+    :status: :no_change
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--REASND"
+    :prefixed: true
+    :description: Reason not done. Used in conjunction with --STAT when value is NOT
+      DONE.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSLIFE:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SLIFE"
+    :prefixed: true
+    :description: Was the event life threatening? Valid values are "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTOXGR:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--TOXGR"
+    :prefixed: true
+    :description: Records toxicity grade using a standard toxicity scale (such as
+      the NCI CTCAE). Sponsor should specify which scale and version is used in the
+      Sponsor Comments column of the Define.xml document.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxREL:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--REL"
+    :prefixed: true
+    :description: Records the investigator's opinion as to the causality of the event
+      to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
+      POSSIBLY RELATED, RELATED.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLLT:
+    :status: :created
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--LLT"
+    :prefixed: true
+    :description: MedDRA Lowest Level Term.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxGRPID:
+    :status: :updated
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: "--GRPID"
+    :prefixed: true
+    :description: Optional group identifier, used to link together a block of related
+      records within a subject in a domain. Also used to link together a block of
+      related records in the Trial Summary dataset (Section 3.4).
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_DOMAIN:
+    :status: :updated
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: DOMAIN
+    :prefixed: false
+    :description: Two-character abbreviation for the domain most relevant to the observation.
+      The Domain abbreviation is also used as a prefix for variables to ensure uniqueness
+      when datasets are merged.
+    :rule: ''
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTPTREF:
     :status: :updated
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
     :name: "--TPTREF"
-    :rule: ''
+    :prefixed: true
     :description: 'Description of the fixed reference point referred to by --ELTM,
       --TPTNUM, and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL.'
-    :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxRFTDTC:
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxELTM:
     :status: :updated
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
-    :name: "--RFTDTC"
-    :rule: ''
-    :description: Date/time for a fixed reference time point defined by --TPTREF in
-      ISO 8601 character format.
+    :name: "--ELTM"
     :prefixed: true
+    :description: Planned Elapsed time in ISO 8601 character format relative to a
+      planned fixed reference (--TPTREF) such as "Previous Dose" or "Previous Meal".
+      This variable is useful where there are repetitive measures. Not a clock time
+      or a date/time variable, but an interval, represented as ISO duration.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_VISITNUM:
+    :status: :updated
+    :datatype: Num
+    :classification: Timing
+    :sub_classification: ''
+    :name: VISITNUM
+    :prefixed: false
+    :description: Clinical encounter number. Numeric version of VISIT, used for sorting.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSMIE:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SMIE"
+    :prefixed: true
+    :description: Do additional categories for seriousness apply? Valid values are
+      "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxCAT:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Grouping Qualifier
+    :name: "--CAT"
+    :prefixed: true
+    :description: Used to define a category of topic-variable values.
+    :rule: ''
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTRF:
     :status: :updated
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
     :name: "--STRF"
-    :rule: ''
+    :prefixed: true
     :description: Identifies the start of the observation as being before, during,
       or after the sponsor-defined reference period. The sponsor-defined reference
       period is a continuous period of time defined by a discrete starting point and
       a discrete ending point represented by RFSTDTC and RFENDTC in Demographics.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLNKGRP:
+    :status: :created
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: "--LNKGRP"
     :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxENRF:
+    :description: 'A grouping identifier used to identify a group of assessment results
+      in one domain that are evaluated, as a group, and contribute to a (summary)
+      result in another domain. This will usually be a many-to-one relationship. For
+      example: Multiple tumor measurements/assessments will contribute to a single
+      response to therapy determination record.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxPATT:
     :status: :updated
     :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--ENRF"
-    :rule: ''
-    :description: Identifies the end of the observation as being before, during or
-      after the sponsor-defined reference period. The sponsor-defined reference period
-      is a continuous period of time defined by a discrete starting point and a discrete
-      ending point represented by RFSTDTC and RFENDTC in Demographics.
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--PATT"
     :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxEVLINT:
+    :description: 'Used to indicate the pattern of the event over time. Examples:
+      INTERMITTENT, CONTINUOUS, SINGLE EVENT.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxACN:
     :status: :updated
     :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--EVLINT"
-    :rule: ''
-    :description: 'Duration of  interval associated with an observation such as a
-      finding --TESTCD, represented in ISO 8601 character format. Example: -P2M to
-      represent a period of the past 2 months as the evaluation interval for a question
-      from a questionnaire such as SF-36.'
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--ACN"
     :prefixed: true
+    :description: 'Describes changes made to the study treatment as a result of the
+      event. Examples: DOSE INCREASED, DOSE NOT CHANGED.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxMODIFY:
+    :status: :no_change
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Synonym Qualifier
+    :name: "--MODIFY"
+    :prefixed: true
+    :description: If the value for --TRT is modified for coding purposes, then the
+      modified text is placed here.
+    :rule: ''
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTRTPT:
     :status: :updated
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
     :name: "--STRTPT"
-    :rule: ''
+    :prefixed: true
     :description: Identifies the start of the observation as being before or after
       the sponsor-defined reference time point defined by variable --STTPT.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxBDSYCD:
+    :status: :created
+    :datatype: Num
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--BDSYCD"
     :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTTPT:
+    :description: MedDRA System Organ Class code corresponding to --BODSYS assigned
+      for analysis.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSEV:
     :status: :updated
     :datatype: Char
-    :classification: Timing
-    :sub_classification: ''
-    :name: "--STTPT"
-    :rule: ''
-    :description: 'Description or date/time in ISO 8601 or other character format
-      of the sponsor-defined reference point referred to by --STRTPT. Examples: "2003-12-15"
-      or "VISIT 1".'
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SEV"
     :prefixed: true
-  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxENRTPT:
+    :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
+      SEVERE.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_VISITDY:
     :status: :updated
-    :datatype: Char
+    :datatype: Num
     :classification: Timing
     :sub_classification: ''
-    :name: "--ENRTPT"
+    :name: VISITDY
+    :prefixed: false
+    :description: Planned study day of VISIT. Should be an integer.
     :rule: ''
-    :description: Identifies the end of the observation as being before or after the
-      sponsor-defined reference time point defined by variable --ENTPT.
-    :prefixed: true
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxENTPT:
     :status: :updated
     :datatype: Char
     :classification: Timing
     :sub_classification: ''
     :name: "--ENTPT"
-    :rule: ''
+    :prefixed: true
     :description: 'Description or date/time in ISO 8601 or other character format
       of the sponsor-defined reference point referred to by --ENRTPT. Examples: "2003-12-25"
       or "VISIT 2".'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_USUBJID:
+    :status: :no_change
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: USUBJID
+    :prefixed: false
+    :description: Identifier used to uniquely identify a subject across all studies
+      for all applications or submissions involving the product.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxHLGTCD:
+    :status: :created
+    :datatype: Num
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--HLGTCD"
     :prefixed: true
+    :description: MedDRA High Level Group Term code from the primary path.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTPT:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--TPT"
+    :prefixed: true
+    :description: Text description of time when a measurement or observation should
+      be taken as defined in the protocol. This may be represented as an elapsed time
+      relative to a fixed reference point, such as time of last dose. See --TPTNUM
+      and --TPTREF.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxENDTC:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--ENDTC"
+    :prefixed: true
+    :description: End date/time of the observation represented in IS0 8601 character
+      format.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSCONG:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SCONG"
+    :prefixed: true
+    :description: Was the event associated with congenital anomaly or birth defect?
+      Valid values are "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxHLTCD:
+    :status: :created
+    :datatype: Num
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--HLTCD"
+    :prefixed: true
+    :description: MedDRA High Level Term code from the primary path.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSEQ:
+    :status: :updated
+    :datatype: Num
+    :classification: Identifier
+    :sub_classification: ''
+    :name: "--SEQ"
+    :prefixed: true
+    :description: Sequence number to ensure uniqueness of records within a dataset
+      for a subject (or within a parameter, in the case of the Trial Summary domain).
+      May be any valid number (including decimals) and does not have to start at 1.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSOD:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SOD"
+    :prefixed: true
+    :description: Did the event occur with an overdose? Valid values are "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxOUT:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--OUT"
+    :prefixed: true
+    :description: 'Description of the outcome of an event. Examples: RECOVERED/RESOLVED,
+      FATAL.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxRFTDTC:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--RFTDTC"
+    :prefixed: true
+    :description: Date/time for a fixed reference time point defined by --TPTREF in
+      ISO 8601 character format.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSCAT:
+    :status: :no_change
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Grouping Qualifier
+    :name: "--SCAT"
+    :prefixed: true
+    :description: Used to define a further categorization of --CAT values.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLNKID:
+    :status: :created
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: "--LNKID"
+    :prefixed: true
+    :description: 'Identifier used to link a feature (such as a tumor) initially recorded
+      as a result in one findings domain to assessments of that feature in another
+      findings domain. This may be a one-to-one or a one-to-many relationship. For
+      Example: A single tumor may have multiple measurements/assessment performed
+      at each study visit.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxCONTRT:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--CONTRT"
+    :prefixed: true
+    :description: Was another treatment given because of the occurrence of the event?
+      Valid values are "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxDTC:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--DTC"
+    :prefixed: true
+    :description: Collection date and time of an observation represented in IS0 8601
+      character format.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_STUDYID:
+    :status: :no_change
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: STUDYID
+    :prefixed: false
+    :description: Unique identifier for a study.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxPTCD:
+    :status: :created
+    :datatype: Num
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--PTCD"
+    :prefixed: true
+    :description: MedDRA Preferred Term code.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxENRTPT:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--ENRTPT"
+    :prefixed: true
+    :description: Identifies the end of the observation as being before or after the
+      sponsor-defined reference time point defined by variable --ENTPT.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_TAETORD:
+    :status: :updated
+    :datatype: Num
+    :classification: Timing
+    :sub_classification: ''
+    :name: TAETORD
+    :prefixed: false
+    :description: "<html>Number that gives the planned order of the Element within
+      the Arm (see Trial Arms, <u>Section 3.2.2 </u>).</html>"
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxHLT:
+    :status: :created
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--HLT"
+    :prefixed: true
+    :description: MedDRA High Level Term from the primary path.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSOCCD:
+    :status: :created
+    :datatype: Num
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--SOCCD"
+    :prefixed: true
+    :description: MedDRA primary System Organ Class code.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTTPT:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--STTPT"
+    :prefixed: true
+    :description: 'Description or date/time in ISO 8601 or other character format
+      of the sponsor-defined reference point referred to by --STRTPT. Examples: "2003-12-15"
+      or "VISIT 1".'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSTDY:
+    :status: :updated
+    :datatype: Num
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--STDY"
+    :prefixed: true
+    :description: Actual study day of start of observation expressed in integer days
+      relative to the sponsor-defined RFSTDTC in Demographics.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxHLGT:
+    :status: :created
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--HLGT"
+    :prefixed: true
+    :description: MedDRA High Level Group Term from the primary path.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxDECOD:
+    :status: :no_change
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Synonym Qualifier
+    :name: "--DECOD"
+    :prefixed: true
+    :description: Standardized or dictionary-derived name of the topic variable, --TRT,
+      or the modified topic variable (--MODIFY), if applicable. Equivalent to the
+      generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published
+      or sponsor-defined dictionaries.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxRELNST:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--RELNST"
+    :prefixed: true
+    :description: 'An opinion as to whether the event may have been due to a treatment
+      other than study drug. Example: "MORE LIKELY RELATED TO ASPIRIN USE."'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxPRESP:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--PRESP"
+    :prefixed: true
+    :description: Used when a specific intervention is pre-specified on a CRF. Values
+      should be "Y" or null
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSDISAB:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SDISAB"
+    :prefixed: true
+    :description: Did the event result in persistent or significant disability/incapacity?
+      Valid values are "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxSHOSP:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: "--SHOSP"
+    :prefixed: true
+    :description: Did the event require or prolong hospitalization? Valid values are
+      "Y" and "N".
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTERM:
+    :status: :no_change
+    :datatype: Char
+    :classification: Topic
+    :sub_classification: ''
+    :name: "--TERM"
+    :prefixed: true
+    :description: Topic variable for an event observation, which is the verbatim or
+      pre-specified name of the event.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxEVLINT:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--EVLINT"
+    :prefixed: true
+    :description: 'Duration of  interval associated with an observation such as a
+      finding --TESTCD, represented in ISO 8601 character format. Example: -P2M to
+      represent a period of the past 2 months as the evaluation interval for a question
+      from a questionnaire such as SF-36.'
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxLLTCD:
+    :status: :created
+    :datatype: Num
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--LLTCD"
+    :prefixed: true
+    :description: MedDRA Lowest Level Term code.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxENRF:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--ENRF"
+    :prefixed: true
+    :description: Identifies the end of the observation as being before, during or
+      after the sponsor-defined reference period. The sponsor-defined reference period
+      is a continuous period of time defined by a discrete starting point and a discrete
+      ending point represented by RFSTDTC and RFENDTC in Demographics.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_VISIT:
+    :status: :updated
+    :datatype: Char
+    :classification: Timing
+    :sub_classification: ''
+    :name: VISIT
+    :prefixed: false
+    :description: Protocol-defined description of a clinical encounter.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxENDY:
+    :status: :updated
+    :datatype: Num
+    :classification: Timing
+    :sub_classification: ''
+    :name: "--ENDY"
+    :prefixed: true
+    :description: Actual study day of end of observation expressed in integer days
+      relative to the sponsor-defined RFSTDTC in Demographics.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxREFID:
+    :status: :updated
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: "--REFID"
+    :prefixed: true
+    :description: Optional internal or external identifier such as lab specimen ID,
+      or UUID for an ECG waveform or a medical image.
+    :rule: ''
   http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxDETECT:
-    :status: :deleted
+    :status: :created
     :datatype: Num
     :classification: Timing
     :sub_classification: ''
     :name: "--DETECT"
-    :rule: ''
+    :prefixed: true
     :description: The number of days from the start of dosing to the earliest detection
       of a condition or pathogen.
+    :rule: ''
+  http://www.assero.co.uk/MDRSdtmMd/CDISC/V2#M-CDISC_SDTMMODELEVENTS_xxTOX:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Variable Qualifier
+    :name: "--TOX"
     :prefixed: true
+    :description: 'Description of toxicity quantified by --TOXGR such as NCI CTCAE
+      Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which
+      scale and version is used in the Sponsor Comments column of the Define.xml document.'
+    :rule: ''
