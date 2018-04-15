@@ -40,21 +40,21 @@ describe Export do
     results = Export.new.terminologies
   #write_yaml_file(results, sub_dir, "thesaurus_export_1.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_export_1.yaml")
-    expect(results).to eq(expected)
+    expect(results).to hash_equal(expected)
   end
   
   it "generates the BCs list" do
     results = Export.new.biomedical_concepts
   #write_yaml_file(results, sub_dir, "biomedical_concepts_export_1.yaml")
     expected = read_yaml_file(sub_dir, "biomedical_concepts_export_1.yaml")
-    expect(results).to eq(expected)
+    expect(results).to hash_equal(expected)
   end
   
   it "generates the thesaurus list" do
     results = Export.new.forms
   #write_yaml_file(results, sub_dir, "forms_export_1.yaml")
     expected = read_yaml_file(sub_dir, "forms_export_1.yaml")
-    expect(results).to eq(expected)
+    expect(results).to hash_equal(expected)
   end
   
 end
