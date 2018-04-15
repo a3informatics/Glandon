@@ -972,7 +972,7 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
       fill_in 'searchTable_csearch_cl', with: 'C100129'
       ui_hit_return('searchTable_csearch_cl')
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'Showing 1 to 10 of 142 entries'
     end
 
