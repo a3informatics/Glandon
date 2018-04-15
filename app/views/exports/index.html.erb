@@ -1,0 +1,23 @@
+<% top_level_breadcrumb ("Export") %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Export Centre</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-3">
+            <%= render partial: "shared/export/type_panel", locals: { description: "Sponsor Terminologies", link_text: "Export Terminologies", link_path: start_exports_path({ export: { export_list_path: terminologies_exports_path }}) } %>
+          </div>
+          <div class="col-md-3">
+            <%= render partial: "shared/export/type_panel", locals: { description: "Sponsor Biomedical Concepts", link_text: "Export Biomedical Concepts", link_path: start_exports_path({ export: { export_list_path: biomedical_concepts_exports_path }}) } %>
+          </div>
+          <div class="col-md-3">
+            <%= render partial: "shared/export/type_panel", locals: { description: "Sponsor Forms", link_text: "Export Forms", link_path: start_exports_path({ export: { export_list_path: forms_exports_path }}) } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

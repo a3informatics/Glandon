@@ -144,28 +144,6 @@ class IsoManagedController < ApplicationController
     render :json => results, :status => 200
   end
 
-  #def impact
-  #  authorize IsoManaged, :show?
-  #  map = {}
-  #  @item = IsoManaged.find(params[:id], params[:namespace], false)
-  #  managed_items = @item.find_links_from_to(from=false)
-  #  managed_items.each do |result|
-  #    result[:uri] = result[:uri].to_s
-  #  end
-  #  @results = {item: @item.to_json, children: managed_items}
-  #  respond_to do |format|
-  #    format.html do
-  #    	@index_label = this_params[:index_label]
-  #  		@index_path = this_params[:index_path]
-  #  		@history_path = TypePathManagement.history_url(@item.rdf_type, @item.identifier, @item.scopedIdentifier.namespace.id)
-  #  		@referer = request.referer
-  #    end
-  #    format.json do
-  #      render json: @results
-  #    end
-  #  end
-  #end
-
   def impact
     authorize IsoManaged, :show?
     @item = IsoManaged.find(params[:id], params[:namespace], false)
@@ -203,6 +181,15 @@ class IsoManagedController < ApplicationController
       flash[:error] = "The item is locked for editing by another user."
     end
     redirect_to request.referer
+  end
+
+  def export
+    authorize IsoManaged
+    uri = UriV3.new(id: params[:id]) # Uses new mechanism
+    item = IsoManaged::find(uri.fragment, uri.namespace)
+    filename = "#{item.owner}_#{item.identifier}_#{item.version}.ttl"
+    file_path = PublicFile.save("Exports", filename, item.triples)
+    render json: {file_path: file_path}, status: 200
   end
 
 private

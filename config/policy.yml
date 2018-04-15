@@ -379,6 +379,13 @@ defaults: &defaults
       reader: false
       curator: true
       content_admin: true
+    export:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
   IsoNamesapcePolicy:
     index:
       sys_admin: false
@@ -669,6 +676,49 @@ defaults: &defaults
       curator: false
       content_admin: true
     create:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+  ExportPolicy:
+    index:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    start:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    terminologies:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    biomedical_concepts:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    forms:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    download:
       sys_admin: false
       term_reader: false
       term_curator: false

@@ -14,4 +14,12 @@ class PublicFile
 		return output_file
 	end
 
+  def self.read(full_path)
+    text = ""
+    File.open(full_path, "r") do |f|
+      text = f.read
+    end
+    return text
+  end
+
 end
