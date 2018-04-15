@@ -1031,6 +1031,7 @@ describe "Form Editor", :type => :feature do
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button 'Close'
+      wait_for_ajax
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       expect(tokens).to match_array([])
     end  
