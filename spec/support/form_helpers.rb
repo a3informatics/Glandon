@@ -36,6 +36,7 @@ module FormHelpers
     expect(page).to have_content 'History:'  
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
     expect(page).to have_content 'Edit:'  
+    wait_for_ajax(10)
   end
 
   def reload_form(identifier)
