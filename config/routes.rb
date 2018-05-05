@@ -155,6 +155,7 @@ Rails.application.routes.draw do
   resources :imports, :only => [:index]
   namespace :imports do
     resources :als, :only => [:new, :index, :create]
+    resources :odm, :only => [:new, :index, :create]
     resources :terms, :only => [:new, :index, :create]
   end
 
