@@ -3,8 +3,8 @@ defaults: &defaults
   DefinedObservation.nameCode.CD.code: "--TESTCD"
   DefinedObservation.nameCode.CD.originalText.ED.value: "--TEST"
   DefinedObservation.targetAnatomicSiteCode.CD.code: "--LOC" # Deprecated
-  DefinedObservation.categoryCode.CD: "--CAT"
-  DefinedObservation.subcategoryCode.CD: "--SCAT"
+  DefinedObservation.categoryCode.CD.code: "--CAT"
+  DefinedObservation.subcategoryCode.CD.code: "--SCAT"
   DefinedObservation.methodCode.CD.code: "--METHOD" # Deprecated
   # Defined Activity. Deprecated, use Defined Observation
   DefinedActivity.categoryCode.CD: "--CAT"
