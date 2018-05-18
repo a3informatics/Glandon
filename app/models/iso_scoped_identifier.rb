@@ -20,6 +20,14 @@ class IsoScopedIdentifier
   # Class variables
   @@base_namespace
 
+  # Clean an Identifier. Cleans unwanted characters from an identifier string
+  #
+  # @param identifier [String] the dirty identifier
+  # @return [String] the clean identifier
+  def self.clean_identifier(identifier)
+    identifier.gsub(/[^A-Z0-9a-z ]/i, ' ')
+  end
+
   # Initialize the object (new)
   # 
   # @param triples [array] Arrays of triples

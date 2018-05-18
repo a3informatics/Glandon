@@ -1,40 +1,32 @@
-class AlsExcel
+class OdmXml
 
   C_CLASS_NAME = self.name
 
-  require "roo"
   extend ActiveModel::Naming
 
   attr_reader   :errors
   attr_reader   :filename
   
-  @@sheet_info =
-  {
-    forms: { length: 19, name: "Forms", first_column_name: "OID"},
-    fields: { length: 53, name: "Fields", first_column_name: "FormOID"},
-    data_dictionary_entries: { length: 6, name: "", first_column_name: "DataDictionaryName"}
-  }
-    
   def initialize(filename)
-    @errors = ActiveModel::Errors.new(self)
     @filename = filename
-    open_workbook
+    xml = PublicFile.read(filename)
+    @doc = Nokogiri::XML(xml)
+    @doc.remove_namespaces!
+    @errors = ActiveModel::Errors.new(self)
   rescue => e
-    msg = "Exception raised opening Excel workbook filename=#{@filename}."
+    msg = "Exception raised opening ODM XML file, filename=#{@filename}."
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
     @errors.add(:base, msg)
-    @workbook = nil
   end
 
   def list
     results = []
-    worksheets = @workbook.sheets
-    return read_forms_sheet
+    @doc.xpath("//FormDef").each { |n| results << { identifier: n.attributes["OID"].value, label: n.attributes["Name"].value } }
+    return results
   rescue => e
     msg = "Exception raised building form list."
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
     @errors.add(:base, msg)
-    @workbook = nil
     return []
   end
 
@@ -43,11 +35,11 @@ class AlsExcel
     thesauri = []
     Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find(uri.id, uri.namespace, false) }
     # Process form
-    label = get_label(identifier)
-    return if !@errors.empty?
-    result = new_form(identifier, label)
-    read_fields_sheet(identifier).each do |item|
-      if item[:mapping].empty?
+    form = OdmForm.new(self.list, identifier)
+    form.groups(@doc)
+    return form
+=begin
+        if item[:mapping].empty?
         label = Form::Item::TextLabel.new
         label.label = item[:label] 
         label.ordinal = item[:ordinal]
@@ -84,115 +76,99 @@ class AlsExcel
         result.children.first.children << question
       end
     end
+=end
     return result
   rescue => e
     msg = "Exception raised building form."
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
     @errors.add(:base, msg)
-    @workbook = nil
     return nil
   end
 
+  class OdmForm
+
+    extend ActiveModel::Naming
+
+    attr_reader :oid
+    attr_reader :form
+
+    def initialize(list, identifier)  
+      @oid = identifier
+      source_form = list.find { |f| f[:identifier] == identifier }
+      if source_form.nil?
+        @errors.add(:base, "Failed to find the form, possible identifier mismatch.") 
+        return
+      else
+        @form = Form.new 
+        @form.scopedIdentifier.identifier = IsoScopedIdentifier.clean_identifier(identifier) # Make sure we remove anything nasty
+        @form.label = source_form[:label]
+        return
+      end
+    end
+
+    def groups(doc)
+      results = []
+    byebug
+      doc.xpath("//FormDef[@OID = '#{@oid}']/ItemGroupRef").each { |n| results << OdmGroup.new(self, doc, n) }
+      results.each { |r| @form.children << r.group }
+      return results
+    end
+
+  end
+      
+  class OdmGroup
+
+    extend ActiveModel::Naming
+
+    attr_reader :oid
+    attr_reader :group
+
+    def initialize(form, doc, node)  
+      @oid = node.attributes["ItemGrouoOID"].value
+      group = doc.xpath("//ItemGroupDef[@OID = '#{@oid}']")
+      @group = Form::Group::Normal.new
+      @group.label = group.attributes["Name"].value
+      @group.ordinal = node.attributes["OrderNumber"].value
+    end
+
+    def items(doc)
+      results = []
+      doc.xpath("//ItemGroupDef[@OID = '#{@oid}']/ItemRef").each { |n| results << OdmItem.new(self, doc, n) }
+      results.each { |r| @group.children << r.item }
+      return results
+    end
+
+  end
+
+  class OdmItem
+
+    extend ActiveModel::Naming
+
+    attr_reader :oid
+    attr_reader :item
+
+    def initialize(form, doc, node)  
+      @oid = node.attributes["ItemOID"].value
+      item = doc.xpath("//ItemDef[@OID = '#{@oid}']")
+
+      @item = Form::Item::Question.new
+      @item.label = group.attributes["Name"].value
+        #dt_and_format = get_datatype_and_format(item)
+        #question.datatype = dt_and_format[:datatype]
+        #question.format = dt_and_format[:format]
+      @item.mapping = group.attributes["SDSVarName"].value
+      @item.ordinal = node.attributes["OrderNumber"].value
+      @item.note = ""
+      q_text = node.xpath("//ItemDef[@OID = '#{@oid}']/Question/TranslatedText[@xml:lang = 'en']")
+      @item.question_text = q_text.first.text.strip
+    end
+
+  end
+
 private
-
-  # Find label
-  def get_label(identifier)
-    forms = self.list
-    form = forms.find { |f| f[:identifier] == identifier }
-    return form[:label] if !form.nil?
-    @errors.add(:base, "Failed to find the form label, possible identifier mismatch.")
-    return ""
-  end
-
-  # New form
-  def new_form(identifier, label)
-    object = Form.new 
-    object.scopedIdentifier.identifier = IsoScopedIdentifier.clean_identifier(identifier) # Make sure we remove anything nasty
-    object.label = label
-    group = Form::Group::Normal.new
-    group.label = "Main Group"
-    group.ordinal = 1
-    object.children << group
-    return object
-  end
     
-  # Open the workbook
-  def open_workbook
-    @workbook = Roo::Spreadsheet.open(@filename, extension: :xlsx) 
-  end
+=begin
 
-  # Check a cell
-  def check_cell(row, col, allow_blank=false)
-    value = @workbook.cell(row, col)
-    if value.blank? and allow_blank
-      value = ""
-    elsif value.blank?
-      @errors.add(:base, "Empty cell detected in row #{row}, column #{col}.")
-    end
-    # Return value as string, strip leading and trailing spaces.
-    return "#{value}".strip
-  end
-  
-  # Check a sheet      
-  def check_sheet(sheet_name)
-    headers = {}
-    @workbook.row(1).each_with_index { |header, i| headers[header] = i }
-    if headers.length != @@sheet_info[sheet_name][:length]
-      @errors.add(:base, "#{@@sheet_info[sheet_name][:name]} sheet in the excel file, incorrect column count, indicates format error.")
-      return 
-    end
-    if !headers.has_key?(@@sheet_info[sheet_name][:first_column_name]) 
-      @errors.add(:base, "#{@@sheet_info[sheet_name][:name]} sheet in the excel file, incorrect 1st column name, indicates format error.")
-      return 
-    end 
-  rescue => e
-    @errors.add(:base, "Unexpected exception. Possibly an empty #{@@sheet_info[sheet_name][:name]} sheet.")
-  end
-
-  def read_forms_sheet
-    results = []
-    @workbook.default_sheet = @workbook.sheets[1]
-    check_sheet(:forms)
-    return [] if !@errors.empty?
-    ((@workbook.first_row + 1) .. @workbook.last_row).each { |row| results << { identifier: check_cell(row, 1), label: check_cell(row, 3) } }
-    return results
-  end
-
-  def read_fields_sheet(identifier)
-    results = []
-    @workbook.default_sheet = @workbook.sheets[2]
-    check_sheet(:fields)
-    return results if !@errors.empty?
-    ((@workbook.first_row + 1) .. @workbook.last_row).each do |row|
-      next if check_cell(row, 1) != identifier
-      ordinal = check_cell(row, 3).to_i
-      label = check_cell(row, 5)            
-      mapping = check_cell(row, 7, true)            
-      data_format = check_cell(row, 8, true)            
-      code_list = check_cell(row, 9, true)            
-      control_type = check_cell(row, 12)            
-      question_text = check_cell(row, 15)            
-      results << {label: label, ordinal: ordinal, mapping: mapping, data_format: data_format, 
-        control_type: control_type, code_list: code_list, question_text: question_text}
-    end
-    return results
-  end
-    
-  def read_data_dictionary_entries_sheet(identifier)
-    results = []
-    @workbook.default_sheet = @workbook.sheets[5]
-    check_sheet(:data_dictionary_entries)
-    return results if !@errors.empty?
-    ((@workbook.first_row + 1) .. @workbook.last_row).each do |row|
-      next if check_cell(row, 1) != identifier
-      code = check_cell(row, 2)            
-      ordinal = check_cell(row, 3).to_i            
-      decode = check_cell(row, 4)            
-      results << {identifier: identifier, ordinal: ordinal, code: code, decode: decode}
-    end
-    return results
-  end
-  
   def get_cl(notation, thesauri)   
     thcs = []
     thesauri.each { |th| thcs += th.find_by_property({notation: notation}) }
@@ -251,6 +227,7 @@ private
     length = params[:data_format].dup
     return length.delete("^0-9")
   end
+=end
 
 end
 
