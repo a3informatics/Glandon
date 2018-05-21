@@ -31,6 +31,7 @@ Rails.application.routes.draw do
           get :parent
         end
     	end
+      resources :iso_managed, only: [:index]
       resources :sdtm_user_domains, only: [:show]
       resources :sdtm_ig_domains, only: [:show] do
         member do
