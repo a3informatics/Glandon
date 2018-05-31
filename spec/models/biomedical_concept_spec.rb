@@ -288,5 +288,19 @@ it "allows a BC to be found" do
     expect(result).to eq(expected)
   end
 
+  it "returns domains linked, single" do
+    load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")
+    load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
+    vs_uri = UriV3.new(fragment: "D-ACME_VSDomain", namespace: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
+    vs = SdtmUserDomain.find(vs_uri.fragment, vs_uri.namespace)
+    params = { :bcs => ["http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677"] }
+    vs.add(params)
+    bc = BiomedicalConcept.find("BC-ACME_BC_C49677", "http://www.assero.co.uk/MDRBCs/V1")
+    results = bc.domains
+    expect(results[0].to_s).to eq(vs_uri.to_s)
+  end
+
+  it "returns domains linked, multiple"
+
 end
   
